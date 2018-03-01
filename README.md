@@ -53,7 +53,7 @@ _browser.json_
 ```js
 {
     "dependencies": [
-        "ebayui-core/ebay-menu"
+        "@ebay/ebayui-core/ebay-menu"
     ]
 }
 ```
