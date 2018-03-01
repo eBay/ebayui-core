@@ -1,0 +1,11 @@
+{
+    "@class": "string",
+    "@index": "string",
+    "@type": "string",
+    "@aria-label-prev": "string",
+    "@aria-label-next": "string",
+    "@*": "expression",
+    "@items <item>[]": {
+        "@*": "expression"
+    }
+}

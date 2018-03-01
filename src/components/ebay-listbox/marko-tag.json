@@ -1,0 +1,13 @@
+{
+    "@class": "string",
+    "@name": "string",
+    "@grow": "boolean",
+    "@*": "expression",
+    "@options <option>[]": {
+        "@class": "string",
+        "@value": "string",
+        "@label": "string",
+        "@selected": "boolean",
+        "@*": "expression"
+    }
+}

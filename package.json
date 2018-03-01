@@ -1,0 +1,97 @@
+{
+  "name": "@ebay/ebayui-core",
+  "version": "0.0.1",
+  "scripts": {
+    "prepublishOnly": "node scripts/prepublish",
+    "postpublish": "node scripts/postpublish",
+    "start": "yarn clean; browser-refresh demo/",
+    "coverage": "nyc marko test && node scripts/coverage",
+    "report": "nyc report --reporter=html",
+    "test": "yarn coverage && yarn report && yarn test:integration",
+    "test:server": "marko test --server",
+    "test:browser": "marko test --browser",
+    "test:fps": "karma start",
+    "test:integration": "mocha integration/index.js",
+    "build": "yarn clean; yarn lint && yarn test",
+    "clean": "rimraf .coverage .karma .nyc_output demo/static",
+    "lint": "yarn lint:less && yarn lint:js",
+    "lint:less": "stylelint '**/**.less'",
+    "lint:js": "eslint .",
+    "shrinkwrap": "rimraf yarn.lock; rimraf node_modules; yarn cache clean && yarn",
+    "ts": "yarn test:server",
+    "tb": "yarn test:browser",
+    "tf": "yarn test:fps",
+    "ti": "yarn test:integration",
+    "tr": "yarn coverage && yarn report && opn .coverage/index.html"
+  },
+  "pre-push": [
+    "lint",
+    "test"
+  ],
+  "files": [
+    "dist/",
+    "marko.json",
+    "yarn.lock",
+    "*.browser.json"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eBay/ebayui-core"
+  },
+  "keywords": [
+    "marko-components"
+  ],
+  "devDependencies": {
+    "@ebay/skin": "^3.3.0-0",
+    "@lasso/marko-taglib": "^1.0.9",
+    "async": "^2.6.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "browser-refresh": "^1.7.2",
+    "chai": "^4.1.2",
+    "cheerio": "^1.0.0-rc.2",
+    "eslint": "^4.11.0",
+    "eslint-config-ebay": "^0.1.9",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "express": "^4.16.2",
+    "gh-highlight": "^0.1.3",
+    "karma": "^2.0.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-lasso": "^4.0.0",
+    "karma-mocha": "^1.3.0",
+    "lasso": "^3.1.2",
+    "lasso-less": "^2.4.7",
+    "lasso-marko": "^2.4.0",
+    "marko": "^3",
+    "marko-cli": "^2.2.1",
+    "marko-prettyprint": "^1.4.1",
+    "marko-widgets": "^6",
+    "mocha": "^4.1.0",
+    "nyc": "^11.4.1",
+    "opn-cli": "^3.1.0",
+    "pre-push": "^0.1.1",
+    "rimraf": "^2.6.2",
+    "sinon": "^4.1.3",
+    "stylelint": "^8.4.0",
+    "supertest": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@ebay/skin": "^3",
+    "marko": "^3 || ^4",
+    "marko-widgets": "^6 || ^7"
+  },
+  "dependencies": {
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2",
+    "lodash.throttle": "^4.1.1",
+    "makeup-expander": "^0.3.0",
+    "makeup-key-emitter": "^0.0.2",
+    "makeup-prevent-scroll-keys": "^0.0.1",
+    "makeup-roving-tabindex": "^0.0.3",
+    "marko-dynamic-tag": "^1.0.0",
+    "nodelist-foreach-polyfill": "^1.2.0"
+  }
+}

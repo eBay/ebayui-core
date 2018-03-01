@@ -1,0 +1,24 @@
+{
+    "rules": {
+        "block-closing-brace-empty-line-before": "never",
+        "block-closing-brace-newline-before": "always",
+        "block-opening-brace-newline-after": "always",
+        "block-opening-brace-space-before": "always",
+        "declaration-colon-space-after": "always",
+        "declaration-block-no-duplicate-properties": [
+            true,
+            "ignore": ["consecutive-duplicates-with-different-values"]
+        ],
+        "declaration-block-single-line-max-declarations": 1,
+        "function-calc-no-unspaced-operator": true,
+        "selector-max-empty-lines": 0,
+        "selector-type-case": "lower",
+        "unit-case": "lower",
+        "unit-no-unknown": true,
+        "indentation": 4,
+        "max-empty-lines": 1,
+        "no-empty-source": true,
+        "no-eol-whitespace": true,
+        "no-extra-semicolons": true
+    }
+}

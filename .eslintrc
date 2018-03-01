@@ -1,0 +1,18 @@
+{
+    "extends": "ebay",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "plugins": [
+        "import",
+        "mocha"
+    ],
+    "rules": {
+        "import/order": [2, {"groups": ["builtin", "external", "internal", "parent", "sibling", "index"]}],
+        "mocha/no-exclusive-tests": 2,
+        "mocha/no-identical-title": 2,
+        "mocha/no-nested-tests": 2,
+        "mocha/no-return-and-callback": 2,
+        "mocha/no-sibling-hooks": 2
+    }
+}

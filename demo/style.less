@@ -1,0 +1,46 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Market Sans', Arial;
+    margin: 15px;
+}
+
+h2 {
+    padding: 10px 0;
+}
+
+h4 {
+    margin: 5px 0;
+}
+
+header > a {
+    line-height: 24px;
+    padding-right: 20px;
+
+    span {
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    &, &:visited {
+        color: @color-core-blue;
+    }
+}
+
+.example {
+    margin: 0 0 30px 0;
+    padding: 15px;
+    border: 1px solid @color-core-gray-silver;
+    background: @color-core-beige-light;
+}
+
+.example-code {
+    background: @color-core-white;
+    display: inline-block;
+    margin: 1em 0;
+    max-width: ~"calc(100% - 2em)";
+    padding: 0 1em;
+    overflow: scroll;
+}

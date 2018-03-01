@@ -1,0 +1,11 @@
+.git/
+.cache/
+.nyc_output/
+.coverage/
+.karma/
+.marko-cli/
+node_modules/
+demo/static/
+snapshots/
+*.marko.js
+**/test/**/*

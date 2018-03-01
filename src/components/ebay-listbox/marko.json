@@ -1,0 +1,6 @@
+{
+    "<ebay-listbox>": {
+        "renderer": "./index.js",
+        "transformer": "../../common/transformer/index.js"
+    }
+}

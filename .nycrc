@@ -1,0 +1,16 @@
+{
+  "include": [
+    "src/**/*.js"
+  ],
+  "exclude": [
+    "**/test",
+    "**/mock",
+    "demo",
+    "**/*.marko.js",
+    "src/common/test-utils"
+  ],
+  "sourceMap": true,
+  "instrument": true,
+  "report-dir": "./.coverage",
+  "all": true
+}

@@ -1,0 +1,8 @@
+{
+    "dependencies": [
+        "@ebay/skin/listbox",
+        "../../../src/components/ebay-button",
+        "require: marko-widgets",
+        "require: ./index.js"
+    ]
+}

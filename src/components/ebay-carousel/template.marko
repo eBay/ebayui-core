@@ -1,0 +1,21 @@
+<div class=data.classes w-bind ${data.htmlAttributes}>
+    <div class="carousel__container">
+        <button
+            class="icon icon--chevron-light-left carousel__control carousel__control--prev"
+            w-onclick="handlePrev"
+            aria-label=data.ariaLabelPrev
+            aria-disabled=String(data.prevControlDisabled)
+            disabled=data.prevControlDisabled/>
+        <ul class="carousel__list" w-preserve-attrs="style">
+            <for(item in data.items)>
+                <li ${item.htmlAttributes} w-body=item.renderBody/>
+            </for>
+        </ul>
+        <button
+            class="icon icon--chevron-light-right carousel__control carousel__control--next"
+            w-onclick="handleNext"
+            aria-label=data.ariaLabelNext
+            aria-disabled=String(data.nextControlDisabled)
+            disabled=data.nextControlDisabled/>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+{
+    "@class": "string",
+    "@disabled": "boolean",
+    "@partially-disabled": "boolean",
+    "@href": "string",
+    "@priority": "string",
+    "@size": "size",
+    "@fluid": "boolean",
+    "@*": "expression"
+}

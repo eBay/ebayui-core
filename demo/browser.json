@@ -1,0 +1,14 @@
+{
+    "dependencies": [
+        "require: marko",
+        "require: marko-widgets",
+        "@ebay/skin/less",
+        "@ebay/skin/marketsans",
+        "./atom-light-syntax.css",
+        "./style.less",
+        "../src/components/ebay-button",
+        "../src/components/ebay-carousel",
+        "../src/components/ebay-menu",
+        "../src/components/ebay-listbox"
+    ]
+}

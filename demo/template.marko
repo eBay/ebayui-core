@@ -1,0 +1,27 @@
+<lasso-page name="demo" package-path="./browser.json" flags=["skin-ds6"]/>
+<html>
+    <head>
+        <lasso-head/>
+        <title>ebayui-core</title>
+        <link rel="shortcut icon" href="favicon.ico">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <header>
+            <for (component in data.model.components)>
+                <a href=component><span>${component}</span></a>
+            </for>
+        </header>
+        <h2>${data.params.component}</h2>
+        <for (example in data.model.examples)>
+            <div class="example">
+                <h4>${example.name}</h4>
+                <div class="example-code">$!{example.code}</div>
+                <div><dynamic-tag options={path: example.path}/></div>
+            </div>
+        </for>
+        <lasso-body/>
+        <init-widgets/>
+        <script src=process.env.BROWSER_REFRESH_URL/>
+    </body>
+</html>
