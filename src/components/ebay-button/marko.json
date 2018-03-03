@@ -1,5 +1,0 @@
-{
-    "<ebay-button>": {
-        "renderer": "./index.js"
-    }
-}

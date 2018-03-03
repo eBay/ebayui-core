@@ -28,4 +28,17 @@ fs.readdirSync(`${__dirname}/../dist/components`).map(component => ({
 });
 
 // update marko.json
-fs.writeFileSync(`${__dirname}/../marko.json`, '{"tags-dir": "./dist/components"}');
+const markoConfigPath = `${__dirname}/../marko.json`;
+const markoConfig = require(markoConfigPath);
+Object.keys(markoConfig).forEach((key) => {
+    const tagConfig = markoConfig[key];
+
+    if (tagConfig.renderer) {
+        tagConfig.renderer = tagConfig.renderer.replace('./src', './dist');
+    }
+
+    if (tagConfig.transformer) {
+        tagConfig.transformer = tagConfig.transformer.replace('./src', './dist');
+    }
+});
+fs.writeFileSync(markoConfigPath, JSON.stringify(markoConfig));
