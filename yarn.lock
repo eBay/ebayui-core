@@ -31,9 +31,9 @@
     ora "^1.3.0"
     unzip "^0.1.11"
 
-"@marko/test@^1.0.1":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@marko/test/-/test-1.0.4.tgz#604faefa7cb56fe9ba6b2480b76b73ccb74b2651"
+"@marko/test@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@marko/test/-/test-1.0.5.tgz#b7626f09b0bba11073c0d7acac92052a34941938"
   dependencies:
     async "^2.6.0"
     browser-refresh-taglib "^1.1.0"
@@ -2070,6 +2070,16 @@ cosmiconfig@^3.1.0:
     js-yaml "^3.9.0"
     parse-json "^3.0.0"
     require-from-string "^2.0.1"
+
+coveralls@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/coveralls/-/coveralls-3.0.0.tgz#22ef730330538080d29b8c151dc9146afde88a99"
+  dependencies:
+    js-yaml "^3.6.1"
+    lcov-parse "^0.0.10"
+    log-driver "^1.2.5"
+    minimist "^1.2.0"
+    request "^2.79.0"
 
 crc@3.3.0:
   version "3.3.0"
@@ -4309,6 +4319,10 @@ is-supported-regexp-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/is-supported-regexp-flag/-/is-supported-regexp-flag-1.0.0.tgz#8b520c85fae7a253382d4b02652e045576e13bb8"
 
+is-travis@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/is-travis/-/is-travis-1.0.0.tgz#89d40ed56d9b8f8c36dfbe5811ba7e5e14944df9"
+
 is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
@@ -4446,7 +4460,7 @@ js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-yaml@3.x, js-yaml@^3.9.0, js-yaml@^3.9.1:
+js-yaml@3.x, js-yaml@^3.6.1, js-yaml@^3.9.0, js-yaml@^3.9.1:
   version "3.10.0"
   resolved "https://registry.npmjs.org/js-yaml/-/js-yaml-3.10.0.tgz#2e78441646bd4682e963f22b6e92823c309c62dc"
   dependencies:
@@ -4875,6 +4889,10 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
+lcov-parse@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.npmjs.org/lcov-parse/-/lcov-parse-0.0.10.tgz#1b0b8ff9ac9c7889250582b70b71315d9da6d9a3"
+
 less@^2.0.0:
   version "2.7.3"
   resolved "https://registry.npmjs.org/less/-/less-2.7.3.tgz#cc1260f51c900a9ec0d91fb6998139e02507b63b"
@@ -4987,6 +5005,10 @@ lodash@^3.10.1:
 lodash@^4.0.0, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.4, lodash@^4.3.0, lodash@^4.5.0:
   version "4.17.5"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
+
+log-driver@^1.2.5:
+  version "1.2.7"
+  resolved "https://registry.npmjs.org/log-driver/-/log-driver-1.2.7.tgz#63b95021f0702fedfa2c9bb0a24e7797d71871d8"
 
 log-symbols@^2.0.0, log-symbols@^2.1.0:
   version "2.2.0"
@@ -5158,13 +5180,13 @@ markdown-table@^1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-1.1.1.tgz#4b3dd3a133d1518b8ef0dbc709bf2a1b4824bc8c"
 
-marko-cli@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-2.2.1.tgz#a118e3f9e123d9e70d30f6577d6fee5faa9dafd9"
+marko-cli@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-2.2.2.tgz#9f628d596a6d85be14c7870a523cf318997155ab"
   dependencies:
     "@marko/compile" "^1.0.0"
     "@marko/create" "^1.0.0"
-    "@marko/test" "^1.0.1"
+    "@marko/test" "^1.0.5"
     app-root-dir "^1.0.2"
     argly "^1.0.0"
     chalk "^1.1.3"
@@ -7039,7 +7061,7 @@ request@2.81.0:
     tunnel-agent "^0.6.0"
     uuid "^3.0.0"
 
-request@^2.0.0, request@^2.74.0:
+request@^2.0.0, request@^2.74.0, request@^2.79.0:
   version "2.83.0"
   resolved "https://registry.npmjs.org/request/-/request-2.83.0.tgz#ca0b65da02ed62935887808e6f510381034e3356"
   dependencies:

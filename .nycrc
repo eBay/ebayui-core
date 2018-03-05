@@ -12,5 +12,8 @@
   "sourceMap": true,
   "instrument": true,
   "report-dir": "./.coverage",
-  "all": true
+  "all": true,
+  "reporter": [
+     "lcov"
+   ]
 }
