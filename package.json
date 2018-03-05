@@ -68,7 +68,7 @@
     "lasso-less": "^2.4.7",
     "lasso-marko": "^2.4.0",
     "marko": "^3",
-    "marko-cli": "^2.2.1",
+    "marko-cli": "^2.2.2",
     "marko-prettyprint": "^1.4.1",
     "marko-widgets": "^6",
     "mocha": "^4.1.0",

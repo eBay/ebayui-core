@@ -31,9 +31,9 @@
     ora "^1.3.0"
     unzip "^0.1.11"
 
-"@marko/test@^1.0.1":
-  version "1.0.4"
-  resolved "https://registry.npmjs.org/@marko/test/-/test-1.0.4.tgz#604faefa7cb56fe9ba6b2480b76b73ccb74b2651"
+"@marko/test@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.npmjs.org/@marko/test/-/test-1.0.5.tgz#b7626f09b0bba11073c0d7acac92052a34941938"
   dependencies:
     async "^2.6.0"
     browser-refresh-taglib "^1.1.0"
@@ -5180,13 +5180,13 @@ markdown-table@^1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-1.1.1.tgz#4b3dd3a133d1518b8ef0dbc709bf2a1b4824bc8c"
 
-marko-cli@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-2.2.1.tgz#a118e3f9e123d9e70d30f6577d6fee5faa9dafd9"
+marko-cli@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-2.2.2.tgz#9f628d596a6d85be14c7870a523cf318997155ab"
   dependencies:
     "@marko/compile" "^1.0.0"
     "@marko/create" "^1.0.0"
-    "@marko/test" "^1.0.1"
+    "@marko/test" "^1.0.5"
     app-root-dir "^1.0.2"
     argly "^1.0.0"
     chalk "^1.1.3"
