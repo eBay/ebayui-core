@@ -7,4 +7,17 @@ const pathPrefix = `${ __dirname }/..`;
 del.sync([`${pathPrefix}/*.browser.json`, `${pathPrefix}/dist`]);
 
 // undo marko.json changes made by prepublish
-fs.writeFileSync(`${pathPrefix}/marko.json`, '{\n    "tags-dir": "./src/components"\n}\n');
+const markoConfigPath = `${pathPrefix}/marko.json`;
+const markoConfig = require(markoConfigPath);
+Object.keys(markoConfig).forEach((key) => {
+    const tagConfig = markoConfig[key];
+
+    if (tagConfig.renderer) {
+        tagConfig.renderer = tagConfig.renderer.replace('./dist', './src');
+    }
+
+    if (tagConfig.transformer) {
+        tagConfig.transformer = tagConfig.transformer.replace('./dist', './src');
+    }
+});
+fs.writeFileSync(markoConfigPath, `${JSON.stringify(markoConfig, null, 4)}\n`);
