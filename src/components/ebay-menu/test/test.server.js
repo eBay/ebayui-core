@@ -61,7 +61,9 @@ describe('menu-item', () => {
     });
 
     test('renders fake version', context => {
-        const input = { type: 'fake', items: [{ renderBody: mock.renderBody, href: '#' }, { renderBody: mock.renderBody, type: 'button' }] };
+        const linkItem = { renderBody: mock.renderBody, href: '#' };
+        const buttonItem = { renderBody: mock.renderBody, type: 'button' };
+        const input = { type: 'fake', items: [linkItem, buttonItem] };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('a.fake-menu__item[href=#]').length).to.equal(1);
         expect($('button.fake-menu__item').length).to.equal(1);
