@@ -1,5 +1,7 @@
 'use strict';
 
+const isTravis = require('is-travis');
+
 module.exports = markoCli => {
     markoCli.config.browserBuilder = {
         plugins: [
@@ -7,4 +9,8 @@ module.exports = markoCli => {
             'lasso-less'
         ]
     };
+
+    if (isTravis) {
+        markoCli.config.puppeteerOptions = { args: ['--no-sandbox'] };
+    }
 };

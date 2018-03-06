@@ -150,7 +150,7 @@ function init() {
         hostSelector: buttonSelector,
         focusManagement: 'focusable',
         click: true,
-        autoCollapse: false
+        autoCollapse: true
     });
 }
 

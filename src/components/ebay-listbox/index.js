@@ -30,7 +30,7 @@ function getInitialState(input) {
 
     const selectedOption = options.find(option => option.selected) || options[0];
 
-    if (selectedOption.value === options[0].value) {
+    if (options.length > 0 && selectedOption.value === options[0].value) {
         options[0].selected = true;
     }
 

@@ -1,6 +1,0 @@
-{
-    "<ebay-menu>": {
-        "renderer": "./index.js",
-        "transformer": "../../common/transformer/index.js"
-    }
-}

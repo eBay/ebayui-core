@@ -1,3 +1,63 @@
 {
-    "tags-dir": "./src/components"
+    "<ebay-button>": {
+        "renderer": "./src/components/ebay-button/index.js",
+        "@class": "string",
+        "@disabled": "boolean",
+        "@partially-disabled": "boolean",
+        "@href": "string",
+        "@priority": "string",
+        "@size": "size",
+        "@fluid": "boolean",
+        "@*": "expression"
+    },
+    "<ebay-carousel>": {
+        "renderer": "./src/components/ebay-carousel/index.js",
+        "transformer": "./src/common/transformer/index.js",
+        "@class": "string",
+        "@index": "string",
+        "@type": "string",
+        "@aria-label-prev": "string",
+        "@aria-label-next": "string",
+        "@*": "expression",
+        "@items <item>[]": {
+            "@*": "expression"
+        }
+    },
+    "<ebay-carousel-item>": {},
+    "<ebay-listbox>": {
+        "renderer": "./src/components/ebay-listbox/index.js",
+        "transformer": "./src/common/transformer/index.js",
+        "@class": "string",
+        "@name": "string",
+        "@grow": "boolean",
+        "@*": "expression",
+        "@options <option>[]": {
+            "@class": "string",
+            "@value": "string",
+            "@label": "string",
+            "@selected": "boolean",
+            "@*": "expression"
+        }
+    },
+    "<ebay-listbox-option>": {},
+    "<ebay-menu>": {
+        "renderer": "./src/components/ebay-menu/index.js",
+        "transformer": "./src/common/transformer/index.js",
+        "@type": "string",
+        "@class": "string",
+        "@label": "string",
+        "@expanded": "boolean",
+        "@grow": "boolean",
+        "@auto-collapse": "boolean",
+        "@*": "expression",
+        "@items <item>[]": {
+            "@class": "string",
+            "@href": "string",
+            "@type": "string",
+            "@checked": "boolean",
+            "@current": "boolean",
+            "@*": "expression"
+        }
+    },
+    "<ebay-menu-item>": {}
 }
