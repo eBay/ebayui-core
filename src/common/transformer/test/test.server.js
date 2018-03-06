@@ -61,3 +61,20 @@ describe('when the ebay-menu-item tag is transformed', () => {
         expect(outputTemplate).to.deep.equal(tagString.after);
     });
 });
+
+describe('when the ebay-menu:item tag is transformed', () => {
+    let tagString;
+    let outputTemplate;
+
+    beforeEach(() => {
+        const rootTag = 'ebay-menu';
+        const nestedTag = 'item';
+        const templatePath = `../../../components/${rootTag}/template.marko`;
+        tagString = getTagString(rootTag, nestedTag);
+        outputTemplate = getTransformedTemplate(tagString.after, templatePath);
+    });
+
+    test('leaves tag as is', () => {
+        expect(outputTemplate).to.deep.equal(tagString.after);
+    });
+});
