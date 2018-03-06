@@ -3,13 +3,13 @@
     "@class": "string",
     "@label": "string",
     "@expanded": "boolean",
-    "@fake": "boolean",
     "@grow": "boolean",
     "@auto-collapse": "boolean",
     "@*": "expression",
     "@items <item>[]": {
         "@class": "string",
         "@href": "string",
+        "@type": "string",
         "@checked": "boolean",
         "@current": "boolean",
         "@*": "expression"

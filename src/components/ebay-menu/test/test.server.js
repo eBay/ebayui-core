@@ -12,7 +12,7 @@ describe('menu', () => {
     });
 
     test('renders fake version', context => {
-        const input = { fake: true };
+        const input = { type: 'fake' };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.fake-menu').length).to.equal(1);
         expect($('.expand-btn').length).to.equal(1);
@@ -20,28 +20,28 @@ describe('menu', () => {
         expect($('.fake-menu__items[role=menu]').length).to.equal(0);
     });
 
-    test('renders with fake=true, grow=true', context => {
-        const input = { fake: true, grow: true };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu__items--grow').length).to.equal(1);
-    });
-
-    test('renders with fake=true, grow=false', context => {
-        const input = { fake: true, grow: false };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu__items').length).to.equal(1);
-    });
-
-    test('renders with fake=false, grow=true', context => {
-        const input = { fake: false, grow: true };
+    test('renders with grow=true', context => {
+        const input = { grow: true };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.menu__items--grow').length).to.equal(1);
     });
 
-    test('renders with fake=false, grow=false', context => {
-        const input = { fake: false, grow: false };
+    test('renders with grow=false', context => {
+        const input = { grow: false };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.menu__items').length).to.equal(1);
+    });
+
+    test('renders with type=fake, grow=true', context => {
+        const input = { type: 'fake', grow: true };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.fake-menu__items--grow').length).to.equal(1);
+    });
+
+    test('renders with type=fake, grow=false', context => {
+        const input = { type: 'fake', grow: false };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.fake-menu__items').length).to.equal(1);
     });
 
     test('handles pass-through html attributes', context => {
@@ -61,9 +61,10 @@ describe('menu-item', () => {
     });
 
     test('renders fake version', context => {
-        const input = { items: [{ renderBody: mock.renderBody, href: '#' }] };
+        const input = { type: 'fake', items: [{ renderBody: mock.renderBody, href: '#' }, { renderBody: mock.renderBody, type: 'button' }] };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('a.fake-menu__item[href=#]').length).to.equal(1);
+        expect($('button.fake-menu__item').length).to.equal(1);
     });
 
     ['radio', 'checkbox'].forEach(type => {
