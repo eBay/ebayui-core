@@ -24,6 +24,15 @@
         }
     },
     "<ebay-carousel-item>": {},
+    "<ebay-dialog>": {
+        "renderer": "./src/components/ebay-dialog/index.js",
+        "@class": "string",
+        "@open": "boolean",
+        "@type": "string",
+        "@focus": "string",
+        "@aria-label-close": "string",
+        "@*": "expression"
+    },
     "<ebay-select>": {
         "renderer": "./src/components/ebay-select/index.js",
         "transformer": "./src/common/transformer/index.js",
