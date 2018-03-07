@@ -1,8 +1,0 @@
-{
-    "@level": "string",
-    "@heading-tag": "string",
-    "@type": "string",
-    "@class": "string",
-    "@aria-label-text": "string",
-    "@*": "expression"
-}
