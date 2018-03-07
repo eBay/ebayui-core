@@ -1,0 +1,14 @@
+<${data.mainTag}
+    w-bind
+    aria-labelledby="${data.type}-status-${widget.elId()}"
+    class="${data.level}-notice ${data.level}-notice--${data.type} ${data.class}"
+    ${data.htmlAttributes}>
+        <${data.headingTag}
+            class="${data.level}-notice__status"
+            id="${data.type}-status-${widget.elId()}">
+                <span aria-label="${data.ariaText}" role="img"></span>
+        </${data.headingTag}>
+        <${data.contentTag} class="${data.level}-notice__content">
+            <invoke data.renderBody(out) if(data.renderBody)/>
+        </${data.contentTag}>
+</${data.mainTag}>

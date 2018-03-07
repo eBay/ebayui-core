@@ -1,0 +1,5 @@
+{
+    "<ebay-notice>": {
+        "renderer": "./index.js"
+    }
+}

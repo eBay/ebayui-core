@@ -23,6 +23,7 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 * [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
 * [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
 * [`ebay-listbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-listbox)
+* [`ebay-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-notice)
 
 ## Getting Started
 
