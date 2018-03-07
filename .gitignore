@@ -12,3 +12,5 @@ dist
 .browser-refresh
 integration/template.marko
 integration/browser.json
+/.vscode
+.yarnclean
