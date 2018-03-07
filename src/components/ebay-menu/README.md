@@ -19,7 +19,7 @@ Name | Type | Stateful | Description
 `class` | String | No | custom class
 `label` | String | Yes | button label
 `expanded` | Boolean | Yes | whether content is expanded (Note: not supported as initial attribute)
-`fake` | Boolean | No | menu items are links
+`type` | String | No | Can be "fake" / "radio" / "checkbox"
 `grow` | Boolean | No | grow items container beyond menu size
 `auto-collapse` | Boolean | No | collapse automatically when focus lost
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
@@ -55,5 +55,6 @@ Name | Type | Stateful | Description
 --- | --- | --- | ---
 `class` | String | No | custom class
 `href` (fake menu) | String | No | for link that looks like a menu-item
+`type` (fake menu) | String | No | Set to "button" for fake menu-item <button>
 `checked` (radio or checkbox) | Boolean | Yes | whether or not the item is checked (**Note:** use the root `ebay-menu` element's `checked` property for radio type menus, or `setCheckedList()` method for checkbox type menus, to set this property.)
 `current` (fake menu) | Boolean | No | whether or not the href is the current href of the page

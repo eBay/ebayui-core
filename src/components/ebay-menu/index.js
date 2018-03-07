@@ -17,19 +17,25 @@ function getInitialState(input) {
     const type = input.type;
     const isRadio = type === 'radio';
     const isCheckbox = type === 'checkbox';
+    const isFake = type === 'fake';
     let checkedItems = [];
 
     const items = (input.items || []).map((item, i) => {
         const classes = [item.class];
         const href = item.href;
+        const itemType = item.type; // for button menu item in fake menu
         const checked = item.checked;
         const current = item.current; // only for fake menu items
         let role;
         let tag;
 
-        if (href) {
-            tag = 'a';
+        if (isFake) {
             classes.push('fake-menu__item');
+            if (href) {
+                tag = 'a';
+            } else if (itemType === 'button') {
+                tag = 'button';
+            }
         } else {
             tag = 'div';
             classes.push('menu__item');
@@ -39,7 +45,7 @@ function getInitialState(input) {
             role = 'menuitemradio';
         } else if (isCheckbox) {
             role = 'menuitemcheckbox';
-        } else {
+        } else if (!isFake) {
             role = 'menuitem';
         }
 
@@ -66,9 +72,9 @@ function getInitialState(input) {
         type,
         isRadio,
         isCheckbox,
+        isFake,
         label: input.label,
         class: input.class,
-        fake: Boolean(input.fake),
         grow: Boolean(input.grow),
         expanded: false,
         htmlAttributes: processHtmlAttributes(input),
@@ -81,7 +87,7 @@ function getTemplateData(state) {
     const menuClass = [state.class, 'expander'];
     const itemsClass = [contentClass];
 
-    if (state.fake) {
+    if (state.isFake) {
         menuClass.push('fake-menu');
         itemsClass.push('fake-menu__items');
         if (state.grow) {
@@ -105,7 +111,7 @@ function getTemplateData(state) {
         menuClass: menuClass,
         buttonClass: buttonClass,
         itemsClass: itemsClass,
-        role: !state.fake ? 'menu' : null,
+        role: !state.isFake ? 'menu' : null,
         items: state.items,
         htmlAttributes: state.htmlAttributes
     };
@@ -137,7 +143,9 @@ function init() {
     this.itemEls.forEach((itemEl, i) => {
         observer.observeInner(this, itemEl, 'checked', `items[${i}]`, 'items', checkedObserverCallback);
     });
-    rovingTabindex.createLinear(this.contentEl, this.state.fake ? 'a' : 'div', { index: 0, autoReset: 0 });
+    if (!this.state.isFake) {
+        rovingTabindex.createLinear(this.contentEl, 'div', { index: 0, autoReset: 0 });
+    }
     const expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
         hostSelector: buttonSelector,
         focusManagement: 'focusable',

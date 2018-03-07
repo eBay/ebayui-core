@@ -24,8 +24,8 @@
         }
     },
     "<ebay-carousel-item>": {},
-    "<ebay-listbox>": {
-        "renderer": "./src/components/ebay-listbox/index.js",
+    "<ebay-select>": {
+        "renderer": "./src/components/ebay-select/index.js",
         "transformer": "./src/common/transformer/index.js",
         "@class": "string",
         "@name": "string",
@@ -39,7 +39,7 @@
             "@*": "expression"
         }
     },
-    "<ebay-listbox-option>": {},
+    "<ebay-select-option>": {},
     "<ebay-menu>": {
         "renderer": "./src/components/ebay-menu/index.js",
         "transformer": "./src/common/transformer/index.js",
@@ -47,13 +47,13 @@
         "@class": "string",
         "@label": "string",
         "@expanded": "boolean",
-        "@fake": "boolean",
         "@grow": "boolean",
         "@auto-collapse": "boolean",
         "@*": "expression",
         "@items <item>[]": {
             "@class": "string",
             "@href": "string",
+            "@type": "string",
             "@checked": "boolean",
             "@current": "boolean",
             "@*": "expression"
