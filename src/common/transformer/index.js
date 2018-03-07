@@ -1,8 +1,8 @@
 /**
  * Transform ebay-* components' child tags for use as nested tags
- * Example: <ebay-listbox-option> to <ebay-listbox:option>
+ * Example: <ebay-select-option> to <ebay-select:option>
  * Note: Used exclusively by Marko as a transform for the nested tags
- * See: /src/components/ebay-listbox/marko.json
+ * See: /src/components/ebay-select/marko.json
  * @param {Object} el
  * @param {Object} context
  */
