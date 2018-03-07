@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@ebay/skin@^3.4.0-0":
+"@ebay/skin@^3.4.0":
   version "3.4.0"
   resolved "https://registry.npmjs.org/@ebay/skin/-/skin-3.4.0.tgz#67e6504a1dc239ad05f13cb07c48a1711b3e1893"
 
