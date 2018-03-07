@@ -15,31 +15,31 @@ const constants = {
 };
 
 const defaults = {
-    level: 'page',
-    type: 'confirmation'
+    type: 'page',
+    status: 'confirmation'
 };
-function getInitialState(input) {
-    return input;
-}
-function getTemplateData(state) {
-    const level = state.level || defaults.level;
-    const headingTag = (level === 'page' && state.headingTag) ? state.headingTag : constants[level].headingTag;
+
+function getTemplateData(state, input) {
+    const type = input.type || defaults.type;
+    const headingTag = (type === 'page' && input.headingLevel) ? `h${input.headingLevel}` : constants[type].headingTag;
+    const status = input.status || defaults.status;
 
     return {
-        mainTag: constants[level].mainTag,
+        mainTag: constants[type].mainTag,
         headingTag: headingTag,
-        contentTag: constants[level].contentTag,
-        level: level,
-        type: state.type || defaults.type,
-        ariaText: state.ariaLabelText || '',
-        htmlAttributes: processHtmlAttributes(state),
-        renderBody: state.renderBody,
-        class: state.class || ''
+        contentTag: constants[type].contentTag,
+        type,
+        status,
+        ariaText: input.ariaText || '',
+        htmlAttributes: processHtmlAttributes(input),
+        renderBody: input.renderBody,
+        mainClass: [`${type}-notice`, `${type}-notice--${status}`, input.class],
+        headingClass: `${type}-notice__status`,
+        contentClass: `${type}-notice__content`
     };
 }
 
 module.exports = require('marko-widgets').defineComponent({
     template,
-    getInitialState,
     getTemplateData
 });

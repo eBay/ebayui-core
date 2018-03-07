@@ -62,11 +62,11 @@
     "<ebay-menu-item>": {},
     "<ebay-notice>": {
         "renderer": "./src/components/ebay-notice/index.js",
-        "@level": "string",
-        "@heading-tag": "string",
         "@type": "string",
+        "@heading-level": "string",
+        "@status": "string",
         "@class": "string",
-        "@aria-label-text": "string",
+        "@aria-text": "string",
         "@*": "expression"
     }
 }

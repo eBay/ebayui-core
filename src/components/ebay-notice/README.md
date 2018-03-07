@@ -6,7 +6,7 @@ The `<ebay-notice>` is a tag used to create a custom-designed notice element. Th
 ### `ebay-notice` Usage
 
 ```marko
-<ebay-notice heading-tag="h3" type="priority" level="page" aria-label-text="this is a notice">
+<ebay-notice heading-level="3" status="priority" type="page" aria-text="Priority">
         <p>Couldn't load all the items, please try again later.</p>
 </ebay-notice>
 ```
@@ -16,7 +16,7 @@ The `<ebay-notice>` is a tag used to create a custom-designed notice element. Th
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `class` | String | No | custom class
-`level` | String | No | "inline" or "page"
-`type`  | String | No | "priority", "confirmation" or "information"
-`aria-label-text` | String | No | adding description for the notice for a11y users
-`heading-tag` | String | No| used in case of "page" level notices to specify the heading tag according to the notice's placement
+`type` | String | No | "inline" or "page"
+`status`  | String | No | "priority", "confirmation" or "information"
+`aria-text` | String | No | adding description for the notice for a11y users
+`heading-level` | String | No| used in case of "page" level notices to specify the heading tag according to the notice's placement

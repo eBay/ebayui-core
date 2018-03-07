@@ -8,25 +8,25 @@ test('renders notice with defaults', context => {
 });
 
 test('renders page notice with default heading', context => {
-    const input = { level: 'page' };
+    const input = { type: 'page' };
     const $ = testUtils.getCheerio(context.render(input));
     expect($('h2.page-notice__status').length).to.equal(1);
 });
 
 test('renders page notice with custom headingTag', context => {
-    const input = { level: 'page', headingTag: 'h3' };
+    const input = { type: 'page', headingLevel: '3' };
     const $ = testUtils.getCheerio(context.render(input));
     expect($('h3.page-notice__status').length).to.equal(1);
 });
 
 test('renders page notice with custom type', context => {
-    const input = { level: 'page', type: 'confirmation' };
+    const input = { type: 'page', status: 'confirmation' };
     const $ = testUtils.getCheerio(context.render(input));
     expect($('.page-notice--confirmation').length).to.equal(1);
 });
 
 test('renders inline notice with correct tags', context => {
-    const input = { level: 'inline', type: 'confirmation' };
+    const input = { type: 'inline', status: 'confirmation' };
     const $ = testUtils.getCheerio(context.render(input));
     expect($('span.inline-notice__status').length).to.equal(1);
     expect($('div.inline-notice--confirmation').length).to.equal(1);
@@ -34,7 +34,7 @@ test('renders inline notice with correct tags', context => {
 });
 
 test('renders page notice with correct tags', context => {
-    const input = { level: 'page', type: 'priority' };
+    const input = { type: 'page', status: 'priority' };
     const $ = testUtils.getCheerio(context.render(input));
     expect($('h2.page-notice__status').length).to.equal(1);
     expect($('section.page-notice--priority').length).to.equal(1);
