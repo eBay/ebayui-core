@@ -1,9 +1,20 @@
 const expect = require('chai').expect;
-const markoCompiler = require('marko/compiler');
 const prettyPrint = require('marko-prettyprint').prettyPrintAST;
-const CompileContext = require('marko/compiler/CompileContext');
-const Builder = require('marko/compiler/Builder');
+const markoCompiler = require('marko/compiler');
 const transformer = require('../');
+let CompileContext;
+let Builder;
+
+
+try {
+    // v3 paths
+    CompileContext = require('marko/compiler/CompileContext');
+    Builder = require('marko/compiler/Builder');
+} catch (e) {
+    // v4 paths
+    CompileContext = require('marko/dist/compiler/CompileContext');
+    Builder = require('marko/dist/compiler/Builder');
+}
 
 function getTransformedTemplate(srcString, templatePath) {
     const templateAST = markoCompiler.parseRaw(
