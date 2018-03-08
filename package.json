@@ -95,5 +95,8 @@
     "makeup-roving-tabindex": "^0.0.3",
     "marko-dynamic-tag": "^1.0.0",
     "nodelist-foreach-polyfill": "^1.2.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }
