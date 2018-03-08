@@ -1,8 +1,8 @@
-# `ebay-menu`
+# ebay-menu
 
-## `<ebay-menu>` Tag
+## ebay-menu Tag
 
-### `ebay-menu` Usage
+### ebay-menu Usage
 
 ```marko
 <ebay-menu label="label">
@@ -12,7 +12,7 @@
 </ebay-menu>
 ```
 
-### `ebay-menu` Attributes
+### ebay-menu Attributes
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
@@ -24,7 +24,7 @@ Name | Type | Stateful | Description
 `auto-collapse` | Boolean | No | collapse automatically when focus lost
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 
-### `ebay-menu` Events
+### ebay-menu Events
 
 Event | Data | Description
 --- | --- | ---
@@ -34,27 +34,27 @@ Event | Data | Description
 `menu-change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
 `menu-select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
 
-### `ebay-menu` Methods
+### ebay-menu Methods
 
 Method | Parameters | Description
 --- | --- | ---
 `setCheckedList()` | (Array) | Accepts an array of indexes for items, to set items' checked property. In the case of checkboxes, supplying an empty array will uncheck all checkboxes. In the case of radio, use the root level `checked` property.
 `getCheckedList()` |  | Returns an array of indexes for items with the checked property set to `true`.
 
-## `<ebay-menu-item>` Tag
+## ebay-menu-item Tag
 
-### `ebay-menu-item` Usage
+### ebay-menu-item Usage
 
 ```marko
 <ebay-menu-item>item 1</ebay-menu-item>
 ```
 
-### `ebay-menu-item` Attributes
+### ebay-menu-item Attributes
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `class` | String | No | custom class
 `href` (fake menu) | String | No | for link that looks like a menu-item
-`type` (fake menu) | String | No | Set to "button" for fake menu-item <button>
+`type` (fake menu) | String | No | Set to "button" for fake menu-item `<button>`
 `checked` (radio or checkbox) | Boolean | Yes | whether or not the item is checked (**Note:** use the root `ebay-menu` element's `checked` property for radio type menus, or `setCheckedList()` method for checkbox type menus, to set this property.)
 `current` (fake menu) | Boolean | No | whether or not the href is the current href of the page

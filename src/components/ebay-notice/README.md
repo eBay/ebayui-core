@@ -1,10 +1,10 @@
-# `ebay-notice`
+# ebay-notice
 
-## `<ebay-notice>` Tag
+## ebay-notice Tag
 
 The `<ebay-notice>` is a tag used to create a custom-designed notice element. The notice can be single or multi-line but each line should be wrapped inside a `<p>` tag.
 
-### `ebay-notice` Usage
+### ebay-notice Usage
 
 ```marko
 <ebay-notice heading-level="3" status="priority" type="page" aria-text="Priority">
@@ -12,7 +12,7 @@ The `<ebay-notice>` is a tag used to create a custom-designed notice element. Th
 </ebay-notice>
 ```
 
-### `ebay-notice` Attributes
+### ebay-notice Attributes
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
