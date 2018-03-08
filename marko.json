@@ -59,5 +59,14 @@
             "@*": "expression"
         }
     },
-    "<ebay-menu-item>": {}
+    "<ebay-menu-item>": {},
+    "<ebay-notice>": {
+        "renderer": "./src/components/ebay-notice/index.js",
+        "@type": "string",
+        "@heading-level": "string",
+        "@status": "string",
+        "@class": "string",
+        "@aria-text": "string",
+        "@*": "expression"
+    }
 }
