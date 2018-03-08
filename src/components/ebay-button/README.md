@@ -1,12 +1,15 @@
-# ebay-button
+# `ebay-button`
 
-## Usage
+## `<ebay-button>` Tag
+
+### `ebay-button` Usage
 
 ```marko
 <ebay-button>label</ebay-button>
 ```
 
-## Attributes
+### `ebay-button` Attributes
+
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `class` | String | No | custom class
@@ -17,7 +20,8 @@ Name | Type | Stateful | Description
 `disabled` | Boolean | Yes |
 `partially-disabled` | Boolean | No
 
-## Events
+### `ebay-button` Events
+
 Event | Description
 --- | ---
 `button-click` | click

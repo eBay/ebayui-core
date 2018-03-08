@@ -1,6 +1,8 @@
-# ebay-carousel
+# `ebay-carousel`
 
-## Usage
+## `<ebay-carousel>` Tag
+
+### `ebay-carousel` Usage
 
 ```marko
 <ebay-carousel>
@@ -9,7 +11,8 @@
 </ebay-carousel>
 ```
 
-## Attributes
+### `ebay-carousel` Attributes
+
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `class` | String | No | custom class
@@ -18,7 +21,8 @@ Name | Type | Stateful | Description
 `aria-label-prev` | String | No | aria-label for previous control
 `aria-label-next` | String | No | aria-label for next control
 
-## Events
+### `ebay-carousel` Events
+
 Event | Description
 --- | ---
 `carousel-next` | click next control
