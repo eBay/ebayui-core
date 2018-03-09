@@ -1,14 +1,12 @@
 # ebay-button
 
-## ebay-button Tag
-
-### ebay-button Usage
+## ebay-button Usage
 
 ```marko
 <ebay-button>label</ebay-button>
 ```
 
-### ebay-button Attributes
+## ebay-button Attributes
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
@@ -20,7 +18,7 @@ Name | Type | Stateful | Description
 `disabled` | Boolean | Yes |
 `partially-disabled` | Boolean | No
 
-### ebay-button Events
+## ebay-button Events
 
 Event | Description
 --- | ---
