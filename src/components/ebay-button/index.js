@@ -12,7 +12,7 @@ function getInitialState(input) {
 
 function getTemplateData(state, input) {
     const href = input.href;
-    const priority = input.priority;
+    const priority = input.priority || 'secondary';
     const size = input.size;
     const fluid = input.fluid;
     const classes = [input.class];
@@ -28,7 +28,7 @@ function getTemplateData(state, input) {
         classes.push('btn');
     }
 
-    if (priority === 'primary' || priority === 'secondary') {
+    if (priority === 'primary' || priority === 'secondary' || priority === 'none') {
         classes.push(`btn--${priority}`);
     }
 

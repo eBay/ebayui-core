@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/server');
 
 const properties = {
-    priority: ['primary', 'secondary'],
+    priority: ['primary', 'secondary', 'none'],
     size: ['small', 'large']
 };
 
@@ -24,6 +24,18 @@ Object.keys(properties).forEach(property => {
         const $ = testUtils.getCheerio(context.render(input));
         expect($('button.btn.btn--fluid').length).to.equal(i);
     });
+});
+
+test('renders secondary version by default', context => {
+    const input = {};
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($(`button.btn.btn--secondary`).length).to.equal(1);
+});
+
+test('does not apply priority class for unsupported value', context => {
+    const input = { priority: 'wrong' };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($(`button.btn.btn--wrong`).length).to.equal(0);
 });
 
 test('renders fake version', context => {
