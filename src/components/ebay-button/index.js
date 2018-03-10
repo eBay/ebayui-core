@@ -12,21 +12,12 @@ function getInitialState(input) {
 
 function getTemplateData(state, input) {
     const href = input.href;
-    const priority = input.priority;
+    const priority = input.priority || 'secondary';
     const size = input.size;
     const fluid = input.fluid;
-    const classes = [input.class];
+    let classes = ['btn'];
     const model = {};
     let tag;
-
-    if (href) {
-        tag = 'a';
-        model.href = href;
-        classes.push('fake-btn');
-    } else {
-        tag = 'button';
-        classes.push('btn');
-    }
 
     if (priority === 'primary' || priority === 'secondary') {
         classes.push(`btn--${priority}`);
@@ -38,6 +29,19 @@ function getTemplateData(state, input) {
 
     if (fluid) {
         classes.push('btn--fluid');
+    }
+
+    if (href) {
+        tag = 'a';
+        model.href = href;
+        classes = classes.map(c => `fake-${c}`); // assumes all classes use the skin btn prefix
+    } else {
+        tag = 'button';
+    }
+
+    // must be after other class processing
+    if (input.class) {
+        classes.push(input.class);
     }
 
     model.tag = tag;
