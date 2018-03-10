@@ -15,7 +15,7 @@ The `<ebay-notice>` is a tag used to create a custom-designed notice element. Th
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `class` | String | No | custom class
-`type` | String | No | "inline" or "page"
-`status`  | String | No | "priority", "confirmation" or "information"
+`type` | String | No | "inline" or "page" (default)
+`status`  | String | No | "priority" (default), "confirmation" or "information"
 `aria-text` | String | No | adding description for the notice for a11y users
 `heading-level` | String | No| used in case of "page" level notices to specify the heading tag according to the notice's placement
