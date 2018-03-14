@@ -39,12 +39,12 @@ function getTagString(rootTag, nestedTag) {
 }
 
 
-describe('when the ebay-listbox-option tag is tranformed', () => {
+describe('when the ebay-select-option tag is tranformed', () => {
     let tagString;
     let outputTemplate;
 
     beforeEach(() => {
-        const rootTag = 'ebay-listbox';
+        const rootTag = 'ebay-select';
         const nestedTag = 'option';
         const templatePath = `../../../components/${rootTag}/template.marko`;
         tagString = getTagString(rootTag, nestedTag);

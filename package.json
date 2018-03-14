@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "0.0.1",
+  "version": "0.1.0-1",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
     "installMarkoV4": "yarn add marko@^4 marko-widgets@^7 -D",
@@ -71,6 +71,7 @@
     "lasso-marko": "^2.4.0",
     "marko": "^3",
     "marko-cli": "^2.2.2",
+    "marko-dynamic-tag": "^1.0.0",
     "marko-prettyprint": "^1.4.1",
     "marko-widgets": "^6",
     "mocha": "^4.1.0",
@@ -95,7 +96,9 @@
     "makeup-key-emitter": "^0.0.2",
     "makeup-prevent-scroll-keys": "^0.0.1",
     "makeup-roving-tabindex": "^0.0.3",
-    "marko-dynamic-tag": "^1.0.0",
     "nodelist-foreach-polyfill": "^1.2.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
   }
 }

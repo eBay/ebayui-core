@@ -9,6 +9,7 @@
         "../src/components/ebay-button",
         "../src/components/ebay-carousel",
         "../src/components/ebay-menu",
-        "../src/components/ebay-listbox"
+        "../src/components/ebay-select",
+        "../src/components/ebay-notice"
     ]
 }
