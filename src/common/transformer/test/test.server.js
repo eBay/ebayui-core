@@ -5,7 +5,6 @@ const transformer = require('../');
 let CompileContext;
 let Builder;
 
-
 try {
     // v3 paths
     CompileContext = require('marko/compiler/CompileContext');
