@@ -42,7 +42,7 @@ Please ensure all scripts in `package.json` are Unix *and* Windows friendly.
 
 ### Continuous Integration (CI)
 
-To do.
+To ensure that all components function correctly in both Marko v3 and v4, we run our entire test suite against both versions. This requires automated installation of Marko versions, and is best executed in the CI (to avoid conflicting with local environments). The CI runs a specific `build` task in the NPM scripts for this purpose.
 
 ## Pull Requests
 

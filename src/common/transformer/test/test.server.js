@@ -38,7 +38,6 @@ function getTagString(rootTag, nestedTag) {
     };
 }
 
-
 describe('when the ebay-select-option tag is tranformed', () => {
     let tagString;
     let outputTemplate;
