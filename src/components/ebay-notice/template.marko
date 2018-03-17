@@ -8,7 +8,5 @@
             id="${data.status}-status-${widget.elId()}">
                 <span aria-label="${data.ariaText}" role="img"></span>
         </${data.headingTag}>
-        <${data.contentTag} class=data.contentClass>
-            <invoke data.renderBody(out) if(data.renderBody)/>
-        </${data.contentTag}>
+        <${data.contentTag} class=data.contentClass w-body/>
 </${data.mainTag}>
