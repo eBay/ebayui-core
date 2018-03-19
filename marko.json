@@ -67,6 +67,7 @@
         "@status": "string",
         "@class": "string",
         "@aria-text": "string",
+        "@hidden":"boolean",
         "@*": "expression"
     }
 }

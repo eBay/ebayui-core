@@ -1,4 +1,6 @@
 const processHtmlAttributes = require('../../common/html-attributes');
+const observer = require('../../common/property-observer');
+const emitAndFire = require('../../common/emit-and-fire');
 const template = require('./template.marko');
 
 const constants = {
@@ -16,10 +18,12 @@ const constants = {
 
 const defaults = {
     type: 'page',
-    status: 'confirmation'
+    status: 'priority',
+    hidden: false
 };
 
-function getTemplateData(state, input) {
+function getInitialState(input) {
+    const hidden = input.hidden || defaults.hidden;
     const type = input.type || defaults.type;
     const headingTag = (type === 'page' && input.headingLevel) ? `h${input.headingLevel}` : constants[type].headingTag;
     const status = input.status || defaults.status;
@@ -30,6 +34,7 @@ function getTemplateData(state, input) {
         contentTag: constants[type].contentTag,
         type,
         status,
+        hidden,
         ariaText: input.ariaText || '',
         htmlAttributes: processHtmlAttributes(input),
         renderBody: input.renderBody,
@@ -38,8 +43,23 @@ function getTemplateData(state, input) {
         contentClass: `${type}-notice__content`
     };
 }
+function getTemplateData(state) {
+    return state;
+}
+
+function init() {
+    observer.observeRoot(this, ['hidden']);
+}
+
+function onDismiss() {
+    this.setState('hidden', true);
+    emitAndFire(this, 'notice-dismissed');
+}
 
 module.exports = require('marko-widgets').defineComponent({
     template,
-    getTemplateData
+    getInitialState,
+    getTemplateData,
+    init,
+    onDismiss
 });
