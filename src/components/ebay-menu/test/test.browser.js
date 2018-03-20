@@ -269,10 +269,11 @@ describe('given the menu is in the expanded state with radio items', () => {
 
     describe('when an item\'s inner span is clicked', () => {
         let spy;
-        beforeEach(() => {
+        beforeEach((done) => {
             spy = sinon.spy();
             widget.on('menu-change', spy);
             testUtils.triggerEvent(firstItemInner, 'click');
+            setTimeout(done);
         });
 
         test('then it emits the menu-change event with correct data', () => {
@@ -289,10 +290,11 @@ describe('given the menu is in the expanded state with radio items', () => {
 
     describe('when an action button is pressed on an item', () => {
         let spy;
-        beforeEach(() => {
+        beforeEach((done) => {
             spy = sinon.spy();
             widget.on('menu-change', spy);
             testUtils.triggerEvent(firstItem, 'keydown', 32);
+            setTimeout(done);
         });
 
         test('then it emits the menu-change event with correct data', () => {
@@ -309,11 +311,12 @@ describe('given the menu is in the expanded state with radio items', () => {
 
     describe('when two items are clicked', () => {
         let spy;
-        beforeEach(() => {
+        beforeEach((done) => {
             spy = sinon.spy();
             widget.on('menu-change', spy);
             testUtils.triggerEvent(firstItem, 'click');
             testUtils.triggerEvent(secondItem, 'click');
+            setTimeout(done);
         });
 
         test('then it emits the menu-change events with correct data', () => {
@@ -379,11 +382,12 @@ describe('given the menu is in the expanded state with checkbox items', () => {
 
     describe('when two items are clicked', () => {
         let spy;
-        beforeEach(() => {
+        beforeEach((done) => {
             spy = sinon.spy();
             widget.on('menu-change', spy);
             testUtils.triggerEvent(firstItem, 'click');
             testUtils.triggerEvent(secondItem, 'click');
+            setTimeout(done);
         });
 
         test('then it emits the menu-change events with correct data', () => {

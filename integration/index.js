@@ -3,31 +3,18 @@ const execSync = require('child_process').execSync;
 const express = require('express');
 const async = require('async');
 const lasso = require('lasso');
+const markoNodeHook = require('marko/node-require');
 const port = 9999;
 const request = require('supertest')(`http://localhost:${port}`);
 const demoUtils = require('../demo/utils');
 
-function installMarko3() {
-    execSync('yarn add marko@^3 marko-widgets@^6 -D');
-}
-
-function installMarko4() {
-    execSync('yarn add marko@^4 marko-widgets@^7 -D');
-}
-
-function setupMarko(markoVersion) {
-    if (markoVersion === 3) {
-        installMarko3();
-        require('marko/node-require').install();
-    } else if (markoVersion === 4) {
-        installMarko4();
-        require('marko/node-require');
-    }
-}
-
 execSync('yarn prepublishOnly');
 async.forEachSeries([3, 4], (markoVersion, callback) => {
-    setupMarko(markoVersion);
+    // need to manually call install() in v3
+    if (markoNodeHook.install) {
+        markoNodeHook.install();
+    }
+
     lasso.configure({ plugins: ['lasso-marko', 'lasso-less'], outputDir: `${__dirname}/static` });
     let template = require('./base.marko');
 
@@ -79,6 +66,5 @@ async.forEachSeries([3, 4], (markoVersion, callback) => {
         });
     });
 }, () => {
-    installMarko3(); // restore marko v3 after all test suites are done
     execSync('yarn postpublish');
 });

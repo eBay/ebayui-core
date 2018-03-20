@@ -1,0 +1,12 @@
+<${data.mainTag}
+    w-bind
+    aria-labelledby="${data.status}-status-${widget.elId()}"
+    class=data.mainClass
+    ${data.htmlAttributes}>
+        <${data.headingTag}
+            class=data.headingClass
+            id="${data.status}-status-${widget.elId()}">
+                <span aria-label="${data.ariaText}" role="img"></span>
+        </${data.headingTag}>
+        <${data.contentTag} class=data.contentClass w-body/>
+</${data.mainTag}>
