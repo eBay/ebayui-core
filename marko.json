@@ -66,8 +66,10 @@
         "@heading-level": "string",
         "@status": "string",
         "@class": "string",
+        "@hidden": "boolean",
         "@aria-text": "string",
-        "@hidden":"boolean",
+        "@aria-close": "string",
+        "@dismissible":"boolean",
         "@*": "expression"
     }
 }

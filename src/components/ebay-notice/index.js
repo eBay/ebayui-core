@@ -19,7 +19,8 @@ const constants = {
 const defaults = {
     type: 'page',
     status: 'priority',
-    hidden: false
+    hidden: false,
+    dismissible: false
 };
 
 function getInitialState(input) {
@@ -27,20 +28,24 @@ function getInitialState(input) {
     const type = input.type || defaults.type;
     const headingTag = (type === 'page' && input.headingLevel) ? `h${input.headingLevel}` : constants[type].headingTag;
     const status = input.status || defaults.status;
+    const dismissible = (input.dismissible && type === 'page') || defaults.dismissible;
 
     return {
         mainTag: constants[type].mainTag,
         headingTag: headingTag,
         contentTag: constants[type].contentTag,
+        dismissible,
         type,
         status,
         hidden,
         ariaText: input.ariaText || '',
+        ariaClose: input.ariaClose || '',
         htmlAttributes: processHtmlAttributes(input),
         renderBody: input.renderBody,
         mainClass: [`${type}-notice`, `${type}-notice--${status}`, input.class],
         headingClass: `${type}-notice__status`,
-        contentClass: `${type}-notice__content`
+        contentClass: `${type}-notice__content`,
+        dismissedClass: dismissible ? `page-notice__close` : ``
     };
 }
 function getTemplateData(state) {

@@ -10,7 +10,7 @@
                 <span aria-label="${data.ariaText}" role="img"></span>
         </${data.headingTag}>
         <${data.contentTag} class=data.contentClass w-body/>
-         <button aria-label="" class="page-notice__close" w-onclick="onDismiss">
+         <button aria-label="${data.ariaClose}" class=data.dismissedClass w-onclick="onDismiss" if(data.dismissible)>
             <span></span>
         </button>
 </${data.mainTag}>
