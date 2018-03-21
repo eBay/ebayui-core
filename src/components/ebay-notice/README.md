@@ -2,6 +2,8 @@
 
 The `<ebay-notice>` is a tag used to create a custom-designed notice element. The notice can be single or multi-line but each line should be wrapped inside a `<p>` tag.
 
+In case of dismissible notice if the parent of `<ebay-notice>` wants to close it, the property `hidden` can be used to change the state of the widget (other than the dismiss button provided).
+
 ## ebay-notice Usage
 
 ```marko
@@ -20,6 +22,7 @@ Name | Type | Stateful | Description
 `aria-text` | String | No | adding description for the notice for a11y users
 `heading-level` | String | No| used in case of "page" level notices to specify the heading tag according to the notice's placement
 `dismissible` | Boolean | Yes | used to specify the dismiss button in page notice
+`hidden` | Boolean | Yes | whether the widget is hidden or not (Note: not supported as initial attribute)
 
 ### ebay-notice Events
 
