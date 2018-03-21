@@ -21,7 +21,7 @@ Name | Type | Stateful | Description
 `status`  | String | No | "priority" (default), "confirmation" or "information"
 `aria-text` | String | No | adding description for the notice for a11y users
 `heading-level` | String | No| used in case of "page" level notices to specify the heading tag according to the notice's placement
-`dismissible` | Boolean | Yes | used to specify the dismiss button in page notice
+`dismissible` | Boolean | No | used to specify the dismiss button in page notice
 `hidden` | Boolean | Yes | whether the widget is hidden or not (Note: not supported as initial attribute)
 
 ### ebay-notice Events
