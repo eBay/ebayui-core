@@ -22,6 +22,12 @@ describe('given the notice is in the default state', () => {
             widget.on('notice-change', spy);
             testUtils.triggerEvent(button, 'click');
         });
+        test('then root not present in the DOM', (context, done) => {
+            setTimeout(() => {
+                expect(document.querySelector('section.page-notice')).to.equal(null);
+                done();
+            }, 10);
+        });
 
         test('then it emits the marko event from notice-change', () => {
             expect(spy.calledOnce).to.equal(true);
@@ -34,6 +40,13 @@ describe('given the notice is in the default state', () => {
             spy = sinon.spy();
             widget.on('notice-change', spy);
             root.hidden = true;
+        });
+
+        test('then root not present in the DOM', (context, done) => {
+            setTimeout(() => {
+                expect(document.querySelector('section.page-notice')).to.equal(null);
+                done();
+            }, 10);
         });
 
         test('then it emits the marko event from notice-change', () => {
