@@ -24,7 +24,7 @@ const defaults = {
 };
 
 function getInitialState(input) {
-    const hidden = input.hidden || defaults.hidden;
+    const hidden = defaults.hidden;
     const type = input.type || defaults.type;
     const headingTag = (type === 'page' && input.headingLevel) ? `h${input.headingLevel}` : constants[type].headingTag;
     const status = input.status || defaults.status;
@@ -41,11 +41,10 @@ function getInitialState(input) {
         ariaText: input.ariaText || '',
         ariaClose: input.ariaClose || '',
         htmlAttributes: processHtmlAttributes(input),
-        renderBody: input.renderBody,
         mainClass: [`${type}-notice`, `${type}-notice--${status}`, input.class],
         headingClass: `${type}-notice__status`,
         contentClass: `${type}-notice__content`,
-        dismissedClass: dismissible ? `page-notice__close` : ``
+        dismissedClass: dismissible ? 'page-notice__close' : ''
     };
 }
 function getTemplateData(state) {
@@ -53,12 +52,14 @@ function getTemplateData(state) {
 }
 
 function init() {
-    observer.observeRoot(this, ['hidden']);
+    observer.observeRoot(this, ['hidden'], () => {
+        emitAndFire(this, 'notice-change');
+    });
 }
 
 function onDismiss() {
     this.setState('hidden', true);
-    emitAndFire(this, 'notice-dismissed');
+    emitAndFire(this, 'notice-change');
 }
 
 module.exports = require('marko-widgets').defineComponent({

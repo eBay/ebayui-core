@@ -2,9 +2,9 @@
 
 The `<ebay-notice>` is a tag used to create a custom-designed notice element. The notice can be single or multi-line but each line should be wrapped inside a `<p>` tag.
 
-In case of dismissible notice if the parent of `<ebay-notice>` wants to close it, the property `hidden` can be used to change the state of the widget (other than the dismiss button provided).
+For the dismissible use case, if the parent of `<ebay-notice>` wants to close it, the property `hidden` can be used to change the state of the widget (other than the dismiss button provided).
 
-(Note: To use dismiss button in ebay-notice please include `@ebay/skin/icon`)
+(Note:  To use the dismiss button in `<ebay-notice>` please include `@ebay/skin/icon`)
 
 ## ebay-notice Usage
 
@@ -30,4 +30,4 @@ Name | Type | Stateful | Description
 
 Event | Description
 --- | ---
-`notice-dismissed` | the page notice was dismissed/closed
+`notice-change` | the page notice was dismissed/undismissed

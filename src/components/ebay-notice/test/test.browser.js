@@ -5,11 +5,13 @@ const renderer = require('../');
 
 describe('given the notice is in the default state', () => {
     let widget;
+    let root;
     let button;
 
     beforeEach(() => {
         widget = renderer.renderSync({ type: 'page', dismissible: true }).appendTo(document.body).getWidget();
-        button = document.querySelector('.page-notice__close');
+        root = document.querySelector('section.page-notice');
+        button = root.querySelector('.page-notice__close');
     });
     afterEach(() => widget.destroy());
 
@@ -17,11 +19,24 @@ describe('given the notice is in the default state', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('notice-dismissed', spy);
+            widget.on('notice-change', spy);
             testUtils.triggerEvent(button, 'click');
         });
 
-        test('then it emits the marko event from notice-dismissed', () => {
+        test('then it emits the marko event from notice-change', () => {
+            expect(spy.calledOnce).to.equal(true);
+        });
+    });
+
+    describe('when the widget is dismissed through hidden property', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('notice-change', spy);
+            root.hidden = true;
+        });
+
+        test('then it emits the marko event from notice-change', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });
