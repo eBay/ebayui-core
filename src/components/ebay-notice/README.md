@@ -28,6 +28,6 @@ Name | Type | Stateful | Description
 
 ### ebay-notice Events
 
-Event | Description
---- | ---
-`notice-change` | the page notice was dismissed/undismissed
+Event | Data | Description
+--- | --- | ---
+`notice-change` | `{hidden}` | the page notice was dismissed/undismissed

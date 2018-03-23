@@ -52,14 +52,14 @@ function getTemplateData(state) {
 }
 
 function init() {
-    observer.observeRoot(this, ['hidden'], () => {
-        emitAndFire(this, 'notice-change');
+    observer.observeRoot(this, ['hidden'], (isHidden) => {
+        emitAndFire(this, 'notice-change', isHidden);
     });
 }
 
 function onDismiss() {
     this.setState('hidden', true);
-    emitAndFire(this, 'notice-change');
+    emitAndFire(this, 'notice-change', true);
 }
 
 module.exports = require('marko-widgets').defineComponent({
