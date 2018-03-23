@@ -68,5 +68,19 @@
         "@class": "string",
         "@aria-text": "string",
         "@*": "expression"
-    }
+    },
+    "<ebay-breadcrumb>": {
+        "renderer": "./src/components/ebay-breadcrumb/index.js",
+        "transformer": "./src/common/transformer/index.js",
+        "@aria-label": "string",
+        "@*": "expression",
+        "@items <item>[]": {
+            "@href": "string",
+            "@_sp": "string",
+            "@navsrc": "string",
+            "@current": "boolean",
+            "@*": "expression"
+        }
+    },
+    "<ebay-breadcrumb-item>": {}
 }
