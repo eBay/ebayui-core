@@ -27,7 +27,7 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 
 ## Getting Started
 
-The eBayUI core components will shortly be available as the `@ebay/ebayui-core` package on [NPM](https://www.npmjs.com/).
+The eBayUI core components are available as the `@ebay/ebayui-core` package on [NPM](https://www.npmjs.com/package/@ebay/ebayui-core).
 
 Use npm or yarn to add the package dependency to your project:
 
