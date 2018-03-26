@@ -31,19 +31,26 @@ test('should return 4 li with anchor', context => {
     const anchor = $('nav li a');
     expect(anchor.length).to.equals(4);
 });
-test('should not create <li> tag if href is null and current is false', context => {
+test('should not create <li> tag if href is null unless its last item', context => {
     const $ = testUtils.getCheerio(context.render(mock.itemsWithMissingLinks));
     const li = $('nav li');
     expect(li.length).to.equals(3);
 });
-test('should create span tag if href is not null and current is true', context => {
-    const $ = testUtils.getCheerio(context.render(mock.itemsWithCurrentPage));
+test('should create span tag if href is null ', context => {
+    const $ = testUtils.getCheerio(context.render(mock.itemsWithNoHref));
     const li = $('nav li');
     expect(li.length).to.equals(4);
     const currentElement = $('span', li[li.length - 1]);
     expect(currentElement.html()).to.equals('Motorcycle Parts');
     expect(currentElement.attr('aria-current')).to.equals('page');
     expect(currentElement.attr('class')).to.equals('current');
+});
+test('should create <a> tag if href is NOT null for last item', context => {
+    const $ = testUtils.getCheerio(context.render(mock.items));
+    const li = $('nav li');
+    expect(li.length).to.equals(4);
+    const anchor = $('nav li a');
+    expect(anchor.length).to.equals(4);
 });
 test('should return items html attributes', context => {
     const $ = testUtils.getCheerio(context.render(mock.items));
