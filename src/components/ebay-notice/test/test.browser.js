@@ -17,40 +17,40 @@ describe('given the notice is in the default state', () => {
 
     describe('when the dismiss button is clicked', () => {
         let spy;
-        beforeEach(() => {
+        beforeEach((done) => {
             spy = sinon.spy();
             widget.on('notice-change', spy);
             testUtils.triggerEvent(button, 'click');
+            setTimeout(done);
         });
-        test('then root not present in the DOM', (context, done) => {
-            setTimeout(() => {
-                expect(document.querySelector('section.page-notice')).to.equal(null);
-                done();
-            }, 10);
+        test('then root not present in the DOM', () => {
+            expect(document.querySelector('section.page-notice')).to.equal(null);
         });
 
         test('then it emits the marko event from notice-change', () => {
             expect(spy.calledOnce).to.equal(true);
+            const eventData = spy.getCall(0).args[0];
+            expect(eventData.hidden).to.equal(true);
         });
     });
 
     describe('when the widget is dismissed through hidden property', () => {
         let spy;
-        beforeEach(() => {
+        beforeEach((done) => {
             spy = sinon.spy();
             widget.on('notice-change', spy);
             root.hidden = true;
+            setTimeout(done);
         });
 
-        test('then root not present in the DOM', (context, done) => {
-            setTimeout(() => {
-                expect(document.querySelector('section.page-notice')).to.equal(null);
-                done();
-            }, 10);
+        test('then root not present in the DOM', () => {
+            expect(document.querySelector('section.page-notice')).to.equal(null);
         });
 
         test('then it emits the marko event from notice-change', () => {
             expect(spy.calledOnce).to.equal(true);
+            const eventData = spy.getCall(0).args[0];
+            expect(eventData.hidden).to.equal(true);
         });
     });
 });
