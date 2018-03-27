@@ -16,7 +16,6 @@ function getTemplateData(state, input) {
         }
         if (current && !href) {
             tag = 'span';
-            itemHtmlAttributes.class = 'current';
             itemHtmlAttributes['aria-current'] = 'page';
         } else {
             itemHtmlAttributes.href = href;

@@ -6,7 +6,7 @@ const getItem = (text, href) => {
     clonedItem.href = href;
     return clonedItem;
 };
-const items = [getItem('eBay', 'https://www.ebay.com'),
+const basicItems = [getItem('eBay', 'https://www.ebay.com'),
     getItem('Auto Parts and Vehicles', 'https://www.ebay.com/b/Auto-Parts-and-Vehicles/6000/bn_1865334'),
     getItem('Motors Parts & Accessories', 'https://www.ebay.com/rpp/motors-parts-accessories'),
     getItem('Motorcycle Parts', 'https://www.ebay.com/b/Motorcycle-Parts/10063/bn_557636')];
@@ -24,7 +24,7 @@ const itemsWithNoHref = [getItem('eBay', 'https://www.ebay.com/'),
 module.exports = {
     basicItems: {
         heading: 'Page navigation',
-        items: items,
+        items: basicItems,
         '*': { dataview: 'data-view tracking' }
     },
     itemsWithMissingLinks: {
@@ -39,7 +39,7 @@ module.exports = {
     },
     itemsWithPreventDefault: {
         heading: 'Page navigation',
-        items: items,
+        items: basicItems,
         preventDefault: true,
         '*': { dataview: 'data-view tracking' }
     }
