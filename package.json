@@ -93,10 +93,10 @@
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "lodash.throttle": "^4.1.1",
-    "makeup-expander": "^0.3.0",
-    "makeup-key-emitter": "~0.0.2",
-    "makeup-prevent-scroll-keys": "~0.0.1",
-    "makeup-roving-tabindex": "~0.0.3",
+    "makeup-expander": "^0.3.2",
+    "makeup-key-emitter": "~0.0.3",
+    "makeup-prevent-scroll-keys": "~0.0.2",
+    "makeup-roving-tabindex": "~0.0.5",
     "nodelist-foreach-polyfill": "^1.2.0"
   },
   "publishConfig": {

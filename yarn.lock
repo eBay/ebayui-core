@@ -5116,27 +5116,27 @@ make-dir@^1.0.0:
   dependencies:
     pify "^3.0.0"
 
-makeup-exit-emitter@~0.0:
+makeup-exit-emitter@~0.0, makeup-exit-emitter@~0.0.4:
   version "0.0.4"
   resolved "https://registry.npmjs.org/makeup-exit-emitter/-/makeup-exit-emitter-0.0.4.tgz#26482e73db3ef6ef5f8ac2c3c21e8197488fd458"
   dependencies:
     custom-event-polyfill "~0.3"
     makeup-next-id "~0.0"
 
-makeup-expander@^0.3.0:
-  version "0.3.1"
-  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.3.1.tgz#c60dccd2921e6a02cf41847306b21e9a5d7a6435"
+makeup-expander@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.3.2.tgz#bb5223ad26dbfeedbf7dc7ea3a21e1d19b58632b"
   dependencies:
     custom-event-polyfill "~0.3"
-    makeup-exit-emitter "~0.0"
-    makeup-focusables "~0.0"
-    makeup-next-id "~0.0"
+    makeup-exit-emitter "~0.0.4"
+    makeup-focusables "~0.0.3"
+    makeup-next-id "~0.0.2"
 
-makeup-focusables@~0.0:
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/makeup-focusables/-/makeup-focusables-0.0.2.tgz#2e4bc6a08f12ecd8a0a5fa6e5c676b81cf5365a4"
+makeup-focusables@~0.0.3:
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/makeup-focusables/-/makeup-focusables-0.0.3.tgz#e30f36a99beb7c5166daafb8f823fefcc7a551fa"
 
-makeup-key-emitter@~0.0, makeup-key-emitter@~0.0.2:
+makeup-key-emitter@~0.0, makeup-key-emitter@~0.0.3:
   version "0.0.3"
   resolved "https://registry.npmjs.org/makeup-key-emitter/-/makeup-key-emitter-0.0.3.tgz#4fe16127cce749a785f4e2538800415d267fd356"
   dependencies:
@@ -5150,15 +5150,15 @@ makeup-navigation-emitter@~0.0:
     makeup-exit-emitter "~0.0"
     makeup-key-emitter "~0.0"
 
-makeup-next-id@~0.0:
+makeup-next-id@~0.0, makeup-next-id@~0.0.2:
   version "0.0.2"
   resolved "https://registry.npmjs.org/makeup-next-id/-/makeup-next-id-0.0.2.tgz#70f19812b0b5cb8d5f0f7f78719179ea4b61a0ef"
 
-makeup-prevent-scroll-keys@~0.0.1:
+makeup-prevent-scroll-keys@~0.0.2:
   version "0.0.2"
   resolved "https://registry.npmjs.org/makeup-prevent-scroll-keys/-/makeup-prevent-scroll-keys-0.0.2.tgz#1c255e5f97968ee3586c0aa55d0d8b3df8318501"
 
-makeup-roving-tabindex@~0.0.3:
+makeup-roving-tabindex@~0.0.5:
   version "0.0.5"
   resolved "https://registry.npmjs.org/makeup-roving-tabindex/-/makeup-roving-tabindex-0.0.5.tgz#5bd855216eed374846b5d26466488ee0b6aeed0e"
   dependencies:
