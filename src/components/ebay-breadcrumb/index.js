@@ -3,33 +3,23 @@ const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
 
-const constants = {
-    'currentTag': 'span',
-    'anchorTag': 'a',
-    'ariaCurrentLabel': 'aria-current',
-    'ariaCurrentValue': 'page',
-    'classAttr': 'class',
-    'classAttrValue': 'current',
-    'hrefAttr': 'href',
-    'clickEvent': 'breadcrumb-click'
-};
 function getTemplateData(state, input) {
     const htmlAttributes = processHtmlAttributes(input);
     const items = input.items || [];
     let transformedItems = (items).map((item, index) => {
         const itemHtmlAttributes = processHtmlAttributes(item);
-        let tag = constants.anchorTag;
+        let tag = 'a';
         const href = item.href || '';
         const current = ((items.length - 1) === index);
         if (!current && !href) {
             return null;
         }
         if (current && !href) {
-            tag = constants.currentTag;
-            itemHtmlAttributes[constants.classAttr] = constants.classAttrValue;
-            itemHtmlAttributes[constants.ariaCurrentLabel] = constants.ariaCurrentValue;
+            tag = 'span';
+            itemHtmlAttributes.class = 'current';
+            itemHtmlAttributes['aria-current'] = 'page';
         } else {
-            itemHtmlAttributes[constants.hrefAttr] = href;
+            itemHtmlAttributes.href = href;
         }
         return {
             tag: tag,
@@ -40,16 +30,13 @@ function getTemplateData(state, input) {
     transformedItems = Object.keys(transformedItems).length > 0 ? transformedItems : null;
     return {
         items: transformedItems,
-        ariaLabel: input.ariaLabel || '',
+        heading: input.heading || '',
         htmlAttributes: htmlAttributes,
         preventDefault: input.preventDefault
     };
 }
 function handleClick(event, el) {
-    const arg = {};
-    arg.event = event;
-    arg.currentTarget = el;
-    emitAndFire(this, constants.clickEvent, arg);
+    emitAndFire(this, 'breadcrumb-click', { event, currentTarget: el });
     event.preventDefault();
 }
 

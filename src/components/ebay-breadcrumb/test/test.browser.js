@@ -31,7 +31,7 @@ describe('breadcrumb with prevent-default is not set', () => {
     describe('when breadcrumb item is clicked', () => {
         let clickSpy;
         beforeEach((done) => {
-            widget = renderer.renderSync(mock.items).appendTo(document.body).getWidget();
+            widget = renderer.renderSync(mock.basicItems).appendTo(document.body).getWidget();
             list = document.querySelectorAll('nav li a');
             clickSpy = sinon.spy();
             widget.on('breadcrumb-click', clickSpy);

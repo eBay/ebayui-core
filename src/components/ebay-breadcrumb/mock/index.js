@@ -22,19 +22,23 @@ const itemsWithNoHref = [getItem('eBay', 'https://www.ebay.com/'),
     getItem('Motorcycle Parts', null)];
 
 module.exports = {
-    items: { ariaLabel: 'You are here',
+    basicItems: {
+        heading: 'Page navigation',
         items: items,
         '*': { dataview: 'data-view tracking' }
     },
-    itemsWithMissingLinks: { ariaLabel: 'You are here',
+    itemsWithMissingLinks: {
+        heading: 'Page navigation',
         items: itemsWithMissingLinks,
         '*': { dataview: 'data-view tracking' }
     },
-    itemsWithNoHref: { ariaLabel: 'You are here',
+    itemsWithNoHref: {
+        heading: 'Page navigation',
         items: itemsWithNoHref,
         '*': { dataview: 'data-view tracking' }
     },
-    itemsWithPreventDefault: { ariaLabel: 'You are here',
+    itemsWithPreventDefault: {
+        heading: 'Page navigation',
         items: items,
         preventDefault: true,
         '*': { dataview: 'data-view tracking' }

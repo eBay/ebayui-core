@@ -72,7 +72,7 @@
     "<ebay-breadcrumb>": {
         "renderer": "./src/components/ebay-breadcrumb/index.js",
         "transformer": "./src/common/transformer/index.js",
-        "@aria-label": "string",
+        "@heading": "string",
         "@prevent-default": "boolean",
         "@*": "expression",
         "@items <item>[]": {
