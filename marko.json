@@ -68,7 +68,7 @@
         "@class": "string",
         "@hidden": "boolean",
         "@aria-text": "string",
-        "@aria-close": "string",
+        "@aria-label-close": "string",
         "@dismissible":"boolean",
         "@*": "expression"
     }

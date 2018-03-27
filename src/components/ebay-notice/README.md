@@ -25,6 +25,7 @@ Name | Type | Stateful | Description
 `heading-level` | String | No| used in case of "page" level notices to specify the heading tag according to the notice's placement
 `dismissible` | Boolean | No | used to specify the dismiss button in page notice
 `hidden` | Boolean | Yes | whether the widget is hidden or not (Note: not supported as initial attribute)
+`aria-label-close` | String | No | adding description for the button for a11y users
 
 ### ebay-notice Events
 

@@ -39,12 +39,11 @@ function getInitialState(input) {
         status,
         hidden,
         ariaText: input.ariaText || '',
-        ariaClose: input.ariaClose || '',
+        ariaLabelClose: input.ariaLabelClose || '',
         htmlAttributes: processHtmlAttributes(input),
         mainClass: [`${type}-notice`, `${type}-notice--${status}`, input.class],
         headingClass: `${type}-notice__status`,
-        contentClass: `${type}-notice__content`,
-        dismissedClass: dismissible ? 'page-notice__close' : ''
+        contentClass: `${type}-notice__content`
     };
 }
 function getTemplateData(state) {

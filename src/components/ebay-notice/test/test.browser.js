@@ -54,3 +54,34 @@ describe('given the notice is in the default state', () => {
         });
     });
 });
+
+describe('given the notice is in the hidden state', () => {
+    let widget;
+    let root;
+    beforeEach(() => {
+        widget = renderer.renderSync({ type: 'page', dismissible: true }).appendTo(document.body).getWidget();
+        root = document.querySelector('section.page-notice');
+        root.hidden = true;
+    });
+    afterEach(() => widget.destroy());
+    describe('when the widget is undismissed through hidden property', () => {
+        let spy;
+        beforeEach((done) => {
+            spy = sinon.spy();
+            widget.on('notice-change', spy);
+            root.hidden = false;
+            setTimeout(done);
+        });
+
+        test('then root is present in the DOM', () => {
+            expect(document.querySelector('.page-notice')).to.not.equal(null);
+        });
+
+        test('then it emits the marko event from notice-change', () => {
+            expect(spy.calledOnce).to.equal(true);
+            const eventData = spy.getCall(0).args[0];
+            expect(eventData.hidden).to.equal(false);
+        });
+    });
+});
+
