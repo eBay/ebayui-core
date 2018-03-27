@@ -41,7 +41,6 @@ test('should create span tag if href is null ', context => {
     const li = $('nav li');
     expect(li.length).to.equals(4);
     const currentElement = $('span', li[li.length - 1]);
-    expect(currentElement.html()).to.equals('Motorcycle Parts');
     expect(currentElement.attr('aria-current')).to.equals('page');
     expect(currentElement.attr('class')).to.equals('current');
 });
