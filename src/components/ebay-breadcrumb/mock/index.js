@@ -33,5 +33,10 @@ module.exports = {
     itemsWithNoHref: { ariaLabel: 'You are here',
         items: itemsWithNoHref,
         '*': { dataview: 'data-view tracking' }
+    },
+    itemsWithPreventDefault: { ariaLabel: 'You are here',
+        items: items,
+        preventDefault: true,
+        '*': { dataview: 'data-view tracking' }
     }
 };

@@ -10,7 +10,8 @@ const constants = {
     'ariaCurrentValue': 'page',
     'classAttr': 'class',
     'classAttrValue': 'current',
-    'hrefAttr': 'href'
+    'hrefAttr': 'href',
+    'clickEvent': 'breadcrumb-click'
 };
 function getTemplateData(state, input) {
     const htmlAttributes = processHtmlAttributes(input);
@@ -44,12 +45,16 @@ function getTemplateData(state, input) {
         preventDefault: input.preventDefault
     };
 }
-function handleClick() {
-    emitAndFire(this, 'breadcrumb-click');
+function handleClick(event, el) {
+    const arg = {};
+    arg.event = event;
+    arg.currentTarget = el;
+    emitAndFire(this, constants.clickEvent, arg);
+    event.preventDefault();
 }
 
 module.exports = markoWidgets.defineComponent({
     template,
     getTemplateData,
-    handleClick: handleClick
+    handleClick
 });
