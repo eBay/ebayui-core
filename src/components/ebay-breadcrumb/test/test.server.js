@@ -56,5 +56,4 @@ test('should create span tag if href is null ', context => {
     expect(li.length).to.equal(4);
     const currentElement = $('span', li[li.length - 1]);
     expect(currentElement.attr('aria-current')).to.equal('page');
-    expect(currentElement.attr('class')).to.equal('current');
 });
