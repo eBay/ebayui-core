@@ -29,7 +29,7 @@ Name | Type | Stateful | Description
 
 ### ebay-notice Events
 
-Event | Data | Description
---- | --- | ---
-`notice-show` | `{ hidden }` | the page notice was shown
-`notice-hide` | `{ hidden }` | the page notice was hidden
+Event | Description
+--- | ---
+`notice-show` | the page notice was shown
+`notice-hide` | the page notice was hidden

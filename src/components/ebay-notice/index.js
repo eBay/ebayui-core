@@ -51,13 +51,12 @@ function getTemplateData(state) {
 }
 
 function init() {
-    observer.observeRoot(this, ['hidden'], (hidden) => {
-        this.processAfterStateChange(hidden);
+    observer.observeRoot(this, ['hidden'], () => {
+        this.processAfterStateChange(this.state.hidden);
     });
 }
 /**
  * Common processing after data change via both UI and API
- * @param {Boolean} hidden
  */
 function processAfterStateChange(hidden) {
     if (hidden) {

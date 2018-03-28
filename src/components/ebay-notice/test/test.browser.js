@@ -27,7 +27,7 @@ describe('given the notice is in the default state', () => {
             expect(document.querySelector('section.page-notice')).to.equal(null);
         });
 
-        test('then it emits the marko event from notice-change', () => {
+        test('then it emits the marko event from notice-hide', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.hidden).to.equal(true);
@@ -47,7 +47,7 @@ describe('given the notice is in the default state', () => {
             expect(document.querySelector('section.page-notice')).to.equal(null);
         });
 
-        test('then it emits the marko event from notice-change', () => {
+        test('then it emits the marko event from notice-hide', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.hidden).to.equal(true);
@@ -77,7 +77,7 @@ describe('given the notice is in the hidden state', () => {
             expect(document.querySelector('.page-notice')).to.not.equal(null);
         });
 
-        test('then it emits the marko event from notice-change', () => {
+        test('then it emits the marko event from notice-show', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.hidden).to.equal(false);
