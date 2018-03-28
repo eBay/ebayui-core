@@ -31,4 +31,5 @@ Name | Type | Stateful | Description
 
 Event | Data | Description
 --- | --- | ---
-`notice-change` | `{ hidden }` | the page notice was dismissed/undismissed
+`notice-show` | `{ hidden }` | the page notice was shown
+`notice-hide` | `{ hidden }` | the page notice was hidden

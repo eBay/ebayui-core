@@ -19,7 +19,7 @@ describe('given the notice is in the default state', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
-            widget.on('notice-change', spy);
+            widget.on('notice-hide', spy);
             testUtils.triggerEvent(button, 'click');
             setTimeout(done);
         });
@@ -38,7 +38,7 @@ describe('given the notice is in the default state', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
-            widget.on('notice-change', spy);
+            widget.on('notice-hide', spy);
             root.hidden = true;
             setTimeout(done);
         });
@@ -68,7 +68,7 @@ describe('given the notice is in the hidden state', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
-            widget.on('notice-change', spy);
+            widget.on('notice-show', spy);
             root.hidden = false;
             setTimeout(done);
         });
