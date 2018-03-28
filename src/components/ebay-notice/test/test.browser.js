@@ -29,8 +29,6 @@ describe('given the notice is in the default state', () => {
 
         test('then it emits the marko event from notice-hide', () => {
             expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.hidden).to.equal(true);
         });
     });
 
@@ -49,8 +47,6 @@ describe('given the notice is in the default state', () => {
 
         test('then it emits the marko event from notice-hide', () => {
             expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.hidden).to.equal(true);
         });
     });
 });
@@ -79,8 +75,6 @@ describe('given the notice is in the hidden state', () => {
 
         test('then it emits the marko event from notice-show', () => {
             expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.hidden).to.equal(false);
         });
     });
 });

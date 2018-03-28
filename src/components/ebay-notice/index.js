@@ -52,23 +52,23 @@ function getTemplateData(state) {
 
 function init() {
     observer.observeRoot(this, ['hidden'], () => {
-        this.processAfterStateChange(this.state.hidden);
+        this.processAfterStateChange();
     });
 }
 /**
  * Common processing after data change via both UI and API
  */
-function processAfterStateChange(hidden) {
-    if (hidden) {
-        emitAndFire(this, 'notice-hide', { hidden });
+function processAfterStateChange() {
+    if (this.state.hidden) {
+        emitAndFire(this, 'notice-hide');
     } else {
-        emitAndFire(this, 'notice-show', { hidden });
+        emitAndFire(this, 'notice-show');
     }
 }
 
 function onDismiss() {
     this.setState('hidden', true);
-    this.processAfterStateChange(true);
+    this.processAfterStateChange();
 }
 
 module.exports = require('marko-widgets').defineComponent({
