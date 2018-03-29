@@ -39,6 +39,14 @@ test('renders page notice with correct tags', context => {
     expect($('h2.page-notice__status').length).to.equal(1);
     expect($('section.page-notice--priority').length).to.equal(1);
     expect($('div.page-notice__content').length).to.equal(1);
+    expect($('button.page-notice__close').length).to.equal(0);
+});
+
+test('renders page notice with dismiss button', context => {
+    const input = { type: 'page', status: 'priority', dismissible: true };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('section.page-notice--priority').length).to.equal(1);
+    expect($('button.page-notice__close').length).to.equal(1);
 });
 
 test('handles pass-through html attributes', context => {
