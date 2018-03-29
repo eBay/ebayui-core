@@ -23,24 +23,24 @@ const itemsWithNoHref = [getItem('eBay', 'https://www.ebay.com/'),
 
 module.exports = {
     basicItems: {
-        heading: 'Page navigation',
+        headingText: 'Page navigation',
         items: basicItems,
         '*': { dataview: 'data-view tracking' }
     },
     itemsWithMissingLinks: {
-        heading: 'Page navigation',
+        headingText: 'Page navigation',
         items: itemsWithMissingLinks,
         '*': { dataview: 'data-view tracking' }
     },
     itemsWithNoHref: {
-        heading: 'Page navigation',
+        headingText: 'Page navigation',
         items: itemsWithNoHref,
         '*': { dataview: 'data-view tracking' }
     },
-    itemsWithPreventDefault: {
-        heading: 'Page navigation',
+    itemsWithHeadingLevel: {
+        headingText: 'Page navigation',
+        headingLevel: 'h3',
         items: basicItems,
-        preventDefault: true,
         '*': { dataview: 'data-view tracking' }
     }
 };

@@ -16,17 +16,17 @@ Name | Type | Stateful | Description
 `heading` | String | No | heading for breadcrumb which will be clipped
 `prevent-default` | Boolean | No | this will be used for single page app. when item is clicked, `breadcrumb-click` will be emitted.
 
-## ebay-breadcrumb-item Attributes
-
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`href` | String | No | anchor href
-
 ## ebay-breadcrumb Events
 
 Event | Description
 --- | ---
 `breadcrumb-click` | click breadcrumb items
+
+## ebay-breadcrumb-item Attributes
+
+Name | Type | Stateful | Description
+--- | --- | --- | ---
+`href` | String | No | anchor href
 
 ### Examples
 More examples can be found `ebay-breadcrumb/examples`

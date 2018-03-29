@@ -11,13 +11,10 @@ function getTemplateData(state, input) {
         let tag = 'a';
         const href = item.href || '';
         const current = ((items.length - 1) === index);
-        if (!current && !href) {
-            return null;
-        }
         if (current && !href) {
             tag = 'span';
             itemHtmlAttributes['aria-current'] = 'page';
-        } else {
+        } else if (href) {
             itemHtmlAttributes.href = href;
         }
         return {
@@ -29,14 +26,13 @@ function getTemplateData(state, input) {
     transformedItems = Object.keys(transformedItems).length > 0 ? transformedItems : null;
     return {
         items: transformedItems,
-        heading: input.heading || '',
-        htmlAttributes: htmlAttributes,
-        preventDefault: input.preventDefault
+        headingText: input.headingText || '',
+        headingLevel: input.headingLevel || 'h2',
+        htmlAttributes: htmlAttributes
     };
 }
 function handleClick(event, el) {
     emitAndFire(this, 'breadcrumb-click', { event, currentTarget: el });
-    event.preventDefault();
 }
 
 module.exports = markoWidgets.defineComponent({

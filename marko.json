@@ -75,8 +75,8 @@
     "<ebay-breadcrumb>": {
         "renderer": "./src/components/ebay-breadcrumb/index.js",
         "transformer": "./src/common/transformer/index.js",
-        "@heading": "string",
-        "@prevent-default": "boolean",
+        "@heading-text": "string",
+        "@heading-level": "string",
         "@*": "expression",
         "@items <item>[]": {
             "@href": "string",

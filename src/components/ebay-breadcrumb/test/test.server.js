@@ -40,15 +40,17 @@ describe('should render with basic breadcrumb and ', () => {
         expect(anchor.length).to.equal(4);
     });
 });
+
 test('should return zero nav element in the page', context => {
     const input = {};
     const $ = testUtils.getCheerio(context.render(input));
     expect($('nav').length).to.equal(0);
 });
-test('should not create <li> tag if href is null unless its last item', context => {
+test('should create <a> without href if href attr is passed null unless its last item', context => {
     const $ = testUtils.getCheerio(context.render(mock.itemsWithMissingLinks));
     const li = $('nav li');
-    expect(li.length).to.equal(3);
+    expect($('a', li[0]).attr('href')).to.be.an('undefined');
+    expect(li.length).to.equal(4);
 });
 test('should create span tag if href is null ', context => {
     const $ = testUtils.getCheerio(context.render(mock.itemsWithNoHref));
@@ -56,4 +58,11 @@ test('should create span tag if href is null ', context => {
     expect(li.length).to.equal(4);
     const currentElement = $('span', li[li.length - 1]);
     expect(currentElement.attr('aria-current')).to.equal('page');
+});
+test('return headingLevel', context => {
+    const $ = testUtils.getCheerio(context.render(mock.itemsWithHeadingLevel));
+    const h2Tag = $('h2');
+    expect(h2Tag.length).to.equal(0);
+    const h3Tag = $('h3');
+    expect(h3Tag.length).to.equal(1);
 });
