@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
     "installMarkoV4": "yarn add marko@^4 marko-widgets@^7 -D",
@@ -14,12 +14,15 @@
     "test:browser": "marko test --browser",
     "test:fps": "karma start",
     "test:integration": "yarn installMarkoV3 && mocha integration && yarn installMarkoV4 && mocha integration && yarn installMarkoV3 && yarn clean:integration",
-    "clean": "rimraf .coverage .karma .nyc_output demo/static",
+    "clean": "rimraf .coverage .karma .nyc_output demo/static && yarn clean:integration",
     "clean:integration": "rimraf integration/*.marko.js integration/static",
     "lint": "yarn lint:less && yarn lint:js",
     "lint:less": "stylelint '**/**.less'",
     "lint:js": "eslint .",
-    "build": "yarn lint && yarn test && mocha integration && yarn clean:integration && yarn installMarkoV4 && nyc marko test && mocha integration",
+    "build": "yarn lint && yarn build:v3 && yarn build:v4 && yarn clean && yarn installMarkoV3",
+    "build:ci": "yarn lint && yarn test && mocha integration && yarn build:v4",
+    "build:v3": "yarn installMarkoV3 && yarn clean:integration && yarn test && mocha integration",
+    "build:v4": "yarn installMarkoV4 && yarn clean:integration && yarn test && mocha integration",
     "shrinkwrap": "rimraf yarn.lock; rimraf node_modules; yarn cache clean && yarn",
     "ts": "yarn test:server",
     "tb": "yarn test:browser",
@@ -46,7 +49,7 @@
     "marko-components"
   ],
   "devDependencies": {
-    "@ebay/skin": "^3.4.0",
+    "@ebay/skin": "^3.5.0-1",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
@@ -93,10 +96,10 @@
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "lodash.throttle": "^4.1.1",
-    "makeup-expander": "^0.3.0",
-    "makeup-key-emitter": "^0.0.2",
-    "makeup-prevent-scroll-keys": "^0.0.1",
-    "makeup-roving-tabindex": "^0.0.3",
+    "makeup-expander": "^0.3.2",
+    "makeup-key-emitter": "~0.0.3",
+    "makeup-prevent-scroll-keys": "~0.0.2",
+    "makeup-roving-tabindex": "~0.0.5",
     "nodelist-foreach-polyfill": "^1.2.0"
   },
   "publishConfig": {
