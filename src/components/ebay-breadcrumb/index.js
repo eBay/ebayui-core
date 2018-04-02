@@ -9,18 +9,19 @@ function getTemplateData(state, input) {
     let transformedItems = (items).map((item, index) => {
         const itemHtmlAttributes = processHtmlAttributes(item);
         let tag = 'a';
-        const href = item.href || '';
+        let ariaCurrent = null;
+        const href = item.href || null;
         const current = ((items.length - 1) === index);
         if (current && !href) {
             tag = 'span';
-            itemHtmlAttributes['aria-current'] = 'page';
-        } else if (href) {
-            itemHtmlAttributes.href = href;
+            ariaCurrent = 'page';
         }
         return {
-            tag: tag,
+            tag,
             htmlAttributes: itemHtmlAttributes,
-            renderBody: item.renderBody
+            renderBody: item.renderBody,
+            href,
+            ariaCurrent
         };
     });
     transformedItems = Object.keys(transformedItems).length > 0 ? transformedItems : null;

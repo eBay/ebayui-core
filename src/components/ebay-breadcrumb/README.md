@@ -13,8 +13,8 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`heading` | String | No | heading for breadcrumb which will be clipped
-`prevent-default` | Boolean | No | this will be used for single page app. when item is clicked, `breadcrumb-click` will be emitted.
+`heading-text` | String | No | heading for breadcrumb which will be clipped
+`heading-level` | String | No | heading level(h1-h4) for breadcrumb and default is `h2`
 
 ## ebay-breadcrumb Events
 
@@ -24,9 +24,6 @@ Event | Description
 
 ## ebay-breadcrumb-item Attributes
 
-Name | Type | Stateful | Description
+Name | Type | Stateful | Data | Description
 --- | --- | --- | ---
-`href` | String | No | anchor href
-
-### Examples
-More examples can be found `ebay-breadcrumb/examples`
+`href` | String | No | `{ event, currentTarget: el }` | anchor href

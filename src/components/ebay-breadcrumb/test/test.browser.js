@@ -21,6 +21,7 @@ describe('breadcrumb should emit breadcrumb-click event', () => {
 
         it('then it emits the breadcrumb-click event', () => {
             expect(clickSpy.calledOnce).to.equal(true);
+            expect(Object.keys(clickSpy.args[0][0])).to.deep.equal(['event', 'currentTarget']);
         });
     });
 });

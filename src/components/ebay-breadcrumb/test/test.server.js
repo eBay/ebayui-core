@@ -10,17 +10,17 @@ describe('should render with basic breadcrumb and ', () => {
         expect(nav.attr('role')).to.equal('navigation');
         expect(nav.attr('dataview')).to.equal('data-view tracking');
         expect(nav.attr('class')).to.equal('breadcrumb');
-        expect(nav.attr('aria-labelledby')).to.equal('breadcrumbs_heading');
+        expect(nav.attr('aria-labelledby')).to.equal('breadcrumb-heading');
     });
     test('return h2 tag', context => {
         const $ = testUtils.getCheerio(context.render(mock.basicItems));
         const h2Tag = $('h2');
         expect(h2Tag.length).to.equal(1);
-        expect(h2Tag.attr('id')).to.equal('breadcrumbs_heading');
+        expect(h2Tag.attr('id')).to.equal('breadcrumb-heading');
         expect(h2Tag.attr('class')).to.equal('clipped');
         expect(h2Tag.html()).to.equal('Page navigation');
     });
-    test('return items html attributes', context => {
+    test('return items with pass-through attrs', context => {
         const $ = testUtils.getCheerio(context.render(mock.basicItems));
         const anchor = $('nav li a');
         const _sp = [];
