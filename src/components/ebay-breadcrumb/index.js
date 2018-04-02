@@ -33,7 +33,7 @@ function getTemplateData(state, input) {
     };
 }
 function handleClick(event, el) {
-    emitAndFire(this, 'breadcrumb-click', { event, currentTarget: el });
+    emitAndFire(this, 'breadcrumb-click', { event, target: event.target, currentTarget: el });
 }
 
 module.exports = markoWidgets.defineComponent({
