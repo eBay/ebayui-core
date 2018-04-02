@@ -9,8 +9,8 @@ describe('breadcrumb should emit breadcrumb-click event', () => {
     let list;
     describe('when breadcrumb item is clicked', () => {
         let clickSpy;
+        widget = renderer.renderSync(mock.basicItems).appendTo(document.body).getWidget();
         beforeEach((done) => {
-            widget = renderer.renderSync(mock.basicItems).appendTo(document.body).getWidget();
             list = document.querySelectorAll('nav li a');
             clickSpy = sinon.spy();
             widget.on('breadcrumb-click', clickSpy);
