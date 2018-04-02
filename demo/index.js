@@ -9,7 +9,7 @@ const template = require('./template.marko');
 const app = express();
 
 let transforms;
-if (process.env.NODE_ENV === 'dist') {
+if (process.env.NODE_ENV === 'production') {
     transforms = [{ transform: 'lasso-babel-transform' }];
 }
 
