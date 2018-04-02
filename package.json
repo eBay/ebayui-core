@@ -34,6 +34,19 @@
     "lint",
     "test"
   ],
+  "browserslist": [
+    "Chrome >= 49",
+    "Firefox >= 48",
+    "Safari >= 6",
+    "Edge >= 12",
+    "IE >= 9",
+    "Opera 47-48",
+
+    "ChromeAndroid >= 38",
+    "ios_saf >= 7",
+    "ie_mob >= 10",
+    "Android >= 3"
+  ],
   "files": [
     "dist/",
     "marko.json",
@@ -60,6 +73,7 @@
     "coveralls": "^3.0.0",
     "eslint": "^4.11.0",
     "eslint-config-ebay": "^0.1.9",
+    "eslint-plugin-compat": "^2.2.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-mocha": "^4.11.0",
     "express": "^4.16.2",
