@@ -18,12 +18,12 @@ Name | Type | Stateful | Description
 
 ## ebay-breadcrumb Events
 
-Event | Description
+Event | Description | Data
 --- | ---
-`breadcrumb-click` | click breadcrumb items
+`breadcrumb-click` | click breadcrumb items | `{ event, currentTarget: el }`
 
 ## ebay-breadcrumb-item Attributes
 
-Name | Type | Stateful | Data | Description
+Name | Type | Stateful | Description
 --- | --- | --- | ---
-`href` | String | No | `{ event, currentTarget: el }` | anchor href
+`href` | String | No | anchor href
