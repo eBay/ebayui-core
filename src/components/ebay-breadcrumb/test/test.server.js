@@ -20,24 +20,19 @@ describe('should render with basic breadcrumb and ', () => {
         expect(h2Tag.attr('class')).to.equal('clipped');
         expect(h2Tag.html()).to.equal('Page navigation');
     });
-    test('return items with pass-through attrs', context => {
-        const $ = testUtils.getCheerio(context.render(mock.basicItems));
-        const anchor = $('nav li a');
-        const _sp = [];
-        const navsrc = [];
-        anchor.each((i, v) => {
-            _sp.push($(v).attr('_sp'));
-            navsrc.push($(v).attr('navsrc'));
-        });
-        expect(_sp.length).to.equal(4);
-        expect(navsrc.length).to.equal(4);
-    });
     test('create <a> tag if href is NOT null for last item', context => {
         const $ = testUtils.getCheerio(context.render(mock.basicItems));
         const li = $('nav li');
         expect(li.length).to.equal(4);
         const anchor = $('nav li a');
         expect(anchor.length).to.equal(4);
+    });
+    test('handles pass-through html attributes for item', context => {
+        testUtils.testHtmlAttributes(context, 'li span', 'items');
+    });
+
+    test('handles custom class for item', context => {
+        testUtils.testCustomClass(context, 'li span', 'items', true);
     });
 });
 

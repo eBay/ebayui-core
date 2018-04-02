@@ -29,7 +29,7 @@ function getTemplateData(state, input) {
         items,
         headingText: input.headingText || '',
         headingLevel: input.headingLevel || 'h2',
-        htmlAttributes: htmlAttributes
+        htmlAttributes
     };
 }
 function handleClick(event, el) {
