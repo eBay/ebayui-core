@@ -1,12 +1,23 @@
 require('marko/node-require').install();
-require('lasso').configure(`${__dirname}/lasso-config.json`);
 const fs = require('fs');
+const lasso = require('lasso');
 const express = require('express');
 const highlight = require('gh-highlight');
 const demoUtils = require('./utils.js');
 const template = require('./template.marko');
 
 const app = express();
+
+let transforms;
+if (process.env.NODE_ENV === 'dist') {
+    transforms = [{ transform: 'lasso-babel-transform' }];
+}
+
+lasso.configure({
+    outputDir: `${__dirname}/static`,
+    plugins: ['lasso-marko', 'lasso-less'],
+    require: { transforms }
+});
 
 app.use(require('lasso/middleware').serveStatic());
 app.use(express.static(__dirname));

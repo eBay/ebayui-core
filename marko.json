@@ -69,7 +69,7 @@
         "@hidden": "boolean",
         "@aria-text": "string",
         "@aria-label-close": "string",
-        "@dismissible":"boolean",
+        "@dismissible": "boolean",
         "@*": "expression"
     }
 }

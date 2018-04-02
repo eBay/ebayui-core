@@ -1,4 +1,0 @@
-{
-    "plugins": ["lasso-marko", "lasso-less"],
-    "outputDir": "static"
-}
