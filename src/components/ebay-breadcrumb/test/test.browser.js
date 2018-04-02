@@ -13,13 +13,13 @@ describe('Basic breadcrumb', () => {
         beforeEach((done) => {
             list = document.querySelectorAll('nav li a');
             clickSpy = sinon.spy();
-            widget.on('breadcrumb-click', clickSpy);
+            widget.on('breadcrumb-select', clickSpy);
             testUtils.triggerEvent(list[0], 'click');
             setTimeout(done);
         });
         afterEach(() => widget.destroy());
 
-        it('then it emits the breadcrumb-click event', () => {
+        it('then it emits the breadcrumb-select event', () => {
             expect(clickSpy.calledOnce).to.equal(true);
             expect(Object.keys(clickSpy.args[0][0])).to.deep.equal(['event', 'target', 'currentTarget']);
         });
