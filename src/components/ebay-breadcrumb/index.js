@@ -5,13 +5,13 @@ const template = require('./template.marko');
 
 function getTemplateData(state, input) {
     const htmlAttributes = processHtmlAttributes(input);
-    const items = input.items || [];
-    let transformedItems = (items).map((item, index) => {
+    const inputItems = input.items || [];
+    let items = (inputItems).map((item, index) => {
         const itemHtmlAttributes = processHtmlAttributes(item);
         let tag = 'a';
         let ariaCurrent = null;
         const href = item.href || null;
-        const current = ((items.length - 1) === index);
+        const current = ((inputItems.length - 1) === index);
         if (current && !href) {
             tag = 'span';
             ariaCurrent = 'page';
@@ -24,9 +24,9 @@ function getTemplateData(state, input) {
             ariaCurrent
         };
     });
-    transformedItems = Object.keys(transformedItems).length > 0 ? transformedItems : null;
+    items = Object.keys(items).length > 0 ? items : null;
     return {
-        items: transformedItems,
+        items,
         headingText: input.headingText || '',
         headingLevel: input.headingLevel || 'h2',
         htmlAttributes: htmlAttributes
