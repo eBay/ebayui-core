@@ -4,10 +4,10 @@ const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const renderer = require('../');
 
-describe('breadcrumb should emit breadcrumb-click event', () => {
+describe('Basic breadcrumb', () => {
     let widget;
     let list;
-    describe('when breadcrumb item is clicked', () => {
+    describe('when item is clicked', () => {
         let clickSpy;
         widget = renderer.renderSync(mock.basicItems).appendTo(document.body).getWidget();
         beforeEach((done) => {
