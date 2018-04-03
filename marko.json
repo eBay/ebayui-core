@@ -71,5 +71,17 @@
         "@aria-label-close": "string",
         "@dismissible":"boolean",
         "@*": "expression"
-    }
+    },
+    "<ebay-breadcrumb>": {
+        "renderer": "./src/components/ebay-breadcrumb/index.js",
+        "transformer": "./src/common/transformer/index.js",
+        "@heading-text": "string",
+        "@heading-level": "string",
+        "@*": "expression",
+        "@items <item>[]": {
+            "@href": "string",
+            "@*": "expression"
+        }
+    },
+    "<ebay-breadcrumb-item>": {}
 }

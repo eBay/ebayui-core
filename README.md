@@ -19,7 +19,7 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 *NOTE: Marko v3 also requires [Marko Widgets](https://github.com/marko-js/marko-widgets).*
 
 ### Components
-
+* [`ebay-breadcrumb`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumb)
 * [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
 * [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
 * [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)

@@ -29,7 +29,6 @@ function testCustomClass(context, selector, arrayKey, isPassThrough) {
     } else {
         input = setupInput({ class: 'class1 class2' }, arrayKey);
     }
-
     const $ = getCheerio(context.render(input));
     expect($(`${selector}.class1.class2`).length).to.equal(1);
 }

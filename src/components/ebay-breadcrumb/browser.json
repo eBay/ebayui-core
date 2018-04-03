@@ -1,0 +1,7 @@
+{
+    "dependencies": [
+        "@ebay/skin/breadcrumb",
+        "@ebay/skin/utility",
+        "require: ./index.js"
+    ]
+}
