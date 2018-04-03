@@ -24,7 +24,9 @@ Clone this repo to your local environment then run `yarn` to install all depende
 
 ### Local Server
 
-Execute `yarn start` to start the local web server at [http://localhost:3000](http://localhost:3000).
+Execute `yarn start` to start the local web server at [http://localhost:3000](http://localhost:3000). This is a quick method to run and debug code, but it will only work in modern browsers since it does not include transpilation.
+
+For debugging older browsers, the demo can be run against transpiled source code via `yarn start:prod`.
 
 ### Tests
 
