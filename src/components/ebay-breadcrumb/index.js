@@ -32,8 +32,8 @@ function getTemplateData(state, input) {
         htmlAttributes
     };
 }
-function handleClick(event, el) {
-    emitAndFire(this, 'breadcrumb-select', { event, target: event.target, currentTarget: el });
+function handleClick(event) {
+    emitAndFire(this, 'breadcrumb-select', { el: event.target });
 }
 
 module.exports = markoWidgets.defineComponent({
