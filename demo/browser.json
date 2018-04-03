@@ -10,6 +10,7 @@
         "../src/components/ebay-carousel",
         "../src/components/ebay-menu",
         "../src/components/ebay-select",
-        "../src/components/ebay-notice"
+        "../src/components/ebay-notice",
+        "../src/components/ebay-breadcrumb"
     ]
 }
