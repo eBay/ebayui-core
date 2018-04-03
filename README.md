@@ -104,6 +104,10 @@ _template.marko_
 
 *Note:  when using DOM events, you should also handle event destruction and delegation as needed.*
 
+## Browser Policy
+
+All components support browsers from the official Tier 1 and Tier 2 of the eBay Browser Policy. This list is defined in the `browserslist` section of our [package.json](https://github.com/eBay/ebayui-core/blob/master/package.json), where it is also accessible to internal tooling.
+
 ## Releases &amp; Milestones
 
 For upcoming roadmap and release history, please refer to our [releases](https://github.com/eBay/ebayui-core/releases) and [milestones](https://github.com/eBay/ebayui-core/milestones) pages.
