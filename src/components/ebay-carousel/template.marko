@@ -1,21 +1,44 @@
 <div class=data.classes w-bind ${data.htmlAttributes}>
-    <div class="carousel__container">
+    <var statusId="carousel-status-${widget.id}"/>
+    <div class=("carousel__container" + (data.bothControlsDisabled ? " carousel__container--controls-disabled" : ""))>
+        <span
+            if(data.isDiscrete)
+            id=statusId
+            class="clipped"
+            role="status"
+            aria-live="polite">
+            ${data.statusText}
+        </span>
         <button
             class="icon icon--chevron-light-left carousel__control carousel__control--prev"
             w-onclick="handlePrev"
-            aria-label=data.ariaLabelPrev
-            aria-disabled=String(data.prevControlDisabled)
-            disabled=data.prevControlDisabled/>
-        <ul class="carousel__list" w-preserve-attrs="style">
-            <for(item in data.items)>
-                <li ${item.htmlAttributes} w-body=item.renderBody/>
+            aria-describedby=statusId
+            aria-label=data.accessibilityPrev
+            aria-disabled=String(data.prevControlDisabled)/>
+        <ul class="carousel__list" style=("transform: translateX(" + data.translation + "px)")>
+            <for(item in data.items | status-var=loop)>
+                <li ${item.htmlAttributes}
+                    w-body=item.renderBody
+                    aria-hidden=String(item.hidden)/>
             </for>
         </ul>
         <button
             class="icon icon--chevron-light-right carousel__control carousel__control--next"
             w-onclick="handleNext"
-            aria-label=data.ariaLabelNext
-            aria-disabled=String(data.nextControlDisabled)
-            disabled=data.nextControlDisabled/>
+            aria-describedby=statusId
+            aria-label=data.accessibilityNext
+            aria-disabled=String(data.nextControlDisabled)/>
     </div>
+    <ul if(data.isDiscrete) class="carousel__dots" role="navigation">
+        <li for(i from 1 to data.totalSlides)>
+            <button
+                class=(i === data.activeDot ? "carousel__dot--active" : "")
+                w-onclick="handleDotClick"
+                data-slide=i
+                aria-describedby=statusId
+                aria-label=(i === data.activeDot ?
+                    data.accessibilityCurrent.replace('{currentSlide}', i) :
+                    data.accessibilityOther.replace('{slide}', i))/>
+        </li>
+    </ul>
 </div>

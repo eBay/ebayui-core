@@ -6,7 +6,7 @@ const renderer = require('../');
 
 const privates = renderer.privates;
 const constants = privates.constants;
-const defaults = privates.defaults;
+const containerWidth = 800; // puppeteer default
 
 describe('given the carousel is in the default state', () => {
     let widget;
@@ -20,75 +20,105 @@ describe('given the carousel is in the default state', () => {
 
     describe('when it is rendered', () => {
         it('then it sets state to correct defaults', () => {
-            expect(widget.state.index).to.equal(defaults.index);
-            expect(widget.state.type).to.equal(defaults.type);
+            expect(widget.state.type).to.equal('continuous');
         });
 
         it('then it exposes state on root element', () => {
-            expect(root.index).to.equal(defaults.index);
+            expect(root.index).to.equal(0);
+        });
+    });
+
+    describe('when the window is resized', () => {
+        let spy;
+        beforeEach(done => {
+            spy = sinon.spy(widget, 'refresh');
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 100);
+        });
+        afterEach(() => widget.refresh.restore());
+
+        it('then it executes the refresh', () => {
+            expect(spy.calledOnce).to.equal(true);
         });
     });
 });
 
-describe('given the carousel has non-default input', () => {
-    const input = { index: 1 };
-    let widget;
-    let root;
-
-    beforeEach(() => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when it is rendered', () => {
-        it('then it uses state from input attributes', () => {
-            expect(root.index).to.equal(input.index);
-        });
-    });
-});
-
-describe('given the carousel with body starts in the default state', () => {
-    const input = { items: mock.items };
+describe('given the carousel starts in the default state with items', () => {
+    const input = { items: mock.sixItems };
     let widget;
     let root;
     let list;
+    let prevButton;
     let nextButton;
 
-    beforeEach(() => {
+    beforeEach(done => {
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
         root = document.querySelector('.carousel');
         list = root.querySelector('.carousel__list');
         nextButton = root.querySelector('.carousel__control--next');
+        prevButton = root.querySelector('.carousel__control--prev');
+        setTimeout(done);
     });
     afterEach(() => widget.destroy());
 
     describe('when index is updated programmatically', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('carousel-translate', spy);
-            widget.update_index(1); // root.index = 1; does not trigger update_index in tests
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            root.index = 1;
+            setTimeout(done);
         });
 
-        it('then it emits the marko event', () => {
-            expect(spy.calledOnce).to.equal(true);
+        it('then it emits the marko translate event', () => {
+            expect(translateSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([1, 2, 3]);
         });
 
         it('then it applies a translation', () => {
             const translation = mock.itemWidth + constants.margin;
             expect(list.style.transform).to.equal(`translateX(-${translation}px)`);
         });
+
+        it('then it calculates item visibility correctly', () => {
+            expect(widget.state.firstVisibleIndex).to.equal(1);
+            expect(widget.state.lastVisibleIndex).to.equal(3);
+        });
+    });
+
+    describe('when the previous button is clicked while disabled', () => {
+        let prevSpy;
+        beforeEach(done => {
+            prevSpy = sinon.spy();
+            widget.on('carousel-prev', prevSpy);
+            testUtils.triggerEvent(prevButton, 'click');
+            setTimeout(done);
+        });
+
+        it('then it does not emit the marko prev event', () => {
+            expect(prevSpy.called).to.equal(false);
+        });
     });
 
     describe('when next button is clicked', () => {
         let nextSpy;
         let translateSpy;
-        beforeEach((done) => {
+        let updateSpy;
+        beforeEach(done => {
             nextSpy = sinon.spy();
             translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
             setTimeout(done);
         });
@@ -101,8 +131,606 @@ describe('given the carousel with body starts in the default state', () => {
             expect(translateSpy.calledOnce).to.equal(true);
         });
 
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([3, 4, 5]);
+        });
+
         it('then it applies a translation', () => {
-            expect(list.style.transform).to.equal('translateX(-448px)');
+            expect(list.style.transform).to.equal('translateX(-480px)');
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            expect(widget.state.firstVisibleIndex).to.equal(3);
+            expect(widget.state.lastVisibleIndex).to.equal(5);
+        });
+    });
+
+    describe('when index is set below zero', () => {
+        let translateSpy;
+        let updateSpy;
+        beforeEach(() => {
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            widget.update_index(-1);
+        });
+
+        it('then it does not emit the marko events', () => {
+            expect(translateSpy.called).to.equal(false);
+            expect(updateSpy.called).to.equal(false);
+        });
+    });
+
+    describe('when index is set above the number of items', () => {
+        let translateSpy;
+        let updateSpy;
+        beforeEach(() => {
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-translate', translateSpy);
+            widget.update_index(99);
+        });
+
+        it('then it does not emit the marko events', () => {
+            expect(translateSpy.called).to.equal(false);
+            expect(updateSpy.called).to.equal(false);
+        });
+    });
+});
+
+describe('given a continuous carousel has next button clicked', () => {
+    const input = { items: mock.sixItems };
+    let widget;
+    let root;
+    let list;
+    let nextButton;
+    let prevButton;
+
+    beforeEach(done => {
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = document.querySelector('.carousel');
+        list = root.querySelector('.carousel__list');
+        nextButton = root.querySelector('.carousel__control--next');
+        prevButton = root.querySelector('.carousel__control--prev');
+        setTimeout(() => {
+            testUtils.triggerEvent(nextButton, 'click');
+            setTimeout(() => {
+                expect(list.style.transform).to.equal('translateX(-480px)');
+                done();
+            });
+        });
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when the previous button is clicked', () => {
+        let prevSpy;
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            prevSpy = sinon.spy();
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.triggerEvent(prevButton, 'click');
+            setTimeout(done);
+        });
+
+        it('then it emits the marko prev event', () => {
+            expect(prevSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko translate event', () => {
+            expect(translateSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([0, 1, 2]);
+        });
+
+        it('then it applies a translation back to 0', () => {
+            expect(list.style.transform).to.equal('translateX(0px)');
+        });
+    });
+
+    describe('when the next button is clicked while disabled', () => {
+        let nextSpy;
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.triggerEvent(nextButton, 'click');
+            setTimeout(done);
+        });
+
+        it('then it does not emits the marko events', () => {
+            expect(nextSpy.called).to.equal(false);
+            expect(translateSpy.called).to.equal(false);
+            expect(updateSpy.called).to.equal(false);
+        });
+    });
+});
+
+describe('given a continuous carousel with few items', () => {
+    const input = { items: mock.threeItems };
+    let widget;
+    let list;
+
+    beforeEach(done => {
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        list = document.querySelector('.carousel__list');
+        setTimeout(done);
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when index is set', () => {
+        let translateSpy;
+        let updateSpy;
+        beforeEach(() => {
+            expect(list.style.transform).to.equal(`translateX(0px)`);
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            widget.update_index(1);
+        });
+
+        it('then it does not emit the marko events', () => {
+            expect(translateSpy.called).to.equal(false);
+            expect(updateSpy.called).to.equal(false);
+        });
+    });
+});
+
+describe('given a continuous carousel with many items', () => {
+    const input = { items: mock.twelveItems };
+    let widget;
+    let root;
+    let prevButton;
+    let nextButton;
+
+    beforeEach(done => {
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = document.querySelector('.carousel');
+        prevButton = root.querySelector('.carousel__control--prev');
+        nextButton = root.querySelector('.carousel__control--next');
+        setTimeout(done);
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when next button is clicked three times', () => {
+        let nextSpy;
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.triggerEvent(nextButton, 'click');
+            setTimeout(() => {
+                testUtils.triggerEvent(nextButton, 'click');
+                setTimeout(() => {
+                    testUtils.triggerEvent(nextButton, 'click');
+                    setTimeout(done);
+                });
+            });
+        });
+
+        it('then it emits the marko events', () => {
+            expect(nextSpy.callCount).to.equal(3);
+            expect(translateSpy.callCount).to.equal(3);
+            expect(updateSpy.callCount).to.equal(3);
+        });
+
+        it('then the last item is visible', () => {
+            expect(widget.state.firstVisibleIndex).to.equal(9);
+            expect(widget.state.lastVisibleIndex).to.equal(mock.twelveItems.length - 1);
+        });
+    });
+
+    describe('when next button is clicked three times, and previous button is clicked once', () => {
+        let prevSpy;
+        let nextSpy;
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            prevSpy = sinon.spy();
+            nextSpy = sinon.spy();
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.triggerEvent(nextButton, 'click');
+            setTimeout(() => {
+                testUtils.triggerEvent(nextButton, 'click');
+                setTimeout(() => {
+                    testUtils.triggerEvent(nextButton, 'click');
+                    setTimeout(() => {
+                        testUtils.triggerEvent(prevButton, 'click');
+                        setTimeout(done);
+                    });
+                });
+            });
+        });
+
+        it('then it emits the marko events', () => {
+            expect(prevSpy.callCount).to.equal(1);
+            expect(nextSpy.callCount).to.equal(3);
+            expect(translateSpy.callCount).to.equal(4);
+            expect(updateSpy.callCount).to.equal(4);
+        });
+
+        it('then it moves to the correct index', () => {
+            expect(root.index).to.equal(6);
+            expect(widget.state.firstVisibleIndex).to.equal(6);
+            expect(widget.state.lastVisibleIndex).to.equal(8);
+        });
+    });
+
+    describe('when next button is clicked twice, and previous button is clicked once', () => {
+        let prevSpy;
+        let nextSpy;
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            prevSpy = sinon.spy();
+            nextSpy = sinon.spy();
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.triggerEvent(nextButton, 'click');
+            setTimeout(() => {
+                testUtils.triggerEvent(nextButton, 'click');
+                setTimeout(() => {
+                    testUtils.triggerEvent(prevButton, 'click');
+                    setTimeout(done);
+                });
+            });
+        });
+
+        it('then it emits the marko events', () => {
+            expect(prevSpy.callCount).to.equal(1);
+            expect(nextSpy.callCount).to.equal(2);
+            expect(translateSpy.callCount).to.equal(3);
+            expect(updateSpy.callCount).to.equal(3);
+        });
+
+        it('then it moves to the correct index', () => {
+            expect(root.index).to.equal(3);
+        });
+    });
+});
+
+describe('given a discrete carousel', () => {
+    const input = { type: 'discrete', items: mock.threeItems };
+    let widget;
+    let root;
+    let list;
+    let nextButton;
+
+    beforeEach(done => {
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = document.querySelector('.carousel');
+        list = root.querySelector('.carousel__list');
+        nextButton = root.querySelector('.carousel__control--next');
+        setTimeout(done);
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when next button is clicked', () => {
+        let nextSpy;
+        let slideSpy;
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            slideSpy = sinon.spy();
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-slide', slideSpy);
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.triggerEvent(nextButton, 'click');
+            setTimeout(done);
+        });
+
+        it('then it emits the marko next event', () => {
+            expect(nextSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko slide event', () => {
+            expect(slideSpy.calledOnce).to.equal(true);
+            const eventData = slideSpy.getCall(0).args[0];
+            expect(eventData.slide).to.equal(2);
+        });
+
+        it('then it emits the marko translate event', () => {
+            expect(translateSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([1]);
+        });
+
+        it('then it applies a translation', () => {
+            expect(list.style.transform).to.equal(`translateX(-${containerWidth + constants.margin}px)`);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            expect(widget.state.firstVisibleIndex).to.equal(1);
+            expect(widget.state.lastVisibleIndex).to.equal(1);
+        });
+    });
+
+    describe('when the window is resized', () => {
+        let spy;
+        beforeEach(done => {
+            spy = sinon.spy(widget, 'refresh');
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 100);
+        });
+        afterEach(() => widget.refresh.restore());
+
+        it('then it executes the refresh', () => {
+            expect(spy.calledOnce).to.equal(true);
+        });
+    });
+});
+
+describe('given a discrete carousel has next button clicked', () => {
+    const input = { type: 'discrete', items: mock.threeItems };
+    let widget;
+    let root;
+    let list;
+    let nextButton;
+    let prevButton;
+
+    beforeEach(done => {
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = document.querySelector('.carousel');
+        list = root.querySelector('.carousel__list');
+        nextButton = root.querySelector('.carousel__control--next');
+        prevButton = root.querySelector('.carousel__control--prev');
+        setTimeout(() => {
+            testUtils.triggerEvent(nextButton, 'click');
+            setTimeout(() => {
+                expect(list.style.transform).to.equal(`translateX(-${containerWidth + constants.margin}px)`);
+                done();
+            });
+        });
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when the previous button is clicked', () => {
+        let prevSpy;
+        let slideSpy;
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            prevSpy = sinon.spy();
+            slideSpy = sinon.spy();
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-slide', slideSpy);
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.triggerEvent(prevButton, 'click');
+            setTimeout(done);
+        });
+
+        it('then it emits the marko prev event', () => {
+            expect(prevSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko slide event', () => {
+            expect(slideSpy.calledOnce).to.equal(true);
+            const eventData = slideSpy.getCall(0).args[0];
+            expect(eventData.slide).to.equal(1);
+        });
+
+        it('then it emits the marko translate event', () => {
+            expect(translateSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([0]);
+        });
+
+        it('then it applies a translation back to 0', () => {
+            expect(list.style.transform).to.equal('translateX(0px)');
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            expect(widget.state.firstVisibleIndex).to.equal(0);
+            expect(widget.state.lastVisibleIndex).to.equal(0);
+        });
+    });
+});
+
+describe('given a discrete carousel with half width items', () => {
+    const input = { type: 'discrete', itemsPerSlide: 2, items: mock.sixItems };
+    let widget;
+    let root;
+    let list;
+    let nextButton;
+    let nextSlideDot;
+
+    beforeEach(done => {
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = document.querySelector('.carousel');
+        list = root.querySelector('.carousel__list');
+        nextButton = root.querySelector('.carousel__control--next');
+        nextSlideDot = root.querySelector('[data-slide="2"]');
+        setTimeout(done);
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when next button is clicked', () => {
+        let nextSpy;
+        let slideSpy;
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            slideSpy = sinon.spy();
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-slide', slideSpy);
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.triggerEvent(nextButton, 'click');
+            setTimeout(done);
+        });
+
+        it('then it emits the marko next event', () => {
+            expect(nextSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko slide event', () => {
+            expect(slideSpy.calledOnce).to.equal(true);
+            const eventData = slideSpy.getCall(0).args[0];
+            expect(eventData.slide).to.equal(2);
+        });
+
+        it('then it emits the marko translate event', () => {
+            expect(translateSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
+        });
+
+        it('then it applies a translation', () => {
+            expect(list.style.transform).to.equal(`translateX(-${containerWidth + constants.margin}px)`);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            expect(widget.state.firstVisibleIndex).to.equal(2);
+            expect(widget.state.lastVisibleIndex).to.equal(3);
+        });
+    });
+
+    describe('when next slide dot is clicked', () => {
+        let nextSpy;
+        let slideSpy;
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            slideSpy = sinon.spy();
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-slide', slideSpy);
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.triggerEvent(nextSlideDot, 'click');
+            setTimeout(done);
+        });
+
+        it('then it does not emit the marko next event', () => {
+            expect(nextSpy.called).to.equal(false);
+        });
+
+        it('then it emits the marko slide event', () => {
+            expect(slideSpy.calledOnce).to.equal(true);
+            const eventData = slideSpy.getCall(0).args[0];
+            expect(eventData.slide).to.equal(2);
+        });
+
+        it('then it emits the marko translate event', () => {
+            expect(translateSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
+        });
+
+        it('then it applies a translation', () => {
+            expect(list.style.transform).to.equal(`translateX(-${containerWidth + constants.margin}px)`);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            expect(widget.state.firstVisibleIndex).to.equal(2);
+            expect(widget.state.lastVisibleIndex).to.equal(3);
+        });
+    });
+
+    describe('when slide is updated programmatically', () => {
+        let nextSpy;
+        let slideSpy;
+        let translateSpy;
+        let updateSpy;
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            slideSpy = sinon.spy();
+            translateSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-slide', slideSpy);
+            widget.on('carousel-translate', translateSpy);
+            widget.on('carousel-update', updateSpy);
+            root.slide = 2;
+            setTimeout(done);
+        });
+
+        it('then it does not emit the marko next event', () => {
+            expect(nextSpy.called).to.equal(false);
+        });
+
+        it('then it emits the marko slide event', () => {
+            expect(slideSpy.calledOnce).to.equal(true);
+            const eventData = slideSpy.getCall(0).args[0];
+            expect(eventData.slide).to.equal(2);
+        });
+
+        it('then it emits the marko translate event', () => {
+            expect(translateSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
+        });
+
+        it('then it applies a translation', () => {
+            expect(list.style.transform).to.equal(`translateX(-${containerWidth + constants.margin}px)`);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            expect(widget.state.firstVisibleIndex).to.equal(2);
+            expect(widget.state.lastVisibleIndex).to.equal(3);
         });
     });
 });

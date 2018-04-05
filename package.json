@@ -94,6 +94,7 @@
     "marko-dynamic-tag": "^1.0.0",
     "marko-prettyprint": "^1.4.1",
     "marko-widgets": "^6",
+    "mobile-detect": "^1.4.1",
     "mocha": "^4.1.0",
     "nyc": "^11.4.1",
     "opn-cli": "^3.1.0",
@@ -109,10 +110,11 @@
     "marko-widgets": "^6 || ^7"
   },
   "dependencies": {
+    "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
-    "lodash.throttle": "^4.1.1",
     "makeup-expander": "^0.3.2",
+    "makeup-focusables": "~0.0.3",
     "makeup-key-emitter": "~0.0.3",
     "makeup-prevent-scroll-keys": "~0.0.2",
     "makeup-roving-tabindex": "~0.0.5",

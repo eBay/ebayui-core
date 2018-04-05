@@ -3,6 +3,7 @@ const fs = require('fs');
 const lasso = require('lasso');
 const express = require('express');
 const highlight = require('gh-highlight');
+const MobileDetect = require('mobile-detect');
 const demoUtils = require('./utils.js');
 const template = require('./template.marko');
 
@@ -41,7 +42,24 @@ app.get('/:component?', (req, res) => {
         components: demoUtils.getComponentsWithExamples('src')
     };
 
+    // allow .only in example folder name
+    model.examples.some((example) => {
+        if (example.name.includes('.only')) {
+            model.examples = model.examples.filter(ex => ex.name.includes('.only'));
+            return true;
+        }
+    });
+
     req.model = model;
+
+    const md = new MobileDetect(req.headers['user-agent']);
+    const lassoFlags = ['skin-ds6'];
+    if (md.mobile() || md.tablet()) {
+        lassoFlags.push('touch');
+    } else {
+        lassoFlags.push('no-touch');
+    }
+    req.lassoFlags = lassoFlags;
 
     template.render(req, res);
 });

@@ -1,0 +1,35 @@
+.carousel {
+    &__control {
+        .carousel:hover &,
+        &:focus {
+            opacity: @ebay-carousel-control-enabled-opacity;
+            pointer-events: auto;
+
+            &[aria-disabled="true"] {
+                opacity: @ebay-carousel-control-disabled-opacity;
+                cursor: default;
+            }
+        }
+
+        &:hover:not([aria-disabled="true"]) {
+            background-color: @color-core-gray-dim;
+
+            &.icon:before {
+                color: @color-core-white;
+            }
+        }
+
+        &:hover:active:not([aria-disabled="true"]) {
+            background-color: @color-core-gray-davys;
+        }
+    }
+
+    &--continuous {
+        // hide controls if both are disabled
+        .carousel__container--controls-disabled .carousel__control,
+        &:hover .carousel__container--controls-disabled .carousel__control[aria-disabled="true"] {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}

@@ -1,9 +1,23 @@
 {
     "dependencies": [
+        "@ebay/skin/utility",
         "@ebay/skin/less",
         "@ebay/skin/iconfont",
         "@ebay/skin/dist/icon/ds4/icon.css",
+        "require-run: nodelist-foreach-polyfill",
         "require: ./index.js",
-        "./style.less"
+        "./style.less",
+        {
+            "if-flag": "touch",
+            "dependencies": [
+                "./style-touch.less"
+            ]
+        },
+        {
+            "if": "flags.contains('no-touch') || !flags.contains('touch')",
+            "dependencies": [
+                "./style-no-touch.less"
+            ]
+        }
     ]
 }

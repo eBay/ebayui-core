@@ -4,25 +4,50 @@
 
 ```marko
 <ebay-carousel>
-    <div>item 1</div>
-    <div>item 2</div>
+    <ebay-carousel-item>Item 1</ebay-carousel-item>
+    <ebay-carousel-item>Item 2</ebay-carousel-item>
+    <ebay-carousel-item>Item 3</ebay-carousel-item>
 </ebay-carousel>
 ```
 
-## ebay-carousel Attributes
+This component will bundle different resources depending on Lasso flags provided by your application.
+Use `touch` for touch devices, and `no-touch` for non-touch devices. Without flags, `no-touch` is assumed.
+Currently, the `touch` carousel with type="continuous" will use native scrolling, which has more limited functionality.
 
+[//]: # (TODO: `touch` should ideally be default, but currently the js behavior doesn't execute with native scrolling)
+
+## ebay-carousel Attributes
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`class` | String | No | custom class
-`index` | String | Yes | zero-based starting position
 `type` | String | No | "continuous" (default) or "discrete"
-`aria-label-prev` | String | No | aria-label for previous control
-`aria-label-next` | String | No | aria-label for next control
+`accessibility-prev` | String | No | aria-label for previous control (default: "Previous Slide")
+`accessibility-next` | String | No | aria-label for next control (default: "Next Slide")
+
+### Additional Attributes for type="continuous"
+Name | Type | Stateful | Description
+--- | --- | --- | ---
+`index` | String | Yes | 0-based index position
+
+### Additional Attributes for type="discrete"
+Name | Type | Stateful | Description
+--- | --- | --- | ---
+`slide` | String | Yes | 1-based slide position
+`items-per-slide` | String | No | 1 - 5 -- number of items for a single carousel slide (default: 1)
+`accessibility-status` | String | No | status text (default: "Showing Slide {currentSlide} of {totalSlides} - Carousel")
+`accessibility-current` | String | No | pagination current slide text (default: "Current Slide {currentSlide} - Carousel")
+`accessibility-other` | String | No | pagination other slide text (default: "Slide {slide} - Carousel")
 
 ## ebay-carousel Events
+Event | Data | Description
+--- | --- | ---
+`carousel-update` | { [visibleIndexes] } | called whenever item visibility changes, including initialization
+`carousel-translate` | | start of carousel content translation
+`carousel-next` | | click next control
+`carousel-prev` | | click previous control
 
-Event | Description
---- | ---
-`carousel-next` | click next control
-`carousel-prev` | click previous control
-`carousel-translate` | translate carousel content
+### Additional Events for type="discrete"
+Event | Data | Description
+--- | --- | ---
+`carousel-slide` | `{ slide }` | new slide is navigated to (by controls, dots, or API)
+
+Note: The `carousel` will manipulate the `tabindex` property of nested focusable elements inside `<ebay-carousel-item>`.
