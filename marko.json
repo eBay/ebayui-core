@@ -48,6 +48,7 @@
         "@label": "string",
         "@expanded": "boolean",
         "@grow": "boolean",
+        "@grow-reverse": "boolean",
         "@auto-collapse": "boolean",
         "@*": "expression",
         "@items <item>[]": {
