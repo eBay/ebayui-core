@@ -1,6 +1,9 @@
 {
     "dependencies": [
-        "@ebay/skin/listbox",
+        {
+            "if-not-flag": "ebayui-skinless",
+            "path": "@ebay/skin/listbox"
+        },
         "../../../src/components/ebay-button",
         "require: marko-widgets",
         "require: ./index.js"

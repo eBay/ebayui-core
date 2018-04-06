@@ -1,6 +1,9 @@
 {
     "dependencies": [
-        "@ebay/skin/menu",
+        {
+            "if-not-flag": "ebayui-skinless",
+            "path": "@ebay/skin/menu"
+        },
         "../../../src/components/ebay-button",
         "require-run: nodelist-foreach-polyfill",
         "require: marko-widgets",
