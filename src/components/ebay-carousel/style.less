@@ -38,6 +38,7 @@
         pointer-events: none;
         font-size: 18px;
         background-color: @color-core-white;
+        padding: 0; // override browser default
         height: 72px;
         width: 28px;
         z-index: 1;
@@ -61,11 +62,11 @@
         }
 
         &.icon--chevron-light-right:before {
-            margin-left: -6px;
+            margin-left: 1px;
         }
 
         &.icon--chevron-light-left:before {
-            margin-left: -7px;
+            margin-left: -1;
         }
     }
 
