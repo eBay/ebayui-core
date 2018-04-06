@@ -10,6 +10,7 @@ describe('given the listbox is in the default state', () => {
     let button;
     let ariaControl;
     let secondOption;
+    let nativeSelect;
 
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
@@ -18,6 +19,7 @@ describe('given the listbox is in the default state', () => {
         button = root.querySelector('.listbox__control');
         ariaControl = button.querySelector('input');
         secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
+        nativeSelect = root.querySelector('.listbox__native');
     });
 
     afterEach(() => widget.destroy());
@@ -40,6 +42,8 @@ describe('given the listbox is in the default state', () => {
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
             expect(eventData.selected).to.deep.equal(['2']);
+            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
+            expect(nativeOption).to.equal('2');
         });
     });
 
@@ -61,6 +65,8 @@ describe('given the listbox is in the default state', () => {
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(0);
             expect(eventData.selected).to.deep.equal(['1']);
+            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
+            expect(nativeOption).to.equal('1');
         });
     });
 
@@ -79,6 +85,8 @@ describe('given the listbox is in the default state', () => {
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
             expect(eventData.selected).to.deep.equal(['2']);
+            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
+            expect(nativeOption).to.equal('2');
         });
     });
 
