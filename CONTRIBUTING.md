@@ -76,7 +76,7 @@ Issue branches must be created from the relevant milestone branch. For example, 
 
 <strike>When work on an issue branch is complete and committed upstream, the Travis CI job must successfully run on that branch.</strike>
 
-When all milestone issues are complete, and merged into the milestone branch, an admin will either peform a pre-release, or they will merge the milestone branch into the master branch in preparation for a final release.
+When all milestone issues are complete, and merged into the milestone branch, an admin will either perform a pre-release, or they will merge the milestone branch into the master branch in preparation for a final release.
 
 A milestone branch will be deleted after it has been merged into master. There is no need to keep these milestone branches lying around, as we can go back to any point in time using git tags.
 
