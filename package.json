@@ -1,12 +1,13 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "0.1.3",
+  "version": "0.2.0-2",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
     "installMarkoV4": "yarn add marko@^4 marko-widgets@^7 -D",
     "prepublishOnly": "node scripts/prepublish",
     "postpublish": "node scripts/postpublish",
     "start": "yarn clean; browser-refresh demo/",
+    "start:prod": "NODE_ENV=production yarn start",
     "coverage": "nyc marko test && node scripts/coverage",
     "report": "nyc report --reporter=html",
     "test": "yarn coverage && yarn report",
@@ -14,12 +15,15 @@
     "test:browser": "marko test --browser",
     "test:fps": "karma start",
     "test:integration": "yarn installMarkoV3 && mocha integration && yarn installMarkoV4 && mocha integration && yarn installMarkoV3 && yarn clean:integration",
-    "clean": "rimraf .coverage .karma .nyc_output demo/static",
+    "clean": "rimraf .coverage .karma .nyc_output demo/static && yarn clean:integration",
     "clean:integration": "rimraf integration/*.marko.js integration/static",
     "lint": "yarn lint:less && yarn lint:js",
     "lint:less": "stylelint '**/**.less'",
     "lint:js": "eslint .",
-    "build": "yarn lint && yarn test && mocha integration && yarn clean:integration && yarn installMarkoV4 && nyc marko test && mocha integration",
+    "build": "yarn lint && yarn build:v3 && yarn build:v4 && yarn clean && yarn installMarkoV3",
+    "build:ci": "yarn lint && yarn test && mocha integration && yarn build:v4",
+    "build:v3": "yarn installMarkoV3 && yarn clean:integration && yarn test && mocha integration",
+    "build:v4": "yarn installMarkoV4 && yarn clean:integration && yarn test && mocha integration",
     "shrinkwrap": "rimraf yarn.lock; rimraf node_modules; yarn cache clean && yarn",
     "ts": "yarn test:server",
     "tb": "yarn test:browser",
@@ -30,6 +34,18 @@
   "pre-push": [
     "lint",
     "test"
+  ],
+  "browserslist": [
+    "Chrome >= 49",
+    "Firefox >= 48",
+    "Safari >= 6",
+    "Edge >= 12",
+    "IE >= 9",
+    "Opera 47-48",
+    "ChromeAndroid >= 38",
+    "ios_saf >= 7",
+    "ie_mob >= 10",
+    "Android >= 3"
   ],
   "files": [
     "dist/",
@@ -46,7 +62,7 @@
     "marko-components"
   ],
   "devDependencies": {
-    "@ebay/skin": "^3.4.0",
+    "@ebay/skin": "^3.5.2",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
@@ -57,6 +73,7 @@
     "coveralls": "^3.0.0",
     "eslint": "^4.11.0",
     "eslint-config-ebay": "^0.1.9",
+    "eslint-plugin-compat": "^2.2.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-mocha": "^4.11.0",
     "express": "^4.16.2",
@@ -68,6 +85,7 @@
     "karma-lasso": "^4.0.0",
     "karma-mocha": "^1.3.0",
     "lasso": "^3.1.2",
+    "lasso-babel-transform": "^1.0.2",
     "lasso-less": "^2.4.7",
     "lasso-marko": "^2.4.0",
     "marko": "^3",

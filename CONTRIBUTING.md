@@ -24,7 +24,9 @@ Clone this repo to your local environment then run `yarn` to install all depende
 
 ### Local Server
 
-Execute `yarn start` to start the local web server at [http://localhost:3000](http://localhost:3000).
+Execute `yarn start` to start the local web server at [http://localhost:3000](http://localhost:3000). This is a quick method to run and debug code, but it will only work in modern browsers since it does not include transpilation.
+
+For debugging older browsers, the demo can be run against transpiled source code via `yarn start:prod`.
 
 ### Tests
 
@@ -42,7 +44,7 @@ Please ensure all scripts in `package.json` are Unix *and* Windows friendly.
 
 ### Continuous Integration (CI)
 
-To ensure that all components function correctly in both Marko v3 and v4, we run our entire test suite against both versions. This requires automated installation of Marko versions, and is best executed in the CI (to avoid conflicting with local environments). The CI runs a specific `build` task in the NPM scripts for this purpose.
+To ensure that all components function correctly in both Marko v3 and v4, we run our entire test suite against both versions. This requires automated installation of Marko versions, and is best executed in the CI (to avoid conflicting with local environments). The CI runs a specific `build:ci` task in the NPM scripts for this purpose.
 
 ## Pull Requests
 
@@ -76,7 +78,7 @@ Issue branches must be created from the relevant milestone branch. For example, 
 
 <strike>When work on an issue branch is complete and committed upstream, the Travis CI job must successfully run on that branch.</strike>
 
-When all milestone issues are complete, and merged into the milestone branch, an admin will either peform a pre-release, or they will merge the milestone branch into the master branch in preparation for a final release.
+When all milestone issues are complete, and merged into the milestone branch, an admin will either perform a pre-release, or they will merge the milestone branch into the master branch in preparation for a final release.
 
 A milestone branch will be deleted after it has been merged into master. There is no need to keep these milestone branches lying around, as we can go back to any point in time using git tags.
 

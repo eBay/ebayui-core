@@ -20,7 +20,8 @@ Name | Type | Stateful | Description
 `label` | String | Yes | button label
 `expanded` | Boolean | Yes | whether content is expanded (Note: not supported as initial attribute)
 `type` | String | No | Can be "fake" / "radio" / "checkbox"
-`grow` | Boolean | No | grow items container beyond menu size
+`grow` | Boolean | No | grow items container beyond menu size to the right
+`grow-reverse` | Boolean | No | grow items container beyond menu size to the left
 `auto-collapse` | Boolean | No | collapse automatically when focus lost
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 

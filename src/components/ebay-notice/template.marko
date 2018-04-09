@@ -2,11 +2,18 @@
     w-bind
     aria-labelledby="${data.status}-status-${widget.elId()}"
     class=data.mainClass
-    ${data.htmlAttributes}>
+    ${data.htmlAttributes}
+    if(!data.hidden)>
         <${data.headingTag}
             class=data.headingClass
             id="${data.status}-status-${widget.elId()}">
                 <span aria-label="${data.ariaText}" role="img"></span>
         </${data.headingTag}>
         <${data.contentTag} class=data.contentClass w-body/>
+         <button aria-label="${data.ariaLabelClose}"
+            class="page-notice__close"
+            w-onclick="onDismiss"
+            if(data.dismissible)>
+                <span></span>
+        </button>
 </${data.mainTag}>

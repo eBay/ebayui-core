@@ -46,7 +46,7 @@ function getNestedTagString(rootTag, nestedTag) {
     };
 }
 
-describe('when the ebay-select-option tag is tranformed', () => {
+describe('when the ebay-select-option tag is transformed', () => {
     let tagString;
     let outputTemplate;
 
@@ -63,7 +63,7 @@ describe('when the ebay-select-option tag is tranformed', () => {
     });
 });
 
-describe('when the ebay-select-option tag is nested and is tranformed', () => {
+describe('when the ebay-select-option tag is nested and is transformed', () => {
     let tagString;
     let outputTemplate;
 

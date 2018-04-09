@@ -1,0 +1,12 @@
+<if(data.items)>
+    <nav aria-labelledby="breadcrumb-heading" class="breadcrumb" role="navigation" ${data.htmlAttributes} w-bind w-onclick="handleClick">
+        <${data.headingLevel} id="breadcrumb-heading" class="clipped">${data.headingText}</${data.headingLevel}>
+        <ul>
+            <for(item in data.items)>
+                <li>
+                    <${item.tag} href=item.href aria-current=item.ariaCurrent ${item.htmlAttributes} w-body=item.renderBody/>
+                </li>
+            </for>
+        </ul>
+    </nav>
+</if>

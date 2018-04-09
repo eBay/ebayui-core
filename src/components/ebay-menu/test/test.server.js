@@ -44,6 +44,30 @@ describe('menu', () => {
         expect($('.fake-menu__items').length).to.equal(1);
     });
 
+    test('renders with grow-reverse=true', context => {
+        const input = { growReverse: true };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.menu__items--grow-reverse').length).to.equal(1);
+    });
+
+    test('renders with grow-reverse=false', context => {
+        const input = { growReverse: false };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.menu__items').length).to.equal(1);
+    });
+
+    test('renders with type=fake, grow-reverse=true', context => {
+        const input = { type: 'fake', growReverse: true };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.fake-menu__items--grow-reverse').length).to.equal(1);
+    });
+
+    test('renders with type=fake, grow-reverse=false', context => {
+        const input = { type: 'fake', growReverse: false };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.fake-menu__items').length).to.equal(1);
+    });
+
     test('handles pass-through html attributes', context => {
         testUtils.testHtmlAttributes(context, 'span.menu');
     });

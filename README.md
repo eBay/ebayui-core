@@ -19,7 +19,7 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 *NOTE: Marko v3 also requires [Marko Widgets](https://github.com/marko-js/marko-widgets).*
 
 ### Components
-
+* [`ebay-breadcrumb`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumb)
 * [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
 * [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
 * [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
@@ -103,6 +103,10 @@ _template.marko_
 ```
 
 *Note:  when using DOM events, you should also handle event destruction and delegation as needed.*
+
+## Browser Policy
+
+All components support browsers from the official Tier 1 and Tier 2 of the eBay Browser Policy. This list is defined in the `browserslist` section of our [package.json](https://github.com/eBay/ebayui-core/blob/master/package.json), where it is also accessible to internal tooling.
 
 ## Releases &amp; Milestones
 

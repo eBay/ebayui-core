@@ -2,9 +2,11 @@
     "dependencies": [
         {
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/button"
+            "dependencies": [
+                "@ebay/skin/breadcrumb",
+                "@ebay/skin/utility"
+            ]
         },
-        "require: marko-widgets",
         "require: ./index.js"
     ]
 }
