@@ -185,7 +185,7 @@ function processAfterStateChange(el) {
  * @param {String} optionValue
  */
 function setSelectedOption(optionValue) {
-    const newOptionSelected = this.state.options.filter(option => option.value === optionValue)[0];
+    const newOptionSelected = this.state.options.filter(option => option.value.toString() === optionValue)[0];
     const newOptionSelectedValue = newOptionSelected && newOptionSelected.value;
     let options = this.clearListboxSelections(this.state.options);
 
