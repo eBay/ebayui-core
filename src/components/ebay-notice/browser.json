@@ -1,6 +1,9 @@
 {
     "dependencies": [
-        "@ebay/skin/notice",
+        {
+            "if-not-flag": "ebayui-no-skin",
+            "path": "@ebay/skin/notice"
+        },
         "require: marko-widgets",
         "require: ./index.js"
     ]

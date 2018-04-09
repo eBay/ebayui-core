@@ -1,6 +1,9 @@
 {
     "dependencies": [
-        "@ebay/skin/button",
+        {
+            "if-not-flag": "ebayui-no-skin",
+            "path": "@ebay/skin/button"
+        },
         "require: marko-widgets",
         "require: ./index.js"
     ]
