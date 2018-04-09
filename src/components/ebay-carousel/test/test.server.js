@@ -1,6 +1,6 @@
 const testUtils = require('../../../common/test-utils/server');
 
-describe('carosuel', () => {
+describe('carousel', () => {
     test('handles pass-through html attributes', context => {
         testUtils.testHtmlAttributes(context, '.carousel');
     });

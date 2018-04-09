@@ -19,7 +19,7 @@ fs.readdirSync(`${__dirname}/../src/components`).forEach(component => {
 // run babel
 execSync('babel src --out-dir dist --copy-files --ignore test/,*.marko.js');
 
-// replace src/ wtih dist/ in browser.json files
+// replace src/ with dist/ in browser.json files
 fs.readdirSync(`${__dirname}/../dist/components`).map(component => ({
     path: `${__dirname}/../dist/components/${component}/browser.json`
 })).filter(isFile).map(obj => {
