@@ -62,7 +62,7 @@
     "marko-components"
   ],
   "devDependencies": {
-    "@ebay/skin": "^3.5.2",
+    "@ebay/skin": "~4.0.0-0",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
@@ -103,7 +103,7 @@
     "supertest": "^3.0.0"
   },
   "peerDependencies": {
-    "@ebay/skin": "^3",
+    "@ebay/skin": ">=3",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },
