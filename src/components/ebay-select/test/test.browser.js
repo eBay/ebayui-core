@@ -125,6 +125,7 @@ describe('given the listbox is in an expanded state', () => {
     let button;
     let ariaControl;
     let secondOption;
+    let secondOptionLabel;
 
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
@@ -133,6 +134,7 @@ describe('given the listbox is in an expanded state', () => {
         button = root.querySelector('.listbox__control');
         ariaControl = button.querySelector('input');
         secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
+        secondOptionLabel = secondOption.querySelector('span:not(.listbox__status)');
         testUtils.triggerEvent(button, 'click');
     });
 
@@ -152,6 +154,25 @@ describe('given the listbox is in an expanded state', () => {
             const eventData = selectSpy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
             expect(eventData.selected).to.deep.equal(['2']);
+            expect(eventData.el).to.deep.equal(secondOption);
+        });
+    });
+
+    describe('when an option is clicked on the label', () => {
+        let selectSpy;
+
+        beforeEach(() => {
+            selectSpy = sinon.spy();
+            widget.on('listbox-change', selectSpy);
+            testUtils.triggerEvent(secondOptionLabel, 'click');
+        });
+
+        test('then it emits the listbox-select event with correct data', () => {
+            expect(selectSpy.calledOnce).to.equal(true);
+            const eventData = selectSpy.getCall(0).args[0];
+            expect(eventData.index).to.equal(1);
+            expect(eventData.selected).to.deep.equal(['2']);
+            expect(eventData.el).to.deep.equal(secondOption);
         });
     });
 
