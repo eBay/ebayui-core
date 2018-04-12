@@ -3,9 +3,7 @@
         {
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [
-                "@ebay/skin/less",
-                "@ebay/skin/iconfont",
-                "@ebay/skin/dist/icon/ds4/icon.css"
+                "@ebay/skin/less"
             ]
         },
         "require: ./index.js",

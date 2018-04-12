@@ -1,0 +1,18 @@
+<ebay-dialog aria-label-close="Close Dialog" aria-labelledby="dialog-title">
+    <h2 id="dialog-title">Heading</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p><a href="http://www.ebay.com">www.ebay.com</a></p>
+</ebay-dialog>
+
+<ebay-button class="example-1">
+    Open Dialog
+</ebay-button>
+
+<script>(function() {
+    var button = document.querySelector(".example-1");
+    var dialog = button.previousElementSibling;
+
+    button.addEventListener("button-click", function() {
+        dialog.open = true;
+    });
+})()</script>

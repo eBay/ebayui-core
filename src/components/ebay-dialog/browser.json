@@ -1,0 +1,7 @@
+{
+    "dependencies": [
+        "@ebay/skin/dialog",
+        "require: marko-widgets",
+        "require: ./index.js"
+    ]
+}
