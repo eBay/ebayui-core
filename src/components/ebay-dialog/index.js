@@ -10,7 +10,10 @@ const template = require('./template.marko');
 function init() {
     this.dialogEl = this.getEl('dialog');
     this.closeEl = this.getEl('close');
+    this.maskEl = this.getEl('mask');
     observer.observeRoot(this, ['open']);
+    // Add an event listener to the mask to fix an issue with Safari not recognizing it as a touch target.
+    this.subscribeTo(this.maskEl).on('click', () => {});
 }
 
 function getInitialState(input) {
