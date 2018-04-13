@@ -1,7 +1,7 @@
 
 <div class="dialog-placeholder" w-bind>
     <div w-id="dialog" class=data.dialogClass hidden=!data.open role="dialog" w-preserve-attrs="hidden" ${data.htmlAttributes}>
-        <div class=data.maskClass w-onclick="close"/>
+        <div class=data.maskClass w-id="mask" w-onclick="close"/>
         <div class=data.windowClass role="document">
             <button class="dialog__close" type="button" aria-label=data.ariaLabelClose w-id="close" w-onclick="close">
                 <svg aria-hidden="true" focusable="false" height="17" width="17">
