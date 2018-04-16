@@ -51,6 +51,8 @@ module.exports = {
     handleActionKeydown,
     handleEscapeKeydown,
     handleUpDownArrowsKeydown,
-    addEventListener,
-    removeEventListener
+    'resizeObserver': {
+        addEventListener,
+        removeEventListener
+    }
 };
