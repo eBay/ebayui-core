@@ -36,16 +36,7 @@
     "test"
   ],
   "browserslist": [
-    "Chrome >= 49",
-    "Firefox >= 48",
-    "Safari >= 6",
-    "Edge >= 12",
-    "IE >= 9",
-    "Opera 47-48",
-    "ChromeAndroid >= 38",
-    "ios_saf >= 7",
-    "ie_mob >= 10",
-    "Android >= 3"
+    "extends @ebay/browserslist-config"
   ],
   "files": [
     "dist/",
@@ -62,6 +53,7 @@
     "marko-components"
   ],
   "devDependencies": {
+    "@ebay/browserslist-config": "^1.0.0",
     "@ebay/skin": "~4.0.0-0",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
