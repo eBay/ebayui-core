@@ -37,12 +37,12 @@
         opacity: 0;
         pointer-events: none;
         font-size: 18px;
-        background-color: @color-core-white;
+        background-color: @ds6-color-g201-gray;
         padding: 0; // override browser default
         height: 72px;
         width: 28px;
         z-index: 1;
-        border: 1px solid @color-core-gray-jet;
+        border: 1px solid @ds6-color-g206-gray;
         cursor: pointer;
         position: absolute;
         top: 50%;
@@ -57,7 +57,7 @@
         }
 
         &.icon:before {
-            color: @color-core-gray-jet;
+            color: @ds6-color-g206-gray;
             font-size: 20px;
         }
 
@@ -90,19 +90,19 @@
         }
 
         &-2 .carousel__list > li {
-            flex: 0 0 calc(~"50% - 8px");
+            flex: 0 0 calc(50% ~"-" 8px);
         }
 
         &-3 .carousel__list > li {
-            flex: 0 0 calc(~"33.333% - 10.666px");
+            flex: 0 0 calc(33.333% ~"-" 10.666px);
         }
 
         &-4 .carousel__list > li {
-            flex: 0 0 calc(~"25% - 12px");
+            flex: 0 0 calc(25% ~"-" 12px);
         }
 
         &-4 .carousel__list > li {
-            flex: 0 0 calc(~"20% - 16px");
+            flex: 0 0 calc(20% ~"-" 16px);
         }
     }
 
@@ -116,7 +116,7 @@
 
             > button {
                 transition: background-color @ebay-carousel-transition-time @ebay-carousel-transition-function;
-                background-color: @color-core-gray-silver;
+                background-color: @ds6-color-g204-gray;
                 cursor: pointer;
                 border: 0;
                 border-radius: 50%;
@@ -127,7 +127,7 @@
                 width: 8px;
 
                 &.carousel__dot--active {
-                    background-color: @color-core-gray-jet;
+                    background-color: @ds6-color-g206-gray;
                 }
             }
         }
