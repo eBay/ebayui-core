@@ -104,7 +104,18 @@ function handleCollapse() {
  * @param {MouseEvent} event
  */
 function handleOptionClick(event) {
-    this.processAfterStateChange(event.target);
+    let el;
+
+    // find the element with the data
+    // start with the target element
+    if (event.target.dataset.optionValue) {
+        el = event.target;
+    // check up the tree one level (in case option-label or status was clicked)
+    } else if (event.target.parentNode.dataset.optionValue) {
+        el = event.target.parentNode;
+    }
+
+    this.processAfterStateChange(el);
     this.expander.collapse();
     this.el.querySelector(listboxHostSelector).focus();
 }
@@ -185,7 +196,7 @@ function processAfterStateChange(el) {
  * @param {String} optionValue
  */
 function setSelectedOption(optionValue) {
-    const newOptionSelected = this.state.options.filter(option => option.value === optionValue)[0];
+    const newOptionSelected = this.state.options.filter(option => option.value.toString() === optionValue)[0];
     const newOptionSelectedValue = newOptionSelected && newOptionSelected.value;
     let options = this.clearListboxSelections(this.state.options);
 

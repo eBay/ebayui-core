@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/server');
 const mock = require('../mock');
 
-describe('carosuel', () => {
+describe('carousel', () => {
     test('renders basic version', context => {
         const input = { items: mock.sixItems };
         const $ = testUtils.getCheerio(context.render(input));

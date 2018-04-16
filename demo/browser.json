@@ -8,6 +8,7 @@
         "./style.less",
         "../src/components/ebay-button",
         "../src/components/ebay-carousel",
+        "../src/components/ebay-dialog",
         "../src/components/ebay-menu",
         "../src/components/ebay-select",
         "../src/components/ebay-notice",

@@ -10,6 +10,7 @@ describe('given the listbox is in the default state', () => {
     let button;
     let ariaControl;
     let secondOption;
+    let nativeSelect;
 
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
@@ -18,6 +19,7 @@ describe('given the listbox is in the default state', () => {
         button = root.querySelector('.listbox__control');
         ariaControl = button.querySelector('input');
         secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
+        nativeSelect = root.querySelector('.listbox__native');
     });
 
     afterEach(() => widget.destroy());
@@ -25,10 +27,11 @@ describe('given the listbox is in the default state', () => {
     describe('when the down arrow key is pressed', () => {
         let spy;
 
-        beforeEach(() => {
+        beforeEach((done) => {
             spy = sinon.spy();
             widget.on('listbox-change', spy);
             testUtils.triggerEvent(ariaControl, 'keydown', 40);
+            setTimeout(done);
         });
 
         test('then it should not expand the listbox', () => {
@@ -40,6 +43,8 @@ describe('given the listbox is in the default state', () => {
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
             expect(eventData.selected).to.deep.equal(['2']);
+            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
+            expect(nativeOption).to.equal('2');
         });
     });
 
@@ -61,6 +66,8 @@ describe('given the listbox is in the default state', () => {
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(0);
             expect(eventData.selected).to.deep.equal(['1']);
+            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
+            expect(nativeOption).to.equal('1');
         });
     });
 
@@ -79,6 +86,8 @@ describe('given the listbox is in the default state', () => {
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
             expect(eventData.selected).to.deep.equal(['2']);
+            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
+            expect(nativeOption).to.equal('2');
         });
     });
 
@@ -116,6 +125,7 @@ describe('given the listbox is in an expanded state', () => {
     let button;
     let ariaControl;
     let secondOption;
+    let secondOptionLabel;
 
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
@@ -124,6 +134,7 @@ describe('given the listbox is in an expanded state', () => {
         button = root.querySelector('.listbox__control');
         ariaControl = button.querySelector('input');
         secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
+        secondOptionLabel = secondOption.querySelector('span:not(.listbox__status)');
         testUtils.triggerEvent(button, 'click');
     });
 
@@ -143,6 +154,25 @@ describe('given the listbox is in an expanded state', () => {
             const eventData = selectSpy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
             expect(eventData.selected).to.deep.equal(['2']);
+            expect(eventData.el).to.deep.equal(secondOption);
+        });
+    });
+
+    describe('when an option is clicked on the label', () => {
+        let selectSpy;
+
+        beforeEach(() => {
+            selectSpy = sinon.spy();
+            widget.on('listbox-change', selectSpy);
+            testUtils.triggerEvent(secondOptionLabel, 'click');
+        });
+
+        test('then it emits the listbox-select event with correct data', () => {
+            expect(selectSpy.calledOnce).to.equal(true);
+            const eventData = selectSpy.getCall(0).args[0];
+            expect(eventData.index).to.equal(1);
+            expect(eventData.selected).to.deep.equal(['2']);
+            expect(eventData.el).to.deep.equal(secondOption);
         });
     });
 

@@ -76,6 +76,7 @@ function getInitialState(input) {
         label: input.label,
         class: input.class,
         grow: Boolean(input.grow),
+        growReverse: Boolean(input.growReverse),
         expanded: false,
         htmlAttributes: processHtmlAttributes(input),
         items,
@@ -93,11 +94,17 @@ function getTemplateData(state) {
         if (state.grow) {
             itemsClass.push('fake-menu__items--grow');
         }
+        if (state.growReverse) {
+            itemsClass.push('fake-menu__items--grow-reverse');
+        }
     } else {
         menuClass.push('menu');
         itemsClass.push('menu__items');
         if (state.grow) {
             itemsClass.push('menu__items--grow');
+        }
+        if (state.growReverse) {
+            itemsClass.push('menu__items--grow-reverse');
         }
     }
 
