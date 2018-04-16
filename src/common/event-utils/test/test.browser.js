@@ -1,6 +1,7 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 const eventUtils = require('../');
+const testUtils = require('../../test-utils/browser');
 
 const handleActionKeydown = eventUtils.handleActionKeydown;
 const handleEscapeKeydown = eventUtils.handleEscapeKeydown;
@@ -50,5 +51,30 @@ describe('handleUpDownArrowsKeydown()', () => {
         const callback = sinon.spy();
         handleUpDownArrowsKeydown({ keyCode: 1 }, callback);
         expect(callback.called).to.equal(false);
+    });
+});
+describe('resizeEventUtil', () => {
+    test('the root element listens for a window resize, then calls a callback', (context, done) => {
+        const mockCallback = sinon.spy();
+        eventUtils.addEventListener('resize', mockCallback.bind(this));
+        testUtils.triggerEvent(window, 'resize');
+        expect(mockCallback.callCount).to.equal(0);
+        setTimeout(() => {
+            expect(mockCallback.callCount).to.equal(1);
+            done();
+        }, 26);
+    });
+
+
+    test('the root element does not listen for a window resize, after eventListner is removed', (context, done) => {
+        const mockCallback = sinon.spy();
+        eventUtils.addEventListener('resize', mockCallback.bind(this));
+        eventUtils.removeEventListener('resize', mockCallback.bind(this));
+        testUtils.triggerEvent(window, 'resize');
+        expect(mockCallback.callCount).to.equal(0);
+        setTimeout(() => {
+            expect(mockCallback.callCount).to.equal(0);
+            done();
+        }, 26);
     });
 });
