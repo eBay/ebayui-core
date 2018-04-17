@@ -1,6 +1,5 @@
 <${data.tag}
     w-bind
-    w-body
     w-onclick="handleClick"
     w-onkeydown="handleKeydown"
     type="button"
@@ -9,4 +8,10 @@
     disabled=data.disabled
     aria-disabled=data.partiallyDisabled
     ${data.htmlAttributes}>
+    <if(data.label)>
+        ${data.label}
+    </if>
+    <else>
+        <span w-body body-only-if(true)/>
+    </else>
 </>
