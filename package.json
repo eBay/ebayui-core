@@ -95,7 +95,7 @@
     "supertest": "^3.0.0"
   },
   "peerDependencies": {
-    "@ebay/skin": ">=3",
+    "@ebay/skin": "~4.0.0-4",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },
