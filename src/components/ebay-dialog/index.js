@@ -63,7 +63,6 @@ function getTemplateData(state) {
     };
 }
 
-
 /**
  * Ensures that if a component is supposed to be trapped that this is
  * trapped after rendering.
