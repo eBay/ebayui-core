@@ -46,6 +46,7 @@ function getTemplateData(state, input) {
 
     model.tag = tag;
     model.classes = classes;
+    model.style = input.style;
     model.disabled = state.disabled;
     model.partiallyDisabled = input.partiallyDisabled ? 'true' : null; // for aria-disabled
     model.htmlAttributes = processHtmlAttributes(input);
