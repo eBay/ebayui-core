@@ -46,4 +46,3 @@ function observeInner(widget, el, attribute, path, dirtyPath, callback) {
 }
 
 module.exports = { observeRoot, observeInner };
-

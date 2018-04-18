@@ -78,4 +78,3 @@ describe('given the notice is in the hidden state', () => {
         });
     });
 });
-
