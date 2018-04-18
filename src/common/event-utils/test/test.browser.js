@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 const eventUtils = require('../');
-const resizeObserver = eventUtils.resizeObserver;
+const resizeUtil = eventUtils.resizeUtil;
 const testUtils = require('../../test-utils/browser');
 
 const handleActionKeydown = eventUtils.handleActionKeydown;
@@ -57,7 +57,7 @@ describe('handleUpDownArrowsKeydown()', () => {
 describe('resizeEventUtil', () => {
     test('the root element listens for a window resize, then calls a callback', (context, done) => {
         const mockCallback = sinon.spy();
-        resizeObserver.addEventListener('resize', mockCallback.bind(this));
+        resizeUtil.addEventListener('resize', mockCallback.bind(this));
         testUtils.triggerEvent(window, 'resize');
         expect(mockCallback.callCount).to.equal(0);
         setTimeout(() => {
@@ -69,8 +69,8 @@ describe('resizeEventUtil', () => {
 
     test('the root element does not listen for a window resize, after eventListner is removed', (context, done) => {
         const mockCallback = sinon.spy();
-        resizeObserver.addEventListener('resize', mockCallback.bind(this));
-        resizeObserver.removeEventListener('resize', mockCallback.bind(this));
+        resizeUtil.addEventListener('resize', mockCallback.bind(this));
+        resizeUtil.removeEventListener('resize', mockCallback.bind(this));
         testUtils.triggerEvent(window, 'resize');
         expect(mockCallback.callCount).to.equal(0);
         setTimeout(() => {
