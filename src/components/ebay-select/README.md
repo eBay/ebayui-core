@@ -38,9 +38,9 @@ Name | Required | Type | Stateful | Description
 
 Event | Data |  Description
 --- | --- | ---
-`combobox-collapse` | | collapse content
-`combobox-expand` | | expand content
-`combobox-change` | `{ el, index, selected }` | option selected
+`listbox-collapse` | | collapse content
+`listbox-expand` | | expand content
+`listbox-change` | `{ el, index, selected }` | option selected
 
 ---
 
@@ -57,7 +57,7 @@ Event | Data |  Description
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
 `class` | No | String | No | custom class
-`label` | No | String | No | string label for use in the listbox dropdown button
+`label` | No | String | No | string label for use in the button
 `selected` | No | Boolean | Yes | whether or not the option is selected (**Note:** use the root `ebay-select` element's `selected` property to set this property)
 `value` | Yes | String | Yes | used for the `value` attribute of the native `<option>`
 
@@ -65,4 +65,4 @@ Name | Required | Type | Stateful | Description
 
 Event | Description
 --- | ---
-`combobox-select` | select one of the options
+`listbox-select` | select one of the options

@@ -92,11 +92,11 @@ function init() {
 }
 
 function handleExpand() {
-    emitAndFire(this, 'combobox-expand');
+    emitAndFire(this, 'listbox-expand');
 }
 
 function handleCollapse() {
-    emitAndFire(this, 'combobox-collapse');
+    emitAndFire(this, 'listbox-collapse');
 }
 
 /**
@@ -184,7 +184,7 @@ function processAfterStateChange(el) {
     const optionValue = el.dataset.optionValue;
     const optionIndex = Array.prototype.slice.call(el.parentNode.children).indexOf(el);
     this.setSelectedOption(optionValue);
-    emitAndFire(this, 'combobox-change', {
+    emitAndFire(this, 'listbox-change', {
         index: optionIndex,
         selected: [optionValue],
         el
