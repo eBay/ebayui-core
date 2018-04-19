@@ -38,9 +38,9 @@ Name | Required | Type | Stateful | Description
 
 Event | Data |  Description
 --- | --- | ---
-`listbox-collapse` | | collapse content
-`listbox-expand` | | expand content
-`listbox-change` | `{ el, index, selected }` | option selected
+`combobox-collapse` | | collapse content
+`combobox-expand` | | expand content
+`combobox-change` | `{ el, index, selected }` | option selected
 
 ---
 
@@ -65,4 +65,4 @@ Name | Required | Type | Stateful | Description
 
 Event | Description
 --- | ---
-`listbox-select` | select one of the options
+`combobox-select` | select one of the options
