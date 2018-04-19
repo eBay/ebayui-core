@@ -11,35 +11,35 @@
             readonly
             role='combobox'
             aria-haspopup='listbox'
-            aria-owns=widget.elId('listbox__options')
+            aria-owns=widget.elId('combobox__options')
             aria-expanded='false'
             w-on-keydown='handleListboxKeyDown'
             w-preserve-attrs="aria-expanded"/>
-        <span class='listbox__arrow' aria-hidden='true'></span>
+        <span class="combobox__icon" aria-hidden="true"></span>
     </span>
     <div
         if(data.options.length > 0)
-        w-id='listbox__options'
+        w-id='combobox__options'
         role='listbox'
         class=data.optionsClass>
         <div
             for(option in data.options)
             role='option'
-            class=['listbox__option', option.class]
+            class=['combobox__option', option.class]
             tabindex="-1"
             w-on-click='handleOptionClick'
             w-preserve-attrs="tabindex,data-makeup-index"
             aria-selected=String(option.selected)
             data-option-value=option.value>
-            <span class='listbox__option-label'>
+            <span class='combobox__option-label'>
                 ${option.label}
             </span>
-            <span class='listbox__status'/>
+            <span class='combobox__status'/>
         </div>
     </div>
     <select
         hidden
-        class='listbox__native'
+        class='combobox__native'
         name=data.name>
         <option
             for(option in data.options)

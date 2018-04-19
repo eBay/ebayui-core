@@ -54,6 +54,7 @@ describe('handleUpDownArrowsKeydown()', () => {
         expect(callback.called).to.equal(false);
     });
 });
+
 describe('resizeEventUtil', () => {
     test('the root element listens for a window resize, then calls a callback', (context, done) => {
         const mockCallback = sinon.spy();
@@ -65,7 +66,6 @@ describe('resizeEventUtil', () => {
             done();
         }, 26);
     });
-
 
     test('the root element does not listen for a window resize, after eventListner is removed', (context, done) => {
         const mockCallback = sinon.spy();

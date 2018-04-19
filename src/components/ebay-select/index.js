@@ -7,11 +7,11 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
-const listboxOptionsClass = 'listbox__options';
-const listboxExpanderClass = 'listbox__control';
+const listboxOptionsClass = 'combobox__options';
+const listboxExpanderClass = 'combobox__control';
 const listboxHostSelector = `.${listboxExpanderClass} > input`;
-const listboxBtnClass = 'listbox__control';
-const listboxOptionSelector = '.listbox__option[role=option]';
+const listboxBtnClass = 'combobox__control';
+const listboxOptionSelector = '.combobox__option[role=option]';
 
 function getInitialState(input) {
     const options = (input.options || []).map(option => {
@@ -45,7 +45,7 @@ function getInitialState(input) {
 }
 
 function getTemplateData(state) {
-    const listboxClass = ['listbox', state.class];
+    const listboxClass = ['combobox', state.class];
     const btnClass = [listboxBtnClass];
     const optionsClass = [listboxOptionsClass];
 
