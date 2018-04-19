@@ -62,7 +62,7 @@
     "marko-components"
   ],
   "devDependencies": {
-    "@ebay/skin": "~4.0.0-0",
+    "@ebay/skin": "git://github.com/eBay/skin.git#4.0.0",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",

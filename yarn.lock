@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@ebay/skin@~4.0.0-0":
-  version "4.0.0-0"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-4.0.0-0.tgz#24ed2dadbce4abeb90f100c7172a09e6134df326"
+"@ebay/skin@git://github.com/eBay/skin.git#4.0.0":
+  version "4.0.0-4"
+  resolved "git://github.com/eBay/skin.git#7a9fc4202879bc3c78045f4cf57e8d4391e35d70"
 
 "@lasso/marko-taglib@^1.0.9":
   version "1.0.10"

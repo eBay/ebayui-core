@@ -4,7 +4,8 @@
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [
                 "@ebay/skin/utility",
-                "@ebay/skin/less"
+                "@ebay/skin/less",
+                "@ebay/skin/icon"
             ]
         },
         "require-run: nodelist-foreach-polyfill",
