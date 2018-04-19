@@ -4,7 +4,7 @@ const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const renderer = require('../');
 
-describe('given the listbox is in the default state', () => {
+describe('given the combobox is in the default state', () => {
     let widget;
     let root;
     let button;
@@ -29,16 +29,16 @@ describe('given the listbox is in the default state', () => {
 
         beforeEach((done) => {
             spy = sinon.spy();
-            widget.on('listbox-change', spy);
+            widget.on('combobox-change', spy);
             testUtils.triggerEvent(ariaControl, 'keydown', 40);
             setTimeout(done);
         });
 
-        test('then it should not expand the listbox', () => {
+        test('then it should not expand the combobox', () => {
             expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
         });
 
-        test('then it emits the listbox-change event with the correct data', () => {
+        test('then it emits the combobox-change event with the correct data', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
@@ -53,15 +53,15 @@ describe('given the listbox is in the default state', () => {
 
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('listbox-change', spy);
+            widget.on('combobox-change', spy);
             testUtils.triggerEvent(ariaControl, 'keydown', 38);
         });
 
-        test('then it should not expand the listbox', () => {
+        test('then it should not expand the combobox', () => {
             expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
         });
 
-        test('then it emits the listbox-change event with the correct data', () => {
+        test('then it emits the combobox-change event with the correct data', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(0);
@@ -76,12 +76,12 @@ describe('given the listbox is in the default state', () => {
 
         beforeEach((done) => {
             spy = sinon.spy();
-            widget.on('listbox-change', spy);
+            widget.on('combobox-change', spy);
             secondOption.selected = true;
             setTimeout(done);
         });
 
-        test('then it emits the listbox-change event with the correct data', () => {
+        test('then it emits the combobox-change event with the correct data', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
@@ -95,7 +95,7 @@ describe('given the listbox is in the default state', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('listbox-expand', spy);
+            widget.on('combobox-expand', spy);
             testUtils.triggerEvent(button, 'click');
         });
 
@@ -108,7 +108,7 @@ describe('given the listbox is in the default state', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('listbox-collapse', spy);
+            widget.on('combobox-collapse', spy);
             testUtils.triggerEvent(button, 'click');
             testUtils.triggerEvent(button, 'click');
         });
@@ -119,7 +119,7 @@ describe('given the listbox is in the default state', () => {
     });
 });
 
-describe('given the listbox is in an expanded state', () => {
+describe('given the combobox is in an expanded state', () => {
     let widget;
     let root;
     let button;
@@ -145,11 +145,11 @@ describe('given the listbox is in an expanded state', () => {
 
         beforeEach(() => {
             selectSpy = sinon.spy();
-            widget.on('listbox-change', selectSpy);
+            widget.on('combobox-change', selectSpy);
             testUtils.triggerEvent(secondOption, 'click');
         });
 
-        test('then it emits the listbox-select event with correct data', () => {
+        test('then it emits the combobox-select event with correct data', () => {
             expect(selectSpy.calledOnce).to.equal(true);
             const eventData = selectSpy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
@@ -163,11 +163,11 @@ describe('given the listbox is in an expanded state', () => {
 
         beforeEach(() => {
             selectSpy = sinon.spy();
-            widget.on('listbox-change', selectSpy);
+            widget.on('combobox-change', selectSpy);
             testUtils.triggerEvent(secondOptionLabel, 'click');
         });
 
-        test('then it emits the listbox-select event with correct data', () => {
+        test('then it emits the combobox-select event with correct data', () => {
             expect(selectSpy.calledOnce).to.equal(true);
             const eventData = selectSpy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
@@ -181,11 +181,11 @@ describe('given the listbox is in an expanded state', () => {
 
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('listbox-change', spy);
+            widget.on('combobox-change', spy);
             testUtils.triggerEvent(ariaControl, 'keydown', 40);
         });
 
-        test('then it emits the listbox-change event with the correct data', () => {
+        test('then it emits the combobox-change event with the correct data', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
@@ -198,11 +198,11 @@ describe('given the listbox is in an expanded state', () => {
 
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('listbox-change', spy);
+            widget.on('combobox-change', spy);
             testUtils.triggerEvent(ariaControl, 'keydown', 38);
         });
 
-        test('then it emits the listbox-change event with the correct data', () => {
+        test('then it emits the combobox-change event with the correct data', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(0);
@@ -215,7 +215,7 @@ describe('given the listbox is in an expanded state', () => {
 
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('listbox-collapse', spy);
+            widget.on('combobox-collapse', spy);
             testUtils.triggerEvent(root, 'click');
             testUtils.triggerEvent(ariaControl, 'keydown', 27);
         });
