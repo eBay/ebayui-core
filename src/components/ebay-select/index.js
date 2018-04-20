@@ -7,11 +7,11 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
-const listboxOptionsClass = 'listbox__options';
-const listboxExpanderClass = 'listbox__control';
-const listboxHostSelector = `.${listboxExpanderClass} > input`;
-const listboxBtnClass = 'listbox__control';
-const listboxOptionSelector = '.listbox__option[role=option]';
+const comboboxOptionsClass = 'combobox__options';
+const comboboxExpanderClass = 'combobox__control';
+const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
+const comboboxBtnClass = 'combobox__control';
+const comboboxOptionSelector = '.combobox__option[role=option]';
 
 function getInitialState(input) {
     const options = (input.options || []).map(option => {
@@ -45,12 +45,12 @@ function getInitialState(input) {
 }
 
 function getTemplateData(state) {
-    const listboxClass = ['listbox', state.class];
-    const btnClass = [listboxBtnClass];
-    const optionsClass = [listboxOptionsClass];
+    const comboboxClass = ['combobox', state.class];
+    const btnClass = [comboboxBtnClass];
+    const optionsClass = [comboboxOptionsClass];
 
     return {
-        class: listboxClass,
+        class: comboboxClass,
         btnClass,
         optionsClass,
         name: state.name,
@@ -62,15 +62,15 @@ function getTemplateData(state) {
 }
 
 function init() {
-    const optionEls = this.el.querySelectorAll(listboxOptionSelector);
+    const optionEls = this.el.querySelectorAll(comboboxOptionSelector);
 
     if (this.state.options && this.state.options.length > 0) {
         this.expander = new Expander(this.el, {
             autoCollapse: true,
             click: true,
-            contentSelector: `.${listboxOptionsClass}`,
-            hostSelector: listboxHostSelector,
-            hostContainerClass: `${listboxBtnClass}`,
+            contentSelector: `.${comboboxOptionsClass}`,
+            hostSelector: comboboxHostSelector,
+            hostContainerClass: `${comboboxBtnClass}`,
             spacebar: true
         });
 
@@ -86,8 +86,8 @@ function init() {
             observer.observeInner(this, optionEl, 'selected', `options[${i}]`, 'options', selectedObserverCallback);
         });
 
-        scrollKeyPreventer.add(this.el.querySelector(listboxHostSelector));
-        scrollKeyPreventer.add(this.el.querySelector(`.${listboxOptionsClass}`));
+        scrollKeyPreventer.add(this.el.querySelector(comboboxHostSelector));
+        scrollKeyPreventer.add(this.el.querySelector(`.${comboboxOptionsClass}`));
     }
 }
 
@@ -117,19 +117,19 @@ function handleOptionClick(event) {
 
     this.processAfterStateChange(el);
     this.expander.collapse();
-    this.el.querySelector(listboxHostSelector).focus();
+    this.el.querySelector(comboboxHostSelector).focus();
 }
 
 /**
- * Handle selection of options when the listbox is closed
+ * Handle selection of options when the combobox is closed
  * https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html#keyboard
  * @param {KeyboardEvent} event
  */
-function handleListboxKeyDown(event) {
+function handleComboboxKeyDown(event) {
     eventUtils.handleUpDownArrowsKeydown(event, () => {
         const currentSelectedIndex = this.state.options.findIndex(option => option.selected);
-        const options = clearListboxSelections(this.state.options);
-        const optionEls = this.el.querySelectorAll(listboxOptionSelector);
+        const options = clearComboboxSelections(this.state.options);
+        const optionEls = this.el.querySelectorAll(comboboxOptionSelector);
         let selectElementIndex = currentSelectedIndex;
 
         switch (event.charCode || event.keyCode) {
@@ -153,7 +153,7 @@ function handleListboxKeyDown(event) {
 
     eventUtils.handleEscapeKeydown(event, () => {
         this.expander.collapse();
-        this.el.querySelector(listboxHostSelector).focus();
+        this.el.querySelector(comboboxHostSelector).focus();
     });
 }
 
@@ -198,7 +198,7 @@ function processAfterStateChange(el) {
 function setSelectedOption(optionValue) {
     const newOptionSelected = this.state.options.filter(option => option.value.toString() === optionValue)[0];
     const newOptionSelectedValue = newOptionSelected && newOptionSelected.value;
-    let options = this.clearListboxSelections(this.state.options);
+    let options = this.clearComboboxSelections(this.state.options);
 
     options = options.map(option => {
         if (option.value === newOptionSelectedValue) {
@@ -215,7 +215,7 @@ function setSelectedOption(optionValue) {
  * Resets all options to un-selected
  * @param {Array} options
  */
-function clearListboxSelections(options) {
+function clearComboboxSelections(options) {
     return options.map(option => {
         option.selected = false;
         return option;
@@ -230,8 +230,8 @@ module.exports = markoWidgets.defineComponent({
     handleExpand,
     handleCollapse,
     handleOptionClick,
-    handleListboxKeyDown,
+    handleComboboxKeyDown,
     processAfterStateChange,
     setSelectedOption,
-    clearListboxSelections
+    clearComboboxSelections
 });
