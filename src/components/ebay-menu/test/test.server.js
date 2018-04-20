@@ -30,6 +30,7 @@ describe('menu', () => {
         const input = { reverse: false };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.menu__items').length).to.equal(1);
+        expect($('.menu__items.menu__items--reverse').length).to.equal(0);
     });
 
     test('renders with type=fake, reverse=true', context => {
@@ -42,6 +43,7 @@ describe('menu', () => {
         const input = { type: 'fake', reverse: false };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.fake-menu__items').length).to.equal(1);
+        expect($('.fake-menu__items.fake-menu__items--reverse').length).to.equal(0);
     });
 
     test('renders with fix-width=true', context => {
@@ -54,6 +56,7 @@ describe('menu', () => {
         const input = { fixWidth: false };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.menu__items').length).to.equal(1);
+        expect($('.menu__items.menu__items--fix-width').length).to.equal(0);
     });
 
     test('renders with type=fake, fix-width=true', context => {
@@ -66,6 +69,7 @@ describe('menu', () => {
         const input = { type: 'fake', fixWidth: false };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.fake-menu__items').length).to.equal(1);
+        expect($('.fake-menu__items.fake-menu__items--fix-width').length).to.equal(0);
     });
 
     test('handles pass-through html attributes', context => {
