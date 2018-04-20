@@ -20,52 +20,56 @@ describe('menu', () => {
         expect($('.fake-menu__items[role=menu]').length).to.equal(0);
     });
 
-    test('renders with grow=true', context => {
-        const input = { grow: true };
+    test('renders with reverse=true', context => {
+        const input = { reverse: true };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu__items--grow').length).to.equal(1);
+        expect($('.menu__items--reverse').length).to.equal(1);
     });
 
-    test('renders with grow=false', context => {
-        const input = { grow: false };
+    test('renders with reverse=false', context => {
+        const input = { reverse: false };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.menu__items').length).to.equal(1);
+        expect($('.menu__items.menu__items--reverse').length).to.equal(0);
     });
 
-    test('renders with type=fake, grow=true', context => {
-        const input = { type: 'fake', grow: true };
+    test('renders with type=fake, reverse=true', context => {
+        const input = { type: 'fake', reverse: true };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu__items--grow').length).to.equal(1);
+        expect($('.fake-menu__items--reverse').length).to.equal(1);
     });
 
-    test('renders with type=fake, grow=false', context => {
-        const input = { type: 'fake', grow: false };
+    test('renders with type=fake, reverse=false', context => {
+        const input = { type: 'fake', reverse: false };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.fake-menu__items').length).to.equal(1);
+        expect($('.fake-menu__items.fake-menu__items--reverse').length).to.equal(0);
     });
 
-    test('renders with grow-reverse=true', context => {
-        const input = { growReverse: true };
+    test('renders with fix-width=true', context => {
+        const input = { fixWidth: true };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu__items--grow-reverse').length).to.equal(1);
+        expect($('.menu__items--fix-width').length).to.equal(1);
     });
 
-    test('renders with grow-reverse=false', context => {
-        const input = { growReverse: false };
+    test('renders with fix-width=false', context => {
+        const input = { fixWidth: false };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.menu__items').length).to.equal(1);
+        expect($('.menu__items.menu__items--fix-width').length).to.equal(0);
     });
 
-    test('renders with type=fake, grow-reverse=true', context => {
-        const input = { type: 'fake', growReverse: true };
+    test('renders with type=fake, fix-width=true', context => {
+        const input = { type: 'fake', fixWidth: true };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu__items--grow-reverse').length).to.equal(1);
+        expect($('.fake-menu__items--fix-width').length).to.equal(1);
     });
 
-    test('renders with type=fake, grow-reverse=false', context => {
-        const input = { type: 'fake', growReverse: false };
+    test('renders with type=fake, fix-width=false', context => {
+        const input = { type: 'fake', fixWidth: false };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.fake-menu__items').length).to.equal(1);
+        expect($('.fake-menu__items.fake-menu__items--fix-width').length).to.equal(0);
     });
 
     test('handles pass-through html attributes', context => {

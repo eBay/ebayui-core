@@ -66,4 +66,3 @@ describe('transition', () => {
         }, 200);
     });
 });
-

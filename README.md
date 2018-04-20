@@ -107,7 +107,7 @@ _template.marko_
 
 ## Browser Policy
 
-All components support browsers from the official Tier 1 and Tier 2 of the eBay Browser Policy. This list is defined in the `browserslist` section of our [package.json](https://github.com/eBay/ebayui-core/blob/master/package.json), where it is also accessible to internal tooling.
+All components support browsers defined by the official [eBay Browser Policy](https://github.com/eBay/browserslist-config).
 
 ## Releases &amp; Milestones
 

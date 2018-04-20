@@ -24,4 +24,35 @@ function handleUpDownArrowsKeydown(e, callback) {
     handleKeydown([38, 40], e, callback);
 }
 
-module.exports = { handleActionKeydown, handleEscapeKeydown, handleUpDownArrowsKeydown };
+const handlers = [];
+function addEventListener(_, handler) {
+    if (handlers.length === 0) {
+        window.addEventListener('resize', handleResize);
+    }
+    handlers.push(handler);
+}
+function removeEventListener(_, handler) {
+    if (handlers.length === 1) {
+        window.removeEventListener('resize', handleResize);
+    }
+    handlers.splice(handlers.indexOf(handler), 1);
+}
+function handleResize(ev) {
+    window.removeEventListener('resize', handleResize);
+    (window.requestAnimationFrame || window.setTimeout)(() => {
+        if (handlers.length) {
+            handlers.forEach(handler => handler(ev));
+            window.addEventListener('resize', handleResize);
+        }
+    }, 16);
+}
+
+module.exports = {
+    handleActionKeydown,
+    handleEscapeKeydown,
+    handleUpDownArrowsKeydown,
+    resizeUtil: {
+        addEventListener,
+        removeEventListener
+    }
+};

@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "0.3.0-2",
+  "version": "0.3.0-4",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
     "installMarkoV4": "yarn add marko@^4 marko-widgets@^7 -D",
@@ -17,9 +17,10 @@
     "test:integration": "yarn installMarkoV3 && mocha integration && yarn installMarkoV4 && mocha integration && yarn installMarkoV3 && yarn clean:integration",
     "clean": "rimraf .coverage .karma .nyc_output demo/static && yarn clean:integration",
     "clean:integration": "rimraf integration/*.marko.js integration/static",
-    "lint": "yarn lint:less && yarn lint:js",
+    "lint": "yarn lint:less && yarn lint:js && yarn lint:whitespace",
     "lint:less": "stylelint '**/**.less'",
     "lint:js": "eslint .",
+    "lint:whitespace": "lintspaces *.md src/**/*.md src/**/*.marko src/**/*.js src/**/*.less --newline --maxnewlines 1 --trailingspaces --spaces 4",
     "build": "yarn lint && yarn build:v3 && yarn build:v4 && yarn clean && yarn installMarkoV3",
     "build:ci": "yarn lint && yarn test && mocha integration && yarn build:v4",
     "build:v3": "yarn installMarkoV3 && yarn clean:integration && yarn test && mocha integration",
@@ -36,16 +37,7 @@
     "test"
   ],
   "browserslist": [
-    "Chrome >= 49",
-    "Firefox >= 48",
-    "Safari >= 6",
-    "Edge >= 12",
-    "IE >= 9",
-    "Opera 47-48",
-    "ChromeAndroid >= 38",
-    "ios_saf >= 7",
-    "ie_mob >= 10",
-    "Android >= 3"
+    "extends @ebay/browserslist-config"
   ],
   "files": [
     "dist/",
@@ -62,7 +54,8 @@
     "marko-components"
   ],
   "devDependencies": {
-    "@ebay/skin": "git://github.com/eBay/skin.git#4.0.0",
+    "@ebay/browserslist-config": "^1.0.0",
+    "@ebay/skin": "~4.0.0-5",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
@@ -88,6 +81,7 @@
     "lasso-babel-transform": "^1.0.2",
     "lasso-less": "^2.4.7",
     "lasso-marko": "^2.4.0",
+    "lintspaces-cli": "^0.6.0",
     "marko": "^3",
     "marko-cli": "^2.2.2",
     "marko-dynamic-tag": "^1.0.0",
@@ -104,7 +98,7 @@
     "supertest": "^3.0.0"
   },
   "peerDependencies": {
-    "@ebay/skin": ">=3",
+    "@ebay/skin": "~4.0.0-5",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },
