@@ -56,8 +56,8 @@
         "@class": "string",
         "@label": "string",
         "@expanded": "boolean",
-        "@grow": "boolean",
-        "@grow-reverse": "boolean",
+        "@reverse": "boolean",
+        "@fix-width": "boolean",
         "@auto-collapse": "boolean",
         "@*": "expression",
         "@items <item>[]": {
