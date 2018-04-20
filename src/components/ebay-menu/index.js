@@ -75,8 +75,8 @@ function getInitialState(input) {
         isFake,
         label: input.label,
         class: input.class,
-        grow: Boolean(input.grow),
-        growReverse: Boolean(input.growReverse),
+        reverse: Boolean(input.reverse),
+        fixWidth: Boolean(input.fixWidth),
         expanded: false,
         htmlAttributes: processHtmlAttributes(input),
         items,
@@ -91,20 +91,20 @@ function getTemplateData(state) {
     if (state.isFake) {
         menuClass.push('fake-menu');
         itemsClass.push('fake-menu__items');
-        if (state.grow) {
-            itemsClass.push('fake-menu__items--grow');
+        if (state.reverse) {
+            itemsClass.push('fake-menu__items--reverse');
         }
-        if (state.growReverse) {
-            itemsClass.push('fake-menu__items--grow-reverse');
+        if (state.fixWidth) {
+            itemsClass.push('fake-menu__items--fix-width');
         }
     } else {
         menuClass.push('menu');
         itemsClass.push('menu__items');
-        if (state.grow) {
-            itemsClass.push('menu__items--grow');
+        if (state.reverse) {
+            itemsClass.push('menu__items--reverse');
         }
-        if (state.growReverse) {
-            itemsClass.push('menu__items--grow-reverse');
+        if (state.fixWidth) {
+            itemsClass.push('menu__items--fix-width');
         }
     }
 
