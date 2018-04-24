@@ -38,15 +38,15 @@ describe('dialog', () => {
         test(`renders with ${type || 'default'} type`, context => {
             const input = { type: type };
             const $ = testUtils.getCheerio(context.render(input));
+            const $dialog = $('.dialog');
             const $window = $('.dialog__window');
-            const $mask = $('.dialog__mask');
 
             if (type) {
                 expect($window.hasClass(`dialog__window--${type}`)).to.equal(true);
             }
 
+            expect($dialog.hasClass('dialog--mask-fade')).to.equal(true);
             expect($window.hasClass('dialog__window--fade')).to.equal(true);
-            expect($mask.hasClass('dialog__mask--fade')).to.equal(true);
         });
     });
 
@@ -54,12 +54,12 @@ describe('dialog', () => {
         test(`renders with ${type} type`, context => {
             const input = { type: type };
             const $ = testUtils.getCheerio(context.render(input));
+            const $dialog = $('.dialog');
             const $window = $('.dialog__window');
-            const $mask = $('.dialog__mask');
 
+            expect($dialog.hasClass('dialog--mask-fade-slow')).to.equal(true);
             expect($window.hasClass(`dialog__window--${type}`)).to.equal(true);
             expect($window.hasClass('dialog__window--slide')).to.equal(true);
-            expect($mask.hasClass('dialog__mask--fade-slow')).to.equal(true);
         });
     });
 });

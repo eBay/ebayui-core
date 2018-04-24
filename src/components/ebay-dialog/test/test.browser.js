@@ -104,7 +104,6 @@ describe('given the dialog is in the open state', () => {
     let root;
     let dialog;
     let close;
-    let mask;
     let sibling;
 
     beforeEach(() => {
@@ -115,7 +114,6 @@ describe('given the dialog is in the open state', () => {
         root = widget.el;
         dialog = root.querySelector('.dialog');
         close = dialog.querySelector('.dialog__close');
-        mask = dialog.querySelector('.dialog__mask');
     });
 
     afterEach(() => widget.destroy());
@@ -173,7 +171,7 @@ describe('given the dialog is in the open state', () => {
     describe('when the mask is clicked', () => {
         beforeEach((done) => {
             widget.once('update', () => setTimeout(done));
-            mask.click();
+            dialog.click(); // simulate clicking outside the dialog.
         });
 
         thenItIsClosed();

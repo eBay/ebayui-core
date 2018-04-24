@@ -10,10 +10,10 @@ const template = require('./template.marko');
 function init() {
     this.dialogEl = this.getEl('dialog');
     this.closeEl = this.getEl('close');
-    this.maskEl = this.getEl('mask');
+    this.bodyEl = this.getEl('body');
     observer.observeRoot(this, ['open']);
-    // Add an event listener to the mask to fix an issue with Safari not recognizing it as a touch target.
-    this.subscribeTo(this.maskEl).on('click', () => {});
+    // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
+    this.subscribeTo(this.dialogEl).on('click', () => {});
 }
 
 function getInitialState(input) {
@@ -32,7 +32,6 @@ function getTemplateData(state) {
     const { open, type, ariaLabelClose, htmlAttributes } = state;
     const dialogClass = [state.class, 'dialog'];
     const windowClass = ['dialog__window'];
-    const maskClass = ['dialog__mask'];
 
     if (type) {
         windowClass.push(`dialog__window--${type}`);
@@ -42,13 +41,13 @@ function getTemplateData(state) {
         case 'left':
         case 'right':
             windowClass.push('dialog__window--slide');
-            maskClass.push('dialog__mask--fade-slow');
+            dialogClass.push('dialog--mask-fade-slow');
             break;
         case 'full':
         case 'fill':
         default:
             windowClass.push('dialog__window--fade');
-            maskClass.push('dialog__mask--fade');
+            dialogClass.push('dialog--mask-fade');
             break;
     }
 
@@ -58,7 +57,6 @@ function getTemplateData(state) {
         ariaLabelClose,
         dialogClass,
         windowClass,
-        maskClass,
         htmlAttributes
     };
 }
@@ -142,7 +140,11 @@ function show() {
     this.setState('open', true);
 }
 
-function close() {
+function close(ev) {
+    if (ev && this.bodyEl.contains(ev.target)) {
+        return;
+    }
+
     this.setState('open', false);
 }
 
