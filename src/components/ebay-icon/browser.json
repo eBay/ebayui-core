@@ -1,0 +1,7 @@
+{
+    "dependencies": [
+        "@ebay/skin/icon",
+        "require: marko-widgets",
+        "require: ./index.js"
+    ]
+}

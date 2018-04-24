@@ -93,5 +93,16 @@
             "@*": "expression"
         }
     },
-    "<ebay-breadcrumb-item>": {}
+    "<ebay-breadcrumb-item>": {},
+    "<ebay-icon>": {
+        "renderer": "./src/components/ebay-icon/index.js",
+        "@class": "string",
+        "@type": "string",
+        "@name": "string",
+        "@*": "expression"
+    },
+    "<ebay-icon-placeholder>": {
+        "renderer": "./src/components/ebay-icon-placeholder/index.js",
+        "transformer": "./src/components/ebay-icon-placeholder/transformer.js"
+    }
 }
