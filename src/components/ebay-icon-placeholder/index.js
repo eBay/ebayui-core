@@ -1,5 +1,7 @@
 const template = require('./template.marko');
 
+const icons = {};
+
 function traverse(rootNode, fn) {
     const visited = {};
     const queue = [rootNode];
@@ -22,11 +24,14 @@ function traverse(rootNode, fn) {
 
 module.exports = (input, out) => {
     const rootMarkoNode = require.cache[out.global.pageTemplate.path.replace('.marko.js', '.marko')];
-    const icons = [];
-    traverse(rootMarkoNode, currentNode => {
-        if (currentNode.id.includes('/components/ebay-icon/internal/')) {
-            icons.push(currentNode.id.substring(currentNode.id.lastIndexOf('/') + 1).replace('.js', ''));
-        }
-    });
-    template.render({ icons }, out);
+    // TODO: cache icons per pageTemplate
+    if (Object.keys(icons).length === 0) {
+        traverse(rootMarkoNode, currentNode => {
+            if (currentNode.id.includes('/components/ebay-icon/internal/')) {
+                icons[currentNode.id.substring(currentNode.id.lastIndexOf('/') + 1).replace('.js', '')] = 1;
+            }
+        });
+    }
+    const hasIcons = Object.keys(icons).length > 0;
+    template.render({ icons, hasIcons }, out);
 };

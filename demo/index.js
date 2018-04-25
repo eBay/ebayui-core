@@ -33,6 +33,7 @@ app.get('/:component?', (req, res) => {
     const model = {
         name: req.params.component,
         examples: fs.readdirSync(examplesPath).map(example => ({
+            num: parseInt(example.split('-')[0]),
             name: example.split('-').slice(1, example.length).join(' '),
             code: highlight.sync(fs.readFileSync(`${examplesPath}/${example}/template.marko`, 'utf8'), 'marko'),
             sources: [`${componentsPath}/${name}`, examplesPath, `${examplesPath}/${example}`],

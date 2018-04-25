@@ -1,8 +1,8 @@
 <if(data.type === "background")>
     <span ${data.htmlAttributes} class=data.classes/>
 </if>
-<else if(data.type === "inline")>
+<else-if(data.type === "inline")>
     <svg ${data.htmlAttributes} aria-hidden="true" class=data.classes focusable="false">
         <use xlink:href="#icon-${data.name}"></use>
     </svg>
-</else>
+</else-if>
