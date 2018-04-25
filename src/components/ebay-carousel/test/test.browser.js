@@ -31,13 +31,13 @@ describe('given the carousel is in the default state', () => {
     describe('when the window is resized', () => {
         let spy;
         beforeEach(done => {
-            spy = sinon.spy(widget, 'refresh');
+            spy = sinon.spy(widget, 'calculateWidths');
             testUtils.triggerEvent(window, 'resize');
             setTimeout(done, 100);
         });
-        afterEach(() => widget.refresh.restore());
+        afterEach(() => widget.calculateWidths.restore());
 
-        it('then it executes the refresh', () => {
+        it('then it executes the calculateWidths', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });
@@ -487,13 +487,13 @@ describe('given a discrete carousel', () => {
     describe('when the window is resized', () => {
         let spy;
         beforeEach(done => {
-            spy = sinon.spy(widget, 'refresh');
+            spy = sinon.spy(widget, 'calculateWidths');
             testUtils.triggerEvent(window, 'resize');
             setTimeout(done, 100);
         });
-        afterEach(() => widget.refresh.restore());
+        afterEach(() => widget.calculateWidths.restore());
 
-        it('then it executes the refresh', () => {
+        it('then it executes the calculateWidths', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });

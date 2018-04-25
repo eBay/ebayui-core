@@ -103,7 +103,6 @@
     "marko-widgets": "^6 || ^7"
   },
   "dependencies": {
-    "lodash.debounce": "^4.0.8",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "makeup-expander": "^0.3.2",

@@ -1,5 +1,5 @@
-const debounce = require('lodash.debounce');
 const focusables = require('makeup-focusables');
+const resizeUtil = require('../../common/event-utils').resizeUtil;
 const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
@@ -83,7 +83,7 @@ function init() {
         observer.observeRoot(this, ['index']);
     }
 
-    this.subscribeTo(window).on('resize', debounce(() => this.refresh(), 50));
+    this.subscribeTo(resizeUtil).on('resize', refresh.bind(this));
     this.refresh();
 }
 
