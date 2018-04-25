@@ -1,5 +1,4 @@
-<h2>icon placeholder injected here</h2>
-<!-- TODO: v3 v4 -->
+<!-- patch render function to get access to page template -->
 <script marko-init>
 var templateProto = Object.getPrototypeOf(module.exports);
 var _render = templateProto.render;
@@ -9,6 +8,7 @@ templateProto.render = function (data, out) {
     return _render.apply(this, arguments);
 }
 </script>
+
 <svg hidden if(data.hasIcons)>
     <include-html("./svg/arrow-left.html") if(data.icons['arrow-left'])/>
     <include-html("./svg/arrow-right.html") if(data.icons['arrow-right'])/>

@@ -1,6 +1,6 @@
 const template = require('./template.marko');
 
-const icons = {};
+const iconCache = {};
 
 function traverse(rootNode, fn) {
     const visited = {};
@@ -23,15 +23,20 @@ function traverse(rootNode, fn) {
 }
 
 module.exports = (input, out) => {
-    const rootMarkoNode = require.cache[out.global.pageTemplate.path.replace('.marko.js', '.marko')];
-    // TODO: cache icons per pageTemplate
-    if (Object.keys(icons).length === 0) {
-        traverse(rootMarkoNode, currentNode => {
+    const pageTemplateNode = require.cache[out.global.pageTemplate.path.replace('.marko.js', '.marko')];
+    const pageTemplateId = pageTemplateNode && pageTemplateNode.id;
+
+    // only traverse icon paths once per page template
+    if (!iconCache.hasOwnProperty(pageTemplateId)) {
+        iconCache[pageTemplateId] = {};
+        traverse(pageTemplateNode, currentNode => {
             if (currentNode.id.includes('/components/ebay-icon/internal/')) {
-                icons[currentNode.id.substring(currentNode.id.lastIndexOf('/') + 1).replace('.js', '')] = 1;
+                const iconName = currentNode.id.substring(currentNode.id.lastIndexOf('/') + 1).replace('.js', '');
+                iconCache[pageTemplateId][iconName] = 1;
             }
         });
     }
-    const hasIcons = Object.keys(icons).length > 0;
-    template.render({ icons, hasIcons }, out);
+    const hasIcons = iconCache[pageTemplateId] && Object.keys(iconCache[pageTemplateId]).length > 0;
+
+    template.render({ icons: iconCache[pageTemplateId], hasIcons }, out);
 };

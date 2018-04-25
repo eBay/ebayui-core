@@ -94,9 +94,11 @@
         }
     },
     "<ebay-breadcrumb-item>": {},
-    "<ebay-icon-placeholder>": {
-        "renderer": "./src/components/ebay-icon-placeholder/index.js",
-        "transformer": "./src/components/ebay-icon-placeholder/transformer.js"
+    "<body>": {
+        "transformer": "./src/components/ebay-icon/definition/transformer.js"
+    },
+    "<ebay-icon-definition>": {
+        "renderer": "./src/components/ebay-icon/definition/index.js"
     },
     "<ebay-icon>": {
         "renderer": "./src/components/ebay-icon/index.js",
