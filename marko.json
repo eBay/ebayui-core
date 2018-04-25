@@ -24,6 +24,15 @@
         }
     },
     "<ebay-carousel-item>": {},
+    "<ebay-dialog>": {
+        "renderer": "./src/components/ebay-dialog/index.js",
+        "@class": "string",
+        "@open": "boolean",
+        "@type": "string",
+        "@focus": "string",
+        "@aria-label-close": "string",
+        "@*": "expression"
+    },
     "<ebay-select>": {
         "renderer": "./src/components/ebay-select/index.js",
         "transformer": "./src/common/transformer/index.js",
@@ -47,8 +56,8 @@
         "@class": "string",
         "@label": "string",
         "@expanded": "boolean",
-        "@grow": "boolean",
-        "@grow-reverse": "boolean",
+        "@reverse": "boolean",
+        "@fix-width": "boolean",
         "@auto-collapse": "boolean",
         "@*": "expression",
         "@items <item>[]": {

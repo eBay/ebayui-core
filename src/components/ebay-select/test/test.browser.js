@@ -4,7 +4,7 @@ const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const renderer = require('../');
 
-describe('given the listbox is in the default state', () => {
+describe('given the combobox is in the default state', () => {
     let widget;
     let root;
     let button;
@@ -15,11 +15,11 @@ describe('given the listbox is in the default state', () => {
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.listbox');
-        button = root.querySelector('.listbox__control');
+        root = document.querySelector('.combobox');
+        button = root.querySelector('.combobox__control');
         ariaControl = button.querySelector('input');
-        secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
-        nativeSelect = root.querySelector('.listbox__native');
+        secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
+        nativeSelect = root.querySelector('.combobox__native');
     });
 
     afterEach(() => widget.destroy());
@@ -34,7 +34,7 @@ describe('given the listbox is in the default state', () => {
             setTimeout(done);
         });
 
-        test('then it should not expand the listbox', () => {
+        test('then it should not expand the combobox', () => {
             expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
         });
 
@@ -57,7 +57,7 @@ describe('given the listbox is in the default state', () => {
             testUtils.triggerEvent(ariaControl, 'keydown', 38);
         });
 
-        test('then it should not expand the listbox', () => {
+        test('then it should not expand the combobox', () => {
             expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
         });
 
@@ -119,7 +119,7 @@ describe('given the listbox is in the default state', () => {
     });
 });
 
-describe('given the listbox is in an expanded state', () => {
+describe('given the combobox is in an expanded state', () => {
     let widget;
     let root;
     let button;
@@ -130,11 +130,11 @@ describe('given the listbox is in an expanded state', () => {
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.listbox');
-        button = root.querySelector('.listbox__control');
+        root = document.querySelector('.combobox');
+        button = root.querySelector('.combobox__control');
         ariaControl = button.querySelector('input');
-        secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
-        secondOptionLabel = secondOption.querySelector('span:not(.listbox__status)');
+        secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
+        secondOptionLabel = secondOption.querySelector('span:not(.combobox__status)');
         testUtils.triggerEvent(button, 'click');
     });
 
