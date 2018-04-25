@@ -4,6 +4,7 @@ const isTravis = require('is-travis');
 
 module.exports = markoCli => {
     markoCli.config.browserBuilder = {
+        flags: ['skin-ds6'],
         plugins: [
             'lasso-marko',
             'lasso-less'

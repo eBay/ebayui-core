@@ -31,6 +31,10 @@ module.exports = (el, baseClass, cb) => {
         cancelFrame = undefined;
         if (pending === 0) {
             cancel();
+
+            if (cb) {
+                cb();
+            }
         }
     });
 
