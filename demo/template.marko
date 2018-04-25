@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width">
     </head>
     <body>
+        <ebay-icon-placeholder/>
         <header>
             <for (component in data.model.components)>
                 <a href=component><span>${component}</span></a>
@@ -22,7 +23,6 @@
         </for>
         <lasso-body/>
         <init-widgets/>
-        <ebay-icon-placeholder/>
         <script src=process.env.BROWSER_REFRESH_URL/>
     </body>
 </html>

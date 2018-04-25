@@ -1,6 +1,17 @@
 <h2>icon placeholder injected here</h2>
-<svg hidden>
-    <include("./svg/arrow-left.marko") if(data.icons.indexOf('arrow-left') !== -1)/>
-    <include("./svg/arrow-right.marko") if(data.icons.indexOf('arrow-right') !== -1)/>
-    <include("./svg/arrow-move.marko") if(data.icons.indexOf('arrow-move') !== -1)/>
+<!-- TODO: v3 v4 -->
+<script marko-init>
+var templateProto = Object.getPrototypeOf(module.exports);
+var _render = templateProto.render;
+templateProto.render = function (data, out) {
+    var globals = out.global || data.$global || (data.$global = {});
+    globals.pageTemplate = globals.pageTemplate || this;
+    return _render.apply(this, arguments);
+}
+</script>
+<svg hidden if(data.icons.length)>
+    <include-html("./svg/arrow-left.html") if(data.icons.indexOf('arrow-left') !== -1)/>
+    <include-html("./svg/arrow-right.html") if(data.icons.indexOf('arrow-right') !== -1)/>
+    <include-html("./svg/arrow-move.html") if(data.icons.indexOf('arrow-move') !== -1)/>
+    <include-html("./svg/arrow-right-bold.html") if(data.icons.indexOf('arrow-right-bold') !== -1)/>
 </svg>

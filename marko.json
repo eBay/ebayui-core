@@ -94,15 +94,25 @@
         }
     },
     "<ebay-breadcrumb-item>": {},
+    "<ebay-icon-placeholder>": {
+        "renderer": "./src/components/ebay-icon-placeholder/index.js",
+        "transformer": "./src/components/ebay-icon-placeholder/transformer.js"
+    },
     "<ebay-icon>": {
         "renderer": "./src/components/ebay-icon/index.js",
+        "transformer": "./src/components/ebay-icon/transformer.js",
         "@class": "string",
         "@type": "string",
         "@name": "string",
         "@*": "expression"
     },
-    "<ebay-icon-placeholder>": {
-        "renderer": "./src/components/ebay-icon-placeholder/index.js",
-        "transformer": "./src/components/ebay-icon-placeholder/transformer.js"
+    "<ebay-icon-arrow-left>": {
+        "renderer": "./src/components/ebay-icon/internal/arrow-left.js"
+    },
+    "<ebay-icon-arrow-right>": {
+        "renderer": "./src/components/ebay-icon/internal/arrow-right.js"
+    },
+    "<ebay-icon-arrow-move>": {
+        "renderer": "./src/components/ebay-icon/internal/arrow-move.js"
     }
 }

@@ -3,19 +3,11 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
 
 function getTemplateData(state, input) {
-    const type = input.type;
     const name = input.name;
 
-    // adds entry to global require cache, for use with icon-placeholder
-    if (type === 'inline') {
-        try {
-            require(`./internal/${name}.txt`);
-        } catch (e) {} // eslint-disable-line no-empty
-    }
-
     return {
-        type: input.type,
         name,
+        type: input.type,
         htmlAttributes: processHtmlAttributes(input),
         classes: ['icon', `icon--${name}`, input.class]
     };

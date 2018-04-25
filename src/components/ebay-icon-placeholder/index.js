@@ -14,29 +14,19 @@ function traverse(rootNode, fn) {
         stop = fn(currentNode);
 
         if (currentNode.children && currentNode.children.length) {
-            // push for bfs, unshift for dfs
-            currentNode.children.forEach(child => queue.push(child));
+            // unshift for dfs, push for bfs
+            currentNode.children.forEach(child => queue.unshift(child));
         }
     }
 }
 
 module.exports = (input, out) => {
-    // TODO: better way to get top level cached module?
-    const root = require.cache[Object.keys(require.cache)[0]];
-    let rootMarkoNode;
-    traverse(root, currentNode => {
-        if (currentNode.id.endsWith('.marko')) {
-            rootMarkoNode = currentNode;
-            return true;
-        }
-    });
-
+    const rootMarkoNode = require.cache[out.global.pageTemplate.path.replace('.marko.js', '.marko')];
     const icons = [];
     traverse(rootMarkoNode, currentNode => {
         if (currentNode.id.includes('/components/ebay-icon/internal/')) {
-            icons.push(currentNode.id.substring(currentNode.id.lastIndexOf('/') + 1).replace('.txt', ''));
+            icons.push(currentNode.id.substring(currentNode.id.lastIndexOf('/') + 1).replace('.js', ''));
         }
     });
-
     template.render({ icons }, out);
 };
