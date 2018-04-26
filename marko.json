@@ -137,5 +137,98 @@
     },
     "<ebay-icon-chevron-down-bold>": {
         "renderer": "./src/components/ebay-icon/internal/chevron-down-bold.js"
+    },
+    "<ebay-icon-bids>": {
+        "renderer": "./src/components/ebay-icon/internal/bids.js"
+    },
+    "<ebay-icon-camera>": {
+        "renderer": "./src/components/ebay-icon/internal/camera.js"
+    },
+    "<ebay-icon-cart>": {
+        "renderer": "./src/components/ebay-icon/internal/cart.js"
+    },
+    "<ebay-icon-categories>": {
+        "renderer": "./src/components/ebay-icon/internal/categories.js"
+    },
+    "<ebay-icon-checkbox-checked>": {
+        "renderer": "./src/components/ebay-icon/internal/checkbox-checked.js"
+    },
+    "<ebay-icon-checkbox-unchecked>": {
+        "renderer": "./src/components/ebay-icon/internal/checkbox-unchecked.js"
+    },
+    "<ebay-icon-clear>": {
+        "renderer": "./src/components/ebay-icon/internal/clear.js"
+    },
+    "<ebay-icon-close>": {
+        "renderer": "./src/components/ebay-icon/internal/close.js"
+    },
+    "<ebay-icon-deals>": {
+        "renderer": "./src/components/ebay-icon/internal/deals.js"
+    },
+    "<ebay-icon-download>": {
+        "renderer": "./src/components/ebay-icon/internal/download.js"
+    },
+    "<ebay-icon-event>": {
+        "renderer": "./src/components/ebay-icon/internal/event.js"
+    },
+    "<ebay-icon-fast-n-free>": {
+        "renderer": "./src/components/ebay-icon/internal/fast-n-free.js"
+    },
+    "<ebay-icon-help>": {
+        "renderer": "./src/components/ebay-icon/internal/help.js"
+    },
+    "<ebay-icon-menu>": {
+        "renderer": "./src/components/ebay-icon/internal/menu.js"
+    },
+    "<ebay-icon-mic>": {
+        "renderer": "./src/components/ebay-icon/internal/mic.js"
+    },
+    "<ebay-icon-notification>": {
+        "renderer": "./src/components/ebay-icon/internal/notification.js"
+    },
+    "<ebay-icon-overflow>": {
+        "renderer": "./src/components/ebay-icon/internal/overflow.js"
+    },
+    "<ebay-icon-profile>": {
+        "renderer": "./src/components/ebay-icon/internal/profile.js"
+    },
+    "<ebay-icon-purchases>": {
+        "renderer": "./src/components/ebay-icon/internal/purchases.js"
+    },
+    "<ebay-icon-radio-checked>": {
+        "renderer": "./src/components/ebay-icon/internal/radio-checked.js"
+    },
+    "<ebay-icon-radio-unchecked>": {
+        "renderer": "./src/components/ebay-icon/internal/radio-unchecked.js"
+    },
+    "<ebay-icon-save-bold>": {
+        "renderer": "./src/components/ebay-icon/internal/save-bold.js"
+    },
+    "<ebay-icon-save-selected>": {
+        "renderer": "./src/components/ebay-icon/internal/save-selected.js"
+    },
+    "<ebay-icon-save>": {
+        "renderer": "./src/components/ebay-icon/internal/save.js"
+    },
+    "<ebay-icon-search-bold>": {
+        "renderer": "./src/components/ebay-icon/internal/search-bold.js"
+    },
+    "<ebay-icon-search>": {
+        "renderer": "./src/components/ebay-icon/internal/search.js"
+    },
+    "<ebay-icon-selling>": {
+        "renderer": "./src/components/ebay-icon/internal/selling.js"
+    },
+    "<ebay-icon-settings>": {
+        "renderer": "./src/components/ebay-icon/internal/settings.js"
+    },
+    "<ebay-icon-tick>": {
+        "renderer": "./src/components/ebay-icon/internal/tick.js"
+    },
+    "<ebay-icon-top-seller>": {
+        "renderer": "./src/components/ebay-icon/internal/top-seller.js"
+    },
+    "<ebay-icon-watch>": {
+        "renderer": "./src/components/ebay-icon/internal/watch.js"
     }
 }

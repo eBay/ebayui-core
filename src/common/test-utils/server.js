@@ -66,8 +66,7 @@ function getTransformedTemplate(transformer, srcString, componentPath) {
     );
 
     transformer(templateAST.body.array[0], context);
-
-    return prettyPrint(templateAST).replace(/\>\s*</g, '><').trim();
+    return prettyPrint(templateAST).replace(/\n/g, '').replace(/\s{4}/g, '');
 }
 
 module.exports = {
