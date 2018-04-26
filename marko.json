@@ -116,5 +116,26 @@
     },
     "<ebay-icon-arrow-move>": {
         "renderer": "./src/components/ebay-icon/internal/arrow-move.js"
+    },
+    "<ebay-icon-arrow-right-bold>": {
+        "renderer": "./src/components/ebay-icon/internal/arrow-right-bold.js"
+    },
+    "<ebay-icon-chevron-up>": {
+        "renderer": "./src/components/ebay-icon/internal/chevron-up.js"
+    },
+    "<ebay-icon-chevron-down>": {
+        "renderer": "./src/components/ebay-icon/internal/chevron-down.js"
+    },
+    "<ebay-icon-chevron-left>": {
+        "renderer": "./src/components/ebay-icon/internal/chevron-left.js"
+    },
+    "<ebay-icon-chevron-right>": {
+        "renderer": "./src/components/ebay-icon/internal/chevron-right.js"
+    },
+    "<ebay-icon-chevron-up-bold>": {
+        "renderer": "./src/components/ebay-icon/internal/chevron-up-bold.js"
+    },
+    "<ebay-icon-chevron-down-bold>": {
+        "renderer": "./src/components/ebay-icon/internal/chevron-down-bold.js"
     }
 }

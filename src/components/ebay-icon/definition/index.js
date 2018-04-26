@@ -27,7 +27,7 @@ module.exports = (input, out) => {
     const pageTemplateId = pageTemplateNode && pageTemplateNode.id;
 
     // only traverse icon paths once per page template
-    if (!iconCache.hasOwnProperty(pageTemplateId)) {
+    if (pageTemplateId && !iconCache.hasOwnProperty(pageTemplateId)) {
         iconCache[pageTemplateId] = {};
         traverse(pageTemplateNode, currentNode => {
             if (currentNode.id.includes('/components/ebay-icon/internal/')) {
@@ -36,7 +36,7 @@ module.exports = (input, out) => {
             }
         });
     }
-    const hasIcons = iconCache[pageTemplateId] && Object.keys(iconCache[pageTemplateId]).length > 0;
+    const hasIcons = pageTemplateId && iconCache[pageTemplateId] && Object.keys(iconCache[pageTemplateId]).length > 0;
 
     template.render({ icons: iconCache[pageTemplateId], hasIcons }, out);
 };

@@ -10,8 +10,14 @@ templateProto.render = function (data, out) {
 </script>
 
 <svg hidden if(data.hasIcons)>
-    <include-html("./svg/arrow-left.html") if(data.icons['arrow-left'])/>
-    <include-html("./svg/arrow-right.html") if(data.icons['arrow-right'])/>
-    <include-html("./svg/arrow-move.html") if(data.icons['arrow-move'])/>
-    <include-html("./svg/arrow-right-bold.html") if(data.icons['arrow-right-bold'])/>
+    <include-html("./markup/arrow-left.html") if(data.icons['arrow-left'])/>
+    <include-html("./markup/arrow-right.html") if(data.icons['arrow-right'])/>
+    <include-html("./markup/arrow-move.html") if(data.icons['arrow-move'])/>
+    <include-html("./markup/arrow-right-bold.html") if(data.icons['arrow-right-bold'])/>
+    <include-html("./markup/chevron-up.html") if(data.icons['chevron-up'])/>
+    <include-html("./markup/chevron-down.html") if(data.icons['chevron-down'])/>
+    <include-html("./markup/chevron-left.html") if(data.icons['chevron-left'])/>
+    <include-html("./markup/chevron-right.html") if(data.icons['chevron-right'])/>
+    <include-html("./markup/chevron-up-bold.html") if(data.icons['chevron-up-bold'])/>
+    <include-html("./markup/chevron-down-bold.html") if(data.icons['chevron-down-bold'])/>
 </svg>

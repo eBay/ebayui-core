@@ -1,5 +1,20 @@
 const cheerio = require('cheerio');
 const expect = require('chai').expect;
+const prettyPrint = require('marko-prettyprint').prettyPrintAST;
+const markoCompiler = require('marko/compiler');
+let CompileContext;
+let Builder;
+
+try {
+    // v3 paths
+    CompileContext = require('marko/compiler/CompileContext');
+    Builder = require('marko/compiler/Builder');
+} catch (e) {
+    // v4 paths
+    const target = require('marko/env').isDebug ? 'src' : 'dist';
+    CompileContext = require(`marko/${target}/compiler/CompileContext`);
+    Builder = require(`marko/${target}/compiler/Builder`);
+}
 
 /**
  * Get Cheerio instance based on output object from rendering
@@ -39,8 +54,25 @@ function testHtmlAttributes(context, selector, arrayKey) {
     expect($(`${selector}[aria-role=link]`).length).to.equal(1);
 }
 
+function getTransformedTemplate(transformer, srcString, componentPath) {
+    const templateAST = markoCompiler.parseRaw(
+        srcString,
+        componentPath
+    );
+    const context = new CompileContext(
+        srcString,
+        componentPath,
+        Builder.DEFAULT_BUILDER
+    );
+
+    transformer(templateAST.body.array[0], context);
+
+    return prettyPrint(templateAST).replace(/\>\s*</g, '><').trim();
+}
+
 module.exports = {
     getCheerio,
     testCustomClass,
-    testHtmlAttributes
+    testHtmlAttributes,
+    getTransformedTemplate
 };

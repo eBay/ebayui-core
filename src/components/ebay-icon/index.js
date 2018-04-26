@@ -7,7 +7,7 @@ function getTemplateData(state, input) {
 
     return {
         name,
-        type: input.type,
+        type: input.type || 'background',
         htmlAttributes: processHtmlAttributes(input),
         classes: ['icon', `icon--${name}`, input.class]
     };

@@ -15,5 +15,5 @@ The `inline` icon will include the actual SVG markup in the HTML and then refere
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `class` | String | No | custom class
-`type` | String | No | "background" (via CSS) or "inline" (via HTML)
+`type` | String | No | "background" via CSS (default) or "inline" via HTML
 `name` | String | No | name of the icon from Skin
