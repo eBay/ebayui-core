@@ -1,7 +1,8 @@
-<if(data.type === "background")>
+<!-- TODO: prefer to use single w-bind, but dynamic tag breaks clientside rendering in marko v4 -->
+<if(data.isBackground)>
     <span w-bind w-body ${data.htmlAttributes} class=data.classes/>
 </if>
-<else-if(data.type === "inline")>
+<else-if(data.isInline)>
     <svg w-bind ${data.htmlAttributes} aria-hidden="true" class=data.classes focusable="false">
         <use xlink:href="#icon-${data.name}"/>
     </svg>

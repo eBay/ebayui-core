@@ -5,15 +5,14 @@ const iconCache = {};
 function traverse(rootNode, fn) {
     const visited = {};
     const queue = [rootNode];
-    let stop = false;
 
-    while (queue.length > 0 && !stop) {
+    while (queue.length > 0) {
         const currentNode = queue.shift();
         if (!currentNode || visited[currentNode.id]) {
             continue;
         }
         visited[currentNode.id] = 1;
-        stop = fn(currentNode);
+        fn(currentNode);
 
         if (currentNode.children && currentNode.children.length) {
             // unshift for dfs, push for bfs
@@ -40,3 +39,5 @@ module.exports = (input, out) => {
 
     template.render({ icons: iconCache[pageTemplateId], hasIcons }, out);
 };
+
+module.exports.privates = { traverse };
