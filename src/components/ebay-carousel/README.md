@@ -41,7 +41,7 @@ Name | Type | Stateful | Description
 Event | Data | Description
 --- | --- | ---
 `carousel-update` | { [visibleIndexes] } | called whenever item visibility changes, including initialization
-`carousel-translate` | | start of carousel content translation
+`carousel-move` | | start of carousel content movement animation
 `carousel-next` | | click next control
 `carousel-prev` | | click previous control
 

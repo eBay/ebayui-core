@@ -205,7 +205,7 @@ function moveToIndex(index) {
 
     if (translation !== this.state.translation) {
         this.setState('translation', translation);
-        emitAndFire(this, 'carousel-translate');
+        emitAndFire(this, 'carousel-move');
     }
 }
 
