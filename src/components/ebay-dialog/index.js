@@ -1,6 +1,7 @@
 const markoWidgets = require('marko-widgets');
 const keyboardTrap = require('makeup-keyboard-trap');
 const screenReaderTrap = require('makeup-screenreader-trap');
+const bodyScroll = require('../../common/body-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const observer = require('../../common/property-observer');
 const processHtmlAttributes = require('../../common/html-attributes');
@@ -75,13 +76,12 @@ function trap(opts) {
     if (restoreTrap || (isTrapped && !wasTrapped)) {
         screenReaderTrap.trap(this.dialogEl);
         keyboardTrap.trap(this.dialogEl);
-        // Prevent body scrolling when a modal is open.
-        document.body.style.overflow = 'hidden';
     }
 
-    // Ensure focus on initial render.
+    // Ensure focus is set and body scroll prevented on initial render.
     if (isFirstRender && isTrapped) {
         focusEl.focus();
+        bodyScroll.prevent();
     }
 
     if (wasToggled) {
@@ -90,8 +90,10 @@ function trap(opts) {
 
             if (isTrapped) {
                 focusEl.focus();
+                bodyScroll.prevent();
                 emitAndFire(this, 'dialog-show');
             } else {
+                bodyScroll.restore();
                 emitAndFire(this, 'dialog-close');
             }
         };
@@ -125,14 +127,16 @@ function release() {
         this.restoreTrap = this.state.open;
         screenReaderTrap.untrap(this.dialogEl);
         keyboardTrap.untrap(this.dialogEl);
-        // Restore body scrolling.
-        document.body.style.overflow = 'auto'; // Auto instead of null/undefined for ie.
-        if (document.body.getAttribute('style') === 'overflow: auto;') {
-            // Remove style attribute if all that's left is the default overflow style.
-            document.body.removeAttribute('style');
-        }
     } else {
         this.restoreTrap = false;
+    }
+}
+
+function destroy() {
+    release.call(this);
+
+    if (this.isTrapped) {
+        bodyScroll.restore();
     }
 }
 
@@ -155,7 +159,7 @@ module.exports = markoWidgets.defineComponent({
     init,
     onRender: trap,
     onBeforeUpdate: release,
-    onBeforeDestroy: release,
+    onBeforeDestroy: destroy,
     show,
     close
 });
