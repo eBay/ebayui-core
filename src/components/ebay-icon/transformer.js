@@ -1,5 +1,5 @@
 // Transforms inline icons to artificially require specific icon files
-// This adds icons to the require cache, which we walk in ./definition
+// This adds icons to the require cache, which we walk in ./stamper
 function transform(el, context) {
     const nameAttribute = el.getAttribute('name');
     const typeAttribute = el.getAttribute('type');

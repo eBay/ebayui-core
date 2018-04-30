@@ -8,7 +8,7 @@
 ```
 
 The `background` icon will set the background image to an SVG image via CSS. This is the simplest usage available.
-The `inline` icon will include the actual SVG markup in the HTML and then reference that. This is useful for applying customizations (like color). Behind the scenes, we determine all inline icons that could be used at compile-time, and then include each icon definition a single time at the top of the `<body>`. Note that this requires the icons to be included statically.
+The `inline` icon will include the actual SVG markup in the HTML and then reference that. This is useful for applying customizations (like color). Behind the scenes, we determine all inline icons that could be used at compile-time, and then include each icon stamp a single time at the top of the `<body>`. Note that this requires the icons to be included statically.
 
 ## ebay-icon Attributes
 

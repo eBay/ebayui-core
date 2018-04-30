@@ -95,10 +95,10 @@
     },
     "<ebay-breadcrumb-item>": {},
     "<body>": {
-        "transformer": "./src/components/ebay-icon/definition/transformer.js"
+        "transformer": "./src/components/ebay-icon/stamper/transformer.js"
     },
-    "<ebay-icon-definition>": {
-        "renderer": "./src/components/ebay-icon/definition/index.js"
+    "<ebay-icon-stamper>": {
+        "renderer": "./src/components/ebay-icon/stamper/index.js"
     },
     "<ebay-icon>": {
         "renderer": "./src/components/ebay-icon/index.js",

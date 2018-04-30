@@ -1,4 +1,5 @@
-<!-- patch render function to get access to page template -->
+<!-- patch render function to get access to page template, needed in v3 -->
+<!-- FIXME: can't currently execute template hack in tests -->
 <script marko-init>
 var templateProto = Object.getPrototypeOf(module.exports);
 var _render = templateProto.render;

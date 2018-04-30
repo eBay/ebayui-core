@@ -2,6 +2,11 @@ const template = require('./template.marko');
 
 const iconCache = {};
 
+/**
+ * Traverse the require tree, starting at a specified rootNode
+ * @param {*} rootNode: starting node for traversal
+ * @param {*} fn: function to execute on every child
+ */
 function traverse(rootNode, fn) {
     const visited = {};
     const queue = [rootNode];
@@ -21,10 +26,12 @@ function traverse(rootNode, fn) {
     }
 }
 
-module.exports = (input, out) => {
-    const pageTemplateNode = require.cache[out.global.pageTemplate.path.replace('.marko.js', '.marko')];
-    const pageTemplateId = pageTemplateNode && pageTemplateNode.id;
-
+/**
+ * Use traversal to find icons in the require cache for this page
+ * @param {*} pageTemplateNode: first require cache module of the page
+ * @param {*} pageTemplateId: require cache ID of the page module
+ */
+function findIcons(pageTemplateNode, pageTemplateId) {
     // only traverse icon paths once per page template
     if (pageTemplateId && !iconCache.hasOwnProperty(pageTemplateId)) {
         iconCache[pageTemplateId] = {};
@@ -35,9 +42,18 @@ module.exports = (input, out) => {
             }
         });
     }
-    const hasIcons = pageTemplateId && iconCache[pageTemplateId] && Object.keys(iconCache[pageTemplateId]).length > 0;
+}
 
-    template.render({ icons: iconCache[pageTemplateId], hasIcons }, out);
+module.exports = (input, out) => {
+    const pageTemplatePath = out.global && out.global.pageTemplate && out.global.pageTemplate.path || '';
+    const pageTemplateNode = require.cache[pageTemplatePath.replace('.marko.js', '.marko')];
+    const pageTemplateId = pageTemplateNode && pageTemplateNode.id;
+
+    findIcons(pageTemplateNode, pageTemplateId);
+    const iconsInPage = iconCache[pageTemplateId];
+    const hasIcons = pageTemplateId && iconsInPage && Object.keys(iconsInPage).length > 0;
+
+    template.render({ icons: iconsInPage, hasIcons }, out);
 };
 
-module.exports.privates = { traverse };
+module.exports.privates = { findIcons, iconCache };
