@@ -15,11 +15,10 @@ const comboboxOptionSelector = '.combobox__option[role=option]';
 
 function getInitialState(input) {
     const options = (input.options || []).map(option => {
-        const classes = [option.class];
         const selected = option.selected;
 
         return {
-            classes,
+            class: option.class,
             value: option.value,
             label: option.label,
             selected: Boolean(selected),
