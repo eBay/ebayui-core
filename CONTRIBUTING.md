@@ -28,6 +28,8 @@ Execute `yarn start` to start the local web server at [http://localhost:3000](ht
 
 For debugging older browsers, the demo can be run against transpiled source code via `yarn start:prod`.
 
+The demo page will render the `examples/` for each component. To selectively include certain examples for debugging, add `.only` to their folder names.
+
 ### Tests
 
 Execute `yarn test` to run all tests and generate coverage reports at `./coverage/index.html`.
