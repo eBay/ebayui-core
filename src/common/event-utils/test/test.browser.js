@@ -79,8 +79,8 @@ describe('resizeEventUtil', () => {
     test('the root element listens for a window resize, then calls a callback', (context, done) => {
         const mockCallback = sinon.spy();
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
-        testUtils.triggerEvent(window, 'resize');
         expect(mockCallback.callCount).to.equal(0);
+        testUtils.triggerEvent(window, 'resize');
         setTimeout(() => {
             expect(mockCallback.callCount).to.equal(1);
             done();
@@ -91,8 +91,8 @@ describe('resizeEventUtil', () => {
         const mockCallback = sinon.spy();
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         resizeUtil.removeEventListener('resize', mockCallback.bind(this));
-        testUtils.triggerEvent(window, 'resize');
         expect(mockCallback.callCount).to.equal(0);
+        testUtils.triggerEvent(window, 'resize');
         setTimeout(() => {
             expect(mockCallback.callCount).to.equal(0);
             done();
