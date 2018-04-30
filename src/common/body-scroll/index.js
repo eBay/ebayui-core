@@ -4,6 +4,15 @@ let previousStyles;
 module.exports = {
     /**
      * Prevents the `<body>` element from scrolling.
+     *
+     * This is done by forcing the body to be `fixed` and setting it's height/width inline.
+     * The body is then translated the reverse of the scroll position using negative margins.
+     *
+     * This approach was chosen over the more common just `overflow:hidden` to address some
+     * issues with iOS and Android browsers.
+     *
+     * Finally the scroll position is also stored so that it can be reapplied after restoring
+     * scrolling.
      */
     prevent() {
         const { body } = document;
@@ -25,6 +34,10 @@ module.exports = {
     },
     /**
      * Restores scrolling of the `<body>` element.
+     *
+     * This will also restore the scroll position, and inline body styles from before the body
+     * scroll was prevented. You should not call this function without first preventing the
+     * body scroll.
      */
     restore() {
         const { body } = document;
