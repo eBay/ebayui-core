@@ -107,17 +107,4 @@ describe('given the menu is in the default state with links', () => {
             expect(eventData.value).to.be.equal('1');
         });
     });
-    describe('when an action button is activated for a hijax pagination', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy(widget, 'handleHijax');
-            testUtils.triggerEvent(previousButton, 'click');
-        });
-
-        afterEach(() => widget.handleHijax.restore());
-
-        test('then handleHijax method is called', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
 });

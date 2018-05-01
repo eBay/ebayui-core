@@ -15,10 +15,10 @@ function getInitialState(input) {
     let nextItem;
     const items = [];
     const inputItems = input.items || [];
-    const isHijax = input.hijax || false;
+    const hijax = input.hijax || false;
     let role;
 
-    if (isHijax) {
+    if (hijax) {
         role = 'button';
     }
 
@@ -51,7 +51,7 @@ function getInitialState(input) {
     }
 
     return {
-        isHijax,
+        hijax,
         nextItem: nextItem || { class: 'pagination__next', disabled: true },
         prevItem: prevItem || { class: 'pagination__previous', disabled: true },
         items,
@@ -96,28 +96,22 @@ function refresh() {
     }
 }
 
-function handleHijax(e) {
-    if (this.state.isHijax) {
-        e.preventDefault();
-    }
-}
-
 /**
  * Handle normal mouse click for item, next page and previous page respectively.
  * @param {MouseEvent} event
  */
 function handlePageClick(event) {
-    this.handleHijax(event);
+    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
     emitAndFire(this, 'pagination-select', { el: event.target, value: event.target.innerText });
 }
 
 function handleNextPage(event) {
-    this.handleHijax(event);
+    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
     emitAndFire(this, 'pagination-next', { el: event.target });
 }
 
 function handlePreviousPage(event) {
-    this.handleHijax(event);
+    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
     emitAndFire(this, 'pagination-previous', { el: event.target });
 }
 
@@ -147,7 +141,6 @@ module.exports = require('marko-widgets').defineComponent({
     template,
     init,
     refresh,
-    handleHijax,
     handlePageClick,
     handleNextPage,
     handlePreviousPage,

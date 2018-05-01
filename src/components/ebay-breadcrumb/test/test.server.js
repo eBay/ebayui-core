@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/server');
-const mock = require('../mock/index');
+const mock = require('../mock');
 
 describe('should render with basic breadcrumb and ', () => {
     test('return nav element with input', context => {
@@ -36,6 +36,11 @@ describe('should render with basic breadcrumb and ', () => {
     });
 });
 
+test('should set item roles for hijax version', context => {
+    const input = mock.hijax;
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('li a[role="button"]').length).to.equal(input.items.length);
+});
 test('should return zero nav element in the page', context => {
     const input = {};
     const $ = testUtils.getCheerio(context.render(input));

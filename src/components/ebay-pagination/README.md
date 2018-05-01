@@ -24,7 +24,7 @@ Name | Type | Stateful | Description
 `accessibility-prev` | String | No | aria-label for previous arrow button
 `accessibility-next` | String | No | aria-label for next arrow button
 `accessibility-current` | String | No | Description for the current page (e.g. Results of Page 1)
-`hijax` | Boolean | No | Use pagination links for an ajax reload
+`hijax` | Boolean | No | Prevent link navigation; for use with ajax
 
 ### ebay-pagination Events
 
