@@ -2,6 +2,7 @@
     "<ebay-button>": {
         "renderer": "./src/components/ebay-button/index.js",
         "@class": "string",
+        "@label": "string",
         "@disabled": "boolean",
         "@partially-disabled": "boolean",
         "@href": "string",
