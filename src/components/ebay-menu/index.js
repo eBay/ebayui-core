@@ -156,7 +156,7 @@ function init() {
     const expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
         hostSelector: buttonSelector,
         focusManagement: 'focusable',
-        click: true,
+        expandOnClick: true,
         autoCollapse: true
     });
 }
@@ -257,7 +257,8 @@ function handleItemKeydown(e) {
     });
 
     eventUtils.handleEscapeKeydown(e, () => {
-        this.buttonEl.focus(); // triggers collapse through makeup
+        this.buttonEl.focus();
+        this.setState('expanded', false);
     });
 }
 
