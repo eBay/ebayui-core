@@ -5,18 +5,18 @@ const testUtils = require('../../../../common/test-utils/server');
 
 describe('stamper', () => {
     const findIcons = stamper.privates.findIcons;
-    const iconCache = stamper.privates.iconCache;
+    const pageCache = stamper.privates.pageCache;
     const currentFileNode = require.cache[__filename];
 
     test('exit early for missing node id', () => {
         findIcons(currentFileNode, undefined);
-        expect(iconCache).to.deep.equal({});
+        expect(pageCache).to.deep.equal({});
     });
 
     test('finds icons that have been required', () => {
         require('../../internal/arrow-left');
         findIcons(currentFileNode, __filename);
-        expect(iconCache).to.deep.equal({ [__filename]: { 'arrow-left': 1 } });
+        expect(pageCache).to.deep.equal({ [__filename]: ['arrow-left'] });
     });
 });
 

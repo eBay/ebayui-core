@@ -1,6 +1,8 @@
+const fs = require('fs');
 const template = require('./template.marko');
 
-const iconCache = {};
+const pageCache = {};
+const markupCache = {};
 
 /**
  * Traverse the require tree, starting at a specified rootNode
@@ -33,16 +35,24 @@ function traverse(rootNode, fn) {
  */
 function findIcons(pageTemplateNode, pageTemplateId) {
     // only traverse icon paths once per page template
-    if (pageTemplateId && !iconCache.hasOwnProperty(pageTemplateId)) {
-        iconCache[pageTemplateId] = {};
+    if (pageTemplateId && !pageCache.hasOwnProperty(pageTemplateId)) {
+        pageCache[pageTemplateId] = [];
         traverse(pageTemplateNode, currentNode => {
             if (currentNode.id.includes('/components/ebay-icon/internal/')) {
                 const iconName = currentNode.id.substring(currentNode.id.lastIndexOf('/') + 1).replace('.js', '');
-                iconCache[pageTemplateId][iconName] = 1;
+                pageCache[pageTemplateId].push(iconName);
             }
         });
     }
 }
+
+// cache icon markup at app startup
+fs.readdirSync(`${__dirname}/markup`).forEach(file => {
+    if (file.endsWith('.html')) {
+        const iconName = file.replace('.html', '');
+        markupCache[iconName] = fs.readFileSync(`${__dirname}/markup/${file}`, 'utf-8').replace(/\n/g, '');
+    }
+});
 
 module.exports = (input, out) => {
     const pageTemplatePath = out.global && out.global.pageTemplate && out.global.pageTemplate.path || '';
@@ -50,10 +60,7 @@ module.exports = (input, out) => {
     const pageTemplateId = pageTemplateNode && pageTemplateNode.id;
 
     findIcons(pageTemplateNode, pageTemplateId);
-    const iconsInPage = iconCache[pageTemplateId];
-    const hasIcons = pageTemplateId && iconsInPage && Object.keys(iconsInPage).length > 0;
-
-    template.render({ icons: iconsInPage, hasIcons }, out);
+    template.render({ stamp: pageCache[pageTemplateId].map(iconName => markupCache[iconName]).join('') }, out);
 };
 
-module.exports.privates = { findIcons, iconCache };
+module.exports.privates = { findIcons, pageCache };

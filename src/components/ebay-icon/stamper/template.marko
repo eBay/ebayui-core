@@ -10,46 +10,6 @@ templateProto.render = function (data, out) {
 }
 </script>
 
-<svg hidden if(data.hasIcons)>
-    <include-html("./markup/arrow-left.html") if(data.icons['arrow-left'])/>
-    <include-html("./markup/arrow-right.html") if(data.icons['arrow-right'])/>
-    <include-html("./markup/arrow-move.html") if(data.icons['arrow-move'])/>
-    <include-html("./markup/arrow-right-bold.html") if(data.icons['arrow-right-bold'])/>
-    <include-html("./markup/chevron-up.html") if(data.icons['chevron-up'])/>
-    <include-html("./markup/chevron-down.html") if(data.icons['chevron-down'])/>
-    <include-html("./markup/chevron-left.html") if(data.icons['chevron-left'])/>
-    <include-html("./markup/chevron-right.html") if(data.icons['chevron-right'])/>
-    <include-html("./markup/chevron-up-bold.html") if(data.icons['chevron-up-bold'])/>
-    <include-html("./markup/chevron-down-bold.html") if(data.icons['chevron-down-bold'])/>
-    <include-html("./markup/bids.html") if(data.icons['bids'])/>
-    <include-html("./markup/camera.html") if(data.icons['camera'])/>
-    <include-html("./markup/cart.html") if(data.icons['cart'])/>
-    <include-html("./markup/categories.html") if(data.icons['categories'])/>
-    <include-html("./markup/checkbox-checked.html") if(data.icons['checkbox-checked'])/>
-    <include-html("./markup/checkbox-unchecked.html") if(data.icons['checkbox-unchecked'])/>
-    <include-html("./markup/clear.html") if(data.icons['clear'])/>
-    <include-html("./markup/close.html") if(data.icons['close'])/>
-    <include-html("./markup/deals.html") if(data.icons['deals'])/>
-    <include-html("./markup/download.html") if(data.icons['download'])/>
-    <include-html("./markup/event.html") if(data.icons['event'])/>
-    <include-html("./markup/fast-n-free.html") if(data.icons['fast-n-free'])/>
-    <include-html("./markup/help.html") if(data.icons['help'])/>
-    <include-html("./markup/menu.html") if(data.icons['menu'])/>
-    <include-html("./markup/mic.html") if(data.icons['mic'])/>
-    <include-html("./markup/notification.html") if(data.icons['notification'])/>
-    <include-html("./markup/overflow.html") if(data.icons['overflow'])/>
-    <include-html("./markup/profile.html") if(data.icons['profile'])/>
-    <include-html("./markup/purchases.html") if(data.icons['purchases'])/>
-    <include-html("./markup/radio-checked.html") if(data.icons['radio-checked'])/>
-    <include-html("./markup/radio-unchecked.html") if(data.icons['radio-unchecked'])/>
-    <include-html("./markup/save-bold.html") if(data.icons['save-bold'])/>
-    <include-html("./markup/save-selected.html") if(data.icons['save-selected'])/>
-    <include-html("./markup/save.html") if(data.icons['save'])/>
-    <include-html("./markup/search-bold.html") if(data.icons['search-bold'])/>
-    <include-html("./markup/search.html") if(data.icons['search'])/>
-    <include-html("./markup/selling.html") if(data.icons['selling'])/>
-    <include-html("./markup/settings.html") if(data.icons['settings'])/>
-    <include-html("./markup/tick.html") if(data.icons['tick'])/>
-    <include-html("./markup/top-seller.html") if(data.icons['top-seller'])/>
-    <include-html("./markup/watch.html") if(data.icons['watch'])/>
+<svg hidden if(data.stamp)>
+    $!{data.stamp}
 </svg>
