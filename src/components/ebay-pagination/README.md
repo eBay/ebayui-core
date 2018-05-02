@@ -8,11 +8,11 @@ The `<ebay-pagination>` is a tag used to create a pagination navigation.
 
 ```marko
 <ebay-pagination aria-label-prev="Previous page" aria-label-next="Next page" curr-text="Results Pagination - Page 2">
-    <ebay-pagination-item href="#" previous disabled/>
+    <ebay-pagination-item href="#" type="previous" disabled/>
     <ebay-pagination-item href="#">item 1</ebay-pagination-item>
     <ebay-pagination-item href="#" current>item 2</ebay-pagination-item>
     <ebay-pagination-item href="#">item 3</ebay-pagination-item>
-    <ebay-pagination-item href="#" next/>
+    <ebay-pagination-item href="#" type="next"/>
 </ebay-pagination>
 ```
 
