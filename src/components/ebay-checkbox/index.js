@@ -25,9 +25,9 @@ function getTemplateData(state) {
     return state;
 }
 
-function handleClick() {
+function handleClick(e) {
     if (!this.state.disabled) {
-        emitAndFire(this, 'checkbox-change');
+        emitAndFire(this, 'checkbox-change', { el: e.target });
     }
 }
 
