@@ -90,8 +90,10 @@
     "<ebay-breadcrumb>": {
         "renderer": "./src/components/ebay-breadcrumb/index.js",
         "transformer": "./src/common/transformer/index.js",
+        "@class": "string",
         "@heading-text": "string",
         "@heading-level": "string",
+        "@hijax": "boolean",
         "@*": "expression",
         "@items <item>[]": {
             "@href": "string",
