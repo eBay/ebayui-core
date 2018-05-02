@@ -1,6 +1,6 @@
 <!-- TODO: prefer to use single w-bind, but dynamic tag breaks clientside rendering in marko v4 -->
 <if(data.isBackground)>
-    <span w-bind w-body ${data.htmlAttributes} class=data.classes/>
+    <span w-bind ${data.htmlAttributes} class=data.classes/>
 </if>
 <else-if(data.isInline)>
     <svg w-bind ${data.htmlAttributes} aria-hidden="true" class=data.classes focusable="false">
