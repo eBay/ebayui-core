@@ -66,11 +66,11 @@ function init() {
     if (this.state.options && this.state.options.length > 0) {
         this.expander = new Expander(this.el, {
             autoCollapse: true,
-            click: true,
+            expandOnClick: true,
             contentSelector: `.${comboboxOptionsClass}`,
             hostSelector: comboboxHostSelector,
             hostContainerClass: `${comboboxBtnClass}`,
-            spacebar: true
+            simulateSpacebarClick: true
         });
 
         observer.observeRoot(this, ['selected'], (index) => {
