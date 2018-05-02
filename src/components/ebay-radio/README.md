@@ -1,25 +1,20 @@
-# ebay-button
+# ebay-radio
 
-## ebay-button Usage
+## ebay-radio Usage
 
 ```marko
-<ebay-button>label</ebay-button>
+<ebay-radio></ebay-radio>
 ```
 
-## ebay-button Attributes
+## ebay-radio Attributes
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `class` | String | No | custom class
-`priority` | String | No | "primary" / "secondary" (default) / "none"
-`size` | String | No | "small" or "large" (default: medium)
-`href` | String | No | for link that looks like a button
-`fluid` | Boolean | No |
 `disabled` | Boolean | Yes |
-`partially-disabled` | Boolean | No
 
-## ebay-button Events
+## ebay-radio Events
 
 Event | Description
 --- | ---
-`button-click` | click
+`radio-change` | click

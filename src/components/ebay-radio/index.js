@@ -5,7 +5,7 @@ const template = require('./template.marko');
 
 function getInitialState(input) {
     const classes = ['radio'];
-    const childClasses = ['radio__icon', 'radio__icon--inherit'];
+    const iconWrapperClasses = ['radio__icon', 'radio__icon--inherit'];
     const inputTagClass = 'radio__control';
 
     if (input.class) {
@@ -15,7 +15,7 @@ function getInitialState(input) {
     return {
         classes,
         inputTagClass,
-        childClasses,
+        iconWrapperClasses,
         disabled: Boolean(input.disabled),
         htmlAttributes: processHtmlAttributes(input)
     };
@@ -25,9 +25,9 @@ function getTemplateData(state) {
     return state;
 }
 
-function handleClick() {
+function handleClick(e) {
     if (!this.state.disabled) {
-        emitAndFire(this, 'radio-change');
+        emitAndFire(this, 'radio-change', { el: e.target });
     }
 }
 
