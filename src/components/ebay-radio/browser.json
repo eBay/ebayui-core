@@ -1,0 +1,14 @@
+{
+    "dependencies": [
+        {
+            "if-not-flag": "ebayui-no-skin",
+            "path": "@ebay/skin/radio"
+        },
+        {
+            "if-not-flag": "ebayui-no-skin",
+            "path": "@ebay/skin/field"
+        },
+        "require: marko-widgets",
+        "require: ./index.js"
+    ]
+}

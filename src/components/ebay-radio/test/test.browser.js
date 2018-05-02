@@ -1,0 +1,53 @@
+const sinon = require('sinon');
+const expect = require('chai').expect;
+const testUtils = require('../../../common/test-utils/browser');
+const renderer = require('../');
+
+let widget;
+
+function renderAndGetRoot(input) {
+    widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+    return document.querySelector('.radio');
+}
+
+describe('given radio button is enabled', () => {
+    let root;
+    beforeEach(() => {
+        root = renderAndGetRoot();
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when radio button is clicked', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('radio-change', spy);
+            testUtils.triggerEvent(root, 'click');
+        });
+
+        test('then it emits the event', () => {
+            expect(spy.calledOnce).to.equal(true);
+        });
+    });
+});
+
+describe('given radio button is disabled', () => {
+    let root;
+    beforeEach(() => {
+        root = renderAndGetRoot({ disabled: true });
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when radio button is clicked', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('radio-change', spy);
+            testUtils.triggerEvent(root, 'click');
+        });
+
+        test('then it doesn\'t emit the event', () => {
+            expect(spy.called).to.equal(false);
+        });
+    });
+});

@@ -150,5 +150,11 @@
         "@type": "string",
         "@name": "string",
         "@accessibility-text": "string"
+    },
+    "<ebay-radio>": {
+        "renderer": "./src/components/ebay-radio/index.js",
+        "@class": "string",
+        "@disabled": "boolean",
+        "@*": "expression"
     }
 }
