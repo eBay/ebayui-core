@@ -105,7 +105,7 @@
   "dependencies": {
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
-    "makeup-expander": "^0.3.2",
+    "makeup-expander": "~0.4.0",
     "makeup-focusables": "~0.0.3",
     "makeup-key-emitter": "~0.0.3",
     "makeup-keyboard-trap": "^0.0.9",

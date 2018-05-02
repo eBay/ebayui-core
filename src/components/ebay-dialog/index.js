@@ -10,8 +10,10 @@ const template = require('./template.marko');
 
 function init() {
     this.dialogEl = this.getEl('dialog');
+    this.windowEl = this.getEl('window');
     this.closeEl = this.getEl('close');
     this.bodyEl = this.getEl('body');
+    this.transitionEls = [this.windowEl, this.dialogEl];
     observer.observeRoot(this, ['open']);
     // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
     this.subscribeTo(this.dialogEl).on('click', () => {});
@@ -104,13 +106,21 @@ function trap(opts) {
 
         if (isTrapped) {
             if (!isFirstRender) {
-                this.cancelTransition = transition(this.dialogEl, 'dialog--show', onFinishTransition);
+                this.cancelTransition = transition({
+                    el: this.dialogEl,
+                    className: 'dialog--show',
+                    waitFor: this.transitionEls
+                }, onFinishTransition);
             }
 
             this.dialogEl.removeAttribute('hidden');
         } else {
             if (!isFirstRender) {
-                this.cancelTransition = transition(this.dialogEl, 'dialog--hide', onFinishTransition);
+                this.cancelTransition = transition({
+                    el: this.dialogEl,
+                    className: 'dialog--hide',
+                    waitFor: this.transitionEls
+                }, onFinishTransition);
             }
 
             this.dialogEl.setAttribute('hidden', '');

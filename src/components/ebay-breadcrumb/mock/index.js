@@ -27,6 +27,10 @@ module.exports = {
         items: basicItems,
         '*': { dataview: 'data-view tracking' }
     },
+    hijax: {
+        hijax: true,
+        items: basicItems
+    },
     itemsWithMissingLinks: {
         headingText: 'Page navigation',
         items: itemsWithMissingLinks,

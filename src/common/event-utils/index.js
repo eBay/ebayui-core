@@ -24,6 +24,12 @@ function handleUpDownArrowsKeydown(e, callback) {
     handleKeydown([38, 40], e, callback);
 }
 
+function preventDefaultIfHijax(e, hijax) {
+    if (hijax) {
+        e.preventDefault();
+    }
+}
+
 const handlers = [];
 function addEventListener(_, handler) {
     if (handlers.length === 0) {
@@ -51,6 +57,7 @@ module.exports = {
     handleActionKeydown,
     handleEscapeKeydown,
     handleUpDownArrowsKeydown,
+    preventDefaultIfHijax,
     resizeUtil: {
         addEventListener,
         removeEventListener
