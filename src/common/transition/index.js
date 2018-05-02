@@ -1,35 +1,36 @@
 const TRANSITION_END = 'transitionend';
-const IMMEDIATE_TRANSITION_REG = /0m?s(?:, )?/g;
 
 /**
  * Applies a primer `-init` class before starting a transition
  * to make transitioning properties that are not animatable easier.
  *
  * **Order**
- * 1. Add class: "$name-init"
+ * 1. Add class: "$className-init"
  * 2. Wait one frame.
- * 3. Remove class "$name-init".
- * 4. Add class "$name".
+ * 3. Remove class "$className-init".
+ * 4. Add class "$className".
  * 5. Wait for animation to finish.
- * 6. Remove class "$name".
+ * 6. Remove class "$className".
  *
- * @param {HTMLElement} el The root element that contains the animation.
- * @param {string} name The base className to use for the transition.
+ * @param {HTMLElement} options.el The root element that contains the animation.
+ * @param {string} options.className The base className to use for the transition.
+ * @param {Element[]} options.waitFor Elements that will transition and should be waited for.
  * @param {Function} cb A callback called after the transition as ended.
  */
-module.exports = (el, baseClass, cb) => {
+module.exports = ({ el, className, waitFor }, cb) => {
     let ended;
-    let pending;
     let ran = 0;
+    const pending = waitFor ? waitFor.length : 0;
     const classList = el.classList;
-    const initClass = `${baseClass}-init`;
+    const initClass = `${className}-init`;
     let cancelFrame = nextFrame(() => {
-        el.addEventListener(TRANSITION_END, listener, true);
-        classList.add(baseClass);
-        classList.remove(initClass);
-        pending = getTransitionCount(el);
         cancelFrame = undefined;
-        if (pending === 0) {
+        classList.add(className);
+        classList.remove(initClass);
+
+        if (pending) {
+            waitFor.forEach(child => child.addEventListener(TRANSITION_END, listener));
+        } else {
             cancel();
 
             if (cb) {
@@ -51,13 +52,17 @@ module.exports = (el, baseClass, cb) => {
         }
 
         ended = true;
-        el.removeEventListener(TRANSITION_END, listener, true);
+
+        for (let i = ran; i < pending; i++) {
+            const child = waitFor[i];
+            child.removeEventListener(TRANSITION_END, listener);
+        }
 
         if (cancelFrame) {
             cancelFrame();
             classList.remove(initClass);
         } else {
-            classList.remove(baseClass);
+            classList.remove(className);
         }
     }
 
@@ -65,11 +70,12 @@ module.exports = (el, baseClass, cb) => {
      * Handles a single transition end event.
      * Once all child transitions have ended the overall animation is completed.
      */
-    function listener() {
+    function listener({ target }) {
+        target.removeEventListener(TRANSITION_END, listener);
+
         if (++ran === pending) {
             ended = true;
-            el.removeEventListener(TRANSITION_END, listener, true);
-            classList.remove(baseClass);
+            classList.remove(className);
 
             if (cb) {
                 cb();
@@ -77,27 +83,6 @@ module.exports = (el, baseClass, cb) => {
         }
     }
 };
-
-/**
- * Walks the tree of an element and counts how many transitions have been applied.
- *
- * @param {HTMLElement} el
- * @return {number}
- */
-function getTransitionCount(el) {
-    let count = window
-        .getComputedStyle(el)
-        .transitionDuration
-        .replace(IMMEDIATE_TRANSITION_REG, '') ? 1 : 0;
-
-    let child = el.firstElementChild;
-    while (child) {
-        count += getTransitionCount(child);
-        child = child.nextElementSibling;
-    }
-
-    return count;
-}
 
 /**
  * Runs a function during the next animation frame.
