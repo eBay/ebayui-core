@@ -1,0 +1,30 @@
+.carousel {
+    &__control {
+        &:active:not([aria-disabled="true"]) {
+            background-color: @ds6-color-g205-gray;
+
+            svg {
+                color: @ds6-color-g201-gray;
+            }
+        }
+    }
+
+    &--continuous &__container {
+        overflow-x: scroll; // also used in js to determine scroll behavior
+        -webkit-overflow-scrolling: touch;
+    }
+
+    &--discrete {
+        // show controls on touch since there's no hover
+        // TODO: swipe support on mobile discrete?
+        .carousel__control {
+            opacity: @ebay-carousel-control-enabled-opacity;
+            pointer-events: auto;
+
+            &[aria-disabled="true"] {
+                opacity: @ebay-carousel-control-disabled-opacity;
+                cursor: default;
+            }
+        }
+    }
+}

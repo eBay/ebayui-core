@@ -1,6 +1,7 @@
 const markoWidgets = require('marko-widgets');
 const keyboardTrap = require('makeup-keyboard-trap');
 const screenReaderTrap = require('makeup-screenreader-trap');
+const bodyScroll = require('../../common/body-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const observer = require('../../common/property-observer');
 const processHtmlAttributes = require('../../common/html-attributes');
@@ -10,10 +11,10 @@ const template = require('./template.marko');
 function init() {
     this.dialogEl = this.getEl('dialog');
     this.closeEl = this.getEl('close');
-    this.maskEl = this.getEl('mask');
+    this.bodyEl = this.getEl('body');
     observer.observeRoot(this, ['open']);
-    // Add an event listener to the mask to fix an issue with Safari not recognizing it as a touch target.
-    this.subscribeTo(this.maskEl).on('click', () => {});
+    // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
+    this.subscribeTo(this.dialogEl).on('click', () => {});
 }
 
 function getInitialState(input) {
@@ -32,7 +33,6 @@ function getTemplateData(state) {
     const { open, type, ariaLabelClose, htmlAttributes } = state;
     const dialogClass = [state.class, 'dialog'];
     const windowClass = ['dialog__window'];
-    const maskClass = ['dialog__mask'];
 
     if (type) {
         windowClass.push(`dialog__window--${type}`);
@@ -42,13 +42,13 @@ function getTemplateData(state) {
         case 'left':
         case 'right':
             windowClass.push('dialog__window--slide');
-            maskClass.push('dialog__mask--fade-slow');
+            dialogClass.push('dialog--mask-fade-slow');
             break;
         case 'full':
         case 'fill':
         default:
             windowClass.push('dialog__window--fade');
-            maskClass.push('dialog__mask--fade');
+            dialogClass.push('dialog--mask-fade');
             break;
     }
 
@@ -58,7 +58,6 @@ function getTemplateData(state) {
         ariaLabelClose,
         dialogClass,
         windowClass,
-        maskClass,
         htmlAttributes
     };
 }
@@ -77,13 +76,12 @@ function trap(opts) {
     if (restoreTrap || (isTrapped && !wasTrapped)) {
         screenReaderTrap.trap(this.dialogEl);
         keyboardTrap.trap(this.dialogEl);
-        // Prevent body scrolling when a modal is open.
-        document.body.style.overflow = 'hidden';
     }
 
-    // Ensure focus on initial render.
+    // Ensure focus is set and body scroll prevented on initial render.
     if (isFirstRender && isTrapped) {
         focusEl.focus();
+        bodyScroll.prevent();
     }
 
     if (wasToggled) {
@@ -92,8 +90,10 @@ function trap(opts) {
 
             if (isTrapped) {
                 focusEl.focus();
+                bodyScroll.prevent();
                 emitAndFire(this, 'dialog-show');
             } else {
+                bodyScroll.restore();
                 emitAndFire(this, 'dialog-close');
             }
         };
@@ -127,14 +127,16 @@ function release() {
         this.restoreTrap = this.state.open;
         screenReaderTrap.untrap(this.dialogEl);
         keyboardTrap.untrap(this.dialogEl);
-        // Restore body scrolling.
-        document.body.style.overflow = 'auto'; // Auto instead of null/undefined for ie.
-        if (document.body.getAttribute('style') === 'overflow: auto;') {
-            // Remove style attribute if all that's left is the default overflow style.
-            document.body.removeAttribute('style');
-        }
     } else {
         this.restoreTrap = false;
+    }
+}
+
+function destroy() {
+    release.call(this);
+
+    if (this.isTrapped) {
+        bodyScroll.restore();
     }
 }
 
@@ -142,7 +144,11 @@ function show() {
     this.setState('open', true);
 }
 
-function close() {
+function close(ev) {
+    if (ev && this.bodyEl.contains(ev.target)) {
+        return;
+    }
+
     this.setState('open', false);
 }
 
@@ -153,7 +159,7 @@ module.exports = markoWidgets.defineComponent({
     init,
     onRender: trap,
     onBeforeUpdate: release,
-    onBeforeDestroy: release,
+    onBeforeDestroy: destroy,
     show,
     close
 });

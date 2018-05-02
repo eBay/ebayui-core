@@ -26,7 +26,7 @@ describe('given the dialog is in the default state', () => {
         });
 
         test('then <body> is scrollable', () => {
-            expect(document.body.style.overflow).to.equal('');
+            expect(document.body.getAttribute('style')).to.equal(null);
         });
 
         test('then it\'s siblings are visible', () => {
@@ -44,7 +44,7 @@ describe('given the dialog is in the default state', () => {
 
     describe('when open is set to true on the DOM', () => {
         beforeEach((done) => {
-            widget.once('update', () => setTimeout(done));
+            widget.subscribeTo(root).once('dialog-show', done);
             root.open = true;
         });
 
@@ -53,7 +53,7 @@ describe('given the dialog is in the default state', () => {
 
     describe('when the show method is called on the widget', () => {
         beforeEach((done) => {
-            widget.once('update', () => setTimeout(done));
+            widget.subscribeTo(root).once('dialog-show', done);
             widget.show();
         });
 
@@ -61,10 +61,6 @@ describe('given the dialog is in the default state', () => {
     });
 
     function thenItIsOpen(skipRerender) {
-        test('then the show event is called', (done) => {
-            root.addEventListener('dialog-show', () => done());
-        });
-
         test('then it is visible in the DOM', () => {
             expect(dialog.hidden).to.equal(false);
             expect(dialog.getAttribute('aria-hidden')).to.equal('false');
@@ -75,15 +71,12 @@ describe('given the dialog is in the default state', () => {
         });
 
         test('then <body> is not scrollable', () => {
-            expect(document.body.style.overflow).to.equal('hidden');
+            expect(document.body.getAttribute('style')).to.contain('overflow:hidden;');
         });
 
-        test('then it traps focus', (done) => {
+        test('then it traps focus', () => {
             expect(dialog.classList.contains('keyboard-trap--active')).to.equal(true);
-            root.addEventListener('dialog-show', () => {
-                expect(document.activeElement.className).to.eql(close.className);
-                done();
-            });
+            expect(document.activeElement.className).to.eql(close.className);
         });
 
         if (!skipRerender) {
@@ -104,7 +97,6 @@ describe('given the dialog is in the open state', () => {
     let root;
     let dialog;
     let close;
-    let mask;
     let sibling;
 
     beforeEach(() => {
@@ -115,7 +107,6 @@ describe('given the dialog is in the open state', () => {
         root = widget.el;
         dialog = root.querySelector('.dialog');
         close = dialog.querySelector('.dialog__close');
-        mask = dialog.querySelector('.dialog__mask');
     });
 
     afterEach(() => widget.destroy());
@@ -131,21 +122,18 @@ describe('given the dialog is in the open state', () => {
         });
 
         test('then <body> is not scrollable', () => {
-            expect(document.body.style.overflow).to.equal('hidden');
+            expect(document.body.getAttribute('style')).to.contain('overflow:hidden;');
         });
 
-        test('then it traps focus', (done) => {
+        test('then it traps focus', () => {
             expect(dialog.classList.contains('keyboard-trap--active')).to.equal(true);
-            root.addEventListener('dialog-show', () => {
-                expect(document.activeElement.className).to.eql(close.className);
-                done();
-            });
+            expect(document.activeElement.className).to.eql(close.className);
         });
     });
 
     describe('when open is set to false on the DOM', () => {
         beforeEach((done) => {
-            widget.once('update', () => setTimeout(done));
+            widget.subscribeTo(root).once('dialog-close', done);
             root.open = false;
         });
 
@@ -154,7 +142,7 @@ describe('given the dialog is in the open state', () => {
 
     describe('when close is called on the widget', () => {
         beforeEach((done) => {
-            widget.once('update', () => setTimeout(done));
+            widget.subscribeTo(root).once('dialog-close', done);
             widget.close();
         });
 
@@ -163,7 +151,7 @@ describe('given the dialog is in the open state', () => {
 
     describe('when the close button is clicked', () => {
         beforeEach((done) => {
-            widget.once('update', () => setTimeout(done));
+            widget.subscribeTo(root).once('dialog-close', done);
             close.click();
         });
 
@@ -172,24 +160,20 @@ describe('given the dialog is in the open state', () => {
 
     describe('when the mask is clicked', () => {
         beforeEach((done) => {
-            widget.once('update', () => setTimeout(done));
-            mask.click();
+            widget.subscribeTo(root).once('dialog-close', done);
+            dialog.click(); // simulate clicking outside the dialog.
         });
 
         thenItIsClosed();
     });
 
     function thenItIsClosed(skipRerender) {
-        test('then the close event is called', (done) => {
-            root.addEventListener('dialog-close', () => done());
-        });
-
         test('then it is hidden in the DOM', () => {
             expect(dialog.hidden).to.equal(true);
         });
 
         test('then <body> is scrollable', () => {
-            expect(document.body.style.overflow).to.equal('');
+            expect(document.body.getAttribute('style')).to.equal(null);
         });
 
         test('then it\'s siblings are visible', () => {

@@ -3,10 +3,25 @@
         {
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [
-                "@ebay/skin/less"
+                "@ebay/skin/utility",
+                "@ebay/skin/less",
+                "@ebay/skin/icon"
             ]
         },
+        "require-run: nodelist-foreach-polyfill",
         "require: ./index.js",
-        "./style.less"
+        "./style.less",
+        {
+            "if-flag": "touch",
+            "dependencies": [
+                "./style-touch.less"
+            ]
+        },
+        {
+            "if": "flags.contains('no-touch') || !flags.contains('touch')",
+            "dependencies": [
+                "./style-no-touch.less"
+            ]
+        }
     ]
 }

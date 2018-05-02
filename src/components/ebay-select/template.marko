@@ -27,6 +27,7 @@
             role='option'
             class=['combobox__option', option.class]
             tabindex="-1"
+            ${option.htmlAttributes}
             w-on-click='handleOptionClick'
             w-preserve-attrs="tabindex,data-makeup-index"
             aria-selected=String(option.selected)

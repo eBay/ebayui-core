@@ -1,9 +1,8 @@
 
 <div class="dialog-placeholder" w-bind>
-    <div w-id="dialog" class=data.dialogClass hidden=!data.open role="dialog" w-preserve-attrs="hidden" ${data.htmlAttributes}>
-        <div class=data.maskClass w-id="mask" w-onclick="close"/>
+    <div w-id="dialog" class=data.dialogClass hidden=!data.open role="dialog" w-preserve-attrs="hidden" ${data.htmlAttributes} w-onclick="close">
         <div class=data.windowClass role="document">
-            <button class="dialog__close" type="button" aria-label=data.ariaLabelClose w-id="close" w-onclick="close">
+            <button class="dialog__close" type="button" aria-label=data.ariaLabelClose w-id="close">
                 <svg aria-hidden="true" focusable="false" height="17" width="17">
                     <path
                         fill="none"
@@ -15,7 +14,7 @@
                 </svg>
             </button>
 
-            <div class="dialog__body" w-body/>
+            <div class="dialog__body" w-id="body" w-body/>
         </div>
     </div>
 </div>
