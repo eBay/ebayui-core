@@ -111,7 +111,7 @@
         "@items <item>[]": {
             "@class": "string",
             "@current": "boolean",
-            "@disabled": "string",
+            "@disabled": "boolean",
             "@href": "string",
             "@type": "string",
             "@role": "string",
