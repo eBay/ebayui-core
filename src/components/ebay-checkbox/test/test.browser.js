@@ -1,0 +1,67 @@
+const sinon = require('sinon');
+const expect = require('chai').expect;
+const testUtils = require('../../../common/test-utils/browser');
+const renderer = require('../');
+
+let widget;
+
+function renderAndGetRoot(input) {
+    widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+    return document.querySelector('.checkbox');
+}
+
+describe('given checkbox button is enabled', () => {
+    let root;
+    beforeEach(() => {
+        root = renderAndGetRoot();
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when checkbox button is clicked', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('checkbox-change', spy);
+            testUtils.triggerEvent(root, 'click');
+        });
+
+        test('then it emits the event', () => {
+            expect(spy.calledOnce).to.equal(true);
+        });
+    });
+
+    describe('when checkbox button is clicked twice', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('checkbox-change', spy);
+            testUtils.triggerEvent(root, 'click');
+            testUtils.triggerEvent(root, 'click');
+        });
+
+        test('then it twice emits the event', () => {
+            expect(spy.calledTwice).to.equal(true);
+        });
+    });
+});
+
+describe('given checkbox button is disabled', () => {
+    let root;
+    beforeEach(() => {
+        root = renderAndGetRoot({ disabled: true });
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when checkbox button is clicked', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('checkbox-change', spy);
+            testUtils.triggerEvent(root, 'click');
+        });
+
+        test('then it doesn\'t emit the event', () => {
+            expect(spy.called).to.equal(false);
+        });
+    });
+});
