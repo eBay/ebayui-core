@@ -44,6 +44,7 @@
         "@class": "string",
         "@name": "string",
         "@grow": "boolean",
+        "@borderless": "boolean",
         "@*": "expression",
         "@options <option>[]": {
             "@class": "string",
@@ -63,7 +64,7 @@
         "@expanded": "boolean",
         "@reverse": "boolean",
         "@fix-width": "boolean",
-        "@auto-collapse": "boolean",
+        "@borderless": "boolean",
         "@*": "expression",
         "@items <item>[]": {
             "@class": "string",

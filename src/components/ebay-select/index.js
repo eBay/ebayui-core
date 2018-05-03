@@ -39,6 +39,7 @@ function getInitialState(input) {
         options,
         selected: selectedOption,
         grow: input.grow,
+        borderless: Boolean(input.borderless),
         htmlAttributes: processHtmlAttributes(input)
     };
 }
@@ -47,6 +48,10 @@ function getTemplateData(state) {
     const comboboxClass = ['combobox', state.class];
     const btnClass = [comboboxBtnClass];
     const optionsClass = [comboboxOptionsClass];
+
+    if (state.borderless) {
+        btnClass.push('combobox__control--borderless');
+    }
 
     return {
         class: comboboxClass,
