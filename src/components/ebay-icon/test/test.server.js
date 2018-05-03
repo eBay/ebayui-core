@@ -15,25 +15,36 @@ describe('icon', () => {
     });
 
     test('renders background type', context => {
-        const input = { type: 'background', name: 'arrow-left' };
+        const input = { type: 'background', name: 'mic' };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('span.icon.icon--arrow-left').length).to.equal(1);
+        expect($('span.icon.icon--mic').length).to.equal(1);
     });
 
     test('renders background type by default', context => {
-        const input = { name: 'arrow-left' };
+        const input = { name: 'mic' };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('span.icon.icon--arrow-left').length).to.equal(1);
+        expect($('span.icon.icon--mic').length).to.equal(1);
     });
 
     test('renders inline type', context => {
-        const input = { type: 'inline', name: 'arrow-left' };
+        const input = { type: 'inline', name: 'mic' };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('svg.icon.icon--arrow-left > use').length).to.equal(1);
+        expect($('svg[aria-hidden=true][focusable=false].icon.icon--mic > use').length).to.equal(1);
     });
 
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, '.icon');
+    test('renders inline type with accessibility text', context => {
+        const input = { type: 'inline', name: 'mic', accessibilityText: 'text' };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('svg[role=img][focusable=true].icon.icon--mic > use').length).to.equal(1);
+    });
+
+    test('handles pass-through html attributes on type=background', context => {
+        testUtils.testHtmlAttributes(context, '.icon', null, { type: 'background', name: 'mic' });
+    });
+
+    test('handles pass-through html attributes on type=inline', context => {
+        // NOTE: this simulates the icon transformer behavior which converts * attributes to their actual names
+        testUtils.testHtmlAttributes(context, '.icon', null, { type: 'inline', name: 'mic', 'aria-role': 'link' });
     });
 
     test('handles custom class', context => {
@@ -42,7 +53,7 @@ describe('icon', () => {
 });
 
 describe('transformer', () => {
-    const name = 'arrow-left';
+    const name = 'mic';
     const componentPath = `../internal/${name}.js`;
     function getTagString(type) {
         return {

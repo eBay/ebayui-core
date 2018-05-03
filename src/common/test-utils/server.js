@@ -25,15 +25,23 @@ function getCheerio(output) {
 }
 
 /**
- * Put input in single-entry array when specified (for marko nested tags)
- * @param {Object} input
- * @param {String} arrayKey
+ * Create input to be used for rendering through test utils
+ * @param {Object} input: additional input to use with test utils
+ * @param {String} arrayKey: if provided, assign input as a single-entry array (for marko nested tags)
+ * @param {String} baseInput: if provided, use as base for additional input
  */
-function setupInput(input, arrayKey) {
-    let newInput = input;
+
+function setupInput(input, arrayKey, baseInput) {
+    let newInput;
+
     if (arrayKey) {
         newInput = { [arrayKey]: [input] };
+    } else if (baseInput) {
+        newInput = Object.assign(baseInput, input);
+    } else {
+        newInput = input;
     }
+
     return newInput;
 }
 
@@ -48,8 +56,8 @@ function testCustomClass(context, selector, arrayKey, isPassThrough) {
     expect($(`${selector}.class1.class2`).length).to.equal(1);
 }
 
-function testHtmlAttributes(context, selector, arrayKey) {
-    const input = setupInput({ '*': { 'aria-role': 'link' } }, arrayKey);
+function testHtmlAttributes(context, selector, arrayKey, baseInput) {
+    const input = setupInput({ '*': { 'aria-role': 'link' } }, arrayKey, baseInput);
     const $ = getCheerio(context.render(input));
     expect($(`${selector}[aria-role=link]`).length).to.equal(1);
 }

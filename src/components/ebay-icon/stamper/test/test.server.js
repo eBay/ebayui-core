@@ -6,23 +6,30 @@ const testUtils = require('../../../../common/test-utils/server');
 describe('stamper', () => {
     const findIcons = stamper.privates.findIcons;
     const pageCache = stamper.privates.pageCache;
-    const currentFileNode = require.cache[__filename];
 
-    test('exit early for missing node id', () => {
-        findIcons(currentFileNode, undefined);
+    test('exit early for missing template path', () => {
+        const pageTemplateId = findIcons();
+        expect(pageTemplateId).to.equal(undefined);
         expect(pageCache).to.deep.equal({});
     });
 
     test('finds icons that have been required', () => {
         require('../../internal/arrow-left');
-        findIcons(currentFileNode, __filename);
+        const pageTemplateId = findIcons({
+            global: {
+                pageTemplate: {
+                    path: __filename
+                }
+            }
+        });
+        expect(pageTemplateId).to.equal(__filename);
         expect(pageCache).to.deep.equal({ [__filename]: ['arrow-left'] });
     });
 });
 
 describe('transformer', () => {
     test('transforms the body', () => {
-        const outputTemplate = testUtils.getTransformedTemplate(transformer, '<body>asdf</body>', './fixture.marko');
-        expect(outputTemplate).to.deep.equal('<body><ebay-icon-stamper/>asdf</body>');
+        const outputTemplate = testUtils.getTransformedTemplate(transformer, '<body>inner</body>', './fixture.marko');
+        expect(outputTemplate).to.deep.equal('<body><ebay-icon-stamper/>inner</body>');
     });
 });

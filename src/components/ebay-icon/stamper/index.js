@@ -33,7 +33,11 @@ function traverse(rootNode, fn) {
  * @param {*} pageTemplateNode: first require cache module of the page
  * @param {*} pageTemplateId: require cache ID of the page module
  */
-function findIcons(pageTemplateNode, pageTemplateId) {
+function findIcons(out) {
+    const pageTemplatePath = out && out.global && out.global.pageTemplate && out.global.pageTemplate.path || '';
+    const pageTemplateNode = require.cache[pageTemplatePath.replace('.marko.js', '.marko')];
+    const pageTemplateId = pageTemplateNode && pageTemplateNode.id;
+
     // only traverse icon paths once per page template
     if (pageTemplateId && !pageCache.hasOwnProperty(pageTemplateId)) {
         pageCache[pageTemplateId] = [];
@@ -44,23 +48,22 @@ function findIcons(pageTemplateNode, pageTemplateId) {
             }
         });
     }
+
+    return pageTemplateId;
 }
 
 // cache icon markup at app startup
-fs.readdirSync(`${__dirname}/markup`).forEach(file => {
+const markupPath = `${__dirname}/markup`;
+fs.readdirSync(markupPath).forEach(file => {
     if (file.endsWith('.html')) {
         const iconName = file.replace('.html', '');
-        markupCache[iconName] = fs.readFileSync(`${__dirname}/markup/${file}`, 'utf-8').replace(/\n/g, '');
+        markupCache[iconName] = fs.readFileSync(`${markupPath}/${file}`, 'utf-8').replace(/\n/g, '');
     }
 });
 
 module.exports = (input, out) => {
-    const pageTemplatePath = out.global && out.global.pageTemplate && out.global.pageTemplate.path || '';
-    const pageTemplateNode = require.cache[pageTemplatePath.replace('.marko.js', '.marko')];
-    const pageTemplateId = pageTemplateNode && pageTemplateNode.id;
-
-    findIcons(pageTemplateNode, pageTemplateId);
-    template.render({ stamp: pageCache[pageTemplateId].map(iconName => markupCache[iconName]).join('') }, out);
+    const pageTemplateId = findIcons(out);
+    template.render({ stamp: (pageCache[pageTemplateId] || []).map(iconName => markupCache[iconName]).join('') }, out);
 };
 
 module.exports.privates = { findIcons, pageCache };

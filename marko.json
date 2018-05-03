@@ -133,6 +133,7 @@
         "@class": "string",
         "@type": "string",
         "@name": "string",
+        "@accessibility-text": "string",
         "@*": "expression"
     },
     "<ebay-icon-arrow-left>": {
