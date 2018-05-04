@@ -15,6 +15,6 @@ Name | Type | Stateful | Description
 
 ## ebay-radio Events
 
-Event | Description
---- | ---
-`radio-change` | click
+Event | Date | Description
+--- | --- | --
+`radio-change` | `{ originalEvent, selected }` | selected value
