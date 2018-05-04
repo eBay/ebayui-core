@@ -33,6 +33,7 @@ Name | Required | Type | Stateful | Description
 `class` | No | String | No | custom class
 `name` | Yes | String | No | used for the `name` attribute of the native `<select>`
 `selected` | n/a | Number | Yes | allows you to set the selected index option to `selected`
+`borderless` | No | Boolean | No | whether button has borders
 
 ### ebay-select Events
 

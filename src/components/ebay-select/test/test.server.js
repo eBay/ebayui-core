@@ -41,6 +41,19 @@ describe('select', () => {
         expect($('.combobox__option[role=option][aria-selected="true"]:nth-child(2)').length).to.equal(1);
     });
 
+    test('renders with borderless=true', context => {
+        const input = { borderless: true, options };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.combobox__control.combobox__control--borderless').length).to.equal(1);
+    });
+
+    test('renders with borderless=false', context => {
+        const input = { borderless: false, options };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.combobox__control').length).to.equal(1);
+        expect($('.combobox__control.combobox__control--borderless').length).to.equal(0);
+    });
+
     test('handles pass-through html attributes', context => {
         testUtils.testHtmlAttributes(context, 'span.combobox');
     });

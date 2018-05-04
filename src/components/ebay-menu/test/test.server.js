@@ -72,6 +72,19 @@ describe('menu', () => {
         expect($('.fake-menu__items.fake-menu__items--fix-width').length).to.equal(0);
     });
 
+    test('renders with borderless=true', context => {
+        const input = { borderless: true };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.expand-btn.expand-btn--borderless').length).to.equal(1);
+    });
+
+    test('renders with borderless=false', context => {
+        const input = { borderless: false };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.expand-btn').length).to.equal(1);
+        expect($('.expand-btn.expand-btn--borderless').length).to.equal(0);
+    });
+
     test('handles pass-through html attributes', context => {
         testUtils.testHtmlAttributes(context, 'span.menu');
     });
