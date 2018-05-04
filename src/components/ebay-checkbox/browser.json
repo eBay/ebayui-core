@@ -2,11 +2,10 @@
     "dependencies": [
         {
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/checkbox"
-        },
-        {
-            "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/field"
+            "dependencies": [
+                "@ebay/skin/checkbox",
+                "@ebay/skin/field"
+            ]
         },
         "require: marko-widgets",
         "require: ./index.js"

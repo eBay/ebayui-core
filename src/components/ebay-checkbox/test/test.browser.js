@@ -12,8 +12,10 @@ function renderAndGetRoot(input) {
 
 describe('given checkbox button is enabled', () => {
     let root;
+    let input;
     beforeEach(() => {
-        root = renderAndGetRoot();
+        root = renderAndGetRoot({ '*': { value: 'food' } });
+        input = root.querySelector('.checkbox__control');
     });
     afterEach(() => widget.destroy());
 
@@ -22,25 +24,14 @@ describe('given checkbox button is enabled', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('checkbox-change', spy);
-            testUtils.triggerEvent(root, 'click');
+            testUtils.triggerEvent(input, 'click');
         });
 
         test('then it emits the event', () => {
             expect(spy.calledOnce).to.equal(true);
-        });
-    });
-
-    describe('when checkbox button is clicked twice', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('checkbox-change', spy);
-            testUtils.triggerEvent(root, 'click');
-            testUtils.triggerEvent(root, 'click');
-        });
-
-        test('then it twice emits the event', () => {
-            expect(spy.calledTwice).to.equal(true);
+            const eventData = spy.getCall(0).args[0];
+            expect(eventData.originalEvent instanceof Event).to.equal(true);
+            expect(eventData.selected).to.equal('food');
         });
     });
 });
