@@ -3,7 +3,7 @@
 ## ebay-radio Usage
 
 ```marko
-<ebay-radio></ebay-radio>
+<ebay-radio/>
 ```
 
 ## ebay-radio Attributes
