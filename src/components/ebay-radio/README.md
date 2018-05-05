@@ -10,11 +10,12 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`class` | String | No | custom class
 `disabled` | Boolean | Yes |
+
+All the HTML attributes like `value`, `name`, etc. are applied to the input tag. `class` gets applied to the root tag.
 
 ## ebay-radio Events
 
-Event | Date | Description
+Event | Data | Description
 --- | --- | --
 `radio-change` | `{ originalEvent, selected }` | selected value

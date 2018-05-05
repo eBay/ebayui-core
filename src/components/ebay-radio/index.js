@@ -17,9 +17,9 @@ function getTemplateData(state) {
     return state;
 }
 
-function handleClick(e) {
+function handleClick(originalEvent) {
     if (!this.state.disabled) {
-        emitAndFire(this, 'radio-change', { originalEvent: e, selected: e.target.value });
+        emitAndFire(this, 'radio-change', { originalEvent, selected: originalEvent.target.value });
     }
 }
 
