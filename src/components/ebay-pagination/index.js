@@ -107,12 +107,22 @@ function handlePageClick(event) {
 
 function handleNextPage(event) {
     eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-next', { el: event.target });
+    emitAndFire(this, 'pagination-next', { el: getCorrectElement(event) });
 }
 
 function handlePreviousPage(event) {
     eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-previous', { el: event.target });
+    emitAndFire(this, 'pagination-previous', { el: getCorrectElement(event) });
+}
+
+/**
+ * gets the correct target for pagination arrow button
+ */
+function getCorrectElement(event) {
+    if (event.target.nodeName === 'SPAN') {
+        return event.target.parentNode;
+    }
+    return event.target;
 }
 
 /**
@@ -144,6 +154,7 @@ module.exports = require('marko-widgets').defineComponent({
     handlePageClick,
     handleNextPage,
     handlePreviousPage,
+    getCorrectElement,
     handlePageKeyDown,
     handleNextPageKeyDown,
     handlePreviousPageKeyDown,
