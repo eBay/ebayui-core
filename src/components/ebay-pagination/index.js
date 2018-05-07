@@ -119,7 +119,7 @@ function handlePreviousPage(event) {
  * gets the correct target for pagination arrow button
  */
 function getCorrectElement(event) {
-    if (event.target.nodeName === 'SPAN') {
+    if (event.target.nodeName.toUpperCase() === 'SPAN') {
         return event.target.parentNode;
     }
     return event.target;
