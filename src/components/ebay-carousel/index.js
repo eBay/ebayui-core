@@ -85,6 +85,7 @@ function init() {
 
     this.subscribeTo(resizeUtil).on('resize', refresh.bind(this));
     this.refresh();
+    this.refresh(); // FIXME: currently needs a second call in v4
 }
 
 function refresh() {
