@@ -3,6 +3,7 @@ const template = require('./template.marko');
 
 const pageCache = {};
 const markupCache = {};
+const markoFileReg = /\.marko(?:\.js)?$/;
 
 /**
  * Traverse the require tree, starting at a specified rootNode
@@ -35,21 +36,32 @@ function traverse(rootNode, fn) {
  */
 function findIcons(out) {
     const pageTemplatePath = out && out.global && out.global.pageTemplate && out.global.pageTemplate.path || '';
-    const pageTemplateNode = require.cache[pageTemplatePath.replace('.marko.js', '.marko')];
-    const pageTemplateId = pageTemplateNode && pageTemplateNode.id;
+    const pageTemplateNode = require.cache[pageTemplatePath] || require.cache[pageTemplatePath.replace('.marko.js', '.marko')];
 
-    // only traverse icon paths once per page template
-    if (pageTemplateId && !pageCache.hasOwnProperty(pageTemplateId)) {
-        pageCache[pageTemplateId] = [];
-        traverse(pageTemplateNode, currentNode => {
-            if (currentNode.id.includes('/components/ebay-icon/internal/')) {
-                const iconName = currentNode.id.substring(currentNode.id.lastIndexOf('/') + 1).replace('.js', '');
-                pageCache[pageTemplateId].push(iconName);
-            }
-        });
+    if (!pageTemplateNode) {
+        return;
     }
 
-    return pageTemplateId;
+    const pageTemplateId = pageTemplateNode.id;
+    let icons = pageCache[pageTemplateId];
+
+    // only traverse icon paths once per page template
+    if (icons) {
+        return icons;
+    }
+
+    icons = pageCache[pageTemplateId] = pageTemplateNode._ebay_icons || [];
+    traverse(pageTemplateNode, currentNode => {
+        if (markoFileReg.test(currentNode.id)) {
+            const foundIcons = currentNode.exports && currentNode.exports._ebay_icons;
+
+            if (foundIcons) {
+                icons.push(...foundIcons);
+            }
+        }
+    });
+
+    return icons;
 }
 
 // cache icon markup at app startup
@@ -62,8 +74,11 @@ fs.readdirSync(markupPath).forEach(file => {
 });
 
 module.exports = (input, out) => {
-    const pageTemplateId = findIcons(out);
-    template.render({ stamp: (pageCache[pageTemplateId] || []).map(iconName => markupCache[iconName]).join('') }, out);
+    const icons = findIcons(out);
+
+    if (icons && icons.length) {
+        template.render({ stamp: icons.map(iconName => markupCache[iconName]).join('') }, out);
+    }
 };
 
 module.exports.privates = { findIcons, pageCache };
