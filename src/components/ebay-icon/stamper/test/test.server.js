@@ -8,22 +8,25 @@ describe('stamper', () => {
     const pageCache = stamper.privates.pageCache;
 
     test('exit early for missing template path', () => {
-        const pageTemplateId = findIcons();
-        expect(pageTemplateId).to.equal(undefined);
+        const icons = findIcons();
+        expect(icons).to.equal(undefined);
         expect(pageCache).to.deep.equal({});
     });
 
-    test('finds icons that have been required', () => {
-        require('../../internal/arrow-left');
-        const pageTemplateId = findIcons({
-            global: {
-                pageTemplate: {
-                    path: __filename
+    // run twice; second time invokes cache
+    [0, 0].forEach(() => {
+        test('finds icons that have been required', () => {
+            require('../../examples/3-inline-custom-color/template.marko');
+            const icons = findIcons({
+                global: {
+                    pageTemplate: {
+                        path: __filename
+                    }
                 }
-            }
+            });
+            expect(icons).to.deep.equal(['clear']);
+            expect(pageCache).to.deep.equal({ [__filename]: ['clear'] });
         });
-        expect(pageTemplateId).to.equal(__filename);
-        expect(pageCache).to.deep.equal({ [__filename]: ['arrow-left'] });
     });
 });
 

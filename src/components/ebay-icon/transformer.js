@@ -17,6 +17,8 @@ function transform(el, context) {
 
         iconList.push(builder.literal(iconName));
     }
+
+    return context;
 }
 
 module.exports = transform;

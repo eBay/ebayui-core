@@ -62,7 +62,7 @@ function testHtmlAttributes(context, selector, arrayKey, baseInput) {
     expect($(`${selector}[aria-role=link]`).length).to.equal(1);
 }
 
-function getTransformedTemplate(transformer, srcString, componentPath) {
+function getTransformerData(srcString, componentPath) {
     const templateAST = markoCompiler.parseRaw(
         srcString,
         componentPath
@@ -73,13 +73,24 @@ function getTransformedTemplate(transformer, srcString, componentPath) {
         Builder.DEFAULT_BUILDER
     );
 
+    return { context, templateAST };
+}
+
+function getTransformedTemplate(transformer, srcString, componentPath) {
+    const { context, templateAST } = getTransformerData(srcString, componentPath);
     transformer(templateAST.body.array[0], context);
     return prettyPrint(templateAST).replace(/\n/g, '').replace(/\s{4}/g, '');
+}
+
+function runTransformer(transformer, srcString, componentPath) {
+    const { context, templateAST } = getTransformerData(srcString, componentPath);
+    return transformer(templateAST.body.array[0], context);
 }
 
 module.exports = {
     getCheerio,
     testCustomClass,
     testHtmlAttributes,
-    getTransformedTemplate
+    getTransformedTemplate,
+    runTransformer
 };

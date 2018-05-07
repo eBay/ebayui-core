@@ -18,16 +18,6 @@ function getTemplateData(state, input) {
         } else {
             accessibilityAttributes = { 'aria-hidden': 'true', focusable: 'false' };
         }
-
-        // FIXME: hack to include * attributes, because they get mangled in the transformer
-        input['*'] = {};
-        const nonHtmlAttributes = ['type', 'name', 'class', 'accessibilityText', '*'];
-        Object.keys(input).forEach(attributeKey => {
-            if (!nonHtmlAttributes.includes(attributeKey)) {
-                input['*'][attributeKey] = input[attributeKey];
-                delete input[attributeKey];
-            }
-        });
     }
 
     return {

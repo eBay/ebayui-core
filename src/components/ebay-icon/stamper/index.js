@@ -36,7 +36,8 @@ function traverse(rootNode, fn) {
  */
 function findIcons(out) {
     const pageTemplatePath = out && out.global && out.global.pageTemplate && out.global.pageTemplate.path || '';
-    const pageTemplateNode = require.cache[pageTemplatePath] || require.cache[pageTemplatePath.replace('.marko.js', '.marko')];
+    const pageTemplatePathMarko = pageTemplatePath.replace('.marko.js', '.marko');
+    const pageTemplateNode = require.cache[pageTemplatePath] || require.cache[pageTemplatePathMarko];
 
     if (!pageTemplateNode) {
         return;
@@ -50,7 +51,7 @@ function findIcons(out) {
         return icons;
     }
 
-    icons = pageCache[pageTemplateId] = pageTemplateNode._ebay_icons || [];
+    icons = pageTemplateNode._ebay_icons || [];
     traverse(pageTemplateNode, currentNode => {
         if (markoFileReg.test(currentNode.id)) {
             const foundIcons = currentNode.exports && currentNode.exports._ebay_icons;
@@ -61,7 +62,10 @@ function findIcons(out) {
         }
     });
 
-    return icons;
+    // remove duplicates
+    pageCache[pageTemplateId] = icons.filter((value, index) => icons.indexOf(value) === index);
+
+    return pageCache[pageTemplateId];
 }
 
 // cache icon markup at app startup
@@ -75,7 +79,6 @@ fs.readdirSync(markupPath).forEach(file => {
 
 module.exports = (input, out) => {
     const icons = findIcons(out);
-
     if (icons && icons.length) {
         template.render({ stamp: icons.map(iconName => markupCache[iconName]).join('') }, out);
     }

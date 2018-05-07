@@ -1,50 +1,40 @@
-const fs = require('fs');
 const expect = require('chai').expect;
-const iconComponent = require('../');
 const transformer = require('../transformer');
 const testUtils = require('../../../common/test-utils/server');
 
-describe('icon', () => {
-    test('maps each internal component to the icon component', () => {
-        fs.readdirSync(`${__dirname}/../internal/`).forEach(file => {
-            if (file.endsWith('.js')) {
-                const internalComponent = require(`${__dirname}/../internal/${file}`);
-                expect(internalComponent).to.deep.equal(iconComponent);
-            }
-        });
-    });
+const iconName = 'mic';
 
+describe('icon', () => {
     test('renders background type', context => {
-        const input = { type: 'background', name: 'mic' };
+        const input = { type: 'background', name: iconName };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('span.icon.icon--mic').length).to.equal(1);
+        expect($(`span.icon.icon--${iconName}`).length).to.equal(1);
     });
 
     test('renders background type by default', context => {
-        const input = { name: 'mic' };
+        const input = { name: iconName };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('span.icon.icon--mic').length).to.equal(1);
+        expect($(`span.icon.icon--${iconName}`).length).to.equal(1);
     });
 
     test('renders inline type', context => {
-        const input = { type: 'inline', name: 'mic' };
+        const input = { type: 'inline', name: iconName };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('svg[aria-hidden=true][focusable=false].icon.icon--mic > use').length).to.equal(1);
+        expect($(`svg[aria-hidden=true][focusable=false].icon.icon--${iconName} > use`).length).to.equal(1);
     });
 
     test('renders inline type with accessibility text', context => {
-        const input = { type: 'inline', name: 'mic', accessibilityText: 'text' };
+        const input = { type: 'inline', name: iconName, accessibilityText: 'text' };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('svg[role=img][focusable=true].icon.icon--mic > use').length).to.equal(1);
+        expect($(`svg[role=img][focusable=true].icon.icon--${iconName} > use`).length).to.equal(1);
     });
 
     test('handles pass-through html attributes on type=background', context => {
-        testUtils.testHtmlAttributes(context, '.icon', null, { type: 'background', name: 'mic' });
+        testUtils.testHtmlAttributes(context, '.icon', null, { type: 'background', name: iconName });
     });
 
     test('handles pass-through html attributes on type=inline', context => {
-        // NOTE: this simulates the icon transformer behavior which converts * attributes to their actual names
-        testUtils.testHtmlAttributes(context, '.icon', null, { type: 'inline', name: 'mic', 'aria-role': 'link' });
+        testUtils.testHtmlAttributes(context, '.icon', null, { type: 'inline', name: iconName });
     });
 
     test('handles custom class', context => {
@@ -53,24 +43,21 @@ describe('icon', () => {
 });
 
 describe('transformer', () => {
-    const name = 'mic';
-    const componentPath = `../internal/${name}.js`;
+    const componentPath = '../index.js';
     function getTagString(type) {
-        return {
-            before: `<ebay-icon name="${name}" type="${type}"/>`,
-            after: `<ebay-icon-${name} name="${name}" type="${type}"/>`
-        };
+        return `<ebay-icon name="${iconName}" type="${type}"/>`;
     }
 
     test('transforms an inline icon', () => {
         const tagString = getTagString('inline');
-        const outputTemplate = testUtils.getTransformedTemplate(transformer, tagString.before, componentPath);
-        expect(outputTemplate).to.deep.equal(tagString.after);
+        const context = testUtils.runTransformer(transformer, tagString, componentPath);
+        expect(context._ebay_icons.length).to.equal(1);
+        expect(context._ebay_icons[0].value).to.equal(iconName);
     });
 
     test('does not transform a background icon', () => {
         const tagString = getTagString('background');
-        const outputTemplate = testUtils.getTransformedTemplate(transformer, tagString.before, componentPath);
-        expect(outputTemplate).to.deep.equal(tagString.before);
+        const context = testUtils.runTransformer(transformer, tagString, componentPath);
+        expect(context._ebay_icons).to.equal(undefined);
     });
 });
