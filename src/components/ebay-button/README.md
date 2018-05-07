@@ -20,6 +20,6 @@ Name | Type | Stateful | Description
 
 ## ebay-button Events
 
-Event | Description
---- | ---
-`button-click` | click
+Event | Data | Description
+--- | --- | ---
+`button-click` | `{ originalEvent }` | click
