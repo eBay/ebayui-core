@@ -13,7 +13,13 @@ function camelToKebab(s) {
  */
 function processHtmlAttributes(input = {}) {
     const attributes = {};
-    const obj = input['*'];
+    const htmlAttributes = input.htmlAttributes;
+    const wildcardAttributes = input['*'];
+
+    let obj = htmlAttributes || wildcardAttributes;
+    if (htmlAttributes && wildcardAttributes) {
+        obj = Object.assign(wildcardAttributes, htmlAttributes);
+    }
 
     if (obj) {
         Object.keys(obj).forEach((key) => {
