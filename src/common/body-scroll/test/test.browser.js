@@ -26,8 +26,8 @@ describe('body-scroll', () => {
         expect(body.getAttribute('style'))
             .to.contain('overflow:hidden')
             .and.to.contain('position:fixed')
-            .and.to.contain('margin-top:0px')
-            .and.to.contain('margin-left:0px');
+            .and.to.not.contain('margin-top')
+            .and.to.not.contain('margin-left');
 
         bodyScroll.restore();
         expect(body.getAttribute('style')).to.equal(null);
@@ -41,7 +41,7 @@ describe('body-scroll', () => {
             .to.contain('overflow:hidden')
             .and.to.contain('position:fixed')
             .and.to.contain('margin-top:-10px')
-            .and.to.contain('margin-left:0px');
+            .and.to.not.contain('margin-left');
 
         bodyScroll.restore();
         expect(body.getAttribute('style')).to.equal(null);

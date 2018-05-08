@@ -92,11 +92,14 @@ function trap(opts) {
 
             if (isTrapped) {
                 focusEl.focus();
-                bodyScroll.prevent();
                 emitAndFire(this, 'dialog-show');
             } else {
                 bodyScroll.restore();
                 emitAndFire(this, 'dialog-close');
+
+                // Reset dialog scroll position lazily to avoid jank.
+                // Note since the dialog is not in the dom at this point none of the scroll methods will work.
+                setTimeout(() => this.el.replaceChild(this.dialogEl, this.dialogEl), 20);
             }
         };
 
@@ -106,6 +109,7 @@ function trap(opts) {
 
         if (isTrapped) {
             if (!isFirstRender) {
+                bodyScroll.prevent();
                 this.cancelTransition = transition({
                     el: this.dialogEl,
                     className: 'dialog--show',
