@@ -80,7 +80,7 @@
     "karma-mocha": "^1.3.0",
     "lasso": "^3.1.2",
     "lasso-babel-transform": "^1.0.2",
-    "lasso-less": "^2.4.7",
+    "lasso-less": "^3.0.0",
     "lasso-marko": "^2.4.0",
     "lintspaces-cli": "^0.6.0",
     "marko": "^3",
