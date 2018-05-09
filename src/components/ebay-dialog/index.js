@@ -87,6 +87,7 @@ function trap(opts) {
     }
 
     if (wasToggled) {
+        cancelAsync.call(this);
         const onFinishTransition = () => {
             this.cancelTransition = undefined;
 
@@ -99,13 +100,12 @@ function trap(opts) {
 
                 // Reset dialog scroll position lazily to avoid jank.
                 // Note since the dialog is not in the dom at this point none of the scroll methods will work.
-                setTimeout(() => this.el.replaceChild(this.dialogEl, this.dialogEl), 20);
+                this.cancelScrollReset = setTimeout(() => {
+                    this.el.replaceChild(this.dialogEl, this.dialogEl);
+                    this.cancelScrollReset = undefined;
+                }, 20);
             }
         };
-
-        if (this.cancelTransition) {
-            this.cancelTransition();
-        }
 
         if (isTrapped) {
             if (!isFirstRender) {
@@ -147,6 +147,7 @@ function release() {
 }
 
 function destroy() {
+    cancelAsync.call(this);
     release.call(this);
 
     if (this.isTrapped) {
@@ -164,6 +165,18 @@ function close(ev) {
     }
 
     this.setState('open', false);
+}
+
+function cancelAsync() {
+    if (this.cancelScrollReset) {
+        clearTimeout(this.cancelScrollReset);
+        this.cancelScrollReset = undefined;
+    }
+
+    if (this.cancelTransition) {
+        this.cancelTransition();
+        this.cancelTransition = undefined;
+    }
 }
 
 module.exports = markoWidgets.defineComponent({
