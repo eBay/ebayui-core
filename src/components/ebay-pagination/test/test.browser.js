@@ -8,8 +8,10 @@ describe('given the menu is in the default state with links', () => {
     let widget;
     let root;
     let previousButton;
+    let previousButtonInner;
     let pageItem;
     let nextButton;
+    let nextButtonInner;
 
     beforeEach(() => {
         widget = renderer.renderSync(mock.hijax).appendTo(document.body).getWidget();
@@ -17,6 +19,8 @@ describe('given the menu is in the default state with links', () => {
         previousButton = root.querySelector('.pagination__previous');
         nextButton = root.querySelector('.pagination__next');
         pageItem = root.querySelector('.pagination__item');
+        nextButtonInner = nextButton.querySelector('span');
+        previousButtonInner = previousButton.querySelector('span');
     });
     afterEach(() => widget.destroy());
 
@@ -34,6 +38,21 @@ describe('given the menu is in the default state with links', () => {
         });
     });
 
+    describe('when an previous button\'s inner span is clicked', () => {
+        let spy;
+        beforeEach((done) => {
+            spy = sinon.spy();
+            widget.on('pagination-previous', spy);
+            testUtils.triggerEvent(previousButtonInner, 'click');
+            setTimeout(done);
+        });
+
+        test('then it emits the pagination-previous event with correct data', () => {
+            expect(spy.calledOnce).to.equal(true);
+            expect(Object.keys(spy.args[0][0])).to.deep.equal(['el']);
+        });
+    });
+
     describe('when the next button is clicked', () => {
         let spy;
         beforeEach(() => {
@@ -43,6 +62,21 @@ describe('given the menu is in the default state with links', () => {
         });
 
         test('then it emits the marko event called pagination-next', () => {
+            expect(spy.calledOnce).to.equal(true);
+            expect(Object.keys(spy.args[0][0])).to.deep.equal(['el']);
+        });
+    });
+
+    describe('when an next button\'s inner span is clicked', () => {
+        let spy;
+        beforeEach((done) => {
+            spy = sinon.spy();
+            widget.on('pagination-next', spy);
+            testUtils.triggerEvent(nextButtonInner, 'click');
+            setTimeout(done);
+        });
+
+        test('then it emits the pagination-next event with correct data', () => {
             expect(spy.calledOnce).to.equal(true);
             expect(Object.keys(spy.args[0][0])).to.deep.equal(['el']);
         });
