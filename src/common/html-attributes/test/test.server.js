@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const processHtmlAttributes = require('../');
 
-['htmlAttributes', '*'].forEach(key => {
+['*', 'htmlAttributes'].forEach(key => {
     test(`creates attributes object based on ${key}`, () => {
         const input = { [key]: { b: 2, ariaRole: 'link' } };
         const htmlAttributes = { b: 2, 'aria-role': 'link' };
