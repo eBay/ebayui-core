@@ -4,9 +4,8 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
 
 function getInitialState(input) {
-    const classes = ['checkbox', input.class];
     return {
-        classes,
+        classes: ['checkbox', input.class],
         disabled: Boolean(input.disabled),
         htmlAttributes: processHtmlAttributes(input)
     };

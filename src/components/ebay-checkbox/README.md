@@ -10,9 +10,9 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`disabled` | Boolean | Yes |
+`disabled` | Boolean | No |
 
-All the HTML attributes like `value`, `name` etc. are applied to the input tag. `class` attribute would be applied to the root tag.
+Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 
 ## ebay-checkbox Events
 
