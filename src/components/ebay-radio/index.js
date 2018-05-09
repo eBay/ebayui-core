@@ -4,10 +4,8 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
 
 function getInitialState(input) {
-    const classes = ['radio', input.class];
-
     return {
-        classes,
+        classes: ['radio', input.class],
         disabled: Boolean(input.disabled),
         htmlAttributes: processHtmlAttributes(input)
     };
