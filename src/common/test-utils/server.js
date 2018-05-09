@@ -35,7 +35,7 @@ function testCustomClass(context, selector, arrayKey, isPassThrough) {
 
 function testHtmlAttributes(context, selector, arrayKey) {
     // check that each method is correctly supported
-    ['htmlAttributes', '*'].forEach(key => {
+    ['*', 'htmlAttributes'].forEach(key => {
         const input = setupInput({ [key]: { 'aria-role': 'link' } }, arrayKey);
         const $ = getCheerio(context.render(input));
         expect($(`${selector}[aria-role=link]`).length).to.equal(1);

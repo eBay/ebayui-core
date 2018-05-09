@@ -92,16 +92,16 @@ Example of static usage:
 <ebay-button id="my-button"/>
 ```
 
-For using pass-through attributes dynamically, they should be sent through the `htmlAttributes` attribute:
+For using pass-through attributes dynamically, they should be sent through the `html-attributes` attribute:
 ```marko
-<!-- data.htmlAttributes = {id: 'my-button'} -->
-<ebay-button htmlAttributes=data.htmlAttributes/>
+<!-- data.htmlAttributes = { id: 'my-button' } -->
+<ebay-button html-attributes=data.htmlAttributes/>
 ```
 
-Static and dynamic pass-through attributes can be used simulatenously (htmlAttributes takes precedence in conflicts):
+Static and dynamic pass-through attributes can be used simulatenously (html-attributes takes precedence in conflicts):
 ```marko
-<!-- data.htmlAttributes = {id: 'my-button'} -->
-<ebay-button htmlAttributes=data.htmlAttributes type="submit"/>
+<!-- data.htmlAttributes = { id: 'my-button' } -->
+<ebay-button html-attributes=data.htmlAttributes type="submit"/>
 ```
 
 ### Events

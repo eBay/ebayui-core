@@ -59,6 +59,7 @@
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "browser-refresh": "^1.7.2",
     "chai": "^4.1.2",

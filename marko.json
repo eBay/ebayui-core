@@ -2,7 +2,7 @@
     "<ebay-button>": {
         "renderer": "./src/components/ebay-button/index.js",
         "@*": "expression",
-        "@htmlAttributes": "expression",
+        "@html-attributes": "expression",
         "@class": "string",
         "@disabled": "boolean",
         "@partially-disabled": "boolean",
@@ -15,7 +15,7 @@
         "renderer": "./src/components/ebay-carousel/index.js",
         "transformer": "./src/common/transformer/index.js",
         "@*": "expression",
-        "@htmlAttributes": "expression",
+        "@html-attributes": "expression",
         "@class": "string",
         "@index": "string",
         "@type": "string",
@@ -28,14 +28,14 @@
         "@accessibility-other": "string",
         "@items <item>[]": {
             "@*": "expression",
-            "@htmlAttributes": "expression"
+            "@html-attributes": "expression"
         }
     },
     "<ebay-carousel-item>": {},
     "<ebay-dialog>": {
         "renderer": "./src/components/ebay-dialog/index.js",
         "@*": "expression",
-        "@htmlAttributes": "expression",
+        "@html-attributes": "expression",
         "@class": "string",
         "@open": "boolean",
         "@type": "string",
@@ -46,14 +46,14 @@
         "renderer": "./src/components/ebay-select/index.js",
         "transformer": "./src/common/transformer/index.js",
         "@*": "expression",
-        "@htmlAttributes": "expression",
+        "@html-attributes": "expression",
         "@class": "string",
         "@name": "string",
         "@grow": "boolean",
         "@borderless": "boolean",
         "@options <option>[]": {
             "@*": "expression",
-            "@htmlAttributes": "expression",
+            "@html-attributes": "expression",
             "@class": "string",
             "@value": "string",
             "@label": "string",
@@ -65,7 +65,7 @@
         "renderer": "./src/components/ebay-menu/index.js",
         "transformer": "./src/common/transformer/index.js",
         "@*": "expression",
-        "@htmlAttributes": "expression",
+        "@html-attributes": "expression",
         "@class": "string",
         "@type": "string",
         "@label": "string",
@@ -75,7 +75,7 @@
         "@borderless": "boolean",
         "@items <item>[]": {
             "@*": "expression",
-            "@htmlAttributes": "expression",
+            "@html-attributes": "expression",
             "@class": "string",
             "@href": "string",
             "@type": "string",
@@ -87,7 +87,7 @@
     "<ebay-notice>": {
         "renderer": "./src/components/ebay-notice/index.js",
         "@*": "expression",
-        "@htmlAttributes": "expression",
+        "@html-attributes": "expression",
         "@class": "string",
         "@type": "string",
         "@heading-level": "string",
@@ -101,14 +101,14 @@
         "renderer": "./src/components/ebay-breadcrumb/index.js",
         "transformer": "./src/common/transformer/index.js",
         "@*": "expression",
-        "@htmlAttributes": "expression",
+        "@html-attributes": "expression",
         "@class": "string",
         "@heading-text": "string",
         "@heading-level": "string",
         "@hijax": "boolean",
         "@items <item>[]": {
             "@*": "expression",
-            "@htmlAttributes": "expression",
+            "@html-attributes": "expression",
             "@href": "string"
         }
     },
@@ -117,7 +117,7 @@
         "renderer": "./src/components/ebay-pagination/index.js",
         "transformer": "./src/common/transformer/index.js",
         "@*": "expression",
-        "@htmlAttributes": "expression",
+        "@html-attributes": "expression",
         "@class": "string",
         "@accessibility-prev": "string",
         "@accessibility-next": "string",
@@ -125,7 +125,7 @@
         "@hijax": "boolean",
         "@items <item>[]": {
             "@*": "expression",
-            "@htmlAttributes": "expression",
+            "@html-attributes": "expression",
             "@class": "string",
             "@current": "boolean",
             "@disabled": "boolean",
