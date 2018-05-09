@@ -71,6 +71,8 @@ function init() {
     this.pageContainerEl = this.el.querySelector('.pagination__items');
     this.pageEls = this.pageContainerEl.children;
     this.containerEl = this.el;
+    this.previousPageEl = this.el.querySelector('.pagination__previous');
+    this.nextPageEl = this.el.querySelector('.pagination__next');
     this.subscribeTo(eventUtils.resizeUtil).on('resize', refresh.bind(this));
     this.refresh();
 }
@@ -107,22 +109,12 @@ function handlePageClick(event) {
 
 function handleNextPage(event) {
     eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-next', { el: getCorrectElement(event) });
+    emitAndFire(this, 'pagination-next', { el: this.nextPageEl });
 }
 
 function handlePreviousPage(event) {
     eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-previous', { el: getCorrectElement(event) });
-}
-
-/**
- * gets the correct target for pagination arrow button
- */
-function getCorrectElement(event) {
-    if (event.target.nodeName.toUpperCase() === 'SPAN') {
-        return event.target.parentNode;
-    }
-    return event.target;
+    emitAndFire(this, 'pagination-previous', { el: this.previousPageEl });
 }
 
 /**
@@ -154,7 +146,6 @@ module.exports = require('marko-widgets').defineComponent({
     handlePageClick,
     handleNextPage,
     handlePreviousPage,
-    getCorrectElement,
     handlePageKeyDown,
     handleNextPageKeyDown,
     handlePreviousPageKeyDown,
