@@ -101,25 +101,25 @@ function update_index() { // eslint-disable-line camelcase
     this.performSlide();
 }
 
-function handleNext() {
+function handleNext(originalEvent) {
     if (!this.state.nextControlDisabled) {
         if (this.state.isDiscrete) {
             this.simulateDotClick(this.state.slide + 1);
         } else if (this.state.isContinuous) {
             this.setState('index', this.calculateNextIndex());
         }
-        emitAndFire(this, 'carousel-next');
+        emitAndFire(this, 'carousel-next', { originalEvent });
     }
 }
 
-function handlePrev() {
+function handlePrev(originalEvent) {
     if (!this.state.prevControlDisabled) {
         if (this.state.isDiscrete) {
             this.simulateDotClick(this.state.slide - 1);
         } else if (this.state.isContinuous) {
             this.setState('index', this.calculatePrevIndex());
         }
-        emitAndFire(this, 'carousel-prev');
+        emitAndFire(this, 'carousel-prev', { originalEvent });
     }
 }
 

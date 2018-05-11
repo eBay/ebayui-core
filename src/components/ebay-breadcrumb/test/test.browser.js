@@ -4,24 +4,29 @@ const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const renderer = require('../');
 
-describe('Basic breadcrumb', () => {
+describe('given a basic breadcrumb', () => {
     let widget;
-    let list;
-    describe('when item is clicked', () => {
-        let clickSpy;
+    let firstItem;
+
+    beforeEach(() => {
         widget = renderer.renderSync(mock.basicItems).appendTo(document.body).getWidget();
+        firstItem = document.querySelectorAll('nav li a')[0];
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when item is clicked', () => {
+        let spy;
         beforeEach((done) => {
-            list = document.querySelectorAll('nav li a');
-            clickSpy = sinon.spy();
-            widget.on('breadcrumb-select', clickSpy);
-            testUtils.triggerEvent(list[0], 'click');
+            spy = sinon.spy();
+            widget.on('breadcrumb-select', spy);
+            testUtils.triggerEvent(firstItem, 'click');
             setTimeout(done);
         });
-        afterEach(() => widget.destroy());
 
-        it('then it emits the breadcrumb-select event', () => {
-            expect(clickSpy.calledOnce).to.equal(true);
-            expect(Object.keys(clickSpy.args[0][0])).to.deep.equal(['el']);
+        it('then it emits the breadcrumb-select event with correct data', () => {
+            expect(spy.calledOnce).to.equal(true);
+            expect(spy.getCall(0).args[0].el).to.equal(firstItem);
+            testUtils.testOriginalEvent(spy);
         });
     });
 });
