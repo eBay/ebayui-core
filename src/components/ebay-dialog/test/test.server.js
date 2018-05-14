@@ -45,7 +45,12 @@ describe('dialog', () => {
                 expect($window.hasClass(`dialog__window--${type}`)).to.equal(true);
             }
 
-            expect($dialog.hasClass('dialog--mask-fade')).to.equal(true);
+            if (type === 'full') {
+                expect($dialog.hasClass('dialog--no-mask')).to.equal(true);
+            } else {
+                expect($dialog.hasClass('dialog--mask-fade')).to.equal(true);
+            }
+
             expect($window.hasClass('dialog__window--fade')).to.equal(true);
         });
     });
