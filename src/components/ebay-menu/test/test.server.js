@@ -110,6 +110,13 @@ describe('menu-item', () => {
         expect($('button.fake-menu__item').length).to.equal(1);
     });
 
+    test('renders fake version without href', context => {
+        const linkItem = { renderBody: mock.renderBody, href: '' };
+        const input = { type: 'fake', items: [linkItem] };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('a.fake-menu__item[href]').length).to.equal(1);
+    });
+
     ['radio', 'checkbox'].forEach(type => {
         [true, false].forEach(checked => {
             test(`renders with type=${type} and checked=${checked}`, context => {

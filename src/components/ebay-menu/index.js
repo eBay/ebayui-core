@@ -31,10 +31,10 @@ function getInitialState(input) {
 
         if (isFake) {
             classes.push('fake-menu__item');
-            if (href) {
-                tag = 'a';
-            } else if (itemType === 'button') {
+            if (itemType === 'button') {
                 tag = 'button';
+            } else {
+                tag = 'a';
             }
         } else {
             tag = 'div';
