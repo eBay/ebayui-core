@@ -7,8 +7,8 @@ const markoFileReg = /\.marko(?:\.js)?$/;
 
 /**
  * Traverse the require tree, starting at a specified rootNode
- * @param {*} rootNode: starting node for traversal
- * @param {*} fn: function to execute on every child
+ * @param {Object} rootNode: starting node for traversal
+ * @param {Function} fn: function to execute on every child
  */
 function traverse(rootNode, fn) {
     const visited = {};
@@ -31,8 +31,8 @@ function traverse(rootNode, fn) {
 
 /**
  * Use traversal to find icons in the require cache for this page
- * @param {*} pageTemplateNode: first require cache module of the page
- * @param {*} pageTemplateId: require cache ID of the page module
+ * @param {Object} pageTemplateNode: first require cache module of the page
+ * @param {String} pageTemplateId: require cache ID of the page module
  */
 function findIcons(out) {
     const pageTemplatePath = out && out.global && out.global.pageTemplate && out.global.pageTemplate.path || '';

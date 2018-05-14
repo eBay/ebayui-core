@@ -1,5 +1,5 @@
-// Transforms inline icons to artificially require specific icon files
-// This adds icons to the require cache, which we walk in stamper
+// Exposes all icons used in a component as a list of icon names
+// which we can discover statically through the require cache.
 function transform(el, context) {
     const { builder } = context;
     const nameAttribute = el.getAttribute('name');
