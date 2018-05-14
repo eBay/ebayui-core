@@ -22,7 +22,7 @@ Name | Type | Stateful | Description
 `type` | String | No | Can be "fake" / "radio" / "checkbox"
 `reverse` | Boolean | No | expand menu flyout to the left
 `fix-width` | Boolean | No | constrain items container width to button width
-`auto-collapse` | Boolean | No | collapse automatically when focus lost
+`borderless` | Boolean | No | whether button has borders
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 
 ### ebay-menu Events

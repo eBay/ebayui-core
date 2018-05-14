@@ -83,7 +83,26 @@ var menu = document.querySelector('.menu');
 menu.label = 'Sortieren';
 ```
 
-*NOTE: Undocumented attributes are assumed to be HTML and will be applied to the root element of the custom tag.*
+#### Pass-Through Attributes
+
+HTML attributes can be used on any component, and they will be passed through to the most prominent tag of the component. The most prominent tag is usually the root, but individual components will note if it varies for specific cases.
+
+Example of static usage:
+```marko
+<ebay-button id="my-button"/>
+```
+
+For using pass-through attributes dynamically, they should be sent through the `html-attributes` attribute:
+```marko
+<!-- data.htmlAttributes = { id: 'my-button' } -->
+<ebay-button html-attributes=data.htmlAttributes/>
+```
+
+Static and dynamic pass-through attributes can be used simulatenously (html-attributes takes precedence in conflicts):
+```marko
+<!-- data.htmlAttributes = { id: 'my-button' } -->
+<ebay-button html-attributes=data.htmlAttributes type="submit"/>
+```
 
 ### Events
 

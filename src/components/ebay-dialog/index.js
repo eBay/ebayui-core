@@ -47,6 +47,9 @@ function getTemplateData(state) {
             dialogClass.push('dialog--mask-fade-slow');
             break;
         case 'full':
+            windowClass.push('dialog__window--fade');
+            dialogClass.push('dialog--no-mask');
+            break;
         case 'fill':
         default:
             windowClass.push('dialog__window--fade');
@@ -87,25 +90,29 @@ function trap(opts) {
     }
 
     if (wasToggled) {
+        cancelAsync.call(this);
         const onFinishTransition = () => {
             this.cancelTransition = undefined;
 
             if (isTrapped) {
                 focusEl.focus();
-                bodyScroll.prevent();
                 emitAndFire(this, 'dialog-show');
             } else {
                 bodyScroll.restore();
                 emitAndFire(this, 'dialog-close');
+
+                // Reset dialog scroll position lazily to avoid jank.
+                // Note since the dialog is not in the dom at this point none of the scroll methods will work.
+                this.cancelScrollReset = setTimeout(() => {
+                    this.el.replaceChild(this.dialogEl, this.dialogEl);
+                    this.cancelScrollReset = undefined;
+                }, 20);
             }
         };
 
-        if (this.cancelTransition) {
-            this.cancelTransition();
-        }
-
         if (isTrapped) {
             if (!isFirstRender) {
+                bodyScroll.prevent();
                 this.cancelTransition = transition({
                     el: this.dialogEl,
                     className: 'dialog--show',
@@ -143,6 +150,7 @@ function release() {
 }
 
 function destroy() {
+    cancelAsync.call(this);
     release.call(this);
 
     if (this.isTrapped) {
@@ -160,6 +168,18 @@ function close(ev) {
     }
 
     this.setState('open', false);
+}
+
+function cancelAsync() {
+    if (this.cancelScrollReset) {
+        clearTimeout(this.cancelScrollReset);
+        this.cancelScrollReset = undefined;
+    }
+
+    if (this.cancelTransition) {
+        this.cancelTransition();
+        this.cancelTransition = undefined;
+    }
 }
 
 module.exports = markoWidgets.defineComponent({

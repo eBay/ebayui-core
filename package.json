@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "0.4.0-0",
+  "version": "0.4.0-1",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
     "installMarkoV4": "yarn add marko@^4 marko-widgets@^7 -D",
@@ -55,10 +55,11 @@
   ],
   "devDependencies": {
     "@ebay/browserslist-config": "^1.0.0",
-    "@ebay/skin": "^4.0.0",
+    "@ebay/skin": "5.0.0-0",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "browser-refresh": "^1.7.2",
     "chai": "^4.1.2",
@@ -79,7 +80,7 @@
     "karma-mocha": "^1.3.0",
     "lasso": "^3.1.2",
     "lasso-babel-transform": "^1.0.2",
-    "lasso-less": "^2.4.7",
+    "lasso-less": "^3.0.0",
     "lasso-marko": "^2.4.0",
     "lintspaces-cli": "^0.6.0",
     "marko": "^3",
@@ -93,12 +94,12 @@
     "opn-cli": "^3.1.0",
     "pre-push": "^0.1.1",
     "rimraf": "^2.6.2",
-    "sinon": "^4.1.3",
+    "sinon": "^5.0.7",
     "stylelint": "^9.2.0",
     "supertest": "^3.0.0"
   },
   "peerDependencies": {
-    "@ebay/skin": "^4.0.0",
+    "@ebay/skin": "5.0.0-0",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },

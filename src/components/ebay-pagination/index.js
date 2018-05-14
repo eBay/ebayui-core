@@ -71,6 +71,8 @@ function init() {
     this.pageContainerEl = this.el.querySelector('.pagination__items');
     this.pageEls = this.pageContainerEl.children;
     this.containerEl = this.el;
+    this.previousPageEl = this.el.querySelector('.pagination__previous');
+    this.nextPageEl = this.el.querySelector('.pagination__next');
     this.subscribeTo(eventUtils.resizeUtil).on('resize', refresh.bind(this));
     this.refresh();
 }
@@ -107,12 +109,12 @@ function handlePageClick(event) {
 
 function handleNextPage(event) {
     eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-next', { el: event.target });
+    emitAndFire(this, 'pagination-next', { el: this.nextPageEl });
 }
 
 function handlePreviousPage(event) {
     eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-previous', { el: event.target });
+    emitAndFire(this, 'pagination-previous', { el: this.previousPageEl });
 }
 
 /**

@@ -1,5 +1,6 @@
 let previousPosition;
 let previousStyles;
+let isPrevented = false;
 
 module.exports = {
     /**
@@ -21,16 +22,23 @@ module.exports = {
         let styleText = 'position:fixed;overflow:hidden;';
         previousPosition = [scrollX, scrollY];
         previousStyles = body.getAttribute('style');
-        styleText += `height:${width};`;
-        styleText += `width:${height};`;
-        styleText += `margin-top:${-1 * (scrollY - parseInt(marginTop, 10))}px;`;
-        styleText += `margin-left:${-1 * (scrollX - parseInt(marginLeft, 10))}px`;
+        styleText += `height:${height};`;
+        styleText += `width:${width};`;
+
+        if (scrollY) {
+            styleText += `margin-top:${-1 * (scrollY - parseInt(marginTop, 10))}px;`;
+        }
+
+        if (scrollX) {
+            styleText += `margin-left:${-1 * (scrollX - parseInt(marginLeft, 10))}px`;
+        }
 
         if (previousStyles) {
             styleText = `${previousStyles};${styleText}`;
         }
 
         body.setAttribute('style', styleText);
+        isPrevented = true;
     },
     /**
      * Restores scrolling of the `<body>` element.
@@ -40,14 +48,16 @@ module.exports = {
      * body scroll.
      */
     restore() {
-        const { body } = document;
+        if (isPrevented) {
+            const { body } = document;
+            if (previousStyles) {
+                body.setAttribute('style', previousStyles);
+            } else {
+                body.removeAttribute('style');
+            }
 
-        if (previousStyles) {
-            body.setAttribute('style', previousStyles);
-        } else {
-            body.removeAttribute('style');
+            window.scrollTo(...previousPosition);
+            isPrevented = false;
         }
-
-        window.scrollTo(...previousPosition);
     }
 };
