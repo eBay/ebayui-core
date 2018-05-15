@@ -47,11 +47,30 @@ describe('pagination', () => {
 });
 
 describe('pagination-item', () => {
+    const previousControlInput = { type: 'previous' };
+    const nextControlInput = { type: 'next' };
+
     test('handles pass-through html attributes for item', context => {
         testUtils.testHtmlAttributes(context, '.pagination__item', 'items');
     });
 
+    test('handles pass-through html attributes for previous control', context => {
+        testUtils.testHtmlAttributes(context, '.pagination__previous', 'items', previousControlInput);
+    });
+
+    test('handles pass-through html attributes for next control', context => {
+        testUtils.testHtmlAttributes(context, '.pagination__next', 'items', nextControlInput);
+    });
+
     test('handles custom class for item', context => {
         testUtils.testCustomClass(context, '.pagination__item', 'items');
+    });
+
+    test('handles custom class for previous control', context => {
+        testUtils.testCustomClass(context, '.pagination__previous', 'items', false, previousControlInput);
+    });
+
+    test('handles custom class for next control', context => {
+        testUtils.testCustomClass(context, '.pagination__next', 'items', false, nextControlInput);
     });
 });

@@ -30,27 +30,22 @@ function getCheerio(output) {
  * @param {String} arrayKey: if provided, assign input as a single-entry array (for marko nested tags)
  * @param {String} baseInput: if provided, use as base for additional input
  */
-
 function setupInput(input, arrayKey, baseInput) {
-    let newInput;
+    let newInput = baseInput ? Object.assign(baseInput, input) : input;
 
     if (arrayKey) {
-        newInput = { [arrayKey]: [input] };
-    } else if (baseInput) {
-        newInput = Object.assign(baseInput, input);
-    } else {
-        newInput = input;
+        newInput = { [arrayKey]: [newInput] };
     }
 
     return newInput;
 }
 
-function testCustomClass(context, selector, arrayKey, isPassThrough) {
+function testCustomClass(context, selector, arrayKey, isPassThrough, baseInput) {
     let input;
     if (isPassThrough) {
-        input = setupInput({ '*': { class: 'class1 class2' } }, arrayKey);
+        input = setupInput({ '*': { class: 'class1 class2' } }, arrayKey, baseInput);
     } else {
-        input = setupInput({ class: 'class1 class2' }, arrayKey);
+        input = setupInput({ class: 'class1 class2' }, arrayKey, baseInput);
     }
     const $ = getCheerio(context.render(input));
     expect($(`${selector}.class1.class2`).length).to.equal(1);

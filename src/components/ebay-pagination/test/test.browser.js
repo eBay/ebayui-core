@@ -4,7 +4,7 @@ const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const renderer = require('../');
 
-describe('given the menu is in the default state with links', () => {
+describe('given the pagination is in the default state with links', () => {
     let widget;
     let root;
     let previousButton;
@@ -139,6 +139,47 @@ describe('given the menu is in the default state with links', () => {
             const eventData = spy.getCall(0).args[0];
             expect(Object.keys(spy.args[0][0])).to.deep.equal(['el', 'value']);
             expect(eventData.value).to.be.equal('1');
+        });
+    });
+});
+
+describe('given the pagination is rendered with disabled controls', () => {
+    let widget;
+    let root;
+    let previousButton;
+    let nextButton;
+
+    beforeEach(() => {
+        widget = renderer.renderSync(mock.disabledNavigation).appendTo(document.body).getWidget();
+        root = document.querySelector('nav.pagination');
+        previousButton = root.querySelector('.pagination__previous');
+        nextButton = root.querySelector('.pagination__next');
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when the previous button is clicked', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('pagination-previous', spy);
+            testUtils.triggerEvent(previousButton, 'click');
+        });
+
+        test('then it does not emit the marko event', () => {
+            expect(spy.called).to.equal(false);
+        });
+    });
+
+    describe('when the next button is clicked', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('next-previous', spy);
+            testUtils.triggerEvent(nextButton, 'click');
+        });
+
+        test('then it does not emit the marko event', () => {
+            expect(spy.called).to.equal(false);
         });
     });
 });

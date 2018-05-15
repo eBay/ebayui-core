@@ -36,12 +36,12 @@ function getInitialState(input) {
         };
         if (item.type === 'previous') {
             prevItem = tempItem;
-            prevItem.class = 'pagination__previous';
+            prevItem.class = ['pagination__previous', item.class];
             prevItem.disabled = Boolean(item.disabled) || !href;
             continue;
         } else if (item.type === 'next') {
             nextItem = tempItem;
-            nextItem.class = 'pagination__next';
+            nextItem.class = ['pagination__next', item.class];
             nextItem.disabled = Boolean(item.disabled) || !href;
             continue;
         } else {
@@ -52,8 +52,8 @@ function getInitialState(input) {
 
     return {
         hijax,
-        nextItem: nextItem || { class: 'pagination__next', disabled: true },
-        prevItem: prevItem || { class: 'pagination__previous', disabled: true },
+        nextItem: nextItem || { class: 'pagination__next', disabled: true, htmlAttributes: {} },
+        prevItem: prevItem || { class: 'pagination__previous', disabled: true, htmlAttributes: {} },
         items,
         accessibilityPrev: input.accessibilityPrev || 'Previous page',
         accessibilityNext: input.accessibilityNext || 'Next page',
@@ -108,13 +108,17 @@ function handlePageClick(event) {
 }
 
 function handleNextPage(event) {
-    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-next', { el: this.nextPageEl });
+    if (!this.state.nextItem.disabled) {
+        eventUtils.preventDefaultIfHijax(event, this.state.hijax);
+        emitAndFire(this, 'pagination-next', { el: this.nextPageEl });
+    }
 }
 
 function handlePreviousPage(event) {
-    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-previous', { el: this.previousPageEl });
+    if (!this.state.prevItem.disabled) {
+        eventUtils.preventDefaultIfHijax(event, this.state.hijax);
+        emitAndFire(this, 'pagination-previous', { el: this.previousPageEl });
+    }
 }
 
 /**
