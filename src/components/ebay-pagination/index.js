@@ -108,13 +108,17 @@ function handlePageClick(event) {
 }
 
 function handleNextPage(event) {
-    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-next', { el: this.nextPageEl });
+    if (!this.state.nextItem.disabled) {
+        eventUtils.preventDefaultIfHijax(event, this.state.hijax);
+        emitAndFire(this, 'pagination-next', { el: this.nextPageEl });
+    }
 }
 
 function handlePreviousPage(event) {
-    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-previous', { el: this.previousPageEl });
+    if (!this.state.prevItem.disabled) {
+        eventUtils.preventDefaultIfHijax(event, this.state.hijax);
+        emitAndFire(this, 'pagination-previous', { el: this.previousPageEl });
+    }
 }
 
 /**
