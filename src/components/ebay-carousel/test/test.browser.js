@@ -158,6 +158,10 @@ describe('given the carousel starts in the default state with items', () => {
             root.index = -1;
         });
 
+        it('then index is normalized to 0', () => {
+            expect(root.index).to.equal(0);
+        });
+
         it('then it does not emit the marko events', () => {
             expect(moveSpy.called).to.equal(false);
             expect(updateSpy.called).to.equal(false);
@@ -171,12 +175,17 @@ describe('given the carousel starts in the default state with items', () => {
             moveSpy = sinon.spy();
             updateSpy = sinon.spy();
             widget.on('carousel-move', moveSpy);
+            widget.on('carousel-update', updateSpy);
             root.index = 99;
         });
 
-        it('then it does not emit the marko events', () => {
-            expect(moveSpy.called).to.equal(false);
-            expect(updateSpy.called).to.equal(false);
+        it('then index is normalized to lastIndex', () => {
+            expect(root.index).to.equal(widget.lastIndex);
+        });
+
+        it('then it emits the marko events', () => {
+            expect(moveSpy.calledOnce).to.equal(true);
+            expect(updateSpy.calledOnce).to.equal(true);
         });
     });
 });

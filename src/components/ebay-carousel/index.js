@@ -146,36 +146,46 @@ function updateDots() {
  * @param {Integer} index
  */
 function performSlide() {
-    // FIXME: API manipulation is disabled in native scroll case
-    if (this.state.index >= 0 && this.state.index <= this.lastIndex && !this.usesNativeScroll) {
-        const oldFirstVisibleIndex = this.state.firstVisibleIndex;
-        const oldLastVisibleIndex = this.state.lastVisibleIndex;
-        this.moveToIndex(this.state.index);
-        this.setState('lastVisibleIndex', this.calculateLastVisibleIndex());
-        this.setState('prevControlDisabled', this.state.index === 0);
-        this.setState('nextControlDisabled', this.state.lastVisibleIndex === this.lastIndex);
-        this.setState('bothControlsDisabled', this.state.prevControlDisabled && this.state.nextControlDisabled);
+    // TODO: API manipulation is disabled in native scroll case
+    if (this.usesNativeScroll) {
+        return;
+    }
 
-        // must calculate firstVisibleIndex after nextControlDisabled is set
-        this.setState('firstVisibleIndex', this.calculateFirstVisibleIndex());
+    if (this.state.index > this.lastIndex) {
+        this.setState('index', this.lastIndex);
+    }
 
-        if (this.state.firstVisibleIndex !== oldFirstVisibleIndex ||
-            this.state.lastVisibleIndex !== oldLastVisibleIndex) {
-            const visibleIndexes = [];
-            for (let i = this.state.firstVisibleIndex; i <= this.state.lastVisibleIndex; i++) {
-                visibleIndexes.push(i);
-            }
-            emitAndFire(this, 'carousel-update', { visibleIndexes });
+    if (this.containerWidth >= this.allItemsWidth || this.state.index < 0) {
+        this.setState('index', 0);
+    }
+
+    const oldFirstVisibleIndex = this.state.firstVisibleIndex;
+    const oldLastVisibleIndex = this.state.lastVisibleIndex;
+    this.moveToIndex(this.state.index);
+    this.setState('lastVisibleIndex', this.calculateLastVisibleIndex());
+    this.setState('prevControlDisabled', this.state.index === 0);
+    this.setState('nextControlDisabled', this.state.lastVisibleIndex === this.lastIndex);
+    this.setState('bothControlsDisabled', this.state.prevControlDisabled && this.state.nextControlDisabled);
+
+    // must calculate firstVisibleIndex after nextControlDisabled is set
+    this.setState('firstVisibleIndex', this.calculateFirstVisibleIndex());
+
+    if (this.state.firstVisibleIndex !== oldFirstVisibleIndex ||
+        this.state.lastVisibleIndex !== oldLastVisibleIndex) {
+        const visibleIndexes = [];
+        for (let i = this.state.firstVisibleIndex; i <= this.state.lastVisibleIndex; i++) {
+            visibleIndexes.push(i);
         }
+        emitAndFire(this, 'carousel-update', { visibleIndexes });
+    }
 
-        this.state.items.forEach((item, i) => {
-            item.hidden = (i < this.state.firstVisibleIndex || i > this.state.lastVisibleIndex);
-        });
-        this.setStateDirty('items');
+    this.state.items.forEach((item, i) => {
+        item.hidden = (i < this.state.firstVisibleIndex || i > this.state.lastVisibleIndex);
+    });
+    this.setStateDirty('items');
 
-        if (this.state.isDiscrete) {
-            this.updateDots();
-        }
+    if (this.state.isDiscrete) {
+        this.updateDots();
     }
 
     // update nested focusable elements via DOM (we don't control this content)
@@ -195,10 +205,6 @@ function performSlide() {
  * @param {Integer} index
  */
 function moveToIndex(index) {
-    if (this.containerWidth >= this.allItemsWidth) {
-        return;
-    }
-
     let translation = -1 * this.getWidthBetweenIndexes(0, index);
     const maxTranslation = -1 * (this.allItemsWidth - this.containerWidth);
     if (translation !== 0 && translation < maxTranslation) {
