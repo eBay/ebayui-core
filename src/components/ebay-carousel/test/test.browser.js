@@ -155,7 +155,7 @@ describe('given the carousel starts in the default state with items', () => {
             updateSpy = sinon.spy();
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
-            widget.update_index(-1);
+            root.index = -1;
         });
 
         it('then it does not emit the marko events', () => {
@@ -171,7 +171,7 @@ describe('given the carousel starts in the default state with items', () => {
             moveSpy = sinon.spy();
             updateSpy = sinon.spy();
             widget.on('carousel-move', moveSpy);
-            widget.update_index(99);
+            root.index = 99;
         });
 
         it('then it does not emit the marko events', () => {
@@ -265,10 +265,12 @@ describe('given a continuous carousel has next button clicked', () => {
 describe('given a continuous carousel with few items', () => {
     const input = { items: mock.threeItems };
     let widget;
+    let root;
     let list;
 
     beforeEach(done => {
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = document.querySelector('.carousel');
         list = document.querySelector('.carousel__list');
         setTimeout(done);
     });
@@ -283,7 +285,7 @@ describe('given a continuous carousel with few items', () => {
             updateSpy = sinon.spy();
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
-            widget.update_index(1);
+            root.index = 1;
         });
 
         it('then it does not emit the marko events', () => {

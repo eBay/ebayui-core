@@ -80,12 +80,13 @@ function init() {
             this.simulateDotClick(this.state.slide);
         });
     } else if (this.state.isContinuous) {
-        observer.observeRoot(this, ['index']);
+        observer.observeRoot(this, ['index'], () => {
+            this.performSlide();
+        });
     }
 
     this.subscribeTo(resizeUtil).on('resize', refresh.bind(this));
     this.refresh();
-    this.refresh(); // FIXME: currently needs a second call in v4
 }
 
 function refresh() {
@@ -97,16 +98,13 @@ function refresh() {
     }
 }
 
-function update_index() { // eslint-disable-line camelcase
-    this.performSlide();
-}
-
 function handleNext() {
     if (!this.state.nextControlDisabled) {
         if (this.state.isDiscrete) {
             this.simulateDotClick(this.state.slide + 1);
         } else if (this.state.isContinuous) {
             this.setState('index', this.calculateNextIndex());
+            this.performSlide();
         }
         emitAndFire(this, 'carousel-next');
     }
@@ -118,6 +116,7 @@ function handlePrev() {
             this.simulateDotClick(this.state.slide - 1);
         } else if (this.state.isContinuous) {
             this.setState('index', this.calculatePrevIndex());
+            this.performSlide();
         }
         emitAndFire(this, 'carousel-prev');
     }
@@ -129,7 +128,7 @@ function handleDotClick(e) {
     emitAndFire(this, 'carousel-slide', { slide: newSlide });
     this.setState('slide', newSlide);
     this.setState('index', (this.state.itemsPerSlide * (newSlide - 1)));
-    this.update_index(); // FIXME: why isn't this called from this.setState('index')?
+    this.performSlide();
 }
 
 function simulateDotClick(slide) {
@@ -177,8 +176,6 @@ function performSlide() {
         if (this.state.isDiscrete) {
             this.updateDots();
         }
-
-        this.update(); // FIXME: why won't it rerender on its own?
     }
 
     // update nested focusable elements via DOM (we don't control this content)
@@ -198,6 +195,10 @@ function performSlide() {
  * @param {Integer} index
  */
 function moveToIndex(index) {
+    if (this.containerWidth >= this.allItemsWidth) {
+        return;
+    }
+
     let translation = -1 * this.getWidthBetweenIndexes(0, index);
     const maxTranslation = -1 * (this.allItemsWidth - this.containerWidth);
     if (translation !== 0 && translation < maxTranslation) {
@@ -312,7 +313,6 @@ module.exports = require('marko-widgets').defineComponent({
     init,
     getInitialState,
     getTemplateData,
-    update_index,
     refresh,
     handleNext,
     handlePrev,
