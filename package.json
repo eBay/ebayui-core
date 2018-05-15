@@ -55,7 +55,7 @@
   ],
   "devDependencies": {
     "@ebay/browserslist-config": "^1.0.0",
-    "@ebay/skin": "5.0.0-0",
+    "@ebay/skin": "5.0.0-1",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
@@ -99,7 +99,7 @@
     "supertest": "^3.0.0"
   },
   "peerDependencies": {
-    "@ebay/skin": "5.0.0-0",
+    "@ebay/skin": "5.0.0-1",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },
