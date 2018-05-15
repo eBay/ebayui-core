@@ -25,7 +25,7 @@ describe('given a basic breadcrumb', () => {
 
         it('then it emits the breadcrumb-select event with correct data', () => {
             expect(spy.calledOnce).to.equal(true);
-            expect(spy.getCall(0).args[0].el).to.equal(firstItem);
+            expect(spy.getCall(0).args[0].el).to.deep.equal(firstItem);
             testUtils.testOriginalEvent(spy);
         });
     });

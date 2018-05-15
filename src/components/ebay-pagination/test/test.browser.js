@@ -6,14 +6,14 @@ const renderer = require('../');
 
 function testControlEvent(spy, el) {
     expect(spy.calledOnce).to.equal(true);
-    expect(spy.getCall(0).args[0].el).to.equal(el);
+    expect(spy.getCall(0).args[0].el).to.deep.equal(el);
     testUtils.testOriginalEvent(spy);
 }
 
 function testSelectEvent(spy, el) {
     const eventData = spy.getCall(0).args[0];
     expect(spy.calledOnce).to.equal(true);
-    expect(eventData.el).to.equal(el);
+    expect(eventData.el).to.deep.equal(el);
     expect(eventData.value).to.equal('1');
     testUtils.testOriginalEvent(spy);
 }
