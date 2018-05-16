@@ -1,6 +1,7 @@
 const markoWidgets = require('marko-widgets');
 const keyboardTrap = require('makeup-keyboard-trap');
 const screenReaderTrap = require('makeup-screenreader-trap');
+const bodyScroll = require('../../common/body-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const observer = require('../../common/property-observer');
 const processHtmlAttributes = require('../../common/html-attributes');
@@ -9,8 +10,10 @@ const template = require('./template.marko');
 
 function init() {
     this.dialogEl = this.getEl('dialog');
+    this.windowEl = this.getEl('window');
     this.closeEl = this.getEl('close');
     this.bodyEl = this.getEl('body');
+    this.transitionEls = [this.windowEl, this.dialogEl];
     observer.observeRoot(this, ['open']);
     // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
     this.subscribeTo(this.dialogEl).on('click', () => {});
@@ -44,6 +47,9 @@ function getTemplateData(state) {
             dialogClass.push('dialog--mask-fade-slow');
             break;
         case 'full':
+            windowClass.push('dialog__window--fade');
+            dialogClass.push('dialog--no-mask');
+            break;
         case 'fill':
         default:
             windowClass.push('dialog__window--fade');
@@ -75,16 +81,16 @@ function trap(opts) {
     if (restoreTrap || (isTrapped && !wasTrapped)) {
         screenReaderTrap.trap(this.dialogEl);
         keyboardTrap.trap(this.dialogEl);
-        // Prevent body scrolling when a modal is open.
-        document.body.style.overflow = 'hidden';
     }
 
-    // Ensure focus on initial render.
+    // Ensure focus is set and body scroll prevented on initial render.
     if (isFirstRender && isTrapped) {
         focusEl.focus();
+        bodyScroll.prevent();
     }
 
     if (wasToggled) {
+        cancelAsync.call(this);
         const onFinishTransition = () => {
             this.cancelTransition = undefined;
 
@@ -92,23 +98,36 @@ function trap(opts) {
                 focusEl.focus();
                 emitAndFire(this, 'dialog-show');
             } else {
+                bodyScroll.restore();
                 emitAndFire(this, 'dialog-close');
+
+                // Reset dialog scroll position lazily to avoid jank.
+                // Note since the dialog is not in the dom at this point none of the scroll methods will work.
+                this.cancelScrollReset = setTimeout(() => {
+                    this.el.replaceChild(this.dialogEl, this.dialogEl);
+                    this.cancelScrollReset = undefined;
+                }, 20);
             }
         };
 
-        if (this.cancelTransition) {
-            this.cancelTransition();
-        }
-
         if (isTrapped) {
             if (!isFirstRender) {
-                this.cancelTransition = transition(this.dialogEl, 'dialog--show', onFinishTransition);
+                bodyScroll.prevent();
+                this.cancelTransition = transition({
+                    el: this.dialogEl,
+                    className: 'dialog--show',
+                    waitFor: this.transitionEls
+                }, onFinishTransition);
             }
 
             this.dialogEl.removeAttribute('hidden');
         } else {
             if (!isFirstRender) {
-                this.cancelTransition = transition(this.dialogEl, 'dialog--hide', onFinishTransition);
+                this.cancelTransition = transition({
+                    el: this.dialogEl,
+                    className: 'dialog--hide',
+                    waitFor: this.transitionEls
+                }, onFinishTransition);
             }
 
             this.dialogEl.setAttribute('hidden', '');
@@ -125,14 +144,17 @@ function release() {
         this.restoreTrap = this.state.open;
         screenReaderTrap.untrap(this.dialogEl);
         keyboardTrap.untrap(this.dialogEl);
-        // Restore body scrolling.
-        document.body.style.overflow = 'auto'; // Auto instead of null/undefined for ie.
-        if (document.body.getAttribute('style') === 'overflow: auto;') {
-            // Remove style attribute if all that's left is the default overflow style.
-            document.body.removeAttribute('style');
-        }
     } else {
         this.restoreTrap = false;
+    }
+}
+
+function destroy() {
+    cancelAsync.call(this);
+    release.call(this);
+
+    if (this.isTrapped) {
+        bodyScroll.restore();
     }
 }
 
@@ -148,6 +170,18 @@ function close(ev) {
     this.setState('open', false);
 }
 
+function cancelAsync() {
+    if (this.cancelScrollReset) {
+        clearTimeout(this.cancelScrollReset);
+        this.cancelScrollReset = undefined;
+    }
+
+    if (this.cancelTransition) {
+        this.cancelTransition();
+        this.cancelTransition = undefined;
+    }
+}
+
 module.exports = markoWidgets.defineComponent({
     template,
     getInitialState,
@@ -155,7 +189,7 @@ module.exports = markoWidgets.defineComponent({
     init,
     onRender: trap,
     onBeforeUpdate: release,
-    onBeforeDestroy: release,
+    onBeforeDestroy: destroy,
     show,
     close
 });

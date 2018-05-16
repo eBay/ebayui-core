@@ -27,8 +27,10 @@ describe('given button is enabled', () => {
             testUtils.triggerEvent(root, 'click');
         });
 
-        test('then it emits the event', () => {
+        test('then it emits the event with correct data', () => {
             expect(spy.calledOnce).to.equal(true);
+            const originalEvent = spy.getCall(0).args[0].originalEvent;
+            expect(originalEvent instanceof Event).to.equal(true);
         });
     });
 });

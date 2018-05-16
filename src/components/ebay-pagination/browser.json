@@ -1,0 +1,14 @@
+{
+    "dependencies": [
+        {
+            "if-not-flag": "ebayui-no-skin",
+            "dependencies": [
+                "@ebay/skin/pagination",
+                "@ebay/skin/utility",
+                "@ebay/skin/icon"
+            ]
+        },
+        "require: marko-widgets",
+        "require: ./index.js"
+    ]
+}

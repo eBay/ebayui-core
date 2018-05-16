@@ -15,11 +15,10 @@ const comboboxOptionSelector = '.combobox__option[role=option]';
 
 function getInitialState(input) {
     const options = (input.options || []).map(option => {
-        const classes = [option.class];
         const selected = option.selected;
 
         return {
-            classes,
+            class: option.class,
             value: option.value,
             label: option.label,
             selected: Boolean(selected),
@@ -40,6 +39,7 @@ function getInitialState(input) {
         options,
         selected: selectedOption,
         grow: input.grow,
+        borderless: Boolean(input.borderless),
         htmlAttributes: processHtmlAttributes(input)
     };
 }
@@ -48,6 +48,10 @@ function getTemplateData(state) {
     const comboboxClass = ['combobox', state.class];
     const btnClass = [comboboxBtnClass];
     const optionsClass = [comboboxOptionsClass];
+
+    if (state.borderless) {
+        btnClass.push('combobox__control--borderless');
+    }
 
     return {
         class: comboboxClass,
@@ -67,11 +71,11 @@ function init() {
     if (this.state.options && this.state.options.length > 0) {
         this.expander = new Expander(this.el, {
             autoCollapse: true,
-            click: true,
+            expandOnClick: true,
             contentSelector: `.${comboboxOptionsClass}`,
             hostSelector: comboboxHostSelector,
             hostContainerClass: `${comboboxBtnClass}`,
-            spacebar: true
+            simulateSpacebarClick: true
         });
 
         observer.observeRoot(this, ['selected'], (index) => {

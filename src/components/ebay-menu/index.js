@@ -8,8 +8,8 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
-const buttonClass = 'expand-btn';
-const buttonSelector = `.${buttonClass}`;
+const mainButtonClass = 'expand-btn';
+const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
 const contentSelector = `.${contentClass}`;
 
@@ -31,10 +31,10 @@ function getInitialState(input) {
 
         if (isFake) {
             classes.push('fake-menu__item');
-            if (href) {
-                tag = 'a';
-            } else if (itemType === 'button') {
+            if (itemType === 'button') {
                 tag = 'button';
+            } else {
+                tag = 'a';
             }
         } else {
             tag = 'div';
@@ -77,6 +77,7 @@ function getInitialState(input) {
         class: input.class,
         reverse: Boolean(input.reverse),
         fixWidth: Boolean(input.fixWidth),
+        borderless: Boolean(input.borderless),
         expanded: false,
         htmlAttributes: processHtmlAttributes(input),
         items,
@@ -87,6 +88,7 @@ function getInitialState(input) {
 function getTemplateData(state) {
     const menuClass = [state.class, 'expander'];
     const itemsClass = [contentClass];
+    const buttonClass = [mainButtonClass];
 
     if (state.isFake) {
         menuClass.push('fake-menu');
@@ -108,6 +110,10 @@ function getTemplateData(state) {
         }
     }
 
+    if (state.borderless) {
+        buttonClass.push('expand-btn--borderless');
+    }
+
     return {
         type: state.type,
         isRadio: state.isRadio,
@@ -115,9 +121,9 @@ function getTemplateData(state) {
         isNotCheckable: !state.isRadio && !state.isCheckbox,
         label: state.label,
         expanded: state.expanded,
-        menuClass: menuClass,
-        buttonClass: buttonClass,
-        itemsClass: itemsClass,
+        menuClass,
+        buttonClass,
+        itemsClass,
         role: !state.isFake ? 'menu' : null,
         items: state.items,
         htmlAttributes: state.htmlAttributes
@@ -156,7 +162,7 @@ function init() {
     const expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
         hostSelector: buttonSelector,
         focusManagement: 'focusable',
-        click: true,
+        expandOnClick: true,
         autoCollapse: true
     });
 }
@@ -257,7 +263,8 @@ function handleItemKeydown(e) {
     });
 
     eventUtils.handleEscapeKeydown(e, () => {
-        this.buttonEl.focus(); // triggers collapse through makeup
+        this.buttonEl.focus();
+        this.setState('expanded', false);
     });
 }
 

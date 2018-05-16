@@ -1,295 +1,310 @@
-const throttle = require('lodash.throttle');
+const focusables = require('makeup-focusables');
+const resizeUtil = require('../../common/event-utils').resizeUtil;
 const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
 const constants = {
-    classes: {
-        list: 'carousel__list'
-    },
     types: {
         discrete: 'discrete',
         continuous: 'continuous'
     },
-    margin: 8 // matches the css applied to each item
-};
-const defaults = {
-    index: 0,
-    type: constants.types.continuous
+    margin: 16 // matches the css applied to each item
 };
 
 function getInitialState(input) {
-    const items = (input.items || []).map((item) => ({
+    let items = (input.items || []).map((item) => ({
+        hidden: false,
         htmlAttributes: processHtmlAttributes(item),
         renderBody: item.renderBody
     }));
-    const index = parseInt(input.index) || defaults.index;
-    const type = input.type || defaults.type;
+    const type = input.type || constants.types.continuous;
+    const isDiscrete = type === constants.types.discrete;
+    let itemsPerSlide;
+    let totalSlides;
+
+    if (isDiscrete) {
+        itemsPerSlide = parseInt(input.itemsPerSlide) || 1;
+        totalSlides = parseInt(items.length / itemsPerSlide);
+
+        // remove trailing items that don't fit equally in slides
+        items = items.filter((item, i) => i < totalSlides * itemsPerSlide);
+    }
+
     return {
-        index,
+        index: parseInt(input.index) || 0,
+        firstVisibleIndex: 0,
+        lastVisibleIndex: 0,
         type,
-        prevControlDisabled: index === 0,
+        isContinuous: type === constants.types.continuous,
+        isDiscrete,
+        itemsPerSlide,
+        totalSlides,
+        slide: parseInt(input.slide) || 1,
+        activeDot: isDiscrete && 1,
+        prevControlDisabled: true,
         nextControlDisabled: false,
-        ariaLabelPrev: input.ariaLabelPrev,
-        ariaLabelNext: input.ariaLabelNext,
-        classes: ['carousel', `carousel--${type}`, input.class],
+        bothControlsDisabled: false,
+        accessibilityPrev: input.accessibilityPrev || 'Previous Slide',
+        accessibilityNext: input.accessibilityNext || 'Next Slide',
+        accessibilityStatus: input.accessibilityStatus || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
+        accessibilityCurrent: input.accessibilityCurrent || 'Current Slide {currentSlide} - Carousel',
+        accessibilityOther: input.accessibilityOther || 'Slide {slide} - Carousel',
+        classes: ['carousel', `carousel--${type}`, isDiscrete && `carousel--discrete-${itemsPerSlide}`, input.class],
+        translation: 0,
         htmlAttributes: processHtmlAttributes(input),
         items
     };
 }
 
 function getTemplateData(state) {
+    if (state.isDiscrete) {
+        state.statusText = state.accessibilityStatus
+            .replace('{currentSlide}', state.slide)
+            .replace('{totalSlides}', state.totalSlides);
+    }
     return state;
 }
 
 function init() {
     this.itemCache = [];
-    this.setupItems();
-    this.bindEventListeners();
-    observer.observeRoot(this, ['index']);
-    this.triggerItemSizeCaching();
-    this.performSlide(this.state.index);
+    this.listEl = this.el.querySelector('.carousel__list');
+    this.itemEls = this.listEl.children;
+    this.lastIndex = this.itemEls.length - 1;
+
+    const containerEl = this.el.querySelector('.carousel__container');
+    this.usesNativeScroll = window.getComputedStyle && window.getComputedStyle(containerEl)['overflow-x'] === 'scroll';
+    if (this.state.isDiscrete) {
+        observer.observeRoot(this, ['slide'], () => {
+            this.simulateDotClick(this.state.slide);
+        });
+    } else if (this.state.isContinuous) {
+        observer.observeRoot(this, ['index']);
+    }
+
+    this.subscribeTo(resizeUtil).on('resize', refresh.bind(this));
+    this.refresh();
+    this.refresh(); // FIXME: currently needs a second call in v4
 }
 
-function update_index(newIndex) { // eslint-disable-line camelcase
-    this.performSlide(parseInt(newIndex));
+function refresh() {
+    this.calculateWidths(true);
+    if (this.state.isDiscrete) {
+        this.simulateDotClick(this.state.slide);
+    } else if (this.state.isContinuous) {
+        this.performSlide();
+    }
 }
 
-function setupItems() {
-    this.listEl = this.el.querySelector(`.${constants.classes.list}`);
-    this.childrenEls = this.listEl.children;
-    this.setState('totalItems', this.childrenEls.length);
-    this.updateContainerSize();
-}
-
-function bindEventListeners() {
-    this.subscribeTo(window).on('resize', throttle(() => {
-        this.updateContainerSize();
-        this.triggerItemSizeCaching(true);
-        this.performSlide(parseInt(this.state.index));
-    }));
+function update_index() { // eslint-disable-line camelcase
+    this.performSlide();
 }
 
 function handleNext() {
-    emitAndFire(this, 'carousel-next');
-
-    const lastIndex = this.state.totalItems - 1;
-    let newIndex = -1;
-
-    if (this.state.index === lastIndex) {
-        return;
+    if (!this.state.nextControlDisabled) {
+        if (this.state.isDiscrete) {
+            this.simulateDotClick(this.state.slide + 1);
+        } else if (this.state.isContinuous) {
+            this.setState('index', this.calculateNextIndex());
+        }
+        emitAndFire(this, 'carousel-next');
     }
-
-    if (this.state.type === constants.types.continuous) {
-        newIndex = this.state.index + this.calculateScrollOffset(this.state.index, 1);
-    } else if (this.state.type === constants.types.discrete) {
-        newIndex = this.state.index + 1;
-    }
-
-    if (newIndex > lastIndex) {
-        newIndex = lastIndex;
-    }
-
-    this.setState('index', newIndex);
 }
 
 function handlePrev() {
-    emitAndFire(this, 'carousel-prev');
-
-    const firstIndex = 0;
-    let newIndex = -1;
-
-    if (this.state.index === firstIndex) {
-        return;
-    }
-
-    if (this.state.type === constants.types.continuous) {
-        newIndex = this.state.index - this.calculateScrollOffset(this.state.index, -1);
-    } else if (this.state.type === constants.types.discrete) {
-        newIndex = this.state.index - 1;
-    }
-
-    if (newIndex < firstIndex) {
-        newIndex = firstIndex;
-    }
-
-    this.setState('index', newIndex);
-}
-
-function performSlide(index) {
-    if (index >= 0 && index < this.state.totalItems) {
-        this.moveToIndex(index);
-        this.updateControls();
-    }
-}
-
-/**
- * Update button attributes based on current position
- */
-function updateControls() {
-    let stopValue;
-    this.setState('prevControlDisabled', this.state.index === 0);
-    if (this.state.type === constants.types.continuous) {
-        stopValue = this.state.totalItems;
-    } else if (this.state.type === constants.types.discrete) {
-        stopValue = this.state.totalItems - 1;
-    }
-    this.setState('nextControlDisabled', this.state.stop === stopValue);
-    this.update(); // FIXME: why won't it rerender on its own?
-}
-
-/**
- * Calculate the number of cards to scroll from startIndex based on their sizes
- * @param {Number} startIndex: Index position to calculate from
- * @param {Number} direction: 1 for forward, -1 for backward
- */
-function calculateScrollOffset(startIndex, direction) {
-    let increment = 0;
-    let index = startIndex;
-
-    if (startIndex < 0) {
-        return increment;
-    }
-
-    const containerSize = this.getContainerSize();
-
-    while (containerSize.width > 0) {
-        if (index > this.state.totalItems || index < 0) {
-            break;
+    if (!this.state.prevControlDisabled) {
+        if (this.state.isDiscrete) {
+            this.simulateDotClick(this.state.slide - 1);
+        } else if (this.state.isContinuous) {
+            this.setState('index', this.calculatePrevIndex());
         }
-        containerSize.width = containerSize.width - this.getSingleItemSize(index).width;
-        increment += 1;
-        index += direction;
+        emitAndFire(this, 'carousel-prev');
+    }
+}
+
+// TODO: add carousel-dot event and remove simulated dot clicks
+function handleDotClick(e) {
+    const newSlide = parseInt(e.target.getAttribute('data-slide'));
+    emitAndFire(this, 'carousel-slide', { slide: newSlide });
+    this.setState('slide', newSlide);
+    this.setState('index', (this.state.itemsPerSlide * (newSlide - 1)));
+    this.update_index(); // FIXME: why isn't this called from this.setState('index')?
+}
+
+function simulateDotClick(slide) {
+    if (slide >= 1 && slide <= this.state.totalSlides) {
+        this.el.querySelector(`[data-slide="${slide}"]`).click();
+    }
+}
+
+function updateDots() {
+    this.setState('activeDot', (this.state.lastVisibleIndex + 1) / this.state.itemsPerSlide);
+}
+
+/**
+ * High level slide called for initialization and data change to index (via UI and API)
+ * @param {Integer} index
+ */
+function performSlide() {
+    // FIXME: API manipulation is disabled in native scroll case
+    if (this.state.index >= 0 && this.state.index <= this.lastIndex && !this.usesNativeScroll) {
+        const oldFirstVisibleIndex = this.state.firstVisibleIndex;
+        const oldLastVisibleIndex = this.state.lastVisibleIndex;
+        this.moveToIndex(this.state.index);
+        this.setState('lastVisibleIndex', this.calculateLastVisibleIndex());
+        this.setState('prevControlDisabled', this.state.index === 0);
+        this.setState('nextControlDisabled', this.state.lastVisibleIndex === this.lastIndex);
+        this.setState('bothControlsDisabled', this.state.prevControlDisabled && this.state.nextControlDisabled);
+
+        // must calculate firstVisibleIndex after nextControlDisabled is set
+        this.setState('firstVisibleIndex', this.calculateFirstVisibleIndex());
+
+        if (this.state.firstVisibleIndex !== oldFirstVisibleIndex ||
+            this.state.lastVisibleIndex !== oldLastVisibleIndex) {
+            const visibleIndexes = [];
+            for (let i = this.state.firstVisibleIndex; i <= this.state.lastVisibleIndex; i++) {
+                visibleIndexes.push(i);
+            }
+            emitAndFire(this, 'carousel-update', { visibleIndexes });
+        }
+
+        this.state.items.forEach((item, i) => {
+            item.hidden = (i < this.state.firstVisibleIndex || i > this.state.lastVisibleIndex);
+        });
+        this.setStateDirty('items');
+
+        if (this.state.isDiscrete) {
+            this.updateDots();
+        }
+
+        this.update(); // FIXME: why won't it rerender on its own?
     }
 
-    return increment - 1;
+    // update nested focusable elements via DOM (we don't control this content)
+    // TODO: patch makeup-focusables to support more customized selectors?
+    const hiddenItems = this.el.querySelectorAll('.carousel__list > li[aria-hidden="true"]') || [];
+    const visibleItems = this.el.querySelectorAll('.carousel__list > li[aria-hidden="false"]') || [];
+    hiddenItems.forEach(hiddenItem => {
+        focusables(hiddenItem).forEach(focusable => focusable.setAttribute('tabindex', '-1'));
+    });
+    visibleItems.forEach(visibleItem => {
+        focusables(visibleItem).forEach(focusable => focusable.removeAttribute('tabindex'));
+    });
 }
 
 /**
  * Move carousel position to an index
- * @param {Number} index
+ * @param {Integer} index
  */
 function moveToIndex(index) {
-    if (index < 0) {
-        this.setState('index', 0);
-        return;
+    let translation = -1 * this.getWidthBetweenIndexes(0, index);
+    const maxTranslation = -1 * (this.allItemsWidth - this.containerWidth);
+    if (translation !== 0 && translation < maxTranslation) {
+        translation = maxTranslation;
     }
 
-    if (index >= this.state.totalItems) {
-        this.setState('index', this.state.totalItems - 1);
-        return;
+    if (translation !== this.state.translation) {
+        this.setState('translation', translation);
+        emitAndFire(this, 'carousel-move');
+    }
+}
+
+function calculateNextIndex() {
+    return this.calculateLastVisibleIndex() + 1;
+}
+
+function calculatePrevIndex() {
+    let index = this.state.index - 1;
+
+    // check if we'll hit the left end
+    const widthBeforeCurrentIndex = this.getWidthBetweenIndexes(0, this.state.index);
+    if (widthBeforeCurrentIndex < this.containerWidth) {
+        return 0;
     }
 
-    const endIndex = index + this.calculateScrollOffset(index, 1) + 1;
-    this.setState('stop', endIndex - 1);
-
-    if (endIndex > this.state.totalItems) {
-        this.setState('stop', this.state.totalItems);
+    if (this.state.nextControlDisabled) {
+        index = this.calculateFirstVisibleIndex() - 1;
     }
 
-    // TODO (look into this) case where items are smaller than available width
-    if (this.state.index === 0 && this.state.stop === this.state.totalItems) {
-        return;
+    return this.widthLoop(index, -1) + 1;
+}
+
+function widthLoop(startIndex, direction) {
+    let index = startIndex;
+    let remainingWidth = this.containerWidth;
+
+    while (remainingWidth > 0) {
+        remainingWidth -= this.getItemWidth(index);
+        if (index > this.lastIndex || index < 0 || remainingWidth < 0) {
+            break;
+        }
+        remainingWidth -= constants.margin;
+        index += direction;
     }
 
-    const coords = this.getCoordinates(index);
-    const offset = this.getOffset(coords, index, endIndex);
-    coords.x = coords.x || 0;
-    offset.x = offset.x || 0;
-    this.listEl.style.transform = `translateX(${(-1 * coords.x) + offset.x}px)`;
-    emitAndFire(this, 'carousel-translate');
+    return index;
+}
+
+function calculateFirstVisibleIndex() {
+    if (!this.state.nextControlDisabled) {
+        return this.state.index;
+    }
+
+    // if continuous carousel is all the way on right end, need to calculate manually
+    return this.widthLoop(this.lastIndex, -1) + 1;
+}
+
+function calculateLastVisibleIndex() {
+    return this.widthLoop(this.state.index, 1) - 1;
 }
 
 /**
- * Get the offset that the carousel needs to push forward by based on index
+ * Get the aggregate width of all items in the carousel between these indexes.
+ * Calculation is from left edge of item at startIndex item until left edge of item at endIndex
+ * @param {Integer} startIndex
+ * @param {Integer} endIndex
  */
-function getOffset({ x, y }, startIndex, endIndex) {
-    const offset = { x: 0, y: 0 };
-    const endCoords = this.getCoordinates(endIndex);
-
-    if (endIndex > (this.state.totalItems) && (startIndex < this.state.totalItems)) {
-        const containerSize = this.containerSize;
-
-        offset.x = containerSize.width - (endCoords.x - x) + constants.margin;
-        offset.y = containerSize.height - y;
+function getWidthBetweenIndexes(startIndex, endIndex) {
+    let width = 0;
+    for (let i = startIndex; i < endIndex; i++) {
+        width += this.getItemWidth(i) + constants.margin;
     }
 
-    return offset;
+    // subtract trailing margin if we hit right end
+    if (endIndex > this.lastIndex) {
+        width -= constants.margin;
+    }
+
+    return width;
 }
 
 /**
- * Get the coordinates of a carousel item based on index
- */
-function getCoordinates(index) {
-    const itemSize = this.getItemSizes(index);
-
-    if (!itemSize) {
-        return;
-    }
-
-    return {
-        x: itemSize.width,
-        y: 0
-    };
-}
-
-/**
- * Get the aggregate size of all items in the carousel until this index
- */
-function getItemSizes(index) {
-    const size = { width: 0, height: 0 };
-
-    if (!index || (index < 0)) {
-        return size;
-    }
-    for (let i = 0; i < index; i++) {
-        const rect = this.getSingleItemSize(i);
-        const itemMargin = constants.margin;
-
-        size.width += rect.width + itemMargin;
-        size.height = rect.heigth || 0;
-    }
-    return size;
-}
-
-/**
- * Trigger a one time caching of all elements within the carousel
+ * Calculate and store widths of container and items
  * @params {Boolean} forceUpdate: Updates the cache with new values
  */
-function triggerItemSizeCaching(forceUpdate) {
-    for (let i = 0; i < this.state.totalItems; i++) {
-        this.getSingleItemSize(i, forceUpdate);
+function calculateWidths(forceUpdate) {
+    this.containerWidth = this.listEl.getBoundingClientRect().width;
+    for (let i = 0; i <= this.lastIndex; i++) {
+        this.getItemWidth(i, forceUpdate);
     }
+    this.allItemsWidth = this.getWidthBetweenIndexes(0, this.lastIndex + 1);
 }
 
 /**
- * Get single item size based on index
- * @params {Number} index: Index of the carousel item
+ * Get single item width based on index
+ * @params {Integer} index: Index of the carousel item
  * @params {Boolean} forceUpdate: Trigger fetch update of cache values
  */
-function getSingleItemSize(index, forceUpdate) {
+function getItemWidth(index, forceUpdate) {
     if (this.itemCache && this.itemCache[index] && !forceUpdate) {
         return this.itemCache[index];
-    } else if (index < this.state.totalItems && index >= 0) {
-        const rect = this.childrenEls[index].getBoundingClientRect();
-        this.itemCache[index] = { width: rect.width || 0, height: rect.height || 0 };
+    } else if (index >= 0 && index <= this.lastIndex) {
+        this.itemCache[index] = this.itemEls[index].getBoundingClientRect().width;
         return this.itemCache[index];
     }
 
-    return { width: 0, height: 0 };
-}
-
-function updateContainerSize() {
-    this.containerSize = this.getContainerSize();
-}
-
-function getContainerSize() {
-    const rect = this.listEl.getBoundingClientRect();
-    return {
-        width: rect.width || 0,
-        height: rect.width || 0
-    };
+    return 0;
 }
 
 module.exports = require('marko-widgets').defineComponent({
@@ -298,21 +313,22 @@ module.exports = require('marko-widgets').defineComponent({
     getInitialState,
     getTemplateData,
     update_index,
-    setupItems,
-    bindEventListeners,
+    refresh,
     handleNext,
     handlePrev,
+    handleDotClick,
+    simulateDotClick,
     performSlide,
-    updateControls,
-    calculateScrollOffset,
+    updateDots,
+    calculateNextIndex,
+    calculatePrevIndex,
     moveToIndex,
-    getOffset,
-    getCoordinates,
-    getItemSizes,
-    triggerItemSizeCaching,
-    getSingleItemSize,
-    updateContainerSize,
-    getContainerSize
+    widthLoop,
+    calculateFirstVisibleIndex,
+    calculateLastVisibleIndex,
+    getWidthBetweenIndexes,
+    calculateWidths,
+    getItemWidth
 });
 
-module.exports.privates = { constants, defaults };
+module.exports.privates = { constants };

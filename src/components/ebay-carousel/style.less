@@ -1,115 +1,140 @@
-.carousel {
-    @transition-time: 0.25s;
+@ebay-carousel-transition-time: 0.25s;
+@ebay-carousel-transition-function: ease-out;
+@ebay-carousel-control-enabled-opacity: 0.92;
+@ebay-carousel-control-disabled-opacity: 0.3;
 
+.carousel {
     &__container {
         white-space: nowrap;
         overflow-y: hidden;
         overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
         padding: 16px 0;
         position: relative;
         width: 100%;
     }
 
     &__list {
-        box-sizing: border-box;
-        position: relative;
+        transition: transform @ebay-carousel-transition-time @ebay-carousel-transition-function;
         transform: translateX(0);
-        transition: transform @transition-time;
-
+        position: relative;
+        box-sizing: border-box;
         width: 100%;
         margin: 0;
         padding: 0;
 
         > li {
             list-style: none;
-            margin-right: 8px;
-        }
-    }
+            margin-right: 16px;
 
-    &--continuous &__list {
-        display: inline-block;
-
-        > li {
-            display: inline-block;
-        }
-    }
-
-    &--discrete &__list {
-        display: flex;
-
-        > li {
-            flex: 0 0 100%;
-        }
-    }
-
-    .icon:before {
-        color: @color-core-gray-jet;
-        font-size: 20px;
-    }
-
-    .icon--chevron-light-right {
-        &:before {
-            margin-left: -4px;
-        }
-    }
-
-    .icon--chevron-light-left {
-        &:before {
-            margin-left: -5px;
+            &:last-of-type {
+                margin-right: 0;
+            }
         }
     }
 
     &__control {
-        display: block;
+        transition: opacity @ebay-carousel-transition-time @ebay-carousel-transition-function;
+        opacity: 0;
+        pointer-events: none;
         font-size: 18px;
-        background-color: @color-core-white;
-        height: 70px;
-        width: 30px;
+        background-color: @ds6-color-g201-gray;
+        padding: 0; // override browser default
+        height: 72px;
+        width: 28px;
         z-index: 1;
-        border: 1px solid @color-core-gray-jet;
+        border: 1px solid @ds6-color-g206-gray;
         cursor: pointer;
+        position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        position: absolute;
-        opacity: 0.95;
-
-        &:hover:not([aria-disabled=true]) {
-            background-color: @color-core-gray-dim;
-
-            &.icon:before {
-                color: @color-core-white;
-            }
-        }
-
-        &:hover:active:not([aria-disabled=true]) {
-            background-color: @color-core-gray-davys;
-        }
-
-        &[aria-disabled=true] {
-            opacity: 0.3;
-            cursor: default;
-        }
 
         &--prev {
-            left: 5px;
+            left: 0;
         }
 
         &--next {
-            right: 5px;
+            right: 0;
+        }
+
+        svg {
+            color: @ds6-color-g206-gray;
+        }
+
+        .icon--chevron-right {
+            margin-left: 2px;
+        }
+
+        .icon--chevron-left {
+            margin-left: -2px;
         }
     }
-}
 
-@media only screen and (max-width: 599px) {
-    .carousel {
-        &__container {
-            overflow-x : scroll;
+    &--continuous {
+        .carousel__list {
+            display: inline-block;
+
+            > li {
+                display: inline-block;
+            }
+        }
+    }
+
+    &--discrete {
+        .carousel__list {
+            display: flex;
+
+            // avoid flex shorthand due to ie11 bugs
+            > li {
+                flex-grow: 0;
+                flex-shrink: 0;
+            }
         }
 
-        &__control--prev,
-        &__control--next {
-            display: none;
+        &-1 .carousel__list > li {
+            flex-basis: 100%;
+        }
+
+        &-2 .carousel__list > li {
+            flex-basis: calc(50% ~"-" 8px);
+        }
+
+        &-3 .carousel__list > li {
+            flex-basis: calc(33.333% ~"-" 10.666px);
+        }
+
+        &-4 .carousel__list > li {
+            flex-basis: calc(25% ~"-" 12px);
+        }
+
+        &-5 .carousel__list > li {
+            flex-basis: calc(20% ~"-" 16px);
+        }
+    }
+
+    &__dots {
+        margin: 8px 0;
+        padding-left: 0;
+        text-align: center;
+
+        > li {
+            display: inline-block;
+
+            > button {
+                transition: background-color @ebay-carousel-transition-time @ebay-carousel-transition-function;
+                background-color: @ds6-color-g204-gray;
+                cursor: pointer;
+                border: 0;
+                border-radius: 50%;
+                display: inline-block;
+                margin: 0 6px;
+                padding: 0;
+                height: 8px;
+                width: 8px;
+
+                &.carousel__dot--active {
+                    background-color: @ds6-color-g206-gray;
+                }
+            }
         }
     }
 }

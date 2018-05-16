@@ -7,6 +7,7 @@ const testUtils = require('../../test-utils/browser');
 const handleActionKeydown = eventUtils.handleActionKeydown;
 const handleEscapeKeydown = eventUtils.handleEscapeKeydown;
 const handleUpDownArrowsKeydown = eventUtils.handleUpDownArrowsKeydown;
+const preventDefaultIfHijax = eventUtils.preventDefaultIfHijax;
 
 describe('handleActionKeydown()', () => {
     [
@@ -52,6 +53,25 @@ describe('handleUpDownArrowsKeydown()', () => {
         const callback = sinon.spy();
         handleUpDownArrowsKeydown({ keyCode: 1 }, callback);
         expect(callback.called).to.equal(false);
+    });
+});
+
+describe('preventDefaultIfHijax()', () => {
+    let preventDefaultSpy;
+    beforeEach(() => {
+        preventDefaultSpy = sinon.spy();
+    });
+
+    test('executes preventDefault if hijax', () => {
+        const e = { preventDefault: preventDefaultSpy };
+        preventDefaultIfHijax(e, true);
+        expect(preventDefaultSpy.calledOnce).to.equal(true);
+    });
+
+    test('does not execute preventDefault if not hijax', () => {
+        const e = { preventDefault: preventDefaultSpy };
+        preventDefaultIfHijax(e, false);
+        expect(preventDefaultSpy.called).to.equal(false);
     });
 });
 

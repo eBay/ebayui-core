@@ -1,0 +1,45 @@
+<nav class=data.classes ${data.htmlAttributes} w-bind aria-labelledby="pagination-heading-${widget.elId()}" role="navigation">
+    <span aria-live="polite" role="status">
+        <h2 class="clipped"
+            id="pagination-heading-${widget.elId()}">
+            ${data.accessibilityCurrent}
+        </h2>
+    </span>
+    <a aria-disabled=String(data.prevItem.disabled)
+        aria-label=data.accessibilityPrev
+        class=data.prevItem.class
+        href=data.prevItem.href
+        role=data.role
+        w-onkeydown="handlePreviousPageKeyDown"
+        w-onclick="handlePreviousPage"
+        ${data.prevItem.htmlAttributes}
+        if(data.prevItem)>
+       <span></span>
+    </a>
+    <ol class="pagination__items">
+        <for(item in data.items)>
+            <li>
+                <a aria-current=(item.current ? "page" : '')
+                    href=item.href
+                    role=item.role
+                    class=item.class
+                    w-onkeydown="handlePageKeyDown"
+                    w-onclick="handlePageClick"
+                    ${item.htmlAttributes}
+                    w-body=item.renderBody>
+                </a>
+            </li>
+        </for>
+    </ol>
+    <a aria-disabled=String(data.nextItem.disabled)
+        aria-label=data.accessibilityNext
+        class=data.nextItem.class
+        href=data.nextItem.href
+        role=data.role
+        w-onkeydown="handleNextPageKeyDown"
+        w-onclick="handleNextPage"
+        ${data.nextItem.htmlAttributes}
+        if(data.nextItem)>
+       <span></span>
+    </a>
+</nav>

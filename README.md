@@ -14,16 +14,18 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 
 * [Node.js](https://nodejs.org/en/)
 * [Marko](https://markojs.com) (v3+)
-* [eBay Skin](https://ebay.github.io/skin/) (v4+)
+* [eBay Skin](https://ebay.github.io/skin/) (v5+)
 
 *NOTE: Marko v3 also requires [Marko Widgets](https://github.com/marko-js/marko-widgets).*
 
 ### Components
 * [`ebay-breadcrumb`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumb)
 * [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
+* [`ebay-carousel`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel)
 * [`ebay-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-dialog)
 * [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
 * [`ebay-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-notice)
+* [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
 * [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
 
 ## Getting Started
@@ -81,7 +83,26 @@ var menu = document.querySelector('.menu');
 menu.label = 'Sortieren';
 ```
 
-*NOTE: Undocumented attributes are assumed to be HTML and will be applied to the root element of the custom tag.*
+#### Pass-Through Attributes
+
+HTML attributes can be used on any component, and they will be passed through to the most prominent tag of the component. The most prominent tag is usually the root, but individual components will note if it varies for specific cases.
+
+Example of static usage:
+```marko
+<ebay-button id="my-button"/>
+```
+
+For using pass-through attributes dynamically, they should be sent through the `html-attributes` attribute:
+```marko
+<!-- data.htmlAttributes = { id: 'my-button' } -->
+<ebay-button html-attributes=data.htmlAttributes/>
+```
+
+Static and dynamic pass-through attributes can be used simulatenously (html-attributes takes precedence in conflicts):
+```marko
+<!-- data.htmlAttributes = { id: 'my-button' } -->
+<ebay-button html-attributes=data.htmlAttributes type="submit"/>
+```
 
 ### Events
 

@@ -53,9 +53,9 @@ function getTemplateData(state, input) {
     return model;
 }
 
-function handleClick() {
+function handleClick(originalEvent) {
     if (!this.state.disabled) {
-        emitAndFire(this, 'button-click');
+        emitAndFire(this, 'button-click', { originalEvent });
     }
 }
 

@@ -38,7 +38,7 @@ describe('transition', () => {
     });
 
     it('applies classes in correct order', (done) => {
-        transition(transitionEl, 'show');
+        transition({ el: transitionEl, className: 'show', waitFor: [transitionEl] });
         transitionEl.removeAttribute('hidden');
         expect(transitionEl.classList.contains('show-init')).to.equal(true);
 
@@ -56,7 +56,7 @@ describe('transition', () => {
 
     it('triggers a callback once complete', (done) => {
         const spy = sinon.spy();
-        transition(transitionEl, 'show', spy);
+        transition({ el: transitionEl, className: 'show', waitFor: [transitionEl] }, spy);
         transitionEl.removeAttribute('hidden');
         transitionEl.addEventListener('transitionend', spy);
         setTimeout(() => {
