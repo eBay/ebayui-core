@@ -17,20 +17,20 @@ module.exports = {
      */
     prevent() {
         const { body } = document;
-        const { scrollX, scrollY } = window;
+        const { pageXOffset, pageYOffset } = window;
         const { width, height, marginTop, marginLeft } = getComputedStyle(body);
         let styleText = 'position:fixed;overflow:hidden;';
-        previousPosition = [scrollX, scrollY];
+        previousPosition = [pageXOffset, pageYOffset];
         previousStyles = body.getAttribute('style');
         styleText += `height:${height};`;
         styleText += `width:${width};`;
 
-        if (scrollY) {
-            styleText += `margin-top:${-1 * (scrollY - parseInt(marginTop, 10))}px;`;
+        if (pageYOffset) {
+            styleText += `margin-top:${-1 * (pageYOffset - parseInt(marginTop, 10))}px;`;
         }
 
-        if (scrollX) {
-            styleText += `margin-left:${-1 * (scrollX - parseInt(marginLeft, 10))}px`;
+        if (pageXOffset) {
+            styleText += `margin-left:${-1 * (pageXOffset - parseInt(marginLeft, 10))}px`;
         }
 
         if (previousStyles) {
