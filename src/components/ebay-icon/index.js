@@ -14,9 +14,9 @@ function getTemplateData(state, input) {
     if (isInline) {
         if (accessibilityText) {
             titleId = `icon-title-${Math.random().toString(36).substr(2, 9)}`;
-            accessibilityAttributes = { 'aria-labelled-by': titleId, focusable: 'true', role: 'img' };
+            accessibilityAttributes = { 'aria-labelled-by': titleId, role: 'img' };
         } else {
-            accessibilityAttributes = { 'aria-hidden': 'true', focusable: 'false' };
+            accessibilityAttributes = { 'aria-hidden': 'true' };
         }
     }
 

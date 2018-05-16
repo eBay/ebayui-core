@@ -3,7 +3,7 @@
     <span w-bind ${data.htmlAttributes} class=data.classes/>
 </if>
 <else-if(data.isInline)>
-    <svg w-bind ${data.htmlAttributes} ${data.accessibilityAttributes} class=data.classes>
+    <svg w-bind ${data.htmlAttributes} ${data.accessibilityAttributes} focusable="false" class=data.classes>
         <title if(data.accessibilityText) id=data.titleId>${data.accessibilityText}</title>
         <use xlink:href="#icon-${data.name}"/>
     </svg>

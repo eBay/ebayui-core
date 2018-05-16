@@ -20,13 +20,13 @@ describe('icon', () => {
     test('renders inline type', context => {
         const input = { type: 'inline', name: iconName };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($(`svg[aria-hidden=true][focusable=false].icon.icon--${iconName} > use`).length).to.equal(1);
+        expect($(`svg[aria-hidden=true].icon.icon--${iconName} > use`).length).to.equal(1);
     });
 
     test('renders inline type with accessibility text', context => {
         const input = { type: 'inline', name: iconName, accessibilityText: 'text' };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($(`svg[role=img][focusable=true].icon.icon--${iconName} > use`).length).to.equal(1);
+        expect($(`svg[role=img].icon.icon--${iconName} > use`).length).to.equal(1);
     });
 
     test('handles pass-through html attributes on type=background', context => {
