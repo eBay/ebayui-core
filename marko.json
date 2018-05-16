@@ -144,10 +144,11 @@
     "<ebay-icon>": {
         "renderer": "./src/components/ebay-icon/index.js",
         "transformer": "./src/components/ebay-icon/transformer.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
         "@class": "string",
         "@type": "string",
         "@name": "string",
-        "@accessibility-text": "string",
-        "@*": "expression"
+        "@accessibility-text": "string"
     }
 }
