@@ -60,6 +60,12 @@ _browser.json_
 }
 ```
 
+If you're using Marko v3 ebayui tags in Marko v4, add the `marko-widgets` backwards compatibility layer.
+
+```sh
+marko-widgets@7
+```
+
 ### Attributes
 
 Attributes provide initial state for a component. We can see that the menu has `label` and `type` attributes:
