@@ -60,10 +60,10 @@ _browser.json_
 }
 ```
 
-If you're using Marko v3 ebayui tags in Marko v4, add the `marko-widgets` backwards compatibility layer.
+If you're using Marko v3 `ebayui` components in Marko v4, add the `marko-widgets` backwards compatibility layer.
 
 ```sh
-marko-widgets@7
+yarn add marko-widgets@7
 ```
 
 ### Attributes
