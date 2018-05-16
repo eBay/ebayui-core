@@ -14,7 +14,7 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 
 * [Node.js](https://nodejs.org/en/)
 * [Marko](https://markojs.com) (v3+)
-* [eBay Skin](https://ebay.github.io/skin/) (v4+)
+* [eBay Skin](https://ebay.github.io/skin/) (v5+)
 
 *NOTE: Marko v3 also requires [Marko Widgets](https://github.com/marko-js/marko-widgets).*
 
