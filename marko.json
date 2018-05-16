@@ -153,8 +153,9 @@
     },
     "<ebay-radio>": {
         "renderer": "./src/components/ebay-radio/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
         "@class": "string",
-        "@disabled": "boolean",
-        "@*": "expression"
+        "@disabled": "boolean"
     }
 }
