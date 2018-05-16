@@ -82,26 +82,32 @@
     &--discrete {
         .carousel__list {
             display: flex;
+
+            // avoid flex shorthand due to ie11 bugs
+            > li {
+                flex-grow: 0;
+                flex-shrink: 0;
+            }
         }
 
         &-1 .carousel__list > li {
-            flex: 0 0 100%;
+            flex-basis: 100%;
         }
 
         &-2 .carousel__list > li {
-            flex: 0 0 calc(50% ~"-" 8px);
+            flex-basis: calc(50% ~"-" 8px);
         }
 
         &-3 .carousel__list > li {
-            flex: 0 0 calc(33.333% ~"-" 10.666px);
+            flex-basis: calc(33.333% ~"-" 10.666px);
         }
 
         &-4 .carousel__list > li {
-            flex: 0 0 calc(25% ~"-" 12px);
+            flex-basis: calc(25% ~"-" 12px);
         }
 
-        &-4 .carousel__list > li {
-            flex: 0 0 calc(20% ~"-" 16px);
+        &-5 .carousel__list > li {
+            flex-basis: calc(20% ~"-" 16px);
         }
     }
 

@@ -47,6 +47,9 @@ function getTemplateData(state) {
             dialogClass.push('dialog--mask-fade-slow');
             break;
         case 'full':
+            windowClass.push('dialog__window--fade');
+            dialogClass.push('dialog--no-mask');
+            break;
         case 'fill':
         default:
             windowClass.push('dialog__window--fade');

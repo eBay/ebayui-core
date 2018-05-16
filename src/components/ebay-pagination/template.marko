@@ -12,6 +12,7 @@
         role=data.role
         w-onkeydown="handlePreviousPageKeyDown"
         w-onclick="handlePreviousPage"
+        ${data.prevItem.htmlAttributes}
         if(data.prevItem)>
        <span></span>
     </a>
@@ -37,6 +38,7 @@
         role=data.role
         w-onkeydown="handleNextPageKeyDown"
         w-onclick="handleNextPage"
+        ${data.nextItem.htmlAttributes}
         if(data.nextItem)>
        <span></span>
     </a>

@@ -1,5 +1,5 @@
 <div class=data.classes w-bind ${data.htmlAttributes}>
-    <var statusId="carousel-status-${widget.id}"/>
+    <var statusId=("carousel-status-" + widget.id)/>
     <div class=("carousel__container" + (data.bothControlsDisabled ? " carousel__container--controls-disabled" : ""))>
         <span
             if(data.isDiscrete)
