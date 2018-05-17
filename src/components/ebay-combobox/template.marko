@@ -1,0 +1,53 @@
+<span
+    class=data.class
+    ${data.htmlAttributes}
+    w-on-expander-expand='handleExpand'
+    w-on-expander-collapse='handleCollapse'
+    w-bind>
+    <span class=data.btnClass w-preserve-attrs="class">
+        <input
+            type='text'
+            value=(data.selectedOption && data.selectedOption.label)
+            readonly
+            disabled=data.disabled
+            role='combobox'
+            aria-haspopup='listbox'
+            aria-owns=widget.elId('combobox__options')
+            aria-expanded='false'
+            w-on-keydown='handleComboboxKeyDown'
+            w-preserve-attrs="aria-expanded"/>
+        <span class="combobox__icon" aria-hidden="true"></span>
+    </span>
+    <div
+        if(data.options.length > 0)
+        w-id='combobox__options'
+        role='listbox'
+        class=data.optionsClass>
+        <div
+            for(option in data.options)
+            role='option'
+            class=['combobox__option', option.class]
+            tabindex="-1"
+            ${option.htmlAttributes}
+            w-on-click='handleOptionClick'
+            w-preserve-attrs="tabindex,data-makeup-index"
+            aria-selected=String(option.selected)
+            data-option-value=option.value>
+            <span class='combobox__option-label'>
+                ${option.label}
+            </span>
+            <span class='combobox__status'/>
+        </div>
+    </div>
+    <select
+        hidden
+        class='combobox__native'
+        name=data.name>
+        <option
+            for(option in data.options)
+            value=option.value
+            selected=option.selected
+            class=option.class>
+        </option>
+    </select>
+</span>

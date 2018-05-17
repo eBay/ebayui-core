@@ -2,7 +2,7 @@
     "dependencies": [
         {
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/select"
+            "path": "@ebay/skin/listbox"
         },
         "../../../src/components/ebay-button",
         "require: marko-widgets",
