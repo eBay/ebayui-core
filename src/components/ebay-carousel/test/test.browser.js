@@ -57,7 +57,7 @@ describe('given the carousel starts in the default state with items', () => {
         list = root.querySelector('.carousel__list');
         nextButton = root.querySelector('.carousel__control--next');
         prevButton = root.querySelector('.carousel__control--prev');
-        setTimeout(done, 40);
+        setTimeout(done, 20);
     });
     afterEach(() => widget.destroy());
 
@@ -70,7 +70,41 @@ describe('given the carousel starts in the default state with items', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             root.index = 1;
-            setTimeout(done, 40);
+            setTimeout(done, 20);
+        });
+
+        it('then it emits the marko move event', () => {
+            expect(moveSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([1, 2, 3]);
+        });
+
+        it('then it applies a translation', () => {
+            const translation = mock.itemWidth + constants.margin;
+            expect(list.style.transform).to.equal(`translateX(-${translation}px)`);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            expect(widget.firstVisibleIndex).to.equal(1);
+            expect(widget.lastVisibleIndex).to.equal(3);
+        });
+    });
+
+    // simulate parent state change
+    describe('when index is updated via state', () => {
+        let moveSpy;
+        let updateSpy;
+        beforeEach(done => {
+            moveSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-move', moveSpy);
+            widget.on('carousel-update', updateSpy);
+            widget.setState('index', 1);
+            setTimeout(done, 20);
         });
 
         it('then it emits the marko move event', () => {
@@ -100,7 +134,7 @@ describe('given the carousel starts in the default state with items', () => {
             prevSpy = sinon.spy();
             widget.on('carousel-prev', prevSpy);
             testUtils.triggerEvent(prevButton, 'click');
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then it does not emit the marko prev event', () => {
@@ -120,7 +154,7 @@ describe('given the carousel starts in the default state with items', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then it emits the marko next event', () => {
@@ -156,7 +190,7 @@ describe('given the carousel starts in the default state with items', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             root.index = -1;
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then index is normalized to 0', () => {
@@ -178,7 +212,7 @@ describe('given the carousel starts in the default state with items', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             root.index = 99;
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then index is normalized to lastIndex', () => {
@@ -211,8 +245,8 @@ describe('given a continuous carousel has next button clicked', () => {
             setTimeout(() => {
                 expect(list.style.transform).to.equal('translateX(-480px)');
                 done();
-            }, 40);
-        }, 40);
+            }, 20);
+        }, 20);
     });
     afterEach(() => widget.destroy());
 
@@ -228,7 +262,7 @@ describe('given a continuous carousel has next button clicked', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(prevButton, 'click');
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then it emits the marko prev event', () => {
@@ -262,7 +296,7 @@ describe('given a continuous carousel has next button clicked', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then it does not emits the marko events', () => {
@@ -283,7 +317,7 @@ describe('given a continuous carousel with few items', () => {
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
         root = document.querySelector('.carousel');
         list = document.querySelector('.carousel__list');
-        setTimeout(done, 40);
+        setTimeout(done, 20);
     });
     afterEach(() => widget.destroy());
 
@@ -318,7 +352,7 @@ describe('given a continuous carousel with many items', () => {
         root = document.querySelector('.carousel');
         prevButton = root.querySelector('.carousel__control--prev');
         nextButton = root.querySelector('.carousel__control--next');
-        setTimeout(done, 40);
+        setTimeout(done, 20);
     });
     afterEach(() => widget.destroy());
 
@@ -338,9 +372,9 @@ describe('given a continuous carousel with many items', () => {
                 testUtils.triggerEvent(nextButton, 'click');
                 setTimeout(() => {
                     testUtils.triggerEvent(nextButton, 'click');
-                    setTimeout(done, 40);
-                }, 40);
-            }, 40);
+                    setTimeout(done, 20);
+                }, 20);
+            }, 20);
         });
 
         it('then it emits the marko events', () => {
@@ -376,10 +410,10 @@ describe('given a continuous carousel with many items', () => {
                     testUtils.triggerEvent(nextButton, 'click');
                     setTimeout(() => {
                         testUtils.triggerEvent(prevButton, 'click');
-                        setTimeout(done, 40);
-                    }, 40);
-                }, 40);
-            }, 40);
+                        setTimeout(done, 20);
+                    }, 20);
+                }, 20);
+            }, 20);
         });
 
         it('then it emits the marko events', () => {
@@ -415,9 +449,9 @@ describe('given a continuous carousel with many items', () => {
                 testUtils.triggerEvent(nextButton, 'click');
                 setTimeout(() => {
                     testUtils.triggerEvent(prevButton, 'click');
-                    setTimeout(done, 40);
-                }, 40);
-            }, 40);
+                    setTimeout(done, 20);
+                }, 20);
+            }, 20);
         });
 
         it('then it emits the marko events', () => {
@@ -445,7 +479,7 @@ describe('given a discrete carousel', () => {
         root = document.querySelector('.carousel');
         list = root.querySelector('.carousel__list');
         nextButton = root.querySelector('.carousel__control--next');
-        setTimeout(done, 40);
+        setTimeout(done, 20);
     });
     afterEach(() => widget.destroy());
 
@@ -464,7 +498,7 @@ describe('given a discrete carousel', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then it emits the marko next event', () => {
@@ -531,7 +565,7 @@ describe('given a discrete carousel has next button clicked', () => {
             setTimeout(() => {
                 expect(list.style.transform).to.equal(`translateX(-${containerWidth + constants.margin}px)`);
                 done();
-            }, 40);
+            }, 20);
         });
     });
     afterEach(() => widget.destroy());
@@ -551,7 +585,7 @@ describe('given a discrete carousel has next button clicked', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(prevButton, 'click');
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then it emits the marko prev event', () => {
@@ -599,7 +633,7 @@ describe('given a discrete carousel with half width items', () => {
         list = root.querySelector('.carousel__list');
         nextButton = root.querySelector('.carousel__control--next');
         nextSlideDot = root.querySelector('[data-slide="2"]');
-        setTimeout(done, 40);
+        setTimeout(done, 20);
     });
     afterEach(() => widget.destroy());
 
@@ -618,7 +652,7 @@ describe('given a discrete carousel with half width items', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then it emits the marko next event', () => {
@@ -666,7 +700,7 @@ describe('given a discrete carousel with half width items', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextSlideDot, 'click');
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then it does not emit the marko next event', () => {
@@ -714,7 +748,7 @@ describe('given a discrete carousel with half width items', () => {
             widget.on('carousel-move', moveSpy);
             widget.on('carousel-update', updateSpy);
             root.slide = 2;
-            setTimeout(done, 40);
+            setTimeout(done, 20);
         });
 
         it('then it does not emit the marko next event', () => {
