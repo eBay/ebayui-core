@@ -17,7 +17,18 @@
             <div class="example">
                 <h4>${example.name}</h4>
                 <div class="example-code">$!{example.code}</div>
-                <div><dynamic-tag options={path: example.path}/></div>
+                <div>
+                    <!-- icons need to be statically imported -->
+                    <if(data.params.component === 'ebay-icon')>
+                        <include("../src/components/ebay-icon/examples/1-background/template.marko") if(example.num === 1)/>
+                        <include("../src/components/ebay-icon/examples/2-inline/template.marko") if(example.num === 2)/>
+                        <include("../src/components/ebay-icon/examples/3-inline-custom-color/template.marko") if(example.num === 3)/>
+                        <include("../src/components/ebay-icon/examples/4-inline-non-decorative/template.marko") if(example.num === 4)/>
+                    </if>
+                    <else>
+                        <dynamic-tag options={path: example.path}/>
+                    </else>
+                </div>
             </div>
         </for>
         <lasso-body/>
