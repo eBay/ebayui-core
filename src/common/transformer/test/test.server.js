@@ -1,36 +1,6 @@
 const expect = require('chai').expect;
-const prettyPrint = require('marko-prettyprint').prettyPrintAST;
-const markoCompiler = require('marko/compiler');
 const transformer = require('../');
-let CompileContext;
-let Builder;
-
-try {
-    // v3 paths
-    CompileContext = require('marko/compiler/CompileContext');
-    Builder = require('marko/compiler/Builder');
-} catch (e) {
-    // v4 paths
-    const target = require('marko/env').isDebug ? 'src' : 'dist';
-    CompileContext = require(`marko/${target}/compiler/CompileContext`);
-    Builder = require(`marko/${target}/compiler/Builder`);
-}
-
-function getTransformedTemplate(srcString, templatePath) {
-    const templateAST = markoCompiler.parseRaw(
-        srcString,
-        templatePath
-    );
-    const context = new CompileContext(
-        srcString,
-        templatePath,
-        Builder.DEFAULT_BUILDER
-    );
-
-    transformer(templateAST.body.array[0], context);
-
-    return prettyPrint(templateAST).replace(/\>\s*</g, '><').trim();
-}
+const testUtils = require('../../test-utils/server');
 
 function getTagString(rootTag, nestedTag) {
     return {
@@ -55,7 +25,7 @@ describe('when the ebay-select-option tag is transformed', () => {
         const nestedTag = 'option';
         const templatePath = `../../../components/${rootTag}/template.marko`;
         tagString = getTagString(rootTag, nestedTag);
-        outputTemplate = getTransformedTemplate(tagString.before, templatePath);
+        outputTemplate = testUtils.getTransformedTemplate(transformer, tagString.before, templatePath);
     });
 
     test('transforms the body contents of a listbox', () => {
@@ -72,7 +42,7 @@ describe('when the ebay-select-option tag is nested and is transformed', () => {
         const nestedTag = 'option';
         const templatePath = `../../../components/${rootTag}/template.marko`;
         tagString = getNestedTagString(rootTag, nestedTag);
-        outputTemplate = getTransformedTemplate(tagString.before, templatePath);
+        outputTemplate = testUtils.getTransformedTemplate(transformer, tagString.before, templatePath);
     });
 
     test('transforms the body contents of a listbox', () => {
@@ -89,7 +59,7 @@ describe('when the ebay-menu:item tag is transformed', () => {
         const nestedTag = 'item';
         const templatePath = `../../../components/${rootTag}/template.marko`;
         tagString = getTagString(rootTag, nestedTag);
-        outputTemplate = getTransformedTemplate(tagString.after, templatePath);
+        outputTemplate = testUtils.getTransformedTemplate(transformer, tagString.after, templatePath);
     });
 
     test('leaves tag as is', () => {
