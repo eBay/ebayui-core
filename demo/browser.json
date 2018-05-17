@@ -10,6 +10,7 @@
         "../src/components/ebay-button",
         "../src/components/ebay-carousel",
         "../src/components/ebay-dialog",
+        "../src/components/ebay-icon",
         "../src/components/ebay-menu",
         "../src/components/ebay-notice",
         "../src/components/ebay-pagination",
