@@ -31,7 +31,7 @@ describe('given checkbox button is enabled', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.originalEvent instanceof Event).to.equal(true);
-            expect(eventData.selected).to.equal('food');
+            expect(eventData.value).to.equal('food');
         });
     });
 });
