@@ -30,9 +30,9 @@ Name | Type | Stateful | Description
 
 Event | Data | Description
 --- | --- | ---
-`pagination-previous` |  `{ event, el: event.target }`| clicked previous arrow button
-`pagination-next` | `{ event, el: event.target }` | clicked next arrow button
-`pagination-select` | `{ event, el: event.target , value: "Selected page" }` | page selected clicked
+`pagination-previous` | `{ originalEvent, el }`| clicked previous arrow button
+`pagination-next` | `{ originalEvent, el }` | clicked next arrow button
+`pagination-select` | `{ originalEvent, el, value }` | page selected clicked
 
 ## ebay-pagination-item Tag
 

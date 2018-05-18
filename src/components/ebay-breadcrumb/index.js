@@ -45,9 +45,9 @@ function getInitialState({ hijax }) {
     return { hijax };
 }
 
-function handleClick(event) {
-    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'breadcrumb-select', { el: event.target });
+function handleClick(originalEvent) {
+    eventUtils.preventDefaultIfHijax(originalEvent, this.state.hijax);
+    emitAndFire(this, 'breadcrumb-select', { originalEvent, el: originalEvent.target });
 }
 
 module.exports = markoWidgets.defineComponent({
