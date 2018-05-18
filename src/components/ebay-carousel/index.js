@@ -43,6 +43,7 @@ function getInitialState(input) {
         activeDot: isDiscrete && 1,
         prevControlDisabled: true,
         nextControlDisabled: false,
+        bothControlsDisabled: false,
         accessibilityPrev: input.accessibilityPrev || 'Previous Slide',
         accessibilityNext: input.accessibilityNext || 'Next Slide',
         accessibilityStatus: input.accessibilityStatus || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
@@ -87,16 +88,19 @@ function init() {
 }
 
 function onUpdate() {
-    requestAnimationFrame(this.processIndexChange.bind(this));
+    this.processIndexChange();
 }
 
-// FIXME
+function onDestroy() {
+    cancelAnimationFrame(this.processMovementFrame);
+}
+
 function refresh() {
     this.calculateWidths(true);
-    requestAnimationFrame(this.processMovement.bind(this));
     if (this.state.isDiscrete) {
         this.simulateDotClick(this.state.slide);
     }
+    this.processMovement();
 }
 
 /**
@@ -130,44 +134,47 @@ function processIndexChange() {
  * Handle movement to current state.index
  */
 function processMovement() {
-    const oldFirstVisibleIndex = this.firstVisibleIndex;
-    const oldLastVisibleIndex = this.lastVisibleIndex;
-    this.moveToIndex(this.state.index);
-    this.lastVisibleIndex = this.calculateLastVisibleIndex();
-    this.setState('prevControlDisabled', this.state.index === 0);
-    this.setState('nextControlDisabled', this.lastVisibleIndex === this.lastIndex);
+    this.processMovementFrame = requestAnimationFrame(() => {
+        const oldFirstVisibleIndex = this.firstVisibleIndex;
+        const oldLastVisibleIndex = this.lastVisibleIndex;
+        this.moveToIndex(this.state.index);
+        this.lastVisibleIndex = this.calculateLastVisibleIndex();
+        this.setState('prevControlDisabled', this.state.index === 0);
+        this.setState('nextControlDisabled', this.lastVisibleIndex === this.lastIndex);
+        this.setState('bothControlsDisabled', this.state.prevControlDisabled && this.state.nextControlDisabled);
 
-    // must calculate firstVisibleIndex after nextControlDisabled is set
-    this.firstVisibleIndex = this.calculateFirstVisibleIndex();
+        // must calculate firstVisibleIndex after nextControlDisabled is set
+        this.firstVisibleIndex = this.calculateFirstVisibleIndex();
 
-    if (this.state.isDiscrete) {
-        this.setState('activeDot', (this.lastVisibleIndex + 1) / this.state.itemsPerSlide);
-    }
-
-    if (this.firstVisibleIndex !== oldFirstVisibleIndex ||
-        this.lastVisibleIndex !== oldLastVisibleIndex) {
-        const visibleIndexes = [];
-        for (let i = this.firstVisibleIndex; i <= this.lastVisibleIndex; i++) {
-            visibleIndexes.push(i);
+        if (this.state.isDiscrete) {
+            this.setState('activeDot', (this.lastVisibleIndex + 1) / this.state.itemsPerSlide);
         }
 
-        emitAndFire(this, 'carousel-update', { visibleIndexes });
-    }
+        if (this.firstVisibleIndex !== oldFirstVisibleIndex ||
+            this.lastVisibleIndex !== oldLastVisibleIndex) {
+            const visibleIndexes = [];
+            for (let i = this.firstVisibleIndex; i <= this.lastVisibleIndex; i++) {
+                visibleIndexes.push(i);
+            }
 
-    this.state.items.forEach((item, i) => {
-        item.hidden = (i < this.firstVisibleIndex || i > this.lastVisibleIndex);
-    });
-    this.setStateDirty('items');
+            emitAndFire(this, 'carousel-update', { visibleIndexes });
+        }
 
-    // update nested focusable elements via DOM (we don't control this content)
-    // TODO: patch makeup-focusables to support more customized selectors?
-    const hiddenItems = this.el.querySelectorAll('.carousel__list > li[aria-hidden="true"]') || [];
-    const visibleItems = this.el.querySelectorAll('.carousel__list > li[aria-hidden="false"]') || [];
-    hiddenItems.forEach(hiddenItem => {
-        focusables(hiddenItem).forEach(focusable => focusable.setAttribute('tabindex', '-1'));
-    });
-    visibleItems.forEach(visibleItem => {
-        focusables(visibleItem).forEach(focusable => focusable.removeAttribute('tabindex'));
+        this.state.items.forEach((item, i) => {
+            item.hidden = (i < this.firstVisibleIndex || i > this.lastVisibleIndex);
+        });
+        this.setStateDirty('items');
+
+        // update nested focusable elements via DOM (we don't control this content)
+        // TODO: patch makeup-focusables to support more customized selectors?
+        const hiddenItems = this.el.querySelectorAll('.carousel__list > li[aria-hidden="true"]') || [];
+        const visibleItems = this.el.querySelectorAll('.carousel__list > li[aria-hidden="false"]') || [];
+        hiddenItems.forEach(hiddenItem => {
+            focusables(hiddenItem).forEach(focusable => focusable.setAttribute('tabindex', '-1'));
+        });
+        visibleItems.forEach(visibleItem => {
+            focusables(visibleItem).forEach(focusable => focusable.removeAttribute('tabindex'));
+        });
     });
 }
 
@@ -326,6 +333,7 @@ module.exports = require('marko-widgets').defineComponent({
     getTemplateData,
     init,
     onUpdate,
+    onDestroy,
     refresh,
     processIndexChange,
     processMovement,
