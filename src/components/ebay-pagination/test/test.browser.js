@@ -4,6 +4,20 @@ const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const renderer = require('../');
 
+function testControlEvent(spy, el) {
+    expect(spy.calledOnce).to.equal(true);
+    expect(spy.getCall(0).args[0].el).to.deep.equal(el);
+    testUtils.testOriginalEvent(spy);
+}
+
+function testSelectEvent(spy, el) {
+    const eventData = spy.getCall(0).args[0];
+    expect(spy.calledOnce).to.equal(true);
+    expect(eventData.el).to.deep.equal(el);
+    expect(eventData.value).to.equal('1');
+    testUtils.testOriginalEvent(spy);
+}
+
 describe('given the pagination is in the default state with links', () => {
     let widget;
     let root;
@@ -33,8 +47,7 @@ describe('given the pagination is in the default state with links', () => {
         });
 
         test('then it emits the marko event called pagination-previous', () => {
-            expect(spy.calledOnce).to.equal(true);
-            expect(Object.keys(spy.args[0][0])).to.deep.equal(['el']);
+            testControlEvent(spy, previousButton);
         });
     });
 
@@ -48,8 +61,7 @@ describe('given the pagination is in the default state with links', () => {
         });
 
         test('then it emits the pagination-previous event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            expect(Object.keys(spy.args[0][0])).to.deep.equal(['el']);
+            testControlEvent(spy, previousButton);
         });
     });
 
@@ -62,8 +74,7 @@ describe('given the pagination is in the default state with links', () => {
         });
 
         test('then it emits the marko event called pagination-next', () => {
-            expect(spy.calledOnce).to.equal(true);
-            expect(Object.keys(spy.args[0][0])).to.deep.equal(['el']);
+            testControlEvent(spy, nextButton);
         });
     });
 
@@ -77,8 +88,7 @@ describe('given the pagination is in the default state with links', () => {
         });
 
         test('then it emits the pagination-next event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            expect(Object.keys(spy.args[0][0])).to.deep.equal(['el']);
+            testControlEvent(spy, nextButton);
         });
     });
 
@@ -91,10 +101,7 @@ describe('given the pagination is in the default state with links', () => {
         });
 
         test('then it emits the marko event called pagination-select', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(Object.keys(spy.args[0][0])).to.deep.equal(['el', 'value']);
-            expect(eventData.value).to.be.equal('1');
+            testSelectEvent(spy, pageItem);
         });
     });
 
@@ -107,8 +114,7 @@ describe('given the pagination is in the default state with links', () => {
         });
 
         test('then it emits the marko event called pagination-previous', () => {
-            expect(spy.calledOnce).to.equal(true);
-            expect(Object.keys(spy.args[0][0])).to.deep.equal(['el']);
+            testControlEvent(spy, previousButton);
         });
     });
 
@@ -121,8 +127,7 @@ describe('given the pagination is in the default state with links', () => {
         });
 
         test('then it emits the marko event called pagination-next', () => {
-            expect(spy.calledOnce).to.equal(true);
-            expect(Object.keys(spy.args[0][0])).to.deep.equal(['el']);
+            testControlEvent(spy, nextButton);
         });
     });
 
@@ -135,10 +140,7 @@ describe('given the pagination is in the default state with links', () => {
         });
 
         test('then it emits the marko event called pagination-select', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(Object.keys(spy.args[0][0])).to.deep.equal(['el', 'value']);
-            expect(eventData.value).to.be.equal('1');
+            testSelectEvent(spy, pageItem);
         });
     });
 });
