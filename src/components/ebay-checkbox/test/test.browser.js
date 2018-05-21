@@ -23,6 +23,7 @@ describe('given checkbox button is enabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
+            input.click();
             widget.on('checkbox-select', spy);
             testUtils.triggerEvent(input, 'click');
         });
@@ -32,6 +33,7 @@ describe('given checkbox button is enabled', () => {
             const eventData = spy.getCall(0).args[0];
             expect(eventData.originalEvent instanceof Event).to.equal(true);
             expect(eventData.value).to.equal('food');
+            expect(eventData.checked).to.equal(true);
         });
     });
 });
