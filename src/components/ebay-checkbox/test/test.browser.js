@@ -23,9 +23,8 @@ describe('given checkbox button is enabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            input.click();
             widget.on('checkbox-select', spy);
-            testUtils.triggerEvent(input, 'click');
+            input.click();
         });
 
         test('then it emits the event', () => {
