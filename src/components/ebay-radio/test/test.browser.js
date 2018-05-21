@@ -23,7 +23,7 @@ describe('given radio button is enabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('radio-click', spy);
+            widget.on('radio-select', spy);
             testUtils.triggerEvent(input, 'click');
         });
 
@@ -47,7 +47,7 @@ describe('given radio button is disabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('radio-click', spy);
+            widget.on('radio-select', spy);
             testUtils.triggerEvent(root, 'click');
         });
 

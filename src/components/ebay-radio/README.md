@@ -18,4 +18,4 @@ Note: For this component, `class` is applied to the root tag, while all other HT
 
 Event | Data | Description
 --- | --- | --
-`radio-click` | `{ originalEvent, selected }` | selected value
+`radio-select` | `{ originalEvent, value }` | selected value
