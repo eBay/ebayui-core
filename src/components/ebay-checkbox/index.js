@@ -17,7 +17,10 @@ function getTemplateData(state) {
 
 function handleClick(originalEvent) {
     if (!this.state.disabled) {
-        emitAndFire(this, 'checkbox-click', { originalEvent, value: originalEvent.target.value });
+        emitAndFire(this, 'checkbox-select', {
+            originalEvent,
+            value: originalEvent.target.value,
+            checked: originalEvent.target.checked });
     }
 }
 

@@ -23,7 +23,7 @@ describe('given checkbox button is enabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('checkbox-click', spy);
+            widget.on('checkbox-select', spy);
             testUtils.triggerEvent(input, 'click');
         });
 
@@ -47,7 +47,7 @@ describe('given checkbox button is disabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('checkbox-click', spy);
+            widget.on('checkbox-select', spy);
             testUtils.triggerEvent(root, 'click');
         });
 
