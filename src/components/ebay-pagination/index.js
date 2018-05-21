@@ -102,19 +102,24 @@ function refresh() {
  * Handle normal mouse click for item, next page and previous page respectively.
  * @param {MouseEvent} event
  */
-function handlePageClick(event) {
-    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-select', { el: event.target, value: event.target.innerText });
+function handlePageClick(originalEvent) {
+    const target = originalEvent.target;
+    eventUtils.preventDefaultIfHijax(originalEvent, this.state.hijax);
+    emitAndFire(this, 'pagination-select', { originalEvent, el: target, value: target.innerText });
 }
 
-function handleNextPage(event) {
-    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-next', { el: this.nextPageEl });
+function handleNextPage(originalEvent) {
+    if (!this.state.nextItem.disabled) {
+        eventUtils.preventDefaultIfHijax(originalEvent, this.state.hijax);
+        emitAndFire(this, 'pagination-next', { originalEvent, el: this.nextPageEl });
+    }
 }
 
-function handlePreviousPage(event) {
-    eventUtils.preventDefaultIfHijax(event, this.state.hijax);
-    emitAndFire(this, 'pagination-previous', { el: this.previousPageEl });
+function handlePreviousPage(originalEvent) {
+    if (!this.state.prevItem.disabled) {
+        eventUtils.preventDefaultIfHijax(originalEvent, this.state.hijax);
+        emitAndFire(this, 'pagination-previous', { originalEvent, el: this.previousPageEl });
+    }
 }
 
 /**

@@ -42,8 +42,8 @@ Event | Data | Description
 --- | --- | ---
 `carousel-update` | { [visibleIndexes] } | called whenever item visibility changes, including initialization
 `carousel-move` | | start of carousel content movement animation
-`carousel-next` | | click next control
-`carousel-prev` | | click previous control
+`carousel-next` | { originalEvent } | click next control
+`carousel-prev` | { originalEvent } | click previous control
 
 ### Additional Events for type="discrete"
 Event | Data | Description

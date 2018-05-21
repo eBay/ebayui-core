@@ -22,7 +22,7 @@ Name | Type | Stateful | Description
 
 Event | Description | Data
 --- | ---
-`breadcrumb-select` | click breadcrumb items | `{ event, el: event.target }`
+`breadcrumb-select` | click breadcrumb items | `{ originalEvent, el }`
 
 ## ebay-breadcrumb-item Attributes
 

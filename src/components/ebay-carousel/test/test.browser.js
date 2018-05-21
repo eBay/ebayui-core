@@ -13,6 +13,11 @@ function delay(callback) {
     setTimeout(callback, 20);
 }
 
+function testControlEvent(spy) {
+    expect(spy.calledOnce).to.equal(true);
+    testUtils.testOriginalEvent(spy);
+}
+
 describe('given the carousel is in the default state', () => {
     let widget;
     let root;
@@ -162,9 +167,7 @@ describe('given the carousel starts in the default state with items', () => {
             delay(done);
         });
 
-        it('then it emits the marko next event', () => {
-            expect(nextSpy.calledOnce).to.equal(true);
-        });
+        it('then it emits the marko next event', () => testControlEvent(nextSpy));
 
         it('then it emits the marko move event', () => {
             expect(moveSpy.calledOnce).to.equal(true);
@@ -270,9 +273,7 @@ describe('given a continuous carousel has next button clicked', () => {
             delay(done);
         });
 
-        it('then it emits the marko prev event', () => {
-            expect(prevSpy.calledOnce).to.equal(true);
-        });
+        it('then it emits the marko prev event', () => testControlEvent(prevSpy));
 
         it('then it emits the marko move event', () => {
             expect(moveSpy.calledOnce).to.equal(true);
@@ -506,9 +507,7 @@ describe('given a discrete carousel', () => {
             delay(done);
         });
 
-        it('then it emits the marko next event', () => {
-            expect(nextSpy.calledOnce).to.equal(true);
-        });
+        it('then it emits the marko next event', () => testControlEvent(nextSpy));
 
         it('then it emits the marko slide event', () => {
             expect(slideSpy.calledOnce).to.equal(true);
@@ -593,9 +592,7 @@ describe('given a discrete carousel has next button clicked', () => {
             delay(done);
         });
 
-        it('then it emits the marko prev event', () => {
-            expect(prevSpy.calledOnce).to.equal(true);
-        });
+        it('then it emits the marko prev event', () => testControlEvent(prevSpy));
 
         it('then it emits the marko slide event', () => {
             expect(slideSpy.calledOnce).to.equal(true);
@@ -660,9 +657,7 @@ describe('given a discrete carousel with half width items', () => {
             delay(done);
         });
 
-        it('then it emits the marko next event', () => {
-            expect(nextSpy.calledOnce).to.equal(true);
-        });
+        it('then it emits the marko next event', () => testControlEvent(nextSpy));
 
         it('then it emits the marko slide event', () => {
             expect(slideSpy.calledOnce).to.equal(true);

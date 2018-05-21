@@ -14,9 +14,11 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 
 * [Node.js](https://nodejs.org/en/)
 * [Marko](https://markojs.com) (v3+)
-* [eBay Skin](https://ebay.github.io/skin/) (v4+)
+* [eBay Skin](https://ebay.github.io/skin/) (v5+)
 
-*NOTE: Marko v3 also requires [Marko Widgets](https://github.com/marko-js/marko-widgets).*
+*Note:\
+Marko v3 requires [Marko Widgets v6](https://github.com/marko-js/marko-widgets)\
+Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/tree/v7)*
 
 ### Components
 * [`ebay-breadcrumb`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumb)
