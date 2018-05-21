@@ -31,6 +31,7 @@ function getInitialState(input) {
         options,
         selected: selectedOption,
         borderless: Boolean(input.borderless),
+        disabled: Boolean(input.disabled),
         htmlAttributes: processHtmlAttributes(input)
     };
 }
@@ -47,7 +48,7 @@ function getTemplateData(state) {
         name: state.name,
         selectedOption: state.selected,
         options: state.options,
-        grow: state.grow,
+        disabled: state.disabled,
         htmlAttributes: state.htmlAttributes
     };
 }
