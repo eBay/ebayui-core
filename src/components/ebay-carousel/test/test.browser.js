@@ -10,7 +10,7 @@ const containerWidth = 800; // puppeteer default
 
 // wait until after marko processing and requestAnimationFrame execution
 function delay(callback) {
-    setTimeout(callback, 20);
+    setTimeout(callback, 30);
 }
 
 function testControlEvent(spy) {
@@ -35,20 +35,6 @@ describe('given the carousel is in the default state', () => {
 
         it('then it exposes state on root element', () => {
             expect(root.index).to.equal(0);
-        });
-    });
-
-    describe('when the window is resized', () => {
-        let spy;
-        beforeEach(done => {
-            spy = sinon.spy(widget, 'calculateWidths');
-            testUtils.triggerEvent(window, 'resize');
-            delay(done);
-        });
-        afterEach(() => widget.calculateWidths.restore());
-
-        it('then it executes the calculateWidths', () => {
-            expect(spy.calledOnce).to.equal(true);
         });
     });
 });
@@ -230,6 +216,20 @@ describe('given the carousel starts in the default state with items', () => {
         it('then it emits the marko events', () => {
             expect(moveSpy.calledOnce).to.equal(true);
             expect(updateSpy.calledOnce).to.equal(true);
+        });
+    });
+
+    describe('when the window is resized', () => {
+        let spy;
+        beforeEach(done => {
+            spy = sinon.spy(widget, 'calculateWidths');
+            testUtils.triggerEvent(window, 'resize');
+            delay(done);
+        });
+        afterEach(() => widget.calculateWidths.restore());
+
+        it('then it executes the calculateWidths', () => {
+            expect(spy.calledOnce).to.equal(true);
         });
     });
 });
