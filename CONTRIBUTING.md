@@ -48,21 +48,52 @@ Please ensure all scripts in `package.json` are Unix *and* Windows friendly.
 
 To ensure that all components function correctly in both Marko v3 and v4, we run our entire test suite against both versions. This requires automated installation of Marko versions, and is best executed in the CI (to avoid conflicting with local environments). The CI runs a specific `build:ci` task in the NPM scripts for this purpose.
 
-## Pull Requests
+## Pull Requests (PRs)
 
-Please ensure an issue exists in GitHub before writing any code. Every pull request must have an associated issue for tracking and triage purposes.
+This section contains information and in-house etiquette regarding pull requests.
 
-Please always ensure the correct target branch for your pull request (see Branching Strategy below).
+### Before You Start
 
-### PR Etiquette
+If you are creating a new component or significantly altering an existing one, please ensure that an issue has been created *before* you start any work, and that it has been assigned to you. The same goes for any big new additions or changes to the project structure, CI or documentation.
 
-The contents of a pull request should be related to a single issue only. The reviewer has the right to reject a pull request that contains anything non-issue related. Whilst tempting to fix any "broken windows" that you encounter, it makes the reviewer's job more time-consuming.
+We want to avoid cases where developers build something that does not align with our wants & needs. We also want to be able to carefully plan our sprint and test cycles with minimal disruption. We especially want to avoid cases where two developers duplicate work.
 
-The pull request should contain only a single commit. Please squash all commits before sending your pull request. The reviewer has the right to reject a pull request that hasn't been squashed appropriately. Squashing into a single commit makes the reviewer's job less time consuming, as they rarely care about the steps and "diffs" along the way, only the final code.
+### Writing Code
 
-The commit message should include a reference to the issue number. A commit description, if present (rarely), should be short. Note that when merging or squashing a pull request, GitHub will by default annotate the description with a list of all commits in the PR - please be sure to delete this list from the description.
+The contents of a pull request should be related to a single issue only (or, at most, perhaps two very closely related issues). The reviewer has the right to reject a pull request that contains anything non-issue related.
 
-In general, the idea is to keep PR's small and manageable.
+Whilst it may be tempting to fix any other [broken windows](https://www.rtuin.nl/2012/08/software-development-and-the-broken-windows-theory/) that you encounter, it can distract the reviewer from the main issue at hand, make their job more time-consuming and increase the chance of regressions. Remember too, if the main issue were to get rolled back (for whatever reason), then there is a good chance that your non-related fixes would get rolled back along with it too. Which is probably not what anyone wants. So please be a good citizen and create separate issues or pull requests for the broken windows that you find.
+
+### Moving Code
+
+Please try and isolate "noisy" commits that only *move* many files or lines of code, from commits that actually modify code logic. The reviewer has the right to reject a pull request that is difficult to reason with due to too much *unnecessary* noise in the diff.
+
+For example, assuming moving some code doesn't put the app into a broken state, the move can be considered a safe atomic commit (e.g. "moved functions x, y and z to bottom of file"). The actual *fixes* to functions x, y and z can then be made in a follow up commit (e.g. "fixed functions x, y and z") which will be easier for the reviewer to diff.
+
+### Avoiding Conflicts
+
+It is your responsibility to ensure that your feature branch has no merge conflicts with it's base branch. A pull request created and sent for review containing many conflicts does not inspire confidence in the reviewer.
+
+The best way to ensure there are no conflicts is by keeping your branch up to date with it's base branch and resolving any conflicts in your own branch early & often. You may do this either by rebasing or merging. If you are the only developer working in the feature branch (you need to be sure), it is usually better to rebase. If another developer is sharing your branch, then merging is the safer option (as it doesn't require a force push).
+
+If you are working on a large feature, that takes many days, then there is a good chance that the base branch will have received many other commits during that time. If you wait till the very end you may find you have to deal with some difficult merge conflicts. On the other hand, if your pull request was created quickly and only touches a small surface area, then more than likely you will not run into any conflicts at the time the pull request is created. It doesn't hurt to keep a watchful eye on the base branch though.
+
+### Commit History
+
+Whilst having multiple "work in progress", "almost done" and "merged branch" type commits in a feature branch is fine, we wish to refrain from them polluting the milestone and master branch history. On the flip side, although rarer in comparison, we might also have some *atomic* commits in our feature branch that we absolutely wish to keep as part of the project history.
+
+Before creating your pull request you have two options regarding what to do with the commit history of your feature branch:
+
+1. Squash all superfluous commits. If more than 1 commit remains, then clearly label your PR as "do not squash" in order to keep this commit history. Any subsequent commits to the branch (i.e. those made after code review) may also meed squashing by you.
+1. Do not squash any commits and clearly mark your PR as "must squash" to indicate to the reviewer that you do not wish to keep any commit history. If you wish to keep any subsequent commits (i.e. after code review), you will now need to switch tracks to option 1 above.
+
+If a pull request is received with a bewildering commit history that is difficult to reason with (e.g. 10+ commits containing obscure commit messages, previously committed code, old branch merges, etc), it will most likely be deemed too risky and therefore closed immediately.
+
+### Merging the PR
+
+An admin will merge or squash the pull request when it receives two approvals. Please try to avoid committing any more code at this point unless it is absolutely necessary, as this may invalidate the prior approvals (depending on branch settings).
+
+The final commit message should include a reference to the pull request number. Commit descriptions are optional/rare and should be kept short. GitHub will by default annotate the description with a list of all commits in the pull request - this description is unnecessary and should be deleted.
 
 ## Branching Strategy
 
