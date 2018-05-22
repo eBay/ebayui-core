@@ -48,9 +48,9 @@ Please ensure all scripts in `package.json` are Unix *and* Windows friendly.
 
 To ensure that all components function correctly in both Marko v3 and v4, we run our entire test suite against both versions. This requires automated installation of Marko versions, and is best executed in the CI (to avoid conflicting with local environments). The CI runs a specific `build:ci` task in the NPM scripts for this purpose.
 
-## Pull Requests (PRs)
+## Pull Requests
 
-This section contains information and in-house etiquette regarding pull requests.
+This section contains information and in-house etiquette regarding pull requests (or "PRs" as they are often called).
 
 ### Before You Start
 
@@ -89,7 +89,7 @@ Before creating your pull request you have two options regarding what to do with
 
 If a pull request is received with a bewildering commit history that is difficult to reason with (e.g. 10+ commits containing obscure commit messages, previously committed code, old branch merges, etc), it will most likely be deemed too risky and therefore closed immediately.
 
-### Merging the PR
+### Merging the Pull Request
 
 An admin will merge or squash the pull request when it receives two approvals. Please try to avoid committing any more code at this point unless it is absolutely necessary, as this may invalidate the prior approvals (depending on branch settings).
 
