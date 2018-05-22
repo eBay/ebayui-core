@@ -157,5 +157,12 @@
         "@html-attributes": "expression",
         "@class": "string",
         "@disabled": "boolean"
+    },
+    "<ebay-checkbox>": {
+        "renderer": "./src/components/ebay-checkbox/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@disabled": "boolean"
     }
 }
