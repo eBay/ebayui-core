@@ -150,5 +150,19 @@
         "@type": "string",
         "@name": "string",
         "@accessibility-text": "string"
+    },
+    "<ebay-radio>": {
+        "renderer": "./src/components/ebay-radio/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@disabled": "boolean"
+    },
+    "<ebay-checkbox>": {
+        "renderer": "./src/components/ebay-checkbox/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@disabled": "boolean"
     }
 }

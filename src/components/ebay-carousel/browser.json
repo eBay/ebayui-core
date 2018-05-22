@@ -1,5 +1,9 @@
 {
     "dependencies": [
+        "require: marko-widgets",
+        "require-run: nodelist-foreach-polyfill",
+        "require: ./index.js",
+        "../../../src/components/ebay-icon",
         {
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [
@@ -8,8 +12,6 @@
                 "@ebay/skin/icon"
             ]
         },
-        "require-run: nodelist-foreach-polyfill",
-        "require: ./index.js",
         "./style.less",
         {
             "if-flag": "touch",
