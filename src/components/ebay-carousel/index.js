@@ -14,7 +14,7 @@ const constants = {
 };
 
 function getInitialState(input) {
-    let items = (input.items || []).map((item) => ({
+    let items = (input.items || []).map(item => ({
         hidden: false,
         htmlAttributes: processHtmlAttributes(item),
         renderBody: item.renderBody
@@ -34,8 +34,6 @@ function getInitialState(input) {
 
     return {
         index: parseInt(input.index) || 0,
-        firstVisibleIndex: 0,
-        lastVisibleIndex: 0,
         type,
         isContinuous: type === constants.types.continuous,
         isDiscrete,
@@ -72,6 +70,8 @@ function init() {
     this.listEl = this.el.querySelector('.carousel__list');
     this.itemEls = this.listEl.children;
     this.lastIndex = this.itemEls.length - 1;
+    this.firstVisibleIndex = 0;
+    this.lastVisibleIndex = 0;
 
     const containerEl = this.el.querySelector('.carousel__container');
     this.usesNativeScroll = window.getComputedStyle && window.getComputedStyle(containerEl)['overflow-x'] === 'scroll';
@@ -85,120 +85,105 @@ function init() {
 
     this.subscribeTo(resizeUtil).on('resize', refresh.bind(this));
     this.refresh();
-    this.refresh(); // FIXME: currently needs a second call in v4
+}
+
+function onUpdate() {
+    this.processIndexChange();
+}
+
+function onDestroy() {
+    cancelAnimationFrame(this.processMovementFrame);
 }
 
 function refresh() {
     this.calculateWidths(true);
     if (this.state.isDiscrete) {
         this.simulateDotClick(this.state.slide);
-    } else if (this.state.isContinuous) {
-        this.performSlide();
     }
-}
-
-function update_index() { // eslint-disable-line camelcase
-    this.performSlide();
-}
-
-function handleNext(originalEvent) {
-    if (!this.state.nextControlDisabled) {
-        if (this.state.isDiscrete) {
-            this.simulateDotClick(this.state.slide + 1);
-        } else if (this.state.isContinuous) {
-            this.setState('index', this.calculateNextIndex());
-        }
-        emitAndFire(this, 'carousel-next', { originalEvent });
-    }
-}
-
-function handlePrev(originalEvent) {
-    if (!this.state.prevControlDisabled) {
-        if (this.state.isDiscrete) {
-            this.simulateDotClick(this.state.slide - 1);
-        } else if (this.state.isContinuous) {
-            this.setState('index', this.calculatePrevIndex());
-        }
-        emitAndFire(this, 'carousel-prev', { originalEvent });
-    }
-}
-
-// TODO: add carousel-dot event and remove simulated dot clicks
-function handleDotClick(e) {
-    const newSlide = parseInt(e.target.getAttribute('data-slide'));
-    emitAndFire(this, 'carousel-slide', { slide: newSlide });
-    this.setState('slide', newSlide);
-    this.setState('index', (this.state.itemsPerSlide * (newSlide - 1)));
-    this.update_index(); // FIXME: why isn't this called from this.setState('index')?
-}
-
-function simulateDotClick(slide) {
-    if (slide >= 1 && slide <= this.state.totalSlides) {
-        this.el.querySelector(`[data-slide="${slide}"]`).click();
-    }
-}
-
-function updateDots() {
-    this.setState('activeDot', (this.state.lastVisibleIndex + 1) / this.state.itemsPerSlide);
+    this.processMovement();
 }
 
 /**
- * High level slide called for initialization and data change to index (via UI and API)
- * @param {Integer} index
+ * High level function called for movement upon changing index (via UI and API)
+ * Exits early if there was no actual change to index
  */
-function performSlide() {
-    // FIXME: API manipulation is disabled in native scroll case
-    if (this.state.index >= 0 && this.state.index <= this.lastIndex && !this.usesNativeScroll) {
-        const oldFirstVisibleIndex = this.state.firstVisibleIndex;
-        const oldLastVisibleIndex = this.state.lastVisibleIndex;
+function processIndexChange() {
+    // TODO: API manipulation is disabled in native scroll case
+    if (this.usesNativeScroll) {
+        return;
+    }
+
+    if (this.state.index > this.lastIndex) {
+        this.setState('index', this.lastIndex);
+    }
+
+    if (this.containerWidth >= this.allItemsWidth || this.state.index < 0) {
+        this.setState('index', 0);
+    }
+
+    if (this.state.index === this.activeIndex) {
+        return;
+    }
+
+    this.activeIndex = this.state.index;
+
+    this.processMovement();
+}
+
+/**
+ * Handle movement to current state.index
+ */
+function processMovement() {
+    cancelAnimationFrame(this.processMovementFrame);
+    this.processMovementFrame = requestAnimationFrame(() => {
+        const oldFirstVisibleIndex = this.firstVisibleIndex;
+        const oldLastVisibleIndex = this.lastVisibleIndex;
         this.moveToIndex(this.state.index);
-        this.setState('lastVisibleIndex', this.calculateLastVisibleIndex());
+        this.lastVisibleIndex = this.calculateLastVisibleIndex();
         this.setState('prevControlDisabled', this.state.index === 0);
-        this.setState('nextControlDisabled', this.state.lastVisibleIndex === this.lastIndex);
+        this.setState('nextControlDisabled', this.lastVisibleIndex === this.lastIndex);
         this.setState('bothControlsDisabled', this.state.prevControlDisabled && this.state.nextControlDisabled);
 
         // must calculate firstVisibleIndex after nextControlDisabled is set
-        this.setState('firstVisibleIndex', this.calculateFirstVisibleIndex());
+        this.firstVisibleIndex = this.calculateFirstVisibleIndex();
 
-        if (this.state.firstVisibleIndex !== oldFirstVisibleIndex ||
-            this.state.lastVisibleIndex !== oldLastVisibleIndex) {
+        if (this.state.isDiscrete) {
+            this.setState('activeDot', (this.lastVisibleIndex + 1) / this.state.itemsPerSlide);
+        }
+
+        if (this.firstVisibleIndex !== oldFirstVisibleIndex ||
+            this.lastVisibleIndex !== oldLastVisibleIndex) {
             const visibleIndexes = [];
-            for (let i = this.state.firstVisibleIndex; i <= this.state.lastVisibleIndex; i++) {
+            for (let i = this.firstVisibleIndex; i <= this.lastVisibleIndex; i++) {
                 visibleIndexes.push(i);
             }
+
             emitAndFire(this, 'carousel-update', { visibleIndexes });
         }
 
         this.state.items.forEach((item, i) => {
-            item.hidden = (i < this.state.firstVisibleIndex || i > this.state.lastVisibleIndex);
+            item.hidden = (i < this.firstVisibleIndex || i > this.lastVisibleIndex);
         });
         this.setStateDirty('items');
 
-        if (this.state.isDiscrete) {
-            this.updateDots();
-        }
-
-        this.update(); // FIXME: why won't it rerender on its own?
-    }
-
-    // update nested focusable elements via DOM (we don't control this content)
-    // TODO: patch makeup-focusables to support more customized selectors?
-    const hiddenItems = this.el.querySelectorAll('.carousel__list > li[aria-hidden="true"]') || [];
-    const visibleItems = this.el.querySelectorAll('.carousel__list > li[aria-hidden="false"]') || [];
-    hiddenItems.forEach(hiddenItem => {
-        focusables(hiddenItem).forEach(focusable => focusable.setAttribute('tabindex', '-1'));
-    });
-    visibleItems.forEach(visibleItem => {
-        focusables(visibleItem).forEach(focusable => focusable.removeAttribute('tabindex'));
+        // update nested focusable elements via DOM (we don't control this content)
+        // TODO: patch makeup-focusables to support more customized selectors?
+        const hiddenItems = this.el.querySelectorAll('.carousel__list > li[aria-hidden="true"]') || [];
+        const visibleItems = this.el.querySelectorAll('.carousel__list > li[aria-hidden="false"]') || [];
+        hiddenItems.forEach(hiddenItem => {
+            focusables(hiddenItem).forEach(focusable => focusable.setAttribute('tabindex', '-1'));
+        });
+        visibleItems.forEach(visibleItem => {
+            focusables(visibleItem).forEach(focusable => focusable.removeAttribute('tabindex'));
+        });
     });
 }
 
 /**
  * Move carousel position to an index
- * @param {Integer} index
  */
-function moveToIndex(index) {
-    let translation = -1 * this.getWidthBetweenIndexes(0, index);
+function moveToIndex() {
+    let translation = -1 * this.getWidthBetweenIndexes(0, this.state.index);
     const maxTranslation = -1 * (this.allItemsWidth - this.containerWidth);
     if (translation !== 0 && translation < maxTranslation) {
         translation = maxTranslation;
@@ -307,19 +292,52 @@ function getItemWidth(index, forceUpdate) {
     return 0;
 }
 
+function handleNext(originalEvent) {
+    if (!this.state.nextControlDisabled) {
+        if (this.state.isDiscrete) {
+            this.simulateDotClick(this.state.slide + 1);
+        } else if (this.state.isContinuous) {
+            this.setState('index', this.calculateNextIndex());
+        }
+        emitAndFire(this, 'carousel-next', { originalEvent });
+    }
+}
+
+function handlePrev(originalEvent) {
+    if (!this.state.prevControlDisabled) {
+        if (this.state.isDiscrete) {
+            this.simulateDotClick(this.state.slide - 1);
+        } else if (this.state.isContinuous) {
+            this.setState('index', this.calculatePrevIndex());
+        }
+        emitAndFire(this, 'carousel-prev', { originalEvent });
+    }
+}
+
+// TODO: add carousel-dot event and remove simulated dot clicks
+function handleDotClick(e) {
+    const newSlide = parseInt(e.target.getAttribute('data-slide'));
+    emitAndFire(this, 'carousel-slide', { slide: newSlide });
+    this.setState('slide', newSlide);
+    this.setState('index', (this.state.itemsPerSlide * (newSlide - 1)));
+}
+
+function simulateDotClick(slide) {
+    if (slide >= 1 && slide <= this.state.totalSlides) {
+        this.el.querySelector(`[data-slide="${slide}"]`).click();
+    }
+}
+
 module.exports = require('marko-widgets').defineComponent({
     template,
-    init,
     getInitialState,
     getTemplateData,
-    update_index,
+    init,
+    onUpdate,
+    onDestroy,
     refresh,
-    handleNext,
-    handlePrev,
-    handleDotClick,
-    simulateDotClick,
-    performSlide,
-    updateDots,
+    processIndexChange,
+    processMovement,
     calculateNextIndex,
     calculatePrevIndex,
     moveToIndex,
@@ -328,7 +346,11 @@ module.exports = require('marko-widgets').defineComponent({
     calculateLastVisibleIndex,
     getWidthBetweenIndexes,
     calculateWidths,
-    getItemWidth
+    getItemWidth,
+    handleNext,
+    handlePrev,
+    handleDotClick,
+    simulateDotClick
 });
 
 module.exports.privates = { constants };
