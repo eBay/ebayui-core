@@ -134,6 +134,7 @@ function processIndexChange() {
  * Handle movement to current state.index
  */
 function processMovement() {
+    cancelAnimationFrame(this.processMovementFrame);
     this.processMovementFrame = requestAnimationFrame(() => {
         const oldFirstVisibleIndex = this.firstVisibleIndex;
         const oldLastVisibleIndex = this.lastVisibleIndex;
