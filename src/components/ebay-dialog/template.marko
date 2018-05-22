@@ -1,8 +1,8 @@
 
 <div class="dialog-placeholder" w-bind>
-    <div w-id="dialog" class=data.dialogClass hidden=!data.open role="dialog" w-preserve-attrs="hidden" ${data.htmlAttributes} w-onclick="close">
+    <div w-id="dialog" class=data.dialogClass hidden=!data.open role="dialog" w-preserve-attrs="hidden" ${data.htmlAttributes} w-onclick="handleDialogClick">
         <div w-id="window" class=data.windowClass role="document">
-            <button class="dialog__close" type="button" aria-label=data.ariaLabelClose w-id="close">
+            <button w-id="close" class="dialog__close" type="button" aria-label=data.ariaLabelClose w-onclick="handleCloseButtonClick">
                 <ebay-icon type="inline" name="close"/>
             </button>
 
