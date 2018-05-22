@@ -1,0 +1,32 @@
+<fieldset>
+    <legend>Choose an Option</legend>
+    <span class="field">
+        <ebay-checkbox
+            class="field__control"
+            id="group-checkbox-1"
+            value="1"
+            name="checkbox-group"/>
+            <label class="field__label field__label--end" for="group-checkbox-1">Option 1</label>
+    </span>
+    <span class="field">
+        <ebay-checkbox
+            class="field__control"
+            id="group-checkbox-2"
+            value="2"
+            name="checkbox-group"/>
+            <label class="field__label field__label--end" for="group-checkbox-2">Option 2</label>
+    </span>
+    <span class="field">
+        <ebay-checkbox
+            class="field__control"
+            id="group-checkbox-3"
+            value="3"
+            name="checkbox-group"/>
+            <label class="field__label field__label--end" for="group-checkbox-3">Option 3</label>
+    </span>
+</fieldset>
+
+<script>(function() {
+    var fieldSet = document.querySelector("fieldset");
+    fieldSet.addEventListener("checkbox-select", e => console.log(e.detail), true);
+})()</script>
