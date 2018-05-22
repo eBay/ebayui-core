@@ -1,0 +1,32 @@
+<fieldset>
+    <legend>Choose an Option</legend>
+    <span class="field">
+        <ebay-radio
+            class="field__control"
+            id="group-radio-1"
+            value="1"
+            name="radio-group"/>
+        <label class="field__label field__label--end" for="group-radio-1">Option 1</label>
+    </span>
+    <span class="field">
+            <ebay-radio
+                class="field__control"
+                id="group-radio-2"
+                value="2"
+                name="radio-group"/>
+        <label class="field__label field__label--end" for="group-radio-2">Option 2</label>
+    </span>
+    <span class="field">
+        <ebay-radio
+            class="field__control"
+            id="group-radio-3"
+            value="3"
+            name="radio-group"/>
+        <label class="field__label field__label--end" for="group-radio-3">Option 3</label>
+    </span>
+</fieldset>
+
+<script>(function() {
+    var fieldSet = document.querySelector("fieldset");
+    fieldSet.addEventListener("radio-select", e => console.log(e.detail), true);
+})()</script>
