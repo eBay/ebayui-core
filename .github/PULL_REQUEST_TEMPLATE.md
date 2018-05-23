@@ -1,4 +1,4 @@
-<!--  Delete any sections below that are not relevant to this PR -->
+<!-- Delete any sections below that are not relevant. -->
 
 ## Description
 <!--- What are the changes? -->
@@ -7,7 +7,7 @@
 <!--- Why did you make these changes, and why in this particular way? -->
 
 ## References
-<!-- Include links to JIRA, Github, etc. if appropriate -->
+<!-- Include links to JIRA, Github, etc. if appropriate. -->
 
 ## Screenshots
-<!-- Upload screenshots if appropriate-->
+<!-- Upload screenshots if appropriate. -->
