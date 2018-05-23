@@ -50,7 +50,7 @@ To ensure that all components function correctly in both Marko v3 and v4, we run
 
 ## Pull Requests
 
-This section contains information and in-house etiquette regarding pull requests (or "PRs" as they are often called).
+This section contains information and etiquette regarding pull requests (or "PRs" as they are often called).
 
 ### Before You Start
 
