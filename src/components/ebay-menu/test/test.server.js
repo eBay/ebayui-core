@@ -2,13 +2,19 @@ const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/server');
 const mock = require('../mock');
 
+const labelSelector = '.expand-btn__cell > span:not(.expand-btn__icon)';
+
 describe('menu', () => {
     test('renders basic version', context => {
-        const input = {};
+        const labelText = 'label';
+        const input = { label: labelText };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.menu').length).to.equal(1);
         expect($('.expand-btn').length).to.equal(1);
         expect($('.menu__items[role=menu]').length).to.equal(1);
+        const $label = $(labelSelector);
+        expect($label.length).to.equal(1);
+        expect($label.html()).to.equal(labelText);
     });
 
     test('renders fake version', context => {
@@ -83,6 +89,13 @@ describe('menu', () => {
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.expand-btn').length).to.equal(1);
         expect($('.expand-btn.expand-btn--borderless').length).to.equal(0);
+    });
+
+    test('renders without label', context => {
+        const input = { label: '' };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($(labelSelector).length).to.equal(0);
+        expect($('.expand-btn__icon').length).to.equal(1);
     });
 
     test('handles pass-through html attributes', context => {
