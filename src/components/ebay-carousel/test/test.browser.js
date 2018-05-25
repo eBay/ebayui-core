@@ -210,7 +210,7 @@ describe('given the carousel starts in the default state with items', () => {
         });
 
         it('then index is normalized to lastIndex', () => {
-            expect(root.index).to.equal(widget.lastIndex);
+            expect(root.index).to.equal(widget.state.lastIndex);
         });
 
         it('then it emits the marko events', () => {
