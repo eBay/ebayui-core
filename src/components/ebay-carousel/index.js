@@ -39,6 +39,7 @@ function getInitialState(input) {
         isDiscrete,
         itemsPerSlide,
         totalSlides,
+        lastIndex: items.length - 1,
         slide: parseInt(input.slide) || 1,
         activeDot: isDiscrete && 1,
         prevControlDisabled: true,
@@ -69,7 +70,7 @@ function init() {
     this.itemCache = [];
     this.listEl = this.el.querySelector('.carousel__list');
     this.itemEls = this.listEl.children;
-    this.lastIndex = this.itemEls.length - 1;
+    this.activeIndex = 0;
     this.firstVisibleIndex = 0;
     this.lastVisibleIndex = 0;
 
@@ -113,15 +114,18 @@ function processIndexChange() {
         return;
     }
 
-    if (this.state.index > this.lastIndex) {
-        this.setState('index', this.lastIndex);
+    if (this.state.index > this.state.lastIndex) {
+        this.setState('index', this.state.lastIndex);
     }
 
     if (this.containerWidth >= this.allItemsWidth || this.state.index < 0) {
         this.setState('index', 0);
     }
 
-    if (this.state.index === this.activeIndex) {
+    const sameIndex = this.state.index === this.activeIndex;
+    const isTranslated = (this.state.index === 0 && this.state.translation === 0) || this.state.translation !== 0;
+
+    if (sameIndex && isTranslated) {
         return;
     }
 
@@ -141,7 +145,7 @@ function processMovement() {
         this.moveToIndex(this.state.index);
         this.lastVisibleIndex = this.calculateLastVisibleIndex();
         this.setState('prevControlDisabled', this.state.index === 0);
-        this.setState('nextControlDisabled', this.lastVisibleIndex === this.lastIndex);
+        this.setState('nextControlDisabled', this.lastVisibleIndex === this.state.lastIndex);
         this.setState('bothControlsDisabled', this.state.prevControlDisabled && this.state.nextControlDisabled);
 
         // must calculate firstVisibleIndex after nextControlDisabled is set
@@ -221,7 +225,7 @@ function widthLoop(startIndex, direction) {
 
     while (remainingWidth > 0) {
         remainingWidth -= this.getItemWidth(index);
-        if (index > this.lastIndex || index < 0 || remainingWidth < 0) {
+        if (index > this.state.lastIndex || index < 0 || remainingWidth < 0) {
             break;
         }
         remainingWidth -= constants.margin;
@@ -237,7 +241,7 @@ function calculateFirstVisibleIndex() {
     }
 
     // if continuous carousel is all the way on right end, need to calculate manually
-    return this.widthLoop(this.lastIndex, -1) + 1;
+    return this.widthLoop(this.state.lastIndex, -1) + 1;
 }
 
 function calculateLastVisibleIndex() {
@@ -257,7 +261,7 @@ function getWidthBetweenIndexes(startIndex, endIndex) {
     }
 
     // subtract trailing margin if we hit right end
-    if (endIndex > this.lastIndex) {
+    if (endIndex > this.state.lastIndex) {
         width -= constants.margin;
     }
 
@@ -270,10 +274,10 @@ function getWidthBetweenIndexes(startIndex, endIndex) {
  */
 function calculateWidths(forceUpdate) {
     this.containerWidth = this.listEl.getBoundingClientRect().width;
-    for (let i = 0; i <= this.lastIndex; i++) {
+    for (let i = 0; i <= this.state.lastIndex; i++) {
         this.getItemWidth(i, forceUpdate);
     }
-    this.allItemsWidth = this.getWidthBetweenIndexes(0, this.lastIndex + 1);
+    this.allItemsWidth = this.getWidthBetweenIndexes(0, this.state.lastIndex + 1);
 }
 
 /**
@@ -284,7 +288,7 @@ function calculateWidths(forceUpdate) {
 function getItemWidth(index, forceUpdate) {
     if (this.itemCache && this.itemCache[index] && !forceUpdate) {
         return this.itemCache[index];
-    } else if (index >= 0 && index <= this.lastIndex) {
+    } else if (index >= 0 && index <= this.state.lastIndex) {
         this.itemCache[index] = this.itemEls[index].getBoundingClientRect().width;
         return this.itemCache[index];
     }
