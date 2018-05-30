@@ -4,7 +4,7 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
-const comboboxOptionSelector = 'select > option';
+const selectOptionSelector = 'select > option';
 
 function getInitialState(input) {
     const options = (input.options || []).map(option => {
@@ -54,20 +54,35 @@ function getTemplateData(state) {
 }
 
 function init() {
-    const optionEls = this.el.querySelectorAll(comboboxOptionSelector);
+    const optionEls = this.el.querySelectorAll(selectOptionSelector);
+
+    const selectedIndexObserverCallback = (selectedIndex) => {
+        if (optionEls[selectedIndex]) {
+            this.processAfterStateChange(optionEls[selectedIndex]);
+        } else {
+            console.error('Please provide a valid index.');
+        }
+    };
+
+    const valueObserverCallback = (optionValue) => {
+        const optionFind = (option) => option.value.toString() === optionValue.toString();
+        const newOptionSelected = this.state.options.find(optionFind);
+        let optionIndex;
+
+        if (newOptionSelected) {
+            this.state.options.map((option, i) => {
+                if (option.value === newOptionSelected.value) {
+                    optionIndex = i;
+                }
+            });
+
+            this.processAfterStateChange(optionEls[optionIndex]);
+        }
+    };
 
     if (this.state.options && this.state.options.length > 0) {
-        observer.observeRoot(this, ['selected'], (index) => {
-            this.processAfterStateChange(optionEls[index]);
-        });
-
-        const selectedObserverCallback = (optionEl) => {
-            this.processAfterStateChange(optionEl);
-        };
-
-        this.optionEls = optionEls.forEach((optionEl, i) => {
-            observer.observeInner(this, optionEl, 'selected', `options[${i}]`, 'options', selectedObserverCallback);
-        });
+        observer.observeRoot(this, ['selectedIndex'], selectedIndexObserverCallback);
+        observer.observeRoot(this, ['value'], valueObserverCallback);
     }
 }
 
@@ -76,10 +91,10 @@ function init() {
  * @param {HTMLElement} el
  */
 function processAfterStateChange(el) {
-    const optionValue = el.dataset.optionValue;
+    const optionValue = el.value;
     const optionIndex = Array.prototype.slice.call(el.parentNode.children).indexOf(el);
     this.setSelectedOption(optionValue);
-    emitAndFire(this, 'listbox-change', {
+    emitAndFire(this, 'select-change', {
         index: optionIndex,
         selected: [optionValue],
         el
@@ -91,30 +106,34 @@ function processAfterStateChange(el) {
  * @param {String} optionValue
  */
 function setSelectedOption(optionValue) {
-    const newOptionSelected = this.state.options.filter(option => option.value.toString() === optionValue)[0];
+    const optionFind = (option) => option.value.toString() === optionValue.toString();
+    const newOptionSelected = this.state.options.find(optionFind);
     const newOptionSelectedValue = newOptionSelected && newOptionSelected.value;
-    let options = this.clearComboboxSelections(this.state.options);
+    let options = this.state.options;
 
-    options = options.map(option => {
+    options = options.map((option, i) => {
         if (option.value === newOptionSelectedValue) {
             option.selected = true;
-            this.setState('selected', option);
-            this.update();
+            this.setState('selectedIndex', i);
+            this.setState('value', option.value);
+        } else {
+            option.selected = false;
         }
+        this.update();
         return option;
     });
 
     this.setState('options', options);
 }
 
-/**
- * Resets all options to un-selected
- * @param {Array} options
- */
-function clearComboboxSelections(options) {
-    return options.map(option => {
-        option.selected = false;
-        return option;
+function optionChanged(e) {
+    this.setSelectedOption(e.target.value);
+    const optionIndex = e.target.selectedIndex;
+    const optionEls = this.el.querySelectorAll(selectOptionSelector);
+    emitAndFire(this, 'select-change', {
+        index: optionIndex,
+        selected: [e.target.value],
+        el: optionEls[optionIndex]
     });
 }
 
@@ -125,5 +144,5 @@ module.exports = markoWidgets.defineComponent({
     init,
     processAfterStateChange,
     setSelectedOption,
-    clearComboboxSelections
+    optionChanged
 });

@@ -2,7 +2,10 @@
     "dependencies": [
         {
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/select"
+            "dependencies": [
+                "@ebay/skin/select",
+                "@ebay/skin/icon"
+            ]
         },
         "../../../src/components/ebay-button",
         "require: marko-widgets",
