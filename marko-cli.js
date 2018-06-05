@@ -74,6 +74,7 @@ module.exports = ({ config }) => {
         //     os_version: '7'
         }].map(capability => {
             capability.project = 'ebayui-core';
+            capability['browserstack.local'] = true;
             return capability;
         })
     };
