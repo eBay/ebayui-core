@@ -8,6 +8,20 @@ describe('given the dialog is in the default state', () => {
     let close;
     let sibling;
 
+    // Stub for the close button.
+    const svg = document.createElement('svg');
+    svg.innerHTML = '<symbol id="icon-close" viewBox="1.5 1.5 21 21"><path/></symbol>';
+
+    before(() => {
+        // Add close button symbol.
+        document.body.insertBefore(svg, document.body.firstChild);
+    });
+
+    after(() => {
+        // remove close button symbol.
+        document.body.removeChild(svg);
+    });
+
     beforeEach(() => {
         sibling = document.createElement('div');
         document.body.appendChild(sibling);
