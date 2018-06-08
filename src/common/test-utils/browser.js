@@ -1,3 +1,5 @@
+const expect = require('chai').expect;
+
 /**
  * Trigger generic DOM event
  * @param {HTMLElement} el
@@ -11,6 +13,15 @@ function triggerEvent(el, type, keyCode) {
     el.dispatchEvent(event);
 }
 
+/**
+ * Check that the spy was called with an originalEvent
+ * @param {Object} spy
+ */
+function testOriginalEvent(spy) {
+    expect(spy.getCall(0).args[0].originalEvent instanceof Event).to.equal(true);
+}
+
 module.exports = {
-    triggerEvent
+    triggerEvent,
+    testOriginalEvent
 };

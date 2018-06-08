@@ -1,10 +1,11 @@
 {
     "dependencies": [
+        "require: marko-widgets",
+        "require: ./index.js",
+        "../../../src/components/ebay-icon",
         {
             "if-not-flag": "ebayui-no-skin",
             "path": "@ebay/skin/dialog"
-        },
-        "require: marko-widgets",
-        "require: ./index.js"
+        }
     ]
 }

@@ -12,9 +12,9 @@
 
 This component will bundle different resources depending on Lasso flags provided by your application.
 Use `touch` for touch devices, and `no-touch` for non-touch devices. Without flags, `no-touch` is assumed.
-Currently, the `touch` carousel with type="continuous" will use native scrolling, which has more limited functionality.
-
 [//]: # (TODO: `touch` should ideally be default, but currently the js behavior doesn't execute with native scrolling)
+
+Note: The `touch` carousel with type="continuous" will use native scrolling. This behavior is used instead of our controlled movement, so some functionality is limited. In this case, the carousel will not respond to `index` changes, and will not emit events.
 
 ## ebay-carousel Attributes
 Name | Type | Stateful | Description
@@ -42,8 +42,8 @@ Event | Data | Description
 --- | --- | ---
 `carousel-update` | { [visibleIndexes] } | called whenever item visibility changes, including initialization
 `carousel-move` | | start of carousel content movement animation
-`carousel-next` | | click next control
-`carousel-prev` | | click previous control
+`carousel-next` | { originalEvent } | click next control
+`carousel-prev` | { originalEvent } | click previous control
 
 ### Additional Events for type="discrete"
 Event | Data | Description

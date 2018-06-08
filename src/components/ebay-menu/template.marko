@@ -1,7 +1,7 @@
 <span class=data.menuClass w-bind w-on-expander-expand="handleExpand" w-on-expander-collapse="handleCollapse" ${data.htmlAttributes}>
     <ebay-button w-id="button" class=data.buttonClass aria-expanded=String(data.expanded) aria-haspopup="true">
         <span class="expand-btn__cell">
-            <span>${data.label}</span>
+            <span if(data.label)>${data.label}</span>
             <span class="expand-btn__icon" aria-hidden="true"/>
         </span>
     </ebay-button>

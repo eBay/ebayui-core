@@ -162,12 +162,24 @@ function show() {
     this.setState('open', true);
 }
 
-function close(ev) {
-    if (ev && this.bodyEl.contains(ev.target)) {
-        return;
+function close() {
+    this.setState('open', false);
+}
+
+function handleDialogClick({ target, clientY }) {
+    const { closeEl, windowEl } = this;
+
+    // Checks if we clicked inside the white panel of the dialog.
+    if (!closeEl.contains(target) && windowEl.contains(target)) {
+        const { bottom } = windowEl.getBoundingClientRect();
+        const { paddingBottom } = getComputedStyle(windowEl);
+        const windowBottom = bottom - parseInt(paddingBottom, 10);
+        if (clientY < windowBottom) {
+            return;
+        }
     }
 
-    this.setState('open', false);
+    this.close();
 }
 
 function cancelAsync() {
@@ -190,6 +202,8 @@ module.exports = markoWidgets.defineComponent({
     onRender: trap,
     onBeforeUpdate: release,
     onBeforeDestroy: destroy,
+    handleDialogClick,
+    handleCloseButtonClick: close,
     show,
     close
 });

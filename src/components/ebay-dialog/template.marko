@@ -1,17 +1,9 @@
 
 <div class="dialog-placeholder" w-bind>
-    <div w-id="dialog" class=data.dialogClass hidden=!data.open role="dialog" w-preserve-attrs="hidden" ${data.htmlAttributes} w-onclick="close">
+    <div w-id="dialog" class=data.dialogClass hidden=!data.open role="dialog" w-preserve-attrs="hidden" ${data.htmlAttributes} w-onclick="handleDialogClick">
         <div w-id="window" class=data.windowClass role="document">
-            <button class="dialog__close" type="button" aria-label=data.ariaLabelClose w-id="close">
-                <svg aria-hidden="true" focusable="false" height="17" width="17">
-                    <path
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M1.11 1.78l14.15 14.15m-14.09-.07L15.32 1.72"/>
-                </svg>
+            <button w-id="close" class="dialog__close" type="button" aria-label=data.ariaLabelClose w-onclick="handleCloseButtonClick">
+                <ebay-icon type="inline" name="close"/>
             </button>
 
             <div class="dialog__body" w-id="body" w-body/>
