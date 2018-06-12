@@ -135,12 +135,6 @@
         }
     },
     "<ebay-pagination-item>": {},
-    "<body>": {
-        "transformer": "./src/components/ebay-icon/stamper/transformer.js"
-    },
-    "<ebay-icon-stamper>": {
-        "renderer": "./src/components/ebay-icon/stamper/index.js"
-    },
     "<ebay-icon>": {
         "renderer": "./src/components/ebay-icon/index.js",
         "transformer": "./src/components/ebay-icon/transformer.js",
