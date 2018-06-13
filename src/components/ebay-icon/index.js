@@ -5,16 +5,20 @@ const defined = {};
 let rootSvg;
 
 function init() {
+    // Create a hidden svg to store all symbols on startup.
     if (!rootSvg) {
         rootSvg = document.createElement('svg');
         rootSvg.hidden = true;
         document.body.insertBefore(rootSvg, document.body.firstChild);
     }
 
-    const defs = this.bodyEl;
+    // If there were any symbols rendered then we move them to the svg above after rendering them.
+    const defs = this.getEl('defs');
 
     if (defs) {
         const symbol = defs.firstChild;
+        // Here we get the name of the symbol by removing the `icon-` part.
+        // We then mark this symbol as `defined` so that no other `ebay-icons` render it.
         defined[symbol.id.slice(5)] = true;
         rootSvg.appendChild(symbol);
         defs.parentNode.removeChild(defs);
@@ -32,6 +36,9 @@ function getTemplateData(state, input, out) {
     let renderDefs;
 
     if (isInline) {
+        // Here we check if we should render the inline svg symbol.
+        // Server side we store a flag in `out` to check if the symbol was rendered.
+        // Client side we check the `defined` object to see if the symbol is already present in root svg.
         const lookupName = `rendered_ebay_icon_${name}`;
         renderDefs = !out[lookupName] && !defined[name];
         out[lookupName] = true;
