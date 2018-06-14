@@ -50,14 +50,16 @@ describe('transformer', () => {
 
     test('transforms an inline icon', () => {
         const tagString = getTagString('inline');
-        const context = testUtils.runTransformer(transformer, tagString, componentPath);
-        expect(context._ebay_icons.length).to.equal(1);
-        expect(context._ebay_icons[0].value).to.equal(iconName);
+        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { body: { array: [includeEl] } } = el;
+        expect(includeEl.tagName).equals('include');
+        expect(includeEl.argument).includes(`${iconName}.marko`);
     });
 
     test('does not transform a background icon', () => {
         const tagString = getTagString('background');
-        const context = testUtils.runTransformer(transformer, tagString, componentPath);
-        expect(context._ebay_icons).to.equal(undefined);
+        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { body: { array: [includeEl] } } = el;
+        expect(includeEl).equals(undefined);
     });
 });

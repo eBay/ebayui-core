@@ -82,7 +82,11 @@ function getTransformedTemplate(transformer, srcString, componentPath) {
 
 function runTransformer(transformer, srcString, componentPath) {
     const { context, templateAST } = getTransformerData(srcString, componentPath);
-    return transformer(templateAST.body.array[0], context);
+    transformer(templateAST.body.array[0], context);
+    return {
+        context,
+        el: templateAST.body.array[0]
+    };
 }
 
 module.exports = {
