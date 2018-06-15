@@ -3,7 +3,7 @@
 const isTravis = require('is-travis');
 
 module.exports = ({ config }) => {
-    config.mochaOptions = { timeout: 5000 };
+    config.mochaOptions = { timeout: 10000 };
     config.lassoOptions = {
         flags: ['skin-ds6'],
         plugins: ['lasso-less'],
@@ -15,7 +15,7 @@ module.exports = ({ config }) => {
     };
 
     config.wdioOptions = {
-        idleTimeout: 600000, // 10 mins
+        idleTimeout: 1200000, // 20 mins
         browserStackOptions: {
             onlyAutomate: isTravis
         },
