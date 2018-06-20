@@ -14,3 +14,4 @@ integration/template.marko
 integration/browser.json
 /.vscode
 .yarnclean
+.env

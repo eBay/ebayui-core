@@ -53,7 +53,7 @@ describe('given the menu is in the default state', () => {
 
         test('then it rerenders with the new label', (context, done) => {
             setTimeout(() => {
-                expect(buttonLabel.innerText).to.equal(`${newLabel}\n`);
+                expect(buttonLabel.innerText.trim()).to.equal(newLabel);
                 done();
             }, 10);
         });
