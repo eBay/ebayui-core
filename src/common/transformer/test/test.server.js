@@ -16,12 +16,12 @@ function getNestedTagString(rootTag, nestedTag) {
     };
 }
 
-describe('when the ebay-select-option tag is transformed', () => {
+describe('when the ebay-combobox-option tag is transformed', () => {
     let tagString;
     let outputTemplate;
 
     beforeEach(() => {
-        const rootTag = 'ebay-select';
+        const rootTag = 'ebay-combobox';
         const nestedTag = 'option';
         const templatePath = `../../../components/${rootTag}/template.marko`;
         tagString = getTagString(rootTag, nestedTag);
@@ -33,12 +33,12 @@ describe('when the ebay-select-option tag is transformed', () => {
     });
 });
 
-describe('when the ebay-select-option tag is nested and is transformed', () => {
+describe('when the ebay-combobox-option tag is nested and is transformed', () => {
     let tagString;
     let outputTemplate;
 
     beforeEach(() => {
-        const rootTag = 'ebay-select';
+        const rootTag = 'ebay-combobox';
         const nestedTag = 'option';
         const templatePath = `../../../components/${rootTag}/template.marko`;
         tagString = getNestedTagString(rootTag, nestedTag);

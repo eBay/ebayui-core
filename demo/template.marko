@@ -12,10 +12,10 @@
                 <a href=component><span>${component}</span></a>
             </for>
         </header>
-        <h2>${data.params.component}</h2>
+        <h1>${data.params.component}</h1>
         <for (example in data.model.examples)>
             <div class="example">
-                <h4>${example.name}</h4>
+                <h2>${example.name}</h2>
                 <div class="example-code">$!{example.code}</div>
                 <div>
                     <dynamic-tag options={path: example.path}/>
