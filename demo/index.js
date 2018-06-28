@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
     res.redirect(301, '/ebay-button');
 });
 
-app.get('/:component?', (req, res) => {
+app.get('/:design_system/:component?', (req, res) => {
     const name = req.params.component;
     const componentsPath = `${__dirname}/../src/components`;
     const examplesPath = `${componentsPath}/${name}/examples`;
@@ -42,6 +42,9 @@ app.get('/:component?', (req, res) => {
         })).filter(demoUtils.isDirectory),
         components: demoUtils.getComponentsWithExamples('src')
     };
+    const md = new MobileDetect(req.headers['user-agent']);
+    const dsFlag = req.params.design_system === 'ds6' ? 'skin-ds6' : '';
+    const lassoFlags = [];
 
     // allow .only in example folder name
     model.examples.some((example) => {
@@ -53,8 +56,7 @@ app.get('/:component?', (req, res) => {
 
     req.model = model;
 
-    const md = new MobileDetect(req.headers['user-agent']);
-    const lassoFlags = ['skin-ds6'];
+    lassoFlags.push(dsFlag);
     if (md.mobile() || md.tablet()) {
         lassoFlags.push('touch');
     } else {

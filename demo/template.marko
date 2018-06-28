@@ -3,13 +3,13 @@
     <head>
         <lasso-head/>
         <title>ebayui-core</title>
-        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="shortcut icon" href="/favicon.ico">
         <meta name="viewport" content="width=device-width">
     </head>
     <body>
         <header>
             <for (component in data.model.components)>
-                <a href=component><span>${component}</span></a>
+                <a href=`/${data.params.design_system}/${component}`><span>${component}</span></a>
             </for>
         </header>
         <h1>${data.params.component}</h1>
