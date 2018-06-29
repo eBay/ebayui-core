@@ -14,9 +14,9 @@ function init() {
 
     // If there were any symbols rendered then we move them to the svg above after rendering them.
     const defs = this.getEl('defs');
+    const symbol = defs && defs.querySelector('symbol');
 
-    if (defs) {
-        const symbol = defs.firstChild;
+    if (symbol) {
         // Here we get the name of the symbol by removing the `icon-` part.
         // We then mark this symbol as `defined` so that no other `ebay-icons` render it.
         defined[symbol.id.slice(5)] = true;
