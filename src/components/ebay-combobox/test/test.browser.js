@@ -237,3 +237,54 @@ describe('given the combobox is in an expanded state', () => {
         });
     });
 });
+
+describe('given the combobox is in an disabled state', () => {
+    let widget;
+    let root;
+    let button;
+
+    beforeEach(() => {
+        const renderedWidget = renderer.renderSync({
+            options: mock.options,
+            disabled: true
+        });
+        widget = renderedWidget.appendTo(document.body).getWidget();
+        root = document.querySelector('.combobox');
+        button = root.querySelector('.combobox__control');
+    });
+
+    afterEach(() => widget.destroy());
+
+    describe('when the button is clicked once', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('combobox-expand', spy);
+            testUtils.triggerEvent(button, 'click');
+        });
+
+        test('then it does not emit the event from expander-expand', () => {
+            expect(spy.calledOnce).to.equal(false);
+        });
+    });
+
+    describe('when the disabled state is changed programmatically', () => {
+        beforeEach((done) => {
+            root.disabled = false;
+            setTimeout(done);
+        });
+
+        describe('when the button is clicked once', () => {
+            let spy;
+            beforeEach(() => {
+                spy = sinon.spy();
+                widget.on('combobox-expand', spy);
+                testUtils.triggerEvent(button, 'click');
+            });
+
+            test('then it emits the event from expander-expand', () => {
+                expect(spy.calledOnce).to.equal(true);
+            });
+        });
+    });
+});
