@@ -90,6 +90,7 @@
         "@reverse": "boolean",
         "@fix-width": "boolean",
         "@borderless": "boolean",
+        "@size": "string",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
