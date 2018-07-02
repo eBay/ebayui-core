@@ -73,7 +73,7 @@ function init() {
     if (this.state.options && this.state.options.length > 0) {
         this.expander = new Expander(this.el, {
             autoCollapse: true,
-            expandOnClick: true,
+            expandOnClick: !this.state.disabled,
             contentSelector: `.${comboboxOptionsClass}`,
             hostSelector: comboboxHostSelector,
             hostContainerClass: `${comboboxBtnClass}`,
@@ -82,6 +82,10 @@ function init() {
 
         observer.observeRoot(this, ['selected'], (index) => {
             this.processAfterStateChange(optionEls[index]);
+        });
+
+        observer.observeRoot(this, ['disabled'], () => {
+            this.expander.expandOnClick = !this.state.disabled;
         });
 
         const selectedObserverCallback = (optionEl) => {
