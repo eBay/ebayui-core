@@ -166,7 +166,6 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
-        "@name": "string",
         "@grow": "boolean",
         "@borderless": "boolean",
         "@disabled": "boolean",
