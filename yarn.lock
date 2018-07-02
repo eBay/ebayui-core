@@ -86,9 +86,9 @@
   version "1.0.0"
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.0.tgz#06328378600156458dacb0278767ff8490f2074c"
 
-"@ebay/skin@^5.1.0-0":
-  version "5.1.0-0"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-5.1.0-0.tgz#7799ff58a13eb83c41c2f35a3dde5bd39597ef90"
+"@ebay/skin@^5.1.0-1":
+  version "5.1.0-1"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-5.1.0-1.tgz#e07624f811c8e2564fdb83987a66dd36d4546ce2"
 
 "@lasso/marko-taglib@^1.0.10", "@lasso/marko-taglib@^1.0.9":
   version "1.0.10"
