@@ -190,8 +190,10 @@ All major and minor releases should be preceded by one or more pre-releases.
 
 All releases should be tagged in git (`npm version` does this for you), and that tag pushed to GitHub (e.g. `git push origin v1.0.0`). From that tag, a Git release should be created.
 
-Pre-releases must be published to NPM from a milestone branch.
+Pre-releases must be published to NPM from a milestone branch using the `npm publish --tag beta` command.
 
 Final releases must be published to NPM from the `master` branch.
+
+After every major and minor release, please take the opportunity to upgrade any outdated dependencies and devDependencies (*hint*: run `yarn outdated` to see outdated dependencies). Except for major version upgrades, the version in `package.json` should always reflect the last known working version, not the version you are upgrading to.
 
 More information to follow.
