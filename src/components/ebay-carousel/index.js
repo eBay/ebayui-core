@@ -85,11 +85,14 @@ function init() {
     }
 
     this.subscribeTo(resizeUtil).on('resize', refresh.bind(this));
-    this.refresh();
 }
 
-function onUpdate() {
-    this.processIndexChange();
+function onRender({ firstRender }) {
+    if (firstRender) {
+        this.refresh();
+    } else {
+        this.processIndexChange();
+    }
 }
 
 function onDestroy() {
@@ -337,7 +340,7 @@ module.exports = require('marko-widgets').defineComponent({
     getInitialState,
     getTemplateData,
     init,
-    onUpdate,
+    onRender,
     onDestroy,
     refresh,
     processIndexChange,

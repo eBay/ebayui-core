@@ -4,6 +4,7 @@
 </if>
 <else-if(data.isInline)>
     <svg w-bind ${data.htmlAttributes} ${data.accessibilityAttributes} focusable="false" class=data.classes>
+        <defs w-id="defs" w-body if(data.renderDefs)/>
         <title if(data.accessibilityText) id=data.titleId>${data.accessibilityText}</title>
         <use xlink:href="#icon-${data.name}"/>
     </svg>
