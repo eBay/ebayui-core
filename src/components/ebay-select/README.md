@@ -35,6 +35,7 @@ Name | Required | Type | Stateful | Description
 `borderless` | No | Boolean | No | whether button has borders
 
 Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `select` tag.
+Be sure to include typical HTML attributes for the `select` tag, like `name`.
 
 ### ebay-select Events
 
