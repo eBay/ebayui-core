@@ -45,7 +45,7 @@ describe('select', () => {
     });
 
     test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, 'span.select');
+        testUtils.testHtmlAttributes(context, 'span.select select');
     });
 
     test('handles custom class', context => {
