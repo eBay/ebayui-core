@@ -4,6 +4,8 @@
 @ebay-carousel-control-disabled-opacity: 0.3;
 
 .carousel {
+    position: relative;
+
     &__container {
         white-space: nowrap;
         overflow-y: hidden;
@@ -65,6 +67,35 @@
         .icon--chevron-left {
             margin-left: -2px;
         }
+    }
+
+    &__play, &__pause {
+        z-index: 2;
+        bottom: 16px; // accounts for padding.
+        right: 0;
+        margin-right: 19px;
+        margin-bottom: 19px;
+        position: absolute;
+        background: 0;
+        border: 0;
+        padding: 0;
+        background-color: rgba(0,0,0,0.45);
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        text-align: center;
+        color: @ds6-color-g201-gray;
+        box-sizing: border-box;
+
+        &&& svg {
+            opacity: 0.75;
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &__play {
+        text-indent: 1px;
     }
 
     &__dots {

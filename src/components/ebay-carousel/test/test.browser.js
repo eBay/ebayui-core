@@ -30,7 +30,7 @@ function getVisibleIndexes(items) {
 }
 
 function getTranslateX(el) {
-    return parseInt(el.style.transform.match(/translate3d\(-?(\d+)/)[1], 10);
+    return parseInt(getComputedStyle(el).transform.match(/^matrix\((?:-?\d+, ?){4}(-?\d+)/)[1], 10) * -1;
 }
 
 describe('given the carousel is in the default state', () => {
