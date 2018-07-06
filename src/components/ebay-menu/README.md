@@ -23,6 +23,7 @@ Name | Type | Stateful | Description
 `reverse` | Boolean | No | expand menu flyout to the left
 `fix-width` | Boolean | No | constrain items container width to button width
 `borderless` | Boolean | No | whether button has borders
+`size` | String | No | button size, "small" or "large" (default: medium)
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 
 ### ebay-menu Events
