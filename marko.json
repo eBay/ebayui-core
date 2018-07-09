@@ -145,7 +145,8 @@
         "@class": "string",
         "@type": "string",
         "@name": "string",
-        "@accessibility-text": "string"
+        "@accessibility-text": "string",
+        "@no-skin-classes": "boolean"
     },
     "<ebay-radio>": {
         "renderer": "./src/components/ebay-radio/index.js",

@@ -5,6 +5,7 @@
             "path": "@ebay/skin/menu"
         },
         "../../../src/components/ebay-button",
+        "../../../src/components/ebay-icon",
         "require-run: nodelist-foreach-polyfill",
         "require: marko-widgets",
         "require: ./index.js"
