@@ -3,7 +3,7 @@
 const isTravis = require('is-travis');
 
 module.exports = ({ config }) => {
-    config.mochaOptions = { timeout: 10000 };
+    config.mochaOptions = { timeout: 20000 };
     config.lassoOptions = {
         flags: ['skin-ds6'],
         plugins: ['lasso-less'],
