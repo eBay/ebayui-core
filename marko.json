@@ -25,7 +25,8 @@
         "@href": "string",
         "@priority": "string",
         "@size": "size",
-        "@fluid": "boolean"
+        "@fluid": "boolean",
+        "@variant": "string"
     },
     "<ebay-carousel>": {
         "renderer": "./src/components/ebay-carousel/index.js",
@@ -91,6 +92,7 @@
         "@fix-width": "boolean",
         "@borderless": "boolean",
         "@size": "string",
+        "@priority": "string",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",

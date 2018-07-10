@@ -79,6 +79,7 @@ function getInitialState(input) {
         fixWidth: Boolean(input.fixWidth),
         borderless: Boolean(input.borderless),
         size: input.size,
+        priority: input.priority,
         expanded: false,
         htmlAttributes: processHtmlAttributes(input),
         items,
@@ -89,7 +90,6 @@ function getInitialState(input) {
 function getTemplateData(state) {
     const menuClass = [state.class, 'expander'];
     const itemsClass = [contentClass];
-    const buttonClass = [mainButtonClass];
 
     if (state.isFake) {
         menuClass.push('fake-menu');
@@ -111,10 +111,6 @@ function getTemplateData(state) {
         }
     }
 
-    if (state.borderless) {
-        buttonClass.push('expand-btn--borderless');
-    }
-
     return {
         type: state.type,
         isRadio: state.isRadio,
@@ -123,8 +119,9 @@ function getTemplateData(state) {
         label: state.label,
         expanded: state.expanded,
         size: state.size,
+        priority: state.priority,
         menuClass,
-        buttonClass,
+        buttonClass: state.borderless && 'expand-btn--borderless',
         itemsClass,
         role: !state.isFake ? 'menu' : null,
         items: state.items,
