@@ -24,7 +24,15 @@ app.use(require('lasso/middleware').serveStatic());
 app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
-    res.redirect(301, '/ebay-button');
+    res.redirect(301, '/ds6/ebay-button');
+});
+
+app.get('/ds6/', (req, res) => {
+    res.redirect(301, '/ds6/ebay-button');
+});
+
+app.get('/ds4/', (req, res) => {
+    res.redirect(301, '/ds4/ebay-button');
 });
 
 app.get('/:design_system/:component?', (req, res) => {
