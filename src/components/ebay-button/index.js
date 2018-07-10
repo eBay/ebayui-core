@@ -68,6 +68,13 @@ function handleKeydown(e) {
     eventUtils.handleActionKeydown(e, () => {
         this.handleClick();
     });
+    // handle escape key for ebay-menu
+    eventUtils.handleEscapeKeydown(e, () => {
+        this.el.focus();
+        if (this.el.hasAttribute("aria-expanded")) {
+            this.el.setAttribute("aria-expanded", "false");
+        }
+    });
 }
 
 module.exports = markoWidgets.defineComponent({
