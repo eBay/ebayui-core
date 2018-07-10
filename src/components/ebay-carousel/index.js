@@ -95,47 +95,42 @@ function getTemplateData(state) {
 }
 
 function init() {
+    const { config } = this.state;
     this.listEl = this.getEl('list');
     this.containerEl = this.getEl('container');
+    this.emitUpdate = emitUpdate.bind(this);
     this.subscribeTo(resizeUtil).on('resize', onRender.bind(this));
     observer.observeRoot(this, ['index']);
 
     if (getComputedStyle(this.listEl).getPropertyValue('overflow-x') !== 'visible') {
-        this.state.config.nativeScrolling = true;
+        config.nativeScrolling = true;
         this.cancelScrollHandler = onScrollEnd(this.listEl, handleScrollEnd.bind(this));
     } else {
-        this.subscribeTo(this.listEl).on('transitionend', this.emitUpdate.bind(this));
+        this.subscribeTo(this.listEl).on('transitionend', this.emitUpdate);
     }
 }
 
 function onRender() {
-    // Stop scrolling if we were already moving.
-    if (this.cancelScrollTransition) {
-        this.cancelScrollTransition();
-        this.cancelScrollTransition = undefined;
-    }
+    const { containerEl, listEl, state } = this;
+    const { config } = state;
 
-    if (this.state.config.preserveItems) {
+    if (config.preserveItems) {
         // Track if we are on a normal render or a render caused by recalculating.
-        this.state.config.preserveItems = false;
+        config.preserveItems = false;
 
         // Ensure only visible items within the carousel are focusable.
         // We don't have access to these items in the template so me must update manually.
-        forEls(this.listEl, itemEl => {
+        forEls(listEl, itemEl => {
             focusables(itemEl).forEach(itemEl.getAttribute('aria-hidden') !== 'true'
                 ? child => child.removeAttribute('tabindex')
                 : child => child.setAttribute('tabindex', '-1')
             );
         });
 
-        if (this.state.config.nativeScrolling) {
-            const { listEl, state } = this;
+        if (config.nativeScrolling) {
             const offset = getOffset(state);
             // Animate to the new scrolling position and emit update events afterward.
-            this.cancelScrollTransition = scrollTransition(listEl, offset, () => {
-                this.cancelScrollTransition = undefined;
-                this.emitUpdate();
-            });
+            this.cancelScrollTransition = scrollTransition(listEl, offset, this.emitUpdate);
         }
 
         return;
@@ -143,27 +138,29 @@ function onRender() {
 
     cancelAnimationFrame(this.renderFrame);
     this.renderFrame = requestAnimationFrame(() => {
-        const { state: { items, itemsPerSlide } } = this;
-        let slideWidth = this.containerEl.offsetWidth;
-        // Accounts for partial pixel widths by adding another pixel
-        // if we cannot divide up the slides evenly.
-        if (itemsPerSlide && slideWidth % itemsPerSlide !== 0) slideWidth++;
-        this.setState('slideWidth', slideWidth);
-        this.state.config.preserveItems = true;
+        const { items } = state;
+        const { left: containerLeft, width: containerWidth } = containerEl.getBoundingClientRect();
+        this.setState('slideWidth', containerWidth);
+        config.preserveItems = true;
 
         // Update item positions in the dom.
-        forEls(this.listEl, (itemEl, i) => {
+        forEls(listEl, (itemEl, i) => {
             const item = items[i];
-            item.left = itemEl.offsetLeft;
-            item.right = item.left + itemEl.offsetWidth;
+            const { left, right } = itemEl.getBoundingClientRect();
+            item.left = left - containerLeft;
+            item.right = right - containerLeft;
         });
     });
 }
 
-function onBeforeDestroy() {
+/**
+ * Called before updates and before the widget is destroyed to remove any pending async timers / actions.
+ */
+function cleanupAsync() {
     cancelAnimationFrame(this.renderFrame);
     if (this.cancelScrollHandler) this.cancelScrollHandler();
     if (this.cancelScrollTransition) this.cancelScrollTransition();
+    this.renderFrame = this.cancelScrollHandler = this.cancelScrollTransition = undefined;
 }
 
 function emitUpdate() {
@@ -182,11 +179,11 @@ function emitUpdate() {
  * @param {HTMLElement} target
  */
 function handleMove(originalEvent, target) {
-    const { state: { itemsPerSlide } } = this;
+    const { state: { config, itemsPerSlide } } = this;
     const direction = parseInt(target.getAttribute('data-direction'), 10);
     const nextIndex = this.getNextIndex(direction);
     const slide = itemsPerSlide && Math.ceil(nextIndex / itemsPerSlide);
-    this.state.config.preserveItems = true;
+    config.preserveItems = true;
     this.setState('index', nextIndex);
     emitAndFire(this, 'carousel-slide', { slide: slide + 1, originalEvent });
     emitAndFire(this, `carousel-${direction === 1 ? 'next' : 'prev'}`, { originalEvent });
@@ -199,9 +196,9 @@ function handleMove(originalEvent, target) {
  * @param {HTMLElement} target
  */
 function handleDotClick(originalEvent, target) {
-    const { state: { itemsPerSlide } } = this;
+    const { state: { config, itemsPerSlide } } = this;
     const slide = parseInt(target.getAttribute('data-slide'), 10);
-    this.state.config.preserveItems = true;
+    config.preserveItems = true;
     this.setState('index', slide * itemsPerSlide);
     emitAndFire(this, 'carousel-slide', { slide: slide + 1, originalEvent });
 }
@@ -212,7 +209,8 @@ function handleDotClick(originalEvent, target) {
  * @param {number} scrollLeft The current scroll position of the carousel.
  */
 function handleScrollEnd(scrollLeft) {
-    const { state: { items } } = this;
+    const { state } = this;
+    const { config, items } = state;
 
     // Find the closest item using a binary search.
     let start = 0;
@@ -236,7 +234,7 @@ function handleScrollEnd(scrollLeft) {
     }
 
     const closestOffset = items[closest].left;
-    const maxOffset = getMaxOffset(this.state);
+    const maxOffset = getMaxOffset(state);
 
     // If we are closer to the end than the closest item, then we just go to the end.
     if (Math.abs(maxOffset - scrollLeft) < Math.abs(closestOffset - scrollLeft)) {
@@ -244,7 +242,7 @@ function handleScrollEnd(scrollLeft) {
     }
 
     // Always update with the new index to ensure the scroll animations happen.
-    this.state.config.preserveItems = true;
+    config.preserveItems = true;
     this.setStateDirty('index', closest);
 }
 
@@ -322,8 +320,8 @@ module.exports = require('marko-widgets').defineComponent({
     getTemplateData,
     init,
     onRender,
-    onBeforeDestroy,
-    emitUpdate,
+    onBeforeUpdate: cleanupAsync,
+    onBeforeDestroy: cleanupAsync,
     handleMove,
     handleDotClick,
     getNextIndex
