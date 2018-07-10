@@ -8,6 +8,7 @@ const demoUtils = require('./utils.js');
 const template = require('./template.marko');
 
 const app = express();
+const defaultComponentRoute = 'ebay-button';
 
 let transforms;
 if (process.env.NODE_ENV === 'production') {
@@ -24,18 +25,18 @@ app.use(require('lasso/middleware').serveStatic());
 app.use(express.static(__dirname));
 
 app.get('/', (req, res) => {
-    res.redirect(301, '/ds6/ebay-button');
+    res.redirect(301, '/ds6');
 });
 
-app.get('/ds6/', (req, res) => {
-    res.redirect(301, '/ds6/ebay-button');
+app.get('/ds4', (req, res) => {
+    res.redirect(301, `/ds4/${defaultComponentRoute}`);
 });
 
-app.get('/ds4/', (req, res) => {
-    res.redirect(301, '/ds4/ebay-button');
+app.get('/ds6', (req, res) => {
+    res.redirect(301, `/ds6/${defaultComponentRoute}`);
 });
 
-app.get('/:design_system/:component?', (req, res) => {
+app.get('/:designSystem/:component?', (req, res) => {
     const name = req.params.component;
     const componentsPath = `${__dirname}/../src/components`;
     const examplesPath = `${componentsPath}/${name}/examples`;
@@ -51,7 +52,7 @@ app.get('/:design_system/:component?', (req, res) => {
         components: demoUtils.getComponentsWithExamples('src')
     };
     const md = new MobileDetect(req.headers['user-agent']);
-    const dsFlag = req.params.design_system === 'ds6' ? 'skin-ds6' : '';
+    const dsFlag = req.params.designSystem === 'ds6' ? 'skin-ds6' : '';
     const lassoFlags = [];
 
     // allow .only in example folder name
