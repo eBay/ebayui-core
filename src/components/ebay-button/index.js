@@ -71,8 +71,8 @@ function handleKeydown(e) {
     // handle escape key for ebay-menu
     eventUtils.handleEscapeKeydown(e, () => {
         this.el.focus();
-        if (this.el.hasAttribute("aria-expanded")) {
-            this.el.setAttribute("aria-expanded", "false");
+        if (this.el.hasAttribute('aria-expanded')) {
+            this.el.setAttribute('aria-expanded', 'false');
         }
     });
 }
