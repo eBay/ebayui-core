@@ -160,7 +160,7 @@ function onRender() {
     });
 }
 
-function onDestroy() {
+function onBeforeDestroy() {
     cancelAnimationFrame(this.renderFrame);
     if (this.cancelScrollHandler) this.cancelScrollHandler();
     if (this.cancelScrollTransition) this.cancelScrollTransition();
@@ -322,7 +322,7 @@ module.exports = require('marko-widgets').defineComponent({
     getTemplateData,
     init,
     onRender,
-    onDestroy,
+    onBeforeDestroy,
     emitUpdate,
     handleMove,
     handleDotClick,
