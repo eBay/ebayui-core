@@ -94,7 +94,13 @@ describe('menu', () => {
     test('renders with size=small', context => {
         const input = { size: 'small' };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn.btn.btn--small').length).to.equal(1);
+        expect($('.expand-btn.expand-btn--small').length).to.equal(1);
+    });
+
+    test('renders with priority=primary', context => {
+        const input = { priority: 'primary' };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.expand-btn.expand-btn--primary').length).to.equal(1);
     });
 
     test('renders without label', context => {

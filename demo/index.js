@@ -48,7 +48,7 @@ app.get('/:designSystem/:component?', (req, res) => {
             code: highlight.sync(fs.readFileSync(`${examplesPath}/${example}/template.marko`, 'utf8'), 'marko'),
             sources: [`${componentsPath}/${name}`, examplesPath, `${examplesPath}/${example}`],
             path: `${examplesPath}/${example}`
-        })).filter(demoUtils.isDirectory),
+        })).filter(demoUtils.isDirectory).sort((a, b) => a.num > b.num),
         components: demoUtils.getComponentsWithExamples('src')
     };
     const md = new MobileDetect(req.headers['user-agent']);

@@ -63,6 +63,18 @@ test('renders partially disabled version', context => {
     expect($('.btn[aria-disabled=true]').length).to.equal(1);
 });
 
+test('renders expand variant', context => {
+    const input = { variant: 'expand' };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('.expand-btn').length).to.equal(1);
+});
+
+test('renders cta variant', context => {
+    const input = { variant: 'cta' };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('.cta-btn').length).to.equal(1);
+});
+
 test('handles pass-through html attributes', context => {
     testUtils.testHtmlAttributes(context, 'button.btn');
 });

@@ -24,6 +24,7 @@ Name | Type | Stateful | Description
 `fix-width` | Boolean | No | constrain items container width to button width
 `borderless` | Boolean | No | whether button has borders
 `size` | String | No | button size, "small" or "large" (default: medium)
+`priority` | String | No | button priority, "primary" / "secondary" (default) / "none"
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 
 ### ebay-menu Events
