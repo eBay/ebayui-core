@@ -1,6 +1,7 @@
 'use strict';
 
 const isTravis = require('is-travis');
+const buildID = `${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBER}`;
 
 module.exports = ({ config }) => {
     config.mochaOptions = { timeout: 20000 };
@@ -15,9 +16,10 @@ module.exports = ({ config }) => {
     };
 
     config.wdioOptions = {
-        idleTimeout: 1200000, // 20 mins
-        browserStackOptions: {
-            onlyAutomate: isTravis
+        browserstackOpts: {
+            force: true,
+            onlyAutomate: isTravis,
+            localIdentifier: buildID
         },
         capabilities: [{
             browser: 'Chrome',
@@ -74,8 +76,11 @@ module.exports = ({ config }) => {
         //     os: 'Windows',
         //     os_version: '7'
         }].map(capability => {
+            capability.build = buildID;
             capability.project = 'ebayui-core';
             capability['browserstack.local'] = true;
+            capability['browserstack.debug'] = true;
+            capability['browserstack.localIdentifier'] = buildID;
             return capability;
         })
     };

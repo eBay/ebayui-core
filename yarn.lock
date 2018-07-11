@@ -87,8 +87,8 @@
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.0.tgz#06328378600156458dacb0278767ff8490f2074c"
 
 "@ebay/skin@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-5.1.0.tgz#fbbfa0ee136fae27795e13fde08fd42416108aa9"
+  version "5.1.1"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-5.1.1.tgz#f6e62145b5668bddad9b463a6733558a934a2d8e"
 
 "@lasso/marko-taglib@^1.0.10", "@lasso/marko-taglib@^1.0.9":
   version "1.0.10"
@@ -99,27 +99,27 @@
     raptor-logging "^1.1.3"
     raptor-util "^1.1.2"
 
-"@marko/compile@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.npmjs.org/@marko/compile/-/compile-3.1.0.tgz#f4801c5e242e3566b43dfa4198d420d2d194f786"
+"@marko/compile@3.2.0-alpha.86e5e3fd":
+  version "3.2.0-alpha.86e5e3fd"
+  resolved "https://registry.npmjs.org/@marko/compile/-/compile-3.2.0-alpha.86e5e3fd.tgz#459eef8124a287a1bed41d64e5127f100bcf3a95"
   dependencies:
     babel-runtime "^6.26.0"
     glob "^7.1.2"
     lasso-package-root "^1.0.1"
     resolve-from "^4.0.0"
 
-"@marko/create@^3.1.6":
-  version "3.1.6"
-  resolved "https://registry.npmjs.org/@marko/create/-/create-3.1.6.tgz#7b6eae14a4cc6a30685b3c0d17070e5e502b3dff"
+"@marko/create@3.2.0-alpha.86e5e3fd":
+  version "3.2.0-alpha.86e5e3fd"
+  resolved "https://registry.npmjs.org/@marko/create/-/create-3.2.0-alpha.86e5e3fd.tgz#4130c52d1ea70a6b528d204f4651113a3fb9af9c"
   dependencies:
     babel-runtime "^6.26.0"
     got "^8.3.1"
     ora "^2.1.0"
     unzip "^0.1.11"
 
-"@marko/test@^3.1.6":
-  version "3.1.6"
-  resolved "https://registry.npmjs.org/@marko/test/-/test-3.1.6.tgz#a160c3db3c75ff19fd7bb0602f531e45faea9a81"
+"@marko/test@3.2.0-alpha.86e5e3fd":
+  version "3.2.0-alpha.86e5e3fd"
+  resolved "https://registry.npmjs.org/@marko/test/-/test-3.2.0-alpha.86e5e3fd.tgz#0d8efc6901388f89ea87543ba3d85be9a308cc63"
   dependencies:
     "@lasso/marko-taglib" "^1.0.10"
     async "^2.6.1"
@@ -130,7 +130,7 @@
     cheerio "^1.0.0-rc.2"
     child-process-promise "^2.2.1"
     chromedriver "^2.40.0"
-    complain "^1.2.0"
+    complain "^1.3.0"
     delay "^3.0.0"
     engine.io "^3.2.0"
     engine.io-client "^3.2.1"
@@ -138,18 +138,19 @@
     get-port "^3.2.0"
     is-port-free "^1.0.7"
     lasso "^3.2.0"
-    lasso-istanbul-instrument-transform "0.0.4"
+    lasso-istanbul-instrument-transform "2.0.0"
     lasso-marko "^2.4.2"
     lasso-require "^3.4.10"
-    marko "^4.11.1"
+    marko "^4.12.0"
     mocha "^5.2.0"
     mz "^2.7.0"
-    p-event "^2.0.0"
+    node-fetch "2.1.2"
+    p-event "^2.1.0"
     raptor-renderer "^1.5.0"
     resolve-from "^4.0.0"
     strip-ansi "^4.0.0"
     wdio-chromedriver-service "^0.1.3"
-    webdriverio "^4.13.0"
+    webdriverio "^4.13.1"
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -248,7 +249,7 @@ after@0.8.2:
   version "0.8.2"
   resolved "https://registry.npmjs.org/after/-/after-0.8.2.tgz#fedb394f9f0e02aa9768e702bda23b505fae7e1f"
 
-agent-base@4, agent-base@^4.1.0, agent-base@^4.2.0:
+agent-base@4, agent-base@^4.1.0, agent-base@^4.2.0, agent-base@~4.2.0:
   version "4.2.1"
   resolved "https://registry.npmjs.org/agent-base/-/agent-base-4.2.1.tgz#d89e5999f797875674c07d87f260fc41e83e8ca9"
   dependencies:
@@ -662,7 +663,7 @@ babel-core@^6.0.14, babel-core@^6.26.0, babel-core@^6.7.6:
     slash "^1.0.0"
     source-map "^0.5.7"
 
-babel-generator@^6.18.0, babel-generator@^6.26.0:
+babel-generator@^6.26.0:
   version "6.26.1"
   resolved "https://registry.npmjs.org/babel-generator/-/babel-generator-6.26.1.tgz#1844408d3b8f0d35a404ea7ac180f087a601bd90"
   dependencies:
@@ -1065,7 +1066,7 @@ babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
     core-js "^2.4.0"
     regenerator-runtime "^0.11.0"
 
-babel-template@^6.16.0, babel-template@^6.24.1, babel-template@^6.26.0:
+babel-template@^6.24.1, babel-template@^6.26.0:
   version "6.26.0"
   resolved "https://registry.npmjs.org/babel-template/-/babel-template-6.26.0.tgz#de03e2d16396b069f46dd9fff8521fb1a0e35e02"
   dependencies:
@@ -1075,7 +1076,7 @@ babel-template@^6.16.0, babel-template@^6.24.1, babel-template@^6.26.0:
     babylon "^6.18.0"
     lodash "^4.17.4"
 
-babel-traverse@^6.18.0, babel-traverse@^6.24.1, babel-traverse@^6.26.0:
+babel-traverse@^6.24.1, babel-traverse@^6.26.0:
   version "6.26.0"
   resolved "https://registry.npmjs.org/babel-traverse/-/babel-traverse-6.26.0.tgz#46a9cbd7edcc62c8e5c064e2d2d8d0f4035766ee"
   dependencies:
@@ -1089,7 +1090,7 @@ babel-traverse@^6.18.0, babel-traverse@^6.24.1, babel-traverse@^6.26.0:
     invariant "^2.2.2"
     lodash "^4.17.4"
 
-babel-types@^6.18.0, babel-types@^6.19.0, babel-types@^6.24.1, babel-types@^6.26.0:
+babel-types@^6.19.0, babel-types@^6.24.1, babel-types@^6.26.0:
   version "6.26.0"
   resolved "https://registry.npmjs.org/babel-types/-/babel-types-6.26.0.tgz#a3b073f94ab49eb6fa55cd65227a334380632497"
   dependencies:
@@ -1357,12 +1358,13 @@ browserify-cipher@^1.0.0:
     evp_bytestokey "^1.0.0"
 
 browserify-des@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/browserify-des/-/browserify-des-1.0.1.tgz#3343124db6d7ad53e26a8826318712bdc8450f9c"
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/browserify-des/-/browserify-des-1.0.2.tgz#3af4f1f59839403572f1c66204375f7a7f703e9c"
   dependencies:
     cipher-base "^1.0.1"
     des.js "^1.0.0"
     inherits "^2.0.1"
+    safe-buffer "^5.1.2"
 
 browserify-rsa@^4.0.0:
   version "4.0.1"
@@ -1448,6 +1450,14 @@ browserslist@^3.2.6, browserslist@^3.2.8:
   dependencies:
     caniuse-lite "^1.0.30000844"
     electron-to-chromium "^1.3.47"
+
+browserslist@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/browserslist/-/browserslist-4.0.0.tgz#48703f1ed7ef981c6719e39e9444f20632b06571"
+  dependencies:
+    caniuse-lite "^1.0.30000859"
+    electron-to-chromium "^1.3.50"
+    node-releases "^1.0.0-alpha.10"
 
 browserstack-local@^1.2.0:
   version "1.3.3"
@@ -1623,13 +1633,13 @@ camelcase@^4.0.0, camelcase@^4.1.0:
   version "4.1.0"
   resolved "https://registry.npmjs.org/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
 
-caniuse-db@^1.0.30000846:
-  version "1.0.30000864"
-  resolved "https://registry.npmjs.org/caniuse-db/-/caniuse-db-1.0.30000864.tgz#35a4b2325a8d4553a46b516dbc233bf391d75555"
+caniuse-db@^1.0.30000865:
+  version "1.0.30000865"
+  resolved "https://registry.npmjs.org/caniuse-db/-/caniuse-db-1.0.30000865.tgz#82ffb64d40f7567620aac02d3a632079689abc6b"
 
-caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000864:
-  version "1.0.30000864"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000864.tgz#7a08c78da670f23c06f11aa918831b8f2dd60ddc"
+caniuse-lite@^1.0.30000844, caniuse-lite@^1.0.30000859, caniuse-lite@^1.0.30000864:
+  version "1.0.30000865"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30000865.tgz#70026616e8afe6e1442f8bb4e1092987d81a2f25"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -2619,9 +2629,9 @@ ejs@~2.5.6:
   version "2.5.9"
   resolved "https://registry.npmjs.org/ejs/-/ejs-2.5.9.tgz#7ba254582a560d267437109a68354112475b0ce5"
 
-electron-to-chromium@^1.3.47:
-  version "1.3.51"
-  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.51.tgz#6a42b49daaf7f22a5b37b991daf949f34dbdb9b5"
+electron-to-chromium@^1.3.47, electron-to-chromium@^1.3.50:
+  version "1.3.52"
+  resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.52.tgz#d2d9f1270ba4a3b967b831c40ef71fb4d9ab5ce0"
 
 elliptic@^6.0.0:
   version "6.4.0"
@@ -2852,13 +2862,13 @@ eslint-module-utils@^2.2.0:
     pkg-dir "^1.0.0"
 
 eslint-plugin-compat@^2.2.0:
-  version "2.4.0"
-  resolved "https://registry.npmjs.org/eslint-plugin-compat/-/eslint-plugin-compat-2.4.0.tgz#827a5c57491929860918fbbc97794ba7309b6990"
+  version "2.5.0"
+  resolved "https://registry.npmjs.org/eslint-plugin-compat/-/eslint-plugin-compat-2.5.0.tgz#a35dd1249527eaf2170b5a063f33d4db1a1fc664"
   dependencies:
     babel-runtime "^6.26.0"
-    browserslist "^3.2.8"
-    caniuse-db "^1.0.30000846"
-    mdn-browser-compat-data "^0.0.36"
+    browserslist "^4.0.0"
+    caniuse-db "^1.0.30000865"
+    mdn-browser-compat-data "^0.0.40"
     requireindex "^1.2.0"
 
 eslint-plugin-import@^2.12.0:
@@ -2883,8 +2893,8 @@ eslint-plugin-mocha@^5.0.0:
     ramda "^0.25.0"
 
 eslint-scope@^3.7.1:
-  version "3.7.1"
-  resolved "https://registry.npmjs.org/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
+  version "3.7.3"
+  resolved "https://registry.npmjs.org/eslint-scope/-/eslint-scope-3.7.3.tgz#bb507200d3d17f60247636160b4826284b108535"
   dependencies:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
@@ -3515,8 +3525,8 @@ get-assigned-identifiers@^1.2.0:
   resolved "https://registry.npmjs.org/get-assigned-identifiers/-/get-assigned-identifiers-1.2.0.tgz#6dbf411de648cbaf8d9169ebb0d2d576191e2ff1"
 
 get-caller-file@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
 
 get-func-name@^2.0.0:
   version "2.0.0"
@@ -4562,19 +4572,7 @@ istanbul-lib-hook@^1.1.0:
   dependencies:
     append-transform "^0.4.0"
 
-istanbul-lib-instrument@^1.4.2:
-  version "1.10.1"
-  resolved "https://registry.npmjs.org/istanbul-lib-instrument/-/istanbul-lib-instrument-1.10.1.tgz#724b4b6caceba8692d3f1f9d0727e279c401af7b"
-  dependencies:
-    babel-generator "^6.18.0"
-    babel-template "^6.16.0"
-    babel-traverse "^6.18.0"
-    babel-types "^6.18.0"
-    babylon "^6.18.0"
-    istanbul-lib-coverage "^1.2.0"
-    semver "^5.3.0"
-
-istanbul-lib-instrument@^2.1.0:
+istanbul-lib-instrument@^2.1.0, istanbul-lib-instrument@^2.3.1:
   version "2.3.1"
   resolved "https://registry.npmjs.org/istanbul-lib-instrument/-/istanbul-lib-instrument-2.3.1.tgz#406406730a395acb2e50f0d98137ace16bd4a970"
   dependencies:
@@ -4638,12 +4636,16 @@ isurl@^1.0.0-alpha5:
     is-object "^1.0.1"
 
 js-base64@^2.1.9:
-  version "2.4.5"
-  resolved "https://registry.npmjs.org/js-base64/-/js-base64-2.4.5.tgz#e293cd3c7c82f070d700fc7a1ca0a2e69f101f92"
+  version "2.4.6"
+  resolved "https://registry.npmjs.org/js-base64/-/js-base64-2.4.6.tgz#1d49f618bef43630cd191f4e122447acfdb947d8"
 
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
+
+"js-tokens@^3.0.0 || ^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
 
 js-yaml@3.x, js-yaml@^3.11.0, js-yaml@^3.9.0, js-yaml@^3.9.1:
   version "3.12.0"
@@ -4864,11 +4866,11 @@ lasso-caching-fs@^1.0.0, lasso-caching-fs@^1.0.1, lasso-caching-fs@^1.0.2:
   dependencies:
     raptor-async "^1.1.2"
 
-lasso-istanbul-instrument-transform@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.npmjs.org/lasso-istanbul-instrument-transform/-/lasso-istanbul-instrument-transform-0.0.4.tgz#14dc458aead2c8e11176b05792c1b4bc57386aa2"
+lasso-istanbul-instrument-transform@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/lasso-istanbul-instrument-transform/-/lasso-istanbul-instrument-transform-2.0.0.tgz#0a0d750b9e35fe85c02a540255b16c8befc3d385"
   dependencies:
-    istanbul-lib-instrument "^1.4.2"
+    istanbul-lib-instrument "^2.3.1"
     lasso-resolve-from "^1.2.0"
 
 lasso-less@^3.0.1:
@@ -4961,8 +4963,8 @@ lasso-resolve-from@^1.2.0:
     resolve-from "^2.0.0"
 
 lasso@^3.1.5, lasso@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.npmjs.org/lasso/-/lasso-3.2.0.tgz#1b1e613f3916f0b5a926985c0c508c58aa4c650e"
+  version "3.2.1"
+  resolved "https://registry.npmjs.org/lasso/-/lasso-3.2.1.tgz#7c36bd1f57a46cf2a462a9a294848acec33d8f65"
   dependencies:
     app-root-dir "^1.0.2"
     assert "^1.4.1"
@@ -5038,8 +5040,8 @@ lcov-parse@^0.0.10:
   resolved "https://registry.npmjs.org/lcov-parse/-/lcov-parse-0.0.10.tgz#1b0b8ff9ac9c7889250582b70b71315d9da6d9a3"
 
 less@^3.0.4:
-  version "3.5.3"
-  resolved "https://registry.npmjs.org/less/-/less-3.5.3.tgz#108f656b5ee09a281b757a603a80aa091acf6384"
+  version "3.7.1"
+  resolved "https://registry.npmjs.org/less/-/less-3.7.1.tgz#192e9dcef456ba3181a4e8d78a200f72a75e5c30"
   optionalDependencies:
     errno "^0.1.1"
     graceful-fs "^4.1.2"
@@ -5177,8 +5179,8 @@ log-symbols@^2.0.0, log-symbols@^2.2.0:
     chalk "^2.0.1"
 
 log4js@^2.5.3:
-  version "2.10.0"
-  resolved "https://registry.npmjs.org/log4js/-/log4js-2.10.0.tgz#4980bd9148a030d69f9edde32a5b19c0a551e2c4"
+  version "2.11.0"
+  resolved "https://registry.npmjs.org/log4js/-/log4js-2.11.0.tgz#bf3902eff65c6923d9ce9cfbd2db54160e34005a"
   dependencies:
     circular-json "^0.5.4"
     date-format "^1.2.0"
@@ -5220,10 +5222,10 @@ longest@^1.0.1:
   resolved "https://registry.npmjs.org/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
 
 loose-envify@^1.0.0:
-  version "1.3.1"
-  resolved "https://registry.npmjs.org/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   dependencies:
-    js-tokens "^3.0.0"
+    js-tokens "^3.0.0 || ^4.0.0"
 
 loud-rejection@^1.0.0:
   version "1.6.0"
@@ -5371,13 +5373,13 @@ markdown-table@^1.1.0:
   version "1.1.2"
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-1.1.2.tgz#c78db948fa879903a41bce522e3b96f801c63786"
 
-marko-cli@^3.1.4:
-  version "3.1.6"
-  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-3.1.6.tgz#8b85bf92398677b184ad3d919858ef09a8e4d17b"
+marko-cli@3.2.0-alpha.86e5e3fd:
+  version "3.2.0-alpha.86e5e3fd"
+  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-3.2.0-alpha.86e5e3fd.tgz#5926491ebd6e81f7c9578a42a47756a3ad9f1cba"
   dependencies:
-    "@marko/compile" "^3.1.0"
-    "@marko/create" "^3.1.6"
-    "@marko/test" "^3.1.6"
+    "@marko/compile" "3.2.0-alpha.86e5e3fd"
+    "@marko/create" "3.2.0-alpha.86e5e3fd"
+    "@marko/test" "3.2.0-alpha.86e5e3fd"
     app-root-dir "^1.0.2"
     argly "^1.2.0"
     babel-runtime "^6.26.0"
@@ -5457,9 +5459,9 @@ marko@^3:
     strip-json-comments "^2.0.1"
     try-require "^1.2.1"
 
-marko@^4.0.0, marko@^4.10.0, marko@^4.11.1:
-  version "4.11.5"
-  resolved "https://registry.npmjs.org/marko/-/marko-4.11.5.tgz#ac3bb9e515a0e041763492a5ee161cfa6dea118f"
+marko@^4.0.0, marko@^4.10.0, marko@^4.12.0:
+  version "4.12.0"
+  resolved "https://registry.npmjs.org/marko/-/marko-4.12.0.tgz#3fcd01744696f4b9f199daac75185c6477cf182d"
   dependencies:
     app-module-path "^2.2.0"
     argly "^1.0.0"
@@ -5532,9 +5534,9 @@ mdast-util-compact@^1.0.0:
     unist-util-modify-children "^1.0.0"
     unist-util-visit "^1.1.0"
 
-mdn-browser-compat-data@^0.0.36:
-  version "0.0.36"
-  resolved "https://registry.npmjs.org/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.36.tgz#d347c618b648981fd0310035e556fd6871fde2fe"
+mdn-browser-compat-data@^0.0.40:
+  version "0.0.40"
+  resolved "https://registry.npmjs.org/mdn-browser-compat-data/-/mdn-browser-compat-data-0.0.40.tgz#d7f13de64ff90e11062cfc0db92753674feb9800"
   dependencies:
     extend "3.0.1"
 
@@ -5665,8 +5667,8 @@ mimic-fn@^1.0.0:
   resolved "https://registry.npmjs.org/mimic-fn/-/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
 
 mimic-response@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/mimic-response/-/mimic-response-1.0.0.tgz#df3d3652a73fded6b9b0b24146e6fd052353458e"
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/mimic-response/-/mimic-response-1.0.1.tgz#4923538878eef42063cb8a3e3b0798781487ab1b"
 
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
@@ -5857,6 +5859,10 @@ nise@^1.3.3:
     path-to-regexp "^1.7.0"
     text-encoding "^0.6.4"
 
+node-fetch@2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
+
 node-pre-gyp@^0.10.0:
   version "0.10.3"
   resolved "https://registry.npmjs.org/node-pre-gyp/-/node-pre-gyp-0.10.3.tgz#3070040716afdc778747b61b6887bf78880b80fc"
@@ -5871,6 +5877,12 @@ node-pre-gyp@^0.10.0:
     rimraf "^2.6.1"
     semver "^5.3.0"
     tar "^4"
+
+node-releases@^1.0.0-alpha.10:
+  version "1.0.0-alpha.10"
+  resolved "https://registry.npmjs.org/node-releases/-/node-releases-1.0.0-alpha.10.tgz#61c8d5f9b5b2e05d84eba941d05b6f5202f68a2a"
+  dependencies:
+    semver "^5.3.0"
 
 node-uuid@~1.4.7:
   version "1.4.8"
@@ -6227,7 +6239,7 @@ p-cancelable@^0.4.0:
   version "0.4.1"
   resolved "https://registry.npmjs.org/p-cancelable/-/p-cancelable-0.4.1.tgz#35f363d67d52081c8d9585e37bcceb7e0bbcb2a0"
 
-p-event@^2.0.0:
+p-event@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/p-event/-/p-event-2.1.0.tgz#74de477a4e6b3aa8267240c7099e78ac52cb4db4"
   dependencies:
@@ -6695,8 +6707,8 @@ proxy-addr@~2.0.3:
     ipaddr.js "1.6.0"
 
 proxy-agent@~3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/proxy-agent/-/proxy-agent-3.0.0.tgz#f6768e202889b2285d39906d3a94768416f8f713"
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/proxy-agent/-/proxy-agent-3.0.1.tgz#4fb7b61b1476d0fe8e3a3384d90e2460bbded3f9"
   dependencies:
     agent-base "^4.2.0"
     debug "^3.1.0"
@@ -6705,7 +6717,7 @@ proxy-agent@~3.0.0:
     lru-cache "^4.1.2"
     pac-proxy-agent "^2.0.1"
     proxy-from-env "^1.0.0"
-    socks-proxy-agent "^3.0.0"
+    socks-proxy-agent "^4.0.1"
 
 proxy-from-env@^1.0.0:
   version "1.0.0"
@@ -7669,6 +7681,10 @@ smart-buffer@^1.0.13, smart-buffer@^1.0.4:
   version "1.1.15"
   resolved "https://registry.npmjs.org/smart-buffer/-/smart-buffer-1.1.15.tgz#7f114b5b65fab3e2a35aa775bb12f0d1c649bf16"
 
+smart-buffer@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/smart-buffer/-/smart-buffer-4.0.1.tgz#07ea1ca8d4db24eb4cac86537d7d18995221ace3"
+
 smtp-connection@2.12.0:
   version "2.12.0"
   resolved "https://registry.npmjs.org/smtp-connection/-/smtp-connection-2.12.0.tgz#d76ef9127cb23c2259edb1e8349c2e8d5e2d74c1"
@@ -7795,6 +7811,13 @@ socks-proxy-agent@^3.0.0:
     agent-base "^4.1.0"
     socks "^1.1.10"
 
+socks-proxy-agent@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/socks-proxy-agent/-/socks-proxy-agent-4.0.1.tgz#5936bf8b707a993079c6f37db2091821bffa6473"
+  dependencies:
+    agent-base "~4.2.0"
+    socks "~2.2.0"
+
 socks@1.1.9:
   version "1.1.9"
   resolved "https://registry.npmjs.org/socks/-/socks-1.1.9.tgz#628d7e4d04912435445ac0b6e459376cb3e6d691"
@@ -7808,6 +7831,13 @@ socks@^1.1.10:
   dependencies:
     ip "^1.1.4"
     smart-buffer "^1.0.13"
+
+socks@~2.2.0:
+  version "2.2.1"
+  resolved "https://registry.npmjs.org/socks/-/socks-2.2.1.tgz#68ad678b3642fbc5d99c64c165bc561eab0215f9"
+  dependencies:
+    ip "^1.1.5"
+    smart-buffer "^4.0.1"
 
 sort-keys@^2.0.0:
   version "2.0.0"
@@ -8676,10 +8706,8 @@ url@^0.11.0, url@~0.11.0:
     querystring "0.2.0"
 
 use@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.npmjs.org/use/-/use-3.1.0.tgz#14716bf03fdfefd03040aef58d8b4b85f3a7c544"
-  dependencies:
-    kind-of "^6.0.2"
+  version "3.1.1"
+  resolved "https://registry.npmjs.org/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
 
 user-home@^1.1.1:
   version "1.1.1"
@@ -8810,7 +8838,7 @@ wdio-dot-reporter@~0.0.8:
   version "0.0.10"
   resolved "https://registry.npmjs.org/wdio-dot-reporter/-/wdio-dot-reporter-0.0.10.tgz#facfb7c9c5984149951f59cbc3cd0752101cf0e0"
 
-webdriverio@^4.13.0:
+webdriverio@^4.13.1:
   version "4.13.1"
   resolved "https://registry.npmjs.org/webdriverio/-/webdriverio-4.13.1.tgz#624ef4ca569f3c9a5e8e9b11302b4431eda1fb8a"
   dependencies:

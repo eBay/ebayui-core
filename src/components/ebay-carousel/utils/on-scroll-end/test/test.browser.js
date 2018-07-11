@@ -32,8 +32,8 @@ describe('scroll-end', () => {
                 expect(scrollEndSpy.args[0][0]).to.equal(50);
                 expect(scrollEndSpy.args[1][0]).to.equal(100);
                 done();
-            }, 100);
-        }, 100);
+            }, 300);
+        }, 150);
     });
 
     it('groups scroll events with additional touches', (done) => {
@@ -46,7 +46,7 @@ describe('scroll-end', () => {
                 expect(scrollEndSpy.calledOnce).to.equal(true);
                 expect(scrollEndSpy.args[0][0]).to.equal(100);
                 done();
-            }, 100);
+            }, 150);
         }, 0);
     });
 });

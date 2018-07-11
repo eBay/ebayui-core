@@ -136,10 +136,12 @@ function onRender() {
         return;
     }
 
-    cancelAnimationFrame(this.renderFrame);
     this.renderFrame = requestAnimationFrame(() => {
-        const { items } = state;
+        const { items, slideWidth } = state;
         const { left: containerLeft, width: containerWidth } = containerEl.getBoundingClientRect();
+
+        if (slideWidth === containerWidth) return;
+
         this.setState('slideWidth', containerWidth);
         config.preserveItems = true;
 
@@ -160,7 +162,7 @@ function cleanupAsync() {
     cancelAnimationFrame(this.renderFrame);
     if (this.cancelScrollHandler) this.cancelScrollHandler();
     if (this.cancelScrollTransition) this.cancelScrollTransition();
-    this.renderFrame = this.cancelScrollHandler = this.cancelScrollTransition = undefined;
+    this.cancelScrollHandler = this.cancelScrollTransition = undefined;
 }
 
 function emitUpdate() {
