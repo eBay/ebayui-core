@@ -3,7 +3,6 @@
         "require: marko",
         "require: marko-widgets",
         "@ebay/skin/less",
-        "@ebay/skin/marketsans",
         "./atom-light-syntax.css",
         "./style.less",
         "../src/components/ebay-breadcrumb",
@@ -17,6 +16,12 @@
         "../src/components/ebay-notice",
         "../src/components/ebay-pagination",
         "../src/components/ebay-select",
-        "../src/components/ebay-radio"
+        "../src/components/ebay-radio",
+        {
+            "if-flag": "ds6",
+            "dependencies": [
+                "@ebay/skin/marketsans"
+            ]
+        }
     ]
 }
