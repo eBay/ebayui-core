@@ -30,7 +30,9 @@
     "tb": "yarn test:browser",
     "tf": "yarn test:fps",
     "ti": "yarn test:integration",
-    "tr": "yarn coverage && yarn report && opn .coverage/index.html"
+    "tr": "yarn coverage && yarn report && opn .coverage/index.html",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "pre-push": [
     "lint",
@@ -57,10 +59,15 @@
     "@ebay/browserslist-config": "^1.0.0",
     "@ebay/skin": "^5.0.2",
     "@lasso/marko-taglib": "^1.0.9",
+    "@storybook/addon-actions": "^4.0.0-alpha.10",
+    "@storybook/addon-knobs": "^4.0.0-alpha.10",
+    "@storybook/marko": "^4.0.0-alpha.10",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.6.1",
+    "babel-runtime": "^6.26.0",
     "browser-refresh": "^1.7.2",
     "chai": "^4.1.2",
     "cheerio": "^1.0.0-rc.2",
@@ -83,11 +90,11 @@
     "lasso-less": "^3.0.0",
     "lasso-marko": "^2.4.0",
     "lintspaces-cli": "^0.6.0",
-    "marko": "^3",
+    "marko": "^4.10.0",
     "marko-cli": "^2.2.2",
     "marko-dynamic-tag": "^1.0.0",
     "marko-prettyprint": "^1.4.1",
-    "marko-widgets": "^6",
+    "marko-widgets": "^7.0.1",
     "mobile-detect": "^1.4.1",
     "mocha": "^5.1.1",
     "nyc": "^11.4.1",
@@ -104,6 +111,7 @@
     "marko-widgets": "^6 || ^7"
   },
   "dependencies": {
+    "@storybook/addon-backgrounds": "^4.0.0-alpha.10",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "makeup-expander": "~0.4.0",
@@ -113,6 +121,7 @@
     "makeup-prevent-scroll-keys": "~0.0.2",
     "makeup-roving-tabindex": "~0.0.5",
     "makeup-screenreader-trap": "^0.0.5",
+    "moment": "^2.22.2",
     "nodelist-foreach-polyfill": "^1.2.0"
   },
   "publishConfig": {

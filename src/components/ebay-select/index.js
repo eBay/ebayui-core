@@ -226,10 +226,15 @@ function clearComboboxSelections(options) {
     });
 }
 
+function getInitialBody(input, out) {
+    return input.body;
+}
+
 module.exports = markoWidgets.defineComponent({
     template,
     getInitialState,
     getTemplateData,
+    getInitialBody,
     init,
     handleExpand,
     handleCollapse,
