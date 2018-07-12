@@ -81,11 +81,12 @@
     },
     "<ebay-menu>": {
         "renderer": "./src/components/ebay-menu/index.js",
-        "transformer": "./src/common/transformer/index.js",
+        "transformer": "./src/components/ebay-menu/transformer.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
         "@type": "string",
+        "@icon": "string",
         "@label": "string",
         "@expanded": "boolean",
         "@reverse": "boolean",
