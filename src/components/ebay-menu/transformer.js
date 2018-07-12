@@ -14,11 +14,15 @@ function transform(el, context) {
             {
                 name: 'type',
                 value: builder.literal('inline')
+            },
+            {
+                name: 'class',
+                value: builder.literal('expand-btn__icon')
             }
         ]);
-        el.replaceWith(iconTag);
-        // el.setAttributeValue('foo', context.builder.literal('bar'));
-        // el.prependChild(builder.htmlComment(builder.literal('foobar')));
+        const menuIconTag = context.createNodeForEl('ebay-menu:icon');
+        menuIconTag.appendChild(iconTag);
+        el.prependChild(menuIconTag);
     }
 }
 
