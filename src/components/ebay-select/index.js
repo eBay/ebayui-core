@@ -226,7 +226,7 @@ function clearComboboxSelections(options) {
     });
 }
 
-function getInitialBody(input, out) {
+function getInitialBody(input) {
     return input.body;
 }
 

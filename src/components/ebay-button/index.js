@@ -70,7 +70,7 @@ function handleKeydown(e) {
     });
 }
 
-function getInitialBody(input, out) {
+function getInitialBody(input) {
     return input.body;
 }
 
