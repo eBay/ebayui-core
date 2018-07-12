@@ -14,10 +14,6 @@ function transform(el, context) {
             {
                 name: 'type',
                 value: builder.literal('inline')
-            },
-            {
-                name: 'class',
-                value: builder.literal('expand-btn__icon')
             }
         ]);
         const menuIconTag = context.createNodeForEl('ebay-menu:icon');
