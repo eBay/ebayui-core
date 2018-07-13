@@ -48,6 +48,17 @@ Please ensure all scripts in `package.json` are Unix *and* Windows friendly.
 
 To ensure that all components function correctly in both Marko v3 and v4, we run our entire test suite against both versions. This requires automated installation of Marko versions, and is best executed in the CI (to avoid conflicting with local environments). The CI runs a specific `build:ci` task in the NPM scripts for this purpose.
 
+By default when in the CI all browser tests will be ran against the supported list of browsers using [BrowserStack](http://browserstack.com). If you would like to manually test with your own BrowserStack account you can do so by adding a `.env` file to the root of this project with the following environment variables:
+
+```bash
+BUILD_NUMBER="local"
+REPO_SLUG="ebay/ebayui-core"
+BROWSERSTACK_USER="YOUR BROWSERSTACK USERNAME"
+BROWSERSTACK_ACCESS_KEY="YOUR BROWSERSTACK ACCESS KEY"
+```
+
+Finally run `yarn test:browserstack` to begin the tests.
+
 ## Pull Requests
 
 This section contains information and etiquette regarding pull requests (or "PRs" as they are often called).
@@ -179,8 +190,10 @@ All major and minor releases should be preceded by one or more pre-releases.
 
 All releases should be tagged in git (`npm version` does this for you), and that tag pushed to GitHub (e.g. `git push origin v1.0.0`). From that tag, a Git release should be created.
 
-Pre-releases must be published to NPM from a milestone branch.
+Pre-releases must be published to NPM from a milestone branch using the `npm publish --tag beta` command.
 
 Final releases must be published to NPM from the `master` branch.
+
+After every major and minor release, please take the opportunity to upgrade any outdated dependencies and devDependencies (*hint*: run `yarn outdated` to see outdated dependencies). Except for major version upgrades, the version in `package.json` should always reflect the last known working version, not the version you are upgrading to.
 
 More information to follow.

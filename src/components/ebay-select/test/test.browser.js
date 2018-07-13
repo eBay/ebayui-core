@@ -1,231 +1,75 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const renderer = require('../');
 
-describe('given the combobox is in the default state', () => {
+describe('given the select is in the default state', () => {
     let widget;
     let root;
-    let button;
-    let ariaControl;
-    let secondOption;
-    let nativeSelect;
+    let selectElement;
 
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.combobox');
-        button = root.querySelector('.combobox__control');
-        ariaControl = button.querySelector('input');
-        secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
-        nativeSelect = root.querySelector('.combobox__native');
+        root = document.querySelector('.select');
+        selectElement = root.querySelector('select');
     });
 
     afterEach(() => widget.destroy());
 
-    describe('when the down arrow key is pressed', () => {
+    describe('when the select has been initialized', () => {
+        test('then the select options should have a selected state set', () => {
+            expect(selectElement['0'].selected).to.equal(true);
+            expect(selectElement['1'].selected).to.equal(false);
+            expect(selectElement['2'].selected).to.equal(false);
+        });
+    });
+
+    describe('when the index is set through the selectedIndex attribute', () => {
+        const expectedIndex = 1;
+        const expectedValue = '2';
         let spy;
 
         beforeEach((done) => {
             spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 40);
+            widget.on('select-change', spy);
+            root.selectedIndex = expectedIndex;
             setTimeout(done);
         });
 
-        test('then it should not expand the combobox', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
-        });
-
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
+        test('then it emits the select-change event with the correct data', () => {
             const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
-            expect(nativeOption).to.equal('2');
+            expect(spy.calledOnce).to.equal(true);
+            expect(eventData.index).to.equal(expectedIndex);
+            expect(eventData.selected).to.deep.equal([expectedValue]);
+            expect(root.value).to.equal(expectedValue);
+            expect(root.selectedIndex).to.equal(expectedIndex);
+            expect(selectElement.value).to.equal(expectedValue);
+            expect(selectElement.selectedIndex).to.equal(expectedIndex);
         });
     });
 
-    describe('when the up arrow key is pressed', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 38);
-        });
-
-        test('then it should not expand the combobox', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
-        });
-
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.selected).to.deep.equal(['1']);
-            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
-            expect(nativeOption).to.equal('1');
-        });
-    });
-
-    describe('when the option is set programmatically', () => {
+    describe('when the value is set through the value attribute', () => {
+        const expectedIndex = 0;
+        const expectedValue = '1';
         let spy;
 
         beforeEach((done) => {
             spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            secondOption.selected = true;
+            widget.on('select-change', spy);
+            root.value = expectedValue;
             setTimeout(done);
         });
 
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
+        test('then it emits the select-change event with the correct data', () => {
             const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
-            expect(nativeOption).to.equal('2');
-        });
-    });
-
-    describe('when the button is clicked once', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-expand', spy);
-            testUtils.triggerEvent(button, 'click');
-        });
-
-        test('then it emits the event from expander-expand', () => {
             expect(spy.calledOnce).to.equal(true);
-        });
-    });
-
-    describe('when the button is clicked twice', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-collapse', spy);
-            testUtils.triggerEvent(button, 'click');
-            testUtils.triggerEvent(button, 'click');
-        });
-
-        test('then it emits the event from expander-collapse', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
-});
-
-describe('given the combobox is in an expanded state', () => {
-    let widget;
-    let root;
-    let button;
-    let ariaControl;
-    let secondOption;
-    let secondOptionLabel;
-
-    beforeEach(() => {
-        const renderedWidget = renderer.renderSync({ options: mock.options });
-        widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.combobox');
-        button = root.querySelector('.combobox__control');
-        ariaControl = button.querySelector('input');
-        secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
-        secondOptionLabel = secondOption.querySelector('span:not(.combobox__status)');
-        testUtils.triggerEvent(button, 'click');
-    });
-
-    afterEach(() => widget.destroy());
-
-    describe('when an option is clicked', () => {
-        let selectSpy;
-
-        beforeEach(() => {
-            selectSpy = sinon.spy();
-            widget.on('listbox-change', selectSpy);
-            testUtils.triggerEvent(secondOption, 'click');
-        });
-
-        test('then it emits the listbox-select event with correct data', () => {
-            expect(selectSpy.calledOnce).to.equal(true);
-            const eventData = selectSpy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            expect(eventData.el).to.deep.equal(secondOption);
-        });
-    });
-
-    describe('when an option is clicked on the label', () => {
-        let selectSpy;
-
-        beforeEach(() => {
-            selectSpy = sinon.spy();
-            widget.on('listbox-change', selectSpy);
-            testUtils.triggerEvent(secondOptionLabel, 'click');
-        });
-
-        test('then it emits the listbox-select event with correct data', () => {
-            expect(selectSpy.calledOnce).to.equal(true);
-            const eventData = selectSpy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            expect(eventData.el).to.deep.equal(secondOption);
-        });
-    });
-
-    describe('when the down arrow key is pressed', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 40);
-        });
-
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-        });
-    });
-
-    describe('when the up arrow key is pressed', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 38);
-        });
-
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.selected).to.deep.equal(['1']);
-        });
-    });
-
-    describe('when the escape key is pressed', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-collapse', spy);
-            testUtils.triggerEvent(root, 'click');
-            testUtils.triggerEvent(ariaControl, 'keydown', 27);
-        });
-
-        test('then it collapses', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
-        });
-
-        test('then it emits the collapse event', () => {
-            expect(spy.calledOnce).to.equal(true);
+            expect(eventData.index).to.equal(expectedIndex);
+            expect(eventData.selected).to.deep.equal([expectedValue]);
+            expect(root.value).to.equal(expectedValue);
+            expect(root.selectedIndex).to.equal(expectedIndex);
+            expect(selectElement.value).to.equal(expectedValue);
+            expect(selectElement.selectedIndex).to.equal(expectedIndex);
         });
     });
 });

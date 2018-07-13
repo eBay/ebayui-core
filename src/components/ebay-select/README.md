@@ -1,6 +1,6 @@
 # ebay-select
 
-The `<ebay-select>` is a tag used to create a custom-designed form element which matches much of the functionality of a native `<select>` menu. It uses a markup similar to a `<select>` but hides the native select in favor for better design and UX for the end user.
+The `<ebay-select>` is a tag used to create a native `<select>` form element with the default button styling in DS6. It's intended use is as a select for mobile-sized screens, but it is up to the developer and designer to choose which situations require its use.
 
 ## ebay-select Tag
 
@@ -39,9 +39,9 @@ Name | Required | Type | Stateful | Description
 
 Event | Data |  Description
 --- | --- | ---
-`listbox-collapse` | | collapse content
-`listbox-expand` | | expand content
-`listbox-change` | `{ el, index, selected }` | option selected
+`select-collapse` | | collapse content
+`select-expand` | | expand content
+`select-change` | `{ el, index, selected }` | option selected
 
 ---
 
@@ -66,4 +66,4 @@ Name | Required | Type | Stateful | Description
 
 Event | Description
 --- | ---
-`listbox-select` | select one of the options
+`select-option-select` | select one of the options
