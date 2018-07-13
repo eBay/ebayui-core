@@ -15,20 +15,19 @@
 
     &__list {
         transition: transform @ebay-carousel-transition-time @ebay-carousel-transition-function;
-        transform: translateX(0);
+        will-change: transform; // Ensures that the list is on a new layer for better scrolling perf.
+        transform: translate3d(0,0,0); // Same as above, but for backward compatibility to (ie10).
+        display: flex;
         position: relative;
-        box-sizing: border-box;
         width: 100%;
         margin: 0;
         padding: 0;
 
         > li {
+            display: inline-block;
+            flex-grow: 0;
+            flex-shrink: 0;
             list-style: none;
-            margin-right: 16px;
-
-            &:last-of-type {
-                margin-right: 0;
-            }
         }
     }
 
@@ -69,48 +68,6 @@
         }
     }
 
-    &--continuous {
-        .carousel__list {
-            display: inline-block;
-
-            > li {
-                display: inline-block;
-            }
-        }
-    }
-
-    &--discrete {
-        .carousel__list {
-            display: flex;
-
-            // avoid flex shorthand due to ie11 bugs
-            > li {
-                flex-grow: 0;
-                flex-shrink: 0;
-            }
-        }
-
-        &-1 .carousel__list > li {
-            flex-basis: 100%;
-        }
-
-        &-2 .carousel__list > li {
-            flex-basis: calc(50% ~"-" 8px);
-        }
-
-        &-3 .carousel__list > li {
-            flex-basis: calc(33.333% ~"-" 10.666px);
-        }
-
-        &-4 .carousel__list > li {
-            flex-basis: calc(25% ~"-" 12px);
-        }
-
-        &-5 .carousel__list > li {
-            flex-basis: calc(20% ~"-" 16px);
-        }
-    }
-
     &__dots {
         margin: 8px 0;
         padding-left: 0;
@@ -120,8 +77,7 @@
             display: inline-block;
 
             > button {
-                transition: background-color @ebay-carousel-transition-time @ebay-carousel-transition-function;
-                background-color: @ds6-color-g204-gray;
+                background-color: @ds6-color-g206-gray;
                 cursor: pointer;
                 border: 0;
                 border-radius: 50%;
@@ -130,9 +86,23 @@
                 padding: 0;
                 height: 8px;
                 width: 8px;
+                overflow: hidden;
 
-                &.carousel__dot--active {
-                    background-color: @ds6-color-g206-gray;
+                // The active dot uses an after to color it in which transitions opacity.
+                // This was done to avoid transitioning the background color of the element
+                // while still allowing us to use exact ds colors.
+                &::after {
+                    transition: opacity @ebay-carousel-transition-time @ebay-carousel-transition-function;
+                    content: "";
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    opacity: 1;
+                    background-color: @ds6-color-g204-gray;
+                }
+
+                &.carousel__dot--active::after {
+                    opacity: 0;
                 }
             }
         }

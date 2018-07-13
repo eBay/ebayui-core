@@ -24,12 +24,10 @@
         }
     }
 
-    &--continuous {
-        // hide controls if both are disabled
-        .carousel__container--controls-disabled .carousel__control,
-        &:hover .carousel__container--controls-disabled .carousel__control[aria-disabled="true"] {
-            opacity: 0;
-            pointer-events: none;
-        }
+    // hide controls if both are disabled
+    .carousel__container--controls-disabled .carousel__control,
+    &:hover .carousel__container--controls-disabled .carousel__control[aria-disabled="true"] {
+        opacity: 0;
+        pointer-events: none;
     }
 }
