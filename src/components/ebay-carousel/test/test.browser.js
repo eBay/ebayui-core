@@ -443,7 +443,6 @@ describe('given a discrete carousel', () => {
         root = document.querySelector('.carousel');
         list = root.querySelector('.carousel__list');
         nextButton = root.querySelector('.carousel__control--next');
-        debugger;
         waitForUpdate(widget, done);
     });
     afterEach(() => widget.destroy());
