@@ -86,7 +86,7 @@
   version "1.0.0"
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.0.tgz#06328378600156458dacb0278767ff8490f2074c"
 
-"@ebay/skin@^5.1.0":
+"@ebay/skin@^5.1.1":
   version "5.1.1"
   resolved "https://registry.npmjs.org/@ebay/skin/-/skin-5.1.1.tgz#f6e62145b5668bddad9b463a6733558a934a2d8e"
 
