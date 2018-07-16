@@ -14,9 +14,11 @@ function getTemplateData(state, input) {
         let role;
         const href = item.href || null;
         const current = ((inputItems.length - 1) === index);
+        let shouldHandleClick = true;
         if (current && !href) {
             tag = 'span';
             ariaCurrent = 'page';
+            shouldHandleClick = false;
         }
         if (hijax) {
             role = 'button';
@@ -27,7 +29,8 @@ function getTemplateData(state, input) {
             htmlAttributes: itemHtmlAttributes,
             renderBody: item.renderBody,
             href,
-            ariaCurrent
+            ariaCurrent,
+            shouldHandleClick
         };
     });
     items = Object.keys(items).length > 0 ? items : null;

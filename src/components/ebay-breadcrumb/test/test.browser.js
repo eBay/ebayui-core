@@ -7,14 +7,16 @@ const renderer = require('../');
 describe('given a basic breadcrumb', () => {
     let widget;
     let firstItem;
+    let lastItem;
 
     beforeEach(() => {
         widget = renderer.renderSync(mock.basicItems).appendTo(document.body).getWidget();
-        firstItem = document.querySelectorAll('nav li a')[0];
+        firstItem = document.querySelector('nav li a');
+        lastItem = document.querySelector('nav li span');
     });
     afterEach(() => widget.destroy());
 
-    describe('when item is clicked', () => {
+    describe('when an <a> item is clicked', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
@@ -27,6 +29,20 @@ describe('given a basic breadcrumb', () => {
             expect(spy.calledOnce).to.equal(true);
             expect(spy.getCall(0).args[0].el).to.deep.equal(firstItem);
             testUtils.testOriginalEvent(spy);
+        });
+    });
+
+    describe('when a <span> item is clicked', () => {
+        let spy;
+        beforeEach((done) => {
+            spy = sinon.spy();
+            widget.on('breadcrumb-select', spy);
+            testUtils.triggerEvent(lastItem, 'click');
+            setTimeout(done);
+        });
+
+        it('then it does not emit the breadcrumb-select event', () => {
+            expect(spy.called).equal(false);
         });
     });
 });
