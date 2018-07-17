@@ -130,8 +130,11 @@ function init() {
 
 function onRender() {
     const { containerEl, listEl, state } = this;
-    const { config, autoplayInterval, paused, offsetOverride } = state;
+    const { config, items, autoplayInterval, paused, offsetOverride } = state;
     const hasOverride = offsetOverride !== undefined;
+
+    // Do nothing for empty carousels.
+    if (!items.length) return;
 
     // When there is an offset override (used for infinite scroll) we reset it
     // after rendering to restore the expected carousel state.
@@ -171,8 +174,8 @@ function onRender() {
 
     // Otherwise recalculates the items / slide sizes.
     this.renderFrame = requestAnimationFrame(() => {
-        const { items } = state;
-        const { left: containerLeft, width: containerWidth } = containerEl.getBoundingClientRect();
+        const { width: containerWidth } = containerEl.getBoundingClientRect();
+        const { left: currentLeft } = listEl.firstElementChild.getBoundingClientRect();
 
         this.setStateDirty('slideWidth', containerWidth);
         config.preserveItems = true;
@@ -181,8 +184,8 @@ function onRender() {
         forEls(listEl, (itemEl, i) => {
             const item = items[i];
             const { left, right } = itemEl.getBoundingClientRect();
-            item.left = left - containerLeft;
-            item.right = right - containerLeft;
+            item.left = left - currentLeft;
+            item.right = right - currentLeft;
         });
     });
 }
@@ -365,7 +368,7 @@ function move(delta) {
 function getOffset(state) {
     const { items, index } = state;
     if (!items.length) return 0;
-    return Math.min(items[index].left, getMaxOffset(state));
+    return Math.min(items[index].left, getMaxOffset(state)) || 0;
 }
 
 /**
@@ -376,7 +379,7 @@ function getOffset(state) {
  */
 function getMaxOffset({ items, slideWidth }) {
     if (!items.length) return 0;
-    return Math.max(items[items.length - 1].right - slideWidth, 0);
+    return Math.max(items[items.length - 1].right - slideWidth, 0) || 0;
 }
 
 /**
