@@ -7,6 +7,10 @@ const onScrollEnd = require('./utils/on-scroll-end');
 const scrollTransition = require('./utils/scroll-transition');
 const template = require('./template.marko');
 
+// Used for carousel slide direction.
+const LEFT = -1;
+const RIGHT = 1;
+
 function getInitialState(input) {
     const state = {
         config: {}, // A place to store values that should not trigger an update by themselves.
@@ -52,7 +56,7 @@ function getTemplateData(state) {
     const totalItems = items.length;
     index %= totalItems || 1; // Ensure index is within bounds.
     index -= index % (itemsPerSlide || 1); // Round index to the nearest valid slide index.
-    index = state.index = Math.abs(index); // Ensure positive and save back to state.
+    state.index = Math.abs(index); // Ensure positive and save back to state.
     const offset = getOffset(state);
     const prevControlDisabled = !autoplayInterval && offset === 0;
     const nextControlDisabled = !autoplayInterval && offset === getMaxOffset(state);
@@ -60,9 +64,9 @@ function getTemplateData(state) {
     let slide, itemWidth, totalSlides, accessibilityStatus;
 
     if (itemsPerSlide) {
-        slide = Math.ceil(index / itemsPerSlide);
+        slide = getSlide(state);
         itemWidth = `calc(${100 / itemsPerSlide}% - ${(itemsPerSlide - 1) * gap / itemsPerSlide}px)`;
-        totalSlides = Math.ceil(items.length / itemsPerSlide);
+        totalSlides = getSlide(state, items.length);
         accessibilityStatus = state.accessibilityStatus
             .replace('{currentSlide}', slide + 1)
             .replace('{totalSlides}', totalSlides);
@@ -108,7 +112,7 @@ function getTemplateData(state) {
 }
 
 function init() {
-    const { config, autoplayInterval } = this.state;
+    const { state: { config, autoplayInterval } } = this;
     this.listEl = this.getEl('list');
     this.nextEl = this.getEl('next');
     this.containerEl = this.getEl('container');
@@ -159,7 +163,7 @@ function onRender() {
         }
 
         if (autoplayInterval && !paused) {
-            this.autoplayTimeout = setTimeout(() => this.nextEl.click(), autoplayInterval);
+            this.autoplayTimeout = setTimeout(() => this.move(RIGHT), autoplayInterval);
         }
 
         return;
@@ -211,58 +215,10 @@ function emitUpdate() {
  */
 function handleMove(originalEvent, target) {
     if (this.isMoving) return;
-
-    const { state: { index, items, itemsPerSlide, autoplayInterval, slideWidth, config } } = this;
+    const { state } = this;
     const direction = parseInt(target.getAttribute('data-direction'), 10);
-    const nextIndex = this.getNextIndex(direction);
-    const slide = itemsPerSlide && Math.ceil(nextIndex / itemsPerSlide);
-    let offsetOverride;
-
-    config.preserveItems = true;
-    this.isMoving = true;
-
-    // When we are in autoplay mode we overshoot the desired index to land on a clone
-    // of one of the ends. Then after the transition is over we update to the proper position.
-    if (autoplayInterval) {
-        const LEFT = -1;
-        const RIGHT = 1;
-
-        if (direction === RIGHT && nextIndex < index) {
-            // Transitions to one slide before the beginning.
-            offsetOverride = -slideWidth;
-
-            // Move the items in the last slide to be before the first slide.
-            for (let i = itemsPerSlide; i--;) {
-                const item = items[items.length - i - 1];
-                item.transform = `translateX(${(getMaxOffset(this.state) + slideWidth + this.state.gap) * -1}px)`;
-            }
-        } else if (direction === LEFT && nextIndex > index) {
-            // Transitions one slide past the end.
-            offsetOverride = getMaxOffset(this.state) + slideWidth;
-
-            // Moves the items in the first slide to be after the last slide.
-            for (let i = itemsPerSlide; i--;) {
-                const item = items[i];
-                item.transform = `translateX(${(getMaxOffset(this.state) + slideWidth + this.state.gap)}px)`;
-            }
-        }
-
-        this.setState('offsetOverride', offsetOverride);
-    }
-
-    this.setState('index', nextIndex);
-    this.once('carousel-update', () => {
-        this.isMoving = false;
-
-        if (offsetOverride !== undefined) {
-            // If we are in autoplay mode and went outside of the normal offset
-            // We make sure to restore all of the items that got moved around.
-            items.forEach(item => { item.transform = undefined; });
-            config.preserveItems = true;
-            this.setStateDirty('items');
-        }
-    });
-
+    const nextIndex = this.move(direction);
+    const slide = getSlide(state, nextIndex);
     emitAndFire(this, 'carousel-slide', { slide: slide + 1, originalEvent });
     emitAndFire(this, `carousel-${direction === 1 ? 'next' : 'prev'}`, { originalEvent });
 }
@@ -290,7 +246,7 @@ function togglePlay(originalEvent) {
     const { state: { config, paused } } = this;
     config.preserveItems = true;
     this.setState('paused', !paused);
-    if (paused) this.nextEl.click();
+    if (paused) this.move(RIGHT);
     emitAndFire(this, `carousel-${paused ? 'play' : 'pause'}`, { originalEvent });
 }
 
@@ -343,6 +299,63 @@ function handleScrollEnd(scrollLeft) {
 }
 
 /**
+ * Causes the carousel to move to the provided index.
+ *
+ * @param {-1|1} delta 1 for right and -1 for left.
+ * @return {number} the updated index.
+ */
+function move(delta) {
+    const { state } = this;
+    const { index, items, itemsPerSlide, autoplayInterval, slideWidth, gap, config } = state;
+    const nextIndex = getNextIndex(state, delta);
+    let offsetOverride;
+
+    config.preserveItems = true;
+    this.isMoving = true;
+
+    // When we are in autoplay mode we overshoot the desired index to land on a clone
+    // of one of the ends. Then after the transition is over we update to the proper position.
+    if (autoplayInterval) {
+        if (delta === RIGHT && nextIndex < index) {
+            // Transitions to one slide before the beginning.
+            offsetOverride = -slideWidth;
+
+            // Move the items in the last slide to be before the first slide.
+            for (let i = itemsPerSlide; i--;) {
+                const item = items[items.length - i - 1];
+                item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap) * -1}px)`;
+            }
+        } else if (delta === LEFT && nextIndex > index) {
+            // Transitions one slide past the end.
+            offsetOverride = getMaxOffset(state) + slideWidth;
+
+            // Moves the items in the first slide to be after the last slide.
+            for (let i = itemsPerSlide; i--;) {
+                const item = items[i];
+                item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap)}px)`;
+            }
+        }
+
+        this.setState('offsetOverride', offsetOverride);
+    }
+
+    this.setState('index', nextIndex);
+    this.once('carousel-update', () => {
+        this.isMoving = false;
+
+        if (offsetOverride !== undefined) {
+            // If we are in autoplay mode and went outside of the normal offset
+            // We make sure to restore all of the items that got moved around.
+            items.forEach(item => { item.transform = undefined; });
+            config.preserveItems = true;
+            this.setStateDirty('items');
+        }
+    });
+
+    return nextIndex;
+}
+
+/**
  * Given the current widget state, finds the active offset left of the selected item.
  * Also automatically caps the offset at the max offset.
  *
@@ -361,22 +374,32 @@ function getOffset(state) {
  * @param {object} state The widget state.
  * @return {number}
  */
-function getMaxOffset(state) {
-    const { items, slideWidth } = state;
+function getMaxOffset({ items, slideWidth }) {
     if (!items.length) return 0;
     return Math.max(items[items.length - 1].right - slideWidth, 0);
 }
 
 /**
+ * Gets the slide for a given index.
+ * Defaults to the current index if none provided.
+ *
+ * @param {object} state The widget state.
+ * @param {number?} i the index to get the slide for.
+ * @return {number}
+ */
+function getSlide({ index, itemsPerSlide }, i = index) {
+    if (!itemsPerSlide) return;
+    return Math.ceil(i / itemsPerSlide);
+}
+
+/**
  * Calculates the next valid index in a direction.
  *
+ * @param {object} state The widget state.
  * @param {-1|1} delta 1 for right and -1 for left.
  * @return {number}
  */
-function getNextIndex(delta) {
-    const { state: { index, items, slideWidth } } = this;
-    const RIGHT = 1;
-    const LEFT = -1;
+function getNextIndex({ index, items, slideWidth }, delta) {
     let i = index;
     let item;
 
@@ -418,8 +441,8 @@ module.exports = require('marko-widgets').defineComponent({
     onRender,
     onBeforeUpdate: cleanupAsync,
     onBeforeDestroy: cleanupAsync,
+    move,
     handleMove,
     handleDotClick,
-    togglePlay,
-    getNextIndex
+    togglePlay
 });

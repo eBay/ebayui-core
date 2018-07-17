@@ -752,12 +752,9 @@ describe('given an autoplay carousel in the default state', () => {
                 .and.to.be.lessThan(200);
         });
 
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
-
-        it('then it emits the marko slide event', () => {
-            expect(slideSpy.calledOnce).to.equal(true);
-            const eventData = slideSpy.getCall(0).args[0];
-            expect(eventData.slide).to.equal(2);
+        it('then it does not emit next or slide events', () => {
+            expect(nextSpy.notCalled).to.equal(true);
+            expect(slideSpy.notCalled).to.equal(true);
         });
 
         it('then it emits the marko update event', () => {
@@ -860,7 +857,9 @@ describe('given an autoplay carousel in the paused state', () => {
             testUtils.triggerEvent(playButton, 'click');
         });
 
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
+        it('then it does not emit the marko next event', () => {
+            expect(nextSpy.notCalled).to.equal(true);
+        });
 
         it('then it emits the marko update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
