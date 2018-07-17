@@ -710,3 +710,173 @@ describe('given a discrete carousel with half width items', () => {
         });
     });
 });
+
+describe('given an autoplay carousel in the default state', () => {
+    const input = { itemsPerSlide: 2, items: mock.sixItems, autoplay: 100 };
+    let widget;
+    let root;
+    let list;
+    let pauseButton;
+
+    beforeEach(done => {
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = document.querySelector('.carousel');
+        list = root.querySelector('.carousel__list');
+        pauseButton = root.querySelector('.carousel__pause');
+        waitForUpdate(widget, done);
+    });
+
+    afterEach(() => widget.destroy());
+
+    describe('when one autoplay interval has passed', () => {
+        let nextSpy;
+        let slideSpy;
+        let updateSpy;
+        let startTime;
+
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            slideSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            startTime = Date.now();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-slide', slideSpy);
+            widget.on('carousel-update', updateSpy);
+            // Wait for both update events.
+            widget.subscribeTo(list).once('transitionend', done);
+        });
+
+        it('then approximately 200ms has passed', () => {
+            expect(Date.now() - startTime)
+                .to.be.greaterThan(100)
+                .and.to.be.lessThan(200);
+        });
+
+        it('then it emits the marko next event', () => testControlEvent(nextSpy));
+
+        it('then it emits the marko slide event', () => {
+            expect(slideSpy.calledOnce).to.equal(true);
+            const eventData = slideSpy.getCall(0).args[0];
+            expect(eventData.slide).to.equal(2);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
+        });
+
+        it('then it applies a translation', () => {
+            const { offsetLeft } = list.children[2];
+            expect(getTranslateX(list)).to.equal(offsetLeft);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            const { state: { items } } = widget;
+            const visibleIndexes = getVisibleIndexes(items);
+            expect(visibleIndexes).to.deep.equal([2, 3]);
+        });
+    });
+
+    describe('when it is set to paused programmatically', () => {
+        let updateSpy;
+
+        beforeEach(done => {
+            updateSpy = sinon.spy();
+
+            waitForUpdate(widget, () => {
+                widget.on('carousel-update', updateSpy);
+                setTimeout(done, 350);
+            });
+
+            root.paused = true;
+        });
+
+        it('then it does not autoplay', () => {
+            expect(updateSpy.notCalled).to.equal(true);
+        });
+    });
+
+    describe('when the pause button is clicked', () => {
+        let updateSpy;
+
+        beforeEach(done => {
+            updateSpy = sinon.spy();
+
+            waitForUpdate(widget, () => {
+                widget.on('carousel-update', updateSpy);
+                setTimeout(done, 350);
+            });
+
+            testUtils.triggerEvent(pauseButton, 'click');
+        });
+
+        it('then it does not autoplay', () => {
+            expect(updateSpy.notCalled).to.equal(true);
+        });
+    });
+});
+
+describe('given an autoplay carousel in the paused state', () => {
+    const input = { itemsPerSlide: 2, items: mock.sixItems, autoplay: 100, paused: true };
+    let widget;
+    let root;
+    let list;
+    let playButton;
+
+    beforeEach(done => {
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = document.querySelector('.carousel');
+        list = root.querySelector('.carousel__list');
+        playButton = root.querySelector('.carousel__play');
+        waitForUpdate(widget, done);
+    });
+
+    afterEach(() => widget.destroy());
+
+    describe('when one autoplay interval has passed', () => {
+        let updateSpy;
+
+        beforeEach(done => {
+            updateSpy = sinon.spy();
+            widget.on('carousel-update', updateSpy);
+            setTimeout(done, 200);
+        });
+
+        it('then it does not autoplay', () => {
+            expect(updateSpy.notCalled).to.equal(true);
+        });
+    });
+
+    describe('when the play button is clicked', () => {
+        let nextSpy;
+        let updateSpy;
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-update', updateSpy);
+            widget.subscribeTo(list).once('transitionend', done);
+            testUtils.triggerEvent(playButton, 'click');
+        });
+
+        it('then it emits the marko next event', () => testControlEvent(nextSpy));
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
+        });
+
+        it('then it applies a translation', () => {
+            const { offsetLeft } = list.children[2];
+            expect(getTranslateX(list)).to.equal(offsetLeft);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            const { state: { items } } = widget;
+            const visibleIndexes = getVisibleIndexes(items);
+            expect(visibleIndexes).to.deep.equal([2, 3]);
+        });
+    });
+});

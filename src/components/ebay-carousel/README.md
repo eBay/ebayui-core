@@ -29,7 +29,7 @@ Name | Type | Stateful | Description
 `accessibility-status` | String | No | status text (default: "Showing Slide {currentSlide} of {totalSlides} - Carousel")
 `accessibility-current` | String | No | pagination current slide text (default: "Current Slide {currentSlide} - Carousel")
 `accessibility-other` | String | No | pagination other slide text (default: "Slide {slide} - Carousel")
-`autoplay` | Boolean | No | adds autoplay controls to the carousel and automatically goes to the next slide every 4 seconds
+`autoplay` | Boolean or Number | No | automatically slides the carousel on an interval. If a number is supplied that is used as the interval in ms, defaults to 4000ms.
 
 ### Additional Attributes for when autoplay is set.
 Name | Type | Stateful | Description

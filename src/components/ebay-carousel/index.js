@@ -35,9 +35,8 @@ function getInitialState(input) {
         // Remove any extra items when using explicit itemsPerSlide.
         items.length -= items.length % itemsPerSlide;
         // Only allow autoplay option for discrete carousels.
-        state.autoplay = input.autoplay;
-
-        if (state.autoplay) {
+        if (input.autoplay) {
+            state.autoplayInterval = parseInt(input.autoplay, 10) || 4000;
             state.classes.push('carousel__autoplay');
             state.paused = input.paused;
         }
@@ -48,15 +47,15 @@ function getInitialState(input) {
 
 function getTemplateData(state) {
     let { index } = state;
-    const { offsetOverride, items, itemsPerSlide, slideWidth, gap } = state;
+    const { offsetOverride, autoplayInterval, items, itemsPerSlide, slideWidth, gap } = state;
     const hasOverride = offsetOverride !== undefined;
     const totalItems = items.length;
     index %= totalItems || 1; // Ensure index is within bounds.
     index -= index % (itemsPerSlide || 1); // Round index to the nearest valid slide index.
     index = state.index = Math.abs(index); // Ensure positive and save back to state.
     const offset = getOffset(state);
-    const prevControlDisabled = !state.autoplay && offset === 0;
-    const nextControlDisabled = !state.autoplay && offset === getMaxOffset(state);
+    const prevControlDisabled = !autoplayInterval && offset === 0;
+    const nextControlDisabled = !autoplayInterval && offset === getMaxOffset(state);
     const bothControlsDisabled = prevControlDisabled && nextControlDisabled;
     let slide, itemWidth, totalSlides, accessibilityStatus;
 
@@ -109,16 +108,16 @@ function getTemplateData(state) {
 }
 
 function init() {
-    const { config, autoplay } = this.state;
+    const { config, autoplayInterval } = this.state;
     this.listEl = this.getEl('list');
     this.nextEl = this.getEl('next');
     this.containerEl = this.getEl('container');
     this.emitUpdate = emitUpdate.bind(this);
     this.subscribeTo(resizeUtil).on('resize', onRender.bind(this));
     observer.observeRoot(this, ['index']);
-    if (autoplay) observer.observeRoot(this, ['paused']);
+    if (autoplayInterval) observer.observeRoot(this, ['paused']);
 
-    if (!autoplay && getComputedStyle(this.listEl).getPropertyValue('overflow-x') !== 'visible') {
+    if (!autoplayInterval && getComputedStyle(this.listEl).getPropertyValue('overflow-x') !== 'visible') {
         config.nativeScrolling = true;
     } else {
         this.subscribeTo(this.listEl).on('transitionend', this.emitUpdate);
@@ -127,7 +126,7 @@ function init() {
 
 function onRender() {
     const { containerEl, listEl, state } = this;
-    const { config, autoplay, paused, offsetOverride } = state;
+    const { config, autoplayInterval, paused, offsetOverride } = state;
     const hasOverride = offsetOverride !== undefined;
 
     // When there is an offset override (used for infinite scroll) we reset it
@@ -159,8 +158,8 @@ function onRender() {
             this.cancelScrollTransition = scrollTransition(listEl, offset, this.emitUpdate);
         }
 
-        if (autoplay && !paused) {
-            this.autoPlayTimeout = setTimeout(() => this.nextEl.click(), 4000);
+        if (autoplayInterval && !paused) {
+            this.autoplayTimeout = setTimeout(() => this.nextEl.click(), autoplayInterval);
         }
 
         return;
@@ -188,7 +187,7 @@ function onRender() {
  * Called before updates and before the widget is destroyed to remove any pending async timers / actions.
  */
 function cleanupAsync() {
-    clearTimeout(this.autoPlayTimeout);
+    clearTimeout(this.autoplayTimeout);
     cancelAnimationFrame(this.renderFrame);
     if (this.cancelScrollHandler) this.cancelScrollHandler();
     if (this.cancelScrollTransition) this.cancelScrollTransition();
@@ -213,7 +212,7 @@ function emitUpdate() {
 function handleMove(originalEvent, target) {
     if (this.isMoving) return;
 
-    const { state: { index, items, itemsPerSlide, autoplay, slideWidth, config } } = this;
+    const { state: { index, items, itemsPerSlide, autoplayInterval, slideWidth, config } } = this;
     const direction = parseInt(target.getAttribute('data-direction'), 10);
     const nextIndex = this.getNextIndex(direction);
     const slide = itemsPerSlide && Math.ceil(nextIndex / itemsPerSlide);
@@ -224,7 +223,7 @@ function handleMove(originalEvent, target) {
 
     // When we are in autoplay mode we overshoot the desired index to land on a clone
     // of one of the ends. Then after the transition is over we update to the proper position.
-    if (autoplay) {
+    if (autoplayInterval) {
         const LEFT = -1;
         const RIGHT = 1;
 
