@@ -112,10 +112,10 @@
     "makeup-expander": "~0.4.0",
     "makeup-focusables": "~0.0.3",
     "makeup-key-emitter": "~0.0.3",
-    "makeup-keyboard-trap": "^0.0.9",
+    "makeup-keyboard-trap": "~0.1.0",
     "makeup-prevent-scroll-keys": "~0.0.2",
     "makeup-roving-tabindex": "~0.0.5",
-    "makeup-screenreader-trap": "^0.0.5",
+    "makeup-screenreader-trap": "~0.0.5",
     "nodelist-foreach-polyfill": "^1.2.0"
   },
   "publishConfig": {

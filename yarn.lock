@@ -5302,7 +5302,7 @@ makeup-expander@~0.4.0:
     makeup-focusables "~0.0.3"
     makeup-next-id "~0.0.2"
 
-makeup-focusables@~0.0, makeup-focusables@~0.0.3:
+makeup-focusables@~0.0.3:
   version "0.0.3"
   resolved "https://registry.npmjs.org/makeup-focusables/-/makeup-focusables-0.0.3.tgz#e30f36a99beb7c5166daafb8f823fefcc7a551fa"
 
@@ -5312,12 +5312,12 @@ makeup-key-emitter@~0.0, makeup-key-emitter@~0.0.3:
   dependencies:
     custom-event-polyfill "~0.3"
 
-makeup-keyboard-trap@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.npmjs.org/makeup-keyboard-trap/-/makeup-keyboard-trap-0.0.9.tgz#fa38f4cc426c9baccacb907d0dcd8885ccddb5f0"
+makeup-keyboard-trap@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/makeup-keyboard-trap/-/makeup-keyboard-trap-0.1.0.tgz#0ef20b6672b877771a3c24f998740158165f1d00"
   dependencies:
     custom-event-polyfill "~0.3"
-    makeup-focusables "~0.0"
+    makeup-focusables "~0.0.3"
 
 makeup-navigation-emitter@~0.0:
   version "0.0.6"
@@ -5341,7 +5341,7 @@ makeup-roving-tabindex@~0.0.5:
   dependencies:
     makeup-navigation-emitter "~0.0"
 
-makeup-screenreader-trap@^0.0.5:
+makeup-screenreader-trap@~0.0.5:
   version "0.0.5"
   resolved "https://registry.npmjs.org/makeup-screenreader-trap/-/makeup-screenreader-trap-0.0.5.tgz#f5f21d0da15092905c3febf83bb03bf7adde037b"
   dependencies:
