@@ -30,7 +30,6 @@ describe('scroll-transition', () => {
 
     it('cancels the transition on additional touches', (done) => {
         const spy = sinon.spy();
-        scrollTransition(scrollEl, 100, spy);
         setTimeout(() => {
             testUtils.triggerEvent(scrollEl, 'touchstart');
             setTimeout(() => {
@@ -38,7 +37,9 @@ describe('scroll-transition', () => {
                 expect(scrollEl.scrollLeft).to.not.equal(100);
                 expect(spy.callCount).to.equal(0);
                 done();
-            }, 200);
+            }, 300);
         }, 50);
+
+        scrollTransition(scrollEl, 100, spy);
     });
 });
