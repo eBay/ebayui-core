@@ -711,7 +711,7 @@ describe('given a discrete carousel with half width items', () => {
 });
 
 describe('given an autoplay carousel in the default state', () => {
-    const input = { itemsPerSlide: 2, items: mock.sixItems, autoplay: 100 };
+    const input = { itemsPerSlide: 2, items: mock.sixItems, autoplay: 200 };
     let widget;
     let root;
     let list;
@@ -731,24 +731,16 @@ describe('given an autoplay carousel in the default state', () => {
         let nextSpy;
         let slideSpy;
         let updateSpy;
-        let startTime;
 
         beforeEach(done => {
             nextSpy = sinon.spy();
             slideSpy = sinon.spy();
             updateSpy = sinon.spy();
-            startTime = Date.now();
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-update', updateSpy);
             // Wait for both update events.
             widget.subscribeTo(list).once('transitionend', done);
-        });
-
-        it('then approximately 200ms has passed', () => {
-            expect(Date.now() - startTime)
-                .to.be.greaterThan(100)
-                .and.to.be.lessThan(200);
         });
 
         it('then it does not emit next or slide events', () => {
@@ -814,7 +806,7 @@ describe('given an autoplay carousel in the default state', () => {
 });
 
 describe('given an autoplay carousel in the paused state', () => {
-    const input = { itemsPerSlide: 2, items: mock.sixItems, autoplay: 100, paused: true };
+    const input = { itemsPerSlide: 2, items: mock.sixItems, autoplay: 200, paused: true };
     let widget;
     let root;
     let list;
