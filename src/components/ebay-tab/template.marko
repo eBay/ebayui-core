@@ -1,0 +1,33 @@
+<div w-bind class=data.classes ${data.htmlAttributes}>
+    <div w-id="items" class="tabs__items" role="tablist">
+        <for(index, item in data.items)>
+            <div
+                aria-controls="${widget.id}-tabpanel-${index}"
+                aria-selected=String(item.selected)
+                class=item.classes
+                id="${widget.id}-default-tab-${index}"
+                role="tab"
+                w-onclick="handleItemClick"
+                w-onkeydown="handleItemKeydown"
+                w-preserve-attrs="tabindex,data-makeup-index"
+                ${item.htmlAttributes}>
+                <span w-body=item.renderBody/>
+            </div>
+        </for>
+    </div>
+    <div class="tabs__content">
+        <for(index, panel in data.panels)>
+            <div
+                aria-labelledby="${widget.id}-default-tab-${index}"
+                class=panel.classes
+                hidden=panel.hidden
+                id="${widget.id}-tabpanel-${index}"
+                role="tabpanel"
+                ${panel.htmlAttributes}>
+                <div class="tabs__cell">
+                    <div w-body=panel.renderBody/>
+                </div>
+            </div>
+        </for>
+    </div>
+</div>

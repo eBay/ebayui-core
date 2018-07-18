@@ -182,5 +182,24 @@
             "@selected": "boolean"
         }
     },
-    "<ebay-select-option>": {}
+    "<ebay-tab>": {
+        "renderer": "./src/components/ebay-tab/index.js",
+        "transformer": "./src/common/transformer/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@items <item>[]": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@selected": "boolean"
+        },
+        "@panels <panel>[]": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string"
+        }
+    },
+    "<ebay-tab-item>": {},
+    "<ebay-tab-panel>": {}
 }
