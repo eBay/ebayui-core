@@ -37,6 +37,7 @@
         "@index": "string",
         "@type": "string",
         "@slide": "string",
+        "@gap": "string",
         "@items-per-slide": "string",
         "@accessibility-prev": "string",
         "@accessibility-next": "string",
