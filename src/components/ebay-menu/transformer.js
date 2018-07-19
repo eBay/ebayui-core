@@ -1,5 +1,6 @@
 const commonTransformer = require('../../common/transformer');
 
+// Transforms an `icon` attribute into an `<ebay-menu:icon>` tag
 function transform(el, context) {
     commonTransformer(el, context);
     const builder = context.builder;

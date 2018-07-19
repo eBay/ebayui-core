@@ -1,6 +1,7 @@
 <span class=data.menuClass w-bind w-on-expander-expand="handleExpand" w-on-expander-collapse="handleCollapse" ${data.htmlAttributes}>
-    <ebay-button w-id="button" class=data.buttonClass variant="expand" size=data.size priority=data.priority aria-expanded=String(data.expanded) aria-haspopup="true">
+    <ebay-button w-id="button" class=data.buttonClass variant="expand" size=data.size priority=data.priority aria-expanded=String(data.expanded) aria-haspopup="true" aria-label=data.accessibilityText>
         <span class="expand-btn__cell">
+            <!-- Convoluted markup to satisfy both Skin and Marko -->
             <div if(data.icon) w-preserve-body class="expand-btn__icon">
                 <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
             </div>

@@ -52,9 +52,10 @@ app.get('/:designSystem/:component?', (req, res) => {
                 name: example.split('-').slice(1, example.length).join(' '),
                 code: highlight.sync(fs.readFileSync(exampleTemplatePath, 'utf8'), 'marko'),
                 sources: [componentPath, examplePath],
+                templatePath: exampleTemplatePath,
                 template: require(exampleTemplatePath)
             };
-        }).filter(demoUtils.isDirectory).sort((a, b) => a.num > b.num),
+        }).filter(demoUtils.isDirectory),
         components: demoUtils.getComponentsWithExamples('src')
     };
     const md = new MobileDetect(req.headers['user-agent']);
@@ -68,6 +69,8 @@ app.get('/:designSystem/:component?', (req, res) => {
             return true;
         }
     });
+
+    model.dependencies = model.examples.map(example => example.templatePath);
 
     req.model = model;
 

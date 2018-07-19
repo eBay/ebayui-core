@@ -88,6 +88,7 @@
         "@type": "string",
         "@label": "string",
         "@icon": "string",
+        "@accessibility-text": "string",
         "@no-toggle-icon": "boolean",
         "@expanded": "boolean",
         "@reverse": "boolean",

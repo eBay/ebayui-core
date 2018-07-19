@@ -19,6 +19,7 @@ Name | Type | Stateful | Description
 `class` | String | No | custom class
 `label` | String | Yes | button label
 `icon` | String | No | name of an `<ebay-icon>` to show to the left of the label
+`accessibility-text` | String | No | accessibility text for the button, especially for cases without label text
 `no-toggle-icon` | Boolean | No | whether to hide the chevron toggle icon
 `expanded` | Boolean | Yes | whether content is expanded (Note: not supported as initial attribute)
 `type` | String | No | Can be "fake" / "radio" / "checkbox"
