@@ -17,6 +17,7 @@
         "../src/components/ebay-notice",
         "../src/components/ebay-pagination",
         "../src/components/ebay-select",
-        "../src/components/ebay-radio"
+        "../src/components/ebay-radio",
+        "../src/components/ebay-textbox"
     ]
 }
