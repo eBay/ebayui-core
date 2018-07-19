@@ -114,7 +114,7 @@ describe('menu', () => {
     test('renders with icon', context => {
         const input = { icon: 'settings', iconTag: { renderBody: mock.iconRenderBody } };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('div.expand-btn__icon').html()).to.equal('icon');
+        expect($('div.expand-btn__icon').text()).to.equal('icon');
     });
 
     test('renders without toggle icon', context => {
