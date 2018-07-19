@@ -9,22 +9,23 @@
         }
     }
 
-    &--continuous &__container {
-        overflow-x: scroll; // also used in js to determine scroll behavior
+    &__list {
+        overflow-x: auto; // also used in js to determine scroll behavior
         -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 
-    &--discrete {
-        // show controls on touch since there's no hover
-        // TODO: swipe support on mobile discrete?
-        .carousel__control {
-            opacity: @ebay-carousel-control-enabled-opacity;
-            pointer-events: auto;
+    // show controls on touch since there's no hover
+    .carousel__control {
+        opacity: @ebay-carousel-control-enabled-opacity;
+        pointer-events: auto;
 
-            &[aria-disabled="true"] {
-                opacity: @ebay-carousel-control-disabled-opacity;
-                cursor: default;
-            }
+        &[aria-disabled="true"] {
+            opacity: @ebay-carousel-control-disabled-opacity;
         }
     }
 }
