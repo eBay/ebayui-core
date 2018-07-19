@@ -1,12 +1,10 @@
+require('../../../common/test-utils/transitions');
+
 const sinon = require('sinon');
 const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const renderer = require('../');
-const styleOverrides = document.createElement('style');
-// No need to run the full length animation when testing the carousel.
-styleOverrides.innerHTML = `.carousel__list { transition: transform 0.05s linear; }`;
-document.head.appendChild(styleOverrides);
 
 function delay(callback) {
     setTimeout(callback, 42);
