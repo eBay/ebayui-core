@@ -5,13 +5,14 @@ const template = require('./template.marko');
 function getInitialState(input) {
     const htmlAttributes = input.invalid ?
         Object.assign({}, processHtmlAttributes(input), { 'aria-invalid': 'true' }) : processHtmlAttributes(input);
-    let classes = { 'textbox__control': true, 'textbox__control--fluid': input.fluid };
-    if (input.class) {
-        classes = Object.assign({ }, classes, { [input.class]: true });
+    const classes = ['textbox__control'];
+    if (input.fluid) {
+        classes.push('textbox__control--fluid');
     }
     return {
         htmlAttributes,
         classes,
+        rootClass: input.class,
         value: input.value,
         tag: input.fluid ? 'div' : 'span',
         textBoxTag: Boolean(input.multiline) ? 'textarea' : 'input',
