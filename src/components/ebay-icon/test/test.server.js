@@ -29,6 +29,13 @@ describe('icon', () => {
         expect($(`svg[role=img].icon.icon--${iconName} > use`).length).to.equal(1);
     });
 
+    test('renders no-skin-classes', context => {
+        const input = { type: 'inline', name: iconName, noSkinClasses: true, class: 'class' };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($(`svg[aria-hidden=true].icon.icon--${iconName} > use`).length).to.equal(0);
+        expect($(`svg[aria-hidden=true].class > use`).length).to.equal(1);
+    });
+
     test('handles pass-through html attributes on type=background', context => {
         testUtils.testHtmlAttributes(context, '.icon', null, { type: 'background', name: iconName });
     });

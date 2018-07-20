@@ -25,7 +25,8 @@
         "@href": "string",
         "@priority": "string",
         "@size": "size",
-        "@fluid": "boolean"
+        "@fluid": "boolean",
+        "@variant": "string"
     },
     "<ebay-carousel>": {
         "renderer": "./src/components/ebay-carousel/index.js",
@@ -36,6 +37,7 @@
         "@index": "string",
         "@type": "string",
         "@slide": "string",
+        "@gap": "string",
         "@items-per-slide": "string",
         "@accessibility-prev": "string",
         "@accessibility-next": "string",
@@ -90,6 +92,8 @@
         "@reverse": "boolean",
         "@fix-width": "boolean",
         "@borderless": "boolean",
+        "@size": "string",
+        "@priority": "string",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
@@ -144,7 +148,8 @@
         "@class": "string",
         "@type": "string",
         "@name": "string",
-        "@accessibility-text": "string"
+        "@accessibility-text": "string",
+        "@no-skin-classes": "boolean"
     },
     "<ebay-radio>": {
         "renderer": "./src/components/ebay-radio/index.js",
@@ -166,7 +171,6 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
-        "@name": "string",
         "@grow": "boolean",
         "@borderless": "boolean",
         "@disabled": "boolean",

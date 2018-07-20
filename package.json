@@ -1,6 +1,7 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "0.6.1",
+  "version": "0.7.0-1",
+  "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
     "installMarkoV4": "yarn add marko@^4 marko-widgets@^7 -D",
@@ -56,7 +57,7 @@
   ],
   "devDependencies": {
     "@ebay/browserslist-config": "^1.0.0",
-    "@ebay/skin": "^5.1.0",
+    "@ebay/skin": "^5.1.1",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
@@ -85,7 +86,7 @@
     "lasso-marko": "^2.4.2",
     "lintspaces-cli": "^0.6.0",
     "marko": "^3",
-    "marko-cli": "3.2.1",
+    "marko-cli": "^3.2.0",
     "marko-dynamic-tag": "^1.0.0",
     "marko-prettyprint": "^1.4.1",
     "marko-widgets": "^6",
@@ -101,7 +102,7 @@
     "wdio-browserstack-service": "^0.1.16"
   },
   "peerDependencies": {
-    "@ebay/skin": "^5.1.0",
+    "@ebay/skin": "^5.1.1",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },
@@ -111,10 +112,10 @@
     "makeup-expander": "~0.4.0",
     "makeup-focusables": "~0.0.3",
     "makeup-key-emitter": "~0.0.3",
-    "makeup-keyboard-trap": "^0.0.9",
+    "makeup-keyboard-trap": "~0.1.0",
     "makeup-prevent-scroll-keys": "~0.0.2",
     "makeup-roving-tabindex": "~0.0.5",
-    "makeup-screenreader-trap": "^0.0.5",
+    "makeup-screenreader-trap": "~0.0.5",
     "nodelist-foreach-polyfill": "^1.2.0"
   },
   "publishConfig": {

@@ -17,6 +17,7 @@ Name | Type | Stateful | Description
 `fluid` | Boolean | No |
 `disabled` | Boolean | Yes |
 `partially-disabled` | Boolean | No
+`variant` | String | No | optional, to alter Skin classes: "expand" / "cta"
 
 ## ebay-button Events
 
