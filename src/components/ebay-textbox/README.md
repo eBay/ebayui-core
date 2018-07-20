@@ -2,7 +2,6 @@
 
 ## ebay-textbox Usage
 
-
 Default input textbox:
 
 ```marko
@@ -32,7 +31,6 @@ Default multi-line textbox:
 ```marko
 <ebay-textbox multiline />
 ```
-
 
 ## ebay-textbox Attributes
 
