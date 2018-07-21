@@ -24,8 +24,20 @@ describe('icon', () => {
         expect($(`svg[aria-hidden=true].icon.icon--${iconName} > use`).length).to.equal(1);
     });
 
+    test('renders inline type of custom icon', context => {
+        const input = { type: 'inline', name: iconName, custom: true };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($(`svg[aria-hidden=true].icon.icon--${iconName} > use`).length).to.equal(1);
+    });
+
     test('renders inline type with accessibility text', context => {
         const input = { type: 'inline', name: iconName, accessibilityText: 'text' };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($(`svg[role=img].icon.icon--${iconName} > use`).length).to.equal(1);
+    });
+
+    test('renders inline type custom icon with accessibility text', context => {
+        const input = { type: 'inline', name: iconName, accessibilityText: 'text', custom: true };
         const $ = testUtils.getCheerio(context.render(input));
         expect($(`svg[role=img].icon.icon--${iconName} > use`).length).to.equal(1);
     });
