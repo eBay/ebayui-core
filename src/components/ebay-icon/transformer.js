@@ -1,6 +1,6 @@
 const path = require('path');
 // allows app owners to define custom icons inside $PROJDIRNAME/symbols
-const projRootPath = '../../../../../../symbols';
+const projRootPath = '../../../../../../symbols/';
 /**
  * @description
  * Inlines the symbol component as the body of the `ebay-icon` component (inline components only).
@@ -30,9 +30,9 @@ function transform(el, context) {
     if (isInline && iconName) {
         let templatePath = '';
         if (isCustomIcon) { // expand <ebay-icon> capabilities to include custom icons stamping
-            templatePath = path.join(__dirname, `${projRootPath}/symbols/${iconName}.marko`);
+            templatePath = path.join(__dirname, `${projRootPath}${iconName}.marko`);
         } else { // fallback to picking from ebayui-core/components/ebay-icon/
-            templatePath = path.join(__dirname, `symbols/${iconName}.marko`);   
+            templatePath = path.join(__dirname, `symbols/${iconName}.marko`);
         }
         el.prependChild(context.createNodeForEl('include', {}, JSON.stringify(templatePath)));
     }
