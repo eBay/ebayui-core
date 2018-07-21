@@ -1,3 +1,4 @@
+const { join } = require('path');
 const expect = require('chai').expect;
 const transformer = require('../transformer');
 const testUtils = require('../../../common/test-utils/server');
@@ -44,15 +45,27 @@ describe('icon', () => {
 
 describe('transformer', () => {
     const componentPath = '../index.js';
-    function getTagString(type) {
-        return `<ebay-icon name="${iconName}" type="${type}"/>`;
+    function getTagString(type, isCustom = false) {
+        return isCustom ?
+            `<ebay-icon name="${iconName}" type="${type}" custom="true"/>`
+            : `<ebay-icon name="${iconName}" type="${type}"/>`;
     }
 
     test('transforms an inline icon', () => {
         const tagString = getTagString('inline');
         const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
         const { body: { array: [includeEl] } } = el;
+        expect(includeEl.argument.replace(/['"]+/g, '')).to.equal(join(__dirname, `../symbols/${iconName}.marko`));
         expect(includeEl.tagName).equals('include');
+        expect(includeEl.argument).includes(`${iconName}.marko`);
+    });
+
+    test('transforms an inline custom icon', () => {
+        const tagString = getTagString('inline', true);
+        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { body: { array: [includeEl] } } = el;
+        expect(includeEl.tagName).equals('include');
+        expect(includeEl.argument.replace(/['"]+/g, '')).to.not.equal(join(__dirname, `../symbols/${iconName}.marko`));
         expect(includeEl.argument).includes(`${iconName}.marko`);
     });
 
