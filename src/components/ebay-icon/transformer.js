@@ -17,7 +17,7 @@ const projRootPath = '../../../../../../symbols/';
  *
  * Becomes
  *
- * <ebay-icon type="inline" name="close"><include('$PROJDIRNAME/symbols/my-awesome-icon.marko')/></ebay-icon>
+ * <ebay-icon type="inline" name="my-awesome-icon"><include('$PROJDIRNAME/symbols/my-awesome-icon.marko')/></ebay-icon>
  */
 
 function transform(el, context) {
