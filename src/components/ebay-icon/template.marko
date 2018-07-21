@@ -6,6 +6,11 @@
     <svg w-bind ${data.htmlAttributes} ${data.accessibilityAttributes} focusable="false" class=data.classes>
         <defs w-id="defs" w-body if(data.renderDefs)/>
         <title if(data.accessibilityText) id=data.titleId>${data.accessibilityText}</title>
-        <use xlink:href="#icon-${data.name}"/>
+        <if(data.isCustom)>
+            <use iscustom=data.isCustom xlink:href="#${data.name}"/>
+        </if>
+        <else>
+            <use iscustom=data.isCustom xlink:href="#icon-${data.name}"/>
+        </else>
     </svg>
 </else-if>

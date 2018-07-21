@@ -38,3 +38,14 @@ Name | Type | Stateful | Description
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `accessibility-text` | String | No | text for non-decorative inline icon; icon is assumed to be decorative if this is not passed
+
+### Using ebay-icon to stamp custom icons once
+To load/stamp repeated custom icons of your project, do the following:
+
+- write the custom svg icon defs in individual marko files. For eg) `my-awesome-icon.marko`
+- place the individual `.marko` files, inside a `symbols` folder, under your project root folder. For eg) `${MY_PROJ_ROOTDIR}/symbols/my-awesome-icon.marko`
+- To refer these custom icons, via `ebay-icon` so that they are stamped just once inside the `body` tag, do
+
+```marko
+<ebay-icon type="inline" name="my-awesome-icon" custom="true"/>
+```

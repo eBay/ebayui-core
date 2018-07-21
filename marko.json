@@ -143,6 +143,7 @@
         "@html-attributes": "expression",
         "@class": "string",
         "@type": "string",
+        "@custom": "string",
         "@name": "string",
         "@accessibility-text": "string"
     },

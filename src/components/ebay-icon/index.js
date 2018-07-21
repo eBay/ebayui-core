@@ -26,6 +26,8 @@ function init() {
 }
 
 function getTemplateData(state, input, out) {
+    const custom = input.custom || 'false';
+    const isCustom = custom === 'true';
     const type = input.type || 'background';
     const isBackground = type === 'background';
     const isInline = type === 'inline';
@@ -54,6 +56,7 @@ function getTemplateData(state, input, out) {
     return {
         name,
         type,
+        isCustom,
         renderDefs,
         isBackground,
         isInline,
