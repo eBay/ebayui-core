@@ -14,6 +14,7 @@ storiesOf('ebayui/ebay-combobox', module)
     const name = text('name', '');
     const selected = number('selected', 1);
     const borderless = boolean('borderless', false);
+    const disabled = boolean('disabled', false);
 
     const options = object('options', [
       { label: 'Option 1', value: 'Option 1'},
@@ -24,6 +25,7 @@ storiesOf('ebayui/ebay-combobox', module)
       name,
       selected,
       borderless,
+      disabled,
       options
     });
   });
