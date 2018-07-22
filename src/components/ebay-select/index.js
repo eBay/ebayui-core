@@ -137,15 +137,10 @@ function optionChanged(e) {
     });
 }
 
-function getInitialBody(input) {
-    return input.body;
-}
-
 module.exports = markoWidgets.defineComponent({
     template,
     getInitialState,
     getTemplateData,
-    getInitialBody,
     init,
     processAfterStateChange,
     setSelectedOption,
