@@ -15,24 +15,22 @@ import ButtonPrimaryLargeFluid from './../../../src/components/ebay-button/examp
 storiesOf('ebayui/ebay-button', module)
   .addDecorator(withKnobs)
   .add('<dynamic>', () => {
-    //const className = text('class', '');
     const priority = text('priority', 'primary');
     const size = text('size', 'medium');
     const href = text('href', '');
     const fluid = boolean('fluid', '');
     const disabled = boolean('disabled', false);
   	const partiallyDisabled = boolean('partially-disabled', false);
-    const body = text('Body', 'Hello');
+    const renderBody = text('renderBody', 'Hello');
 
     return Button.renderSync({
-      //className,
       priority,
       size,
       href,
       fluid,
       disabled,
       partiallyDisabled,
-      body
+      renderBody
     });
   });  
   
