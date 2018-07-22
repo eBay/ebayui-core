@@ -275,18 +275,6 @@
     react-inspector "^2.3.0"
     uuid "^3.2.1"
 
-"@storybook/addon-backgrounds@^4.0.0-alpha.10":
-  version "4.0.0-alpha.11"
-  resolved "https://registry.npmjs.org/@storybook/addon-backgrounds/-/addon-backgrounds-4.0.0-alpha.11.tgz#341273ab6391bb0020d5fd894ebde333fb694c37"
-  dependencies:
-    "@storybook/addons" "4.0.0-alpha.11"
-    "@storybook/core-events" "4.0.0-alpha.11"
-    babel-runtime "^6.26.0"
-    global "^4.3.2"
-    prop-types "^15.6.1"
-    react-emotion "^9.1.3"
-    util-deprecate "^1.0.2"
-
 "@storybook/addon-knobs@^4.0.0-alpha.10":
   version "4.0.0-alpha.11"
   resolved "https://registry.npmjs.org/@storybook/addon-knobs/-/addon-knobs-4.0.0-alpha.11.tgz#dad098c5c33f7f6254701cba13ea680350aa1b5e"
