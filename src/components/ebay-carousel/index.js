@@ -29,6 +29,7 @@ function getInitialState(input) {
     // Remove any extra items when using explicit itemsPerSlide.
     const { items, itemsPerSlide } = state;
     if (itemsPerSlide) {
+        state.classes.push('carousel--slides');
         items.length -= items.length % itemsPerSlide;
     }
 
