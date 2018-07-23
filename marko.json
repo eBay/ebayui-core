@@ -184,7 +184,7 @@
         }
     },
     "<ebay-select-option>": {},
-    "<ebay-textbox": {
+    "<ebay-textbox>": {
         "renderer": "./src/components/ebay-textbox/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
