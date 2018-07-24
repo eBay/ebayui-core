@@ -76,8 +76,8 @@ function getTemplateData(state) {
 
         item.fullyVisible = (
             item.left === undefined ||
-            item.left - offset >= 0 &&
-            item.right - offset <= slideWidth
+            item.left - offset >= -0.01 &&
+            item.right - offset <= slideWidth + 0.01
         );
     });
 
@@ -138,20 +138,19 @@ function onRender() {
     }
 
     this.renderFrame = requestAnimationFrame(() => {
-        const { items, slideWidth } = state;
-        const { left: containerLeft, width: containerWidth } = containerEl.getBoundingClientRect();
+        const { items } = state;
+        const { width: containerWidth } = containerEl.getBoundingClientRect();
+        const { left: currentLeft } = listEl.firstElementChild.getBoundingClientRect();
 
-        if (slideWidth === containerWidth) return;
-
-        this.setState('slideWidth', containerWidth);
+        this.setStateDirty('slideWidth', containerWidth);
         config.preserveItems = true;
 
         // Update item positions in the dom.
         forEls(listEl, (itemEl, i) => {
             const item = items[i];
             const { left, right } = itemEl.getBoundingClientRect();
-            item.left = left - containerLeft;
-            item.right = right - containerLeft;
+            item.left = left - currentLeft;
+            item.right = right - currentLeft;
         });
     });
 }
