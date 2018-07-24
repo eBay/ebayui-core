@@ -37,10 +37,9 @@ describe('given the carousel is in the default state', () => {
     let widget;
     let root;
 
-    beforeEach((done) => {
+    beforeEach(() => {
         widget = renderer.renderSync().appendTo(document.body).getWidget();
         root = document.querySelector('.carousel');
-        waitForUpdate(widget, done);
     });
     afterEach(() => widget.destroy());
 
