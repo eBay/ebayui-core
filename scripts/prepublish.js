@@ -24,7 +24,7 @@ fs.readdirSync(`${__dirname}/../dist/components`).map(component => ({
     path: `${__dirname}/../dist/components/${component}/browser.json`
 })).filter(isFile).map(obj => {
     const data = fs.readFileSync(obj.path, 'utf-8');
-    fs.writeFileSync(obj.path, data.replace('src/components', 'dist/components'), 'utf-8');
+    fs.writeFileSync(obj.path, data.replace(/src\/components/g, 'dist/components'), 'utf-8');
 });
 
 // update marko.json
