@@ -17,7 +17,7 @@
         }
     }
 
-    &__list {
+    &:not(&__autoplay) &__list {
         overflow-x: auto; // also used in js to determine scroll behavior
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: none;

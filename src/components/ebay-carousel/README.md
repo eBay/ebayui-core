@@ -57,4 +57,7 @@ Event | Data | Description
 `carousel-play` | `{ originalEvent }` | called when the autoplay play button is pressed
 `carousel-pause` | `{ originalEvent }` | called when the autoplay pause button is pressed
 
-Note: The `carousel` will manipulate the `tabindex` property of nested focusable elements inside `<ebay-carousel-item>`.
+Notes:
+
+* The `carousel` will manipulate the `tabindex` property of nested focusable elements inside `<ebay-carousel-item>`.
+* The `autoplay` carousel currently does not support native scrolling and will use transforms instead.
