@@ -40,9 +40,10 @@ function getInitialState(input) {
         items.length -= items.length % itemsPerSlide;
         // Only allow autoplay option for discrete carousels.
         if (input.autoplay) {
+            const isSingleSlide = items.length <= itemsPerSlide;
             state.autoplayInterval = parseInt(input.autoplay, 10) || 4000;
             state.classes.push('carousel__autoplay');
-            state.paused = input.paused;
+            state.paused = isSingleSlide || input.paused; // Force paused state if not enough slides provided;
         }
     }
 
@@ -54,12 +55,13 @@ function getTemplateData(state) {
     const { offsetOverride, autoplayInterval, items, itemsPerSlide, slideWidth, gap } = state;
     const hasOverride = offsetOverride !== undefined;
     const totalItems = items.length;
+    const isSingleSlide = items.length <= itemsPerSlide;
     index %= totalItems || 1; // Ensure index is within bounds.
     index -= index % (itemsPerSlide || 1); // Round index to the nearest valid slide index.
     state.index = Math.abs(index); // Ensure positive and save back to state.
     const offset = getOffset(state);
-    const prevControlDisabled = !autoplayInterval && offset === 0;
-    const nextControlDisabled = !autoplayInterval && offset === getMaxOffset(state);
+    const prevControlDisabled = isSingleSlide || !autoplayInterval && offset === 0;
+    const nextControlDisabled = isSingleSlide || !autoplayInterval && offset === getMaxOffset(state);
     const bothControlsDisabled = prevControlDisabled && nextControlDisabled;
     let slide, itemWidth, totalSlides, accessibilityStatus;
 
