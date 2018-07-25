@@ -1,3 +1,4 @@
 *.marko.js
-stories/
 static/
+stories/
+dist/
