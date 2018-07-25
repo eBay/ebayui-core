@@ -2,10 +2,10 @@
 import { storiesOf } from '@storybook/marko';
 import { withKnobs, boolean, text, object, number, array } from '@storybook/addon-knobs';
 import Checkbox from './../../../src/components/ebay-checkbox/';
-import CheckboxDefault from './../../../src/components/ebay-checkbox/examples/1-default/template.marko';
-import CheckboxDisabled from './../../../src/components/ebay-checkbox/examples/2-disabled/template.marko';
-import CheckboxGroupedCheckbox from './../../../src/components/ebay-checkbox/examples/3-grouped-checkbox/template.marko';
-import CheckboxCustomColor from './../../../src/components/ebay-checkbox/examples/4-custom-color/template.marko';
+import CheckboxDefault from './../../../src/components/ebay-checkbox/examples/01-default/template.marko';
+import CheckboxDisabled from './../../../src/components/ebay-checkbox/examples/02-disabled/template.marko';
+import CheckboxGroupedCheckbox from './../../../src/components/ebay-checkbox/examples/03-grouped-checkbox/template.marko';
+import CheckboxCustomColor from './../../../src/components/ebay-checkbox/examples/04-custom-color/template.marko';
 
 storiesOf('ebayui/ebay-checkbox', module)
   .addDecorator(withKnobs)

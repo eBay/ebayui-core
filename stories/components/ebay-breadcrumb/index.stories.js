@@ -2,11 +2,11 @@
 import { storiesOf } from '@storybook/marko';
 import { withKnobs, boolean, text, object, number, array } from '@storybook/addon-knobs';
 import Breadcrumb from './../../../src/components/ebay-breadcrumb/';
-import BreadcrumbHeadingLevel from './../../../src/components/ebay-breadcrumb/examples/1-breadcrumb-heading-level/template.marko';
-import BreadcrumbLastPageAsCurrent from './../../../src/components/ebay-breadcrumb/examples/2-last-page-as-current/template.marko';
-import BreadcrumbLastPageAsParent from './../../../src/components/ebay-breadcrumb/examples/3-last-page-as-parent/template.marko';
-import BreadcrumbPageWithCustomAttributes from './../../../src/components/ebay-breadcrumb/examples/4-page-with-custom-attributes/template.marko';
-import BreadcrumbHijax from './../../../src/components/ebay-breadcrumb/examples/5-hijax/template.marko';
+import BreadcrumbHeadingLevel from './../../../src/components/ebay-breadcrumb/examples/01-breadcrumb-heading-level/template.marko';
+import BreadcrumbLastPageAsCurrent from './../../../src/components/ebay-breadcrumb/examples/02-last-page-as-current/template.marko';
+import BreadcrumbLastPageAsParent from './../../../src/components/ebay-breadcrumb/examples/03-last-page-as-parent/template.marko';
+import BreadcrumbPageWithCustomAttributes from './../../../src/components/ebay-breadcrumb/examples/04-page-with-custom-attributes/template.marko';
+import BreadcrumbHijax from './../../../src/components/ebay-breadcrumb/examples/05-hijax/template.marko';
 
 storiesOf('ebayui/ebay-breadcrumb', module)
   .addDecorator(withKnobs)

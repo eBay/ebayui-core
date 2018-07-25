@@ -2,14 +2,16 @@
 import { storiesOf } from '@storybook/marko';
 import { withKnobs, boolean, text, object, number, array } from '@storybook/addon-knobs';
 import Menu from './../../../src/components/ebay-menu/';
-import MenuBasic from './../../../src/components/ebay-menu/examples/1-basic/template.marko';
-import MenuFake from './../../../src/components/ebay-menu/examples/2-fake/template.marko';
-import MenuFixWidth from './../../../src/components/ebay-menu/examples/3-fix-width/template.marko';
-import MenuReverse from './../../../src/components/ebay-menu/examples/4-reverse/template.marko';
-import MenuBorderless from './../../../src/components/ebay-menu/examples/5-borderless/template.marko';
-import MenuRadio from './../../../src/components/ebay-menu/examples/6-radio/template.marko';
-import MenuCheckbox from './../../../src/components/ebay-menu/examples/7-checkbox/template.marko';
-import MenuNoLabel from './../../../src/components/ebay-menu/examples/8-no-label/template.marko';
+import MenuBasic from './../../../src/components/ebay-menu/examples/01-basic/template.marko';
+import MenuFake from './../../../src/components/ebay-menu/examples/02-fake/template.marko';
+import MenuFixWidth from './../../../src/components/ebay-menu/examples/03-fix-width/template.marko';
+import MenuReverse from './../../../src/components/ebay-menu/examples/04-reverse/template.marko';
+import MenuBorderless from './../../../src/components/ebay-menu/examples/05-borderless/template.marko';
+import MenuSmall from './../../../src/components/ebay-menu/examples/06-small/template.marko';
+import MenuPrimary from './../../../src/components/ebay-menu/examples/07-primary/template.marko';
+import MenuNoLabel from './../../../src/components/ebay-menu/examples/08-no-label/template.marko';
+import MenuRadio from './../../../src/components/ebay-menu/examples/09-radio/template.marko';
+import MenuCheckbox from './../../../src/components/ebay-menu/examples/10-checkbox/template.marko';
 
 storiesOf('ebayui/ebay-menu', module)
   .addDecorator(withKnobs)
@@ -65,6 +67,21 @@ storiesOf('ebayui/ebay-menu', module)
   });
 
 storiesOf('ebayui/ebay-menu', module)
+  .add('small', () => {
+    return MenuSmall.renderSync({});
+  });
+
+storiesOf('ebayui/ebay-menu', module)
+  .add('primary', () => {
+    return MenuPrimary.renderSync({});
+  });    
+
+storiesOf('ebayui/ebay-menu', module)
+  .add('no label', () => {
+    return MenuNoLabel.renderSync({});
+  });
+
+storiesOf('ebayui/ebay-menu', module)
   .add('radio', () => {
     return MenuRadio.renderSync({});
   });
@@ -74,7 +91,4 @@ storiesOf('ebayui/ebay-menu', module)
     return MenuCheckbox.renderSync({});
   });
 
-storiesOf('ebayui/ebay-menu', module)
-  .add('no label', () => {
-    return MenuNoLabel.renderSync({});
-  });      
+   

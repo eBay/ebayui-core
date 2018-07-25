@@ -2,11 +2,11 @@
 import { storiesOf } from '@storybook/marko';
 import { withKnobs, boolean, text, object, number, array } from '@storybook/addon-knobs';
 import Select from './../../../src/components/ebay-select/';
-import SelectBasic from './../../../src/components/ebay-select/examples/1-basic/template.marko';
-import SelectSelectedOption from './../../../src/components/ebay-select/examples/2-selected-option/template.marko';
-import SelectNestedOptions from './../../../src/components/ebay-select/examples/3-nested-options/template.marko';
-import SelectBorderless from './../../../src/components/ebay-select/examples/4-borderless/template.marko';
-import SelectDisabled from './../../../src/components/ebay-select/examples/5-disabled/template.marko';
+import SelectBasic from './../../../src/components/ebay-select/examples/01-basic/template.marko';
+import SelectSelectedOption from './../../../src/components/ebay-select/examples/02-selected-option/template.marko';
+import SelectNestedOptions from './../../../src/components/ebay-select/examples/03-nested-options/template.marko';
+import SelectBorderless from './../../../src/components/ebay-select/examples/04-borderless/template.marko';
+import SelectDisabled from './../../../src/components/ebay-select/examples/05-disabled/template.marko';
 
 storiesOf('ebayui/ebay-select', module)
   .addDecorator(withKnobs)

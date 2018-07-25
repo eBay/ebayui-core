@@ -1,4 +1,3 @@
 *.marko.js
 stories/
 static/
-dist/

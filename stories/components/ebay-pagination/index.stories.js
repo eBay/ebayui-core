@@ -2,11 +2,11 @@
 import { storiesOf } from '@storybook/marko';
 import { withKnobs, boolean, text, object, number, array } from '@storybook/addon-knobs';
 import Pagination from './../../../src/components/ebay-pagination/';
-import PaginationBasicLinks from './../../../src/components/ebay-pagination/examples/1-basic-links/template.marko';
-import PaginationHijax from './../../../src/components/ebay-pagination/examples/2-hijax/template.marko';
-import PaginationArrowsDisabled from './../../../src/components/ebay-pagination/examples/3-arrows-disabled/template.marko';
-import PaginationWithoutArrowsInput from './../../../src/components/ebay-pagination/examples/4-without-arrows-input/template.marko';
-import PaginationAccessibilityText from './../../../src/components/ebay-pagination/examples/5-accessibility-text/template.marko';
+import PaginationBasicLinks from './../../../src/components/ebay-pagination/examples/01-basic-links/template.marko';
+import PaginationHijax from './../../../src/components/ebay-pagination/examples/02-hijax/template.marko';
+import PaginationArrowsDisabled from './../../../src/components/ebay-pagination/examples/03-arrows-disabled/template.marko';
+import PaginationWithoutArrowsInput from './../../../src/components/ebay-pagination/examples/04-without-arrows-input/template.marko';
+import PaginationAccessibilityText from './../../../src/components/ebay-pagination/examples/05-accessibility-text/template.marko';
 
 storiesOf('ebayui/ebay-pagination', module)
   .addDecorator(withKnobs)

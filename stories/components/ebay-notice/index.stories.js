@@ -2,10 +2,10 @@
 import { storiesOf } from '@storybook/marko';
 import { withKnobs, boolean, text, object, number, array } from '@storybook/addon-knobs';
 import Notice from './../../../src/components/ebay-notice/';
-import NoticePage from './../../../src/components/ebay-notice/examples/1-page-notice/template.marko';
-import NoticeInline from './../../../src/components/ebay-notice/examples/2-inline-notice/template.marko';
-import NoticeCustomHeading from './../../../src/components/ebay-notice/examples/3-custom-heading/template.marko';
-import NoticeDismissible from './../../../src/components/ebay-notice/examples/4-dismissible-notice/template.marko';
+import NoticePage from './../../../src/components/ebay-notice/examples/01-page-notice/template.marko';
+import NoticeInline from './../../../src/components/ebay-notice/examples/02-inline-notice/template.marko';
+import NoticeCustomHeading from './../../../src/components/ebay-notice/examples/03-custom-heading/template.marko';
+import NoticeDismissible from './../../../src/components/ebay-notice/examples/04-dismissible-notice/template.marko';
 
 storiesOf('ebayui/ebay-notice', module)
   .addDecorator(withKnobs)

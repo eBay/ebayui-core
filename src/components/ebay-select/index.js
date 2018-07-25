@@ -26,7 +26,6 @@ function getInitialState(input) {
     }
 
     return {
-        name: input.name,
         class: input.class,
         options,
         selected: selectedOption,
@@ -45,7 +44,6 @@ function getTemplateData(state) {
 
     return {
         class: selectClass,
-        name: state.name,
         selectedOption: state.selected,
         options: state.options,
         disabled: state.disabled,

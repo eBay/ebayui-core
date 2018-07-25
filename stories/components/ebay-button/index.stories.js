@@ -2,15 +2,15 @@
 import { storiesOf } from '@storybook/marko';
 import { withKnobs, boolean, text, object, number, array } from '@storybook/addon-knobs';
 import Button from './../../../src/components/ebay-button/';
-import ButtonPrimary from './../../../src/components/ebay-button/examples/1-primary/template.marko';
-import ButtonRaw from './../../../src/components/ebay-button/examples/2-raw/template.marko';
-import ButtonSmall from './../../../src/components/ebay-button/examples/3-small/template.marko';
-import ButtonLarge from './../../../src/components/ebay-button/examples/4-large/template.marko';
-import ButtonFake from './../../../src/components/ebay-button/examples/5-fake/template.marko';
-import ButtonDisabled from './../../../src/components/ebay-button/examples/6-disabled/template.marko';
-import ButtonPartiallyDisabled from './../../../src/components/ebay-button/examples/7-partially-disabled/template.marko';
-import ButtonFluid from './../../../src/components/ebay-button/examples/8-fluid/template.marko';
-import ButtonPrimaryLargeFluid from './../../../src/components/ebay-button/examples/9-primary-large-fluid/template.marko';
+import ButtonPrimary from './../../../src/components/ebay-button/examples/01-primary/template.marko';
+import ButtonRaw from './../../../src/components/ebay-button/examples/02-raw/template.marko';
+import ButtonSmall from './../../../src/components/ebay-button/examples/03-small/template.marko';
+import ButtonLarge from './../../../src/components/ebay-button/examples/04-large/template.marko';
+import ButtonFake from './../../../src/components/ebay-button/examples/05-fake/template.marko';
+import ButtonDisabled from './../../../src/components/ebay-button/examples/06-disabled/template.marko';
+import ButtonPartiallyDisabled from './../../../src/components/ebay-button/examples/07-partially-disabled/template.marko';
+import ButtonFluid from './../../../src/components/ebay-button/examples/08-fluid/template.marko';
+import ButtonPrimaryLargeFluid from './../../../src/components/ebay-button/examples/09-primary-large-fluid/template.marko';
 
 storiesOf('ebayui/ebay-button', module)
   .addDecorator(withKnobs)

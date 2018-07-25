@@ -2,10 +2,10 @@
 import { storiesOf } from '@storybook/marko';
 import { withKnobs, boolean, text, object, number, array } from '@storybook/addon-knobs';
 import Combobox from './../../../src/components/ebay-combobox/';
-import ComboboxBasic from './../../../src/components/ebay-combobox/examples/1-basic/template.marko';
-import ComboboxSelectedOption from './../../../src/components/ebay-combobox/examples/2-selected-option/template.marko';
-import ComboboxNestedOptions from './../../../src/components/ebay-combobox/examples/3-nested-options/template.marko';
-import ComboboxBorderless from './../../../src/components/ebay-combobox/examples/4-borderless/template.marko';
+import ComboboxBasic from './../../../src/components/ebay-combobox/examples/01-basic/template.marko';
+import ComboboxSelectedOption from './../../../src/components/ebay-combobox/examples/02-selected-option/template.marko';
+import ComboboxNestedOptions from './../../../src/components/ebay-combobox/examples/03-nested-options/template.marko';
+import ComboboxBorderless from './../../../src/components/ebay-combobox/examples/04-borderless/template.marko';
 import ComboboxDisabled from './../../../src/components/ebay-combobox/examples/5-disabled/template.marko';
 
 storiesOf('ebayui/ebay-combobox', module)

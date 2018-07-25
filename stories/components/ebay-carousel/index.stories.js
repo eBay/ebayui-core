@@ -6,10 +6,10 @@ import CarouselContinuous from './../../../src/components/ebay-carousel/examples
 import CarouselStartingIndex from './../../../src/components/ebay-carousel/examples/2-starting-index/template.marko';
 import CarouselFewItems from './../../../src/components/ebay-carousel/examples/3-few-items/template.marko';
 import CarouselVariableWidthItems from './../../../src/components/ebay-carousel/examples/4-variable-width-items/template.marko';
-import CarouselDiscrete from './../../../src/components/ebay-carousel/examples/5-discrete/template.marko';
+import CarouselSingleItemPerSlide from './../../../src/components/ebay-carousel/examples/5-single-item-per-slide/template.marko';
 import CarouselStartingSlide from './../../../src/components/ebay-carousel/examples/6-starting-slide/template.marko';
-import CarouselDiscreteHalfWidth from './../../../src/components/ebay-carousel/examples/7-discrete-half-width/template.marko';
-import CarouselDiscreteThirdWidth from './../../../src/components/ebay-carousel/examples/8-discrete-third-width/template.marko';
+import CarouselTwoItemsPerSlide from './../../../src/components/ebay-carousel/examples/7-two-items-per-slide/template.marko';
+import CarouselThreeItemsPerSlide from './../../../src/components/ebay-carousel/examples/8-three-items-per-slide/template.marko';
 import CarouselAccessibilityText from './../../../src/components/ebay-carousel/examples/9-accessibility-text/template.marko';
 
 storiesOf('ebayui/ebay-carousel', module)
@@ -65,8 +65,8 @@ storiesOf('ebayui/ebay-carousel', module)
   });
 
 storiesOf('ebayui/ebay-carousel', module)
-  .add('discrete', () => {
-    return CarouselDiscrete.renderSync({});
+  .add('single-item-per-slide', () => {
+    return CarouselSingleItemPerSlide.renderSync({});
   });
 
 storiesOf('ebayui/ebay-carousel', module)
@@ -75,13 +75,13 @@ storiesOf('ebayui/ebay-carousel', module)
   });
 
 storiesOf('ebayui/ebay-carousel', module)
-  .add('discrete-half-width', () => {
-    return CarouselDiscreteHalfWidth.renderSync({});
+  .add('two-items-per-slide', () => {
+    return CarouselTwoItemsPerSlide.renderSync({});
   });
 
 storiesOf('ebayui/ebay-carousel', module)
-  .add('discrete-third-width', () => {
-    return CarouselDiscreteThirdWidth.renderSync({});
+  .add('three-items-per-slide', () => {
+    return CarouselThreeItemsPerSlide.renderSync({});
   });
 
 storiesOf('ebayui/ebay-carousel', module)

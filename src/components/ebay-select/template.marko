@@ -1,11 +1,8 @@
-<span
-    class=data.class
-    ${data.htmlAttributes}
-    w-bind>
+<span class=data.class w-bind>
     <select
-        name=data.name
         disabled=data.disabled
-        w-onchange="optionChanged">
+        w-onchange="optionChanged"
+        ${data.htmlAttributes}>
         <option
             for(option in data.options)
             value=option.value

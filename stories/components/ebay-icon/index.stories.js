@@ -2,10 +2,10 @@
 import { storiesOf } from '@storybook/marko';
 import { withKnobs, boolean, text, object, number, array } from '@storybook/addon-knobs';
 import Icon from './../../../src/components/ebay-icon/';
-import IconBackground from './../../../src/components/ebay-icon/examples/1-background/template.marko';
-import IconInline from './../../../src/components/ebay-icon/examples/2-inline/template.marko';
-import IconInlineCustomColor from './../../../src/components/ebay-icon/examples/3-inline-custom-color/template.marko';
-import IconInlineNonDecorative from './../../../src/components/ebay-icon/examples/4-inline-non-decorative/template.marko';
+import IconBackground from './../../../src/components/ebay-icon/examples/01-background/template.marko';
+import IconInline from './../../../src/components/ebay-icon/examples/02-inline/template.marko';
+import IconInlineCustomColor from './../../../src/components/ebay-icon/examples/03-inline-custom-color/template.marko';
+import IconInlineNonDecorative from './../../../src/components/ebay-icon/examples/04-inline-non-decorative/template.marko';
 
 storiesOf('ebayui/ebay-icon', module)
   .addDecorator(withKnobs)
