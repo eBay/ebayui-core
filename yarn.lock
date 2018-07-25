@@ -50,6 +50,13 @@
   version "7.0.0-beta.51"
   resolved "https://registry.npmjs.org/@babel/parser/-/parser-7.0.0-beta.51.tgz#27cec2df409df60af58270ed8f6aa55409ea86f6"
 
+"@babel/runtime@7.0.0-beta.44":
+  version "7.0.0-beta.44"
+  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.0.0-beta.44.tgz#ea5ad6c6fe9a2c1187b025bf42424d28050ee696"
+  dependencies:
+    core-js "^2.5.3"
+    regenerator-runtime "^0.11.1"
+
 "@babel/template@7.0.0-beta.51":
   version "7.0.0-beta.51"
   resolved "https://registry.npmjs.org/@babel/template/-/template-7.0.0-beta.51.tgz#9602a40aebcf357ae9677e2532ef5fc810f5fbff"
@@ -86,9 +93,9 @@
   version "1.0.0"
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.0.tgz#06328378600156458dacb0278767ff8490f2074c"
 
-"@ebay/skin@^5.1.1":
-  version "5.1.1"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-5.1.1.tgz#f6e62145b5668bddad9b463a6733558a934a2d8e"
+"@ebay/skin@^5.1.2":
+  version "5.1.2"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-5.1.2.tgz#f29316bae8fc3c353e7f2ef3156ba00c2d954d84"
 
 "@lasso/marko-taglib@^1.0.10", "@lasso/marko-taglib@^1.0.9":
   version "1.0.10"
@@ -99,27 +106,27 @@
     raptor-logging "^1.1.3"
     raptor-util "^1.1.2"
 
-"@marko/compile@3.2.0-alpha.86e5e3fd":
-  version "3.2.0-alpha.86e5e3fd"
-  resolved "https://registry.npmjs.org/@marko/compile/-/compile-3.2.0-alpha.86e5e3fd.tgz#459eef8124a287a1bed41d64e5127f100bcf3a95"
+"@marko/compile@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/@marko/compile/-/compile-3.2.0.tgz#7fb06c8088dea1fffc34935dc25fd0a027157de7"
   dependencies:
     babel-runtime "^6.26.0"
     glob "^7.1.2"
     lasso-package-root "^1.0.1"
     resolve-from "^4.0.0"
 
-"@marko/create@3.2.0-alpha.86e5e3fd":
-  version "3.2.0-alpha.86e5e3fd"
-  resolved "https://registry.npmjs.org/@marko/create/-/create-3.2.0-alpha.86e5e3fd.tgz#4130c52d1ea70a6b528d204f4651113a3fb9af9c"
+"@marko/create@^3.1.6":
+  version "3.1.6"
+  resolved "https://registry.npmjs.org/@marko/create/-/create-3.1.6.tgz#7b6eae14a4cc6a30685b3c0d17070e5e502b3dff"
   dependencies:
     babel-runtime "^6.26.0"
     got "^8.3.1"
     ora "^2.1.0"
     unzip "^0.1.11"
 
-"@marko/test@3.2.0-alpha.86e5e3fd":
-  version "3.2.0-alpha.86e5e3fd"
-  resolved "https://registry.npmjs.org/@marko/test/-/test-3.2.0-alpha.86e5e3fd.tgz#0d8efc6901388f89ea87543ba3d85be9a308cc63"
+"@marko/test@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/@marko/test/-/test-3.2.0.tgz#7997c26c39d630a4af79461f6ff4e3ca5a610c7c"
   dependencies:
     "@lasso/marko-taglib" "^1.0.10"
     async "^2.6.1"
@@ -2091,7 +2098,7 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.npmjs.org/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
 
-core-js@^2.2.0, core-js@^2.4.0, core-js@^2.5.0:
+core-js@^2.2.0, core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.3:
   version "2.5.7"
   resolved "https://registry.npmjs.org/core-js/-/core-js-2.5.7.tgz#f972608ff0cead68b841a16a932d0b183791814e"
 
@@ -5373,18 +5380,19 @@ markdown-table@^1.1.0:
   version "1.1.2"
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-1.1.2.tgz#c78db948fa879903a41bce522e3b96f801c63786"
 
-marko-cli@3.2.0-alpha.86e5e3fd:
-  version "3.2.0-alpha.86e5e3fd"
-  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-3.2.0-alpha.86e5e3fd.tgz#5926491ebd6e81f7c9578a42a47756a3ad9f1cba"
+marko-cli@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-3.2.0.tgz#3f928b6a1708bf1880141d0aa923be29c0482da1"
   dependencies:
-    "@marko/compile" "3.2.0-alpha.86e5e3fd"
-    "@marko/create" "3.2.0-alpha.86e5e3fd"
-    "@marko/test" "3.2.0-alpha.86e5e3fd"
+    "@marko/compile" "^3.2.0"
+    "@marko/create" "^3.1.6"
+    "@marko/test" "^3.2.0"
     app-root-dir "^1.0.2"
     argly "^1.2.0"
     babel-runtime "^6.26.0"
     chalk "^2.4.1"
     complain "^1.2.0"
+    parse-node-args "1.1.1"
     resolve-from "^4.0.0"
     update-notifier "^2.5.0"
 
@@ -6358,6 +6366,12 @@ parse-json@^4.0.0:
     error-ex "^1.3.1"
     json-parse-better-errors "^1.0.1"
 
+parse-node-args@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/parse-node-args/-/parse-node-args-1.1.1.tgz#458cdebde36c174eba5eefbba051a3edfa4ff26c"
+  dependencies:
+    "@babel/runtime" "7.0.0-beta.44"
+
 parse5@^3.0.1:
   version "3.0.3"
   resolved "https://registry.npmjs.org/parse5/-/parse5-3.0.3.tgz#042f792ffdd36851551cf4e9e066b3874ab45b5c"
@@ -7112,7 +7126,7 @@ regenerator-runtime@^0.10.5:
   version "0.10.5"
   resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.10.5.tgz#336c3efc1220adcedda2c9fab67b5a7955a33658"
 
-regenerator-runtime@^0.11.0:
+regenerator-runtime@^0.11.0, regenerator-runtime@^0.11.1:
   version "0.11.1"
   resolved "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
 

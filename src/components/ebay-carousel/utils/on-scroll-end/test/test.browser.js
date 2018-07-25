@@ -24,7 +24,6 @@ describe('scroll-end', () => {
     it('calls a function when a scroll has ended', (done) => {
         const scrollEndSpy = sinon.spy();
         onScrollEnd(scrollEl, scrollEndSpy);
-        simulateScroll(scrollEl, 50);
         setTimeout(() => {
             simulateScroll(scrollEl, 100);
             setTimeout(() => {
@@ -34,12 +33,12 @@ describe('scroll-end', () => {
                 done();
             }, 300);
         }, 150);
+        simulateScroll(scrollEl, 50);
     });
 
     it('groups scroll events with additional touches', (done) => {
         const scrollEndSpy = sinon.spy();
         onScrollEnd(scrollEl, scrollEndSpy);
-        simulateScroll(scrollEl, 50);
         setTimeout(() => {
             simulateScroll(scrollEl, 100);
             setTimeout(() => {
@@ -48,6 +47,7 @@ describe('scroll-end', () => {
                 done();
             }, 150);
         }, 0);
+        simulateScroll(scrollEl, 50);
     });
 });
 

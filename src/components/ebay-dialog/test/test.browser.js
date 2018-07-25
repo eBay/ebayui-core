@@ -1,10 +1,11 @@
+require('../../../common/test-utils/transitions');
+
 const expect = require('chai').expect;
 const renderer = require('../');
 
 describe('given the dialog is in the default state', () => {
     let widget;
     let root;
-    let dialog;
     let close;
     let sibling;
 
@@ -14,15 +15,14 @@ describe('given the dialog is in the default state', () => {
 
         widget = renderer.renderSync({}).appendTo(document.body).getWidget();
         root = widget.el;
-        dialog = root.querySelector('.dialog');
-        close = dialog.querySelector('.dialog__close');
+        close = root.querySelector('.dialog__close');
     });
 
     afterEach(() => widget.destroy());
 
     describe('when it is rendered', () => {
         test('then it is hidden in the DOM', () => {
-            expect(dialog.hidden).to.equal(true);
+            expect(root.hidden).to.equal(true);
         });
 
         test('then <body> is scrollable', () => {
@@ -38,7 +38,7 @@ describe('given the dialog is in the default state', () => {
         });
 
         test('then it does not trap focus', () => {
-            expect(dialog.classList.contains('keyboard-trap--active')).to.equal(false);
+            expect(root.classList.contains('keyboard-trap--active')).to.equal(false);
         });
     });
 
@@ -62,8 +62,8 @@ describe('given the dialog is in the default state', () => {
 
     function thenItIsOpen(skipRerender) {
         test('then it is visible in the DOM', () => {
-            expect(dialog.hidden).to.equal(false);
-            expect(dialog.getAttribute('aria-hidden')).to.equal('false');
+            expect(root.hidden).to.equal(false);
+            expect(root.getAttribute('aria-hidden')).to.equal('false');
         });
 
         test('then it\'s siblings are hidden', () => {
@@ -75,7 +75,7 @@ describe('given the dialog is in the default state', () => {
         });
 
         test('then it traps focus', () => {
-            expect(dialog.classList.contains('keyboard-trap--active')).to.equal(true);
+            expect(root.classList.contains('keyboard-trap--active')).to.equal(true);
             expect(document.activeElement.className).to.eql(close.className);
         });
 
@@ -95,7 +95,6 @@ describe('given the dialog is in the default state', () => {
 describe('given the dialog is in the open state', () => {
     let widget;
     let root;
-    let dialog;
     let close;
     let sibling;
 
@@ -105,16 +104,15 @@ describe('given the dialog is in the open state', () => {
 
         widget = renderer.renderSync({ open: true }).appendTo(document.body).getWidget();
         root = widget.el;
-        dialog = root.querySelector('.dialog');
-        close = dialog.querySelector('.dialog__close');
+        close = root.querySelector('.dialog__close');
     });
 
     afterEach(() => widget.destroy());
 
     describe('when it is rendered', () => {
         test('then it is visible in the DOM', () => {
-            expect(dialog.hidden).to.equal(false);
-            expect(dialog.getAttribute('aria-hidden')).to.equal('false');
+            expect(root.hidden).to.equal(false);
+            expect(root.getAttribute('aria-hidden')).to.equal('false');
         });
 
         test('then it\'s siblings are hidden', () => {
@@ -126,7 +124,7 @@ describe('given the dialog is in the open state', () => {
         });
 
         test('then it traps focus', () => {
-            expect(dialog.classList.contains('keyboard-trap--active')).to.equal(true);
+            expect(root.classList.contains('keyboard-trap--active')).to.equal(true);
             expect(document.activeElement.className).to.eql(close.className);
         });
     });
@@ -161,7 +159,7 @@ describe('given the dialog is in the open state', () => {
     describe('when the mask is clicked', () => {
         beforeEach((done) => {
             widget.subscribeTo(root).once('dialog-close', done);
-            dialog.click(); // simulate clicking outside the dialog.
+            root.click(); // simulate clicking outside the dialog.
         });
 
         thenItIsClosed();
@@ -169,7 +167,7 @@ describe('given the dialog is in the open state', () => {
 
     function thenItIsClosed(skipRerender) {
         test('then it is hidden in the DOM', () => {
-            expect(dialog.hidden).to.equal(true);
+            expect(root.hidden).to.equal(true);
         });
 
         test('then <body> is scrollable', () => {
@@ -185,7 +183,7 @@ describe('given the dialog is in the open state', () => {
         });
 
         test('then it does not trap focus', () => {
-            expect(dialog.classList.contains('keyboard-trap--active')).to.equal(false);
+            expect(root.classList.contains('keyboard-trap--active')).to.equal(false);
         });
 
         if (!skipRerender) {

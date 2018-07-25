@@ -37,12 +37,18 @@
         "@index": "string",
         "@type": "string",
         "@slide": "string",
+        "@gap": "string",
+        "@autoplay": "boolean",
+        "@paused": "boolean",
+        "@no-dots": "boolean",
         "@items-per-slide": "string",
         "@accessibility-prev": "string",
         "@accessibility-next": "string",
         "@accessibility-status": "string",
         "@accessibility-current": "string",
         "@accessibility-other": "string",
+        "@accessibility-play": "string",
+        "@accessibility-pause": "string",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression"

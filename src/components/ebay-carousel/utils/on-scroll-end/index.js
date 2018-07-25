@@ -33,8 +33,8 @@ module.exports = function onScrollEnd(el, fn) {
     // If the user touches again before the inertial scrolling has stopped then we reset.
     function handleTouchStart() {
         cancel();
-        stage = 0;
-        el.addEventListener('touchmove', handleTouchMove);
+        stage--;
+        el.addEventListener('touchend', handleTouchEnd);
     }
 
     // Finally after the touch end we poll the scroll state every animation frame
