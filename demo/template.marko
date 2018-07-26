@@ -1,4 +1,4 @@
-<lasso-page name="demo" package-path="./browser.json" flags=data.lassoFlags/>
+<lasso-page name="demo" package-path="./browser.json" flags=data.lassoFlags dependencies=data.model.dependencies/>
 <html>
     <head>
         <lasso-head/>
@@ -17,9 +17,7 @@
             <div class="example">
                 <h2>${example.name}</h2>
                 <div class="example-code">$!{example.code}</div>
-                <div>
-                    <dynamic-tag options={path: example.path}/>
-                </div>
+                <div><include(example.template)/></div>
             </div>
         </for>
         <lasso-body/>
