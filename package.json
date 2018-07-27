@@ -76,6 +76,7 @@
     "chai": "^4.1.2",
     "cheerio": "^1.0.0-rc.2",
     "coveralls": "^3.0.1",
+    "css-loader": "^1.0.0",
     "eslint": "^4.19.1",
     "eslint-config-ebay": "^1.0.0",
     "eslint-plugin-compat": "^2.2.0",
@@ -93,6 +94,7 @@
     "lasso-babel-transform": "^1.0.2",
     "lasso-less": "^3.0.1",
     "lasso-marko": "^2.4.2",
+    "less-loader": "^4.1.0",
     "lintspaces-cli": "^0.6.0",
     "marko": "^3",
     "marko-cli": "^3.2.0",
@@ -107,6 +109,7 @@
     "pre-push": "^0.1.1",
     "rimraf": "^2.6.2",
     "sinon": "^6.1.0",
+    "style-loader": "^0.21.0",
     "stylelint": "^9.2.1",
     "supertest": "^3.0.0",
     "wdio-browserstack-service": "^0.1.16"

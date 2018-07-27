@@ -12,37 +12,39 @@ import CarouselTwoItemsPerSlide from './../../../src/components/ebay-carousel/ex
 import CarouselThreeItemsPerSlide from './../../../src/components/ebay-carousel/examples/8-three-items-per-slide/template.marko';
 import CarouselAccessibilityText from './../../../src/components/ebay-carousel/examples/9-accessibility-text/template.marko';
 
-storiesOf('ebayui/ebay-carousel', module)
-  .addDecorator(withKnobs)
-  .add('<dynamic>', () => {
-    const type = text('type', 'continuous');
-    const accessibilityPrev = text('accessibility-prev', '');
-    const accessibilityNext = text('accessibility-next', '');
-    const index = text('index', '');
-    const slide = text('slide', '');
-    const itemsPerSlide = text('items-per-slide', '');
-    const accessibilityStatus = text('accessibility-status', '');
-    const accessibilityCurrent = text('accessibility-current', '');
-    const accessibilityOther = text('accessibility-other', '');
-    const items = object('items', [
-      { renderBody: 'Card 1', hidden: false },
-      { renderBody: 'Card 2', hidden: false },
-      { renderBody: 'Card 3', hidden: false }
-    ]);
+import './ebay-carousel.less'
 
-    return Carousel.renderSync({
-      type,
-      accessibilityPrev,
-      accessibilityNext,
-      index,
-      slide,
-      itemsPerSlide,
-      accessibilityStatus,
-      accessibilityCurrent,
-      accessibilityOther,
-      items
-    });
-  });
+// storiesOf('ebayui/ebay-carousel', module)
+//   .addDecorator(withKnobs)
+//   .add('<dynamic>', () => {
+//     const type = text('type', 'continuous');
+//     const accessibilityPrev = text('accessibility-prev', '');
+//     const accessibilityNext = text('accessibility-next', '');
+//     const index = text('index', '');
+//     const slide = text('slide', '');
+//     const itemsPerSlide = text('items-per-slide', '');
+//     const accessibilityStatus = text('accessibility-status', '');
+//     const accessibilityCurrent = text('accessibility-current', '');
+//     const accessibilityOther = text('accessibility-other', '');
+//     const items = object('items', [
+//       { renderBody: 'Card 1', hidden: false },
+//       { renderBody: 'Card 2', hidden: false },
+//       { renderBody: 'Card 3', hidden: false }
+//     ]);
+
+//     return Carousel.renderSync({
+//       type,
+//       accessibilityPrev,
+//       accessibilityNext,
+//       index,
+//       slide,
+//       itemsPerSlide,
+//       accessibilityStatus,
+//       accessibilityCurrent,
+//       accessibilityOther,
+//       items
+//     });
+//   });
 
 storiesOf('ebayui/ebay-carousel', module)
   .add('continuous', () => {
