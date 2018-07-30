@@ -11,18 +11,6 @@ test('renders default input textbox', context => {
     expect($(inputSelector).length).to.equal(1);
 });
 
-test('renders input textbox with a placeholder', context => {
-    const input = { placeholder: 'enter your input' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($(inputSelector).attr('placeholder')).to.equal('enter your input');
-});
-
-test('renders a disabled input textbox', context => {
-    const input = { disabled: true };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect(Boolean($(inputSelector).is(':disabled'))).to.equal(true);
-});
-
 test('renders a input textbox with invalid/error state', context => {
     const input = { invalid: true };
     const $ = testUtils.getCheerio(context.render(input));
@@ -33,12 +21,6 @@ test('renders a textarea element', context => {
     const input = { multiline: true };
     const $ = testUtils.getCheerio(context.render(input));
     expect($(textareaSelector).length).to.equal(1);
-});
-
-test('renders a disabled textarea element', context => {
-    const input = { multiline: true, disabled: true };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect(Boolean($(textareaSelector).is(':disabled'))).to.equal(true);
 });
 
 test('handles pass-through html attributes', context => {

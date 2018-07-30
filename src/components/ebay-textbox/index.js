@@ -10,12 +10,9 @@ function getInitialState(input) {
     return {
         classes,
         htmlAttributes: processHtmlAttributes(input),
-        rootClass: input.class || '',
-        value: input.value,
+        rootClass: ['textbox', input.class],
         tag: input.fluid ? 'div' : 'span',
-        textBoxTag: Boolean(input.multiline) ? 'textarea' : 'input',
-        disabled: Boolean(input.disabled),
-        placeholder: input.placeholder,
+        textboxTag: Boolean(input.multiline) ? 'textarea' : 'input',
         invalid: String(Boolean(input.invalid))
     };
 }

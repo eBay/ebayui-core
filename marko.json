@@ -190,7 +190,6 @@
         "@html-attributes": "expression",
         "@class": "string",
         "@invalid": "boolean",
-        "@disabled": "boolean",
         "@fluid": "boolean",
         "@multiline": "boolean"
     }
