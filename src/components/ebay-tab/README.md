@@ -18,8 +18,30 @@
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 
-## ebay-button Events
+## ebay-tab Events
 
 Event | Data | Description
 --- | --- | ---
 `tab-select` | `{ originalEvent }` |
+
+## ebay-tab-item Tag
+
+### ebay-tab-item Usage
+
+```marko
+<ebay-tab-item>Tab 1</ebay-tab-item>
+```
+
+### ebay-tab-item Attributes
+
+Name | Type | Stateful | Description
+--- | --- | --- | ---
+`selected` | Boolean | Yes | whether or not the item is selected
+
+## ebay-tab-panel Tag
+
+### ebay-tab-panel Usage
+
+```marko
+<ebay-tab-panel>Panel 1</ebay-tab-panel>
+```

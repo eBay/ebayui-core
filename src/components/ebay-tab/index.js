@@ -3,10 +3,12 @@ const rovingTabindex = require('makeup-roving-tabindex');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
+const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
 function getInitialState(input) {
-    // TODO: enforce max of one selected item
+    // TODO: enforce max of one initial selected item
+    // TODO: select first item if none selected
     const items = (input.items || []).map(item => ({
         renderBody: item.renderBody,
         selected: Boolean(item.selected),
@@ -35,6 +37,27 @@ function getTemplateData(state) {
 function init() {
     this.itemsEl = this.getEl('items');
     rovingTabindex.createLinear(this.itemsEl, 'div', { index: 0, autoReset: 0 });
+    const selectedObserverCallback = (itemEl) => {
+        this.processAfterStateChange(getItemElementIndex(itemEl));
+    };
+    this.itemsEl.querySelectorAll('.tabs__item').forEach((itemEl, i) => {
+        observer.observeInner(this, itemEl, 'selected', `items[${i}]`, 'items', selectedObserverCallback);
+    });
+}
+
+function processAfterStateChange(itemIndex) {
+    // TODO: select first item if none selected
+    if (itemIndex !== -1 && itemIndex !== this.getSelectedIndex()) {
+        this.setSelectedIndex(itemIndex);
+        emitAndFire(this, 'tab-select', { index: itemIndex });
+    }
+}
+
+function setSelectedIndex(index) {
+    this.state.items.forEach((item, i) => { item.selected = index === i; });
+    this.state.panels.forEach((panel, i) => { panel.hidden = index !== i; });
+    this.setStateDirty('items');
+    this.setStateDirty('panels');
 }
 
 /**
@@ -47,34 +70,33 @@ function handleItemClick(e) {
         itemEl = itemEl.parentNode;
     }
 
-    const itemIndex = getItemElementIndex(itemEl);
-    if (itemIndex !== -1) {
-        this.state.items.forEach((item, i) => { item.selected = itemIndex === i; });
-        this.state.panels.forEach((panel, i) => { panel.hidden = itemIndex !== i; });
-        this.setStateDirty('items');
-        this.setStateDirty('panels');
-
-        emitAndFire(this, 'tab-select'); // FIXME: dont emit event if already selected
-    }
+    this.processAfterStateChange(getItemElementIndex(itemEl));
 }
 
 function getItemElementIndex(itemEl) {
     return Array.prototype.slice.call(itemEl.parentNode.children).indexOf(itemEl);
 }
 
+// TODO: find/filter?
+function getSelectedIndex() {
+    let selectedIndex;
+    this.state.items.some((item, i) => {
+        if (item.selected) {
+            selectedIndex = i;
+            return true;
+        }
+    });
+    return selectedIndex;
+}
+
 /**
- * Handle accessibility for item (is not handled by makeup)
+ * Handle accessibility for item
  * https://ebay.gitbooks.io/mindpatterns/content/disclosure/tabs.html
  * @param {KeyboardEvent} e
  */
 function handleItemKeydown(e) {
     eventUtils.handleActionKeydown(e, () => {
         this.handleItemClick(e);
-    });
-
-    eventUtils.handleEscapeKeydown(e, () => {
-        this.buttonEl.focus();
-        this.setState('expanded', false);
     });
 }
 
@@ -83,6 +105,9 @@ module.exports = markoWidgets.defineComponent({
     getInitialState,
     getTemplateData,
     init,
+    processAfterStateChange,
+    getSelectedIndex,
+    setSelectedIndex,
     handleItemClick,
     handleItemKeydown
 });
