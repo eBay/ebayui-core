@@ -1,5 +1,13 @@
 .carousel {
-    &__control {
+    &--slides &__control, // show controls on touch since there's no hover.
+    &__control:focus { // also show controls on focus for a11y.
+        opacity: @ebay-carousel-control-enabled-opacity;
+        pointer-events: auto;
+
+        &[aria-disabled="true"] {
+            opacity: @ebay-carousel-control-disabled-opacity;
+        }
+
         &:active:not([aria-disabled="true"]) {
             background-color: @ds6-color-g205-gray;
 
@@ -9,23 +17,13 @@
         }
     }
 
-    &__list {
+    &:not(&__autoplay) &__list {
         overflow-x: auto; // also used in js to determine scroll behavior
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: none;
 
         &::-webkit-scrollbar {
             display: none;
-        }
-    }
-
-    // show controls on touch since there's no hover
-    .carousel__control {
-        opacity: @ebay-carousel-control-enabled-opacity;
-        pointer-events: auto;
-
-        &[aria-disabled="true"] {
-            opacity: @ebay-carousel-control-disabled-opacity;
         }
     }
 }

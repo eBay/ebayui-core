@@ -10,7 +10,8 @@
             aria-live="polite">
             ${data.accessibilityStatus}
         </span>
-        <button class="carousel__control carousel__control--prev"
+        <button
+            class="carousel__control carousel__control--prev"
             w-onclick=(!data.prevControlDisabled && "handleMove")
             data-direction=-1
             aria-describedby=statusId
@@ -18,10 +19,14 @@
             aria-disabled=(data.prevControlDisabled && 'true')>
             <ebay-icon type="inline" name="chevron-left"/>
         </button>
+
         <ul w-id="list"
             class="carousel__list"
-            style={transform: !config.nativeScrolling && "translate3d(-" + data.offset + "px,0,0)"}>
-            <for(index, item in data.items)>
+            style=(!config.nativeScrolling && data.offset && {
+                transform:  "translate3d(" + (data.offset * -1) + "px,0,0)",
+                transition: data.disableTransition ? 'none' : undefined
+            })>
+            <for(item in data.items)>
                 <li ${item.htmlAttributes}
                     style=item.style
                     w-body=item.renderBody
@@ -29,7 +34,9 @@
                     w-preserve-body-if(config.preserveItems)/>
             </for>
         </ul>
+
         <button
+            w-id="next"
             class="carousel__control carousel__control--next"
             w-onclick=(!data.nextControlDisabled && "handleMove")
             data-direction=1
@@ -38,8 +45,28 @@
             aria-disabled=(data.nextControlDisabled && 'true')>
             <ebay-icon type="inline" name="chevron-right"/>
         </button>
+
+        <if(data.autoplayInterval && !data.bothControlsDisabled)>
+            <if(data.paused)>
+                <button
+                    class="carousel__play"
+                    aria-label=data.accessibilityPlay
+                    w-onclick="togglePlay">
+                    <ebay-icon type="inline" name="play"/>
+                </button>
+            </if>
+            <else>
+                <button
+                    class=`carousel__pause`
+                    aria-label=data.accessibilityPause
+                    w-onclick="togglePlay">
+                    <ebay-icon type="inline" name="pause"/>
+                </button>
+            </else>
+        </if>
     </div>
-    <ul class="carousel__dots" role="navigation" if(data.totalSlides > 1)>
+
+    <ul class="carousel__dots" role="navigation" if(!data.noDots && data.totalSlides > 1)>
         <li for(i from 0 to data.totalSlides - 1)>
             <var isActive=(i === data.slide)/>
             <button
