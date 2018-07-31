@@ -7,17 +7,29 @@ const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
 function getInitialState(input) {
-    // TODO: enforce max of one initial selected item
-    // TODO: select first item if none selected
     const items = (input.items || []).map(item => ({
         renderBody: item.renderBody,
-        selected: Boolean(item.selected),
+        selected: false,
         classes: [item.class, 'tabs__item'],
         htmlAttributes: processHtmlAttributes(item)
     }));
+
+    // use first selected property; default to first item if none
+    let initialSelectedIndex = 0;
+    (input.items || []).some((item, i) => {
+        if (item.selected) {
+            initialSelectedIndex = i;
+            return true;
+        }
+    });
+
+    if (items[initialSelectedIndex]) {
+        items[initialSelectedIndex].selected = true;
+    }
+
     const panels = (input.panels || []).map((panel, i) => ({
         renderBody: panel.renderBody,
-        hidden: items[i] && !items[i].selected, // FIXME: ensure this is present
+        hidden: i !== initialSelectedIndex,
         classes: [panel.class, 'tabs__panel'],
         htmlAttributes: processHtmlAttributes(panel)
     }));

@@ -22,7 +22,7 @@ describe('given tabs with first item selected', () => {
     let secondItemInnerEl;
 
     beforeEach(() => {
-        widget = renderer.renderSync({ items: mock.items }).appendTo(document.body).getWidget();
+        widget = renderer.renderSync({ items: mock.itemsWithFirstSelected }).appendTo(document.body).getWidget();
         itemEls = document.querySelectorAll('.tabs__item');
         firstItemEl = itemEls[0];
         secondItemEl = itemEls[1];

@@ -1,7 +1,15 @@
-const items = [
-    { selected: true },
+const itemsWithFirstSelected = [
+    {},
     {},
     {}
 ];
 
-module.exports = { items };
+const itemsWithMultipleSelected = [
+    { selected: true },
+    { selected: true },
+    { selected: true }
+];
+
+const panels = [{}, {}, {}];
+
+module.exports = { itemsWithFirstSelected, itemsWithMultipleSelected, panels };
