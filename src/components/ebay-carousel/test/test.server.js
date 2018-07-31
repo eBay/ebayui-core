@@ -27,7 +27,7 @@ describe('carousel', () => {
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.carousel__control--prev[aria-label="prev"]').length).to.equal(1);
         expect($('.carousel__control--next[aria-label="next"]').length).to.equal(1);
-        expect($('.clipped[role="status"]').text()).to.equal('1 of 6');
+        expect($('.clipped[aria-live] span').text()).to.equal('1 of 6');
         expect($('[data-slide="0"][aria-label="slide 1"]').length).to.equal(1);
         expect($('[data-slide="1"][aria-label="other 2"]').length).to.equal(1);
     });
