@@ -17,6 +17,7 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
+`index` | String | Yes | 0-based index of selected tab item and panel
 
 ## ebay-tab Events
 
@@ -31,12 +32,6 @@ Event | Data | Description
 ```marko
 <ebay-tab-item>Tab 1</ebay-tab-item>
 ```
-
-### ebay-tab-item Attributes
-
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`selected` | Boolean | Yes | whether or not the item is selected
 
 ## ebay-tab-panel Tag
 

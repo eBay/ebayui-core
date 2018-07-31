@@ -12,15 +12,15 @@ function testFirstItemSelected($) {
 }
 
 describe('tab', () => {
-    test('renders basic version', context => {
-        const input = { items: mock.itemsWithFirstSelected, panels: mock.panels };
+    test('renders basic version with defaults', context => {
+        const input = { items: mock.items, panels: mock.panels };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.tabs').length).to.equal(1);
         testFirstItemSelected($);
     });
 
-    test('normalizes to first item selection when multiple items are selected', context => {
-        const input = { items: mock.itemsWithMultipleSelected, panels: mock.panels };
+    test('renders selection based on index', context => {
+        const input = { index: '0', items: mock.items, panels: mock.panels };
         const $ = testUtils.getCheerio(context.render(input));
         testFirstItemSelected($);
     });

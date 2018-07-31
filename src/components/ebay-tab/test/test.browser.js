@@ -16,13 +16,15 @@ function testSelectBehavior(itemEl) {
 
 describe('given tabs with first item selected', () => {
     let widget;
+    let root;
     let itemEls;
     let firstItemEl;
     let secondItemEl;
     let secondItemInnerEl;
 
     beforeEach(() => {
-        widget = renderer.renderSync({ items: mock.itemsWithFirstSelected }).appendTo(document.body).getWidget();
+        widget = renderer.renderSync({ items: mock.items }).appendTo(document.body).getWidget();
+        root = widget.el;
         itemEls = document.querySelectorAll('.tabs__item');
         firstItemEl = itemEls[0];
         secondItemEl = itemEls[1];
@@ -85,7 +87,7 @@ describe('given tabs with first item selected', () => {
         beforeEach((done) => {
             spy = sinon.spy();
             widget.on('tab-select', spy);
-            secondItemEl.selected = true;
+            root.index = '1';
             setTimeout(done);
         });
 

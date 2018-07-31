@@ -1,12 +1,12 @@
 <div w-bind class=data.classes ${data.htmlAttributes}>
     <div w-id="items" class="tabs__items" role="tablist">
-        <for(index, item in data.items)>
+        <for(i, item in data.items)>
             <div
-                aria-controls="${widget.id}-tabpanel-${index}"
-                aria-selected=String(item.selected)
-                class=item.classes
-                id="${widget.id}-default-tab-${index}"
+                aria-controls="${widget.id}-tabpanel-${i}"
+                id="${widget.id}-default-tab-${i}"
                 role="tab"
+                aria-selected=String(parseInt(i) === data.index)
+                class=item.classes
                 w-onclick="handleItemClick"
                 w-onkeydown="handleItemKeydown"
                 w-preserve-attrs="tabindex,data-makeup-index"
@@ -16,13 +16,13 @@
         </for>
     </div>
     <div class="tabs__content">
-        <for(index, panel in data.panels)>
+        <for(i, panel in data.panels)>
             <div
-                aria-labelledby="${widget.id}-default-tab-${index}"
-                class=panel.classes
-                hidden=panel.hidden
-                id="${widget.id}-tabpanel-${index}"
+                aria-labelledby="${widget.id}-default-tab-${i}"
+                id="${widget.id}-tabpanel-${i}"
                 role="tabpanel"
+                class=panel.classes
+                hidden=(parseInt(i) !== data.index)
                 ${panel.htmlAttributes}>
                 <div class="tabs__cell">
                     <div w-body=panel.renderBody/>

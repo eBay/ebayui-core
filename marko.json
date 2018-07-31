@@ -198,11 +198,11 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@index": "string",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
-            "@class": "string",
-            "@selected": "boolean"
+            "@class": "string"
         },
         "@panels <panel>[]": {
             "@*": "expression",
