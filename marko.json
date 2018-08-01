@@ -199,10 +199,12 @@
         "@html-attributes": "expression",
         "@class": "string",
         "@index": "string",
+        "@fake": "boolean",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
-            "@class": "string"
+            "@class": "string",
+            "@href": "string"
         },
         "@panels <panel>[]": {
             "@*": "expression",

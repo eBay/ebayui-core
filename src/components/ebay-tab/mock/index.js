@@ -1,4 +1,6 @@
 const items = [{}, {}, {}];
 const panels = [{}, {}, {}];
 
-module.exports = { items, panels };
+const fakeItems = [{ href: '#' }, { href: '#' }, { href: '#' }];
+
+module.exports = { items, panels, fakeItems };

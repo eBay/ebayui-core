@@ -7,23 +7,27 @@ const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
 function getInitialState(input) {
+    const fake = Boolean(input.fake);
     const index = parseInt(input.index) || 0;
+
     const items = (input.items || []).map(item => ({
         renderBody: item.renderBody,
-        classes: [item.class, 'tabs__item'],
+        classes: fake ? item.class : [item.class, 'tabs__item'],
+        href: item.href,
         htmlAttributes: processHtmlAttributes(item)
     }));
     const panels = (input.panels || []).map(panel => ({
         renderBody: panel.renderBody,
-        classes: [panel.class, 'tabs__panel'],
+        classes: [panel.class, fake ? 'fake-tabs__panel' : 'tabs__panel'],
         htmlAttributes: processHtmlAttributes(panel)
     }));
 
     return {
         index,
+        fake,
         items,
         panels,
-        classes: [input.class, 'tabs'],
+        classes: [input.class, fake ? 'fake-tabs' : 'tabs'],
         htmlAttributes: processHtmlAttributes(input)
     };
 }
@@ -34,7 +38,9 @@ function getTemplateData(state) {
 
 function init() {
     this.itemsEl = this.getEl('items');
-    rovingTabindex.createLinear(this.itemsEl, 'div', { index: 0, autoReset: 0 });
+    if (!this.state.fake) {
+        rovingTabindex.createLinear(this.itemsEl, 'div', { index: 0, autoReset: 0 });
+    }
     observer.observeRoot(this, ['index'], (itemIndex) => {
         this.processAfterStateChange(parseInt(itemIndex));
     }, true);
@@ -53,7 +59,7 @@ function processAfterStateChange(itemIndex) {
  */
 function handleItemClick(e) {
     let itemEl = e.target;
-    while (!itemEl.classList.contains('tabs__item')) {
+    while (!itemEl.classList.contains(this.state.fake ? 'fake-tabs__item' : 'tabs__item')) {
         itemEl = itemEl.parentNode;
     }
 

@@ -1,33 +1,55 @@
 <div w-bind class=data.classes ${data.htmlAttributes}>
-    <div w-id="items" class="tabs__items" role="tablist">
-        <for(i, item in data.items)>
-            <div
-                aria-controls="${widget.id}-tabpanel-${i}"
-                id="${widget.id}-default-tab-${i}"
-                role="tab"
-                aria-selected=String(parseInt(i) === data.index)
-                class=item.classes
-                w-onclick="handleItemClick"
-                w-onkeydown="handleItemKeydown"
-                w-preserve-attrs="tabindex,data-makeup-index"
-                ${item.htmlAttributes}>
-                <span w-body=item.renderBody/>
+    <if(data.fake)>
+        <ul class="fake-tabs__items">
+            <for(i, item in data.items)>
+                <li
+                    class=[item.classes, 'fake-tabs__item', parseInt(i) === data.index ? 'fake-tabs__item--current' : null]
+                    ${item.htmlAttributes}>
+                    <a
+                        aria-current=(parseInt(i) === data.index && "page")
+                        href=item.href
+                        w-body=item.renderBody/>
+                </li>
+            </for>
+        </ul>
+        <div class="fake-tabs__content">
+            <div class="fake-tabs__cell">
+                <var panel=data.panels[0]/>
+                <div class=panel.classes ${panel.htmlAttributes} w-body=panel.renderBody/>
             </div>
-        </for>
-    </div>
-    <div class="tabs__content">
-        <for(i, panel in data.panels)>
-            <div
-                aria-labelledby="${widget.id}-default-tab-${i}"
-                id="${widget.id}-tabpanel-${i}"
-                role="tabpanel"
-                class=panel.classes
-                hidden=(parseInt(i) !== data.index)
-                ${panel.htmlAttributes}>
-                <div class="tabs__cell">
-                    <div w-body=panel.renderBody/>
+        </div>
+    </if>
+    <else>
+        <div w-id="items" class="tabs__items" role="tablist">
+            <for(i, item in data.items)>
+                <div
+                    aria-controls="${widget.id}-tabpanel-${i}"
+                    id="${widget.id}-default-tab-${i}"
+                    role="tab"
+                    aria-selected=String(parseInt(i) === data.index)
+                    class=item.classes
+                    w-onclick="handleItemClick"
+                    w-onkeydown="handleItemKeydown"
+                    w-preserve-attrs="tabindex,data-makeup-index"
+                    ${item.htmlAttributes}>
+                    <span w-body=item.renderBody/>
                 </div>
-            </div>
-        </for>
-    </div>
+            </for>
+        </div>
+        <div class="tabs__content">
+            <for(i, panel in data.panels)>
+                <div
+                    aria-labelledby="${widget.id}-default-tab-${i}"
+                    id="${widget.id}-tabpanel-${i}"
+                    role="tabpanel"
+                    class=panel.classes
+                    hidden=(parseInt(i) !== data.index)
+                    ${panel.htmlAttributes}>
+                    <div class="tabs__cell">
+                        <div w-body=panel.renderBody/>
+                    </div>
+                </div>
+            </for>
+        </div>
+    </else>
 </div>

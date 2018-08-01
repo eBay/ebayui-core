@@ -18,6 +18,7 @@
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `index` | String | Yes | 0-based index of selected tab item and panel
+`fake` | Boolean | No | Whether to use link behavior of tab items
 
 ## ebay-tab Events
 
@@ -32,6 +33,12 @@ Event | Data | Description
 ```marko
 <ebay-tab-item>Tab 1</ebay-tab-item>
 ```
+
+## ebay-tab-item Attributes
+
+Name | Type | Stateful | Description
+--- | --- | --- | ---
+`href` | String | No | For use with `fake` tab component
 
 ## ebay-tab-panel Tag
 

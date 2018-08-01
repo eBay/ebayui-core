@@ -2,27 +2,57 @@ const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/server');
 const mock = require('../mock');
 
-function testFirstItemSelected($) {
-    expect($('.tabs__item').length).to.equal(3);
-    expect($('.tabs__item:first-of-type[aria-selected="true"]').length).to.equal(1);
-    expect($('.tabs__item[aria-selected="false"]').length).to.equal(2);
-    expect($('.tabs__panel').length).to.equal(3);
-    expect($('.tabs__panel:first-of-type:not([hidden])').length).to.equal(1);
-    expect($('.tabs__panel[hidden]').length).to.equal(2);
-}
-
 describe('tab', () => {
     test('renders basic version with defaults', context => {
         const input = { items: mock.items, panels: mock.panels };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.tabs').length).to.equal(1);
-        testFirstItemSelected($);
+        expect($('div.tabs').length).to.equal(1);
+        expect($('div.tabs__item').length).to.equal(3);
+        expect($('div.tabs__item:first-of-type[aria-selected="true"]').length).to.equal(1);
+        expect($('div.tabs__item[aria-selected="false"]').length).to.equal(2);
+        expect($('div.tabs__panel').length).to.equal(3);
+        expect($('div.tabs__panel:first-of-type:not([hidden])').length).to.equal(1);
+        expect($('div.tabs__panel[hidden]').length).to.equal(2);
     });
 
     test('renders selection based on index', context => {
-        const input = { index: '0', items: mock.items, panels: mock.panels };
+        const input = { index: '1', items: mock.items, panels: mock.panels };
         const $ = testUtils.getCheerio(context.render(input));
-        testFirstItemSelected($);
+        expect($('div.tabs').length).to.equal(1);
+        expect($('div.tabs__item').length).to.equal(3);
+        expect($('div.tabs__item:nth-of-type(2)[aria-selected="true"]').length).to.equal(1);
+        expect($('div.tabs__item[aria-selected="false"]').length).to.equal(2);
+        expect($('div.tabs__panel').length).to.equal(3);
+        expect($('div.tabs__panel:nth-of-type(2):not([hidden])').length).to.equal(1);
+        expect($('div.tabs__panel[hidden]').length).to.equal(2);
+    });
+
+    test('renders fake version with defaults', context => {
+        const input = { fake: true, items: mock.fakeItems, panels: mock.panels };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('div.fake-tabs').length).to.equal(1);
+        expect($('ul.fake-tabs__items').length).to.equal(1);
+        expect($('li.fake-tabs__item').length).to.equal(3);
+        expect($('li.fake-tabs__item.fake-tabs__item--current:first-of-type').length).to.equal(1);
+        expect($('li.fake-tabs__item.fake-tabs__item--current > a[aria-current="page"]').length).to.equal(1);
+        expect($('li.fake-tabs__item:not(.fake-tabs__item--current)').length).to.equal(2);
+        expect($('div.fake-tabs__content').length).to.equal(1);
+        expect($('div.fake-tabs__cell').length).to.equal(1);
+        expect($('div.fake-tabs__panel').length).to.equal(1);
+    });
+
+    test('renders fake version with selection based on index', context => {
+        const input = { fake: true, index: '1', items: mock.items, panels: mock.panels };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('div.fake-tabs').length).to.equal(1);
+        expect($('ul.fake-tabs__items').length).to.equal(1);
+        expect($('li.fake-tabs__item').length).to.equal(3);
+        expect($('li.fake-tabs__item.fake-tabs__item--current:nth-of-type(2)').length).to.equal(1);
+        expect($('li.fake-tabs__item.fake-tabs__item--current > a[aria-current="page"]').length).to.equal(1);
+        expect($('li.fake-tabs__item:not(.fake-tabs__item--current)').length).to.equal(2);
+        expect($('div.fake-tabs__content').length).to.equal(1);
+        expect($('div.fake-tabs__cell').length).to.equal(1);
+        expect($('div.fake-tabs__panel').length).to.equal(1);
     });
 
     test('handles pass-through html attributes', context => {
@@ -42,6 +72,16 @@ describe('tab-item', () => {
     test('handles custom class', context => {
         testUtils.testCustomClass(context, '.tabs__item', 'items');
     });
+
+    test('handles pass-through html attributes when fake', context => {
+        const parentInput = { fake: true, panels: mock.panels };
+        testUtils.testHtmlAttributes(context, '.fake-tabs__item', 'items', {}, parentInput);
+    });
+
+    test('handles custom class when fake', context => {
+        const parentInput = { fake: true, panels: mock.panels };
+        testUtils.testCustomClass(context, '.fake-tabs__item', 'items', false, {}, parentInput);
+    });
 });
 
 describe('tab-panel', () => {
@@ -51,5 +91,15 @@ describe('tab-panel', () => {
 
     test('handles custom class', context => {
         testUtils.testCustomClass(context, '.tabs__panel', 'panels');
+    });
+
+    test('handles pass-through html attributes when fake', context => {
+        const parentInput = { fake: true, items: mock.fakeItems };
+        testUtils.testHtmlAttributes(context, '.fake-tabs__panel', 'panels', {}, parentInput);
+    });
+
+    test('handles custom class when fake', context => {
+        const parentInput = { fake: true, items: mock.fakeItems };
+        testUtils.testCustomClass(context, '.fake-tabs__panel', 'panels', false, {}, parentInput);
     });
 });
