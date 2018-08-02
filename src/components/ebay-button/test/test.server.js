@@ -26,16 +26,16 @@ Object.keys(properties).forEach(property => {
     });
 });
 
-test('renders button with overriden type', context => {
-    const input = { type: 'submit' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($(`button.btn`).attr('type')).to.equal('submit');
-});
-
 test('renders button with default type', context => {
     const input = { };
     const $ = testUtils.getCheerio(context.render(input));
     expect($(`button.btn`).attr('type')).to.equal('button');
+});
+
+test('renders button with overriden type', context => {
+    const input = { type: 'submit' };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($(`button.btn`).attr('type')).to.equal('submit');
 });
 
 test('renders secondary version by default', context => {
