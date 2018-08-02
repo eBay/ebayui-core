@@ -38,7 +38,6 @@ test('renders button with default type', context => {
     expect($(`button.btn`).attr('type')).to.equal('button');
 });
 
-
 test('renders secondary version by default', context => {
     const input = {};
     const $ = testUtils.getCheerio(context.render(input));
