@@ -2,20 +2,23 @@
     <if(data.fake)>
         <ul class="fake-tabs__items">
             <for(i, item in data.items)>
+                <var isCurrentItem=parseInt(i) === data.index/>
                 <li
-                    class=[item.classes, 'fake-tabs__item', parseInt(i) === data.index ? 'fake-tabs__item--current' : null]
+                    class=[item.classes, 'fake-tabs__item', isCurrentItem ? 'fake-tabs__item--current' : null]
                     ${item.htmlAttributes}>
                     <a
-                        aria-current=(parseInt(i) === data.index && "page")
+                        aria-current=(isCurrentItem && "page")
                         href=item.href
                         w-body=item.renderBody/>
                 </li>
             </for>
         </ul>
         <div class="fake-tabs__content">
-            <div class="fake-tabs__cell">
-                <var panel=data.panels[0]/>
-                <div class=panel.classes ${panel.htmlAttributes} w-body=panel.renderBody/>
+            <var panel=data.panels[0]/>
+            <div class=panel.classes ${panel.htmlAttributes}>
+                <div class="fake-tabs__cell">
+                    <div w-body=panel.renderBody/>
+                </div>
             </div>
         </div>
     </if>

@@ -6,7 +6,7 @@ const _set = require('lodash.set');
  * @param {Object} widget
  * @param {Array} attributes
  * @param {Function} callback
- * @param {Boolean} skipSetState
+ * @param {Boolean} skipSetState: useful for handling setState in your component, rather than here
  */
 function observeRoot(widget, attributes, callback, skipSetState) {
     attributes.forEach(attribute => {

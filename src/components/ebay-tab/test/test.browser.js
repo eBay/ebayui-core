@@ -14,6 +14,11 @@ function testSelectBehavior(itemEl) {
     expect(itemEl.getAttribute('aria-selected')).to.equal('true');
 }
 
+function testFakeSelectBehavior(itemEl) {
+    expect(itemEl.classList.contains('fake-tabs__item--current')).to.equal(true);
+    expect(itemEl.querySelector('a').getAttribute('aria-current')).to.equal('page');
+}
+
 describe('given tabs with first item selected', () => {
     let widget;
     let root;
@@ -93,5 +98,34 @@ describe('given tabs with first item selected', () => {
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
         test('then the item is selected', () => testSelectBehavior(secondItemEl));
+    });
+});
+
+describe('given fake tabs with first item selected', () => {
+    let widget;
+    let root;
+    let itemEls;
+    let secondItemEl;
+
+    beforeEach(() => {
+        const input = { fake: true, items: mock.fakeItems, panels: mock.panels };
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = widget.el;
+        itemEls = document.querySelectorAll('.fake-tabs__item');
+        secondItemEl = itemEls[1];
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when the second item is selected programmatically', () => {
+        let spy;
+        beforeEach((done) => {
+            spy = sinon.spy();
+            widget.on('tab-select', spy);
+            root.index = '1';
+            setTimeout(done);
+        });
+
+        test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
+        test('then the item is selected', () => testFakeSelectBehavior(secondItemEl));
     });
 });
