@@ -192,6 +192,7 @@
             "@selected": "boolean"
         }
     },
+    "<ebay-select-option>": {},
     "<ebay-tab>": {
         "renderer": "./src/components/ebay-tab/index.js",
         "transformer": "./src/common/transformer/index.js",
