@@ -10,13 +10,19 @@ function testSelectEvent(spy, index) {
     expect(eventData.index).to.equal(index);
 }
 
-function testSelectBehavior(itemEl) {
-    expect(itemEl.getAttribute('aria-selected')).to.equal('true');
+function testSelectBehavior(itemEl, done) {
+    setTimeout(() => {
+        expect(itemEl.getAttribute('aria-selected')).to.equal('true');
+        done();
+    }, 10);
 }
 
-function testFakeSelectBehavior(itemEl) {
-    expect(itemEl.classList.contains('fake-tabs__item--current')).to.equal(true);
-    expect(itemEl.querySelector('a').getAttribute('aria-current')).to.equal('page');
+function testFakeSelectBehavior(itemEl, done) {
+    setTimeout(() => {
+        expect(itemEl.classList.contains('fake-tabs__item--current')).to.equal(true);
+        expect(itemEl.querySelector('a').getAttribute('aria-current')).to.equal('page');
+        done();
+    }, 10);
 }
 
 describe('given tabs with first item selected', () => {
@@ -59,7 +65,7 @@ describe('given tabs with first item selected', () => {
         });
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the item is selected', () => testSelectBehavior(secondItemEl));
+        test('then the item is selected', (context, done) => testSelectBehavior(secondItemEl, done));
     });
 
     describe('when the second item is selected via keyboard action button', () => {
@@ -71,7 +77,7 @@ describe('given tabs with first item selected', () => {
         });
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the item is selected', () => testSelectBehavior(secondItemEl));
+        test('then the item is selected', (context, done) => testSelectBehavior(secondItemEl, done));
     });
 
     describe('when the second item\'s inner content is clicked', () => {
@@ -84,7 +90,7 @@ describe('given tabs with first item selected', () => {
         });
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the item is selected', () => testSelectBehavior(secondItemEl));
+        test('then the item is selected', (context, done) => testSelectBehavior(secondItemEl, done));
     });
 
     describe('when the second item is selected programmatically', () => {
@@ -97,7 +103,7 @@ describe('given tabs with first item selected', () => {
         });
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the item is selected', () => testSelectBehavior(secondItemEl));
+        test('then the item is selected', (context, done) => testSelectBehavior(secondItemEl, done));
     });
 });
 
@@ -126,6 +132,6 @@ describe('given fake tabs with first item selected', () => {
         });
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the item is selected', () => testFakeSelectBehavior(secondItemEl));
+        test('then the item is selected', (context, done) => testFakeSelectBehavior(secondItemEl, done));
     });
 });
