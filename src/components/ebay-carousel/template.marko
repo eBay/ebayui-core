@@ -6,9 +6,8 @@
             if(data.totalSlides >= 1)
             id=statusId
             class="clipped"
-            role="status"
-            aria-live="polite">
-            ${data.accessibilityStatus}
+            aria-live=(data.autoplayInterval && !data.paused ? "off" : "polite")>
+            <span>${data.accessibilityStatus}</span>
         </span>
         <button
             class="carousel__control carousel__control--prev"
@@ -66,7 +65,7 @@
         </if>
     </div>
 
-    <ul class="carousel__dots" role="navigation" if(!data.noDots && data.totalSlides > 1)>
+    <ul class="carousel__dots" if(!data.noDots && data.totalSlides > 1)>
         <li for(i from 0 to data.totalSlides - 1)>
             <var isActive=(i === data.slide)/>
             <button
