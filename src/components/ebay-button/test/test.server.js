@@ -26,6 +26,21 @@ Object.keys(properties).forEach(property => {
     });
 });
 
+test('renders button with overriden type', context => {
+    const input = { type: 'submit' };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($(`button[type="button"]`).length).to.equal(0);
+    expect($(`button[type="submit"]`).length).to.equal(1);
+});
+
+test('renders button with default type', context => {
+    const input = { };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($(`button[type="button"]`).length).to.equal(1);
+    expect($(`button[type="submit"]`).length).to.equal(0);
+});
+
+
 test('renders secondary version by default', context => {
     const input = {};
     const $ = testUtils.getCheerio(context.render(input));

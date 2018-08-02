@@ -21,6 +21,7 @@
         "@html-attributes": "expression",
         "@class": "string",
         "@disabled": "boolean",
+        "@type": "string",
         "@partially-disabled": "boolean",
         "@href": "string",
         "@priority": "string",
