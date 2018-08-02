@@ -5396,12 +5396,6 @@ marko-cli@^3.2.0:
     resolve-from "^4.0.0"
     update-notifier "^2.5.0"
 
-marko-dynamic-tag@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/marko-dynamic-tag/-/marko-dynamic-tag-1.0.0.tgz#44401bc874b64c4c53bf72ecd7ba2d953fef8731"
-  dependencies:
-    try-require "^1.2.1"
-
 marko-prettyprint@^1.4.1:
   version "1.4.1"
   resolved "https://registry.npmjs.org/marko-prettyprint/-/marko-prettyprint-1.4.1.tgz#f19d9582eaa48676c0d40684c3847056b73ac856"

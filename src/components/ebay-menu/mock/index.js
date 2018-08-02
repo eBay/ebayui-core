@@ -1,5 +1,6 @@
+const iconRenderBody = (stream) => stream.write('icon');
 const renderBody = (stream) => stream.write('text');
 const item = { renderBody };
 const items = [item, item, item];
 
-module.exports = { renderBody, item, items };
+module.exports = { iconRenderBody, renderBody, item, items };

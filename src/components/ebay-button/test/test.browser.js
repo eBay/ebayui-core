@@ -32,6 +32,20 @@ describe('given button is enabled', () => {
             testUtils.testOriginalEvent(spy);
         });
     });
+
+    describe('when button is clicked via action key', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('button-click', spy);
+            testUtils.triggerEvent(root, 'keydown', 32);
+        });
+
+        test('then it emits the event with correct data', () => {
+            expect(spy.calledOnce).to.equal(true);
+            testUtils.testOriginalEvent(spy);
+        });
+    });
 });
 
 describe('given button is disabled', () => {
