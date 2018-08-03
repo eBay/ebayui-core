@@ -192,5 +192,11 @@
             "@selected": "boolean"
         }
     },
-    "<ebay-select-option>": {}
+    "<ebay-select-option>": {},
+    "<ebay-switch>": {
+        "renderer": "./src/components/ebay-switch/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string"
+    }
 }
