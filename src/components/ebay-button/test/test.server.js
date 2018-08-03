@@ -26,22 +26,16 @@ Object.keys(properties).forEach(property => {
     });
 });
 
-test('renders button with default type', context => {
-    const input = { };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($(`button.btn`).attr('type')).to.equal('button');
-});
-
-test('renders button with overriden type', context => {
-    const input = { type: 'submit' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($(`button.btn`).attr('type')).to.equal('submit');
-});
-
-test('renders secondary version by default', context => {
+test('renders defaults', context => {
     const input = {};
     const $ = testUtils.getCheerio(context.render(input));
-    expect($(`button.btn.btn--secondary`).length).to.equal(1);
+    expect($('button.btn.btn--secondary[type=button]').length).to.equal(1);
+});
+
+test('renders with type override', context => {
+    const input = { type: 'submit' };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('button.btn[type=submit]').length).to.equal(1);
 });
 
 test('does not apply priority class for unsupported value', context => {
