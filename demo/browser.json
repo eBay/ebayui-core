@@ -17,7 +17,7 @@
         "../src/components/ebay-pagination",
         "../src/components/ebay-radio",
         "../src/components/ebay-select",
-        "../src/components/ebay-switch"
+        "../src/components/ebay-switch",
         {
             "if-flag": "skin-ds6",
             "dependencies": [
