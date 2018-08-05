@@ -10,8 +10,11 @@ import MenuBorderless from './../../../src/components/ebay-menu/examples/05-bord
 import MenuSmall from './../../../src/components/ebay-menu/examples/06-small/template.marko';
 import MenuPrimary from './../../../src/components/ebay-menu/examples/07-primary/template.marko';
 import MenuNoLabel from './../../../src/components/ebay-menu/examples/08-no-label/template.marko';
-import MenuRadio from './../../../src/components/ebay-menu/examples/09-radio/template.marko';
-import MenuCheckbox from './../../../src/components/ebay-menu/examples/10-checkbox/template.marko';
+import MenuIconWithTextLabel from './../../../src/components/ebay-menu/examples/09-icon-with-text-label/template.marko';
+import MenuIconLabelWithToggle from './../../../src/components/ebay-menu/examples/10-icon-label-with-toggle/template.marko';
+import MenuIconLabelWithoutToggle from './../../../src/components/ebay-menu/examples/11-icon-label-without-toggle/template.marko';
+import MenuRadio from './../../../src/components/ebay-menu/examples/12-radio/template.marko';
+import MenuCheckbox from './../../../src/components/ebay-menu/examples/13-checkbox/template.marko';
 
 storiesOf('ebayui/ebay-menu', module)
   .addDecorator(withKnobs)
@@ -79,6 +82,21 @@ storiesOf('ebayui/ebay-menu', module)
 storiesOf('ebayui/ebay-menu', module)
   .add('no label', () => {
     return MenuNoLabel.renderSync({});
+  });
+
+storiesOf('ebayui/ebay-menu', module)
+  .add('icon with text label', () => {
+    return MenuIconWithTextLabel.renderSync({});
+  });
+
+storiesOf('ebayui/ebay-menu', module)
+  .add('icon label with toggle', () => {
+    return MenuIconLabelWithToggle.renderSync({});
+  });
+
+storiesOf('ebayui/ebay-menu', module)
+  .add('icon label without toggle', () => {
+    return MenuIconLabelWithoutToggle.renderSync({});
   });
 
 storiesOf('ebayui/ebay-menu', module)

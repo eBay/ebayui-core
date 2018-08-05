@@ -2,15 +2,16 @@
 import { storiesOf } from '@storybook/marko';
 import { withKnobs, boolean, text, object, number, array } from '@storybook/addon-knobs';
 import Carousel from './../../../src/components/ebay-carousel/';
-import CarouselContinuous from './../../../src/components/ebay-carousel/examples/1-continuous/template.marko';
-import CarouselStartingIndex from './../../../src/components/ebay-carousel/examples/2-starting-index/template.marko';
-import CarouselFewItems from './../../../src/components/ebay-carousel/examples/3-few-items/template.marko';
-import CarouselVariableWidthItems from './../../../src/components/ebay-carousel/examples/4-variable-width-items/template.marko';
-import CarouselSingleItemPerSlide from './../../../src/components/ebay-carousel/examples/5-single-item-per-slide/template.marko';
-import CarouselStartingSlide from './../../../src/components/ebay-carousel/examples/6-starting-slide/template.marko';
-import CarouselTwoItemsPerSlide from './../../../src/components/ebay-carousel/examples/7-two-items-per-slide/template.marko';
-import CarouselThreeItemsPerSlide from './../../../src/components/ebay-carousel/examples/8-three-items-per-slide/template.marko';
-import CarouselAccessibilityText from './../../../src/components/ebay-carousel/examples/9-accessibility-text/template.marko';
+import CarouselContinuous from './../../../src/components/ebay-carousel/examples/01-continuous/template.marko';
+import CarouselStartingIndex from './../../../src/components/ebay-carousel/examples/02-starting-index/template.marko';
+import CarouselFewItems from './../../../src/components/ebay-carousel/examples/03-few-items/template.marko';
+import CarouselVariableWidthItems from './../../../src/components/ebay-carousel/examples/04-variable-width-items/template.marko';
+import CarouselSingleItemPerSlide from './../../../src/components/ebay-carousel/examples/05-single-item-per-slide/template.marko';
+import CarouselStartingSlide from './../../../src/components/ebay-carousel/examples/06-starting-slide/template.marko';
+import CarouselTwoItemsPerSlide from './../../../src/components/ebay-carousel/examples/07-two-items-per-slide/template.marko';
+import CarouselThreeItemsPerSlide from './../../../src/components/ebay-carousel/examples/08-three-items-per-slide/template.marko';
+import CarouselAccessibilityText from './../../../src/components/ebay-carousel/examples/09-accessibility-text/template.marko';
+import CarouselAutoplay from './../../../src/components/ebay-carousel/examples/10-autoplay/template.marko';
 
 import './ebay-carousel.less'
 
@@ -90,3 +91,8 @@ storiesOf('ebayui/ebay-carousel', module)
   .add('accessibility-text', () => {
     return CarouselAccessibilityText.renderSync({});
   });
+
+storiesOf('ebayui/ebay-carousel', module)
+  .add('autoplay', () => {
+    return CarouselAutoplay.renderSync({});
+  });  
