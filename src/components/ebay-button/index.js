@@ -46,6 +46,7 @@ function getTemplateData(state, input) {
         classes.push(`${mainClass}--fluid`);
     }
 
+    model.renderBody = input.renderBody;
     model.tag = tag;
     model.classes = classes;
     model.disabled = state.disabled;
