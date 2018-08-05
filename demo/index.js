@@ -1,5 +1,6 @@
 require('marko/node-require').install();
 const fs = require('fs');
+const path = require('path');
 const lasso = require('lasso');
 const express = require('express');
 const highlight = require('gh-highlight');
@@ -38,17 +39,23 @@ app.get('/ds6', (req, res) => {
 
 app.get('/:designSystem/:component?', (req, res) => {
     const name = req.params.component;
-    const componentsPath = `${__dirname}/../src/components`;
-    const examplesPath = `${componentsPath}/${name}/examples`;
+    const componentsPath = path.join(__dirname, '/../src/components');
+    const componentPath = path.join(componentsPath, name);
+    const examplesPath = path.join(componentPath, 'examples');
     const model = {
         name: req.params.component,
-        examples: fs.readdirSync(examplesPath).map(example => ({
-            num: parseInt(example.split('-')[0]),
-            name: example.split('-').slice(1, example.length).join(' '),
-            code: highlight.sync(fs.readFileSync(`${examplesPath}/${example}/template.marko`, 'utf8'), 'marko'),
-            sources: [`${componentsPath}/${name}`, examplesPath, `${examplesPath}/${example}`],
-            path: `${examplesPath}/${example}`
-        })).filter(demoUtils.isDirectory),
+        examples: fs.readdirSync(examplesPath).map(example => {
+            const examplePath = path.join(examplesPath, example);
+            const exampleTemplatePath = path.join(examplePath, 'template.marko');
+            return {
+                num: parseInt(example.split('-')[0]),
+                name: example.split('-').slice(1, example.length).join(' '),
+                code: highlight.sync(fs.readFileSync(exampleTemplatePath, 'utf8'), 'marko'),
+                sources: [componentPath, examplePath],
+                templatePath: exampleTemplatePath,
+                template: require(exampleTemplatePath)
+            };
+        }).filter(demoUtils.isDirectory),
         components: demoUtils.getComponentsWithExamples('src')
     };
     const md = new MobileDetect(req.headers['user-agent']);
@@ -62,6 +69,8 @@ app.get('/:designSystem/:component?', (req, res) => {
             return true;
         }
     });
+
+    model.dependencies = model.examples.map(example => example.templatePath);
 
     req.model = model;
 

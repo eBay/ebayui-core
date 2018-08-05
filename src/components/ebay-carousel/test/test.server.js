@@ -27,9 +27,53 @@ describe('carousel', () => {
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.carousel__control--prev[aria-label="prev"]').length).to.equal(1);
         expect($('.carousel__control--next[aria-label="next"]').length).to.equal(1);
-        expect($('.clipped[role="status"]').text()).to.equal('1 of 6');
+        expect($('.clipped[aria-live] span').text()).to.equal('1 of 6');
         expect($('[data-slide="0"][aria-label="slide 1"]').length).to.equal(1);
         expect($('[data-slide="1"][aria-label="other 2"]').length).to.equal(1);
+    });
+
+    test('renders autoplay version', context => {
+        const input = {
+            items: mock.sixItems,
+            itemsPerSlide: 1,
+            autoplay: true,
+            accessibilityPlay: 'play',
+            accessibilityPause: 'pause'
+        };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.carousel__autoplay').length).to.equal(1);
+        expect($('.carousel__play').length).to.equal(0);
+        expect($('.carousel__dots').length).to.equal(1);
+        expect($('.carousel__pause').attr('aria-label')).to.equal('pause');
+    });
+
+    test('renders autoplay version without dots', context => {
+        const input = {
+            items: mock.sixItems,
+            itemsPerSlide: 1,
+            autoplay: true,
+            noDots: true,
+            accessibilityPlay: 'play',
+            accessibilityPause: 'pause'
+        };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.carousel__autoplay').length).to.equal(1);
+        expect($('.carousel__dots').length).to.equal(0);
+    });
+
+    test('renders paused autoplay version', context => {
+        const input = {
+            items: mock.sixItems,
+            itemsPerSlide: 1,
+            autoplay: true,
+            paused: true,
+            accessibilityPlay: 'play',
+            accessibilityPause: 'pause'
+        };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.carousel__autoplay').length).to.equal(1);
+        expect($('.carousel__pause').length).to.equal(0);
+        expect($('.carousel__play').attr('aria-label')).to.equal('play');
     });
 
     test('handles pass-through html attributes', context => {

@@ -1,12 +1,10 @@
 
-<div class="dialog-placeholder" w-bind>
-    <div w-id="dialog" class=data.dialogClass hidden=!data.open role="dialog" w-preserve-attrs="hidden" ${data.htmlAttributes} w-onclick="handleDialogClick">
-        <div w-id="window" class=data.windowClass role="document">
-            <button w-id="close" class="dialog__close" type="button" aria-label=data.ariaLabelClose w-onclick="handleCloseButtonClick">
-                <ebay-icon type="inline" name="close"/>
-            </button>
+<div w-bind class=data.dialogClass hidden=!data.open role="dialog" w-preserve-attrs="hidden" ${data.htmlAttributes} w-onclick="handleDialogClick">
+    <div w-id="window" class=data.windowClass role="document">
+        <button w-id="close" class="dialog__close" type="button" aria-label=data.ariaLabelClose w-onclick="handleCloseButtonClick">
+            <ebay-icon type="inline" name="close"/>
+        </button>
 
-            <div class="dialog__body" w-id="body" w-body/>
-        </div>
+        <div class="dialog__body" w-id="body" w-body/>
     </div>
 </div>

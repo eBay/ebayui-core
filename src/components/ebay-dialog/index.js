@@ -9,7 +9,7 @@ const transition = require('../../common/transition');
 const template = require('./template.marko');
 
 function init() {
-    this.dialogEl = this.getEl('dialog');
+    this.dialogEl = this.getEl();
     this.windowEl = this.getEl('window');
     this.closeEl = this.getEl('close');
     this.bodyEl = this.getEl('body');
@@ -104,7 +104,7 @@ function trap(opts) {
                 // Reset dialog scroll position lazily to avoid jank.
                 // Note since the dialog is not in the dom at this point none of the scroll methods will work.
                 this.cancelScrollReset = setTimeout(() => {
-                    this.el.replaceChild(this.dialogEl, this.dialogEl);
+                    this.dialogEl.parentNode.replaceChild(this.dialogEl, this.dialogEl);
                     this.cancelScrollReset = undefined;
                 }, 20);
             }

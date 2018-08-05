@@ -69,7 +69,7 @@ function handleClick(originalEvent) {
  */
 function handleKeydown(e) {
     eventUtils.handleActionKeydown(e, () => {
-        this.handleClick();
+        this.handleClick(e);
     });
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
@@ -98,7 +98,6 @@
     "lintspaces-cli": "^0.6.0",
     "marko": "^3",
     "marko-cli": "^3.2.0",
-    "marko-dynamic-tag": "^1.0.0",
     "marko-prettyprint": "^1.4.1",
     "marko-widgets": "^6",
     "mobile-detect": "^1.4.1",
