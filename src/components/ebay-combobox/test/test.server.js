@@ -55,7 +55,7 @@ describe('select', () => {
     });
 
     test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, 'span.combobox');
+        testUtils.testHtmlAttributes(context, 'input');
     });
 
     test('handles custom class', context => {

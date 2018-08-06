@@ -1,6 +1,5 @@
 <span
     class=data.class
-    ${data.htmlAttributes}
     w-on-expander-expand='handleExpand'
     w-on-expander-collapse='handleCollapse'
     w-bind>
@@ -15,7 +14,8 @@
             aria-owns=widget.elId('combobox__options')
             aria-expanded='false'
             w-on-keydown='handleComboboxKeyDown'
-            w-preserve-attrs="aria-expanded"/>
+            w-preserve-attrs="aria-expanded"
+            ${data.htmlAttributes}/>
         <span class="combobox__icon" aria-hidden="true"></span>
     </span>
     <div
