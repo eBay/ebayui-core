@@ -21,7 +21,35 @@ function testOriginalEvent(spy) {
     expect(spy.getCall(0).args[0].originalEvent instanceof Event).to.equal(true);
 }
 
+/**
+ * Simulates a touch based scroll event over 100ms.
+ *
+ * @param {HTMLElement} el The element to scroll.
+ * @param {number} to The new scrollLeft for the element.
+ */
+function simulateScroll(el, to) {
+    const { scrollLeft } = el;
+    const distance = to - scrollLeft;
+    const duration = 100;
+    triggerEvent(el, 'touchstart');
+    requestAnimationFrame(startTime => {
+        (function animate(curTime) {
+            const delta = curTime - startTime;
+            if (delta > duration) {
+                triggerEvent(el, 'touchend');
+                el.scrollLeft = to;
+                return;
+            }
+
+            triggerEvent(el, 'touchmove');
+            el.scrollLeft = (delta / duration) * distance + scrollLeft;
+            requestAnimationFrame(animate);
+        }(startTime));
+    });
+}
+
 module.exports = {
     triggerEvent,
-    testOriginalEvent
+    testOriginalEvent,
+    simulateScroll
 };

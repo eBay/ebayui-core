@@ -811,12 +811,14 @@ describe('given an autoplay carousel in the paused state', () => {
     let root;
     let list;
     let playButton;
+    let prevButton;
 
     beforeEach(done => {
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
         root = document.querySelector('.carousel');
         list = root.querySelector('.carousel__list');
         playButton = root.querySelector('.carousel__play');
+        prevButton = root.querySelector('.carousel__control--prev');
         waitForUpdate(widget, done);
     });
 
@@ -861,6 +863,110 @@ describe('given an autoplay carousel in the paused state', () => {
         it('then it applies a translation', () => {
             const { offsetLeft } = list.children[2];
             expect(getTranslateX(list)).to.equal(offsetLeft);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            const { state: { items } } = widget;
+            const visibleIndexes = getVisibleIndexes(items);
+            expect(visibleIndexes).to.deep.equal([2, 3]);
+        });
+    });
+
+    describe('when the previous button is clicked', () => {
+        let nextSpy;
+        let prevSpy;
+        let updateSpy;
+
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            prevSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-update', updateSpy);
+            widget.subscribeTo(list).once('transitionend', done);
+            testUtils.triggerEvent(prevButton, 'click');
+        });
+
+        it('then it does not emit the marko next event', () => {
+            expect(nextSpy.notCalled).to.equal(true);
+        });
+
+        it('then it emits the marko prev event', () => {
+            expect(prevSpy.calledOnce).to.equal(true);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([4, 5]);
+        });
+
+        it('then it moves to the last slide', () => {
+            expect(widget.state.index).to.equal(4);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            const { state: { items } } = widget;
+            const visibleIndexes = getVisibleIndexes(items);
+            expect(visibleIndexes).to.deep.equal([4, 5]);
+        });
+    });
+});
+
+describe('given a carousel in the default state with native scrolling', () => {
+    const input = { itemsPerSlide: 2, items: mock.sixItems };
+    let widget;
+    let root;
+    let list;
+    let style;
+
+    before(() => {
+        style = document.createElement('style');
+        style.innerHTML = '.carousel__list { overflow: scroll; }';
+        document.body.appendChild(style);
+    });
+
+    beforeEach(done => {
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = document.querySelector('.carousel');
+        list = root.querySelector('.carousel__list');
+        waitForUpdate(widget, done);
+    });
+
+    afterEach(() => widget.destroy());
+    after(() => document.body.removeChild(style));
+
+    describe('when scrolling an item to the right', () => {
+        let nextSpy;
+        let slideSpy;
+        let updateSpy;
+
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            slideSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-slide', slideSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.simulateScroll(list, list.children[2].offsetLeft);
+            waitForUpdate(widget, done);
+        });
+
+        it('then it does not emit next or slide events', () => {
+            expect(nextSpy.notCalled).to.equal(true);
+            expect(slideSpy.notCalled).to.equal(true);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
+        });
+
+        it('then it applied the right scroll position', () => {
+            const { offsetLeft } = list.children[2];
+            expect(list.scrollLeft).to.equal(offsetLeft);
         });
 
         it('then it calculates item visibility correctly', () => {
