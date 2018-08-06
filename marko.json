@@ -192,5 +192,14 @@
             "@selected": "boolean"
         }
     },
-    "<ebay-select-option>": {}
+    "<ebay-select-option>": {},
+    "<ebay-textbox>": {
+        "renderer": "./src/components/ebay-textbox/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@invalid": "boolean",
+        "@fluid": "boolean",
+        "@multiline": "boolean"
+    }
 }
