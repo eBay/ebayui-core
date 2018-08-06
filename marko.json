@@ -20,6 +20,7 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@type": "string",
         "@disabled": "boolean",
         "@partially-disabled": "boolean",
         "@href": "string",
@@ -198,5 +199,14 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string"
+    },
+    "<ebay-textbox>": {
+        "renderer": "./src/components/ebay-textbox/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@invalid": "boolean",
+        "@fluid": "boolean",
+        "@multiline": "boolean"
     }
 }
