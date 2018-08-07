@@ -30,7 +30,6 @@ The `inline` icon will include the actual SVG markup in the HTML and then refere
 ## ebay-icon Attributes
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`class` | String | No | custom class
 `type` | String | No | "background" via CSS (default) or "inline" via HTML
 `name` | String | No | name of the icon from Skin
 `no-skin-classes` | Boolean | No | Used for special cases where `icon` classes from Skin should not be applied

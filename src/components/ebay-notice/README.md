@@ -18,7 +18,6 @@ For the dismissible use case, if the parent of `<ebay-notice>` wants to close it
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`class` | String | No | custom class
 `type` | String | No | "inline" or "page" (default)
 `status`  | String | No | "priority" (default), "confirmation" or "information"
 `aria-text` | String | No | adding description for the notice for a11y users
