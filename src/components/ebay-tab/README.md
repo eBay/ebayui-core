@@ -24,7 +24,7 @@ Name | Type | Stateful | Description
 
 Event | Data | Description
 --- | --- | ---
-`tab-select` | `{ originalEvent }` |
+`tab-select` | `{ index }` |
 
 ## ebay-tab-item Tag
 

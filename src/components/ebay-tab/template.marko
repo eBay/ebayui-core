@@ -27,7 +27,7 @@
             <for(i, item in data.items)>
                 <div
                     aria-controls="${widget.id}-tabpanel-${i}"
-                    id="${widget.id}-default-tab-${i}"
+                    id="${widget.id}-tab-${i}"
                     role="tab"
                     aria-selected=String(parseInt(i) === data.index)
                     class=item.classes
@@ -42,7 +42,7 @@
         <div class="tabs__content">
             <for(i, panel in data.panels)>
                 <div
-                    aria-labelledby="${widget.id}-default-tab-${i}"
+                    aria-labelledby="${widget.id}-tab-${i}"
                     id="${widget.id}-tabpanel-${i}"
                     role="tabpanel"
                     class=panel.classes
