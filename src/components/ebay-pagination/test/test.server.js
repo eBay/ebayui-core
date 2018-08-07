@@ -23,7 +23,7 @@ describe('pagination', () => {
 
     test('renders without a selected element when current page not defined', context => {
         const $ = testUtils.getCheerio(context.render(mock.basicLinksWithoutCurrent));
-        expect($('.pagination__item[aria-current="page"]').length).to.equal(0);
+        expect($('.pagination__item[aria-current]').length).to.equal(0);
     });
 
     test('renders with aria-disabled when navigation is disabled', context => {
