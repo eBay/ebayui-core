@@ -7,7 +7,7 @@
 function emitAndFire(widget, eventName, eventArg) {
     const originalEmit = widget.emit;
     let event;
-    if (window.CustomEvent) {
+    if ('CustomEvent' in window && typeof window.CustomEvent === 'function') {
         event = new CustomEvent(eventName, { detail: eventArg });
     } else {
         event = document.createEvent('CustomEvent');
