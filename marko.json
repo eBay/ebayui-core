@@ -194,6 +194,12 @@
         }
     },
     "<ebay-select-option>": {},
+    "<ebay-switch>": {
+        "renderer": "./src/components/ebay-switch/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string"
+    },
     "<ebay-tab>": {
         "renderer": "./src/components/ebay-tab/index.js",
         "transformer": "./src/common/transformer/index.js",
