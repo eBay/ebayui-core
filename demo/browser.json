@@ -17,6 +17,7 @@
         "../src/components/ebay-pagination",
         "../src/components/ebay-select",
         "../src/components/ebay-radio",
+        "../src/components/ebay-tab",
         "../src/components/ebay-textbox",
         {
             "if-flag": "skin-ds6",
