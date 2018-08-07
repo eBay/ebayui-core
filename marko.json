@@ -200,6 +200,28 @@
         "@html-attributes": "expression",
         "@class": "string"
     },
+    "<ebay-tab>": {
+        "renderer": "./src/components/ebay-tab/index.js",
+        "transformer": "./src/common/transformer/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@index": "string",
+        "@fake": "boolean",
+        "@headings <heading>[]": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@href": "string"
+        },
+        "@panels <panel>[]": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string"
+        }
+    },
+    "<ebay-tab-heading>": {},
+    "<ebay-tab-panel>": {},
     "<ebay-textbox>": {
         "renderer": "./src/components/ebay-textbox/index.js",
         "@*": "expression",

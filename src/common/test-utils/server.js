@@ -29,32 +29,33 @@ function getCheerio(output) {
  * @param {Object} input: additional input to use with test utils
  * @param {String} arrayKey: if provided, assign input as a single-entry array (for marko nested tags)
  * @param {String} baseInput: if provided, use as base for additional input
+ * @param {String} parentInput: use to modify base input of parent, rather than that of arrayKey
  */
-function setupInput(input, arrayKey, baseInput) {
+function setupInput(input, arrayKey, baseInput, parentInput = {}) {
     let newInput = baseInput ? Object.assign(baseInput, input) : input;
 
     if (arrayKey) {
-        newInput = { [arrayKey]: [newInput] };
+        newInput = Object.assign(parentInput, { [arrayKey]: [newInput] });
     }
 
     return newInput;
 }
 
-function testCustomClass(context, selector, arrayKey, isPassThrough, baseInput) {
+function testCustomClass(context, selector, arrayKey, isPassThrough, baseInput, parentInput) {
     let input;
     if (isPassThrough) {
-        input = setupInput({ '*': { class: 'class1 class2' } }, arrayKey, baseInput);
+        input = setupInput({ '*': { class: 'class1 class2' } }, arrayKey, baseInput, parentInput);
     } else {
-        input = setupInput({ class: 'class1 class2' }, arrayKey, baseInput);
+        input = setupInput({ class: 'class1 class2' }, arrayKey, baseInput, parentInput);
     }
     const $ = getCheerio(context.render(input));
     expect($(`${selector}.class1.class2`).length).to.equal(1);
 }
 
-function testHtmlAttributes(context, selector, arrayKey, baseInput) {
+function testHtmlAttributes(context, selector, arrayKey, baseInput, parentInput) {
     // check that each method is correctly supported
     ['*', 'htmlAttributes'].forEach(key => {
-        const input = setupInput({ [key]: { 'aria-role': 'link' } }, arrayKey, baseInput);
+        const input = setupInput({ [key]: { 'aria-role': 'link' } }, arrayKey, baseInput, parentInput);
         const $ = getCheerio(context.render(input));
         expect($(`${selector}[aria-role=link]`).length).to.equal(1);
     });

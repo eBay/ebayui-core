@@ -13,7 +13,6 @@
         "mocha/no-exclusive-tests": 2,
         "mocha/no-identical-title": 2,
         "mocha/no-nested-tests": 2,
-        "mocha/no-return-and-callback": 2,
         "mocha/no-sibling-hooks": 2,
         "compat/compat": 2
     }

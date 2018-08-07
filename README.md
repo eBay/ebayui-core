@@ -40,6 +40,7 @@ Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/t
 * [`ebay-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-notice)
 * [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
 * [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
+* [`ebay-tab`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tab)
 * [`ebay-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-textbox)
 
 ## Getting Started
