@@ -36,8 +36,6 @@ function getInitialState(input) {
     const { items, itemsPerSlide } = state;
     if (itemsPerSlide) {
         state.classes.push('carousel--slides');
-        // Remove any extra items when using explicit itemsPerSlide.
-        items.length -= items.length % itemsPerSlide;
         // Only allow autoplay option for discrete carousels.
         if (input.autoplay) {
             const isSingleSlide = items.length <= itemsPerSlide;
@@ -423,7 +421,7 @@ function getNextIndex({ index, items, slideWidth }, delta) {
 
     // If going left, go as far left as possible while keeping this item fully in view.
     const targetOffset = item.right - slideWidth;
-    do item = items[--i]; while (item && item.left >= targetOffset);
+    do item = items[--i]; while (item && item.left > targetOffset);
     return i + 1;
 }
 
