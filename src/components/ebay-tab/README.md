@@ -4,9 +4,9 @@
 
 ```marko
 <ebay-tab>
-    <ebay-tab-item>Tab 1</ebay-tab-item>
-    <ebay-tab-item>Tab 2</ebay-tab-item>
-    <ebay-tab-item>Tab 3</ebay-tab-item>
+    <ebay-tab-heading>Tab 1</ebay-tab-heading>
+    <ebay-tab-heading>Tab 2</ebay-tab-heading>
+    <ebay-tab-heading>Tab 3</ebay-tab-heading>
     <ebay-tab-panel>Panel 1</ebay-tab-panel>
     <ebay-tab-panel>Panel 2</ebay-tab-panel>
     <ebay-tab-panel>Panel 3</ebay-tab-panel>
@@ -17,8 +17,8 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`index` | String | Yes | 0-based index of selected tab item and panel
-`fake` | Boolean | No | Whether to use link behavior of tab items
+`index` | String | Yes | 0-based index of selected tab heading and panel
+`fake` | Boolean | No | Whether to use link behavior for tab headings
 
 ## ebay-tab Events
 
@@ -26,15 +26,15 @@ Event | Data | Description
 --- | --- | ---
 `tab-select` | `{ index }` |
 
-## ebay-tab-item Tag
+## ebay-tab-heading Tag
 
-### ebay-tab-item Usage
+### ebay-tab-heading Usage
 
 ```marko
-<ebay-tab-item>Tab 1</ebay-tab-item>
+<ebay-tab-heading>Tab 1</ebay-tab-heading>
 ```
 
-## ebay-tab-item Attributes
+## ebay-tab-heading Attributes
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---

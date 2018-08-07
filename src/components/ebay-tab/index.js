@@ -9,11 +9,11 @@ const template = require('./template.marko');
 function getInitialState(input) {
     const fake = Boolean(input.fake);
     const index = parseInt(input.index) || 0;
-    const items = (input.items || []).map(item => ({
-        renderBody: item.renderBody,
-        classes: fake ? item.class : [item.class, 'tabs__item'],
-        href: item.href,
-        htmlAttributes: processHtmlAttributes(item)
+    const headings = (input.headings || []).map(heading => ({
+        renderBody: heading.renderBody,
+        classes: fake ? heading.class : [heading.class, 'tabs__item'],
+        href: heading.href,
+        htmlAttributes: processHtmlAttributes(heading)
     }));
     const panels = (input.panels || []).map(panel => ({
         renderBody: panel.renderBody,
@@ -24,7 +24,7 @@ function getInitialState(input) {
     return {
         index,
         fake,
-        items,
+        headings,
         panels,
         classes: [input.class, prefix(fake, 'tabs')],
         htmlAttributes: processHtmlAttributes(input)
@@ -36,9 +36,9 @@ function getTemplateData(state) {
 }
 
 function init() {
-    this.itemsEl = this.getEl('items');
+    this.headingsEl = this.getEl('headings');
     if (!this.state.fake) {
-        rovingTabindex.createLinear(this.itemsEl, 'div', { index: 0, autoReset: 0 });
+        rovingTabindex.createLinear(this.headingsEl, 'div', { index: 0, autoReset: 0 });
     }
     observer.observeRoot(this, ['index'], index => this.processStateChange(parseInt(index)), true);
 }
@@ -48,41 +48,41 @@ function init() {
  * @param {Number} index
  */
 function processStateChange(index) {
-    if (index >= 0 && index < this.state.items.length && index !== this.state.index) {
+    if (index >= 0 && index < this.state.headings.length && index !== this.state.index) {
         this.setState('index', index);
         emitAndFire(this, 'tab-select', { index });
     }
 }
 
 /**
- * Handle mouse click on item
+ * Handle mouse click on heading
  * @param {MouseEvent} e
  */
-function handleItemClick(e) {
-    let itemEl = e.target;
-    const itemClass = prefix(this.state.fake, 'tabs__item');
-    while (!itemEl.classList.contains(itemClass)) {
-        itemEl = itemEl.parentNode;
+function handleHeadingClick(e) {
+    let headingEl = e.target;
+    const headingClass = prefix(this.state.fake, 'tabs__item');
+    while (!headingEl.classList.contains(headingClass)) {
+        headingEl = headingEl.parentNode;
     }
 
-    this.processStateChange(getItemElementIndex(itemEl));
+    this.processStateChange(getElementIndex(headingEl));
 }
 
 /**
  * Get 0-based index of element within its parent
- * @param {HTMLElement} itemEl
+ * @param {HTMLElement} headingEl
  */
-function getItemElementIndex(itemEl) {
-    return Array.prototype.slice.call(itemEl.parentNode.children).indexOf(itemEl);
+function getElementIndex(headingEl) {
+    return Array.prototype.slice.call(headingEl.parentNode.children).indexOf(headingEl);
 }
 
 /**
- * Handle accessibility for item
+ * Handle accessibility for heading
  * https://ebay.gitbooks.io/mindpatterns/content/disclosure/tabs.html
  * @param {KeyboardEvent} e
  */
-function handleItemKeydown(e) {
-    eventUtils.handleActionKeydown(e, () => this.handleItemClick(e));
+function handleHeadingKeydown(e) {
+    eventUtils.handleActionKeydown(e, () => this.handleHeadingClick(e));
 }
 
 /**
@@ -100,6 +100,6 @@ module.exports = markoWidgets.defineComponent({
     getTemplateData,
     init,
     processStateChange,
-    handleItemClick,
-    handleItemKeydown
+    handleHeadingClick,
+    handleHeadingKeydown
 });

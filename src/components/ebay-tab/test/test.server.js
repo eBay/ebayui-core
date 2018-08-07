@@ -4,7 +4,7 @@ const mock = require('../mock');
 
 describe('tab', () => {
     test('renders basic version with defaults', context => {
-        const input = { items: mock.items, panels: mock.panels };
+        const input = { headings: mock.headings, panels: mock.panels };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('div.tabs').length).to.equal(1);
         expect($('div.tabs__item').length).to.equal(3);
@@ -16,7 +16,7 @@ describe('tab', () => {
     });
 
     test('renders selection based on index', context => {
-        const input = { index: '1', items: mock.items, panels: mock.panels };
+        const input = { index: '1', headings: mock.headings, panels: mock.panels };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('div.tabs').length).to.equal(1);
         expect($('div.tabs__item').length).to.equal(3);
@@ -28,7 +28,7 @@ describe('tab', () => {
     });
 
     test('renders fake version with defaults', context => {
-        const input = { fake: true, items: mock.fakeItems, panels: mock.panels };
+        const input = { fake: true, headings: mock.fakeHeadings, panels: mock.panels };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('div.fake-tabs').length).to.equal(1);
         expect($('ul.fake-tabs__items').length).to.equal(1);
@@ -42,7 +42,7 @@ describe('tab', () => {
     });
 
     test('renders fake version with selection based on index', context => {
-        const input = { fake: true, index: '1', items: mock.items, panels: mock.panels };
+        const input = { fake: true, index: '1', headings: mock.headings, panels: mock.panels };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('div.fake-tabs').length).to.equal(1);
         expect($('ul.fake-tabs__items').length).to.equal(1);
@@ -64,23 +64,23 @@ describe('tab', () => {
     });
 });
 
-describe('tab-item', () => {
+describe('tab-heading', () => {
     test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, '.tabs__item', 'items');
+        testUtils.testHtmlAttributes(context, '.tabs__item', 'headings');
     });
 
     test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.tabs__item', 'items');
+        testUtils.testCustomClass(context, '.tabs__item', 'headings');
     });
 
     test('handles pass-through html attributes when fake', context => {
         const parentInput = { fake: true, panels: mock.panels };
-        testUtils.testHtmlAttributes(context, '.fake-tabs__item', 'items', {}, parentInput);
+        testUtils.testHtmlAttributes(context, '.fake-tabs__item', 'headings', {}, parentInput);
     });
 
     test('handles custom class when fake', context => {
         const parentInput = { fake: true, panels: mock.panels };
-        testUtils.testCustomClass(context, '.fake-tabs__item', 'items', false, {}, parentInput);
+        testUtils.testCustomClass(context, '.fake-tabs__item', 'headings', false, {}, parentInput);
     });
 });
 
@@ -94,12 +94,12 @@ describe('tab-panel', () => {
     });
 
     test('handles pass-through html attributes when fake', context => {
-        const parentInput = { fake: true, items: mock.fakeItems };
+        const parentInput = { fake: true, headings: mock.fakeHeadings };
         testUtils.testHtmlAttributes(context, '.fake-tabs__panel', 'panels', {}, parentInput);
     });
 
     test('handles custom class when fake', context => {
-        const parentInput = { fake: true, items: mock.fakeItems };
+        const parentInput = { fake: true, headings: mock.fakeHeadings };
         testUtils.testCustomClass(context, '.fake-tabs__panel', 'panels', false, {}, parentInput);
     });
 });

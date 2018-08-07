@@ -1,15 +1,15 @@
 <div w-bind class=data.classes ${data.htmlAttributes}>
     <if(data.fake)>
         <ul class="fake-tabs__items">
-            <for(i, item in data.items)>
-                <var isCurrentItem=parseInt(i) === data.index/>
+            <for(i, heading in data.headings)>
+                <var isCurrentHeading=parseInt(i) === data.index/>
                 <li
-                    class=[item.classes, 'fake-tabs__item', isCurrentItem ? 'fake-tabs__item--current' : null]
-                    ${item.htmlAttributes}>
+                    class=[heading.classes, 'fake-tabs__item', isCurrentHeading ? 'fake-tabs__item--current' : null]
+                    ${heading.htmlAttributes}>
                     <a
-                        aria-current=(isCurrentItem && "page")
-                        href=item.href
-                        w-body=item.renderBody/>
+                        aria-current=(isCurrentHeading && "page")
+                        href=heading.href
+                        w-body=heading.renderBody/>
                 </li>
             </for>
         </ul>
@@ -23,19 +23,19 @@
         </div>
     </if>
     <else>
-        <div w-id="items" class="tabs__items" role="tablist">
-            <for(i, item in data.items)>
+        <div w-id="headings" class="tabs__items" role="tablist">
+            <for(i, heading in data.headings)>
                 <div
                     aria-controls="${widget.id}-tabpanel-${i}"
                     id="${widget.id}-tab-${i}"
                     role="tab"
                     aria-selected=String(parseInt(i) === data.index)
-                    class=item.classes
-                    w-onclick="handleItemClick"
-                    w-onkeydown="handleItemKeydown"
+                    class=heading.classes
+                    w-onclick="handleHeadingClick"
+                    w-onkeydown="handleHeadingKeydown"
                     w-preserve-attrs="tabindex,data-makeup-index"
-                    ${item.htmlAttributes}>
-                    <span w-body=item.renderBody/>
+                    ${heading.htmlAttributes}>
+                    <span w-body=heading.renderBody/>
                 </div>
             </for>
         </div>

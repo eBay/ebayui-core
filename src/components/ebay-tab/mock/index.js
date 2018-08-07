@@ -1,6 +1,6 @@
-const items = [{}, {}, {}];
+const headings = [{}, {}, {}];
 const panels = [{}, {}, {}];
 
-const fakeItems = [{ href: '#' }, { href: '#' }, { href: '#' }];
+const fakeHeadings = [{ href: '#' }, { href: '#' }, { href: '#' }];
 
-module.exports = { items, panels, fakeItems };
+module.exports = { headings, panels, fakeHeadings };

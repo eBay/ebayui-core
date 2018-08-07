@@ -10,45 +10,45 @@ function testSelectEvent(spy, index) {
     expect(eventData.index).to.equal(index);
 }
 
-function testSelectBehavior(itemEl, done) {
+function testSelectBehavior(headingEl, done) {
     setTimeout(() => {
-        expect(itemEl.getAttribute('aria-selected')).to.equal('true');
+        expect(headingEl.getAttribute('aria-selected')).to.equal('true');
         done();
     }, 10);
 }
 
-function testFakeSelectBehavior(itemEl, done) {
+function testFakeSelectBehavior(headingEl, done) {
     setTimeout(() => {
-        expect(itemEl.classList.contains('fake-tabs__item--current')).to.equal(true);
-        expect(itemEl.querySelector('a').getAttribute('aria-current')).to.equal('page');
+        expect(headingEl.classList.contains('fake-tabs__item--current')).to.equal(true);
+        expect(headingEl.querySelector('a').getAttribute('aria-current')).to.equal('page');
         done();
     }, 10);
 }
 
-describe('given tabs with first item selected', () => {
+describe('given tabs with first heading selected', () => {
     let widget;
     let root;
-    let itemEls;
-    let firstItemEl;
-    let secondItemEl;
-    let secondItemInnerEl;
+    let headingEls;
+    let firstHeadingEl;
+    let secondHeadingEl;
+    let secondHeadingInnerEl;
 
     beforeEach(() => {
-        widget = renderer.renderSync({ items: mock.items }).appendTo(document.body).getWidget();
+        widget = renderer.renderSync({ headings: mock.headings }).appendTo(document.body).getWidget();
         root = widget.el;
-        itemEls = document.querySelectorAll('.tabs__item');
-        firstItemEl = itemEls[0];
-        secondItemEl = itemEls[1];
-        secondItemInnerEl = secondItemEl.querySelector('span');
+        headingEls = document.querySelectorAll('.tabs__item');
+        firstHeadingEl = headingEls[0];
+        secondHeadingEl = headingEls[1];
+        secondHeadingInnerEl = secondHeadingEl.querySelector('span');
     });
     afterEach(() => widget.destroy());
 
-    describe('when the first item is clicked', () => {
+    describe('when the first heading is clicked', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('tab-select', spy);
-            testUtils.triggerEvent(firstItemEl, 'click');
+            testUtils.triggerEvent(firstHeadingEl, 'click');
         });
 
         test('then it does not emit the select event', () => {
@@ -56,44 +56,44 @@ describe('given tabs with first item selected', () => {
         });
     });
 
-    describe('when the second item is clicked', () => {
+    describe('when the second heading is clicked', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('tab-select', spy);
-            testUtils.triggerEvent(secondItemEl, 'click');
+            testUtils.triggerEvent(secondHeadingEl, 'click');
         });
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the item is selected', (context, done) => testSelectBehavior(secondItemEl, done));
+        test('then the heading is selected', (context, done) => testSelectBehavior(secondHeadingEl, done));
     });
 
-    describe('when the second item is selected via keyboard action button', () => {
+    describe('when the second heading is selected via keyboard action button', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('tab-select', spy);
-            testUtils.triggerEvent(secondItemEl, 'keydown', 32);
+            testUtils.triggerEvent(secondHeadingEl, 'keydown', 32);
         });
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the item is selected', (context, done) => testSelectBehavior(secondItemEl, done));
+        test('then the heading is selected', (context, done) => testSelectBehavior(secondHeadingEl, done));
     });
 
-    describe('when the second item\'s inner content is clicked', () => {
+    describe('when the second heading\'s inner content is clicked', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
             widget.on('tab-select', spy);
-            testUtils.triggerEvent(secondItemInnerEl, 'click');
+            testUtils.triggerEvent(secondHeadingInnerEl, 'click');
             setTimeout(done);
         });
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the item is selected', (context, done) => testSelectBehavior(secondItemEl, done));
+        test('then the heading is selected', (context, done) => testSelectBehavior(secondHeadingEl, done));
     });
 
-    describe('when the second item is selected programmatically', () => {
+    describe('when the second heading is selected programmatically', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
@@ -103,26 +103,24 @@ describe('given tabs with first item selected', () => {
         });
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the item is selected', (context, done) => testSelectBehavior(secondItemEl, done));
+        test('then the heading is selected', (context, done) => testSelectBehavior(secondHeadingEl, done));
     });
 });
 
-describe('given fake tabs with first item selected', () => {
+describe('given fake tabs with first heading selected', () => {
     let widget;
     let root;
-    let itemEls;
-    let secondItemEl;
+    let secondHeadingEl;
 
     beforeEach(() => {
-        const input = { fake: true, items: mock.fakeItems, panels: mock.panels };
+        const input = { fake: true, headings: mock.fakeHeadings, panels: mock.panels };
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
         root = widget.el;
-        itemEls = document.querySelectorAll('.fake-tabs__item');
-        secondItemEl = itemEls[1];
+        secondHeadingEl = document.querySelectorAll('.fake-tabs__item')[1];
     });
     afterEach(() => widget.destroy());
 
-    describe('when the second item is selected programmatically', () => {
+    describe('when the second heading is selected programmatically', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
@@ -132,6 +130,6 @@ describe('given fake tabs with first item selected', () => {
         });
 
         test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the item is selected', (context, done) => testFakeSelectBehavior(secondItemEl, done));
+        test('then the heading is selected', (context, done) => testFakeSelectBehavior(secondHeadingEl, done));
     });
 });

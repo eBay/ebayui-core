@@ -202,7 +202,7 @@
         "@class": "string",
         "@index": "string",
         "@fake": "boolean",
-        "@items <item>[]": {
+        "@headings <heading>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
             "@class": "string",
@@ -214,7 +214,7 @@
             "@class": "string"
         }
     },
-    "<ebay-tab-item>": {},
+    "<ebay-tab-heading>": {},
     "<ebay-tab-panel>": {},
     "<ebay-textbox>": {
         "renderer": "./src/components/ebay-textbox/index.js",
