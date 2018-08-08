@@ -162,8 +162,8 @@ describe('menu-item', () => {
         });
     });
 
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, '.menu__item', 'items'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.menu__item', 'items'));
+    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.menu__item', 'items'));
+    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.menu__item', 'items'));
 });
 
 describe('transformer', () => {

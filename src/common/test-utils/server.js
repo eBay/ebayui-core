@@ -50,7 +50,8 @@ function testCustomClass(context, selector, arrayKey, baseInput, parentInput) {
 function testCustomStyle(context, selector, arrayKey, baseInput, parentInput) {
     const input = setupInput({ style: { color: 'red' } }, arrayKey, baseInput, parentInput);
     const $ = getCheerio(context.render(input));
-    expect($(`${selector}[style="color:red"]`).length).to.equal(1);
+    // v4 adds a semicolon
+    expect($(`${selector}[style="color:red"],${selector}[style="color:red;"]`).length).to.equal(1);
 }
 
 function testClassAndStyle(context, selector, arrayKey, baseInput, parentInput) {
@@ -98,6 +99,8 @@ function runTransformer(transformer, srcString, componentPath) {
 
 module.exports = {
     getCheerio,
+    testCustomClass,
+    testCustomStyle,
     testClassAndStyle,
     testHtmlAttributes,
     getTransformedTemplate,
