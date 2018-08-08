@@ -22,34 +22,49 @@ function testOriginalEvent(spy) {
 }
 
 /**
- * Simulates a touch based scroll event over 100ms.
+ * Simulates a touch based scroll event over 4 animation frames.
  *
  * @param {HTMLElement} el The element to scroll.
  * @param {number} to The new scrollLeft for the element.
+ * @param {function} cb A callback to call after the scroll.
  */
-function simulateScroll(el, to) {
+function simulateScroll(el, to, cb) {
     const { scrollLeft } = el;
     const distance = to - scrollLeft;
-    const duration = 100;
+    const frames = 4;
+    let frame = 0;
     triggerEvent(el, 'touchstart');
-    requestAnimationFrame(startTime => {
-        (function animate(curTime) {
-            const delta = curTime - startTime;
-            if (delta > duration) {
+    requestAnimationFrame(() => {
+        (function animate() {
+            if (++frame > frames) {
                 triggerEvent(el, 'touchend');
                 el.scrollLeft = to;
+                // Allow two frames for the on scroll to finish.
+                if (cb) {
+                    waitFrames(2, cb);
+                }
+
                 return;
             }
 
             triggerEvent(el, 'touchmove');
-            el.scrollLeft = (delta / duration) * distance + scrollLeft;
+            el.scrollLeft = (frame / frames) * distance + scrollLeft;
             requestAnimationFrame(animate);
-        }(startTime));
+        }());
     });
+}
+
+function waitFrames(count, cb) {
+    if (count) {
+        return requestAnimationFrame(() => waitFrames(count - 1, cb));
+    }
+
+    cb();
 }
 
 module.exports = {
     triggerEvent,
     testOriginalEvent,
-    simulateScroll
+    simulateScroll,
+    waitFrames
 };

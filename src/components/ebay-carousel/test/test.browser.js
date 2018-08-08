@@ -486,16 +486,12 @@ describe('given a discrete carousel', () => {
     });
 
     describe('when the window is resized', () => {
-        let originalFrame;
-
-        beforeEach(done => {
-            originalFrame = widget.renderFrame;
+        beforeEach(() => {
             testUtils.triggerEvent(window, 'resize');
-            delay(done);
         });
 
-        it('then it causes the widget to render', () => {
-            expect(widget.renderFrame).to.not.equal(originalFrame);
+        it('then it causes the widget to render', (done) => {
+            widget.once('update', () => done());
         });
     });
 });

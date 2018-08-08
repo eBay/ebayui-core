@@ -81,21 +81,21 @@ describe('resizeEventUtil', () => {
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
         testUtils.triggerEvent(window, 'resize');
-        setTimeout(() => {
+        testUtils.waitFrames(2, () => {
             expect(mockCallback.callCount).to.equal(1);
             done();
-        }, 26);
+        });
     });
 
-    test('the root element does not listen for a window resize, after eventListner is removed', (context, done) => {
+    test('the root element does not listen for a window resize, after eventListener is removed', (context, done) => {
         const mockCallback = sinon.spy();
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         resizeUtil.removeEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
         testUtils.triggerEvent(window, 'resize');
-        setTimeout(() => {
+        testUtils.waitFrames(2, () => {
             expect(mockCallback.callCount).to.equal(0);
             done();
-        }, 26);
+        });
     });
 });

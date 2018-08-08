@@ -24,28 +24,25 @@ describe('scroll-end', () => {
     it('calls a function when a scroll has ended', (done) => {
         const scrollEndSpy = sinon.spy();
         onScrollEnd(scrollEl, scrollEndSpy);
-        setTimeout(() => {
-            testUtils.simulateScroll(scrollEl, 100);
-            setTimeout(() => {
+        testUtils.simulateScroll(scrollEl, 50, () => {
+            testUtils.simulateScroll(scrollEl, 100, () => {
                 expect(scrollEndSpy.calledTwice).to.equal(true);
                 expect(scrollEndSpy.args[0][0]).to.equal(50);
                 expect(scrollEndSpy.args[1][0]).to.equal(100);
                 done();
-            }, 300);
-        }, 150);
-        testUtils.simulateScroll(scrollEl, 50);
+            });
+        });
     });
 
     it('groups scroll events with additional touches', (done) => {
         const scrollEndSpy = sinon.spy();
         onScrollEnd(scrollEl, scrollEndSpy);
         setTimeout(() => {
-            testUtils.simulateScroll(scrollEl, 100);
-            setTimeout(() => {
+            testUtils.simulateScroll(scrollEl, 100, () => {
                 expect(scrollEndSpy.calledOnce).to.equal(true);
                 expect(scrollEndSpy.args[0][0]).to.equal(100);
                 done();
-            }, 150);
+            });
         }, 0);
         testUtils.simulateScroll(scrollEl, 50);
     });
@@ -54,11 +51,12 @@ describe('scroll-end', () => {
         const scrollEndSpy = sinon.spy();
         const cancel = onScrollEnd(scrollEl, scrollEndSpy);
         testUtils.simulateScroll(scrollEl, 100);
-        cancel();
-        setTimeout(() => {
+        testUtils.waitFrames(5, () => {
             expect(scrollEndSpy.notCalled).to.equal(true);
             done();
-        }, 150);
+        });
+
+        cancel();
     });
 
     it('can be canceled after scrolling starts', (done) => {
@@ -66,13 +64,13 @@ describe('scroll-end', () => {
         const cancel = onScrollEnd(scrollEl, scrollEndSpy);
         const startLeft = scrollEl.scrollLeft;
         testUtils.simulateScroll(scrollEl, 100);
-        setTimeout(() => {
+        testUtils.waitFrames(2, () => {
             cancel();
-            setTimeout(() => {
+            testUtils.waitFrames(3, () => {
                 expect(scrollEndSpy.notCalled).to.equal(true);
                 expect(scrollEl.scrollLeft).to.not.equal(startLeft);
                 done();
-            }, 100);
-        }, 50);
+            });
+        });
     });
 });
