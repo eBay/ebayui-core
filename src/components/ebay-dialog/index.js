@@ -81,8 +81,8 @@ function trap(opts) {
     const focusEl = (this.state.focus && document.getElementById(this.state.focus)) || this.closeEl;
 
     if (restoreTrap || (isTrapped && !wasTrapped)) {
-        screenReaderTrap.trap(this.dialogEl);
-        keyboardTrap.trap(this.dialogEl);
+        screenReaderTrap.trap(this.windowEl);
+        keyboardTrap.trap(this.windowEl);
     }
 
     // Ensure focus is set and body scroll prevented on initial render.
@@ -144,8 +144,8 @@ function trap(opts) {
 function release() {
     if (this.isTrapped) {
         this.restoreTrap = this.state.open;
-        screenReaderTrap.untrap(this.dialogEl);
-        keyboardTrap.untrap(this.dialogEl);
+        screenReaderTrap.untrap(this.windowEl);
+        keyboardTrap.untrap(this.windowEl);
     } else {
         this.restoreTrap = false;
     }
