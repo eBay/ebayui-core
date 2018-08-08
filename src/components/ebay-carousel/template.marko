@@ -27,6 +27,7 @@
             })>
             <for(item in data.items)>
                 <li ${item.htmlAttributes}
+                    class=item.class
                     style=item.style
                     w-body=item.renderBody
                     aria-hidden=(!item.fullyVisible && 'true')

@@ -21,6 +21,7 @@ try {
  * @param {Object} output
  */
 function getCheerio(output) {
+    // console.log(output.html.toString());
     return cheerio.load(output.html.toString());
 }
 
@@ -41,15 +42,16 @@ function setupInput(input, arrayKey, baseInput, parentInput = {}) {
     return newInput;
 }
 
-function testCustomClass(context, selector, arrayKey, isPassThrough, baseInput, parentInput) {
-    let input;
-    if (isPassThrough) {
-        input = setupInput({ '*': { class: 'class1 class2' } }, arrayKey, baseInput, parentInput);
-    } else {
-        input = setupInput({ class: 'class1 class2' }, arrayKey, baseInput, parentInput);
-    }
+function testCustomClass(context, selector, arrayKey, baseInput, parentInput) {
+    const input = setupInput({ class: { class1: true, class2: true } }, arrayKey, baseInput, parentInput);
     const $ = getCheerio(context.render(input));
     expect($(`${selector}.class1.class2`).length).to.equal(1);
+}
+
+function testCustomStyle(context, selector, arrayKey, baseInput, parentInput) {
+    const input = setupInput({ style: { color: 'red' } }, arrayKey, baseInput, parentInput);
+    const $ = getCheerio(context.render(input));
+    expect($(`${selector}[style="color:red"]`).length).to.equal(1);
 }
 
 function testHtmlAttributes(context, selector, arrayKey, baseInput, parentInput) {
@@ -93,6 +95,7 @@ function runTransformer(transformer, srcString, componentPath) {
 module.exports = {
     getCheerio,
     testCustomClass,
+    testCustomStyle,
     testHtmlAttributes,
     getTransformedTemplate,
     runTransformer

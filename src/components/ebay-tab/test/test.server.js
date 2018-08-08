@@ -80,7 +80,7 @@ describe('tab-heading', () => {
 
     test('handles custom class when fake', context => {
         const parentInput = { fake: true, panels: mock.panels };
-        testUtils.testCustomClass(context, '.fake-tabs__item', 'headings', false, {}, parentInput);
+        testUtils.testCustomClass(context, '.fake-tabs__item', 'headings', {}, parentInput);
     });
 });
 
@@ -100,6 +100,6 @@ describe('tab-panel', () => {
 
     test('handles custom class when fake', context => {
         const parentInput = { fake: true, headings: mock.fakeHeadings };
-        testUtils.testCustomClass(context, '.fake-tabs__panel', 'panels', false, {}, parentInput);
+        testUtils.testCustomClass(context, '.fake-tabs__panel', 'panels', {}, parentInput);
     });
 });

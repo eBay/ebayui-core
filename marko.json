@@ -5,12 +5,15 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@heading-text": "string",
         "@heading-level": "string",
         "@hijax": "boolean",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string",
             "@href": "string"
         }
     },
@@ -20,6 +23,7 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@type": "string",
         "@disabled": "boolean",
         "@partially-disabled": "boolean",
@@ -52,7 +56,8 @@
         "@accessibility-pause": "string",
         "@items <item>[]": {
             "@*": "expression",
-            "@html-attributes": "expression"
+            "@html-attributes": "expression",
+            "@class": "string"
         }
     },
     "<ebay-carousel-item>": {},

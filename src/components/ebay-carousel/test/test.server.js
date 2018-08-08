@@ -91,6 +91,6 @@ describe('carousel-item', () => {
     });
 
     test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.carousel__list > li', 'items', true);
+        testUtils.testCustomClass(context, '.carousel__list > li', 'items');
     });
 });

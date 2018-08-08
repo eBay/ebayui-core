@@ -67,10 +67,10 @@ describe('pagination-item', () => {
     });
 
     test('handles custom class for previous control', context => {
-        testUtils.testCustomClass(context, '.pagination__previous', 'items', false, previousControlInput);
+        testUtils.testCustomClass(context, '.pagination__previous', 'items', previousControlInput);
     });
 
     test('handles custom class for next control', context => {
-        testUtils.testCustomClass(context, '.pagination__next', 'items', false, nextControlInput);
+        testUtils.testCustomClass(context, '.pagination__next', 'items', nextControlInput);
     });
 });

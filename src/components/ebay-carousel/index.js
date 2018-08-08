@@ -29,6 +29,7 @@ function getInitialState(input) {
         htmlAttributes: processHtmlAttributes(input),
         items: (input.items || []).map(item => ({
             htmlAttributes: processHtmlAttributes(item),
+            class: item.class,
             renderBody: item.renderBody
         }))
     };

@@ -88,3 +88,7 @@ test('handles pass-through html attributes', context => {
 test('handles custom class', context => {
     testUtils.testCustomClass(context, 'button.btn');
 });
+
+test('handles custom style', context => {
+    testUtils.testCustomStyle(context, 'button.btn');
+});
