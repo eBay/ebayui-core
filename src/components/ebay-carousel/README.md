@@ -66,3 +66,4 @@ Notes:
 
 * The `carousel` will manipulate the `tabindex` property of nested focusable elements inside `<ebay-carousel-item>`.
 * The `autoplay` carousel currently does not support native scrolling and will use transforms instead.
+* The `items-per-slide` attribute can be set to a float such as `3.5` to show 3 items, and half of the 4th item. This also automatically enables the `no-dots` attribute.
