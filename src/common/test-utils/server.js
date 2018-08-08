@@ -41,22 +41,15 @@ function setupInput(input, arrayKey, baseInput, parentInput = {}) {
     return newInput;
 }
 
-function testCustomClass(context, selector, arrayKey, baseInput, parentInput) {
-    const input = setupInput({ class: { class1: true, class2: true } }, arrayKey, baseInput, parentInput);
-    const $ = getCheerio(context.render(input));
-    expect($(`${selector}.class1.class2`).length).to.equal(1);
-}
-
-function testCustomStyle(context, selector, arrayKey, baseInput, parentInput) {
-    const input = setupInput({ style: { color: 'red' } }, arrayKey, baseInput, parentInput);
-    const $ = getCheerio(context.render(input));
-    // v4 adds a semicolon
-    expect($(`${selector}[style="color:red"],${selector}[style="color:red;"]`).length).to.equal(1);
-}
-
 function testClassAndStyle(context, selector, arrayKey, baseInput, parentInput) {
-    testCustomClass(context, selector, arrayKey, baseInput, parentInput);
-    testCustomStyle(context, selector, arrayKey, baseInput, parentInput);
+    [
+        { input: { class: { class1: true, class2: true } }, test: '.class1.class2' },
+        { input: { style: { color: 'red' } }, test: '[style*="color:red"]' }
+    ].forEach(scenario => {
+        const input = setupInput(scenario.input, arrayKey, baseInput, parentInput);
+        const $ = getCheerio(context.render(input));
+        expect($(`${selector}${scenario.test}`).length).to.equal(1);
+    });
 }
 
 function testHtmlAttributes(context, selector, arrayKey, baseInput, parentInput) {
@@ -99,8 +92,6 @@ function runTransformer(transformer, srcString, componentPath) {
 
 module.exports = {
     getCheerio,
-    testCustomClass,
-    testCustomStyle,
     testClassAndStyle,
     testHtmlAttributes,
     getTransformedTemplate,

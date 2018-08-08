@@ -58,7 +58,8 @@
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
-            "@class": "string"
+            "@class": "string",
+            "@style": "string"
         }
     },
     "<ebay-carousel-item>": {},

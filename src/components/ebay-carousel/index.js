@@ -31,6 +31,7 @@ function getInitialState(input) {
         items: (input.items || []).map(item => ({
             htmlAttributes: processHtmlAttributes(item),
             class: item.class,
+            style: item.style,
             renderBody: item.renderBody
         }))
     };
@@ -78,9 +79,8 @@ function getTemplateData(state) {
         itemWidth = 'auto';
     }
 
-    // FIXME: does not accept custom style correctly
     items.forEach((item, i) => {
-        const { htmlAttributes: { style }, transform } = item;
+        const { style, transform } = item;
         const marginRight = i !== items.length && `${gap}px`;
 
         // Account for users providing a style string or object for each item.
