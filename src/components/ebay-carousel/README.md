@@ -57,6 +57,11 @@ Event | Data | Description
 `carousel-play` | `{ originalEvent }` | called when the autoplay play button is pressed
 `carousel-pause` | `{ originalEvent }` | called when the autoplay pause button is pressed
 
+### Additional Events for touch devices.
+Event | Data | Description
+--- | --- | ---
+`carousel-scroll` | `{ index }` | new index is navigated to by native scrolling
+
 Notes:
 
 * The `carousel` will manipulate the `tabindex` property of nested focusable elements inside `<ebay-carousel-item>`.
