@@ -30,7 +30,6 @@ When a selected option is specified:
 
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
-`class` | No | String | No | custom class
 `selected` | n/a | Number | Yes | allows you to set the selected index option to `selected`
 `borderless` | No | Boolean | No | whether button has borders
 
@@ -59,7 +58,6 @@ Event | Data |  Description
 
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
-`class` | No | String | No | custom class
 `label` | No | String | No | string label for use in the button
 `selected` | No | Boolean | Yes | whether or not the option is selected (**Note:** use the root `ebay-select` element's `selected` property to set this property)
 `value` | Yes | String | Yes | used for the `value` attribute of the native `<option>`

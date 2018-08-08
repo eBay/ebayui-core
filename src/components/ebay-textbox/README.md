@@ -12,7 +12,6 @@ Default input textbox:
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`class` | String | No | define custom class
 `fluid` | Boolean | No |
 `multiline` | Boolean | No | renders a multi-line texbox if true
 `invalid` | Boolean | No | indicates a field-level error with red border if true

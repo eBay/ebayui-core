@@ -13,7 +13,6 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`class` | String | No | custom class
 `heading-text` | String | No | heading for breadcrumb which will be clipped
 `heading-level` | String | No | heading level(h1-h4) for breadcrumb and default is `h2`
 `hijax` | Boolean | No | Prevent link navigation; for use with ajax

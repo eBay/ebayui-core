@@ -20,7 +20,6 @@ The `<ebay-pagination>` is a tag used to create a pagination navigation.
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`class` | String | No | custom class
 `accessibility-prev` | String | No | aria-label for previous arrow button
 `accessibility-next` | String | No | aria-label for next arrow button
 `accessibility-current` | String | No | Description for the current page (e.g. Results of Page 1)
@@ -47,7 +46,6 @@ Event | Data | Description
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `disabled` | Boolean | No | Previous/next button is disabled or not
-`class` | String | No | custom class
 `href` | String | No | for link that looks like a menu-item
 `current` | Boolean | No | the current page
 `type` | String | No | "previous", "next" or "page"(default). To specify if the information entered is for the previous or next arrrow button or a page. If the `type='previous|next'` isn't provided the previous/next arrow buttons will be taken as `disabled`
