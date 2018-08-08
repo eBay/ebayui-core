@@ -32,10 +32,5 @@ test('renders a textarea element', context => {
     expect($(textareaSelector).length).to.equal(1);
 });
 
-test('handles pass-through html attributes', context => {
-    testUtils.testHtmlAttributes(context, inputSelector);
-});
-
-test('handles custom class', context => {
-    testUtils.testCustomClass(context, '.textbox');
-});
+test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, inputSelector));
+test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.textbox'));

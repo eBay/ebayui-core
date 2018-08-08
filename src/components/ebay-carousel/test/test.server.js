@@ -83,6 +83,10 @@ describe('carousel', () => {
     test('handles custom class', context => {
         testUtils.testCustomClass(context, '.carousel');
     });
+
+    test('handles custom style', context => {
+        testUtils.testCustomStyle(context, '.carousel');
+    });
 });
 
 describe('carousel-item', () => {

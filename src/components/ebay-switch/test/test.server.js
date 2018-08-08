@@ -14,10 +14,5 @@ test('renders disabled switch', context => {
     expect($('.switch > input[disabled]').length).to.equal(1);
 });
 
-test('handles pass-through html attributes', context => {
-    testUtils.testHtmlAttributes(context, '.switch > input');
-});
-
-test('handles custom class', context => {
-    testUtils.testCustomClass(context, '.switch');
-});
+test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, '.switch > input'));
+test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.switch'));

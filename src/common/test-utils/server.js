@@ -21,7 +21,6 @@ try {
  * @param {Object} output
  */
 function getCheerio(output) {
-    // console.log(output.html.toString());
     return cheerio.load(output.html.toString());
 }
 
@@ -52,6 +51,11 @@ function testCustomStyle(context, selector, arrayKey, baseInput, parentInput) {
     const input = setupInput({ style: { color: 'red' } }, arrayKey, baseInput, parentInput);
     const $ = getCheerio(context.render(input));
     expect($(`${selector}[style="color:red"]`).length).to.equal(1);
+}
+
+function testClassAndStyle(context, selector, arrayKey, baseInput, parentInput) {
+    testCustomClass(context, selector, arrayKey, baseInput, parentInput);
+    testCustomStyle(context, selector, arrayKey, baseInput, parentInput);
 }
 
 function testHtmlAttributes(context, selector, arrayKey, baseInput, parentInput) {
@@ -94,8 +98,7 @@ function runTransformer(transformer, srcString, componentPath) {
 
 module.exports = {
     getCheerio,
-    testCustomClass,
-    testCustomStyle,
+    testClassAndStyle,
     testHtmlAttributes,
     getTransformedTemplate,
     runTransformer

@@ -31,6 +31,9 @@ function getInitialState(input) {
     const dismissible = (input.dismissible && type === 'page') || defaults.dismissible;
 
     return {
+        htmlAttributes: processHtmlAttributes(input),
+        mainClass: [`${type}-notice`, `${type}-notice--${status}`, input.class],
+        style: input.style,
         mainTag: constants[type].mainTag,
         headingTag: headingTag,
         contentTag: constants[type].contentTag,
@@ -40,8 +43,6 @@ function getInitialState(input) {
         hidden,
         ariaText: input.ariaText || '',
         ariaLabelClose: input.ariaLabelClose || '',
-        htmlAttributes: processHtmlAttributes(input),
-        mainClass: [`${type}-notice`, `${type}-notice--${status}`, input.class],
         headingClass: `${type}-notice__status`,
         contentClass: `${type}-notice__content`
     };

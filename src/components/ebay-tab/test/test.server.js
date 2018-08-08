@@ -55,13 +55,8 @@ describe('tab', () => {
         expect($('div.fake-tabs__panel').length).to.equal(1);
     });
 
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, '.tabs');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.tabs');
-    });
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, '.tabs'));
+    test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.tabs'));
 });
 
 describe('tab-heading', () => {
@@ -69,8 +64,8 @@ describe('tab-heading', () => {
         testUtils.testHtmlAttributes(context, '.tabs__item', 'headings');
     });
 
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.tabs__item', 'headings');
+    test('handles custom class and style', context => {
+        testUtils.testClassAndStyle(context, '.tabs__item', 'headings');
     });
 
     test('handles pass-through html attributes when fake', context => {
@@ -78,9 +73,9 @@ describe('tab-heading', () => {
         testUtils.testHtmlAttributes(context, '.fake-tabs__item', 'headings', {}, parentInput);
     });
 
-    test('handles custom class when fake', context => {
+    test('handles custom class and style when fake', context => {
         const parentInput = { fake: true, panels: mock.panels };
-        testUtils.testCustomClass(context, '.fake-tabs__item', 'headings', {}, parentInput);
+        testUtils.testClassAndStyle(context, '.fake-tabs__item', 'headings', {}, parentInput);
     });
 });
 
@@ -89,8 +84,8 @@ describe('tab-panel', () => {
         testUtils.testHtmlAttributes(context, '.tabs__panel', 'panels');
     });
 
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.tabs__panel', 'panels');
+    test('handles custom class and style', context => {
+        testUtils.testClassAndStyle(context, '.tabs__panel', 'panels');
     });
 
     test('handles pass-through html attributes when fake', context => {
@@ -98,8 +93,8 @@ describe('tab-panel', () => {
         testUtils.testHtmlAttributes(context, '.fake-tabs__panel', 'panels', {}, parentInput);
     });
 
-    test('handles custom class when fake', context => {
+    test('handles custom class and style when fake', context => {
         const parentInput = { fake: true, headings: mock.fakeHeadings };
-        testUtils.testCustomClass(context, '.fake-tabs__panel', 'panels', {}, parentInput);
+        testUtils.testClassAndStyle(context, '.fake-tabs__panel', 'panels', {}, parentInput);
     });
 });

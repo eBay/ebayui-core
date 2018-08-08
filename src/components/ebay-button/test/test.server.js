@@ -81,14 +81,5 @@ test('renders cta variant', context => {
     expect($('.cta-btn').length).to.equal(1);
 });
 
-test('handles pass-through html attributes', context => {
-    testUtils.testHtmlAttributes(context, 'button.btn');
-});
-
-test('handles custom class', context => {
-    testUtils.testCustomClass(context, 'button.btn');
-});
-
-test('handles custom style', context => {
-    testUtils.testCustomStyle(context, 'button.btn');
-});
+test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'button.btn'));
+test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'button.btn'));

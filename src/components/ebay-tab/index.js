@@ -10,24 +10,27 @@ function getInitialState(input) {
     const fake = Boolean(input.fake);
     const index = parseInt(input.index) || 0;
     const headings = (input.headings || []).map(heading => ({
-        renderBody: heading.renderBody,
+        htmlAttributes: processHtmlAttributes(heading),
         classes: fake ? heading.class : [heading.class, 'tabs__item'],
-        href: heading.href,
-        htmlAttributes: processHtmlAttributes(heading)
+        style: heading.style,
+        renderBody: heading.renderBody,
+        href: heading.href
     }));
     const panels = (input.panels || []).map(panel => ({
-        renderBody: panel.renderBody,
+        htmlAttributes: processHtmlAttributes(panel),
         classes: [panel.class, prefix(fake, 'tabs__panel')],
-        htmlAttributes: processHtmlAttributes(panel)
+        style: panel.style,
+        renderBody: panel.renderBody
     }));
 
     return {
+        htmlAttributes: processHtmlAttributes(input),
+        classes: [input.class, prefix(fake, 'tabs')],
+        style: input.style,
         index,
         fake,
         headings,
-        panels,
-        classes: [input.class, prefix(fake, 'tabs')],
-        htmlAttributes: processHtmlAttributes(input)
+        panels
     };
 }
 

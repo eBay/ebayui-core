@@ -49,10 +49,5 @@ test('renders page notice with dismiss button', context => {
     expect($('button.page-notice__close').length).to.equal(1);
 });
 
-test('handles pass-through html attributes', context => {
-    testUtils.testHtmlAttributes(context, 'section.page-notice');
-});
-
-test('handles custom class', context => {
-    testUtils.testCustomClass(context, 'section.page-notice');
-});
+test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'section.page-notice'));
+test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'section.page-notice'));

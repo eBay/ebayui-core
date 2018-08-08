@@ -13,11 +13,13 @@ const RIGHT = 1;
 
 function getInitialState(input) {
     const state = {
+        htmlAttributes: processHtmlAttributes(input),
+        classes: ['carousel', input.class],
+        style: input.style,
         config: {}, // A place to store values that should not trigger an update by themselves.
         gap: input.gap || 16,
         noDots: input.noDots,
         index: parseInt(input.index, 10) || 0,
-        classes: ['carousel', input.class],
         itemsPerSlide: parseInt(input.itemsPerSlide, 10) || undefined,
         accessibilityPrev: input.accessibilityPrev || 'Previous Slide',
         accessibilityNext: input.accessibilityNext || 'Next Slide',
@@ -26,7 +28,6 @@ function getInitialState(input) {
         accessibilityOther: input.accessibilityOther || 'Slide {slide} - Carousel',
         accessibilityPause: input.accessibilityPause || 'Pause - Carousel',
         accessibilityPlay: input.accessibilityPlay || 'Play - Carousel',
-        htmlAttributes: processHtmlAttributes(input),
         items: (input.items || []).map(item => ({
             htmlAttributes: processHtmlAttributes(item),
             class: item.class,
@@ -77,6 +78,7 @@ function getTemplateData(state) {
         itemWidth = 'auto';
     }
 
+    // FIXME: does not accept custom style correctly
     items.forEach((item, i) => {
         const { htmlAttributes: { style }, transform } = item;
         const marginRight = i !== items.length && `${gap}px`;

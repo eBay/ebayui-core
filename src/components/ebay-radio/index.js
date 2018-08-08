@@ -5,9 +5,10 @@ const template = require('./template.marko');
 
 function getInitialState(input) {
     return {
+        htmlAttributes: processHtmlAttributes(input),
         classes: ['radio', input.class],
-        disabled: Boolean(input.disabled),
-        htmlAttributes: processHtmlAttributes(input)
+        style: input.style,
+        disabled: Boolean(input.disabled)
     };
 }
 

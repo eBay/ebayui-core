@@ -40,29 +40,11 @@ describe('breadcrumb', () => {
         expect($('h3').length).to.equal(1);
     });
 
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, 'nav.breadcrumb');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, 'nav.breadcrumb');
-    });
-
-    test('handles custom style', context => {
-        testUtils.testCustomStyle(context, 'nav.breadcrumb');
-    });
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'nav'));
+    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'nav'));
 });
 
 describe('breadcrumb-item', () => {
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, 'li span', 'items');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, 'li span', 'items');
-    });
-
-    test('handles custom style', context => {
-        testUtils.testCustomStyle(context, 'li span', 'items');
-    });
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'li span', 'items'));
+    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'li span', 'items'));
 });

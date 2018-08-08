@@ -1,10 +1,11 @@
-<div w-bind class=data.classes ${data.htmlAttributes}>
+<div w-bind class=data.classes style=data.style ${data.htmlAttributes}>
     <if(data.fake)>
         <ul class="fake-tabs__items">
             <for(i, heading in data.headings)>
                 <var isCurrentHeading=parseInt(i) === data.index/>
                 <li
                     class=[heading.classes, 'fake-tabs__item', isCurrentHeading ? 'fake-tabs__item--current' : null]
+                    style=heading.style
                     ${heading.htmlAttributes}>
                     <a
                         aria-current=(isCurrentHeading && "page")
@@ -15,7 +16,7 @@
         </ul>
         <div class="fake-tabs__content">
             <var panel=data.panels[0]/>
-            <div class=panel.classes ${panel.htmlAttributes}>
+            <div class=panel.classes style=panel.style ${panel.htmlAttributes}>
                 <div class="fake-tabs__cell">
                     <div w-body=panel.renderBody/>
                 </div>
@@ -31,6 +32,7 @@
                     role="tab"
                     aria-selected=String(parseInt(i) === data.index)
                     class=heading.classes
+                    style=heading.style
                     w-onclick="handleHeadingClick"
                     w-onkeydown="handleHeadingKeydown"
                     w-preserve-attrs="tabindex,data-makeup-index"
@@ -46,6 +48,7 @@
                     id="${widget.id}-tabpanel-${i}"
                     role="tabpanel"
                     class=panel.classes
+                    style=panel.style
                     hidden=(parseInt(i) !== data.index)
                     ${panel.htmlAttributes}>
                     <div class="tabs__cell">
