@@ -86,7 +86,7 @@
     "lasso-marko": "^2.4.2",
     "lintspaces-cli": "^0.6.0",
     "marko": "^3",
-    "marko-cli": "^4.0.0",
+    "marko-cli": "^4.0.1",
     "marko-prettyprint": "^1.4.1",
     "marko-widgets": "^6",
     "mobile-detect": "^1.4.1",
