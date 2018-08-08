@@ -710,6 +710,64 @@ describe('given a discrete carousel with half width items', () => {
     });
 });
 
+describe('given a discrete carousel with three half width items', () => {
+    const input = { itemsPerSlide: 2, items: mock.threeItems };
+    let widget;
+    let root;
+    let list;
+    let nextButton;
+
+    beforeEach(done => {
+        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+        root = document.querySelector('.carousel');
+        list = root.querySelector('.carousel__list');
+        nextButton = root.querySelector('.carousel__control--next');
+        waitForUpdate(widget, done);
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when next button is clicked', () => {
+        let nextSpy;
+        let slideSpy;
+        let updateSpy;
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            slideSpy = sinon.spy();
+            updateSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-slide', slideSpy);
+            widget.on('carousel-update', updateSpy);
+            testUtils.triggerEvent(nextButton, 'click');
+            widget.subscribeTo(list).once('transitionend', done);
+        });
+
+        it('then it emits the marko next event', () => testControlEvent(nextSpy));
+
+        it('then it emits the marko slide event', () => {
+            expect(slideSpy.calledOnce).to.equal(true);
+            const eventData = slideSpy.getCall(0).args[0];
+            expect(eventData.slide).to.equal(2);
+        });
+
+        it('then it emits the marko update event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
+            const eventData = updateSpy.getCall(0).args[0];
+            expect(eventData.visibleIndexes).to.deep.equal([1, 2]);
+        });
+
+        it('then it applies a translation', () => {
+            const { offsetLeft } = list.children[1];
+            expect(getTranslateX(list)).to.equal(offsetLeft);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            const { state: { items } } = widget;
+            const visibleIndexes = getVisibleIndexes(items);
+            expect(visibleIndexes).to.deep.equal([1, 2]);
+        });
+    });
+});
+
 describe('given an autoplay carousel in the default state', () => {
     const input = { itemsPerSlide: 2, items: mock.sixItems, autoplay: 200 };
     let widget;
