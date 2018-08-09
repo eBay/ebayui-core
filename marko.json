@@ -198,7 +198,8 @@
         "renderer": "./src/components/ebay-switch/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
-        "@class": "string"
+        "@class": "string",
+        "@disabled": "boolean"
     },
     "<ebay-tab>": {
         "renderer": "./src/components/ebay-tab/index.js",
