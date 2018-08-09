@@ -8,7 +8,7 @@ module.exports = ({ config }) => {
     config.lassoOptions = {
         flags: ['skin-ds6'],
         plugins: ['lasso-less'],
-        require: {
+        require: isTravis && {
             transforms: [{
                 transform: 'lasso-babel-transform'
             }]

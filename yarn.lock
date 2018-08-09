@@ -124,9 +124,9 @@
     ora "^2.1.0"
     unzip "^0.1.11"
 
-"@marko/test@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.npmjs.org/@marko/test/-/test-3.2.1.tgz#7e43431095c491b92407441d651bbc0106f50d49"
+"@marko/test@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/@marko/test/-/test-4.0.1.tgz#3c2bf4ce7c2d8bb1a1afe775a95f8d9f26f399ea"
   dependencies:
     "@lasso/marko-taglib" "^1.0.10"
     async "^2.6.1"
@@ -5419,13 +5419,13 @@ markdown-table@^1.1.0:
   version "1.1.2"
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-1.1.2.tgz#c78db948fa879903a41bce522e3b96f801c63786"
 
-marko-cli@^3.2.0:
-  version "3.2.1"
-  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-3.2.1.tgz#5f163e7b9bcc5f636fe5545d1be7c8d473e0de74"
+marko-cli@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-4.0.1.tgz#d261c97a7035da1b1a2c5ad513daa7384ae5bd17"
   dependencies:
     "@marko/compile" "^3.2.0"
     "@marko/create" "^3.1.6"
-    "@marko/test" "^3.2.1"
+    "@marko/test" "^4.0.1"
     app-root-dir "^1.0.2"
     argly "^1.2.0"
     babel-runtime "^6.26.0"
