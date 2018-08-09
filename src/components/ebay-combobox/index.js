@@ -14,18 +14,15 @@ const comboboxBtnClass = 'combobox__control';
 const comboboxOptionSelector = '.combobox__option[role=option]';
 
 function getInitialState(input) {
-    const options = (input.options || []).map(option => {
-        const selected = option.selected;
-
-        return {
-            class: option.class,
-            value: option.value,
-            label: option.label,
-            selected: Boolean(selected),
-            htmlAttributes: processHtmlAttributes(option),
-            renderBody: option.renderBody
-        };
-    });
+    const options = (input.options || []).map(option => ({
+        htmlAttributes: processHtmlAttributes(option),
+        class: option.class,
+        style: option.style,
+        value: option.value,
+        label: option.label,
+        selected: Boolean(option.selected),
+        renderBody: option.renderBody
+    }));
 
     const selectedOption = options.filter(option => option.selected)[0] || options[0];
 
@@ -34,14 +31,15 @@ function getInitialState(input) {
     }
 
     return {
-        name: input.name,
+        htmlAttributes: processHtmlAttributes(input),
         class: input.class,
+        style: input.style,
+        name: input.name,
         options,
         selected: selectedOption,
         grow: input.grow,
         disabled: input.disabled,
-        borderless: Boolean(input.borderless),
-        htmlAttributes: processHtmlAttributes(input)
+        borderless: Boolean(input.borderless)
     };
 }
 
@@ -55,15 +53,16 @@ function getTemplateData(state) {
     }
 
     return {
+        htmlAttributes: state.htmlAttributes,
         class: comboboxClass,
+        style: state.style,
         btnClass,
         optionsClass,
         name: state.name,
         selectedOption: state.selected,
         options: state.options,
         grow: state.grow,
-        disabled: state.disabled,
-        htmlAttributes: state.htmlAttributes
+        disabled: state.disabled
     };
 }
 

@@ -28,12 +28,6 @@ describe('dialog', () => {
         expect($('.dialog').prop('hidden')).to.equal(false);
     });
 
-    test('renders with a custom dialog class', context => {
-        const input = { 'class': 'custom-class' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.dialog').hasClass('custom-class')).to.equal(true);
-    });
-
     [undefined, 'fill', 'full'].forEach(type => {
         test(`renders with ${type || 'default'} type`, context => {
             const input = { type: type };
@@ -67,4 +61,7 @@ describe('dialog', () => {
             expect($window.hasClass('dialog__window--slide')).to.equal(true);
         });
     });
+
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, '.dialog'));
+    test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.dialog'));
 });

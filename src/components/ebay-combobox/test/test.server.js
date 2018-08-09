@@ -54,21 +54,11 @@ describe('select', () => {
         expect($('.combobox__control.combobox__control--borderless').length).to.equal(0);
     });
 
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, 'span.combobox');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, 'span.combobox');
-    });
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.combobox'));
+    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.combobox'));
 });
 
 describe('select-option', () => {
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, '.combobox__option', 'options');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.combobox__option', 'options');
-    });
+    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.combobox__option', 'options'));
+    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.combobox__option', 'options'));
 });

@@ -56,19 +56,23 @@ function getInitialState(input) {
         }
 
         return {
-            tag,
+            htmlAttributes: processHtmlAttributes(item),
             classes,
+            style: item.style,
+            renderBody: item.renderBody,
+            tag,
             role,
             href,
             useCheckIcon: isRadio || isCheckbox,
             checked: (!isRadio && !isCheckbox) ? false : Boolean(checked),
-            current: Boolean(current),
-            htmlAttributes: processHtmlAttributes(item),
-            renderBody: item.renderBody
+            current: Boolean(current)
         };
     });
 
     return {
+        htmlAttributes: processHtmlAttributes(input),
+        class: input.class,
+        style: input.style,
         type,
         isRadio,
         isCheckbox,
@@ -78,14 +82,12 @@ function getInitialState(input) {
         iconTag: input.iconTag && input.iconTag.renderBody,
         accessibilityText: input.accessibilityText,
         noToggleIcon: input.noToggleIcon,
-        class: input.class,
         reverse: Boolean(input.reverse),
         fixWidth: Boolean(input.fixWidth),
         borderless: Boolean(input.borderless),
         size: input.size,
         priority: input.priority,
         expanded: false,
-        htmlAttributes: processHtmlAttributes(input),
         items,
         checked: checkedItems
     };
@@ -116,6 +118,9 @@ function getTemplateData(state) {
     }
 
     return {
+        htmlAttributes: state.htmlAttributes,
+        menuClass,
+        style: state.style,
         type: state.type,
         isRadio: state.isRadio,
         isCheckbox: state.isCheckbox,
@@ -128,12 +133,10 @@ function getTemplateData(state) {
         expanded: state.expanded,
         size: state.size,
         priority: state.priority,
-        menuClass,
         buttonClass: state.borderless && 'expand-btn--borderless',
         itemsClass,
         role: !state.isFake ? 'menu' : null,
-        items: state.items,
-        htmlAttributes: state.htmlAttributes
+        items: state.items
     };
 }
 

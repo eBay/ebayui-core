@@ -20,19 +20,20 @@ function init() {
 }
 
 function getInitialState(input) {
-    const { open = false, type, focus, ariaLabelClose } = input;
+    const { style, open = false, type, focus, ariaLabelClose } = input;
     return {
+        htmlAttributes: processHtmlAttributes(input),
+        class: input.class,
+        style,
         open,
         type,
         focus,
-        ariaLabelClose,
-        class: input.class,
-        htmlAttributes: processHtmlAttributes(input)
+        ariaLabelClose
     };
 }
 
 function getTemplateData(state) {
-    const { open, type, ariaLabelClose, htmlAttributes } = state;
+    const { style, open, type, ariaLabelClose, htmlAttributes } = state;
     const dialogClass = [state.class, 'dialog'];
     const windowClass = ['dialog__window'];
 
@@ -58,12 +59,13 @@ function getTemplateData(state) {
     }
 
     return {
+        htmlAttributes,
+        dialogClass,
+        style,
         open,
         type,
         ariaLabelClose,
-        dialogClass,
-        windowClass,
-        htmlAttributes
+        windowClass
     };
 }
 

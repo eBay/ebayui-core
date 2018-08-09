@@ -8,9 +8,10 @@ function getInitialState(input) {
         classes.push('textbox__control--fluid');
     }
     return {
-        classes,
         htmlAttributes: processHtmlAttributes(input),
         rootClass: ['textbox', input.class],
+        style: input.style,
+        classes,
         tag: input.fluid ? 'div' : 'span',
         textboxTag: Boolean(input.multiline) ? 'textarea' : 'input',
         invalid: String(Boolean(input.invalid))

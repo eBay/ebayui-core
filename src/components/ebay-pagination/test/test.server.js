@@ -37,13 +37,8 @@ describe('pagination', () => {
         expect($('.pagination__next[aria-disabled=true]').length).to.equal(1);
     });
 
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, '.pagination');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.pagination');
-    });
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, '.pagination'));
+    test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.pagination'));
 });
 
 describe('pagination-item', () => {
@@ -62,15 +57,15 @@ describe('pagination-item', () => {
         testUtils.testHtmlAttributes(context, '.pagination__next', 'items', nextControlInput);
     });
 
-    test('handles custom class for item', context => {
-        testUtils.testCustomClass(context, '.pagination__item', 'items');
+    test('handles custom class and style for item', context => {
+        testUtils.testClassAndStyle(context, '.pagination__item', 'items');
     });
 
-    test('handles custom class for previous control', context => {
-        testUtils.testCustomClass(context, '.pagination__previous', 'items', false, previousControlInput);
+    test('handles custom class and style for previous control', context => {
+        testUtils.testClassAndStyle(context, '.pagination__previous', 'items', previousControlInput);
     });
 
-    test('handles custom class for next control', context => {
-        testUtils.testCustomClass(context, '.pagination__next', 'items', false, nextControlInput);
+    test('handles custom class and style for next control', context => {
+        testUtils.testClassAndStyle(context, '.pagination__next', 'items', nextControlInput);
     });
 });
