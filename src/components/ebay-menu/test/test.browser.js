@@ -59,6 +59,28 @@ describe('given the menu is in the default state', () => {
         });
     });
 
+    describe('when new input is provided', () => {
+        const newLabel = 'label2';
+        let spy;
+        let firstItem;
+        beforeEach(() => {
+            widget.setProps({ label: newLabel, items: mock.items2 });
+            spy = sinon.spy();
+            widget.on('menu-select', spy);
+            firstItem = document.querySelector('.menu__item');
+            testUtils.triggerEvent(firstItem, 'click');
+        });
+
+        test('then it rerenders with the new input', (context, done) => {
+            setTimeout(() => {
+                expect(buttonLabel.innerText.trim()).to.equal(newLabel);
+                const eventData = spy.getCall(0).args[0];
+                expect(eventData.el.innerText).to.equal(firstItem.innerText);
+                done();
+            }, 10);
+        });
+    });
+
     describe('when the expanded property is set to false', () => {
         let spy;
         beforeEach(() => {

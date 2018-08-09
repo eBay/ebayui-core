@@ -136,7 +136,7 @@ describe('menu-item', () => {
     test('renders basic version', context => {
         const input = { items: mock.items };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('div.menu__item').length).to.equal(3);
+        expect($('div.menu__item').length).to.equal(2);
     });
 
     test('renders fake version', context => {
