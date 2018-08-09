@@ -44,9 +44,7 @@ describe('icon', () => {
         testUtils.testHtmlAttributes(context, '.icon', null, { type: 'inline', name: iconName });
     });
 
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.icon');
-    });
+    test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.icon'));
 });
 
 describe('transformer', () => {

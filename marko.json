@@ -5,12 +5,15 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@heading-text": "string",
         "@heading-level": "string",
         "@hijax": "boolean",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string",
             "@href": "string"
         }
     },
@@ -20,6 +23,7 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@type": "string",
         "@disabled": "boolean",
         "@partially-disabled": "boolean",
@@ -35,6 +39,7 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@index": "string",
         "@type": "string",
         "@slide": "string",
@@ -52,16 +57,27 @@
         "@accessibility-pause": "string",
         "@items <item>[]": {
             "@*": "expression",
-            "@html-attributes": "expression"
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
         }
     },
     "<ebay-carousel-item>": {},
+    "<ebay-checkbox>": {
+        "renderer": "./src/components/ebay-checkbox/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@disabled": "boolean"
+    },
     "<ebay-combobox>": {
         "renderer": "./src/components/ebay-combobox/index.js",
         "transformer": "./src/common/transformer/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@name": "string",
         "@grow": "boolean",
         "@borderless": "boolean",
@@ -70,6 +86,7 @@
             "@*": "expression",
             "@html-attributes": "expression",
             "@class": "string",
+            "@style": "string",
             "@value": "string",
             "@label": "string",
             "@selected": "boolean"
@@ -81,10 +98,23 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@open": "boolean",
         "@type": "string",
         "@focus": "string",
         "@aria-label-close": "string"
+    },
+    "<ebay-icon>": {
+        "renderer": "./src/components/ebay-icon/index.js",
+        "transformer": "./src/components/ebay-icon/transformer.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@type": "string",
+        "@name": "string",
+        "@accessibility-text": "string",
+        "@no-skin-classes": "boolean"
     },
     "<ebay-menu>": {
         "renderer": "./src/components/ebay-menu/index.js",
@@ -92,6 +122,7 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@type": "string",
         "@label": "string",
         "@icon": "string",
@@ -108,6 +139,7 @@
             "@*": "expression",
             "@html-attributes": "expression",
             "@class": "string",
+            "@style": "string",
             "@href": "string",
             "@type": "string",
             "@checked": "boolean",
@@ -120,6 +152,7 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@type": "string",
         "@heading-level": "string",
         "@status": "string",
@@ -134,6 +167,7 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@accessibility-prev": "string",
         "@accessibility-next": "string",
         "@accessibility-current": "string",
@@ -142,6 +176,7 @@
             "@*": "expression",
             "@html-attributes": "expression",
             "@class": "string",
+            "@style": "string",
             "@current": "boolean",
             "@disabled": "boolean",
             "@href": "string",
@@ -150,29 +185,12 @@
         }
     },
     "<ebay-pagination-item>": {},
-    "<ebay-icon>": {
-        "renderer": "./src/components/ebay-icon/index.js",
-        "transformer": "./src/components/ebay-icon/transformer.js",
-        "@*": "expression",
-        "@html-attributes": "expression",
-        "@class": "string",
-        "@type": "string",
-        "@name": "string",
-        "@accessibility-text": "string",
-        "@no-skin-classes": "boolean"
-    },
     "<ebay-radio>": {
         "renderer": "./src/components/ebay-radio/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
-        "@disabled": "boolean"
-    },
-    "<ebay-checkbox>": {
-        "renderer": "./src/components/ebay-checkbox/index.js",
-        "@*": "expression",
-        "@html-attributes": "expression",
-        "@class": "string",
+        "@style": "string",
         "@disabled": "boolean"
     },
     "<ebay-select>": {
@@ -181,6 +199,7 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@grow": "boolean",
         "@borderless": "boolean",
         "@disabled": "boolean",
@@ -188,6 +207,7 @@
             "@*": "expression",
             "@html-attributes": "expression",
             "@class": "string",
+            "@style": "string",
             "@value": "string",
             "@label": "string",
             "@selected": "boolean"
@@ -199,6 +219,7 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@disabled": "boolean"
     },
     "<ebay-tab>": {
@@ -207,18 +228,21 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@index": "string",
         "@fake": "boolean",
         "@headings <heading>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
             "@class": "string",
+            "@style": "string",
             "@href": "string"
         },
         "@panels <panel>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
-            "@class": "string"
+            "@class": "string",
+            "@style": "string"
         }
     },
     "<ebay-tab-heading>": {},
@@ -228,6 +252,7 @@
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
+        "@style": "string",
         "@invalid": "boolean",
         "@fluid": "boolean",
         "@multiline": "boolean"

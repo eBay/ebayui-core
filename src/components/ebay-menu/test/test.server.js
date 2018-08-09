@@ -123,13 +123,8 @@ describe('menu', () => {
         expect($('svg.expand-btn__icon').length).to.equal(0);
     });
 
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, 'span.menu');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, 'span.menu');
-    });
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.menu'));
+    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.menu'));
 });
 
 describe('menu-item', () => {
@@ -167,13 +162,8 @@ describe('menu-item', () => {
         });
     });
 
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, '.menu__item', 'items');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.menu__item', 'items');
-    });
+    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.menu__item', 'items'));
+    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.menu__item', 'items'));
 });
 
 describe('transformer', () => {

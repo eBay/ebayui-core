@@ -11,11 +11,12 @@ function getInitialState(input) {
         const selected = option.selected;
 
         return {
+            htmlAttributes: processHtmlAttributes(option),
             class: option.class,
+            style: option.style,
             value: option.value,
             label: option.label,
-            selected: Boolean(selected),
-            htmlAttributes: processHtmlAttributes(option)
+            selected: Boolean(selected)
         };
     });
 
@@ -26,12 +27,13 @@ function getInitialState(input) {
     }
 
     return {
+        htmlAttributes: processHtmlAttributes(input),
         class: input.class,
+        style: input.style,
         options,
         selected: selectedOption,
         borderless: Boolean(input.borderless),
-        disabled: Boolean(input.disabled),
-        htmlAttributes: processHtmlAttributes(input)
+        disabled: Boolean(input.disabled)
     };
 }
 
@@ -43,11 +45,12 @@ function getTemplateData(state) {
     }
 
     return {
+        htmlAttributes: state.htmlAttributes,
         class: selectClass,
+        style: state.style,
         selectedOption: state.selected,
         options: state.options,
-        disabled: state.disabled,
-        htmlAttributes: state.htmlAttributes
+        disabled: state.disabled
     };
 }
 
