@@ -17,5 +17,5 @@ Note: For this component, `class`/`style` are applied to the root tag, while all
 ## ebay-radio Events
 
 Event | Data | Description
---- | --- | --
-`swtich-select` | `{originalEvent, value, checked}` | selected value and checked status
+--- | --- | ---
+`switch-select` | `{ originalEvent, value, checked }` | selected value and checked status
