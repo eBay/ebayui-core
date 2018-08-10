@@ -160,22 +160,24 @@ function onRender(event) {
             });
         }
 
-        // TODO: move outside of firstRender, but must check before attaching observers on render
+        // FIXME: should be outside of firstRender, but only if observers haven't been attached yet
         const checkedObserverCallback = itemEl => this.processAfterStateChange([getItemElementIndex(itemEl)]);
         this.itemEls.forEach((itemEl, i) => {
             observer.observeInner(this, itemEl, 'checked', `items[${i}]`, 'items', checkedObserverCallback);
         });
-    }
 
-    if (!this.state.isFake) {
-        rovingTabindex.createLinear(this.contentEl, 'div', { index: 0, autoReset: 0 });
+        const expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
+            hostSelector: buttonSelector,
+            focusManagement: 'focusable',
+            expandOnClick: true,
+            autoCollapse: true
+        });
+
+        // FIXME: should be outside of firstRender, but only when itemEls changes
+        if (!this.state.isFake) {
+            rovingTabindex.createLinear(this.contentEl, 'div', { index: 0, autoReset: 0 });
+        }
     }
-    const expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
-        hostSelector: buttonSelector,
-        focusManagement: 'focusable',
-        expandOnClick: true,
-        autoCollapse: true
-    });
 }
 
 /**
