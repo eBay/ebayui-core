@@ -137,32 +137,36 @@ function getTemplateData(state) {
     };
 }
 
-function init() {
+function onRender(event) {
     this.buttonEl = this.el.querySelector(buttonSelector);
     this.contentEl = this.el.querySelector(contentSelector);
     this.itemEls = this.el.querySelectorAll('.menu__item, .fake-menu__item');
-    if (this.state.isCheckbox) {
-        this.el.setCheckedList = setCheckedList.bind(this);
-        this.el.getCheckedList = getCheckedList.bind(this);
-    }
-    observer.observeRoot(this, ['label', 'expanded']);
-    if (this.state.isRadio) {
-        observer.observeRoot(this, ['checked'], (itemIndex) => {
-            if (itemIndex >= 0 && itemIndex < (this.state.items.length)) {
-                this.setCheckedItem(itemIndex);
-            } else if (itemIndex < 0) {
-                this.setState('checked', 0);
-            } else if (itemIndex > (this.state.items.length - 1)) {
-                console.warn('Index out of bounds. Select an available item index.');
-            }
+
+    if (event.firstRender) {
+        if (this.state.isCheckbox) {
+            this.el.setCheckedList = setCheckedList.bind(this);
+            this.el.getCheckedList = getCheckedList.bind(this);
+        }
+        observer.observeRoot(this, ['label', 'expanded']);
+        if (this.state.isRadio) {
+            observer.observeRoot(this, ['checked'], itemIndex => {
+                if (itemIndex >= 0 && itemIndex < (this.state.items.length)) {
+                    this.setCheckedItem(itemIndex);
+                } else if (itemIndex < 0) {
+                    this.setState('checked', 0);
+                } else if (itemIndex > (this.state.items.length - 1)) {
+                    console.warn('Index out of bounds. Select an available item index.');
+                }
+            });
+        }
+
+        // TODO: move outside of firstRender, but must check before attaching observers on render
+        const checkedObserverCallback = itemEl => this.processAfterStateChange([getItemElementIndex(itemEl)]);
+        this.itemEls.forEach((itemEl, i) => {
+            observer.observeInner(this, itemEl, 'checked', `items[${i}]`, 'items', checkedObserverCallback);
         });
     }
-    const checkedObserverCallback = (itemEl) => {
-        this.processAfterStateChange([getItemElementIndex(itemEl)]);
-    };
-    this.itemEls.forEach((itemEl, i) => {
-        observer.observeInner(this, itemEl, 'checked', `items[${i}]`, 'items', checkedObserverCallback);
-    });
+
     if (!this.state.isFake) {
         rovingTabindex.createLinear(this.contentEl, 'div', { index: 0, autoReset: 0 });
     }
@@ -327,7 +331,7 @@ module.exports = markoWidgets.defineComponent({
     template,
     getInitialState,
     getTemplateData,
-    init,
+    onRender,
     update_expanded,
     handleItemClick,
     handleItemKeydown,
