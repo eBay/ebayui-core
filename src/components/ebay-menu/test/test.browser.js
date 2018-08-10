@@ -59,7 +59,7 @@ describe('given the menu is in the default state', () => {
         });
     });
 
-    describe('when new item input is provided via parent state', () => {
+    describe('when items are updated via parent state', () => {
         let spy;
         let thirdItem;
         beforeEach(done => {
