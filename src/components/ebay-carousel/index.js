@@ -306,6 +306,7 @@ function handleScrollEnd(scrollLeft) {
     // Always update with the new index to ensure the scroll animations happen.
     config.preserveItems = true;
     this.setStateDirty('index', closest);
+    this.once('update', this.emitUpdate);
 }
 
 /**
