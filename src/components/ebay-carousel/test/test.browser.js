@@ -99,14 +99,13 @@ describe('given the carousel starts in the default state with items', () => {
         });
     });
 
-    // simulate parent state change
-    describe('when index is updated via state', () => {
+    describe('when index is updated via parent state', () => {
         let updateSpy;
         beforeEach(done => {
             updateSpy = sinon.spy();
             widget.on('carousel-update', updateSpy);
             widget.subscribeTo(list).once('transitionend', done);
-            widget.setState('index', 1);
+            widget.setProps({ index: '1', items: mock.sixItems });
         });
 
         it('then it emits the marko update event', () => {
