@@ -88,7 +88,7 @@
             "@class": "string",
             "@style": "string",
             "@value": "string",
-            "@label": "string",
+            "@text": "string",
             "@selected": "boolean"
         }
     },
@@ -102,7 +102,7 @@
         "@open": "boolean",
         "@type": "string",
         "@focus": "string",
-        "@aria-label-close": "string"
+        "@a11y-close-text": "string"
     },
     "<ebay-icon>": {
         "renderer": "./src/components/ebay-icon/index.js",
@@ -113,7 +113,7 @@
         "@style": "string",
         "@type": "string",
         "@name": "string",
-        "@accessibility-text": "string",
+        "@a11y-text": "string",
         "@no-skin-classes": "boolean"
     },
     "<ebay-menu>": {

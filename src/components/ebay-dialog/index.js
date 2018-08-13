@@ -20,7 +20,7 @@ function init() {
 }
 
 function getInitialState(input) {
-    const { style, open = false, type, focus, ariaLabelClose } = input;
+    const { style, open = false, type, focus, a11yCloseText } = input;
     return {
         htmlAttributes: processHtmlAttributes(input),
         class: input.class,
@@ -28,12 +28,12 @@ function getInitialState(input) {
         open,
         type,
         focus,
-        ariaLabelClose
+        a11yCloseText
     };
 }
 
 function getTemplateData(state) {
-    const { style, open, type, ariaLabelClose, htmlAttributes } = state;
+    const { style, open, type, a11yCloseText, htmlAttributes } = state;
     const dialogClass = [state.class, 'dialog'];
     const windowClass = ['dialog__window'];
 
@@ -64,7 +64,7 @@ function getTemplateData(state) {
         style,
         open,
         type,
-        ariaLabelClose,
+        a11yCloseText,
         windowClass
     };
 }

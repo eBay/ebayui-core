@@ -37,4 +37,4 @@ Name | Type | Stateful | Description
 ### Additional Attributes for type="inline"
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`accessibility-text` | String | No | text for non-decorative inline icon; icon is assumed to be decorative if this is not passed
+`a11y-text` | String | No | text for non-decorative inline icon; icon is assumed to be decorative if this is not passed

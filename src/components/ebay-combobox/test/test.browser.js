@@ -133,7 +133,7 @@ describe('given the combobox is in an expanded state', () => {
     let button;
     let ariaControl;
     let secondOption;
-    let secondOptionLabel;
+    let secondOptionText;
 
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
@@ -142,7 +142,7 @@ describe('given the combobox is in an expanded state', () => {
         button = root.querySelector('.combobox__control');
         ariaControl = button.querySelector('input');
         secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
-        secondOptionLabel = secondOption.querySelector('span:not(.combobox__status)');
+        secondOptionText = secondOption.querySelector('span:not(.combobox__status)');
         testUtils.triggerEvent(button, 'click');
     });
 
@@ -166,13 +166,13 @@ describe('given the combobox is in an expanded state', () => {
         });
     });
 
-    describe('when an option is clicked on the label', () => {
+    describe('when an option is clicked on the text', () => {
         let selectSpy;
 
         beforeEach(() => {
             selectSpy = sinon.spy();
             widget.on('combobox-change', selectSpy);
-            testUtils.triggerEvent(secondOptionLabel, 'click');
+            testUtils.triggerEvent(secondOptionText, 'click');
         });
 
         test('then it emits the combobox-select event with correct data', () => {
