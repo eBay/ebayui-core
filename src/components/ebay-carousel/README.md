@@ -17,8 +17,8 @@ Use `touch` for touch devices, and `no-touch` for non-touch devices. Without fla
 ## ebay-carousel Attributes
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`a11y-previous-text` | String | No | aria-label for previous control (default: "Previous Slide")
-`a11y-next-text` | String | No | aria-label for next control (default: "Next Slide")
+`a11y-previous-text` | String | No | a11y text for previous control (default: "Previous Slide")
+`a11y-next-text` | String | No | a11y text for next control (default: "Next Slide")
 `index` | String | Yes | 0-based index position
 `items-per-slide` | String | No | automatically fit a number of items for each carousel slide and enable slide controls
 `gap` | String | No | override the margin between carousel items in pixels (default: "16")
