@@ -23,7 +23,7 @@ describe('given switch is enabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('switch-select', spy);
+            widget.on('switch-change', spy);
             input.click();
         });
 
@@ -48,7 +48,7 @@ describe('given switch is disabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('switch-select', spy);
+            widget.on('switch-change', spy);
             testUtils.triggerEvent(root, 'click');
         });
 
