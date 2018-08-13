@@ -30,12 +30,10 @@ When a selected option is specified:
 
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
-`class` | No | String | No | custom class
 `selected` | n/a | Number | Yes | allows you to set the selected index option to `selected`
 `borderless` | No | Boolean | No | whether button has borders
 
-Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `select` tag.
-Be sure to include typical HTML attributes for the `select` tag, like `name`.
+Note: For this component, `class`/`style` are applied to the root tag, while all other HTML attributes are applied to the `select` tag. Be sure to include typical HTML attributes for the `select` tag, like `name`.
 
 ### ebay-select Events
 
@@ -59,7 +57,6 @@ Event | Data |  Description
 
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
-`class` | No | String | No | custom class
 `label` | No | String | No | string label for use in the button
 `selected` | No | Boolean | Yes | whether or not the option is selected (**Note:** use the root `ebay-select` element's `selected` property to set this property)
 `value` | Yes | String | Yes | used for the `value` attribute of the native `<option>`

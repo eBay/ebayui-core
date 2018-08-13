@@ -1,4 +1,4 @@
-<nav class=data.classes ${data.htmlAttributes} w-bind aria-labelledby="pagination-heading-${widget.elId()}" role="navigation">
+<nav class=data.classes style=data.style ${data.htmlAttributes} w-bind aria-labelledby="pagination-heading-${widget.elId()}" role="navigation">
     <span aria-live="polite" role="status">
         <h2 class="clipped"
             id="pagination-heading-${widget.elId()}">
@@ -8,6 +8,7 @@
     <a aria-disabled=String(data.prevItem.disabled)
         aria-label=data.accessibilityPrev
         class=data.prevItem.class
+        style=data.prevItem.style
         href=data.prevItem.href
         role=data.role
         w-onkeydown="handlePreviousPageKeyDown"
@@ -19,13 +20,14 @@
     <ol class="pagination__items">
         <for(item in data.items)>
             <li>
-                <a aria-current=(item.current ? "page" : '')
+                <a aria-current=(item.current && "page")
                     href=item.href
                     role=item.role
                     class=item.class
+                    style=item.style
+                    ${item.htmlAttributes}
                     w-onkeydown="handlePageKeyDown"
                     w-onclick="handlePageClick"
-                    ${item.htmlAttributes}
                     w-body=item.renderBody>
                 </a>
             </li>
@@ -34,6 +36,7 @@
     <a aria-disabled=String(data.nextItem.disabled)
         aria-label=data.accessibilityNext
         class=data.nextItem.class
+        style=data.nextItem.style
         href=data.nextItem.href
         role=data.role
         w-onkeydown="handleNextPageKeyDown"
