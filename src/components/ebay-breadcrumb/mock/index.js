@@ -19,7 +19,7 @@ const firstItemMissingHref = [getItem('eBay', null),
 
 module.exports = {
     basicItems: {
-        headingText: 'Page navigation',
+        a11yHeadingText: 'Page navigation',
         items: basicItems
     },
     hijax: {
@@ -27,12 +27,12 @@ module.exports = {
         items: basicItems
     },
     firstItemMissingHref: {
-        headingText: 'Page navigation',
+        a11yHeadingText: 'Page navigation',
         items: firstItemMissingHref
     },
     itemsWithHeadingLevel: {
-        headingText: 'Page navigation',
-        headingLevel: 'h3',
+        a11yHeadingText: 'Page navigation',
+        a11yHeadingLevel: 'h3',
         items: basicItems
     }
 };

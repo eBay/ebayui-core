@@ -8,7 +8,7 @@ describe('breadcrumb', () => {
         expect($('nav.breadcrumb').length).to.equal(1);
         const h2Tag = $('h2#breadcrumb-heading.clipped');
         expect(h2Tag.length).to.equal(1);
-        expect(h2Tag.html()).to.equal(mock.basicItems.headingText);
+        expect(h2Tag.html()).to.equal(mock.basicItems.a11yHeadingText);
         expect($('nav li').length).to.equal(mock.basicItems.items.length);
         expect($('nav li a').length).to.equal(mock.basicItems.items.length - 1);
     });

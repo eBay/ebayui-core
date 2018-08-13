@@ -18,11 +18,11 @@ describe('carousel', () => {
         const input = {
             items: mock.sixItems,
             itemsPerSlide: 1,
-            accessibilityPrev: 'prev',
-            accessibilityNext: 'next',
-            accessibilityStatus: '{currentSlide} of {totalSlides}',
-            accessibilityCurrent: 'slide {currentSlide}',
-            accessibilityOther: 'other {slide}'
+            a11yPreviousText: 'prev',
+            a11yNextText: 'next',
+            a11yStatusText: '{currentSlide} of {totalSlides}',
+            a11yCurrentText: 'slide {currentSlide}',
+            a11yOtherText: 'other {slide}'
         };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.carousel__control--prev[aria-label="prev"]').length).to.equal(1);
@@ -37,8 +37,8 @@ describe('carousel', () => {
             items: mock.sixItems,
             itemsPerSlide: 1,
             autoplay: true,
-            accessibilityPlay: 'play',
-            accessibilityPause: 'pause'
+            a11yPlayText: 'play',
+            a11yPauseText: 'pause'
         };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.carousel__autoplay').length).to.equal(1);
@@ -53,8 +53,8 @@ describe('carousel', () => {
             itemsPerSlide: 1,
             autoplay: true,
             noDots: true,
-            accessibilityPlay: 'play',
-            accessibilityPause: 'pause'
+            a11yPlayText: 'play',
+            a11yPauseText: 'pause'
         };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.carousel__autoplay').length).to.equal(1);
@@ -67,8 +67,8 @@ describe('carousel', () => {
             itemsPerSlide: 1,
             autoplay: true,
             paused: true,
-            accessibilityPlay: 'play',
-            accessibilityPause: 'pause'
+            a11yPlayText: 'play',
+            a11yPauseText: 'pause'
         };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.carousel__autoplay').length).to.equal(1);

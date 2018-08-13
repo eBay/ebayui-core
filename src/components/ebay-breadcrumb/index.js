@@ -40,8 +40,8 @@ function getTemplateData(state, input) {
         style: input.style,
         items,
         hijax,
-        headingText: input.headingText || '',
-        headingLevel: input.headingLevel || 'h2'
+        a11yHeadingText: input.a11yHeadingText || '',
+        a11yHeadingLevel: input.a11yHeadingLevel || 'h2'
     };
 }
 
