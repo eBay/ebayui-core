@@ -14,7 +14,7 @@ describe('carousel', () => {
         expect($('ul.carousel__list > li:not([aria-hidden="true"])').length).to.equal(mock.sixItems.length);
     });
 
-    test('renders accessibility text', context => {
+    test('renders a11y text', context => {
         const input = {
             items: mock.sixItems,
             itemsPerSlide: 1,

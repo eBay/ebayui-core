@@ -168,9 +168,9 @@
         "@html-attributes": "expression",
         "@class": "string",
         "@style": "string",
-        "@accessibility-prev": "string",
-        "@accessibility-next": "string",
-        "@accessibility-current": "string",
+        "@a11y-previous-text": "string",
+        "@a11y-next-text": "string",
+        "@a11y-current-text": "string",
         "@hijax": "boolean",
         "@items <item>[]": {
             "@*": "expression",
@@ -209,7 +209,7 @@
             "@class": "string",
             "@style": "string",
             "@value": "string",
-            "@label": "string",
+            "@text": "string",
             "@selected": "boolean"
         }
     },

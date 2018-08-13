@@ -64,7 +64,7 @@ function handleClick(originalEvent) {
 }
 
 /**
- * Handle accessibility features
+ * Handle a11y features
  * https://ebay.gitbooks.io/mindpatterns/content/input/button.html#keyboard
  * @param {MouseEvent} e
  */
