@@ -26,7 +26,7 @@ const defaults = {
 function getInitialState(input) {
     const hidden = defaults.hidden;
     const type = input.type || defaults.type;
-    const headingTag = (type === 'page' && input.headingLevel) ? `h${input.headingLevel}` : constants[type].headingTag;
+    const headingTag = (type === 'page' && input.a11yHeadingLevel) ? `h${input.a11yHeadingLevel}` : constants[type].headingTag;
     const status = input.status || defaults.status;
     const dismissible = (input.dismissible && type === 'page') || defaults.dismissible;
 
@@ -41,8 +41,8 @@ function getInitialState(input) {
         type,
         status,
         hidden,
-        ariaText: input.ariaText || '',
-        ariaLabelClose: input.ariaLabelClose || '',
+        a11yHeadingText: input.a11yHeadingText || '',
+        a11yCloseText: input.a11yCloseText || '',
         headingClass: `${type}-notice__status`,
         contentClass: `${type}-notice__content`
     };

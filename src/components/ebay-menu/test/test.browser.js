@@ -8,13 +8,13 @@ describe('given the menu is in the default state', () => {
     let widget;
     let root;
     let button;
-    let buttonLabel;
+    let buttonText;
 
     beforeEach(() => {
-        widget = renderer.renderSync({ label: 'label', items: mock.twoItems }).appendTo(document.body).getWidget();
+        widget = renderer.renderSync({ textl: 'text', items: mock.twoItems }).appendTo(document.body).getWidget();
         root = document.querySelector('span.menu');
         button = document.querySelector('.expand-btn');
-        buttonLabel = root.querySelector('.expand-btn > span');
+        buttonText = root.querySelector('.expand-btn > span');
     });
     afterEach(() => widget.destroy());
 
@@ -45,15 +45,15 @@ describe('given the menu is in the default state', () => {
         });
     });
 
-    describe('when the label property is set', () => {
-        const newLabel = 'label2';
+    describe('when the text property is set', () => {
+        const newText = 'text2';
         beforeEach(() => {
-            root.label = newLabel;
+            root.text = newText;
         });
 
-        test('then it rerenders with the new label', (context, done) => {
+        test('then it rerenders with the new text', (context, done) => {
             setTimeout(() => {
-                expect(buttonLabel.innerText.trim()).to.equal(newLabel);
+                expect(buttonText.innerText.trim()).to.equal(newText);
                 done();
             }, 10);
         });

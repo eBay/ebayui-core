@@ -77,10 +77,10 @@ function getInitialState(input) {
         isRadio,
         isCheckbox,
         isFake,
-        label: input.label,
+        text: input.text,
         icon: input.icon,
         iconTag: input.iconTag && input.iconTag.renderBody,
-        accessibilityText: input.accessibilityText,
+        a11yText: input.a11yText,
         noToggleIcon: input.noToggleIcon,
         reverse: Boolean(input.reverse),
         fixWidth: Boolean(input.fixWidth),
@@ -125,10 +125,10 @@ function getTemplateData(state) {
         isRadio: state.isRadio,
         isCheckbox: state.isCheckbox,
         isNotCheckable: !state.isRadio && !state.isCheckbox,
-        label: state.label,
+        text: state.text,
         icon: state.icon,
         iconTag: state.iconTag,
-        accessibilityText: state.accessibilityText,
+        a11yText: state.a11yText,
         noToggleIcon: state.noToggleIcon,
         expanded: state.expanded,
         size: state.size,
@@ -150,7 +150,7 @@ function onRender(event) {
             this.el.setCheckedList = setCheckedList.bind(this);
             this.el.getCheckedList = getCheckedList.bind(this);
         }
-        observer.observeRoot(this, ['label', 'expanded']);
+        observer.observeRoot(this, ['text', 'expanded']);
         if (this.state.isRadio) {
             observer.observeRoot(this, ['checked'], itemIndex => {
                 if (itemIndex >= 0 && itemIndex < (this.state.items.length)) {
@@ -269,7 +269,7 @@ function setCheckedItem(itemIndex, toggle) {
 }
 
 /**
- * Handle accessibility for item (is not handled by makeup)
+ * Handle a11y for item (is not handled by makeup)
  * https://ebay.gitbooks.io/mindpatterns/content/input/menu.html#keyboard
  * @param {KeyboardEvent} e
  */
