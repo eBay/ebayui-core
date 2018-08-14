@@ -307,6 +307,7 @@ function handleScrollEnd(scrollLeft) {
     config.preserveItems = true;
     this.setStateDirty('index', closest);
     this.once('update', this.emitUpdate);
+    emitAndFire(this, 'carousel-scroll', { index: closest });
 }
 
 /**

@@ -993,14 +993,17 @@ describe('given a carousel in the default state with native scrolling', () => {
     describe('when scrolling an item to the right', () => {
         let nextSpy;
         let slideSpy;
+        let scrollSpy;
         let updateSpy;
 
         beforeEach(done => {
             nextSpy = sinon.spy();
             slideSpy = sinon.spy();
+            scrollSpy = sinon.spy();
             updateSpy = sinon.spy();
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-slide', slideSpy);
+            widget.on('carousel-scroll', scrollSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.simulateScroll(list, list.children[2].offsetLeft);
             waitForUpdate(widget, done);
@@ -1009,6 +1012,12 @@ describe('given a carousel in the default state with native scrolling', () => {
         it('then it does not emit next or slide events', () => {
             expect(nextSpy.notCalled).to.equal(true);
             expect(slideSpy.notCalled).to.equal(true);
+        });
+
+        it('then it emits the carousel scroll event', () => {
+            expect(scrollSpy.calledOnce).to.equal(true);
+            const eventData = scrollSpy.getCall(0).args[0];
+            expect(eventData.index).to.deep.equal(2);
         });
 
         it('then it emits the marko update event', () => {
