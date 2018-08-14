@@ -34,6 +34,8 @@ Name | Required | Type | Stateful | Description
 `selected` | n/a | Number | Yes | allows you to set the selected index option to `selected`
 `borderless` | No | Boolean | No | whether button has borders
 
+Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
+
 ### ebay-combobox Events
 
 Event | Data |  Description

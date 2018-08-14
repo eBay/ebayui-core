@@ -54,7 +54,7 @@ describe('select', () => {
         expect($('.combobox__control.combobox__control--borderless').length).to.equal(0);
     });
 
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.combobox'));
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'input'));
     test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.combobox'));
 });
 
