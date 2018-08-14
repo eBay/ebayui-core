@@ -24,56 +24,53 @@ describe('scroll-end', () => {
     it('calls a function when a scroll has ended', (done) => {
         const scrollEndSpy = sinon.spy();
         onScrollEnd(scrollEl, scrollEndSpy);
-        setTimeout(() => {
-            simulateScroll(scrollEl, 100);
-            setTimeout(() => {
+        testUtils.simulateScroll(scrollEl, 50, () => {
+            testUtils.simulateScroll(scrollEl, 100, () => {
                 expect(scrollEndSpy.calledTwice).to.equal(true);
                 expect(scrollEndSpy.args[0][0]).to.equal(50);
                 expect(scrollEndSpy.args[1][0]).to.equal(100);
                 done();
-            }, 300);
-        }, 150);
-        simulateScroll(scrollEl, 50);
+            });
+        });
     });
 
     it('groups scroll events with additional touches', (done) => {
         const scrollEndSpy = sinon.spy();
         onScrollEnd(scrollEl, scrollEndSpy);
         setTimeout(() => {
-            simulateScroll(scrollEl, 100);
-            setTimeout(() => {
+            testUtils.simulateScroll(scrollEl, 100, () => {
                 expect(scrollEndSpy.calledOnce).to.equal(true);
                 expect(scrollEndSpy.args[0][0]).to.equal(100);
                 done();
-            }, 150);
+            });
         }, 0);
-        simulateScroll(scrollEl, 50);
+        testUtils.simulateScroll(scrollEl, 50);
+    });
+
+    it('can be canceled immediately', (done) => {
+        const scrollEndSpy = sinon.spy();
+        const cancel = onScrollEnd(scrollEl, scrollEndSpy);
+        testUtils.simulateScroll(scrollEl, 100);
+        testUtils.waitFrames(5, () => {
+            expect(scrollEndSpy.notCalled).to.equal(true);
+            done();
+        });
+
+        cancel();
+    });
+
+    it('can be canceled after scrolling starts', (done) => {
+        const scrollEndSpy = sinon.spy();
+        const cancel = onScrollEnd(scrollEl, scrollEndSpy);
+        const startLeft = scrollEl.scrollLeft;
+        testUtils.simulateScroll(scrollEl, 100);
+        testUtils.waitFrames(2, () => {
+            cancel();
+            testUtils.waitFrames(3, () => {
+                expect(scrollEndSpy.notCalled).to.equal(true);
+                expect(scrollEl.scrollLeft).to.not.equal(startLeft);
+                done();
+            });
+        });
     });
 });
-
-/**
- * Simulates a touch based scroll event over 100ms.
- *
- * @param {HTMLElement} el The element to scroll.
- * @param {number} to The new scrollLeft for the element.
- */
-function simulateScroll(el, to) {
-    const { scrollLeft } = el;
-    const distance = to - scrollLeft;
-    const duration = 10;
-    testUtils.triggerEvent(el, 'touchstart');
-    requestAnimationFrame(startTime => {
-        (function animate(curTime) {
-            const delta = curTime - startTime;
-            if (delta > duration) {
-                testUtils.triggerEvent(el, 'touchend');
-                el.scrollLeft = to;
-                return;
-            }
-
-            testUtils.triggerEvent(el, 'touchmove');
-            el.scrollLeft = (delta / duration) * distance + scrollLeft;
-            requestAnimationFrame(animate);
-        }());
-    });
-}

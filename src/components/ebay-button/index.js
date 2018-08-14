@@ -46,11 +46,13 @@ function getTemplateData(state, input) {
         classes.push(`${mainClass}--fluid`);
     }
 
-    model.tag = tag;
+    model.htmlAttributes = processHtmlAttributes(input);
     model.classes = classes;
+    model.style = input.style;
+    model.tag = tag;
+    model.type = input.type || 'button';
     model.disabled = state.disabled;
     model.partiallyDisabled = input.partiallyDisabled ? 'true' : null; // for aria-disabled
-    model.htmlAttributes = processHtmlAttributes(input);
 
     return model;
 }

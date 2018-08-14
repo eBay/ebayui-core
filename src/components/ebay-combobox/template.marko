@@ -1,5 +1,6 @@
 <span
     class=data.class
+    style=data.style
     ${data.htmlAttributes}
     w-on-expander-expand='handleExpand'
     w-on-expander-collapse='handleCollapse'
@@ -27,8 +28,9 @@
             for(option in data.options)
             role='option'
             class=['combobox__option', option.class]
-            tabindex="-1"
+            style=option.style
             ${option.htmlAttributes}
+            tabindex="-1"
             w-on-click='handleOptionClick'
             w-preserve-attrs="tabindex,data-makeup-index"
             aria-selected=String(option.selected)

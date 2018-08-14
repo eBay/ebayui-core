@@ -15,8 +15,11 @@
         "../src/components/ebay-menu",
         "../src/components/ebay-notice",
         "../src/components/ebay-pagination",
-        "../src/components/ebay-select",
         "../src/components/ebay-radio",
+        "../src/components/ebay-select",
+        "../src/components/ebay-switch",
+        "../src/components/ebay-tab",
+        "../src/components/ebay-textbox",
         {
             "if-flag": "skin-ds6",
             "dependencies": [

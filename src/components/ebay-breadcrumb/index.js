@@ -7,13 +7,12 @@ const template = require('./template.marko');
 function getTemplateData(state, input) {
     const inputItems = input.items || [];
     const hijax = input.hijax || false;
-    let items = (inputItems).map((item, index) => {
-        const itemHtmlAttributes = processHtmlAttributes(item);
+    const items = inputItems.map((item, index) => {
         let tag = 'a';
         let ariaCurrent = null;
         let role;
         const href = item.href || null;
-        const current = ((inputItems.length - 1) === index);
+        const current = (inputItems.length - 1 === index);
         let shouldHandleClick = true;
         if (current && !href) {
             tag = 'span';
@@ -24,23 +23,25 @@ function getTemplateData(state, input) {
             role = 'button';
         }
         return {
+            htmlAttributes: processHtmlAttributes(item),
+            class: item.class,
+            style: item.style,
+            renderBody: item.renderBody,
             tag,
             role,
-            htmlAttributes: itemHtmlAttributes,
-            renderBody: item.renderBody,
             href,
             ariaCurrent,
             shouldHandleClick
         };
     });
-    items = Object.keys(items).length > 0 ? items : null;
     return {
+        htmlAttributes: processHtmlAttributes(input),
+        classes: ['breadcrumb', input.class],
+        style: input.style,
         items,
         hijax,
-        classes: ['breadcrumb', input.class],
         headingText: input.headingText || '',
-        headingLevel: input.headingLevel || 'h2',
-        htmlAttributes: processHtmlAttributes(input)
+        headingLevel: input.headingLevel || 'h2'
     };
 }
 

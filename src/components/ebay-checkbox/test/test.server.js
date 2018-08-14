@@ -17,10 +17,5 @@ test('renders disabled checkbox', context => {
     expect($(`${inputSelector}[disabled]`).length).to.equal(1);
 });
 
-test('handles pass-through html attributes', context => {
-    testUtils.testHtmlAttributes(context, inputSelector);
-});
-
-test('handles custom class', context => {
-    testUtils.testCustomClass(context, rootSelector);
-});
+test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, inputSelector));
+test('handles custom class and style', context => testUtils.testClassAndStyle(context, rootSelector));

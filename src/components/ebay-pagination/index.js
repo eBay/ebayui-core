@@ -28,11 +28,12 @@ function getInitialState(input) {
         const current = item.current;
 
         const tempItem = {
+            htmlAttributes: processHtmlAttributes(item),
+            style: item.style,
+            renderBody: item.renderBody,
             role,
             href,
-            current: Boolean(current) || false,
-            htmlAttributes: processHtmlAttributes(item),
-            renderBody: item.renderBody
+            current: Boolean(current) || false
         };
         if (item.type === 'previous') {
             prevItem = tempItem;
@@ -51,15 +52,16 @@ function getInitialState(input) {
     }
 
     return {
+        htmlAttributes: processHtmlAttributes(input),
+        classes: ['pagination', input.class],
+        style: input.style,
         hijax,
         nextItem: nextItem || { class: 'pagination__next', disabled: true, htmlAttributes: {} },
         prevItem: prevItem || { class: 'pagination__previous', disabled: true, htmlAttributes: {} },
         items,
         accessibilityPrev: input.accessibilityPrev || 'Previous page',
         accessibilityNext: input.accessibilityNext || 'Next page',
-        accessibilityCurrent: input.accessibilityCurrent || 'Results Pagination - Page 1',
-        classes: ['pagination', input.class],
-        htmlAttributes: processHtmlAttributes(input)
+        accessibilityCurrent: input.accessibilityCurrent || 'Results Pagination - Page 1'
     };
 }
 

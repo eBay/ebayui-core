@@ -6,6 +6,7 @@ const renderer = require('../');
 describe('given the dialog is in the default state', () => {
     let widget;
     let root;
+    let dialogWindow;
     let close;
     let sibling;
 
@@ -15,6 +16,7 @@ describe('given the dialog is in the default state', () => {
 
         widget = renderer.renderSync({}).appendTo(document.body).getWidget();
         root = widget.el;
+        dialogWindow = root.querySelector('.dialog__window');
         close = root.querySelector('.dialog__close');
     });
 
@@ -38,7 +40,7 @@ describe('given the dialog is in the default state', () => {
         });
 
         test('then it does not trap focus', () => {
-            expect(root.classList.contains('keyboard-trap--active')).to.equal(false);
+            expect(dialogWindow.classList.contains('keyboard-trap--active')).to.equal(false);
         });
     });
 
@@ -75,7 +77,7 @@ describe('given the dialog is in the default state', () => {
         });
 
         test('then it traps focus', () => {
-            expect(root.classList.contains('keyboard-trap--active')).to.equal(true);
+            expect(dialogWindow.classList.contains('keyboard-trap--active')).to.equal(true);
             expect(document.activeElement.className).to.eql(close.className);
         });
 
@@ -95,6 +97,7 @@ describe('given the dialog is in the default state', () => {
 describe('given the dialog is in the open state', () => {
     let widget;
     let root;
+    let dialogWindow;
     let close;
     let sibling;
 
@@ -104,6 +107,7 @@ describe('given the dialog is in the open state', () => {
 
         widget = renderer.renderSync({ open: true }).appendTo(document.body).getWidget();
         root = widget.el;
+        dialogWindow = root.querySelector('.dialog__window');
         close = root.querySelector('.dialog__close');
     });
 
@@ -124,7 +128,7 @@ describe('given the dialog is in the open state', () => {
         });
 
         test('then it traps focus', () => {
-            expect(root.classList.contains('keyboard-trap--active')).to.equal(true);
+            expect(dialogWindow.classList.contains('keyboard-trap--active')).to.equal(true);
             expect(document.activeElement.className).to.eql(close.className);
         });
     });
@@ -183,7 +187,7 @@ describe('given the dialog is in the open state', () => {
         });
 
         test('then it does not trap focus', () => {
-            expect(root.classList.contains('keyboard-trap--active')).to.equal(false);
+            expect(dialogWindow.classList.contains('keyboard-trap--active')).to.equal(false);
         });
 
         if (!skipRerender) {

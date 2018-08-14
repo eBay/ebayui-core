@@ -11,7 +11,7 @@ describe('given the menu is in the default state', () => {
     let buttonLabel;
 
     beforeEach(() => {
-        widget = renderer.renderSync({ label: 'label', items: mock.items }).appendTo(document.body).getWidget();
+        widget = renderer.renderSync({ label: 'label', items: mock.twoItems }).appendTo(document.body).getWidget();
         root = document.querySelector('span.menu');
         button = document.querySelector('.expand-btn');
         buttonLabel = root.querySelector('.expand-btn > span');
@@ -56,6 +56,26 @@ describe('given the menu is in the default state', () => {
                 expect(buttonLabel.innerText.trim()).to.equal(newLabel);
                 done();
             }, 10);
+        });
+    });
+
+    describe('when items are updated via parent state', () => {
+        let spy;
+        let thirdItem;
+        beforeEach(done => {
+            spy = sinon.spy();
+            widget.on('menu-select', spy);
+            widget.setProps({ items: mock.threeItems });
+            setTimeout(() => {
+                thirdItem = document.querySelectorAll('.menu__item')[2];
+                testUtils.triggerEvent(thirdItem, 'click');
+                done();
+            }, 10);
+        });
+
+        test('then it uses the new input in event data', () => {
+            const eventData = spy.getCall(0).args[0];
+            expect(eventData.el.innerText).to.equal(thirdItem.innerText);
         });
     });
 
@@ -107,7 +127,7 @@ describe('given the menu is in the expanded state', () => {
     let firstItem;
 
     beforeEach((done) => {
-        widget = renderer.renderSync({ items: mock.items }).appendTo(document.body).getWidget();
+        widget = renderer.renderSync({ items: mock.twoItems }).appendTo(document.body).getWidget();
         root = document.querySelector('span.menu');
         button = document.querySelector('.expand-btn');
         firstItem = document.querySelector('.menu__item');
@@ -196,7 +216,7 @@ describe('given the menu is in the expanded state with radio items', () => {
         widget = renderer.renderSync({
             expanded: true,
             type: 'radio',
-            items: mock.items }).appendTo(document.body).getWidget();
+            items: mock.twoItems }).appendTo(document.body).getWidget();
         [firstItem, secondItem] = document.querySelectorAll('.menu__item');
         firstItemInner = firstItem.querySelector('span');
         root = document.querySelector('span.menu');
@@ -373,7 +393,7 @@ describe('given the menu is in the expanded state with checkbox items', () => {
         widget = renderer.renderSync({
             expanded: true,
             type: 'checkbox',
-            items: mock.items }).appendTo(document.body).getWidget();
+            items: mock.twoItems }).appendTo(document.body).getWidget();
         [firstItem, secondItem] = document.querySelectorAll('.menu__item');
         root = document.querySelector('span.menu');
         root.expanded = true;

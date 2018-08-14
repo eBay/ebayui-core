@@ -5,15 +5,19 @@ const _set = require('lodash.set');
  * For each attribute, define getter and setter on root DOM element of the widget
  * @param {Object} widget
  * @param {Array} attributes
+ * @param {Function} callback
+ * @param {Boolean} skipSetState: useful for handling setState in your component, rather than here
  */
-function observeRoot(widget, attributes, callback) {
+function observeRoot(widget, attributes, callback, skipSetState) {
     attributes.forEach(attribute => {
         Object.defineProperty(widget.el, attribute, {
             get() {
                 return widget.state[attribute];
             },
             set(value) {
-                widget.setState(attribute, value);
+                if (!skipSetState) {
+                    widget.setState(attribute, value);
+                }
                 if (callback) {
                     callback(value);
                 }
