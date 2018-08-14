@@ -30,9 +30,9 @@ module.exports = {
         a11yHeadingText: 'Page navigation',
         items: firstItemMissingHref
     },
-    itemsWithHeadingLevel: {
+    itemsWithHeadingTag: {
         a11yHeadingText: 'Page navigation',
-        a11yHeadingLevel: 'h3',
+        a11yHeadingTag: 'h3',
         items: basicItems
     }
 };

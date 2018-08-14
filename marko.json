@@ -7,7 +7,7 @@
         "@class": "string",
         "@style": "string",
         "@a11y-heading-text": "string",
-        "@a11y-heading-level": "string",
+        "@a11y-heading-tag": "string",
         "@hijax": "boolean",
         "@items <item>[]": {
             "@*": "expression",
@@ -156,8 +156,8 @@
         "@type": "string",
         "@status": "string",
         "@hidden": "boolean",
-        "@a11y-heading-level": "string",
         "@a11y-heading-text": "string",
+        "@a11y-heading-tag": "string",
         "@a11y-close-text": "string",
         "@dismissible": "boolean"
     },

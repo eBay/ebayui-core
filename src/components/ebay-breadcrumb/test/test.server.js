@@ -35,7 +35,7 @@ describe('breadcrumb', () => {
     });
 
     test('renders different heading tag when specified', context => {
-        const $ = testUtils.getCheerio(context.render(mock.itemsWithHeadingLevel));
+        const $ = testUtils.getCheerio(context.render(mock.itemsWithHeadingTag));
         expect($('h2').length).to.equal(0);
         expect($('h3').length).to.equal(1);
     });

@@ -26,8 +26,8 @@ const defaults = {
 function getInitialState(input) {
     const hidden = defaults.hidden;
     const type = input.type || defaults.type;
-    const a11yHeadingLevel = input.a11yHeadingLevel;
-    const headingTag = (type === 'page' && a11yHeadingLevel) ? `h${a11yHeadingLevel}` : constants[type].headingTag;
+    const a11yHeadingTag = input.a11yHeadingTag;
+    const headingTag = (type === 'page' && a11yHeadingTag) ? a11yHeadingTag : constants[type].headingTag;
     const status = input.status || defaults.status;
     const dismissible = (input.dismissible && type === 'page') || defaults.dismissible;
 

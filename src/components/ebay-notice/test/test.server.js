@@ -14,7 +14,7 @@ test('renders page notice with default heading', context => {
 });
 
 test('renders page notice with custom heading', context => {
-    const input = { type: 'page', a11yHeadingLevel: '3' };
+    const input = { type: 'page', a11yHeadingTag: 'h3' };
     const $ = testUtils.getCheerio(context.render(input));
     expect($('h3.page-notice__status').length).to.equal(1);
 });

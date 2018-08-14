@@ -41,7 +41,7 @@ function getTemplateData(state, input) {
         items,
         hijax,
         a11yHeadingText: input.a11yHeadingText || '',
-        a11yHeadingLevel: input.a11yHeadingLevel || 'h2'
+        a11yHeadingTag: input.a11yHeadingTag || 'h2'
     };
 }
 
