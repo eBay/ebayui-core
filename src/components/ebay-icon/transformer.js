@@ -18,7 +18,7 @@ function transform(el, context) {
     const isInline = typeAttribute && typeAttribute.value.value === 'inline';
     const iconName = nameAttribute && nameAttribute.value.value;
     if (isInline && iconName) {
-        const templatePath = path.join(__dirname, `symbols/${iconName}.marko`);
+        const templatePath = context.getRequirePath(path.join(__dirname, `symbols/${iconName}.marko`));
         el.prependChild(context.createNodeForEl('include', {}, JSON.stringify(templatePath)));
     }
 
