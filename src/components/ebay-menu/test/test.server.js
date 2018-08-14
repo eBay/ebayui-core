@@ -104,7 +104,7 @@ describe('menu', () => {
         expect($('.expand-btn.expand-btn--primary').length).to.equal(1);
     });
 
-    test('renders without textl', context => {
+    test('renders without text', context => {
         const input = { text: '' };
         const $ = testUtils.getCheerio(context.render(input));
         expect($(textSelector).length).to.equal(0);

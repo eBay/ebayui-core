@@ -11,7 +11,7 @@ describe('given the menu is in the default state', () => {
     let buttonText;
 
     beforeEach(() => {
-        widget = renderer.renderSync({ textl: 'text', items: mock.twoItems }).appendTo(document.body).getWidget();
+        widget = renderer.renderSync({ text: 'text', items: mock.twoItems }).appendTo(document.body).getWidget();
         root = document.querySelector('span.menu');
         button = document.querySelector('.expand-btn');
         buttonText = root.querySelector('.expand-btn > span');
