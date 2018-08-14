@@ -5,6 +5,8 @@ html {
 body {
     font-family: 'Market Sans', Arial;
     margin: 15px;
+    display: grid;
+    grid-template-columns: 190px calc(100% - 190px);
 
     .ds4 & {
         font-family: "Helvetica Neue", Helvetica, Arial, Roboto, sans-serif;
@@ -12,25 +14,39 @@ body {
 }
 
 h1 {
-    padding: 10px 0;
+    padding: 0 0 10px;
+    margin: 0 0 10px;
 }
 
 h2 {
     margin: 5px 0;
 }
 
-header > a {
+.demo-nav, main {
+    padding: 10px;
+}
+
+.demo-nav > a,
+.demo-nav > .demo-nav__ds {
+    padding: 6px;
     line-height: 24px;
-    padding-right: 20px;
+    display: block;
 
     span {
         display: inline-block;
         white-space: nowrap;
     }
+}
 
+.demo-nav a {
     &, &:visited {
         color: @ds6-color-p002-blue;
     }
+}
+
+.demo-nav > .demo-nav__ds {
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .example {
@@ -47,4 +63,13 @@ header > a {
     max-width: calc(100% ~"-" 2em);
     padding: 0 1em;
     overflow: scroll;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+        grid-template-columns: 100%;
+    }
+    .demo-nav > a {
+        display: inline;
+    }
 }

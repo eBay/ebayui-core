@@ -1,5 +1,8 @@
+<var designSystem=data.params.designSystem/>
+<var currentComponent=data.params.component/>
+
 <lasso-page name="demo" package-path="./browser.json" flags=data.lassoFlags dependencies=data.model.dependencies/>
-<html class=data.params.designSystem>
+<html class=designSystem>
     <head>
         <lasso-head/>
         <title>ebayui-core</title>
@@ -7,19 +10,26 @@
         <meta name="viewport" content="width=device-width">
     </head>
     <body>
-        <header>
+        <nav class="demo-nav">
+            <span class="demo-nav__ds">
+                <a href=`/ds4/${currentComponent}` body-only-if(designSystem === 'ds4')><span>DS4</span></a>
+                &nbsp;&middot;&nbsp;
+                <a href=`/ds6/${currentComponent}` body-only-if(designSystem === 'ds6')><span>DS6</span></a>
+            </span>
             <for (component in data.model.components)>
-                <a href=`/${data.params.designSystem}/${component}`><span>${component}</span></a>
+                <a href=`/${designSystem}/${component}`><span>${component}</span></a>
             </for>
-        </header>
-        <h1>${data.params.component}</h1>
-        <for (example in data.model.examples)>
-            <div class="example">
-                <h2>${example.name}</h2>
-                <div class="example-code">$!{example.code}</div>
-                <div><include(example.template)/></div>
-            </div>
-        </for>
+        </nav>
+        <main>
+            <h1>${data.params.component}</h1>
+            <for (example in data.model.examples)>
+                <div class="example">
+                    <h2>${example.name}</h2>
+                    <div class="example-code">$!{example.code}</div>
+                    <div><include(example.template)/></div>
+                </div>
+            </for>
+        </main>
         <lasso-body/>
         <init-widgets/>
         <script src=process.env.BROWSER_REFRESH_URL/>
