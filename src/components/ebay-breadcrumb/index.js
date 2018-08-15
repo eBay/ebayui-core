@@ -8,18 +8,16 @@ function getTemplateData(state, input) {
     const inputItems = input.items || [];
     const hijax = input.hijax || false;
     const items = inputItems.map((item, index) => {
-        let tag = 'a';
         let ariaCurrent = null;
         let role;
         const href = item.href || null;
         const current = (inputItems.length - 1 === index);
         let shouldHandleClick = true;
         if (current && !href) {
-            tag = 'span';
-            ariaCurrent = 'page';
+            ariaCurrent = 'location';
             shouldHandleClick = false;
         }
-        if (hijax) {
+        if (hijax && href) {
             role = 'button';
         }
         return {
@@ -27,7 +25,6 @@ function getTemplateData(state, input) {
             class: item.class,
             style: item.style,
             renderBody: item.renderBody,
-            tag,
             role,
             href,
             ariaCurrent,

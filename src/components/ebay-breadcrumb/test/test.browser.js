@@ -12,7 +12,7 @@ describe('given a basic breadcrumb', () => {
     beforeEach(() => {
         widget = renderer.renderSync(mock.basicItems).appendTo(document.body).getWidget();
         firstItem = document.querySelector('nav li a');
-        lastItem = document.querySelector('nav li span');
+        lastItem = document.querySelector('nav li a:not([href])');
     });
     afterEach(() => widget.destroy());
 
@@ -32,7 +32,7 @@ describe('given a basic breadcrumb', () => {
         });
     });
 
-    describe('when a <span> item is clicked', () => {
+    describe('when a <a> with no href is clicked', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
