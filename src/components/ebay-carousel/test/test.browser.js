@@ -130,7 +130,7 @@ describe('given the carousel starts in the default state with items', () => {
         let prevSpy;
         beforeEach(done => {
             prevSpy = sinon.spy();
-            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-previous', prevSpy);
             testUtils.triggerEvent(prevButton, 'click');
             delay(done);
         });
@@ -238,7 +238,7 @@ describe('given a continuous carousel has next button clicked', () => {
         beforeEach(done => {
             prevSpy = sinon.spy();
             updateSpy = sinon.spy();
-            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-previous', prevSpy);
             widget.on('carousel-update', updateSpy);
             widget.subscribeTo(list).once('transitionend', done);
             testUtils.triggerEvent(prevButton, 'click');
@@ -363,7 +363,7 @@ describe('given a continuous carousel with many items', () => {
             prevSpy = sinon.spy();
             nextSpy = sinon.spy();
             updateSpy = sinon.spy();
-            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-previous', prevSpy);
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
@@ -402,7 +402,7 @@ describe('given a continuous carousel with many items', () => {
             prevSpy = sinon.spy();
             nextSpy = sinon.spy();
             updateSpy = sinon.spy();
-            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-previous', prevSpy);
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-update', updateSpy);
             listSub.once('transitionend', () => {
@@ -528,7 +528,7 @@ describe('given a discrete carousel has next button clicked', () => {
             prevSpy = sinon.spy();
             slideSpy = sinon.spy();
             updateSpy = sinon.spy();
-            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-previous', prevSpy);
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-update', updateSpy);
             widget.subscribeTo(list).once('transitionend', done);
@@ -935,7 +935,7 @@ describe('given an autoplay carousel in the paused state', () => {
             prevSpy = sinon.spy();
             updateSpy = sinon.spy();
             widget.on('carousel-next', nextSpy);
-            widget.on('carousel-prev', prevSpy);
+            widget.on('carousel-previous', prevSpy);
             widget.on('carousel-update', updateSpy);
             widget.subscribeTo(list).once('transitionend', done);
             testUtils.triggerEvent(prevButton, 'click');

@@ -18,4 +18,4 @@ Note: For this component, `class`/`style` are applied to the root tag, while all
 
 Event | Data | Description
 --- | --- | --
-`radio-select` | `{ originalEvent, value }` | selected value
+`radio-change` | `{ originalEvent, value }` | selected value

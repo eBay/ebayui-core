@@ -44,7 +44,7 @@ Event | Data | Description
 --- | --- | ---
 `carousel-update` | { [visibleIndexes] } | called whenever item visibility changes, including initialization
 `carousel-next` | { originalEvent } | click next control
-`carousel-prev` | { originalEvent } | click previous control
+`carousel-previous` | { originalEvent } | click previous control
 
 ### Additional Events for when items-per-slide is set.
 Event | Data | Description

@@ -31,4 +31,4 @@ Name | Type | Stateful | Description
 Event | Description
 --- | ---
 `notice-show` | the page notice was shown
-`notice-hide` | the page notice was hidden
+`notice-close` | the page notice was closed

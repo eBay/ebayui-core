@@ -61,7 +61,7 @@ function init() {
  */
 function processAfterStateChange() {
     if (this.state.hidden) {
-        emitAndFire(this, 'notice-hide');
+        emitAndFire(this, 'notice-close');
     } else {
         emitAndFire(this, 'notice-show');
     }

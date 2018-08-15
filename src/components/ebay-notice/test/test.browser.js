@@ -19,7 +19,7 @@ describe('given the notice is in the default state', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
-            widget.on('notice-hide', spy);
+            widget.on('notice-close', spy);
             testUtils.triggerEvent(button, 'click');
             setTimeout(done);
         });
@@ -27,7 +27,7 @@ describe('given the notice is in the default state', () => {
             expect(document.querySelector('section.page-notice')).to.equal(null);
         });
 
-        test('then it emits the marko event from notice-hide', () => {
+        test('then it emits the marko event', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });
@@ -36,7 +36,7 @@ describe('given the notice is in the default state', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
-            widget.on('notice-hide', spy);
+            widget.on('notice-close', spy);
             root.hidden = true;
             setTimeout(done);
         });
@@ -45,7 +45,7 @@ describe('given the notice is in the default state', () => {
             expect(document.querySelector('section.page-notice')).to.equal(null);
         });
 
-        test('then it emits the marko event from notice-hide', () => {
+        test('then it emits the marko event', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });
@@ -73,7 +73,7 @@ describe('given the notice is in the hidden state', () => {
             expect(document.querySelector('.page-notice')).to.not.equal(null);
         });
 
-        test('then it emits the marko event from notice-show', () => {
+        test('then it emits the marko event', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });

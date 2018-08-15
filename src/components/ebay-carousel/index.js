@@ -230,7 +230,7 @@ function handleMove(originalEvent, target) {
     const nextIndex = this.move(direction);
     const slide = getSlide(state, nextIndex);
     emitAndFire(this, 'carousel-slide', { slide: slide + 1, originalEvent });
-    emitAndFire(this, `carousel-${direction === 1 ? 'next' : 'prev'}`, { originalEvent });
+    emitAndFire(this, `carousel-${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
 }
 
 /**
