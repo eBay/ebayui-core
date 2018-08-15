@@ -8,7 +8,7 @@
     <span class=data.btnClass w-preserve-attrs="class">
         <input
             type='text'
-            value=(data.selectedOption && data.selectedOption.label)
+            value=(data.selectedOption && data.selectedOption.text)
             readonly
             disabled=data.disabled
             role='combobox'
@@ -36,8 +36,8 @@
             w-preserve-attrs="tabindex,data-makeup-index"
             aria-selected=String(option.selected)
             data-option-value=option.value>
-            <span class='combobox__option-label'>
-                ${option.label}
+            <span>
+                ${option.text}
             </span>
             <span class='combobox__status'/>
         </div>

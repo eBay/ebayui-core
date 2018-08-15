@@ -8,7 +8,7 @@ describe('breadcrumb', () => {
         expect($('nav.breadcrumb').length).to.equal(1);
         const h2Tag = $('h2#breadcrumb-heading.clipped');
         expect(h2Tag.length).to.equal(1);
-        expect(h2Tag.html()).to.equal(mock.basicItems.headingText);
+        expect(h2Tag.html()).to.equal(mock.basicItems.a11yHeadingText);
         expect($('nav li').length).to.equal(mock.basicItems.items.length);
     });
 
@@ -34,7 +34,7 @@ describe('breadcrumb', () => {
     });
 
     test('renders different heading tag when specified', context => {
-        const $ = testUtils.getCheerio(context.render(mock.itemsWithHeadingLevel));
+        const $ = testUtils.getCheerio(context.render(mock.itemsWithHeadingTag));
         expect($('h2').length).to.equal(0);
         expect($('h3').length).to.equal(1);
     });

@@ -8,10 +8,10 @@
         <${data.headingTag}
             class=data.headingClass
             id="${data.status}-status-${widget.elId()}">
-                <span aria-label="${data.ariaText}" role="img"></span>
+                <span aria-label="${data.a11yHeadingText}" role="img"></span>
         </${data.headingTag}>
         <${data.contentTag} class=data.contentClass w-body/>
-         <button aria-label="${data.ariaLabelClose}"
+         <button aria-label="${data.a11yCloseText}"
             class="page-notice__close"
             w-onclick="onDismiss"
             if(data.dismissible)>

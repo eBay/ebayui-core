@@ -3,7 +3,7 @@
 ## ebay-button Usage
 
 ```marko
-<ebay-button>label</ebay-button>
+<ebay-button>text</ebay-button>
 ```
 
 ## ebay-button Attributes

@@ -23,8 +23,8 @@ describe('icon', () => {
         expect($(`svg[aria-hidden=true].icon.icon--${iconName} > use`).length).to.equal(1);
     });
 
-    test('renders inline type with accessibility text', context => {
-        const input = { type: 'inline', name: iconName, accessibilityText: 'text' };
+    test('renders inline type with a11y text', context => {
+        const input = { type: 'inline', name: iconName, a11yText: 'text' };
         const $ = testUtils.getCheerio(context.render(input));
         expect($(`svg[role=img].icon.icon--${iconName} > use`).length).to.equal(1);
     });

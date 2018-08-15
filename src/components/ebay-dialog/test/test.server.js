@@ -16,8 +16,8 @@ describe('dialog', () => {
         expect($('.dialog__body').text()).to.equal('Hello World');
     });
 
-    test('renders with an aria close label', context => {
-        const input = { ariaLabelClose: 'Close Dialog' };
+    test('renders with a11y close text', context => {
+        const input = { a11yCloseText: 'Close Dialog' };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.dialog__close').attr('aria-label')).to.equal('Close Dialog');
     });

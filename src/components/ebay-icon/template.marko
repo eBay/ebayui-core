@@ -3,9 +3,9 @@
     <span w-bind class=data.classes style=data.style ${data.htmlAttributes}/>
 </if>
 <else-if(data.isInline)>
-    <svg w-bind class=data.classes style=data.style ${data.htmlAttributes} ${data.accessibilityAttributes} focusable="false">
+    <svg w-bind class=data.classes style=data.style ${data.htmlAttributes} ${data.a11yAttributes} focusable="false">
         <defs w-id="defs" w-body if(data.renderDefs)/>
-        <title if(data.accessibilityText) id=data.titleId>${data.accessibilityText}</title>
+        <title if(data.a11yText) id=data.titleId>${data.a11yText}</title>
         <use xlink:href="#icon-${data.name}"/>
     </svg>
 </else-if>

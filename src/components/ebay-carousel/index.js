@@ -21,13 +21,13 @@ function getInitialState(input) {
         noDots: input.noDots,
         index: parseInt(input.index, 10) || 0,
         itemsPerSlide: parseInt(input.itemsPerSlide, 10) || undefined,
-        accessibilityPrev: input.accessibilityPrev || 'Previous Slide',
-        accessibilityNext: input.accessibilityNext || 'Next Slide',
-        accessibilityStatus: input.accessibilityStatus || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
-        accessibilityCurrent: input.accessibilityCurrent || 'Current Slide {currentSlide} - Carousel',
-        accessibilityOther: input.accessibilityOther || 'Slide {slide} - Carousel',
-        accessibilityPause: input.accessibilityPause || 'Pause - Carousel',
-        accessibilityPlay: input.accessibilityPlay || 'Play - Carousel',
+        a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
+        a11yNextText: input.a11yNextText || 'Next Slide',
+        a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
+        a11yCurrentText: input.a11yCurrentText || 'Current Slide {currentSlide} - Carousel',
+        a11yOtherText: input.a11yOtherText || 'Slide {slide} - Carousel',
+        a11yPauseText: input.a11yPauseText || 'Pause - Carousel',
+        a11yPlayText: input.a11yPlayText || 'Play - Carousel',
         items: (input.items || []).map(item => ({
             htmlAttributes: processHtmlAttributes(item),
             class: item.class,
@@ -64,13 +64,13 @@ function getTemplateData(state) {
     const prevControlDisabled = isSingleSlide || !autoplayInterval && offset === 0;
     const nextControlDisabled = isSingleSlide || !autoplayInterval && offset === getMaxOffset(state);
     const bothControlsDisabled = prevControlDisabled && nextControlDisabled;
-    let slide, itemWidth, totalSlides, accessibilityStatus;
+    let slide, itemWidth, totalSlides, a11yStatusText;
 
     if (itemsPerSlide) {
         slide = getSlide(state);
         itemWidth = `calc(${100 / itemsPerSlide}% - ${(itemsPerSlide - 1) * gap / itemsPerSlide}px)`;
         totalSlides = getSlide(state, items.length);
-        accessibilityStatus = state.accessibilityStatus
+        a11yStatusText = state.a11yStatusText
             .replace('{currentSlide}', slide + 1)
             .replace('{totalSlides}', totalSlides);
     } else {
@@ -106,7 +106,7 @@ function getTemplateData(state) {
         offset: hasOverride ? state.offsetOverride : offset,
         disableTransition: hasOverride,
         totalSlides,
-        accessibilityStatus,
+        a11yStatusText,
         prevControlDisabled,
         nextControlDisabled,
         bothControlsDisabled
