@@ -22,4 +22,5 @@ Name | Type | Stateful | Description
 
 Event | Data | Description
 --- | --- | ---
-`button-click` | `{ originalEvent }` | click
+`button-click` | `{ originalEvent }` | click or action key pressed (space and enter)
+`button-escape` | `{ originalEvent }` | escape key pressed
