@@ -5,12 +5,15 @@ html {
 body {
     font-family: 'Market Sans', Arial;
     margin: 15px;
-    display: grid;
-    grid-template-columns: 190px calc(100% - 190px);
 
     .ds4 & {
         font-family: "Helvetica Neue", Helvetica, Arial, Roboto, sans-serif;
     }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 190px calc(100% - 190px);
 }
 
 h1 {
@@ -66,7 +69,7 @@ h2 {
 }
 
 @media only screen and (max-width: 768px) {
-    body {
+    .grid {
         grid-template-columns: 100%;
     }
     .demo-nav > a {
