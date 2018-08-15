@@ -27,6 +27,7 @@ Name | Type | Stateful | Description
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `a11y-status-text` | String | No | status text (default: "Showing Slide {currentSlide} of {totalSlides} - Carousel")
+`a11y-status-tag` | String | No | use h1-h6 when there isn't a visible heading before the carousel (default: "span")
 `a11y-current-text` | String | No | pagination current slide text (default: "Current Slide {currentSlide} - Carousel")
 `a11y-other-text` | String | No | pagination other slide text (default: "Slide {slide} - Carousel")
 `autoplay` | Boolean or Number | No | automatically slides the carousel on an interval. If a number is supplied that is used as the interval in ms, defaults to 4000ms.
