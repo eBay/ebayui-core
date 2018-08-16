@@ -54,6 +54,7 @@ function getTemplateData(state, input, out) {
     return {
         htmlAttributes: processHtmlAttributes(input),
         classes: input.noSkinClasses ? [input.class] : ['icon', `icon--${name}`, input.class],
+        themes: input._themes,
         style: input.style,
         name,
         type,
