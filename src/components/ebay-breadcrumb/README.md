@@ -3,7 +3,7 @@
 ## ebay-breadcrumb Usage
 ### Last item as the parent
 ```marko
-<ebay-breadcrumb heading='Page navigation'>
+<ebay-breadcrumb a11y-heading-text='Page navigation'>
     <ebay-breadcrumb-item href='https://...'>eBay</ebay-breadcrumb-item>
     <ebay-breadcrumb-item href='https://...'>Auto Parts and Vehicles</ebay-breadcrumb-item>
     <ebay-breadcrumb-item href='https://...'>Motors Parts and Accessories</ebay-breadcrumb-item>
@@ -13,8 +13,8 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`heading-text` | String | No | heading for breadcrumb which will be clipped
-`heading-level` | String | No | heading level(h1-h4) for breadcrumb and default is `h2`
+`a11y-heading-text` | String | No | heading for breadcrumb which will be clipped
+`a11y-heading-tag` | String | No | heading tag for breadcrumb (default: `"h2"`)
 `hijax` | Boolean | No | Prevent link navigation; for use with ajax
 
 ## ebay-breadcrumb Events

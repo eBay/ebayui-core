@@ -7,14 +7,14 @@
         priority=data.priority
         aria-expanded=String(data.expanded)
         aria-haspopup="true"
-        aria-label=data.accessibilityText
+        aria-label=data.a11yText
         w-on-button-escape="handleButtonEscape">
         <span class="expand-btn__cell">
             <!-- Convoluted markup to satisfy both Skin and Marko -->
             <div if(data.icon) w-preserve-body class="expand-btn__icon">
                 <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
             </div>
-            <span if(data.label)>${data.label}</span>
+            <span if(data.text)>${data.text}</span>
             <ebay-icon if(!data.noToggleIcon) type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
         </span>
     </ebay-button>

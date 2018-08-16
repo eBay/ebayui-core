@@ -5,7 +5,7 @@
 ### ebay-menu Usage
 
 ```marko
-<ebay-menu label="label">
+<ebay-menu text="text">
     <ebay-menu-item>item 1</ebay-menu-item>
     <ebay-menu-item>item 2</ebay-menu-item>
     <ebay-menu-item>item 3</ebay-menu-item>
@@ -16,9 +16,9 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`label` | String | Yes | button label
-`icon` | String | No | name of an `<ebay-icon>` to show to the left of the label
-`accessibility-text` | String | No | accessibility text for the button, especially for cases without label text
+`text` | String | Yes | button text
+`icon` | String | No | name of an `<ebay-icon>` to show to the left of the text
+`a11y-text` | String | No | a11y text for the button, especially for cases without text
 `no-toggle-icon` | Boolean | No | whether to hide the chevron toggle icon
 `expanded` | Boolean | Yes | whether content is expanded (Note: not supported as initial attribute)
 `type` | String | No | Can be "fake" / "radio" / "checkbox"

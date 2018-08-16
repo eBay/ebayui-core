@@ -2,11 +2,11 @@
     <span aria-live="polite" role="status">
         <h2 class="clipped"
             id="pagination-heading-${widget.elId()}">
-            ${data.accessibilityCurrent}
+            ${data.a11yCurrentText}
         </h2>
     </span>
     <a aria-disabled=String(data.prevItem.disabled)
-        aria-label=data.accessibilityPrev
+        aria-label=data.a11yPreviousText
         class=data.prevItem.class
         style=data.prevItem.style
         href=data.prevItem.href
@@ -34,7 +34,7 @@
         </for>
     </ol>
     <a aria-disabled=String(data.nextItem.disabled)
-        aria-label=data.accessibilityNext
+        aria-label=data.a11yNextText
         class=data.nextItem.class
         style=data.nextItem.style
         href=data.nextItem.href

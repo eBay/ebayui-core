@@ -17,8 +17,8 @@ Use `touch` for touch devices, and `no-touch` for non-touch devices. Without fla
 ## ebay-carousel Attributes
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`accessibility-prev` | String | No | aria-label for previous control (default: "Previous Slide")
-`accessibility-next` | String | No | aria-label for next control (default: "Next Slide")
+`a11y-previous-text` | String | No | a11y text for previous control (default: "Previous Slide")
+`a11y-next-text` | String | No | a11y text for next control (default: "Next Slide")
 `index` | String | Yes | 0-based index position
 `items-per-slide` | String | No | automatically fit a number of items for each carousel slide and enable slide controls
 `gap` | String | No | override the margin between carousel items in pixels (default: "16")
@@ -26,16 +26,17 @@ Name | Type | Stateful | Description
 ### Additional Attributes for when items-per-slide is set.
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`accessibility-status` | String | No | status text (default: "Showing Slide {currentSlide} of {totalSlides} - Carousel")
-`accessibility-current` | String | No | pagination current slide text (default: "Current Slide {currentSlide} - Carousel")
-`accessibility-other` | String | No | pagination other slide text (default: "Slide {slide} - Carousel")
+`a11y-status-text` | String | No | status text (default: "Showing Slide {currentSlide} of {totalSlides} - Carousel")
+`a11y-status-tag` | String | No | use h1-h6 when there isn't a visible heading before the carousel (default: "span")
+`a11y-current-text` | String | No | pagination current slide text (default: "Current Slide {currentSlide} - Carousel")
+`a11y-other-text` | String | No | pagination other slide text (default: "Slide {slide} - Carousel")
 `autoplay` | Boolean or Number | No | automatically slides the carousel on an interval. If a number is supplied that is used as the interval in ms, defaults to 4000ms.
 
 ### Additional Attributes for when autoplay is set.
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`accessibility-play` | String | No | autoplay play button text (default: "Play - Carousel")
-`accessibility-pause` | String | No | autoplay pause button text (default: "Pause - Carousel")
+`a11y-play-text` | String | No | autoplay play button text (default: "Play - Carousel")
+`a11y-pause-text` | String | No | autoplay pause button text (default: "Pause - Carousel")
 `paused` | Boolean | Yes | pauses the autoplay carousel
 `no-dots` | Boolean | No | hides the slide dot controls
 
@@ -66,3 +67,4 @@ Notes:
 
 * The `carousel` will manipulate the `tabindex` property of nested focusable elements inside `<ebay-carousel-item>`.
 * The `autoplay` carousel currently does not support native scrolling and will use transforms instead.
+* The `items-per-slide` attribute can be set to a float such as `3.5` to show 3 items, and half of the 4th item. This also automatically enables the `no-dots` attribute.

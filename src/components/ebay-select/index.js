@@ -15,7 +15,7 @@ function getInitialState(input) {
             class: option.class,
             style: option.style,
             value: option.value,
-            label: option.label,
+            text: option.text,
             selected: Boolean(selected)
         };
     });

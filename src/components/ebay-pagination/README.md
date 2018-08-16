@@ -20,9 +20,9 @@ The `<ebay-pagination>` is a tag used to create a pagination navigation.
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`accessibility-prev` | String | No | aria-label for previous arrow button
-`accessibility-next` | String | No | aria-label for next arrow button
-`accessibility-current` | String | No | Description for the current page (e.g. Results of Page 1)
+`a11y-previous-text` | String | No | a11y text for previous arrow button
+`a11y-next-text` | String | No | a11y text for next arrow button
+`a11y-current-text` | String | No | Description for the current page (e.g. Results of Page 1)
 `hijax` | Boolean | No | Prevent link navigation; for use with ajax
 
 ### ebay-pagination Events

@@ -2,10 +2,10 @@ const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/server');
 const options = [{
     value: 1,
-    label: 'option 1'
+    text: 'option 1'
 }, {
     value: 2,
-    label: 'option 2'
+    text: 'option 2'
 }];
 const emptyOptions = [];
 

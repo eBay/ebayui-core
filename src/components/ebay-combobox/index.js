@@ -19,7 +19,7 @@ function getInitialState(input) {
         class: option.class,
         style: option.style,
         value: option.value,
-        label: option.label,
+        text: option.text,
         selected: Boolean(option.selected),
         renderBody: option.renderBody
     }));
@@ -119,7 +119,7 @@ function handleOptionClick(event) {
     // start with the target element
     if (event.target.dataset.optionValue) {
         el = event.target;
-    // check up the tree one level (in case option-label or status was clicked)
+    // check up the tree one level (in case option text or status was clicked)
     } else if (event.target.parentNode.dataset.optionValue) {
         el = event.target.parentNode;
     }

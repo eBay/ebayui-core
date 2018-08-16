@@ -6,8 +6,8 @@
         "@html-attributes": "expression",
         "@class": "string",
         "@style": "string",
-        "@heading-text": "string",
-        "@heading-level": "string",
+        "@a11y-heading-text": "string",
+        "@a11y-heading-tag": "string",
         "@hijax": "boolean",
         "@items <item>[]": {
             "@*": "expression",
@@ -48,13 +48,14 @@
         "@paused": "boolean",
         "@no-dots": "boolean",
         "@items-per-slide": "string",
-        "@accessibility-prev": "string",
-        "@accessibility-next": "string",
-        "@accessibility-status": "string",
-        "@accessibility-current": "string",
-        "@accessibility-other": "string",
-        "@accessibility-play": "string",
-        "@accessibility-pause": "string",
+        "@a11y-previous-text": "string",
+        "@a11y-next-text": "string",
+        "@a11y-status-text": "string",
+        "@a11y-status-tag": "string",
+        "@a11y-current-text": "string",
+        "@a11y-other-text": "string",
+        "@a11y-play-text": "string",
+        "@a11y-pause-text": "string",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
@@ -88,7 +89,7 @@
             "@class": "string",
             "@style": "string",
             "@value": "string",
-            "@label": "string",
+            "@text": "string",
             "@selected": "boolean"
         }
     },
@@ -102,7 +103,7 @@
         "@open": "boolean",
         "@type": "string",
         "@focus": "string",
-        "@aria-label-close": "string"
+        "@a11y-close-text": "string"
     },
     "<ebay-icon>": {
         "renderer": "./src/components/ebay-icon/index.js",
@@ -113,7 +114,7 @@
         "@style": "string",
         "@type": "string",
         "@name": "string",
-        "@accessibility-text": "string",
+        "@a11y-text": "string",
         "@no-skin-classes": "boolean"
     },
     "<ebay-menu>": {
@@ -124,9 +125,9 @@
         "@class": "string",
         "@style": "string",
         "@type": "string",
-        "@label": "string",
+        "@text": "string",
         "@icon": "string",
-        "@accessibility-text": "string",
+        "@a11y-text": "string",
         "@no-toggle-icon": "boolean",
         "@expanded": "boolean",
         "@reverse": "boolean",
@@ -154,11 +155,11 @@
         "@class": "string",
         "@style": "string",
         "@type": "string",
-        "@heading-level": "string",
         "@status": "string",
         "@hidden": "boolean",
-        "@aria-text": "string",
-        "@aria-label-close": "string",
+        "@a11y-heading-text": "string",
+        "@a11y-heading-tag": "string",
+        "@a11y-close-text": "string",
         "@dismissible": "boolean"
     },
     "<ebay-pagination>": {
@@ -168,9 +169,9 @@
         "@html-attributes": "expression",
         "@class": "string",
         "@style": "string",
-        "@accessibility-prev": "string",
-        "@accessibility-next": "string",
-        "@accessibility-current": "string",
+        "@a11y-previous-text": "string",
+        "@a11y-next-text": "string",
+        "@a11y-current-text": "string",
         "@hijax": "boolean",
         "@items <item>[]": {
             "@*": "expression",
@@ -209,7 +210,7 @@
             "@class": "string",
             "@style": "string",
             "@value": "string",
-            "@label": "string",
+            "@text": "string",
             "@selected": "boolean"
         }
     },

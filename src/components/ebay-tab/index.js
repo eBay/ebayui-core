@@ -80,7 +80,7 @@ function getElementIndex(headingEl) {
 }
 
 /**
- * Handle accessibility for heading
+ * Handle a11y for heading
  * https://ebay.gitbooks.io/mindpatterns/content/disclosure/tabs.html
  * @param {KeyboardEvent} e
  */
