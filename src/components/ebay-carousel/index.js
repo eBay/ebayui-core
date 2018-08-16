@@ -24,6 +24,7 @@ function getInitialState(input) {
         a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
         a11yNextText: input.a11yNextText || 'Next Slide',
         a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
+        a11yStatusTag: input.a11yStatusTag || 'span',
         a11yCurrentText: input.a11yCurrentText || 'Current Slide {currentSlide} - Carousel',
         a11yOtherText: input.a11yOtherText || 'Slide {slide} - Carousel',
         a11yPauseText: input.a11yPauseText || 'Pause - Carousel',
