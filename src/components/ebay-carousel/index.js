@@ -20,7 +20,7 @@ function getInitialState(input) {
         gap: input.gap || 16,
         noDots: input.noDots,
         index: parseInt(input.index, 10) || 0,
-        itemsPerSlide: parseInt(input.itemsPerSlide, 10) || undefined,
+        itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
         a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
         a11yNextText: input.a11yNextText || 'Next Slide',
         a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
@@ -38,7 +38,14 @@ function getInitialState(input) {
 
     const { items, itemsPerSlide } = state;
     if (itemsPerSlide) {
+        state.peek = itemsPerSlide % 1;
+        state.itemsPerSlide = itemsPerSlide - state.peek;
         state.classes.push('carousel--slides');
+
+        if (state.peek) {
+            state.noDots = true;
+        }
+
         // Only allow autoplay option for discrete carousels.
         if (input.autoplay) {
             const isSingleSlide = items.length <= itemsPerSlide;
@@ -67,8 +74,9 @@ function getTemplateData(state) {
     let slide, itemWidth, totalSlides, a11yStatusText;
 
     if (itemsPerSlide) {
+        const itemsInSlide = itemsPerSlide + state.peek;
         slide = getSlide(state);
-        itemWidth = `calc(${100 / itemsPerSlide}% - ${(itemsPerSlide - 1) * gap / itemsPerSlide}px)`;
+        itemWidth = `calc(${100 / itemsInSlide}% - ${(itemsInSlide - 1) * gap / itemsInSlide}px)`;
         totalSlides = getSlide(state, items.length);
         a11yStatusText = state.a11yStatusText
             .replace('{currentSlide}', slide + 1)
@@ -318,7 +326,7 @@ function handleScrollEnd(scrollLeft) {
  */
 function move(delta) {
     const { state } = this;
-    const { index, items, itemsPerSlide, autoplayInterval, slideWidth, gap, config } = state;
+    const { index, items, itemsPerSlide, autoplayInterval, slideWidth, gap, peek, config } = state;
     const nextIndex = getNextIndex(state, delta);
     let offsetOverride;
 
@@ -333,7 +341,7 @@ function move(delta) {
             offsetOverride = -slideWidth;
 
             // Move the items in the last slide to be before the first slide.
-            for (let i = itemsPerSlide; i--;) {
+            for (let i = Math.ceil(itemsPerSlide + peek); i--;) {
                 const item = items[items.length - i - 1];
                 item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap) * -1}px)`;
             }
@@ -342,7 +350,7 @@ function move(delta) {
             offsetOverride = getMaxOffset(state) + slideWidth;
 
             // Moves the items in the first slide to be after the last slide.
-            for (let i = itemsPerSlide; i--;) {
+            for (let i = Math.ceil(itemsPerSlide + peek); i--;) {
                 const item = items[i];
                 item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap)}px)`;
             }
