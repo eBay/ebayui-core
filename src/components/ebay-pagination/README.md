@@ -1,6 +1,6 @@
 # ebay-pagination
 
-The `<ebay-pagination>` is a tag used to create a pagination navigation.
+The `<ebay-pagination>` is a tag used to create a pagination navigation. It will display up to 9 page links.
 
 ## ebay-pagination Tag
 
