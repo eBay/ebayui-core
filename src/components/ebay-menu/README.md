@@ -16,7 +16,6 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`class` | String | No | custom class
 `label` | String | Yes | button label
 `icon` | String | No | name of an `<ebay-icon>` to show to the left of the label
 `accessibility-text` | String | No | accessibility text for the button, especially for cases without label text
@@ -59,7 +58,6 @@ Method | Parameters | Description
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`class` | String | No | custom class
 `href` (fake menu) | String | No | for link that looks like a menu-item
 `type` (fake menu) | String | No | Set to "button" for fake menu-item `<button>`
 `checked` (radio or checkbox) | Boolean | Yes | whether or not the item is checked (**Note:** use the root `ebay-menu` element's `checked` property for radio type menus, or `setCheckedList()` method for checkbox type menus, to set this property.)

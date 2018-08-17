@@ -44,11 +44,6 @@ describe('select', () => {
         expect($('.select.select--borderless').length).to.equal(0);
     });
 
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, 'span.select select');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, 'span.select');
-    });
+    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, 'span.select select'));
+    test('handles custom class and style', c => testUtils.testClassAndStyle(c, 'span.select'));
 });

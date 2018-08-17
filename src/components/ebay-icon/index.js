@@ -52,6 +52,9 @@ function getTemplateData(state, input, out) {
     }
 
     return {
+        htmlAttributes: processHtmlAttributes(input),
+        classes: input.noSkinClasses ? [input.class] : ['icon', `icon--${name}`, input.class],
+        style: input.style,
         name,
         type,
         renderDefs,
@@ -59,9 +62,7 @@ function getTemplateData(state, input, out) {
         isInline,
         accessibilityText,
         accessibilityAttributes,
-        titleId,
-        htmlAttributes: processHtmlAttributes(input),
-        classes: input.noSkinClasses ? [input.class] : ['icon', `icon--${name}`, input.class]
+        titleId
     };
 }
 

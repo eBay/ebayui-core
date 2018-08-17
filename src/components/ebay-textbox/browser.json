@@ -1,0 +1,12 @@
+{
+  "dependencies": [
+    {
+      "if-not-flag": "ebayui-no-skin",
+      "dependencies": [
+        "@ebay/skin/textbox"
+      ]
+    },
+    "require: marko-widgets",
+    "require: ./index.js"
+  ]
+}

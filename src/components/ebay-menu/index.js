@@ -56,19 +56,23 @@ function getInitialState(input) {
         }
 
         return {
-            tag,
+            htmlAttributes: processHtmlAttributes(item),
             classes,
+            style: item.style,
+            renderBody: item.renderBody,
+            tag,
             role,
             href,
             useCheckIcon: isRadio || isCheckbox,
             checked: (!isRadio && !isCheckbox) ? false : Boolean(checked),
-            current: Boolean(current),
-            htmlAttributes: processHtmlAttributes(item),
-            renderBody: item.renderBody
+            current: Boolean(current)
         };
     });
 
     return {
+        htmlAttributes: processHtmlAttributes(input),
+        class: input.class,
+        style: input.style,
         type,
         isRadio,
         isCheckbox,
@@ -78,14 +82,12 @@ function getInitialState(input) {
         iconTag: input.iconTag && input.iconTag.renderBody,
         accessibilityText: input.accessibilityText,
         noToggleIcon: input.noToggleIcon,
-        class: input.class,
         reverse: Boolean(input.reverse),
         fixWidth: Boolean(input.fixWidth),
         borderless: Boolean(input.borderless),
         size: input.size,
         priority: input.priority,
         expanded: false,
-        htmlAttributes: processHtmlAttributes(input),
         items,
         checked: checkedItems
     };
@@ -116,6 +118,9 @@ function getTemplateData(state) {
     }
 
     return {
+        htmlAttributes: state.htmlAttributes,
+        menuClass,
+        style: state.style,
         type: state.type,
         isRadio: state.isRadio,
         isCheckbox: state.isCheckbox,
@@ -128,50 +133,54 @@ function getTemplateData(state) {
         expanded: state.expanded,
         size: state.size,
         priority: state.priority,
-        menuClass,
         buttonClass: state.borderless && 'expand-btn--borderless',
         itemsClass,
         role: !state.isFake ? 'menu' : null,
-        items: state.items,
-        htmlAttributes: state.htmlAttributes
+        items: state.items
     };
 }
 
-function init() {
+function onRender(event) {
     this.buttonEl = this.el.querySelector(buttonSelector);
     this.contentEl = this.el.querySelector(contentSelector);
     this.itemEls = this.el.querySelectorAll('.menu__item, .fake-menu__item');
-    if (this.state.isCheckbox) {
-        this.el.setCheckedList = setCheckedList.bind(this);
-        this.el.getCheckedList = getCheckedList.bind(this);
-    }
-    observer.observeRoot(this, ['label', 'expanded']);
-    if (this.state.isRadio) {
-        observer.observeRoot(this, ['checked'], (itemIndex) => {
-            if (itemIndex >= 0 && itemIndex < (this.state.items.length)) {
-                this.setCheckedItem(itemIndex);
-            } else if (itemIndex < 0) {
-                this.setState('checked', 0);
-            } else if (itemIndex > (this.state.items.length - 1)) {
-                console.warn('Index out of bounds. Select an available item index.');
-            }
+
+    if (event.firstRender) {
+        if (this.state.isCheckbox) {
+            this.el.setCheckedList = setCheckedList.bind(this);
+            this.el.getCheckedList = getCheckedList.bind(this);
+        }
+        observer.observeRoot(this, ['label', 'expanded']);
+        if (this.state.isRadio) {
+            observer.observeRoot(this, ['checked'], itemIndex => {
+                if (itemIndex >= 0 && itemIndex < (this.state.items.length)) {
+                    this.setCheckedItem(itemIndex);
+                } else if (itemIndex < 0) {
+                    this.setState('checked', 0);
+                } else if (itemIndex > (this.state.items.length - 1)) {
+                    console.warn('Index out of bounds. Select an available item index.');
+                }
+            });
+        }
+
+        // FIXME: should be outside of firstRender, but only if observers haven't been attached yet
+        const checkedObserverCallback = itemEl => this.processAfterStateChange([getItemElementIndex(itemEl)]);
+        this.itemEls.forEach((itemEl, i) => {
+            observer.observeInner(this, itemEl, 'checked', `items[${i}]`, 'items', checkedObserverCallback);
         });
+
+        const expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
+            hostSelector: buttonSelector,
+            focusManagement: 'focusable',
+            expandOnClick: true,
+            autoCollapse: true
+        });
+
+        // FIXME: should be outside of firstRender, but only when itemEls changes
+        if (!this.state.isFake) {
+            rovingTabindex.createLinear(this.contentEl, 'div', { index: 0, autoReset: 0 });
+        }
     }
-    const checkedObserverCallback = (itemEl) => {
-        this.processAfterStateChange([getItemElementIndex(itemEl)]);
-    };
-    this.itemEls.forEach((itemEl, i) => {
-        observer.observeInner(this, itemEl, 'checked', `items[${i}]`, 'items', checkedObserverCallback);
-    });
-    if (!this.state.isFake) {
-        rovingTabindex.createLinear(this.contentEl, 'div', { index: 0, autoReset: 0 });
-    }
-    const expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
-        hostSelector: buttonSelector,
-        focusManagement: 'focusable',
-        expandOnClick: true,
-        autoCollapse: true
-    });
 }
 
 /**
@@ -327,7 +336,7 @@ module.exports = markoWidgets.defineComponent({
     template,
     getInitialState,
     getTemplateData,
-    init,
+    onRender,
     update_expanded,
     handleItemClick,
     handleItemKeydown,

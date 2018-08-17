@@ -76,21 +76,11 @@ describe('carousel', () => {
         expect($('.carousel__play').attr('aria-label')).to.equal('play');
     });
 
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, '.carousel');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.carousel');
-    });
+    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.carousel'));
+    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.carousel'));
 });
 
 describe('carousel-item', () => {
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, '.carousel__list > li', 'items');
-    });
-
-    test('handles custom class', context => {
-        testUtils.testCustomClass(context, '.carousel__list > li', 'items', true);
-    });
+    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.carousel__list > li', 'items'));
+    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.carousel__list > li', 'items'));
 });

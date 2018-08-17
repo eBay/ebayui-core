@@ -1,5 +1,6 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
+const testUtils = require('../../test-utils/browser');
 const transition = require('../');
 
 describe('transition', () => {
@@ -42,7 +43,7 @@ describe('transition', () => {
         transitionEl.removeAttribute('hidden');
         expect(transitionEl.classList.contains('show-init')).to.equal(true);
 
-        setTimeout(() => {
+        testUtils.waitFrames(2, () => {
             const handleEnd = () => {
                 transitionEl.removeEventListener('transitionend', handleEnd);
                 expect(transitionEl.classList.contains('show')).to.equal(false);
@@ -51,18 +52,16 @@ describe('transition', () => {
             expect(transitionEl.classList.contains('show-init')).to.equal(false);
             expect(transitionEl.classList.contains('show')).to.equal(true);
             transitionEl.addEventListener('transitionend', handleEnd);
-        }, 30);
+        });
     });
 
     it('triggers a callback once complete', (done) => {
         const spy = sinon.spy();
         transition({ el: transitionEl, className: 'show', waitFor: [transitionEl] }, spy);
         transitionEl.removeAttribute('hidden');
-        transitionEl.addEventListener('transitionend', spy);
-        setTimeout(() => {
-            transitionEl.removeEventListener('transitionend', spy);
-            expect(spy.callCount).to.equal(2);
+        transitionEl.addEventListener('transitionend', () => setTimeout(() => {
+            expect(spy.callCount).to.equal(1);
             done();
-        }, 200);
+        }));
     });
 });

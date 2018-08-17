@@ -42,4 +42,25 @@ describe('scroll-transition', () => {
 
         scrollTransition(scrollEl, 100, spy);
     });
+
+    it('continues a canceled transition if the touch event does not move', (done) => {
+        const spy = sinon.spy();
+        setTimeout(() => {
+            testUtils.triggerEvent(scrollEl, 'touchstart');
+            setTimeout(() => {
+                expect(scrollEl.scrollLeft).to.not.equal(0);
+                expect(scrollEl.scrollLeft).to.not.equal(100);
+                expect(spy.callCount).to.equal(0);
+                testUtils.triggerEvent(scrollEl, 'touchend');
+
+                setTimeout(() => {
+                    expect(scrollEl.scrollLeft).to.equal(100);
+                    expect(spy.callCount).to.equal(1);
+                    done();
+                }, 300);
+            }, 300);
+        }, 50);
+
+        scrollTransition(scrollEl, 100, spy);
+    });
 });
