@@ -186,12 +186,30 @@ describe('given the menu is in the expanded state', () => {
         });
     });
 
-    describe('when the escape key is pressed', () => {
+    describe('when the escape key is pressed from an item', () => {
         let spy;
         beforeEach((done) => {
             spy = sinon.spy();
             widget.on('menu-collapse', spy);
             testUtils.triggerEvent(firstItem, 'keydown', 27);
+            setTimeout(done);
+        });
+
+        test('then it collapses', () => {
+            expect(button.getAttribute('aria-expanded')).to.equal('false');
+        });
+
+        test('then it emits the marko collapse event', () => {
+            expect(spy.calledOnce).to.equal(true);
+        });
+    });
+
+    describe('when the escape key is pressed from the button', () => {
+        let spy;
+        beforeEach((done) => {
+            spy = sinon.spy();
+            widget.on('menu-collapse', spy);
+            testUtils.triggerEvent(button, 'keydown', 27);
             setTimeout(done);
         });
 

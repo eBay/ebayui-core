@@ -284,6 +284,10 @@ function handleItemKeydown(e) {
     });
 }
 
+function handleButtonEscape() {
+    this.setState('expanded', false);
+}
+
 function handleExpand() {
     this.setState('expanded', true);
     emitAndFire(this, 'menu-expand');
@@ -340,6 +344,7 @@ module.exports = markoWidgets.defineComponent({
     update_expanded,
     handleItemClick,
     handleItemKeydown,
+    handleButtonEscape,
     handleExpand,
     handleCollapse,
     setCheckedItem,

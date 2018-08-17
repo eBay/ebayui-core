@@ -46,6 +46,20 @@ describe('given button is enabled', () => {
             testUtils.testOriginalEvent(spy);
         });
     });
+
+    describe('when escape key is pressed', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('button-escape', spy);
+            testUtils.triggerEvent(root, 'keydown', 27);
+        });
+
+        test('then it emits the event with correct data', () => {
+            expect(spy.calledOnce).to.equal(true);
+            testUtils.testOriginalEvent(spy);
+        });
+    });
 });
 
 describe('given button is disabled', () => {
@@ -61,6 +75,19 @@ describe('given button is disabled', () => {
             spy = sinon.spy();
             widget.on('button-click', spy);
             testUtils.triggerEvent(root, 'click');
+        });
+
+        test('then it doesn\'t emit the event', () => {
+            expect(spy.called).to.equal(false);
+        });
+    });
+
+    describe('when escape key is pressed', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('button-escape', spy);
+            testUtils.triggerEvent(root, 'keydown', 27);
         });
 
         test('then it doesn\'t emit the event', () => {
