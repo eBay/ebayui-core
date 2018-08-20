@@ -8,7 +8,8 @@ const path = require('path');
 const cheerio = require('cheerio');
 const skinDir = path.dirname(require.resolve('@ebay/skin/package.json'));
 const svgDir = path.join(skinDir, 'src/svg');
-const outputDir = path.join(__dirname, '../src/components/ebay-icon/symbols');
+const outputDir = path.join(__dirname, '../../src/components/ebay-icon/symbols');
+const missingSVG = fs.readFileSync(path.join(__dirname, 'missing.svg'), 'utf-8');
 const icons = new Map();
 const FLAGS = {
     ds4: { 'if-not-flag': 'skin-ds6' },
@@ -45,9 +46,11 @@ for (const [name, themes] of icons) {
     if (!fs.existsSync(iconFolder)) fs.mkdirSync(iconFolder);
 
     for (const theme of THEMES) {
-        const content = themes[theme];
+        let content = themes[theme];
 
-        if (!content) {
+        if (content) {
+            content += '\n';
+        } else {
             const missingFile = './missing.js';
             const missingPath = path.join(iconFolder, missingFile);
             dependencies.push(Object.assign({ path: missingFile }, FLAGS[theme]));
@@ -55,10 +58,12 @@ for (const [name, themes] of icons) {
                 missingPath,
                 `if (typeof window !== 'undefined') console.error('${theme} icon not found: ${name}');\n`
             );
-        } else {
-            const filePath = path.join(iconFolder, `${theme}.marko`);
-            fs.writeFileSync(filePath, `${content}\n`);
+
+            content = missingSVG.replace('{{name}}', name);
         }
+
+        const filePath = path.join(iconFolder, `${theme}.marko`);
+        fs.writeFileSync(filePath, content);
     }
 
     fs.writeFileSync(browserJSON, `${JSON.stringify({

@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 
 /**
@@ -32,7 +31,6 @@ function transform(el, context) {
     return context;
 
     function toRequire(file) {
-        if (!fs.existsSync(file)) return builder.literal(0);
         return `require(${JSON.stringify(context.getRequirePath(file))})`;
     }
 }
