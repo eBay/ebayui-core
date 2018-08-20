@@ -10,14 +10,16 @@ const skinDir = path.dirname(require.resolve('@ebay/skin/package.json'));
 const svgDir = path.join(skinDir, 'src/svg');
 const outputDir = path.join(__dirname, '../src/components/ebay-icon/symbols');
 const icons = new Map();
+const FLAGS = {
+    ds4: { 'if-not-flag': 'skin-ds6' },
+    ds6: { 'if-flag': 'skin-ds6' }
+};
+const THEMES = Object.keys(FLAGS);
 
-try {
-    cp.execSync(`rm -r ${JSON.stringify(outputDir)}`);
-} finally {
-    fs.mkdirSync(outputDir);
-}
+cp.execSync(`rm -rf ${JSON.stringify(outputDir)}`);
+fs.mkdirSync(outputDir);
 
-for (const theme of fs.readdirSync(svgDir)) {
+for (const theme of THEMES) {
     const svgFile = path.join(svgDir, theme, 'icons.svg');
     const svgContent = fs.readFileSync(svgFile, 'utf-8');
     const $ = cheerio.load(svgContent);
@@ -38,24 +40,38 @@ for (const theme of fs.readdirSync(svgDir)) {
 for (const [name, themes] of icons) {
     const iconFolder = path.join(outputDir, name);
     const browserJSON = path.join(iconFolder, 'browser.json');
+    const dependencies = [];
+
     if (!fs.existsSync(iconFolder)) fs.mkdirSync(iconFolder);
 
-    fs.writeFileSync(browserJSON, `${JSON.stringify({
-        requireRemap: [{
-            from: './ds6.marko',
-            to: './ds4.marko',
-            'if-not-flag': 'skin-ds6'
-        }, {
-            from: './ds4.marko',
-            to: './ds6.marko',
-            'if-flag': 'skin-ds6'
-        }]
-    }, null, 2)}\n`);
-
-    for (const theme in themes) {
-        if (!themes.hasOwnProperty(theme)) continue;
+    for (const theme of THEMES) {
         const content = themes[theme];
-        const filePath = path.join(iconFolder, `${theme}.marko`);
-        fs.writeFileSync(filePath, `${content}\n`);
+
+        if (!content) {
+            const missingFile = './missing.js';
+            const missingPath = path.join(iconFolder, missingFile);
+            dependencies.push(Object.assign({ path: missingFile }, FLAGS[theme]));
+            fs.writeFileSync(
+                missingPath,
+                `if (typeof window !== 'undefined') console.error('${theme} icon not found: ${name}');\n`
+            );
+        } else {
+            const filePath = path.join(iconFolder, `${theme}.marko`);
+            fs.writeFileSync(filePath, `${content}\n`);
+        }
     }
+
+    fs.writeFileSync(browserJSON, `${JSON.stringify({
+        dependencies,
+        requireRemap: [
+            Object.assign({
+                from: './ds6.marko',
+                to: './ds4.marko'
+            }, FLAGS.ds4),
+            Object.assign({
+                from: './ds4.marko',
+                to: './ds6.marko'
+            }, FLAGS.ds6)
+        ]
+    }, null, 2)}\n`);
 }

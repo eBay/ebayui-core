@@ -1,4 +1,5 @@
 {
+  "dependencies": [],
   "requireRemap": [
     {
       "from": "./ds6.marko",
