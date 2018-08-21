@@ -13,16 +13,26 @@ const path = require('path');
  */
 
 function transform(el, context) {
+    const { builder } = context;
     const nameAttribute = el.getAttribute('name');
     const typeAttribute = el.getAttribute('type');
     const isInline = typeAttribute && typeAttribute.value.value === 'inline';
     const iconName = nameAttribute && nameAttribute.value.value;
     if (isInline && iconName) {
-        const templatePath = path.join(__dirname, `symbols/${iconName}.marko`);
-        el.prependChild(context.createNodeForEl('include', {}, JSON.stringify(templatePath)));
+        const iconPath = path.join(__dirname, 'symbols', iconName);
+        const ds4Path = path.join(iconPath, 'ds4.marko');
+        const ds6Path = path.join(iconPath, 'ds6.marko');
+        el.setAttributeValue('_themes', context.addStaticVar(`icon_${iconName}`, builder.arrayExpression([
+            toRequire(ds4Path),
+            toRequire(ds6Path)
+        ])));
     }
 
     return context;
+
+    function toRequire(file) {
+        return `require(${JSON.stringify(context.getRequirePath(file))})`;
+    }
 }
 
 module.exports = transform;

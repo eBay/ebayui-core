@@ -115,7 +115,8 @@
         "@type": "string",
         "@name": "string",
         "@a11y-text": "string",
-        "@no-skin-classes": "boolean"
+        "@no-skin-classes": "boolean",
+        "@_themes": "expression"
     },
     "<ebay-menu>": {
         "renderer": "./src/components/ebay-menu/index.js",
