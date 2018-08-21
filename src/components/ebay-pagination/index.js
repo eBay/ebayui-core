@@ -76,11 +76,21 @@ function init() {
     this.previousPageEl = this.el.querySelector('.pagination__previous');
     this.nextPageEl = this.el.querySelector('.pagination__next');
     this.subscribeTo(eventUtils.resizeUtil).on('resize', refresh.bind(this));
+    this.timeoutRef;
     this.refresh();
+
+}
+
+function onBeforeUpdate() {
+    clearTimeout(this.timeoutRef);
+}
+
+function onDestroy() {
+    clearTimeout(this.timeoutRef);
 }
 
 function onUpdate() {
-    setTimeout(this.refresh.bind(this), 0);
+    this.timeoutRef = setTimeout(this.refresh.bind(this), 0);
 }
 
 function refresh() {
