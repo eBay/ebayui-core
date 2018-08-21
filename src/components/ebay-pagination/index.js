@@ -194,6 +194,8 @@ module.exports = require('marko-widgets').defineComponent({
     template,
     init,
     onUpdate,
+    onBeforeUpdate,
+    onDestroy,
     refresh,
     handlePageClick,
     handleNextPage,
