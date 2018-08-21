@@ -86,19 +86,19 @@ function onUpdate() {
 function refresh() {
     let current = 0;
     const totalPages = this.pageEls.length;
-    for(let i = 0; i<totalPages; i++) {
-        if(this.pageEls[i].hasAttribute('hidden')) {
+    for (let i = 0; i < totalPages; i++) {
+        if (this.pageEls[i].hasAttribute('hidden')) {
             this.pageEls[i].removeAttribute('hidden');
         }
-        if(this.pageEls[i].children[0].hasAttribute('aria-current')) {
+        if (this.pageEls[i].children[0].hasAttribute('aria-current')) {
             current = i;
         }
     }
     const pageNumWidth = this.pageEls[current].offsetWidth + constants.margin;
     const containerWidth = this.containerEl.offsetWidth - pageNumWidth * 2;
     const numPagesAllowed = Math.floor((containerWidth) / (pageNumWidth));
-    const adjustedNumPages = Math.min(constants.maxPagesAllowed -1,
-    Math.max(numPagesAllowed, constants.minPagesRequired));
+    const adjustedNumPages = Math.min(constants.maxPagesAllowed - 1,
+        Math.max(numPagesAllowed, constants.minPagesRequired));
 
     let start = 0;
     let end = adjustedNumPages;
@@ -108,26 +108,30 @@ function refresh() {
     start = current - rangeLeft;
     end = current + rangeRight;
 
-    if (totalPages < constants.maxPagesAllowed)
+    if (totalPages < constants.maxPagesAllowed) {
         end = totalPages;
+    }
 
-    if (totalPages - current < rangeRight)
-        start -= (rangeRight - (totalPages - current ));
+    if (totalPages - current < rangeRight) {
+        start -= (rangeRight - (totalPages - current));
+    }
 
-    if (start < 0)
+    if (start < 0) {
         end -= start;
+    }
 
-    for(let i = 0; i<totalPages; i++) {
-        if(i < start) {
-            if (!this.pageEls[i].hasAttribute('hidden'))
+    for (let i = 0; i < totalPages; i++) {
+        if (i < start) {
+            if (!this.pageEls[i].hasAttribute('hidden')) {
                 this.pageEls[i].setAttribute('hidden', true);
-        } else if(i >= start && i <= end) {
-            if (this.pageEls[i].hasAttribute('hidden'))
+            }
+        } else if (i >= start && i <= end) {
+            if (this.pageEls[i].hasAttribute('hidden')) {
                 this.pageEls[i].removeAttribute('hidden');
-        } else if(!this.pageEls[i].hasAttribute('hidden')) {
+            }
+        } else if (!this.pageEls[i].hasAttribute('hidden')) {
             this.pageEls[i].setAttribute('hidden', true);
         }
-
     }
 }
 
