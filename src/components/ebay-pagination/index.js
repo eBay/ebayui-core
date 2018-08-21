@@ -76,9 +76,8 @@ function init() {
     this.previousPageEl = this.el.querySelector('.pagination__previous');
     this.nextPageEl = this.el.querySelector('.pagination__next');
     this.subscribeTo(eventUtils.resizeUtil).on('resize', refresh.bind(this));
-    this.timeoutRef;
+    this.timeoutRef = 0;
     this.refresh();
-
 }
 
 function onBeforeUpdate() {
@@ -195,6 +194,8 @@ module.exports = require('marko-widgets').defineComponent({
     template,
     init,
     onUpdate,
+    onBeforeUpdate,
+    onDestroy,
     refresh,
     handlePageClick,
     handleNextPage,
