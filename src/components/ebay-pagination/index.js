@@ -95,7 +95,7 @@ function onUpdate() {
 function refresh() {
     let current = 0;
     const totalPages = this.pageEls.length;
-    for (let i = 0; i < this.state.items.length; i++){
+    for (let i = 0; i < this.state.items.length; i++) {
         if (this.state.items[i].current) {
             current = i;
         }
