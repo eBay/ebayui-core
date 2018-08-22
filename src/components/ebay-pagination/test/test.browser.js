@@ -18,12 +18,6 @@ function testSelectEvent(spy, el) {
     testUtils.testOriginalEvent(spy);
 }
 
-function testResize(root, width) {
-    console.log('test-resize c alled with', root, width);
-    console.log('hmmm - ', root.querySelector('.pagination__item'));
-    return 9;
-}
-
 describe('given the pagination is in the default state with links', () => {
     let widget;
     let root;
@@ -147,22 +141,6 @@ describe('given the pagination is in the default state with links', () => {
 
         test('then it emits the marko event called pagination-select', () => {
             testSelectEvent(spy, pageItem);
-        });
-    });
-
-    describe('when the page number is activated through keydown', () => {
-        let spy;
-        // beforeEach(() => {
-            // spy = sinon.spy();
-            // widget.on('pagination-select', spy);
-            // testUtils.triggerEvent(pageItem, 'keydown', 32);
-        // });
-
-        test('then it emits the marko event called pagination-select', () => {
-            let itemsVisible = testResize(root, 300);
-            console.log('itemsVisible = ', itemsVisible);
-            expect(itemsVisible).to.equal(9);
-            // testSelectEvent(spy, pageItem);
         });
     });
 });
