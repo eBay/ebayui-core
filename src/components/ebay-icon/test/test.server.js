@@ -23,8 +23,8 @@ describe('icon', () => {
         expect($(`svg[aria-hidden=true].icon.icon--${iconName} > use`).length).to.equal(1);
     });
 
-    test('renders inline type with accessibility text', context => {
-        const input = { type: 'inline', name: iconName, accessibilityText: 'text' };
+    test('renders inline type with a11y text', context => {
+        const input = { type: 'inline', name: iconName, a11yText: 'text' };
         const $ = testUtils.getCheerio(context.render(input));
         expect($(`svg[role=img].icon.icon--${iconName} > use`).length).to.equal(1);
     });
@@ -53,18 +53,17 @@ describe('transformer', () => {
         return `<ebay-icon name="${iconName}" type="${type}"/>`;
     }
 
-    test('transforms an inline icon', () => {
+    test('transforms to add a hidden themes attribute', () => {
         const tagString = getTagString('inline');
         const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
-        const { body: { array: [includeEl] } } = el;
-        expect(includeEl.tagName).equals('include');
-        expect(includeEl.argument).includes(`${iconName}.marko`);
+        const attr = el.getAttribute('_themes');
+        expect(attr).to.have.property('name', '_themes');
     });
 
     test('does not transform a background icon', () => {
         const tagString = getTagString('background');
         const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
-        const { body: { array: [includeEl] } } = el;
-        expect(includeEl).equals(undefined);
+        const attr = el.getAttribute('_themes');
+        expect(attr).equals(undefined);
     });
 });

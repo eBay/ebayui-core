@@ -10,9 +10,9 @@ When no selected option is specified:
 
 ```marko
 <ebay-select name="formFieldName">
-    <ebay-select-option value="1" label="Option 1"/>
-    <ebay-select-option value="2" label="Option 2"/>
-    <ebay-select-option value="3" label="Option 3"/>
+    <ebay-select-option value="1" text="Option 1"/>
+    <ebay-select-option value="2" text="Option 2"/>
+    <ebay-select-option value="3" text="Option 3"/>
 </ebay-select>
 ```
 
@@ -20,9 +20,9 @@ When a selected option is specified:
 
 ```marko
 <ebay-select name="formFieldName">
-    <ebay-select-option value="1" label="Option 1"/>
-    <ebay-select-option value="2" label="Option 2" selected/>
-    <ebay-select-option value="3" label="Option 3"/>
+    <ebay-select-option value="1" text="Option 1"/>
+    <ebay-select-option value="2" text="Option 2" selected/>
+    <ebay-select-option value="3" text="Option 3"/>
 </ebay-select>
 ```
 
@@ -57,7 +57,7 @@ Event | Data |  Description
 
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
-`label` | No | String | No | string label for use in the button
+`text` | No | String | No | text to use in the option
 `selected` | No | Boolean | Yes | whether or not the option is selected (**Note:** use the root `ebay-select` element's `selected` property to set this property)
 `value` | Yes | String | Yes | used for the `value` attribute of the native `<option>`
 

@@ -18,4 +18,4 @@ Note: For this component, `class`/`style` are applied to the root tag, while all
 
 Event | Data | Description
 --- | --- | ---
-`switch-select` | `{ originalEvent, value, checked }` | selected value and checked status
+`switch-change` | `{ originalEvent, value, checked }` | selected value and checked status

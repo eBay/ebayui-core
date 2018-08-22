@@ -3,7 +3,7 @@
 ## ebay-button Usage
 
 ```marko
-<ebay-button>label</ebay-button>
+<ebay-button>text</ebay-button>
 ```
 
 ## ebay-button Attributes
@@ -22,4 +22,5 @@ Name | Type | Stateful | Description
 
 Event | Data | Description
 --- | --- | ---
-`button-click` | `{ originalEvent }` | click
+`button-click` | `{ originalEvent }` | click or action key pressed (space and enter)
+`button-escape` | `{ originalEvent }` | escape key pressed

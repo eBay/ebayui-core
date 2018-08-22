@@ -59,7 +59,7 @@ Once the package dependency is added, the eBay [customs tags](https://markojs.co
 
 _template.marko_
 ```marko
-<ebay-menu label="Sort" type="radio">
+<ebay-menu text="Sort" type="radio">
     <ebay-menu-item>Price</ebay-menu-item>
     <ebay-menu-item>Time</ebay-menu-item>
     <ebay-menu-item>Distance</ebay-menu-item>
@@ -79,23 +79,23 @@ _browser.json_
 
 ### Attributes
 
-Attributes provide initial state for a component. We can see that the menu has `label` and `type` attributes:
+Attributes provide initial state for a component. We can see that the menu has `text` and `type` attributes:
 
 _template.marko_
 
 ```marko
-<ebay-menu label="Sort" type="radio">
+<ebay-menu text="Sort" type="radio">
     <ebay-menu-item>Price</ebay-menu-item>
     <ebay-menu-item>Time</ebay-menu-item>
     <ebay-menu-item>Distance</ebay-menu-item>
 </ebay-menu>
 ```
 
-Some attributes are stateful and can be updated via the DOM. The label attribute, for example:
+Some attributes are stateful and can be updated via the DOM. The text attribute, for example:
 
 ```js
 var menu = document.querySelector('.menu');
-menu.label = 'Sortieren';
+menu.text = 'Sortieren';
 ```
 
 #### Pass-Through Attributes
@@ -132,7 +132,7 @@ Events can also be handled using Marko syntax:
 _template.marko_
 
 ```marko
-<ebay-menu label="Sort" type="radio" w-onchange("onMenuChange")>
+<ebay-menu text="Sort" type="radio" w-onchange("onMenuChange")>
     <ebay-menu-item>Price</ebay-menu-item>
     <ebay-menu-item>Time</ebay-menu-item>
     <ebay-menu-item>Distance</ebay-menu-item>

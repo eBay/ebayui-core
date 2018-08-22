@@ -7,7 +7,8 @@
     "**/mock",
     "demo",
     "**/*.marko.js",
-    "src/common/test-utils"
+    "src/common/test-utils",
+    "src/components/ebay-icon/symbols"
   ],
   "sourceMap": true,
   "instrument": true,

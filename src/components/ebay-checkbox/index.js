@@ -18,7 +18,7 @@ function getTemplateData(state) {
 
 function handleClick(originalEvent) {
     if (!this.state.disabled) {
-        emitAndFire(this, 'checkbox-select', {
+        emitAndFire(this, 'checkbox-change', {
             originalEvent,
             value: originalEvent.target.value,
             checked: originalEvent.target.checked });

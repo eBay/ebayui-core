@@ -29,10 +29,10 @@ function getTemplateData(state, input, out) {
     const type = input.type || 'background';
     const isBackground = type === 'background';
     const isInline = type === 'inline';
-    const accessibilityText = input.accessibilityText;
+    const a11yText = input.a11yText;
     const name = input.name;
     let titleId;
-    let accessibilityAttributes;
+    let a11yAttributes;
     let renderDefs;
 
     if (isInline) {
@@ -43,25 +43,26 @@ function getTemplateData(state, input, out) {
         renderDefs = !out[lookupName] && !defined[name];
         out[lookupName] = true;
 
-        if (accessibilityText) {
+        if (a11yText) {
             titleId = `icon-title-${Math.random().toString(36).substr(2, 9)}`;
-            accessibilityAttributes = { 'aria-labelled-by': titleId, role: 'img' };
+            a11yAttributes = { 'aria-labelled-by': titleId, role: 'img' };
         } else {
-            accessibilityAttributes = { 'aria-hidden': 'true' };
+            a11yAttributes = { 'aria-hidden': 'true' };
         }
     }
 
     return {
         htmlAttributes: processHtmlAttributes(input),
         classes: input.noSkinClasses ? [input.class] : ['icon', `icon--${name}`, input.class],
+        themes: input._themes,
         style: input.style,
         name,
         type,
         renderDefs,
         isBackground,
         isInline,
-        accessibilityText,
-        accessibilityAttributes,
+        a11yText,
+        a11yAttributes,
         titleId
     };
 }

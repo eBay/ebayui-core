@@ -64,13 +64,18 @@ function handleClick(originalEvent) {
 }
 
 /**
- * Handle accessibility features
+ * Handle a11y features
  * https://ebay.gitbooks.io/mindpatterns/content/input/button.html#keyboard
  * @param {MouseEvent} e
  */
-function handleKeydown(e) {
-    eventUtils.handleActionKeydown(e, () => {
-        this.handleClick(e);
+function handleKeydown(originalEvent) {
+    eventUtils.handleActionKeydown(originalEvent, () => {
+        this.handleClick(originalEvent);
+    });
+    eventUtils.handleEscapeKeydown(originalEvent, () => {
+        if (!this.state.disabled) {
+            emitAndFire(this, 'button-escape', { originalEvent });
+        }
     });
 }
 

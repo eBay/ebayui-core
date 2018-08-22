@@ -20,14 +20,15 @@ function getInitialState(input) {
         gap: input.gap || 16,
         noDots: input.noDots,
         index: parseInt(input.index, 10) || 0,
-        itemsPerSlide: parseInt(input.itemsPerSlide, 10) || undefined,
-        accessibilityPrev: input.accessibilityPrev || 'Previous Slide',
-        accessibilityNext: input.accessibilityNext || 'Next Slide',
-        accessibilityStatus: input.accessibilityStatus || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
-        accessibilityCurrent: input.accessibilityCurrent || 'Current Slide {currentSlide} - Carousel',
-        accessibilityOther: input.accessibilityOther || 'Slide {slide} - Carousel',
-        accessibilityPause: input.accessibilityPause || 'Pause - Carousel',
-        accessibilityPlay: input.accessibilityPlay || 'Play - Carousel',
+        itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
+        a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
+        a11yNextText: input.a11yNextText || 'Next Slide',
+        a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
+        a11yStatusTag: input.a11yStatusTag || 'span',
+        a11yCurrentText: input.a11yCurrentText || 'Current Slide {currentSlide} - Carousel',
+        a11yOtherText: input.a11yOtherText || 'Slide {slide} - Carousel',
+        a11yPauseText: input.a11yPauseText || 'Pause - Carousel',
+        a11yPlayText: input.a11yPlayText || 'Play - Carousel',
         items: (input.items || []).map(item => ({
             htmlAttributes: processHtmlAttributes(item),
             class: item.class,
@@ -38,7 +39,14 @@ function getInitialState(input) {
 
     const { items, itemsPerSlide } = state;
     if (itemsPerSlide) {
+        state.peek = itemsPerSlide % 1;
+        state.itemsPerSlide = itemsPerSlide - state.peek;
         state.classes.push('carousel--slides');
+
+        if (state.peek) {
+            state.noDots = true;
+        }
+
         // Only allow autoplay option for discrete carousels.
         if (input.autoplay) {
             const isSingleSlide = items.length <= itemsPerSlide;
@@ -64,13 +72,14 @@ function getTemplateData(state) {
     const prevControlDisabled = isSingleSlide || !autoplayInterval && offset === 0;
     const nextControlDisabled = isSingleSlide || !autoplayInterval && offset === getMaxOffset(state);
     const bothControlsDisabled = prevControlDisabled && nextControlDisabled;
-    let slide, itemWidth, totalSlides, accessibilityStatus;
+    let slide, itemWidth, totalSlides, a11yStatusText;
 
     if (itemsPerSlide) {
+        const itemsInSlide = itemsPerSlide + state.peek;
         slide = getSlide(state);
-        itemWidth = `calc(${100 / itemsPerSlide}% - ${(itemsPerSlide - 1) * gap / itemsPerSlide}px)`;
+        itemWidth = `calc(${100 / itemsInSlide}% - ${(itemsInSlide - 1) * gap / itemsInSlide}px)`;
         totalSlides = getSlide(state, items.length);
-        accessibilityStatus = state.accessibilityStatus
+        a11yStatusText = state.a11yStatusText
             .replace('{currentSlide}', slide + 1)
             .replace('{totalSlides}', totalSlides);
     } else {
@@ -106,7 +115,7 @@ function getTemplateData(state) {
         offset: hasOverride ? state.offsetOverride : offset,
         disableTransition: hasOverride,
         totalSlides,
-        accessibilityStatus,
+        a11yStatusText,
         prevControlDisabled,
         nextControlDisabled,
         bothControlsDisabled
@@ -230,7 +239,7 @@ function handleMove(originalEvent, target) {
     const nextIndex = this.move(direction);
     const slide = getSlide(state, nextIndex);
     emitAndFire(this, 'carousel-slide', { slide: slide + 1, originalEvent });
-    emitAndFire(this, `carousel-${direction === 1 ? 'next' : 'prev'}`, { originalEvent });
+    emitAndFire(this, `carousel-${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
 }
 
 /**
@@ -307,6 +316,7 @@ function handleScrollEnd(scrollLeft) {
     config.preserveItems = true;
     this.setStateDirty('index', closest);
     this.once('update', this.emitUpdate);
+    emitAndFire(this, 'carousel-scroll', { index: closest });
 }
 
 /**
@@ -317,7 +327,7 @@ function handleScrollEnd(scrollLeft) {
  */
 function move(delta) {
     const { state } = this;
-    const { index, items, itemsPerSlide, autoplayInterval, slideWidth, gap, config } = state;
+    const { index, items, itemsPerSlide, autoplayInterval, slideWidth, gap, peek, config } = state;
     const nextIndex = getNextIndex(state, delta);
     let offsetOverride;
 
@@ -332,7 +342,7 @@ function move(delta) {
             offsetOverride = -slideWidth;
 
             // Move the items in the last slide to be before the first slide.
-            for (let i = itemsPerSlide; i--;) {
+            for (let i = Math.ceil(itemsPerSlide + peek); i--;) {
                 const item = items[items.length - i - 1];
                 item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap) * -1}px)`;
             }
@@ -341,7 +351,7 @@ function move(delta) {
             offsetOverride = getMaxOffset(state) + slideWidth;
 
             // Moves the items in the first slide to be after the last slide.
-            for (let i = itemsPerSlide; i--;) {
+            for (let i = Math.ceil(itemsPerSlide + peek); i--;) {
                 const item = items[i];
                 item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap)}px)`;
             }

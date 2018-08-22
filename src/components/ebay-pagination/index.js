@@ -59,9 +59,9 @@ function getInitialState(input) {
         nextItem: nextItem || { class: 'pagination__next', disabled: true, htmlAttributes: {} },
         prevItem: prevItem || { class: 'pagination__previous', disabled: true, htmlAttributes: {} },
         items,
-        accessibilityPrev: input.accessibilityPrev || 'Previous page',
-        accessibilityNext: input.accessibilityNext || 'Next page',
-        accessibilityCurrent: input.accessibilityCurrent || 'Results Pagination - Page 1'
+        a11yPreviousText: input.a11yPreviousText || 'Previous page',
+        a11yNextText: input.a11yNextText || 'Next page',
+        a11yCurrentText: input.a11yCurrentText || 'Results Pagination - Page 1'
     };
 }
 
@@ -169,7 +169,7 @@ function handlePreviousPage(originalEvent) {
 }
 
 /**
- * Handle accessibility for item, next page and previous page respectively.
+ * Handle a11y for item, next page and previous page respectively.
  * @param {KeyboardEvent} event
  */
 function handlePageKeyDown(event) {

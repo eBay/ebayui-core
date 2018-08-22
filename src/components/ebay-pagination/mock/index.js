@@ -1,9 +1,9 @@
 const renderBody = (stream) => stream.write('1');
 module.exports = {
     basicLinks: {
-        'aria-label-previous': 'Previous page',
-        'aria-label-next': 'Next page',
-        'curr-text': 'Results Pagination - Page 2',
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 2',
         items: [
             {
                 type: 'previous',
@@ -53,10 +53,10 @@ module.exports = {
         ]
     },
     hijax: {
-        'ariaLabelPrevious': 'Previous page',
-        'ariaLabelNext': 'Next page',
-        'currText': 'Results Pagination - Page 2',
-        'hijax': true,
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 2',
+        hijax: true,
         items: [
             {
                 type: 'previous',
@@ -78,10 +78,9 @@ module.exports = {
         ]
     },
     basicLinksWithoutCurrent: {
-        'ariaLabelPrevious': 'Previous page',
-        'ariaLabelNext': 'Next page',
-        'currText': 'Results Pagination - Page X',
-        'fakeLink': true,
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page X',
         items: [
             {
                 type: 'previous',
@@ -102,10 +101,9 @@ module.exports = {
         ]
     },
     basicLinksWithoutNavigation: {
-        'ariaLabelPrevious': 'Previous page',
-        'ariaLabelNext': 'Next page',
-        'currText': 'Results Pagination - Page 1',
-        'fakeLink': true,
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 1',
         items: [
             {
                 current: true,
@@ -115,9 +113,9 @@ module.exports = {
         ]
     },
     disabledNavigation: {
-        'ariaLabelPrevious': 'Previous page',
-        'ariaLabelNext': 'Next page',
-        'currText': 'Results Pagination - Page 2',
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 2',
         items: [
             {
                 type: 'previous'
