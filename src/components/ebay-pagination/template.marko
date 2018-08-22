@@ -1,48 +1,52 @@
-<nav class=data.classes style=data.style ${data.htmlAttributes} w-bind aria-labelledby="pagination-heading-${widget.elId()}" role="navigation">
+<nav
+    w-bind
+    role="navigation"
+    class=data.classes
+    style=data.style
+    aria-labelledby="pagination-heading-${widget.elId()}"
+    ${data.htmlAttributes}>
     <span aria-live="polite" role="status">
         <h2 class="clipped"
             id="pagination-heading-${widget.elId()}">
             ${data.a11yCurrentText}
         </h2>
     </span>
-    <a aria-disabled=String(data.prevItem.disabled)
+    <${data.prevItem.href ? 'a' : 'button'}
+        aria-disabled=(data.prevItem.disabled && 'true')
         aria-label=data.a11yPreviousText
         class=data.prevItem.class
         style=data.prevItem.style
         href=data.prevItem.href
-        role=data.role
         w-onkeydown="handlePreviousPageKeyDown"
         w-onclick="handlePreviousPage"
         ${data.prevItem.htmlAttributes}
         if(data.prevItem)>
        <span></span>
-    </a>
+    </>
     <ol class="pagination__items">
-        <for(item in data.items)>
-            <li>
-                <a aria-current=(item.current && "page")
-                    href=item.href
-                    role=item.role
-                    class=item.class
-                    style=item.style
-                    ${item.htmlAttributes}
-                    w-onkeydown="handlePageKeyDown"
-                    w-onclick="handlePageClick"
-                    w-body=item.renderBody>
-                </a>
-            </li>
-        </for>
+        <li for(item in data.items)>
+            <${item.href ? "a" : "button"}
+                aria-current=(item.current && "page")
+                href=item.href
+                class=item.class
+                style=item.style
+                ${item.htmlAttributes}
+                w-onkeydown="handlePageKeyDown"
+                w-onclick="handlePageClick"
+                w-body=item.renderBody>
+            </>
+        </li>
     </ol>
-    <a aria-disabled=String(data.nextItem.disabled)
+    <${data.nextItem.href ? "a" : "button"}
+        aria-disabled=(data.nextItem.disabled && "true")
         aria-label=data.a11yNextText
         class=data.nextItem.class
         style=data.nextItem.style
         href=data.nextItem.href
-        role=data.role
         w-onkeydown="handleNextPageKeyDown"
         w-onclick="handleNextPage"
         ${data.nextItem.htmlAttributes}
         if(data.nextItem)>
        <span></span>
-    </a>
+    </>
 </nav>
