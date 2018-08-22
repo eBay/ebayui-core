@@ -95,11 +95,8 @@ function onUpdate() {
 function refresh() {
     let current = 0;
     const totalPages = this.pageEls.length;
-    for (let i = 0; i < totalPages; i++) {
-        if (this.pageEls[i].hasAttribute('hidden')) {
-            this.pageEls[i].removeAttribute('hidden');
-        }
-        if (this.pageEls[i].children[0].hasAttribute('aria-current')) {
+    for (let i = 0; i < this.state.items.length; i++){
+        if (this.state.items[i].current) {
             current = i;
         }
     }
@@ -130,16 +127,10 @@ function refresh() {
     }
 
     for (let i = 0; i < totalPages; i++) {
-        if (i < start) {
-            if (!this.pageEls[i].hasAttribute('hidden')) {
-                this.pageEls[i].setAttribute('hidden', true);
-            }
-        } else if (i >= start && i <= end) {
-            if (this.pageEls[i].hasAttribute('hidden')) {
-                this.pageEls[i].removeAttribute('hidden');
-            }
-        } else if (!this.pageEls[i].hasAttribute('hidden')) {
+        if (i < start || i > end) {
             this.pageEls[i].setAttribute('hidden', true);
+        } else {
+            this.pageEls[i].removeAttribute('hidden');
         }
     }
 }
