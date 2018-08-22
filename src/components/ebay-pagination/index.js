@@ -98,6 +98,7 @@ function refresh() {
     for (let i = 0; i < this.state.items.length; i++) {
         if (this.state.items[i].current) {
             current = i;
+            break;
         }
     }
     const pageNumWidth = this.pageEls[current].offsetWidth + constants.margin;
