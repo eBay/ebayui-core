@@ -129,7 +129,7 @@ describe('when pagination is rendered at different widths with the fifth item se
         });
         afterEach(() => widget.destroy());
 
-        it('it should show the 3 through 7 page numbers', () => {
+        it('it should show the 2 through 7 page numbers', () => {
             root = document.querySelector('nav.pagination');
             pageItems = Array.from(root.querySelectorAll('li'));
             let start = 0;
@@ -159,7 +159,7 @@ describe('when pagination is rendered at different widths with the fifth item se
         });
         afterEach(() => widget.destroy());
 
-        it('it should show the 2 through 8 page numbers', () => {
+        it('it should show the 1 through 8 page numbers', () => {
             root = document.querySelector('nav.pagination');
             pageItems = Array.from(root.querySelectorAll('li'));
             let start = 0;
@@ -255,7 +255,7 @@ describe('when pagination is rendered at different widths with the eigth item se
         });
         afterEach(() => widget.destroy());
 
-        it('it should show the 2 throug 9 page number', () => {
+        it('it should show the 2 through 9 page number', () => {
             root = document.querySelector('nav.pagination');
             pageItems = Array.from(root.querySelectorAll('li'));
             let start = 0;
