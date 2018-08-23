@@ -18,6 +18,294 @@ function testSelectEvent(spy, el) {
     testUtils.testOriginalEvent(spy);
 }
 
+describe('when pagination is rendered at different widths with the second item selected', () => {
+    let widget;
+    let root;
+    let pageItems;
+
+    describe('given the component is 400px wide', () => {
+        beforeEach((done) => {
+            document.body.style.width = '400px';
+            widget = renderer.renderSync(mock.basicLinks).appendTo(document.body).getWidget();
+            widget.el.style.width = '400px';
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 50);
+        });
+        afterEach(() => widget.destroy());
+
+        it('it should show the first 5 page number', () => {
+            root = document.querySelector('nav.pagination');
+            pageItems = Array.from(root.querySelectorAll('li'));
+            let start = 0;
+            let end = pageItems.length;
+            const numVisible = pageItems.reduce((acc, item, index) => {
+                if (!item.hasAttribute('hidden') && acc === 0) {
+                    start = index;
+                }
+                if (item.hasAttribute('hidden') && acc > 0 && end === pageItems.length) {
+                    end = index;
+                }
+                return item.hasAttribute('hidden') ? acc : acc + 1;
+            }, 0);
+            expect(start).to.equal(0);
+            expect(end).to.equal(5);
+            expect(numVisible).to.equal(5);
+        });
+    });
+
+    describe('given the component is 550px wide', () => {
+        beforeEach((done) => {
+            document.body.style.width = '550px';
+            widget = renderer.renderSync(mock.basicLinks).appendTo(document.body).getWidget();
+            widget.el.style.width = '550px';
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 50);
+        });
+        afterEach(() => widget.destroy());
+
+        it('it should show the first 7 page number', () => {
+            root = document.querySelector('nav.pagination');
+            pageItems = Array.from(root.querySelectorAll('li'));
+            let start = 0;
+            let end = pageItems.length;
+            const numVisible = pageItems.reduce((acc, item, index) => {
+                if (!item.hasAttribute('hidden') && acc === 0) {
+                    start = index;
+                }
+                if (item.hasAttribute('hidden') && acc > 0 && end === pageItems.length) {
+                    end = index;
+                }
+                return item.hasAttribute('hidden') ? acc : acc + 1;
+            }, 0);
+            expect(start).to.equal(0);
+            expect(end).to.equal(7);
+            expect(numVisible).to.equal(7);
+        });
+    });
+
+    describe('given the component is 640px wide', () => {
+        beforeEach((done) => {
+            document.body.style.width = '640px';
+            widget = renderer.renderSync(mock.basicLinks).appendTo(document.body).getWidget();
+            widget.el.style.width = '640px';
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 50);
+        });
+        afterEach(() => widget.destroy());
+
+        it('it should show the first 9 page number', () => {
+            root = document.querySelector('nav.pagination');
+            pageItems = Array.from(root.querySelectorAll('li'));
+            let start = 0;
+            let end = pageItems.length;
+            const numVisible = pageItems.reduce((acc, item, index) => {
+                if (!item.hasAttribute('hidden') && acc === 0) {
+                    start = index;
+                }
+                if (item.hasAttribute('hidden') && acc > 0 && end === pageItems.length) {
+                    end = index;
+                }
+                return item.hasAttribute('hidden') ? acc : acc + 1;
+            }, 0);
+            expect(start).to.equal(0);
+            expect(end).to.equal(9);
+            expect(numVisible).to.equal(9);
+        });
+    });
+});
+
+describe('when pagination is rendered at different widths with the fifth item selected', () => {
+    let widget;
+    let root;
+    let pageItems;
+
+    describe('given the component is 400px wide', () => {
+        beforeEach((done) => {
+            document.body.style.width = '400px';
+            widget = renderer.renderSync(mock.basicLinks5Selected).appendTo(document.body).getWidget();
+            widget.el.style.width = '400px';
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 50);
+        });
+        afterEach(() => widget.destroy());
+
+        it('it should show the 3 through 7 page numbers', () => {
+            root = document.querySelector('nav.pagination');
+            pageItems = Array.from(root.querySelectorAll('li'));
+            let start = 0;
+            let end = pageItems.length;
+            const numVisible = pageItems.reduce((acc, item, index) => {
+                if (!item.hasAttribute('hidden') && acc === 0) {
+                    start = index;
+                }
+                if (item.hasAttribute('hidden') && acc > 0 && end === pageItems.length) {
+                    end = index;
+                }
+                return item.hasAttribute('hidden') ? acc : acc + 1;
+            }, 0);
+            expect(start).to.equal(2);
+            expect(end).to.equal(7);
+            expect(numVisible).to.equal(5);
+        });
+    });
+
+    describe('given the component is 550px wide', () => {
+        beforeEach((done) => {
+            document.body.style.width = '550px';
+            widget = renderer.renderSync(mock.basicLinks5Selected).appendTo(document.body).getWidget();
+            widget.el.style.width = '550px';
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 50);
+        });
+        afterEach(() => widget.destroy());
+
+        it('it should show the 2 through 8 page numbers', () => {
+            root = document.querySelector('nav.pagination');
+            pageItems = Array.from(root.querySelectorAll('li'));
+            let start = 0;
+            let end = pageItems.length;
+            const numVisible = pageItems.reduce((acc, item, index) => {
+                if (!item.hasAttribute('hidden') && acc === 0) {
+                    start = index;
+                }
+                if (item.hasAttribute('hidden') && acc > 0 && end === pageItems.length) {
+                    end = index;
+                }
+                return item.hasAttribute('hidden') ? acc : acc + 1;
+            }, 0);
+            expect(start).to.equal(1);
+            expect(end).to.equal(8);
+            expect(numVisible).to.equal(7);
+        });
+    });
+
+    describe('given the component is 640px wide', () => {
+        beforeEach((done) => {
+            document.body.style.width = '640px';
+            widget = renderer.renderSync(mock.basicLinks5Selected).appendTo(document.body).getWidget();
+            widget.el.style.width = '640px';
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 50);
+        });
+        afterEach(() => widget.destroy());
+
+        it('it should show the 1 through 9 page number2', () => {
+            root = document.querySelector('nav.pagination');
+            pageItems = Array.from(root.querySelectorAll('li'));
+            let start = 0;
+            let end = pageItems.length;
+            const numVisible = pageItems.reduce((acc, item, index) => {
+                if (!item.hasAttribute('hidden') && acc === 0) {
+                    start = index;
+                }
+                if (item.hasAttribute('hidden') && acc > 0 && end === pageItems.length) {
+                    end = index;
+                }
+                return item.hasAttribute('hidden') ? acc : acc + 1;
+            }, 0);
+            expect(start).to.equal(0);
+            expect(end).to.equal(9);
+            expect(numVisible).to.equal(9);
+        });
+    });
+});
+
+describe('when pagination is rendered at different widths with the eigth item selected', () => {
+    let widget;
+    let root;
+    let pageItems;
+
+    describe('given the component is 400px wide', () => {
+        beforeEach((done) => {
+            document.body.style.width = '400px';
+            widget = renderer.renderSync(mock.basicLinks8Selected).appendTo(document.body).getWidget();
+            widget.el.style.width = '400px';
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 50);
+        });
+        afterEach(() => widget.destroy());
+
+        it('it should show the 4 through 9 page numbers', () => {
+            root = document.querySelector('nav.pagination');
+            pageItems = Array.from(root.querySelectorAll('li'));
+            let start = 0;
+            let end = pageItems.length;
+            const numVisible = pageItems.reduce((acc, item, index) => {
+                if (!item.hasAttribute('hidden') && acc === 0) {
+                    start = index;
+                }
+                if (item.hasAttribute('hidden') && acc > 0 && end === pageItems.length) {
+                    end = index;
+                }
+                return item.hasAttribute('hidden') ? acc : acc + 1;
+            }, 0);
+            expect(start).to.equal(4);
+            expect(end).to.equal(9);
+            expect(numVisible).to.equal(5);
+        });
+    });
+
+    describe('given the component is 550px wide', () => {
+        beforeEach((done) => {
+            document.body.style.width = '550px';
+            widget = renderer.renderSync(mock.basicLinks8Selected).appendTo(document.body).getWidget();
+            widget.el.style.width = '550px';
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 50);
+        });
+        afterEach(() => widget.destroy());
+
+        it('it should show the 2 throug 9 page number', () => {
+            root = document.querySelector('nav.pagination');
+            pageItems = Array.from(root.querySelectorAll('li'));
+            let start = 0;
+            let end = pageItems.length;
+            const numVisible = pageItems.reduce((acc, item, index) => {
+                if (!item.hasAttribute('hidden') && acc === 0) {
+                    start = index;
+                }
+                if (item.hasAttribute('hidden') && acc > 0 && end === pageItems.length) {
+                    end = index;
+                }
+                return item.hasAttribute('hidden') ? acc : acc + 1;
+            }, 0);
+            expect(start).to.equal(2);
+            expect(end).to.equal(9);
+            expect(numVisible).to.equal(7);
+        });
+    });
+
+    describe('given the component is 640px wide', () => {
+        beforeEach((done) => {
+            document.body.style.width = '640px';
+            widget = renderer.renderSync(mock.basicLinks8Selected).appendTo(document.body).getWidget();
+            widget.el.style.width = '640px';
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 50);
+        });
+        afterEach(() => widget.destroy());
+
+        it('it should show the 1 through 9 page numbers', () => {
+            root = document.querySelector('nav.pagination');
+            pageItems = Array.from(root.querySelectorAll('li'));
+            let start = 0;
+            let end = pageItems.length;
+            const numVisible = pageItems.reduce((acc, item, index) => {
+                if (!item.hasAttribute('hidden') && acc === 0) {
+                    start = index;
+                }
+                if (item.hasAttribute('hidden') && acc > 0 && end === pageItems.length) {
+                    end = index;
+                }
+                return item.hasAttribute('hidden') ? acc : acc + 1;
+            }, 0);
+            expect(start).to.equal(0);
+            expect(end).to.equal(9);
+            expect(numVisible).to.equal(9);
+        });
+    });
+});
+
 describe('given the pagination is in the default state with links', () => {
     let widget;
     let root;

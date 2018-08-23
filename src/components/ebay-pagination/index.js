@@ -98,7 +98,8 @@ function refresh() {
     for (let i = 0; i < this.state.items.length; i++) {
         if (this.state.items[i].current) {
             current = i;
-            break;
+        } else {
+            this.pageEls[i].removeAttribute('hidden');
         }
     }
     const pageNumWidth = this.pageEls[current].offsetWidth + constants.margin;
@@ -110,10 +111,13 @@ function refresh() {
     let start = 0;
     let end = adjustedNumPages;
     const rangeLeft = Math.floor(adjustedNumPages * 0.5);
-    const rangeRight = Math.round(adjustedNumPages * 0.5);
+    const rangeRight = Math.floor(adjustedNumPages * 0.5);
 
     start = current - rangeLeft;
     end = current + rangeRight;
+    if (end > totalPages) {
+        start -= (end - totalPages);
+    }
 
     if (totalPages < constants.maxPagesAllowed) {
         end = totalPages;
@@ -125,6 +129,11 @@ function refresh() {
 
     if (start < 0) {
         end -= start;
+        start = 0;
+    }
+
+    if (end - start < constants.minPagesRequired && end === totalPages && start > 0) {
+        start = end - constants.minPagesRequired;
     }
 
     for (let i = 0; i < totalPages; i++) {
