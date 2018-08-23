@@ -93,15 +93,16 @@ function onUpdate() {
 }
 
 function refresh() {
-    const totalPages = this.pageEls.length;
     let current = 0;
-    this.state.items.some((item, i) => {
-        if (item.current) {
+    for (let i = 0; i < this.state.items.length; i++) {
+        if (this.state.items[i].current) {
             current = i;
-            return true;
+        } else {
+            // remove all hidden attribues to get accurate widths
+            this.pageEls[i].removeAttribute('hidden');
         }
-    });
-
+    }
+    const totalPages = this.pageEls.length;
     const pageNumWidth = this.pageEls[current].offsetWidth + constants.margin;
     const containerWidth = this.containerEl.offsetWidth - pageNumWidth * 2;
     const numPagesAllowed = Math.floor((containerWidth) / (pageNumWidth));
