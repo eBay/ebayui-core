@@ -52,6 +52,110 @@ module.exports = {
             }
         ]
     },
+    FifthSelected: {
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 2',
+        items: [
+            {
+                type: 'previous',
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                current: true,
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                type: 'next',
+                href: 'https://www.ebay.com/'
+            }
+        ]
+    },
+    EighthSelected: {
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 2',
+        items: [
+            {
+                type: 'previous',
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                current: true,
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                renderBody,
+                href: 'https://www.ebay.com/'
+            },
+            {
+                type: 'next',
+                href: 'https://www.ebay.com/'
+            }
+        ]
+    },
     hijax: {
         a11yPreviousText: 'Previous page',
         a11yNextText: 'Next page',

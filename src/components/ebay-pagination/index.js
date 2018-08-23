@@ -76,27 +76,73 @@ function init() {
     this.previousPageEl = this.el.querySelector('.pagination__previous');
     this.nextPageEl = this.el.querySelector('.pagination__next');
     this.subscribeTo(eventUtils.resizeUtil).on('resize', refresh.bind(this));
+    this.timeoutRef = 0;
     this.refresh();
 }
 
-function refresh() {
-    const containerWidth = this.containerEl.offsetWidth;
-    const pageNumWidth = this.pageEls[0].offsetWidth + constants.margin;
-    const numPagesAllowed = Math.floor(containerWidth / pageNumWidth) - constants.indexForNavigation;
-    const adjustedNumPages = Math.min(constants.maxPagesAllowed,
-        Math.max(numPagesAllowed, constants.minPagesRequired));
-    const totalPages = this.pageEls.length;
+function onBeforeUpdate() {
+    clearTimeout(this.timeoutRef);
+}
 
-    // Let's show all the pages that we can.
-    for (let i = 5; i < adjustedNumPages && i < totalPages; ++i) {
-        if (this.pageEls[i].hasAttribute('hidden')) {
+function onDestroy() {
+    clearTimeout(this.timeoutRef);
+}
+
+function onUpdate() {
+    this.timeoutRef = setTimeout(this.refresh.bind(this), 0);
+}
+
+function refresh() {
+    let current = 0;
+    for (let i = 0; i < this.state.items.length; i++) {
+        if (this.state.items[i].current) {
+            current = i;
+        } else {
+            // remove all hidden attribues to get accurate widths
             this.pageEls[i].removeAttribute('hidden');
         }
     }
+    const totalPages = this.pageEls.length;
+    const pageNumWidth = this.pageEls[current].offsetWidth + constants.margin;
+    const containerWidth = this.containerEl.offsetWidth - pageNumWidth * 2;
+    const numPagesAllowed = Math.floor((containerWidth) / (pageNumWidth));
+    const adjustedNumPages = Math.min(constants.maxPagesAllowed - 1,
+        Math.max(numPagesAllowed, constants.minPagesRequired));
 
-    // Now that we are showing all the pages that we can, lets hide remaining pages.
-    for (let i = adjustedNumPages; i < totalPages; ++i) {
-        this.pageEls[i].setAttribute('hidden', true);
+    let start = 0;
+    let end = adjustedNumPages;
+    const rangeLeft = Math.floor(adjustedNumPages * 0.5);
+    const rangeRight = Math.floor(adjustedNumPages * 0.5);
+
+    start = current - rangeLeft;
+    end = current + rangeRight;
+    if (end > totalPages) {
+        start -= (end - totalPages);
+    }
+
+    if (totalPages < constants.maxPagesAllowed) {
+        end = totalPages;
+    }
+
+    if (totalPages - current < rangeRight) {
+        start -= (rangeRight - (totalPages - current));
+    }
+
+    if (start < 0) {
+        end -= start;
+        start = 0;
+    }
+
+    if (end - start < constants.minPagesRequired && end === totalPages && start > 0) {
+        start = end - constants.minPagesRequired;
+    }
+
+    for (let i = 0; i < totalPages; i++) {
+        if (i < start || i > end) {
+            this.pageEls[i].setAttribute('hidden', true);
+        } else {
+            this.pageEls[i].removeAttribute('hidden');
+        }
     }
 }
 
@@ -149,6 +195,9 @@ function handlePreviousPageKeyDown(event) {
 module.exports = require('marko-widgets').defineComponent({
     template,
     init,
+    onUpdate,
+    onBeforeUpdate,
+    onDestroy,
     refresh,
     handlePageClick,
     handleNextPage,
