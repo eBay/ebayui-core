@@ -45,7 +45,7 @@ Event | Data | Description
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `disabled` | Boolean | No | Previous/next button is disabled or not
-`href` | String | No | for link that looks like a menu-item, by omitting the item will switch to a button
+`href` | String | No | for link that looks like a menu-item; omitting the href will switch to a button
 `current` | Boolean | No | the current page
 `type` | String | No | "previous", "next" or "page"(default). To specify if the information entered is for the previous or next arrrow button or a page. If the `type='previous|next'` isn't provided the previous/next arrow buttons will be taken as `disabled`
 
