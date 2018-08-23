@@ -1,7 +1,7 @@
 {
     "<ebay-breadcrumb>": {
-        "renderer": "./src/components/ebay-breadcrumb/index.js",
-        "transformer": "./src/common/transformer/index.js",
+        "renderer": "./dist/components/ebay-breadcrumb/index.js",
+        "transformer": "./dist/common/transformer/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -19,7 +19,7 @@
     },
     "<ebay-breadcrumb-item>": {},
     "<ebay-button>": {
-        "renderer": "./src/components/ebay-button/index.js",
+        "renderer": "./dist/components/ebay-button/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -34,8 +34,8 @@
         "@variant": "string"
     },
     "<ebay-carousel>": {
-        "renderer": "./src/components/ebay-carousel/index.js",
-        "transformer": "./src/common/transformer/index.js",
+        "renderer": "./dist/components/ebay-carousel/index.js",
+        "transformer": "./dist/common/transformer/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -65,7 +65,7 @@
     },
     "<ebay-carousel-item>": {},
     "<ebay-checkbox>": {
-        "renderer": "./src/components/ebay-checkbox/index.js",
+        "renderer": "./dist/components/ebay-checkbox/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -73,8 +73,8 @@
         "@disabled": "boolean"
     },
     "<ebay-combobox>": {
-        "renderer": "./src/components/ebay-combobox/index.js",
-        "transformer": "./src/common/transformer/index.js",
+        "renderer": "./dist/components/ebay-combobox/index.js",
+        "transformer": "./dist/common/transformer/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -95,7 +95,7 @@
     },
     "<ebay-combobox-option>": {},
     "<ebay-dialog>": {
-        "renderer": "./src/components/ebay-dialog/index.js",
+        "renderer": "./dist/components/ebay-dialog/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -106,8 +106,8 @@
         "@a11y-close-text": "string"
     },
     "<ebay-icon>": {
-        "renderer": "./src/components/ebay-icon/index.js",
-        "transformer": "./src/components/ebay-icon/transformer.js",
+        "renderer": "./dist/components/ebay-icon/index.js",
+        "transformer": "./dist/components/ebay-icon/transformer.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -119,8 +119,8 @@
         "@_themes": "expression"
     },
     "<ebay-menu>": {
-        "renderer": "./src/components/ebay-menu/index.js",
-        "transformer": "./src/components/ebay-menu/transformer.js",
+        "renderer": "./dist/components/ebay-menu/index.js",
+        "transformer": "./dist/components/ebay-menu/transformer.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -150,7 +150,7 @@
     },
     "<ebay-menu-item>": {},
     "<ebay-notice>": {
-        "renderer": "./src/components/ebay-notice/index.js",
+        "renderer": "./dist/components/ebay-notice/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -164,8 +164,8 @@
         "@dismissible": "boolean"
     },
     "<ebay-pagination>": {
-        "renderer": "./src/components/ebay-pagination/index.js",
-        "transformer": "./src/common/transformer/index.js",
+        "renderer": "./dist/components/ebay-pagination/index.js",
+        "transformer": "./dist/common/transformer/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -188,7 +188,7 @@
     },
     "<ebay-pagination-item>": {},
     "<ebay-radio>": {
-        "renderer": "./src/components/ebay-radio/index.js",
+        "renderer": "./dist/components/ebay-radio/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -196,8 +196,8 @@
         "@disabled": "boolean"
     },
     "<ebay-select>": {
-        "renderer": "./src/components/ebay-select/index.js",
-        "transformer": "./src/common/transformer/index.js",
+        "renderer": "./dist/components/ebay-select/index.js",
+        "transformer": "./dist/common/transformer/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -217,7 +217,7 @@
     },
     "<ebay-select-option>": {},
     "<ebay-switch>": {
-        "renderer": "./src/components/ebay-switch/index.js",
+        "renderer": "./dist/components/ebay-switch/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -225,8 +225,8 @@
         "@disabled": "boolean"
     },
     "<ebay-tab>": {
-        "renderer": "./src/components/ebay-tab/index.js",
-        "transformer": "./src/common/transformer/index.js",
+        "renderer": "./dist/components/ebay-tab/index.js",
+        "transformer": "./dist/common/transformer/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -250,7 +250,7 @@
     "<ebay-tab-heading>": {},
     "<ebay-tab-panel>": {},
     "<ebay-textbox>": {
-        "renderer": "./src/components/ebay-textbox/index.js",
+        "renderer": "./dist/components/ebay-textbox/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
