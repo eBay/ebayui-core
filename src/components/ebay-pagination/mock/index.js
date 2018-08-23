@@ -52,7 +52,7 @@ module.exports = {
             }
         ]
     },
-    basicLinks5Selected: {
+    FifthSelected: {
         a11yPreviousText: 'Previous page',
         a11yNextText: 'Next page',
         a11yCurrentText: 'Results Pagination - Page 2',
@@ -104,7 +104,7 @@ module.exports = {
             }
         ]
     },
-    basicLinks8Selected: {
+    EighthSelected: {
         a11yPreviousText: 'Previous page',
         a11yNextText: 'Next page',
         a11yCurrentText: 'Results Pagination - Page 2',

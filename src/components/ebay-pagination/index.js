@@ -93,15 +93,15 @@ function onUpdate() {
 }
 
 function refresh() {
-    let current = 0;
     const totalPages = this.pageEls.length;
-    for (let i = 0; i < this.state.items.length; i++) {
-        if (this.state.items[i].current) {
+    let current = 0;
+    this.state.items.some((item, i) => {
+        if (item.current) {
             current = i;
-        } else {
-            this.pageEls[i].removeAttribute('hidden');
+            return true;
         }
-    }
+    });
+
     const pageNumWidth = this.pageEls[current].offsetWidth + constants.margin;
     const containerWidth = this.containerEl.offsetWidth - pageNumWidth * 2;
     const numPagesAllowed = Math.floor((containerWidth) / (pageNumWidth));
