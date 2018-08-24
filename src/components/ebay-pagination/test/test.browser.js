@@ -46,7 +46,134 @@ describe('given the pagination is in the default state with links', () => {
     let nextButtonInner;
 
     beforeEach(() => {
-        widget = renderer.renderSync(mock.hijax).appendTo(document.body).getWidget();
+        widget = renderer.renderSync(mock.basicLinks).appendTo(document.body).getWidget();
+        root = document.querySelector('nav.pagination');
+        previousButton = root.querySelector('.pagination__previous');
+        nextButton = root.querySelector('.pagination__next');
+        pageItem = root.querySelector('.pagination__item');
+        nextButtonInner = nextButton.querySelector('span');
+        previousButtonInner = previousButton.querySelector('span');
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when the previous button is clicked', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('pagination-previous', spy);
+            testUtils.triggerEvent(previousButton, 'click');
+        });
+
+        test('then it emits the marko event called pagination-previous', () => {
+            testControlEvent(spy, previousButton);
+        });
+    });
+
+    describe('when an previous button\'s inner span is clicked', () => {
+        let spy;
+        beforeEach((done) => {
+            spy = sinon.spy();
+            widget.on('pagination-previous', spy);
+            testUtils.triggerEvent(previousButtonInner, 'click');
+            setTimeout(done);
+        });
+
+        test('then it emits the pagination-previous event with correct data', () => {
+            testControlEvent(spy, previousButton);
+        });
+    });
+
+    describe('when the next button is clicked', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('pagination-next', spy);
+            testUtils.triggerEvent(nextButton, 'click');
+        });
+
+        test('then it emits the marko event called pagination-next', () => {
+            testControlEvent(spy, nextButton);
+        });
+    });
+
+    describe('when an next button\'s inner span is clicked', () => {
+        let spy;
+        beforeEach((done) => {
+            spy = sinon.spy();
+            widget.on('pagination-next', spy);
+            testUtils.triggerEvent(nextButtonInner, 'click');
+            setTimeout(done);
+        });
+
+        test('then it emits the pagination-next event with correct data', () => {
+            testControlEvent(spy, nextButton);
+        });
+    });
+
+    describe('when the page number is clicked', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('pagination-select', spy);
+            testUtils.triggerEvent(pageItem, 'click');
+        });
+
+        test('then it emits the marko event called pagination-select', () => {
+            testSelectEvent(spy, pageItem);
+        });
+    });
+
+    describe('when the previous button is activated through keydown', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('pagination-previous', spy);
+            testUtils.triggerEvent(previousButton, 'keydown', 32);
+        });
+
+        test('then it emits the marko event called pagination-previous', () => {
+            testControlEvent(spy, previousButton);
+        });
+    });
+
+    describe('when the next button is activated through keydown', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('pagination-next', spy);
+            testUtils.triggerEvent(nextButton, 'keydown', 32);
+        });
+
+        test('then it emits the marko event called pagination-next', () => {
+            testControlEvent(spy, nextButton);
+        });
+    });
+
+    describe('when the page number is activated through keydown', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('pagination-select', spy);
+            testUtils.triggerEvent(pageItem, 'keydown', 32);
+        });
+
+        test('then it emits the marko event called pagination-select', () => {
+            testSelectEvent(spy, pageItem);
+        });
+    });
+});
+
+describe('given the pagination is using buttons', () => {
+    let widget;
+    let root;
+    let previousButton;
+    let previousButtonInner;
+    let pageItem;
+    let nextButton;
+    let nextButtonInner;
+
+    beforeEach(() => {
+        widget = renderer.renderSync(mock.buttons).appendTo(document.body).getWidget();
         root = document.querySelector('nav.pagination');
         previousButton = root.querySelector('.pagination__previous');
         nextButton = root.querySelector('.pagination__next');

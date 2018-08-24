@@ -7,48 +7,48 @@ module.exports = {
         items: [
             {
                 type: 'previous',
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 current: true,
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 type: 'next',
-                href: 'https://www.ebay.com/'
+                href: '#'
             }
         ]
     },
@@ -59,48 +59,48 @@ module.exports = {
         items: [
             {
                 type: 'previous',
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 current: true,
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 type: 'next',
-                href: 'https://www.ebay.com/'
+                href: '#'
             }
         ]
     },
@@ -111,73 +111,68 @@ module.exports = {
         items: [
             {
                 type: 'previous',
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 current: true,
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 type: 'next',
-                href: 'https://www.ebay.com/'
+                href: '#'
             }
         ]
     },
-    hijax: {
+    buttons: {
         a11yPreviousText: 'Previous page',
         a11yNextText: 'Next page',
         a11yCurrentText: 'Results Pagination - Page 2',
-        hijax: true,
         items: [
             {
-                type: 'previous',
-                href: 'https://www.ebay.com/'
+                type: 'previous'
             },
             {
                 current: true,
-                renderBody,
-                href: 'https://www.ebay.com/'
+                renderBody
             },
             {
-                renderBody,
-                href: 'https://www.ebay.com/'
+                renderBody
             },
             {
-                type: 'next',
-                href: 'https://www.ebay.com/'
+                type: 'next'
             }
         ]
     },
@@ -188,19 +183,19 @@ module.exports = {
         items: [
             {
                 type: 'previous',
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 type: 'next',
-                href: 'https://www.ebay.com/'
+                href: '#'
             }
         ]
     },
@@ -212,7 +207,7 @@ module.exports = {
             {
                 current: true,
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             }
         ]
     },
@@ -222,12 +217,13 @@ module.exports = {
         a11yCurrentText: 'Results Pagination - Page 2',
         items: [
             {
-                type: 'previous'
+                type: 'previous',
+                disabled: true
             },
             {
                 current: true,
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 type: 'next',

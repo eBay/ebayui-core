@@ -15,39 +15,34 @@ function getInitialState(input) {
     let nextItem;
     const items = [];
     const inputItems = input.items || [];
-    const hijax = input.hijax || false;
-    let role;
-
-    if (hijax) {
-        role = 'button';
-    }
 
     for (let i = 0; i < inputItems.length; ++i) {
         const item = inputItems[i];
         const href = item.href;
         const current = item.current;
-
         const tempItem = {
             htmlAttributes: processHtmlAttributes(item),
             style: item.style,
             renderBody: item.renderBody,
-            role,
             href,
-            current: Boolean(current) || false
+            current
         };
+
         if (item.type === 'previous') {
             prevItem = tempItem;
             prevItem.class = ['pagination__previous', item.class];
-            prevItem.disabled = Boolean(item.disabled) || !href;
+            prevItem.disabled = item.disabled;
             continue;
         } else if (item.type === 'next') {
             nextItem = tempItem;
             nextItem.class = ['pagination__next', item.class];
-            nextItem.disabled = Boolean(item.disabled) || !href;
+            nextItem.disabled = item.disabled;
             continue;
         } else {
             tempItem.class = ['pagination__item', item.class];
+            tempItem.current = item.current;
         }
+
         items.push(tempItem);
     }
 
@@ -55,7 +50,6 @@ function getInitialState(input) {
         htmlAttributes: processHtmlAttributes(input),
         classes: ['pagination', input.class],
         style: input.style,
-        hijax,
         nextItem: nextItem || { class: 'pagination__next', disabled: true, htmlAttributes: {} },
         prevItem: prevItem || { class: 'pagination__previous', disabled: true, htmlAttributes: {} },
         items,
@@ -152,21 +146,28 @@ function refresh() {
  */
 function handlePageClick(originalEvent) {
     const target = originalEvent.target;
-    eventUtils.preventDefaultIfHijax(originalEvent, this.state.hijax);
-    emitAndFire(this, 'pagination-select', { originalEvent, el: target, value: target.innerText });
+    emitAndFire(this, 'pagination-select', {
+        originalEvent,
+        el: target,
+        value: target.innerText
+    });
 }
 
 function handleNextPage(originalEvent) {
     if (!this.state.nextItem.disabled) {
-        eventUtils.preventDefaultIfHijax(originalEvent, this.state.hijax);
-        emitAndFire(this, 'pagination-next', { originalEvent, el: this.nextPageEl });
+        emitAndFire(this, 'pagination-next', {
+            originalEvent,
+            el: this.nextPageEl
+        });
     }
 }
 
 function handlePreviousPage(originalEvent) {
     if (!this.state.prevItem.disabled) {
-        eventUtils.preventDefaultIfHijax(originalEvent, this.state.hijax);
-        emitAndFire(this, 'pagination-previous', { originalEvent, el: this.previousPageEl });
+        emitAndFire(this, 'pagination-previous', {
+            originalEvent,
+            el: this.previousPageEl
+        });
     }
 }
 
