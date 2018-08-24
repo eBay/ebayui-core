@@ -1,6 +1,8 @@
 # ebay-combobox
 
-The `<ebay-combobox>` is a tag used to create a custom-designed form element which matches much of the functionality of a native `<select>` menu. It uses a markup similar to a `<select>` but hides the native select in favor for better design and UX for the end user.
+_**For Desktop only**_
+
+The `<ebay-combobox>` is used to create a custom-designed form element which matches much of the functionality of a native `<select>` menu. It hides the native select in favor of better design and UX for the end user.
 
 ## ebay-combobox Tag
 
@@ -43,7 +45,6 @@ Event | Data |  Description
 `combobox-collapse` | | collapse content
 `combobox-expand` | | expand content
 `combobox-change` | `{ el, index, selected }` | option selected
-
 ---
 
 ## ebay-combobox-option Tag
@@ -51,7 +52,7 @@ Event | Data |  Description
 ### ebay-combobox-option Usage
 
 ```marko
-<ebay-combobox-option value="1">option 1</ebay-combobox-option>
+<ebay-combobox-option value="1" text="Option 1"/>
 ```
 
 ### ebay-combobox-option Attributes
@@ -61,9 +62,3 @@ Name | Required | Type | Stateful | Description
 `text` | No | String | No | string to use in the option
 `selected` | No | Boolean | Yes | whether or not the option is selected (**Note:** use the root `ebay-combobox` element's `selected` property to set this property)
 `value` | Yes | String | Yes | used for the `value` attribute of the native `<option>`
-
-### ebay-combobox-option Events
-
-Event | Description
---- | ---
-`combobox-option` | select one of the options
