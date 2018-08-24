@@ -2,12 +2,11 @@
     <${data.a11yHeadingTag} id="breadcrumb-heading" class="clipped">${data.a11yHeadingText}</>
     <ul>
         <li for(item in data.items)>
-            <a
+            <${item.href ? 'a' : 'button'}
                 class=item.class
                 style=item.style
                 href=item.href
                 aria-current=item.ariaCurrent
-                role=item.role
                 w-body=item.renderBody
                 w-onclick=(item.shouldHandleClick && "handleClick")
                 ${item.htmlAttributes}/>
