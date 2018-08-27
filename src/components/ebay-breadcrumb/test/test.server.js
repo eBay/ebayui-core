@@ -12,10 +12,10 @@ describe('breadcrumb', () => {
         expect($('nav li').length).to.equal(mock.basicItems.items.length);
     });
 
-    test('should set item roles for hijax version', context => {
-        const input = mock.hijax;
+    test('should use buttons when hrefs are missing', context => {
+        const input = mock.buttons;
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('li a[role="button"]').length).to.equal(input.items.length - 1);
+        expect($('li button').length).to.equal(input.items.length);
     });
 
     test('renders <a> without href for missing input href on non-last item', context => {
@@ -25,11 +25,11 @@ describe('breadcrumb', () => {
         expect(li.length).to.equal(mock.firstItemMissingHref.items.length);
     });
 
-    test('renders a tag with no href attribute when href is null on last item', context => {
+    test('renders a button when href is null on last item', context => {
         const $ = testUtils.getCheerio(context.render(mock.basicItems));
         const li = $('nav li');
         expect(li.length).to.equal(mock.basicItems.items.length);
-        const currentElement = $('a', li[li.length - 1]);
+        const currentElement = $('button', li[li.length - 1]);
         expect(currentElement.attr('aria-current')).to.equal('location');
     });
 
@@ -44,6 +44,6 @@ describe('breadcrumb', () => {
 });
 
 describe('breadcrumb-item', () => {
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'li a', 'items'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'li a', 'items'));
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'li > *', 'items'));
+    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'li > *', 'items'));
 });

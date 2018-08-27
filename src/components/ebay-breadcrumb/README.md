@@ -15,7 +15,6 @@ Name | Type | Stateful | Description
 --- | --- | --- | ---
 `a11y-heading-text` | String | No | heading for breadcrumb which will be clipped
 `a11y-heading-tag` | String | No | heading tag for breadcrumb (default: `"h2"`)
-`hijax` | Boolean | No | Prevent link navigation; for use with ajax
 
 ## ebay-breadcrumb Events
 
@@ -27,4 +26,8 @@ Event | Description | Data
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`href` | String | No | anchor href
+`href` | String | No | anchor href; omitting the href will switch to a button
+
+Notes:
+
+* If you want to have client side or ajax based navigation then you should omit the `href` attribute on each item. This will cause each item to be `<button>` instead of an `<a>`. Alternatively you can manually `preventDefault` the provided `originalEvent` on the `breadcrumb-select` event.
