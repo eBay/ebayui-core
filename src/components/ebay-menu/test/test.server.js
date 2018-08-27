@@ -108,12 +108,14 @@ describe('menu', () => {
         const input = { text: '' };
         const $ = testUtils.getCheerio(context.render(input));
         expect($(textSelector).length).to.equal(0);
+        expect($('.expand-btn.expand-btn--no-text').length).to.equal(1);
         expect($('svg.expand-btn__icon').length).to.equal(1);
     });
 
     test('renders with icon', context => {
         const input = { icon: 'settings', iconTag: { renderBody: mock.iconRenderBody } };
         const $ = testUtils.getCheerio(context.render(input));
+        expect($('.expand-btn:not(.expand-btn--no-text)').length).to.equal(1);
         expect($('div.btn__icon').text()).to.equal('icon');
     });
 

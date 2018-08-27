@@ -14,6 +14,7 @@ function getTemplateData(state, input) {
     const href = input.href;
     const priority = input.priority || 'secondary';
     const size = input.size;
+    const noText = input.noText;
     const fluid = input.fluid;
     let variant = input.variant;
     const model = {};
@@ -28,7 +29,9 @@ function getTemplateData(state, input) {
         tag = 'button';
     }
 
-    if (href || variant === 'expand' || variant === 'cta') {
+    const isExpandVariant = variant === 'expand';
+    const isCtaVariant = variant === 'cta';
+    if (href || isExpandVariant || isCtaVariant) {
         mainClass = `${variant}-${mainClass}`;
     }
 
@@ -40,6 +43,10 @@ function getTemplateData(state, input) {
 
     if (size === 'small' || size === 'large') {
         classes.push(`${mainClass}--${size}`);
+    }
+
+    if (isExpandVariant && noText) {
+        classes.push(`${mainClass}--no-text`);
     }
 
     if (fluid) {

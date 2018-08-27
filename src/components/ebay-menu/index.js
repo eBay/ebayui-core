@@ -133,6 +133,7 @@ function getTemplateData(state) {
         expanded: state.expanded,
         size: state.size,
         priority: state.priority,
+        noText: !state.text && !state.icon,
         buttonClass: state.borderless && 'expand-btn--borderless',
         itemsClass,
         role: !state.isFake ? 'menu' : null,

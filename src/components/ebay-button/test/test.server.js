@@ -75,6 +75,12 @@ test('renders expand variant', context => {
     expect($('.expand-btn').length).to.equal(1);
 });
 
+test('renders expand variant with no text', context => {
+    const input = { variant: 'expand', noText: true };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('.expand-btn.expand-btn--no-text').length).to.equal(1);
+});
+
 test('renders cta variant', context => {
     const input = { variant: 'cta' };
     const $ = testUtils.getCheerio(context.render(input));
