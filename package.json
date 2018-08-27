@@ -45,7 +45,8 @@
     "dist/",
     "marko.json",
     "yarn.lock",
-    "*.browser.json"
+    "*.browser.json",
+    "marketplace.json"
   ],
   "license": "MIT",
   "repository": {
