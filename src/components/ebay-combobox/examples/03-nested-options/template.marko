@@ -4,10 +4,8 @@
     { value: 3, text: 'Option 3' }
 ]/>
 
-<span style="display: inline-block; max-width: 200px;">
-    <ebay-combobox name="formFieldName">
-        <if(true)>
-            <ebay-combobox-option for(option in options) value=option.value text=option.text selected=option.selected/>
-        </if>
-    </ebay-combobox>
-</span>
+<ebay-combobox name="formFieldName">
+    <if(true)>
+        <ebay-combobox-option for(option in options) value=option.value text=option.text selected=option.selected/>
+    </if>
+</ebay-combobox>
