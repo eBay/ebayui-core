@@ -38,6 +38,13 @@ for (const theme of THEMES) {
     }
 }
 
+// map DS4 icons that should use the markup of a DS6 icon
+const map4To6 = { 'arrow-down': 'chevron-down-bold' };
+Object.keys(map4To6).forEach(ds4Name => {
+    const ds6Name = map4To6[ds4Name];
+    icons.get(ds6Name).ds4 = icons.get(ds4Name).ds4.replace(ds4Name, ds6Name);
+});
+
 for (const [name, themes] of icons) {
     const iconFolder = path.join(outputDir, name);
     const browserJSON = path.join(iconFolder, 'browser.json');
