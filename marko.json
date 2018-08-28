@@ -30,6 +30,7 @@
         "@href": "string",
         "@priority": "string",
         "@size": "size",
+        "@no-text": "boolean",
         "@fluid": "boolean",
         "@variant": "string"
     },
