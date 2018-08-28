@@ -7,11 +7,10 @@
     w-bind>
     <span class=data.btnClass w-preserve-attrs="class">
         <input
-            type='text'
+            type='button'
             value=(data.selectedOption && data.selectedOption.text)
             readonly
             disabled=data.disabled
-            role='combobox'
             aria-haspopup='listbox'
             aria-owns=widget.elId('combobox__options')
             aria-expanded='false'
