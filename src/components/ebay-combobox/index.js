@@ -103,7 +103,7 @@ function init() {
 }
 
 function handleExpand() {
-    const selectedOptionEl = elementScroll.nodeListToArray(this.el.querySelectorAll(comboboxSelectedOptionSelector))[0];
+    const selectedOptionEl = this.el.querySelectorAll(comboboxSelectedOptionSelector)[0];
     elementScroll.scroll(selectedOptionEl);
     emitAndFire(this, 'combobox-expand');
 }
@@ -195,7 +195,7 @@ function traverseOptions(options, currentIndex, distance) {
  */
 function processAfterStateChange(el) {
     const optionValue = el.dataset.optionValue;
-    const optionIndex = elementScroll.nodeListToArray(el.parentNode.children).indexOf(el);
+    const optionIndex = Array.prototype.slice.call(el.parentNode.children).indexOf(el);
     this.setSelectedOption(optionValue);
     elementScroll.scroll(el);
     emitAndFire(this, 'combobox-change', {

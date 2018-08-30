@@ -9,8 +9,8 @@ describe('element-scroll', () => {
         contentDiv.innerHTML += innerDiv;
     }
 
-    const innerEl1 = elementScroll.nodeListToArray(contentDiv.querySelectorAll('.item5'))[0];
-    const innerEl2 = elementScroll.nodeListToArray(contentDiv.querySelectorAll('.item2'))[0];
+    const innerEl1 = contentDiv.querySelectorAll('.item5')[0];
+    const innerEl2 = contentDiv.querySelectorAll('.item2')[0];
 
     before(() => {
         document.body.appendChild(contentDiv);
@@ -23,14 +23,12 @@ describe('element-scroll', () => {
 
     test('scrolls the parent so the child element below the view is visible', () => {
         elementScroll.scroll(innerEl1);
-        expect(
-            contentDiv.scrollTop === ((innerEl1.offsetTop + innerEl1.offsetHeight) - contentDiv.offsetHeight)
-        ).to.equal(true);
+        expect(contentDiv.scrollTop).to.equal((innerEl1.offsetTop + innerEl1.offsetHeight) - contentDiv.offsetHeight);
     });
 
     test('scrolls the parent so the child element above the view is visible', () => {
         contentDiv.scrollTop = innerEl1.offsetTop;
         elementScroll.scroll(innerEl2);
-        expect(contentDiv.scrollTop === innerEl2.offsetTop).to.equal(true);
+        expect(contentDiv.scrollTop).to.equal(innerEl2.offsetTop);
     });
 });

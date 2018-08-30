@@ -13,7 +13,7 @@ const mainButtonClass = 'expand-btn';
 const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
 const contentSelector = `.${contentClass}`;
-const checkedItemSelector = '.menu__item[role=menuitemradio][aria-checked=true]';
+const checkedItemSelector = '.menu__item[role^=menuitem][aria-checked=true]';
 
 function getInitialState(input) {
     const type = input.type;
@@ -294,7 +294,7 @@ function handleButtonEscape() {
 }
 
 function handleExpand() {
-    const selectedOptionEl = elementScroll.nodeListToArray(this.el.querySelectorAll(checkedItemSelector))[0];
+    const selectedOptionEl = this.el.querySelectorAll(checkedItemSelector)[0];
     elementScroll.scroll(selectedOptionEl);
     this.setState('expanded', true);
     emitAndFire(this, 'menu-expand');

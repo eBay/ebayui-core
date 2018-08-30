@@ -1,5 +1,3 @@
-module.exports = { scroll, nodeListToArray };
-
 /**
  * Scrolls the parent element until the child element is in view
  */
@@ -19,6 +17,4 @@ function scroll(el) {
     }
 }
 
-function nodeListToArray(nodeList) {
-    return Array.prototype.slice.call(nodeList);
-}
+module.exports = { scroll };
