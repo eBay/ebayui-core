@@ -182,7 +182,11 @@ function onRender() {
         }
 
         if (autoplayInterval && !paused) {
-            this.autoplayTimeout = setTimeout(() => this.move(RIGHT), autoplayInterval);
+            const moveRight = this.move.bind(this, RIGHT);
+            this.autoplayTimeout = setTimeout(() => {
+                if (this.isMoving) return this.once('carousel-update', moveRight);
+                moveRight();
+            }, autoplayInterval);
         }
 
         return;
@@ -249,6 +253,7 @@ function handleMove(originalEvent, target) {
  * @param {HTMLElement} target
  */
 function handleDotClick(originalEvent, target) {
+    if (this.isMoving) return;
     const { state: { config, itemsPerSlide } } = this;
     const slide = parseInt(target.getAttribute('data-slide'), 10);
     config.preserveItems = true;
@@ -265,7 +270,7 @@ function togglePlay(originalEvent) {
     const { state: { config, paused } } = this;
     config.preserveItems = true;
     this.setState('paused', !paused);
-    if (paused) this.move(RIGHT);
+    if (paused && !this.isMoving) this.move(RIGHT);
     emitAndFire(this, `carousel-${paused ? 'play' : 'pause'}`, { originalEvent });
 }
 
