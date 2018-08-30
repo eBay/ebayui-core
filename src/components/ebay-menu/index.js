@@ -2,6 +2,7 @@ const markoWidgets = require('marko-widgets');
 const Expander = require('makeup-expander');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
+const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
@@ -12,6 +13,7 @@ const mainButtonClass = 'expand-btn';
 const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
 const contentSelector = `.${contentClass}`;
+const checkedItemSelector = '.menu__item[role=menuitemradio][aria-checked=true]';
 
 function getInitialState(input) {
     const type = input.type;
@@ -213,6 +215,8 @@ function processAfterStateChange(itemIndexes) {
         });
     }
 
+    elementScroll.scroll(itemEl);
+
     if (this.state.isCheckbox && itemIndexes.length > 1) {
         // only calling via API can have multiple item indexes
         this.setState('checked', this.getCheckedList());
@@ -290,6 +294,8 @@ function handleButtonEscape() {
 }
 
 function handleExpand() {
+    const selectedOptionEl = elementScroll.nodeListToArray(this.el.querySelectorAll(checkedItemSelector))[0];
+    elementScroll.scroll(selectedOptionEl);
     this.setState('expanded', true);
     emitAndFire(this, 'menu-expand');
     scrollKeyPreventer.add(this.contentEl);

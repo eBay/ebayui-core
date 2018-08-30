@@ -1,6 +1,7 @@
 const markoWidgets = require('marko-widgets');
 const Expander = require('makeup-expander');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
+const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
@@ -12,6 +13,7 @@ const comboboxExpanderClass = 'combobox__control';
 const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
 const comboboxBtnClass = 'combobox__control';
 const comboboxOptionSelector = '.combobox__option[role=option]';
+const comboboxSelectedOptionSelector = '.combobox__option[role=option][aria-selected=true]';
 
 function getInitialState(input) {
     const options = (input.options || []).map(option => ({
@@ -101,6 +103,8 @@ function init() {
 }
 
 function handleExpand() {
+    const selectedOptionEl = elementScroll.nodeListToArray(this.el.querySelectorAll(comboboxSelectedOptionSelector))[0];
+    elementScroll.scroll(selectedOptionEl);
     emitAndFire(this, 'combobox-expand');
 }
 
@@ -191,8 +195,9 @@ function traverseOptions(options, currentIndex, distance) {
  */
 function processAfterStateChange(el) {
     const optionValue = el.dataset.optionValue;
-    const optionIndex = Array.prototype.slice.call(el.parentNode.children).indexOf(el);
+    const optionIndex = elementScroll.nodeListToArray(el.parentNode.children).indexOf(el);
     this.setSelectedOption(optionValue);
+    elementScroll.scroll(el);
     emitAndFire(this, 'combobox-change', {
         index: optionIndex,
         selected: [optionValue],
