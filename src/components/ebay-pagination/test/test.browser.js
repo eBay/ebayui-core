@@ -396,6 +396,17 @@ describe('given the pagination has the fifth item selected', () => {
         it('then it shows items 2 through 7', () => testItemVisibility(root, 2, 7));
     });
 
+    describe('when the component is 440px wide', () => {
+        beforeEach((done) => {
+            widget.el.style.width = '440px';
+            testUtils.triggerEvent(window, 'resize');
+            setTimeout(done, 20);
+        });
+        afterEach(() => widget.destroy());
+
+        it('then it shows items 2 through 8', () => testItemVisibility(root, 2, 8));
+    });
+
     describe('when the component is 540px wide', () => {
         beforeEach((done) => {
             widget.el.style.width = '540px';
