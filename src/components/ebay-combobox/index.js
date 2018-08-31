@@ -103,8 +103,7 @@ function init() {
 }
 
 function handleExpand() {
-    const selectedOptionEl = this.el.querySelectorAll(comboboxSelectedOptionSelector)[0];
-    elementScroll.scroll(selectedOptionEl);
+    elementScroll.scroll(this.el.querySelector(comboboxSelectedOptionSelector));
     emitAndFire(this, 'combobox-expand');
 }
 

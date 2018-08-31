@@ -215,7 +215,9 @@ function processAfterStateChange(itemIndexes) {
         });
     }
 
-    elementScroll.scroll(itemEl);
+    if (this.state.isRadio || this.state.isCheckbox) {
+        elementScroll.scroll(itemEl);
+    }
 
     if (this.state.isCheckbox && itemIndexes.length > 1) {
         // only calling via API can have multiple item indexes
@@ -294,8 +296,7 @@ function handleButtonEscape() {
 }
 
 function handleExpand() {
-    const selectedOptionEl = this.el.querySelectorAll(checkedItemSelector)[0];
-    elementScroll.scroll(selectedOptionEl);
+    elementScroll.scroll(this.el.querySelector(checkedItemSelector));
     this.setState('expanded', true);
     emitAndFire(this, 'menu-expand');
     scrollKeyPreventer.add(this.contentEl);
