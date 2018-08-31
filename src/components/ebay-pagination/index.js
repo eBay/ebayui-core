@@ -65,6 +65,7 @@ function getTemplateData(state) {
 
 function init() {
     this.pageContainerEl = this.el.querySelector('.pagination__items');
+    this.pageContainerEl.style.flexWrap = 'nowrap';
     this.pageEls = this.pageContainerEl.children;
     this.containerEl = this.el;
     this.previousPageEl = this.el.querySelector('.pagination__previous');
@@ -91,44 +92,40 @@ function refresh() {
     for (let i = 0; i < this.state.items.length; i++) {
         if (this.state.items[i].current) {
             current = i;
-        } else {
-            // remove all hidden attribues to get accurate widths
-            this.pageEls[i].removeAttribute('hidden');
         }
+        this.pageEls[i].removeAttribute('hidden');
     }
+
     const totalPages = this.pageEls.length;
-    const pageNumWidth = this.pageEls[current].offsetWidth + constants.margin;
-    const containerWidth = this.containerEl.offsetWidth - pageNumWidth * 2;
-    const numPagesAllowed = Math.floor((containerWidth) / (pageNumWidth));
-    const adjustedNumPages = Math.min(constants.maxPagesAllowed - 1,
-        Math.max(numPagesAllowed, constants.minPagesRequired));
+    const pageNumWidth = this.pageEls[0].children[0].offsetWidth + constants.margin;
+    const numPagesAllowed = (((this.pageContainerEl.offsetWidth) / pageNumWidth));
+    const adjustedNumPages = Math.floor(Math.min(constants.maxPagesAllowed,
+        Math.max(numPagesAllowed, constants.minPagesRequired)));
 
     let start = 0;
     let end = adjustedNumPages;
-    const rangeLeft = Math.floor(adjustedNumPages * 0.5);
+    let rangeLeft = Math.floor(adjustedNumPages * 0.5);
     const rangeRight = Math.floor(adjustedNumPages * 0.5);
+
+    if (rangeLeft + rangeRight + 1 > adjustedNumPages) {
+        rangeLeft -= 1;
+    }
 
     start = current - rangeLeft;
     end = current + rangeRight;
-    if (end > totalPages) {
-        start -= (end - totalPages);
-    }
 
     if (totalPages < constants.maxPagesAllowed) {
         end = totalPages;
     }
 
-    if (totalPages - current < rangeRight) {
-        start -= (rangeRight - (totalPages - current));
+    if (current + rangeRight >= totalPages) {
+        end = totalPages;
+        start = end - adjustedNumPages;
     }
 
-    if (start < 0) {
-        end -= start;
+    if (start <= 0) {
+        end = adjustedNumPages - 1;
         start = 0;
-    }
-
-    if (end - start < constants.minPagesRequired && end === totalPages && start > 0) {
-        start = end - constants.minPagesRequired;
     }
 
     for (let i = 0; i < totalPages; i++) {
