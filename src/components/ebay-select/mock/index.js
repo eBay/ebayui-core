@@ -10,20 +10,7 @@ const options = [{
     text: 'option 3'
 }];
 
-const optionsSelected = [{
-    value: '1',
-    text: 'option 1'
-}, {
-    value: '2',
-    text: 'option 2',
-    selected: true
-}, {
-    value: '3',
-    text: 'option 3'
-}];
-
 module.exports = {
     renderBody,
-    options,
-    optionsSelected
+    options
 };
