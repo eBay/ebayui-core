@@ -3,19 +3,19 @@ const testUtils = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
 const mock = require('../mock');
 
-const labelSelector = '.expand-btn__cell > span:not(.expand-btn__icon)';
+const textSelector = '.expand-btn__cell > span:not(.expand-btn__icon)';
 
 describe('menu', () => {
     test('renders basic version', context => {
-        const labelText = 'label';
-        const input = { label: labelText };
+        const text = 'text';
+        const input = { text };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.menu').length).to.equal(1);
         expect($('.expand-btn').length).to.equal(1);
         expect($('.menu__items[role=menu]').length).to.equal(1);
-        const $label = $(labelSelector);
-        expect($label.length).to.equal(1);
-        expect($label.html()).to.equal(labelText);
+        const $text = $(textSelector);
+        expect($text.length).to.equal(1);
+        expect($text.html()).to.equal(text);
     });
 
     test('renders fake version', context => {
@@ -104,17 +104,19 @@ describe('menu', () => {
         expect($('.expand-btn.expand-btn--primary').length).to.equal(1);
     });
 
-    test('renders without label', context => {
-        const input = { label: '' };
+    test('renders without text', context => {
+        const input = { text: '' };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($(labelSelector).length).to.equal(0);
+        expect($(textSelector).length).to.equal(0);
+        expect($('.expand-btn.expand-btn--no-text').length).to.equal(1);
         expect($('svg.expand-btn__icon').length).to.equal(1);
     });
 
     test('renders with icon', context => {
         const input = { icon: 'settings', iconTag: { renderBody: mock.iconRenderBody } };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('div.expand-btn__icon').text()).to.equal('icon');
+        expect($('.expand-btn:not(.expand-btn--no-text)').length).to.equal(1);
+        expect($('div.btn__icon').text()).to.equal('icon');
     });
 
     test('renders without toggle icon', context => {

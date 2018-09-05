@@ -3,7 +3,7 @@
 ## ebay-breadcrumb Usage
 ### Last item as the parent
 ```marko
-<ebay-breadcrumb heading='Page navigation'>
+<ebay-breadcrumb a11y-heading-text='Page navigation'>
     <ebay-breadcrumb-item href='https://...'>eBay</ebay-breadcrumb-item>
     <ebay-breadcrumb-item href='https://...'>Auto Parts and Vehicles</ebay-breadcrumb-item>
     <ebay-breadcrumb-item href='https://...'>Motors Parts and Accessories</ebay-breadcrumb-item>
@@ -13,9 +13,8 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`heading-text` | String | No | heading for breadcrumb which will be clipped
-`heading-level` | String | No | heading level(h1-h4) for breadcrumb and default is `h2`
-`hijax` | Boolean | No | Prevent link navigation; for use with ajax
+`a11y-heading-text` | String | No | heading for breadcrumb which will be clipped
+`a11y-heading-tag` | String | No | heading tag for breadcrumb (default: `"h2"`)
 
 ## ebay-breadcrumb Events
 
@@ -27,4 +26,8 @@ Event | Description | Data
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`href` | String | No | anchor href
+`href` | String | No | anchor href; omitting the href will switch to a button
+
+Notes:
+
+* If you want to have client side or ajax based navigation then you should omit the `href` attribute on each item. This will cause each item to be `<button>` instead of an `<a>`. Alternatively you can manually `preventDefault` the provided `originalEvent` on the `breadcrumb-select` event.

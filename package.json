@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "0.9.1",
+  "version": "1.0.0-4",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
@@ -45,7 +45,8 @@
     "dist/",
     "marko.json",
     "yarn.lock",
-    "*.browser.json"
+    "*.browser.json",
+    "marketplace.json"
   ],
   "license": "MIT",
   "repository": {
@@ -57,7 +58,7 @@
   ],
   "devDependencies": {
     "@ebay/browserslist-config": "^1.0.0",
-    "@ebay/skin": "^5.1.2",
+    "@ebay/skin": "^6.0.0",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
@@ -101,14 +102,14 @@
     "wdio-browserstack-service": "^0.1.16"
   },
   "peerDependencies": {
-    "@ebay/skin": "^5.1.2",
+    "@ebay/skin": "^6.0.0-6",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },
   "dependencies": {
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
-    "makeup-expander": "~0.4.0",
+    "makeup-expander": "~0.5.0",
     "makeup-focusables": "~0.0.3",
     "makeup-key-emitter": "~0.0.3",
     "makeup-keyboard-trap": "~0.1.0",

@@ -1,6 +1,7 @@
 const markoWidgets = require('marko-widgets');
 const Expander = require('makeup-expander');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
+const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
@@ -12,6 +13,7 @@ const comboboxExpanderClass = 'combobox__control';
 const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
 const comboboxBtnClass = 'combobox__control';
 const comboboxOptionSelector = '.combobox__option[role=option]';
+const comboboxSelectedOptionSelector = '.combobox__option[role=option][aria-selected=true]';
 
 function getInitialState(input) {
     const options = (input.options || []).map(option => ({
@@ -19,7 +21,7 @@ function getInitialState(input) {
         class: option.class,
         style: option.style,
         value: option.value,
-        label: option.label,
+        text: option.text,
         selected: Boolean(option.selected),
         renderBody: option.renderBody
     }));
@@ -101,6 +103,7 @@ function init() {
 }
 
 function handleExpand() {
+    elementScroll.scroll(this.el.querySelector(comboboxSelectedOptionSelector));
     emitAndFire(this, 'combobox-expand');
 }
 
@@ -119,7 +122,7 @@ function handleOptionClick(event) {
     // start with the target element
     if (event.target.dataset.optionValue) {
         el = event.target;
-    // check up the tree one level (in case option-label or status was clicked)
+    // check up the tree one level (in case option text or status was clicked)
     } else if (event.target.parentNode.dataset.optionValue) {
         el = event.target.parentNode;
     }
@@ -193,6 +196,7 @@ function processAfterStateChange(el) {
     const optionValue = el.dataset.optionValue;
     const optionIndex = Array.prototype.slice.call(el.parentNode.children).indexOf(el);
     this.setSelectedOption(optionValue);
+    elementScroll.scroll(el);
     emitAndFire(this, 'combobox-change', {
         index: optionIndex,
         selected: [optionValue],

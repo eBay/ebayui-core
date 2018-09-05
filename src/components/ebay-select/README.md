@@ -1,6 +1,8 @@
 # ebay-select
 
-The `<ebay-select>` is a tag used to create a native `<select>` form element with the default button styling in DS6. It's intended use is as a select for mobile-sized screens, but it is up to the developer and designer to choose which situations require its use.
+_**For Mobile only**_
+
+The `<ebay-select>` is used to create a native `<select>` form element with default browser styling.
 
 ## ebay-select Tag
 
@@ -10,9 +12,9 @@ When no selected option is specified:
 
 ```marko
 <ebay-select name="formFieldName">
-    <ebay-select-option value="1" label="Option 1"/>
-    <ebay-select-option value="2" label="Option 2"/>
-    <ebay-select-option value="3" label="Option 3"/>
+    <ebay-select-option value="1" text="Option 1"/>
+    <ebay-select-option value="2" text="Option 2"/>
+    <ebay-select-option value="3" text="Option 3"/>
 </ebay-select>
 ```
 
@@ -20,9 +22,9 @@ When a selected option is specified:
 
 ```marko
 <ebay-select name="formFieldName">
-    <ebay-select-option value="1" label="Option 1"/>
-    <ebay-select-option value="2" label="Option 2" selected/>
-    <ebay-select-option value="3" label="Option 3"/>
+    <ebay-select-option value="1" text="Option 1"/>
+    <ebay-select-option value="2" text="Option 2" selected/>
+    <ebay-select-option value="3" text="Option 3"/>
 </ebay-select>
 ```
 
@@ -42,7 +44,6 @@ Event | Data |  Description
 `select-collapse` | | collapse content
 `select-expand` | | expand content
 `select-change` | `{ el, index, selected }` | option selected
-
 ---
 
 ## ebay-select-option Tag
@@ -50,19 +51,13 @@ Event | Data |  Description
 ### ebay-select-option Usage
 
 ```marko
-<ebay-select-option value="1">option 1</ebay-select-option>
+<ebay-select-option value="1" text="Option 1"/>
 ```
 
 ### ebay-select-option Attributes
 
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
-`label` | No | String | No | string label for use in the button
+`text` | No | String | No | text to use in the option
 `selected` | No | Boolean | Yes | whether or not the option is selected (**Note:** use the root `ebay-select` element's `selected` property to set this property)
 `value` | Yes | String | Yes | used for the `value` attribute of the native `<option>`
-
-### ebay-select-option Events
-
-Event | Description
---- | ---
-`select-option-select` | select one of the options

@@ -18,4 +18,4 @@ Note: For this component, `class`/`style` are applied to the root tag, while all
 
 Event | Data | Description
 --- | --- | --
-`checkbox-select` | `{originalEvent, value, checked}` | selected value & checked status
+`checkbox-change` | `{ originalEvent, value, checked }` | selected value and checked status

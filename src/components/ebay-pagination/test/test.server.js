@@ -11,9 +11,11 @@ describe('pagination', () => {
         expect($('h2.clipped').length).to.equal(1);
     });
 
-    test('renders fake version', context => {
-        const $ = testUtils.getCheerio(context.render(mock.hijax));
-        expect($('a.pagination__item[role="button"]').length).to.equal(2);
+    test('renders button version', context => {
+        const $ = testUtils.getCheerio(context.render(mock.buttons));
+        expect($('button.pagination__previous').length).to.equal(1);
+        expect($('button.pagination__item').length).to.equal(2);
+        expect($('button.pagination__next').length).to.equal(1);
     });
 
     test('renders with a selected element when current page defined', context => {

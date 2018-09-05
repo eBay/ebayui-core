@@ -2,6 +2,7 @@ const markoWidgets = require('marko-widgets');
 const Expander = require('makeup-expander');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
+const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
@@ -12,6 +13,7 @@ const mainButtonClass = 'expand-btn';
 const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
 const contentSelector = `.${contentClass}`;
+const checkedItemSelector = '.menu__item[role^=menuitem][aria-checked=true]';
 
 function getInitialState(input) {
     const type = input.type;
@@ -77,10 +79,10 @@ function getInitialState(input) {
         isRadio,
         isCheckbox,
         isFake,
-        label: input.label,
+        text: input.text,
         icon: input.icon,
         iconTag: input.iconTag && input.iconTag.renderBody,
-        accessibilityText: input.accessibilityText,
+        a11yText: input.a11yText,
         noToggleIcon: input.noToggleIcon,
         reverse: Boolean(input.reverse),
         fixWidth: Boolean(input.fixWidth),
@@ -125,14 +127,15 @@ function getTemplateData(state) {
         isRadio: state.isRadio,
         isCheckbox: state.isCheckbox,
         isNotCheckable: !state.isRadio && !state.isCheckbox,
-        label: state.label,
+        text: state.text,
         icon: state.icon,
         iconTag: state.iconTag,
-        accessibilityText: state.accessibilityText,
+        a11yText: state.a11yText,
         noToggleIcon: state.noToggleIcon,
         expanded: state.expanded,
         size: state.size,
         priority: state.priority,
+        noText: !state.text && !state.icon,
         buttonClass: state.borderless && 'expand-btn--borderless',
         itemsClass,
         role: !state.isFake ? 'menu' : null,
@@ -150,7 +153,7 @@ function onRender(event) {
             this.el.setCheckedList = setCheckedList.bind(this);
             this.el.getCheckedList = getCheckedList.bind(this);
         }
-        observer.observeRoot(this, ['label', 'expanded']);
+        observer.observeRoot(this, ['text', 'expanded']);
         if (this.state.isRadio) {
             observer.observeRoot(this, ['checked'], itemIndex => {
                 if (itemIndex >= 0 && itemIndex < (this.state.items.length)) {
@@ -212,6 +215,10 @@ function processAfterStateChange(itemIndexes) {
         });
     }
 
+    if (this.state.isRadio || this.state.isCheckbox) {
+        elementScroll.scroll(itemEl);
+    }
+
     if (this.state.isCheckbox && itemIndexes.length > 1) {
         // only calling via API can have multiple item indexes
         this.setState('checked', this.getCheckedList());
@@ -269,7 +276,7 @@ function setCheckedItem(itemIndex, toggle) {
 }
 
 /**
- * Handle accessibility for item (is not handled by makeup)
+ * Handle a11y for item (is not handled by makeup)
  * https://ebay.gitbooks.io/mindpatterns/content/input/menu.html#keyboard
  * @param {KeyboardEvent} e
  */
@@ -284,7 +291,12 @@ function handleItemKeydown(e) {
     });
 }
 
+function handleButtonEscape() {
+    this.setState('expanded', false);
+}
+
 function handleExpand() {
+    elementScroll.scroll(this.el.querySelector(checkedItemSelector));
     this.setState('expanded', true);
     emitAndFire(this, 'menu-expand');
     scrollKeyPreventer.add(this.contentEl);
@@ -340,6 +352,7 @@ module.exports = markoWidgets.defineComponent({
     update_expanded,
     handleItemClick,
     handleItemKeydown,
+    handleButtonEscape,
     handleExpand,
     handleCollapse,
     setCheckedItem,

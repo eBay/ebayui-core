@@ -1,131 +1,229 @@
 const renderBody = (stream) => stream.write('1');
 module.exports = {
     basicLinks: {
-        'aria-label-previous': 'Previous page',
-        'aria-label-next': 'Next page',
-        'curr-text': 'Results Pagination - Page 2',
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 2',
         items: [
             {
                 type: 'previous',
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 current: true,
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 type: 'next',
-                href: 'https://www.ebay.com/'
+                href: '#'
             }
         ]
     },
-    hijax: {
-        'ariaLabelPrevious': 'Previous page',
-        'ariaLabelNext': 'Next page',
-        'currText': 'Results Pagination - Page 2',
-        'hijax': true,
+    FifthSelected: {
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 2',
         items: [
             {
                 type: 'previous',
-                href: 'https://www.ebay.com/'
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
             },
             {
                 current: true,
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
             },
             {
                 type: 'next',
-                href: 'https://www.ebay.com/'
+                href: '#'
             }
         ]
     },
-    basicLinksWithoutCurrent: {
-        'ariaLabelPrevious': 'Previous page',
-        'ariaLabelNext': 'Next page',
-        'currText': 'Results Pagination - Page X',
-        'fakeLink': true,
+    EighthSelected: {
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 2',
         items: [
             {
                 type: 'previous',
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
             },
             {
-                type: 'next',
-                href: 'https://www.ebay.com/'
-            }
-        ]
-    },
-    basicLinksWithoutNavigation: {
-        'ariaLabelPrevious': 'Previous page',
-        'ariaLabelNext': 'Next page',
-        'currText': 'Results Pagination - Page 1',
-        'fakeLink': true,
-        items: [
+                renderBody,
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
             {
                 current: true,
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
+            {
+                type: 'next',
+                href: '#'
             }
         ]
     },
-    disabledNavigation: {
-        'ariaLabelPrevious': 'Previous page',
-        'ariaLabelNext': 'Next page',
-        'currText': 'Results Pagination - Page 2',
+    buttons: {
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 2',
         items: [
             {
                 type: 'previous'
             },
             {
                 current: true,
+                renderBody
+            },
+            {
+                renderBody
+            },
+            {
+                type: 'next'
+            }
+        ]
+    },
+    basicLinksWithoutCurrent: {
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page X',
+        items: [
+            {
+                type: 'previous',
+                href: '#'
+            },
+            {
                 renderBody,
-                href: 'https://www.ebay.com/'
+                href: '#'
+            },
+            {
+                renderBody,
+                href: '#'
+            },
+            {
+                type: 'next',
+                href: '#'
+            }
+        ]
+    },
+    basicLinksWithoutNavigation: {
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 1',
+        items: [
+            {
+                current: true,
+                renderBody,
+                href: '#'
+            }
+        ]
+    },
+    disabledNavigation: {
+        a11yPreviousText: 'Previous page',
+        a11yNextText: 'Next page',
+        a11yCurrentText: 'Results Pagination - Page 2',
+        items: [
+            {
+                type: 'previous',
+                disabled: true
+            },
+            {
+                current: true,
+                renderBody,
+                href: '#'
             },
             {
                 type: 'next',

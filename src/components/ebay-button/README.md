@@ -3,7 +3,7 @@
 ## ebay-button Usage
 
 ```marko
-<ebay-button>label</ebay-button>
+<ebay-button>text</ebay-button>
 ```
 
 ## ebay-button Attributes
@@ -12,6 +12,7 @@ Name | Type | Stateful | Description
 --- | --- | --- | ---
 `priority` | String | No | "primary" / "secondary" (default) / "none"
 `size` | String | No | "small" or "large" (default: medium)
+`no-text | Boolean | No | used to adjust padding for "expand" variant without text
 `href` | String | No | for link that looks like a button
 `fluid` | Boolean | No |
 `disabled` | Boolean | Yes |
@@ -22,4 +23,5 @@ Name | Type | Stateful | Description
 
 Event | Data | Description
 --- | --- | ---
-`button-click` | `{ originalEvent }` | click
+`button-click` | `{ originalEvent }` | click or action key pressed (space and enter)
+`button-escape` | `{ originalEvent }` | escape key pressed

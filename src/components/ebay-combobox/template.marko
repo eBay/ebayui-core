@@ -7,16 +7,15 @@
     w-bind>
     <span class=data.btnClass w-preserve-attrs="class">
         <input
-            type='text'
-            value=(data.selectedOption && data.selectedOption.label)
-            readonly
+            type='button'
+            value=(data.selectedOption && data.selectedOption.text)
             disabled=data.disabled
-            role='combobox'
             aria-haspopup='listbox'
             aria-owns=widget.elId('combobox__options')
             aria-expanded='false'
             w-on-keydown='handleComboboxKeyDown'
-            w-preserve-attrs="aria-expanded"/>
+            w-preserve-attrs="aria-expanded"
+            ${data.htmlAttributes}/>
         <span class="combobox__icon" aria-hidden="true"></span>
     </span>
     <div
@@ -35,8 +34,8 @@
             w-preserve-attrs="tabindex,data-makeup-index"
             aria-selected=String(option.selected)
             data-option-value=option.value>
-            <span class='combobox__option-label'>
-                ${option.label}
+            <span>
+                ${option.text}
             </span>
             <span class='combobox__status'/>
         </div>

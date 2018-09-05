@@ -1,0 +1,15 @@
+{
+  "dependencies": [],
+  "requireRemap": [
+    {
+      "from": "./ds6.marko",
+      "to": "./ds4.marko",
+      "if-not-flag": "skin-ds6"
+    },
+    {
+      "from": "./ds4.marko",
+      "to": "./ds6.marko",
+      "if-flag": "skin-ds6"
+    }
+  ]
+}
