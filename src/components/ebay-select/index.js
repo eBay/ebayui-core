@@ -122,8 +122,8 @@ function setSelectedOption(optionValue) {
         }
         return option;
     });
-    this.update();
     this.setState('options', options);
+    this.update();
 }
 
 function optionChanged(e) {
