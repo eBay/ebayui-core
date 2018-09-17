@@ -21,7 +21,6 @@ function init() {
         // We then mark this symbol as `defined` so that no other `ebay-icons` render it.
         defined[symbol.id.slice(5)] = true;
         rootSvg.appendChild(symbol);
-        defs.parentNode.removeChild(defs);
     }
 }
 
