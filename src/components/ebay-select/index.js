@@ -120,11 +120,10 @@ function setSelectedOption(optionValue) {
         } else {
             option.selected = false;
         }
-        this.update();
         return option;
     });
-
     this.setState('options', options);
+    this.update();
 }
 
 function optionChanged(e) {
