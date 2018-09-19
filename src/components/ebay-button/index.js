@@ -2,29 +2,22 @@ const markoWidgets = require('marko-widgets');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
+const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
 function getInitialState(input) {
-    return {
-        disabled: Boolean(input.disabled)
-    };
-}
-
-function getTemplateData(state, input) {
     const href = input.href;
     const priority = input.priority || 'secondary';
     const size = input.size;
     const noText = input.noText;
     const fluid = input.fluid;
     let variant = input.variant;
-    const model = {};
     let tag;
     let mainClass = 'btn';
 
     if (href) {
         variant = 'fake';
         tag = 'a';
-        model.href = href;
     } else {
         tag = 'button';
     }
@@ -53,15 +46,24 @@ function getTemplateData(state, input) {
         classes.push(`${mainClass}--fluid`);
     }
 
-    model.htmlAttributes = processHtmlAttributes(input);
-    model.classes = classes;
-    model.style = input.style;
-    model.tag = tag;
-    model.type = input.type || 'button';
-    model.disabled = state.disabled;
-    model.partiallyDisabled = input.partiallyDisabled ? 'true' : null; // for aria-disabled
+    return {
+        htmlAttributes: processHtmlAttributes(input),
+        classes,
+        style: input.style,
+        tag,
+        href,
+        type: input.type || 'button',
+        disabled: Boolean(input.disabled),
+        partiallyDisabled: input.partiallyDisabled ? 'true' : null // for aria-disabled
+    };
+}
 
-    return model;
+function getTemplateData(state) {
+    return state;
+}
+
+function init() {
+    observer.observeRoot(this, ['disabled']);
 }
 
 function handleClick(originalEvent) {
@@ -90,6 +92,7 @@ module.exports = markoWidgets.defineComponent({
     template,
     getInitialState,
     getTemplateData,
+    init,
     handleClick,
     handleKeydown
 });
