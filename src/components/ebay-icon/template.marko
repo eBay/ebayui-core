@@ -5,7 +5,7 @@
 <else-if(data.isInline)>
     <svg w-bind class=data.classes style=data.style ${data.htmlAttributes} ${data.a11yAttributes} focusable="false">
         <if(data.renderDefs && data.themes)>
-            <defs w-id="defs">
+            <defs w-id="defs" w-preserve-body>
                 <%
                     var theme;
 

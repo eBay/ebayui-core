@@ -31,7 +31,7 @@
                     style=item.style
                     w-body=item.renderBody
                     aria-hidden=(!item.fullyVisible && 'true')
-                    w-preserve-body-if(config.preserveItems)/>
+                    w-preserve-body-if(!!config.preserveItems)/>
             </for>
         </ul>
 
