@@ -95,3 +95,22 @@ describe('given button is disabled', () => {
         });
     });
 });
+
+describe('given pill button', () => {
+    let root;
+    const content = 'Lots of text that should be truncated at 2 lines';
+    beforeEach(() => {
+        root = renderAndGetRoot({
+            pill: true,
+            style: 'width: 80px',
+            renderBody: out => out.write(`<span class="btn__cell"><span>${content}</span></span>`)
+        });
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when should be truncated', () => {
+        test('then it is truncated', () => {
+            expect(root.querySelector('*[aria-hidden]').textContent.slice(-3)).to.equal('...');
+        });
+    });
+});

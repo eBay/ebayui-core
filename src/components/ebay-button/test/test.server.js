@@ -87,5 +87,11 @@ test('renders cta variant', context => {
     expect($('.cta-btn').length).to.equal(1);
 });
 
+test('renders pill version', context => {
+    const input = { pill: true, renderBody: out => out.write('<span class="btn__cell"><span>test</span></span>') };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('.btn--pill').length).to.equal(1);
+});
+
 test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'button.btn'));
 test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'button.btn'));
