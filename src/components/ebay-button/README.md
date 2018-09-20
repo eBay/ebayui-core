@@ -18,6 +18,7 @@ Name | Type | Stateful | Description
 `disabled` | Boolean | Yes |
 `partially-disabled` | Boolean | No
 `variant` | String | No | optional, to alter Skin classes: "expand" / "cta"
+`pill` | Boolean | No | for buttons/links that look like a pill (DS6 only)
 
 ## ebay-button Events
 

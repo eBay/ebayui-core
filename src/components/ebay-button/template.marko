@@ -1,6 +1,5 @@
 <${data.tag}
     w-bind
-    w-body
     w-onclick="handleClick"
     w-onkeydown="handleKeydown"
     type=data.type
@@ -10,4 +9,9 @@
     disabled=data.disabled
     aria-disabled=data.partiallyDisabled
     ${data.htmlAttributes}>
+    <span body-only-if(!data.pillCellClass) class=data.pillCellClass>
+        <span body-only-if(!data.pillCellClass) w-id="pill">
+            <invoke data.renderBody(out) if(data.renderBody) />
+        </span>
+    </span>
 </>

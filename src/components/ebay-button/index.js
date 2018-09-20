@@ -2,6 +2,7 @@ const markoWidgets = require('marko-widgets');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
+const truncate = require('../../common/truncate');
 const template = require('./template.marko');
 
 function getInitialState(input) {
@@ -20,6 +21,7 @@ function getTemplateData(state, input) {
     const model = {};
     let tag;
     let mainClass = 'btn';
+    let pillCellClass;
 
     if (href) {
         variant = 'fake';
@@ -53,6 +55,11 @@ function getTemplateData(state, input) {
         classes.push(`${mainClass}--fluid`);
     }
 
+    if (input.pill) {
+        classes.push(`${mainClass}--pill`);
+        pillCellClass = `${mainClass}__cell`;
+    }
+
     model.htmlAttributes = processHtmlAttributes(input);
     model.classes = classes;
     model.style = input.style;
@@ -60,8 +67,18 @@ function getTemplateData(state, input) {
     model.type = input.type || 'button';
     model.disabled = state.disabled;
     model.partiallyDisabled = input.partiallyDisabled ? 'true' : null; // for aria-disabled
-
+    model.pillCellClass = pillCellClass;
+    model.renderBody = input.renderBody;
     return model;
+}
+
+function onRender() {
+    this.pill = this.getEl('pill');
+    if (this.pill) {
+        truncate({
+            el: this.pill
+        });
+    }
 }
 
 function handleClick(originalEvent) {
@@ -91,5 +108,6 @@ module.exports = markoWidgets.defineComponent({
     getInitialState,
     getTemplateData,
     handleClick,
-    handleKeydown
+    handleKeydown,
+    onRender
 });
