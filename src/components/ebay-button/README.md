@@ -6,6 +6,14 @@
 <ebay-button>text</ebay-button>
 ```
 
+```marko
+<ebay-button pill>
+    <span class="btn__cell">
+        <span>Pill text</span>
+    </span>
+</ebay-button>
+```
+
 ## ebay-button Attributes
 
 Name | Type | Stateful | Description
