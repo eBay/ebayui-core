@@ -7,7 +7,8 @@ const template = require('./template.marko');
 
 function getInitialState(input) {
     return {
-        disabled: Boolean(input.disabled)
+        disabled: Boolean(input.disabled),
+        pill: input.pill
     };
 }
 
@@ -68,15 +69,14 @@ function getTemplateData(state, input) {
     model.disabled = state.disabled;
     model.partiallyDisabled = input.partiallyDisabled ? 'true' : null; // for aria-disabled
     model.pillCellClass = pillCellClass;
-    model.renderBody = input.renderBody;
     return model;
 }
 
 function onRender() {
-    this.pill = this.getEl('pill');
-    if (this.pill) {
+    const children = this.el.children;
+    if (this.state.pill && children.length && children[0].children.length) {
         truncate({
-            el: this.pill
+            el: children[0].children[0]
         });
     }
 }
