@@ -99,11 +99,13 @@ describe('given button is disabled', () => {
 describe('given pill button', () => {
     let root;
     const content = 'Lots of text that should be truncated at 2 lines';
+    const styles = 'style="max-height:36px;white-space: normal"'; // remove this once pill comes from skin
+    const bodyHtml = `<span class="btn__cell"><span ${styles}>${content}</span></span>`;
     beforeEach(() => {
         root = renderAndGetRoot({
             pill: true,
-            style: 'width: 80px',
-            renderBody: out => out.write(`<span class="btn__cell"><span>${content}</span></span>`)
+            style: 'width:80px',
+            renderBody: out => out.write(bodyHtml)
         });
     });
     afterEach(() => widget.destroy());
