@@ -22,7 +22,6 @@ function getTemplateData(state, input) {
     const model = {};
     let tag;
     let mainClass = 'btn';
-    let pillCellClass;
 
     if (href) {
         variant = 'fake';
@@ -58,7 +57,6 @@ function getTemplateData(state, input) {
 
     if (input.pill) {
         classes.push(`${mainClass}--pill`);
-        pillCellClass = `${mainClass}__cell`;
     }
 
     model.htmlAttributes = processHtmlAttributes(input);
@@ -68,7 +66,6 @@ function getTemplateData(state, input) {
     model.type = input.type || 'button';
     model.disabled = state.disabled;
     model.partiallyDisabled = input.partiallyDisabled ? 'true' : null; // for aria-disabled
-    model.pillCellClass = pillCellClass;
     return model;
 }
 
