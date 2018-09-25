@@ -12,7 +12,7 @@ Name | Type | Stateful | Description
 --- | --- | --- | ---
 `priority` | String | No | "primary" / "secondary" (default) / "none"
 `size` | String | No | "small" or "large" (default: medium)
-`no-text | Boolean | No | used to adjust padding for "expand" variant without text
+`no-text` | Boolean | No | used to adjust padding for "expand" variant without text
 `href` | String | No | for link that looks like a button
 `fluid` | Boolean | No |
 `disabled` | Boolean | Yes |
