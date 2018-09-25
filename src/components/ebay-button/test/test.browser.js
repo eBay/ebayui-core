@@ -62,6 +62,29 @@ describe('given button is enabled', () => {
     });
 });
 
+describe('given button is enabled and subsequently disabled programmatically', () => {
+    let root;
+    beforeEach((done) => {
+        root = renderAndGetRoot();
+        root.disabled = true;
+        setTimeout(done);
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when button is clicked', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('button-click', spy);
+            testUtils.triggerEvent(root, 'click');
+        });
+
+        test('then it doesn\'t emit the event', () => {
+            expect(spy.called).to.equal(false);
+        });
+    });
+});
+
 describe('given button is disabled', () => {
     let root;
     beforeEach(() => {
