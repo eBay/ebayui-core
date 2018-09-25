@@ -6,6 +6,14 @@
 <ebay-button>text</ebay-button>
 ```
 
+```marko
+<ebay-button pill>
+    <span class="btn__cell">
+        <span>Pill text</span>
+    </span>
+</ebay-button>
+```
+
 ## ebay-button Attributes
 
 Name | Type | Stateful | Description
@@ -18,6 +26,7 @@ Name | Type | Stateful | Description
 `disabled` | Boolean | Yes |
 `partially-disabled` | Boolean | No
 `variant` | String | No | optional, to alter Skin classes: "expand" / "cta"
+`pill` | Boolean | No | for buttons/links that look like a pill (DS6 only)
 
 ## ebay-button Events
 

@@ -32,7 +32,8 @@
         "@size": "size",
         "@no-text": "boolean",
         "@fluid": "boolean",
-        "@variant": "string"
+        "@variant": "string",
+        "@pill": "boolean"
     },
     "<ebay-carousel>": {
         "renderer": "./src/components/ebay-carousel/index.js",
