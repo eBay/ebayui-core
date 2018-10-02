@@ -22,7 +22,7 @@
     "lint": "yarn lint:less && yarn lint:js && yarn lint:whitespace",
     "lint:less": "stylelint '**/**.less'",
     "lint:js": "eslint .",
-    "lint:whitespace": "lintspaces *.md src/**/*.md src/**/*.marko src/**/*.js src/**/*.less --newline --maxnewlines 1 --trailingspaces --spaces 4",
+    "lint:whitespace": "lintspaces *.md src/**/*.md src/**/*.marko 'src/**/!(*.marko).js' src/**/*.less --newline --maxnewlines 1 --trailingspaces --spaces 4",
     "build": "yarn lint && yarn build:v3 && yarn build:v4 && yarn clean && yarn installMarkoV3",
     "build:ci": "yarn lint && yarn test && mocha integration && yarn build:v4",
     "build:v3": "yarn installMarkoV3 && yarn clean:integration && yarn test && mocha integration",
