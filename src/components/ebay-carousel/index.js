@@ -88,7 +88,7 @@ function getTemplateData(state) {
 
     items.forEach((item, i) => {
         const { style, transform } = item;
-        const marginRight = i !== items.length && `${gap}px`;
+        const marginRight = i !== items.length - 1 && `${gap}px`;
 
         // Account for users providing a style string or object for each item.
         if (typeof style === 'string') {
@@ -96,7 +96,7 @@ function getTemplateData(state) {
             if (transform) item.style += `transform:${transform}`;
         } else {
             item.style = Object.assign({}, style, {
-                'flex-basis': itemWidth,
+                'width': itemWidth,
                 'margin-right': marginRight,
                 transform
             });
