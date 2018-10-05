@@ -88,7 +88,7 @@ function getTemplateData(state) {
 
     items.forEach((item, i) => {
         const { style, transform } = item;
-        const marginRight = i !== items.length && `${gap}px`;
+        const marginRight = i !== (items.length - 1) && `${gap}px`;
 
         // Account for users providing a style string or object for each item.
         if (typeof style === 'string') {
@@ -286,36 +286,26 @@ function handleScrollEnd(scrollLeft) {
     }
 
     const { state } = this;
-    const { config, items } = state;
+    const { config, items, slideWidth } = state;
+    const itemsPerSlide = state.itemsPerSlide || 1;
+    const direction = getOffset(state) > scrollLeft ? RIGHT : LEFT;
+    // Used to add additional tolerance based on swipe direction.
+    const targetLeft = scrollLeft - (direction * slideWidth * 0.2);
 
-    // Find the closest item using a binary search.
-    let start = 0;
-    let end = items.length - 1;
-    let remaining;
-    let closest;
+    // Find the closest item using a binary search on each carousel slide.
+    const totalItems = items.length;
+    let low = 0;
+    let high = Math.ceil(totalItems / itemsPerSlide) - 1;
 
-    while (end - start > 1) {
-        remaining = end - start;
-        const middle = start + Math.floor(remaining / 2);
-        if (scrollLeft < items[middle].left) end = middle;
-        else start = middle;
+    while (high - low > 1) {
+        const mid = Math.floor((low + high) / 2);
+        if (targetLeft > items[mid * itemsPerSlide].left) low = mid;
+        else high = mid;
     }
 
-    if (remaining === 0) {
-        closest = start;
-    } else {
-        const deltaStart = Math.abs(scrollLeft - items[start].left);
-        const deltaEnd = Math.abs(scrollLeft - items[end].left);
-        closest = deltaStart < deltaEnd ? start : end;
-    }
-
-    const closestOffset = items[closest].left;
-    const maxOffset = getMaxOffset(state);
-
-    // If we are closer to the end than the closest item, then we just go to the end.
-    if (Math.abs(maxOffset - scrollLeft) < Math.abs(closestOffset - scrollLeft)) {
-        closest = items.length - 1;
-    }
+    const deltaLow = Math.abs(targetLeft - items[low * itemsPerSlide].left);
+    const deltaHigh = Math.abs(targetLeft - items[high * itemsPerSlide].left);
+    const closest = (deltaLow > deltaHigh ? high : low) * itemsPerSlide;
 
     // Always update with the new index to ensure the scroll animations happen.
     config.preserveItems = true;
