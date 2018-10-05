@@ -39,9 +39,13 @@ function simulateScroll(el, to, cb) {
             if (++frame > frames) {
                 triggerEvent(el, 'touchend');
                 el.scrollLeft = to;
-                // Allow two frames for the on scroll to finish.
+                // Allow two frames and a timeout for the on scroll to finish.
                 if (cb) {
-                    waitFrames(2, cb);
+                    requestAnimationFrame(() => {
+                        setTimeout(() => {
+                            requestAnimationFrame(cb);
+                        }, 64);
+                    });
                 }
 
                 return;
