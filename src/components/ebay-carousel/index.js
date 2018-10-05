@@ -82,8 +82,6 @@ function getTemplateData(state) {
         a11yStatusText = state.a11yStatusText
             .replace('{currentSlide}', slide + 1)
             .replace('{totalSlides}', totalSlides);
-    } else {
-        itemWidth = 'auto';
     }
 
     items.forEach((item, i) => {
