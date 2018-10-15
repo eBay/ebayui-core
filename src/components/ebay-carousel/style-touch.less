@@ -1,5 +1,5 @@
 .carousel {
-    &--slides &__control, // show controls on touch since there's no hover.
+    &--slides&:not(&--peek) &__control, // show controls on touch since there's no hover.
     &__control:focus { // also show controls on focus for a11y.
         opacity: @ebay-carousel-control-enabled-opacity;
         pointer-events: auto;

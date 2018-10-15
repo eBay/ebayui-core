@@ -44,6 +44,7 @@ function getInitialState(input) {
         state.classes.push('carousel--slides');
 
         if (state.peek) {
+            state.classes.push('carousel--peek');
             state.noDots = true;
         }
 
