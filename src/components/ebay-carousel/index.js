@@ -135,7 +135,9 @@ function init() {
         onRender.call(this);
     });
     observer.observeRoot(this, ['index']);
-    if (autoplayInterval) observer.observeRoot(this, ['paused']);
+    if (autoplayInterval) {
+        observer.observeRoot(this, ['paused']);
+    }
 
     if (!autoplayInterval && getComputedStyle(this.listEl).getPropertyValue('overflow-x') !== 'visible') {
         config.nativeScrolling = true;
@@ -150,7 +152,9 @@ function onRender() {
     const hasOverride = offsetOverride !== undefined;
 
     // Do nothing for empty carousels.
-    if (!items.length) return;
+    if (!items.length) {
+        return;
+    }
 
     // When there is an offset override (used for infinite scroll) we reset it
     // after rendering to restore the expected carousel state.
@@ -184,7 +188,9 @@ function onRender() {
         if (autoplayInterval && !paused) {
             const moveRight = this.move.bind(this, RIGHT);
             this.autoplayTimeout = setTimeout(() => {
-                if (this.isMoving) return this.once('carousel-update', moveRight);
+                if (this.isMoving) {
+                    return this.once('carousel-update', moveRight);
+                }
                 moveRight();
             }, autoplayInterval);
         }
@@ -216,8 +222,12 @@ function onRender() {
 function cleanupAsync() {
     clearTimeout(this.autoplayTimeout);
     cancelAnimationFrame(this.renderFrame);
-    if (this.cancelScrollHandler) this.cancelScrollHandler();
-    if (this.cancelScrollTransition) this.cancelScrollTransition();
+    if (this.cancelScrollHandler) {
+        this.cancelScrollHandler();
+    }
+    if (this.cancelScrollTransition) {
+        this.cancelScrollTransition();
+    }
     this.cancelScrollHandler = this.cancelScrollTransition = undefined;
 }
 
@@ -237,7 +247,9 @@ function emitUpdate() {
  * @param {HTMLElement} target
  */
 function handleMove(originalEvent, target) {
-    if (this.isMoving) return;
+    if (this.isMoving) {
+        return;
+    }
     const { state } = this;
     const direction = parseInt(target.getAttribute('data-direction'), 10);
     const nextIndex = this.move(direction);
@@ -253,7 +265,9 @@ function handleMove(originalEvent, target) {
  * @param {HTMLElement} target
  */
 function handleDotClick(originalEvent, target) {
-    if (this.isMoving) return;
+    if (this.isMoving) {
+        return;
+    }
     const { state: { config, itemsPerSlide } } = this;
     const slide = parseInt(target.getAttribute('data-slide'), 10);
     config.preserveItems = true;
@@ -270,7 +284,9 @@ function togglePlay(originalEvent) {
     const { state: { config, paused } } = this;
     config.preserveItems = true;
     this.setState('paused', !paused);
-    if (paused && !this.isMoving) this.move(RIGHT);
+    if (paused && !this.isMoving) {
+        this.move(RIGHT);
+    }
     emitAndFire(this, `carousel-${paused ? 'play' : 'pause'}`, { originalEvent });
 }
 
@@ -299,8 +315,11 @@ function handleScrollEnd(scrollLeft) {
 
     while (high - low > 1) {
         const mid = Math.floor((low + high) / 2);
-        if (targetLeft > items[mid * itemsPerSlide].left) low = mid;
-        else high = mid;
+        if (targetLeft > items[mid * itemsPerSlide].left) {
+            low = mid;
+        } else {
+            high = mid;
+        }
     }
 
     const deltaLow = Math.abs(targetLeft - items[low * itemsPerSlide].left);
@@ -380,7 +399,9 @@ function move(delta) {
  */
 function getOffset(state) {
     const { items, index } = state;
-    if (!items.length) return 0;
+    if (!items.length) {
+        return 0;
+    }
     return Math.min(items[index].left, getMaxOffset(state)) || 0;
 }
 
@@ -391,7 +412,9 @@ function getOffset(state) {
  * @return {number}
  */
 function getMaxOffset({ items, slideWidth }) {
-    if (!items.length) return 0;
+    if (!items.length) {
+        return 0;
+    }
     return Math.max(items[items.length - 1].right - slideWidth, 0) || 0;
 }
 
@@ -404,7 +427,9 @@ function getMaxOffset({ items, slideWidth }) {
  * @return {number}
  */
 function getSlide({ index, itemsPerSlide }, i = index) {
-    if (!itemsPerSlide) return;
+    if (!itemsPerSlide) {
+        return;
+    }
     return Math.ceil(i / itemsPerSlide);
 }
 
@@ -420,20 +445,30 @@ function getNextIndex({ index, items, slideWidth, itemsPerSlide }, delta) {
     let item;
 
     // If going backward from 0, we go to the end.
-    if (delta === LEFT && i === 0) return items.length - 1;
+    if (delta === LEFT && i === 0) {
+        return items.length - 1;
+    }
 
     // Find the index of the next item that is not fully in view.
-    do item = items[i += delta]; while (item && item.fullyVisible);
+    do {
+        item = items[i += delta];
+    } while (item && item.fullyVisible);
 
     // If going right, then we just want the next item not fully in view.
-    if (delta === RIGHT) return i % items.length;
+    if (delta === RIGHT) {
+        return i % items.length;
+    }
 
     // If items per slide is set we must show the same items on the same slide.
-    if (itemsPerSlide) return i;
+    if (itemsPerSlide) {
+        return i;
+    }
 
     // If going left without items per slide, go as far left as possible while keeping this item fully in view.
     const targetOffset = item.right - slideWidth;
-    do item = items[--i]; while (item && item.left >= targetOffset);
+    do {
+        item = items[--i];
+    } while (item && item.left >= targetOffset);
     return i + 1;
 }
 
