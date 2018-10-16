@@ -11,7 +11,7 @@ function transform(el, context) {
         el.tagName.replace(/^(ebay-[^-]+)-/, '$1:'),
         el.getAttributes()
     );
-    replacement.body = el.body;
+    replacement.body = replacement.makeContainer(el.body.items);
     el.replaceWith(replacement);
 }
 
