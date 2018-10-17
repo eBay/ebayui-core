@@ -10,6 +10,7 @@
  */
 module.exports = function onScrollEnd(el, fn) {
     let frame;
+    let timeout;
     let stage = 0;
     el.addEventListener('touchmove', handleTouchMove);
 
@@ -40,17 +41,19 @@ module.exports = function onScrollEnd(el, fn) {
     // Finally after the touch end we poll the scroll state every animation frame
     // to determine when inertial scrolling has stopped.
     function checkScrollEnded(lastOffset) {
-        frame = requestAnimationFrame(() => {
-            const newOffset = el.scrollLeft;
-            if (lastOffset !== newOffset) {
-                checkScrollEnded(newOffset);
-            } else {
-                cancelTouchStart();
-                fn(newOffset);
-                stage = 0;
-                el.addEventListener('touchmove', handleTouchMove);
-            }
-        });
+        timeout = setTimeout(() => {
+            frame = requestAnimationFrame(() => {
+                const newOffset = el.scrollLeft;
+                if (lastOffset !== newOffset) {
+                    checkScrollEnded(newOffset);
+                } else {
+                    cancelTouchStart();
+                    fn(newOffset);
+                    stage = 0;
+                    el.addEventListener('touchmove', handleTouchMove);
+                }
+            });
+        }, 64);
     }
 
     function cancelTouchMove() {
@@ -67,6 +70,7 @@ module.exports = function onScrollEnd(el, fn) {
 
     function cancel() {
         cancelAnimationFrame(frame);
+        clearTimeout(timeout);
 
         switch (stage) {
             case 0: cancelTouchMove(); break;
