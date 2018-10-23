@@ -14,7 +14,7 @@ Name | Type | Stateful | Description
 
 Note: For this component, `class`/`style` are applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 
-## ebay-radio Events
+## ebay-switch Events
 
 Event | Data | Description
 --- | --- | ---
