@@ -6,9 +6,10 @@ const expect = require('chai').expect;
  * @param {String} type
  * @param {Number} keyCode
  */
-function triggerEvent(el, type, keyCode) {
+function triggerEvent(el, type, keyCode, cancelable) {
+    const isCancelable = cancelable === undefined ? true : cancelable;
     const event = document.createEvent('Event');
-    event.initEvent(type, true, true, null);
+    event.initEvent(type, true, isCancelable, null);
     event.keyCode = keyCode;
     el.dispatchEvent(event);
 }
@@ -33,11 +34,11 @@ function simulateScroll(el, to, cb) {
     const distance = to - scrollLeft;
     const frames = 4;
     let frame = 0;
-    triggerEvent(el, 'touchstart');
+    triggerEvent(el, 'touchstart', undefined, false);
     requestAnimationFrame(() => {
         (function animate() {
             if (++frame > frames) {
-                triggerEvent(el, 'touchend');
+                triggerEvent(el, 'touchend', undefined, false);
                 el.scrollLeft = to;
                 // Allow two frames and a timeout for the on scroll to finish.
                 if (cb) {
@@ -51,7 +52,7 @@ function simulateScroll(el, to, cb) {
                 return;
             }
 
-            triggerEvent(el, 'touchmove');
+            triggerEvent(el, 'touchmove', undefined, false);
             el.scrollLeft = (frame / frames) * distance + scrollLeft;
             requestAnimationFrame(animate);
         }());

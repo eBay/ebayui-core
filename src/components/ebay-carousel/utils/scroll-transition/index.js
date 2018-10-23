@@ -8,11 +8,16 @@
  * @return {function} A function that cancels the transition.
  */
 module.exports = function scrollTransition(el, to, fn) {
-    const duration = 250;
+    const { scrollLeft } = el;
+    const distance = to - scrollLeft;
+
+    if (distance === 0) {
+        return fn();
+    }
+
+    const duration = Math.pow(Math.abs(distance) * 16, 0.75);
     let lastPosition, cancelInterruptTransition;
     let frame = requestAnimationFrame(startTime => {
-        const { scrollLeft } = el;
-        const distance = to - scrollLeft;
         (function animate(curTime) {
             const delta = curTime - startTime;
             if (delta > duration) {
@@ -21,7 +26,7 @@ module.exports = function scrollTransition(el, to, fn) {
                 return fn();
             }
 
-            el.scrollLeft = easeInOut(delta / duration) * distance + scrollLeft;
+            el.scrollLeft = easeOut(delta / duration) * distance + scrollLeft;
             frame = requestAnimationFrame(animate);
         }(startTime));
     });
@@ -73,6 +78,7 @@ module.exports = function scrollTransition(el, to, fn) {
  * @param {number} val - A number between 0 and 1.
  * @return {number}
  */
-function easeInOut(v) {
-    return v < 0.5 ? 2 * v * v : -1 + (4 - 2 * v) * v;
+function easeOut(v) {
+    const t = v - 1;
+    return t * t * t + 1;
 }
