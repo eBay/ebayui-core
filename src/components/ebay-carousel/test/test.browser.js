@@ -15,6 +15,11 @@ function waitForUpdate(widget, callback) {
     widget.once('update', () => requestAnimationFrame(() => callback()));
 }
 
+// waits for a carousel widget to emit an event from a position change.
+function waitForChange(widget, callback) {
+    widget.once('carousel-update', () => requestAnimationFrame(() => callback()));
+}
+
 function testControlEvent(spy) {
     expect(spy.calledOnce).to.equal(true);
     testUtils.testOriginalEvent(spy);
@@ -1061,19 +1066,16 @@ describe('given a carousel in the default state with native scrolling', () => {
         let nextSpy;
         let slideSpy;
         let scrollSpy;
-        let updateSpy;
 
         beforeEach(done => {
             nextSpy = sinon.spy();
             slideSpy = sinon.spy();
             scrollSpy = sinon.spy();
-            updateSpy = sinon.spy();
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-scroll', scrollSpy);
-            widget.on('carousel-update', updateSpy);
             testUtils.simulateScroll(list, list.children[2].offsetLeft);
-            waitForUpdate(widget, done);
+            waitForChange(widget, done);
         });
 
         it('then it does not emit next or slide events', () => {
@@ -1087,10 +1089,43 @@ describe('given a carousel in the default state with native scrolling', () => {
             expect(eventData.index).to.deep.equal(2);
         });
 
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
+        it('then it applied the right scroll position', () => {
+            const { offsetLeft } = list.children[2];
+            expect(list.scrollLeft).to.equal(offsetLeft);
+        });
+
+        it('then it calculates item visibility correctly', () => {
+            const { state: { items } } = widget;
+            const visibleIndexes = getVisibleIndexes(items);
+            expect(visibleIndexes).to.deep.equal([2, 3]);
+        });
+    });
+
+    describe('when scrolling part way to the right', () => {
+        let nextSpy;
+        let slideSpy;
+        let scrollSpy;
+
+        beforeEach(done => {
+            nextSpy = sinon.spy();
+            slideSpy = sinon.spy();
+            scrollSpy = sinon.spy();
+            widget.on('carousel-next', nextSpy);
+            widget.on('carousel-slide', slideSpy);
+            widget.on('carousel-scroll', scrollSpy);
+            testUtils.simulateScroll(list, list.children[1].offsetLeft);
+            waitForChange(widget, done);
+        });
+
+        it('then it does not emit next or slide events', () => {
+            expect(nextSpy.notCalled).to.equal(true);
+            expect(slideSpy.notCalled).to.equal(true);
+        });
+
+        it('then it emits the carousel scroll event', () => {
+            expect(scrollSpy.calledOnce).to.equal(true);
+            const eventData = scrollSpy.getCall(0).args[0];
+            expect(eventData.index).to.deep.equal(2);
         });
 
         it('then it applied the right scroll position', () => {
