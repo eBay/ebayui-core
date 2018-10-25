@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const transformer = require('../');
-const testUtils = require('../../test-utils/server');
+const testUtils = require('../../../test-utils/server');
 
 function getTagString(rootTag, nestedTag) {
     return {
