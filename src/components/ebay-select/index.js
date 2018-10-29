@@ -120,7 +120,7 @@ function setSelectedOption(optionValue) {
         } else {
             option.selected = false;
         }
-        this.update();
+
         return option;
     });
 

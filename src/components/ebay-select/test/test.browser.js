@@ -9,7 +9,9 @@ describe('given the select is in the default state', () => {
     let selectElement;
 
     beforeEach(() => {
-        const renderedWidget = renderer.renderSync({ options: mock.options });
+        const renderedWidget = renderer.renderSync({
+            options: mock.options
+        });
         widget = renderedWidget.appendTo(document.body).getWidget();
         root = document.querySelector('.select');
         selectElement = root.querySelector('select');
@@ -70,6 +72,31 @@ describe('given the select is in the default state', () => {
             expect(root.selectedIndex).to.equal(expectedIndex);
             expect(selectElement.value).to.equal(expectedValue);
             expect(selectElement.selectedIndex).to.equal(expectedIndex);
+        });
+    });
+
+    describe('when the index is set multiple times through the selectedIndex attribute', () => {
+        const initialExpectedIndex = 1;
+        const finalExpectedIndex = 0;
+        const finalExpectedValue = '1';
+        let spy;
+
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('select-change', spy);
+            root.selectedIndex = initialExpectedIndex;
+            root.selectedIndex = finalExpectedIndex;
+        });
+
+        test('then it emits the select-change event with the correct data', () => {
+            const eventData = spy.getCall(1).args[0];
+            expect(spy.calledTwice).to.equal(true);
+            expect(eventData.index).to.equal(finalExpectedIndex);
+            expect(eventData.selected).to.deep.equal([finalExpectedValue]);
+            expect(root.value).to.equal(finalExpectedValue);
+            expect(root.selectedIndex).to.equal(finalExpectedIndex);
+            expect(selectElement.value).to.equal(finalExpectedValue);
+            expect(selectElement.selectedIndex).to.equal(finalExpectedIndex);
         });
     });
 });
