@@ -194,6 +194,17 @@
     "<ebay-pagination-item>": {
       "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
+    "<ebay-pill>": {
+        "renderer": "./src/components/ebay-pill/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@disabled": "boolean",
+        "@href": "string",
+        "@priority": "string",
+        "@checked": "boolean"
+    },
     "<ebay-radio>": {
         "renderer": "./src/components/ebay-radio/index.js",
         "@*": "expression",
