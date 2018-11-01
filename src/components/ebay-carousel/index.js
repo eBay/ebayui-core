@@ -303,7 +303,7 @@ function handleScrollEnd(scrollLeft, velocity) {
     const { state } = this;
     const { config, items, slideWidth } = state;
     const itemsPerSlide = state.itemsPerSlide || 1;
-    const direction = velocity < 0 ? RIGHT : LEFT;
+    const direction = getOffset(state) > scrollLeft ? RIGHT : LEFT;
     // Used to add additional tolerance based on swipe direction.
     const targetLeft = scrollLeft - (direction * slideWidth * Math.max(0.2, Math.abs(velocity) / 2));
 
