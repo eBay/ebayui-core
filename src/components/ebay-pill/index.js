@@ -1,7 +1,8 @@
 const markoWidgets = require('marko-widgets');
-const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
+const multilineEllipsis = require('../../common/multiline-ellipsis');
 const template = require('./template.marko');
+const pillSelector = 'button.btn--pill';
 
 function getInitialState(input) {
     return {
@@ -14,22 +15,26 @@ function getInitialState(input) {
 }
 
 function getTemplateData(state) {
-    state.pillPriority = (state.checked ? 'primary' : 'secondary');
+    state.priority = (state.checked ? 'primary' : 'secondary');
     return state;
 }
 
+function onRender() {
+    // determine whether the content overflows
+    multilineEllipsis.truncate(this.el.querySelector(pillSelector));
+}
+
 function init() {
-    const btn = this.el.querySelector('button.btn--pill');
-    btn.addEventListener('click', e => {
+    this.el.querySelector(pillSelector).addEventListener('click', () => {
         const newCheckedState = !this.state.checked;
         this.setState('checked', newCheckedState);
-        emitAndFire(this, 'pill-click', e);
     });
 }
 
 module.exports = markoWidgets.defineComponent({
-    init,
     template,
     getInitialState,
-    getTemplateData
+    getTemplateData,
+    onRender,
+    init
 });

@@ -1,11 +1,12 @@
 <span w-bind class="pill__container">
     <ebay-button
         w-body
-        priority=data.pillPriority
+        priority=data.priority
         htmlAttributes
         disabled=data.disabled
         style=data.style
         href=data.href
+        aria-pressed=String(data.checked || 'false')
         class="btn--pill">
     </ebay-button>
 </span>
