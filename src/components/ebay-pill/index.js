@@ -1,16 +1,18 @@
 const markoWidgets = require('marko-widgets');
 const multilineEllipsis = require('../../common/multiline-ellipsis');
+const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
 const pillSelector = 'button.btn--pill, a.fake-btn--pill';
 
 function getInitialState(input) {
     return {
         checked: input.checked,
-        disabled: input.disabled,
+        disabled: Boolean(input.disabled),
         style: input.style,
         class: input.class,
         href: input.href,
-        ariaSelectedText: input.ariaSelectedText || 'Selected'
+        ariaSelectedText: input.ariaSelectedText || 'Selected',
+        htmlAttributes: processHtmlAttributes(input.htmlAttributes)
     };
 }
 
