@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const multilineEllipsis = require('../');
 
-describe('element-scroll', () => {
+describe('multiline-ellipsis', () => {
     const contentDiv = document.createElement('div');
     contentDiv.setAttribute('style', 'height: 50px; width: 180px;');
     contentDiv.innerHTML = 'Pariatur est ut nisi sint voluptate in nostrud amet dolore ullamco ex anim';
@@ -17,7 +17,7 @@ describe('element-scroll', () => {
         document.body.removeChild(contentDiv);
     });
 
-    test('adds two spans to separate content strings for accessibility', () => {
+    test('adds two spans for accessibility', () => {
         expect(spans.length).to.equal(2);
         expect(spans[0].getAttribute('aria-hidden')).to.equal('true');
         expect(spans[1].className.indexOf('clipped')).to.not.equal(-1);

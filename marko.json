@@ -203,7 +203,8 @@
         "@disabled": "boolean",
         "@href": "string",
         "@priority": "string",
-        "@checked": "boolean"
+        "@checked": "boolean",
+        "@aria-selected-text": "string"
     },
     "<ebay-radio>": {
         "renderer": "./src/components/ebay-radio/index.js",

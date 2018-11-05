@@ -4,8 +4,8 @@
             "path": "@ebay/skin/button"
         },
         "../../../src/components/ebay-button",
-        "require-run: nodelist-foreach-polyfill",
         "require: marko-widgets",
-        "require: ./index.js"
+        "require: ./index.js",
+        "./style.less"
     ]
 }
