@@ -37,12 +37,12 @@
         opacity: 0;
         pointer-events: none;
         font-size: 18px;
-        background-color: @ds6-color-g201-gray;
+        background-color: @carousel-control-background-color;
         padding: 0; // override browser default
         height: 72px;
         width: 28px;
         z-index: 1;
-        border: 1px solid @ds6-color-g206-gray;
+        border: 1px solid @carousel-control-border-color;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -56,7 +56,7 @@
         }
 
         svg {
-            color: @ds6-color-g206-gray;
+            color: @carousel-control-svg-color;
         }
 
         .icon--chevron-right {
@@ -82,7 +82,7 @@
         width: 40px;
         border-radius: 50%;
         text-align: center;
-        color: @ds6-color-g201-gray;
+        color: @carousel-play-pause-color;
         box-sizing: border-box;
 
         svg {
@@ -103,7 +103,7 @@
             display: inline-block;
 
             > button {
-                background-color: @ds6-color-g206-gray;
+                background-color: @carousel-dots-background-color;
                 border: 0;
                 border-radius: 50%;
                 display: inline-block;
@@ -123,7 +123,7 @@
                     width: 100%;
                     height: 100%;
                     opacity: 1;
-                    background-color: @ds6-color-g204-gray;
+                    background-color: @carousel-dots-after-background-color;
                 }
 
                 &.carousel__dot--active::after {
