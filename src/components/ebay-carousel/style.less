@@ -1,5 +1,5 @@
-@ebay-carousel-transition-time: 0.25s;
-@ebay-carousel-transition-function: ease-out;
+@ebay-carousel-transition-time: 0.45s;
+@ebay-carousel-transition-function: ease-in-out;
 @ebay-carousel-control-enabled-opacity: 0.92;
 @ebay-carousel-control-disabled-opacity: 0.3;
 
@@ -8,8 +8,7 @@
 
     &__container {
         white-space: nowrap;
-        overflow-y: hidden;
-        overflow-x: hidden;
+        overflow: hidden;
         padding: 16px 0;
         position: relative;
         width: 100%;
@@ -103,32 +102,69 @@
             display: inline-block;
 
             > button {
-                background-color: @ds6-color-g206-gray;
+                position: relative;
                 border: 0;
-                border-radius: 50%;
                 display: inline-block;
                 margin: 0 6px;
                 padding: 0;
                 height: 8px;
                 width: 8px;
-                overflow: hidden;
+                background-color: transparent;
 
                 // The active dot uses an after to color it in which transitions opacity.
                 // This was done to avoid transitioning the background color of the element
                 // while still allowing us to use exact ds colors.
-                &::after {
-                    transition: opacity @ebay-carousel-transition-time @ebay-carousel-transition-function;
+                &::before, &::after {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
                     content: "";
                     display: block;
                     width: 100%;
                     height: 100%;
-                    opacity: 1;
-                    background-color: @ds6-color-g204-gray;
+                    border-radius: 50%;
                 }
 
                 &.carousel__dot--active::after {
-                    opacity: 0;
+                    opacity: 1;
                 }
+
+                &::before {
+                    background-color: @ds6-color-g204-gray;
+                }
+
+                &::after {
+                    opacity: 0;
+                    transition: opacity @ebay-carousel-transition-time @ebay-carousel-transition-function;
+                    background-color: @ds6-color-g206-gray;
+                }
+            }
+        }
+    }
+}
+
+@supports (scroll-snap-align: start) {
+    .carousel {
+        &:not(&__autoplay) &__list {
+            scroll-behavior: smooth;
+            -webkit-scroll-snap-type: x mandatory;
+            -ms-scroll-snap-type: x mandatory;
+            scroll-snap-type: x mandatory;
+            overflow-x: auto; // also used in js to determine scroll behavior
+            -ms-overflow-style: none;
+            -webkit-overflow-scrolling: touch;
+
+            &::-webkit-scrollbar {
+                display: none;
+                background-color: transparent;
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: transparent;
             }
         }
     }

@@ -1,29 +1,29 @@
+.carousel-control-visible() {
+    opacity: @ebay-carousel-control-enabled-opacity;
+    pointer-events: auto;
+
+    &[aria-disabled="true"] {
+        opacity: @ebay-carousel-control-disabled-opacity;
+    }
+
+    &:active:not([aria-disabled="true"]) {
+        background-color: @ds6-color-g205-gray;
+
+        svg {
+            color: @ds6-color-g201-gray;
+        }
+    }
+}
+
 .carousel {
     &--slides&:not(&--peek) &__control, // show controls on touch since there's no hover.
     &__control:focus { // also show controls on focus for a11y.
-        opacity: @ebay-carousel-control-enabled-opacity;
-        pointer-events: auto;
-
-        &[aria-disabled="true"] {
-            opacity: @ebay-carousel-control-disabled-opacity;
-        }
-
-        &:active:not([aria-disabled="true"]) {
-            background-color: @ds6-color-g205-gray;
-
-            svg {
-                color: @ds6-color-g201-gray;
-            }
-        }
+        .carousel-control-visible();
     }
+}
 
-    &:not(&__autoplay) &__list {
-        overflow-x: auto; // also used in js to determine scroll behavior
-        -webkit-overflow-scrolling: touch;
-        -ms-overflow-style: none;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
+@supports not (scroll-snap-align: start) { // always show paddles when scroll snapping is not supported.
+    .carousel__control {
+        .carousel-control-visible();
     }
 }

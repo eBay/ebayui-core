@@ -29,33 +29,9 @@ function testOriginalEvent(spy) {
  * @param {function} cb A callback to call after the scroll.
  */
 function simulateScroll(el, to, cb) {
-    const { scrollLeft } = el;
-    const distance = to - scrollLeft;
-    const frames = 4;
-    let frame = 0;
-    triggerEvent(el, 'touchstart');
-    requestAnimationFrame(() => {
-        (function animate() {
-            if (++frame > frames) {
-                triggerEvent(el, 'touchend');
-                el.scrollLeft = to;
-                // Allow two frames and a timeout for the on scroll to finish.
-                if (cb) {
-                    requestAnimationFrame(() => {
-                        setTimeout(() => {
-                            requestAnimationFrame(cb);
-                        }, 64);
-                    });
-                }
-
-                return;
-            }
-
-            triggerEvent(el, 'touchmove');
-            el.scrollLeft = (frame / frames) * distance + scrollLeft;
-            requestAnimationFrame(animate);
-        }());
-    });
+    triggerEvent(el, 'scroll', undefined, false);
+    el.scrollTo({ left: to });
+    setTimeout(cb, 600);
 }
 
 function waitFrames(count, cb) {
