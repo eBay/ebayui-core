@@ -1,5 +1,6 @@
 const markoWidgets = require('marko-widgets');
 const multilineEllipsis = require('../../common/multiline-ellipsis');
+const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
 const pillSelector = 'button.btn--pill, a.fake-btn--pill';
@@ -12,7 +13,7 @@ function getInitialState(input) {
         class: input.class,
         href: input.href,
         ariaSelectedText: input.ariaSelectedText || 'Selected',
-        htmlAttributes: processHtmlAttributes(input.htmlAttributes)
+        htmlAttributes: processHtmlAttributes(input)
     };
 }
 
@@ -55,6 +56,18 @@ function init() {
     pillBtn.addEventListener('click', () => {
         const newCheckedState = !this.state.checked;
         this.setState('checked', newCheckedState);
+    });
+
+    pillBtn.addEventListener('button-click', (originalEvent) => {
+        emitAndFire(this, 'button-click', {
+            originalEvent
+        });
+    });
+
+    pillBtn.addEventListener('button-escape', (originalEvent) => {
+        emitAndFire(this, 'button-escape', {
+            originalEvent
+        });
     });
 }
 
