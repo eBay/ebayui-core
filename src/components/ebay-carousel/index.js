@@ -294,7 +294,7 @@ function togglePlay(originalEvent) {
  *
  * @param {number} scrollLeft The current scroll position of the carousel.
  */
-function handleScrollEnd(scrollLeft, velocity) {
+function handleScrollEnd(scrollLeft) {
     if (this.cancelScrollTransition) {
         this.cancelScrollTransition();
         this.cancelScrollTransition = undefined;
@@ -305,7 +305,7 @@ function handleScrollEnd(scrollLeft, velocity) {
     const itemsPerSlide = state.itemsPerSlide || 1;
     const direction = getOffset(state) > scrollLeft ? RIGHT : LEFT;
     // Used to add additional tolerance based on swipe direction.
-    const targetLeft = scrollLeft - (direction * slideWidth * Math.max(0.2, Math.abs(velocity) / 2));
+    const targetLeft = scrollLeft - (direction * slideWidth * 0.2);
 
     // Find the closest item using a binary search on each carousel slide.
     const totalItems = items.length;
