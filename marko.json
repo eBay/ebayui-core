@@ -34,7 +34,7 @@
         "@no-text": "boolean",
         "@fluid": "boolean",
         "@variant": "string",
-        "@fixed": "boolean",
+        "@fixed-height": "boolean",
         "@truncate": "boolean"
     },
     "<ebay-carousel>": {

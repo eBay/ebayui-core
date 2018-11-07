@@ -11,13 +11,13 @@ function getInitialState(input) {
     const size = input.size;
     const noText = input.noText;
     const fluid = input.fluid;
-    const fixed = input.fixed;
+    const fixedHeight = input.fixedHeight;
     const truncate = input.truncate;
     let variant = input.variant;
     let tag;
     let mainClass = 'btn';
     let sizeClass = '';
-    let fixedClass = '';
+    let fixedHeightClass = '';
     let truncatedClass = '';
 
     if (href) {
@@ -42,13 +42,13 @@ function getInitialState(input) {
 
     if (size === 'small' || size === 'medium' || size === 'large') {
         sizeClass = `${mainClass}--${size}`;
-    } else if (!size && (fixed || truncate)) {
+    } else if (!size && (fixedHeight || truncate)) {
         sizeClass = `${mainClass}--medium`;
     }
 
-    if (fixed) {
-        fixedClass = `${sizeClass}-fixed-height`;
-        classes.push(fixedClass);
+    if (fixedHeight) {
+        fixedHeightClass = `${sizeClass}-fixed-height`;
+        classes.push(fixedHeightClass);
     }
 
     if (truncate) {
@@ -56,7 +56,7 @@ function getInitialState(input) {
         classes.push(truncatedClass);
     }
 
-    if (!fixed && !truncate) {
+    if (!fixedHeight && !truncate) {
         classes.push(sizeClass);
     }
 
