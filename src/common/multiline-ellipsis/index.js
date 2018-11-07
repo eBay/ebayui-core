@@ -14,7 +14,7 @@ function truncate(el) {
             el.innerText = text.substring(0, i);
             return this.isTextOverflowing(el) ? -1 : 0;
         };
-        const len = this.binarySearch(text.length - 1, checkFunc);
+        const len = binarySearch(text.length - 1, checkFunc);
         const ellipsisAmount = 2;
         const truncatedText = text.substring(0, len).slice(0, -ellipsisAmount);
         el.innerHTML = `<span aria-hidden="true">${truncatedText}…</span><span class="clipped">${text}</span>`;
@@ -39,7 +39,7 @@ function binarySearch(length, callback) {
     let mid;
 
     while (low <= high) {
-        mid = ~~((low + high) / 2);
+        mid = Math.floor((low + high) / 2);
         const result = callback(mid);
         if (result < 0) {
             high = mid - 1;
@@ -55,6 +55,5 @@ function binarySearch(length, callback) {
 
 module.exports = {
     truncate,
-    isTextOverflowing,
-    binarySearch
+    isTextOverflowing
 };

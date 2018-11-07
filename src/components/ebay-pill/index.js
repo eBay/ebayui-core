@@ -53,18 +53,19 @@ function onRender() {
 
 function init() {
     const pillBtn = this.el.querySelector(pillSelector);
-    pillBtn.addEventListener('click', () => {
+
+    this.subscribeTo(pillBtn).on('click', () => {
         const newCheckedState = !this.state.checked;
         this.setState('checked', newCheckedState);
     });
 
-    pillBtn.addEventListener('button-click', (originalEvent) => {
+    this.subscribeTo(pillBtn).on('button-click', (originalEvent) => {
         emitAndFire(this, 'button-click', {
             originalEvent
         });
     });
 
-    pillBtn.addEventListener('button-escape', (originalEvent) => {
+    this.subscribeTo(pillBtn).on('button-escape', (originalEvent) => {
         emitAndFire(this, 'button-escape', {
             originalEvent
         });
