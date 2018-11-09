@@ -44,6 +44,7 @@ function getInitialState(input) {
         state.classes.push('carousel--slides');
 
         if (state.peek) {
+            state.classes.push('carousel--peek');
             state.noDots = true;
         }
 
@@ -82,8 +83,6 @@ function getTemplateData(state) {
         a11yStatusText = state.a11yStatusText
             .replace('{currentSlide}', slide + 1)
             .replace('{totalSlides}', totalSlides);
-    } else {
-        itemWidth = 'auto';
     }
 
     items.forEach((item, i) => {
@@ -96,7 +95,7 @@ function getTemplateData(state) {
             if (transform) item.style += `transform:${transform}`;
         } else {
             item.style = Object.assign({}, style, {
-                'flex-basis': itemWidth,
+                'width': itemWidth,
                 'margin-right': marginRight,
                 transform
             });

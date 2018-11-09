@@ -77,6 +77,7 @@ function getTransformerData(srcString, componentPath) {
 
 function getTransformedTemplate(transformer, srcString, componentPath) {
     const { context, templateAST } = getTransformerData(srcString, componentPath);
+    context.root = templateAST;
     transformer(templateAST.body.array[0], context);
     return prettyPrint(templateAST).replace(/\n/g, '').replace(/\s{4}/g, '');
 }

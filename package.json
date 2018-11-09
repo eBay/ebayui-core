@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "1.0.7",
+  "version": "1.1.0-2",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
@@ -22,7 +22,7 @@
     "lint": "yarn lint:less && yarn lint:js && yarn lint:whitespace",
     "lint:less": "stylelint '**/**.less'",
     "lint:js": "eslint .",
-    "lint:whitespace": "lintspaces *.md src/**/*.md src/**/*.marko src/**/*.js src/**/*.less --newline --maxnewlines 1 --trailingspaces --spaces 4",
+    "lint:whitespace": "lintspaces *.md src/**/*.md src/**/*.marko 'src/**/!(*.marko).js' src/**/*.less --newline --maxnewlines 1 --trailingspaces --spaces 4",
     "build": "yarn lint && yarn build:v3 && yarn build:v4 && yarn clean && yarn installMarkoV3",
     "build:ci": "yarn lint && yarn test && mocha integration && yarn build:v4",
     "build:v3": "yarn installMarkoV3 && yarn clean:integration && yarn test && mocha integration",
@@ -58,7 +58,7 @@
   ],
   "devDependencies": {
     "@ebay/browserslist-config": "^1.0.0",
-    "@ebay/skin": "^6.0.5",
+    "@ebay/skin": "6.1.0",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
@@ -102,7 +102,7 @@
     "wdio-browserstack-service": "^0.1.16"
   },
   "peerDependencies": {
-    "@ebay/skin": "^6.0.5",
+    "@ebay/skin": "6.1.0",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },

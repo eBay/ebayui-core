@@ -17,7 +17,7 @@
         }
     },
     "<ebay-breadcrumb-item>": {
-      "transformer": "./src/common/transformer/index.js"
+      "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-button>": {
         "renderer": "./src/components/ebay-button/index.js",
@@ -65,7 +65,7 @@
         }
     },
     "<ebay-carousel-item>": {
-      "transformer": "./src/common/transformer/index.js"
+      "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-checkbox>": {
         "renderer": "./src/components/ebay-checkbox/index.js",
@@ -96,7 +96,7 @@
         }
     },
     "<ebay-combobox-option>": {
-      "transformer": "./src/common/transformer/index.js"
+      "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-dialog>": {
         "renderer": "./src/components/ebay-dialog/index.js",
@@ -153,7 +153,7 @@
         }
     },
     "<ebay-menu-item>": {
-      "transformer": "./src/common/transformer/index.js"
+      "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-notice>": {
         "renderer": "./src/components/ebay-notice/index.js",
@@ -192,7 +192,7 @@
         }
     },
     "<ebay-pagination-item>": {
-      "transformer": "./src/common/transformer/index.js"
+      "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-radio>": {
         "renderer": "./src/components/ebay-radio/index.js",
@@ -222,7 +222,7 @@
         }
     },
     "<ebay-select-option>": {
-      "transformer": "./src/common/transformer/index.js"
+      "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-switch>": {
         "renderer": "./src/components/ebay-switch/index.js",
@@ -255,10 +255,10 @@
         }
     },
     "<ebay-tab-heading>": {
-      "transformer": "./src/common/transformer/index.js"
+      "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-tab-panel>": {
-      "transformer": "./src/common/transformer/index.js"
+      "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-textbox>": {
         "renderer": "./src/components/ebay-textbox/index.js",
