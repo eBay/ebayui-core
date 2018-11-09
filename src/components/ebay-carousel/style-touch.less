@@ -22,7 +22,13 @@
     }
 }
 
-@supports not (scroll-snap-align: start) { // always show paddles when scroll snapping is not supported.
+@supports not (
+    (-webkit-scroll-snap-coordinate: 0 0) or
+    (-ms-scroll-snap-coordinate: 0 0) or
+    (scroll-snap-coordinate: 0 0) or
+    (scroll-snap-align: start)
+) {
+    // always show paddles when scroll snapping is not supported.
     .carousel__control {
         .carousel-control-visible();
     }

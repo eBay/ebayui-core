@@ -143,12 +143,20 @@
     }
 }
 
-@supports (scroll-snap-align: start) {
+@supports (
+    (-webkit-scroll-snap-coordinate: 0 0) or
+    (-ms-scroll-snap-coordinate: 0 0) or
+    (scroll-snap-coordinate: 0 0) or
+    (scroll-snap-align: start)
+) {
     .carousel {
         &:not(&__autoplay) &__list {
             scroll-behavior: smooth;
+            -webkit-scroll-snap-type: mandatory;
             -webkit-scroll-snap-type: x mandatory;
+            -ms-scroll-snap-type: mandatory;
             -ms-scroll-snap-type: x mandatory;
+            scroll-snap-type: mandatory;
             scroll-snap-type: x mandatory;
             overflow-x: auto; // also used in js to determine scroll behavior
             -ms-overflow-style: none;
@@ -166,6 +174,13 @@
             &::-webkit-scrollbar-thumb {
                 background-color: transparent;
             }
+        }
+
+        &__snap-point {
+            -webkit-scroll-snap-coordinate: 0 0;
+            -ms-scroll-snap-coordinate: 0 0;
+            scroll-snap-coordinate: 0 0;
+            scroll-snap-align: start;
         }
     }
 }

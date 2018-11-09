@@ -28,16 +28,10 @@ function getInitialState(input) {
         a11yCurrentText: input.a11yCurrentText || 'Current Slide {currentSlide} - Carousel',
         a11yOtherText: input.a11yOtherText || 'Slide {slide} - Carousel',
         a11yPauseText: input.a11yPauseText || 'Pause - Carousel',
-        a11yPlayText: input.a11yPlayText || 'Play - Carousel',
-        items: (input.items || []).map(item => ({
-            htmlAttributes: processHtmlAttributes(item),
-            class: item.class,
-            style: item.style,
-            renderBody: item.renderBody
-        }))
+        a11yPlayText: input.a11yPlayText || 'Play - Carousel'
     };
 
-    const { items, itemsPerSlide } = state;
+    const { itemsPerSlide } = state;
     if (itemsPerSlide) {
         state.peek = itemsPerSlide % 1;
         state.itemsPerSlide = itemsPerSlide - state.peek;
@@ -50,12 +44,22 @@ function getInitialState(input) {
 
         // Only allow autoplay option for discrete carousels.
         if (input.autoplay) {
-            const isSingleSlide = items.length <= itemsPerSlide;
+            const isSingleSlide = input.items.length <= itemsPerSlide;
             state.autoplayInterval = parseInt(input.autoplay, 10) || 4000;
             state.classes.push('carousel__autoplay');
             state.paused = isSingleSlide || input.paused; // Force paused state if not enough slides provided;
         }
     }
+
+    state.items = (input.items || []).map((item, i) => {
+        const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
+        return {
+            htmlAttributes: processHtmlAttributes(item),
+            class: isStartOfSlide ? ['carousel__snap-point', item.class] : item.class,
+            style: item.style,
+            renderBody: item.renderBody
+        };
+    });
 
     return state;
 }
@@ -86,20 +90,17 @@ function getTemplateData(state) {
     }
 
     items.forEach((item, i) => {
-        const isStartOfSlide = itemsPerSlide ? i % itemsPerSlide === 0 : true;
         const { style, transform } = item;
         const marginRight = i !== (items.length - 1) && `${gap}px`;
 
         // Account for users providing a style string or object for each item.
         if (typeof style === 'string') {
             item.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
-            if (isStartOfSlide) item.style += `scroll-snap-align: start;`;
             if (transform) item.style += `transform:${transform}`;
         } else {
             item.style = Object.assign({}, style, {
                 'width': itemWidth,
                 'margin-right': marginRight,
-                'scroll-snap-align': isStartOfSlide && 'start',
                 transform
             });
         }
