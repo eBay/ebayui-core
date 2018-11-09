@@ -22,7 +22,7 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 
 * [Node.js](https://nodejs.org/en/)
 * [Marko](https://markojs.com) (v3+)
-* [eBay Skin](https://ebay.github.io/skin/) (v5+)
+* [eBay Skin](https://ebay.github.io/skin/) (v6+)
 
 *Note:\
 Marko v3 requires [Marko Widgets v6](https://github.com/marko-js/marko-widgets)\
