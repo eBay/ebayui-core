@@ -143,6 +143,13 @@
     }
 }
 
+/**
+ * In browsers that support a compatible version of the css scroll snap api we use native scrolling.
+ * Otherwise we fall back to using css transforms.
+ *
+ * Not all browsers that have implemented scroll snapping have done so in a way that we can leverage.
+ * Currently the below media query ensures that the browser supports exactly what we need.
+ */
 @supports (
     (-webkit-scroll-snap-coordinate: 0 0) or
     (-ms-scroll-snap-coordinate: 0 0) or
