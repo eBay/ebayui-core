@@ -2,15 +2,22 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
 
 function getInitialState(input) {
+    const number = Number(input.number);
+    let showBadge = true;
+
+    showBadge = !isNaN(number);
+
     return {
+        showBadge,
         htmlAttributes: processHtmlAttributes(input),
         class: [`badge`, input.class],
         style: input.style,
         type: input.type,
-        number: Number(input.number) || 0,
+        number,
         a11yText: input.a11yText || ''
     };
 }
+
 function getTemplateData(state) {
     if (state.number > 99) {
         state.displayText = '99+';

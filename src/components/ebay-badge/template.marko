@@ -2,6 +2,7 @@
     w-bind
     class=data.class
     style=data.style
-    ${data.htmlAttributes}>
-    ${data.displayText}<if(data.allyText)><span class="clipped">${data.allyText}</span></if>
+    ${data.htmlAttributes}
+    if(data.showBadge)>
+    ${data.displayText}<if(data.a11yText)><span class="clipped">${data.a11yText}</span></if>
 </span>
