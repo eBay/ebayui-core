@@ -1,6 +1,5 @@
 <${data.tag}
     w-bind
-    w-body
     w-onclick="handleClick"
     w-onkeydown="handleKeydown"
     type=data.type
@@ -10,4 +9,8 @@
     disabled=data.disabled
     aria-disabled=data.partiallyDisabled
     ${data.htmlAttributes}>
+    <span w-body aria-hidden=(data.hasAriaLabel?'true':false)/>
+    <if(data.isBadged)>
+        <ebay-badge number=data.badgeNumber a11y-text=data.badgeA11yText aria-hidden=(data.hasAriaLabel?'true':false)/>
+    </if>
 </>

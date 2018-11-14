@@ -33,7 +33,12 @@
                 w-onkeydown="handleItemKeydown"
                 w-preserve-attrs="tabindex,data-makeup-index"
                 ${item.htmlAttributes}>
-                <span w-body=item.renderBody/>
+                <span>
+                    <span w-body=item.renderBody/>
+                    <if(item.badgeNumber)>
+                        <ebay-badge number=item.badgeNumber a11y-text=item.badgeA11yText/>
+                    </if>
+                </span>
                 <span if(item.useCheckIcon) class="menu__status"/>
             </>
         </for>
