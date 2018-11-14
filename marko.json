@@ -268,7 +268,9 @@
         "@style": "string",
         "@invalid": "boolean",
         "@fluid": "boolean",
-        "@multiline": "boolean"
+        "@multiline": "boolean",
+        "@icon-name": "string",
+        "@icon-position": "string"
     }
   }
   

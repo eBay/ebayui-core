@@ -6,6 +6,8 @@ const fluidRootSelector = `div.textbox`;
 const inputSelector = `input.textbox__control`;
 const fluidInputSelector = `input.textbox__control--fluid`;
 const textareaSelector = `textarea.textbox__control`;
+const iconSelector = `svg.textbox__icon`;
+const inputPostfixSelector = `span.textbox--icon-end`;
 
 test('renders default input textbox', context => {
     const $ = testUtils.getCheerio(context.render());
@@ -30,6 +32,19 @@ test('renders a textarea element', context => {
     const input = { multiline: true };
     const $ = testUtils.getCheerio(context.render(input));
     expect($(textareaSelector).length).to.equal(1);
+});
+
+test('renders a textarea element with prefix icon', context => {
+    const input = { iconName: 'search' };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($(iconSelector).length).to.equal(1);
+});
+
+test('renders a textarea element with postfix icon', context => {
+    const input = { iconName: 'search', iconPosition: 'postfix' };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($(inputPostfixSelector).length).to.equal(1);
+    expect($(iconSelector).length).to.equal(1);
 });
 
 test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, inputSelector));
