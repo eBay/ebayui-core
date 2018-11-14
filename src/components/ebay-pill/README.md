@@ -13,7 +13,7 @@ Name | Type | Stateful | Description
 `priority` | String | No | "primary" / "secondary" (default) / "none"
 `href` | String | No | for link that looks like a button
 `disabled` | Boolean | No |
-`checked` | Boolean | No |
+`pressed` | Boolean | No |
 `aria-selected-text` | String | No | defaults to `Selected`, but should be changed based on L10N or I18N
 
 ## ebay-pill Events

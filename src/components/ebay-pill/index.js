@@ -7,7 +7,7 @@ const pillSelector = 'button.btn--pill, a.fake-btn--pill';
 
 function getInitialState(input) {
     return {
-        checked: input.checked,
+        pressed: input.pressed,
         disabled: Boolean(input.disabled),
         style: input.style,
         class: input.class,
@@ -27,7 +27,7 @@ function getTemplateData(state) {
     }
 
     state.classes = [buttonPillClass, state.class];
-    state.priority = (state.checked ? 'primary' : 'secondary');
+    state.priority = (state.pressed ? 'primary' : 'secondary');
 
     return state;
 }
@@ -39,7 +39,7 @@ function onRender() {
     const pillBtn = this.el.querySelector(pillSelector);
     const selectedTextSpan = pillBtn.querySelector('.pill__selected-text');
 
-    if (this.state.href && this.state.checked && !selectedTextSpan) {
+    if (this.state.href && this.state.pressed && !selectedTextSpan) {
         const selectedSpan = document.createElement('span');
         selectedSpan.setAttribute('class', 'pill__selected-text clipped');
         selectedSpan.innerHTML = ` - ${this.state.ariaSelectedText}`;
@@ -55,8 +55,8 @@ function init() {
     const pillBtn = this.el.querySelector(pillSelector);
 
     this.subscribeTo(pillBtn).on('click', () => {
-        const newCheckedState = !this.state.checked;
-        this.setState('checked', newCheckedState);
+        const newPressedState = !this.state.pressed;
+        this.setState('pressed', newPressedState);
     });
 
     this.subscribeTo(pillBtn).on('button-click', (originalEvent) => {

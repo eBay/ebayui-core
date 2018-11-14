@@ -203,7 +203,7 @@
         "@disabled": "boolean",
         "@href": "string",
         "@priority": "string",
-        "@checked": "boolean",
+        "@pressed": "boolean",
         "@aria-selected-text": "string"
     },
     "<ebay-radio>": {
