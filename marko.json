@@ -6,8 +6,7 @@
         "@class": "string",
         "@style": "string",
         "@type": "string",
-        "@number": "expression",
-        "@a11y-text": "string"
+        "@number": "expression"
     },
     "<ebay-breadcrumb>": {
         "renderer": "./src/components/ebay-breadcrumb/index.js",
