@@ -5,6 +5,7 @@
         "@html-attributes": "expression",
         "@class": "string",
         "@style": "string",
+        "@type": "string",
         "@number": "expression",
         "@a11y-text": "string"
     },
@@ -44,7 +45,7 @@
         "@fluid": "boolean",
         "@variant": "string",
         "@badge-number": "expression",
-        "@badge-a11y-text": "string"
+        "@badge-aria-label": "string"
     },
     "<ebay-carousel>": {
         "renderer": "./src/components/ebay-carousel/index.js",
@@ -162,7 +163,7 @@
             "@checked": "boolean",
             "@current": "boolean",
             "@badge-number": "expression",
-            "@badge-a11y-text": "string"
+            "@badge-aria-label": "string"
         }
     },
     "<ebay-menu-item>": {

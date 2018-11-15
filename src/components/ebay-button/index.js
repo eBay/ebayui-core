@@ -25,7 +25,7 @@ function getInitialState(input) {
     const isExpandVariant = variant === 'expand';
     const isCtaVariant = variant === 'cta';
     const isIconVariant = variant === 'icon';
-    const isBadged = Boolean(input.badgeNumber);
+    const isBadged = Boolean(input.badgeNumber && isIconVariant);
     const hasAriaLabel = Boolean(input['*'] && input['*'].ariaLabel);
 
     if (href || isExpandVariant || isCtaVariant || isIconVariant) {
@@ -66,7 +66,7 @@ function getInitialState(input) {
         isBadged,
         hasAriaLabel,
         badgeNumber: input.badgeNumber,
-        badgeA11yText: input.badgeA11yText
+        badgeAriaLabel: input.badgeAriaLabel
     };
 }
 

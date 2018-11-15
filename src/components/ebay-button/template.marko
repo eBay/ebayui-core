@@ -9,8 +9,12 @@
     disabled=data.disabled
     aria-disabled=data.partiallyDisabled
     ${data.htmlAttributes}>
-    <span w-body aria-hidden=(data.hasAriaLabel?'true':false)/>
+    <span w-body aria-hidden=(data.hasAriaLabel? 'true' : false)/>
     <if(data.isBadged)>
-        <ebay-badge number=data.badgeNumber a11y-text=data.badgeA11yText aria-hidden=(data.hasAriaLabel?'true':false)/>
+        <ebay-badge
+            number=data.badgeNumber
+            type='icon'
+            aria-label=(data.hasAriaLabel ? data.badgeAriaLabel : false)
+            aria-hidden=(data.hasAriaLabel ? 'true' : false)/>
     </if>
 </>

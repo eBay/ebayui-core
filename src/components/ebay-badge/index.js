@@ -3,18 +3,16 @@ const template = require('./template.marko');
 
 function getInitialState(input) {
     const number = Number(input.number);
-    let showBadge = true;
-
-    showBadge = !isNaN(number);
+    const imgRole = (input.type !== 'menu' && input.type !== 'icon');
+    const showBadge = !isNaN(number);
 
     return {
         showBadge,
         htmlAttributes: processHtmlAttributes(input),
         class: [`badge`, input.class],
         style: input.style,
-        type: input.type,
-        number,
-        a11yText: input.a11yText || ''
+        imgRole,
+        number
     };
 }
 

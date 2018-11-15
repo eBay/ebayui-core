@@ -69,7 +69,7 @@ function getInitialState(input) {
             checked: (!isRadio && !isCheckbox) ? false : Boolean(checked),
             current: Boolean(current),
             badgeNumber: item.badgeNumber,
-            badgeA11yText: item.badgeA11yText
+            badgeAriaLabel: item.badgeAriaLabel
         };
     });
 

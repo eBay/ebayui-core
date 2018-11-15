@@ -9,14 +9,6 @@ test('renders defaults', context => {
     expect(badge.text()).to.equal('5');
 });
 
-test('renders a11y text', context => {
-    const input = { number: 5, a11yText: 'items' };
-    const $ = testUtils.getCheerio(context.render(input));
-    const a11yText = $('.badge .clipped');
-    expect(a11yText.length).to.equal(1);
-    expect(a11yText.text()).to.equal(' - items');
-});
-
 describe('given number is a string', () => {
     test('renders number with coerced string', context => {
         const input = { number: '5' };

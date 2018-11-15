@@ -36,7 +36,7 @@
                 <span>
                     <span w-body=item.renderBody/>
                     <if(item.badgeNumber)>
-                        <ebay-badge number=item.badgeNumber a11y-text=item.badgeA11yText/>
+                        <ebay-badge type='menu' number=item.badgeNumber aria-label=item.badgeAriaLabel/>
                     </if>
                 </span>
                 <span if(item.useCheckIcon) class="menu__status"/>
