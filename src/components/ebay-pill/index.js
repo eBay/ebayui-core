@@ -12,7 +12,7 @@ function getInitialState(input) {
         style: input.style,
         class: input.class,
         href: input.href,
-        ariaSelectedText: input.ariaSelectedText || 'Selected',
+        a11yActiveText: input.a11yActiveText || 'Selected',
         htmlAttributes: processHtmlAttributes(input)
     };
 }
@@ -37,16 +37,16 @@ function onRender() {
     multilineEllipsis.truncate(this.el.querySelector(pillSelector));
 
     const pillBtn = this.el.querySelector(pillSelector);
-    const selectedTextSpan = pillBtn.querySelector('.pill__selected-text');
+    const activeTextSpan = pillBtn.querySelector('.pill__active-text');
 
-    if (this.state.href && this.state.pressed && !selectedTextSpan) {
+    if (this.state.href && this.state.pressed && !activeTextSpan) {
         const selectedSpan = document.createElement('span');
-        selectedSpan.setAttribute('class', 'pill__selected-text clipped');
-        selectedSpan.innerHTML = ` - ${this.state.ariaSelectedText}`;
+        selectedSpan.setAttribute('class', 'pill__active-text clipped');
+        selectedSpan.innerHTML = ` - ${this.state.a11yActiveText}`;
         pillBtn.appendChild(selectedSpan);
     } else {
-        if (selectedTextSpan) {
-            pillBtn.removeChild(selectedTextSpan);
+        if (activeTextSpan) {
+            pillBtn.removeChild(activeTextSpan);
         }
     }
 }

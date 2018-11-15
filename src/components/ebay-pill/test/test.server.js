@@ -13,6 +13,12 @@ test('renders fake version', context => {
     expect($('a.fake-btn[href=#]').length).to.equal(1);
 });
 
+test('renders fake version with pressed attribute', context => {
+    const input = { href: '#', pressed: true };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('a.fake-btn[href=#]').length).to.equal(1);
+});
+
 test('renders fake version with other attributes', context => {
     const input = { href: '#', disabled: true };
     const $ = testUtils.getCheerio(context.render(input));

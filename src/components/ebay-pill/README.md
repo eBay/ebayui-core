@@ -14,7 +14,7 @@ Name | Type | Stateful | Description
 `href` | String | No | for link that looks like a button
 `disabled` | Boolean | No |
 `pressed` | Boolean | No |
-`aria-selected-text` | String | No | defaults to `Selected`, but should be changed based on L10N or I18N
+`a11y-active-text` | String | No | **Note:** only for fake pills; defaults to `"Selected"`, but should be changed based on L10N or I18N
 
 ## ebay-pill Events
 

@@ -10,8 +10,6 @@ function renderAndGetRoot(input) {
     return document.querySelector('.btn--pill');
 }
 
-// TODO: spy on lasso-ed emitAndFire?
-
 describe('given pill is enabled', () => {
     let root;
     beforeEach(() => {
@@ -27,9 +25,27 @@ describe('given pill is enabled', () => {
             testUtils.triggerEvent(root, 'click');
         });
 
+        test('the widget has a pressed state', () => {
+            expect(widget.state.pressed).to.equal(true);
+        });
+
         test('then it emits the event with correct data', () => {
             expect(spy.calledOnce).to.equal(true);
             testUtils.testOriginalEvent(spy);
+        });
+    });
+
+    describe('when pill is clicked a second time', () => {
+        let spy;
+        beforeEach(() => {
+            spy = sinon.spy();
+            widget.on('button-click', spy);
+            testUtils.triggerEvent(root, 'click');
+            testUtils.triggerEvent(root, 'click');
+        });
+
+        test('the widget does not have a pressed state', () => {
+            expect(widget.state.pressed).to.equal(false);
         });
     });
 
@@ -93,5 +109,20 @@ describe('given pill is disabled', () => {
         test('then it doesn\'t emit the event', () => {
             expect(spy.called).to.equal(false);
         });
+    });
+});
+
+describe('given pill is fake and pressed', () => {
+    let root; // eslint-disable-line
+    beforeEach(() => {
+        root = renderAndGetRoot({
+            href: 'https://ebay.com',
+            pressed: true
+        });
+    });
+    afterEach(() => widget.destroy());
+
+    test('the pill has a11y text for the active state', () => {
+        expect(widget.el.querySelectorAll('.pill__active-text').length).to.equal(1);
     });
 });
