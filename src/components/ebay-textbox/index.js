@@ -2,7 +2,6 @@ const markoWidgets = require('marko-widgets');
 const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
-let initIcons = false;
 
 function getInitialState(input) {
     const classes = ['textbox__control'];
@@ -20,9 +19,9 @@ function getInitialState(input) {
         rootClass: rootClasses,
         style: input.style,
         classes,
-        initIcons: false,
-        iconName: input.iconName,
-        displayIcon: input.iconName && !Boolean(input.multiline),
+        icon: input.icon,
+        iconTag: input.iconTag && input.iconTag.renderBody,
+        displayIcon: input.icon && !Boolean(input.multiline),
         iconPostfix,
         tag: input.fluid ? 'div' : 'span',
         textboxTag: Boolean(input.multiline) ? 'textarea' : 'input',
@@ -32,13 +31,6 @@ function getInitialState(input) {
 
 function getTemplateData(state) {
     return state;
-}
-
-function init() {
-    if (!initIcons) {
-        initIcons = true;
-        this.setState('initIcons', initIcons);
-    }
 }
 
 function handleEvent(originalEvent, eventName) {
@@ -51,7 +43,6 @@ const handleFocus = function(originalEvent) { this.handleEvent(originalEvent, 'f
 const handleBlur = function(originalEvent) { this.handleEvent(originalEvent, 'blur'); };
 
 module.exports = markoWidgets.defineComponent({
-    init,
     template,
     getInitialState,
     getTemplateData,

@@ -6,7 +6,7 @@
         "@ebay/skin/textbox"
       ]
     },
-    "../ebay-icon",
+    "../../../src/components/ebay-icon",
     "require: marko-widgets",
     "require: ./index.js"
   ]
