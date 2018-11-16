@@ -7,16 +7,15 @@ function truncate(el) {
         return;
     }
 
-    const text = el.innerText;
+    const text = el.textContent;
 
     if (this.isTextOverflowing(el)) {
         const checkFunc = i => {
-            el.innerText = text.substring(0, i);
+            el.textContent = text.substring(0, i);
             return this.isTextOverflowing(el) ? -1 : 0;
         };
         const len = binarySearch(text.length - 1, checkFunc);
-        const ellipsisAmount = 2;
-        const truncatedText = text.substring(0, len).slice(0, -ellipsisAmount);
+        const truncatedText = text.substring(0, len).slice(0, -2);
         el.innerHTML = `<span aria-hidden="true">${truncatedText}…</span><span class="clipped">${text}</span>`;
     }
 }
