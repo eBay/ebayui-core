@@ -35,7 +35,14 @@ function getVisibleIndexes(items) {
 }
 
 function getTranslateX(el) {
+    if (isScrollable(el)) {
+        return el.scrollLeft;
+    }
     return parseInt(getComputedStyle(el).transform.match(/^matrix\((?:-?\d+, ?){4}(-?\d+)/)[1], 10) * -1;
+}
+
+function isScrollable(el) {
+    return getComputedStyle(el).overflowX !== 'visible';
 }
 
 describe('given the carousel is in the default state', () => {
@@ -82,7 +89,7 @@ describe('given the carousel starts in the default state with items', () => {
         beforeEach(done => {
             updateSpy = sinon.spy();
             widget.on('carousel-update', updateSpy);
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
             root.index = 1;
         });
 
@@ -109,7 +116,7 @@ describe('given the carousel starts in the default state with items', () => {
         beforeEach(done => {
             updateSpy = sinon.spy();
             widget.on('carousel-update', updateSpy);
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
             widget.setProps({ index: '1', items: mock.sixItems });
         });
 
@@ -153,7 +160,7 @@ describe('given the carousel starts in the default state with items', () => {
             updateSpy = sinon.spy();
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-update', updateSpy);
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
             testUtils.triggerEvent(nextButton, 'click');
         });
 
@@ -181,7 +188,7 @@ describe('given the carousel starts in the default state with items', () => {
         beforeEach((done) => {
             updateSpy = sinon.spy();
             widget.on('carousel-update', updateSpy);
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
             root.index = -1;
         });
 
@@ -228,7 +235,7 @@ describe('given a continuous carousel has next button clicked', () => {
         nextButton = root.querySelector('.carousel__control--next');
         prevButton = root.querySelector('.carousel__control--prev');
         waitForUpdate(widget, () => {
-            widget.subscribeTo(list).once('transitionend', () => {
+            waitForChange(widget, () => {
                 expect(getTranslateX(list)).to.equal(480);
                 done();
             });
@@ -245,7 +252,7 @@ describe('given a continuous carousel has next button clicked', () => {
             updateSpy = sinon.spy();
             widget.on('carousel-previous', prevSpy);
             widget.on('carousel-update', updateSpy);
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
             testUtils.triggerEvent(prevButton, 'click');
         });
 
@@ -314,14 +321,12 @@ describe('given a continuous carousel with many items', () => {
     const input = { items: mock.twelveItems };
     let widget;
     let root;
-    let list;
     let prevButton;
     let nextButton;
 
     beforeEach(done => {
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
         root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
         prevButton = root.querySelector('.carousel__control--prev');
         nextButton = root.querySelector('.carousel__control--next');
         waitForUpdate(widget, done);
@@ -332,15 +337,14 @@ describe('given a continuous carousel with many items', () => {
         let nextSpy;
         let updateSpy;
         beforeEach(done => {
-            const listSub = widget.subscribeTo(list);
             nextSpy = sinon.spy();
             updateSpy = sinon.spy();
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
-            listSub.once('transitionend', () => {
-                listSub.once('transitionend', () => {
-                    listSub.once('transitionend', done);
+            waitForChange(widget, () => {
+                waitForChange(widget, () => {
+                    waitForChange(widget, done);
                     testUtils.triggerEvent(nextButton, 'click');
                 });
                 testUtils.triggerEvent(nextButton, 'click');
@@ -364,7 +368,6 @@ describe('given a continuous carousel with many items', () => {
         let nextSpy;
         let updateSpy;
         beforeEach(done => {
-            const listSub = widget.subscribeTo(list);
             prevSpy = sinon.spy();
             nextSpy = sinon.spy();
             updateSpy = sinon.spy();
@@ -372,13 +375,13 @@ describe('given a continuous carousel with many items', () => {
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
-            listSub.once('transitionend', () => {
+            waitForChange(widget, () => {
                 testUtils.triggerEvent(nextButton, 'click');
-                listSub.once('transitionend', () => {
+                waitForChange(widget, () => {
                     testUtils.triggerEvent(nextButton, 'click');
-                    listSub.once('transitionend', () => {
+                    waitForChange(widget, () => {
                         testUtils.triggerEvent(prevButton, 'click');
-                        listSub.once('transitionend', done);
+                        waitForChange(widget, done);
                     });
                 });
             });
@@ -403,16 +406,15 @@ describe('given a continuous carousel with many items', () => {
         let nextSpy;
         let updateSpy;
         beforeEach(done => {
-            const listSub = widget.subscribeTo(list);
             prevSpy = sinon.spy();
             nextSpy = sinon.spy();
             updateSpy = sinon.spy();
             widget.on('carousel-previous', prevSpy);
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-update', updateSpy);
-            listSub.once('transitionend', () => {
-                listSub.once('transitionend', () => {
-                    listSub.once('transitionend', done);
+            waitForChange(widget, () => {
+                waitForChange(widget, () => {
+                    waitForChange(widget, done);
                     testUtils.triggerEvent(prevButton, 'click');
                 });
                 testUtils.triggerEvent(nextButton, 'click');
@@ -459,7 +461,7 @@ describe('given a discrete carousel', () => {
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-update', updateSpy);
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
             testUtils.triggerEvent(nextButton, 'click');
         });
 
@@ -515,7 +517,7 @@ describe('given a discrete carousel has next button clicked', () => {
         nextButton = root.querySelector('.carousel__control--next');
         prevButton = root.querySelector('.carousel__control--prev');
         waitForUpdate(widget, () => {
-            widget.subscribeTo(list).once('transitionend', () => {
+            waitForChange(widget, () => {
                 const { offsetLeft } = list.children[1];
                 expect(getTranslateX(list)).to.equal(offsetLeft);
                 done();
@@ -536,7 +538,7 @@ describe('given a discrete carousel has next button clicked', () => {
             widget.on('carousel-previous', prevSpy);
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-update', updateSpy);
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
             testUtils.triggerEvent(prevButton, 'click');
         });
 
@@ -596,7 +598,7 @@ describe('given a discrete carousel with half width items', () => {
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
         });
 
         it('then it emits the marko next event', () => testControlEvent(nextSpy));
@@ -637,7 +639,7 @@ describe('given a discrete carousel with half width items', () => {
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextSlideDot, 'click');
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
         });
 
         it('then it does not emit the marko next event', () => {
@@ -680,7 +682,7 @@ describe('given a discrete carousel with half width items', () => {
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-update', updateSpy);
             root.index = 4;
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
         });
 
         it('then it does not emit the marko next event', () => {
@@ -738,7 +740,7 @@ describe('given a discrete carousel with three half width items', () => {
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
         });
 
         it('then it emits the marko next event', () => testControlEvent(nextSpy));
@@ -805,7 +807,7 @@ describe('given a discrete carousel with a partial slide', () => {
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-update', updateSpy);
             testUtils.triggerEvent(nextButton, 'click');
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
         });
 
         it('then it emits the marko next event', () => testControlEvent(nextSpy));
@@ -865,7 +867,7 @@ describe('given an autoplay carousel in the default state', () => {
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-update', updateSpy);
             // Wait for both update events.
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
         });
 
         it('then it does not emit next or slide events', () => {
@@ -971,7 +973,7 @@ describe('given an autoplay carousel in the paused state', () => {
             updateSpy = sinon.spy();
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-update', updateSpy);
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
             testUtils.triggerEvent(playButton, 'click');
         });
 
@@ -1009,7 +1011,7 @@ describe('given an autoplay carousel in the paused state', () => {
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-previous', prevSpy);
             widget.on('carousel-update', updateSpy);
-            widget.subscribeTo(list).once('transitionend', done);
+            waitForChange(widget, done);
             testUtils.triggerEvent(prevButton, 'click');
         });
 
@@ -1044,13 +1046,6 @@ describe('given a carousel in the default state with native scrolling', () => {
     let widget;
     let root;
     let list;
-    let style;
-
-    before(() => {
-        style = document.createElement('style');
-        style.innerHTML = '.carousel__list { overflow: scroll; }';
-        document.body.appendChild(style);
-    });
 
     beforeEach(done => {
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
@@ -1060,7 +1055,6 @@ describe('given a carousel in the default state with native scrolling', () => {
     });
 
     afterEach(() => widget.destroy());
-    after(() => document.body.removeChild(style));
 
     describe('when scrolling an item to the right', () => {
         let nextSpy;
@@ -1074,7 +1068,9 @@ describe('given a carousel in the default state with native scrolling', () => {
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-scroll', scrollSpy);
-            testUtils.simulateScroll(list, list.children[2].offsetLeft);
+            setTimeout(() => {
+                testUtils.simulateScroll(list, list.children[2].offsetLeft);
+            }, 200);
             waitForChange(widget, done);
         });
 
@@ -1113,7 +1109,11 @@ describe('given a carousel in the default state with native scrolling', () => {
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-scroll', scrollSpy);
-            testUtils.simulateScroll(list, list.children[1].offsetLeft);
+            setTimeout(() => {
+                const secondChild = list.children[1];
+                const halfwayThroughSecondChild = secondChild.offsetLeft + (secondChild.offsetWidth / 2) + 10;
+                testUtils.simulateScroll(list, halfwayThroughSecondChild);
+            }, 200);
             waitForChange(widget, done);
         });
 

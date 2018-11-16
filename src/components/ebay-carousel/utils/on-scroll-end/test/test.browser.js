@@ -25,12 +25,11 @@ describe('scroll-end', () => {
         const scrollEndSpy = sinon.spy();
         onScrollEnd(scrollEl, scrollEndSpy);
         testUtils.simulateScroll(scrollEl, 50, () => {
-            testUtils.simulateScroll(scrollEl, 100, () => {
-                expect(scrollEndSpy.calledTwice).to.equal(true);
+            setTimeout(() => {
+                expect(scrollEndSpy.calledOnce).to.equal(true);
                 expect(scrollEndSpy.args[0][0]).to.equal(50);
-                expect(scrollEndSpy.args[1][0]).to.equal(100);
                 done();
-            });
+            }, 250);
         });
     });
 
@@ -39,9 +38,11 @@ describe('scroll-end', () => {
         onScrollEnd(scrollEl, scrollEndSpy);
         setTimeout(() => {
             testUtils.simulateScroll(scrollEl, 100, () => {
-                expect(scrollEndSpy.calledOnce).to.equal(true);
-                expect(scrollEndSpy.args[0][0]).to.equal(100);
-                done();
+                setTimeout(() => {
+                    expect(scrollEndSpy.calledOnce).to.equal(true);
+                    expect(scrollEndSpy.args[0][0]).to.equal(100);
+                    done();
+                }, 250);
             });
         }, 0);
         testUtils.simulateScroll(scrollEl, 50);

@@ -3,7 +3,7 @@ const resizeUtil = require('../../common/event-utils').resizeUtil;
 const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
-const onScrollEnd = require('./utils/on-scroll-end');
+const onScroll = require('./utils/on-scroll-debounced');
 const scrollTransition = require('./utils/scroll-transition');
 const template = require('./template.marko');
 
@@ -28,16 +28,10 @@ function getInitialState(input) {
         a11yCurrentText: input.a11yCurrentText || 'Current Slide {currentSlide} - Carousel',
         a11yOtherText: input.a11yOtherText || 'Slide {slide} - Carousel',
         a11yPauseText: input.a11yPauseText || 'Pause - Carousel',
-        a11yPlayText: input.a11yPlayText || 'Play - Carousel',
-        items: (input.items || []).map(item => ({
-            htmlAttributes: processHtmlAttributes(item),
-            class: item.class,
-            style: item.style,
-            renderBody: item.renderBody
-        }))
+        a11yPlayText: input.a11yPlayText || 'Play - Carousel'
     };
 
-    const { items, itemsPerSlide } = state;
+    const { itemsPerSlide } = state;
     if (itemsPerSlide) {
         state.peek = itemsPerSlide % 1;
         state.itemsPerSlide = itemsPerSlide - state.peek;
@@ -50,20 +44,30 @@ function getInitialState(input) {
 
         // Only allow autoplay option for discrete carousels.
         if (input.autoplay) {
-            const isSingleSlide = items.length <= itemsPerSlide;
+            const isSingleSlide = input.items.length <= itemsPerSlide;
             state.autoplayInterval = parseInt(input.autoplay, 10) || 4000;
             state.classes.push('carousel__autoplay');
             state.paused = isSingleSlide || input.paused; // Force paused state if not enough slides provided;
         }
     }
 
+    state.items = (input.items || []).map((item, i) => {
+        const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
+        return {
+            htmlAttributes: processHtmlAttributes(item),
+            class: isStartOfSlide ? ['carousel__snap-point', item.class] : item.class,
+            style: item.style,
+            renderBody: item.renderBody
+        };
+    });
+
     return state;
 }
 
 function getTemplateData(state) {
     let { index } = state;
-    const { offsetOverride, autoplayInterval, items, itemsPerSlide, slideWidth, gap } = state;
-    const hasOverride = offsetOverride !== undefined;
+    const { config, autoplayInterval, items, itemsPerSlide, slideWidth, gap } = state;
+    const hasOverride = config.offsetOverride !== undefined;
     const totalItems = items.length;
     const isSingleSlide = items.length <= itemsPerSlide;
     index %= totalItems || 1; // Ensure index is within bounds.
@@ -91,7 +95,7 @@ function getTemplateData(state) {
 
         // Account for users providing a style string or object for each item.
         if (typeof style === 'string') {
-            item.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight}`;
+            item.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
             if (transform) item.style += `transform:${transform}`;
         } else {
             item.style = Object.assign({}, style, {
@@ -111,7 +115,7 @@ function getTemplateData(state) {
     const data = Object.assign({}, state, {
         items,
         slide,
-        offset: hasOverride ? state.offsetOverride : offset,
+        offset: hasOverride ? config.offsetOverride : offset,
         disableTransition: hasOverride,
         totalSlides,
         a11yStatusText,
@@ -138,28 +142,35 @@ function init() {
         observer.observeRoot(this, ['paused']);
     }
 
-    if (!autoplayInterval && getComputedStyle(this.listEl).getPropertyValue('overflow-x') !== 'visible') {
+    if (isNativeScrolling(this.listEl)) {
         config.nativeScrolling = true;
+        this.once('destroy', onScroll(this.listEl, () => {
+            if (!config.scrollTransitioning) {
+                handleScroll.call(this, this.listEl.scrollLeft);
+            }
+        }));
     } else {
-        this.subscribeTo(this.listEl).on('transitionend', this.emitUpdate);
+        this.subscribeTo(this.listEl).on('transitionend', ({ target }) => {
+            if (target === this.listEl) {
+                this.emitUpdate();
+            }
+        });
     }
 }
 
 function onRender() {
     const { containerEl, listEl, state } = this;
-    const { config, items, autoplayInterval, paused, offsetOverride } = state;
-    const hasOverride = offsetOverride !== undefined;
+    const { config, items, autoplayInterval, paused } = state;
 
     // Do nothing for empty carousels.
     if (!items.length) {
         return;
     }
 
-    // When there is an offset override (used for infinite scroll) we reset it
-    // after rendering to restore the expected carousel state.
-    if (hasOverride) {
-        config.preserveItems = true;
-        this.renderFrame = requestAnimationFrame(() => this.setState('offsetOverride', undefined));
+    // Force a rerender to start the offset override animation.
+    if (config.offsetOverride) {
+        config.offsetOverride = undefined;
+        this.renderFrame = requestAnimationFrame(() => this.setStateDirty());
         return;
     }
 
@@ -177,11 +188,17 @@ function onRender() {
         });
 
         if (config.nativeScrolling) {
-            const offset = hasOverride ? offsetOverride : getOffset(state);
-            // Listen for future scroll events and snap to the closest point.
-            this.cancelScrollHandler = onScrollEnd(listEl, handleScrollEnd.bind(this));
-            // Animate to the new scrolling position and emit update events afterward.
-            this.cancelScrollTransition = scrollTransition(listEl, offset, this.emitUpdate);
+            if (config.skipScrolling) {
+                this.emitUpdate();
+                config.skipScrolling = false;
+            } else {
+                const offset = getOffset(state);
+                if (offset !== listEl.scrollLeft) {
+                    // Animate to the new scrolling position and emit update events afterward.
+                    config.scrollTransitioning = true;
+                    this.cancelScrollTransition = scrollTransition(listEl, offset, this.emitUpdate);
+                }
+            }
         }
 
         if (autoplayInterval && !paused) {
@@ -204,6 +221,7 @@ function onRender() {
 
         this.setStateDirty('slideWidth', containerWidth);
         config.preserveItems = true;
+        config.nativeScrolling = isNativeScrolling(listEl);
 
         // Update item positions in the dom.
         forEls(listEl, (itemEl, i) => {
@@ -221,17 +239,16 @@ function onRender() {
 function cleanupAsync() {
     clearTimeout(this.autoplayTimeout);
     cancelAnimationFrame(this.renderFrame);
-    if (this.cancelScrollHandler) {
-        this.cancelScrollHandler();
-    }
+
     if (this.cancelScrollTransition) {
         this.cancelScrollTransition();
+        this.cancelScrollTransition = undefined;
     }
-    this.cancelScrollHandler = this.cancelScrollTransition = undefined;
 }
 
 function emitUpdate() {
-    const { state: { items } } = this;
+    const { state: { config, items } } = this;
+    config.scrollTransitioning = false;
     emitAndFire(this, 'carousel-update', {
         visibleIndexes: items
             .filter(({ fullyVisible }) => fullyVisible)
@@ -294,41 +311,40 @@ function togglePlay(originalEvent) {
  *
  * @param {number} scrollLeft The current scroll position of the carousel.
  */
-function handleScrollEnd(scrollLeft) {
-    if (this.cancelScrollTransition) {
-        this.cancelScrollTransition();
-        this.cancelScrollTransition = undefined;
-    }
-
+function handleScroll(scrollLeft) {
     const { state } = this;
-    const { config, items, slideWidth } = state;
-    const itemsPerSlide = state.itemsPerSlide || 1;
-    const direction = getOffset(state) > scrollLeft ? RIGHT : LEFT;
-    // Used to add additional tolerance based on swipe direction.
-    const targetLeft = scrollLeft - (direction * slideWidth * 0.2);
+    const { config, items, gap } = state;
+    let closest;
 
-    // Find the closest item using a binary search on each carousel slide.
-    const totalItems = items.length;
-    let low = 0;
-    let high = Math.ceil(totalItems / itemsPerSlide) - 1;
+    if (scrollLeft >= getMaxOffset(state) - gap) {
+        closest = items.length - 1;
+    } else {
+        // Find the closest item using a binary search on each carousel slide.
+        const itemsPerSlide = state.itemsPerSlide || 1;
+        const totalItems = items.length;
+        let low = 0;
+        let high = Math.ceil(totalItems / itemsPerSlide) - 1;
 
-    while (high - low > 1) {
-        const mid = Math.floor((low + high) / 2);
-        if (targetLeft > items[mid * itemsPerSlide].left) {
-            low = mid;
-        } else {
-            high = mid;
+        while (high - low > 1) {
+            const mid = Math.floor((low + high) / 2);
+            if (scrollLeft > items[mid * itemsPerSlide].left) {
+                low = mid;
+            } else {
+                high = mid;
+            }
         }
+
+        const deltaLow = Math.abs(scrollLeft - items[low * itemsPerSlide].left);
+        const deltaHigh = Math.abs(scrollLeft - items[high * itemsPerSlide].left);
+        closest = (deltaLow > deltaHigh ? high : low) * itemsPerSlide;
     }
 
-    const deltaLow = Math.abs(targetLeft - items[low * itemsPerSlide].left);
-    const deltaHigh = Math.abs(targetLeft - items[high * itemsPerSlide].left);
-    const closest = (deltaLow > deltaHigh ? high : low) * itemsPerSlide;
-
-    // Always update with the new index to ensure the scroll animations happen.
-    config.preserveItems = true;
-    this.setStateDirty('index', closest);
-    emitAndFire(this, 'carousel-scroll', { index: closest });
+    if (state.index !== closest) {
+        config.skipScrolling = true;
+        config.preserveItems = true;
+        this.setState('index', closest);
+        emitAndFire(this, 'carousel-scroll', { index: closest });
+    }
 }
 
 /**
@@ -351,7 +367,7 @@ function move(delta) {
     if (autoplayInterval) {
         if (delta === RIGHT && nextIndex < index) {
             // Transitions to one slide before the beginning.
-            offsetOverride = -slideWidth;
+            offsetOverride = -slideWidth - gap;
 
             // Move the items in the last slide to be before the first slide.
             for (let i = Math.ceil(itemsPerSlide + peek); i--;) {
@@ -360,7 +376,7 @@ function move(delta) {
             }
         } else if (delta === LEFT && nextIndex > index) {
             // Transitions one slide past the end.
-            offsetOverride = getMaxOffset(state) + slideWidth;
+            offsetOverride = getMaxOffset(state) + slideWidth + gap;
 
             // Moves the items in the first slide to be after the last slide.
             for (let i = Math.ceil(itemsPerSlide + peek); i--;) {
@@ -369,7 +385,7 @@ function move(delta) {
             }
         }
 
-        this.setState('offsetOverride', offsetOverride);
+        config.offsetOverride = offsetOverride;
     }
 
     this.setState('index', nextIndex);
@@ -380,8 +396,6 @@ function move(delta) {
             // If we are in autoplay mode and went outside of the normal offset
             // We make sure to restore all of the items that got moved around.
             items.forEach(item => { item.transform = undefined; });
-            config.preserveItems = true;
-            this.setStateDirty('items');
         }
     });
 
@@ -483,6 +497,16 @@ function forEls(parent, fn) {
         fn(child, i++);
         child = child.nextElementSibling;
     }
+}
+
+/**
+ * Checks if an element is using native scrolling.
+ *
+ * @param {HTMLElement} el the element to check
+ * @return {boolean}
+ */
+function isNativeScrolling(el) {
+    return getComputedStyle(el).overflowX !== 'visible';
 }
 
 module.exports = require('marko-widgets').defineComponent({
