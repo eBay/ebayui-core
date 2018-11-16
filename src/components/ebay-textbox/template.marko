@@ -1,5 +1,5 @@
 <${data.tag} class=data.rootClass style=data.style w-bind>
-    <if (data.displayIcon && !data.iconPostfix)>
+    <if (data.displayIcon && data.iconPrefix)>
         <w-widget w-body=data.iconTag/>
     </if>
     <${data.textboxTag}

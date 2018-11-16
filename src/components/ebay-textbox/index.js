@@ -9,6 +9,7 @@ function getInitialState(input) {
         classes.push('textbox__control--fluid');
     }
     const iconPostfix = input.iconPosition === 'postfix';
+    const iconPrefix = input.iconPosition === 'prefix' || !iconPostfix;
     const rootClasses = ['textbox', input.class];
     if (iconPostfix) {
         rootClasses.push('textbox--icon-end');
@@ -22,6 +23,7 @@ function getInitialState(input) {
         icon: input.icon,
         iconTag: input.iconTag && input.iconTag.renderBody,
         displayIcon: input.icon && !Boolean(input.multiline),
+        iconPrefix,
         iconPostfix,
         tag: input.fluid ? 'div' : 'span',
         textboxTag: Boolean(input.multiline) ? 'textarea' : 'input',
