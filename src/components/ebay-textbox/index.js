@@ -8,10 +8,11 @@ function getInitialState(input) {
     if (input.fluid) {
         classes.push('textbox__control--fluid');
     }
+    const displayIcon = Boolean(input.icon && !input.multiline);
     const iconPostfix = input.iconPosition === 'postfix';
     const iconPrefix = input.iconPosition === 'prefix' || !iconPostfix;
     const rootClasses = ['textbox', input.class];
-    if (iconPostfix) {
+    if (displayIcon && iconPostfix) {
         rootClasses.push('textbox--icon-end');
     }
 
@@ -22,7 +23,7 @@ function getInitialState(input) {
         classes,
         icon: input.icon,
         iconTag: input.iconTag && input.iconTag.renderBody,
-        displayIcon: input.icon && !Boolean(input.multiline),
+        displayIcon,
         iconPrefix,
         iconPostfix,
         tag: input.fluid ? 'div' : 'span',
