@@ -1,6 +1,6 @@
 <${data.tag} class=data.rootClass style=data.style w-bind>
     <if (data.displayIcon && data.iconPrefix)>
-        <w-widget w-body=data.iconTag/>
+        <span body-only-if(true) w-body=data.iconTag/>
     </if>
     <${data.textboxTag}
     class=data.classes
@@ -12,6 +12,6 @@
     w-onblur="handleBlur"
     ${data.htmlAttributes} />
     <if (data.displayIcon && data.iconPostfix)>
-        <w-widget w-body=data.iconTag/>
+        <span body-only-if(true) w-body=data.iconTag/>
     </if>
 </>

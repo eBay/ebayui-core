@@ -8,7 +8,7 @@ function getInitialState(input) {
     if (input.fluid) {
         classes.push('textbox__control--fluid');
     }
-    const displayIcon = Boolean(input.icon && !input.multiline);
+    const displayIcon = Boolean(input.icon && !input.multiline && input.iconTag);
     const iconPostfix = input.iconPosition === 'postfix';
     const iconPrefix = input.iconPosition === 'prefix' || !iconPostfix;
     const rootClasses = ['textbox', input.class];
