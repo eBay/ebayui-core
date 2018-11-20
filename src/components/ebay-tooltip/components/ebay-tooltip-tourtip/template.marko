@@ -1,0 +1,22 @@
+<span
+    class=[
+        'tourtip',
+        (data.expandInit && data.expanded && 'tourtip--expanded')
+    ]
+    w-on-expander-expand='handleExpand'
+    w-on-expander-collapse='handleCollapse'
+    w-bind>
+    <for(content in data.hosts)>
+        <span
+            class=[content.class, 'tourtip__host']
+            style=content.style
+            w-body=content.renderBody/>
+    </for>
+    <ebay-tooltip-overlay
+        type="tourtip"
+        location=data.location
+        headings=data.headings
+        contents=data.contents
+        a11yCloseText=data.a11yCloseText
+        w-on-tooltip-close='tourtipCloseButton'/>
+</span>

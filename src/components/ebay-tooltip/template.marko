@@ -1,0 +1,60 @@
+<span
+    ${data.htmlAttributes}
+    w-on-expander-expand="handleExpand"
+    w-on-expander-collapse="handleCollapse"
+    w-bind>
+    <if(data.type === 'tooltip')>
+        <ebay-tooltip-tooltip
+            style=data.style
+            class=data.class
+            type=data.type
+            location=data.location
+            hosts=data.hosts
+            headings=data.headings
+            contents=data.contents
+            styleLeft=data.styleLeft
+            styleTop=data.styleTop
+            styleRight=data.styleRight
+            styleBottom=data.styleBottom
+            a11yCloseText=data.a11yCloseText
+            w-on-tooltip-close="handleTooltipClose"
+            />
+    </if>
+    <else-if(data.type === 'infotip')>
+        <ebay-tooltip-infotip
+            style=data.style
+            class=data.class
+            type=data.type
+            location=data.location
+            icon=data.icon
+            icon-tag=data.iconTag
+            headings=data.headings
+            contents=data.contents
+            styleLeft=data.styleLeft
+            styleTop=data.styleTop
+            styleRight=data.styleRight
+            styleBottom=data.styleBottom
+            a11yCloseText=data.a11yCloseText
+            w-on-tooltip-close="handleTooltipClose"
+            />
+    </else-if>
+    <else-if(data.type === 'tourtip')>
+        <ebay-tooltip-tourtip
+            style=data.style
+            class=data.class
+            type=data.type
+            hosts=data.hosts
+            location=data.location
+            headings=data.headings
+            contents=data.contents
+            styleLeft=data.styleLeft
+            styleTop=data.styleTop
+            styleRight=data.styleRight
+            styleBottom=data.styleBottom
+            expand-init=data.expandInit
+            expanded=data.expanded
+            a11yCloseText=data.a11yCloseText
+            w-on-tooltip-close="handleTooltipClose"
+            />
+    </else-if>
+</span>

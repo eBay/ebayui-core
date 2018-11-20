@@ -1,0 +1,43 @@
+<h3>default using an info icon button:</h3>
+<ebay-tooltip>
+    <ebay-tooltip-host>
+        <button
+            name="icon-btn-1"
+            accesskey="i"
+            class='icon-btn'
+            aria-label='Developer-handled label'>
+            <ebay-icon type="inline" name="info"/>
+        </button>
+    </ebay-tooltip-host>
+    <ebay-tooltip-content><p>Use Access Key 'S' to display settings.</p></ebay-tooltip-content>
+</ebay-tooltip>
+
+<h3>default with custom icon button:</h3>
+<ebay-tooltip>
+    <ebay-tooltip-host>
+        <button
+            name="icon-btn-2"
+            accesskey="s"
+            class='icon-btn'
+            aria-label='Developer-handled label'>
+            <ebay-icon type="inline" name="settings"/>
+        </button>
+    </ebay-tooltip-host>
+    <ebay-tooltip-content><p>Use Access Key 'S' to display settings.</p></ebay-tooltip-content>
+</ebay-tooltip>
+
+<h3>other host content:</h3>
+<ebay-tooltip location="top-left">
+    <ebay-tooltip-host>
+        <a href="https://www.ebay.com" id="tooltip-link-0">View options</a>
+    </ebay-tooltip-host>
+    <ebay-tooltip-content><p>Use Access Key 'S' to display settings.</p></ebay-tooltip-content>
+</ebay-tooltip>
+
+<h3>custom style for location:</h3>
+<ebay-tooltip location="top-left" style-top="32px" style-left="-16px">
+    <ebay-tooltip-host>
+        <a href="https://www.ebay.com" id="tooltip-link-1">View options</a>
+    </ebay-tooltip-host>
+    <ebay-tooltip-content><p>Use Access Key 'S' to display settings.</p></ebay-tooltip-content>
+</ebay-tooltip>

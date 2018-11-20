@@ -1,0 +1,19 @@
+<span
+    class="tooltip"
+    w-on-expander-expand='handleExpand'
+    w-on-expander-collapse='handleCollapse'
+    w-bind>
+    <for(content in data.hosts)>
+        <span
+            class=[content.class, 'tooltip__host']
+            style=content.style
+            aria-describedby=`tooltip-${widget.id}`
+            w-body=content.renderBody/>
+    </for>
+    <ebay-tooltip-overlay
+        type="tooltip"
+        labeledby=`tooltip-${widget.id}`
+        location=data.location
+        headings=data.headings
+        contents=data.contents/>
+</span>

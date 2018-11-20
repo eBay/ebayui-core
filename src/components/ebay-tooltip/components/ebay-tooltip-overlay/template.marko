@@ -1,0 +1,36 @@
+<div
+    class=`${data.type}__overlay`
+    role=(data.type === 'tourtip'?'region':'tooltip')
+    aria-labelledby=(data.type === 'tourtip'?`tourtip-label-${widget.id}`:'')
+    id=data.tooltipId
+    w-bind>
+    <span class=`${data.type}__pointer ${data.type}__pointer--${data.location}`/>
+    <div class=`${data.type}__mask`>
+        <div class=`${data.type}__cell`>
+            <div class=`${data.type}__content`>
+                <for(heading in data.headings)>
+                    <h2
+                        class=[`${data.type}__heading`, heading.class]
+                        style=heading.style
+                        id=`tourtip-label-${widget.id}`
+                        w-body=heading.renderBody/>
+                </for>
+                <for(content in data.contents)>
+                    <div
+                        body-only-if(!content.class && !content.style)
+                        class=content.class
+                        style=content.style
+                        w-body=content.renderBody/>
+                </for>
+            </div>
+            <button
+                if(data.type !== 'tooltip')
+                aria-label=data.a11yCloseText
+                class=`${data.type}__close`
+                type="button"
+                w-on-click="handleCloseButton">
+                <span aria-hidden="true" role="img"></span>
+            </button>
+        </div>
+    </div>
+</div>

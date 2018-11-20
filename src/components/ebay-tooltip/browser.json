@@ -1,0 +1,17 @@
+{
+    "dependencies": [
+        {
+            "if-not-flag": "ebayui-no-skin",
+            "dependencies": [
+                "@ebay/skin/actionable",
+                "@ebay/skin/tooltip"
+            ]
+        },
+        "require: marko-widgets",
+        "require: ./components/ebay-tooltip-infotip",
+        "require: ./components/ebay-tooltip-tooltip",
+        "require: ./components/ebay-tooltip-tourtip",
+        "require: ./components/ebay-tooltip-overlay",
+        "require: ./index.js"
+    ]
+}

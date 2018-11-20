@@ -1,0 +1,23 @@
+<span
+    class="infotip"
+    w-on-expander-expand='handleExpand'
+    w-on-expander-collapse='handleCollapse'
+    w-bind>
+    <button
+        class='infotip__host icon-btn'
+        aria-describedby=`infotip-${widget.id}`
+        aria-label=data.ariaLabel>
+        <div if(data.icon) body-only-if(true)>
+            <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
+        </div>
+        <ebay-icon if(!data.icon) type="inline" name="info"/>
+    </button>
+    <ebay-tooltip-overlay
+        type="infotip"
+        tooltip-id=`infotip-${widget.id}`
+        location=data.location
+        headings=data.headings
+        contents=data.contents
+        a11y-close-text=data.a11yCloseText
+        w-on-tooltip-close='infotipCloseButton'/>
+</span>
