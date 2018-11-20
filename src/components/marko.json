@@ -1,0 +1,5 @@
+{
+  "<*>": {
+    "transformer": "../common/transformers/ebayui-attribute/index.js"
+  }
+}
