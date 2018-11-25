@@ -1,6 +1,7 @@
 ---
 name: "\U0001F41BBug Report"
 about: Something isn't working
+
 ---
 
 <!-- Delete any sections below that are not relevant. -->
