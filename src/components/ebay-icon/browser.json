@@ -5,6 +5,6 @@
             "path": "@ebay/skin/icon"
         },
         "require: marko-widgets",
-        "require: ./index.js"
+        "require: ./widget.js"
     ]
 }

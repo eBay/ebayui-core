@@ -1,27 +1,12 @@
 const markoWidgets = require('marko-widgets');
 const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
-const defined = {};
-let rootSvg;
+let defined;
 
-function init() {
-    // Create a hidden svg to store all symbols on startup.
-    if (!rootSvg) {
-        rootSvg = document.createElement('svg');
-        rootSvg.hidden = true;
-        document.body.insertBefore(rootSvg, document.body.firstChild);
-    }
-
-    // If there were any symbols rendered then we move them to the svg above after rendering them.
-    const defs = this.getEl('defs');
-    const symbol = defs && defs.querySelector('symbol');
-
-    if (symbol) {
-        // Here we get the name of the symbol by removing the `icon-` part.
-        // We then mark this symbol as `defined` so that no other `ebay-icons` render it.
-        defined[symbol.id.slice(5)] = true;
-        rootSvg.appendChild(symbol);
-    }
+if (typeof window !== 'undefined') {
+    defined = window.$ebayIcons = window.$ebayIcons || {};
+} else {
+    defined = {};
 }
 
 function getTemplateData(state, input, out) {
@@ -66,8 +51,7 @@ function getTemplateData(state, input, out) {
     };
 }
 
-module.exports = markoWidgets.defineComponent({
-    init,
+module.exports = markoWidgets.defineRenderer({
     template,
     getTemplateData
 });
