@@ -62,4 +62,19 @@ describe('body-scroll', () => {
 
         body.removeAttribute('style');
     });
+
+    test('restores the correct styles when prevented multiple times', () => {
+        expect(body.getAttribute('style')).to.equal(null);
+        bodyScroll.prevent();
+        bodyScroll.prevent();
+        bodyScroll.prevent();
+        expect(body.getAttribute('style'))
+            .to.contain('overflow:hidden')
+            .and.to.contain('position:fixed')
+            .and.to.not.contain('margin-top')
+            .and.to.not.contain('margin-left');
+
+        bodyScroll.restore();
+        expect(body.getAttribute('style')).to.equal(null);
+    });
 });
