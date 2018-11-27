@@ -24,26 +24,34 @@ function getInitialState(input) {
 
     const isExpandVariant = variant === 'expand';
     const isCtaVariant = variant === 'cta';
-    if (href || isExpandVariant || isCtaVariant) {
+    const isIconVariant = variant === 'icon';
+    const isBadged = Boolean(input.badgeNumber && isIconVariant);
+    const hasAriaLabel = Boolean(input['*'] && input['*'].ariaLabel);
+
+    if (href || isExpandVariant || isCtaVariant || isIconVariant) {
         mainClass = `${variant}-${mainClass}`;
     }
 
     const classes = [mainClass, input.class];
 
-    if (priority === 'primary' || priority === 'secondary') {
+    if (!isIconVariant && !isBadged && (priority === 'primary' || priority === 'secondary')) {
         classes.push(`${mainClass}--${priority}`);
     }
 
-    if (size === 'small' || size === 'large') {
+    if (!isBadged && (size === 'small' || size === 'large')) {
         classes.push(`${mainClass}--${size}`);
     }
 
-    if (isExpandVariant && noText) {
+    if (isIconVariant || isBadged || (isExpandVariant && noText)) {
         classes.push(`${mainClass}--no-text`);
     }
 
     if (fluid) {
         classes.push(`${mainClass}--fluid`);
+    }
+
+    if (isBadged) {
+        classes.push(`${mainClass}--badged`);
     }
 
     return {
@@ -54,7 +62,11 @@ function getInitialState(input) {
         href,
         type: input.type || 'button',
         disabled: Boolean(input.disabled),
-        partiallyDisabled: input.partiallyDisabled ? 'true' : null // for aria-disabled
+        partiallyDisabled: input.partiallyDisabled ? 'true' : null, // for aria-disabled
+        isBadged,
+        hasAriaLabel,
+        badgeNumber: input.badgeNumber,
+        badgeAriaLabel: input.badgeAriaLabel
     };
 }
 

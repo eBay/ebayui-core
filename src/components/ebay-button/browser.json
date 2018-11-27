@@ -2,8 +2,12 @@
     "dependencies": [
         {
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/button"
+            "dependencies": [
+                "@ebay/skin/actionable",
+                "@ebay/skin/button"
+            ]
         },
+        "../../../src/components/ebay-badge",
         "require: marko-widgets",
         "require: ./index.js"
     ]

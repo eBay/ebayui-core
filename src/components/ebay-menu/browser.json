@@ -4,6 +4,7 @@
             "if-not-flag": "ebayui-no-skin",
             "path": "@ebay/skin/menu"
         },
+        "../../../src/components/ebay-badge",
         "../../../src/components/ebay-button",
         "../../../src/components/ebay-icon",
         "require-run: nodelist-foreach-polyfill",
