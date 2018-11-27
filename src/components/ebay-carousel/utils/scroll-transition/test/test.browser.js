@@ -1,6 +1,5 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
-const testUtils = require('../../../../../common/test-utils/browser');
 const scrollTransition = require('../');
 
 describe('scroll-transition', () => {
@@ -28,39 +27,15 @@ describe('scroll-transition', () => {
         });
     });
 
-    it('cancels the transition on additional touches', (done) => {
+    it('does not call finish function if scroll is canceled', (done) => {
         const spy = sinon.spy();
+        const cancel = scrollTransition(scrollEl, 100, spy);
         setTimeout(() => {
-            testUtils.triggerEvent(scrollEl, 'touchstart');
+            cancel();
             setTimeout(() => {
-                expect(scrollEl.scrollLeft).to.not.equal(0);
-                expect(scrollEl.scrollLeft).to.not.equal(100);
                 expect(spy.callCount).to.equal(0);
                 done();
             }, 300);
         }, 50);
-
-        scrollTransition(scrollEl, 100, spy);
-    });
-
-    it('continues a canceled transition if the touch event does not move', (done) => {
-        const spy = sinon.spy();
-        setTimeout(() => {
-            testUtils.triggerEvent(scrollEl, 'touchstart');
-            setTimeout(() => {
-                expect(scrollEl.scrollLeft).to.not.equal(0);
-                expect(scrollEl.scrollLeft).to.not.equal(100);
-                expect(spy.callCount).to.equal(0);
-                testUtils.triggerEvent(scrollEl, 'touchend');
-
-                setTimeout(() => {
-                    expect(scrollEl.scrollLeft).to.equal(100);
-                    expect(spy.callCount).to.equal(1);
-                    done();
-                }, 300);
-            }, 300);
-        }, 50);
-
-        scrollTransition(scrollEl, 100, spy);
     });
 });

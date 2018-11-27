@@ -65,6 +65,7 @@ Event | Data | Description
 
 Notes:
 
+* The carousel will use native scrolling if a sufficient implementation of the css scroll snapping api is available. Otherwise it will fall back to using a transform with manual user navigation via the controls.
 * The `carousel` will manipulate the `tabindex` property of nested focusable elements inside `<ebay-carousel-item>`.
 * The `autoplay` carousel currently does not support native scrolling and will use transforms instead.
 * The `items-per-slide` attribute can be set to a float such as `3.5` to show 3 items, and half of the 4th item. This also automatically enables the `no-dots` attribute.
