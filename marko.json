@@ -261,6 +261,7 @@
       "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-textbox>": {
+        "transformer": "./src/components/ebay-textbox/transformer.js",
         "renderer": "./src/components/ebay-textbox/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
@@ -268,7 +269,10 @@
         "@style": "string",
         "@invalid": "boolean",
         "@fluid": "boolean",
-        "@multiline": "boolean"
+        "@multiline": "boolean",
+        "@icon": "string",
+        "@icon-position": "string",
+        "@iconTag <icon>": {}
     }
   }
   
