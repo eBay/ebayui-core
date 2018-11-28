@@ -11,9 +11,14 @@ function getInitialState(input) {
     const size = input.size;
     const noText = input.noText;
     const fluid = input.fluid;
+    const fixedHeight = input.fixedHeight;
+    const truncate = input.truncate;
     let variant = input.variant;
     let tag;
     let mainClass = 'btn';
+    let sizeClass = '';
+    let fixedHeightClass = '';
+    let truncatedClass = '';
 
     if (href) {
         variant = 'fake';
@@ -24,6 +29,7 @@ function getInitialState(input) {
 
     const isExpandVariant = variant === 'expand';
     const isCtaVariant = variant === 'cta';
+
     if (href || isExpandVariant || isCtaVariant) {
         mainClass = `${variant}-${mainClass}`;
     }
@@ -34,8 +40,24 @@ function getInitialState(input) {
         classes.push(`${mainClass}--${priority}`);
     }
 
-    if (size === 'small' || size === 'large') {
-        classes.push(`${mainClass}--${size}`);
+    if (size === 'small' || size === 'medium' || size === 'large') {
+        sizeClass = `${mainClass}--${size}`;
+    } else if (!size && (fixedHeight || truncate)) {
+        sizeClass = `${mainClass}--medium`;
+    }
+
+    if (fixedHeight) {
+        fixedHeightClass = `${sizeClass}-fixed-height`;
+        classes.push(fixedHeightClass);
+    }
+
+    if (truncate) {
+        truncatedClass = `${sizeClass}-truncated`;
+        classes.push(truncatedClass);
+    }
+
+    if (!fixedHeight && !truncate) {
+        classes.push(sizeClass);
     }
 
     if (isExpandVariant && noText) {

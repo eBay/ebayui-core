@@ -16,8 +16,10 @@ Name | Type | Stateful | Description
 `href` | String | No | for link that looks like a button
 `fluid` | Boolean | No |
 `disabled` | Boolean | Yes |
-`partially-disabled` | Boolean | No
+`partially-disabled` | Boolean | No |
 `variant` | String | No | optional, to alter Skin classes: "expand" / "cta"
+`fixed-height` | Boolean | No | fixes the height based on `size`; defaults to `medium` when no size is specified
+`truncate` | Boolean | No | will truncate the text of the button onto a single line, and adds an ellipsis, when the button's text overflows
 
 ## ebay-button Events
 
