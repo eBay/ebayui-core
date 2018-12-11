@@ -2,9 +2,9 @@
     "dependencies": [
         {
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/icon"
+            "path": "@ebay/skin/badge"
         },
         "require: marko-widgets",
-        "require: ./widget.js"
+        "require: ./index.js"
     ]
 }

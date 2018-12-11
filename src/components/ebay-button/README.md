@@ -18,6 +18,8 @@ Name | Type | Stateful | Description
 `disabled` | Boolean | Yes |
 `partially-disabled` | Boolean | No
 `variant` | String | No | optional, to alter Skin classes: "expand" / "cta"
+`badge-number` | Number | No | used as the number to be placed in the badge
+`badge-aria-label` | String | No | passed as the `aria-label` directly to the badge
 
 ## ebay-button Events
 

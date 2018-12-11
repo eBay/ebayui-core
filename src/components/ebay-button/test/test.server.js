@@ -87,5 +87,18 @@ test('renders cta variant', context => {
     expect($('.cta-btn').length).to.equal(1);
 });
 
+test('renders icon variant', context => {
+    const input = { variant: 'icon' };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('.icon-btn').length).to.equal(1);
+});
+
+test('renders badged icon variant', context => {
+    const input = { variant: 'icon', badgeNumber: 5 };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('.icon-btn').length).to.equal(1);
+    expect($('.badge').length).to.equal(1);
+});
+
 test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'button.btn'));
 test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'button.btn'));

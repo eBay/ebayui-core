@@ -62,3 +62,5 @@ Name | Type | Stateful | Description
 `type` (fake menu) | String | No | Set to "button" for fake menu-item `<button>`
 `checked` (radio or checkbox) | Boolean | Yes | whether or not the item is checked (**Note:** use the root `ebay-menu` element's `checked` property for radio type menus, or `setCheckedList()` method for checkbox type menus, to set this property.)
 `current` (fake menu) | Boolean | No | whether or not the href is the current href of the page
+`badge-number` | Number | No | used as the number to be placed in the badge
+`badge-aria-label` | String | No | passed as the `aria-label` directly to the badge
