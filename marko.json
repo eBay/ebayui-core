@@ -1,4 +1,13 @@
 {
+    "<ebay-badge>": {
+        "renderer": "./src/components/ebay-badge/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@type": "string",
+        "@number": "expression"
+    },
     "<ebay-breadcrumb>": {
         "renderer": "./src/components/ebay-breadcrumb/index.js",
         "@*": "expression",
@@ -35,7 +44,9 @@
         "@fluid": "boolean",
         "@variant": "string",
         "@fixed-height": "boolean",
-        "@truncate": "boolean"
+        "@truncate": "boolean",
+        "@badge-number": "expression",
+        "@badge-aria-label": "string"
     },
     "<ebay-carousel>": {
         "renderer": "./src/components/ebay-carousel/index.js",
@@ -151,7 +162,9 @@
             "@href": "string",
             "@type": "string",
             "@checked": "boolean",
-            "@current": "boolean"
+            "@current": "boolean",
+            "@badge-number": "expression",
+            "@badge-aria-label": "string"
         }
     },
     "<ebay-menu-item>": {
@@ -275,6 +288,7 @@
       "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-textbox>": {
+        "transformer": "./src/components/ebay-textbox/transformer.js",
         "renderer": "./src/components/ebay-textbox/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
@@ -282,7 +296,10 @@
         "@style": "string",
         "@invalid": "boolean",
         "@fluid": "boolean",
-        "@multiline": "boolean"
+        "@multiline": "boolean",
+        "@icon": "string",
+        "@icon-position": "string",
+        "@iconTag <icon>": {}
     }
   }
   

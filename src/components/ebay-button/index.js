@@ -29,14 +29,17 @@ function getInitialState(input) {
 
     const isExpandVariant = variant === 'expand';
     const isCtaVariant = variant === 'cta';
+    const isIconVariant = variant === 'icon';
+    const isBadged = Boolean(input.badgeNumber && isIconVariant);
+    const hasAriaLabel = Boolean(input['*'] && input['*'].ariaLabel);
 
-    if (href || isExpandVariant || isCtaVariant) {
+    if (href || isExpandVariant || isCtaVariant || isIconVariant) {
         mainClass = `${variant}-${mainClass}`;
     }
 
     const classes = [mainClass, input.class];
 
-    if (priority === 'primary' || priority === 'secondary') {
+    if (!isIconVariant && !isBadged && (priority === 'primary' || priority === 'secondary')) {
         classes.push(`${mainClass}--${priority}`);
     }
 
@@ -76,7 +79,11 @@ function getInitialState(input) {
         href,
         type: input.type || 'button',
         disabled: Boolean(input.disabled),
-        partiallyDisabled: input.partiallyDisabled ? 'true' : null // for aria-disabled
+        partiallyDisabled: input.partiallyDisabled ? 'true' : null, // for aria-disabled
+        isBadged,
+        hasAriaLabel,
+        badgeNumber: input.badgeNumber,
+        badgeAriaLabel: input.badgeAriaLabel
     };
 }
 

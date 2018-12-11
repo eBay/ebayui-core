@@ -18,30 +18,32 @@ module.exports = { prevent, restore };
  * scrolling.
  */
 function prevent() {
-    const { body } = document;
-    const { pageXOffset, pageYOffset } = window;
-    const { width, height, marginTop, marginLeft } = getComputedStyle(body);
-    let styleText = 'position:fixed;overflow:hidden;';
-    previousPosition = [pageXOffset, pageYOffset];
-    previousStyles = body.getAttribute('style');
-    styleText += `height:${height};`;
-    styleText += `width:${width};`;
+    if (!isPrevented) {
+        const { body } = document;
+        const { pageXOffset, pageYOffset } = window;
+        const { width, height, marginTop, marginLeft } = getComputedStyle(body);
+        let styleText = 'position:fixed;overflow:hidden;';
+        previousPosition = [pageXOffset, pageYOffset];
+        previousStyles = body.getAttribute('style');
+        styleText += `height:${height};`;
+        styleText += `width:${width};`;
 
-    if (pageYOffset) {
-        styleText += `margin-top:${-1 * (pageYOffset - parseInt(marginTop, 10))}px;`;
+        if (pageYOffset) {
+            styleText += `margin-top:${-1 * (pageYOffset - parseInt(marginTop, 10))}px;`;
+        }
+
+        if (pageXOffset) {
+            styleText += `margin-left:${-1 * (pageXOffset - parseInt(marginLeft, 10))}px`;
+        }
+
+        if (previousStyles) {
+            styleText = `${previousStyles};${styleText}`;
+        }
+
+        body.setAttribute('style', styleText);
+        resizeUtil.addEventListener('', recalculate);
+        isPrevented = true;
     }
-
-    if (pageXOffset) {
-        styleText += `margin-left:${-1 * (pageXOffset - parseInt(marginLeft, 10))}px`;
-    }
-
-    if (previousStyles) {
-        styleText = `${previousStyles};${styleText}`;
-    }
-
-    body.setAttribute('style', styleText);
-    resizeUtil.addEventListener('', recalculate);
-    isPrevented = true;
 }
 
 /**
