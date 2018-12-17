@@ -65,14 +65,11 @@ function getInitialState(input) {
 }
 
 function getTemplateData(state) {
-    let { index } = state;
     const { config, autoplayInterval, items, itemsPerSlide, slideWidth, gap } = state;
     const hasOverride = config.offsetOverride !== undefined;
-    const totalItems = items.length;
     const isSingleSlide = items.length <= itemsPerSlide;
-    index %= totalItems || 1; // Ensure index is within bounds.
-    index -= index % (itemsPerSlide || 1); // Round index to the nearest valid slide index.
-    state.index = Math.abs(index); // Ensure positive and save back to state.
+    state.index = normalizeIndex(state, state.index);
+
     const offset = getOffset(state);
     const prevControlDisabled = isSingleSlide || !autoplayInterval && offset === 0;
     const nextControlDisabled = isSingleSlide || !autoplayInterval && offset === getMaxOffset(state);
@@ -336,7 +333,7 @@ function handleScroll(scrollLeft) {
 
         const deltaLow = Math.abs(scrollLeft - items[low * itemsPerSlide].left);
         const deltaHigh = Math.abs(scrollLeft - items[high * itemsPerSlide].left);
-        closest = (deltaLow > deltaHigh ? high : low) * itemsPerSlide;
+        closest = normalizeIndex(state, (deltaLow > deltaHigh ? high : low) * itemsPerSlide);
     }
 
     if (state.index !== closest) {
@@ -442,7 +439,22 @@ function getSlide({ index, itemsPerSlide }, i = index) {
     if (!itemsPerSlide) {
         return;
     }
+
     return Math.ceil(i / itemsPerSlide);
+}
+
+/**
+ * Ensures that an index is valid.
+ *
+ * @param {object} state The widget state.
+ * @param {number} index the index to normalize.
+ */
+function normalizeIndex({ items, itemsPerSlide }, index) {
+    let result = index;
+    result %= items.length || 1; // Ensure index is within bounds.
+    result -= result % (itemsPerSlide || 1); // Round index to the nearest valid slide index.
+    result = Math.abs(result); // Ensure positive value.
+    return result;
 }
 
 /**
@@ -452,36 +464,31 @@ function getSlide({ index, itemsPerSlide }, i = index) {
  * @param {-1|1} delta 1 for right and -1 for left.
  * @return {number}
  */
-function getNextIndex({ index, items, slideWidth, itemsPerSlide }, delta) {
+function getNextIndex(state, delta) {
+    const { index, items, slideWidth, itemsPerSlide } = state;
     let i = index;
     let item;
 
     // If going backward from 0, we go to the end.
     if (delta === LEFT && i === 0) {
-        return items.length - 1;
+        i = items.length - 1;
+    } else {
+        // Find the index of the next item that is not fully in view.
+        do {
+            item = items[i += delta];
+        } while (item && item.fullyVisible);
+
+        if (delta === LEFT && !itemsPerSlide) {
+            // If going left without items per slide, go as far left as possible while keeping this item fully in view.
+            const targetOffset = item.right - slideWidth;
+            do {
+                item = items[--i];
+            } while (item && item.left >= targetOffset);
+            i += 1;
+        }
     }
 
-    // Find the index of the next item that is not fully in view.
-    do {
-        item = items[i += delta];
-    } while (item && item.fullyVisible);
-
-    // If going right, then we just want the next item not fully in view.
-    if (delta === RIGHT) {
-        return i % items.length;
-    }
-
-    // If items per slide is set we must show the same items on the same slide.
-    if (itemsPerSlide) {
-        return i;
-    }
-
-    // If going left without items per slide, go as far left as possible while keeping this item fully in view.
-    const targetOffset = item.right - slideWidth;
-    do {
-        item = items[--i];
-    } while (item && item.left >= targetOffset);
-    return i + 1;
+    return normalizeIndex(state, i);
 }
 
 /**
