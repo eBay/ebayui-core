@@ -4,7 +4,7 @@ const template = require('./template.marko');
 function getInitialState(input) {
     const number = Number(input.number);
     const imgRole = (input.type !== 'menu' && input.type !== 'icon');
-    const showBadge = !isNaN(number);
+    const showBadge = !isNaN(number) && Number.isInteger(number) && number >= 0;
 
     return {
         showBadge,
