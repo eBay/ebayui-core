@@ -1,0 +1,6 @@
+{
+    "dependencies": [
+        "require: marko-widgets",
+        "require: ./index.js"
+    ]
+}

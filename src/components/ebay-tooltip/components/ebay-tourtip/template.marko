@@ -1,0 +1,31 @@
+<span w-bind>
+    <ebay-tooltip-base
+        type="tourtip"
+        location=data.location
+        style-left=data.styleLeft
+        style-top=data.styleTop
+        style-right=data.styleRight
+        style-bottom=data.styleBottom>
+        <span
+            class=[
+                'tourtip',
+                (data.expandInit && data.expanded && 'tourtip--expanded'),
+            ]
+            ${data.htmlAttributes}
+            w-on-expander-collapse='handleCollapse'>
+            <span
+                if(data.host)
+                class=[data.host.class, 'tourtip__host']
+                style=data.host.style
+                w-body=data.host.renderBody/>
+            <ebay-tooltip-overlay
+                type="tourtip"
+                tooltip-id=`tourtip-${widget.id}`
+                location=data.location
+                heading=data.heading
+                content=data.content
+                a11y-close-text=data.a11yCloseText
+                w-on-tooltip-close='tourtipCloseButton'/>
+        </span>
+    </ebay-tooltip-base>
+</span>

@@ -302,34 +302,23 @@
         "@iconTag <icon>": {}
     },
     "<ebay-tooltip>": {
-        "renderer": "./src/components/ebay-tooltip/index.js",
+        "renderer": "./src/components/ebay-tooltip/components/ebay-tooltip/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
         "@style": "string",
-        "@type": "string",
-        "@icon": "string",
         "@location": "string",
         "@style-top": "string",
         "@style-left": "string",
         "@style-right": "string",
         "@style-bottom": "string",
-        "@aria-label": "string",
-        "@a11y-close-text": "string",
-        "@iconTag <icon>": {},
-        "@hosts <host>[]": {
+        "@host <host>": {
             "@*": "expression",
             "@html-attributes": "expression",
             "@class": "string",
             "@style": "string"
         },
-        "@headings <heading>[]": {
-            "@*": "expression",
-            "@html-attributes": "expression",
-            "@class": "string",
-            "@style": "string"
-        },
-        "@contents <content>[]": {
+        "@content <content>": {
             "@*": "expression",
             "@html-attributes": "expression",
             "@class": "string",
@@ -339,10 +328,89 @@
     "<ebay-tooltip-host>": {
         "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
-    "<ebay-tooltip-heading>": {
+    "<ebay-tooltip-content>": {
         "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
-    "<ebay-tooltip-content>": {
+    "<ebay-infotip>": {
+        "renderer": "./src/components/ebay-tooltip/components/ebay-infotip/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@icon": "string",
+        "@location": "string",
+        "@style-top": "string",
+        "@style-left": "string",
+        "@style-right": "string",
+        "@style-bottom": "string",
+        "@aria-label": "string",
+        "@a11y-close-text": "string",
+        "@iconTag <icon>": {},
+        "@host <host>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@heading <heading>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@content <content>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        }
+    },
+    "<ebay-infotip-host>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-infotip-heading>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-infotip-content>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-tourtip>": {
+        "renderer": "./src/components/ebay-tooltip/components/ebay-tourtip/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@location": "string",
+        "@style-top": "string",
+        "@style-left": "string",
+        "@style-right": "string",
+        "@style-bottom": "string",
+        "@host <host>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@heading <heading>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@content <content>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        }
+    },
+    "<ebay-tourtip-host>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-tourtip-heading>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-tourtip-content>": {
         "transformer": "./src/common/transformers/attribute-tags/index.js"
     }
 }

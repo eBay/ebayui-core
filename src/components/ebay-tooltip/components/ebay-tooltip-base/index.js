@@ -1,31 +1,64 @@
 const Expander = require('makeup-expander');
+const emitAndFire = require('../../../../common/emit-and-fire');
+const template = require('./template.marko');
 
-function initOverlay(widget) {
-    const isHostPresent = widget.el.querySelector(`.${widget.state.type}__host`);
+function getInitialState(input) {
+    input.location = input.location || 'bottom';
 
-    if (isHostPresent) {
-        widget.expander = new Expander(widget.el, {
-            hostSelector: `.${widget.state.type}__host`,
-            contentSelector: `.${widget.state.type}__overlay`,
-            focusManagement: widget.state.type === 'tourtip' ? null : 'focusable',
-            expandOnFocus: widget.state.type === 'tooltip',
-            expandOnHover: widget.state.type === 'tooltip',
-            expandOnClick: widget.state.type === 'infotip',
-            autoCollapse: widget.state.type === 'tooltip'
-        });
-    }
+    return input;
 }
 
-function alignOverlay(overlay, location, styles) {
+function getTemplateData(state) {
+    return state;
+}
+
+function init() {
+    const isHostPresent = this.el.querySelector(`.${this.state.type}__host`);
+
+    if (isHostPresent) {
+        this.expander = new Expander(this.el, {
+            hostSelector: `.${this.state.type}__host`,
+            contentSelector: `.${this.state.type}__overlay`,
+            focusManagement: this.state.type === 'tourtip' ? null : 'focusable',
+            expandOnFocus: this.state.type === 'tooltip',
+            expandOnHover: this.state.type === 'tooltip',
+            expandOnClick: this.state.type === 'infotip',
+            autoCollapse: this.state.type === 'tooltip'
+        });
+    }
+
+    this.alignOverlay();
+}
+
+function handleExpand() {
+    this.alignOverlay();
+    this.setState('expanded', true);
+    emitAndFire(this, 'tooltip-expand');
+}
+
+function handleCollapse() {
+    this.setState('expanded', false);
+    emitAndFire(this, 'tooltip-collapse');
+}
+
+function handleTooltipClose() {
+    this.setState('expanded', false);
+    this.expander.collapse();
+    emitAndFire(this, 'tooltip-close');
+}
+
+function alignOverlay() {
+    const overlay = this.el.querySelector(`.${this.state.type}__overlay`);
+
     if (!overlay) {
         return;
     }
 
-    if (styles.styleTop || styles.styleLeft || styles.styleRight || styles.styleBottom) {
-        overlay.style.left = styles.styleLeft;
-        overlay.style.right = styles.styleRight;
-        overlay.style.top = styles.styleTop;
-        overlay.style.bottom = styles.styleBottom;
+    if (this.state.styleTop || this.state.styleLeft || this.state.styleRight || this.state.styleBottom) {
+        overlay.style.left = this.state.styleLeft;
+        overlay.style.right = this.state.styleRight;
+        overlay.style.top = this.state.styleTop;
+        overlay.style.bottom = this.state.styleBottom;
 
         return;
     }
@@ -37,7 +70,7 @@ function alignOverlay(overlay, location, styles) {
     let overlayTransform;
 
     // determine the offsets for each type of location
-    switch (location) {
+    switch (this.state.location) {
         case 'left':
             overlayTransform = 'translateX(16px) translateY(-50%)';
             overlayLeft = '100%';
@@ -128,8 +161,13 @@ function alignOverlay(overlay, location, styles) {
     overlay.style.transform = overlayTransform;
 }
 
-function closeOverlay(widget) {
-    widget.expander.collapse();
-}
-
-module.exports = { initOverlay, alignOverlay, closeOverlay };
+module.exports = require('marko-widgets').defineComponent({
+    template,
+    getInitialState,
+    getTemplateData,
+    init,
+    handleExpand,
+    handleCollapse,
+    handleTooltipClose,
+    alignOverlay
+});

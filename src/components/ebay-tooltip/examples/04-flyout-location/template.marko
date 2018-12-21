@@ -35,13 +35,15 @@
 ]/>
 
 <div class="tooltip-demos" style="border-bottom: 1px solid #8a8a8a;">
-    default (none specified):
-    <ebay-tooltip>
-        <ebay-tooltip-host>
-            <a href="https://www.ebay.com">test link</a>
-        </ebay-tooltip-host>
-        <ebay-tooltip-content><p>Use Access Key 'S' to display settings.</p></ebay-tooltip-content>
-    </ebay-tooltip>
+    <div>
+        default (none specified):
+        <ebay-tooltip>
+            <ebay-tooltip-host>
+                <a href="https://www.ebay.com">test link</a>
+            </ebay-tooltip-host>
+            <ebay-tooltip-content><p>This is the default tooltip.</p></ebay-tooltip-content>
+        </ebay-tooltip>
+    </div>
 </div>
 
 <div class="tooltip-demos">
@@ -52,7 +54,7 @@
                 <ebay-tooltip-host>
                     <a href="https://www.ebay.com">test link</a>
                 </ebay-tooltip-host>
-                <ebay-tooltip-content><p>Use Access Key 'S' to display settings.</p></ebay-tooltip-content>
+                <ebay-tooltip-content><p>This is the tool tip with ${loc} specified.</p></ebay-tooltip-content>
             </ebay-tooltip>
         </div>
     </for>

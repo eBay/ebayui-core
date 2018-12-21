@@ -1,0 +1,27 @@
+<ebay-tooltip-base
+    type="tooltip"
+    location=data.location
+    style-left=data.styleLeft
+    style-top=data.styleTop
+    style-right=data.styleRight
+    style-bottom=data.styleBottom>
+    <span
+        class="tooltip"
+        ${data.htmlAttributes}
+        w-on-expander-expand='handleExpand'
+        w-on-expander-collapse='handleCollapse'
+        w-bind>
+        <span
+            if(data.host)
+            class=[data.host.class, 'tooltip__host']
+            style=data.host.style
+            aria-describedby=`tooltip-${widget.id}`
+            w-body=data.host.renderBody/>
+        <ebay-tooltip-overlay
+            type="tooltip"
+            labeledby=`tooltip-${widget.id}`
+            location=data.location
+            heading=data.heading
+            content=data.content/>
+    </span>
+</ebay-tooltip-base>
