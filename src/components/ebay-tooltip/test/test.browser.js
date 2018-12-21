@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
-const testUtils = require('../../../../../common/test-utils/browser');
+const testUtils = require('../../../common/test-utils/browser');
 const renderer = require('../');
 const locationStyles = require('./location-styles.json');
 

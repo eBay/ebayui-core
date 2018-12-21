@@ -1,12 +1,15 @@
-const processHtmlAttributes = require('../../../../common/html-attributes');
-const emitAndFire = require('../../../../common/emit-and-fire');
+const processHtmlAttributes = require('../../common/html-attributes');
+const emitAndFire = require('../../common/emit-and-fire');
 const template = require('./template.marko');
 
 function getInitialState(input) {
+    const iconTag = input.iconTag;
+
     input.location = input.location || 'bottom';
     input.htmlAttributes = processHtmlAttributes(input);
-    input.hostSelector = '.tooltip__host';
-    input.overlaySelector = '.tooltip__overlay';
+    input.hostSelector = '.infotip__host';
+    input.overlaySelector = '.infotip__overlay';
+    input.iconTag = iconTag && iconTag.renderBody;
     input.expanded = false;
     input.expandInit = false;
 
@@ -27,10 +30,15 @@ function handleCollapse() {
     emitAndFire(this, 'tooltip-collapse');
 }
 
+function infotipCloseButton() {
+    this.handleCollapse();
+}
+
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
     getTemplateData,
     handleExpand,
-    handleCollapse
+    handleCollapse,
+    infotipCloseButton
 });

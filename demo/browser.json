@@ -12,6 +12,7 @@
         "../src/components/ebay-combobox",
         "../src/components/ebay-dialog",
         "../src/components/ebay-icon",
+        "../src/components/ebay-infotip",
         "../src/components/ebay-menu",
         "../src/components/ebay-notice",
         "../src/components/ebay-pagination",
@@ -21,6 +22,8 @@
         "../src/components/ebay-switch",
         "../src/components/ebay-tab",
         "../src/components/ebay-textbox",
+        "../src/components/ebay-tooltip",
+        "../src/components/ebay-tourtip",
         {
             "if-flag": "skin-ds6",
             "dependencies": [

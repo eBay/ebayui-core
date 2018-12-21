@@ -1,4 +1,10 @@
 {
+  "<ebay-tooltip-base>": {
+    "renderer": "./components/ebay-tooltip-base/index.js"
+  },
+  "<ebay-tooltip-overlay>": {
+    "renderer": "./components/ebay-tooltip-overlay/index.js"
+  },
   "<*>": {
     "transformer": "../common/transformers/ebayui-attribute/index.js"
   }

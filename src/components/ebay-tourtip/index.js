@@ -1,5 +1,5 @@
-const processHtmlAttributes = require('../../../../common/html-attributes');
-const emitAndFire = require('../../../../common/emit-and-fire');
+const processHtmlAttributes = require('../../common/html-attributes');
+const emitAndFire = require('../../common/emit-and-fire');
 const template = require('./template.marko');
 
 function getInitialState(input) {
@@ -25,10 +25,15 @@ function handleCollapse() {
     emitAndFire(this, 'tooltip-collapse');
 }
 
+function tourtipCloseButton() {
+    this.handleCollapse();
+}
+
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
     getTemplateData,
     init,
-    handleCollapse
+    handleCollapse,
+    tourtipCloseButton
 });

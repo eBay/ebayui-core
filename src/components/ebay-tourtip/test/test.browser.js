@@ -1,34 +1,33 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
-const testUtils = require('../../../../../common/test-utils/browser');
+const testUtils = require('../../../common/test-utils/browser');
 const renderer = require('../');
 
-describe('given the default tooltip overlay', () => {
+describe('given the default tourtip', () => {
     let widget;
-    let closeButton;
+    let host;
 
     beforeEach(() => {
         const input = {
-            type: 'infotip',
-            tooltipId: 'fakeID-1',
+            host: {},
             heading: {},
             content: {}
         };
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        closeButton = widget.el.querySelector('.infotip__close');
+        host = widget.el.querySelector('.tourtip__host');
     });
 
     afterEach(() => widget.destroy());
 
-    describe('when the close button is clicked', () => {
+    describe('when the host element is closed', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('tooltip-close', spy);
-            testUtils.triggerEvent(closeButton, 'click');
+            widget.on('tooltip-collapse', spy);
+            testUtils.triggerEvent(host, 'expander-collapse');
         });
 
-        test('then it emits the marko event from button click', () => {
+        test('then it emits the marko event from expander-collapse event', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });

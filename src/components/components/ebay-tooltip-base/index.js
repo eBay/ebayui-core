@@ -1,5 +1,5 @@
 const Expander = require('makeup-expander');
-const emitAndFire = require('../../../../common/emit-and-fire');
+const emitAndFire = require('../../../common/emit-and-fire');
 const template = require('./template.marko');
 
 function getInitialState(input) {

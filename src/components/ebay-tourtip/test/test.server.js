@@ -1,6 +1,6 @@
 
 const expect = require('chai').expect;
-const testUtils = require('../../../../../common/test-utils/server');
+const testUtils = require('../../../common/test-utils/server');
 
 describe('tourtip', () => {
     test('renders default tourtip', context => {
