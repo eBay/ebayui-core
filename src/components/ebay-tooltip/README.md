@@ -85,7 +85,7 @@ Name | Type | Stateful | Description
 Tag | Required | Description
 --- | --- | ---
 `<ebay-tourtip-host>` | Yes | The body which will be wrapped as the tourtip's host
-`<ebay-tourtip-heading>` | No | The heading to be displayed in the tourtip
+`<ebay-tourtip-heading>` | Yes | The heading to be displayed in the tourtip
 `<ebay-tourtip-content>` | Yes | The content to be displayed in the tourtip
 
 ### ebay-tourtip Attributes
