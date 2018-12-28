@@ -2,9 +2,9 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
 
 function getInitialState(input) {
-    const number = Number(input.number);
+    const number = Math.round(input.number);
     const imgRole = (input.type !== 'menu' && input.type !== 'icon');
-    const showBadge = !isNaN(number) && Number.isInteger(number) && number >= 0;
+    const showBadge = !isNaN(number) && number >= 0;
 
     return {
         showBadge,
