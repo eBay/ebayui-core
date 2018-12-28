@@ -67,4 +67,3 @@ test('truncates when the value is greater than 99', context => {
 // not sure why these don't work
 // test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.badge'));
 // test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.badge'));
-
