@@ -1,0 +1,11 @@
+<span w-bind class="pill" ${data.htmlAttributes}>
+    <ebay-button
+        w-body
+        priority=data.priority
+        disabled=data.disabled
+        style=data.style
+        href=data.href
+        aria-pressed=(!data.href && String(data.pressed || 'false'))
+        class=data.classes>
+    </ebay-button>
+</span>

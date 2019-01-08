@@ -11,9 +11,14 @@ function getInitialState(input) {
     const size = input.size;
     const noText = input.noText;
     const fluid = input.fluid;
+    const fixedHeight = input.fixedHeight;
+    const truncate = input.truncate;
     let variant = input.variant;
     let tag;
     let mainClass = 'btn';
+    let sizeClass = '';
+    let fixedHeightClass = '';
+    let truncatedClass = '';
 
     if (href) {
         variant = 'fake';
@@ -38,20 +43,32 @@ function getInitialState(input) {
         classes.push(`${mainClass}--${priority}`);
     }
 
-    if (!isBadged && (size === 'small' || size === 'large')) {
-        classes.push(`${mainClass}--${size}`);
+    if (size === 'small' || size === 'medium' || size === 'large') {
+        sizeClass = `${mainClass}--${size}`;
+    } else if (!size && (fixedHeight || truncate)) {
+        sizeClass = `${mainClass}--medium`;
     }
 
-    if (isIconVariant || isBadged || (isExpandVariant && noText)) {
+    if (fixedHeight) {
+        fixedHeightClass = `${sizeClass}-fixed-height`;
+        classes.push(fixedHeightClass);
+    }
+
+    if (truncate) {
+        truncatedClass = `${sizeClass}-truncated`;
+        classes.push(truncatedClass);
+    }
+
+    if (!fixedHeight && !truncate) {
+        classes.push(sizeClass);
+    }
+
+    if (isExpandVariant && noText) {
         classes.push(`${mainClass}--no-text`);
     }
 
     if (fluid) {
         classes.push(`${mainClass}--fluid`);
-    }
-
-    if (isBadged) {
-        classes.push(`${mainClass}--badged`);
     }
 
     return {
