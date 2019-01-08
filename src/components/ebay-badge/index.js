@@ -4,7 +4,7 @@ const template = require('./template.marko');
 function getInitialState(input) {
     const number = Math.round(input.number);
     const imgRole = (input.type !== 'menu' && input.type !== 'icon');
-    const showBadge = number >= 0;
+    const showBadge = number > 0;
 
     return {
         showBadge,
