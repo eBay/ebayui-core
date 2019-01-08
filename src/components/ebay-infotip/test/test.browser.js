@@ -19,16 +19,20 @@ describe('given the default infotip', () => {
 
     afterEach(() => widget.destroy());
 
-    describe('when the host element is hovered', () => {
+    describe('when the host element is clicked', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('tooltip-expand', spy);
-            testUtils.triggerEvent(host, 'expander-expand');
+            testUtils.triggerEvent(host, 'click');
         });
 
-        test('then it emits the marko event from expander-expand event', () => {
+        test('then it emits the tooltip-expand event', () => {
             expect(spy.calledOnce).to.equal(true);
+        });
+
+        test('then it is visible in the DOM', () => {
+            expect(host.getAttribute('aria-expanded')).to.equal('true');
         });
     });
 
@@ -37,11 +41,15 @@ describe('given the default infotip', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('tooltip-collapse', spy);
-            testUtils.triggerEvent(host, 'expander-collapse');
+            widget.handleCollapse();
         });
 
         test('then it emits the marko event from expander-collapse event', () => {
             expect(spy.calledOnce).to.equal(true);
+        });
+
+        test('then it is not visible in the DOM', () => {
+            expect(host.getAttribute('aria-expanded')).to.equal('false');
         });
     });
 });

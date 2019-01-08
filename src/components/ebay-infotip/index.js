@@ -24,14 +24,9 @@ function handleCollapse() {
     emitAndFire(this, 'tooltip-collapse');
 }
 
-function infotipCloseButton() {
-    this.handleCollapse();
-}
-
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
     handleExpand,
-    handleCollapse,
-    infotipCloseButton
+    handleCollapse
 });
