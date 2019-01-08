@@ -12,10 +12,6 @@ function getInitialState(input) {
     });
 }
 
-function init() {
-    this.setState('expandInit', true);
-}
-
 function handleCollapse() {
     this.setState('expanded', false);
     emitAndFire(this, 'tooltip-collapse');
@@ -28,7 +24,6 @@ function tourtipCloseButton() {
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
-    init,
     handleCollapse,
     tourtipCloseButton
 });

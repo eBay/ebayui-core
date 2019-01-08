@@ -8,8 +8,7 @@ function getInitialState(input) {
         htmlAttributes: processHtmlAttributes(input),
         hostSelector: '.tourtip__host',
         overlaySelector: '.tourtip__overlay',
-        expanded: true,
-        expandInit: false
+        expanded: true
     });
 }
 

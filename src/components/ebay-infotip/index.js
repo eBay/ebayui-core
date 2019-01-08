@@ -9,8 +9,7 @@ function getInitialState(input) {
         hostSelector: '.infotip__host',
         overlaySelector: '.infotip__overlay',
         iconTag: input.iconTag && input.iconTag.renderBody,
-        expanded: false,
-        expandInit: false
+        expanded: false
     });
 }
 
