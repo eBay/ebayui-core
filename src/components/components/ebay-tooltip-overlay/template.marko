@@ -1,6 +1,6 @@
 <div
     class="${data.type}__overlay"
-    role=(data.type === 'tourtip'?'region':'tooltip')
+    role=data.typeRoles[data.type]
     aria-labelledby=(data.type === 'tourtip'?"tourtip-label-${widget.id}":'')
     id=data.tooltipId
     style=data.overlayStyle

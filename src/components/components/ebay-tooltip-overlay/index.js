@@ -102,6 +102,10 @@ function getTemplateData(state, data) {
             'bottom': overlayBottom,
             'right': overlayRight,
             'transform': overlayTransform
+        },
+        typeRoles: {
+            'tourtip': 'region',
+            'tooltip': 'tooltip'
         }
     });
 

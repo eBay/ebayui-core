@@ -17,7 +17,7 @@ function init() {
         this.expander = new Expander(this.el, {
             hostSelector: `.${this.state.type}__host`,
             contentSelector: `.${this.state.type}__overlay`,
-            focusManagement: this.state.type === 'tourtip' ? null : 'focusable',
+            focusManagement: null,
             expandOnFocus: this.state.type === 'tooltip',
             expandOnHover: this.state.type === 'tooltip',
             expandOnClick: this.state.type === 'infotip',
