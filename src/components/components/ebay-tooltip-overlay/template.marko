@@ -1,18 +1,19 @@
 <div
-    class=`${data.type}__overlay`
+    class="${data.type}__overlay"
     role=(data.type === 'tourtip'?'region':'tooltip')
-    aria-labelledby=(data.type === 'tourtip'?`tourtip-label-${widget.id}`:'')
+    aria-labelledby=(data.type === 'tourtip'?"tourtip-label-${widget.id}":'')
     id=data.tooltipId
+    style=data.overlayStyle
     w-bind>
-    <span class=`${data.type}__pointer ${data.type}__pointer--${data.location}`/>
-    <div class=`${data.type}__mask`>
-        <div class=`${data.type}__cell`>
-            <div class=`${data.type}__content`>
+    <span class="${data.type}__pointer ${data.type}__pointer--${data.location}"/>
+    <div class="${data.type}__mask">
+        <div class="${data.type}__cell">
+            <div class="${data.type}__content">
                 <h2
                     if(data.heading)
-                    class=[`${data.type}__heading`, data.heading.class]
+                    class=["${data.type}__heading", data.heading.class]
                     style=data.heading.style
-                    id=`tourtip-label-${widget.id}`
+                    id="tourtip-label-${widget.id}"
                     w-body=data.heading.renderBody/>
                 <div
                     if(data.content)
@@ -24,7 +25,7 @@
             <button
                 if(data.type !== 'tooltip')
                 aria-label=data.a11yCloseText
-                class=`${data.type}__close`
+                class="${data.type}__close"
                 type="button"
                 w-on-click="handleCloseButton">
                 <span aria-hidden="true" role="img"></span>

@@ -1,10 +1,6 @@
 <ebay-tooltip-base
     type="infotip"
-    location=data.location
-    style-left=data.styleLeft
-    style-top=data.styleTop
-    style-right=data.styleRight
-    style-bottom=data.styleBottom>
+    location=data.location>
     <span
         class="infotip"
         ${data.htmlAttributes}
@@ -12,17 +8,21 @@
         w-on-expander-collapse='handleCollapse'
         w-bind>
         <button
-            class='infotip__host icon-btn'
-            aria-describedby=`infotip-${widget.id}`
+            class="infotip__host icon-btn"
+            aria-describedby="infotip-${widget.id}"
             aria-label=data.ariaLabel>
-            <div if(data.icon) body-only-if(true)>
+            <if(data.icon)>
                 <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
-            </div>
+            </if>
             <ebay-icon if(!data.icon) type="inline" name="info"/>
         </button>
         <ebay-tooltip-overlay
             type="infotip"
-            tooltip-id=`infotip-${widget.id}`
+            tooltip-id="infotip-${widget.id}"
+            style-left=data.styleLeft
+            style-top=data.styleTop
+            style-right=data.styleRight
+            style-bottom=data.styleBottom
             location=data.location
             heading=data.heading
             content=data.content

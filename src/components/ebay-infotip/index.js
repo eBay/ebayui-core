@@ -3,21 +3,15 @@ const emitAndFire = require('../../common/emit-and-fire');
 const template = require('./template.marko');
 
 function getInitialState(input) {
-    const iconTag = input.iconTag;
-
-    input.location = input.location || 'bottom';
-    input.htmlAttributes = processHtmlAttributes(input);
-    input.hostSelector = '.infotip__host';
-    input.overlaySelector = '.infotip__overlay';
-    input.iconTag = iconTag && iconTag.renderBody;
-    input.expanded = false;
-    input.expandInit = false;
-
-    return input;
-}
-
-function getTemplateData(state) {
-    return state;
+    return Object.assign({}, input, {
+        location: input.location || 'bottom',
+        htmlAttributes: processHtmlAttributes(input),
+        hostSelector: '.infotip__host',
+        overlaySelector: '.infotip__overlay',
+        iconTag: input.iconTag && input.iconTag.renderBody,
+        expanded: false,
+        expandInit: false
+    });
 }
 
 function handleExpand() {
@@ -37,7 +31,6 @@ function infotipCloseButton() {
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
-    getTemplateData,
     handleExpand,
     handleCollapse,
     infotipCloseButton

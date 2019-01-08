@@ -333,6 +333,7 @@
     },
     "<ebay-infotip>": {
         "renderer": "./src/components/ebay-infotip/index.js",
+        "transformer": "./src/components/ebay-infotip/transformer.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",

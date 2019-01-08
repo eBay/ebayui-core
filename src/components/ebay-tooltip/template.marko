@@ -15,12 +15,16 @@
             if(data.host)
             class=[data.host.class, 'tooltip__host']
             style=data.host.style
-            aria-describedby=`tooltip-${widget.id}`
+            aria-describedby="tooltip-${widget.id}"
             w-body=data.host.renderBody/>
         <ebay-tooltip-overlay
             type="tooltip"
-            labeledby=`tooltip-${widget.id}`
+            labeledby="tooltip-${widget.id}"
             location=data.location
+            style-left=data.styleLeft
+            style-top=data.styleTop
+            style-right=data.styleRight
+            style-bottom=data.styleBottom
             heading=data.heading
             content=data.content/>
     </span>

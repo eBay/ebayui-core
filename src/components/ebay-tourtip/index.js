@@ -3,17 +3,13 @@ const emitAndFire = require('../../common/emit-and-fire');
 const template = require('./template.marko');
 
 function getInitialState(input) {
-    input.location = input.location || 'bottom';
-    input.htmlAttributes = processHtmlAttributes(input);
-    input.hostSelector = '.tourtip__host';
-    input.overlaySelector = '.tourtip__overlay';
-    input.expanded = true;
-
-    return input;
-}
-
-function getTemplateData(state) {
-    return state;
+    return Object.assign({}, input, {
+        location: input.location || 'bottom',
+        htmlAttributes: processHtmlAttributes(input),
+        hostSelector: '.tourtip__host',
+        overlaySelector: '.tourtip__overlay',
+        expanded: true
+    });
 }
 
 function init() {
@@ -32,7 +28,6 @@ function tourtipCloseButton() {
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
-    getTemplateData,
     init,
     handleCollapse,
     tourtipCloseButton
