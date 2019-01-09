@@ -137,7 +137,7 @@ Events can also be handled using Marko syntax:
 _template.marko_
 
 ```marko
-<ebay-menu text="Sort" type="radio" w-on-change("onMenuChange")>
+<ebay-menu text="Sort" type="radio" on-change("onMenuChange")>
     <ebay-menu-item>Price</ebay-menu-item>
     <ebay-menu-item>Time</ebay-menu-item>
     <ebay-menu-item>Distance</ebay-menu-item>
