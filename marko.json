@@ -135,6 +135,41 @@
         "@no-skin-classes": "boolean",
         "@_themes": "expression"
     },
+    "<ebay-infotip>": {
+        "renderer": "./src/components/ebay-infotip/index.js",
+        "transformer": "./src/components/ebay-infotip/transformer.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@icon": "string",
+        "@location": "string",
+        "@style-top": "string",
+        "@style-left": "string",
+        "@style-right": "string",
+        "@style-bottom": "string",
+        "@aria-label": "string",
+        "@a11y-close-text": "string",
+        "@iconTag <icon>": {},
+        "@host <host>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@heading <heading>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@content <content>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        }
+    },
     "<ebay-menu>": {
         "renderer": "./src/components/ebay-menu/index.js",
         "transformer": "./src/components/ebay-menu/transformer.js",
@@ -330,41 +365,6 @@
     },
     "<ebay-tooltip-content>": {
         "transformer": "./src/common/transformers/attribute-tags/index.js"
-    },
-    "<ebay-infotip>": {
-        "renderer": "./src/components/ebay-infotip/index.js",
-        "transformer": "./src/components/ebay-infotip/transformer.js",
-        "@*": "expression",
-        "@html-attributes": "expression",
-        "@class": "string",
-        "@style": "string",
-        "@icon": "string",
-        "@location": "string",
-        "@style-top": "string",
-        "@style-left": "string",
-        "@style-right": "string",
-        "@style-bottom": "string",
-        "@aria-label": "string",
-        "@a11y-close-text": "string",
-        "@iconTag <icon>": {},
-        "@host <host>": {
-            "@*": "expression",
-            "@html-attributes": "expression",
-            "@class": "string",
-            "@style": "string"
-        },
-        "@heading <heading>": {
-            "@*": "expression",
-            "@html-attributes": "expression",
-            "@class": "string",
-            "@style": "string"
-        },
-        "@content <content>": {
-            "@*": "expression",
-            "@html-attributes": "expression",
-            "@class": "string",
-            "@style": "string"
-        }
     },
     "<ebay-infotip-host>": {
         "transformer": "./src/common/transformers/attribute-tags/index.js"

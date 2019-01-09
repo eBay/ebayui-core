@@ -8,18 +8,15 @@ function getInitialState(input) {
         htmlAttributes: processHtmlAttributes(input),
         hostSelector: '.infotip__host',
         overlaySelector: '.infotip__overlay',
-        iconTag: input.iconTag && input.iconTag.renderBody,
-        expanded: false
+        iconTag: input.iconTag && input.iconTag.renderBody
     });
 }
 
 function handleExpand() {
-    this.setState('expanded', true);
     emitAndFire(this, 'tooltip-expand');
 }
 
 function handleCollapse() {
-    this.setState('expanded', false);
     emitAndFire(this, 'tooltip-collapse');
 }
 

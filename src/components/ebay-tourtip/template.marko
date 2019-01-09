@@ -5,14 +5,14 @@
         style-left=data.styleLeft
         style-top=data.styleTop
         style-right=data.styleRight
-        style-bottom=data.styleBottom>
+        style-bottom=data.styleBottom
+        w-on-tooltip-collapse="handleCollapse">
         <span
             class=[
                 'tourtip',
                 (data.expanded && 'tourtip--expanded'),
             ]
-            ${data.htmlAttributes}
-            w-on-expander-collapse='handleCollapse'>
+            ${data.htmlAttributes}>
             <span
                 if(data.host)
                 class=[data.host.class, 'tourtip__host']
@@ -29,7 +29,7 @@
                 heading=data.heading
                 content=data.content
                 a11y-close-text=data.a11yCloseText
-                w-on-tooltip-close='tourtipCloseButton'/>
+                w-on-tooltip-close='handleCollapse'/>
         </span>
     </ebay-tooltip-base>
 </span>

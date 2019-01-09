@@ -7,18 +7,15 @@ function getInitialState(input) {
         location: input.location || 'bottom',
         htmlAttributes: processHtmlAttributes(input),
         hostSelector: '.tourtip__host',
-        overlaySelector: '.tourtip__overlay',
-        expanded: true
+        overlaySelector: '.tourtip__overlay'
     });
 }
 
 function handleExpand() {
-    this.setState('expanded', true);
     emitAndFire(this, 'tooltip-expand');
 }
 
 function handleCollapse() {
-    this.setState('expanded', false);
     emitAndFire(this, 'tooltip-collapse');
 }
 

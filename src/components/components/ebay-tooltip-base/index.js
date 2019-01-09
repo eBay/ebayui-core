@@ -27,17 +27,14 @@ function init() {
 }
 
 function handleExpand() {
-    this.setState('expanded', true);
     emitAndFire(this, 'tooltip-expand');
 }
 
 function handleCollapse() {
-    this.setState('expanded', false);
     emitAndFire(this, 'tooltip-collapse');
 }
 
 function handleTooltipClose() {
-    this.setState('expanded', false);
     this.expander.collapse();
     emitAndFire(this, 'tooltip-close');
 }

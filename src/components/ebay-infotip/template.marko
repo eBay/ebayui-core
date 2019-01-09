@@ -1,32 +1,33 @@
-<ebay-tooltip-base
-    type="infotip"
-    location=data.location>
-    <span
-        class="infotip"
-        ${data.htmlAttributes}
-        w-on-expander-expand='handleExpand'
-        w-on-expander-collapse='handleCollapse'
-        w-bind>
-        <button
-            class="infotip__host icon-btn"
-            aria-describedby="infotip-${widget.id}"
-            aria-label=data.ariaLabel>
-            <if(data.icon)>
-                <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
-            </if>
-            <ebay-icon if(!data.icon) type="inline" name="info"/>
-        </button>
-        <ebay-tooltip-overlay
-            type="infotip"
-            tooltip-id="infotip-${widget.id}"
-            style-left=data.styleLeft
-            style-top=data.styleTop
-            style-right=data.styleRight
-            style-bottom=data.styleBottom
-            location=data.location
-            heading=data.heading
-            content=data.content
-            a11y-close-text=data.a11yCloseText
-            w-on-tooltip-close='handleCollapse'/>
-    </span>
-</ebay-tooltip-base>
+<span w-bind>
+    <ebay-tooltip-base
+        type="infotip"
+        location=data.location
+        w-on-tooltip-expand="handleExpand"
+        w-on-tooltip-collapse="handleCollapse">
+        <span
+            class="infotip"
+            ${data.htmlAttributes}>
+            <button
+                class="infotip__host icon-btn"
+                aria-describedby="infotip-${widget.id}"
+                aria-label=data.ariaLabel>
+                <if(data.icon)>
+                    <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
+                </if>
+                <ebay-icon if(!data.icon) type="inline" name="info"/>
+            </button>
+            <ebay-tooltip-overlay
+                type="infotip"
+                tooltip-id="infotip-${widget.id}"
+                style-left=data.styleLeft
+                style-top=data.styleTop
+                style-right=data.styleRight
+                style-bottom=data.styleBottom
+                location=data.location
+                heading=data.heading
+                content=data.content
+                a11y-close-text=data.a11yCloseText
+                w-on-tooltip-close='handleCollapse'/>
+        </span>
+    </ebay-tooltip-base>
+</span>

@@ -17,13 +17,8 @@ function handleCollapse() {
     emitAndFire(this, 'tooltip-collapse');
 }
 
-function tourtipCloseButton() {
-    this.handleCollapse();
-}
-
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
-    handleCollapse,
-    tourtipCloseButton
+    handleCollapse
 });
