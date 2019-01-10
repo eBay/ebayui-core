@@ -9,6 +9,21 @@ test('renders defaults', context => {
     expect(badge.text()).to.equal('5');
 });
 
+test('renders number with rounded-up value', context => {
+    const input = { number: 5.6 };
+    const $ = testUtils.getCheerio(context.render(input));
+    const badge = $('.badge');
+    expect(badge.length).to.equal(1);
+    expect(badge.text()).to.equal('6');
+});
+
+test('does not render with negative value', context => {
+    const input = { number: -5 };
+    const $ = testUtils.getCheerio(context.render(input));
+    const badge = $('.badge');
+    expect(badge.length).to.equal(0);
+});
+
 describe('given number is a string', () => {
     test('renders number with coerced string', context => {
         const input = { number: '5' };
@@ -18,8 +33,23 @@ describe('given number is a string', () => {
         expect(badge.text()).to.equal('5');
     });
 
+    test('renders number with rounded-up string', context => {
+        const input = { number: '5.4' };
+        const $ = testUtils.getCheerio(context.render(input));
+        const badge = $('.badge');
+        expect(badge.length).to.equal(1);
+        expect(badge.text()).to.equal('5');
+    });
+
     test('does not renders with an invalid string', context => {
         const input = { number: 'five' };
+        const $ = testUtils.getCheerio(context.render(input));
+        const badge = $('.badge');
+        expect(badge.length).to.equal(0);
+    });
+
+    test('does not renders with a negative string', context => {
+        const input = { number: '-5' };
         const $ = testUtils.getCheerio(context.render(input));
         const badge = $('.badge');
         expect(badge.length).to.equal(0);
