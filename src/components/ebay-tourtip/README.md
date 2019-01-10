@@ -3,7 +3,7 @@
 ## ebay-tourtip Example
 
 ```marko
-<ebay-tourtip a11y-close-text="Dismiss tourtip" aria-label="Important information">
+<ebay-tourtip a11y-close-text="Dismiss tourtip">
     <ebay-tourtip-host>
         <p>Nisi quis officia cupidatat irure qui aliquip mollit aliqua dolore. Sint ut anim adipisicing
         eiusmod. Dolor irure adipisicing dolor ullamco elit irure laboris consectetur eiusmod et officia
