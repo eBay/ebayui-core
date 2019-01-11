@@ -147,10 +147,11 @@
  * Not all browsers that have implemented scroll snapping have done so in a way that we can leverage.
  * Currently the below media query ensures that the browser supports exactly what we need.
  */
+/* autoprefixer: off */
 @supports (
-    (-webkit-scroll-snap-coordinate: 0 0) or
-    (-ms-scroll-snap-coordinate: 0 0) or
-    (scroll-snap-coordinate: 0 0) or
+    (-webkit-scroll-snap-coordinate: 0 0) or/*!*/
+    (-ms-scroll-snap-coordinate: 0 0) or/*!*/
+    (scroll-snap-coordinate: 0 0) or/*!*/
     (scroll-snap-align: start)
 ) {
     .carousel {
@@ -188,3 +189,4 @@
         }
     }
 }
+/* autoprefixer: on */
