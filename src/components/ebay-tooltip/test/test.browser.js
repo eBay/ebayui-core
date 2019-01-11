@@ -1,6 +1,5 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
 const renderer = require('../');
 const locationStyles = require('./location-styles.json');
 
@@ -21,7 +20,7 @@ const pointerLocations = [
 
 describe('given the default tooltip', () => {
     let widget;
-    let hostEl;
+    let baseWidget;
 
     beforeEach(() => {
         const input = {
@@ -29,7 +28,7 @@ describe('given the default tooltip', () => {
             content: {}
         };
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        hostEl = widget.el.querySelector('.tooltip__host');
+        baseWidget = widget.getWidget('base');
     });
 
     afterEach(() => widget.destroy());
@@ -39,10 +38,10 @@ describe('given the default tooltip', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('tooltip-expand', spy);
-            testUtils.triggerEvent(hostEl, 'expander-expand');
+            baseWidget.emit('base-expand');
         });
 
-        test('then it emits the marko event from expander-expand event', () => {
+        test('then it emits the tooltip-expand event', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });
@@ -52,10 +51,10 @@ describe('given the default tooltip', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('tooltip-collapse', spy);
-            testUtils.triggerEvent(hostEl, 'expander-collapse');
+            baseWidget.emit('base-collapse');
         });
 
-        test('then it emits the marko event from expander-collapse event', () => {
+        test('then it emits the tooltip-collapse event', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });
@@ -64,7 +63,7 @@ describe('given the default tooltip', () => {
 describe('given a custom-aligned tooltip', () => {
     const customLocation = '20px';
     let widget;
-    let hostEl;
+    let baseWidget;
 
     beforeEach(() => {
         const input = {
@@ -74,7 +73,7 @@ describe('given a custom-aligned tooltip', () => {
             styleTop: customLocation
         };
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        hostEl = widget.el.querySelector('.tooltip__host');
+        baseWidget = widget.getWidget('base');
     });
 
     afterEach(() => widget.destroy());
@@ -83,7 +82,7 @@ describe('given a custom-aligned tooltip', () => {
         let overlay;
         beforeEach(() => {
             overlay = widget.el.querySelector('.tooltip__overlay');
-            testUtils.triggerEvent(hostEl, 'expander-expand');
+            baseWidget.emit('base-expand');
         });
 
         test('then it sets the overlay styles correctly', () => {
@@ -99,7 +98,7 @@ describe('given a custom-aligned tooltip', () => {
 pointerLocations.forEach(location => {
     describe(`given the default tooltip with location ${location}`, () => {
         let widget;
-        let hostEl;
+        let baseWidget;
 
         beforeEach(() => {
             const input = {
@@ -108,7 +107,7 @@ pointerLocations.forEach(location => {
                 location
             };
             widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-            hostEl = widget.el.querySelector('.tooltip__host');
+            baseWidget = widget.getWidget('base');
         });
 
         afterEach(() => widget.destroy());
@@ -120,10 +119,10 @@ pointerLocations.forEach(location => {
                 spy = sinon.spy();
                 overlay = widget.el.querySelector('.tooltip__overlay');
                 widget.on('tooltip-expand', spy);
-                testUtils.triggerEvent(hostEl, 'expander-expand');
+                baseWidget.emit('base-expand');
             });
 
-            test('then it emits the marko event from expander-expand event', () => {
+            test('then it emits the tooltip-expand event', () => {
                 expect(spy.calledOnce).to.equal(true);
             });
 

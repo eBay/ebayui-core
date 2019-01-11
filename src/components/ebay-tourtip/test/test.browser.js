@@ -5,7 +5,7 @@ const renderer = require('../');
 
 describe('given the default tourtip', () => {
     let widget;
-    let host;
+    let closeButton;
 
     beforeEach(() => {
         const input = {
@@ -14,20 +14,20 @@ describe('given the default tourtip', () => {
             content: {}
         };
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        host = widget.el.querySelector('.tourtip__host');
+        closeButton = widget.el.querySelector('.tourtip__close');
     });
 
     afterEach(() => widget.destroy());
 
-    describe('when the host element is closed', () => {
+    describe('when the closeButton element is closed', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('tooltip-collapse', spy);
-            testUtils.triggerEvent(host, 'expander-collapse');
+            testUtils.triggerEvent(closeButton, 'click');
         });
 
-        test('then it emits the marko event from expander-collapse event', () => {
+        test('then it emits the tooltip-collapse event', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });

@@ -24,7 +24,7 @@ describe('given the default infotip', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('tooltip-expand', spy);
-            testUtils.triggerEvent(host, 'expander-expand');
+            testUtils.triggerEvent(host, 'click');
         });
 
         test('then it emits the tooltip-expand event', () => {
@@ -32,15 +32,16 @@ describe('given the default infotip', () => {
         });
     });
 
-    describe('when the host element is closed', () => {
+    describe('when the host element is clicked a second time to close', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('tooltip-collapse', spy);
-            testUtils.triggerEvent(host, 'expander-collapse');
+            testUtils.triggerEvent(host, 'click');
+            testUtils.triggerEvent(host, 'click');
         });
 
-        test('then it emits the marko event from expander-collapse event', () => {
+        test('then it emits the tooltip-collapse event', () => {
             expect(spy.calledOnce).to.equal(true);
         });
     });

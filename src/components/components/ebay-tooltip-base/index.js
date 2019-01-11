@@ -27,14 +27,14 @@ function init() {
 }
 
 function handleExpand() {
-    emitAndFire(this, 'tooltip-expand');
+    this.emit('base-expand');
 }
 
 function handleCollapse() {
-    emitAndFire(this, 'tooltip-collapse');
+    this.emit('base-collapse');
 }
 
-function handleTooltipClose() {
+function handleOverlayClose() {
     this.expander.collapse();
     emitAndFire(this, 'tooltip-close');
 }
@@ -45,5 +45,5 @@ module.exports = require('marko-widgets').defineComponent({
     init,
     handleExpand,
     handleCollapse,
-    handleTooltipClose
+    handleOverlayClose
 });

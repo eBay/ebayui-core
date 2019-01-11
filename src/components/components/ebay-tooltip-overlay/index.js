@@ -1,4 +1,3 @@
-const emitAndFire = require('../../../common/emit-and-fire');
 const template = require('./template.marko');
 
 function getTemplateData(state, data) {
@@ -113,7 +112,7 @@ function getTemplateData(state, data) {
 }
 
 function handleCloseButton() {
-    emitAndFire(this, 'tooltip-close');
+    this.emit('tooltip-close');
 }
 
 module.exports = require('marko-widgets').defineComponent({

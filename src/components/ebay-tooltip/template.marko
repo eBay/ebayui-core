@@ -1,13 +1,14 @@
 <span w-bind>
     <ebay-tooltip-base
+        w-id="base"
         type="tooltip"
         location=data.location
         style-left=data.styleLeft
         style-top=data.styleTop
         style-right=data.styleRight
         style-bottom=data.styleBottom
-        w-on-tooltip-expand='handleExpand'
-        w-on-tooltip-collapse='handleCollapse'>
+        w-on-base-expand='handleExpand'
+        w-on-base-collapse='handleCollapse'>
         <span
             class="tooltip"
             ${data.htmlAttributes}>
