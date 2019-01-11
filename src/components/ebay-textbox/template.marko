@@ -1,4 +1,11 @@
 <${data.tag} class=data.rootClass style=data.style w-bind>
+    <if (data.floatingLabel)>
+        <label
+        class=data.labelClasses
+        w-for="textbox">
+            ${data.floatingLabel}
+        </label>
+    </if>
     <if (data.displayIcon && data.iconPrefix)>
         <span body-only-if(true) w-body=data.iconTag/>
     </if>
@@ -10,6 +17,7 @@
     w-oninput="handleInput"
     w-onfocus="handleFocus"
     w-onblur="handleBlur"
+    w-id="textbox"
     ${data.htmlAttributes} />
     <if (data.displayIcon && data.iconPostfix)>
         <span body-only-if(true) w-body=data.iconTag/>

@@ -33,3 +33,33 @@ describe('given an input textbox', () => {
         });
     });
 });
+
+describe('given an input textbox with floating label', () => {
+    let root;
+    let input;
+    let label;
+    beforeEach(() => {
+        widget = renderer.renderSync({ 'floatingLabel': 'Email address' }).appendTo(document.body).getWidget();
+        root = document.querySelector('.textbox');
+        input = root.querySelector('input');
+        label = root.querySelector('label');
+    });
+    afterEach(() => widget.destroy());
+
+    describe('when the input is focused', () => {
+        test('then the inline class is removed', () => {
+            expect(label.classList.contains('floating-label__label--inline')).to.equal(true);
+            testUtils.triggerEvent(input, 'focus');
+            expect(label.classList.contains('floating-label__label--inline')).to.equal(false);
+        });
+    });
+
+    describe('when the input is blurred', () => {
+        test('then the inline class is added', () => {
+            label.classList.remove('floating-label__label--inline');
+            expect(label.classList.contains('floating-label__label--inline')).to.equal(false);
+            testUtils.triggerEvent(input, 'blur');
+            expect(label.classList.contains('floating-label__label--inline')).to.equal(true);
+        });
+    });
+});
