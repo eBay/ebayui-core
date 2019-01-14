@@ -9,7 +9,7 @@ function getTemplateData(state, data) {
 
     if (!data.styleTop && !data.styleLeft && !data.styleRight && !data.styleBottom) {
         // determine the offsets for each type of location
-        switch (data.location) {
+        switch (data.pointer) {
             case 'left':
                 overlayTransform = 'translateX(16px) translateY(-50%)';
                 overlayLeft = '100%';

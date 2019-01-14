@@ -2,11 +2,12 @@
     <ebay-tooltip-base
         w-id="base"
         type="tooltip"
-        location=data.location
+        pointer=data.pointer
         style-left=data.styleLeft
         style-top=data.styleTop
         style-right=data.styleRight
         style-bottom=data.styleBottom
+        no-hover=data.noHover
         w-on-base-expand='handleExpand'
         w-on-base-collapse='handleCollapse'>
         <span
@@ -21,7 +22,7 @@
             <ebay-tooltip-overlay
                 type="tooltip"
                 labeledby="tooltip-${widget.id}"
-                location=data.location
+                pointer=data.pointer
                 style-left=data.styleLeft
                 style-top=data.styleTop
                 style-right=data.styleRight

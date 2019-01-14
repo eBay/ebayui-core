@@ -1,7 +1,7 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 const renderer = require('../');
-const locationStyles = require('./location-styles.json');
+const pointerStyles = require('./location-styles.json');
 
 const pointerLocations = [
     'top-left',
@@ -95,8 +95,8 @@ describe('given a custom-aligned tooltip', () => {
     });
 });
 
-pointerLocations.forEach(location => {
-    describe(`given the default tooltip with location ${location}`, () => {
+pointerLocations.forEach(pointer => {
+    describe(`given the default tooltip with pointer ${pointer}`, () => {
         let widget;
         let baseWidget;
 
@@ -104,7 +104,7 @@ pointerLocations.forEach(location => {
             const input = {
                 host: {},
                 content: {},
-                location
+                pointer
             };
             widget = renderer.renderSync(input).appendTo(document.body).getWidget();
             baseWidget = widget.getWidget('base');
@@ -127,11 +127,11 @@ pointerLocations.forEach(location => {
             });
 
             test('then it aligns the overlay', () => {
-                expect(overlay.style.transform).to.equal(locationStyles[location].overlayTransform);
-                expect(overlay.style.left).to.equal(locationStyles[location].overlayLeft);
-                expect(overlay.style.top).to.equal(locationStyles[location].overlayTop);
-                expect(overlay.style.right).to.equal(locationStyles[location].overlayRight);
-                expect(overlay.style.bottom).to.equal(locationStyles[location].overlayBottom);
+                expect(overlay.style.transform).to.equal(pointerStyles[pointer].overlayTransform);
+                expect(overlay.style.left).to.equal(pointerStyles[pointer].overlayLeft);
+                expect(overlay.style.top).to.equal(pointerStyles[pointer].overlayTop);
+                expect(overlay.style.right).to.equal(pointerStyles[pointer].overlayRight);
+                expect(overlay.style.bottom).to.equal(pointerStyles[pointer].overlayBottom);
             });
         });
     });

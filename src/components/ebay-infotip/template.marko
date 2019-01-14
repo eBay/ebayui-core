@@ -1,7 +1,7 @@
 <span w-bind>
     <ebay-tooltip-base
         type="infotip"
-        location=data.location
+        pointer=data.pointer
         w-on-base-expand="handleExpand"
         w-on-base-collapse="handleCollapse">
         <span
@@ -9,7 +9,6 @@
             ${data.htmlAttributes}>
             <button
                 class="infotip__host icon-btn"
-                aria-describedby="infotip-${widget.id}"
                 aria-label=data.ariaLabel>
                 <if(data.icon)>
                     <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
@@ -23,7 +22,7 @@
                 style-top=data.styleTop
                 style-right=data.styleRight
                 style-bottom=data.styleBottom
-                location=data.location
+                pointer=data.pointer
                 heading=data.heading
                 content=data.content
                 a11y-close-text=data.a11yCloseText

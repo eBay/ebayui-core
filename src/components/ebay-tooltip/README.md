@@ -27,6 +27,7 @@ Name | Type | Stateful | Description
 `style-left` | String | No | a style property for the CSS `left` rule
 `style-right` | String | No | a style property for the CSS `right` rule
 `style-bottom` | String | No | a style property for the CSS `bottom` rule
+`no-hover` | Boolean | No | disable hover (and only use focus) to open the tooltip
 
 ## ebay-tooltip Events
 

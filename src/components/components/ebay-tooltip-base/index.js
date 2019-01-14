@@ -4,7 +4,8 @@ const template = require('./template.marko');
 
 function getInitialState(input) {
     const state = Object.assign({}, input, {
-        location: input.location || 'bottom'
+        pointer: input.pointer || 'bottom',
+        noHover: input.noHover || false
     });
 
     return state;
@@ -12,16 +13,17 @@ function getInitialState(input) {
 
 function init() {
     const isHostPresent = this.el.querySelector(`.${this.state.type}__host`);
+    const isTooltip = this.state.type === 'tooltip';
 
     if (isHostPresent) {
         this.expander = new Expander(this.el, {
             hostSelector: `.${this.state.type}__host`,
             contentSelector: `.${this.state.type}__overlay`,
             focusManagement: null,
-            expandOnFocus: this.state.type === 'tooltip',
-            expandOnHover: this.state.type === 'tooltip',
+            expandOnFocus: isTooltip,
+            expandOnHover: isTooltip && !this.state.noHover,
             expandOnClick: this.state.type === 'infotip',
-            autoCollapse: this.state.type === 'tooltip'
+            autoCollapse: isTooltip
         });
     }
 }

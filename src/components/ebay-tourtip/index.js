@@ -4,7 +4,7 @@ const template = require('./template.marko');
 
 function getInitialState(input) {
     return Object.assign({}, input, {
-        location: input.location || 'bottom',
+        pointer: input.pointer || 'bottom',
         htmlAttributes: processHtmlAttributes(input),
         hostSelector: '.tourtip__host',
         overlaySelector: '.tourtip__overlay',

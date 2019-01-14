@@ -4,7 +4,7 @@ const template = require('./template.marko');
 
 function getInitialState(input) {
     return Object.assign({}, input, {
-        location: input.location || 'bottom',
+        pointer: input.pointer || 'bottom',
         htmlAttributes: processHtmlAttributes(input),
         hostSelector: '.infotip__host',
         overlaySelector: '.infotip__overlay',
@@ -17,6 +17,7 @@ function handleExpand() {
 }
 
 function handleCollapse() {
+    this.el.querySelector('button.infotip__host').focus();
     emitAndFire(this, 'tooltip-collapse');
 }
 

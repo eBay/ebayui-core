@@ -33,8 +33,8 @@ describe('tooltip', () => {
         expect($('.tooltip__overlay .tooltip__cell .tooltip__content').length).to.equal(1);
     });
 
-    pointerLocations.forEach(location => {
-        test(`renders tooltip location: ${location}`, context => {
+    pointerLocations.forEach(pointer => {
+        test(`renders tooltip pointer: ${pointer}`, context => {
             const input = {
                 host: {
                     renderyBody: ''
@@ -42,11 +42,11 @@ describe('tooltip', () => {
                 content: {
                     renderyBody: ''
                 },
-                location
+                pointer
             };
             const $ = testUtils.getCheerio(context.render(input));
             expect($('.tooltip').length).to.equal(1);
-            expect($(`.tooltip__pointer.tooltip__pointer--${location}`).length).to.equal(1);
+            expect($(`.tooltip__pointer.tooltip__pointer--${pointer}`).length).to.equal(1);
         });
     });
 });
