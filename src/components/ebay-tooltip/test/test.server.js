@@ -29,7 +29,6 @@ describe('tooltip', () => {
         };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.tooltip').length).to.equal(1);
-        expect($('.tooltip__host').length).to.equal(1);
         expect($('.tooltip__overlay .tooltip__cell .tooltip__content').length).to.equal(1);
     });
 

@@ -12,10 +12,11 @@ function getInitialState(input) {
 }
 
 function init() {
-    const isHostPresent = this.el.querySelector(`.${this.state.type}__host`);
+    const host = this.el.querySelector(`.${this.state.type}__host`);
+    const hostAriaDescribedBy = host && host.hasAttribute('aria-describedby') && host.getAttribute('aria-describedby');
     const isTooltip = this.state.type === 'tooltip';
 
-    if (isHostPresent) {
+    if (host) {
         this.expander = new Expander(this.el, {
             hostSelector: `.${this.state.type}__host`,
             contentSelector: `.${this.state.type}__overlay`,
@@ -25,6 +26,10 @@ function init() {
             expandOnClick: this.state.type === 'infotip',
             autoCollapse: isTooltip
         });
+
+        if (!hostAriaDescribedBy && this.el.parentElement) {
+            host.setAttribute('aria-describedby', `${this.el.parentElement.id}-overlay`);
+        }
     }
 }
 

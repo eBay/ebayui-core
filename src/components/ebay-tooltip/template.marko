@@ -15,11 +15,10 @@
             ${data.htmlAttributes}>
             <span
                 if(data.host)
-                class=[data.host.class, 'tooltip__host']
-                style=data.host.style
-                aria-describedby="tooltip-${widget.id}"
+                body-only-if(true)
                 w-body=data.host.renderBody/>
             <ebay-tooltip-overlay
+                w-id="overlay"
                 type="tooltip"
                 labeledby="tooltip-${widget.id}"
                 pointer=data.pointer
