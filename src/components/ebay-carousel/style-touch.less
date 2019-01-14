@@ -22,14 +22,16 @@
     }
 }
 
-@supports not (
-    (-webkit-scroll-snap-coordinate: 0 0) or
-    (-ms-scroll-snap-coordinate: 0 0) or
-    (scroll-snap-coordinate: 0 0) or
-    (scroll-snap-align: start)
+/* autoprefixer: off */
+@supports not/*!Y */ (
+    /*!Y */(-webkit-scroll-snap-coordinate: 0 0) or
+    /*!Y */(-ms-scroll-snap-coordinate: 0 0) or
+    /*!Y */(scroll-snap-coordinate: 0 0) or
+    /*!Y */(scroll-snap-align: start)
 ) {
     // always show paddles when scroll snapping is not supported.
     .carousel__control {
         .carousel-control-visible();
     }
 }
+/* autoprefixer: on */
