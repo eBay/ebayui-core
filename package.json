@@ -102,7 +102,7 @@
     "wdio-browserstack-service": "^0.1.16"
   },
   "peerDependencies": {
-    "@ebay/skin": "6.2.0",
+    "@ebay/skin": "^7.0.0-1",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },
