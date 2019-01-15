@@ -1,4 +1,5 @@
 const Expander = require('makeup-expander');
+const focusables = require('makeup-focusables');
 const emitAndFire = require('../../../common/emit-and-fire');
 const template = require('./template.marko');
 
@@ -13,6 +14,7 @@ function getInitialState(input) {
 
 function init() {
     const host = this.el.querySelector(`.${this.state.type}__host`);
+    const focusableEls = host && host.childElementCount > 0 ? focusables(host) : focusables(this.el);
     const hostAriaDescribedBy = host && host.hasAttribute('aria-describedby') && host.getAttribute('aria-describedby');
     const isTooltip = this.state.type === 'tooltip';
 
@@ -29,6 +31,11 @@ function init() {
 
         if (!hostAriaDescribedBy && this.el.parentElement) {
             host.setAttribute('aria-describedby', `${this.el.parentElement.id}-overlay`);
+        }
+
+        if (focusableEls[0]) {
+            focusableEls[0].addEventListener('focus', () => this.expander.expand());
+            focusableEls[0].addEventListener('blur', () => this.expander.collapse());
         }
     }
 }
