@@ -5,11 +5,15 @@
 ```marko
 <ebay-tooltip>
     <ebay-tooltip-host>
-        <a href="https://www.ebay.com">My custom link.</a>
+        <a class="tooltip__host" href="https://www.ebay.com">My custom link.</a>
     </ebay-tooltip-host>
     <ebay-tooltip-content><p>Use Access Key 'S' to display settings.</p></ebay-tooltip-content>
 </ebay-tooltip>
 ```
+
+**Note:** You must supply the `.tooltip__host` class to the element in the `<ebay-tooltip-host>` to
+which you would like to have the tooltip hover and focus event bindings. In the case that your element
+is not focusable, the first focusable element will trigger the tooltip's focus events.
 
 ## ebay-tooltip Sub-tags
 
