@@ -13,12 +13,13 @@ function getInitialState(input) {
 }
 
 function init() {
-    const host = this.el.querySelector(`.${this.state.type}__host`);
-    const focusableEls = host && host.childElementCount > 0 ? focusables(host) : focusables(this.el);
-    const hostAriaDescribedBy = host && host.hasAttribute('aria-describedby') && host.getAttribute('aria-describedby');
+    this.host = this.el.querySelector(`.${this.state.type}__host`);
+    const hostAriaDescribedBy = this.host &&
+        this.host.hasAttribute('aria-describedby') &&
+        this.host.getAttribute('aria-describedby');
     const isTooltip = this.state.type === 'tooltip';
 
-    if (host) {
+    if (this.host) {
         this.expander = new Expander(this.el, {
             hostSelector: `.${this.state.type}__host`,
             contentSelector: `.${this.state.type}__overlay`,
@@ -30,13 +31,41 @@ function init() {
         });
 
         if (!hostAriaDescribedBy && this.el.parentElement) {
-            host.setAttribute('aria-describedby', `${this.el.parentElement.id}-overlay`);
+            this.host.setAttribute('aria-describedby', `${this.el.parentElement.id}-overlay`);
         }
+    }
 
-        if (focusableEls[0]) {
-            focusableEls[0].addEventListener('focus', () => this.expander.expand());
-            focusableEls[0].addEventListener('blur', () => this.expander.collapse());
-        }
+    this.expand = () => {
+        this.expander.expand();
+    };
+
+    this.collapse = () => {
+        this.expander.collapse();
+    };
+}
+
+function onRender() {
+    this.curFocusable = this.host && this.host.childElementCount > 0 ?
+        focusables(this.host)[0] :
+        focusables(this.el)[0];
+
+    if (this.curFocusable) {
+        this.curFocusable.addEventListener('focus', this.expand);
+        this.curFocusable.addEventListener('blur', this.collapse);
+    }
+}
+
+function onBeforeUpdate() {
+    if (this.curFocusable) {
+        this.curFocusable.removeEventListener('focus', this.expand);
+        this.curFocusable.removeEventListener('blur', this.collapse);
+    }
+}
+
+function onDestroy() {
+    if (this.curFocusable) {
+        this.curFocusable.removeEventListener('focus', this.expand);
+        this.curFocusable.removeEventListener('blur', this.collapse);
     }
 }
 
@@ -57,6 +86,9 @@ module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
     init,
+    onRender,
+    onBeforeUpdate,
+    onDestroy,
     handleExpand,
     handleCollapse,
     handleOverlayClose
