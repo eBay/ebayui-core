@@ -3,6 +3,7 @@
     {
       "if-not-flag": "ebayui-no-skin",
       "dependencies": [
+        "@ebay/skin/label",
         "@ebay/skin/textbox"
       ]
     },

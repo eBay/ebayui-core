@@ -334,7 +334,8 @@
         "@multiline": "boolean",
         "@icon": "string",
         "@icon-position": "string",
-        "@iconTag <icon>": {}
+        "@iconTag <icon>": {},
+        "@floating-label": "string"
     },
     "<ebay-tooltip>": {
         "renderer": "./src/components/ebay-tooltip/index.js",

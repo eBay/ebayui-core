@@ -10,6 +10,9 @@ const fluidInputSelector = `input.textbox__control--fluid`;
 const textareaSelector = `textarea.textbox__control`;
 const iconSelector = `svg.textbox__icon`;
 const inputPostfixSelector = `span.textbox--icon-end`;
+const floatingLabelSelector = `label.floating-label__label`;
+const floatingLabelDisabledSelector = `label.floating-label__label.floating-label__label--disabled`;
+const inputUnderlineSelector = `input.textbox__control.textbox__control--underline`;
 
 describe('ebay-textbox', () => {
     test('renders default input textbox', context => {
@@ -48,6 +51,20 @@ describe('ebay-textbox', () => {
         const $ = testUtils.getCheerio(context.render(input));
         expect($(inputPostfixSelector).length).to.equal(1);
         expect($(iconSelector).length).to.equal(1);
+    });
+
+    test('renders an input textbox with inline floating label', context => {
+        const input = { floatingLabel: 'Email address' };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($(floatingLabelSelector).text()).to.equal('Email address');
+        expect($(inputUnderlineSelector).length).to.equal(1);
+    });
+
+    test('renders a disabled input textbox with disabled floating label', context => {
+        const input = { floatingLabel: 'Email address', value: 'test@ebay.com', htmlAttributes: { disabled: true } };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($(floatingLabelDisabledSelector).text()).to.equal('Email address');
+        expect($(inputUnderlineSelector).length).to.equal(1);
     });
 
     test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, inputSelector));
