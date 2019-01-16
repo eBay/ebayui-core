@@ -267,6 +267,7 @@
         "@style": "string",
         "@index": "string",
         "@fake": "boolean",
+        "@activation": "string",
         "@headings <heading>[]": {
             "@*": "expression",
             "@html-attributes": "expression",

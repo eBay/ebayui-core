@@ -7,6 +7,7 @@ const testUtils = require('../../test-utils/browser');
 const handleActionKeydown = eventUtils.handleActionKeydown;
 const handleEscapeKeydown = eventUtils.handleEscapeKeydown;
 const handleUpDownArrowsKeydown = eventUtils.handleUpDownArrowsKeydown;
+const handleLeftRightArrowsKeydown = eventUtils.handleLeftRightArrowsKeydown;
 const preventDefaultIfHijax = eventUtils.preventDefaultIfHijax;
 
 describe('handleActionKeydown()', () => {
@@ -52,6 +53,25 @@ describe('handleUpDownArrowsKeydown()', () => {
     test('doesn\'t call callback for other keyCode', () => {
         const callback = sinon.spy();
         handleUpDownArrowsKeydown({ keyCode: 1 }, callback);
+        expect(callback.called).to.equal(false);
+    });
+});
+
+describe('handleLeftRightArrowsKeydown()', () => {
+    [
+        { keyCode: 37 },
+        { keyCode: 39 }
+    ].forEach(event => {
+        test(`calls callback for keyCode=${event.keyCode}`, () => {
+            const callback = sinon.spy();
+            handleLeftRightArrowsKeydown(event, callback);
+            expect(callback.calledOnce).to.equal(true);
+        });
+    });
+
+    test('doesn\'t call callback for other keyCode', () => {
+        const callback = sinon.spy();
+        handleLeftRightArrowsKeydown({ keyCode: 1 }, callback);
         expect(callback.called).to.equal(false);
     });
 });
