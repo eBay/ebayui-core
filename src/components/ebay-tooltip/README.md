@@ -5,7 +5,7 @@
 ```marko
 <ebay-tooltip>
     <ebay-tooltip-host>
-        <a class="tooltip__host" href="https://www.ebay.com">My custom link.</a>
+        <a href="https://www.ebay.com">My custom link.</a>
     </ebay-tooltip-host>
     <ebay-tooltip-content><p>Use Access Key 'S' to display settings.</p></ebay-tooltip-content>
 </ebay-tooltip>
