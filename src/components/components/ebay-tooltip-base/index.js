@@ -12,16 +12,6 @@ function getInitialState(input) {
     return state;
 }
 
-function init() {
-    this.expand = () => {
-        this.expander.expand();
-    };
-
-    this.collapse = () => {
-        this.expander.collapse();
-    };
-}
-
 function onRender() {
     const hostClass = `${this.state.type}__host`;
     const hostSelector = `.${hostClass}`;
@@ -73,7 +63,6 @@ function handleOverlayClose() {
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
-    init,
     onRender,
     handleExpand,
     handleCollapse,
