@@ -1,5 +1,6 @@
 <span w-bind>
     <ebay-tooltip-base
+        w-id="base"
         type="infotip"
         pointer=data.pointer
         w-on-base-expand="handleExpand"
@@ -26,7 +27,7 @@
                 heading=data.heading
                 content=data.content
                 a11y-close-text=data.a11yCloseText
-                w-on-tooltip-close='handleCollapse'/>
+                w-on-overlay-close='handleCollapse'/>
         </span>
     </ebay-tooltip-base>
 </span>

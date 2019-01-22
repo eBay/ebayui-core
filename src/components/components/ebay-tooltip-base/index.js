@@ -1,6 +1,5 @@
 const Expander = require('makeup-expander');
 const focusables = require('makeup-focusables');
-const emitAndFire = require('../../../common/emit-and-fire');
 const template = require('./template.marko');
 
 function getInitialState(input) {
@@ -30,10 +29,10 @@ function onRender() {
     const isTooltip = this.state.type === 'tooltip';
 
     if (this.host) {
-        this.expander = new Expander(this.el, {
+        this.expander = new Expander(this.el.querySelector(`.${this.state.type}`), {
             hostSelector: hostSelector,
-            hostContainerClass: `${this.state.type}`,
             contentSelector: `.${this.state.type}__overlay`,
+            expandedClass: `${this.state.type}--expanded`,
             focusManagement: null,
             expandOnFocus: isTooltip,
             expandOnHover: isTooltip && !this.state.noHover,
@@ -55,16 +54,10 @@ function handleCollapse() {
     this.emit('base-collapse');
 }
 
-function handleOverlayClose() {
-    this.expander.collapse();
-    emitAndFire(this, 'tooltip-close');
-}
-
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
     onRender,
     handleExpand,
-    handleCollapse,
-    handleOverlayClose
+    handleCollapse
 });

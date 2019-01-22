@@ -12,11 +12,16 @@ function getInitialState(input) {
     });
 }
 
+function init() {
+    this.baseWidget = this.getWidget('base');
+}
+
 function handleExpand() {
     emitAndFire(this, 'tooltip-expand');
 }
 
 function handleCollapse() {
+    this.baseWidget.expander.collapse();
     this.el.querySelector('button.infotip__host').focus();
     emitAndFire(this, 'tooltip-collapse');
 }
@@ -24,6 +29,7 @@ function handleCollapse() {
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
+    init,
     handleExpand,
     handleCollapse
 });

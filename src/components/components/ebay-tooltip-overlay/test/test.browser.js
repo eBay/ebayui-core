@@ -24,7 +24,7 @@ describe('given the default tooltip overlay', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('tooltip-close', spy);
+            widget.on('overlay-close', spy);
             testUtils.triggerEvent(closeButton, 'click');
         });
 

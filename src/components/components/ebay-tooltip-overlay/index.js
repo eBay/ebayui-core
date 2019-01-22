@@ -112,7 +112,7 @@ function getTemplateData(state, data) {
 }
 
 function handleCloseButton() {
-    this.emit('tooltip-close');
+    this.emit('overlay-close');
 }
 
 module.exports = require('marko-widgets').defineComponent({
