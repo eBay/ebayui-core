@@ -14,6 +14,7 @@ function getInitialState(input) {
 function onRender() {
     const hostClass = `${this.state.type}__host`;
     const hostSelector = `.${hostClass}`;
+    const expanderEl = this.el.getElementsByClassName(this.state.type)[0];
 
     this.curFocusable = focusables(this.el)[0];
 
@@ -29,7 +30,7 @@ function onRender() {
     const isTooltip = this.state.type === 'tooltip';
 
     if (this.host) {
-        this.expander = new Expander(this.el.querySelector(`.${this.state.type}`), {
+        this.expander = new Expander(expanderEl, {
             hostSelector: hostSelector,
             contentSelector: `.${this.state.type}__overlay`,
             expandedClass: `${this.state.type}--expanded`,
