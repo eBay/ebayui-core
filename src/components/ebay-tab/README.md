@@ -19,6 +19,7 @@ Name | Type | Stateful | Description
 --- | --- | --- | ---
 `index` | String | Yes | 0-based index of selected tab heading and panel
 `fake` | Boolean | No | Whether to use link behavior for tab headings
+`activation` | String | Yes | whether to use automatic or manual activation when navigating by keyboard, "auto" (default) / "manual"
 
 ## ebay-tab Events
 
