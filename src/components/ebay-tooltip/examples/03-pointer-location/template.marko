@@ -1,0 +1,36 @@
+<var locations=[
+    'top-right',
+    'top-left',
+    'bottom-left',
+    'bottom-right',
+    'top',
+    'bottom',
+    'left',
+    'right',
+    'left-bottom',
+    'left-top',
+    'right-bottom',
+    'right-top'
+]/>
+
+<div>
+    default (none specified):
+    <ebay-tooltip>
+        <ebay-tooltip-host>
+            <a href="https://www.ebay.com">test link</a>
+        </ebay-tooltip-host>
+        <ebay-tooltip-content><p>This is the default tooltip. The pointer is located to the bottom.</p></ebay-tooltip-content>
+    </ebay-tooltip>
+</div>
+
+<for(loc in locations)>
+    <div style="margin-top: 8px;">
+        ${loc}:
+        <ebay-tooltip pointer=loc>
+            <ebay-tooltip-host>
+                <a href="https://www.ebay.com">test link</a>
+            </ebay-tooltip-host>
+            <ebay-tooltip-content><p>This is the tool tip with ${loc} specified, following skin class names.</p></ebay-tooltip-content>
+        </ebay-tooltip>
+    </div>
+</for>

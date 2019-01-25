@@ -7,7 +7,6 @@ const renderer = require('../');
 describe('given the combobox is in the default state', () => {
     let widget;
     let root;
-    let button;
     let ariaControl;
     let secondOption;
     let nativeSelect;
@@ -16,8 +15,7 @@ describe('given the combobox is in the default state', () => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
         root = document.querySelector('.combobox');
-        button = root.querySelector('.combobox__control');
-        ariaControl = button.querySelector('input');
+        ariaControl = root.querySelector('input');
         secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
         nativeSelect = root.querySelector('.combobox__native');
     });
@@ -101,10 +99,11 @@ describe('given the combobox is in the default state', () => {
 
     describe('when the button is clicked once', () => {
         let spy;
+
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('combobox-expand', spy);
-            testUtils.triggerEvent(button, 'click');
+            testUtils.triggerEvent(ariaControl, 'click');
         });
 
         test('then it emits the event from expander-expand', () => {
@@ -114,11 +113,12 @@ describe('given the combobox is in the default state', () => {
 
     describe('when the button is clicked twice', () => {
         let spy;
+
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('combobox-collapse', spy);
-            testUtils.triggerEvent(button, 'click');
-            testUtils.triggerEvent(button, 'click');
+            testUtils.triggerEvent(ariaControl, 'click');
+            testUtils.triggerEvent(ariaControl, 'click');
         });
 
         test('then it emits the event from expander-collapse', () => {
@@ -130,7 +130,6 @@ describe('given the combobox is in the default state', () => {
 describe('given the combobox is in an expanded state', () => {
     let widget;
     let root;
-    let button;
     let ariaControl;
     let secondOption;
     let secondOptionText;
@@ -139,11 +138,10 @@ describe('given the combobox is in an expanded state', () => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
         root = document.querySelector('.combobox');
-        button = root.querySelector('.combobox__control');
-        ariaControl = button.querySelector('input');
+        ariaControl = root.querySelector('input');
         secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
         secondOptionText = secondOption.querySelector('span:not(.combobox__status)');
-        testUtils.triggerEvent(button, 'click');
+        testUtils.triggerEvent(ariaControl, 'click');
     });
 
     afterEach(() => widget.destroy());
@@ -224,7 +222,7 @@ describe('given the combobox is in an expanded state', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('combobox-collapse', spy);
-            testUtils.triggerEvent(root, 'click');
+            testUtils.triggerEvent(ariaControl, 'click');
             testUtils.triggerEvent(ariaControl, 'keydown', 27);
         });
 
@@ -241,7 +239,7 @@ describe('given the combobox is in an expanded state', () => {
 describe('given the combobox is in an disabled state', () => {
     let widget;
     let root;
-    let button;
+    let ariaControl;
 
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({
@@ -250,7 +248,7 @@ describe('given the combobox is in an disabled state', () => {
         });
         widget = renderedWidget.appendTo(document.body).getWidget();
         root = document.querySelector('.combobox');
-        button = root.querySelector('.combobox__control');
+        ariaControl = root.querySelector('input');
     });
 
     afterEach(() => widget.destroy());
@@ -260,7 +258,7 @@ describe('given the combobox is in an disabled state', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('combobox-expand', spy);
-            testUtils.triggerEvent(button, 'click');
+            testUtils.triggerEvent(ariaControl, 'click');
         });
 
         test('then it does not emit the event from expander-expand', () => {
@@ -279,7 +277,7 @@ describe('given the combobox is in an disabled state', () => {
             beforeEach(() => {
                 spy = sinon.spy();
                 widget.on('combobox-expand', spy);
-                testUtils.triggerEvent(button, 'click');
+                testUtils.triggerEvent(ariaControl, 'click');
             });
 
             test('then it emits the event from expander-expand', () => {

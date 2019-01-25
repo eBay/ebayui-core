@@ -77,7 +77,7 @@ function init() {
             expandOnClick: !this.state.disabled,
             contentSelector: `.${comboboxOptionsClass}`,
             hostSelector: comboboxHostSelector,
-            hostContainerClass: `${comboboxBtnClass}`,
+            expandedClass: 'combobox--expanded',
             simulateSpacebarClick: true
         });
 

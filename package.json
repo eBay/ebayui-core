@@ -58,7 +58,7 @@
   ],
   "devDependencies": {
     "@ebay/browserslist-config": "^1.0.0",
-    "@ebay/skin": "^7.0.0-1",
+    "@ebay/skin": "7.0.0-2",
     "@lasso/marko-taglib": "^1.0.9",
     "async": "^2.6.0",
     "babel-cli": "^6.26.0",
@@ -109,7 +109,7 @@
   "dependencies": {
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
-    "makeup-expander": "~0.5.0",
+    "makeup-expander": "~0.6.0",
     "makeup-floating-label": "~0.0.2",
     "makeup-focusables": "~0.0.3",
     "makeup-key-emitter": "~0.0.3",

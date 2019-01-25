@@ -36,6 +36,7 @@ Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/t
 * [`ebay-combobox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox)
 * [`ebay-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-dialog)
 * [`ebay-icon`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-icon)
+* [`ebay-infotip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-infotip)
 * [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
 * [`ebay-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-notice)
 * [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
@@ -44,6 +45,8 @@ Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/t
 * [`ebay-switch`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-switch)
 * [`ebay-tab`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tab)
 * [`ebay-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-textbox)
+* [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
+* [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
 
 ## Getting Started
 
@@ -134,7 +137,7 @@ Events can also be handled using Marko syntax:
 _template.marko_
 
 ```marko
-<ebay-menu text="Sort" type="radio" w-onchange("onMenuChange")>
+<ebay-menu text="Sort" type="radio" on-change("onMenuChange")>
     <ebay-menu-item>Price</ebay-menu-item>
     <ebay-menu-item>Time</ebay-menu-item>
     <ebay-menu-item>Distance</ebay-menu-item>
