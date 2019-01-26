@@ -4,7 +4,7 @@
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [
                 "@ebay/skin/select",
-                "@ebay/skin/icon"
+                "@ebay/skin/icon/foreground"
             ]
         },
         "../../../src/components/ebay-button",
