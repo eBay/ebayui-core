@@ -222,10 +222,10 @@
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.0.tgz#06328378600156458dacb0278767ff8490f2074c"
   integrity sha512-Q1+zh29IOQQTLNGVqQFKBhYuL9kRQbTV8B51LprQAn/vpgvnHXdtzfdJYUILZMKeoy63R3wMkAdCagC5dmLrhg==
 
-"@ebay/skin@6.2.0":
-  version "6.2.0"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-6.2.0.tgz#e7256b68fd06e1c203458b848d8ed2c4aa863615"
-  integrity sha512-CvYkZcuP0ii8DZVl6RPiDhMZ20AiiRkMm5/ut/l3Fo4lmx4JHrsdR/gdTwBdf18akPwaESiVjPjuFPlYPw1MqQ==
+"@ebay/skin@6.3.2":
+  version "6.3.2"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-6.3.2.tgz#38d38a46443c9609c161c6bba390a782bc89ae3f"
+  integrity sha512-j5bok2pdRbFUxMVX8lQXwkYeFmlg/LkfDuP3GDxO6Ktw6jPfz2Sxk/ri9fUnFXyk3DflVecxh4Qqj/eKQLE4Dg==
 
 "@lasso/marko-taglib@^1.0.10":
   version "1.0.10"

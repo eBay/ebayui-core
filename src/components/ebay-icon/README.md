@@ -3,8 +3,8 @@
 ## ebay-icon Usage
 
 ```marko
+<ebay-icon type="inline" name="arrow-left"/> (preferred)
 <ebay-icon type="background" name="arrow-left"/>
-<ebay-icon type="inline" name="arrow-left"/>
 ```
 
 The `background` icon will set the background image to an SVG image via CSS. This is the simplest usage available.

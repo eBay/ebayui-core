@@ -9,7 +9,7 @@
             "dependencies": [
                 "@ebay/skin/utility",
                 "@ebay/skin/less",
-                "@ebay/skin/icon"
+                "@ebay/skin/icon/foreground"
             ]
         },
         "./style.less",
