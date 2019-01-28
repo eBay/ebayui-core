@@ -17,7 +17,7 @@ function getInitialState(input) {
         classes: ['carousel', input.class],
         style: input.style,
         config: {}, // A place to store values that should not trigger an update by themselves.
-        gap: input.gap || 16,
+        gap: parseInt(input.gap, 10) || 16,
         noDots: input.noDots,
         index: parseInt(input.index, 10) || 0,
         itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
