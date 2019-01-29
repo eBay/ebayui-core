@@ -12,12 +12,13 @@ const LEFT = -1;
 const RIGHT = 1;
 
 function getInitialState(input) {
+    const gap = parseInt(input.gap, 10);
     const state = {
         htmlAttributes: processHtmlAttributes(input),
         classes: ['carousel', input.class],
         style: input.style,
         config: {}, // A place to store values that should not trigger an update by themselves.
-        gap: input.gap || 16,
+        gap: isNaN(gap) ? 16 : gap,
         noDots: input.noDots,
         index: parseInt(input.index, 10) || 0,
         itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
