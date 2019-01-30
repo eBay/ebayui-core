@@ -115,6 +115,7 @@
                 // This was done to avoid transitioning the background color of the element
                 // while still allowing us to use exact ds colors.
                 &::before, &::after {
+                    background-color: @carousel-dots-after-background-color;
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -127,13 +128,13 @@
 
                 &.carousel__dot--active::after {
                     opacity: 1;
-                    background-color: @ds6-color-g204-gray;
+                    background-color: @carousel-dots-after-active-background-color;
                 }
 
                 &::after {
                     opacity: 0;
                     transition: opacity @ebay-carousel-transition-time @ebay-carousel-transition-function;
-                    background-color: @ds6-color-g206-gray;
+                    background-color: @carousel-dots-after-background-color;
                 }
             }
         }

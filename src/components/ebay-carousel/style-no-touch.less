@@ -11,7 +11,13 @@
         }
 
         &:hover:not([aria-disabled="true"]) {
+            border-color: @carousel-dots-hover-background-color;
             background-color: @carousel-dots-hover-background-color;
+            opacity: 1;
+
+            svg {
+                color: @carousel-dots-hover-svg-color;
+            }
         }
 
         &:hover:active:not([aria-disabled="true"]) {
