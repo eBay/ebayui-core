@@ -2,7 +2,15 @@
     "dependencies": [
         {
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/icon"
+            "dependencies": [
+                {
+                    "if-not-flag": "ebayui-no-bg-icons",
+                    "path": "@ebay/skin/icon"
+                }, {
+                    "if-flag": "ebayui-no-bg-icons",
+                    "path": "@ebay/skin/icon/foreground"
+                }
+            ]
         },
         "require: marko-widgets",
         "require: ./widget.js"

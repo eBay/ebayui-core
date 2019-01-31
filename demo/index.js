@@ -60,7 +60,7 @@ app.get('/:designSystem/:component?', (req, res) => {
     };
     const md = new MobileDetect(req.headers['user-agent']);
     const dsFlag = req.params.designSystem === 'ds6' ? 'skin-ds6' : '';
-    const lassoFlags = [];
+    const lassoFlags = ['ebayui-no-bg-icons'];
 
     // allow .only in example folder name
     model.examples.some((example) => {
