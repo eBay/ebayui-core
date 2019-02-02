@@ -42,9 +42,17 @@ app.get('/:designSystem/:component?', (req, res) => {
     const componentsPath = path.join(__dirname, '/../src/components');
     const componentPath = path.join(componentsPath, name);
     const examplesPath = path.join(componentPath, 'examples');
+    let examplesReadDir;
+
+    try {
+        examplesReadDir = fs.readdirSync(examplesPath);
+    } catch (error) {
+        res.status(404).send('Page not found.');
+    }
+
     const model = {
         name: req.params.component,
-        examples: fs.readdirSync(examplesPath).map(example => {
+        examples: examplesReadDir.map(example => {
             const examplePath = path.join(examplesPath, example);
             const exampleTemplatePath = path.join(examplePath, 'template.marko');
             return {
