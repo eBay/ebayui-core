@@ -42,17 +42,9 @@ app.get('/:designSystem/:component?', (req, res) => {
     const componentsPath = path.join(__dirname, '/../src/components');
     const componentPath = path.join(componentsPath, name);
     const examplesPath = path.join(componentPath, 'examples');
-    let examplesReadDir;
-
-    try {
-        examplesReadDir = fs.readdirSync(examplesPath);
-    } catch (error) {
-        res.status(404).send('Page not found.');
-    }
-
     const model = {
         name: req.params.component,
-        examples: examplesReadDir.map(example => {
+        examples: fs.readdirSync(examplesPath).map(example => {
             const examplePath = path.join(examplesPath, example);
             const exampleTemplatePath = path.join(examplePath, 'template.marko');
             return {
@@ -68,7 +60,7 @@ app.get('/:designSystem/:component?', (req, res) => {
     };
     const md = new MobileDetect(req.headers['user-agent']);
     const dsFlag = req.params.designSystem === 'ds6' ? 'skin-ds6' : '';
-    const lassoFlags = ['ebayui-no-bg-icons'];
+    const lassoFlags = [];
 
     // allow .only in example folder name
     model.examples.some((example) => {
