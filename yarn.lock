@@ -6066,7 +6066,7 @@ makeup-key-emitter@~0.0.3:
   dependencies:
     custom-event-polyfill "~0.3"
 
-makeup-keyboard-trap@^0.1.1:
+makeup-keyboard-trap@~0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/makeup-keyboard-trap/-/makeup-keyboard-trap-0.1.1.tgz#abb754631656bf79d5ae071aa5971ab40ea761f9"
   integrity sha512-9em/9+ih35zTtZcEZFydLxyRgY56MgStyASqbN0ZdYwd8LgzWXbk9wpWZ8UcalxadpOOBXqCMctgSeMK4DibDw==
