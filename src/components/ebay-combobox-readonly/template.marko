@@ -27,7 +27,7 @@
         <div
             for(option in data.options)
             role='option'
-            class=['combobox__option', option.class]
+            class=['combobox__option', option.class, (option.selected && 'combobox__option--active')]
             style=option.style
             ${option.htmlAttributes}
             tabindex="-1"
