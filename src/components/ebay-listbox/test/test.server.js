@@ -9,7 +9,7 @@ const options = [{
 }];
 const emptyOptions = [];
 
-describe.only('select', () => {
+describe('select', () => {
     test('renders basic version', context => {
         const input = { options, name: 'listbox-name' };
         const $ = testUtils.getCheerio(context.render(input));
@@ -54,7 +54,7 @@ describe.only('select', () => {
         expect($('.listbox__control.listbox__control--borderless').length).to.equal(0);
     });
 
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'input'));
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.listbox'));
     test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.listbox'));
 });
 

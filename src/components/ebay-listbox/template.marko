@@ -6,21 +6,21 @@
     w-on-expander-collapse='handleCollapse'
     w-preserve-attrs="class"
     w-bind>
-    <ebay-button
+    <button
         variant="expand"
-        class=data.btnClass
+        class=[data.btnClass, 'expand-btn', 'expand-btn--secondary']
         value=(data.selectedOption && data.selectedOption.text)
         disabled=data.disabled
         aria-haspopup='listbox'
         aria-owns=widget.elId('listbox__options')
         aria-expanded='false'
-        w-on-keydown='handleComboboxKeyDown'
+        w-on-keydown='handleListboxKeyDown'
         w-preserve-attrs="aria-expanded, class">
         <span class="expand-btn__cell">
-            <span>${data.selectedOption.text}</span>
+            <span>${data.selectedOption && data.selectedOption.text}</span>
             <span class="expand-btn__icon"></span>
         </span>
-    </ebay-button>
+    </button>
     <div
         if(data.options.length > 0)
         w-id='listbox__options'

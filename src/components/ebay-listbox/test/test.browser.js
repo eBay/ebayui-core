@@ -15,7 +15,7 @@ describe('given the listbox is in the default state', () => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
         root = document.querySelector('.listbox');
-        ariaControl = root.querySelector('input');
+        ariaControl = root.querySelector('.listbox__control');
         secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
         nativeSelect = root.querySelector('.listbox__native');
     });
@@ -138,7 +138,7 @@ describe('given the listbox is in an expanded state', () => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
         root = document.querySelector('.listbox');
-        ariaControl = root.querySelector('input');
+        ariaControl = root.querySelector('.listbox__control');
         secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
         secondOptionText = secondOption.querySelector('span:not(.listbox__status)');
         testUtils.triggerEvent(ariaControl, 'click');
@@ -248,7 +248,7 @@ describe('given the listbox is in an disabled state', () => {
         });
         widget = renderedWidget.appendTo(document.body).getWidget();
         root = document.querySelector('.listbox');
-        ariaControl = root.querySelector('input');
+        ariaControl = root.querySelector('.listbox__control');
     });
 
     afterEach(() => widget.destroy());

@@ -137,10 +137,10 @@ function handleOptionClick(event) {
  * https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html#keyboard
  * @param {KeyboardEvent} event
  */
-function handleComboboxKeyDown(event) {
+function handleListboxKeyDown(event) {
     eventUtils.handleUpDownArrowsKeydown(event, () => {
         const currentSelectedIndex = this.state.options.findIndex(option => option.selected);
-        const options = clearComboboxSelections(this.state.options);
+        const options = clearListboxSelections(this.state.options);
         const optionEls = this.el.querySelectorAll(listboxOptionSelector);
         let selectElementIndex = currentSelectedIndex;
 
@@ -211,7 +211,7 @@ function processAfterStateChange(el) {
 function setSelectedOption(optionValue) {
     const newOptionSelected = this.state.options.filter(option => option.value.toString() === optionValue)[0];
     const newOptionSelectedValue = newOptionSelected && newOptionSelected.value;
-    let options = this.clearComboboxSelections(this.state.options);
+    let options = this.clearListboxSelections(this.state.options);
 
     options = options.map(option => {
         if (option.value === newOptionSelectedValue) {
@@ -229,7 +229,7 @@ function setSelectedOption(optionValue) {
  * Resets all options to un-selected
  * @param {Array} options
  */
-function clearComboboxSelections(options) {
+function clearListboxSelections(options) {
     return options.map(option => {
         option.selected = false;
         return option;
@@ -244,8 +244,8 @@ module.exports = markoWidgets.defineComponent({
     handleExpand,
     handleCollapse,
     handleOptionClick,
-    handleComboboxKeyDown,
+    handleListboxKeyDown,
     processAfterStateChange,
     setSelectedOption,
-    clearComboboxSelections
+    clearListboxSelections
 });
