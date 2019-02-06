@@ -21,7 +21,7 @@ Tag | Required | Description
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `icon` | String | No | name of an `<ebay-icon>` to show for the icon button
-`location` | String | No | options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`
+`pointer` | String | No | options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`
 `style-top` | String | No | a style property for the CSS `top` rule
 `style-left` | String | No | a style property for the CSS `left` rule
 `style-right` | String | No | a style property for the CSS `right` rule
