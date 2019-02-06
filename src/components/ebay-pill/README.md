@@ -10,7 +10,6 @@
 
 Name | Type | Stateful | Description
 --- | --- | --- | ---
-`priority` | String | No | "primary" / "secondary" (default) / "none"
 `href` | String | No | for link that looks like a button
 `disabled` | Boolean | No |
 `pressed` | Boolean | No |
