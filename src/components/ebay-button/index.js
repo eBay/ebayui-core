@@ -43,7 +43,7 @@ function getInitialState(input) {
         classes.push(`${mainClass}--${priority}`);
     }
 
-    if (size === 'small' || size === 'medium' || size === 'large') {
+    if (!isBadged && (size === 'small' || size === 'medium' || size === 'large')) {
         sizeClass = `${mainClass}--${size}`;
     } else if (!size && (fixedHeight || truncate)) {
         sizeClass = `${mainClass}--medium`;
@@ -63,12 +63,16 @@ function getInitialState(input) {
         classes.push(sizeClass);
     }
 
-    if (isExpandVariant && noText) {
+    if (isIconVariant || isBadged || (isExpandVariant && noText)) {
         classes.push(`${mainClass}--no-text`);
     }
 
     if (fluid) {
         classes.push(`${mainClass}--fluid`);
+    }
+
+    if (isBadged) {
+        classes.push(`${mainClass}--badged`);
     }
 
     return {
