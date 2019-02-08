@@ -2,6 +2,7 @@
     "dependencies": [
         "require: marko",
         "require: marko-widgets",
+        "@ebay/skin/global",
         "@ebay/skin/less",
         "./atom-light-syntax.css",
         "./style.less",
