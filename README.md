@@ -8,17 +8,9 @@
 
 # eBayUI Core
 
-> Collection of core eBay components; considered to be the building blocks for all composite structures, pages &amp; apps.
+> Collection of Marko widgets; considered to be the core building blocks for all eBay components, pages & apps.
 
-The eBayUI components are Marko custom tags that follow the core principles of HTML. For example:
-
-- Input attributes can only be of type String or Boolean
-- State can be manipulated directly from the DOM node
-- Events are fired through both Marko and the DOM
-
-For more information, please read [Building a UI Component in 2017 and Beyond](https://medium.com/@senthil_hi/building-a-ui-component-in-2017-and-beyond-1f6d5c4d464).
-
-### Requirements
+## Requirements
 
 * [Node.js](https://nodejs.org/en/)
 * [Marko](https://markojs.com) (v3+)
@@ -28,7 +20,35 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 Marko v3 requires [Marko Widgets v6](https://github.com/marko-js/marko-widgets)\
 Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/tree/v7)*
 
-### Components
+## Principles
+
+The eBayUI components are <a href="https://markojs.com">Marko</a> custom tags that follow the core principles of HTML. For example:
+
+- Input attributes can only be of type String or Boolean
+- State can be manipulated directly from the DOM node
+- Events are fired through both Marko and the DOM
+
+For more information, please read [Building a UI Component in 2017 and Beyond](https://medium.com/@senthil_hi/building-a-ui-component-in-2017-and-beyond-1f6d5c4d464).
+
+### Browser Policy
+
+All components are developed and tested cross-browser using [BrowserStack](https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0), in accordance with our official [eBay Browser Policy](https://github.com/eBay/browserslist-config).
+
+<a alt='BrowserStack status' href="https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0"><img src='https://www.browserstack.com/automate/badge.svg?badge_key=TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0'/></a>
+
+### Accessibility (A11Y)
+
+We take accessibility very seriously. Very seriously indeed. Therefore all components are built in accordance to the <a href="https://ebay.gitbooks.io/mindpatterns/content/">eBay MIND Patterns</a>. These patterns, in turn, build on from the specifications provided by the <a href="https://w3c.github.io/aria-practices/">WAI-ARIA Authoring Practices</a>.
+
+Components are built in a layered, progressively enhanced fashion, utilizing the following resources:
+
+* <a href="https://github.com/ianmcburnie/bones">Bones (HTML)</a>
+* <a href="https://github.com/eBay/skin">eBay Skin (CSS)</a>
+* <a href="https://github.com/makeup-js">MakeupJS (JavaScript)</a>
+
+Each layer does it's bit to enforce and enhance accessibility. We consider this level of support to be one of our chief selling points, and we hope you do too!
+
+## Components
 * [`ebay-breadcrumb`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumb)
 * [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
 * [`ebay-carousel`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel)
@@ -145,12 +165,6 @@ _template.marko_
 ```
 
 *Note:  when using DOM events, you should also handle event destruction and delegation as needed.*
-
-## Browser Policy
-
-All components are developed and tested cross-browser using [BrowserStack](https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0), in accordance with our official [eBay Browser Policy](https://github.com/eBay/browserslist-config).
-
-<a alt='BrowserStack status' href="https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0"><img src='https://www.browserstack.com/automate/badge.svg?badge_key=TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0'/></a>
 
 ## Releases &amp; Milestones
 
