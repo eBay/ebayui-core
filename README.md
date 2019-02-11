@@ -46,7 +46,7 @@ Components are built in a layered, progressively enhanced fashion, utilizing the
 * <a href="https://github.com/eBay/skin">eBay Skin (CSS)</a>
 * <a href="https://github.com/makeup-js">MakeupJS (JavaScript)</a>
 
-Each layer does it's bit to enforce and enhance accessibility. We consider this level of support to be one of our chief selling points, and we hope you do too!
+Each layer does its bit to enforce and enhance accessibility. We consider this level of support to be one of our chief selling points, and we hope you do too!
 
 ## Components
 * [`ebay-breadcrumb`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumb)
