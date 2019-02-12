@@ -1,5 +1,6 @@
 const markoWidgets = require('marko-widgets');
 const Expander = require('makeup-expander');
+const ActiveDescendant = require('makeup-active-descendant');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
@@ -13,7 +14,7 @@ const listboxExpanderClass = 'listbox__control';
 const listboxHostSelector = `.${listboxExpanderClass}`;
 const listboxBtnClass = 'listbox__control';
 const listboxOptionSelector = '.listbox__option[role=option]';
-const listboxSelectedOptionSelector = '.listbox__option[role=option][aria-selected=true]';
+const listboxSelectedOptionSelector = '.listbox__option[role=option].active-descendant';
 
 function getInitialState(input) {
     const options = (input.options || []).map(option => ({
@@ -72,14 +73,26 @@ function init() {
     const optionEls = this.el.querySelectorAll(listboxOptionSelector);
 
     if (this.state.options && this.state.options.length > 0) {
+        this.activeDescendant = ActiveDescendant.createLinear(
+            this.el,
+            this.el.querySelector(listboxHostSelector),
+            this.el.querySelector(`.${listboxOptionsClass}`),
+            listboxOptionSelector, {
+                activeDescendantClassName: 'listbox__option--active'
+            }
+        );
+
         this.expander = new Expander(this.el, {
             autoCollapse: true,
             expandOnClick: !this.state.disabled,
             contentSelector: `.${listboxOptionsClass}`,
             hostSelector: listboxHostSelector,
             expandedClass: 'listbox--expanded',
+            focusManagement: 'content',
             simulateSpacebarClick: true
         });
+
+        this.el.addEventListener('activeDescendantChange', handleListboxChange.bind(this));
 
         observer.observeRoot(this, ['selected'], (index) => {
             this.processAfterStateChange(optionEls[index]);
@@ -111,81 +124,14 @@ function handleCollapse() {
     emitAndFire(this, 'listbox-collapse');
 }
 
-/**
- * Handle mouse click for option
- * @param {MouseEvent} event
- */
-function handleOptionClick(event) {
-    let el;
+function handleListboxChange(event) {
+    const options = clearListboxSelections(this.state.options);
+    const optionEls = this.el.querySelectorAll(listboxOptionSelector);
+    const selectElementIndex = event.detail.toIndex;
 
-    // find the element with the data
-    // start with the target element
-    if (event.target.dataset.optionValue) {
-        el = event.target;
-    // check up the tree one level (in case option text or status was clicked)
-    } else if (event.target.parentNode.dataset.optionValue) {
-        el = event.target.parentNode;
-    }
-
-    this.processAfterStateChange(el);
-    this.expander.collapse();
-    this.el.querySelector(listboxHostSelector).focus();
-}
-
-/**
- * Handle selection of options when the listbox is closed
- * https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html#keyboard
- * @param {KeyboardEvent} event
- */
-function handleListboxKeyDown(event) {
-    eventUtils.handleUpDownArrowsKeydown(event, () => {
-        const currentSelectedIndex = this.state.options.findIndex(option => option.selected);
-        const options = clearListboxSelections(this.state.options);
-        const optionEls = this.el.querySelectorAll(listboxOptionSelector);
-        let selectElementIndex = currentSelectedIndex;
-
-        switch (event.charCode || event.keyCode) {
-            // down
-            case 40:
-                selectElementIndex = traverseOptions(options, currentSelectedIndex, 1);
-                break;
-            // up
-            case 38:
-                selectElementIndex = traverseOptions(options, currentSelectedIndex, -1);
-                break;
-            default:
-                break;
-        }
-
-        options[selectElementIndex].selected = true;
-
-        this.setState('options', options);
-        this.processAfterStateChange(optionEls[selectElementIndex]);
-    });
-
-    eventUtils.handleEscapeKeydown(event, () => {
-        this.expander.collapse();
-        this.el.querySelector(listboxHostSelector).focus();
-    });
-}
-
-/**
- * Traverse the options forward or backward for the next/prev option
- * @param {Array} options
- * @param {Number} currentIndex
- * @param {Number} distance
- * @returns {Number}
- */
-function traverseOptions(options, currentIndex, distance) {
-    let goToIndex = currentIndex;
-
-    if (distance < 0 && currentIndex !== 0) {
-        goToIndex = (currentIndex + options.length + distance) % options.length;
-    } else if (distance > 0 && currentIndex !== (options.length - 1)) {
-        goToIndex = (currentIndex + distance) % options.length;
-    }
-
-    return goToIndex;
+    options[selectElementIndex].selected = true;
+    this.setState('options', options);
+    this.processAfterStateChange(optionEls[selectElementIndex]);
 }
 
 /**
@@ -243,8 +189,7 @@ module.exports = markoWidgets.defineComponent({
     init,
     handleExpand,
     handleCollapse,
-    handleOptionClick,
-    handleListboxKeyDown,
+    handleListboxChange,
     processAfterStateChange,
     setSelectedOption,
     clearListboxSelections

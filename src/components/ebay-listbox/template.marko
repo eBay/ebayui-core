@@ -7,15 +7,14 @@
     w-preserve-attrs="class"
     w-bind>
     <button
-        variant="expand"
-        class=[data.btnClass, 'expand-btn', 'expand-btn--secondary']
+        w-id="button"
+        class=[data.btnClass, 'expand-btn', 'expand-btn--regular']
         value=(data.selectedOption && data.selectedOption.text)
         disabled=data.disabled
         aria-haspopup='listbox'
         aria-owns=widget.elId('listbox__options')
         aria-expanded='false'
-        w-on-keydown='handleListboxKeyDown'
-        w-preserve-attrs="aria-expanded, class">
+        w-preserve-attrs="id,class,aria-expanded">
         <span class="expand-btn__cell">
             <span>${data.selectedOption && data.selectedOption.text}</span>
             <span class="expand-btn__icon"></span>
@@ -25,16 +24,17 @@
         if(data.options.length > 0)
         w-id='listbox__options'
         role='listbox'
-        class=data.optionsClass>
+        class=data.optionsClass
+        w-preserve>
         <div
             for(option in data.options)
+            w-id='listbox__option'
             role='option'
             class=['listbox__option', option.class]
             style=option.style
             ${option.htmlAttributes}
             tabindex="-1"
-            w-on-click='handleOptionClick'
-            w-preserve-attrs="tabindex,data-makeup-index"
+            w-preserve-attrs="id,class,tabindex,data-makeup-index"
             aria-selected=String(option.selected)
             data-option-value=option.value>
             <span>
