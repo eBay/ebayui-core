@@ -9,7 +9,7 @@ const options = [{
 }];
 const emptyOptions = [];
 
-describe('select', () => {
+describe('listbox', () => {
     test('renders basic version', context => {
         const input = { options, name: 'listbox-name' };
         const $ = testUtils.getCheerio(context.render(input));
@@ -39,19 +39,6 @@ describe('select', () => {
         expect($('.listbox__options[role=listbox]').length).to.equal(1);
         expect($('.listbox__option[role=option]').length).to.equal(2);
         expect($('.listbox__option[role=option][aria-selected="true"]:nth-child(2)').length).to.equal(1);
-    });
-
-    test('renders with borderless=true', context => {
-        const input = { borderless: true, options, name: 'listbox-name' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.listbox__control.listbox__control--borderless').length).to.equal(1);
-    });
-
-    test('renders with borderless=false', context => {
-        const input = { borderless: false, options, name: 'listbox-name' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.listbox__control').length).to.equal(1);
-        expect($('.listbox__control.listbox__control--borderless').length).to.equal(0);
     });
 
     test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.listbox'));

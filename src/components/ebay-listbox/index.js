@@ -4,7 +4,6 @@ const ActiveDescendant = require('makeup-active-descendant');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
-const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
@@ -14,12 +13,12 @@ const listboxExpanderClass = 'listbox__control';
 const listboxHostSelector = `.${listboxExpanderClass}`;
 const listboxBtnClass = 'listbox__control';
 const listboxOptionSelector = '.listbox__option[role=option]';
-const listboxSelectedOptionSelector = '.listbox__option[role=option].active-descendant';
+const listboxSelectedOptionSelector = '.listbox__option[role=option].listbox__option--active';
 
 function getInitialState(input) {
     const options = (input.options || []).map(option => ({
         htmlAttributes: processHtmlAttributes(option),
-        class: option.class,
+        class: [option.class, (option.selected && 'listbox__option--active')],
         style: option.style,
         value: option.value,
         text: option.text,
@@ -31,6 +30,7 @@ function getInitialState(input) {
 
     if (options.length > 0 && selectedOption.value === options[0].value) {
         options[0].selected = true;
+        options[0].class.push('listbox__option--active');
     }
 
     return {
@@ -52,7 +52,7 @@ function getTemplateData(state) {
     const optionsClass = [listboxOptionsClass];
 
     if (state.borderless) {
-        btnClass.push('listbox__control--borderless');
+        btnClass.push('expand-btn--borderless');
     }
 
     return {
@@ -71,6 +71,7 @@ function getTemplateData(state) {
 
 function init() {
     const optionEls = this.el.querySelectorAll(listboxOptionSelector);
+    const selectedOptionIndex = this.state.options.findIndex(option => option.selected);
 
     if (this.state.options && this.state.options.length > 0) {
         this.activeDescendant = ActiveDescendant.createLinear(
@@ -78,8 +79,10 @@ function init() {
             this.el.querySelector(listboxHostSelector),
             this.el.querySelector(`.${listboxOptionsClass}`),
             listboxOptionSelector, {
-                activeDescendantClassName: 'listbox__option--active'
-            }
+                activeDescendantClassName: 'listbox__option--active',
+                autoInit: (selectedOptionIndex || 0),
+                autoReset: null
+            },
         );
 
         this.expander = new Expander(this.el, {

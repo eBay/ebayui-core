@@ -36,6 +36,7 @@ describe('given the listbox is in the default state', () => {
         beforeEach((done) => {
             spy = sinon.spy();
             widget.on('listbox-change', spy);
+            ariaControl.focus();
             testUtils.triggerEvent(ariaControl, 'keydown', 40);
             setTimeout(done);
         });
@@ -60,6 +61,7 @@ describe('given the listbox is in the default state', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('listbox-change', spy);
+            testUtils.triggerEvent(ariaControl, 'keydown', 40);
             testUtils.triggerEvent(ariaControl, 'keydown', 38);
         });
 
@@ -68,8 +70,8 @@ describe('given the listbox is in the default state', () => {
         });
 
         test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
+            expect(spy.calledTwice).to.equal(true);
+            const eventData = spy.getCall(1).args[0];
             expect(eventData.index).to.equal(0);
             expect(eventData.selected).to.deep.equal(['1']);
             const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
@@ -103,7 +105,7 @@ describe('given the listbox is in the default state', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('listbox-expand', spy);
-            testUtils.triggerEvent(ariaControl, 'click');
+            testUtils.triggerEvent(ariaControl, 'expander-expand');
         });
 
         test('then it emits the event from expander-expand', () => {
@@ -117,8 +119,8 @@ describe('given the listbox is in the default state', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('listbox-collapse', spy);
-            testUtils.triggerEvent(ariaControl, 'click');
-            testUtils.triggerEvent(ariaControl, 'click');
+            testUtils.triggerEvent(ariaControl, 'expander-expand');
+            testUtils.triggerEvent(ariaControl, 'expander-collapse');
         });
 
         test('then it emits the event from expander-collapse', () => {
@@ -141,7 +143,7 @@ describe('given the listbox is in an expanded state', () => {
         ariaControl = root.querySelector('.listbox__control');
         secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
         secondOptionText = secondOption.querySelector('span:not(.listbox__status)');
-        testUtils.triggerEvent(ariaControl, 'click');
+        testUtils.triggerEvent(ariaControl, 'expander-expand');
     });
 
     afterEach(() => widget.destroy());
@@ -205,84 +207,15 @@ describe('given the listbox is in an expanded state', () => {
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('listbox-change', spy);
+            testUtils.triggerEvent(ariaControl, 'keydown', 40);
             testUtils.triggerEvent(ariaControl, 'keydown', 38);
         });
 
         test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
+            expect(spy.calledTwice).to.equal(true);
+            const eventData = spy.getCall(1).args[0];
             expect(eventData.index).to.equal(0);
             expect(eventData.selected).to.deep.equal(['1']);
-        });
-    });
-
-    describe('when the escape key is pressed', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-collapse', spy);
-            testUtils.triggerEvent(ariaControl, 'click');
-            testUtils.triggerEvent(ariaControl, 'keydown', 27);
-        });
-
-        test('then it collapses', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
-        });
-
-        test('then it emits the collapse event', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
-});
-
-describe('given the listbox is in an disabled state', () => {
-    let widget;
-    let root;
-    let ariaControl;
-
-    beforeEach(() => {
-        const renderedWidget = renderer.renderSync({
-            options: mock.options,
-            disabled: true
-        });
-        widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.listbox');
-        ariaControl = root.querySelector('.listbox__control');
-    });
-
-    afterEach(() => widget.destroy());
-
-    describe('when the button is clicked once', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-expand', spy);
-            testUtils.triggerEvent(ariaControl, 'click');
-        });
-
-        test('then it does not emit the event from expander-expand', () => {
-            expect(spy.calledOnce).to.equal(false);
-        });
-    });
-
-    describe('when the disabled state is changed programmatically', () => {
-        beforeEach((done) => {
-            root.disabled = false;
-            setTimeout(done);
-        });
-
-        describe('when the button is clicked once', () => {
-            let spy;
-            beforeEach(() => {
-                spy = sinon.spy();
-                widget.on('listbox-expand', spy);
-                testUtils.triggerEvent(ariaControl, 'click');
-            });
-
-            test('then it emits the event from expander-expand', () => {
-                expect(spy.calledOnce).to.equal(true);
-            });
         });
     });
 });
