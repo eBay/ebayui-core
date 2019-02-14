@@ -14,7 +14,7 @@
         aria-haspopup='listbox'
         aria-owns=widget.elId('listbox__options')
         aria-expanded='false'
-        w-preserve-attrs="id,class,aria-expanded">
+        w-preserve-attrs="id,class,aria-expanded,aria-activedescendant">
         <span class="expand-btn__cell">
             <span>${data.selectedOption && data.selectedOption.text}</span>
             <span class="expand-btn__icon"></span>
@@ -27,8 +27,8 @@
         class=data.optionsClass
         w-preserve>
         <div
-            for(option in data.options)
-            w-id='listbox__option'
+            for(option in data.options | status-var=loop)
+            w-id=('listbox__option' + loop.getIndex())
             role='option'
             class=['listbox__option', option.class]
             style=option.style
