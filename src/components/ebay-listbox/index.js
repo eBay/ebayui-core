@@ -73,11 +73,13 @@ function init() {
     const optionEls = this.el.querySelectorAll(listboxOptionSelector);
     const selectedOptionIndex = this.state.options.findIndex(option => option.selected);
 
+    const activeDescendantOwnedEl = this.el.querySelector(`.${listboxOptionsClass}`);
+
     if (this.state.options && this.state.options.length > 0) {
         this.activeDescendant = ActiveDescendant.createLinear(
             this.el,
-            this.el.querySelector(listboxHostSelector),
-            this.el.querySelector(`.${listboxOptionsClass}`),
+            activeDescendantOwnedEl,
+            activeDescendantOwnedEl,
             listboxOptionSelector, {
                 activeDescendantClassName: 'listbox__option--active',
                 autoInit: (selectedOptionIndex || 0),
