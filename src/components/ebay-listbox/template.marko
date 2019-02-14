@@ -1,0 +1,57 @@
+<span
+    class=data.class
+    style=data.style
+    ${data.htmlAttributes}
+    w-on-expander-expand='handleExpand'
+    w-on-expander-collapse='handleCollapse'
+    w-preserve-attrs="class"
+    w-bind>
+    <button
+        w-id="button"
+        class=[data.btnClass, 'expand-btn', 'expand-btn--regular']
+        value=(data.selectedOption && data.selectedOption.text)
+        disabled=data.disabled
+        aria-haspopup='listbox'
+        aria-owns=widget.elId('listbox__options')
+        aria-expanded='false'
+        w-preserve-attrs="id,class,aria-expanded">
+        <span class="expand-btn__cell">
+            <span>${data.selectedOption && data.selectedOption.text}</span>
+            <span class="expand-btn__icon"></span>
+        </span>
+    </button>
+    <div
+        if(data.options.length > 0)
+        w-id='listbox__options'
+        role='listbox'
+        class=data.optionsClass
+        w-preserve>
+        <div
+            for(option in data.options | status-var=loop)
+            w-id=('listbox__option' + loop.getIndex())
+            role='option'
+            class=['listbox__option', option.class]
+            style=option.style
+            ${option.htmlAttributes}
+            tabindex="-1"
+            w-preserve-attrs="id,class,tabindex,data-makeup-index,aria-selected"
+            aria-selected=String(option.selected)
+            data-option-value=option.value>
+            <span>
+                ${option.text}
+            </span>
+            <span class='listbox__status'/>
+        </div>
+    </div>
+    <select
+        hidden
+        class='listbox__native'
+        name=data.name>
+        <option
+            for(option in data.options)
+            value=option.value
+            selected=option.selected
+            class=option.class>
+        </option>
+    </select>
+</span>
