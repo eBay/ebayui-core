@@ -88,8 +88,8 @@
         "@style": "string",
         "@disabled": "boolean"
     },
-    "<ebay-combobox>": {
-        "renderer": "./src/components/ebay-combobox/index.js",
+    "<ebay-combobox-readonly>": {
+        "renderer": "./src/components/ebay-combobox-readonly/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -108,7 +108,7 @@
             "@selected": "boolean"
         }
     },
-    "<ebay-combobox-option>": {
+    "<ebay-combobox-readonly-option>": {
         "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-dialog>": {

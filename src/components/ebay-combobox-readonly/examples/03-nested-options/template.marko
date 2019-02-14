@@ -1,0 +1,11 @@
+<var options=[
+    { value: 1, text: 'Option 1' },
+    { value: 2, text: 'Option 2', selected: true },
+    { value: 3, text: 'Option 3' }
+]/>
+
+<ebay-combobox-readonly name="formFieldName">
+    <if(true)>
+        <ebay-combobox-readonly-option for(option in options) value=option.value text=option.text selected=option.selected/>
+    </if>
+</ebay-combobox-readonly>
