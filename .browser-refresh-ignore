@@ -1,6 +1,0 @@
-.*
-node_modules/
-demo/static/
-snapshots/
-*.marko.js
-**/test/**/*
