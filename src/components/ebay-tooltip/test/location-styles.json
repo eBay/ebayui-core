@@ -1,0 +1,86 @@
+{
+    "left": {
+        "overlayTransform": "translateX(16px) translateY(-50%)",
+        "overlayLeft": "100%",
+        "overlayRight": "auto",
+        "overlayTop": "50%",
+        "overlayBottom": "auto"
+    },
+    "left-top": {
+        "overlayTransform": "translateX(16px)",
+        "overlayLeft": "100%",
+        "overlayRight": "auto",
+        "overlayTop": "-8px",
+        "overlayBottom": "auto"
+    },
+    "left-bottom": {
+        "overlayTransform": "translateX(16px)",
+        "overlayLeft": "100%",
+        "overlayRight": "auto",
+        "overlayTop": "auto",
+        "overlayBottom": "-8px"
+    },
+    "right": {
+        "overlayTransform": "translateX(-16px) translateY(-50%)",
+        "overlayLeft": "auto",
+        "overlayRight": "100%",
+        "overlayTop": "50%",
+        "overlayBottom": "auto"
+    },
+    "right-top": {
+        "overlayTransform": "translateX(-16px)",
+        "overlayLeft": "auto",
+        "overlayRight": "100%",
+        "overlayTop": "-8px",
+        "overlayBottom": "auto"
+    },
+    "right-bottom": {
+        "overlayTransform": "translateX(-16px)",
+        "overlayLeft": "auto",
+        "overlayRight": "100%",
+        "overlayTop": "auto",
+        "overlayBottom": "-8px"
+    },
+    "top": {
+        "overlayTransform": "translateX(-50%)",
+        "overlayLeft": "50%",
+        "overlayRight": "auto",
+        "overlayTop": "calc(100% + 16px)",
+        "overlayBottom": "auto"
+    },
+    "top-left": {
+        "overlayTransform": "",
+        "overlayLeft": "0px",
+        "overlayRight": "auto",
+        "overlayTop": "calc(100% + 16px)",
+        "overlayBottom": "auto"
+    },
+    "top-right": {
+        "overlayTransform": "",
+        "overlayLeft": "auto",
+        "overlayRight": "0px",
+        "overlayTop": "calc(100% + 16px)",
+        "overlayBottom": "auto"
+    },
+    "bottom-right": {
+        "overlayTransform": "",
+        "overlayLeft": "auto",
+        "overlayRight": "0px",
+        "overlayTop": "auto",
+        "overlayBottom": "calc(100% + 16px)"
+    },
+    "bottom-left": {
+        "overlayTransform": "",
+        "overlayLeft": "0px",
+        "overlayRight": "auto",
+        "overlayTop": "auto",
+        "overlayBottom": "calc(100% + 16px)"
+    },
+    "bottom": {
+        "overlayTransform": "translateX(-50%)",
+        "overlayLeft": "50%",
+        "overlayRight": "auto",
+        "overlayTop": "auto",
+        "overlayBottom": "calc(100% + 16px)"
+    }
+}

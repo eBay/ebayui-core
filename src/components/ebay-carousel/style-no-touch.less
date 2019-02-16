@@ -11,14 +11,20 @@
         }
 
         &:hover:not([aria-disabled="true"]) {
-            background-color: @ds6-color-g204-gray;
+            border-color: @carousel-dots-hover-background-color;
+            background-color: @carousel-dots-hover-background-color;
+            opacity: 1;
+
+            svg {
+                color: @carousel-dots-hover-svg-color;
+            }
         }
 
         &:hover:active:not([aria-disabled="true"]) {
-            background-color: @ds6-color-g205-gray;
+            background-color: @carousel-dots-hover-active-background-color;
 
             svg {
-                color: @ds6-color-g201-gray;
+                color: @carousel-dots-hover-active-svg-color;
             }
         }
     }

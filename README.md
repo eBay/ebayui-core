@@ -8,17 +8,9 @@
 
 # eBayUI Core
 
-> Collection of core eBay components; considered to be the building blocks for all composite structures, pages &amp; apps.
+> Collection of Marko widgets; considered to be the core building blocks for all eBay components, pages & apps.
 
-The eBayUI components are Marko custom tags that follow the core principles of HTML. For example:
-
-- Input attributes can only be of type String or Boolean
-- State can be manipulated directly from the DOM node
-- Events are fired through both Marko and the DOM
-
-For more information, please read [Building a UI Component in 2017 and Beyond](https://medium.com/@senthil_hi/building-a-ui-component-in-2017-and-beyond-1f6d5c4d464).
-
-### Requirements
+## Requirements
 
 * [Node.js](https://nodejs.org/en/)
 * [Marko](https://markojs.com) (v3+)
@@ -28,14 +20,43 @@ For more information, please read [Building a UI Component in 2017 and Beyond](h
 Marko v3 requires [Marko Widgets v6](https://github.com/marko-js/marko-widgets)\
 Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/tree/v7)*
 
-### Components
+## Principles
+
+The eBayUI components are <a href="https://markojs.com">Marko</a> custom tags that follow the core principles of HTML. For example:
+
+- Input attributes can only be of type String or Boolean
+- State can be manipulated directly from the DOM node
+- Events are fired through both Marko and the DOM
+
+For more information, please read [Building a UI Component in 2017 and Beyond](https://medium.com/@senthil_hi/building-a-ui-component-in-2017-and-beyond-1f6d5c4d464).
+
+### Browser Policy
+
+All components are developed and tested cross-browser using [BrowserStack](https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0), in accordance with our official [eBay Browser Policy](https://github.com/eBay/browserslist-config).
+
+<a alt='BrowserStack status' href="https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0"><img src='https://www.browserstack.com/automate/badge.svg?badge_key=TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0'/></a>
+
+### Accessibility (A11Y)
+
+We take accessibility very seriously. Very seriously indeed. Therefore all components are built in accordance to the <a href="https://ebay.gitbooks.io/mindpatterns/content/">eBay MIND Patterns</a>. These patterns, in turn, build on from the specifications provided by the <a href="https://w3c.github.io/aria-practices/">WAI-ARIA Authoring Practices</a>.
+
+Components are built in a layered, progressively enhanced fashion, utilizing the following resources:
+
+* <a href="https://github.com/ianmcburnie/bones">Bones (HTML)</a>
+* <a href="https://github.com/eBay/skin">eBay Skin (CSS)</a>
+* <a href="https://github.com/makeup-js">MakeupJS (JavaScript)</a>
+
+Each layer does its bit to enforce and enhance accessibility. We consider this level of support to be one of our chief selling points, and we hope you do too!
+
+## Components
 * [`ebay-breadcrumb`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumb)
 * [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
 * [`ebay-carousel`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel)
 * [`ebay-checkbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-checkbox)
-* [`ebay-combobox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox)
+<!-- * [`ebay-combobox-readonly`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox-readonly) -->
 * [`ebay-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-dialog)
 * [`ebay-icon`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-icon)
+* [`ebay-infotip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-infotip)
 * [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
 * [`ebay-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-notice)
 * [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
@@ -44,6 +65,8 @@ Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/t
 * [`ebay-switch`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-switch)
 * [`ebay-tab`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tab)
 * [`ebay-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-textbox)
+* [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
+* [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
 
 ## Getting Started
 
@@ -134,7 +157,7 @@ Events can also be handled using Marko syntax:
 _template.marko_
 
 ```marko
-<ebay-menu text="Sort" type="radio" w-onchange("onMenuChange")>
+<ebay-menu text="Sort" type="radio" on-change("onMenuChange")>
     <ebay-menu-item>Price</ebay-menu-item>
     <ebay-menu-item>Time</ebay-menu-item>
     <ebay-menu-item>Distance</ebay-menu-item>
@@ -142,12 +165,6 @@ _template.marko_
 ```
 
 *Note:  when using DOM events, you should also handle event destruction and delegation as needed.*
-
-## Browser Policy
-
-All components are developed and tested cross-browser using [BrowserStack](https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0), in accordance with our official [eBay Browser Policy](https://github.com/eBay/browserslist-config).
-
-<a alt='BrowserStack status' href="https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0"><img src='https://www.browserstack.com/automate/badge.svg?badge_key=TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0'/></a>
 
 ## Releases &amp; Milestones
 

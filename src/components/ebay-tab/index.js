@@ -8,6 +8,7 @@ const template = require('./template.marko');
 
 function getInitialState(input) {
     const fake = Boolean(input.fake);
+    const activation = input.activation === 'manual' ? 'manual' : 'auto';
     const index = parseInt(input.index) || 0;
     const headings = (input.headings || []).map(heading => ({
         htmlAttributes: processHtmlAttributes(heading),
@@ -28,6 +29,7 @@ function getInitialState(input) {
         classes: [input.class, prefix(fake, 'tabs')],
         style: input.style,
         index,
+        activation,
         fake,
         headings,
         panels
@@ -41,7 +43,8 @@ function getTemplateData(state) {
 function init() {
     this.headingsEl = this.getEl('headings');
     if (!this.state.fake) {
-        rovingTabindex.createLinear(this.headingsEl, 'div', { index: 0, autoReset: 0 });
+        const linearRovingTabindex = rovingTabindex.createLinear(this.headingsEl, 'div', { index: this.state.index });
+        linearRovingTabindex.wrap = true;
     }
     observer.observeRoot(this, ['index'], index => this.processStateChange(parseInt(index)), true);
 }
@@ -62,13 +65,21 @@ function processStateChange(index) {
  * @param {MouseEvent} e
  */
 function handleHeadingClick(e) {
+    this.processStateChange(getElementIndex(getHeadingEl(e, this.state.fake)));
+}
+
+/**
+ * Get heading element from event
+ * @param {Event} e
+ * @param {Boolean} isFake - If the tabs are fake
+ */
+function getHeadingEl(e, isFake) {
     let headingEl = e.target;
-    const headingClass = prefix(this.state.fake, 'tabs__item');
+    const headingClass = prefix(isFake, 'tabs__item');
     while (!headingEl.classList.contains(headingClass)) {
         headingEl = headingEl.parentNode;
     }
-
-    this.processStateChange(getElementIndex(headingEl));
+    return headingEl;
 }
 
 /**
@@ -85,7 +96,21 @@ function getElementIndex(headingEl) {
  * @param {KeyboardEvent} e
  */
 function handleHeadingKeydown(e) {
-    eventUtils.handleActionKeydown(e, () => this.handleHeadingClick(e));
+    eventUtils.handleLeftRightArrowsKeydown(e, () => {
+        e.preventDefault();
+        let index = getElementIndex(getHeadingEl(e, this.state.fake));
+        const maxIndex = this.headingsEl.children.length - 1;
+        const keyCode = e.charCode || e.keyCode;
+        if (keyCode === 37) index = index === 0 ? maxIndex : index - 1;
+        if (keyCode === 39) index = index === maxIndex ? 0 : index + 1;
+
+        this.headingsEl.children[index].focus();
+        if (this.state.activation === 'auto') this.processStateChange(index);
+    });
+    eventUtils.handleActionKeydown(e, () => {
+        e.preventDefault();
+        this.handleHeadingClick(e);
+    });
 }
 
 /**

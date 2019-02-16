@@ -36,12 +36,12 @@
         opacity: 0;
         pointer-events: none;
         font-size: 18px;
-        background-color: @ds6-color-g201-gray;
+        background-color: @carousel-control-background-color;
         padding: 0; // override browser default
         height: 72px;
         width: 28px;
         z-index: 1;
-        border: 1px solid @ds6-color-g206-gray;
+        border: 1px solid @carousel-control-border-color;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -55,7 +55,7 @@
         }
 
         svg {
-            color: @ds6-color-g206-gray;
+            color: @carousel-control-svg-color;
         }
 
         .icon--chevron-right {
@@ -81,7 +81,7 @@
         width: 40px;
         border-radius: 50%;
         text-align: center;
-        color: @ds6-color-g201-gray;
+        color: @carousel-play-pause-color;
         box-sizing: border-box;
 
         svg {
@@ -102,19 +102,20 @@
             display: inline-block;
 
             > button {
-                position: relative;
+                background-color: transparent;
                 border: 0;
                 display: inline-block;
+                height: 8px;
                 margin: 0 6px;
                 padding: 0;
-                height: 8px;
+                position: relative;
                 width: 8px;
-                background-color: transparent;
 
                 // The active dot uses an after to color it in which transitions opacity.
                 // This was done to avoid transitioning the background color of the element
                 // while still allowing us to use exact ds colors.
                 &::before, &::after {
+                    background-color: @carousel-dots-after-background-color;
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -127,16 +128,13 @@
 
                 &.carousel__dot--active::after {
                     opacity: 1;
-                }
-
-                &::before {
-                    background-color: @ds6-color-g204-gray;
+                    background-color: @carousel-dots-after-active-background-color;
                 }
 
                 &::after {
                     opacity: 0;
                     transition: opacity @ebay-carousel-transition-time @ebay-carousel-transition-function;
-                    background-color: @ds6-color-g206-gray;
+                    background-color: @carousel-dots-after-background-color;
                 }
             }
         }

@@ -12,6 +12,18 @@
                 "@ebay/skin/icon/foreground"
             ]
         },
+        {
+            "if-not-flag": "skin-ds6",
+            "dependencies": [
+                "./variables-ds4.less"
+            ]
+        },
+        {
+            "if-flag": "skin-ds6",
+            "dependencies": [
+                "./variables-ds6.less"
+            ]
+        },
         "./style.less",
         {
             "if-flag": "touch",

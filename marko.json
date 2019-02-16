@@ -26,7 +26,7 @@
         }
     },
     "<ebay-breadcrumb-item>": {
-      "transformer": "./src/common/transformers/attribute-tags/index.js"
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-button>": {
         "renderer": "./src/components/ebay-button/index.js",
@@ -43,6 +43,8 @@
         "@no-text": "boolean",
         "@fluid": "boolean",
         "@variant": "string",
+        "@fixed-height": "boolean",
+        "@truncate": "boolean",
         "@badge-number": "expression",
         "@badge-aria-label": "string"
     },
@@ -76,7 +78,7 @@
         }
     },
     "<ebay-carousel-item>": {
-      "transformer": "./src/common/transformers/attribute-tags/index.js"
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-checkbox>": {
         "renderer": "./src/components/ebay-checkbox/index.js",
@@ -86,8 +88,8 @@
         "@style": "string",
         "@disabled": "boolean"
     },
-    "<ebay-combobox>": {
-        "renderer": "./src/components/ebay-combobox/index.js",
+    "<ebay-combobox-readonly>": {
+        "renderer": "./src/components/ebay-combobox-readonly/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -106,8 +108,8 @@
             "@selected": "boolean"
         }
     },
-    "<ebay-combobox-option>": {
-      "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "<ebay-combobox-readonly-option>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-dialog>": {
         "renderer": "./src/components/ebay-dialog/index.js",
@@ -132,6 +134,64 @@
         "@a11y-text": "string",
         "@no-skin-classes": "boolean",
         "@_themes": "expression"
+    },
+    "<ebay-infotip>": {
+        "renderer": "./src/components/ebay-infotip/index.js",
+        "transformer": "./src/components/ebay-infotip/transformer.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@icon": "string",
+        "@pointer": "string",
+        "@style-top": "string",
+        "@style-left": "string",
+        "@style-right": "string",
+        "@style-bottom": "string",
+        "@aria-label": "string",
+        "@a11y-close-text": "string",
+        "@iconTag <icon>": {},
+        "@host <host>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@heading <heading>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@content <content>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        }
+    },
+    "<ebay-listbox>": {
+        "renderer": "./src/components/ebay-listbox/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@name": "string",
+        "@grow": "boolean",
+        "@borderless": "boolean",
+        "@disabled": "boolean",
+        "@options <option>[]": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string",
+            "@value": "string",
+            "@text": "string",
+            "@selected": "boolean"
+        }
+    },
+    "<ebay-listbox-option>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-menu>": {
         "renderer": "./src/components/ebay-menu/index.js",
@@ -166,7 +226,7 @@
         }
     },
     "<ebay-menu-item>": {
-      "transformer": "./src/common/transformers/attribute-tags/index.js"
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-notice>": {
         "renderer": "./src/components/ebay-notice/index.js",
@@ -205,7 +265,19 @@
         }
     },
     "<ebay-pagination-item>": {
-      "transformer": "./src/common/transformers/attribute-tags/index.js"
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-pill>": {
+        "renderer": "./src/components/ebay-pill/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@disabled": "boolean",
+        "@href": "string",
+        "@priority": "string",
+        "@pressed": "boolean",
+        "@aria-selected-text": "string"
     },
     "<ebay-radio>": {
         "renderer": "./src/components/ebay-radio/index.js",
@@ -235,7 +307,7 @@
         }
     },
     "<ebay-select-option>": {
-      "transformer": "./src/common/transformers/attribute-tags/index.js"
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-switch>": {
         "renderer": "./src/components/ebay-switch/index.js",
@@ -253,6 +325,7 @@
         "@style": "string",
         "@index": "string",
         "@fake": "boolean",
+        "@activation": "string",
         "@headings <heading>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
@@ -268,10 +341,10 @@
         }
     },
     "<ebay-tab-heading>": {
-      "transformer": "./src/common/transformers/attribute-tags/index.js"
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-tab-panel>": {
-      "transformer": "./src/common/transformers/attribute-tags/index.js"
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-textbox>": {
         "transformer": "./src/components/ebay-textbox/transformer.js",
@@ -285,7 +358,86 @@
         "@multiline": "boolean",
         "@icon": "string",
         "@icon-position": "string",
-        "@iconTag <icon>": {}
+        "@iconTag <icon>": {},
+        "@floating-label": "string"
+    },
+    "<ebay-tooltip>": {
+        "renderer": "./src/components/ebay-tooltip/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@pointer": "string",
+        "@style-top": "string",
+        "@style-left": "string",
+        "@style-right": "string",
+        "@style-bottom": "string",
+        "@no-hover": "boolean",
+        "@host <host>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@content <content>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        }
+    },
+    "<ebay-tooltip-host>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-tooltip-content>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-infotip-host>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-infotip-heading>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-infotip-content>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-tourtip>": {
+        "renderer": "./src/components/ebay-tourtip/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@pointer": "string",
+        "@style-top": "string",
+        "@style-left": "string",
+        "@style-right": "string",
+        "@style-bottom": "string",
+        "@host <host>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@heading <heading>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        },
+        "@content <content>": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        }
+    },
+    "<ebay-tourtip-host>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-tourtip-heading>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-tourtip-content>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
     }
-  }
-  
+}

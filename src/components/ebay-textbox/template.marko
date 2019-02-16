@@ -1,16 +1,24 @@
 <${data.tag} class=data.rootClass style=data.style w-bind>
+    <if (data.floatingLabel)>
+        <label
+        class=data.labelClasses
+        w-for="textbox">
+            ${data.floatingLabel}
+        </label>
+    </if>
     <if (data.displayIcon && data.iconPrefix)>
         <span body-only-if(true) w-body=data.iconTag/>
     </if>
     <${data.textboxTag}
-    class=data.classes
-    type="text"
-    aria-invalid=data.invalid
-    w-onchange="handleChange"
-    w-oninput="handleInput"
-    w-onfocus="handleFocus"
-    w-onblur="handleBlur"
-    ${data.htmlAttributes} />
+        w-id=(data.htmlAttributes.id || "textbox")
+        class=data.classes
+        type="text"
+        aria-invalid=data.invalid
+        w-onchange="handleChange"
+        w-oninput="handleInput"
+        w-onfocus="handleFocus"
+        w-onblur="handleBlur"
+        ${data.htmlAttributes} />
     <if (data.displayIcon && data.iconPostfix)>
         <span body-only-if(true) w-body=data.iconTag/>
     </if>

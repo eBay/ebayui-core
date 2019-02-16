@@ -1,4 +1,5 @@
 const markoWidgets = require('marko-widgets');
+const FloatingLabel = require('makeup-floating-label');
 const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
@@ -8,16 +9,24 @@ function getInitialState(input) {
     if (input.fluid) {
         classes.push('textbox__control--fluid');
     }
+    if (input.floatingLabel) {
+        classes.push('textbox__control--underline');
+    }
     const displayIcon = Boolean(input.icon && !input.multiline && input.iconTag);
     const iconPostfix = input.iconPosition === 'postfix';
     const iconPrefix = input.iconPosition === 'prefix' || !iconPostfix;
     const rootClasses = ['textbox', input.class];
+    const labelClasses = ['floating-label__label'];
+    const htmlAttributes = processHtmlAttributes(input);
     if (displayIcon && iconPostfix) {
         rootClasses.push('textbox--icon-end');
     }
+    if (htmlAttributes.disabled) {
+        labelClasses.push('floating-label__label--disabled');
+    }
 
     return {
-        htmlAttributes: processHtmlAttributes(input),
+        htmlAttributes,
         rootClass: rootClasses,
         style: input.style,
         classes,
@@ -28,12 +37,20 @@ function getInitialState(input) {
         iconPostfix,
         tag: input.fluid ? 'div' : 'span',
         textboxTag: Boolean(input.multiline) ? 'textarea' : 'input',
-        invalid: String(Boolean(input.invalid))
+        invalid: String(Boolean(input.invalid)),
+        floatingLabel: input.floatingLabel,
+        labelClasses
     };
 }
 
 function getTemplateData(state) {
     return state;
+}
+
+function init() {
+    if (this.state.floatingLabel) {
+        this.floatingLabel = new FloatingLabel(this.el);
+    }
 }
 
 function handleEvent(originalEvent, eventName) {
@@ -49,6 +66,7 @@ module.exports = markoWidgets.defineComponent({
     template,
     getInitialState,
     getTemplateData,
+    init,
     handleEvent,
     handleChange,
     handleInput,

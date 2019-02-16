@@ -1,0 +1,12 @@
+{
+    "dependencies": [
+        {
+            "if-not-flag": "ebayui-no-skin",
+            "dependencies": [
+                "@ebay/skin/actionable",
+                "@ebay/skin/tooltip"
+            ]
+        },
+        "require: ./index.js"
+    ]
+}
