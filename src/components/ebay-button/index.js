@@ -3,9 +3,10 @@ const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
+const getWidgetId = require('../../common/get-marko-3-widget-id');
 const template = require('./template.marko');
 
-function getInitialState(input) {
+function getInitialState(input, out) {
     const href = input.href;
     const priority = input.priority || 'secondary';
     const size = input.size;
@@ -77,6 +78,7 @@ function getInitialState(input) {
 
     return {
         htmlAttributes: processHtmlAttributes(input),
+        id: input.id || getWidgetId(out),
         classes,
         style: input.style,
         tag,
