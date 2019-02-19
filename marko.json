@@ -351,6 +351,7 @@
         "renderer": "./src/components/ebay-textbox/index.js",
         "@*": "expression",
         "@html-attributes": "expression",
+        "@id": "string",
         "@class": "string",
         "@style": "string",
         "@invalid": "boolean",
