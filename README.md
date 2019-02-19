@@ -14,7 +14,7 @@
 
 * [Node.js](https://nodejs.org/en/)
 * [Marko](https://markojs.com) (v3+)
-* [eBay Skin](https://ebay.github.io/skin/) (v6+)
+* [eBay Skin](https://ebay.github.io/skin/) (v7+)
 
 *Note:\
 Marko v3 requires [Marko Widgets v6](https://github.com/marko-js/marko-widgets)\
@@ -53,10 +53,10 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 * [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
 * [`ebay-carousel`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel)
 * [`ebay-checkbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-checkbox)
-<!-- * [`ebay-combobox-readonly`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox-readonly) -->
 * [`ebay-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-dialog)
 * [`ebay-icon`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-icon)
 * [`ebay-infotip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-infotip)
+* [`ebay-listbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-listbox)
 * [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
 * [`ebay-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-notice)
 * [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
