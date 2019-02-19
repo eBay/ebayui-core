@@ -1,8 +1,8 @@
 <${data.tag} class=data.rootClass style=data.style w-bind>
+    <var textboxId=(data.id || widget.elId("textbox"))/>
+
     <if (data.floatingLabel)>
-        <label
-        class=data.labelClasses
-        w-for="textbox">
+        <label class=data.labelClasses for=textboxId>
             ${data.floatingLabel}
         </label>
     </if>
@@ -10,7 +10,7 @@
         <span body-only-if(true) w-body=data.iconTag/>
     </if>
     <${data.textboxTag}
-        w-id=(data.htmlAttributes.id || "textbox")
+        id=textboxId
         class=data.classes
         type="text"
         aria-invalid=data.invalid

@@ -27,6 +27,7 @@ function getInitialState(input) {
 
     return {
         htmlAttributes,
+        id: input.id,
         rootClass: rootClasses,
         style: input.style,
         classes,

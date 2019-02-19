@@ -17,8 +17,16 @@ const inputUnderlineSelector = `input.textbox__control.textbox__control--underli
 describe('ebay-textbox', () => {
     test('renders default input textbox', context => {
         const $ = testUtils.getCheerio(context.render());
+        const $input = $(inputSelector);
         expect($(rootSelector).length).to.equal(1);
-        expect($(inputSelector).length).to.equal(1);
+        expect($input.length).to.equal(1);
+        expect($input.attr('id')).to.be.a('string');
+    });
+
+    test('renders default input textbox with an id', context => {
+        const $ = testUtils.getCheerio(context.render({ id: 'test' }));
+        const $input = $(inputSelector);
+        expect($input.attr('id')).to.equal('test');
     });
 
     test('renders fluid input textbox', context => {
@@ -56,8 +64,22 @@ describe('ebay-textbox', () => {
     test('renders an input textbox with inline floating label', context => {
         const input = { floatingLabel: 'Email address' };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($(floatingLabelSelector).text()).to.equal('Email address');
+        const $floatingLabel = $(floatingLabelSelector);
+        const $input = $(inputSelector);
+        expect($floatingLabel.text()).to.equal('Email address');
         expect($(inputUnderlineSelector).length).to.equal(1);
+        expect($input.attr('id')).to.be.a('string').and.to.equal($floatingLabel.attr('for'));
+    });
+
+    test('renders an input textbox with inline floating label and an id', context => {
+        const input = { floatingLabel: 'Email address', id: 'test' };
+        const $ = testUtils.getCheerio(context.render(input));
+        const $floatingLabel = $(floatingLabelSelector);
+        const $input = $(inputSelector);
+        expect($floatingLabel.text()).to.equal('Email address');
+        expect($(inputUnderlineSelector).length).to.equal(1);
+        expect($input.attr('id')).to.equal('test');
+        expect($floatingLabel.attr('for')).to.equal('test');
     });
 
     test('renders a disabled input textbox with disabled floating label', context => {
