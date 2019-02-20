@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const isMarko3 = require('marko/package.json').version.split('.')[0] === '3';
 const testUtils = require('../../../common/test-utils/server');
 
 const properties = {
@@ -29,7 +30,17 @@ Object.keys(properties).forEach(property => {
 test('renders defaults', context => {
     const input = {};
     const $ = testUtils.getCheerio(context.render(input));
-    expect($('button.btn.btn--secondary[type=button]').length).to.equal(1);
+    const $button = $('button.btn.btn--secondary[type=button]');
+    expect($button.length).to.equal(1);
+    expect($button.attr('id')).to.be.a(isMarko3 ? 'string' : 'undefined');
+});
+
+test('renders with id override', context => {
+    const input = { id: 'test' };
+    const $ = testUtils.getCheerio(context.render(input));
+    const $button = $('button.btn.btn--secondary[type=button]');
+    expect($button.length).to.equal(1);
+    expect($button.attr('id')).to.equal('test');
 });
 
 test('renders with type override', context => {
