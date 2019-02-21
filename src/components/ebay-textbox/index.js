@@ -18,11 +18,17 @@ function getInitialState(input) {
     const rootClasses = ['textbox', input.class];
     const labelClasses = ['floating-label__label'];
     const htmlAttributes = processHtmlAttributes(input);
+    const textboxTag = Boolean(input.multiline) ? 'textarea' : 'input';
+    let textareaValue = '';
     if (displayIcon && iconPostfix) {
         rootClasses.push('textbox--icon-end');
     }
     if (htmlAttributes.disabled) {
         labelClasses.push('floating-label__label--disabled');
+    }
+    if (textboxTag === 'textarea' && htmlAttributes.value) {
+        textareaValue = htmlAttributes.value;
+        htmlAttributes.value = null;
     }
 
     return {
@@ -37,10 +43,11 @@ function getInitialState(input) {
         iconPrefix,
         iconPostfix,
         tag: input.fluid ? 'div' : 'span',
-        textboxTag: Boolean(input.multiline) ? 'textarea' : 'input',
+        textboxTag,
         invalid: String(Boolean(input.invalid)),
         floatingLabel: input.floatingLabel,
-        labelClasses
+        labelClasses,
+        textareaValue
     };
 }
 
