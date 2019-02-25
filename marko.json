@@ -89,6 +89,29 @@
         "@style": "string",
         "@disabled": "boolean"
     },
+    "<ebay-combobox>": {
+        "renderer": "./src/components/ebay-combobox/index.js",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@name": "string",
+        "@grow": "boolean",
+        "@borderless": "boolean",
+        "@disabled": "boolean",
+        "@options <option>[]": {
+            "@*": "expression",
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string",
+            "@value": "string",
+            "@text": "string",
+            "@selected": "boolean"
+        }
+    },
+    "<ebay-combobox-option>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
     "<ebay-combobox-readonly>": {
         "renderer": "./src/components/ebay-combobox-readonly/index.js",
         "@*": "expression",
