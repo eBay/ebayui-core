@@ -1,0 +1,52 @@
+<span
+    class=data.class
+    style=data.style
+    ${data.htmlAttributes}
+    w-on-expander-expand='handleExpand'
+    w-on-expander-collapse='handleCollapse'
+    w-preserve-attrs="class"
+    w-bind>
+    <span class=data.btnClass w-preserve-attrs="class">
+        <input
+            type='text'
+            value=data.selectedOptionText
+            readonly=data.readonly
+            disabled=data.disabled
+            aria-haspopup='listbox'
+            aria-owns=widget.elId('combobox__options')
+            aria-expanded='false'
+            w-on-keydown='handleComboboxKeyDown'
+            w-on-keyup='handleComboboxKeyUp'
+            autocomplete="off"
+            w-preserve
+            ${data.htmlAttributes}/>
+        <span class="combobox__icon" aria-hidden="true"></span>
+    </span>
+    <div
+        if(data.options.length > 0 && data.showListbox)
+        w-id='combobox__options'
+        role='listbox'
+        class=data.optionsClass>
+        <div
+            for(option in data.options)
+            if(option.visible)
+            role='option'
+            class=['combobox__option', option.class]
+            style=option.style
+            ${option.htmlAttributes}
+            tabindex="-1"
+            w-on-click='handleOptionClick'
+            w-preserve-attrs="tabindex,data-makeup-index,class"
+            aria-selected=String(option.selected)
+            data-option-value=option.value>
+            <span>
+                <if(option.foundText)>
+                    ${option.preFoundText}<strong>${option.foundText}</strong>${option.postFoundText}
+                </if>
+                <else>
+                    ${option.text}
+                </else>
+            </span>
+        </div>
+    </div>
+</span>
