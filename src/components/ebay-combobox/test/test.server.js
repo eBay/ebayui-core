@@ -17,7 +17,7 @@ describe('combobox', () => {
         expect($('.combobox__control').length).to.equal(1);
         expect($('.combobox__options[role=listbox]').length).to.equal(1);
         expect($('.combobox__option[role=option]').length).to.equal(2);
-        expect($('.combobox__option[role=option][aria-selected="true"]').length).to.equal(1);
+        expect($('.combobox__option[role=option][aria-selected="true"]').length).to.equal(0);
     });
 
     test('renders empty', context => {
@@ -37,8 +37,8 @@ describe('combobox', () => {
         expect($('.combobox').length).to.equal(1);
         expect($('.combobox__control').length).to.equal(1);
         expect($('.combobox__options[role=listbox]').length).to.equal(1);
-        expect($('.combobox__option[role=option]').length).to.equal(2);
-        expect($('.combobox__option[role=option][aria-selected="true"]:nth-child(2)').length).to.equal(1);
+        expect($('.combobox__option[role=option]').length).to.equal(1);
+        expect($('.combobox__option[role=option][aria-selected="true"]').length).to.equal(1);
     });
 
     test('renders with borderless=true', context => {
