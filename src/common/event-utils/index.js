@@ -11,6 +11,11 @@ function handleKeydown(keyCodes, e, callback) {
     }
 }
 
+// enter key
+function handleEnterKeydown(e, callback) {
+    handleKeydown([13], e, callback);
+}
+
 // space and enter keys
 function handleActionKeydown(e, callback) {
     handleKeydown([32, 13], e, callback);
@@ -58,6 +63,7 @@ function handleResize(ev) {
 }
 
 module.exports = {
+    handleEnterKeydown,
     handleActionKeydown,
     handleEscapeKeydown,
     handleUpDownArrowsKeydown,

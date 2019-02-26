@@ -9,7 +9,7 @@
     <span class=data.btnClass w-preserve-attrs="class">
         <input
             type='text'
-            value=data.selectedOptionText
+            value=(data.selectedOption && data.selectedOption.text)
             readonly=data.readonly
             disabled=data.disabled
             aria-haspopup='listbox'
