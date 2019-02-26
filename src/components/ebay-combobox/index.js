@@ -4,7 +4,7 @@ const Expander = require('makeup-expander');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
-// const eventUtils = require('../../common/event-utils');
+const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
@@ -14,6 +14,7 @@ const comboboxExpanderClass = 'combobox__control';
 const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
 const comboboxBtnClass = 'combobox__control';
 const comboboxOptionSelector = '.combobox__option[role=option]';
+const comboboxAriaSelectedOptionSelector = '.combobox__option[role=option][aria-selected=true]';
 const comboboxSelectedOptionSelector = '.combobox__option[role=option].combobox__option--active';
 
 function getInitialState(input) {
@@ -21,7 +22,7 @@ function getInitialState(input) {
         htmlAttributes: processHtmlAttributes(option),
         class: option.class,
         style: option.style,
-        value: option.value,
+        value: option.value || option.text,
         text: option.text,
         selected: Boolean(option.selected),
         renderBody: option.renderBody,
@@ -44,6 +45,7 @@ function getInitialState(input) {
         style: input.style,
         name: input.name,
         options,
+        selected: selectedOption,
         grow: input.grow,
         disabled: input.disabled,
         borderless: Boolean(input.borderless),
@@ -67,8 +69,8 @@ function getTemplateData(state) {
         btnClass,
         optionsClass,
         name: state.name,
-        selectedOption: state.selected,
         options: state.options,
+        selectedOption: state.selected,
         grow: state.grow,
         disabled: state.disabled,
         showListbox: state.showListbox
@@ -77,7 +79,7 @@ function getTemplateData(state) {
 
 function init() {
     const optionEls = getOptionEls(this.el);
-    const selectedOptionIndex = this.state.options.findIndex(option => option.selected);
+    const selectedOptionIndex = selectedIndexFromEl(this.el.querySelector(comboboxAriaSelectedOptionSelector));
     const activeDescendantFocusEl = this.el.querySelector(comboboxHostSelector);
     const activeDescendantOwnedEl = this.el.querySelector(`.${comboboxOptionsClass}`);
 
@@ -122,6 +124,15 @@ function init() {
     }
 }
 
+function selectedIndexFromEl(el) {
+    let index = 0;
+    if (el) {
+        const parent = el.parentNode;
+        index = Array.prototype.indexOf.call(parent.children, el);
+    }
+    return index;
+}
+
 function handleExpand() {
     elementScroll.scroll(this.el.querySelector(comboboxSelectedOptionSelector));
     this.moveCursorToEnd();
@@ -145,14 +156,31 @@ function moveCursorToEnd() {
     }
 }
 
-function handleComboboxKeyDown(evt) {
-    // do something with evt
-    return evt;
+function handleComboboxKeyDown(originalEvent) {
+    const selectedEl = this.el.querySelector(comboboxSelectedOptionSelector);
+    const currentInput = this.el.querySelector(comboboxHostSelector);
+    let optionValue = '';
+
+    eventUtils.handleEnterKeydown(originalEvent, () => {
+        if (selectedEl) {
+            currentInput.value = selectedEl.dataset.optionValue;
+        }
+    });
+
+    if (selectedEl) {
+        elementScroll.scroll(selectedEl);
+        optionValue = selectedEl.dataset.optionValue;
+    }
+
+    emitAndFire(this, 'combobox-change', {
+        currentInput: currentInput && currentInput.value,
+        selectedValue: [optionValue],
+        selectedEl
+    });
 }
 
 function handleComboboxKeyUp(evt) {
     const newValue = evt.target.value;
-    // this.setState('selectedOptionText', newValue);
     this.filterOptionsDisplay(newValue);
 }
 
@@ -161,18 +189,13 @@ function filterOptionsDisplay(query) {
 
     const options = this.state.options.map(option => {
         const optionText = option.text;
-        const queryRegex = new RegExp(`${query}`, 'i');
+        const queryRegex = new RegExp(escapeRegExp(`${query.trim()}`), 'i');
         const shouldBeVisible = queryRegex.test(optionText);
-        // const foundText = optionText.match(queryRegex);
-        // const splitQueryFromString = optionText.split(queryRegex);
 
         if (shouldBeVisible) {
             showListbox = true;
         }
 
-        // option.foundText = foundText;
-        // option.preFoundText = splitQueryFromString[0];
-        // option.postFoundText = splitQueryFromString[1];
         option.visible = shouldBeVisible;
         return option;
     });
@@ -180,6 +203,10 @@ function filterOptionsDisplay(query) {
     this.setState('showListbox', showListbox);
     this.setState('options', options);
     this.update();
+}
+
+function escapeRegExp(stringToGoIntoTheRegex) {
+    return stringToGoIntoTheRegex.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
 
 module.exports = markoWidgets.defineComponent({
