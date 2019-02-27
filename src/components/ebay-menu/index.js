@@ -244,7 +244,7 @@ function processAfterStateChange(itemIndexes) {
  */
 function handleItemClick(e) {
     let itemEl = e.target;
-    const parentEl = closestParent(itemEl, '.menu__item');
+    const parentEl = closestParent(itemEl, '.menu__item, .fake-menu__item');
 
     if (parentEl) { // nested click inside menu_item
         itemEl = parentEl;
