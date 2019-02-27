@@ -7,6 +7,7 @@ const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
+const closestParent = require('../../common/closest-parent');
 const template = require('./template.marko');
 
 const mainButtonClass = 'expand-btn';
@@ -243,8 +244,10 @@ function processAfterStateChange(itemIndexes) {
  */
 function handleItemClick(e) {
     let itemEl = e.target;
-    if (itemEl.tagName === 'SPAN') { // <span> inside item
-        itemEl = itemEl.parentNode;
+    const parentEl = closestParent(itemEl, '.menu__item');
+
+    if (parentEl) { // nested click inside menu_item
+        itemEl = parentEl;
     }
 
     this.setCheckedItem(getItemElementIndex(itemEl), true);
