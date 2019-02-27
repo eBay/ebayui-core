@@ -57,7 +57,9 @@ function getTemplateData(state) {
 
 function init() {
     if (this.state.floatingLabel) {
-        this.floatingLabel = new FloatingLabel(this.el);
+        window.addEventListener('load', () => {
+            this.floatingLabel = new FloatingLabel(this.el);
+        });
     }
 }
 
