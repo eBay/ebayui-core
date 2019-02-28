@@ -55,10 +55,12 @@ function getTemplateData(state) {
     return state;
 }
 
-function init() {
-    if (this.state.floatingLabel) {
+function onRender() {
+    if (this.state.floatingLabel && !this.floatingLabel) {
         window.addEventListener('load', () => {
-            this.floatingLabel = new FloatingLabel(this.el);
+            if (!this.floatingLabel) {
+                this.floatingLabel = this.el && new FloatingLabel(this.el);
+            }
         });
     }
 }
@@ -76,7 +78,7 @@ module.exports = markoWidgets.defineComponent({
     template,
     getInitialState,
     getTemplateData,
-    init,
+    onRender,
     handleEvent,
     handleChange,
     handleInput,
