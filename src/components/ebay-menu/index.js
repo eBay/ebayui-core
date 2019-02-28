@@ -243,8 +243,10 @@ function processAfterStateChange(itemIndexes) {
  */
 function handleItemClick(e) {
     let itemEl = e.target;
-    if (itemEl.tagName === 'SPAN') { // <span> inside item
-        itemEl = itemEl.parentNode;
+    const parentEl = itemEl.closest('.menu__item, .fake-menu__item');
+
+    if (parentEl) { // nested click inside menu_item
+        itemEl = parentEl;
     }
 
     this.setCheckedItem(getItemElementIndex(itemEl), true);
