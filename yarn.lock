@@ -5458,9 +5458,9 @@ makeup-expander@~0.6.1:
     makeup-focusables "~0.0.3"
     makeup-next-id "~0.0.2"
 
-makeup-floating-label@~0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/makeup-floating-label/-/makeup-floating-label-0.0.2.tgz#07e65c936f1556f72e60a9d719716ed106dbdf35"
+makeup-floating-label@~0.0.3:
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/makeup-floating-label/-/makeup-floating-label-0.0.3.tgz#33e6ff2140cf6a03fcf0b218a8daaf1bd5a75888"
 
 makeup-focusables@~0.0.3:
   version "0.0.3"
