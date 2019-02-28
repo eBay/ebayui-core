@@ -107,6 +107,7 @@
     "marko-widgets": "^6 || ^7"
   },
   "dependencies": {
+    "element-closest": "^3.0.1",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2",
     "makeup-active-descendant": "~0.0.6",
