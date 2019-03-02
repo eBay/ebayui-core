@@ -57,17 +57,17 @@ function getTemplateData(state) {
 
 function onRender() {
     if (this.state.floatingLabel && !this.floatingLabel && document.readyState === 'complete') {
-        this.initFloatingLabel();
-    } else {
-        window.addEventListener('load', this.initFloatingLabel);
+        this.initFloatingLabel(this);
+    } else if (this.state.floatingLabel) {
+        window.addEventListener('load', this.initFloatingLabel(this));
     }
 }
 
-function initFloatingLabel() {
-    if (!this.floatingLabel) {
-        this.floatingLabel = this.el && new FloatingLabel(this.el);
+function initFloatingLabel(_this) {
+    if (!_this.floatingLabel) {
+        _this.floatingLabel = _this.el && new FloatingLabel(_this.el);
     } else {
-        this.floatingLabel.refresh();
+        _this.floatingLabel.refresh();
     }
 }
 
