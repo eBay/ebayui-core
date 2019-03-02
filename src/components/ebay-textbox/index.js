@@ -63,11 +63,11 @@ function onRender() {
     }
 }
 
-function initFloatingLabel() {
-    if (!this.floatingLabel) {
-        this.floatingLabel = this.el && new FloatingLabel(this.el);
+function initFloatingLabel(_this) {
+    if (!_this.floatingLabel) {
+        _this.floatingLabel = _this.el && new FloatingLabel(_this.el);
     } else {
-        this.floatingLabel.refresh();
+        _this.floatingLabel.refresh();
     }
 }
 
