@@ -59,7 +59,7 @@ function onRender() {
     if (this.state.floatingLabel && !this.floatingLabel && document.readyState === 'complete') {
         this.initFloatingLabel();
     } else if (this.state.floatingLabel) {
-        window.addEventListener('load', this.initFloatingLabel);
+        window.addEventListener('load', this.initFloatingLabel.bind(this));
     }
 }
 
