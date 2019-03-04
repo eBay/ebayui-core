@@ -43,6 +43,7 @@ describe('given an input textbox with floating label', () => {
         root = document.querySelector('.textbox');
         input = root.querySelector('input');
         label = root.querySelector('label');
+        testUtils.triggerEvent(window, 'load');
     });
     afterEach(() => widget.destroy());
 

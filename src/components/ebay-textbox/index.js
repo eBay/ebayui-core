@@ -55,9 +55,19 @@ function getTemplateData(state) {
     return state;
 }
 
-function init() {
-    if (this.state.floatingLabel) {
-        this.floatingLabel = new FloatingLabel(this.el);
+function onRender() {
+    if (this.state.floatingLabel && !this.floatingLabel && document.readyState === 'complete') {
+        this.initFloatingLabel();
+    } else if (this.state.floatingLabel) {
+        window.addEventListener('load', this.initFloatingLabel.bind(this));
+    }
+}
+
+function initFloatingLabel() {
+    if (!this.floatingLabel) {
+        this.floatingLabel = this.el && new FloatingLabel(this.el);
+    } else {
+        this.floatingLabel.refresh();
     }
 }
 
@@ -74,7 +84,8 @@ module.exports = markoWidgets.defineComponent({
     template,
     getInitialState,
     getTemplateData,
-    init,
+    onRender,
+    initFloatingLabel,
     handleEvent,
     handleChange,
     handleInput,
