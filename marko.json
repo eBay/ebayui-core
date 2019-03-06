@@ -355,6 +355,7 @@
         "@id": "string",
         "@class": "string",
         "@style": "string",
+        "@type": "string",
         "@invalid": "boolean",
         "@fluid": "boolean",
         "@multiline": "boolean",
