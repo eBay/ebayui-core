@@ -112,7 +112,7 @@
     "lodash.set": "^4.3.2",
     "makeup-active-descendant": "~0.0.6",
     "makeup-expander": "~0.6.1",
-    "makeup-floating-label": "~0.0.3",
+    "makeup-floating-label": "~0.0.4",
     "makeup-focusables": "~0.0.3",
     "makeup-key-emitter": "~0.0.3",
     "makeup-keyboard-trap": "~0.1.1",
