@@ -148,6 +148,16 @@
  * Not all browsers that have implemented scroll snapping have done so in a way that we can leverage.
  * Currently the below media query ensures that the browser supports exactly what we need.
  */
+
+@supports (-moz-appearance:none) {
+    // Explicitly disable support in firefox since we can't easily hide the scrollbar.
+    .carousel__list {
+        &&&& {
+            overflow-x: visible;
+        }
+    }
+}
+
 /* autoprefixer: off */
 @supports (
     /*!Y */(-webkit-scroll-snap-coordinate: 0 0) or
