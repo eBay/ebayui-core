@@ -28,6 +28,7 @@
     "build:v3": "yarn installMarkoV3 && yarn clean:integration && yarn test && mocha integration",
     "build:v4": "yarn installMarkoV4 && yarn clean:integration && yarn test && mocha integration",
     "shrinkwrap": "rimraf yarn.lock; rimraf node_modules; yarn cache clean && yarn",
+    "importSVG": "node scripts/import-svg",
     "ts": "yarn test:server",
     "tb": "yarn test:browser",
     "tf": "yarn test:fps",
