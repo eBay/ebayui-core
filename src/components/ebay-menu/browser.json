@@ -8,7 +8,7 @@
         "../../../src/components/ebay-button",
         "../../../src/components/ebay-icon",
         "require-run: nodelist-foreach-polyfill",
-        "require-run: element-closest",
+        "require-run: element-closest/browser",
         "require: marko-widgets",
         "require: ./index.js"
     ]
