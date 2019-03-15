@@ -1,4 +1,5 @@
 const markoWidgets = require('marko-widgets');
+const find = require('core-js/library/fn/array/find');
 const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
@@ -67,7 +68,7 @@ function init() {
 
     const valueObserverCallback = (optionValue) => {
         const optionFind = (option) => option.value.toString() === optionValue.toString();
-        const newOptionSelected = this.state.options.find(optionFind);
+        const newOptionSelected = find(this.state.options, optionFind);
         let optionIndex;
 
         if (newOptionSelected) {
@@ -108,7 +109,7 @@ function processAfterStateChange(el) {
  */
 function setSelectedOption(optionValue) {
     const optionFind = (option) => option.value.toString() === optionValue.toString();
-    const newOptionSelected = this.state.options.find(optionFind);
+    const newOptionSelected = find(this.state.options, optionFind);
     const newOptionSelectedValue = newOptionSelected && newOptionSelected.value;
     let options = this.state.options;
 

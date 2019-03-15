@@ -1,5 +1,6 @@
 const markoWidgets = require('marko-widgets');
 const Expander = require('makeup-expander');
+const findIndex = require('core-js/library/fn/array/find-index');
 const ActiveDescendant = require('makeup-active-descendant');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
@@ -71,7 +72,7 @@ function getTemplateData(state) {
 
 function init() {
     const optionEls = this.el.querySelectorAll(listboxOptionSelector);
-    const selectedOptionIndex = this.state.options.findIndex(option => option.selected);
+    const selectedOptionIndex = findIndex(this.state.options, option => option.selected);
 
     const activeDescendantOwnedEl = this.el.querySelector(`.${listboxOptionsClass}`);
 
