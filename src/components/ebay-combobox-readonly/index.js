@@ -1,5 +1,6 @@
 const markoWidgets = require('marko-widgets');
 const Expander = require('makeup-expander');
+const findIndex = require('core-js/library/fn/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
@@ -139,7 +140,7 @@ function handleOptionClick(event) {
  */
 function handleComboboxKeyDown(event) {
     eventUtils.handleUpDownArrowsKeydown(event, () => {
-        const currentSelectedIndex = this.state.options.findIndex(option => option.selected);
+        const currentSelectedIndex = findIndex(this.state.options, option => option.selected);
         const options = clearComboboxSelections(this.state.options);
         const optionEls = this.el.querySelectorAll(comboboxOptionSelector);
         let selectElementIndex = currentSelectedIndex;
