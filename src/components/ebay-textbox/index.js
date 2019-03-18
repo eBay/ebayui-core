@@ -67,15 +67,15 @@ function getTemplateData(state) {
 }
 
 function onRender() {
-    if (this.state.floatingLabel && !this.floatingLabel && document.readyState === 'complete') {
-        this.initFloatingLabel();
-    } else if (this.state.floatingLabel) {
+    if (this.state.floatingLabel && document.readyState !== 'complete') {
         window.addEventListener('load', this.initFloatingLabel.bind(this));
     }
 }
 
 function onUpdate() {
-    this.initFloatingLabel();
+    if (this.state.initFloatingLabel) {
+        this.initFloatingLabel();
+    }
 }
 
 function initFloatingLabel() {
