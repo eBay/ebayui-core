@@ -159,7 +159,6 @@ function moveCursorToEnd() {
 function handleComboboxKeyDown(originalEvent) {
     const selectedEl = this.el.querySelector(comboboxSelectedOptionSelector);
     const currentInput = this.el.querySelector(comboboxHostSelector);
-    let optionValue = '';
 
     eventUtils.handleEnterKeydown(originalEvent, () => {
         if (selectedEl) {
@@ -169,19 +168,34 @@ function handleComboboxKeyDown(originalEvent) {
 
     if (selectedEl) {
         elementScroll.scroll(selectedEl);
-        optionValue = selectedEl.dataset.optionValue;
     }
 
-    emitAndFire(this, 'combobox-change', {
-        currentInput: currentInput && currentInput.value,
-        selectedValue: [optionValue],
-        selectedEl
-    });
+    this.emitChangeEvent(selectedEl, currentInput);
 }
 
 function handleComboboxKeyUp(evt) {
     const newValue = evt.target.value;
     this.filterOptionsDisplay(newValue);
+}
+
+function handleOptionClick(evt) {
+    const selectedEl = evt.target.nodeName === 'DIV' ? evt.target : evt.target.parentNode;
+    const currentInput = this.el.querySelector(comboboxHostSelector);
+
+    currentInput.value = selectedEl.textContent;
+    this.setState('showListbox', false);
+    this.emitChangeEvent(selectedEl, currentInput);
+}
+
+function emitChangeEvent(selectedEl, currentInput) {
+    const optionValue = selectedEl ? selectedEl.dataset.optionValue : '';
+
+    emitAndFire(this, 'combobox-change', {
+        currentInput: currentInput && currentInput.value,
+        selectedValue: [optionValue],
+        options: this.state.options.filter(option => option.visible),
+        selectedEl
+    });
 }
 
 function filterOptionsDisplay(query) {
@@ -219,5 +233,7 @@ module.exports = markoWidgets.defineComponent({
     moveCursorToEnd,
     handleComboboxKeyDown,
     handleComboboxKeyUp,
+    handleOptionClick,
+    emitChangeEvent,
     filterOptionsDisplay
 });
