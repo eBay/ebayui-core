@@ -74,6 +74,10 @@ function onRender() {
     }
 }
 
+function onUpdate() {
+    this.initFloatingLabel();
+}
+
 function initFloatingLabel() {
     if (!this.floatingLabel) {
         this.floatingLabel = this.el && new FloatingLabel(this.el);
@@ -96,6 +100,7 @@ module.exports = markoWidgets.defineComponent({
     getInitialState,
     getTemplateData,
     onRender,
+    onUpdate,
     initFloatingLabel,
     handleEvent,
     handleChange,
