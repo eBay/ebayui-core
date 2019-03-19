@@ -66,7 +66,7 @@ function getTemplateData(state) {
     return state;
 }
 
-function onRender() {
+function init() {
     if (this.state.floatingLabel && !this.floatingLabel && document.readyState === 'complete') {
         this.initFloatingLabel();
     } else if (this.state.floatingLabel) {
@@ -75,8 +75,8 @@ function onRender() {
 }
 
 function onUpdate() {
-    if (this.state.floatingLabel && this.floatingLabel) {
-        this.floatingLabel.refresh();
+    if (this.state.floatingLabel) {
+        this.initFloatingLabel();
     }
 }
 
@@ -101,7 +101,7 @@ module.exports = markoWidgets.defineComponent({
     template,
     getInitialState,
     getTemplateData,
-    onRender,
+    init,
     onUpdate,
     initFloatingLabel,
     handleEvent,
