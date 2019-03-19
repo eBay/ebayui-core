@@ -25,7 +25,7 @@
         w-id='listbox__options'
         role='listbox'
         class=data.optionsClass
-        w-preserve>
+        w-preserve-attrs="class">
         <div
             for(option in data.options | status-var=loop)
             w-id=('listbox__option' + loop.getIndex())
