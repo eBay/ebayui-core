@@ -19,13 +19,23 @@ function getInitialState(input) {
     const labelClasses = ['floating-label__label'];
     const htmlAttributes = processHtmlAttributes(input);
     const textboxTag = Boolean(input.multiline) ? 'textarea' : 'input';
+    let type = input.type || 'text';
     let textareaValue = '';
+
+    // only allow type to be text or password at the moment
+    // other types to be addressed later: https://github.com/eBay/ebayui-core/issues/575
+    if (type !== 'text' && type !== 'password') {
+        type = 'text';
+    }
+
     if (displayIcon && iconPostfix) {
         rootClasses.push('textbox--icon-end');
     }
+
     if (htmlAttributes.disabled) {
         labelClasses.push('floating-label__label--disabled');
     }
+
     if (textboxTag === 'textarea' && htmlAttributes.value) {
         textareaValue = htmlAttributes.value;
         htmlAttributes.value = null;
@@ -36,6 +46,7 @@ function getInitialState(input) {
         id: input.id,
         rootClass: rootClasses,
         style: input.style,
+        type,
         classes,
         icon: input.icon,
         iconTag: input.iconTag && input.iconTag.renderBody,
@@ -56,8 +67,24 @@ function getTemplateData(state) {
 }
 
 function init() {
+    if (this.state.floatingLabel && !this.floatingLabel && document.readyState === 'complete') {
+        this.initFloatingLabel();
+    } else if (this.state.floatingLabel) {
+        window.addEventListener('load', this.initFloatingLabel.bind(this));
+    }
+}
+
+function onUpdate() {
     if (this.state.floatingLabel) {
-        this.floatingLabel = new FloatingLabel(this.el);
+        this.initFloatingLabel();
+    }
+}
+
+function initFloatingLabel() {
+    if (!this.floatingLabel) {
+        this.floatingLabel = this.el && new FloatingLabel(this.el);
+    } else {
+        this.floatingLabel.refresh();
     }
 }
 
@@ -75,6 +102,8 @@ module.exports = markoWidgets.defineComponent({
     getInitialState,
     getTemplateData,
     init,
+    onUpdate,
+    initFloatingLabel,
     handleEvent,
     handleChange,
     handleInput,

@@ -2210,6 +2210,11 @@ core-js@^2.2.0, core-js@^2.4.0, core-js@^2.5.0:
   version "2.6.3"
   resolved "https://registry.npmjs.org/core-js/-/core-js-2.6.3.tgz#4b70938bdffdaf64931e66e2db158f0892289c49"
 
+core-js@^2.6.5:
+  version "2.6.5"
+  resolved "https://registry.npmjs.org/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
+  integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
+
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
@@ -5458,9 +5463,10 @@ makeup-expander@~0.6.1:
     makeup-focusables "~0.0.3"
     makeup-next-id "~0.0.2"
 
-makeup-floating-label@~0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npmjs.org/makeup-floating-label/-/makeup-floating-label-0.0.2.tgz#07e65c936f1556f72e60a9d719716ed106dbdf35"
+makeup-floating-label@~0.0.4:
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/makeup-floating-label/-/makeup-floating-label-0.0.4.tgz#32f7b7a016a5a99717b74258d3e1685aeb461939"
+  integrity sha512-VqlpfrhM7fc6oe66plezaesI2W3pLo8/AKTbWBvsUZHVgpCfXxC8uQhCYaKr2NzavVIi5e3KV0oxgfWMMIjkOg==
 
 makeup-focusables@~0.0.3:
   version "0.0.3"
