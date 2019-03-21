@@ -149,6 +149,10 @@ function handleComboboxKeyDown(originalEvent) {
     const selectedEl = this.el.querySelector(comboboxSelectedOptionSelector);
     const currentInput = this.el.querySelector(comboboxHostSelector);
 
+    eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
+        originalEvent.preventDefault();
+    });
+
     eventUtils.handleEnterKeydown(originalEvent, () => {
         if (selectedEl) {
             currentInput.value = selectedEl.dataset.optionValue;
