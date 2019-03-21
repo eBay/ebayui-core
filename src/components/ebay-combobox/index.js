@@ -14,7 +14,6 @@ const comboboxExpanderClass = 'combobox__control';
 const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
 const comboboxBtnClass = 'combobox__control';
 const comboboxOptionSelector = '.combobox__option[role=option]';
-const comboboxAriaSelectedOptionSelector = '.combobox__option[role=option][aria-selected=true]';
 const comboboxSelectedOptionSelector = '.combobox__option[role=option].combobox__option--active';
 
 function getInitialState(input) {
@@ -79,7 +78,6 @@ function getTemplateData(state) {
 
 function init() {
     const optionEls = getOptionEls(this.el);
-    const selectedOptionIndex = selectedIndexFromEl(this.el.querySelector(comboboxAriaSelectedOptionSelector));
     const activeDescendantFocusEl = this.el.querySelector(comboboxHostSelector);
     const activeDescendantOwnedEl = this.el.querySelector(`.${comboboxOptionsClass}`);
 
@@ -90,7 +88,7 @@ function init() {
             activeDescendantOwnedEl,
             comboboxOptionSelector, {
                 activeDescendantClassName: 'combobox__option--active',
-                autoInit: (selectedOptionIndex || 0),
+                autoInit: -1,
                 autoReset: null
             }
         );
@@ -122,15 +120,6 @@ function init() {
 
         scrollKeyPreventer.add(this.el.querySelector(`.${comboboxOptionsClass}`));
     }
-}
-
-function selectedIndexFromEl(el) {
-    let index = 0;
-    if (el) {
-        const parent = el.parentNode;
-        index = Array.prototype.indexOf.call(parent.children, el);
-    }
-    return index;
 }
 
 function handleExpand() {
@@ -169,13 +158,12 @@ function handleComboboxKeyDown(originalEvent) {
     if (selectedEl) {
         elementScroll.scroll(selectedEl);
     }
-
-    this.emitChangeEvent(selectedEl, currentInput);
 }
 
 function handleComboboxKeyUp(evt) {
     const newValue = evt.target.value;
     this.filterOptionsDisplay(newValue);
+    this.emitChangeEvent(null, event.target);
 }
 
 function handleOptionClick(evt) {
