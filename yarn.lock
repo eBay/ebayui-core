@@ -5454,9 +5454,10 @@ makeup-exit-emitter@~0.0.4:
     custom-event-polyfill "~0.3"
     makeup-next-id "~0.0"
 
-makeup-expander@~0.6.1:
-  version "0.6.1"
-  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.6.1.tgz#980beb649de061b5ac96b55acaade8445561827c"
+makeup-expander@~0.7.0:
+  version "0.7.0"
+  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.7.0.tgz#593d55f76a2f08440ba2913bf96a9d2e6f0388eb"
+  integrity sha512-d1SA6iXKAjw9YI70EvzoVSbUsLijH1dMOG+cakaz/HjO9kNUFplPHKjm2NMUtEmA+0wyfecANPqeEQHDpKU8Yg==
   dependencies:
     custom-event-polyfill "~0.3"
     makeup-exit-emitter "~0.0.4"
