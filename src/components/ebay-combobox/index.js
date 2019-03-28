@@ -1,4 +1,5 @@
 const markoWidgets = require('marko-widgets');
+const find = require('core-js/library/fn/array/find');
 const ActiveDescendant = require('makeup-active-descendant');
 const Expander = require('makeup-expander');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
@@ -28,7 +29,7 @@ function getInitialState(input) {
         visible: Boolean(option.selected)
     }));
 
-    const selectedOption = options.find(option => option.selected);
+    const selectedOption = find(options, option => option.selected);
     const selectedOptionText = selectedOption && selectedOption.text;
 
     if (!selectedOptionText) {
@@ -129,6 +130,28 @@ function handleExpand() {
 }
 
 function handleCollapse() {
+    const currentInput = this.el.querySelector(comboboxHostSelector);
+    const currentValue = currentInput && currentInput.value;
+    let matchedOption;
+    const options = this.state.options.map(option => {
+        const valueCheck = currentValue.toLowerCase() === option.text.toLowerCase();
+        option.selected = valueCheck;
+        if (valueCheck) {
+            matchedOption = option;
+        }
+
+        return option;
+    });
+
+    this.setState('options', options);
+    this.setState('selected', matchedOption);
+
+    if (matchedOption) {
+        this.emitChangeEvent(null, currentInput);
+    }
+
+    this.update();
+
     emitAndFire(this, 'combobox-collapse');
 }
 
@@ -179,13 +202,18 @@ function handleOptionClick(evt) {
     this.emitChangeEvent(selectedEl, currentInput);
 }
 
+function getVisibleOptions() {
+    return this.state.options.filter(option => option.visible);
+}
+
 function emitChangeEvent(selectedEl, currentInput) {
     const optionValue = selectedEl ? selectedEl.dataset.optionValue : '';
+    const options = this.getVisibleOptions();
 
     emitAndFire(this, 'combobox-change', {
         currentInput: currentInput && currentInput.value,
         selectedValue: [optionValue],
-        options: this.state.options.filter(option => option.visible),
+        options,
         selectedEl
     });
 }
@@ -226,6 +254,7 @@ module.exports = markoWidgets.defineComponent({
     handleComboboxKeyDown,
     handleComboboxKeyUp,
     handleOptionClick,
+    getVisibleOptions,
     emitChangeEvent,
     filterOptionsDisplay
 });
