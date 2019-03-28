@@ -90,7 +90,7 @@ function init() {
             comboboxOptionSelector, {
                 activeDescendantClassName: 'combobox__option--active',
                 autoInit: -1,
-                autoReset: null
+                autoReset: -1
             }
         );
 
