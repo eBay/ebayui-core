@@ -47,6 +47,12 @@ function onRender() {
     }
 }
 
+function onBeforeUpdate() {
+    if (this.expander) {
+        this.expander.cancelAsync();
+    }
+}
+
 function handleExpand() {
     this.emit('base-expand');
 }
@@ -59,6 +65,7 @@ module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState,
     onRender,
+    onBeforeUpdate,
     handleExpand,
     handleCollapse
 });
