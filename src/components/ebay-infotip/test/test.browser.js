@@ -19,30 +19,43 @@ describe('given the default infotip', () => {
 
     afterEach(() => widget.destroy());
 
-    describe('when the host element is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tooltip-expand', spy);
-            testUtils.triggerEvent(host, 'click');
+    thenItCanBeOpenAndClosed();
+
+    describe('after it is rerendered', () => {
+        before(() => {
+            widget.setStateDirty('test');
+            widget.update();
         });
 
-        test('then it emits the tooltip-expand event', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
+        thenItCanBeOpenAndClosed();
     });
 
-    describe('when the host element is clicked a second time to close', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tooltip-collapse', spy);
-            testUtils.triggerEvent(host, 'click');
-            testUtils.triggerEvent(host, 'click');
+    function thenItCanBeOpenAndClosed() {
+        describe('when the host element is clicked', () => {
+            let spy;
+            beforeEach(() => {
+                spy = sinon.spy();
+                widget.on('tooltip-expand', spy);
+                testUtils.triggerEvent(host, 'click');
+            });
+
+            test('then it emits the tooltip-expand event', () => {
+                expect(spy.calledOnce).to.equal(true);
+            });
         });
 
-        test('then it emits the tooltip-collapse event', () => {
-            expect(spy.calledOnce).to.equal(true);
+        describe('when the host element is clicked a second time to close', () => {
+            let spy;
+            beforeEach(() => {
+                spy = sinon.spy();
+                widget.on('tooltip-collapse', spy);
+                testUtils.triggerEvent(host, 'click');
+                testUtils.triggerEvent(host, 'click');
+            });
+
+            test('then it emits the tooltip-collapse event', () => {
+                expect(spy.calledOnce).to.equal(true);
+            });
         });
-    });
+    }
 });

@@ -19,16 +19,29 @@ describe('given the default tourtip', () => {
 
     afterEach(() => widget.destroy());
 
-    describe('when the closeButton element is closed', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tooltip-collapse', spy);
-            testUtils.triggerEvent(closeButton, 'click');
+    thenItCanBeClosed();
+
+    describe('after it is rerendered', () => {
+        before(() => {
+            widget.setStateDirty('test');
+            widget.update();
         });
 
-        test('then it emits the tooltip-collapse event', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
+        thenItCanBeClosed();
     });
+
+    function thenItCanBeClosed() {
+        describe('when the closeButton element is closed', () => {
+            let spy;
+            beforeEach(() => {
+                spy = sinon.spy();
+                widget.on('tooltip-collapse', spy);
+                testUtils.triggerEvent(closeButton, 'click');
+            });
+
+            test('then it emits the tooltip-collapse event', () => {
+                expect(spy.calledOnce).to.equal(true);
+            });
+        });
+    }
 });
