@@ -6,9 +6,11 @@
         w-on-base-expand="handleExpand"
         w-on-base-collapse="handleCollapse">
         <span
+            w-preserve-attrs="class,id"
             class="infotip"
             ${data.htmlAttributes}>
             <button
+                w-preserve-attrs="aria-expanded,aria-controls,aria-described-by"
                 class="infotip__host icon-btn"
                 aria-label=data.ariaLabel>
                 <if(data.icon)>
