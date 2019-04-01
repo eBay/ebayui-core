@@ -5,21 +5,19 @@
 <else-if(data.isInline)>
     <svg w-bind class=data.classes style=data.style ${data.htmlAttributes} ${data.a11yAttributes} focusable="false">
         <if(data.renderDefs && data.themes)>
-            <defs w-id="defs" w-preserve-body>
-                <%
-                    var theme;
+            <defs w-id="defs">
+                <var theme/>
+                <if(typeof window === "undefined")>
+                    <!-- Actual magic, please do not try to replicate. -->
+                    <var lassoContext=out.global["lasso/LassoRenderContext"]/>
+                    <var flags=(lassoContext && lassoContext.data.config.flags)/>
+                    <assign theme=data.themes[!flags || flags.indexOf("skin-ds6") !== -1 ? 1 : 0]/>
+                </if>
+                <else>
+                    <assign theme=data.themes.filter(Boolean)[0]/>
+                </else>
 
-                    if (process.browser) {
-                        theme = data.themes.filter(Boolean)[0];
-                    } else {
-                        // Actual magic, please do not try to replicate.
-                        var lassoContext = out.global["lasso/LassoRenderContext"];
-                        var flags = lassoContext && lassoContext.data.config.flags;
-                        theme = data.themes[!flags || flags.indexOf("skin-ds6") !== -1 ? 1 : 0];
-                    }
-
-                    if (theme) theme.render({}, out);
-                %>
+                <include(theme)/>
             </defs>
         </if>
         <title if(data.a11yText) id=data.titleId>${data.a11yText}</title>
