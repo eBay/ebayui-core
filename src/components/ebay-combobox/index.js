@@ -94,8 +94,6 @@ function init() {
             }
         );
 
-        // this.el.addEventListener('activeDescendantChange', handleComboboxChange.bind(this));
-
         this.expander = new Expander(this.el, {
             autoCollapse: true,
             expandOnFocus: true,
@@ -178,7 +176,7 @@ function handleComboboxKeyDown(originalEvent) {
 
     eventUtils.handleEnterKeydown(originalEvent, () => {
         if (selectedEl) {
-            currentInput.value = selectedEl.dataset.optionValue;
+            currentInput.value = selectedEl.textContent;
         }
     });
 
