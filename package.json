@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "2.0.6-canary.9c65f5be",
+  "version": "2.2.0-canary.3233ce23",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
