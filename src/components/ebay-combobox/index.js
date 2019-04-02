@@ -182,6 +182,10 @@ function handleComboboxKeyDown(originalEvent) {
         }
     });
 
+    eventUtils.handleEscapeKeydown(originalEvent, () => {
+        this.expander.collapse();
+    });
+
     if (selectedEl) {
         elementScroll.scroll(selectedEl);
     }
