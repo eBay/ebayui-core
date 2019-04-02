@@ -22,88 +22,101 @@ describe('given the combobox is in the default state', () => {
 
     afterEach(() => widget.destroy());
 
-    describe('when the input receives focus', () => {
-        beforeEach((done) => {
-            testUtils.triggerEvent(ariaControl, 'focus');
-            setTimeout(done);
+    thenReadyForInteraction();
+
+    describe('after it is rerendered', () => {
+        before(() => {
+            widget.setStateDirty('test');
+            widget.update();
         });
 
-        test('then it should expand the combobox', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('true');
-        });
+        thenReadyForInteraction();
+    });
 
-        describe('when any character key is pressed', () => {
-            let arrowSpy;
-
-            beforeEach(() => {
-                arrowSpy = sinon.spy();
-                widget.on('combobox-change', arrowSpy);
-                testUtils.triggerEvent(ariaControl, 'keyup', 65);
+    function thenReadyForInteraction() {
+        describe('when the input receives focus', () => {
+            beforeEach((done) => {
+                testUtils.triggerEvent(ariaControl, 'focus');
+                setTimeout(done);
             });
 
-            test('then it should emit a change event', () => {
-                expect(arrowSpy.calledOnce).to.equal(true);
-            });
-        });
-
-        describe('when the down arrow key is pressed', () => {
-            beforeEach(() => {
-                testUtils.triggerEvent(ariaControl, 'keydown', 40);
+            test('then it should expand the combobox', () => {
+                expect(ariaControl.getAttribute('aria-expanded')).to.equal('true');
             });
 
-            test('then it should correctly set aria for the listbox', () => {
-                expect(firstOption.getAttribute('aria-selected')).to.equal('true');
-            });
-
-            describe('when the enter key is pressed', () => {
+            describe('when any character key is pressed', () => {
                 let arrowSpy;
 
                 beforeEach(() => {
                     arrowSpy = sinon.spy();
                     widget.on('combobox-change', arrowSpy);
-                    testUtils.triggerEvent(ariaControl, 'keydown', 13);
-                    testUtils.triggerEvent(ariaControl, 'keyup', 13);
+                    testUtils.triggerEvent(ariaControl, 'keyup', 65);
                 });
 
-                test('then it should correctly set value for the input', () => {
-                    expect(ariaControl.value).to.equal(mock.options[0].text);
+                test('then it should emit a change event', () => {
                     expect(arrowSpy.calledOnce).to.equal(true);
                 });
             });
 
-            describe('when the down arrow key is pressed a second time', () => {
+            describe('when the down arrow key is pressed', () => {
                 beforeEach(() => {
                     testUtils.triggerEvent(ariaControl, 'keydown', 40);
                 });
 
                 test('then it should correctly set aria for the listbox', () => {
-                    expect(secondOption.getAttribute('aria-selected')).to.equal('true');
+                    expect(firstOption.getAttribute('aria-selected')).to.equal('true');
+                });
+
+                describe('when the enter key is pressed', () => {
+                    let arrowSpy;
+
+                    beforeEach(() => {
+                        arrowSpy = sinon.spy();
+                        widget.on('combobox-change', arrowSpy);
+                        testUtils.triggerEvent(ariaControl, 'keydown', 13);
+                        testUtils.triggerEvent(ariaControl, 'keyup', 13);
+                    });
+
+                    test('then it should correctly set value for the input', () => {
+                        expect(ariaControl.value).to.equal(mock.options[0].text);
+                        expect(arrowSpy.calledOnce).to.equal(true);
+                    });
+                });
+
+                describe('when the down arrow key is pressed a second time', () => {
+                    beforeEach(() => {
+                        testUtils.triggerEvent(ariaControl, 'keydown', 40);
+                    });
+
+                    test('then it should correctly set aria for the listbox', () => {
+                        expect(secondOption.getAttribute('aria-selected')).to.equal('true');
+                    });
+                });
+            });
+
+            describe('when any option is clicked', () => {
+                let clickSpy;
+
+                beforeEach(() => {
+                    clickSpy = sinon.spy();
+                    widget.on('combobox-change', clickSpy);
+                    testUtils.triggerEvent(secondOption, 'click');
+                });
+
+                test('then it should emit a change event', () => {
+                    expect(clickSpy.called).to.equal(true);
+                });
+            });
+
+            describe('when the escape key is pressed', () => {
+                beforeEach(() => {
+                    testUtils.triggerEvent(ariaControl, 'keydown', 27);
+                });
+
+                test('then it should collapse the combobox', () => {
+                    expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
                 });
             });
         });
-
-        describe('when any option is clicked', () => {
-            let clickSpy;
-
-            beforeEach(() => {
-                clickSpy = sinon.spy();
-                widget.on('combobox-change', clickSpy);
-                testUtils.triggerEvent(secondOption, 'click');
-            });
-
-            test('then it should emit a change event', () => {
-                expect(clickSpy.called).to.equal(true);
-            });
-        });
-
-        describe('when the escape key is pressed', () => {
-            beforeEach(() => {
-                testUtils.triggerEvent(ariaControl, 'keydown', 27);
-            });
-
-            test('then it should collapse the combobox', () => {
-                expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
-            });
-        });
-    });
+    }
 });
