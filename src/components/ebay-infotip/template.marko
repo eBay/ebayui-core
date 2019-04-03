@@ -13,6 +13,7 @@
             <button
                 w-preserve-attrs="aria-expanded,aria-controls,aria-described-by"
                 class="infotip__host icon-btn"
+                disabled=data.disabled
                 aria-label=data.ariaLabel>
                 <if(data.icon)>
                     <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
