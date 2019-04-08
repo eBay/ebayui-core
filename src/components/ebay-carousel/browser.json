@@ -24,18 +24,6 @@
                 "./variables-ds6.less"
             ]
         },
-        "./style.less",
-        {
-            "if-flag": "touch",
-            "dependencies": [
-                "./style-touch.less"
-            ]
-        },
-        {
-            "if": "flags.contains('no-touch') || !flags.contains('touch')",
-            "dependencies": [
-                "./style-no-touch.less"
-            ]
-        }
+        "./style.less"
     ]
 }

@@ -1,7 +1,15 @@
 @ebay-carousel-transition-time: 0.45s;
 @ebay-carousel-transition-function: ease-in-out;
-@ebay-carousel-control-enabled-opacity: 0.92;
-@ebay-carousel-control-disabled-opacity: 0.3;
+
+.show-control() {
+    pointer-events: auto;
+    opacity: 0.92;
+
+    &[aria-disabled="true"] {
+        pointer-events: none;
+        opacity: 0.3;
+    }
+}
 
 .carousel {
     position: relative;
@@ -12,6 +20,11 @@
         padding: 16px 0;
         position: relative;
         width: 100%;
+
+        &--controls-disabled .carousel__control.carousel__control {
+            opacity: 0;
+            pointer-events: none;
+        }
     }
 
     &__list {
@@ -34,7 +47,6 @@
     &__control {
         transition: opacity @ebay-carousel-transition-time @ebay-carousel-transition-function;
         opacity: 0;
-        pointer-events: none;
         font-size: 18px;
         background-color: @carousel-control-background-color;
         padding: 0; // override browser default
@@ -64,6 +76,29 @@
 
         .icon--chevron-left {
             margin-left: -2px;
+        }
+
+        .carousel:hover &,
+        .carousel:focus-within &, // progressive enhancement for browsers with support
+        &:focus {
+            .show-control();
+        }
+
+        &:hover {
+            border-color: @carousel-dots-hover-background-color;
+            background-color: @carousel-dots-hover-background-color;
+
+            svg {
+                color: @carousel-dots-hover-svg-color;
+            }
+        }
+
+        &:active {
+            background-color: @carousel-dots-hover-active-background-color;
+
+            svg {
+                color: @carousel-dots-hover-active-svg-color;
+            }
         }
     }
 
@@ -141,25 +176,42 @@
     }
 }
 
+@media (hover: none) {
+    // show controls on touch when there is not enough affordance.
+    .carousel {
+        &--slides&:not(&--peek) &__control {
+            .show-control();
+        }
+    }
+
+    /* autoprefixer: off */
+    @supports not /*!Y */(
+        /*!Y */(-webkit-scroll-snap-coordinate: 0 0) or
+        /*!Y */(-ms-scroll-snap-coordinate: 0 0) or
+        /*!Y */(scroll-snap-coordinate: 0 0) or
+        /*!Y */(scroll-snap-align: start)
+    ) {
+        // always show paddles when scroll snapping and hover is not supported.
+        .carousel__control {
+            .show-control();
+        }
+    }
+    /* autoprefixer: on */
+}
+
 /**
  * In browsers that support a compatible version of the css scroll snap api we use native scrolling.
  * Otherwise we fall back to using css transforms.
  *
  * Not all browsers that have implemented scroll snapping have done so in a way that we can leverage.
  * Currently the below media query ensures that the browser supports exactly what we need.
+ *
+ * Firefox is explicitly blacklisted in both queries via a check for "-mox-appearance" since
+ * it's current implementation has some issues including forcing a scroll bar.
  */
 
-@supports (-moz-appearance:none) {
-    // Explicitly disable support in firefox since we can't easily hide the scrollbar.
-    .carousel__list {
-        &&&& {
-            overflow-x: visible;
-        }
-    }
-}
-
 /* autoprefixer: off */
-@supports (
+@supports (not /*!Y */(-moz-appearance:none)) and /*!Y */(
     /*!Y */(-webkit-scroll-snap-coordinate: 0 0) or
     /*!Y */(-ms-scroll-snap-coordinate: 0 0) or
     /*!Y */(scroll-snap-coordinate: 0 0) or

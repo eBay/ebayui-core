@@ -4,7 +4,6 @@ const path = require('path');
 const lasso = require('lasso');
 const express = require('express');
 const highlight = require('gh-highlight');
-const MobileDetect = require('mobile-detect');
 const demoUtils = require('./utils.js');
 const template = require('./template.marko');
 
@@ -58,7 +57,7 @@ app.get('/:designSystem/:component?', (req, res) => {
         }).filter(demoUtils.isDirectory),
         components: demoUtils.getComponentsWithExamples('src')
     };
-    const md = new MobileDetect(req.headers['user-agent']);
+
     const dsFlag = req.params.designSystem === 'ds6' ? 'skin-ds6' : '';
     const lassoFlags = ['ebayui-no-bg-icons'];
 
@@ -75,11 +74,7 @@ app.get('/:designSystem/:component?', (req, res) => {
     req.model = model;
 
     lassoFlags.push(dsFlag);
-    if (md.mobile() || md.tablet()) {
-        lassoFlags.push('touch');
-    } else {
-        lassoFlags.push('no-touch');
-    }
+
     req.lassoFlags = lassoFlags;
 
     template.render(req, res);

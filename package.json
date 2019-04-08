@@ -91,7 +91,6 @@
     "marko-cli": "^4.0.1",
     "marko-prettyprint": "^1.4.1",
     "marko-widgets": "^6",
-    "mobile-detect": "^1.4.1",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0",
     "opn-cli": "^4.0.0",
