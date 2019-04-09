@@ -1,6 +1,6 @@
 {
     "<ebay-badge>": {
-        "renderer": "./src/components/ebay-badge/index.js",
+        "template": "./src/components/ebay-badge/index.marko",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",

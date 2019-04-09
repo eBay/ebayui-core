@@ -1,0 +1,11 @@
+<var number=Math.round(data.number)/>
+<var ariaRole=(data.type !== 'menu' && data.type !== 'icon' && "img")/>
+
+<if(number > 0)>
+    <span
+        role=ariaRole
+        class=["badge", data.class]
+        ${data.htmlAttributes}>
+        ${number > 99 ? "99+" : number}
+    </span>
+</if>
