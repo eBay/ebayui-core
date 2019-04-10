@@ -1,3 +1,7 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
 <var number=Math.round(data.number)/>
 <var ariaRole=(data.type !== 'menu' && data.type !== 'icon' && "img")/>
 
@@ -5,7 +9,8 @@
     <span
         role=ariaRole
         class=["badge", data.class]
-        ${data.htmlAttributes}>
+        style=data.style
+        ${processHtmlAttributes(data)}>
         ${number > 99 ? "99+" : number}
     </span>
 </if>
