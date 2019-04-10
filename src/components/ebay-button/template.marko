@@ -1,29 +1,59 @@
-<${data.tag}
+<script marko-init>
+    var getWidgetId = require('../../common/get-marko-3-widget-id');
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var size=(data.size || "medium")/>
+<var priority=(data.priority || "secondary")/>
+<var variant=(!data.variant && data.href ? "fake" : data.variant)/>
+<var isIconVariant=(variant === 'icon')/>
+<var isExpandVariant=(variant === 'expand')/>
+<var isCtaVariant=(variant === 'cta')/>
+<var isBadged=Boolean(data.badgeNumber && isIconVariant)/>
+<var noText=(isIconVariant || isBadged || (isExpandVariant && data.noText))/>
+<var baseClass=(variant ? "${variant}-btn" : "btn")/>
+<var sizeClass="${baseClass}--${size}"/>
+<var htmlAttributes=processHtmlAttributes(data)/>
+<var tag=(data.href ? "a" : "button")/>
+
+<${tag}
+    ${htmlAttributes}
     w-bind
     w-onclick="handleClick"
     w-onkeydown="handleKeydown"
-    id=data.id
-    type=data.type
-    class=data.classes
+    id=(data.id || getWidgetId(out))
+    class=[
+        data.class,
+        baseClass,
+        noText && "${baseClass}--no-text",
+        isBadged && "${baseClass}--badged",
+        data.fluid && "${baseClass}--fluid",
+        data.truncate && "${sizeClass}-truncated",
+        data.fixedHeight && "${sizeClass}-fixed-height",
+        !data.fixedHeight && !data.truncate && sizeClass,
+        (priority === "secondary" || priority === "primary") && "${baseClass}--${priority}"
+    ]
     style=data.style
     href=data.href
+    type=(tag === "button" && data.type || "button")
     disabled=data.disabled
-    aria-disabled=data.partiallyDisabled
-    ${data.htmlAttributes}>
-    <if(data.variant !== "cta")>
-        <span body-only-if(!data.hasAriaLabel) w-body aria-hidden='true'/>
-        <if(data.isBadged)>
-            <ebay-badge
-                number=data.badgeNumber
-                type='icon'
-                aria-label=(data.hasAriaLabel ? data.badgeAriaLabel : false)
-                aria-hidden=(data.hasAriaLabel ? 'true' : false)/>
-        </if>
-    </if>
-    <else>
+    aria-disabled=(data.partiallyDisabled && "true")>
+
+    <if(isCtaVariant)>
         <span class="cta-btn__cell">
             <span w-body/>
             <ebay-icon type="inline" name="arrow-right-bold" class="cta-btn__icon" no-skin-classes/>
         </span>
+    </if>
+    <else>
+        <var hasAriaLabel=Boolean(htmlAttributes.ariaLabel)/>
+        <span body-only-if(!hasAriaLabel) w-body aria-hidden="true"/>
+        <if(isBadged)>
+            <ebay-badge
+                number=data.badgeNumber
+                type="icon"
+                aria-label=(hasAriaLabel && data.badgeAriaLabel)
+                aria-hidden=(hasAriaLabel && "true")/>
+        </if>
     </else>
 </>

@@ -14,6 +14,7 @@ Object.keys(properties).forEach(property => {
             const input = {};
             input[property] = value;
             const $ = testUtils.getCheerio(context.render(input));
+            console.log($.html())
             expect($(`button.btn.btn--${value}`).length).to.equal(1);
         });
     });
