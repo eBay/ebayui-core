@@ -48,8 +48,7 @@ function getInitialState(input) {
         selected: selectedOption,
         grow: input.grow,
         disabled: input.disabled,
-        borderless: Boolean(input.borderless),
-        showListbox: true
+        borderless: Boolean(input.borderless)
     };
 }
 
@@ -72,17 +71,31 @@ function getTemplateData(state) {
         options: state.options,
         selectedOption: state.selected,
         grow: state.grow,
-        disabled: state.disabled,
-        showListbox: state.showListbox
+        disabled: state.disabled
     };
 }
 
 function init() {
     const optionEls = getOptionEls(this.el);
-    const activeDescendantFocusEl = this.el.querySelector(comboboxHostSelector);
-    const activeDescendantOwnedEl = this.el.querySelector(`.${comboboxOptionsClass}`);
 
+    observer.observeRoot(this, ['disabled'], () => {
+        this.expander.expandOnClick = !this.state.disabled;
+    });
+
+    const selectedObserverCallback = (optionEl) => {
+        this.processAfterStateChange(optionEl);
+    };
+
+    this.optionEls = optionEls.forEach((optionEl, i) => {
+        observer.observeInner(this, optionEl, 'selected', `options[${i}]`, 'options', selectedObserverCallback);
+    });
+}
+
+function onRender() {
     if (this.state.options && this.state.options.length > 0) {
+        const activeDescendantFocusEl = this.el.querySelector(comboboxHostSelector);
+        const activeDescendantOwnedEl = this.el.querySelector(`.${comboboxOptionsClass}`);
+
         this.activeDescendant = ActiveDescendant.createLinear(
             this.el,
             activeDescendantFocusEl,
@@ -105,20 +118,24 @@ function init() {
             simulateSpacebarClick: true
         });
 
-        observer.observeRoot(this, ['disabled'], () => {
-            this.expander.expandOnClick = !this.state.disabled;
-        });
-
-        const selectedObserverCallback = (optionEl) => {
-            this.processAfterStateChange(optionEl);
-        };
-
-        this.optionEls = optionEls.forEach((optionEl, i) => {
-            observer.observeInner(this, optionEl, 'selected', `options[${i}]`, 'options', selectedObserverCallback);
-        });
-
         scrollKeyPreventer.add(this.el.querySelector(`.${comboboxOptionsClass}`));
     }
+}
+
+function onBeforeUpdate() {
+    if (this.activeDescendant) {
+        this.activeDescendant.destroy();
+    }
+
+    if (this.expander) {
+        this.expander.cancelAsync();
+    }
+}
+
+function onDestroy() {
+    this.activeDescendant.destroy();
+    this.expander.cancelAsync();
+    scrollKeyPreventer.remove(this.el.querySelector(`.${comboboxOptionsClass}`));
 }
 
 function handleExpand() {
@@ -191,7 +208,10 @@ function handleComboboxKeyDown(originalEvent) {
 
 function handleComboboxKeyUp(evt) {
     const newValue = evt.target.value;
-    this.filterOptionsDisplay(newValue);
+    const keyCode = evt.charCode || evt.keyCode;
+    if ([13, 27, 38, 40].indexOf(keyCode) === -1) {
+        this.filterOptionsDisplay(newValue);
+    }
     this.emitChangeEvent(null, event.target);
 }
 
@@ -200,7 +220,8 @@ function handleOptionClick(evt) {
     const currentInput = this.el.querySelector(comboboxHostSelector);
 
     currentInput.value = selectedEl.textContent;
-    this.setState('showListbox', false);
+
+    this.expander.collapse();
     this.emitChangeEvent(selectedEl, currentInput);
 }
 
@@ -236,9 +257,13 @@ function filterOptionsDisplay(query) {
         return option;
     });
 
-    this.setState('showListbox', showListbox);
+    if (!showListbox) {
+        this.expander.collapse();
+    } else {
+        this.expander.expand();
+    }
+
     this.setState('options', options);
-    this.update();
 }
 
 function escapeRegExp(stringToGoIntoTheRegex) {
@@ -250,6 +275,9 @@ module.exports = markoWidgets.defineComponent({
     getInitialState,
     getTemplateData,
     init,
+    onRender,
+    onBeforeUpdate,
+    onDestroy,
     handleExpand,
     handleCollapse,
     moveCursorToEnd,

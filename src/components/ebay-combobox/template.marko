@@ -1,13 +1,13 @@
 <span
     class=data.class
     style=data.style
-    ${data.htmlAttributes}
     w-on-expander-expand='handleExpand'
     w-on-expander-collapse='handleCollapse'
-    w-preserve-attrs="class"
+    w-preserve-attrs="class,id"
     w-bind>
-    <span class=data.btnClass w-preserve-attrs="class">
+    <span class=data.btnClass>
         <input
+            w-id="combobox__input"
             type='text'
             role="combobox"
             value=(data.selectedOption && data.selectedOption.text)
@@ -19,18 +19,19 @@
             w-on-keydown='handleComboboxKeyDown'
             w-on-keyup='handleComboboxKeyUp'
             autocomplete="off"
-            w-preserve
+            w-preserve-attrs="class,id"
             ${data.htmlAttributes}/>
         <span class="combobox__icon" aria-hidden="true"></span>
     </span>
     <div
-        if(data.options.length > 0 && data.showListbox)
+        if(data.options.length > 0)
         w-id='combobox__options'
         role='listbox'
         class=data.optionsClass>
         <div
-            for(option in data.options)
+            for(option in data.options | status-var=status)
             if(option.visible)
+            w-id="option-${status.getIndex()}"
             role='option'
             class=['combobox__option', option.class]
             style=option.style
@@ -50,4 +51,9 @@
             </span>
         </div>
     </div>
+    <div else
+        w-id='combobox__options'
+        role='listbox'
+        class=[data.optionsClass, 'hidden']
+        tabindex="-1"/>
 </span>
