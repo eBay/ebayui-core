@@ -1,11 +1,11 @@
 <span
-    class=data.class
+    class=['combobox', data.class]
     style=data.style
     w-on-expander-expand='handleExpand'
     w-on-expander-collapse='handleCollapse'
     w-preserve-attrs="class,id"
     w-bind>
-    <span class=data.btnClass>
+    <span class=['combobox__control', { 'combobox__control--borderless': data.borderless }]>
         <input
             w-id="combobox__input"
             type='text'
@@ -27,7 +27,7 @@
         if(data.options.length > 0)
         w-id='combobox__options'
         role='listbox'
-        class=data.optionsClass>
+        class='combobox__options'>
         <div
             for(option in data.options | status-var=status)
             if(option.visible)

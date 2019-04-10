@@ -10,10 +10,9 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
-const comboboxOptionsClass = 'combobox__options';
-const comboboxExpanderClass = 'combobox__control';
-const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
-const comboboxBtnClass = 'combobox__control';
+const comboboxOptionsId = 'combobox__options';
+const comboboxInputId = 'combobox__input';
+
 const comboboxOptionSelector = '.combobox__option[role=option]';
 const comboboxSelectedOptionSelector = '.combobox__option[role=option].combobox__option--active';
 
@@ -45,7 +44,7 @@ function getInitialState(input) {
         style: input.style,
         name: input.name,
         options,
-        selected: selectedOption,
+        selectedOption,
         grow: input.grow,
         disabled: input.disabled,
         borderless: Boolean(input.borderless)
@@ -53,26 +52,7 @@ function getInitialState(input) {
 }
 
 function getTemplateData(state) {
-    const comboboxClass = ['combobox', state.class];
-    const btnClass = [comboboxBtnClass];
-    const optionsClass = [comboboxOptionsClass];
-
-    if (state.borderless) {
-        btnClass.push('combobox__control--borderless');
-    }
-
-    return {
-        htmlAttributes: state.htmlAttributes,
-        class: comboboxClass,
-        style: state.style,
-        btnClass,
-        optionsClass,
-        name: state.name,
-        options: state.options,
-        selectedOption: state.selected,
-        grow: state.grow,
-        disabled: state.disabled
-    };
+    return state;
 }
 
 function init() {
@@ -93,8 +73,8 @@ function init() {
 
 function onRender() {
     if (this.state.options && this.state.options.length > 0) {
-        const activeDescendantFocusEl = this.el.querySelector(comboboxHostSelector);
-        const activeDescendantOwnedEl = this.el.querySelector(`.${comboboxOptionsClass}`);
+        const activeDescendantFocusEl = this.getEl(comboboxInputId);
+        const activeDescendantOwnedEl = this.getEl(comboboxOptionsId);
 
         this.activeDescendant = ActiveDescendant.createLinear(
             this.el,
@@ -112,13 +92,13 @@ function onRender() {
             expandOnFocus: true,
             expandOnClick: this.state.readonly && !this.state.disabled,
             collapseOnFocusOut: !this.state.readonly,
-            contentSelector: `.${comboboxOptionsClass}`,
-            hostSelector: comboboxHostSelector,
+            contentSelector: '.combobox__options',
+            hostSelector: '.combobox__control > input',
             expandedClass: 'combobox--expanded',
             simulateSpacebarClick: true
         });
 
-        scrollKeyPreventer.add(this.el.querySelector(`.${comboboxOptionsClass}`));
+        scrollKeyPreventer.add(this.getEl(comboboxOptionsId));
     }
 }
 
@@ -135,7 +115,7 @@ function onBeforeUpdate() {
 function onDestroy() {
     this.activeDescendant.destroy();
     this.expander.cancelAsync();
-    scrollKeyPreventer.remove(this.el.querySelector(`.${comboboxOptionsClass}`));
+    scrollKeyPreventer.remove(this.getEl(comboboxOptionsId));
 }
 
 function handleExpand() {
@@ -145,11 +125,9 @@ function handleExpand() {
 }
 
 function handleCollapse() {
-    const currentInput = this.el.querySelector(comboboxHostSelector);
-    const currentValue = currentInput && currentInput.value;
     let matchedOption;
     const options = this.state.options.map(option => {
-        const valueCheck = currentValue.toLowerCase() === option.text.toLowerCase();
+        const valueCheck = this.state.selectedOption.text.toLowerCase() === option.text.toLowerCase();
         option.selected = valueCheck;
         if (valueCheck) {
             matchedOption = option;
@@ -159,13 +137,11 @@ function handleCollapse() {
     });
 
     this.setState('options', options);
-    this.setState('selected', matchedOption);
+    this.setState('selectedOption', matchedOption);
 
     if (matchedOption) {
-        this.emitChangeEvent(null, currentInput);
+        this.emitChangeEvent(null, this.state.selectedOption.text);
     }
-
-    this.update();
 
     emitAndFire(this, 'combobox-collapse');
 }
@@ -175,7 +151,7 @@ function getOptionEls(el) {
 }
 
 function moveCursorToEnd() {
-    const currentInput = this.el.querySelector(`${comboboxHostSelector}[type="text"]`);
+    const currentInput = this.getEl(comboboxInputId);
 
     if (currentInput) {
         const len = currentInput.value.length;
@@ -185,7 +161,7 @@ function moveCursorToEnd() {
 
 function handleComboboxKeyDown(originalEvent) {
     const selectedEl = this.el.querySelector(comboboxSelectedOptionSelector);
-    const currentInput = this.el.querySelector(comboboxHostSelector);
+    const currentInput = this.getEl(comboboxInputId);
 
     eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
         originalEvent.preventDefault();
@@ -217,7 +193,7 @@ function handleComboboxKeyUp(evt) {
 
 function handleOptionClick(evt) {
     const selectedEl = evt.target.nodeName === 'DIV' ? evt.target : evt.target.parentNode;
-    const currentInput = this.el.querySelector(comboboxHostSelector);
+    const currentInput = this.getEl(comboboxInputId);
 
     currentInput.value = selectedEl.textContent;
 
@@ -264,6 +240,7 @@ function filterOptionsDisplay(query) {
     }
 
     this.setState('options', options);
+    this.setState('selectedOption', { text: query });
 }
 
 function escapeRegExp(stringToGoIntoTheRegex) {
