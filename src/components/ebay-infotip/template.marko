@@ -1,33 +1,42 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var pointer=(data.pointer || "bottom")/>
+
 <span w-bind>
     <ebay-tooltip-base
         w-id="base"
         type="infotip"
-        pointer=data.pointer
+        pointer=pointer
         w-on-base-expand="handleExpand"
         w-on-base-collapse="handleCollapse">
         <span
             w-id="expander-root"
             w-preserve-attrs="class"
             class="infotip"
-            ${data.htmlAttributes}>
+            ${processHtmlAttributes(data)}>
             <button
+                w-id="host"
                 w-preserve-attrs="aria-expanded,aria-controls,aria-described-by"
                 class="infotip__host icon-btn"
                 disabled=data.disabled
                 aria-label=data.ariaLabel>
-                <if(data.icon)>
-                    <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
+                <if(data.iconTag)>
+                    <include(data.iconTag)/>
                 </if>
-                <ebay-icon if(!data.icon) type="inline" name="info"/>
+                <else>
+                    <ebay-icon type="inline" name="info"/>
+                </else>
             </button>
             <ebay-tooltip-overlay
                 type="infotip"
-                tooltip-id="infotip-${widget.id}"
+                tooltip-id=widget.elId("infotip")
                 style-left=data.styleLeft
                 style-top=data.styleTop
                 style-right=data.styleRight
                 style-bottom=data.styleBottom
-                pointer=data.pointer
+                pointer=pointer
                 heading=data.heading
                 content=data.content
                 a11y-close-text=data.a11yCloseText
