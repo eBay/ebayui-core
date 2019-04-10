@@ -14,6 +14,7 @@ function getInitialState(input, out) {
     const fluid = input.fluid;
     const fixedHeight = input.fixedHeight;
     const truncate = input.truncate;
+    let type = input.type || 'button';
     let variant = input.variant;
     let tag;
     let mainClass = 'btn';
@@ -21,18 +22,21 @@ function getInitialState(input, out) {
     let fixedHeightClass = '';
     let truncatedClass = '';
 
-    if (href) {
-        variant = 'fake';
-        tag = 'a';
-    } else {
-        tag = 'button';
-    }
-
     const isExpandVariant = variant === 'expand';
     const isCtaVariant = variant === 'cta';
     const isIconVariant = variant === 'icon';
     const isBadged = Boolean(input.badgeNumber && isIconVariant);
     const hasAriaLabel = Boolean(input['*'] && input['*'].ariaLabel);
+
+    if (href && !isCtaVariant) {
+        variant = 'fake';
+        tag = 'a';
+    } else if (href && isCtaVariant) {
+        tag = 'a';
+        type = null;
+    } else {
+        tag = 'button';
+    }
 
     if (href || isExpandVariant || isCtaVariant || isIconVariant) {
         mainClass = `${variant}-${mainClass}`;
@@ -83,7 +87,8 @@ function getInitialState(input, out) {
         style: input.style,
         tag,
         href,
-        type: input.type || 'button',
+        type,
+        variant,
         disabled: Boolean(input.disabled),
         partiallyDisabled: input.partiallyDisabled ? 'true' : null, // for aria-disabled
         isBadged,

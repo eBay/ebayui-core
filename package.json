@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "2.0.9",
+  "version": "2.1.0-3",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "installMarkoV3": "yarn add marko@^3 marko-widgets@^6 -D",
@@ -28,6 +28,7 @@
     "build:v3": "yarn installMarkoV3 && yarn clean:integration && yarn test && mocha integration",
     "build:v4": "yarn installMarkoV4 && yarn clean:integration && yarn test && mocha integration",
     "shrinkwrap": "rimraf yarn.lock; rimraf node_modules; yarn cache clean && yarn",
+    "importSVG": "node scripts/import-svg",
     "ts": "yarn test:server",
     "tb": "yarn test:browser",
     "tf": "yarn test:fps",
@@ -58,7 +59,7 @@
   ],
   "devDependencies": {
     "@ebay/browserslist-config": "^1.0.0",
-    "@ebay/skin": "7.0.4",
+    "@ebay/skin": "7.1.0",
     "@lasso/marko-taglib": "^1.0.15",
     "async": "^2.6.2",
     "babel-cli": "^6.26.0",
@@ -102,7 +103,7 @@
     "wdio-browserstack-service": "^0.1.18"
   },
   "peerDependencies": {
-    "@ebay/skin": "7.0.4",
+    "@ebay/skin": "7.1.0",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },

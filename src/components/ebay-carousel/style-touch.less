@@ -22,6 +22,13 @@
     }
 }
 
+@supports (-moz-appearance:none) {
+    // always show paddles in firefox.
+    .carousel__control {
+        .carousel-control-visible();
+    }
+}
+
 /* autoprefixer: off */
 @supports not/*!Y */ (
     /*!Y */(-webkit-scroll-snap-coordinate: 0 0) or

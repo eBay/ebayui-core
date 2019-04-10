@@ -93,9 +93,9 @@ test('renders expand variant with no text', context => {
 });
 
 test('renders cta variant', context => {
-    const input = { variant: 'cta' };
+    const input = { variant: 'cta', href: 'https://www.ebay.com' };
     const $ = testUtils.getCheerio(context.render(input));
-    expect($('.cta-btn').length).to.equal(1);
+    expect($('a.cta-btn > .cta-btn__cell').length).to.equal(1);
 });
 
 test('renders icon variant', context => {
