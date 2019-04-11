@@ -39,7 +39,7 @@
             class="listbox__options"
             tabindex="-1"
             w-preserve-attrs="class,aria-owns,aria-activedescendant,tabindex">
-            <for(option in data.options | status-var=loop)>
+            <for(option in data.options)>
                 <div
                     w-id="option[]"
                     w-preserve-attrs="class,data-makeup-index,aria-selected"
