@@ -1,57 +1,70 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var options=data.options/>
+<var selectedOption=options[data.selectedIndex]/>
+<var selectedText=(selectedOption && selectedOption.text)/>
+
 <span
-    class=data.class
+    ${processHtmlAttributes(data)}
+    class=["listbox", data.class]
     style=data.style
-    ${data.htmlAttributes}
-    w-on-expander-expand='handleExpand'
-    w-on-expander-collapse='handleCollapse'
     w-preserve-attrs="class"
+    w-on-expander-expand="handleExpand"
+    w-on-expander-collapse="handleCollapse"
     w-bind>
     <button
         w-id="button"
-        class=[data.btnClass, 'expand-btn', 'expand-btn--regular']
-        value=(data.selectedOption && data.selectedOption.text)
+        class=[
+            "listbox__control",
+            "expand-btn",
+            "expand-btn--regular",
+            data.borderless && "expand-btn--borderless"
+        ]
+        value=selectedText
         disabled=data.disabled
-        aria-haspopup='listbox'
-        aria-owns=widget.elId('listbox__options')
-        aria-expanded='false'
-        w-preserve-attrs="id,class,aria-expanded">
+        aria-haspopup="listbox"
+        w-preserve-attrs="aria-expanded,aria-controls">
         <span class="expand-btn__cell">
-            <span>${data.selectedOption && data.selectedOption.text}</span>
+            <span>${selectedText}</span>
             <span class="expand-btn__icon"></span>
         </span>
     </button>
-    <div
-        if(data.options.length > 0)
-        w-id='listbox__options'
-        role='listbox'
-        class=data.optionsClass
-        w-preserve-attrs="class">
+
+    <if(options.length)>
         <div
-            for(option in data.options | status-var=loop)
-            w-id=('listbox__option' + loop.getIndex())
-            role='option'
-            class=['listbox__option', option.class]
-            style=option.style
-            ${option.htmlAttributes}
+            w-id="options"
+            role="listbox"
+            class="listbox__options"
             tabindex="-1"
-            w-preserve-attrs="id,class,tabindex,data-makeup-index,aria-selected"
-            aria-selected=String(option.selected)
-            data-option-value=option.value>
-            <span>
-                ${option.text}
-            </span>
-            <span class='listbox__status'/>
+            w-preserve-attrs="class,aria-owns,aria-activedescendant,tabindex">
+            <for(option in data.options | status-var=loop)>
+                <div
+                    w-id="option[]"
+                    w-preserve-attrs="class,data-makeup-index,aria-selected"
+                    class=["listbox__option", option.class]
+                    style=option.style
+                    role="option"
+                    tabindex="-1"
+                    aria-selected=(selectedOption === option && "true")
+                    ${processHtmlAttributes(option)}>
+                    <span>${option.text}</span>
+                    <span class="listbox__status"/>
+                </div>
+            </for>
         </div>
-    </div>
+    </if>
     <select
         hidden
-        class='listbox__native'
+        class="listbox__native"
         name=data.name>
-        <option
-            for(option in data.options)
-            value=option.value
-            selected=option.selected
-            class=option.class>
-        </option>
+        <for(option in data.options)>
+            <option
+                value=option.value
+                selected=(option === selectedOption)
+                class=option.class>
+            </option>
+        </for>
     </select>
 </span>
