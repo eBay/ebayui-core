@@ -1,149 +1,50 @@
-const markoWidgets = require('marko-widgets');
-const find = require('core-js/library/fn/array/find');
+const findIndex = require('core-js/library/fn/array/find-index');
 const emitAndFire = require('../../common/emit-and-fire');
-const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
-const template = require('./template.marko');
 
-const selectOptionSelector = 'select > option';
+module.exports = require("marko-widgets").defineComponent({
+    template: require("./template.marko"),
+    getInitialProps(input) {
+        return Object.assign({
+            options: []
+        }, input);
+    },
+    getInitialState(input) {
+        const index = findIndex(input.options, option => option.selected);
+        const selectedIndex = index === -1 ? 0 : index;
 
-function getInitialState(input) {
-    const options = (input.options || []).map(option => {
-        const selected = option.selected;
+        return Object.assign({}, input, {
+            selectedIndex,
+            // Note: the line below is because of the programatic API and should be removed if that is removed.
+            value: input.options[selectedIndex] && input.options[selectedIndex].value
+        });
+    },
+    init() {
+        // Note: this entire function is because of the programatic API and should be removed if that is removed.
+        observer.observeRoot(this, ['selectedIndex'], this.setSelectedIndex.bind(this));
+        observer.observeRoot(this, ['value'], (value) => {
+            const index = findIndex(this.state.options, option => option.value === value);
+            const selectedIndex = index === -1 ? 0 : index;
+            this.setSelectedIndex(selectedIndex);
+        });
+    },
+    handleChange(event) {
+        this.setSelectedIndex(event.target.selectedIndex);
+    },
+    setSelectedIndex(selectedIndex) {
+        const el = this.getEls('option')[selectedIndex];
+        const option = this.state.options[selectedIndex];
 
-        return {
-            htmlAttributes: processHtmlAttributes(option),
-            class: option.class,
-            style: option.style,
-            value: option.value,
-            text: option.text,
-            selected: Boolean(selected)
-        };
-    });
+        this.setState('selectedIndex', selectedIndex);
 
-    const selectedOption = options.filter(option => option.selected)[0] || options[0];
+        // Note: this is only set because of the programatic API and should be removed if that is removed.
+        this.setState("value", option && option.value);
 
-    if (options.length > 0 && selectedOption.value === options[0].value) {
-        options[0].selected = true;
+        // TODO: we should not cast the selected value to a string here, but this is a breaking change.
+        emitAndFire(this, 'select-change', {
+            index: selectedIndex,
+            selected: [String(option.value)],
+            el
+        });
     }
-
-    return {
-        htmlAttributes: processHtmlAttributes(input),
-        class: input.class,
-        style: input.style,
-        options,
-        selected: selectedOption,
-        borderless: Boolean(input.borderless),
-        disabled: Boolean(input.disabled)
-    };
-}
-
-function getTemplateData(state) {
-    const selectClass = ['select', state.class];
-
-    if (state.borderless) {
-        selectClass.push('select--borderless');
-    }
-
-    return {
-        htmlAttributes: state.htmlAttributes,
-        class: selectClass,
-        style: state.style,
-        selectedOption: state.selected,
-        options: state.options,
-        disabled: state.disabled
-    };
-}
-
-function init() {
-    const optionEls = this.el.querySelectorAll(selectOptionSelector);
-
-    const selectedIndexObserverCallback = (selectedIndex) => {
-        if (optionEls[selectedIndex]) {
-            this.processAfterStateChange(optionEls[selectedIndex]);
-        } else {
-            console.error('Please provide a valid index.');
-        }
-    };
-
-    const valueObserverCallback = (optionValue) => {
-        const optionFind = (option) => option.value.toString() === optionValue.toString();
-        const newOptionSelected = find(this.state.options, optionFind);
-        let optionIndex;
-
-        if (newOptionSelected) {
-            this.state.options.map((option, i) => {
-                if (option.value === newOptionSelected.value) {
-                    optionIndex = i;
-                }
-            });
-
-            this.processAfterStateChange(optionEls[optionIndex]);
-        }
-    };
-
-    if (this.state.options && this.state.options.length > 0) {
-        observer.observeRoot(this, ['selectedIndex'], selectedIndexObserverCallback);
-        observer.observeRoot(this, ['value'], valueObserverCallback);
-    }
-}
-
-/**
- * Common processing after data change via both UI and API
- * @param {HTMLElement} el
- */
-function processAfterStateChange(el) {
-    const optionValue = el.value;
-    const optionIndex = Array.prototype.slice.call(el.parentNode.children).indexOf(el);
-    this.setSelectedOption(optionValue);
-    emitAndFire(this, 'select-change', {
-        index: optionIndex,
-        selected: [optionValue],
-        el
-    });
-}
-
-/**
- * Will set the appropriate value for the option in state, view, and the hidden form select, and emit an event
- * @param {String} optionValue
- */
-function setSelectedOption(optionValue) {
-    const optionFind = (option) => option.value.toString() === optionValue.toString();
-    const newOptionSelected = find(this.state.options, optionFind);
-    const newOptionSelectedValue = newOptionSelected && newOptionSelected.value;
-    let options = this.state.options;
-
-    options = options.map((option, i) => {
-        if (option.value === newOptionSelectedValue) {
-            option.selected = true;
-            this.setState('selectedIndex', i);
-            this.setState('value', option.value);
-        } else {
-            option.selected = false;
-        }
-        return option;
-    });
-    this.setState('options', options);
-    this.update();
-}
-
-function optionChanged(e) {
-    this.setSelectedOption(e.target.value);
-    const optionIndex = e.target.selectedIndex;
-    const optionEls = this.el.querySelectorAll(selectOptionSelector);
-    emitAndFire(this, 'select-change', {
-        index: optionIndex,
-        selected: [e.target.value],
-        el: optionEls[optionIndex]
-    });
-}
-
-module.exports = markoWidgets.defineComponent({
-    template,
-    getInitialState,
-    getTemplateData,
-    init,
-    processAfterStateChange,
-    setSelectedOption,
-    optionChanged
 });
