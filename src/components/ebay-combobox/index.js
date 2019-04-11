@@ -1,88 +1,72 @@
-const markoWidgets = require('marko-widgets');
-const find = require('core-js/library/fn/array/find');
+const findIndex = require('core-js/library/fn/array/find-index');
 const ActiveDescendant = require('makeup-active-descendant');
 const Expander = require('makeup-expander');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
-const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
-const template = require('./template.marko');
 
-const comboboxOptionsId = 'combobox__options';
-const comboboxInputId = 'combobox__input';
+const comboboxOptionsId = 'options';
+const comboboxInputId = 'input';
 
 const comboboxOptionSelector = '.combobox__option[role=option]';
 const comboboxSelectedOptionSelector = '.combobox__option[role=option].combobox__option--active';
 
-function getInitialState(input) {
-    let options = (input.options || []).map(option => ({
-        htmlAttributes: processHtmlAttributes(option),
-        class: option.class,
-        style: option.style,
-        value: option.value || option.text,
-        text: option.text,
-        selected: Boolean(option.selected),
-        renderBody: option.renderBody,
-        visible: Boolean(option.selected)
-    }));
+module.exports = require('marko-widgets').defineComponent({
+    template: require('./template.marko'),
+    getInitialProps(input) {
+        return Object.assign({
+            options: []
+        }, input);
+    },
+    getInitialState(input) {
+        const newInput = input;
+        const index = findIndex(input.options, option => option.selected);
+        const currentValue = input.options[index] && input.options[index].text;
 
-    const selectedOption = find(options, option => option.selected);
-    const selectedOptionText = selectedOption && selectedOption.text;
-
-    if (!selectedOptionText) {
-        options = options.map(option => {
-            option.visible = true;
+        const options = input.options.map(option => {
+            option.visible = !!option.selected;
+            if (!currentValue) {
+                option.visible = true;
+            }
             return option;
         });
-    }
 
-    return {
-        htmlAttributes: processHtmlAttributes(input),
-        class: input.class,
-        style: input.style,
-        name: input.name,
-        options,
-        selectedOption,
-        grow: input.grow,
-        disabled: input.disabled,
-        borderless: Boolean(input.borderless)
-    };
-}
+        newInput.options = options;
 
-function getTemplateData(state) {
-    return state;
-}
+        return Object.assign({}, newInput, {
+            selectedIndex: index === -1 ? null : index,
+            currentValue: currentValue
+        });
+    },
+    init() {
+        const optionEls = this.getOptionEls(this.el);
 
-function init() {
-    const optionEls = getOptionEls(this.el);
+        observer.observeRoot(this, ['disabled'], () => {
+            this.expander.expandOnClick = !this.state.disabled;
+        });
 
-    observer.observeRoot(this, ['disabled'], () => {
-        this.expander.expandOnClick = !this.state.disabled;
-    });
+        const selectedObserverCallback = (optionEl) => {
+            this.processAfterStateChange(optionEl);
+        };
 
-    const selectedObserverCallback = (optionEl) => {
-        this.processAfterStateChange(optionEl);
-    };
-
-    this.optionEls = optionEls.forEach((optionEl, i) => {
-        observer.observeInner(this, optionEl, 'selected', `options[${i}]`, 'options', selectedObserverCallback);
-    });
-}
-
-function onRender() {
-    if (this.state.options && this.state.options.length > 0) {
-        const activeDescendantFocusEl = this.getEl(comboboxInputId);
-        const activeDescendantOwnedEl = this.getEl(comboboxOptionsId);
+        this.optionEls = optionEls.forEach((optionEl, i) => {
+            observer.observeInner(this, optionEl, 'selected', `options[${i}]`, 'options', selectedObserverCallback);
+        });
+    },
+    onRender() {
+        const comboboxInput = this.getEl(comboboxInputId);
+        const optionsContainer = this.getEl(comboboxOptionsId);
+        const selectedIndex = findIndex(this.state.options, option => option.selected);
 
         this.activeDescendant = ActiveDescendant.createLinear(
             this.el,
-            activeDescendantFocusEl,
-            activeDescendantOwnedEl,
+            comboboxInput,
+            optionsContainer,
             comboboxOptionSelector, {
                 activeDescendantClassName: 'combobox__option--active',
-                autoInit: -1,
+                autoInit: selectedIndex === -1 ? -1 : 0,
                 autoReset: -1
             }
         );
@@ -92,176 +76,134 @@ function onRender() {
             expandOnFocus: true,
             expandOnClick: this.state.readonly && !this.state.disabled,
             collapseOnFocusOut: !this.state.readonly,
-            contentSelector: '.combobox__options',
-            hostSelector: '.combobox__control > input',
+            contentSelector: `#${optionsContainer.id}`,
+            hostSelector: `#${this.getEl(comboboxInputId).id}`,
             expandedClass: 'combobox--expanded',
             simulateSpacebarClick: true
         });
 
         scrollKeyPreventer.add(this.getEl(comboboxOptionsId));
-    }
-}
+    },
+    onBeforeUpdate() {
+        if (this.activeDescendant) {
+            this.activeDescendant.destroy();
+        }
 
-function onBeforeUpdate() {
-    if (this.activeDescendant) {
+        if (this.expander) {
+            this.expander.cancelAsync();
+        }
+    },
+    onDestroy() {
         this.activeDescendant.destroy();
-    }
-
-    if (this.expander) {
         this.expander.cancelAsync();
-    }
-}
+        scrollKeyPreventer.remove(this.getEl(comboboxOptionsId));
+    },
+    handleExpand() {
+        elementScroll.scroll(this.el.querySelector(comboboxSelectedOptionSelector));
+        this.moveCursorToEnd();
+        emitAndFire(this, 'combobox-expand');
+    },
+    handleCollapse() {
+        this.emitChangeEvent();
+        emitAndFire(this, 'combobox-collapse');
+    },
+    getOptionEls(el) {
+        return el.querySelectorAll(comboboxOptionSelector);
+    },
+    moveCursorToEnd() {
+        const currentInput = this.getEl(comboboxInputId);
 
-function onDestroy() {
-    this.activeDescendant.destroy();
-    this.expander.cancelAsync();
-    scrollKeyPreventer.remove(this.getEl(comboboxOptionsId));
-}
-
-function handleExpand() {
-    elementScroll.scroll(this.el.querySelector(comboboxSelectedOptionSelector));
-    this.moveCursorToEnd();
-    emitAndFire(this, 'combobox-expand');
-}
-
-function handleCollapse() {
-    let matchedOption;
-    const options = this.state.options.map(option => {
-        const valueCheck = this.state.selectedOption.text.toLowerCase() === option.text.toLowerCase();
-        option.selected = valueCheck;
-        if (valueCheck) {
-            matchedOption = option;
+        if (currentInput) {
+            const len = currentInput.value.length;
+            currentInput.setSelectionRange(len, len);
         }
+    },
+    handleComboboxKeyDown(originalEvent) {
+        const selectedEl = this.el.querySelector(comboboxSelectedOptionSelector);
 
-        return option;
-    });
+        eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
+            originalEvent.preventDefault();
+        });
 
-    this.setState('options', options);
-    this.setState('selectedOption', matchedOption);
+        eventUtils.handleEnterKeydown(originalEvent, () => {
+            if (selectedEl) {
+                this.setState('currentValue', selectedEl.textContent);
+            }
+        });
 
-    if (matchedOption) {
-        this.emitChangeEvent(null, this.state.selectedOption.text);
-    }
+        eventUtils.handleEscapeKeydown(originalEvent, () => {
+            this.expander.collapse();
+        });
 
-    emitAndFire(this, 'combobox-collapse');
-}
-
-function getOptionEls(el) {
-    return el.querySelectorAll(comboboxOptionSelector);
-}
-
-function moveCursorToEnd() {
-    const currentInput = this.getEl(comboboxInputId);
-
-    if (currentInput) {
-        const len = currentInput.value.length;
-        currentInput.setSelectionRange(len, len);
-    }
-}
-
-function handleComboboxKeyDown(originalEvent) {
-    const selectedEl = this.el.querySelector(comboboxSelectedOptionSelector);
-    const currentInput = this.getEl(comboboxInputId);
-
-    eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
-        originalEvent.preventDefault();
-    });
-
-    eventUtils.handleEnterKeydown(originalEvent, () => {
         if (selectedEl) {
-            currentInput.value = selectedEl.textContent;
+            elementScroll.scroll(selectedEl);
         }
-    });
+    },
+    handleComboboxKeyUp(originalEvent) {
+        eventUtils.handleTextInput(originalEvent, () => {
+            this.filterOptionsDisplay();
+        });
+        this.emitChangeEvent();
+    },
+    handleOptionClick(evt) {
+        const selectedEl = evt.target.nodeName === 'DIV' ? evt.target : evt.target.parentNode;
 
-    eventUtils.handleEscapeKeydown(originalEvent, () => {
+        this.setState('currentValue', selectedEl.textContent);
+
         this.expander.collapse();
-    });
+        this.emitChangeEvent();
+    },
+    getVisibleOptions() {
+        return this.state.options.filter(option => option.visible);
+    },
+    emitChangeEvent() {
+        const selectedValue =
+            this.state.options[this.state.selectedIndex] && this.state.options[this.state.selectedIndex].text;
 
-    if (selectedEl) {
-        elementScroll.scroll(selectedEl);
-    }
-}
+        emitAndFire(this, 'combobox-change', {
+            currentInput: this.getEl(comboboxInputId).value,
+            selectedValue: [selectedValue],
+            options: this.state.options,
+            selectedEl: find(this.state.options, option => option.selected)
+        });
+    },
+    filterOptionsDisplay() {
+        const query = this.getEl('input').value;
+        let showListbox = false;
+        let selectedOption = {};
 
-function handleComboboxKeyUp(evt) {
-    const newValue = evt.target.value;
-    const keyCode = evt.charCode || evt.keyCode;
-    if ([13, 27, 38, 40].indexOf(keyCode) === -1) {
-        this.filterOptionsDisplay(newValue);
-    }
-    this.emitChangeEvent(null, event.target);
-}
+        const options = this.state.options.map(option => {
+            const optionText = option.text;
+            const queryRegex = new RegExp(this.escapeRegExp(`${query.trim()}`), 'i');
+            const shouldBeVisible = queryRegex.test(optionText);
 
-function handleOptionClick(evt) {
-    const selectedEl = evt.target.nodeName === 'DIV' ? evt.target : evt.target.parentNode;
-    const currentInput = this.getEl(comboboxInputId);
+            if (shouldBeVisible) {
+                showListbox = true;
+            }
 
-    currentInput.value = selectedEl.textContent;
+            option.visible = shouldBeVisible;
 
-    this.expander.collapse();
-    this.emitChangeEvent(selectedEl, currentInput);
-}
+            if (optionText.toLowerCase() === query.toLowerCase()) {
+                selectedOption = option;
+                option.selected = true;
+            } else {
+                option.selected = false;
+            }
 
-function getVisibleOptions() {
-    return this.state.options.filter(option => option.visible);
-}
+            return option;
+        });
 
-function emitChangeEvent(selectedEl, currentInput) {
-    const optionValue = selectedEl ? selectedEl.dataset.optionValue : '';
-    const options = this.getVisibleOptions();
-
-    emitAndFire(this, 'combobox-change', {
-        currentInput: currentInput && currentInput.value,
-        selectedValue: [optionValue],
-        options,
-        selectedEl
-    });
-}
-
-function filterOptionsDisplay(query) {
-    let showListbox = false;
-
-    const options = this.state.options.map(option => {
-        const optionText = option.text;
-        const queryRegex = new RegExp(escapeRegExp(`${query.trim()}`), 'i');
-        const shouldBeVisible = queryRegex.test(optionText);
-
-        if (shouldBeVisible) {
-            showListbox = true;
+        if (!showListbox) {
+            this.expander.collapse();
+        } else {
+            this.expander.expand();
         }
 
-        option.visible = shouldBeVisible;
-        return option;
-    });
-
-    if (!showListbox) {
-        this.expander.collapse();
-    } else {
-        this.expander.expand();
+        this.setState('options', options);
+        this.setState('currentValue', query);
+        this.setState('selectedOption', selectedOption);
+    },
+    escapeRegExp(stringToGoIntoTheRegex) {
+        return stringToGoIntoTheRegex.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     }
-
-    this.setState('options', options);
-    this.setState('selectedOption', { text: query });
-}
-
-function escapeRegExp(stringToGoIntoTheRegex) {
-    return stringToGoIntoTheRegex.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-}
-
-module.exports = markoWidgets.defineComponent({
-    template,
-    getInitialState,
-    getTemplateData,
-    init,
-    onRender,
-    onBeforeUpdate,
-    onDestroy,
-    handleExpand,
-    handleCollapse,
-    moveCursorToEnd,
-    handleComboboxKeyDown,
-    handleComboboxKeyUp,
-    handleOptionClick,
-    getVisibleOptions,
-    emitChangeEvent,
-    filterOptionsDisplay
 });
