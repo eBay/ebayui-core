@@ -59,12 +59,8 @@ module.exports = require('marko-widgets').defineComponent({
 
         this.getEls('option').forEach((optionEl, i) => {
             Object.defineProperty(optionEl, 'selected', {
-                get() {
-                    return this.state.selectedIndex === i;
-                },
-                set(value) {
-                    this.setState('selectedIndex', value ? i : 0);
-                }
+                get: () => this.state.selectedIndex === i,
+                set: (value) => this.setSelectedIndex(value ? i : 0)
             });
         });
 
