@@ -3,7 +3,7 @@ const eventUtils = require('../../common/event-utils');
 const observer = require('../../common/property-observer');
 
 module.exports = require('marko-widgets').defineComponent({
-    template: require("./template.marko"),
+    template: require('./template.marko'),
     getInitialState(input) {
         return Object.assign({}, input, {
             disabled: input.disabled

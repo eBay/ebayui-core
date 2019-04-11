@@ -5,7 +5,7 @@ const emitAndFire = require('../../common/emit-and-fire');
 const observer = require('../../common/property-observer');
 const transition = require('../../common/transition');
 
-module.exports = require("marko-widgets").defineComponent({
+module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
     getInitialState(input) {
         return Object.assign({}, input, {
@@ -30,15 +30,15 @@ module.exports = require("marko-widgets").defineComponent({
     },
     onBeforeDestroy() {
         this._cancelAsync();
-        this._release()
-    
+        this._release();
+
         if (this.isTrapped) {
             bodyScroll.restore();
         }
     },
     handleDialogClick({ target, clientY }) {
         const { closeEl, windowEl } = this;
-    
+
         // Checks if we clicked inside the white panel of the dialog.
         if (!closeEl.contains(target) && windowEl.contains(target)) {
             const { bottom } = windowEl.getBoundingClientRect();
@@ -48,7 +48,7 @@ module.exports = require("marko-widgets").defineComponent({
                 return;
             }
         }
-    
+
         this.close();
     },
     handleCloseButtonClick() {
@@ -145,7 +145,7 @@ module.exports = require("marko-widgets").defineComponent({
             clearTimeout(this.cancelScrollReset);
             this.cancelScrollReset = undefined;
         }
-    
+
         if (this.cancelTransition) {
             this.cancelTransition();
             this.cancelTransition = undefined;

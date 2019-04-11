@@ -6,8 +6,8 @@ const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const observer = require('../../common/property-observer');
 
-module.exports = require("marko-widgets").defineComponent({
-    template: require("./template.marko"),
+module.exports = require('marko-widgets').defineComponent({
+    template: require('./template.marko'),
     getInitialProps(input) {
         return Object.assign({
             options: []
@@ -22,7 +22,7 @@ module.exports = require("marko-widgets").defineComponent({
     },
     init() {
         // TODO: needs to be in on render.
-        const optionsContainer = this.getEl("options");
+        const optionsContainer = this.getEl('options');
         this.activeDescendant = ActiveDescendant.createLinear(
             this.el,
             optionsContainer,
@@ -39,7 +39,7 @@ module.exports = require("marko-widgets").defineComponent({
             autoCollapse: true,
             expandOnClick: !this.state.disabled,
             contentSelector: `#${optionsContainer.id}`,
-            hostSelector: `#${this.getEl("button").id}`,
+            hostSelector: `#${this.getEl('button').id}`,
             expandedClass: 'listbox--expanded',
             focusManagement: 'content',
             simulateSpacebarClick: true
@@ -57,22 +57,22 @@ module.exports = require("marko-widgets").defineComponent({
             this.expander.expandOnClick = !this.state.disabled;
         });
 
-        this.getEls("option").forEach((optionEl, i) => {
+        this.getEls('option').forEach((optionEl, i) => {
             Object.defineProperty(optionEl, 'selected', {
                 get() {
                     return this.state.selectedIndex === i;
                 },
                 set(value) {
-                    this.setState("selectedIndex", value ? i : 0);
+                    this.setState('selectedIndex', value ? i : 0);
                 }
             });
         });
 
-        scrollKeyPreventer.add(this.getEl("button"));
-        scrollKeyPreventer.add(this.getEl("options"));
+        scrollKeyPreventer.add(this.getEl('button'));
+        scrollKeyPreventer.add(this.getEl('options'));
     },
     handleExpand() {
-        elementScroll.scroll(this.getEls("option")[this.state.selectedIndex]);
+        elementScroll.scroll(this.getEls('option')[this.state.selectedIndex]);
         emitAndFire(this, 'listbox-expand');
     },
     handleCollapse() {
@@ -82,13 +82,12 @@ module.exports = require("marko-widgets").defineComponent({
         this.setSelectedIndex(parseInt(event.detail.toIndex, 10));
     },
     setSelectedIndex(selectedIndex) {
-        const el = this.getEls("option")[selectedIndex];
+        const el = this.getEls('option')[selectedIndex];
         const option = this.state.options[selectedIndex];
-        
-        elementScroll.scroll(el);
-        this.setState("selectedIndex", selectedIndex);
 
-        
+        elementScroll.scroll(el);
+        this.setState('selectedIndex', selectedIndex);
+
         // TODO: we should not cast the selected value to a string here, but this is a breaking change.
         emitAndFire(this, 'listbox-change', {
             index: selectedIndex,
