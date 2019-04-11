@@ -4,7 +4,6 @@
             "path": "@ebay/skin/button"
         },
         "../../../src/components/ebay-button",
-        "require: marko-widgets",
         "require: ./index.js",
         "./style.less"
     ]
