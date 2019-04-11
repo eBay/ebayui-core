@@ -6,6 +6,7 @@ const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const observer = require('../../common/property-observer');
+const safeRegex = require('../../common/build-safe-regex');
 
 const comboboxOptionsId = 'options';
 const comboboxInputId = 'input';
@@ -21,38 +22,24 @@ module.exports = require('marko-widgets').defineComponent({
         }, input);
     },
     getInitialState(input) {
-        const newInput = input;
         const index = findIndex(input.options, option => option.selected);
         const currentValue = input.options[index] && input.options[index].text;
 
-        const options = input.options.map(option => {
-            option.visible = !!option.selected;
-            if (!currentValue) {
-                option.visible = true;
-            }
-            return option;
-        });
-
-        newInput.options = options;
-
-        return Object.assign({}, newInput, {
+        return Object.assign({}, input, {
             selectedIndex: index === -1 ? null : index,
             currentValue: currentValue
         });
     },
     init() {
-        const optionEls = this.getOptionEls(this.el);
-
         observer.observeRoot(this, ['disabled'], () => {
             this.expander.expandOnClick = !this.state.disabled;
         });
 
-        const selectedObserverCallback = (optionEl) => {
-            this.processAfterStateChange(optionEl);
-        };
-
-        this.optionEls = optionEls.forEach((optionEl, i) => {
-            observer.observeInner(this, optionEl, 'selected', `options[${i}]`, 'options', selectedObserverCallback);
+        this.getEls('option').forEach((optionEl, i) => {
+            Object.defineProperty(optionEl, 'selected', {
+                get: () => this.state.selectedIndex === i,
+                set: (value) => this.setSelectedIndex(value ? i : null)
+            });
         });
     },
     onRender() {
@@ -60,27 +47,29 @@ module.exports = require('marko-widgets').defineComponent({
         const optionsContainer = this.getEl(comboboxOptionsId);
         const selectedIndex = findIndex(this.state.options, option => option.selected);
 
-        this.activeDescendant = ActiveDescendant.createLinear(
-            this.el,
-            comboboxInput,
-            optionsContainer,
-            comboboxOptionSelector, {
-                activeDescendantClassName: 'combobox__option--active',
-                autoInit: selectedIndex === -1 ? -1 : 0,
-                autoReset: -1
-            }
-        );
+        if (this.state.options.length) {
+            this.activeDescendant = ActiveDescendant.createLinear(
+                this.el,
+                comboboxInput,
+                optionsContainer,
+                comboboxOptionSelector, {
+                    activeDescendantClassName: 'combobox__option--active',
+                    autoInit: selectedIndex === -1 ? -1 : 0,
+                    autoReset: -1
+                }
+            );
 
-        this.expander = new Expander(this.el, {
-            autoCollapse: true,
-            expandOnFocus: true,
-            expandOnClick: this.state.readonly && !this.state.disabled,
-            collapseOnFocusOut: !this.state.readonly,
-            contentSelector: `#${optionsContainer.id}`,
-            hostSelector: `#${this.getEl(comboboxInputId).id}`,
-            expandedClass: 'combobox--expanded',
-            simulateSpacebarClick: true
-        });
+            this.expander = new Expander(this.el, {
+                autoCollapse: true,
+                expandOnFocus: true,
+                expandOnClick: this.state.readonly && !this.state.disabled,
+                collapseOnFocusOut: !this.state.readonly,
+                contentSelector: `#${optionsContainer.id}`,
+                hostSelector: `#${this.getEl(comboboxInputId).id}`,
+                expandedClass: 'combobox--expanded',
+                simulateSpacebarClick: true
+            });
+        }
 
         scrollKeyPreventer.add(this.getEl(comboboxOptionsId));
     },
@@ -92,6 +81,8 @@ module.exports = require('marko-widgets').defineComponent({
         if (this.expander) {
             this.expander.cancelAsync();
         }
+
+        scrollKeyPreventer.remove(this.getEl(comboboxOptionsId));
     },
     onDestroy() {
         this.activeDescendant.destroy();
@@ -99,16 +90,13 @@ module.exports = require('marko-widgets').defineComponent({
         scrollKeyPreventer.remove(this.getEl(comboboxOptionsId));
     },
     handleExpand() {
-        elementScroll.scroll(this.el.querySelector(comboboxSelectedOptionSelector));
+        elementScroll.scroll(this.getEls('option')[this.state.selectedIndex]);
         this.moveCursorToEnd();
         emitAndFire(this, 'combobox-expand');
     },
     handleCollapse() {
         this.emitChangeEvent();
         emitAndFire(this, 'combobox-collapse');
-    },
-    getOptionEls(el) {
-        return el.querySelectorAll(comboboxOptionSelector);
     },
     moveCursorToEnd() {
         const currentInput = this.getEl(comboboxInputId);
@@ -119,7 +107,7 @@ module.exports = require('marko-widgets').defineComponent({
         }
     },
     handleComboboxKeyDown(originalEvent) {
-        const selectedEl = this.el.querySelector(comboboxSelectedOptionSelector);
+        const selectedEl = this.getEls('option')[this.state.selectedIndex];
 
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             originalEvent.preventDefault();
@@ -169,29 +157,9 @@ module.exports = require('marko-widgets').defineComponent({
     },
     filterOptionsDisplay() {
         const query = this.getEl('input').value;
-        let showListbox = false;
-        let selectedOption = {};
+        const queryReg = safeRegex(query);
 
-        const options = this.state.options.map(option => {
-            const optionText = option.text;
-            const queryRegex = new RegExp(this.escapeRegExp(`${query.trim()}`), 'i');
-            const shouldBeVisible = queryRegex.test(optionText);
-
-            if (shouldBeVisible) {
-                showListbox = true;
-            }
-
-            option.visible = shouldBeVisible;
-
-            if (optionText.toLowerCase() === query.toLowerCase()) {
-                selectedOption = option;
-                option.selected = true;
-            } else {
-                option.selected = false;
-            }
-
-            return option;
-        });
+        const showListbox = this.state.options.some(option => queryReg.test(option.text));
 
         if (!showListbox) {
             this.expander.collapse();
@@ -199,11 +167,6 @@ module.exports = require('marko-widgets').defineComponent({
             this.expander.expand();
         }
 
-        this.setState('options', options);
         this.setState('currentValue', query);
-        this.setState('selectedOption', selectedOption);
-    },
-    escapeRegExp(stringToGoIntoTheRegex) {
-        return stringToGoIntoTheRegex.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     }
 });

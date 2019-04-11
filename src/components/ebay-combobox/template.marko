@@ -1,10 +1,11 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var safeRegex = require("../../common/build-safe-regex");
 </script>
 
 <var options=data.options/>
 <var selectedOption=options[data.selectedIndex]/>
-<var selectedText=(data.currentValue || (selectedOption && selectedOption.text))/>
+<var selectedText=data.currentValue/>
 
 <!-- <pre>${JSON.stringify(options, null, 2)}</pre> -->
 
@@ -24,12 +25,10 @@
             readonly=data.readonly
             disabled=data.disabled
             aria-haspopup='listbox'
-            aria-owns=widget.elId('combobox__options')
-            aria-expanded='false'
             w-on-keydown='handleComboboxKeyDown'
             w-on-keyup='handleComboboxKeyUp'
             autocomplete="off"
-            w-preserve-attrs="aria-activedescendant"
+            w-preserve-attrs="aria-controls,aria-activedescendant,aria-owns,aria-expanded"
             ${processHtmlAttributes(data)}/>
         <span class="combobox__icon" aria-hidden="true"></span>
     </span>
@@ -38,9 +37,12 @@
             w-id='options'
             role='listbox'
             class='combobox__options'>
+            <var currentValueReg=safeRegex(selectedText)/>
             <for(option in options)>
+                <var isSelected=(selectedOption === option)/>
+                <var isVisible=(isSelected || currentValueReg.test(option.text))/>
                 <div
-                    if(option.visible)
+                    if(isVisible)
                     w-id="option[]"
                     role='option'
                     class=['combobox__option', option.class]
@@ -49,7 +51,7 @@
                     tabindex="-1"
                     w-on-click='handleOptionClick'
                     w-preserve-attrs="tabindex,data-makeup-index,class,aria-selected"
-                    aria-selected=String(option.selected)
+                    aria-selected=(isSelected && "true")
                     data-option-value=option.value>
                     <span>
                         ${option.text}
