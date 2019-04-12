@@ -44,8 +44,8 @@ function handleLeftRightArrowsKeydown(e, callback) {
 // only fire for character input, not modifier/meta keys (enter, escape, backspace, tab, etc.)
 function handleTextInput(e, callback) {
     const keys = [
-        8, // delete
         9, // tab
+        13, // enter key
         16, // shift
         17, // control
         18, // alt
