@@ -1,35 +1,59 @@
+<script marko-init>
+    var constants = require("./constants");
+    var typeRoles = constants.typeRoles;
+    var pointerStyles = constants.pointerStyles;
+</script>
+
+<var hasUserStyles=(
+    data.styleTop ||
+    data.styleLeft ||
+    data.styleRight ||
+    data.styleBottom
+)/>
+<var overlayStyles=(hasUserStyles ? {
+    top: data.styleTop,
+    left: data.styleLeft,
+    right: data.styleRight,
+    bottom: data.styleBottom
+} : pointerStyles[data.pointer || "bottom"])/>
+
 <div
     class="${data.type}__overlay"
-    role=data.typeRoles[data.type]
-    aria-labelledby=(data.type === 'tourtip'?"tourtip-label-${widget.id}":'')
+    role=typeRoles[data.type]
+    aria-labelledby=(data.type === "tourtip" && widget.elId("tourtip-label"))
     id=data.tooltipId
-    style=data.overlayStyle
+    style=overlayStyles
     w-bind>
     <span class="${data.type}__pointer ${data.type}__pointer--${data.pointer}"/>
     <div class="${data.type}__mask">
         <div class="${data.type}__cell">
             <div class="${data.type}__content">
-                <h2
-                    if(data.heading)
-                    class=["${data.type}__heading", data.heading.class]
-                    style=data.heading.style
-                    id="tourtip-label-${widget.id}"
-                    w-body=data.heading.renderBody/>
-                <div
-                    if(data.content)
-                    body-only-if(!data.content.class && !data.content.style)
-                    class=data.content.class
-                    style=data.content.style
-                    w-body=data.content.renderBody/>
+                <if(data.heading)>
+                    <h2
+                        class=["${data.type}__heading", data.heading.class]
+                        style=data.heading.style
+                        w-id="tourtip-label"
+                        w-body=data.heading.renderBody/>
+                </if>
+
+                <if(data.content)>
+                    <div
+                        body-only-if(!data.content.class && !data.content.style)
+                        class=data.content.class
+                        style=data.content.style
+                        w-body=data.content.renderBody/>
+                </if>
             </div>
-            <button
-                if(data.type !== 'tooltip')
-                aria-label=data.a11yCloseText
-                class="${data.type}__close"
-                type="button"
-                w-on-click="handleCloseButton">
-                <span aria-hidden="true" role="img"></span>
-            </button>
+
+            <if(data.type !== "tooltip")>
+                <button
+                    aria-label=data.a11yCloseText
+                    class="${data.type}__close"
+                    type="button"
+                    w-on-click="handleCloseButton">
+                    <span aria-hidden="true" role="img"/>
+                </button>
+            </if>
         </div>
     </div>
 </div>
