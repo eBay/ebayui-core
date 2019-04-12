@@ -36,15 +36,13 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     onRender() {
-        const comboboxInput = this.getEl('input');
-        const optionsContainer = this.getEl('options');
         const selectedIndex = findIndex(this.state.options, option => option.selected);
 
         if (this.state.options.length) {
             this.activeDescendant = ActiveDescendant.createLinear(
                 this.el,
-                comboboxInput,
-                optionsContainer,
+                this.getEl('input'),
+                this.getEl('options'),
                 '.combobox__option[role=option]', {
                     activeDescendantClassName: 'combobox__option--active',
                     autoInit: selectedIndex === -1 ? -1 : 0,
@@ -57,8 +55,8 @@ module.exports = require('marko-widgets').defineComponent({
                 expandOnFocus: true,
                 expandOnClick: this.state.readonly && !this.state.disabled,
                 collapseOnFocusOut: !this.state.readonly,
-                contentSelector: `#${optionsContainer.id}`,
-                hostSelector: `#${this.getEl('input').id}`,
+                contentSelector: '.combobox__options',
+                hostSelector: '.combobox__control > input',
                 expandedClass: 'combobox--expanded',
                 simulateSpacebarClick: true
             });
