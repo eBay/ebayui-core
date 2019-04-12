@@ -9,7 +9,7 @@ describe('given an input textbox', () => {
     let root;
     let input;
     beforeEach(() => {
-        widget = renderer.renderSync({ '*': { value: 'val' } }).appendTo(document.body).getWidget();
+        widget = renderer.renderSync({ value: 'val' }).appendTo(document.body).getWidget();
         root = document.querySelector('.textbox');
         input = root.querySelector('input');
     });
