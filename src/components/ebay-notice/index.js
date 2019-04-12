@@ -16,7 +16,7 @@ module.exports = require('marko-widgets').defineComponent({
         this.setHidden(true);
     },
     setHidden(hidden) {
-        this.setState("hidden", hidden);
+        this.setState('hidden', hidden);
 
         if (this.isDirty()) {
             emitAndFire(this, hidden ? 'notice-close' : 'notice-show');

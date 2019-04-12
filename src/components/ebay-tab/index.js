@@ -4,7 +4,7 @@ const eventUtils = require('../../common/event-utils');
 const observer = require('../../common/property-observer');
 
 module.exports = require('marko-widgets').defineComponent({
-    template: require("./template.marko"),
+    template: require('./template.marko'),
     getInitialProps(input) {
         return Object.assign({
             activation: 'auto',
@@ -24,10 +24,10 @@ module.exports = require('marko-widgets').defineComponent({
                 '.tabs__item',
                 { index: this.state.index }
             );
-    
+
             linearRovingTabindex.wrap = true;
         }
-    
+
         observer.observeRoot(this, ['index'], index => this.setIndex(index), true);
     },
     /**
@@ -62,10 +62,9 @@ module.exports = require('marko-widgets').defineComponent({
     handleHeadingClick(_, el) {
         this.setIndex(el.dataset.index);
     },
-    setIndex(index) {
+    setIndex(rawIndex) {
         const len = this.state.headings.length;
-        index = parseInt(index, 10) || 0;
-        index = (index + len) %  len;
+        const index = ((parseInt(rawIndex, 10) || 0) + len) % len;
 
         if (index !== this.state.index) {
             this.setState('index', index);

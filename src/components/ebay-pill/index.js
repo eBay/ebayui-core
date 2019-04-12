@@ -10,7 +10,7 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     onRender() {
-        const activeText = this.getEl("active-text");
+        const activeText = this.getEl('active-text');
 
         if (activeText) {
             // determine whether the content overflows

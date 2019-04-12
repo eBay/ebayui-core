@@ -2,8 +2,8 @@ const findIndex = require('core-js/library/fn/array/find-index');
 const emitAndFire = require('../../common/emit-and-fire');
 const observer = require('../../common/property-observer');
 
-module.exports = require("marko-widgets").defineComponent({
-    template: require("./template.marko"),
+module.exports = require('marko-widgets').defineComponent({
+    template: require('./template.marko'),
     getInitialProps(input) {
         return Object.assign({
             options: []
@@ -38,7 +38,7 @@ module.exports = require("marko-widgets").defineComponent({
         this.setState('selectedIndex', selectedIndex);
 
         // Note: this is only set because of the programatic API and should be removed if that is removed.
-        this.setState("value", option && option.value);
+        this.setState('value', option && option.value);
 
         // TODO: we should not cast the selected value to a string here, but this is a breaking change.
         emitAndFire(this, 'select-change', {
