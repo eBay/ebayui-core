@@ -96,6 +96,7 @@ const handleChange = function(originalEvent) { this.handleEvent(originalEvent, '
 const handleInput = function(originalEvent) { this.handleEvent(originalEvent, 'input'); };
 const handleFocus = function(originalEvent) { this.handleEvent(originalEvent, 'focus'); };
 const handleBlur = function(originalEvent) { this.handleEvent(originalEvent, 'blur'); };
+const handleKeydown = function(originalEvent) { this.handleEvent(originalEvent, 'keydown'); };
 
 module.exports = markoWidgets.defineComponent({
     template,
@@ -108,5 +109,6 @@ module.exports = markoWidgets.defineComponent({
     handleChange,
     handleInput,
     handleFocus,
-    handleBlur
+    handleBlur,
+    handleKeydown
 });
