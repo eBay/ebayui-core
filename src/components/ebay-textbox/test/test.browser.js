@@ -15,7 +15,7 @@ describe('given an input textbox', () => {
     });
     afterEach(() => widget.destroy());
 
-    ['change', 'input', 'focus', 'blur'].forEach(eventName => {
+    ['change', 'input', 'focus', 'blur', 'keydown'].forEach(eventName => {
         describe(`when native event is fired: ${eventName}`, () => {
             let spy;
             beforeEach(() => {
