@@ -10,15 +10,14 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     init() {
-        observer.observeRoot(this, ['hidden'], this.setHidden.bind(this));
+        observer.observeRoot(this, ['hidden'], this.setHidden.bind(this), true);
     },
     onDismiss() {
         this.setHidden(true);
     },
     setHidden(hidden) {
-        this.setState('hidden', hidden);
-
-        if (this.isDirty()) {
+        if (this.state.hidden !== hidden) {
+            this.setState('hidden', hidden);
             emitAndFire(this, hidden ? 'notice-close' : 'notice-show');
         }
     }
