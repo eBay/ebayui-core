@@ -1,8 +1,8 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/browser');
-const mock = require('../mock');
 const renderer = require('../');
+const mock = require('./mock');
 
 describe('given the combobox is in the default state', () => {
     let widget;
@@ -121,4 +121,41 @@ describe('given the combobox is in the default state', () => {
             });
         });
     }
+});
+
+describe('given the combobox starts with zero options', () => {
+    let widget;
+    let root;
+    let ariaControl;
+
+    beforeEach(() => {
+        const renderedWidget = renderer.renderSync({ options: mock.zeroOptions });
+        widget = renderedWidget.appendTo(document.body).getWidget();
+        root = document.querySelector('.combobox');
+        ariaControl = root.querySelector('input');
+    });
+
+    afterEach(() => widget.destroy());
+
+    describe('when the input receives focus', () => {
+        beforeEach(done => {
+            testUtils.triggerEvent(ariaControl, 'focus');
+            setTimeout(done);
+        });
+
+        test('then it should not yet have an aria-expanded attribute', () => {
+            expect(ariaControl.getAttribute('aria-expanded')).to.equal(null);
+        });
+    });
+
+    // describe('after it is rerendered', () => {
+    //     before(() => {
+    //         widget.setProps({ options: mock.options });
+    //         widget.update();
+    //     });
+
+    //     test('then it should not yet have an aria-expanded attribute', () => {
+    //         expect(ariaControl.getAttribute('aria-expanded')).to.equal('true');
+    //     });
+    // });
 });
