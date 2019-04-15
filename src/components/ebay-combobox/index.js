@@ -38,7 +38,7 @@ module.exports = require('marko-widgets').defineComponent({
     onRender() {
         const selectedIndex = findIndex(this.state.options, option => option.selected);
 
-        if (this.state.options.length) {
+        if (!this.state.disabled && this.state.options.length) {
             this.activeDescendant = ActiveDescendant.createLinear(
                 this.el,
                 this.getEl('input'),
@@ -65,6 +65,12 @@ module.exports = require('marko-widgets').defineComponent({
         this.moveCursorToEnd();
     },
     onBeforeUpdate() {
+        this._handleDestroy();
+    },
+    onDestroy() {
+        this._handleDestroy();
+    },
+    _handleDestroy() {
         if (this.activeDescendant) {
             this.activeDescendant.destroy();
         }
@@ -73,17 +79,12 @@ module.exports = require('marko-widgets').defineComponent({
             this.expander.cancelAsync();
         }
     },
-    onDestroy() {
-        this.activeDescendant.destroy();
-        this.expander.cancelAsync();
-    },
     handleExpand() {
         elementScroll.scroll(this.getEls('option')[this.state.selectedIndex]);
         this.moveCursorToEnd();
         emitAndFire(this, 'combobox-expand');
     },
     handleCollapse() {
-        this.emitChangeEvent();
         emitAndFire(this, 'combobox-collapse');
     },
     moveCursorToEnd() {
@@ -122,7 +123,7 @@ module.exports = require('marko-widgets').defineComponent({
             this.setState('currentValue', newValue);
             this.setSelectedIndex();
             this.emitChangeEvent();
-            this.filterOptionsDisplay();
+            this.toggleListbox();
         });
     },
     handleComboboxBlur(evt) {
@@ -133,6 +134,7 @@ module.exports = require('marko-widgets').defineComponent({
         }
 
         if (this.expander.isExpanded() && !wasClickedOption) {
+            this.emitChangeEvent();
             this.expander.collapse();
         }
     },
@@ -162,7 +164,7 @@ module.exports = require('marko-widgets').defineComponent({
             options: this.state.options
         });
     },
-    filterOptionsDisplay() {
+    toggleListbox() {
         const query = this.getEl('input').value;
         const queryReg = safeRegex(query);
 
