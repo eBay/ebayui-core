@@ -116,6 +116,7 @@ module.exports = require('marko-widgets').defineComponent({
             if (selectedEl) {
                 this.emitChangeEvent('select');
             }
+            this.toggleListbox();
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
@@ -169,7 +170,8 @@ module.exports = require('marko-widgets').defineComponent({
         const queryReg = safeRegex(query);
 
         const showListbox =
-            this.state.autocomplete !== 'list' || this.state.options.some(option => queryReg.test(option.text));
+            (this.state.autocomplete === 'list' && this.state.options.some(option => queryReg.test(option.text)))
+            || this.state.autocomplete !== 'none';
 
         if (!showListbox) {
             this.expander.collapse();
