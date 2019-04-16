@@ -27,4 +27,4 @@ Event | Data | Description
 `textbox-focus` | `{ originalEvent, value }` |
 `textbox-blur` | `{ originalEvent, value }` |
 `textbox-keydown` | `{ originalEvent, value }` |
-`textbox-floating-label-init` | `{ null, value }` |
+`textbox-floating-label-init` | `{ originalEvent: null, value: null }` |
