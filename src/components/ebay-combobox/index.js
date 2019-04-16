@@ -15,12 +15,14 @@ module.exports = require('marko-widgets').defineComponent({
         }, input);
     },
     getInitialState(input) {
+        const autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
         const currentValue = input.value;
         const index = findIndex(input.options, option => option.text === currentValue);
 
         return Object.assign({}, input, {
+            autocomplete,
             selectedIndex: index === -1 ? null : index,
-            currentValue: currentValue
+            currentValue
         });
     },
     init() {
@@ -166,7 +168,8 @@ module.exports = require('marko-widgets').defineComponent({
         const query = this.getEl('input').value;
         const queryReg = safeRegex(query);
 
-        const showListbox = this.state.options.some(option => queryReg.test(option.text));
+        const showListbox =
+            this.state.autocomplete !== 'list' || this.state.options.some(option => queryReg.test(option.text));
 
         if (!showListbox) {
             this.expander.collapse();

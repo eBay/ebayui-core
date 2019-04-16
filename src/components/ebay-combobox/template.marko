@@ -22,7 +22,7 @@
             value=currentValue
             readonly=data.readonly
             disabled=data.disabled
-            aria-autocomplete="list"
+            aria-autocomplete=data.autocomplete
             aria-haspopup='listbox'
             w-on-blur='handleComboboxBlur'
             w-on-keyup='handleComboboxKeyUp'
@@ -39,7 +39,7 @@
             <var currentValueReg=safeRegex(currentValue)/>
             <for(option in options)>
                 <var isSelected=(selectedOption === option)/>
-                <var isVisible=(isSelected || currentValueReg.test(option.text))/>
+                <var isVisible=(data.autocomplete !== 'list' || isSelected || currentValueReg.test(option.text))/>
                 <div
                     if(isVisible)
                     w-id="option[]"
