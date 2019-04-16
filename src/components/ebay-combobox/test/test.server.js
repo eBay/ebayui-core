@@ -30,9 +30,7 @@ describe('combobox', () => {
     });
 
     test('renders with second item selected', context => {
-        const input = { options };
-        input.options[0].selected = false;
-        input.options[1].selected = true;
+        const input = { options, value: 'option 2' };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.combobox').length).to.equal(1);
         expect($('.combobox__control').length).to.equal(1);

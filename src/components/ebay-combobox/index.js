@@ -15,8 +15,8 @@ module.exports = require('marko-widgets').defineComponent({
         }, input);
     },
     getInitialState(input) {
-        const index = findIndex(input.options, option => option.selected);
-        const currentValue = input.options[index] && input.options[index].text;
+        const currentValue = input.value;
+        const index = findIndex(input.options, option => option.text === currentValue);
 
         return Object.assign({}, input, {
             selectedIndex: index === -1 ? null : index,
@@ -36,7 +36,7 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     onRender() {
-        const selectedIndex = findIndex(this.state.options, option => option.selected);
+        const selectedIndex = findIndex(this.state.options, option => option.text === this.state.currentValue);
 
         if (!this.state.disabled && this.state.options.length) {
             this.activeDescendant = ActiveDescendant.createLinear(
@@ -152,15 +152,9 @@ module.exports = require('marko-widgets').defineComponent({
         this.setState('selectedIndex', newIndex);
     },
     emitChangeEvent() {
-        const selectedValue =
-            this.state.options[this.state.selectedIndex]
-            && this.state.options[this.state.selectedIndex].value
-            || '';
-
         emitAndFire(this, 'combobox-change', {
-            currentInput: this.state.currentValue,
+            currentInputValue: this.state.currentValue,
             selectedOption: this.state.options[this.state.selectedIndex],
-            selectedValue,
             options: this.state.options
         });
     },
