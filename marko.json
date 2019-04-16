@@ -96,7 +96,6 @@
         "@class": "string",
         "@style": "string",
         "@name": "string",
-        "@grow": "boolean",
         "@borderless": "boolean",
         "@disabled": "boolean",
         "@autocomplete": "string",
@@ -121,7 +120,6 @@
         "@class": "string",
         "@style": "string",
         "@name": "string",
-        "@grow": "boolean",
         "@borderless": "boolean",
         "@disabled": "boolean",
         "@options <option>[]": {
