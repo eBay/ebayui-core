@@ -48,11 +48,11 @@ describe('given the combobox is in the default state', () => {
 
                 beforeEach(() => {
                     arrowSpy = sinon.spy();
-                    widget.on('combobox-change', arrowSpy);
+                    widget.on('combobox-input', arrowSpy);
                     testUtils.triggerEvent(ariaControl, 'keyup', 65);
                 });
 
-                test('then it should emit a change event', () => {
+                test('then it should emit a input event', () => {
                     expect(arrowSpy.calledOnce).to.equal(true);
                 });
             });
@@ -71,7 +71,7 @@ describe('given the combobox is in the default state', () => {
 
                     beforeEach((done) => {
                         enterSpy = sinon.spy();
-                        widget.on('combobox-change', enterSpy);
+                        widget.on('combobox-select', enterSpy);
                         testUtils.triggerEvent(ariaControl, 'keyup', 13);
                         setTimeout(done);
                     });
@@ -101,7 +101,7 @@ describe('given the combobox is in the default state', () => {
 
                 beforeEach(() => {
                     clickSpy = sinon.spy();
-                    widget.on('combobox-change', clickSpy);
+                    widget.on('combobox-select', clickSpy);
                     testUtils.triggerEvent(secondOption, 'click');
                 });
 

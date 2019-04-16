@@ -12,7 +12,7 @@ function handleKeydown(keyCodes, e, callback) {
 }
 
 // inverse of found keys
-function handleInverseKeydown(keyCodes, e, callback) {
+function handleNotKeydown(keyCodes, e, callback) {
     const keyCode = e.charCode || e.keyCode;
     if (keyCodes.indexOf(keyCode) === -1) {
         callback();
@@ -57,7 +57,7 @@ function handleTextInput(e, callback) {
         40, // down arrow
         91 // "meta" key (Mac "command" key)
     ];
-    handleInverseKeydown(keys, e, callback);
+    handleNotKeydown(keys, e, callback);
 }
 
 function preventDefaultIfHijax(e, hijax) {
