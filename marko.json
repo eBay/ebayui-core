@@ -167,6 +167,7 @@
         "@class": "string",
         "@style": "string",
         "@icon": "string",
+        "@disabled": "boolean",
         "@pointer": "string",
         "@style-top": "string",
         "@style-left": "string",

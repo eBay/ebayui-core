@@ -29,6 +29,17 @@ describe('infotip', () => {
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.infotip__heading').length).to.equal(1);
     });
+
+    test('renders default infotip disabled', context => {
+        const input = {
+            content: {
+                renderyBody: ''
+            },
+            disabled: true
+        };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('button.infotip__host[disabled]').length).to.equal(1);
+    });
 });
 
 describe('transformer', () => {
