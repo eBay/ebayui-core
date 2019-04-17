@@ -99,11 +99,12 @@ module.exports = require('marko-widgets').defineComponent({
         }
     },
     handleComboboxKeyUp(originalEvent) {
-        const selectedEl = this.getEl('options').querySelector('.combobox__option--active');
+        const optionsEl = this.getEl('options');
+        const selectedEl = optionsEl && optionsEl.querySelector('.combobox__option--active');
         let newValue = this.getEl('input').value;
 
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
-            if (!this.expander.isExpanded() && this.getEls('option').length > 0) {
+            if (this.expander && !this.expander.isExpanded() && this.getEls('option').length > 0) {
                 this.expander.expand();
             }
             this.moveCursorToEnd();
@@ -137,7 +138,7 @@ module.exports = require('marko-widgets').defineComponent({
             this.getEl('input').focus();
         }
 
-        if (this.expander.isExpanded() && !wasClickedOption) {
+        if (this.expander && this.expander.isExpanded() && !wasClickedOption) {
             this.emitChangeEvent('change');
             this.expander.collapse();
         }
