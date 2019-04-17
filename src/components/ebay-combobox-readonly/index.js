@@ -40,7 +40,6 @@ function getInitialState(input) {
         name: input.name,
         options,
         selected: selectedOption,
-        grow: input.grow,
         disabled: input.disabled,
         borderless: Boolean(input.borderless)
     };
@@ -64,7 +63,6 @@ function getTemplateData(state) {
         name: state.name,
         selectedOption: state.selected,
         options: state.options,
-        grow: state.grow,
         disabled: state.disabled
     };
 }
