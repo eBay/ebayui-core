@@ -9,15 +9,13 @@
         style-bottom=data.styleBottom
         w-on-base-collapse="handleCollapse">
         <span
-            w-id="expander-root"
             w-preserve-attrs="class"
-            class=[
-                'tourtip',
-                (data.expanded && 'tourtip--expanded'),
-            ]
+            w-id="expander-root"
+            class="tourtip"
             ${data.htmlAttributes}>
             <span
                 if(data.host)
+                w-preserve-attrs="aria-expanded,aria-controls,aria-described-by"
                 class=[data.host.class, 'tourtip__host']
                 style=data.host.style
                 w-body=data.host.renderBody/>

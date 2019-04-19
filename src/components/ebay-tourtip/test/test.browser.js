@@ -6,6 +6,7 @@ const renderer = require('../');
 describe('given the default tourtip', () => {
     let widget;
     let closeButton;
+    let expanderRoot;
 
     beforeEach(() => {
         const input = {
@@ -15,10 +16,12 @@ describe('given the default tourtip', () => {
         };
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
         closeButton = widget.el.querySelector('.tourtip__close');
+        expanderRoot = widget.el.querySelector('.tourtip');
     });
 
     afterEach(() => widget.destroy());
 
+    thenItIsOpen();
     thenItCanBeClosed();
 
     describe('after it is rerendered', () => {
@@ -27,8 +30,15 @@ describe('given the default tourtip', () => {
             widget.update();
         });
 
+        thenItIsOpen();
         thenItCanBeClosed();
     });
+
+    function thenItIsOpen() {
+        test('then it is open', () => {
+            expect(expanderRoot.className).to.equal('tourtip tourtip--expanded');
+        });
+    }
 
     function thenItCanBeClosed() {
         describe('when the closeButton element is closed', () => {
@@ -41,6 +51,10 @@ describe('given the default tourtip', () => {
 
             test('then it emits the tooltip-collapse event', () => {
                 expect(spy.calledOnce).to.equal(true);
+            });
+
+            test('then it is closed', () => {
+                expect(expanderRoot.className).to.equal('tourtip');
             });
         });
     }
