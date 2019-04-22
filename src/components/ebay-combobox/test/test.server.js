@@ -1,10 +1,8 @@
 const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/server');
 const options = [{
-    value: 1,
     text: 'option 1'
 }, {
-    value: 2,
     text: 'option 2'
 }];
 const emptyOptions = [];
@@ -57,6 +55,9 @@ describe('combobox', () => {
 });
 
 describe('combobox-option', () => {
-    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.combobox__option', 'options'));
-    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.combobox__option', 'options'));
+    test('handles pass-through html attributes', c =>
+        testUtils.testHtmlAttributes(c, '.combobox__option', 'options', options[0]));
+
+    test('handles custom class and style', c =>
+        testUtils.testClassAndStyle(c, '.combobox__option', 'options', options[0]));
 });
