@@ -41,7 +41,7 @@
                 <var isSelected=(selectedOption === option)/>
                 <var isVisible=(data.autocomplete === 'list' && (isSelected || currentValueReg.test(option.text)) || data.autocomplete === 'none')/>
                 <div
-                    if(isVisible)
+                    if(isVisible && option.text)
                     w-id="option[]"
                     role='option'
                     class=['combobox__option', option.class]
