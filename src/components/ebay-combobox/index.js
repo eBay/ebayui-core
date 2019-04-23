@@ -16,7 +16,7 @@ module.exports = require('marko-widgets').defineComponent({
     },
     getInitialState(input) {
         const autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
-        const currentValue = input.value;
+        const currentValue = input['*'] && input['*'].value;
         const index = findIndex(input.options, option => option.text === currentValue);
 
         return Object.assign({}, input, {
