@@ -111,13 +111,15 @@ module.exports = require('marko-widgets').defineComponent({
         });
 
         eventUtils.handleEnterKeydown(originalEvent, () => {
-            newValue = selectedEl && selectedEl.textContent || newValue;
-            this.setState('currentValue', newValue);
-            this.setSelectedIndex();
-            if (selectedEl) {
-                this.emitChangeEvent('select');
+            if (this.expander.isExpanded()) {
+                newValue = selectedEl && selectedEl.textContent || newValue;
+                this.setState('currentValue', newValue);
+                this.setSelectedIndex();
+                if (selectedEl) {
+                    this.emitChangeEvent('select');
+                }
+                this.toggleListbox();
             }
-            this.toggleListbox();
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {

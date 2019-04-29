@@ -15,9 +15,14 @@
     w-preserve-attrs="class,id"
     w-bind>
     <span class=['combobox__control', { 'combobox__control--borderless': data.borderless }]>
+        <!--
+        NOTE: Uses autocomplete="new-password" because of a problem with Chrome where the autfill does not
+        respect the "off" key. Tested and works in all other browsers properly as well.
+        -->
         <input
             w-id="input"
             type='text'
+            name=data.name
             role="combobox"
             value=currentValue
             readonly=data.readonly
@@ -26,7 +31,7 @@
             aria-haspopup='listbox'
             w-on-blur='handleComboboxBlur'
             w-on-keyup='handleComboboxKeyUp'
-            autocomplete="off"
+            autocomplete="new-password"
             w-preserve-attrs="aria-controls,aria-activedescendant,aria-owns,aria-expanded"
             ${processHtmlAttributes(data)}/>
         <span class="combobox__icon" aria-hidden="true"></span>
