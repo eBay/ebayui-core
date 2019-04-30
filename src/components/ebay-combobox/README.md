@@ -45,7 +45,8 @@ Name | Required | Type | Stateful | Description
 `name` | Yes | String | No | used for the `name` attribute of the native `<select>`
 `borderless` | No | Boolean | No | whether button has borders
 `disabled` | No | Boolean | Yes | sets the disabled attribute of the input
-`autocomplete` | No | String | Yes | available values are `none` and `list`
+`autocomplete` | No | String | Yes | default is `none`; available values are `none` and `list`
+`expand-on-focus` | No | Boolean | No | whether to expand on focus
 
 Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 
@@ -72,4 +73,4 @@ Event | Data |  Description
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
 `text` | No | String | No | string to use in the option
-`meta-text | No | String | No | supporting text on the option (for more clearly explaining the option, e.g. a category or aspect)
+`meta-text` | No | String | No | supporting text on the option (for more clearly explaining the option, e.g. a category or aspect)
