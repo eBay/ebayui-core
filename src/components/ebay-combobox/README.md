@@ -46,7 +46,6 @@ Name | Required | Type | Stateful | Description
 `borderless` | No | Boolean | No | whether button has borders
 `disabled` | No | Boolean | Yes | sets the disabled attribute of the input
 `autocomplete` | No | String | Yes | default is `none`; available values are `none` and `list`
-`expand-on-focus` | No | Boolean | No | whether to expand on focus
 
 Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 
