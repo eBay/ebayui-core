@@ -1,8 +1,6 @@
 # ebay-combobox
 
-_**For Desktop only**_
-
-The `<ebay-combobox>` is used to create a custom-designed form element which matches much of the functionality of a native `<select>` menu. It is a combination of a text `<input>`, and a listbox (`aria-role="listbox"`). It supports both written text by the user, as well as text selected from the listbox options.
+The `<ebay-combobox>` is a combination of a text `<input>`, and a listbox (`aria-role="listbox"`). It supports both written text by the user, as well as text selected from the listbox options.
 
 ## ebay-combobox Tag
 
@@ -42,8 +40,8 @@ When the combobox should not filter the listbox options list:
 
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
-`name` | Yes | String | No | used for the `name` attribute of the native `<select>`
-`borderless` | No | Boolean | No | whether button has borders
+`name` | Yes | String | No | used for the `name` attribute of the `<input>` element
+`borderless` | No | Boolean | No | whether the input has borders
 `disabled` | No | Boolean | Yes | sets the disabled attribute of the input
 `autocomplete` | No | String | Yes | default is `none`; available values are `none` and `list`
 
