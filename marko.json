@@ -106,7 +106,6 @@
             "@style": "string",
             "@value": "string",
             "@text": "string",
-            "@meta-text": "string",
             "@selected": "boolean"
         }
     },

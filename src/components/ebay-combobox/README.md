@@ -73,4 +73,3 @@ Event | Data |  Description
 Name | Required | Type | Stateful | Description
 --- | --- | --- | --- | ---
 `text` | No | String | No | string to use in the option
-`meta-text` | No | String | No | supporting text on the option (for more clearly explaining the option, e.g. a category or aspect)
