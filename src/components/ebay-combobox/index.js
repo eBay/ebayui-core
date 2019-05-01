@@ -22,8 +22,7 @@ module.exports = require('marko-widgets').defineComponent({
         return Object.assign({}, input, {
             autocomplete,
             selectedIndex: index === -1 ? null : index,
-            currentValue,
-            showAllOptions: false
+            currentValue
         });
     },
     init() {
@@ -55,7 +54,7 @@ module.exports = require('marko-widgets').defineComponent({
 
             this.expander = new Expander(this.el, {
                 autoCollapse: true,
-                expandOnFocus: this.state.expandOnFocus || true,
+                expandOnFocus: true,
                 expandOnClick: this.state.readonly && !this.state.disabled,
                 collapseOnFocusOut: !this.state.readonly,
                 contentSelector: '.combobox__options',
@@ -87,7 +86,6 @@ module.exports = require('marko-widgets').defineComponent({
         elementScroll.scroll(this.getEls('option')[index]);
         this.moveCursorToEnd();
         emitAndFire(this, 'combobox-expand');
-        this.setState('showAllOptions', true);
     },
     handleCollapse() {
         emitAndFire(this, 'combobox-collapse');
@@ -108,7 +106,6 @@ module.exports = require('marko-widgets').defineComponent({
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             if (this.expander && !this.expander.isExpanded() && this.getEls('option').length > 0) {
                 this.expander.expand();
-                this.setState('showAllOptions', true);
             }
             this.moveCursorToEnd();
         });
@@ -122,13 +119,11 @@ module.exports = require('marko-widgets').defineComponent({
                     this.emitChangeEvent('select');
                 }
                 this.toggleListbox();
-                this.setState('showAllOptions', false);
             }
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.expander.collapse();
-            this.setState('showAllOptions', false);
         });
 
         eventUtils.handleTextInput(originalEvent, () => {
@@ -136,11 +131,7 @@ module.exports = require('marko-widgets').defineComponent({
             this.setSelectedIndex();
             this.emitChangeEvent();
             this.toggleListbox();
-            this.setState('showAllOptions', false);
         });
-    },
-    handleComboboxFocus() {
-        this.setState('showAllOptions', true);
     },
     handleComboboxBlur(evt) {
         const wasClickedOption = this.getEls('option').some(option => option === evt.relatedTarget);
@@ -161,8 +152,6 @@ module.exports = require('marko-widgets').defineComponent({
         this.setSelectedIndex();
         this.emitChangeEvent('select');
         this.expander.collapse();
-
-        this.setState('showAllOptions', false);
     },
     setSelectedIndex(index = 0) {
         const newIndex = index || this.getSelectedIndex(this.state.options, this.state.currentValue);

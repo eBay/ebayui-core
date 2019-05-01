@@ -29,7 +29,6 @@
             disabled=data.disabled
             aria-autocomplete=data.autocomplete
             aria-haspopup='listbox'
-            w-on-focus='handleComboboxFocus'
             w-on-blur='handleComboboxBlur'
             w-on-keyup='handleComboboxKeyUp'
             autocomplete="new-password"
@@ -47,7 +46,7 @@
                 <var isSelected=(selectedOption === option)/>
                 <var isVisible=(data.autocomplete === 'list' && (isSelected || currentValueReg.test(option.text)) || data.autocomplete === 'none')/>
                 <div
-                    if(data.showAllOptions || isVisible && option.text)
+                    if(isVisible && option.text)
                     w-id="option[]"
                     role='option'
                     class=['combobox__option', option.class]
