@@ -77,6 +77,7 @@ function init() {
 function onUpdate() {
     if (this.state.floatingLabel) {
         this.initFloatingLabel();
+        this.handleEvent(null, 'floating-label-init');
     }
 }
 
@@ -89,13 +90,19 @@ function initFloatingLabel() {
 }
 
 function handleEvent(originalEvent, eventName) {
-    emitAndFire(this, `textbox-${eventName}`, { originalEvent, value: originalEvent.target.value });
+    const inputEl = this.el.querySelector('input, textarea');
+
+    emitAndFire(this, `textbox-${eventName}`, {
+        originalEvent,
+        value: inputEl.value
+    });
 }
 
-const handleChange = function(originalEvent) { this.handleEvent(originalEvent, 'change'); };
-const handleInput = function(originalEvent) { this.handleEvent(originalEvent, 'input'); };
-const handleFocus = function(originalEvent) { this.handleEvent(originalEvent, 'focus'); };
-const handleBlur = function(originalEvent) { this.handleEvent(originalEvent, 'blur'); };
+function handleChange(originalEvent) { this.handleEvent(originalEvent, 'change'); }
+function handleInput(originalEvent) { this.handleEvent(originalEvent, 'input'); }
+function handleFocus(originalEvent) { this.handleEvent(originalEvent, 'focus'); }
+function handleBlur(originalEvent) { this.handleEvent(originalEvent, 'blur'); }
+function handleKeydown(originalEvent) { this.handleEvent(originalEvent, 'keydown'); }
 
 module.exports = markoWidgets.defineComponent({
     template,
@@ -108,5 +115,6 @@ module.exports = markoWidgets.defineComponent({
     handleChange,
     handleInput,
     handleFocus,
-    handleBlur
+    handleBlur,
+    handleKeydown
 });

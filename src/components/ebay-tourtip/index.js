@@ -6,19 +6,25 @@ function getInitialState(input) {
     return Object.assign({}, input, {
         pointer: input.pointer || 'bottom',
         htmlAttributes: processHtmlAttributes(input),
-        hostSelector: '.tourtip__host',
-        overlaySelector: '.tourtip__overlay',
         expanded: true
     });
 }
 
+function init() {
+    this.expander = this.getWidget('base').expander;
+    this.expander.expand();
+}
+
 function handleCollapse() {
-    this.setState('expanded', false);
-    emitAndFire(this, 'tooltip-collapse');
+    if (this.expander.isExpanded()) {
+        this.expander.collapse();
+        emitAndFire(this, 'tooltip-collapse');
+    }
 }
 
 module.exports = require('marko-widgets').defineComponent({
     template,
+    init,
     getInitialState,
     handleCollapse
 });

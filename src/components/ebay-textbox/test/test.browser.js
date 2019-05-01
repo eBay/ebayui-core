@@ -15,7 +15,7 @@ describe('given an input textbox', () => {
     });
     afterEach(() => widget.destroy());
 
-    ['change', 'input', 'focus', 'blur'].forEach(eventName => {
+    ['change', 'input', 'focus', 'blur', 'keydown'].forEach(eventName => {
         describe(`when native event is fired: ${eventName}`, () => {
             let spy;
             beforeEach(() => {
@@ -61,6 +61,21 @@ describe('given an input textbox with floating label', () => {
             expect(label.classList.contains('floating-label__label--inline')).to.equal(false);
             testUtils.triggerEvent(input, 'blur');
             expect(label.classList.contains('floating-label__label--inline')).to.equal(true);
+        });
+    });
+
+    describe('when the component is updated/re-rendered', () => {
+        let updateSpy;
+
+        beforeEach(() => {
+            updateSpy = sinon.spy();
+            widget.on('textbox-floating-label-init', updateSpy);
+            widget.setStateDirty('test');
+            widget.update();
+        });
+
+        test('it should send a textbox floating label init event', () => {
+            expect(updateSpy.calledOnce).to.equal(true);
         });
     });
 });

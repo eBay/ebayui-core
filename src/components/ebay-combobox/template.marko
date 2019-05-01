@@ -1,0 +1,65 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+    var safeRegex = require("../../common/build-safe-regex");
+</script>
+
+<var options=data.options/>
+<var selectedOption=options[data.selectedIndex]/>
+<var currentValue=data.currentValue/>
+
+<span
+    class=['combobox', data.class]
+    style=data.style
+    w-on-expander-expand='handleExpand'
+    w-on-expander-collapse='handleCollapse'
+    w-preserve-attrs="class,id"
+    w-bind>
+    <span class=['combobox__control', { 'combobox__control--borderless': data.borderless }]>
+        <!--
+        NOTE: Uses autocomplete="new-password" because of a problem with Chrome where the autfill does not
+        respect the "off" key. Tested and works in all other browsers properly as well.
+        -->
+        <input
+            w-id="input"
+            type='text'
+            name=data.name
+            role="combobox"
+            value=currentValue
+            readonly=data.readonly
+            disabled=data.disabled
+            aria-autocomplete=data.autocomplete
+            aria-haspopup='listbox'
+            w-on-blur='handleComboboxBlur'
+            w-on-keyup='handleComboboxKeyUp'
+            autocomplete="new-password"
+            w-preserve-attrs="aria-controls,aria-activedescendant,aria-owns,aria-expanded"
+            ${processHtmlAttributes(data)}/>
+        <span class="combobox__icon" aria-hidden="true"></span>
+    </span>
+    <if(options.length)>
+        <div
+            w-id='options'
+            role='listbox'
+            class='combobox__options'>
+            <var currentValueReg=safeRegex(currentValue)/>
+            <for(option in options)>
+                <var isSelected=(selectedOption === option)/>
+                <var isVisible=(data.autocomplete === 'list' && (isSelected || currentValueReg.test(option.text)) || data.autocomplete === 'none')/>
+                <div
+                    if(isVisible && option.text)
+                    w-id="option[]"
+                    role='option'
+                    class=['combobox__option', option.class]
+                    style=option.style
+                    tabindex="-1"
+                    w-on-click='handleOptionClick'
+                    w-preserve-attrs="tabindex,data-makeup-index,class,aria-selected"
+                    aria-selected=(isSelected && "true")
+                    data-option-value=option.value
+                    ${processHtmlAttributes(option)}>
+                    <span>${option.text}</span>
+                </div>
+            </for>
+        </div>
+    </if>
+</span>
