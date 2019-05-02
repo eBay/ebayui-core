@@ -306,7 +306,7 @@ function handleItemKeydown(e) {
 function handleItemKeypress(e) {
     const itemIndex = NodeListUtils.findNodeWithFirstChar(this.itemEls, e.key);
 
-    if (itemIndex !== undefined) {
+    if (itemIndex !== -1) {
         this.rovingTabindex.index = itemIndex;
     }
 }

@@ -1,8 +1,9 @@
 const expect = require('chai').expect;
 const NodeListUtils = require('../');
 const findNodeWithFirstChar = NodeListUtils.findNodeWithFirstChar;
+const container = document.createElement('div');
 
-document.body.innerHTML = `
+container.innerHTML = `
     <ul id="list1">
         <li>Ringo</li>
         <li>Paul</li>
@@ -22,7 +23,7 @@ document.body.innerHTML = `
 
 describe('NodeListUtils.findNodeWithFirstChar', () => {
     describe('given three nodes with different first letters (R, P, G)', () => {
-        const nodeList = document.querySelectorAll('#list1 li');
+        const nodeList = container.querySelectorAll('#list1 li');
 
         describe('when "r" is input', () => {
             test('then 0 is returned', () => {
@@ -44,19 +45,19 @@ describe('NodeListUtils.findNodeWithFirstChar', () => {
 
         describe('when "j" is input', () => {
             test('then undefined is returned', () => {
-                expect(findNodeWithFirstChar(nodeList, 'j')).to.equal(undefined);
+                expect(findNodeWithFirstChar(nodeList, 'j')).to.equal(-1);
             });
         });
 
         describe('when "" is input', () => {
             test('then undefined is returned', () => {
-                expect(findNodeWithFirstChar(nodeList, '')).to.equal(undefined);
+                expect(findNodeWithFirstChar(nodeList, '')).to.equal(-1);
             });
         });
     });
 
     describe('given three nodes with same first letters (B, B, B)', () => {
-        const nodeList = document.querySelectorAll('#list2 li');
+        const nodeList = container.querySelectorAll('#list2 li');
 
         describe('when "b" is input', () => {
             test('then 0 is returned', () => {
@@ -66,13 +67,13 @@ describe('NodeListUtils.findNodeWithFirstChar', () => {
 
         describe('when "" is input', () => {
             test('then undefined is returned', () => {
-                expect(findNodeWithFirstChar(nodeList, '')).to.equal(undefined);
+                expect(findNodeWithFirstChar(nodeList, '')).to.equal(-1);
             });
         });
     });
 
     describe('given three nodes with empty innerText', () => {
-        const nodeList = document.querySelectorAll('#list3 li');
+        const nodeList = container.querySelectorAll('#list3 li');
 
         describe('when "" is input', () => {
             test('then 0 is returned', () => {
@@ -82,7 +83,7 @@ describe('NodeListUtils.findNodeWithFirstChar', () => {
 
         describe('when "b" is input', () => {
             test('then undefined is returned', () => {
-                expect(findNodeWithFirstChar(nodeList, 'b')).to.equal(undefined);
+                expect(findNodeWithFirstChar(nodeList, 'b')).to.equal(-1);
             });
         });
     });
