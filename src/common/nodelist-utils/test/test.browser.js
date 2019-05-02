@@ -44,13 +44,13 @@ describe('NodeListUtils.findNodeWithFirstChar', () => {
         });
 
         describe('when "j" is input', () => {
-            test('then undefined is returned', () => {
+            test('then -1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'j')).to.equal(-1);
             });
         });
 
         describe('when "" is input', () => {
-            test('then undefined is returned', () => {
+            test('then -1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, '')).to.equal(-1);
             });
         });
@@ -66,7 +66,7 @@ describe('NodeListUtils.findNodeWithFirstChar', () => {
         });
 
         describe('when "" is input', () => {
-            test('then undefined is returned', () => {
+            test('then -1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, '')).to.equal(-1);
             });
         });
@@ -82,7 +82,7 @@ describe('NodeListUtils.findNodeWithFirstChar', () => {
         });
 
         describe('when "b" is input', () => {
-            test('then undefined is returned', () => {
+            test('then -1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'b')).to.equal(-1);
             });
         });
