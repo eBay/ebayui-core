@@ -5,6 +5,7 @@ const rovingTabindex = require('makeup-roving-tabindex');
 const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
+const NodeListUtils = require('../../common/nodelist-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
@@ -178,12 +179,13 @@ function onRender(event) {
             hostSelector: buttonSelector,
             focusManagement: 'focusable',
             expandOnClick: true,
-            autoCollapse: true
+            autoCollapse: true,
+            alwaysDoFocusManagement: true
         });
 
         // FIXME: should be outside of firstRender, but only when itemEls changes
         if (!this.state.isFake) {
-            rovingTabindex.createLinear(this.contentEl, 'div', { index: 0, autoReset: 0 });
+            this.rovingTabindex = rovingTabindex.createLinear(this.contentEl, 'div', { index: 0, autoReset: 0 });
         }
     }
 }
@@ -295,6 +297,20 @@ function handleItemKeydown(e) {
     });
 }
 
+/**
+ * For any key that corresponds to a printable character, move focus to
+ * the first menu item whose label begins with that character.
+ * https://www.w3.org/TR/wai-aria-practices-1.1/#menu
+ * @param {KeyboardEvent} e
+ */
+function handleItemKeypress(e) {
+    const itemIndex = NodeListUtils.findNodeWithFirstChar(this.itemEls, e.key);
+
+    if (itemIndex !== undefined) {
+        this.rovingTabindex.index = itemIndex;
+    }
+}
+
 function handleButtonEscape() {
     this.setState('expanded', false);
 }
@@ -356,6 +372,7 @@ module.exports = markoWidgets.defineComponent({
     update_expanded,
     handleItemClick,
     handleItemKeydown,
+    handleItemKeypress,
     handleButtonEscape,
     handleExpand,
     handleCollapse,
