@@ -17,10 +17,11 @@ module.exports = require('marko-widgets').defineComponent({
         if (this.config.floatingLabel) {
             if (this.floatingLabel) {
                 this.floatingLabel.refresh();
+                this.handleFloatingLabelInit();
             } else if (document.readyState === 'complete') {
                 if (this.el) {
                     this.floatingLabel = new FloatingLabel(this.el);
-                    this.handleFloatingLabelInit(null, this.el.querySelector('input, textarea'));
+                    this.handleFloatingLabelInit();
                 }
             } else {
                 window.addEventListener('load', this.initFloatingLabel.bind(this));
@@ -28,7 +29,7 @@ module.exports = require('marko-widgets').defineComponent({
         }
     },
     handleFloatingLabelInit: forwardEvent('floating-label-init'),
-    handleKeyDown: forwardEvent('keydown'),
+    handleKeydown: forwardEvent('keydown'),
     handleChange: forwardEvent('change'),
     handleInput: forwardEvent('input'),
     handleFocus: forwardEvent('focus'),
@@ -39,7 +40,7 @@ function forwardEvent(eventName) {
     return function(originalEvent, el) {
         emitAndFire(this, `textbox-${eventName}`, {
             originalEvent,
-            value: el.value
+            value: (el || this.el.querySelector('input, textarea')).value
         });
     };
 }
