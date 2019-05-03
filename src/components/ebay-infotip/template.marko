@@ -23,7 +23,7 @@
                 disabled=data.disabled
                 aria-label=data.ariaLabel>
                 <if(data.iconTag)>
-                    <include(data.iconTag)/>
+                    <span body-only-if(true) w-body=data.iconTag.renderBody/>
                 </if>
                 <else>
                     <ebay-icon type="inline" name="info"/>
