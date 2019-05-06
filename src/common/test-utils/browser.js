@@ -5,11 +5,13 @@ const expect = require('chai').expect;
  * @param {HTMLElement} el
  * @param {String} type
  * @param {Number} keyCode
+ * @param {String} key
  */
-function triggerEvent(el, type, keyCode) {
+function triggerEvent(el, type, keyCode, key) {
     const event = document.createEvent('Event');
     event.initEvent(type, true, true, null);
     event.keyCode = keyCode;
+    event.key = key;
     el.dispatchEvent(event);
 }
 
