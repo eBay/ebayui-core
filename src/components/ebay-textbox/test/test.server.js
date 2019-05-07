@@ -25,7 +25,7 @@ describe('ebay-textbox', () => {
 
     test('renders a default input textbox with a default value', context => {
         const inputValue = 'some default value';
-        const input = { htmlAttributes: { value: inputValue } };
+        const input = { value: inputValue };
         const $ = testUtils.getCheerio(context.render(input));
         const $input = $(inputSelector);
         expect($input.length).to.equal(1);
@@ -59,7 +59,7 @@ describe('ebay-textbox', () => {
 
     test('renders a textarea element with a default value', context => {
         const inputValue = 'some default value';
-        const input = { multiline: true, htmlAttributes: { value: inputValue } };
+        const input = { multiline: true, value: inputValue };
         const $ = testUtils.getCheerio(context.render(input));
         expect($(textareaSelector).length).to.equal(1);
         expect($(textareaSelector).val()).to.equal(inputValue);
@@ -100,7 +100,7 @@ describe('ebay-textbox', () => {
     });
 
     test('renders a disabled input textbox with disabled floating label', context => {
-        const input = { floatingLabel: 'Email address', htmlAttributes: { disabled: true, value: 'test@ebay.com' } };
+        const input = { floatingLabel: 'Email address', disabled: true, value: 'test@ebay.com' };
         const $ = testUtils.getCheerio(context.render(input));
         expect($(floatingLabelDisabledSelector).text()).to.equal('Email address');
         expect($(inputUnderlineSelector).length).to.equal(1);

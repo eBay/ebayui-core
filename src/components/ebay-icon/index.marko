@@ -1,0 +1,65 @@
+<script marko-init>
+    var getWidgetId = require("../../common/get-marko-3-widget-id");
+    var processHtmlAttributes = require("../../common/html-attributes");
+    var isBrowser = typeof window !== "undefined";
+    var defined = isBrowser ? (window.$ebayIcons = window.$ebayIcons || {}) : {};
+</script>
+
+<var isInline=(data.type === "inline")/>
+<var a11yAttributes/>
+<var titleId/>
+
+<if(isInline)>
+    <assign titleId=(data.a11yText && "icon-title-" + getWidgetId(out))/>
+    <assign a11yAttributes=(titleId
+        ? { "aria-labelled-by": titleId, role: "img" }
+        : { "aria-hidden": "true" }
+    )/>
+</if>
+
+<${isInline ? "svg" : "span"}
+    w-bind
+    class=[
+        data.class,
+        !data.noSkinClasses && "icon icon--${data.name}"
+    ]
+    style=data.style
+    focusable=(isInline && "false")
+    ${processHtmlAttributes(data)}
+    ${a11yAttributes}>
+    <if(isInline)>
+        <!-- Here we check if we should render the inline svg symbol. -->
+        <!-- Server side we store a flag in `out` to check if the symbol was rendered. -->
+        <!-- Client side we check the `defined` object to see if the symbol is already present in root svg. -->
+        <var themes=data._themes/>
+        <var lookupName="rendered_ebay_icon_${data.name}"/>
+        <var renderDefs=(!out[lookupName] && !defined[lookupName])/>
+        <assign out[lookupName]=true/>
+
+        <if(renderDefs && themes)>
+            <defs w-id="defs">
+                <var theme/>
+                <if(isBrowser)>
+                    <!-- All icons should be remapped to the right one in the browser, just use the first. -->
+                    <assign theme=themes.filter(Boolean)[0]/>
+                </if>
+                <else>
+                    <!-- Actual magic, please do not try to replicate. -->
+                    <var lassoContext=out.global["lasso/LassoRenderContext"]/>
+                    <var flags=(lassoContext && lassoContext.data.config.flags)/>
+                    <assign theme=themes[!flags || flags.indexOf("skin-ds6") !== -1 ? 1 : 0]/>
+                </else>
+
+                <include(theme)/>
+            </defs>
+        </if>
+
+        <if(titleId)>
+            <title id=titleId>
+                ${data.a11yText}
+            </title>
+        </if>
+
+        <use xlink:href="#icon-${data.name}"/>
+    </if>
+</>

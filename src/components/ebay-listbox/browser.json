@@ -4,7 +4,6 @@
             "if-not-flag": "ebayui-no-skin",
             "path": "@ebay/skin/listbox"
         },
-        "require: marko-widgets",
         "require: ./index.js"
     ]
 }

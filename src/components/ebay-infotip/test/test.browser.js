@@ -23,7 +23,12 @@ describe('given the default infotip', () => {
 
     describe('after it is rerendered', () => {
         before(() => {
-            widget.setStateDirty('test');
+            // Force rerender by passing new props.
+            widget.setProps({
+                host: {},
+                heading: {},
+                content: {}
+            });
             widget.update();
         });
 
