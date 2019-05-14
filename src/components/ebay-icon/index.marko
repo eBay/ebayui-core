@@ -23,6 +23,7 @@
         data.class,
         !data.noSkinClasses && "icon icon--${data.name}"
     ]
+    xmlns=(isInline && "http://www.w3.org/2000/svg")
     style=data.style
     focusable=(isInline && "false")
     ${processHtmlAttributes(data)}
