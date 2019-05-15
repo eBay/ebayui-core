@@ -7,7 +7,7 @@
                 "@ebay/skin/field"
             ]
         },
-        "../../../src/components/ebay-icon",
+        "../ebay-icon",
         "require: ./index.js"
     ]
 }

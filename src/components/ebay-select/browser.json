@@ -7,7 +7,7 @@
                 "@ebay/skin/icon/foreground"
             ]
         },
-        "../../../src/components/ebay-button",
+        "../ebay-button",
         "require: ./index.js"
     ]
 }
