@@ -78,8 +78,14 @@
             margin-left: -2px;
         }
 
+        // progressive enhancement for browsers with support
+        // this cannot be combined with the next rule as
+        // IE/Edge will discard the entire rule
+        .carousel:focus-within & {
+            .show-control();
+        }
+
         .carousel:hover &,
-        .carousel:focus-within &, // progressive enhancement for browsers with support
         &:focus {
             .show-control();
         }
