@@ -163,13 +163,12 @@
 
                 &.carousel__dot--active::after {
                     opacity: 1;
-                    background-color: @carousel-dots-after-active-background-color;
                 }
 
                 &::after {
                     opacity: 0;
                     transition: opacity @ebay-carousel-transition-time @ebay-carousel-transition-function;
-                    background-color: @carousel-dots-after-background-color;
+                    background-color: @carousel-dots-after-active-background-color;
                 }
             }
         }
@@ -218,29 +217,28 @@
     /*!Y */(scroll-snap-align: start)
 ) {
     .carousel {
-        &:not(&__autoplay) &__list {
-            scroll-behavior: smooth;
-            -webkit-scroll-snap-type: mandatory;
-            -webkit-scroll-snap-type: x mandatory;
-            -ms-scroll-snap-type: mandatory;
-            -ms-scroll-snap-type: x mandatory;
-            scroll-snap-type: mandatory;
-            scroll-snap-type: x mandatory;
-            overflow-x: auto; // also used in js to determine scroll behavior
-            -ms-overflow-style: none;
-            -webkit-overflow-scrolling: touch;
+        &:not(&__autoplay) {
+            overflow: hidden;
 
-            &::-webkit-scrollbar {
-                display: none;
-                background-color: transparent;
+            .carousel__container {
+                margin-bottom: -80px;
             }
 
-            &::-webkit-scrollbar-track {
-                background-color: transparent;
+            .carousel__control {
+                margin-top: -40px;
             }
 
-            &::-webkit-scrollbar-thumb {
-                background-color: transparent;
+            .carousel__list {
+                scroll-behavior: smooth;
+                -webkit-scroll-snap-type: mandatory;
+                -webkit-scroll-snap-type: x mandatory;
+                -ms-scroll-snap-type: mandatory;
+                -ms-scroll-snap-type: x mandatory;
+                scroll-snap-type: mandatory;
+                scroll-snap-type: x mandatory;
+                overflow-x: auto; // also used in js to determine scroll behavior
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 80px;
             }
         }
 
