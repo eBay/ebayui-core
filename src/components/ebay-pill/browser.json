@@ -3,7 +3,7 @@
             "if-not-flag": "ebayui-no-skin",
             "path": "@ebay/skin/button"
         },
-        "../../../src/components/ebay-button",
+        "../ebay-button",
         "require: ./index.js",
         "./style.less"
     ]
