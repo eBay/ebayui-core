@@ -67,7 +67,7 @@ function getInitialState(input) {
             role,
             href,
             useCheckIcon: isRadio || isCheckbox,
-            checked: (!isRadio && !isCheckbox) ? false : Boolean(checked),
+            checked: !isRadio && !isCheckbox ? false : Boolean(checked),
             current: Boolean(current),
             badgeNumber: item.badgeNumber,
             badgeAriaLabel: item.badgeAriaLabel
@@ -94,7 +94,9 @@ function getInitialState(input) {
         priority: input.priority,
         expanded: false,
         items,
-        checked: checkedItems
+        checked: checkedItems,
+        customLabel: input.label,
+        disabled: false
     };
 }
 
@@ -142,7 +144,9 @@ function getTemplateData(state) {
         buttonClass: state.borderless && 'expand-btn--borderless',
         itemsClass,
         role: !state.isFake ? 'menu' : null,
-        items: state.items
+        items: state.items,
+        customLabel: state.customLabel,
+        disabled: state.disabled
     };
 }
 
@@ -191,10 +195,10 @@ function onRender(event) {
 }
 
 /**
- * Internal marko function, can be triggered from both makeup and API
- * http://v3.markojs.com/docs/marko-widgets/javascript-api/#setstatedirtyname-value
- * @param {Boolean} expanded
- */
+   * Internal marko function, can be triggered from both makeup and API
+   * http://v3.markojs.com/docs/marko-widgets/javascript-api/#setstatedirtyname-value
+   * @param {Boolean} expanded
+   */
 function update_expanded(expanded) { // eslint-disable-line camelcase
     if ((expanded && this.buttonEl.getAttribute('aria-expanded') === 'false') ||
         (!expanded && this.buttonEl.getAttribute('aria-expanded') === 'true')) {
@@ -203,9 +207,9 @@ function update_expanded(expanded) { // eslint-disable-line camelcase
 }
 
 /**
- * Common processing after data change via both UI and API
- * @param {Array} itemIndexes
- */
+   * Common processing after data change via both UI and API
+   * @param {Array} itemIndexes
+   */
 function processAfterStateChange(itemIndexes) {
     const itemIndex = itemIndexes[(itemIndexes.length - 1)];
     const itemEl = this.itemEls[itemIndex];
@@ -240,9 +244,9 @@ function processAfterStateChange(itemIndexes) {
 }
 
 /**
- * Handle normal mouse click for item
- * @param {MouseEvent} e
- */
+   * Handle normal mouse click for item
+   * @param {MouseEvent} e
+   */
 function handleItemClick(e) {
     let itemEl = e.target;
     const parentEl = itemEl.closest('.menu__item, .fake-menu__item');
@@ -255,10 +259,10 @@ function handleItemClick(e) {
 }
 
 /**
- * Set the checked item based on the index
- * @param {Integer} itemIndex
- * @param {Boolean} toggle
- */
+   * Set the checked item based on the index
+   * @param {Integer} itemIndex
+   * @param {Boolean} toggle
+   */
 function setCheckedItem(itemIndex, toggle) {
     const item = this.state.items[itemIndex];
 
@@ -282,10 +286,10 @@ function setCheckedItem(itemIndex, toggle) {
 }
 
 /**
- * Handle a11y for item (is not handled by makeup)
- * https://ebay.gitbooks.io/mindpatterns/content/input/menu.html#keyboard
- * @param {KeyboardEvent} e
- */
+   * Handle a11y for item (is not handled by makeup)
+   * https://ebay.gitbooks.io/mindpatterns/content/input/menu.html#keyboard
+   * @param {KeyboardEvent} e
+   */
 function handleItemKeydown(e) {
     eventUtils.handleActionKeydown(e, () => {
         this.handleItemClick(e);
@@ -329,9 +333,9 @@ function handleCollapse() {
 }
 
 /**
- * Determine currently checked items (for checkbox case)
- * @returns {Array} checked indexes
- */
+   * Determine currently checked items (for checkbox case)
+   * @returns {Array} checked indexes
+   */
 function getCheckedList() {
     const checked = [];
     this.state.items.forEach((item, i) => {
@@ -347,9 +351,9 @@ function getItemElementIndex(itemEl) {
 }
 
 /**
- * Set the list of options by their index
- * @param {Array} indexArray
- */
+   * Set the list of options by their index
+   * @param {Array} indexArray
+   */
 function setCheckedList(indexArray) {
     if (indexArray) {
         this.state.items.forEach((item) => {

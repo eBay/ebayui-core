@@ -46,6 +46,14 @@ Method | Parameters | Description
 `setCheckedList()` | (Array) | Accepts an array of indexes for items, to set items' checked property. In the case of checkboxes, supplying an empty array will uncheck all checkboxes. In the case of radio, use the root level `checked` property.
 `getCheckedList()` |  | Returns an array of indexes for items with the checked property set to `true`.
 
+## ebay-menu-label Tag
+
+
+### ebay-menu-label Usage
+```marko
+<ebay-menu-label><div>Custom Label</div></ebay-menu-label>
+```
+
 ## ebay-menu-item Tag
 
 ### ebay-menu-item Usage
