@@ -104,6 +104,8 @@ describe('ebay-textbox', () => {
         const $ = testUtils.getCheerio(context.render(input));
         expect($(floatingLabelDisabledSelector).text()).to.equal('Email address');
         expect($(inputUnderlineSelector).length).to.equal(1);
+        expect($(inputUnderlineSelector).attr('disabled')).to.not.equal(null);
+        expect($(inputUnderlineSelector).attr('disabled')).to.equal('disabled');
     });
 
     test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, inputSelector));

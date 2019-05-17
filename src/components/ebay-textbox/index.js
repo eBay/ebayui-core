@@ -6,6 +6,11 @@ module.exports = require('marko-widgets').defineComponent({
     getWidgetConfig(input) {
         return { floatingLabel: input.floatingLabel };
     },
+    getInitialState(input) {
+        return Object.assign({}, input, {
+            disabled: Boolean(input.disabled)
+        });
+    },
     init(config) {
         this.config = config;
         this.initFloatingLabel();
