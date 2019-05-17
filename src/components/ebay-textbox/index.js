@@ -43,11 +43,9 @@ module.exports = require('marko-widgets').defineComponent({
 
 function forwardEvent(eventName) {
     return function(originalEvent, el) {
-        if (!this.state.disabled) {
-            emitAndFire(this, `textbox-${eventName}`, {
-                originalEvent,
-                value: (el || this.el.querySelector('input, textarea')).value
-            });
-        }
+        emitAndFire(this, `textbox-${eventName}`, {
+            originalEvent,
+            value: (el || this.el.querySelector('input, textarea')).value
+        });
     };
 }
