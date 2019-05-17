@@ -34,6 +34,35 @@ describe('given an input textbox', () => {
     });
 });
 
+describe('given a disabled input textbox', () => {
+    let root;
+    let input;
+
+    beforeEach(() => {
+        widget = renderer.renderSync({ value: 'val', disabled: true }).appendTo(document.body).getWidget();
+        root = document.querySelector('.textbox');
+        input = root.querySelector('input');
+    });
+
+    afterEach(() => widget.destroy());
+
+    ['change', 'input', 'focus', 'blur', 'keydown'].forEach(eventName => {
+        describe(`when native event is fired: ${eventName}`, () => {
+            let spy;
+
+            beforeEach(() => {
+                spy = sinon.spy();
+                widget.on(`textbox-${eventName}`, spy);
+                testUtils.triggerEvent(input, eventName);
+            });
+
+            test('then it does not emit the event', () => {
+                expect(spy.calledOnce).to.equal(false);
+            });
+        });
+    });
+});
+
 describe('given an input textbox with floating label', () => {
     let root;
     let input;

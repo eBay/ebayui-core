@@ -6,6 +6,11 @@ module.exports = require('marko-widgets').defineComponent({
     getWidgetConfig(input) {
         return { floatingLabel: input.floatingLabel };
     },
+    getInitialState(input) {
+        return Object.assign({}, input, {
+            disabled: Boolean(input.disabled)
+        });
+    },
     init(config) {
         this.config = config;
         this.initFloatingLabel();
@@ -38,9 +43,11 @@ module.exports = require('marko-widgets').defineComponent({
 
 function forwardEvent(eventName) {
     return function(originalEvent, el) {
-        emitAndFire(this, `textbox-${eventName}`, {
-            originalEvent,
-            value: (el || this.el.querySelector('input, textarea')).value
-        });
+        if (!this.state.disabled) {
+            emitAndFire(this, `textbox-${eventName}`, {
+                originalEvent,
+                value: (el || this.el.querySelector('input, textarea')).value
+            });
+        }
     };
 }
