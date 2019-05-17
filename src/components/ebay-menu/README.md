@@ -48,7 +48,6 @@ Method | Parameters | Description
 
 ## ebay-menu-label Tag
 
-
 ### ebay-menu-label Usage
 ```marko
 <ebay-menu-label><div>Custom Label</div></ebay-menu-label>
