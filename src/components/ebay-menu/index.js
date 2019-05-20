@@ -195,10 +195,10 @@ function onRender(event) {
 }
 
 /**
-   * Internal marko function, can be triggered from both makeup and API
-   * http://v3.markojs.com/docs/marko-widgets/javascript-api/#setstatedirtyname-value
-   * @param {Boolean} expanded
-   */
+ * Internal marko function, can be triggered from both makeup and API
+ * http://v3.markojs.com/docs/marko-widgets/javascript-api/#setstatedirtyname-value
+ * @param {Boolean} expanded
+ */
 function update_expanded(expanded) { // eslint-disable-line camelcase
     if ((expanded && this.buttonEl.getAttribute('aria-expanded') === 'false') ||
         (!expanded && this.buttonEl.getAttribute('aria-expanded') === 'true')) {
@@ -207,9 +207,9 @@ function update_expanded(expanded) { // eslint-disable-line camelcase
 }
 
 /**
-   * Common processing after data change via both UI and API
-   * @param {Array} itemIndexes
-   */
+ * Common processing after data change via both UI and API
+ * @param {Array} itemIndexes
+*/
 function processAfterStateChange(itemIndexes) {
     const itemIndex = itemIndexes[(itemIndexes.length - 1)];
     const itemEl = this.itemEls[itemIndex];
@@ -244,9 +244,9 @@ function processAfterStateChange(itemIndexes) {
 }
 
 /**
-   * Handle normal mouse click for item
-   * @param {MouseEvent} e
-   */
+ * Handle normal mouse click for item
+ * @param {MouseEvent} e
+ */
 function handleItemClick(e) {
     let itemEl = e.target;
     const parentEl = itemEl.closest('.menu__item, .fake-menu__item');
