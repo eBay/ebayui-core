@@ -209,7 +209,7 @@ function update_expanded(expanded) { // eslint-disable-line camelcase
 /**
  * Common processing after data change via both UI and API
  * @param {Array} itemIndexes
-*/
+ */
 function processAfterStateChange(itemIndexes) {
     const itemIndex = itemIndexes[(itemIndexes.length - 1)];
     const itemEl = this.itemEls[itemIndex];
@@ -259,10 +259,10 @@ function handleItemClick(e) {
 }
 
 /**
-   * Set the checked item based on the index
-   * @param {Integer} itemIndex
-   * @param {Boolean} toggle
-   */
+ * Set the checked item based on the index
+ * @param {Integer} itemIndex
+ * @param {Boolean} toggle
+ */
 function setCheckedItem(itemIndex, toggle) {
     const item = this.state.items[itemIndex];
 
@@ -286,10 +286,10 @@ function setCheckedItem(itemIndex, toggle) {
 }
 
 /**
-   * Handle a11y for item (is not handled by makeup)
-   * https://ebay.gitbooks.io/mindpatterns/content/input/menu.html#keyboard
-   * @param {KeyboardEvent} e
-   */
+ * Handle a11y for item (is not handled by makeup)
+ * https://ebay.gitbooks.io/mindpatterns/content/input/menu.html#keyboard
+ * @param {KeyboardEvent} e
+ */
 function handleItemKeydown(e) {
     eventUtils.handleActionKeydown(e, () => {
         this.handleItemClick(e);
@@ -333,9 +333,9 @@ function handleCollapse() {
 }
 
 /**
-   * Determine currently checked items (for checkbox case)
-   * @returns {Array} checked indexes
-   */
+ * Determine currently checked items (for checkbox case)
+ * @returns {Array} checked indexes
+ */
 function getCheckedList() {
     const checked = [];
     this.state.items.forEach((item, i) => {
@@ -351,9 +351,9 @@ function getItemElementIndex(itemEl) {
 }
 
 /**
-   * Set the list of options by their index
-   * @param {Array} indexArray
-   */
+ * Set the list of options by their index
+ * @param {Array} indexArray
+ */
 function setCheckedList(indexArray) {
     if (indexArray) {
         this.state.items.forEach((item) => {
