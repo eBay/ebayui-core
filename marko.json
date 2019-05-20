@@ -236,6 +236,7 @@
         "@size": "string",
         "@priority": "string",
         "@iconTag <icon>": {},
+        "@disabled": "boolean",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
@@ -249,9 +250,7 @@
             "@badge-aria-label": "string"
         },
         "@label <label>": {
-            "@*": "expression",
-            "@html-attributes": "expression",
-            "@setChoiceToLabel": "boolean"
+            "@*": "expression"
         }
     },
     "<ebay-menu-item>": {

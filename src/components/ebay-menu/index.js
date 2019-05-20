@@ -96,7 +96,7 @@ function getInitialState(input) {
         items,
         checked: checkedItems,
         customLabel: input.label,
-        disabled: false
+        disabled: input.disabled || false
     };
 }
 

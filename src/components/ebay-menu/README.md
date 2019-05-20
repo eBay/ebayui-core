@@ -28,6 +28,7 @@ Name | Type | Stateful | Description
 `size` | String | No | button size, "small" or "large" (default: medium)
 `priority` | String | No | button priority, "primary" / "secondary" (default) / "none"
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
+`disabled` | Boolean | Yes | Will disable the entire dropdown (disables the ebay-button label) if set to true
 
 ### ebay-menu Events
 
