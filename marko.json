@@ -99,6 +99,7 @@
         "@borderless": "boolean",
         "@disabled": "boolean",
         "@autocomplete": "string",
+        "@expanded": "boolean",
         "@options <option>[]": {
             "@*": "expression",
             "@html-attributes": "expression",

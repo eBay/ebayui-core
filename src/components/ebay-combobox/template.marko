@@ -44,7 +44,10 @@
             <var currentValueReg=safeRegex(currentValue)/>
             <for(option in options)>
                 <var isSelected=(selectedOption === option)/>
-                <var isVisible=(data.autocomplete === 'list' && (isSelected || currentValueReg.test(option.text)) || data.autocomplete === 'none')/>
+                <var isVisible=(
+                    data.expanded
+                    || (data.autocomplete === 'list' && (isSelected || currentValueReg.test(option.text)))
+                    || data.autocomplete === 'none')/>
                 <div
                     if(isVisible && option.text)
                     w-id="option[]"

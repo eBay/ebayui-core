@@ -38,16 +38,19 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     onRender() {
-        const selectedIndex = this.getSelectedIndex(this.state.options, this.state.currentValue);
-
         if (!this.state.disabled && this.state.options.length) {
+            const selectedIndex = this.getSelectedIndex(this.state.options, this.state.currentValue);
+
+            let autoInit = selectedIndex === -1 ? -1 : 0;
+            autoInit = this.state.autocomplete === 'none' ? -1 : autoInit;
+
             this.activeDescendant = ActiveDescendant.createLinear(
                 this.el,
                 this.getEl('input'),
                 this.getEl('options'),
                 '.combobox__option[role=option]', {
                     activeDescendantClassName: 'combobox__option--active',
-                    autoInit: selectedIndex === -1 ? -1 : 0,
+                    autoInit,
                     autoReset: -1
                 }
             );
@@ -116,7 +119,7 @@ module.exports = require('marko-widgets').defineComponent({
                 if (selectedEl) {
                     this.emitChangeEvent('select');
                 }
-                this.toggleListbox();
+                this.expander.collapse();
             }
         });
 
@@ -171,8 +174,9 @@ module.exports = require('marko-widgets').defineComponent({
         const queryReg = safeRegex(query);
 
         const showListbox =
+            this.state.expanded ||
             (this.state.autocomplete === 'list' && this.state.options.some(option => queryReg.test(option.text)))
-            || this.state.autocomplete !== 'none';
+            || this.state.autocomplete === 'none';
 
         if (!showListbox) {
             this.expander.collapse();
