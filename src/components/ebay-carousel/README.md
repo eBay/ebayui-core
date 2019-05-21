@@ -11,8 +11,6 @@
 ```
 
 This component will bundle different resources depending on Lasso flags provided by your application.
-Use `touch` for touch devices, and `no-touch` for non-touch devices. Without flags, `no-touch` is assumed.
-[//]: # (TODO: `touch` should ideally be default, but currently the js behavior doesn't execute with native scrolling)
 
 ## ebay-carousel Attributes
 Name | Type | Stateful | Description

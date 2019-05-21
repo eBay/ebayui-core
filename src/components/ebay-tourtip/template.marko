@@ -1,18 +1,24 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var pointer=(data.pointer || "bottom")/>
+
 <span w-bind>
     <ebay-tooltip-base
         w-id="base"
         type="tourtip"
-        pointer=data.pointer
+        pointer=pointer
         style-left=data.styleLeft
         style-top=data.styleTop
         style-right=data.styleRight
         style-bottom=data.styleBottom
         w-on-base-collapse="handleCollapse">
         <span
-            w-preserve-attrs="class"
             w-id="expander-root"
+            w-preserve-attrs="class"
             class="tourtip"
-            ${data.htmlAttributes}>
+            ${processHtmlAttributes(data)}>
             <span
                 if(data.host)
                 w-preserve-attrs="aria-expanded,aria-controls,aria-described-by"
@@ -21,8 +27,7 @@
                 w-body=data.host.renderBody/>
             <ebay-tooltip-overlay
                 type="tourtip"
-                tooltip-id="tourtip-${widget.id}"
-                pointer=data.pointer
+                pointer=pointer
                 style-left=data.styleLeft
                 style-top=data.styleTop
                 style-right=data.styleRight

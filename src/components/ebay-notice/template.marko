@@ -1,20 +1,39 @@
-<${data.mainTag}
-    w-bind
-    aria-labelledby="${data.status}-status-${widget.elId()}"
-    class=data.mainClass
-    style=data.style
-    ${data.htmlAttributes}
-    if(!data.hidden)>
-        <${data.headingTag}
-            class=data.headingClass
-            id="${data.status}-status-${widget.elId()}">
-                <span aria-label="${data.a11yHeadingText}" role="img"></span>
-        </${data.headingTag}>
-        <${data.contentTag} class=data.contentClass w-body/>
-         <button aria-label="${data.a11yCloseText}"
-            class="page-notice__close"
-            w-onclick="onDismiss"
-            if(data.dismissible)>
-                <span></span>
-        </button>
-</${data.mainTag}>
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var type=(data.type || "page")/>
+<var status=(data.status || "priority")/>
+<var isPage=(type === "page")/>
+
+<if(!data.hidden)>
+    <${isPage ? "section" : "div"}
+        ${processHtmlAttributes(data)}
+        w-bind
+        style=data.style
+        aria-labelledby=widget.elId("status")
+        class=[
+            "${type}-notice",
+            "${type}-notice--${data.status || 'priority'}",
+            data.class
+        ]>
+        <${isPage ? data.a11yHeadingTag || "h2" : "span"}
+            class="${type}-notice__status"
+            w-id="status">
+            <span aria-label=data.a11yHeadingText role="img"/>
+        </>
+
+        <${isPage ? "div" : "span"}
+            class="${type}-notice__content"
+            w-body/>
+
+        <if(data.dismissible)>
+            <button
+                class="page-notice__close"
+                aria-label=data.a11yCloseText
+                w-onclick="onDismiss">
+                <span/>
+            </button>
+        </if>
+    </>
+</if>

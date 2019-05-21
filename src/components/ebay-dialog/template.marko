@@ -1,7 +1,41 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
 
-<div w-bind class=data.dialogClass style=data.style hidden=!data.open role="dialog" w-preserve-attrs="hidden" w-onclick="handleDialogClick" ${data.htmlAttributes}>
-    <div w-id="window" class=data.windowClass role="document">
-        <button w-id="close" class="dialog__close" type="button" aria-label=data.a11yCloseText w-onclick="handleCloseButtonClick">
+<var isFull=(data.type === "full")/>
+<var isCenter=(!data.type || data.type === "fill")/>
+<var isDocked=(data.type === "left" || data.type === "right")/>
+
+<div
+    w-bind
+    class=[
+        "dialog",
+        data.class,
+        isDocked && "dialog--mask-fade-slow",
+        isFull && "dialog--no-mask",
+        isCenter && "dialog--mask-fade"
+    ]
+    style=data.style
+    hidden=!data.open
+    role="dialog"
+    w-preserve-attrs="hidden"
+    w-onclick="handleDialogClick"
+    ${processHtmlAttributes(data)}>
+    <div
+        w-id="window"
+        role="document"
+        class=[
+            "dialog__window",
+            data.type && "dialog__window--${data.type}",
+            isDocked && "dialog__window--slide",
+            (isFull || isCenter) && "dialog__window--fade"
+        ]>
+        <button
+            w-id="close"
+            class="dialog__close"
+            type="button"
+            aria-label=data.a11yCloseText
+            w-onclick="handleCloseButtonClick">
             <ebay-icon type="inline" name="close"/>
         </button>
 

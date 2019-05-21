@@ -6,7 +6,7 @@ describe('breadcrumb', () => {
     test('renders basic structure', context => {
         const $ = testUtils.getCheerio(context.render(mock.basicItems));
         expect($('nav.breadcrumb').length).to.equal(1);
-        const h2Tag = $('h2#breadcrumb-heading.clipped');
+        const h2Tag = $('h2.clipped');
         expect(h2Tag.length).to.equal(1);
         expect(h2Tag.html()).to.equal(mock.basicItems.a11yHeadingText);
         expect($('nav li').length).to.equal(mock.basicItems.items.length);

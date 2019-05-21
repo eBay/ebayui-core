@@ -7,9 +7,8 @@
                 "@ebay/skin/button"
             ]
         },
-        "../../../src/components/ebay-badge",
-        "../../../src/components/ebay-icon",
-        "require: marko-widgets",
+        "../ebay-badge",
+        "../ebay-icon",
         "require: ./index.js"
     ]
 }

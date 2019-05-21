@@ -4,9 +4,9 @@
             "if-not-flag": "ebayui-no-skin",
             "path": "@ebay/skin/menu"
         },
-        "../../../src/components/ebay-badge",
-        "../../../src/components/ebay-button",
-        "../../../src/components/ebay-icon",
+        "../ebay-badge",
+        "../ebay-button",
+        "../ebay-icon",
         "require-run: nodelist-foreach-polyfill",
         "require-run: element-closest/browser",
         "require: marko-widgets",

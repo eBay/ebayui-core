@@ -23,7 +23,7 @@ Name | Type | Stateful | Description
 `a11y-heading-text` | String | No | adding description for the notice for a11y users
 `a11y-heading-tag` | String | No| used in case of "page" level notices to specify the heading tag according to the notice's placement (default: `"h2"`)
 `dismissible` | Boolean | No | used to specify the dismiss button in page notice
-`hidden` | Boolean | Yes | whether the widget is hidden or not (Note: not supported as initial attribute)
+`hidden` | Boolean | Yes | whether the widget is hidden or not.
 `a11y-close-text` | String | No | adding description for the button for a11y users
 
 ### ebay-notice Events

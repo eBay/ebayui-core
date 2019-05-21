@@ -1,6 +1,6 @@
 {
     "<ebay-badge>": {
-        "renderer": "./src/components/ebay-badge/index.js",
+        "template": "./src/components/ebay-badge/index.marko",
         "@*": "expression",
         "@html-attributes": "expression",
         "@class": "string",
@@ -146,7 +146,7 @@
         "@a11y-close-text": "string"
     },
     "<ebay-icon>": {
-        "renderer": "./src/components/ebay-icon/index.js",
+        "template": "./src/components/ebay-icon/index.marko",
         "transformer": "./src/components/ebay-icon/transformer.js",
         "@*": "expression",
         "@html-attributes": "expression",
@@ -386,7 +386,9 @@
         "@class": "string",
         "@style": "string",
         "@type": "string",
+        "@value": "string",
         "@invalid": "boolean",
+        "@disabled": "boolean",
         "@fluid": "boolean",
         "@multiline": "boolean",
         "@icon": "string",

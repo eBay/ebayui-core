@@ -9,7 +9,7 @@ describe('given an input textbox', () => {
     let root;
     let input;
     beforeEach(() => {
-        widget = renderer.renderSync({ '*': { value: 'val' } }).appendTo(document.body).getWidget();
+        widget = renderer.renderSync({ value: 'val' }).appendTo(document.body).getWidget();
         root = document.querySelector('.textbox');
         input = root.querySelector('input');
     });
@@ -70,7 +70,7 @@ describe('given an input textbox with floating label', () => {
         beforeEach(() => {
             updateSpy = sinon.spy();
             widget.on('textbox-floating-label-init', updateSpy);
-            widget.setStateDirty('test');
+            widget.setProps({ 'floatingLabel': 'Email address', test: 1 });
             widget.update();
         });
 

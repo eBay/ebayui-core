@@ -1,56 +1,77 @@
-<div w-bind class=data.classes style=data.style activation=data.activation ${data.htmlAttributes}>
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<div
+    w-bind
+    class=[data.class, data.fake ? "fake-tabs" : "tabs"]
+    style=data.style
+    ${processHtmlAttributes(data)}>
     <if(data.fake)>
+        <var selectedPanel=data.panels[0]/>
         <ul class="fake-tabs__items">
-            <for(i, heading in data.headings)>
-                <var isCurrentHeading=parseInt(i) === data.index/>
+            <for(heading in data.headings | status-var=status)>
+                <var i=status.getIndex()/>
+                <var isSelected=(data.index === i)/>
                 <li
-                    class=[heading.classes, 'fake-tabs__item', isCurrentHeading ? 'fake-tabs__item--current' : null]
-                    style=heading.style
-                    ${heading.htmlAttributes}>
+                    ${processHtmlAttributes(heading)}
+                    class=[
+                        heading.class,
+                        "fake-tabs__item",
+                        isSelected && "fake-tabs__item--current"
+                    ]
+                    style=heading.style>
                     <a
-                        aria-current=(isCurrentHeading && "page")
+                        aria-current=(isSelected && "page")
                         href=heading.href
                         w-body=heading.renderBody/>
                 </li>
             </for>
         </ul>
         <div class="fake-tabs__content">
-            <var panel=data.panels[0]/>
-            <div class=panel.classes style=panel.style ${panel.htmlAttributes}>
+            <div
+                ${processHtmlAttributes(selectedPanel)}
+                class=[selectedPanel.class, "fake-tabs__panel"]
+                style=selectedPanel.style>
                 <div class="fake-tabs__cell">
-                    <div w-body=panel.renderBody/>
+                    <div w-body=selectedPanel.renderBody/>
                 </div>
             </div>
         </div>
     </if>
     <else>
         <div w-id="headings" class="tabs__items" role="tablist">
-            <for(i, heading in data.headings)>
+            <for(heading in data.headings | status-var=status)>
+                <var i=status.getIndex()/>
+                <var isSelected=(data.index === i)/>
                 <div
-                    aria-controls="${widget.id}-tabpanel-${i}"
-                    id="${widget.id}-tab-${i}"
+                    w-id="tab-${i}"
+                    aria-controls=widget.elId("tabpanel-${i}")
                     role="tab"
-                    aria-selected=String(parseInt(i) === data.index)
-                    class=heading.classes
+                    aria-selected=(isSelected && "true")
+                    class=[heading.class, "tabs__item"]
                     style=heading.style
+                    data-index=i
                     w-onclick="handleHeadingClick"
                     w-onkeydown="handleHeadingKeydown"
                     w-preserve-attrs="tabindex,data-makeup-index"
-                    ${heading.htmlAttributes}>
+                    ${processHtmlAttributes(heading)}>
                     <span w-body=heading.renderBody/>
                 </div>
             </for>
         </div>
         <div class="tabs__content">
-            <for(i, panel in data.panels)>
+            <for(panel in data.panels | status-var=status)>
+                <var i=status.getIndex()/>
+                <var isSelected=(data.index === i)/>
                 <div
-                    aria-labelledby="${widget.id}-tab-${i}"
-                    id="${widget.id}-tabpanel-${i}"
+                    w-id="tabpanel-${i}"
+                    aria-labelledby=widget.elId("tab-${i}")
                     role="tabpanel"
-                    class=panel.classes
+                    class=[panel.class, "tabs__panel"]
                     style=panel.style
-                    hidden=(parseInt(i) !== data.index)
-                    ${panel.htmlAttributes}>
+                    hidden=!isSelected
+                    ${processHtmlAttributes(panel)}>
                     <div class="tabs__cell">
                         <div w-body=panel.renderBody/>
                     </div>

@@ -1,13 +1,14 @@
-<span
-    w-bind
-    w-onclick="handleClick"
-    class=data.classes
-    style=data.style>
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<span w-bind class=["checkbox", data.class] style=data.style>
     <input
         class="checkbox__control"
         type="checkbox"
+        w-onchange="handleChange"
         disabled=data.disabled
-        ${data.htmlAttributes} />
+        ${processHtmlAttributes(data)}/>
     <span class="checkbox__icon" hidden>
         <ebay-icon type="inline" name="checkbox-unchecked" class="checkbox__unchecked" focusable="false" no-skin-classes/>
         <ebay-icon type="inline" name="checkbox-checked" class="checkbox__checked" focusable="false" no-skin-classes/>

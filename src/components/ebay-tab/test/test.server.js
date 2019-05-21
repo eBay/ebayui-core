@@ -9,7 +9,7 @@ describe('tab', () => {
         expect($('div.tabs').length).to.equal(1);
         expect($('div.tabs__item').length).to.equal(3);
         expect($('div.tabs__item:first-of-type[aria-selected="true"]').length).to.equal(1);
-        expect($('div.tabs__item[aria-selected="false"]').length).to.equal(2);
+        expect($('div.tabs__item:not([aria-selected="true"])').length).to.equal(2);
         expect($('div.tabs__panel').length).to.equal(3);
         expect($('div.tabs__panel:first-of-type:not([hidden])').length).to.equal(1);
         expect($('div.tabs__panel[hidden]').length).to.equal(2);
@@ -21,7 +21,7 @@ describe('tab', () => {
         expect($('div.tabs').length).to.equal(1);
         expect($('div.tabs__item').length).to.equal(3);
         expect($('div.tabs__item:nth-of-type(2)[aria-selected="true"]').length).to.equal(1);
-        expect($('div.tabs__item[aria-selected="false"]').length).to.equal(2);
+        expect($('div.tabs__item:not([aria-selected="true"])').length).to.equal(2);
         expect($('div.tabs__panel').length).to.equal(3);
         expect($('div.tabs__panel:nth-of-type(2):not([hidden])').length).to.equal(1);
         expect($('div.tabs__panel[hidden]').length).to.equal(2);

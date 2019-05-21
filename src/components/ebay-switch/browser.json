@@ -6,7 +6,6 @@
                 "@ebay/skin/switch"
             ]
         },
-        "require: marko-widgets",
         "require: ./index.js"
     ]
 }

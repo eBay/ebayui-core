@@ -26,8 +26,12 @@ describe('given the default tourtip', () => {
 
     describe('after it is rerendered', () => {
         before(() => {
-            widget.setStateDirty('test');
-            widget.update();
+            widget.setProps({
+                host: {},
+                heading: {},
+                content: {},
+                test: 1
+            });
         });
 
         thenItIsOpen();

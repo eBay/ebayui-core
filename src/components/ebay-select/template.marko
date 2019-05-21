@@ -1,17 +1,33 @@
-<span class=data.class style=data.style w-bind>
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var options=data.options/>
+<var selectedOption=options[data.selectedIndex]/>
+
+<span
+    w-bind
+    class=[
+        data.class,
+        "select",
+        data.borderless && "select--borderless"
+    ]
+    style=data.style>
     <select
-        disabled=data.disabled
         w-onchange="optionChanged"
-        ${data.htmlAttributes}>
-        <option
-            for(option in data.options)
-            value=option.value
-            selected=option.selected
-            class=option.class
-            style=option.style
-            ${option.htmlAttributes}>
-            ${option.text}
-        </option>
+        disabled=data.disabled
+        ${processHtmlAttributes(data)}>
+        <for(option in options)>
+            <option
+                w-id="option[]"
+                value=option.value
+                class=option.class
+                style=option.style
+                selected=(option === selectedOption)
+                ${processHtmlAttributes(option)}>
+                ${option.text}
+            </option>
+        </for>
     </select>
     <span class="select__icon"/>
 </span>
