@@ -2,9 +2,10 @@
     var getWidgetId = require("../../common/get-marko-3-widget-id");
     var processHtmlAttributes = require("../../common/html-attributes");
     var isBrowser = typeof window !== "undefined";
-    var defined = isBrowser ? (window.$ebayIcons = window.$ebayIcons || {}) : {};
+    var browserLookup = {};
 </script>
 
+<var lookup=(isBrowser ? browserLookup : out.global)/>
 <var isInline=(data.type === "inline")/>
 <var a11yAttributes/>
 <var titleId/>
@@ -30,12 +31,12 @@
     ${a11yAttributes}>
     <if(isInline)>
         <!-- Here we check if we should render the inline svg symbol. -->
-        <!-- Server side we store a flag in `out` to check if the symbol was rendered. -->
-        <!-- Client side we check the `defined` object to see if the symbol is already present in root svg. -->
+        <!-- Server side we store a flag in `out.global` to check if the symbol was rendered. -->
+        <!-- Client side we check the `browserLookup` object to see if the symbol is already present in root svg. -->
         <var themes=data._themes/>
-        <var lookupName="rendered_ebay_icon_${data.name}"/>
-        <var renderDefs=(!out[lookupName] && !defined[lookupName])/>
-        <assign out[lookupName]=true/>
+        <var lookupName=("rendered_ebay_icon_" + data.name)/>
+        <var renderDefs=!lookup[lookupName]/>
+        <assign lookup[lookupName]=true/>
 
         <if(renderDefs && themes)>
             <defs w-id="defs">
