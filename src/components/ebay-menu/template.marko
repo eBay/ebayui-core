@@ -17,7 +17,7 @@
         aria-label=data.a11yText
         disabled=data.disabled
         w-on-button-escape="handleButtonEscape">
-        <span class="expand-btn__cell ${data.customLabel ? 'custom_label' : ''}">
+        <span class=['expand-btn__cell', (data.customLabel && 'menu__control--custom-label')]>
         <if(data.customLabel)>
             <span w-body=data.customLabel body-only-if(true)/>
         </if>
