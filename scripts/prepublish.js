@@ -1,44 +1,30 @@
 const execSync = require('child_process').execSync;
+const path = require('path');
 const fs = require('fs');
-
-function isFile(obj) {
-    try {
-        return fs.lstatSync(obj.path).isFile();
-    } catch (e) {
-        return false;
-    }
-}
-
-// create top level browser.json files to map to nested ones
-fs.readdirSync(`${__dirname}/../src/components`).forEach(component => {
-    if (component.startsWith('ebay-')) {
-        fs.writeFileSync(`${component}.browser.json`, `{"dependencies":["./dist/components/${component}"]}`);
-    }
-});
+const rootDir = path.join(__dirname, '..');
+const componentInputDir = path.join(rootDir, 'src/components');
 
 // run babel
 execSync('babel src --out-dir dist --copy-files --ignore test/,*.marko.js');
 
-// replace src/ with dist/ in browser.json files
-fs.readdirSync(`${__dirname}/../dist/components`).map(component => ({
-    path: `${__dirname}/../dist/components/${component}/browser.json`
-})).filter(isFile).map(obj => {
-    const data = fs.readFileSync(obj.path, 'utf-8');
-    fs.writeFileSync(obj.path, data.replace(/src\/components/g, 'dist/components'), 'utf-8');
-});
+// create top level browser.json files to map to nested ones
+fs
+    .readdirSync(componentInputDir)
+    .filter(folder => folder.startsWith('ebay-'))
+    .forEach(component => {
+        fs.writeFileSync(
+            path.join(rootDir, `${component}.browser.json`),
+            JSON.stringify({
+                dependencies: [
+                    `./dist/components/${component}`
+                ]
+            }, null, 4)
+        );
+    });
 
 // update marko.json
-const markoConfigPath = `${__dirname}/../marko.json`;
-const markoConfig = require(markoConfigPath);
-Object.keys(markoConfig).forEach((key) => {
-    const tagConfig = markoConfig[key];
-
-    if (tagConfig.renderer) {
-        tagConfig.renderer = tagConfig.renderer.replace('./src', './dist');
-    }
-
-    if (tagConfig.transformer) {
-        tagConfig.transformer = tagConfig.transformer.replace('./src', './dist');
-    }
-});
-fs.writeFileSync(markoConfigPath, JSON.stringify(markoConfig));
+const markoConfigPath = path.join(rootDir, 'marko.json');
+fs.writeFileSync(
+    markoConfigPath,
+    fs.readFileSync(markoConfigPath, 'utf-8').replace(/\.\/src\//g, './dist/')
+);

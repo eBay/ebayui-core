@@ -7,8 +7,7 @@
                 "@ebay/skin/field"
             ]
         },
-        "../../../src/components/ebay-icon",
-        "require: marko-widgets",
+        "../ebay-icon",
         "require: ./index.js"
     ]
 }

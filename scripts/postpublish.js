@@ -1,23 +1,14 @@
 const fs = require('fs');
+const path = require('path');
 const del = require('del');
-
-const pathPrefix = `${ __dirname }/..`;
+const rootDir = path.join(__dirname, '..');
 
 // remove files created by prepublish
-del.sync([`${pathPrefix}/*.browser.json`, `${pathPrefix}/dist`]);
+del.sync([path.join(rootDir, '*.browser.json'), path.join(rootDir, 'dist')]);
 
 // undo marko.json changes made by prepublish
-const markoConfigPath = `${pathPrefix}/marko.json`;
-const markoConfig = require(markoConfigPath);
-Object.keys(markoConfig).forEach((key) => {
-    const tagConfig = markoConfig[key];
-
-    if (tagConfig.renderer) {
-        tagConfig.renderer = tagConfig.renderer.replace('./dist', './src');
-    }
-
-    if (tagConfig.transformer) {
-        tagConfig.transformer = tagConfig.transformer.replace('./dist', './src');
-    }
-});
-fs.writeFileSync(markoConfigPath, `${JSON.stringify(markoConfig, null, 4)}\n`);
+const markoConfigPath = path.join(rootDir, '/marko.json');
+fs.writeFileSync(
+    markoConfigPath,
+    fs.readFileSync(markoConfigPath, 'utf-8').replace(/\.\/dist\//g, './src/')
+);

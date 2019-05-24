@@ -3,10 +3,6 @@
     "Theme": {
       "DS6": ["skin-ds6"],
       "DS4": []
-    },
-    "Platform": {
-      "Desktop": ["no-touch"],
-      "Mobile": ["touch"]
     }
   }
 }

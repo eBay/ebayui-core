@@ -1,11 +1,23 @@
-<span w-bind class="pill" ${data.htmlAttributes}>
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<span w-bind class="pill" ${processHtmlAttributes(data)}>
     <ebay-button
         w-body
-        priority=data.priority
-        disabled=data.disabled
+        w-on-button-click="handleButtonClick"
+        w-on-button-escape="handleButtonEscape"
+        class=[
+            data.class,
+            data.href ? "fake-btn--pill" : "btn--pill"
+        ]
         style=data.style
         href=data.href
-        aria-pressed=(!data.href && String(data.pressed || 'false'))
-        class=data.classes>
+        disabled=data.disabled
+        priority=(data.pressed ? "primary" : "secondary")
+        aria-pressed=(!data.href && data.pressed && "true")>
+        <if(data.href && data.pressed)>
+            <span w-id="active-text" class="pill__active-text clipped"> - ${data.a11yActiveText || "Selected"}</span>
+        </if>
     </ebay-button>
 </span>

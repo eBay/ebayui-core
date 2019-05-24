@@ -49,20 +49,6 @@ describe('given pill is enabled', () => {
         });
     });
 
-    describe('when pill is clicked via action key', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-click', spy);
-            testUtils.triggerEvent(root, 'keydown', 32);
-        });
-
-        test('then it emits the event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            testUtils.testOriginalEvent(spy);
-        });
-    });
-
     describe('when escape key is pressed', () => {
         let spy;
         beforeEach(() => {

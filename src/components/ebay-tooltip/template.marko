@@ -1,8 +1,14 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var pointer=(data.pointer || "bottom")/>
+
 <span w-bind>
     <ebay-tooltip-base
         w-id="base"
         type="tooltip"
-        pointer=data.pointer
+        pointer=pointer
         style-left=data.styleLeft
         style-top=data.styleTop
         style-right=data.styleRight
@@ -14,7 +20,7 @@
             w-id="expander-root"
             w-preserve-attrs="class"
             class="tooltip"
-            ${data.htmlAttributes}>
+            ${processHtmlAttributes(data)}>
             <span
                 if(data.host)
                 body-only-if(true)
@@ -22,8 +28,7 @@
             <ebay-tooltip-overlay
                 w-id="overlay"
                 type="tooltip"
-                labeledby="tooltip-${widget.id}"
-                pointer=data.pointer
+                pointer=pointer
                 style-left=data.styleLeft
                 style-top=data.styleTop
                 style-right=data.styleRight

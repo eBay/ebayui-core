@@ -1,30 +1,61 @@
-<${data.tag} class=data.rootClass style=data.style w-bind>
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var iconPosition=(data.iconPosition || "prefix")/>
+<var displayIcon=Boolean(!data.multiline && data.iconTag)/>
+
+<${data.fluid ? "div" : "span"}
+    w-bind
+    style=data.style
+    class=[
+        "textbox",
+        data.class,
+        (displayIcon && iconPosition === "postfix") && "textbox--icon-end"
+    ]>
     <var textboxId=(data.id || widget.elId("textbox"))/>
 
-    <if (data.floatingLabel)>
-        <label class=data.labelClasses for=textboxId>
+    <if(data.floatingLabel)>
+        <label
+            for=textboxId
+            class=[
+                "floating-label__label",
+                data.disabled && "floating-label__label--disabled"
+            ]>
             ${data.floatingLabel}
         </label>
     </if>
-    <if (data.displayIcon && data.iconPrefix)>
-        <span body-only-if(true) w-body=data.iconTag/>
+    <if(displayIcon && iconPosition === "prefix")>
+        <span body-only-if(true) w-body=data.iconTag.renderBody/>
     </if>
-    <${data.textboxTag}
+    <${data.multiline ? "textarea" : "input"}
         id=textboxId
-        class=data.classes
-        type=data.type
-        aria-invalid=data.invalid
+        class=[
+            "textbox__control",
+            data.fluid && "textbox__control--fluid",
+            data.floatingLabel && "textbox__control--underline"
+        ]
+        type=(
+            /**
+             * only allow type to be text or password at the moment
+             * other types to be addressed later: https://github.com/eBay/ebayui-core/issues/575
+             */
+            data.type === "password" ? "password" : "text"
+        )
+        value=(!data.multiline && data.value)
+        disabled=data.disabled
+        aria-invalid=(data.invalid && "true")
+        w-onkeydown="handleKeydown"
         w-onchange="handleChange"
         w-oninput="handleInput"
         w-onfocus="handleFocus"
         w-onblur="handleBlur"
-        w-onkeydown="handleKeydown"
-        ${data.htmlAttributes}>
-        <if(data.textboxTag === 'textarea')>
-            ${data.textareaValue}
+        ${processHtmlAttributes(data)}>
+        <if(data.multiline)>
+            ${data.value}
         </if>
     </>
-    <if (data.displayIcon && data.iconPostfix)>
-        <span body-only-if(true) w-body=data.iconTag/>
+    <if(displayIcon && iconPosition === "postfix")>
+        <span body-only-if(true) w-body=data.iconTag.renderBody/>
     </if>
 </>

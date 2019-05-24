@@ -4,7 +4,6 @@
             "if-not-flag": "ebayui-no-skin",
             "path": "@ebay/skin/tab"
         },
-        "require: marko-widgets",
         "require: ./index.js"
     ]
 }

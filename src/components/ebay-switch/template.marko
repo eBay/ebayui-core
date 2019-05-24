@@ -1,4 +1,16 @@
-<span w-bind class=data.classes style=data.style w-onclick="handleClick">
-    <input type="checkbox" role="switch" class="switch__control" disabled=data.disabled ${data.htmlAttributes}/>
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<span
+    w-bind
+    class=["switch", data.class]
+    style=data.style>
+    <input
+        w-onchange="handleChange"
+        type="checkbox"
+        role="switch"
+        class="switch__control"
+        disabled=data.disabled ${processHtmlAttributes(data)}/>
     <span class="switch__button"/>
 </span>
