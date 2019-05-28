@@ -63,8 +63,6 @@ module.exports = require('marko-widgets').defineComponent({
                 simulateSpacebarClick: true
             });
         }
-
-        this.moveCursorToEnd();
     },
     onBeforeUpdate() {
         this._handleDestroy();
