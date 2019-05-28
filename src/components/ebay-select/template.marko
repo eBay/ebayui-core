@@ -14,7 +14,7 @@
     ]
     style=data.style>
     <select
-        w-onchange="optionChanged"
+        w-onchange="handleChange"
         disabled=data.disabled
         ${processHtmlAttributes(data)}>
         <for(option in options)>
