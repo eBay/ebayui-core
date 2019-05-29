@@ -41,8 +41,6 @@ Note: For this component, `class`/`style` are applied to the root tag, while all
 
 Event | Data |  Description
 --- | --- | ---
-`select-collapse` | | collapse content
-`select-expand` | | expand content
 `select-change` | `{ el, index, selected }` | option selected
 ---
 
