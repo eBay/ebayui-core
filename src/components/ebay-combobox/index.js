@@ -66,6 +66,10 @@ module.exports = require('marko-widgets').defineComponent({
                 simulateSpacebarClick: true
             });
         }
+
+        if (this.state.expanded) {
+            this.expander.expand();
+        }
     },
     onBeforeUpdate() {
         this._handleDestroy();
@@ -174,7 +178,6 @@ module.exports = require('marko-widgets').defineComponent({
         const queryReg = safeRegex(query);
 
         const showListbox =
-            this.state.expanded ||
             (this.state.autocomplete === 'list' && this.state.options.some(option => queryReg.test(option.text)))
             || this.state.autocomplete === 'none';
 
