@@ -41,17 +41,15 @@ module.exports = require('marko-widgets').defineComponent({
             });
         });
     },
-    onRender(opts) {
+    onRender() {
         const { expanded: wasExpanded } = this;
         const isExpanded = this.expanded = this.state.expanded;
-        const isFirstRender = (opts && opts.firstRender);
         const wasToggled = isExpanded !== wasExpanded;
 
         if (!this.state.disabled && this.state.options.length) {
             const selectedIndex = this.getSelectedIndex(this.state.options, this.state.currentValue);
 
-            let autoInit = selectedIndex === -1 ? -1 : 0;
-            autoInit = this.state.autocomplete === 'none' ? -1 : autoInit;
+            const autoInit = selectedIndex === -1 || this.state.autocomplete === 'none' ? -1 : 0;
 
             this.activeDescendant = ActiveDescendant.createLinear(
                 this.el,
@@ -82,13 +80,9 @@ module.exports = require('marko-widgets').defineComponent({
 
         if (wasToggled) {
             if (isExpanded) {
-                if (!isFirstRender) {
-                    this.expander.expand();
-                }
+                this.expander.expand();
             } else {
-                if (!isFirstRender) {
-                    this.expander.collapse();
-                }
+                this.expander.collapse();
             }
         }
     },
