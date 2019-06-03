@@ -42,14 +42,14 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     onRender() {
-        const { expanded: wasExpanded } = this;
+        const wasExpanded = this.expanded || false;
         const isExpanded = this.expanded = this.state.expanded;
         const wasToggled = isExpanded !== wasExpanded;
 
         if (!this.state.disabled && this.state.options.length) {
             const selectedIndex = this.getSelectedIndex(this.state.options, this.state.currentValue);
 
-            const autoInit = selectedIndex === -1 || this.state.autocomplete === 'none' ? -1 : 0;
+            const autoInit = (selectedIndex === -1 || this.state.autocomplete === 'none') ? -1 : 0;
 
             this.activeDescendant = ActiveDescendant.createLinear(
                 this.el,
