@@ -43,7 +43,7 @@ Name | Required | Type | Stateful | Description
 `name` | Yes | String | No | used for the `name` attribute of the `<input>` element
 `borderless` | No | Boolean | No | whether the input has borders
 `disabled` | No | Boolean | Yes | sets the disabled attribute of the input
-`expanded` | No | Boolean | Yes | sets whether the listbox is expanded on render
+`expanded` | No | Boolean | Yes | sets whether the listbox is expanded
 `autocomplete` | No | String | Yes | default is `none`; available values are `none` and `list`
 
 Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.

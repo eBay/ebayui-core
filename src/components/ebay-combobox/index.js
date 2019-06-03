@@ -30,6 +30,10 @@ module.exports = require('marko-widgets').defineComponent({
             this.expander.expandOnClick = !this.state.disabled;
         });
 
+        observer.observeRoot(this, ['expanded'], (bool) => {
+            this.expander.expanded = bool;
+        });
+
         this.getEls('option').forEach((optionEl, i) => {
             Object.defineProperty(optionEl, 'selected', {
                 get: () => this.state.selectedIndex === i,
@@ -37,7 +41,12 @@ module.exports = require('marko-widgets').defineComponent({
             });
         });
     },
-    onRender() {
+    onRender(opts) {
+        const { expanded: wasExpanded } = this;
+        const isExpanded = this.expanded = this.state.expanded;
+        const isFirstRender = (opts && opts.firstRender);
+        const wasToggled = isExpanded !== wasExpanded;
+
         if (!this.state.disabled && this.state.options.length) {
             const selectedIndex = this.getSelectedIndex(this.state.options, this.state.currentValue);
 
@@ -67,8 +76,20 @@ module.exports = require('marko-widgets').defineComponent({
             });
         }
 
-        if (this.state.expanded) {
+        if (isExpanded && !wasExpanded) {
             this.expander.expand();
+        }
+
+        if (wasToggled) {
+            if (isExpanded) {
+                if (!isFirstRender) {
+                    this.expander.expand();
+                }
+            } else {
+                if (!isFirstRender) {
+                    this.expander.collapse();
+                }
+            }
         }
     },
     onBeforeUpdate() {
@@ -91,9 +112,11 @@ module.exports = require('marko-widgets').defineComponent({
         elementScroll.scroll(this.getEls('option')[index]);
         this.moveCursorToEnd();
         emitAndFire(this, 'combobox-expand');
+        this.setState('expanded', true);
     },
     handleCollapse() {
         emitAndFire(this, 'combobox-collapse');
+        this.setState('expanded', false);
     },
     moveCursorToEnd() {
         const currentInput = this.getEl('input');
