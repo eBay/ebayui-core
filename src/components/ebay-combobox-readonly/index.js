@@ -1,6 +1,6 @@
 const markoWidgets = require('marko-widgets');
 const Expander = require('makeup-expander');
-const findIndex = require('core-js/library/fn/array/find-index');
+const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
 const emitAndFire = require('../../common/emit-and-fire');
@@ -9,6 +9,7 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
+const { forEach } = Array.prototype;
 const comboboxOptionsClass = 'combobox__options';
 const comboboxExpanderClass = 'combobox__control';
 const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
@@ -68,7 +69,7 @@ function getTemplateData(state) {
 }
 
 function init() {
-    const optionEls = this.el.querySelectorAll(comboboxOptionSelector);
+    this.optionEls = this.el.querySelectorAll(comboboxOptionSelector);
 
     if (this.state.options && this.state.options.length > 0) {
         this.expander = new Expander(this.el, {
@@ -81,7 +82,7 @@ function init() {
         });
 
         observer.observeRoot(this, ['selected'], (index) => {
-            this.processAfterStateChange(optionEls[index]);
+            this.processAfterStateChange(this.optionEls[index]);
         });
 
         observer.observeRoot(this, ['disabled'], () => {
@@ -92,7 +93,7 @@ function init() {
             this.processAfterStateChange(optionEl);
         };
 
-        this.optionEls = optionEls.forEach((optionEl, i) => {
+        forEach.call(this.optionEls, (optionEl, i) => {
             observer.observeInner(this, optionEl, 'selected', `options[${i}]`, 'options', selectedObserverCallback);
         });
 
@@ -140,7 +141,6 @@ function handleComboboxKeyDown(event) {
     eventUtils.handleUpDownArrowsKeydown(event, () => {
         const currentSelectedIndex = findIndex(this.state.options, option => option.selected);
         const options = clearComboboxSelections(this.state.options);
-        const optionEls = this.el.querySelectorAll(comboboxOptionSelector);
         let selectElementIndex = currentSelectedIndex;
 
         switch (event.charCode || event.keyCode) {
@@ -159,7 +159,7 @@ function handleComboboxKeyDown(event) {
         options[selectElementIndex].selected = true;
 
         this.setState('options', options);
-        this.processAfterStateChange(optionEls[selectElementIndex]);
+        this.processAfterStateChange(this.optionEls[selectElementIndex]);
     });
 
     eventUtils.handleEscapeKeydown(event, () => {

@@ -1,3 +1,5 @@
+const assign = require('core-js-pure/features/object/assign');
+
 const getItem = (text, href = '#') => ({
     href,
     navSrc: '{"actionKind":"NAVSRC","operationId":"2489527"}',
@@ -20,7 +22,7 @@ module.exports = {
         items: basicItems
     },
     buttons: {
-        items: basicItems.map(item => Object.assign({}, item, { href: undefined }))
+        items: basicItems.map(item => assign({}, item, { href: undefined }))
     },
     firstItemMissingHref: {
         a11yHeadingText: 'Page navigation',

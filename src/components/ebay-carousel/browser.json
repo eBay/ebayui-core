@@ -1,7 +1,6 @@
 {
     "dependencies": [
         "require: marko-widgets",
-        "require-run: nodelist-foreach-polyfill",
         "require: ./index.js",
         "../ebay-icon",
         {

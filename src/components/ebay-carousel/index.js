@@ -1,4 +1,5 @@
 const focusables = require('makeup-focusables');
+const assign = require('core-js-pure/features/object/assign');
 const resizeUtil = require('../../common/event-utils').resizeUtil;
 const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
@@ -96,7 +97,7 @@ function getTemplateData(state) {
             item.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
             if (transform) item.style += `transform:${transform}`;
         } else {
-            item.style = Object.assign({}, style, {
+            item.style = assign({}, style, {
                 'width': itemWidth,
                 'margin-right': marginRight,
                 transform
@@ -110,7 +111,7 @@ function getTemplateData(state) {
         );
     });
 
-    const data = Object.assign({}, state, {
+    const data = assign({}, state, {
         items,
         slide,
         offset: hasOverride ? config.offsetOverride : offset,

@@ -10,6 +10,7 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
+const { forEach } = Array.prototype;
 const mainButtonClass = 'expand-btn';
 const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
@@ -171,7 +172,7 @@ function onRender(event) {
 
         // FIXME: should be outside of firstRender, but only if observers haven't been attached yet
         const checkedObserverCallback = itemEl => this.processAfterStateChange([getItemElementIndex(itemEl)]);
-        this.itemEls.forEach((itemEl, i) => {
+        forEach.call(this.itemEls, (itemEl, i) => {
             observer.observeInner(this, itemEl, 'checked', `items[${i}]`, 'items', checkedObserverCallback);
         });
 
@@ -242,15 +243,9 @@ function processAfterStateChange(itemIndexes) {
 /**
  * Handle normal mouse click for item
  * @param {MouseEvent} e
+ * @param {HTMLElement} itemEl
  */
-function handleItemClick(e) {
-    let itemEl = e.target;
-    const parentEl = itemEl.closest('.menu__item, .fake-menu__item');
-
-    if (parentEl) { // nested click inside menu_item
-        itemEl = parentEl;
-    }
-
+function handleItemClick(e, itemEl) {
     this.setCheckedItem(getItemElementIndex(itemEl), true);
 }
 
@@ -285,10 +280,11 @@ function setCheckedItem(itemIndex, toggle) {
  * Handle a11y for item (is not handled by makeup)
  * https://ebay.gitbooks.io/mindpatterns/content/input/menu.html#keyboard
  * @param {KeyboardEvent} e
+ * @param {HTMLElement} itemEl
  */
-function handleItemKeydown(e) {
+function handleItemKeydown(e, itemEl) {
     eventUtils.handleActionKeydown(e, () => {
-        this.handleItemClick(e);
+        this.handleItemClick(e, itemEl);
     });
 
     eventUtils.handleEscapeKeydown(e, () => {
