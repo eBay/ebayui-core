@@ -72,17 +72,13 @@ module.exports = require('marko-widgets').defineComponent({
                 expandedClass: 'combobox--expanded',
                 simulateSpacebarClick: true
             });
-        }
 
-        if (isExpanded && !wasExpanded) {
-            this.expander.expand();
-        }
-
-        if (wasToggled) {
-            if (isExpanded) {
-                this.expander.expand();
-            } else {
-                this.expander.collapse();
+            if (wasToggled) {
+                if (isExpanded) {
+                    this.expander.expand();
+                } else {
+                    this.expander.collapse();
+                }
             }
         }
     },
