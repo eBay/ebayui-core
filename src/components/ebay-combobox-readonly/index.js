@@ -12,9 +12,9 @@ const template = require('./template.marko');
 const { forEach } = Array.prototype;
 const comboboxOptionsClass = 'combobox__options';
 const comboboxExpanderClass = 'combobox__control';
+const comboboxOptionClass = 'combobox__option';
 const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
 const comboboxBtnClass = 'combobox__control';
-const comboboxOptionSelector = '.combobox__option[role=option]';
 const comboboxSelectedOptionSelector = '.combobox__option[role=option][aria-selected=true]';
 
 function getInitialState(input) {
@@ -69,7 +69,7 @@ function getTemplateData(state) {
 }
 
 function init() {
-    this.optionEls = this.el.querySelectorAll(comboboxOptionSelector);
+    this.optionEls = this.el.getElementsByClassName(comboboxOptionClass);
 
     if (this.state.options && this.state.options.length > 0) {
         this.expander = new Expander(this.el, {
