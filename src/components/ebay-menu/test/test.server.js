@@ -145,13 +145,13 @@ describe('menu-label', () => {
     test('renders basic version', context => {
         const input = { label: mock.customLabel };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn__cell.custom_label').length).to.equal(1);
+        expect($('.expand-btn__cell .custom_label').length).to.equal(1);
     });
 
     test('renders basic version without any custom label', context => {
         const input = {};
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn__cell.custom_label').length).to.equal(0);
+        expect($('.expand-btn__cell .custom_label').length).to.equal(0);
     });
 });
 
