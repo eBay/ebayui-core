@@ -237,6 +237,7 @@
         "@size": "string",
         "@priority": "string",
         "@iconTag <icon>": {},
+        "@disabled": "boolean",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
@@ -248,9 +249,15 @@
             "@current": "boolean",
             "@badge-number": "expression",
             "@badge-aria-label": "string"
+        },
+        "@label <label>": {
+            "@*": "expression"
         }
     },
     "<ebay-menu-item>": {
+        "transformer": "./src/common/transformers/attribute-tags/index.js"
+    },
+    "<ebay-menu-label>": {
         "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
     "<ebay-notice>": {

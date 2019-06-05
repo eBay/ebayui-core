@@ -28,6 +28,7 @@ Name | Type | Stateful | Description
 `size` | String | No | button size, "small" or "large" (default: medium)
 `priority` | String | No | button priority, "primary" / "secondary" (default) / "none"
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
+`disabled` | Boolean | Yes | Will disable the entire dropdown (disables the ebay-button label) if set to true
 
 ### ebay-menu Events
 
@@ -45,6 +46,13 @@ Method | Parameters | Description
 --- | --- | ---
 `setCheckedList()` | (Array) | Accepts an array of indexes for items, to set items' checked property. In the case of checkboxes, supplying an empty array will uncheck all checkboxes. In the case of radio, use the root level `checked` property.
 `getCheckedList()` |  | Returns an array of indexes for items with the checked property set to `true`.
+
+## ebay-menu-label Tag
+
+### ebay-menu-label Usage
+```marko
+<ebay-menu-label><div>Custom Label</div></ebay-menu-label>
+```
 
 ## ebay-menu-item Tag
 
