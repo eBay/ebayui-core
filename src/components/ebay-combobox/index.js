@@ -100,21 +100,12 @@ module.exports = require('marko-widgets').defineComponent({
     handleExpand() {
         const index = this.getSelectedIndex(this.state.options, this.state.currentValue);
         elementScroll.scroll(this.getEls('option')[index]);
-        this.moveCursorToEnd();
         emitAndFire(this, 'combobox-expand');
         this.setState('expanded', true);
     },
     handleCollapse() {
         emitAndFire(this, 'combobox-collapse');
         this.setState('expanded', false);
-    },
-    moveCursorToEnd() {
-        const currentInput = this.getEl('input');
-
-        if (currentInput) {
-            const len = currentInput.value.length;
-            currentInput.setSelectionRange(len, len);
-        }
     },
     handleComboboxKeyUp(originalEvent) {
         const optionsEl = this.getEl('options');
@@ -125,7 +116,6 @@ module.exports = require('marko-widgets').defineComponent({
             if (this.expander && !this.expander.isExpanded() && this.getEls('option').length > 0) {
                 this.expander.expand();
             }
-            this.moveCursorToEnd();
         });
 
         eventUtils.handleEnterKeydown(originalEvent, () => {
