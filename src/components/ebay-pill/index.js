@@ -1,3 +1,4 @@
+const assign = require('core-js-pure/features/object/assign');
 const multilineEllipsis = require('../../common/multiline-ellipsis');
 const emitAndFire = require('../../common/emit-and-fire');
 const template = require('./template.marko');
@@ -5,7 +6,7 @@ const template = require('./template.marko');
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState(input) {
-        return Object.assign({}, input, {
+        return assign({}, input, {
             pressed: input.pressed || false
         });
     },
