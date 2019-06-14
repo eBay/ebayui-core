@@ -197,10 +197,12 @@ module.exports = require('marko-widgets').defineComponent({
             (this.state.autocomplete === 'list' && this.state.options.some(option => queryReg.test(option.text)))
             || this.state.autocomplete === 'none';
 
-        if (!showListbox && this.expander) {
-            this.expander.collapse();
-        } else {
-            this.expander.expand();
+        if (this.expander) {
+            if (!showListbox) {
+                this.expander.collapse();
+            } else {
+                this.expander.expand();
+            }
         }
     }
 });
