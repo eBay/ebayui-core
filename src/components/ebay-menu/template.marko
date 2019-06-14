@@ -15,13 +15,19 @@
         aria-expanded=String(data.expanded)
         aria-haspopup="true"
         aria-label=data.a11yText
+        disabled=data.disabled
         w-on-button-escape="handleButtonEscape">
-        <span class="expand-btn__cell">
-            <!-- Convoluted markup to satisfy both Skin and Marko -->
-            <div if(data.icon) w-preserve-body class="btn__icon">
-                <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
-            </div>
-            <span if(data.text)>${data.text}</span>
+        <span class=['expand-btn__cell', (data.customLabel && 'menu__control--custom-label')]>
+            <span if(data.customLabel) w-preserve-body>
+                <span w-body=data.customLabel.renderBody body-only-if(true)/>
+            </span>
+            <else>
+                <!-- Convoluted markup to satisfy both Skin and Marko -->
+                <div if(data.icon) w-preserve-body class="btn__icon">
+                    <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
+                </div>
+                <span if(data.text)>${data.text}</span>
+            </else>
             <ebay-icon if(!data.noToggleIcon) type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
         </span>
     </ebay-button>

@@ -51,7 +51,7 @@
         w-onfocus="handleFocus"
         w-onblur="handleBlur"
         ${processHtmlAttributes(data)}>
-        <if(data.multiline)>
+        <if(data.multiline && data.value)>
             ${data.value}
         </if>
     </>

@@ -95,7 +95,9 @@ function getInitialState(input) {
         priority: input.priority,
         expanded: false,
         items,
-        checked: checkedItems
+        checked: checkedItems,
+        customLabel: input.label,
+        disabled: input.disabled || false
     };
 }
 
@@ -143,7 +145,9 @@ function getTemplateData(state) {
         buttonClass: state.borderless && 'expand-btn--borderless',
         itemsClass,
         role: !state.isFake ? 'menu' : null,
-        items: state.items
+        items: state.items,
+        customLabel: state.customLabel,
+        disabled: state.disabled
     };
 }
 
