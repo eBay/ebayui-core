@@ -1023,7 +1023,7 @@ babel-code-frame@^6.26.0:
     esutils "^2.0.2"
     js-tokens "^3.0.2"
 
-babel-core@^6.26.0, babel-core@^6.26.3:
+babel-core@^6.0.14, babel-core@^6.26.0, babel-core@^6.26.3:
   version "6.26.3"
   resolved "https://registry.npmjs.org/babel-core/-/babel-core-6.26.3.tgz#b2e2f09e342d0f0c88e2f02e067794125e75c207"
   dependencies:
@@ -5368,11 +5368,12 @@ labeled-stream-splicer@^2.0.0:
     isarray "^2.0.4"
     stream-splicer "^2.0.0"
 
-lasso-babel-transform@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/lasso-babel-transform/-/lasso-babel-transform-3.0.0.tgz#8d3b4c45a04cb7e0f1ebf6e2a56eb71a0e95c288"
-  integrity sha512-+NsJoo+KN880WE2yalL2zYOPXSISL/afRuLOWDidk4sui5uUwqGXwy9CchvwMbA3aMcKE2Jx6WgQ3TvYMzxelg==
+lasso-babel-transform@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/lasso-babel-transform/-/lasso-babel-transform-1.0.2.tgz#065564195c8ff410bde658134e55dd356266ad21"
+  integrity sha512-8AUeZ22LC5onZ6lanBRrdJKYq2D8EVtUoEm3UfMV/lNHD/8NUQEITZ+uRgTMxmSmAV0y68j06hsEUe4lf0tVVQ==
   dependencies:
+    babel-core "^6.0.14"
     lasso-caching-fs "^1.0.1"
     lasso-package-root "^1.0.0"
     strip-json-comments "^2.0.1"
