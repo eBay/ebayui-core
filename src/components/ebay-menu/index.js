@@ -250,7 +250,12 @@ function processAfterStateChange(itemIndexes) {
  * @param {HTMLElement} itemEl
  */
 function handleItemClick(e, itemEl) {
-    this.setCheckedItem(getItemElementIndex(itemEl), true);
+    const itemElIndex = getItemElementIndex(itemEl);
+    if (this.getCheckedList().indexOf(itemElIndex) === -1) {
+        this.setCheckedItem(itemElIndex, true);
+    } else if (this.state.isCheckbox) {
+        this.setCheckedItem(itemElIndex, true);
+    }
 }
 
 /**
