@@ -47,7 +47,7 @@ module.exports = require('marko-widgets').defineComponent({
         const isExpanded = this.expanded = this.state.expanded;
         const wasToggled = isExpanded !== wasExpanded;
 
-        if (!this.state.disabled && this.state.options.length) {
+        if (!this.state.disabled && this.state.options.length > 0) {
             const selectedIndex = this.getSelectedIndex(this.state.options, this.state.currentValue);
 
             const autoInit = (selectedIndex === -1 || this.state.autocomplete === 'none') ? -1 : 0;
@@ -149,7 +149,9 @@ module.exports = require('marko-widgets').defineComponent({
             this.setState('currentValue', newValue);
             this.setSelectedIndex();
             this.emitChangeEvent();
-            this.toggleListbox();
+            if (this.expander) {
+                this.toggleListbox();
+            }
         });
     },
     handleComboboxBlur(evt) {
@@ -160,9 +162,10 @@ module.exports = require('marko-widgets').defineComponent({
         }
 
         if (this.expander && this.expander.isExpanded() && !wasClickedOption) {
-            this.emitChangeEvent('change');
             this.expander.collapse();
         }
+
+        this.emitChangeEvent('change');
     },
     handleOptionClick(evt) {
         const selectedEl = evt.target.nodeName === 'DIV' ? evt.target : evt.target.parentNode;
@@ -195,10 +198,12 @@ module.exports = require('marko-widgets').defineComponent({
             (this.state.autocomplete === 'list' && this.state.options.some(option => queryReg.test(option.text)))
             || this.state.autocomplete === 'none';
 
-        if (!showListbox) {
-            this.expander.collapse();
-        } else {
-            this.expander.expand();
+        if (this.expander) {
+            if (!showListbox) {
+                this.expander.collapse();
+            } else {
+                this.expander.expand();
+            }
         }
     }
 });
