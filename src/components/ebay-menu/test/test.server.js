@@ -125,8 +125,34 @@ describe('menu', () => {
         expect($('svg.expand-btn__icon').length).to.equal(0);
     });
 
+    test('renders with disabled state', context => {
+        const input = { disabled: true };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.expand-btn[disabled]').length).to.equal(1);
+    });
+
+    test('renders with no disabled state', context => {
+        const input = {};
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.expand-btn[disabled]').length).to.equal(0);
+    });
+
     test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.menu'));
     test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.menu'));
+});
+
+describe('menu-label', () => {
+    test('renders basic version', context => {
+        const input = { label: mock.customLabel };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.expand-btn__cell .custom_label').length).to.equal(1);
+    });
+
+    test('renders basic version without any custom label', context => {
+        const input = {};
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.expand-btn__cell .custom_label').length).to.equal(0);
+    });
 });
 
 describe('menu-item', () => {
