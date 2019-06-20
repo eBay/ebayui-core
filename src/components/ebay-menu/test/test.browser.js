@@ -188,25 +188,6 @@ describe('given the menu is in the expanded state', () => {
         });
     });
 
-    // these two tests are failing on CI.
-    // they are now temporarily disabled in order to unblock v2.3.0-0 prerelease.
-    /*
-    describe('when \'b\' key is pressed on first item', () => {
-        beforeEach((done) => {
-            testUtils.triggerEvent(firstItem, 'keypress', 66, 'b');
-            setTimeout(done);
-        });
-
-        test('then first item loses roving tabindex', () => {
-            expect(firstItem.getAttribute('tabindex')).to.equal('-1');
-        });
-
-        test('then second item gains roving tabindex', () => {
-            expect(secondItem.getAttribute('tabindex')).to.equal('0');
-        });
-    });
-    */
-
     describe('when the escape key is pressed from an item', () => {
         let spy;
         beforeEach((done) => {
@@ -392,6 +373,28 @@ describe('given the menu is in the expanded state with radio items', () => {
         test('then it only selects the second item', () => {
             expect(firstItem.getAttribute('aria-checked')).to.equal('false');
             expect(secondItem.getAttribute('aria-checked')).to.equal('true');
+        });
+    });
+
+    describe('when an already checked item is clicked', () => {
+        let spy;
+        beforeEach((done) => {
+            spy = sinon.spy();
+            widget.on('menu-change', spy);
+            testUtils.triggerEvent(firstItem, 'click');
+            testUtils.triggerEvent(firstItem, 'click');
+            setTimeout(done);
+        });
+
+        test('then it emits the menu-change events with correct data', () => {
+            const firstEventData = spy.getCall(0).args[0];
+            expect(spy.calledOnce).to.equal(true);
+            expect(firstEventData.index).to.equal(0);
+            expect(firstEventData.checked).to.deep.equal([0]);
+        });
+
+        test('then it selects the first item', () => {
+            expect(firstItem.getAttribute('aria-checked')).to.equal('true');
         });
     });
 
