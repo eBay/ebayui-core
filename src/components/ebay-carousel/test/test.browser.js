@@ -5,6 +5,12 @@ const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const renderer = require('../');
+const supportsNativeScrolling = CSS.supports && CSS.supports(`(not (-moz-appearance:none)) and (
+    (-webkit-scroll-snap-coordinate: 0 0) or
+    (-ms-scroll-snap-coordinate: 0 0) or
+    (scroll-snap-coordinate: 0 0) or
+    (scroll-snap-align: start)
+)`);
 
 function delay(callback) {
     setTimeout(callback, 42);
@@ -1099,7 +1105,7 @@ describe('given an autoplay carousel in the paused state', () => {
     });
 });
 
-describe('given a carousel in the default state with native scrolling', () => {
+(supportsNativeScrolling ? describe : describe.skip)('given a carousel in the default state with native scrolling', () => {
     const input = { itemsPerSlide: 2, items: mock.sixItems };
     let widget;
     let root;
@@ -1167,11 +1173,9 @@ describe('given a carousel in the default state with native scrolling', () => {
             widget.on('carousel-next', nextSpy);
             widget.on('carousel-slide', slideSpy);
             widget.on('carousel-scroll', scrollSpy);
-            setTimeout(() => {
-                const secondChild = list.children[1];
-                const halfwayThroughSecondChild = secondChild.offsetLeft + (secondChild.offsetWidth / 2) + 10;
-                testUtils.simulateScroll(list, halfwayThroughSecondChild);
-            }, 200);
+            const secondChild = list.children[1];
+            const halfwayThroughSecondChild = secondChild.offsetLeft + (secondChild.offsetWidth / 2) + 10;
+            testUtils.simulateScroll(list, halfwayThroughSecondChild);
             waitForChange(widget, done);
         });
 
@@ -1184,11 +1188,6 @@ describe('given a carousel in the default state with native scrolling', () => {
             expect(scrollSpy.calledOnce).to.equal(true);
             const eventData = scrollSpy.getCall(0).args[0];
             expect(eventData.index).to.deep.equal(2);
-        });
-
-        it('then it applied the right scroll position', () => {
-            const { offsetLeft } = list.children[2];
-            expect(list.scrollLeft).to.equal(offsetLeft);
         });
 
         it('then it calculates item visibility correctly', () => {

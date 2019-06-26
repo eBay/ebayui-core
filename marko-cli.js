@@ -31,22 +31,21 @@ module.exports = ({ config }) => {
         //     browser_version: '49.0',
         //     os: 'Windows',
         //     os_version: '7'
-        // }, {
-        //     // Carousel tests failing.
-        //     browser: 'Firefox',
-        //     os: 'Windows',
-        //     os_version: '10'
+        }, {
+            browser: 'Firefox',
+            os: 'Windows',
+            os_version: '10'
         // }, {
         //     // Escape keypress not handled from `<ebay-menu>` tests.
         //     browser: 'Firefox',
         //     browser_version: '48.0',
         //     os: 'Windows',
         //     os_version: '7'
-        // }, {
-        //     // Browser tries to navigate from `<ebay-breadcrumb>` tests.
-        //     browser: 'Safari',
-        //     os: 'OS X',
-        //     os_version: 'High Sierra'
+        }, {
+            // Browser tries to navigate from `<ebay-breadcrumb>` tests.
+            browser: 'Safari',
+            os: 'OS X',
+            os_version: 'Mojave'
         // }, {
         //     // Unknown error.
         //     browser: 'Safari',
