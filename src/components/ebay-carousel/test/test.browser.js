@@ -5,12 +5,13 @@ const expect = require('chai').expect;
 const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const renderer = require('../');
-const supportsNativeScrolling = CSS.supports && CSS.supports(`(not (-moz-appearance:none)) and (
+const supportsNativeScrolling = CSS.supports && CSS.supports(
+    `(not (-moz-appearance:none)) and (
     (-webkit-scroll-snap-coordinate: 0 0) or
     (-ms-scroll-snap-coordinate: 0 0) or
     (scroll-snap-coordinate: 0 0) or
-    (scroll-snap-align: start)
-)`);
+    (scroll-snap-align: start))`
+);
 
 function delay(callback) {
     setTimeout(callback, 42);
@@ -1105,7 +1106,10 @@ describe('given an autoplay carousel in the paused state', () => {
     });
 });
 
-(supportsNativeScrolling ? describe : describe.skip)('given a carousel in the default state with native scrolling', () => {
+(supportsNativeScrolling
+    ? describe
+    : describe.skip
+)('given a carousel in the default state with native scrolling', () => {
     const input = { itemsPerSlide: 2, items: mock.sixItems };
     let widget;
     let root;

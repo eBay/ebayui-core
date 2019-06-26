@@ -237,7 +237,7 @@ describe('given the menu is in the expanded state with radio items', () => {
             expanded: true,
             type: 'radio',
             items: mock.twoItems }).appendTo(document.body).getWidget();
-        [firstItem, secondItem] = document.querySelectorAll('.menu__item');
+        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu__item'));
         firstItemInner = firstItem.querySelector('span');
         root = document.querySelector('span.menu');
         root.expanded = true;
@@ -436,7 +436,7 @@ describe('given the menu is in the expanded state with checkbox items', () => {
             expanded: true,
             type: 'checkbox',
             items: mock.twoItems }).appendTo(document.body).getWidget();
-        [firstItem, secondItem] = document.querySelectorAll('.menu__item');
+        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu__item'));
         root = document.querySelector('span.menu');
         root.expanded = true;
         setTimeout(done);
