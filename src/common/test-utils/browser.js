@@ -32,7 +32,7 @@ function testOriginalEvent(spy) {
  */
 function simulateScroll(el, to, cb) {
     triggerEvent(el, 'scroll', undefined, false);
-    el.scrollTo({ left: to });
+    el.scrollLeft = to;
     setTimeout(cb, 600);
 }
 
