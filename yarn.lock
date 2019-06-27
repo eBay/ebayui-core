@@ -386,10 +386,10 @@
     redent "^2.0.0"
     resolve-from "^4.0.0"
 
-"@marko/test@^6.0.2":
-  version "6.0.2"
-  resolved "https://registry.npmjs.org/@marko/test/-/test-6.0.2.tgz#15d69f49fdce4032b51375f4092b567dde0f36e1"
-  integrity sha512-9KEFobrh/B1kcCABxpinNX6myIB0T2gPCazefV4ChYW9+MEyZP0BvkrrhWYpwdqYM73hc/P5dBMjvjpQP31Y3g==
+"@marko/test@^6.0.4":
+  version "6.0.4"
+  resolved "https://registry.npmjs.org/@marko/test/-/test-6.0.4.tgz#32fe69e4920cbba6f9e7a3f4d3ea3882de99c481"
+  integrity sha512-bZawhXOrVgDn79a4aTQDBgjPlR0MGOV9e2zb6tFhjf1GqBcKnr3M9H5wDZCw/FerZ3qzYdnXVydR6MqdAPmcfQ==
   dependencies:
     "@lasso/marko-taglib" "^1.0.13"
     "@wdio/cli" "^5.8.4"
@@ -6037,17 +6037,17 @@ markdown-table@^1.1.0:
   version "1.1.2"
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-1.1.2.tgz#c78db948fa879903a41bce522e3b96f801c63786"
 
-marko-cli@^7.0.2:
-  version "7.0.2"
-  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-7.0.2.tgz#4b04cb411a9b011a19be81f9d45cd006871a8972"
-  integrity sha512-bbsbaBMWTuYIexEL7pTJ7etbynrb4ooxBQKnoanRK0N6jqJ1K43uj3e5ovKtq1Eq7vI+RJE5wZ5lrKATFQH3Dg==
+marko-cli@^7.0.4:
+  version "7.0.4"
+  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-7.0.4.tgz#524f57f53fa698c28e0b1f5a1cef0e7219409cc1"
+  integrity sha512-zCM58UeQunqqEdKgXOBDXZgpz0utv1aTzSNH1uxM7yt5lVZZTGggDPjvALLEMNaFiMAlPW0WYSdRNG/njxChRg==
   dependencies:
     "@babel/runtime" "^7.2.0"
     "@marko/compile" "^4.0.0"
     "@marko/create" "^4.0.0"
     "@marko/migrate" "^5.0.5"
     "@marko/prettyprint" "^2.0.5"
-    "@marko/test" "^6.0.2"
+    "@marko/test" "^6.0.4"
     app-root-dir "^1.0.2"
     argly "^1.2.0"
     complain "^1.3.0"
