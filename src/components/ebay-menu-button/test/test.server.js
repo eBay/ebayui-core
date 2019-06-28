@@ -198,7 +198,7 @@ describe('transformer', () => {
     const componentPath = '../index.js';
 
     test('transforms an icon attribute into a tag', () => {
-        const tagString = '<ebay-menu icon="settings"/>';
+        const tagString = '<ebay-menu-button icon="settings"/>';
         const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
         expect(iconEl.tagName).to.equal('ebay-menu:icon');
