@@ -6,7 +6,7 @@ const observer = require('../../common/property-observer');
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
     getInitialProps(input) {
-        const optGroups = [];
+        const optGroups = {};
         if (input.options) {
             input.options.forEach(option => {
                 if (option.optgroup && optGroups.hasOwnProperty(option.optgroup)) {
