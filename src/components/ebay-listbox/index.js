@@ -40,7 +40,7 @@ module.exports = require('marko-widgets').defineComponent({
             autoCollapse: true,
             expandOnClick: !this.state.disabled,
             contentSelector: `#${optionsContainer.id}`,
-            hostSelector: `#${this.getEl('button').id}`,
+            hostSelector: '.listbox__control',
             expandedClass: 'listbox--expanded',
             focusManagement: 'content',
             simulateSpacebarClick: true
