@@ -1,3 +1,4 @@
+const assign = require('core-js-pure/features/object/assign');
 
 /**
  * Convert camelCase to kebab-case
@@ -18,7 +19,7 @@ function processHtmlAttributes(input = {}) {
 
     let obj = htmlAttributes || wildcardAttributes;
     if (htmlAttributes && wildcardAttributes) {
-        obj = Object.assign(wildcardAttributes, htmlAttributes);
+        obj = assign(wildcardAttributes, htmlAttributes);
     }
 
     if (obj) {

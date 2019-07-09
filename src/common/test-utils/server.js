@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const expect = require('chai').expect;
+const assign = require('core-js-pure/features/object/assign');
 const prettyPrint = require('marko-prettyprint').prettyPrintAST;
 const markoCompiler = require('marko/compiler');
 let CompileContext;
@@ -32,10 +33,10 @@ function getCheerio(output) {
  * @param {String} parentInput: use to modify base input of parent, rather than that of arrayKey
  */
 function setupInput(input, arrayKey, baseInput, parentInput = {}) {
-    let newInput = baseInput ? Object.assign(baseInput, input) : input;
+    let newInput = baseInput ? assign(baseInput, input) : input;
 
     if (arrayKey) {
-        newInput = Object.assign(parentInput, { [arrayKey]: [newInput] });
+        newInput = assign(parentInput, { [arrayKey]: [newInput] });
     }
 
     return newInput;

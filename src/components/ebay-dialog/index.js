@@ -1,3 +1,4 @@
+const assign = require('core-js-pure/features/object/assign');
 const keyboardTrap = require('makeup-keyboard-trap');
 const screenReaderTrap = require('makeup-screenreader-trap');
 const bodyScroll = require('../../common/body-scroll');
@@ -8,7 +9,7 @@ const transition = require('../../common/transition');
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
     getInitialState(input) {
-        return Object.assign({}, input, {
+        return assign({}, input, {
             open: input.open || false
         });
     },
