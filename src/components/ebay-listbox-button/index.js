@@ -4,8 +4,6 @@ const findIndex = require('core-js-pure/features/array/find-index');
 const ActiveDescendant = require('makeup-active-descendant');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
-const emitAndFire = require('../../common/emit-and-fire');
-const observer = require('../../common/property-observer');
 
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
@@ -50,35 +48,18 @@ module.exports = require('marko-widgets').defineComponent({
             .subscribeTo(this.el)
             .on('activeDescendantChange', this.handleListboxChange.bind(this));
 
-        observer.observeRoot(this, ['selected'], (index) => {
-            this.setSelectedIndex(index);
-        });
-
-        observer.observeRoot(this, ['disabled'], () => {
-            this.expander.expandOnClick = !this.state.disabled;
-        });
-
-        this.getEls('option').forEach((optionEl, i) => {
-            Object.defineProperty(optionEl, 'selected', {
-                get: () => this.state.selectedIndex === i,
-                set: (value) => this.setSelectedIndex(value ? i : 0)
-            });
-        });
-
         scrollKeyPreventer.add(this.getEl('button'));
         scrollKeyPreventer.add(this.getEl('options'));
     },
     handleExpand() {
         elementScroll.scroll(this.getEls('option')[this.state.selectedIndex]);
-        emitAndFire(this, 'listbox-expand');
+        this.emit('listbox-expand');
     },
     handleCollapse() {
-        emitAndFire(this, 'listbox-collapse');
+        this.emit('listbox-collapse');
     },
     handleListboxChange(event) {
-        this.setSelectedIndex(parseInt(event.detail.toIndex, 10));
-    },
-    setSelectedIndex(selectedIndex) {
+        const selectedIndex = parseInt(event.detail.toIndex, 10);
         const el = this.getEls('option')[selectedIndex];
         const option = this.state.options[selectedIndex];
 
@@ -86,7 +67,7 @@ module.exports = require('marko-widgets').defineComponent({
         this.setState('selectedIndex', selectedIndex);
 
         // TODO: we should not cast the selected value to a string here, but this is a breaking change.
-        emitAndFire(this, 'listbox-change', {
+        this.emit('listbox-change', {
             index: selectedIndex,
             selected: [String(option.value)],
             el

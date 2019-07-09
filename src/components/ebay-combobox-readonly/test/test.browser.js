@@ -8,7 +8,6 @@ describe('given the combobox is in the default state', () => {
     let widget;
     let root;
     let ariaControl;
-    let secondOption;
     let nativeSelect;
 
     beforeEach(() => {
@@ -16,7 +15,6 @@ describe('given the combobox is in the default state', () => {
         widget = renderedWidget.appendTo(document.body).getWidget();
         root = document.querySelector('.combobox');
         ariaControl = root.querySelector('input');
-        secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
         nativeSelect = root.querySelector('.combobox__native');
     });
 
@@ -74,26 +72,6 @@ describe('given the combobox is in the default state', () => {
             expect(eventData.selected).to.deep.equal(['1']);
             const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
             expect(nativeOption).to.equal('1');
-        });
-    });
-
-    describe('when the option is set programmatically', () => {
-        let spy;
-
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('combobox-change', spy);
-            secondOption.selected = true;
-            setTimeout(done);
-        });
-
-        test('then it emits the combobox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
-            expect(nativeOption).to.equal('2');
         });
     });
 
@@ -263,26 +241,6 @@ describe('given the combobox is in an disabled state', () => {
 
         test('then it does not emit the event from expander-expand', () => {
             expect(spy.calledOnce).to.equal(false);
-        });
-    });
-
-    describe('when the disabled state is changed programmatically', () => {
-        beforeEach((done) => {
-            root.disabled = false;
-            setTimeout(done);
-        });
-
-        describe('when the button is clicked once', () => {
-            let spy;
-            beforeEach(() => {
-                spy = sinon.spy();
-                widget.on('combobox-expand', spy);
-                testUtils.triggerEvent(ariaControl, 'click');
-            });
-
-            test('then it emits the event from expander-expand', () => {
-                expect(spy.calledOnce).to.equal(true);
-            });
         });
     });
 });
