@@ -11,8 +11,8 @@
 <var isCtaVariant=(variant === 'cta')/>
 <var isBadged=Boolean(data.badgeNumber && isIconVariant)/>
 <var noText=(isIconVariant || isBadged || (isExpandVariant && data.noText))/>
-<var baseClass=(variant ? "${variant}-btn" : "btn")/>
-<var sizeClass="${baseClass}--${size}"/>
+<var baseClass=(variant ? `${variant}-btn` : "btn")/>
+<var sizeClass=`${baseClass}--${size}`/>
 <var htmlAttributes=processHtmlAttributes(data)/>
 <var tag=(data.href ? "a" : "button")/>
 
