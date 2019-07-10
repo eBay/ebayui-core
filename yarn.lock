@@ -3221,6 +3221,11 @@ ccount@^1.0.0:
   version "1.0.3"
   resolved "https://registry.npmjs.org/ccount/-/ccount-1.0.3.tgz#f1cec43f332e2ea5a569fd46f9f5bde4e6102aff"
 
+chai-dom@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.npmjs.org/chai-dom/-/chai-dom-1.8.1.tgz#ce7978ac93d623314742aeb6ada86c9e4d8736de"
+  integrity sha512-ysWinPU3fc+Bp+xMn/u2/PQyk65jnnCZl0alWupUuFFMGaG+KxrUnsoYOgjMDhSKPkm3WqE/5RTnOowIb7asMg==
+
 chai@^3.5.0:
   version "3.5.0"
   resolved "https://registry.npmjs.org/chai/-/chai-3.5.0.tgz#4d02637b067fe958bdbfdd3a40ec56fef7373247"
@@ -12073,6 +12078,11 @@ simple-sha1@^2.1.0:
   resolved "https://registry.npmjs.org/simple-sha1/-/simple-sha1-2.1.1.tgz#93f3b7f2e8dfdc056c32793e5d47b58d311b140d"
   dependencies:
     rusha "^0.8.1"
+
+sinon-chai@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.npmjs.org/sinon-chai/-/sinon-chai-3.3.0.tgz#8084ff99451064910fbe2c2cb8ab540c00b740ea"
+  integrity sha512-r2JhDY7gbbmh5z3Q62pNbrjxZdOAjpsqW/8yxAZRSqLZqowmfGZPGUZPFf3UX36NLis0cv8VEM5IJh9HgkSOAA==
 
 sinon@^1.17.6:
   version "1.17.7"
