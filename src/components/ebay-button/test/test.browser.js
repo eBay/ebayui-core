@@ -1,83 +1,66 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const template = require('..');
+use(require('chai-dom'));
+afterEach(cleanup);
 
-let widget;
-
-function renderAndGetRoot(input) {
-    widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-    return document.querySelector('.btn');
-}
-
-// TODO: spy on lasso-ed emitAndFire?
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
 describe('given button is enabled', () => {
-    let root;
-    beforeEach(() => {
-        root = renderAndGetRoot();
+    beforeEach(async() => {
+        component = await render(template);
     });
-    afterEach(() => widget.destroy());
 
     describe('when button is clicked', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-click', spy);
-            testUtils.triggerEvent(root, 'click');
+            fireEvent.click(component.getByRole('button'));
         });
 
         test('then it emits the event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            testUtils.testOriginalEvent(spy);
+            expect(component.emitted('button-click')).has.length(1);
         });
     });
 
     describe('when escape key is pressed', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-escape', spy);
-            testUtils.triggerEvent(root, 'keydown', 27);
+            fireEvent.keyDown(component.getByRole('button'), {
+                key: 'Escape',
+                charCode: 27
+            });
         });
 
         test('then it emits the event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            testUtils.testOriginalEvent(spy);
+            expect(component.emitted('button-escape')).has.length(1);
         });
     });
 });
 
 describe('given button is disabled', () => {
-    let root;
-    beforeEach(() => {
-        root = renderAndGetRoot({ disabled: true });
+    beforeEach(async() => {
+        component = await render(template, { disabled: true });
     });
-    afterEach(() => widget.destroy());
 
     describe('when button is clicked', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-click', spy);
-            testUtils.triggerEvent(root, 'click');
+            fireEvent.click(component.getByRole('button'));
         });
 
-        test('then it doesn\'t emit the event', () => {
-            expect(spy.called).to.equal(false);
+        test('then it does not emit the event', () => {
+            expect(component.emitted('button-click')).has.length(0);
         });
     });
 
     describe('when escape key is pressed', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-escape', spy);
-            testUtils.triggerEvent(root, 'keydown', 27);
+            fireEvent.keyDown(component.getByRole('button'), {
+                key: 'Escape',
+                charCode: 27
+            });
         });
 
-        test('then it doesn\'t emit the event', () => {
-            expect(spy.called).to.equal(false);
+        test('then it does not emit the event', () => {
+            expect(component.emitted('button-escape')).has.length(0);
         });
     });
 });

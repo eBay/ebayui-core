@@ -62,6 +62,7 @@
     "@ebay/skin": "7.4.6",
     "@lasso/marko-taglib": "^1.0.15",
     "async": "^3.0.1",
+    "@marko/testing-library": "1.1.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "browser-refresh": "^1.7.2",
