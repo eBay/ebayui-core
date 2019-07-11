@@ -1,0 +1,15 @@
+<var i=0/>
+<ebay-menu-button text="eBay Radio Menu" type="radio">
+    <ebay-menu-button-item for(idx from 1 to 100) checked=(idx === 24)>
+        <% i++ %>
+        item ${i}
+    </ebay-menu-button-item>
+</ebay-menu-button>
+
+<var j=0/>
+<ebay-menu-button text="eBay Checkbox Menu" type="checkbox" style="margin-left: 8px;">
+    <ebay-menu-button-item for(idx from 1 to 100) checked=(idx === 24 || idx === 49)>
+        <% j++ %>
+        item ${j}
+    </ebay-menu-button-item>
+</ebay-menu-button>
