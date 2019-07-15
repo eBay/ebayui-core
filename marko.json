@@ -341,7 +341,8 @@
             "@style": "string",
             "@value": "string",
             "@text": "string",
-            "@selected": "boolean"
+            "@selected": "boolean",
+            "@optgroup": "string"
         }
     },
     "<ebay-select-option>": {

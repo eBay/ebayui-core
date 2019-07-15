@@ -22,6 +22,10 @@ function transform(el, context) {
         const iconPath = path.join(__dirname, 'symbols', iconName);
         const ds4Path = path.join(iconPath, 'ds4.marko');
         const ds6Path = path.join(iconPath, 'ds6.marko');
+        if (!el.hasAttribute('w-id')) {
+            // can be removed in Marko 4
+            el.setAttributeValue('w-id', builder.literal(`use_icon_${iconName}`));
+        }
         el.setAttributeValue('_themes', context.addStaticVar(`icon_${iconName}`, builder.arrayExpression([
             toRequire(ds4Path),
             toRequire(ds6Path)

@@ -1,5 +1,6 @@
 const Expander = require('makeup-expander');
-const findIndex = require('core-js/library/fn/array/find-index');
+const assign = require('core-js-pure/features/object/assign');
+const findIndex = require('core-js-pure/features/array/find-index');
 const ActiveDescendant = require('makeup-active-descendant');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
@@ -9,14 +10,14 @@ const observer = require('../../common/property-observer');
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
     getInitialProps(input) {
-        return Object.assign({
+        return assign({
             options: []
         }, input);
     },
     getInitialState(input) {
         const index = findIndex(input.options, option => option.selected);
 
-        return Object.assign({}, input, {
+        return assign({}, input, {
             selectedIndex: index === -1 ? 0 : index
         });
     },
@@ -39,7 +40,7 @@ module.exports = require('marko-widgets').defineComponent({
             autoCollapse: true,
             expandOnClick: !this.state.disabled,
             contentSelector: `#${optionsContainer.id}`,
-            hostSelector: `#${this.getEl('button').id}`,
+            hostSelector: '.listbox__control',
             expandedClass: 'listbox--expanded',
             focusManagement: 'content',
             simulateSpacebarClick: true

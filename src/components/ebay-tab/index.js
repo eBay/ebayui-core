@@ -1,3 +1,4 @@
+const assign = require('core-js-pure/features/object/assign');
 const rovingTabindex = require('makeup-roving-tabindex');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
@@ -6,14 +7,14 @@ const observer = require('../../common/property-observer');
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
     getInitialProps(input) {
-        return Object.assign({
+        return assign({
             activation: 'auto',
             headings: [],
             panels: []
         }, input);
     },
     getInitialState(input) {
-        return Object.assign({}, input, {
+        return assign({}, input, {
             index: (parseInt(input.index, 10) || 0) % (input.headings.length || 1)
         });
     },

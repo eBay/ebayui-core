@@ -10,6 +10,7 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
+const { forEach } = Array.prototype;
 const mainButtonClass = 'expand-btn';
 const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
@@ -175,7 +176,7 @@ function onRender(event) {
 
         // FIXME: should be outside of firstRender, but only if observers haven't been attached yet
         const checkedObserverCallback = itemEl => this.processAfterStateChange([getItemElementIndex(itemEl)]);
-        this.itemEls.forEach((itemEl, i) => {
+        forEach.call(this.itemEls, (itemEl, i) => {
             observer.observeInner(this, itemEl, 'checked', `items[${i}]`, 'items', checkedObserverCallback);
         });
 
@@ -194,11 +195,6 @@ function onRender(event) {
     }
 }
 
-/**
- * Internal marko function, can be triggered from both makeup and API
- * http://v3.markojs.com/docs/marko-widgets/javascript-api/#setstatedirtyname-value
- * @param {Boolean} expanded
- */
 function update_expanded(expanded) { // eslint-disable-line camelcase
     if ((expanded && this.buttonEl.getAttribute('aria-expanded') === 'false') ||
         (!expanded && this.buttonEl.getAttribute('aria-expanded') === 'true')) {
@@ -206,10 +202,6 @@ function update_expanded(expanded) { // eslint-disable-line camelcase
     }
 }
 
-/**
- * Common processing after data change via both UI and API
- * @param {Array} itemIndexes
- */
 function processAfterStateChange(itemIndexes) {
     const itemIndex = itemIndexes[(itemIndexes.length - 1)];
     const itemEl = this.itemEls[itemIndex];
@@ -243,26 +235,15 @@ function processAfterStateChange(itemIndexes) {
     }
 }
 
-/**
- * Handle normal mouse click for item
- * @param {MouseEvent} e
- */
-function handleItemClick(e) {
-    let itemEl = e.target;
-    const parentEl = itemEl.closest('.menu__item, .fake-menu__item');
-
-    if (parentEl) { // nested click inside menu_item
-        itemEl = parentEl;
+function handleItemClick(e, itemEl) {
+    const itemElIndex = getItemElementIndex(itemEl);
+    if (this.getCheckedList().indexOf(itemElIndex) === -1) {
+        this.setCheckedItem(itemElIndex, true);
+    } else if (this.state.isCheckbox) {
+        this.setCheckedItem(itemElIndex, true);
     }
-
-    this.setCheckedItem(getItemElementIndex(itemEl), true);
 }
 
-/**
- * Set the checked item based on the index
- * @param {Integer} itemIndex
- * @param {Boolean} toggle
- */
 function setCheckedItem(itemIndex, toggle) {
     const item = this.state.items[itemIndex];
 
@@ -288,11 +269,10 @@ function setCheckedItem(itemIndex, toggle) {
 /**
  * Handle a11y for item (is not handled by makeup)
  * https://ebay.gitbooks.io/mindpatterns/content/input/menu.html#keyboard
- * @param {KeyboardEvent} e
  */
-function handleItemKeydown(e) {
+function handleItemKeydown(e, itemEl) {
     eventUtils.handleActionKeydown(e, () => {
-        this.handleItemClick(e);
+        this.handleItemClick(e, itemEl);
     });
 
     eventUtils.handleEscapeKeydown(e, () => {
@@ -305,7 +285,6 @@ function handleItemKeydown(e) {
  * For any key that corresponds to a printable character, move focus to
  * the first menu item whose label begins with that character.
  * https://www.w3.org/TR/wai-aria-practices-1.1/#menu
- * @param {KeyboardEvent} e
  */
 function handleItemKeypress(e) {
     const itemIndex = NodeListUtils.findNodeWithFirstChar(this.itemEls, e.key);
@@ -332,10 +311,6 @@ function handleCollapse() {
     scrollKeyPreventer.remove(this.contentEl);
 }
 
-/**
- * Determine currently checked items (for checkbox case)
- * @returns {Array} checked indexes
- */
 function getCheckedList() {
     const checked = [];
     this.state.items.forEach((item, i) => {
@@ -350,10 +325,6 @@ function getItemElementIndex(itemEl) {
     return Array.prototype.slice.call(itemEl.parentNode.children).indexOf(itemEl);
 }
 
-/**
- * Set the list of options by their index
- * @param {Array} indexArray
- */
 function setCheckedList(indexArray) {
     if (indexArray) {
         this.state.items.forEach((item) => {
