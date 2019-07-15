@@ -65,7 +65,7 @@ describe('given the combobox is in the default state', () => {
                 });
 
                 test('then it should correctly set aria for the listbox', () => {
-                    expect(firstOption.getAttribute('aria-selected')).to.equal('true');
+                    expect(firstOption.classList.contains('combobox__option--active')).to.equal(true);
                 });
 
                 describe('when the enter key is pressed', () => {
@@ -95,7 +95,8 @@ describe('given the combobox is in the default state', () => {
                     });
 
                     test('then it should correctly set aria for the listbox', () => {
-                        expect(secondOption.getAttribute('aria-selected')).to.equal('true');
+                        expect(firstOption.classList.contains('combobox__option--active')).to.equal(false);
+                        expect(secondOption.classList.contains('combobox__option--active')).to.equal(true);
                     });
                 });
             });
@@ -199,7 +200,7 @@ describe('given the combobox starts with zero options', () => {
             });
 
             test('then it should correctly set aria for the listbox', () => {
-                expect(firstOption.getAttribute('aria-selected')).to.equal('true');
+                expect(firstOption.classList.contains('combobox__option--active')).to.equal(true);
             });
 
             describe('when the enter key is pressed', () => {
@@ -229,7 +230,8 @@ describe('given the combobox starts with zero options', () => {
                 });
 
                 test('then it should correctly set aria for the listbox', () => {
-                    expect(secondOption.getAttribute('aria-selected')).to.equal('true');
+                    expect(firstOption.classList.contains('combobox__option--active')).to.equal(false);
+                    expect(secondOption.classList.contains('combobox__option--active')).to.equal(true);
                 });
             });
         });

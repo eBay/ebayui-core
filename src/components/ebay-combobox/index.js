@@ -58,7 +58,8 @@ module.exports = require('marko-widgets').defineComponent({
                 '.combobox__option[role=option]', {
                     activeDescendantClassName: 'combobox__option--active',
                     autoInit,
-                    autoReset: -1
+                    autoReset: -1,
+                    axis: 'y'
                 }
             );
 
