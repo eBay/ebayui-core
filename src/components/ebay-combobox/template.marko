@@ -54,6 +54,7 @@
                     style=option.style
                     tabindex="-1"
                     w-on-click='handleOptionClick'
+                    w-on-mousedown='handleOptionMouseDown'
                     w-preserve-attrs="tabindex,data-makeup-index,class,aria-selected"
                     aria-selected=(isSelected && "true")
                     data-option-value=option.value
