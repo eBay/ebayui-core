@@ -103,6 +103,7 @@ describe('given the combobox is in the default state', () => {
                     clickSpy = sinon.spy();
                     widget.on('combobox-select', clickSpy);
                     testUtils.triggerEvent(secondOption, 'mousedown');
+                    testUtils.triggerEvent(secondOption, 'click');
                 });
 
                 test('then it should emit a change event', () => {
@@ -232,6 +233,7 @@ describe('given the combobox starts with zero options', () => {
                 clickSpy = sinon.spy();
                 widget.on('combobox-select', clickSpy);
                 testUtils.triggerEvent(secondOption, 'mousedown');
+                testUtils.triggerEvent(secondOption, 'click');
             });
 
             test('then it should emit a change event', () => {
