@@ -132,6 +132,7 @@ module.exports = require('marko-widgets').defineComponent({
         eventUtils.handleEnterKeydown(originalEvent, () => {
             if (this.expander.isExpanded()) {
                 newValue = selectedEl && selectedEl.textContent || newValue;
+                this.getEl('input').value = newValue;
                 this.setState('currentValue', newValue);
                 this.setSelectedIndex();
                 if (selectedEl) {
@@ -146,6 +147,7 @@ module.exports = require('marko-widgets').defineComponent({
         });
 
         eventUtils.handleTextInput(originalEvent, () => {
+            this.getEl('input').value = newValue;
             this.setState('currentValue', newValue);
             this.setSelectedIndex();
             this.emitChangeEvent();
@@ -154,8 +156,8 @@ module.exports = require('marko-widgets').defineComponent({
             }
         });
     },
-    handleComboboxBlur(evt) {
-        const wasClickedOption = this.getEls('option').some(option => option === evt.relatedTarget);
+    handleComboboxBlur() {
+        const wasClickedOption = this.optionClicked;
 
         if (wasClickedOption) {
             this.getEl('input').focus();
@@ -167,10 +169,16 @@ module.exports = require('marko-widgets').defineComponent({
 
         this.emitChangeEvent('change');
     },
+    handleOptionMouseDown() {
+        this.optionClicked = true;
+    },
     handleOptionClick(evt) {
         const selectedEl = evt.target.nodeName === 'DIV' ? evt.target : evt.target.parentNode;
+        const selectedValue = selectedEl.textContent;
 
-        this.setState('currentValue', selectedEl.textContent);
+        this.optionClicked = false;
+        this.getEl('input').value = selectedValue;
+        this.setState('currentValue', selectedValue);
         this.setSelectedIndex();
         this.emitChangeEvent('select');
         this.expander.collapse();
