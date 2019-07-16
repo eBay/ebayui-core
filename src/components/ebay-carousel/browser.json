@@ -1,7 +1,6 @@
 {
     "dependencies": [
         "require: marko-widgets",
-        "require-run: nodelist-foreach-polyfill",
         "require: ./index.js",
         "../ebay-icon",
         {
@@ -9,21 +8,9 @@
             "dependencies": [
                 "@ebay/skin/utility",
                 "@ebay/skin/less",
-                "@ebay/skin/icon/foreground"
+                "@ebay/skin/icon/foreground",
+                "@ebay/skin/carousel"
             ]
-        },
-        {
-            "if-not-flag": "skin-ds6",
-            "dependencies": [
-                "./variables-ds4.less"
-            ]
-        },
-        {
-            "if-flag": "skin-ds6",
-            "dependencies": [
-                "./variables-ds6.less"
-            ]
-        },
-        "./style.less"
+        }
     ]
 }

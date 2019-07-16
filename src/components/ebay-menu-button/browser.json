@@ -7,8 +7,6 @@
         "../ebay-badge",
         "../ebay-button",
         "../ebay-icon",
-        "require-run: nodelist-foreach-polyfill",
-        "require-run: element-closest/browser",
         "require: marko-widgets",
         "require: ./index.js"
     ]

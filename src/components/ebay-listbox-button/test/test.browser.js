@@ -38,7 +38,7 @@ describe('given the listbox is in the default state', () => {
             widget.on('listbox-change', spy);
             ariaControl.focus();
             testUtils.triggerEvent(ariaControl, 'keydown', 40);
-            setTimeout(done);
+            widget.once('update', done);
         });
 
         test('then it should not expand the listbox', () => {
@@ -50,7 +50,7 @@ describe('given the listbox is in the default state', () => {
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
             expect(eventData.selected).to.deep.equal(['2']);
-            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
+            const nativeOption = nativeSelect.options[eventData.index].value;
             expect(nativeOption).to.equal('2');
         });
     });
@@ -74,7 +74,7 @@ describe('given the listbox is in the default state', () => {
             const eventData = spy.getCall(1).args[0];
             expect(eventData.index).to.equal(0);
             expect(eventData.selected).to.deep.equal(['1']);
-            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
+            const nativeOption = nativeSelect.options[eventData.index].value;
             expect(nativeOption).to.equal('1');
         });
     });
@@ -86,7 +86,7 @@ describe('given the listbox is in the default state', () => {
             spy = sinon.spy();
             widget.on('listbox-change', spy);
             secondOption.selected = true;
-            setTimeout(done);
+            widget.once('update', done);
         });
 
         test('then it emits the listbox-change event with the correct data', () => {
@@ -94,7 +94,7 @@ describe('given the listbox is in the default state', () => {
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
             expect(eventData.selected).to.deep.equal(['2']);
-            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
+            const nativeOption = nativeSelect.options[eventData.index].value;
             expect(nativeOption).to.equal('2');
         });
     });

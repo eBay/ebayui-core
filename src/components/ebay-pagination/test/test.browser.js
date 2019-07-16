@@ -345,7 +345,7 @@ describe('given the pagination has the second item selected', () => {
         beforeEach((done) => {
             widget.el.style.width = '400px';
             testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 20);
+            setTimeout(done, 100);
         });
         afterEach(() => widget.destroy());
 
@@ -356,7 +356,7 @@ describe('given the pagination has the second item selected', () => {
         beforeEach((done) => {
             widget.el.style.width = '540px';
             testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 20);
+            setTimeout(done, 100);
         });
         afterEach(() => widget.destroy());
 
@@ -367,7 +367,7 @@ describe('given the pagination has the second item selected', () => {
         beforeEach((done) => {
             widget.el.style.width = '640px';
             testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 20);
+            setTimeout(done, 100);
         });
         afterEach(() => widget.destroy());
 
@@ -389,7 +389,7 @@ describe('given the pagination has the fifth item selected', () => {
         beforeEach((done) => {
             widget.el.style.width = '400px';
             testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 20);
+            setTimeout(done, 100);
         });
         afterEach(() => widget.destroy());
 
@@ -400,7 +400,7 @@ describe('given the pagination has the fifth item selected', () => {
         beforeEach((done) => {
             widget.el.style.width = '440px';
             testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 20);
+            setTimeout(done, 100);
         });
         afterEach(() => widget.destroy());
 
@@ -411,7 +411,7 @@ describe('given the pagination has the fifth item selected', () => {
         beforeEach((done) => {
             widget.el.style.width = '540px';
             testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 20);
+            setTimeout(done, 100);
         });
         afterEach(() => widget.destroy());
 
@@ -422,7 +422,7 @@ describe('given the pagination has the fifth item selected', () => {
         beforeEach((done) => {
             widget.el.style.width = '640px';
             testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 20);
+            setTimeout(done, 100);
         });
         afterEach(() => widget.destroy());
 
@@ -444,7 +444,7 @@ describe('given the pagination has the eighth item selected', () => {
         beforeEach((done) => {
             widget.el.style.width = '400px';
             testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 20);
+            setTimeout(done, 100);
         });
         afterEach(() => widget.destroy());
 
@@ -455,7 +455,7 @@ describe('given the pagination has the eighth item selected', () => {
         beforeEach((done) => {
             widget.el.style.width = '540px';
             testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 20);
+            setTimeout(done, 100);
         });
         afterEach(() => widget.destroy());
 
@@ -466,7 +466,7 @@ describe('given the pagination has the eighth item selected', () => {
         beforeEach((done) => {
             widget.el.style.width = '640px';
             testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 20);
+            setTimeout(done, 100);
         });
         afterEach(() => widget.destroy());
 
