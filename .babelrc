@@ -1,5 +1,4 @@
 {
     "presets": ["env"],
-    "plugins": ["transform-object-assign"],
     "retainLines": true
 }

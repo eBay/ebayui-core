@@ -1,4 +1,5 @@
-const findIndex = require('core-js/library/fn/array/find-index');
+const assign = require('core-js-pure/features/object/assign');
+const findIndex = require('core-js-pure/features/array/find-index');
 const ActiveDescendant = require('makeup-active-descendant');
 const Expander = require('makeup-expander');
 const elementScroll = require('../../common/element-scroll');
@@ -10,7 +11,7 @@ const safeRegex = require('../../common/build-safe-regex');
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
     getInitialProps(input) {
-        return Object.assign({
+        return assign({
             options: []
         }, input);
     },
@@ -19,7 +20,7 @@ module.exports = require('marko-widgets').defineComponent({
         const currentValue = input['*'] && input['*'].value;
         const index = findIndex(input.options, option => option.text === currentValue);
 
-        return Object.assign({}, input, {
+        return assign({}, input, {
             autocomplete,
             selectedIndex: index === -1 ? null : index,
             currentValue

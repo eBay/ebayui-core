@@ -1,3 +1,4 @@
+const assign = require('core-js-pure/features/object/assign');
 const FloatingLabel = require('makeup-floating-label');
 const emitAndFire = require('../../common/emit-and-fire');
 
@@ -7,7 +8,7 @@ module.exports = require('marko-widgets').defineComponent({
         return { floatingLabel: input.floatingLabel };
     },
     getInitialState(input) {
-        return Object.assign({}, input, {
+        return assign({}, input, {
             disabled: Boolean(input.disabled)
         });
     },

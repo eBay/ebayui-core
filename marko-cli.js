@@ -25,41 +25,37 @@ module.exports = ({ config }) => {
             browser: 'Chrome',
             os: 'Windows',
             os_version: '10'
+        }, {
+            browser: 'Chrome',
+            browser_version: '49.0',
+            os: 'Windows',
+            os_version: '7'
+        }, {
+            browser: 'Firefox',
+            os: 'Windows',
+            os_version: '10'
         // }, {
-        //     // Browser tries to navigate from `<ebay-breadcrumb>` tests.
-        //     browser: 'Chrome',
-        //     browser_version: '49.0',
-        //     os: 'Windows',
-        //     os_version: '7'
-        // }, {
-        //     // Carousel tests failing.
-        //     browser: 'Firefox',
-        //     os: 'Windows',
-        //     os_version: '10'
-        // }, {
-        //     // Escape keypress not handled from `<ebay-menu>` tests.
         //     browser: 'Firefox',
         //     browser_version: '48.0',
         //     os: 'Windows',
         //     os_version: '7'
+        }, {
+            browser: 'Safari',
+            os: 'OS X',
+            os_version: 'Mojave'
         // }, {
-        //     // Browser tries to navigate from `<ebay-breadcrumb>` tests.
-        //     browser: 'Safari',
-        //     os: 'OS X',
-        //     os_version: 'High Sierra'
-        // }, {
-        //     // Unknown error.
+        //     // Doesn't seem to be supporting timeouts?
         //     browser: 'Safari',
         //     browser_version: '6.0',
         //     os: 'OS X',
         //     os_version: 'Lion'
         // }, {
-        //     // Browser tries to navigate from `<ebay-breadcrumb>` tests.
+        //     // Doesn't seem to be supporting timeouts?
         //     browser: 'Edge',
         //     os: 'Windows',
         //     os_version: '10'
         // }, {
-        //     // Browser tries to navigate from `<ebay-breadcrumb>` tests.
+        //     // Various issues.
         //     browser: 'Edge',
         //     browser_version: '14.0',
         //     os: 'Windows',

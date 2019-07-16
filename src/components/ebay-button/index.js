@@ -1,3 +1,4 @@
+const assign = require('core-js-pure/features/object/assign');
 const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const observer = require('../../common/property-observer');
@@ -5,7 +6,7 @@ const observer = require('../../common/property-observer');
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
     getInitialState(input) {
-        return Object.assign({}, input, {
+        return assign({}, input, {
             disabled: input.disabled
         });
     },

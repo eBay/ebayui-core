@@ -9,7 +9,7 @@ For the dismissible use case, if the parent of `<ebay-notice>` wants to close it
 ## ebay-notice Usage
 
 ```marko
-<ebay-notice a11y-heading-text="Priority" a11y-heading-tag="h3" status="priority" type="page">
+<ebay-notice a11y-heading-text="Attention" a11y-heading-tag="h3" status="attention" type="page">
     <p>Couldn't load all the items, please try again later.</p>
 </ebay-notice>
 ```
@@ -19,7 +19,7 @@ For the dismissible use case, if the parent of `<ebay-notice>` wants to close it
 Name | Type | Stateful | Description
 --- | --- | --- | ---
 `type` | String | No | "inline" or "page" (default)
-`status`  | String | No | "priority" (default), "confirmation" or "information"
+`status`  | String | No | "attention" (default), "confirmation" or "information"
 `a11y-heading-text` | String | No | adding description for the notice for a11y users
 `a11y-heading-tag` | String | No| used in case of "page" level notices to specify the heading tag according to the notice's placement (default: `"h2"`)
 `dismissible` | Boolean | No | used to specify the dismiss button in page notice
