@@ -59,7 +59,8 @@ module.exports = require('marko-widgets').defineComponent({
                 '.combobox__option[role=option]', {
                     activeDescendantClassName: 'combobox__option--active',
                     autoInit,
-                    autoReset: -1
+                    autoReset: -1,
+                    axis: 'y'
                 }
             );
 
@@ -101,7 +102,6 @@ module.exports = require('marko-widgets').defineComponent({
     handleExpand() {
         const index = this.getSelectedIndex(this.state.options, this.state.currentValue);
         elementScroll.scroll(this.getEls('option')[index]);
-        this.moveCursorToEnd();
         emitAndFire(this, 'combobox-expand');
         this.setState('expanded', true);
     },
@@ -109,29 +109,23 @@ module.exports = require('marko-widgets').defineComponent({
         emitAndFire(this, 'combobox-collapse');
         this.setState('expanded', false);
     },
-    moveCursorToEnd() {
-        const currentInput = this.getEl('input');
-
-        if (currentInput) {
-            const len = currentInput.value.length;
-            currentInput.setSelectionRange(len, len);
-        }
-    },
-    handleComboboxKeyUp(originalEvent) {
+    handleComboboxKeyDown(originalEvent) {
         const optionsEl = this.getEl('options');
         const selectedEl = optionsEl && optionsEl.querySelector('.combobox__option--active');
         let newValue = this.getEl('input').value;
 
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
+            originalEvent.preventDefault();
+
             if (this.expander && !this.expander.isExpanded() && this.getEls('option').length > 0) {
                 this.expander.expand();
             }
-            this.moveCursorToEnd();
         });
 
         eventUtils.handleEnterKeydown(originalEvent, () => {
             if (this.expander.isExpanded()) {
                 newValue = selectedEl && selectedEl.textContent || newValue;
+
                 this.getEl('input').value = newValue;
                 this.setState('currentValue', newValue);
                 this.setSelectedIndex();
@@ -145,6 +139,9 @@ module.exports = require('marko-widgets').defineComponent({
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.expander.collapse();
         });
+    },
+    handleComboboxKeyUp(originalEvent) {
+        const newValue = this.getEl('input').value;
 
         eventUtils.handleTextInput(originalEvent, () => {
             this.getEl('input').value = newValue;
