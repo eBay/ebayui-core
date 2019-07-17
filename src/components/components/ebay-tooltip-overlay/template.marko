@@ -17,7 +17,7 @@
     bottom: data.styleBottom
 } : pointerStyles[data.pointer || "bottom"])/>
 
-<div
+<span
     class="${data.type}__overlay"
     role=typeRoles[data.type]
     aria-labelledby=(data.type === "tourtip" && widget.elId("tourtip-label"))
@@ -25,11 +25,11 @@
     style=overlayStyles
     w-bind>
     <span class="${data.type}__pointer ${data.type}__pointer--${data.pointer}"/>
-    <div class="${data.type}__mask">
-        <div class="${data.type}__cell">
-            <div class="${data.type}__content">
+    <span class="${data.type}__mask">
+        <span class="${data.type}__cell">
+            <span class="${data.type}__content">
                 <if(data.heading)>
-                    <h2
+                    <span
                         class=["${data.type}__heading", data.heading.class]
                         style=data.heading.style
                         w-id="tourtip-label"
@@ -37,13 +37,13 @@
                 </if>
 
                 <if(data.content)>
-                    <div
+                    <span
                         body-only-if(!data.content.class && !data.content.style)
                         class=data.content.class
                         style=data.content.style
-                        w-body=data.content.renderBody/>
+                        w-body=data.content.renderBody></span>
                 </if>
-            </div>
+            </span>
 
             <if(data.type !== "tooltip")>
                 <button
@@ -54,6 +54,6 @@
                     <span aria-hidden="true" role="img"/>
                 </button>
             </if>
-        </div>
-    </div>
-</div>
+        </span>
+    </span>
+</span>
