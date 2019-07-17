@@ -977,6 +977,36 @@ describe('given an autoplay carousel in the default state', () => {
         });
     });
 
+    describe('when it is interacted with', () => {
+        let updateSpy;
+
+        beforeEach(done => {
+            updateSpy = sinon.spy();
+
+            waitForUpdate(widget, () => {
+                widget.on('carousel-update', updateSpy);
+                setTimeout(done, 350);
+            });
+
+            testUtils.triggerEvent(list, 'mouseover');
+        });
+
+        describe('when the interaction has finished', () => {
+            beforeEach((done) => {
+                testUtils.triggerEvent(list, 'mouseout');
+                setTimeout(done, 350);
+            });
+
+            it('then it does autoplay', () => {
+                expect(updateSpy.calledOnce).to.equal(true);
+            });
+        });
+
+        it('then it does not autoplay', () => {
+            expect(updateSpy.notCalled).to.equal(true);
+        });
+    });
+
     describe('when the pause button is clicked', () => {
         let updateSpy;
 
