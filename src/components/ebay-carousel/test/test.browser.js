@@ -993,8 +993,10 @@ describe('given an autoplay carousel in the default state', () => {
 
         describe('when the interaction has finished', () => {
             beforeEach((done) => {
+                waitForUpdate(widget, () => {
+                    setTimeout(done, 350);
+                });
                 testUtils.triggerEvent(list, 'mouseout');
-                setTimeout(done, 350);
             });
 
             it('then it does autoplay', () => {
