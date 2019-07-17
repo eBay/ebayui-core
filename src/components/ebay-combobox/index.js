@@ -48,17 +48,13 @@ module.exports = require('marko-widgets').defineComponent({
         const wasToggled = isExpanded !== wasExpanded;
 
         if (!this.state.disabled && this.state.options.length > 0) {
-            const selectedIndex = this.getSelectedIndex(this.state.options, this.state.currentValue);
-
-            const autoInit = (selectedIndex === -1 || this.state.autocomplete === 'none') ? -1 : 0;
-
             this.activeDescendant = ActiveDescendant.createLinear(
                 this.el,
                 this.getEl('input'),
                 this.getEl('options'),
                 '.combobox__option[role=option]', {
                     activeDescendantClassName: 'combobox__option--active',
-                    autoInit,
+                    autoInit: -1,
                     autoReset: -1,
                     axis: 'y'
                 }
@@ -106,6 +102,7 @@ module.exports = require('marko-widgets').defineComponent({
         this.setState('expanded', true);
     },
     handleCollapse() {
+        this.activeDescendant.reset();
         emitAndFire(this, 'combobox-collapse');
         this.setState('expanded', false);
     },
@@ -118,6 +115,7 @@ module.exports = require('marko-widgets').defineComponent({
             originalEvent.preventDefault();
 
             if (this.expander && !this.expander.isExpanded() && this.getEls('option').length > 0) {
+                this.activeDescendant.reset();
                 this.expander.expand();
             }
         });
@@ -144,6 +142,7 @@ module.exports = require('marko-widgets').defineComponent({
         const newValue = this.getEl('input').value;
 
         eventUtils.handleTextInput(originalEvent, () => {
+            this.activeDescendant.reset();
             this.getEl('input').value = newValue;
             this.setState('currentValue', newValue);
             this.setSelectedIndex();
