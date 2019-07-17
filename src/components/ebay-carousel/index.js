@@ -50,6 +50,7 @@ function getInitialState(input) {
             state.autoplayInterval = parseInt(input.autoplay, 10) || 4000;
             state.classes.push('carousel__autoplay');
             state.paused = isSingleSlide || input.paused; // Force paused state if not enough slides provided;
+            state.interacting = false;
         }
     }
 
@@ -159,7 +160,7 @@ function init() {
 
 function onRender() {
     const { containerEl, listEl, state } = this;
-    const { config, items, autoplayInterval, paused } = state;
+    const { config, items, autoplayInterval, paused, interacting } = state;
 
     // Do nothing for empty carousels.
     if (!items.length) {
@@ -200,7 +201,7 @@ function onRender() {
             }
         }
 
-        if (autoplayInterval && !paused) {
+        if (autoplayInterval && !paused && !interacting) {
             const moveRight = this.move.bind(this, RIGHT);
             this.autoplayTimeout = setTimeout(() => {
                 if (this.isMoving) {
@@ -344,6 +345,14 @@ function handleScroll(scrollLeft) {
         this.setState('index', closest);
         emitAndFire(this, 'carousel-scroll', { index: closest });
     }
+}
+
+function handleStartInteraction() {
+    this.setState('interacting', true);
+}
+
+function handleEndInteraction() {
+    this.setState('interacting', false);
 }
 
 /**
@@ -529,5 +538,7 @@ module.exports = require('marko-widgets').defineComponent({
     move,
     handleMove,
     handleDotClick,
+    handleStartInteraction,
+    handleEndInteraction,
     togglePlay
 });
