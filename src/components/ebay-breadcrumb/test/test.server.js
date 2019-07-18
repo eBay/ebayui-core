@@ -1,43 +1,54 @@
-const expect = require('chai').expect;
-const template = require('../template.marko');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
 const testUtils = require('../../../common/test-utils/server');
 const mock = require('../mock');
+const template = require('..');
+use(require('chai-dom'));
 
-describe.skip('breadcrumb', () => {
-    test('renders basic structure', context => {
-        const $ = testUtils.getCheerio(context.render(mock.basicItems));
-        expect($('nav.breadcrumb').length).to.equal(1);
-        const h2Tag = $('h2.clipped');
-        expect(h2Tag.length).to.equal(1);
-        expect(h2Tag.html()).to.equal(mock.basicItems.a11yHeadingText);
-        expect($('nav li').length).to.equal(mock.basicItems.items.length);
+describe('breadcrumb', () => {
+    test('renders basic structure', async() => {
+        const { getByLabelText } = await render(template, mock.basicItems);
+        expect(getByLabelText(mock.basicItems.a11yHeadingText)).has.attr('role', 'navigation');
     });
 
-    test('should use buttons when hrefs are missing', context => {
-        const input = mock.buttons;
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('li button').length).to.equal(input.items.length);
+    test('renders buttons when hrefs are missing', async() => {
+        const { getByText } = await render(template, mock.buttons);
+        mock.buttons.items.forEach(
+            item => expect(getByText(item.renderBody.text)).has.property('tagName', 'BUTTON')
+        );
     });
 
-    test('renders <a> without href for missing input href on non-last item', context => {
-        const $ = testUtils.getCheerio(context.render(mock.firstItemMissingHref));
-        const li = $('nav li');
-        expect($('a', li[0]).attr('href')).to.equal(undefined);
-        expect(li.length).to.equal(mock.firstItemMissingHref.items.length);
+    // TODO: This does not seem to be the case?
+    it.skip('renders <a> without href for missing input href on non-last item', async() => {
+        const { getByText } = await render(template, mock.firstItemMissingHref);
+        const { items } = mock.firstItemMissingHref;
+        const firstItem = items[0];
+        const lastItem = items[items.length - 1];
+        const anchorItems = items.slice(0, -1);
+        expect(getByText(firstItem.renderBody.text)).has.attr('href', undefined);
+        anchorItems.forEach(
+            item => expect(getByText(item.renderBody.text)).has.property('tagName', 'A')
+        );
+
+        expect(getByText(lastItem.renderBody.text)).has.property('tagName', 'BUTTON');
     });
 
-    test('renders a button when href is null on last item', context => {
-        const $ = testUtils.getCheerio(context.render(mock.basicItems));
-        const li = $('nav li');
-        expect(li.length).to.equal(mock.basicItems.items.length);
-        const currentElement = $('button', li[li.length - 1]);
-        expect(currentElement.attr('aria-current')).to.equal('location');
+    test('renders a button when href is null on last item', async() => {
+        const { getByText } = await render(template, mock.basicItems);
+        const { items } = mock.firstItemMissingHref;
+        const lastItem = items[items.length - 1];
+        const anchorItems = items.slice(0, -1);
+        anchorItems.forEach(
+            item => expect(getByText(item.renderBody.text)).has.property('tagName', 'A')
+        );
+
+        expect(getByText(lastItem.renderBody.text)).has.property('tagName', 'BUTTON');
     });
 
-    test('renders different heading tag when specified', context => {
-        const $ = testUtils.getCheerio(context.render(mock.itemsWithHeadingTag));
-        expect($('h2').length).to.equal(0);
-        expect($('h3').length).to.equal(1);
+    test('renders different heading tag when specified', async() => {
+        const { getByText } = await render(template, mock.itemsWithHeadingTag);
+        const heading = getByText(mock.itemsWithHeadingTag.a11yHeadingText);
+        expect(heading).has.property('tagName', mock.itemsWithHeadingTag.a11yHeadingTag.toUpperCase());
     });
 });
 

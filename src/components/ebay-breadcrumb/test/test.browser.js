@@ -1,48 +1,39 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('../mock');
-const renderer = require('../');
+const template = require('..');
+use(require('chai-dom'));
+afterEach(cleanup);
+
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
 describe('given a basic breadcrumb', () => {
-    let widget;
-    let firstItem;
-    let lastItem;
+    const mockItems = mock.basicItems.items;
+    const firstItem = mockItems[0];
+    const lastItem = mockItems[mockItems.length - 1];
 
-    beforeEach(() => {
-        widget = renderer.renderSync(mock.basicItems).appendTo(document.body).getWidget();
-        firstItem = document.querySelector('nav li a');
-        lastItem = document.querySelector('nav li button');
+    beforeEach(async () => {
+        component = await render(template, mock.basicItems);
     });
-    afterEach(() => widget.destroy());
 
     describe('when an <a> item is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('breadcrumb-select', spy);
-            testUtils.triggerEvent(firstItem, 'click');
-            setTimeout(done);
+        beforeEach(() => {
+            fireEvent.click(component.getByText(firstItem.renderBody.text));
         });
 
         it('then it emits the breadcrumb-select event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            expect(spy.getCall(0).args[0].el).to.deep.equal(firstItem);
-            testUtils.testOriginalEvent(spy);
+            expect(component.emitted('breadcrumb-select')).has.length(1);
         });
     });
 
     describe('when a <button> is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('breadcrumb-select', spy);
-            testUtils.triggerEvent(lastItem, 'click');
-            setTimeout(done);
+        beforeEach(() => {
+            fireEvent.click(component.getByText(lastItem.renderBody.text));
         });
 
         it('then it does not emit the breadcrumb-select event', () => {
-            expect(spy.called).equal(false);
+            expect(component.emitted('breadcrumb-select')).has.length(0);
         });
     });
 });
