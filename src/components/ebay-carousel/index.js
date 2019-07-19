@@ -241,6 +241,7 @@ function cleanupAsync() {
 }
 
 function emitUpdate() {
+    console.log('emitting update');
     const { state: { config, items } } = this;
     config.scrollTransitioning = false;
     this.emit('carousel-update', {

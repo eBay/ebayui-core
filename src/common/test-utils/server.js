@@ -32,7 +32,8 @@ module.exports = {
                     let targetInput = clonedInput;
 
                     if (child) {
-                        targetInput = clonedInput[child.name] = Object.assign({}, child.input);
+                        targetInput = Object.assign({}, child.input);
+                        clonedInput[child.name] = child.multiple ? [targetInput] : child;
                     }
 
                     Object.assign(targetInput, {

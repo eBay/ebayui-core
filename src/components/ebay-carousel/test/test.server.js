@@ -1,98 +1,104 @@
-const expect = require('chai').expect;
+const assign = require('core-js-pure/features/object/assign');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
 const testUtils = require('../../../common/test-utils/server');
 const mock = require('../mock');
+const template = require('..');
+use(require('chai-dom'));
 
-function testStructure($) {
-    expect($('.carousel').length).to.equal(1);
-    expect($('.carousel__control--prev').length).to.equal(1);
-    expect($('.carousel__control--next').length).to.equal(1);
-    expect($('ul.carousel__list').length).to.equal(1);
-    expect($('ul.carousel__list > li').length).to.equal(mock.sixItems.length);
-    expect($('ul.carousel__list > li:not([aria-hidden="true"])').length).to.equal(mock.sixItems.length);
-}
+describe.only('carousel', () => {
+    describe('with discrete items per slide', () => {
+        test('renders base version', async() => {
+            const input = mock.Discrete_1PerSlide_6Items;
+            const { getByText, getByLabelText, getAllByLabelText } = await render(template, input);
+            const firstDotLabel = input.a11yCurrentText.replace('{currentSlide}', 1);
+            const secondDotLabel = input.a11yOtherText.replace('{slide}', 2);
+            const statusEl = getByText(/\d+ of \d+/).parentElement;
+    
+            expect(statusEl).has.property('tagName', input.a11yStatusTag.toUpperCase());
+            expect(statusEl).has.text('1 of 6');
+            expect(statusEl).has.attr('aria-live', 'polite');
+    
+            expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-describedby', statusEl.id);
+            expect(getByLabelText(input.a11yNextText)).has.attr('aria-describedby', statusEl.id);
+    
+            expect(getByLabelText(firstDotLabel)).has.attr('aria-describedby', statusEl.id);
+            expect(getByLabelText(firstDotLabel)).has.attr('aria-disabled', 'true');
+    
+            expect(getByLabelText(secondDotLabel)).has.attr('aria-describedby', statusEl.id);
+            expect(getByLabelText(secondDotLabel)).not.has.attr('aria-disabled');
+    
+            input.items.forEach(item => expect(getByText(item.renderBody.text)).does.exist);
+            expect(getAllByLabelText(/go to slide/)).has.length(5);
+        });
 
-describe('carousel', () => {
-    test('renders default version', context => {
-        const input = { items: mock.sixItems };
-        const $ = testUtils.getCheerio(context.render(input));
-        testStructure($);
+        test('renders no-dots enabled', async() => {
+            const input = assign({ noDots: true }, mock.Discrete_1PerSlide_6Items);
+            const { getByLabelText } = await render(template, input);
+    
+            expect(getByLabelText(input.a11yPreviousText)).to.exist;
+            expect(getByLabelText(input.a11yNextText)).to.exist;
+            expect(() => getByLabelText(/go to slide/)).to.throw(/Unable to find a label/);
+        });
+
+        test('renders without any provided items', async() => {
+            const input = mock.Discrete_1PerSlide_0Items;
+            const { getByLabelText } = await render(template, input);
+
+            expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+            expect(() => getByLabelText(/go to slide/)).to.throw(/Unable to find a label/);
+        });
+
+        describe('with autoplay enabled', () => {
+            test('renders base version', async() => {
+                const input = mock.Discrete_1PerSlide_6Items_AutoPlay;
+                const { getByLabelText } = await render(template, input);
+        
+                expect(getByLabelText(input.a11yPauseText)).to.exist;
+            });
+
+            test('renders paused version', async() => {
+                const input = assign({ paused: true }, mock.Discrete_1PerSlide_6Items_AutoPlay);
+                const { getByLabelText } = await render(template, input);
+    
+                expect(getByLabelText(input.a11yPlayText)).to.exist;
+            });
+        });
     });
 
-    test('renders discrete version', context => {
-        const input = { items: mock.sixItems, itemsPerSlide: 3 };
-        const $ = testUtils.getCheerio(context.render(input));
-        testStructure($);
-        expect($('span.clipped').length).to.equal(1);
+    describe('without items per slide (continuous)', () => {
+        test('renders base version', async() => {
+            const input = mock.Continuous_6Items;
+            const { getByText, getByLabelText } = await render(template, input);
+
+            // Status text is only used for discrete carousels.
+            expect(() => getByText(/\d+ of \d+/)).to.throw(/Unable to find an element/);
+
+            // Also it should not have the dot controls.
+            expect(() => getByLabelText(/go to slide/)).to.throw(/Unable to find a label/);
+
+            // Controls should not be linked to the status text (slide x of y).
+            expect(getByLabelText(input.a11yPreviousText)).not.has.attr('aria-describedby');
+            expect(getByLabelText(input.a11yNextText)).not.has.attr('aria-describedby');
+
+            input.items.forEach(item => expect(getByText(item.renderBody.text)).does.exist);
+        });
+
+        test('renders without any provided items', async() => {
+            const input = mock.Continuous_0Items;
+            const { getByLabelText } = await render(template, input);
+
+            expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+        });
     });
 
-    test('renders a11y text', context => {
-        const input = {
-            items: mock.sixItems,
-            itemsPerSlide: 1,
-            a11yPreviousText: 'prev',
-            a11yNextText: 'next',
-            a11yStatusText: '{currentSlide} of {totalSlides}',
-            a11yStatusTag: 'h2',
-            a11yCurrentText: 'slide {currentSlide}',
-            a11yOtherText: 'other {slide}'
-        };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.carousel__control--prev[aria-label="prev"]').length).to.equal(1);
-        expect($('.carousel__control--next[aria-label="next"]').length).to.equal(1);
-        expect($('h2.clipped[aria-live] span').text()).to.equal('1 of 6');
-        expect($('[data-slide="0"][aria-label="slide 1"]').length).to.equal(1);
-        expect($('[data-slide="1"][aria-label="other 2"]').length).to.equal(1);
+    testUtils.testPassThroughAttributes(template);
+    testUtils.testPassThroughAttributes(template, {
+        child: {
+            name: 'items',
+            multiple: true
+        }
     });
-
-    test('renders autoplay version', context => {
-        const input = {
-            items: mock.sixItems,
-            itemsPerSlide: 1,
-            autoplay: true,
-            a11yPlayText: 'play',
-            a11yPauseText: 'pause'
-        };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.carousel__autoplay').length).to.equal(1);
-        expect($('.carousel__play').length).to.equal(0);
-        expect($('.carousel__dots').length).to.equal(1);
-        expect($('.carousel__pause').attr('aria-label')).to.equal('pause');
-    });
-
-    test('renders autoplay version without dots', context => {
-        const input = {
-            items: mock.sixItems,
-            itemsPerSlide: 1,
-            autoplay: true,
-            noDots: true,
-            a11yPlayText: 'play',
-            a11yPauseText: 'pause'
-        };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.carousel__autoplay').length).to.equal(1);
-        expect($('.carousel__dots').length).to.equal(0);
-    });
-
-    test('renders paused autoplay version', context => {
-        const input = {
-            items: mock.sixItems,
-            itemsPerSlide: 1,
-            autoplay: true,
-            paused: true,
-            a11yPlayText: 'play',
-            a11yPauseText: 'pause'
-        };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.carousel__autoplay').length).to.equal(1);
-        expect($('.carousel__pause').length).to.equal(0);
-        expect($('.carousel__play').attr('aria-label')).to.equal('play');
-    });
-
-    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.carousel'));
-    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.carousel'));
-});
-
-describe('carousel-item', () => {
-    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.carousel__list > li', 'items'));
-    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.carousel__list > li', 'items'));
 });

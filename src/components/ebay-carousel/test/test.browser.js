@@ -1,10 +1,13 @@
 require('../../../common/test-utils/transitions');
 
-const sinon = require('sinon');
-const expect = require('chai').expect;
+const find = require('core-js-pure/features/array/find');
+const indexOf = require('core-js-pure/features/array/index-of');
+const assign = require('core-js-pure/features/object/assign');
+const { expect, use } = require('chai');
+const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
 const testUtils = require('../../../common/test-utils/browser');
 const mock = require('../mock');
-const renderer = require('../');
+const template = require('..');
 const supportsNativeScrolling = CSS.supports && CSS.supports(
     `(not (-moz-appearance:none)) and (
     (-webkit-scroll-snap-coordinate: 0 0) or
@@ -13,188 +16,152 @@ const supportsNativeScrolling = CSS.supports && CSS.supports(
     (scroll-snap-align: start))`
 );
 
-function delay(callback) {
-    setTimeout(callback, 42);
-}
+use(require('chai-dom'));
+afterEach(cleanup);
 
-// wait until after marko processing and requestAnimationFrame execution
-function waitForUpdate(widget, callback) {
-    widget.once('update', () => requestAnimationFrame(() => callback()));
-}
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
-// waits for a carousel widget to emit an event from a position change.
-function waitForChange(widget, callback) {
-    widget.once('carousel-update', () => requestAnimationFrame(() => callback()));
-}
+describe('given a continuous carousel with 6 items at the beginning', () => {
+    const input = mock.Continuous_6Items;
 
-function testControlEvent(spy) {
-    expect(spy.calledOnce).to.equal(true);
-    testUtils.testOriginalEvent(spy);
-}
-
-function getVisibleIndexes(items) {
-    const visibleIndexes = [];
-    items.forEach((item, i) => {
-        if (item.fullyVisible) visibleIndexes.push(i);
+    beforeEach(async() => {
+        component = await render(template, input);
+        // The carousel is not fully initialized until
+        // the next button is no longer disabled.
+        await wait(() =>
+            expect(component.getByLabelText(input.a11yNextText)).not.has.attr('aria-disabled')
+        );
     });
 
-    return visibleIndexes;
-}
+    describe('when it is rerendered to show the second item', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { index: 1 }));
+        });
 
-function getTranslateX(el) {
-    if (isScrollable(el)) {
-        return el.scrollLeft;
-    }
-    return parseInt(getComputedStyle(el).transform.match(/^matrix\((?:-?\d+, ?){4}(-?\d+)/)[1], 10) * -1;
-}
+        it('then it moves to the second item', async() => {
+            const secondItem = component.getByText(input.items[1].renderBody.text);
+            await wait(() => assertAtStartOfSlide(secondItem));
+        });
 
-function isScrollable(el) {
-    return getComputedStyle(el).overflowX !== 'visible';
-}
-
-describe('given the carousel is in the default state', () => {
-    let widget;
-
-    beforeEach(() => {
-        widget = renderer.renderSync().appendTo(document.body).getWidget();
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when it is rendered', () => {
-        it('then it sets state to correct defaults', () => {
-            expect(widget.state.gap).to.equal(16);
+        it('then it emits the update event', async() => {
+            expect(await component.waitForEvent('carousel-update'))
+                .has.nested.property('[0].visibleIndexes[0]', 1);
         });
     });
-});
 
-describe('given the carousel starts in the default state with items', () => {
-    const input = { items: mock.sixItems };
-    let widget;
-    let root;
-    let list;
-    let prevButton;
-    let nextButton;
+    describe('when it is rerendered with an index below zero', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { index: -1 }));
+        });
 
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        nextButton = root.querySelector('.carousel__control--next');
-        prevButton = root.querySelector('.carousel__control--prev');
-        waitForUpdate(widget, done);
+        it('then shows the first item', () => {
+            const firstItem = component.getByText(input.items[0].renderBody.text);
+            assertAtStartOfSlide(firstItem);
+        });
     });
-    afterEach(() => widget.destroy());
 
-    describe('when index is updated via parent state', () => {
-        let updateSpy;
-        beforeEach(done => {
-            updateSpy = sinon.spy();
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            widget.setProps({ index: '1', items: mock.sixItems });
+    describe('when it is rerendered with an index higher than the number of items', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { index: 6 }));
         });
 
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([1, 2, 3]);
-        });
-
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[1];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([1, 2, 3]);
+        it('then shows the first item', () => {
+            const firstItem = component.getByText(input.items[0].renderBody.text);
+            assertAtStartOfSlide(firstItem);
         });
     });
 
     describe('when the previous button is clicked while disabled', () => {
-        let prevSpy;
-        beforeEach(done => {
-            prevSpy = sinon.spy();
-            widget.on('carousel-previous', prevSpy);
-            testUtils.triggerEvent(prevButton, 'click');
-            delay(done);
+        beforeEach(() => {
+            fireEvent.click(component.getByLabelText(input.a11yPreviousText));
         });
 
-        it('then it does not emit the marko prev event', () => {
-            expect(prevSpy.called).to.equal(false);
+        it('then it does not emit the prev event', () => {
+            expect(component.emitted('carousel-previous')).has.length(0);
         });
     });
 
     describe('when next button is clicked', () => {
-        let nextSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            testUtils.triggerEvent(nextButton, 'click');
+        let nextHiddenItem;
+        beforeEach(() => {
+            nextHiddenItem = find(
+                component.getAllByText(/carousel item content/),
+                el => el.hasAttribute('aria-hidden')
+            );
+            fireEvent.click(component.getByLabelText(input.a11yNextText));
         });
 
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([3, 4, 5]);
+        it('then it emits the next event', () => {
+            expect(component.emitted('carousel-next')).has.length(1);
         });
 
-        it('then it applies a translation', () => {
-            expect(getTranslateX(list)).to.equal(480);
+        it('then it moves to the next hidden item', async() => {
+            await wait(() => assertAtStartOfSlide(nextHiddenItem));
         });
 
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([3, 4, 5]);
-        });
-    });
-
-    describe('when index is set below zero', () => {
-        let updateSpy;
-        beforeEach((done) => {
-            updateSpy = sinon.spy();
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            widget.setState('index', -1);
-        });
-
-        it('then index is normalized to the next index', () => {
-            expect(widget.state.index).to.equal(1);
-        });
-
-        it('then it emits the marko events', () => {
-            expect(updateSpy.called).to.equal(true);
-        });
-    });
-
-    describe('when index is set above the number of items', () => {
-        let updateSpy;
-        beforeEach((done) => {
-            updateSpy = sinon.spy();
-            widget.on('carousel-update', updateSpy);
-            widget.setState('index', 6);
-            delay(done);
-        });
-
-        it('then index is normalized to the next index', () => {
-            expect(widget.state.index).to.equal(0);
-        });
-
-        it('then it does not emit the marko events', () => {
-            expect(updateSpy.calledOnce).to.equal(false);
+        it('then it emits the update event', async() => {
+            expect(await component.waitForEvent('carousel-update'))
+                .has.nested.property(
+                    '[0].visibleIndexes[0]',
+                    indexOf(nextHiddenItem.parentElement.children, nextHiddenItem)
+                );
         });
     });
 });
 
-describe('given a continuous carousel has next button clicked', () => {
+describe('given a continuous carousel with 6 items at the end', () => {
+    const input = assign({}, mock.Continuous_6Items, { index: 5 });
+
+    beforeEach(async() => {
+        component = await render(template, input);
+        // The carousel is not fully initialized until
+        // the previous button is no longer disabled.
+        await wait(() =>
+            expect(component.getByLabelText(input.a11yPreviousText)).not.has.attr('aria-disabled')
+        );
+    });
+
+    describe('when the next button is clicked while disabled', () => {
+        beforeEach(() => {
+            fireEvent.click(component.getByLabelText(input.a11yNextText));
+        });
+
+        it('then it does not emit the next event', () => {
+            expect(component.emitted('carousel-next')).has.length(0);
+        });
+    });
+
+    describe.only('when previous button is clicked', () => {
+        let previousHiddenItem;
+        beforeEach(() => {
+            previousHiddenItem = find(
+                component.getAllByText(/carousel item content/).reverse(),
+                el => el.hasAttribute('aria-hidden')
+            );
+
+            fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+        });
+
+        it('then it emits the previous event', () => {
+            expect(component.emitted('carousel-previous')).has.length(1);
+        });
+
+        it('then it moves to the previous hidden item', async() => {
+            debugger;
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            debugger;
+            await wait(() => assertAtEndOfSlide(previousHiddenItem));
+        });
+
+        it('then it emits the update event', async() => {
+            expect(await component.waitForEvent('carousel-update'))
+                .has.nested.property('[0].visibleIndexes');
+        });
+    });
+});
+
+describe('given a continuous carousel has next button clicked #old', () => {
     const input = { items: mock.sixItems };
     let widget;
     let root;
@@ -230,9 +197,9 @@ describe('given a continuous carousel has next button clicked', () => {
             testUtils.triggerEvent(prevButton, 'click');
         });
 
-        it('then it emits the marko prev event', () => testControlEvent(prevSpy));
+        it('then it emits the prev event', () => testControlEvent(prevSpy));
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([0, 1, 2]);
@@ -255,7 +222,7 @@ describe('given a continuous carousel has next button clicked', () => {
             delay(done);
         });
 
-        it('then it does not emit the marko events', () => {
+        it('then it does not emit the events', () => {
             expect(nextSpy.called).to.equal(false);
             expect(updateSpy.called).to.equal(false);
         });
@@ -283,7 +250,7 @@ describe('given a continuous carousel with few items', () => {
             widget.setState('index', 1);
         });
 
-        it('then it does not emit the marko events', () => {
+        it('then it does not emit the events', () => {
             expect(updateSpy.called).to.equal(false);
         });
     });
@@ -323,7 +290,7 @@ describe('given a continuous carousel with many items', () => {
             });
         });
 
-        it('then it emits the marko events', () => {
+        it('then it emits the events', () => {
             expect(nextSpy.callCount).to.equal(3);
             expect(updateSpy.callCount).to.equal(3);
         });
@@ -359,7 +326,7 @@ describe('given a continuous carousel with many items', () => {
             });
         });
 
-        it('then it emits the marko events', () => {
+        it('then it emits the events', () => {
             expect(prevSpy.callCount).to.equal(1);
             expect(nextSpy.callCount).to.equal(3);
             expect(updateSpy.callCount).to.equal(4);
@@ -394,7 +361,7 @@ describe('given a continuous carousel with many items', () => {
             testUtils.triggerEvent(nextButton, 'click');
         });
 
-        it('then it emits the marko events', () => {
+        it('then it emits the events', () => {
             expect(prevSpy.callCount).to.equal(1);
             expect(nextSpy.callCount).to.equal(2);
             expect(updateSpy.callCount).to.equal(3);
@@ -437,15 +404,15 @@ describe('given a discrete carousel', () => {
             testUtils.triggerEvent(nextButton, 'click');
         });
 
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
+        it('then it emits the next event', () => testControlEvent(nextSpy));
 
-        it('then it emits the marko slide event', () => {
+        it('then it emits the slide event', () => {
             expect(slideSpy.calledOnce).to.equal(true);
             const eventData = slideSpy.getCall(0).args[0];
             expect(eventData.slide).to.equal(2);
         });
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([1]);
@@ -514,15 +481,15 @@ describe('given a discrete carousel has next button clicked', () => {
             testUtils.triggerEvent(prevButton, 'click');
         });
 
-        it('then it emits the marko prev event', () => testControlEvent(prevSpy));
+        it('then it emits the prev event', () => testControlEvent(prevSpy));
 
-        it('then it emits the marko slide event', () => {
+        it('then it emits the slide event', () => {
             expect(slideSpy.calledOnce).to.equal(true);
             const eventData = slideSpy.getCall(0).args[0];
             expect(eventData.slide).to.equal(1);
         });
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([0]);
@@ -571,15 +538,15 @@ describe('given a discrete carousel at the end', () => {
             testUtils.triggerEvent(prevButton, 'click');
         });
 
-        it('then it emits the marko prev event', () => testControlEvent(prevSpy));
+        it('then it emits the prev event', () => testControlEvent(prevSpy));
 
-        it('then it emits the marko slide event', () => {
+        it('then it emits the slide event', () => {
             expect(slideSpy.calledOnce).to.equal(true);
             const eventData = slideSpy.getCall(0).args[0];
             expect(eventData.slide).to.equal(2);
         });
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
@@ -631,15 +598,15 @@ describe('given a discrete carousel with half width items', () => {
             waitForChange(widget, done);
         });
 
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
+        it('then it emits the next event', () => testControlEvent(nextSpy));
 
-        it('then it emits the marko slide event', () => {
+        it('then it emits the slide event', () => {
             expect(slideSpy.calledOnce).to.equal(true);
             const eventData = slideSpy.getCall(0).args[0];
             expect(eventData.slide).to.equal(2);
         });
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
@@ -672,17 +639,17 @@ describe('given a discrete carousel with half width items', () => {
             waitForChange(widget, done);
         });
 
-        it('then it does not emit the marko next event', () => {
+        it('then it does not emit the next event', () => {
             expect(nextSpy.called).to.equal(false);
         });
 
-        it('then it emits the marko slide event', () => {
+        it('then it emits the slide event', () => {
             expect(slideSpy.calledOnce).to.equal(true);
             const eventData = slideSpy.getCall(0).args[0];
             expect(eventData.slide).to.equal(2);
         });
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
@@ -732,15 +699,15 @@ describe('given a discrete carousel with three half width items', () => {
             waitForChange(widget, done);
         });
 
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
+        it('then it emits the next event', () => testControlEvent(nextSpy));
 
-        it('then it emits the marko slide event', () => {
+        it('then it emits the slide event', () => {
             expect(slideSpy.calledOnce).to.equal(true);
             const eventData = slideSpy.getCall(0).args[0];
             expect(eventData.slide).to.equal(2);
         });
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([1, 2]);
@@ -799,15 +766,15 @@ describe('given a discrete carousel with a partial slide', () => {
             waitForChange(widget, done);
         });
 
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
+        it('then it emits the next event', () => testControlEvent(nextSpy));
 
-        it('then it emits the marko slide event', () => {
+        it('then it emits the slide event', () => {
             expect(slideSpy.calledOnce).to.equal(true);
             const eventData = slideSpy.getCall(0).args[0];
             expect(eventData.slide).to.equal(2);
         });
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
@@ -864,7 +831,7 @@ describe('given an autoplay carousel in the default state', () => {
             expect(slideSpy.notCalled).to.equal(true);
         });
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
@@ -998,11 +965,11 @@ describe('given an autoplay carousel in the paused state', () => {
             testUtils.triggerEvent(playButton, 'click');
         });
 
-        it('then it does not emit the marko next event', () => {
+        it('then it does not emit the next event', () => {
             expect(nextSpy.notCalled).to.equal(true);
         });
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
@@ -1036,15 +1003,15 @@ describe('given an autoplay carousel in the paused state', () => {
             testUtils.triggerEvent(prevButton, 'click');
         });
 
-        it('then it does not emit the marko next event', () => {
+        it('then it does not emit the next event', () => {
             expect(nextSpy.notCalled).to.equal(true);
         });
 
-        it('then it emits the marko prev event', () => {
+        it('then it emits the prev event', () => {
             expect(prevSpy.calledOnce).to.equal(true);
         });
 
-        it('then it emits the marko update event', () => {
+        it('then it emits the update event', () => {
             expect(updateSpy.calledOnce).to.equal(true);
             const eventData = updateSpy.getCall(0).args[0];
             expect(eventData.visibleIndexes).to.deep.equal([4, 5]);
@@ -1157,3 +1124,54 @@ describe('given an autoplay carousel in the paused state', () => {
         });
     });
 });
+
+describe('given a carousel without any items', () => {
+    const input = mock.Continuous_0Items;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+
+    describe('when it is rendered', () => {
+        it('then it has disabled buttons', () => {
+            expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+        });
+    });
+});
+
+function assertAtStartOfSlide(item) {
+    const itemBounds = item.getBoundingClientRect();
+    const parentBounds = item.parentElement.getBoundingClientRect();
+
+    // Check if item is at the very start of the carousel.
+    if (itemBounds.left === parentBounds.left) {
+        return;
+    }
+
+    // Also accept if the carousel has scrolled as much as possible.
+    const lastItemBounds = item.parentElement.lastElementChild.getBoundingClientRect();
+    if (lastItemBounds.right <= parentBounds.right) {
+        return;
+    }
+
+    throw new Error(`Expected item ${[].indexOf.call(item.parentElement.children, item)} to be at the beginning of the carousel.`);
+}
+
+function assertAtEndOfSlide(item) {
+    const itemBounds = item.getBoundingClientRect();
+    const parentBounds = item.parentElement.getBoundingClientRect();
+
+    // Check if item is at the very end of the carousel.
+    if (itemBounds.right === parentBounds.right) {
+        return;
+    }
+
+    // Also accept if the carousel has scrolled as much as possible.
+    const firstItemBounds = item.parentElement.lastElementChild.getBoundingClientRect();
+    if (firstItemBounds.left <= parentBounds.left) {
+        return;
+    }
+
+    throw new Error(`Expected item ${[].indexOf.call(item.parentElement.children, item)} to be at the end of the carousel.`);
+}

@@ -54,5 +54,8 @@ describe('breadcrumb', () => {
 
 testUtils.testPassThroughAttributes(template);
 testUtils.testPassThroughAttributes(template, {
-    child: { name: 'items' }
+    child: {
+        name: 'items',
+        multiple: true
+    }
 });
