@@ -21,7 +21,7 @@ describe('given the notice is in the default state', () => {
             spy = sinon.spy();
             widget.on('notice-close', spy);
             testUtils.triggerEvent(button, 'click');
-            setTimeout(done, 1000);
+            setTimeout(done);
         });
         test('then root not present in the DOM', () => {
             expect(document.querySelector('section.page-notice')).to.equal(null);
