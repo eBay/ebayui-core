@@ -49,6 +49,7 @@ describe('given the combobox is in the default state', () => {
                 beforeEach(() => {
                     arrowSpy = sinon.spy();
                     widget.on('combobox-input', arrowSpy);
+                    testUtils.triggerEvent(ariaControl, 'keydown', 65);
                     testUtils.triggerEvent(ariaControl, 'keyup', 65);
                 });
 
@@ -60,10 +61,11 @@ describe('given the combobox is in the default state', () => {
             describe('when the down arrow key is pressed', () => {
                 beforeEach(() => {
                     testUtils.triggerEvent(ariaControl, 'keydown', 40);
+                    testUtils.triggerEvent(ariaControl, 'keyup', 40);
                 });
 
                 test('then it should correctly set aria for the listbox', () => {
-                    expect(firstOption.getAttribute('aria-selected')).to.equal('true');
+                    expect(firstOption.classList.contains('combobox__option--active')).to.equal(true);
                 });
 
                 describe('when the enter key is pressed', () => {
@@ -72,6 +74,7 @@ describe('given the combobox is in the default state', () => {
                     beforeEach((done) => {
                         enterSpy = sinon.spy();
                         widget.on('combobox-select', enterSpy);
+                        testUtils.triggerEvent(ariaControl, 'keydown', 13);
                         testUtils.triggerEvent(ariaControl, 'keyup', 13);
                         setTimeout(done);
                     });
@@ -88,10 +91,12 @@ describe('given the combobox is in the default state', () => {
                 describe('when the down arrow key is pressed a second time', () => {
                     beforeEach(() => {
                         testUtils.triggerEvent(ariaControl, 'keydown', 40);
+                        testUtils.triggerEvent(ariaControl, 'keyup', 40);
                     });
 
                     test('then it should correctly set aria for the listbox', () => {
-                        expect(secondOption.getAttribute('aria-selected')).to.equal('true');
+                        expect(firstOption.classList.contains('combobox__option--active')).to.equal(false);
+                        expect(secondOption.classList.contains('combobox__option--active')).to.equal(true);
                     });
                 });
             });
@@ -102,6 +107,7 @@ describe('given the combobox is in the default state', () => {
                 beforeEach(() => {
                     clickSpy = sinon.spy();
                     widget.on('combobox-select', clickSpy);
+                    testUtils.triggerEvent(secondOption, 'mousedown');
                     testUtils.triggerEvent(secondOption, 'click');
                 });
 
@@ -112,6 +118,7 @@ describe('given the combobox is in the default state', () => {
 
             describe('when the escape key is pressed', () => {
                 beforeEach(() => {
+                    testUtils.triggerEvent(ariaControl, 'keydown', 27);
                     testUtils.triggerEvent(ariaControl, 'keyup', 27);
                 });
 
@@ -178,6 +185,7 @@ describe('given the combobox starts with zero options', () => {
             beforeEach(() => {
                 arrowSpy = sinon.spy();
                 widget.on('combobox-input', arrowSpy);
+                testUtils.triggerEvent(ariaControl, 'keydown', 65);
                 testUtils.triggerEvent(ariaControl, 'keyup', 65);
             });
 
@@ -189,10 +197,11 @@ describe('given the combobox starts with zero options', () => {
         describe('when the down arrow key is pressed', () => {
             beforeEach(() => {
                 testUtils.triggerEvent(ariaControl, 'keydown', 40);
+                testUtils.triggerEvent(ariaControl, 'keyup', 40);
             });
 
             test('then it should correctly set aria for the listbox', () => {
-                expect(firstOption.getAttribute('aria-selected')).to.equal('true');
+                expect(firstOption.classList.contains('combobox__option--active')).to.equal(true);
             });
 
             describe('when the enter key is pressed', () => {
@@ -201,6 +210,7 @@ describe('given the combobox starts with zero options', () => {
                 beforeEach((done) => {
                     enterSpy = sinon.spy();
                     widget.on('combobox-select', enterSpy);
+                    testUtils.triggerEvent(ariaControl, 'keydown', 13);
                     testUtils.triggerEvent(ariaControl, 'keyup', 13);
                     setTimeout(done);
                 });
@@ -217,10 +227,12 @@ describe('given the combobox starts with zero options', () => {
             describe('when the down arrow key is pressed a second time', () => {
                 beforeEach(() => {
                     testUtils.triggerEvent(ariaControl, 'keydown', 40);
+                    testUtils.triggerEvent(ariaControl, 'keyup', 40);
                 });
 
                 test('then it should correctly set aria for the listbox', () => {
-                    expect(secondOption.getAttribute('aria-selected')).to.equal('true');
+                    expect(firstOption.classList.contains('combobox__option--active')).to.equal(false);
+                    expect(secondOption.classList.contains('combobox__option--active')).to.equal(true);
                 });
             });
         });
@@ -231,6 +243,7 @@ describe('given the combobox starts with zero options', () => {
             beforeEach(() => {
                 clickSpy = sinon.spy();
                 widget.on('combobox-select', clickSpy);
+                testUtils.triggerEvent(secondOption, 'mousedown');
                 testUtils.triggerEvent(secondOption, 'click');
             });
 
@@ -241,6 +254,7 @@ describe('given the combobox starts with zero options', () => {
 
         describe('when the escape key is pressed', () => {
             beforeEach(() => {
+                testUtils.triggerEvent(ariaControl, 'keydown', 27);
                 testUtils.triggerEvent(ariaControl, 'keyup', 27);
             });
 

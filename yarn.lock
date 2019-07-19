@@ -825,10 +825,10 @@
   version "1.0.1"
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.1.tgz#deccafb04101fa52507b8f2204161c8ed5e70375"
 
-"@ebay/skin@7.4.2":
-  version "7.4.2"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-7.4.2.tgz#c2c2110fcda43f3e46683d87940c98cb9b373822"
-  integrity sha512-I7moOqRP1Ftx5D5Lypfet3RsATDzXd+N+qjoe0wQhIJ3TrUwUidnZCtkEag6BDpGZIN7eh2o2qO1cgovSPDylA==
+"@ebay/skin@7.4.3":
+  version "7.4.3"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-7.4.3.tgz#9fd7088bbc14ef672e82027c3f092f0955eaf35f"
+  integrity sha512-8SBGyHs6lv7OeWP+0f329gzZO12WY3U+H8GMvVvggIBRRoxB6Dy2y1qL09T/o7cpANkKuyFGB+onbsP7GTHdjA==
 
 "@lasso/marko-taglib@^1.0.13":
   version "1.0.13"
@@ -2332,12 +2332,6 @@ babel-plugin-transform-exponentiation-operator@^6.22.0:
   dependencies:
     babel-helper-builder-binary-assignment-operator-visitor "^6.24.1"
     babel-plugin-syntax-exponentiation-operator "^6.8.0"
-    babel-runtime "^6.22.0"
-
-babel-plugin-transform-object-assign@^6.22.0:
-  version "6.22.0"
-  resolved "https://registry.npmjs.org/babel-plugin-transform-object-assign/-/babel-plugin-transform-object-assign-6.22.0.tgz#f99d2f66f1a0b0d498e346c5359684740caa20ba"
-  dependencies:
     babel-runtime "^6.22.0"
 
 babel-plugin-transform-regenerator@^6.22.0:
@@ -8362,13 +8356,13 @@ make-dir@^3.0.0:
   dependencies:
     semver "^6.0.0"
 
-makeup-active-descendant@~0.1.4:
-  version "0.1.6"
-  resolved "https://registry.npmjs.org/makeup-active-descendant/-/makeup-active-descendant-0.1.6.tgz#eb5cb9b839f2740b043bd0e58fe3491f35f83abd"
-  integrity sha512-ctNkKODFJTIdn2ZQVqah3fzNDOsDPJ49Si1ROY0lbs+I6chNxnh61eK+kf4kSTIAoTBumeDfdXwRX+uZt+tlQQ==
+makeup-active-descendant@~0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/makeup-active-descendant/-/makeup-active-descendant-0.2.1.tgz#d21d6160d2a6a5140006667595e0925af8759011"
+  integrity sha512-+WasVWH/7B6BP4DinnZO8zR6Rx5aIcT9MJla+6UlNj9ibdv66817rRzYqEvH5Dz+1XnfS66w+s0hnvAySSyFLQ==
   dependencies:
     custom-event-polyfill "^1"
-    makeup-navigation-emitter "~0.2.2"
+    makeup-navigation-emitter "~0.2.3"
     nodelist-foreach-polyfill "^1"
 
 makeup-exit-emitter@~0.1.1:
@@ -8422,7 +8416,7 @@ makeup-keyboard-trap@~0.2.0:
     custom-event-polyfill "^1"
     makeup-focusables "~0.0.4"
 
-makeup-navigation-emitter@~0.2.2:
+makeup-navigation-emitter@~0.2.2, makeup-navigation-emitter@~0.2.3:
   version "0.2.3"
   resolved "https://registry.npmjs.org/makeup-navigation-emitter/-/makeup-navigation-emitter-0.2.3.tgz#23a952514385991b205f9ad33d3e76564d8d8015"
   integrity sha512-Td7l87zhvLOjyE39bkTozXpSuDZDdxTLZ4aA1m2YhKUp0y3z810o4mIJAx/zsXDWpvkCgNCNoAgQqWL7lSVGYw==
@@ -9327,10 +9321,9 @@ node-version@^1.0.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/node-version/-/node-version-1.2.0.tgz#34fde3ffa8e1149bd323983479dda620e1b5060d"
 
-nodelist-foreach-polyfill@^1:
+nodelist-foreach-polyfill@^1, nodelist-foreach-polyfill@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/nodelist-foreach-polyfill/-/nodelist-foreach-polyfill-1.2.0.tgz#92bca739959af68271734087e48474c2fef5152c"
-  integrity sha512-hPW0tSoi1gJ3diSOyjFYOsYLZjnxF04psobzKA5GGGCz3fKHnLODwgdyXQq2cddYlvmT3q+ZNEBrfBdMkYPLaA==
 
 noop-logger@^0.1.1:
   version "0.1.1"

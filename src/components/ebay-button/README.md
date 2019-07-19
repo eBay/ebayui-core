@@ -17,7 +17,7 @@ Name | Type | Stateful | Description
 `fluid` | Boolean | No |
 `disabled` | Boolean | Yes |
 `partially-disabled` | Boolean | No |
-`variant` | String | No | optional, to alter Skin classes: "expand" / "cta"
+`variant` | String | No | optional, to alter Skin classes: "expand" / "cta" / "fake-link"
 `fixed-height` | Boolean | No | fixes the height based on `size`; defaults to `medium` when no size is specified
 `truncate` | Boolean | No | will truncate the text of the button onto a single line, and adds an ellipsis, when the button's text overflows
 `badge-number` | Number | No | used as the number to be placed in the badge
