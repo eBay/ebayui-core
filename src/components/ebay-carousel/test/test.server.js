@@ -4,7 +4,7 @@ const { expect, testPassThroughAttributes } = require('../../../common/test-util
 const mock = require('../mock');
 const template = require('..');
 
-describe.only('carousel', () => {
+describe('carousel', () => {
     describe('with discrete items per slide', () => {
         test('renders base version', async() => {
             const input = mock.Discrete_1PerSlide_3Items;

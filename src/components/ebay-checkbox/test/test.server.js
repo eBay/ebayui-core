@@ -1,21 +1,18 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
-const rootSelector = `span.checkbox`;
-const inputSelector = `input.checkbox__control`;
-const iconSelector = `span.checkbox__icon`;
+const { render } = require('@marko/testing-library');
+const { expect, testPassThroughAttributes } = require('../../../common/test-utils/server');
+const template = require('..');
 
-test('renders default checkbox', context => {
-    const $ = testUtils.getCheerio(context.render());
-    expect($(rootSelector).length).to.equal(1);
-    expect($(inputSelector).length).to.equal(1);
-    expect($(iconSelector).length).to.equal(1);
+test('renders default checkbox', async() => {
+    const { getByRole } = await render(template);
+    const checkbox = getByRole('checkbox');
+
+    expect(checkbox).has.property('checked', false);
+    expect(checkbox.parentElement).has.class('checkbox')
 });
 
-test('renders disabled checkbox', context => {
-    const input = { disabled: true };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($(`${inputSelector}[disabled]`).length).to.equal(1);
+test('renders disabled checkbox', async() => {
+    const { getByRole } = await render(template, { disabled: true });
+    expect(getByRole('checkbox')).has.attr('disabled');
 });
 
-test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, inputSelector));
-test('handles custom class and style', context => testUtils.testClassAndStyle(context, rootSelector));
+testPassThroughAttributes(template);
