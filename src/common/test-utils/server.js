@@ -2,7 +2,9 @@ const markoCompiler = require('marko/compiler');
 const { prettyPrintAst } = require('marko-prettyprint');
 const { render } = require('@marko/testing-library');
 const { expect, use } = require('chai');
+
 use(require('chai-dom'));
+use(require('sinon-chai'));
 
 let CompileContext;
 let Builder;
@@ -19,6 +21,7 @@ try {
 }
 
 module.exports = {
+    expect,
     /**
      * Adds a test to assert that a template passes through additional attributes.
      */

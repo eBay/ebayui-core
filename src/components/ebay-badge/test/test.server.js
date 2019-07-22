@@ -1,8 +1,6 @@
-const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const testUtils = require('../../../common/test-utils/server');
+const { expect, testPassThroughAttributes } = require('../../../common/test-utils/server');
 const template = require('../index.marko');
-use(require('chai-dom'));
 
 test('renders defaults', async() => {
     const { getByText } = await render(template, { number: 5 });
@@ -46,4 +44,4 @@ test('truncates when the value is greater than 99', async() => {
     expect(getByText(/\d+/)).has.text('99+');
 });
 
-testUtils.testPassThroughAttributes(template, { input: { number: 1 } });
+testPassThroughAttributes(template, { input: { number: 1 } });

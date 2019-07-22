@@ -4,7 +4,7 @@ const assign = require('core-js-pure/features/object/assign');
 //   style: 'height:200px;width:400px;background:gray'
 // });
 
-exports.Discrete_1PerSlide_6Items = {
+exports.Discrete_1PerSlide_0Items = {
   itemsPerSlide: 1,
   a11yPreviousText: 'prev',
   a11yNextText: 'next',
@@ -12,34 +12,55 @@ exports.Discrete_1PerSlide_6Items = {
   a11yStatusTag: 'h2',
   a11yCurrentText: 'current slide {currentSlide}',
   a11yOtherText: 'go to slide {slide}',
-  items: getNItems(6)
+  items: []
 }
 
-exports.Discrete_2PerSlide_6Items = assign({}, exports.Discrete_1PerSlide_6Items, {
-  itemsPerSlide: 2
+exports.Discrete_1PerSlide_1Items = assign({}, exports.Discrete_1PerSlide_0Items, {
+  items: getNItems(1)
 });
 
-exports.Discrete_1PerSlide_0Items = assign({}, exports.Discrete_1PerSlide_6Items, {
-  items: []
+exports.Discrete_1PerSlide_3Items = assign({}, exports.Discrete_1PerSlide_0Items, {
+  items: getNItems(3)
 });
 
-exports.Discrete_1PerSlide_6Items_AutoPlay = assign({
+exports.Discrete_2_1PerSlide_3Items = assign({}, exports.Discrete_1PerSlide_3Items, {
+  itemsPerSlide: 2.1
+});
+
+exports.Discrete_2PerSlide_6Items = assign({}, exports.Discrete_1PerSlide_0Items, {
+  itemsPerSlide: 2,
+  items: getNItems(6)
+});
+
+exports.Discrete_1PerSlide_3Items_AutoPlay = assign({
   a11yPlayText: 'play',
   a11yPauseText: 'pause',
-  autoplay: true
-}, exports.Discrete_1PerSlide_6Items);
+  autoplay: 200
+}, exports.Discrete_1PerSlide_3Items);
 
-exports.Continuous_6Items = {
+exports.Continuous_0Items = {
   a11yPreviousText: 'prev',
   a11yNextText: 'next',
+  items: []
+};
+
+exports.Continuous_1Item = assign({}, exports.Continuous_0Items, {
+  items: getNItems(1, {
+    style: 'width:200px'
+  })
+});
+
+exports.Continuous_6Items = assign({}, exports.Continuous_0Items, {
   items: getNItems(6, {
     style: 'width:200px'
   })
-}
+});
 
-exports.Continuous_0Items = assign({}, exports.Continuous_6Items, {
-  items: []
-})
+exports.Continuous_12Items = assign({}, exports.Continuous_0Items, {
+  items: getNItems(12, {
+    style: 'width:200px'
+  })
+});
 
 function getNItems(n, attrs) {
   return Array.from({ length: n }).map((_, i) => {

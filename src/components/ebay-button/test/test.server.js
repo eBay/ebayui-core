@@ -1,8 +1,6 @@
-const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const testUtils = require('../../../common/test-utils/server');
+const { expect, testPassThroughAttributes } = require('../../../common/test-utils/server');
 const template = require('..');
-use(require('chai-dom'));
 
 const properties = {
     priority: ['primary', 'secondary'],
@@ -116,4 +114,4 @@ test('renders badged icon variant', async() => {
     expect(getByLabelText('5 Items')).has.text('5');
 });
 
-testUtils.testPassThroughAttributes(template);
+testPassThroughAttributes(template);

@@ -241,7 +241,6 @@ function cleanupAsync() {
 }
 
 function emitUpdate() {
-    console.log('emitting update');
     const { state: { config, items } } = this;
     config.scrollTransitioning = false;
     this.emit('carousel-update', {
@@ -456,11 +455,15 @@ function getSlide({ index, itemsPerSlide }, i = index) {
  * @param {number} index the index to normalize.
  */
 function normalizeIndex({ items, itemsPerSlide }, index) {
-    let result = index;
-    result %= items.length || 1; // Ensure index is within bounds.
-    result -= result % (itemsPerSlide || 1); // Round index to the nearest valid slide index.
-    result = Math.abs(result); // Ensure positive value.
-    return result;
+    if (index > 0) {
+        let result = index;
+        result %= items.length || 1; // Ensure index is within bounds.
+        result -= result % (itemsPerSlide || 1); // Round index to the nearest valid slide index.
+        result = Math.abs(result); // Ensure positive value.
+        return result;
+    }
+
+    return 0;
 }
 
 /**

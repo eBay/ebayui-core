@@ -1,9 +1,7 @@
-const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const testUtils = require('../../../common/test-utils/server');
+const { expect, testPassThroughAttributes } = require('../../../common/test-utils/server');
 const mock = require('../mock');
 const template = require('..');
-use(require('chai-dom'));
 
 describe('breadcrumb', () => {
     test('renders basic structure', async() => {
@@ -52,8 +50,8 @@ describe('breadcrumb', () => {
     });
 });
 
-testUtils.testPassThroughAttributes(template);
-testUtils.testPassThroughAttributes(template, {
+testPassThroughAttributes(template);
+testPassThroughAttributes(template, {
     child: {
         name: 'items',
         multiple: true

@@ -1,9 +1,9 @@
 const sinon = require('sinon');
-const expect = require('chai').expect;
+const { fireEvent } = require('@marko/testing-library');
+const { expect, waitFrames } = require('../../test-utils/browser');
 const eventUtils = require('../');
-const resizeUtil = eventUtils.resizeUtil;
-const testUtils = require('../../test-utils/browser');
 
+const resizeUtil = eventUtils.resizeUtil;
 const handleActionKeydown = eventUtils.handleActionKeydown;
 const handleEscapeKeydown = eventUtils.handleEscapeKeydown;
 const handleUpDownArrowsKeydown = eventUtils.handleUpDownArrowsKeydown;
@@ -100,8 +100,8 @@ describe('resizeEventUtil', () => {
         const mockCallback = sinon.spy();
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
-        testUtils.triggerEvent(window, 'resize');
-        testUtils.waitFrames(2, () => {
+        fireEvent.resize(window);
+        waitFrames(2, () => {
             expect(mockCallback.callCount).to.equal(1);
             done();
         });
@@ -112,8 +112,8 @@ describe('resizeEventUtil', () => {
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         resizeUtil.removeEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
-        testUtils.triggerEvent(window, 'resize');
-        testUtils.waitFrames(2, () => {
+        fireEvent.resize(window);
+        waitFrames(2, () => {
             expect(mockCallback.callCount).to.equal(0);
             done();
         });

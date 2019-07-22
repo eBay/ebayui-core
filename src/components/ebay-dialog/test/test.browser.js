@@ -1,5 +1,3 @@
-require('../../../common/test-utils/transitions');
-
 const expect = require('chai').expect;
 const renderer = require('../');
 

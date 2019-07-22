@@ -1,22 +1,20 @@
 const assign = require('core-js-pure/features/object/assign');
-const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const testUtils = require('../../../common/test-utils/server');
+const { expect, testPassThroughAttributes } = require('../../../common/test-utils/server');
 const mock = require('../mock');
 const template = require('..');
-use(require('chai-dom'));
 
 describe.only('carousel', () => {
     describe('with discrete items per slide', () => {
         test('renders base version', async() => {
-            const input = mock.Discrete_1PerSlide_6Items;
+            const input = mock.Discrete_1PerSlide_3Items;
             const { getByText, getByLabelText, getAllByLabelText } = await render(template, input);
             const firstDotLabel = input.a11yCurrentText.replace('{currentSlide}', 1);
             const secondDotLabel = input.a11yOtherText.replace('{slide}', 2);
             const statusEl = getByText(/\d+ of \d+/).parentElement;
     
             expect(statusEl).has.property('tagName', input.a11yStatusTag.toUpperCase());
-            expect(statusEl).has.text('1 of 6');
+            expect(statusEl).has.text('1 of 3');
             expect(statusEl).has.attr('aria-live', 'polite');
     
             expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-describedby', statusEl.id);
@@ -29,11 +27,11 @@ describe.only('carousel', () => {
             expect(getByLabelText(secondDotLabel)).not.has.attr('aria-disabled');
     
             input.items.forEach(item => expect(getByText(item.renderBody.text)).does.exist);
-            expect(getAllByLabelText(/go to slide/)).has.length(5);
+            expect(getAllByLabelText(/go to slide/)).has.length(2);
         });
 
         test('renders no-dots enabled', async() => {
-            const input = assign({ noDots: true }, mock.Discrete_1PerSlide_6Items);
+            const input = assign({ noDots: true }, mock.Discrete_1PerSlide_3Items);
             const { getByLabelText } = await render(template, input);
     
             expect(getByLabelText(input.a11yPreviousText)).to.exist;
@@ -52,14 +50,14 @@ describe.only('carousel', () => {
 
         describe('with autoplay enabled', () => {
             test('renders base version', async() => {
-                const input = mock.Discrete_1PerSlide_6Items_AutoPlay;
+                const input = mock.Discrete_1PerSlide_3Items_AutoPlay;
                 const { getByLabelText } = await render(template, input);
         
                 expect(getByLabelText(input.a11yPauseText)).to.exist;
             });
 
             test('renders paused version', async() => {
-                const input = assign({ paused: true }, mock.Discrete_1PerSlide_6Items_AutoPlay);
+                const input = assign({ paused: true }, mock.Discrete_1PerSlide_3Items_AutoPlay);
                 const { getByLabelText } = await render(template, input);
     
                 expect(getByLabelText(input.a11yPlayText)).to.exist;
@@ -94,8 +92,8 @@ describe.only('carousel', () => {
         });
     });
 
-    testUtils.testPassThroughAttributes(template);
-    testUtils.testPassThroughAttributes(template, {
+    testPassThroughAttributes(template);
+    testPassThroughAttributes(template, {
         child: {
             name: 'items',
             multiple: true

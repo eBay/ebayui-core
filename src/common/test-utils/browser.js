@@ -1,52 +1,34 @@
-const expect = require('chai').expect;
+const { expect, use } = require('chai');
+const { cleanup, fireEvent } = require('@marko/testing-library');
 
-/**
- * Trigger generic DOM event
- * @param {HTMLElement} el
- * @param {String} type
- * @param {Number} keyCode
- * @param {String} key
- */
-function triggerEvent(el, type, keyCode, key) {
-    const event = document.createEvent('Event');
-    event.initEvent(type, true, true, null);
-    event.keyCode = keyCode;
-    event.key = key;
-    el.dispatchEvent(event);
-}
+afterEach(cleanup);
+use(require('chai-dom'));
+use(require('sinon-chai'));
 
-/**
- * Check that the spy was called with an originalEvent
- * @param {Object} spy
- */
-function testOriginalEvent(spy) {
-    expect(spy.getCall(0).args[0].originalEvent instanceof Event).to.equal(true);
-}
-
-/**
- * Simulates a touch based scroll event over 4 animation frames.
- *
- * @param {HTMLElement} el The element to scroll.
- * @param {number} to The new scrollLeft for the element.
- * @param {function} cb A callback to call after the scroll.
- */
-function simulateScroll(el, to, cb) {
-    triggerEvent(el, 'scroll', undefined, false);
-    el.scrollLeft = to;
-    setTimeout(cb, 600);
-}
-
-function waitFrames(count, cb) {
-    if (count) {
-        return requestAnimationFrame(() => waitFrames(count - 1, cb));
-    }
-
-    cb();
-}
+// Adds an style to the document which forces all transitions to run more quickly for the tests.
+const style = document.createElement('style');
+style.innerHTML = `* { transition-duration: 0.1s !important; }`;
+document.head.appendChild(style);
 
 module.exports = {
-    triggerEvent,
-    testOriginalEvent,
-    simulateScroll,
-    waitFrames
+    expect,
+    /**
+     * Simulates a touch based scroll event over 4 animation frames.
+     *
+     * @param {HTMLElement} el The element to scroll.
+     * @param {number} to The new scrollLeft for the element.
+     * @param {function} cb A callback to call after the scroll.
+     */
+    simulateScroll(el, to, cb) {
+        fireEvent.scroll(el);
+        el.scrollLeft = to;
+        setTimeout(cb, 600);
+    },
+    waitFrames(count, cb) {
+        if (count) {
+            return requestAnimationFrame(() => waitFrames(count - 1, cb));
+        }
+    
+        cb();
+    }
 };
