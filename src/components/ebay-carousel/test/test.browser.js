@@ -966,7 +966,7 @@ describe('given an autoplay carousel in the default state', () => {
 
             waitForUpdate(widget, () => {
                 widget.on('carousel-update', updateSpy);
-                setTimeout(done, 350);
+                setTimeout(done, 375);
             });
 
             root.paused = true;
@@ -985,7 +985,7 @@ describe('given an autoplay carousel in the default state', () => {
 
             waitForUpdate(widget, () => {
                 widget.on('carousel-update', updateSpy);
-                setTimeout(done, 350);
+                setTimeout(done, 375);
             });
 
             testUtils.triggerEvent(list, 'mouseover');
@@ -994,7 +994,7 @@ describe('given an autoplay carousel in the default state', () => {
         describe('when the interaction has finished', () => {
             beforeEach((done) => {
                 waitForUpdate(widget, () => {
-                    setTimeout(done, 350);
+                    setTimeout(done, 375);
                 });
                 testUtils.triggerEvent(list, 'mouseout');
             });
@@ -1017,7 +1017,7 @@ describe('given an autoplay carousel in the default state', () => {
 
             waitForUpdate(widget, () => {
                 widget.on('carousel-update', updateSpy);
-                setTimeout(done, 350);
+                setTimeout(done, 375);
             });
 
             testUtils.triggerEvent(pauseButton, 'click');
