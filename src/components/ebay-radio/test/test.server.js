@@ -1,21 +1,23 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
-const rootSelector = `span.radio`;
-const inputSelector = `input.radio__control`;
-const iconSelector = `span.radio__icon`;
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const template = require('..');
 
-test('renders default radio', context => {
-    const $ = testUtils.getCheerio(context.render());
-    expect($(rootSelector).length).to.equal(1);
-    expect($(inputSelector).length).to.equal(1);
-    expect($(iconSelector).length).to.equal(1);
+use(require('chai-dom'));
+
+test('renders default radio', async () => {
+    const { getByRole } = await render(template);
+    const radioControl = getByRole("radio");
+    expect(radioControl).to.have.class("radio__control");
+    expect(radioControl.parentElement).to.have.class("radio");
+    expect(radioControl.nextElementSibling).to.have.class("radio__icon");
+    expect(radioControl).to.have.property("disabled", false);
 });
 
-test('renders disabled radio', context => {
-    const input = { disabled: true };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($(`${inputSelector}[disabled]`).length).to.equal(1);
+test('renders disabled radio', async () => {
+    const { getByRole } = await render(template, { disabled: true });
+    const radioControl = getByRole("radio");
+    expect(radioControl).to.have.property("disabled", true);
 });
 
-test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, inputSelector));
-test('handles custom class and style', context => testUtils.testClassAndStyle(context, rootSelector));
+testPassThroughAttributes(template);

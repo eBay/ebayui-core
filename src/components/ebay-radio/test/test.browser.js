@@ -1,58 +1,48 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const template = require('..');
 
-let widget;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-function renderAndGetRoot(input) {
-    widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-    return document.querySelector('.radio');
-}
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
 describe('given radio button is enabled', () => {
-    let root;
-    let input;
-    beforeEach(() => {
-        root = renderAndGetRoot({ '*': { value: 'food' } });
-        input = root.querySelector('.radio__control');
+    beforeEach(async() => {
+        component = await render(template, { "*": { value: 'food' } });
     });
-    afterEach(() => widget.destroy());
 
     describe('when radio button is clicked', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('radio-change', spy);
-            testUtils.triggerEvent(input, 'click');
+            fireEvent.click(component.getByRole('radio'));
         });
 
-        test('then it emits the event', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.originalEvent instanceof Event).to.equal(true);
-            expect(eventData.value).to.equal('food');
+        it('then it emits the event', () => {
+            const changeEvents = component.emitted('radio-change');
+            expect(changeEvents).has.length(1);
+
+            const eventArgs = changeEvents[0];
+            expect(eventArgs).has.length(1);
+            expect(eventArgs[0].originalEvent).to.be.an.instanceof(Event);
+            expect(eventArgs[0].value).to.equal('food');
         });
     });
 });
 
 describe('given radio button is disabled', () => {
-    let root;
-    beforeEach(() => {
-        root = renderAndGetRoot({ disabled: true });
+    beforeEach(async() => {
+        component = await render(template, { disabled: true });
     });
-    afterEach(() => widget.destroy());
 
     describe('when radio button is clicked', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('radio-change', spy);
-            testUtils.triggerEvent(root, 'click');
+            fireEvent.click(component.getByRole('radio'));
         });
 
-        test('then it doesn\'t emit the event', () => {
-            expect(spy.called).to.equal(false);
+        it('then it doesn\'t emit the event', () => {
+            const changeEvents = component.emitted('radio-change');
+            expect(changeEvents).has.length(0);
         });
     });
 });
