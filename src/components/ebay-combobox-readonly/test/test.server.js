@@ -10,7 +10,7 @@ const options = [{
 const emptyOptions = [];
 
 describe('combobox', () => {
-    test('renders basic version', context => {
+    it('renders basic version', context => {
         const input = { options };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.combobox').length).to.equal(1);
@@ -20,7 +20,7 @@ describe('combobox', () => {
         expect($('.combobox__option[role=option][aria-selected="true"]').length).to.equal(1);
     });
 
-    test('renders empty', context => {
+    it('renders empty', context => {
         const input = { emptyOptions };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.combobox').length).to.equal(1);
@@ -29,7 +29,7 @@ describe('combobox', () => {
         expect($('.combobox__option[role=option]').length).to.equal(0);
     });
 
-    test('renders with second item selected', context => {
+    it('renders with second item selected', context => {
         const input = { options };
         input.options[0].selected = false;
         input.options[1].selected = true;
@@ -41,24 +41,24 @@ describe('combobox', () => {
         expect($('.combobox__option[role=option][aria-selected="true"]:nth-child(2)').length).to.equal(1);
     });
 
-    test('renders with borderless=true', context => {
+    it('renders with borderless=true', context => {
         const input = { borderless: true, options };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.combobox__control.combobox__control--borderless').length).to.equal(1);
     });
 
-    test('renders with borderless=false', context => {
+    it('renders with borderless=false', context => {
         const input = { borderless: false, options };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.combobox__control').length).to.equal(1);
         expect($('.combobox__control.combobox__control--borderless').length).to.equal(0);
     });
 
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'input'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.combobox'));
+    it('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'input'));
+    it('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.combobox'));
 });
 
 describe('combobox-option', () => {
-    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.combobox__option', 'options'));
-    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.combobox__option', 'options'));
+    it('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.combobox__option', 'options'));
+    it('handles custom class and style', c => testUtils.testClassAndStyle(c, '.combobox__option', 'options'));
 });

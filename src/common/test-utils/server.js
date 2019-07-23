@@ -24,7 +24,7 @@ module.exports = {
      * Adds a test to assert that a template passes through additional attributes.
      */
     testPassThroughAttributes(template, { input, child, getClassAndStyleEl } = {}) {
-        test(
+        it(
             `passes through additional html attributes${child ? ` from child ${child.name}` : ''}`,
             async() => {
                 for (const key of ['*', 'htmlAttributes']) {

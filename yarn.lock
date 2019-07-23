@@ -942,10 +942,10 @@
     wdio-chromedriver-service "^5.0.1"
     webdriverio "^5.8.4"
 
-"@marko/testing-library@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/@marko/testing-library/-/testing-library-1.1.1.tgz#8211f3490c7fc66b3dbbd4dd08fe46397e1b951f"
-  integrity sha512-aptQQ3ckwmNvYGJp/zANBsfre/XQjnG+8TZb9CQGhnxzr9lHp62k62pVIs+pmna1TTzMI5gABxIsPlA27L8Mjw==
+"@marko/testing-library@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/@marko/testing-library/-/testing-library-1.1.2.tgz#f5879f6b7ece3683c708efedfc3917b0b1bc962f"
+  integrity sha512-I2bzIpW5aZTiMrq6spHin8S1m1+mCJNjROBVelEBotSinWYWqaM1NLuzeZrHogL/XAuqcXaiv9BKU+K6n2Ek4g==
   dependencies:
     "@testing-library/dom" "^5.4.0"
     jsdom "^15.1.1"

@@ -18,7 +18,7 @@ describe('given button is enabled', () => {
             fireEvent.click(component.getByRole('button'));
         });
 
-        test('then it emits the event with correct data', () => {
+        it('then it emits the event with correct data', () => {
             expect(component.emitted('button-click')).has.length(1);
         });
     });
@@ -31,7 +31,7 @@ describe('given button is enabled', () => {
             });
         });
 
-        test('then it emits the event with correct data', () => {
+        it('then it emits the event with correct data', () => {
             expect(component.emitted('button-escape')).has.length(1);
         });
     });
@@ -47,7 +47,7 @@ describe('given button is disabled', () => {
             fireEvent.click(component.getByRole('button'));
         });
 
-        test('then it does not emit the event', () => {
+        it('then it does not emit the event', () => {
             expect(component.emitted('button-click')).has.length(0);
         });
     });
@@ -60,7 +60,7 @@ describe('given button is disabled', () => {
             });
         });
 
-        test('then it does not emit the event', () => {
+        it('then it does not emit the event', () => {
             expect(component.emitted('button-escape')).has.length(0);
         });
     });

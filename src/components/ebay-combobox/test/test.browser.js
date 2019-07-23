@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
 const template = require('..');
 
@@ -134,7 +134,7 @@ describe('given the combobox with 3 items', () => {
     }
 });
 
-describe.only('given the combobox starts with zero options', () => {
+describe('given the combobox starts with zero options', () => {
     const input = mock.Combobox_0Options;
 
     beforeEach(async () => {
