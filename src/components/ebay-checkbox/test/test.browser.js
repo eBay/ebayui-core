@@ -1,11 +1,14 @@
-const { render, fireEvent } = require('@marko/testing-library');
-const { expect } = require('../../../common/test-utils/browser');
+const { expect, use } = require('chai');
+const { render, cleanup } = require('@marko/testing-library');
 const template = require('..');
+
+use(require('chai-dom'));
+afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-describe.only('given checkbox button is enabled', () => {
+describe('given checkbox button is enabled', () => {
     beforeEach(async() => {
         component = await render(template, { htmlAttributes: { value: 'food' } });
     });
@@ -30,7 +33,7 @@ describe.only('given checkbox button is enabled', () => {
     });
 });
 
-describe.only('given checkbox button is disabled', () => {
+describe('given checkbox button is disabled', () => {
     beforeEach(async() => {
         component = await render(template, { disabled: true });
     });

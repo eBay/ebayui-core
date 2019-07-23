@@ -1,7 +1,8 @@
 const find = require('core-js-pure/features/array/find');
 const assign = require('core-js-pure/features/object/assign');
-const { render, fireEvent, wait } = require('@marko/testing-library');
-const { expect } = require('../../../common/test-utils/browser');
+const { expect, use } = require('chai');
+const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
+const { fastAnimations } = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const template = require('..');
 const supportsNativeScrolling = CSS.supports && CSS.supports(
@@ -11,6 +12,11 @@ const supportsNativeScrolling = CSS.supports && CSS.supports(
     (scroll-snap-coordinate: 0 0) or
     (scroll-snap-align: start))`
 );
+
+use(require('chai-dom'));
+before(fastAnimations.start);
+after(fastAnimations.stop);
+afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;

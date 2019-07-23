@@ -1,17 +1,6 @@
-const { expect, use } = require('chai');
-const { cleanup, fireEvent } = require('@marko/testing-library');
-
-afterEach(cleanup);
-use(require('chai-dom'));
-use(require('sinon-chai'));
-
-// Adds an style to the document which forces all transitions to run more quickly for the tests.
-const style = document.createElement('style');
-style.innerHTML = `* { transition-duration: 0.1s !important; }`;
-document.head.appendChild(style);
+const { fireEvent } = require('@marko/testing-library');
 
 module.exports = {
-    expect,
     /**
      * Simulates a touch based scroll event over 4 animation frames.
      *
@@ -22,7 +11,7 @@ module.exports = {
     simulateScroll(el, to, cb) {
         fireEvent.scroll(el);
         el.scrollLeft = to;
-        setTimeout(cb, 600);
+        setTimeout(cb, 100);
     },
     waitFrames(count, cb) {
         if (count) {
@@ -30,5 +19,28 @@ module.exports = {
         }
     
         cb();
+    },
+    fastAnimations: {
+        // Adds an style to the document which forces all transitions to run more quickly for the tests.
+        start() {
+            if (this.fastAnimationStyle) {
+                return;
+            }
+
+            this.fastAnimationStyle = document.createElement('style');
+            this.fastAnimationStyle.innerHTML = `* {
+                transition-duration: 0.1s !important;
+                scroll-behavior: auto !important;
+            }`;
+            document.head.appendChild(this.fastAnimationStyle);
+        },
+        stop() {
+            if (!this.fastAnimationStyle) {
+                return;
+            }
+
+            document.head.removeChild(this.fastAnimationStyle);
+            this.fastAnimationStyle = undefined;
+        }
     }
 };

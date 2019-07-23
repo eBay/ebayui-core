@@ -1,6 +1,9 @@
+const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { expect, testPassThroughAttributes } = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const template = require('..');
+
+use(require('chai-dom'));
 
 test('renders default checkbox', async() => {
     const { getByRole } = await render(template);

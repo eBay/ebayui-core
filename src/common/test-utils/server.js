@@ -4,7 +4,6 @@ const { render } = require('@marko/testing-library');
 const { expect, use } = require('chai');
 
 use(require('chai-dom'));
-use(require('sinon-chai'));
 
 let CompileContext;
 let Builder;
@@ -21,11 +20,10 @@ try {
 }
 
 module.exports = {
-    expect,
     /**
      * Adds a test to assert that a template passes through additional attributes.
      */
-    testPassThroughAttributes(template, { input, child } = {}) {
+    testPassThroughAttributes(template, { input, child, getClassAndStyleEl } = {}) {
         test(
             `passes through additional html attributes${child ? ` from child ${child.name}` : ''}`,
             async() => {
@@ -40,17 +38,20 @@ module.exports = {
                     }
 
                     Object.assign(targetInput, {
-                        [key]: { 'data-testid': testId },
+                        [key]: { 'data-testid': testId, 'data-passed-through': 'true' },
                         // class and style are special attributes
                         class: { class1: true, class2: false },
                         style: { color: 'red' }
                     });
 
-                    const { getByTestId } = await render(template, clonedInput);
-                    const el = getByTestId(testId);
-                    expect(el).has.class('class1');
-                    expect(el).not.has.class('class2');
-                    expect(el).attr('style', 'color:red');
+                    const component = await render(template, clonedInput);
+                    const passThroughEl = component.getByTestId(testId);
+                    expect(passThroughEl).has.attr('data-passed-through');
+
+                    const classAndStyleEl = getClassAndStyleEl ? getClassAndStyleEl(component) : passThroughEl;
+                    expect(classAndStyleEl).has.class('class1');
+                    expect(classAndStyleEl).not.has.class('class2');
+                    expect(classAndStyleEl).attr('style', 'color:red');
                 }
             }
         );

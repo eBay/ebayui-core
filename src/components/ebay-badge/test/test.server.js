@@ -1,6 +1,9 @@
+const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { expect, testPassThroughAttributes } = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const template = require('../index.marko');
+
+use(require('chai-dom'));
 
 test('renders defaults', async() => {
     const { getByText } = await render(template, { number: 5 });

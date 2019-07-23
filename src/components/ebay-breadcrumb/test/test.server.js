@@ -1,7 +1,10 @@
+const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { expect, testPassThroughAttributes } = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const mock = require('../mock');
 const template = require('..');
+
+use(require('chai-dom'));
 
 describe('breadcrumb', () => {
     test('renders basic structure', async() => {

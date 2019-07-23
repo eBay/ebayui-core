@@ -1,63 +1,62 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
-const options = [{
-    text: 'option 1'
-}, {
-    text: 'option 2'
-}];
-const emptyOptions = [];
+const findIndex = require('core-js-pure/features/array/find-index');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const mock = require('./mock');
+const template = require('..');
+
+use(require('chai-dom'));
 
 describe('combobox', () => {
-    test('renders basic version', context => {
-        const input = { options, autocomplete: 'list' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.combobox').length).to.equal(1);
-        expect($('.combobox__control').length).to.equal(1);
-        expect($('.combobox__options[role=listbox]').length).to.equal(1);
-        expect($('.combobox__option[role=option]').length).to.equal(2);
-        expect($('.combobox__option[role=option][aria-selected="true"]').length).to.equal(0);
+    test('renders basic version', async() => {
+        const input = mock.Combobox_3Options;
+        const { getByRole, getAllByRole } = await render(template, input);
+        expect(getByRole('combobox')).has.attr('aria-haspopup');
+        expect(getByRole('combobox').parentElement).does.not.have.class('combobox__control--borderless');
+        expect(getByRole('listbox')).has.class('combobox__options');
+        expect(getByRole('listbox').parentElement).has.class('combobox');
+        expect(getAllByRole('option')).has.length(3);
+        expect(getAllByRole('option').filter(isAriaSelected)).has.length(0);
     });
 
-    test('renders empty', context => {
-        const input = { emptyOptions, autocomplete: 'list' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.combobox').length).to.equal(1);
-        expect($('.combobox__control').length).to.equal(1);
-        expect($('.combobox__options[role=listbox]').length).to.equal(0);
-        expect($('.combobox__option[role=option]').length).to.equal(0);
+    test('renders empty', async() => {
+        const input = mock.Combobox_0Options;
+        const { getByRole } = await render(template, input);
+        expect(getByRole('combobox')).does.exist;
+        expect(() => getByRole('listbox')).to.throw();
     });
 
-    test('renders with second item selected', context => {
-        const input = { options, '*': { value: 'option 2' }, autocomplete: 'list' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.combobox').length).to.equal(1);
-        expect($('.combobox__control').length).to.equal(1);
-        expect($('.combobox__options[role=listbox]').length).to.equal(1);
-        expect($('.combobox__option[role=option]').length).to.equal(1);
-        expect($('.combobox__option[role=option][aria-selected="true"]').length).to.equal(1);
+    test('renders with second item selected', async() => {
+        const input = mock.Combobox_3Options_2Selected;
+        const { getAllByRole } = await render(template, input);
+        const selectedIndex = findIndex(input.options, ({ value }) => value === input.value);
+        expect(findIndex(getAllByRole('option'), isAriaSelected)).is.equal(selectedIndex);
     });
 
-    test('renders with borderless=true', context => {
-        const input = { borderless: true, options, autocomplete: 'list' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.combobox__control.combobox__control--borderless').length).to.equal(1);
+    test('renders with borderless enabled', async() => {
+        const input = mock.Combobox_3Options_Borderless;
+        const { getByRole } = await render(template, input);
+        expect(getByRole('combobox').parentElement).has.class('combobox__control--borderless');
     });
 
-    test('renders with borderless=false', context => {
-        const input = { borderless: false, options, autocomplete: 'list' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.combobox__control').length).to.equal(1);
-        expect($('.combobox__control.combobox__control--borderless').length).to.equal(0);
+    testPassThroughAttributes(template, {
+        input: mock.Combobox_3Options,
+        getClassAndStyleEl(component) {
+            return component.container.firstElementChild;
+        }
     });
-
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'input'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.combobox'));
 });
 
 describe('combobox-option', () => {
-    test('handles pass-through html attributes', c =>
-        testUtils.testHtmlAttributes(c, '.combobox__option', 'options', options[0]));
-
-    test('handles custom class and style', c =>
-        testUtils.testClassAndStyle(c, '.combobox__option', 'options', options[0]));
+    testPassThroughAttributes(template, {
+        child: {
+            name: "options",
+            input: mock.Combobox_3Options.options[0],
+            multiple: true
+        }
+    })
 });
+
+function isAriaSelected(el) {
+    return el.getAttribute('aria-selected') === 'true';
+}

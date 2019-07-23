@@ -1,6 +1,9 @@
-const { render, fireEvent } = require('@marko/testing-library');
-const { expect } = require('../../../common/test-utils/browser');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const template = require('..');
+
+use(require('chai-dom'));
+afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;

@@ -1,8 +1,4 @@
 const assign = require('core-js-pure/features/object/assign');
-// mocks for visual debugging
-// exports.debugItems = getNItems(6, {
-//   style: 'height:200px;width:400px;background:gray'
-// });
 
 exports.Discrete_1PerSlide_0Items = {
   itemsPerSlide: 1,
