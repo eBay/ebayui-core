@@ -9,7 +9,7 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-describe.only('given the default infotip', () => {
+describe('given the default infotip', () => {
     const input = mock.WithContent;
 
     beforeEach(async() => {

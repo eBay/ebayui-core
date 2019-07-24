@@ -1,53 +1,94 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const mock = require('./mock');
+const template = require('..');
 
-test('renders notice with defaults', context => {
-    const input = {};
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('h2.page-notice__status').length).to.equal(1);
+use(require('chai-dom'));
+
+describe('notice', () => {
+    describe('with type=page', () => {
+        it('renders with defaults', async() => {
+            const input = mock.Page;
+            const { getByLabelText, getByText } = await render(template, input);
+            const status = getByLabelText(input.a11yHeadingText).parentElement;
+            expect(status).has.class('page-notice__status');
+            expect(status).has.property('tagName', 'H2');
+    
+            const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
+            expect(containerUsingLabel).has.class('page-notice--attention');
+
+            const content = getByText(input.renderBody.text);
+            expect(content).has.property('tagName', 'DIV');
+            expect(content).has.class('page-notice__content');
+        });
+    
+        it('renders with custom heading tag', async() => {
+            const input = mock.Page_Custom_Heading_Tag;
+            const { getByLabelText } = await render(template, input);
+            const status = getByLabelText(input.a11yHeadingText).parentElement;
+            expect(status).has.property('tagName', 'H3');
+        });
+    
+        it('renders with custom status type', async() => {
+            const input = mock.Page_Custom_Status;
+            const { getByLabelText } = await render(template, input);
+            const status = getByLabelText(input.a11yHeadingText).parentElement;
+            const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
+            expect(containerUsingLabel).has.class(`page-notice--${input.status}`);
+        });
+
+        it('renders with dismiss button', async() => {
+            const input = mock.Page_Dismissible;
+            const { getByLabelText } = await render(template, input);
+            expect(getByLabelText(input.a11yCloseText)).has.class('page-notice__close');
+        });
+
+        testPassThroughAttributes(template, {
+            input: mock.Page
+        });
+    });
+
+    describe('with type=inline', () => {
+        it('renders with defaults', async() => {
+            const input = mock.Inline;
+            const { getByLabelText, getByText } = await render(template, input);
+            const status = getByLabelText(input.a11yHeadingText).parentElement;
+            expect(status).has.class('inline-notice__status');
+            expect(status).has.property('tagName', 'SPAN');
+    
+            const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
+            expect(containerUsingLabel).has.class('inline-notice--attention');
+
+            const content = getByText(input.renderBody.text);
+            expect(content).has.property('tagName', 'SPAN');
+            expect(content).has.class('inline-notice__content');
+        });
+    
+        it('renders with custom heading tag (ignores it)', async() => {
+            const input = mock.Inline_Custom_Heading_Tag;
+            const { getByLabelText } = await render(template, input);
+            const status = getByLabelText(input.a11yHeadingText).parentElement;
+            expect(status).has.property('tagName', 'SPAN');
+        });
+    
+        it('renders with custom status type', async() => {
+            const input = mock.Inline_Custom_Status;
+            const { getByLabelText } = await render(template, input);
+            const status = getByLabelText(input.a11yHeadingText).parentElement;
+            const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
+            expect(containerUsingLabel).has.class(`inline-notice--${input.status}`);
+        });
+
+        it('renders with dismiss button', async() => {
+            const input = mock.Inline_Dismissible;
+            const { getByLabelText } = await render(template, input);
+            expect(getByLabelText(input.a11yCloseText)).has.class('page-notice__close'); // TODO: Is this supposed to be inline-notice?
+        });
+
+        testPassThroughAttributes(template, {
+            input: mock.Inline
+        });
+    });
+
 });
-
-test('renders page notice with default heading', context => {
-    const input = { type: 'page' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('h2.page-notice__status').length).to.equal(1);
-});
-
-test('renders page notice with custom heading', context => {
-    const input = { type: 'page', a11yHeadingTag: 'h3' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('h3.page-notice__status').length).to.equal(1);
-});
-
-test('renders page notice with custom type', context => {
-    const input = { type: 'page', status: 'confirmation' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('.page-notice--confirmation').length).to.equal(1);
-});
-
-test('renders inline notice with correct tags', context => {
-    const input = { type: 'inline', status: 'confirmation' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('span.inline-notice__status').length).to.equal(1);
-    expect($('div.inline-notice--confirmation').length).to.equal(1);
-    expect($('span.inline-notice__content').length).to.equal(1);
-});
-
-test('renders page notice with correct tags', context => {
-    const input = { type: 'page', status: 'priority' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('h2.page-notice__status').length).to.equal(1);
-    expect($('section.page-notice--priority').length).to.equal(1);
-    expect($('div.page-notice__content').length).to.equal(1);
-    expect($('button.page-notice__close').length).to.equal(0);
-});
-
-test('renders page notice with dismiss button', context => {
-    const input = { type: 'page', status: 'priority', dismissible: true };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('section.page-notice--priority').length).to.equal(1);
-    expect($('button.page-notice__close').length).to.equal(1);
-});
-
-test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'section.page-notice'));
-test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'section.page-notice'));
