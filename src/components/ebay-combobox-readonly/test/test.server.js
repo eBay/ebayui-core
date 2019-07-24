@@ -8,7 +8,7 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-describe.only('combobox-readonly', () => {
+describe('combobox-readonly', () => {
     it('renders basic version', async() => {
         const input = mock.Combobox_3Options;
         const { getByRole, getAllByRole } = await render(template, input);

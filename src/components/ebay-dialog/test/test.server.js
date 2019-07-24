@@ -6,7 +6,7 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-describe.only('dialog', () => {
+describe('dialog', () => {
     it('renders basic version', async() => {
         const input = mock.Fill_Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);

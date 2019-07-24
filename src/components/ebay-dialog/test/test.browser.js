@@ -10,7 +10,7 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-describe.only('given a closed dialog', () => {
+describe('given a closed dialog', () => {
     const input = mock.Fill_Dialog;
     let sibling;
 
@@ -80,7 +80,7 @@ describe.only('given a closed dialog', () => {
     }
 });
 
-describe.only('given an open dialog', () => {
+describe('given an open dialog', () => {
     const input = mock.Fill_Dialog_Open;
     let sibling;
 
