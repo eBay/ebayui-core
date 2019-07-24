@@ -1,164 +1,164 @@
-const expect = require('chai').expect;
-const renderer = require('../');
+const assign = require('core-js-pure/features/object/assign');
+const { expect, use } = require('chai');
+const { render, wait, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
 
-describe('given the dialog is in the default state', () => {
-    let widget;
-    let root;
-    let dialogWindow;
-    let close;
+use(require('chai-dom'));
+afterEach(cleanup);
+
+/** @type import("@marko/testing-library").RenderResult */
+let component;
+
+describe.only('given a closed dialog', () => {
+    const input = mock.Fill_Dialog;
     let sibling;
 
-    beforeEach(() => {
-        sibling = document.createElement('div');
-        document.body.appendChild(sibling);
-
-        widget = renderer.renderSync({}).appendTo(document.body).getWidget();
-        root = widget.el;
-        dialogWindow = root.querySelector('.dialog__window');
-        close = root.querySelector('.dialog__close');
+    beforeEach(async() => {
+        sibling = document.body.appendChild(document.createElement('div'));
+        component = await render(template, input);
     });
 
-    afterEach(() => widget.destroy());
-
-    describe('when it is rendered', () => {
-        test('then it is hidden in the DOM', () => {
-            expect(root.hasAttribute('hidden')).to.equal(true);
-        });
-
-        test('then <body> is scrollable', () => {
-            expect(document.body.getAttribute('style')).to.equal(null);
-        });
-
-        test('then it\'s siblings are visible', () => {
-            expect(sibling.hasAttribute('aria-hidden')).to.equal(false);
-        });
-
-        test('then it does not trap focus', () => {
-            expect(dialogWindow.classList.contains('keyboard-trap--active')).to.equal(false);
-        });
+    afterEach(() => {
+        document.body.removeChild(sibling);
     });
 
-    describe('when the open state is true', () => {
-        beforeEach((done) => {
-            widget.once('dialog-show', done);
-            widget.setState('open', true);
-        });
-
-        thenItIsOpen();
+    it('then it is hidden in the DOM', () => {
+        expect(component.getByRole('dialog')).has.attr('hidden');
     });
 
-    function thenItIsOpen(skipRerender) {
-        test('then it is visible in the DOM', () => {
-            expect(root.hasAttribute('hidden')).to.equal(false);
+    it('then <body> is scrollable', () => {
+        expect(document.body).does.not.have.attr('style');
+    });
+
+    it('then it\'s siblings are visible', () => {
+        expect(sibling).does.not.have.attr('aria-hidden');
+    });
+
+    it('then it does not trap focus', () => {
+        expect(component.getByRole('document')).does.not.have.class('keyboard-trap--active');
+    });
+
+    describe('when it is rerendered to be open', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { open: true }));
         });
 
-        test('then it\'s siblings are hidden', () => {
-            expect(sibling.getAttribute('aria-hidden')).to.equal('true');
+        thenItIsOpen(true);
+    });
+
+    function thenItIsOpen(wasToggled) {
+        it('then it is visible in the DOM', () => {
+            expect(component.getByRole('dialog')).does.not.have.attr('hidden');
         });
 
-        test('then <body> is not scrollable', () => {
-            expect(document.body.getAttribute('style')).to.contain('overflow:hidden;');
+        it('then <body> is not scrollable', () => {
+            expect(document.body).has.attr('style').contains('overflow:hidden');
         });
 
-        test('then it traps focus', () => {
-            expect(dialogWindow.classList.contains('keyboard-trap--active')).to.equal(true);
-            expect(document.activeElement.className).to.eql(close.className);
+        it('then it\'s siblings are hidden', () => {
+            expect(sibling).has.attr('aria-hidden', 'true');
         });
 
-        if (!skipRerender) {
-            describe('when it is rerendered', () => {
-                beforeEach((done) => {
-                    widget.once('update', () => setTimeout(done));
-                    widget.setStateDirty('test', true);
+        if (wasToggled) {
+            it('then it traps focus', async() => {
+                await wait(() => {
+                    expect(component.getByRole('document')).has.class('keyboard-trap--active');
+                    expect(document.activeElement).has.class(component.getByLabelText(input.a11yCloseText).className);
                 });
+            });
+    
+            it('then it emits the show event', async() => {
+                await wait(() => expect(component.emitted('dialog-show')).has.length(1));
+            });
 
-                thenItIsOpen(true);
+            describe('when it is rerendered with the same input', () => {
+                beforeEach(async () => await component.rerender());
+                thenItIsOpen();
             });
         }
     }
 });
 
-describe('given the dialog is in the open state', () => {
-    let widget;
-    let root;
-    let dialogWindow;
-    let close;
+describe.only('given an open dialog', () => {
+    const input = mock.Fill_Dialog_Open;
     let sibling;
 
-    beforeEach(() => {
-        sibling = document.createElement('div');
-        document.body.appendChild(sibling);
-
-        widget = renderer.renderSync({ open: true }).appendTo(document.body).getWidget();
-        root = widget.el;
-        dialogWindow = root.querySelector('.dialog__window');
-        close = root.querySelector('.dialog__close');
+    beforeEach(async() => {
+        sibling = document.body.appendChild(document.createElement('div'));
+        component = await render(template, input);
     });
 
-    afterEach(() => widget.destroy());
-
-    describe('when it is rendered', () => {
-        test('then it is visible in the DOM', () => {
-            expect(root.hasAttribute('hidden')).to.equal(false);
-        });
-
-        test('then it\'s siblings are hidden', () => {
-            expect(sibling.getAttribute('aria-hidden')).to.equal('true');
-        });
-
-        test('then <body> is not scrollable', () => {
-            expect(document.body.getAttribute('style')).to.contain('overflow:hidden;');
-        });
-
-        test('then it traps focus', () => {
-            expect(dialogWindow.classList.contains('keyboard-trap--active')).to.equal(true);
-            expect(document.activeElement.className).to.eql(close.className);
-        });
+    afterEach(() => {
+        document.body.removeChild(sibling);
     });
+
+    thenItIsOpen();
 
     describe('when the close button is clicked', () => {
-        beforeEach((done) => {
-            widget.once('dialog-close', done);
-            close.click();
+        beforeEach(() => {
+            component.getByLabelText(input.a11yCloseText).click();
         });
 
-        thenItIsClosed();
+        thenItIsClosed(true);
     });
 
     describe('when the mask is clicked', () => {
-        beforeEach((done) => {
-            widget.once('dialog-close', done);
-            root.click(); // simulate clicking outside the dialog.
+        beforeEach(() => {
+            component.getByRole('dialog').click(); // simulate clicking outside the dialog.
         });
 
-        thenItIsClosed();
+        thenItIsClosed(true);
     });
 
-    function thenItIsClosed(skipRerender) {
-        test('then it is hidden in the DOM', () => {
-            expect(root.hasAttribute('hidden')).to.equal(true);
+    function thenItIsOpen() {
+        it('then it is visible in the DOM', () => {
+            expect(component.getByRole('dialog')).does.not.have.attr('hidden');
         });
 
-        test('then <body> is scrollable', () => {
-            expect(document.body.getAttribute('style')).to.equal(null);
+        it('then <body> is not scrollable', () => {
+            expect(document.body).has.attr('style').contains('overflow:hidden');
         });
 
-        test('then it\'s siblings are visible', () => {
-            expect(sibling.hasAttribute('aria-hidden')).to.equal(false);
+        it('then it\'s siblings are hidden', () => {
+            expect(sibling).has.attr('aria-hidden', 'true');
         });
 
-        test('then it does not trap focus', () => {
-            expect(dialogWindow.classList.contains('keyboard-trap--active')).to.equal(false);
+        it('then it traps focus', async() => {
+            await wait(() => {
+                expect(component.getByRole('document')).has.class('keyboard-trap--active');
+                expect(document.activeElement).has.class(component.getByLabelText(input.a11yCloseText).className);
+            });
+        });
+    }
+
+    function thenItIsClosed(wasToggled) {
+        it('then it is hidden in the DOM', () => {
+            expect(component.getByRole('dialog')).has.attr('hidden');
+        });
+    
+        it('then <body> is scrollable', async() => {
+            await wait(() => {
+                expect(document.body).does.not.have.attr('style');
+            });
+        });
+    
+        it('then it\'s siblings are visible', () => {
+            expect(sibling).does.not.have.attr('aria-hidden');
+        });
+    
+        it('then it does not trap focus', () => {
+            expect(component.getByRole('document')).does.not.have.class('keyboard-trap--active');
         });
 
-        if (!skipRerender) {
-            describe('when it is rerendered', () => {
-                beforeEach((done) => {
-                    widget.once('update', () => setTimeout(done));
-                    widget.setStateDirty('test', true);
-                });
+        if (wasToggled) {
+            it('then it emits the close event', async() => {
+                await wait(() => expect(component.emitted('dialog-close')).has.length(1));
+            });
 
-                thenItIsClosed(true);
+            describe('when it is rerendered with the same input', () => {
+                beforeEach(async () => await component.rerender(input));
+                thenItIsOpen();
             });
         }
     }

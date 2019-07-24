@@ -1,4 +1,3 @@
-
 const find = require('core-js-pure/features/array/find');
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
