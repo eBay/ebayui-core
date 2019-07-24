@@ -13,7 +13,7 @@
 <if(isInline)>
     <assign titleId=(data.a11yText && "icon-title-" + getWidgetId(out))/>
     <assign a11yAttributes=(titleId
-        ? { "aria-labelled-by": titleId, role: "img" }
+        ? { "aria-labelledby": titleId, role: "img" }
         : { "aria-hidden": "true" }
     )/>
 </if>

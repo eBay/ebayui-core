@@ -56,7 +56,7 @@ describe('icon', () => {
             const title = getByTitle(input.a11yText);
             expect(svg).has.class(`icon--${iconName}`);
             expect(svg).contains(title);
-            expect(svg).has.attr('aria-labelled-by', title.id);
+            expect(svg).has.attr('aria-labelledby', title.id);
         });
     
         it('renders inline type without title text', async() => {
@@ -70,7 +70,7 @@ describe('icon', () => {
     
             const { getByTestId } = await render(template, input);
             const svg = getByTestId('icon');
-            expect(svg).does.not.have.attr('aria-labelled-by');
+            expect(svg).does.not.have.attr('aria-labelledby');
             expect(svg).has.attr('aria-hidden', 'true');
         });
     

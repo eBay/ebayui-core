@@ -1,60 +1,49 @@
-
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes, runTransformer } = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
+const mock = require('./mock');
+const template = require('..');
+
+use(require('chai-dom'));
 
 describe('infotip', () => {
-    test('renders default infotip', context => {
-        const input = {
-            content: {
-                renderyBody: ''
-            }
-        };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.infotip').length).to.equal(1);
-        expect($('.infotip__host').length).to.equal(1);
-        expect($('button.infotip__host').length).to.equal(1);
-        expect($('.infotip__overlay').length).to.equal(1);
+    it('renders default infotip', async() => {
+        const input = mock.WithContent;
+        const { getByLabelText, getByText } = await render(template, input);
+        expect(getByLabelText(input.ariaLabel)).has.class('infotip__host');
+        expect(getByText(input.content.renderBody.text)).has.class('infotip__content');
     });
 
-    test('renders infotip with a header', context => {
-        const input = {
-            heading: {
-                renderyBody: ''
-            },
-            content: {
-                renderyBody: ''
-            }
-        };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.infotip__heading').length).to.equal(1);
+    it('renders infotip with a header', async() => {
+        const input = mock.WithContentAndHeader;
+        const { getByText } = await render(template, input);
+        expect(getByText(input.heading.renderBody.text)).has.class('infotip__heading');
     });
 
-    test('renders default infotip disabled', context => {
-        const input = {
-            content: {
-                renderyBody: ''
-            },
-            disabled: true
-        };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('button.infotip__host[disabled]').length).to.equal(1);
+    it('renders default infotip disabled', async() => {
+        const input = mock.Disabled;
+        const { getByLabelText } = await render(template, input);
+        expect(getByLabelText(input.ariaLabel)).has.attr('disabled');
     });
+
+    // TODO: Does not look like this tag passes through class and style?
+    // testPassThroughAttributes(template);
 });
 
 describe('transformer', () => {
     const componentPath = '../index.js';
 
-    test('transforms an icon attribute into a tag', () => {
+    it('transforms an icon attribute into a tag', () => {
         const tagString = '<ebay-infotip icon="settings"/>';
-        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { el } = runTransformer(transformer, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
         expect(iconEl.tagName).to.equal('ebay-infotip:icon');
     });
 
-    test('does not transform when icon attribute is missing', () => {
+    it('does not transform when icon attribute is missing', () => {
         const tagString = '<ebay-infotip/>';
-        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { el } = runTransformer(transformer, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
         expect(iconEl).to.equal(undefined);
     });

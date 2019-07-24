@@ -1,65 +1,54 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
 
-describe('given the default infotip', () => {
-    let widget;
-    let host;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-    beforeEach(() => {
-        const input = {
-            host: {},
-            heading: {},
-            content: {}
-        };
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        host = widget.el.querySelector('.infotip__host');
+/** @type import("@marko/testing-library").RenderResult */
+let component;
+
+describe.only('given the default infotip', () => {
+    const input = mock.WithContent;
+
+    beforeEach(async() => {
+        component = await render(template, input);
     });
-
-    afterEach(() => widget.destroy());
 
     thenItCanBeOpenAndClosed();
 
-    describe('after it is rerendered', () => {
-        before(() => {
-            // Force rerender by passing new props.
-            widget.setProps({
-                host: {},
-                heading: {},
-                content: {}
-            });
-            widget.update();
-        });
-
+    describe('when it is rerendered', () => {
+        beforeEach(async() => await component.rerender(input));
         thenItCanBeOpenAndClosed();
     });
 
     function thenItCanBeOpenAndClosed() {
         describe('when the host element is clicked', () => {
-            let spy;
             beforeEach(() => {
-                spy = sinon.spy();
-                widget.on('tooltip-expand', spy);
-                testUtils.triggerEvent(host, 'click');
+                component.getByLabelText(input.ariaLabel).click();
             });
 
             test('then it emits the tooltip-expand event', () => {
-                expect(spy.calledOnce).to.equal(true);
-            });
-        });
-
-        describe('when the host element is clicked a second time to close', () => {
-            let spy;
-            beforeEach(() => {
-                spy = sinon.spy();
-                widget.on('tooltip-collapse', spy);
-                testUtils.triggerEvent(host, 'click');
-                testUtils.triggerEvent(host, 'click');
+                expect(component.emitted('tooltip-expand')).has.length(1);
             });
 
-            test('then it emits the tooltip-collapse event', () => {
-                expect(spy.calledOnce).to.equal(true);
+            test('then it is expanded', () => {
+                expect(component.getByLabelText(input.ariaLabel)).has.attr('aria-expanded', 'true');
+            });
+
+            describe('when the host element is clicked a second time to close', () => {
+                beforeEach(() => {
+                    component.getByLabelText(input.ariaLabel).click();
+                });
+    
+                test('then it emits the tooltip-collapse event', () => {
+                    expect(component.emitted('tooltip-collapse')).has.length(1);
+                });
+
+                test('then it is collapsed', () => {
+                    expect(component.getByLabelText(input.ariaLabel)).does.not.have.attr('aria-expanded', 'true');
+                });
             });
         });
     }
