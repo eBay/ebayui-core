@@ -24,7 +24,8 @@ function transform(el, context) {
         const ds6Path = path.join(iconPath, 'ds6.marko');
         if (!el.hasAttribute('w-id') && context.compilerVersion && context.compilerVersion.indexOf('4.') !== 0) {
             // can be removed in Marko 4
-            el.setAttributeValue('id', builder.expression(`typeof widget !== "undefined" && widget.elId("use_icon_${iconName}")`));
+            el.setAttributeValue('id', 
+                builder.expression(`typeof widget !== "undefined" && widget.elId("use_icon_${iconName}")`));
         }
         el.setAttributeValue('_themes', context.addStaticVar(`icon_${iconName}`, builder.arrayExpression([
             toRequire(ds4Path),
