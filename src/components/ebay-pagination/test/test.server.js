@@ -1,73 +1,89 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
-const mock = require('../mock/index');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const mock = require('./mock');
+const template = require('..');
+
+use(require('chai-dom'));
 
 describe('pagination', () => {
-    test('renders basic version', context => {
-        const $ = testUtils.getCheerio(context.render(mock.basicLinks));
-        expect($('nav.pagination').length).to.equal(1);
-        expect($('.pagination__previous').length).to.equal(1);
-        expect($('.pagination__next').length).to.equal(1);
-        expect($('h2.clipped').length).to.equal(1);
+    describe('with links', () => {
+        it('renders basic version', async() => {
+            const input = mock.Links_6Items_No_Selected;
+            const { getByRole, getByText, getByLabelText } = await render(template, input);
+            const navigationEl = getByRole('navigation');
+            const statusEl = getByRole('status');
+            const statusTextEl = getByText(input.a11yCurrentText);
+            const prevEl = getByLabelText(input.a11yPreviousText);
+            const nextEl = getByLabelText(input.a11yNextText);
+
+            expect(statusEl).contains(statusTextEl);
+            expect(navigationEl).has.class('pagination');
+            expect(navigationEl).has.attr('aria-labelledby', statusTextEl.id);
+
+            expect(prevEl).has.class('pagination__previous');
+            expect(prevEl).has.attr('href', input.items[0].href);
+            expect(prevEl).does.not.have.attr('aria-disabled');
+
+            expect(nextEl).has.class('pagination__next');
+            expect(nextEl).has.attr('href', input.items[input.items.length - 1].href);
+            expect(nextEl).does.not.have.attr('aria-disabled');
+
+            input.items.slice(1, -1).forEach(itemData => {
+                const itemEl = getByText(itemData.renderBody.text);
+                expect(itemEl).has.class('pagination__item');
+                expect(itemEl).has.attr('href', itemData.href);
+                expect(itemEl).does.not.have.attr('aria-current');
+            });
+        });
+
+        it('renders with a selected item', async() => {
+            const input = mock.Links_9Items_1Selected;
+            const { getByText } = await render(template, input);
+            input.items.slice(1, -1).forEach((itemData, i) => {
+                const itemEl = getByText(itemData.renderBody.text);
+                if (i === 1) {
+                    expect(itemEl).has.attr('aria-current', 'page');
+                } else {
+                    expect(itemEl).does.not.have.attr('aria-current');
+                }
+            });
+        });
+
+        it('renders with aria-disabled when navigation is disabled', async() => {
+            const input = mock.Links_1Items_Navigation_Disabled;
+            const { getByLabelText } = await render(template, input);
+            expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+        });
+
+        it('renders with aria-disabled when navigation items missing', async() => {
+            const input = mock.Links_1Items_No_Navigation;
+            const { getByLabelText } = await render(template, input);
+            expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+        });
+    });
+    
+    describe('with buttons', () => {
+        it('renders button version', async() => {
+            const input = mock.Buttons_0Selected;
+            const { getByText, getByLabelText } = await render(template, input);
+
+            expect(getByLabelText(input.a11yPreviousText)).has.property('tagName', 'BUTTON');
+            expect(getByLabelText(input.a11yNextText)).has.property('tagName', 'BUTTON');
+            expect(getByText(input.items[1].renderBody.text)).has.property('tagName', 'BUTTON');
+        });
     });
 
-    test('renders button version', context => {
-        const $ = testUtils.getCheerio(context.render(mock.buttons));
-        expect($('button.pagination__previous').length).to.equal(1);
-        expect($('button.pagination__item').length).to.equal(2);
-        expect($('button.pagination__next').length).to.equal(1);
-    });
-
-    test('renders with a selected element when current page defined', context => {
-        const $ = testUtils.getCheerio(context.render(mock.basicLinks));
-        expect($('.pagination__item[aria-current="page"]').length).to.equal(1);
-    });
-
-    test('renders without a selected element when current page not defined', context => {
-        const $ = testUtils.getCheerio(context.render(mock.basicLinksWithoutCurrent));
-        expect($('.pagination__item[aria-current]').length).to.equal(0);
-    });
-
-    test('renders with aria-disabled when navigation is disabled', context => {
-        const $ = testUtils.getCheerio(context.render(mock.disabledNavigation));
-        expect($('.pagination__previous[aria-disabled=true]').length).to.equal(1);
-    });
-
-    test('renders with arrows disabled when not provided in input', context => {
-        const $ = testUtils.getCheerio(context.render(mock.basicLinksWithoutNavigation));
-        expect($('.pagination__previous[aria-disabled=true]').length).to.equal(1);
-        expect($('.pagination__next[aria-disabled=true]').length).to.equal(1);
-    });
-
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, '.pagination'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.pagination'));
+    testPassThroughAttributes(template);
 });
 
 describe('pagination-item', () => {
-    const previousControlInput = { type: 'previous' };
-    const nextControlInput = { type: 'next' };
-
-    test('handles pass-through html attributes for item', context => {
-        testUtils.testHtmlAttributes(context, '.pagination__item', 'items');
-    });
-
-    test('handles pass-through html attributes for previous control', context => {
-        testUtils.testHtmlAttributes(context, '.pagination__previous', 'items', previousControlInput);
-    });
-
-    test('handles pass-through html attributes for next control', context => {
-        testUtils.testHtmlAttributes(context, '.pagination__next', 'items', nextControlInput);
-    });
-
-    test('handles custom class and style for item', context => {
-        testUtils.testClassAndStyle(context, '.pagination__item', 'items');
-    });
-
-    test('handles custom class and style for previous control', context => {
-        testUtils.testClassAndStyle(context, '.pagination__previous', 'items', previousControlInput);
-    });
-
-    test('handles custom class and style for next control', context => {
-        testUtils.testClassAndStyle(context, '.pagination__next', 'items', nextControlInput);
+    testPassThroughAttributes(template, {
+        child: {
+            name: 'items',
+            multiple: true
+        }
     });
 });

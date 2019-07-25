@@ -1,475 +1,274 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const mock = require('../mock');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, waitForDomChange, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
 
-function testControlEvent(spy, el) {
-    expect(spy.calledOnce).to.equal(true);
-    expect(spy.getCall(0).args[0].el).to.deep.equal(el);
-    testUtils.testOriginalEvent(spy);
-}
+use(require('chai-dom'));
+afterEach(cleanup);
 
-function testSelectEvent(spy, el) {
-    const eventData = spy.getCall(0).args[0];
-    expect(spy.calledOnce).to.equal(true);
-    expect(eventData.el).to.deep.equal(el);
-    expect(eventData.value).to.equal('1');
-    testUtils.testOriginalEvent(spy);
-}
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
-function testItemVisibility(root, start, end) {
-    const pageItems = Array.from(root.querySelectorAll('li'));
-    let testStart = 0;
-    let testEnd = pageItems.length;
-    const numVisible = pageItems.reduce((acc, item, i) => {
-        if (!item.hasAttribute('hidden') && acc === 0) {
-            testStart = i;
-        }
-        if (item.hasAttribute('hidden') && acc > 0 && testEnd === pageItems.length) {
-            testEnd = i;
-        }
-        return item.hasAttribute('hidden') ? acc : acc + 1;
-    }, 0);
-    expect(testStart).to.equal(start);
-    expect(testEnd).to.equal(end);
-    expect(numVisible).to.equal(end - start);
-}
+describe('given the pagination is rendered', () => {
+    let input;
 
-describe('given the pagination is in the default state with links', () => {
-    let widget;
-    let root;
-    let previousButton;
-    let previousButtonInner;
-    let pageItem;
-    let nextButton;
-    let nextButtonInner;
-
-    beforeEach(() => {
-        widget = renderer.renderSync(mock.basicLinks).appendTo(document.body).getWidget();
-        root = document.querySelector('nav.pagination');
-        previousButton = root.querySelector('.pagination__previous');
-        nextButton = root.querySelector('.pagination__next');
-        pageItem = root.querySelector('.pagination__item');
-        nextButtonInner = nextButton.querySelector('span');
-        previousButtonInner = previousButton.querySelector('span');
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when the previous button is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-previous', spy);
-            testUtils.triggerEvent(previousButton, 'click');
+    describe('with links', () => {
+        beforeEach(async() => {
+            input = mock.Links_6Items_No_Selected;
+            component = await render(template, input);
         });
 
-        test('then it emits the marko event called pagination-previous', () => {
-            testControlEvent(spy, previousButton);
-        });
+        thenItCanBeInteractedWith();
     });
 
-    describe('when an previous button\'s inner span is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('pagination-previous', spy);
-            testUtils.triggerEvent(previousButtonInner, 'click');
-            setTimeout(done);
+    describe('with buttons', () => {
+        beforeEach(async() => {
+            input = mock.Buttons_0Selected;
+            component = await render(template, input);
         });
 
-        test('then it emits the pagination-previous event with correct data', () => {
-            testControlEvent(spy, previousButton);
-        });
+        thenItCanBeInteractedWith();
     });
 
-    describe('when the next button is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-next', spy);
-            testUtils.triggerEvent(nextButton, 'click');
+    function thenItCanBeInteractedWith() {
+        describe('when the previous button is activated', () => {
+            describe('via click', () => {
+                beforeEach(() => {
+                    fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+                });
+
+                thenItEmittedThePaginationPreviousEvent();
+            });
+
+            describe('via keyDown', () => {
+                beforeEach(() => {
+                    fireEvent.keyDown(component.getByLabelText(input.a11yPreviousText), {
+                        key: 'Space',
+                        keyCode: 32
+                    });
+                });
+
+                thenItEmittedThePaginationPreviousEvent();
+            });
+
+    
+            function thenItEmittedThePaginationPreviousEvent() {
+                it('then it emits the pagination-previous event', () => {
+                    const previousEvents = component.emitted('pagination-previous');
+                    expect(previousEvents).has.length(1);
+    
+                    const [[eventArg]] = previousEvents;
+                    expect(eventArg).has.property('originalEvent').instanceOf(Event);
+                    expect(eventArg).has.property('el').instanceOf(HTMLElement);
+                });
+            }
         });
 
-        test('then it emits the marko event called pagination-next', () => {
-            testControlEvent(spy, nextButton);
-        });
-    });
+        describe('when the next button is activated', () => {
+            describe('via click', () => {
+                beforeEach(() => {
+                    fireEvent.click(component.getByLabelText(input.a11yNextText));
+                });
 
-    describe('when an next button\'s inner span is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('pagination-next', spy);
-            testUtils.triggerEvent(nextButtonInner, 'click');
-            setTimeout(done);
-        });
+                thenItEmittedThePaginationNextEvent();
+            });
 
-        test('then it emits the pagination-next event with correct data', () => {
-            testControlEvent(spy, nextButton);
-        });
-    });
+            describe('via keyDown', () => {
+                beforeEach(() => {
+                    fireEvent.keyDown(component.getByLabelText(input.a11yNextText), {
+                        key: 'Space',
+                        keyCode: 32
+                    });
+                });
 
-    describe('when the page number is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-select', spy);
-            testUtils.triggerEvent(pageItem, 'click');
-        });
+                thenItEmittedThePaginationNextEvent();
+            });
 
-        test('then it emits the marko event called pagination-select', () => {
-            testSelectEvent(spy, pageItem);
-        });
-    });
-
-    describe('when the previous button is activated through keydown', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-previous', spy);
-            testUtils.triggerEvent(previousButton, 'keydown', 32);
+    
+            function thenItEmittedThePaginationNextEvent() {
+                it('then it emits the pagination-next event', () => {
+                    const nextEvents = component.emitted('pagination-next');
+                    expect(nextEvents).has.length(1);
+    
+                    const [[eventArg]] = nextEvents;
+                    expect(eventArg).has.property('originalEvent').instanceOf(Event);
+                    expect(eventArg).has.property('el').instanceOf(HTMLElement);
+                });
+            }
         });
 
-        test('then it emits the marko event called pagination-previous', () => {
-            testControlEvent(spy, previousButton);
+        describe('when the item number is activated', () => {
+            describe('via click', () => {
+                beforeEach(() => {
+                    fireEvent.click(component.getByText(input.items[1].renderBody.text));
+                });
+
+                thenItEmittedThePaginationSelectEvent();
+            });
+
+            describe('via keyDown', () => {
+                beforeEach(() => {
+                    fireEvent.keyDown(component.getByText(input.items[1].renderBody.text), {
+                        key: 'Space',
+                        keyCode: 32
+                    });
+                });
+
+                thenItEmittedThePaginationSelectEvent();
+            });
+
+    
+            function thenItEmittedThePaginationSelectEvent() {
+                it('then it emits the pagination-select event', () => {
+                    const selectEvents = component.emitted('pagination-select');
+                    expect(selectEvents).has.length(1);
+    
+                    const [[eventArg]] = selectEvents;
+                    expect(eventArg).has.property('originalEvent').instanceOf(Event);
+                    expect(eventArg).has.property('el').instanceOf(HTMLElement);
+                    expect(eventArg).has.property('value', input.items[1].renderBody.text);
+                });
+            }
         });
-    });
-
-    describe('when the next button is activated through keydown', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-next', spy);
-            testUtils.triggerEvent(nextButton, 'keydown', 32);
-        });
-
-        test('then it emits the marko event called pagination-next', () => {
-            testControlEvent(spy, nextButton);
-        });
-    });
-
-    describe('when the page number is activated through keydown', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-select', spy);
-            testUtils.triggerEvent(pageItem, 'keydown', 32);
-        });
-
-        test('then it emits the marko event called pagination-select', () => {
-            testSelectEvent(spy, pageItem);
-        });
-    });
-});
-
-describe('given the pagination is using buttons', () => {
-    let widget;
-    let root;
-    let previousButton;
-    let previousButtonInner;
-    let pageItem;
-    let nextButton;
-    let nextButtonInner;
-
-    beforeEach(() => {
-        widget = renderer.renderSync(mock.buttons).appendTo(document.body).getWidget();
-        root = document.querySelector('nav.pagination');
-        previousButton = root.querySelector('.pagination__previous');
-        nextButton = root.querySelector('.pagination__next');
-        pageItem = root.querySelector('.pagination__item');
-        nextButtonInner = nextButton.querySelector('span');
-        previousButtonInner = previousButton.querySelector('span');
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when the previous button is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-previous', spy);
-            testUtils.triggerEvent(previousButton, 'click');
-        });
-
-        test('then it emits the marko event called pagination-previous', () => {
-            testControlEvent(spy, previousButton);
-        });
-    });
-
-    describe('when an previous button\'s inner span is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('pagination-previous', spy);
-            testUtils.triggerEvent(previousButtonInner, 'click');
-            setTimeout(done);
-        });
-
-        test('then it emits the pagination-previous event with correct data', () => {
-            testControlEvent(spy, previousButton);
-        });
-    });
-
-    describe('when the next button is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-next', spy);
-            testUtils.triggerEvent(nextButton, 'click');
-        });
-
-        test('then it emits the marko event called pagination-next', () => {
-            testControlEvent(spy, nextButton);
-        });
-    });
-
-    describe('when an next button\'s inner span is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('pagination-next', spy);
-            testUtils.triggerEvent(nextButtonInner, 'click');
-            setTimeout(done);
-        });
-
-        test('then it emits the pagination-next event with correct data', () => {
-            testControlEvent(spy, nextButton);
-        });
-    });
-
-    describe('when the page number is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-select', spy);
-            testUtils.triggerEvent(pageItem, 'click');
-        });
-
-        test('then it emits the marko event called pagination-select', () => {
-            testSelectEvent(spy, pageItem);
-        });
-    });
-
-    describe('when the previous button is activated through keydown', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-previous', spy);
-            testUtils.triggerEvent(previousButton, 'keydown', 32);
-        });
-
-        test('then it emits the marko event called pagination-previous', () => {
-            testControlEvent(spy, previousButton);
-        });
-    });
-
-    describe('when the next button is activated through keydown', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-next', spy);
-            testUtils.triggerEvent(nextButton, 'keydown', 32);
-        });
-
-        test('then it emits the marko event called pagination-next', () => {
-            testControlEvent(spy, nextButton);
-        });
-    });
-
-    describe('when the page number is activated through keydown', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-select', spy);
-            testUtils.triggerEvent(pageItem, 'keydown', 32);
-        });
-
-        test('then it emits the marko event called pagination-select', () => {
-            testSelectEvent(spy, pageItem);
-        });
-    });
+    }
 });
 
 describe('given the pagination is rendered with disabled controls', () => {
-    let widget;
-    let root;
-    let previousButton;
-    let nextButton;
+    const input = mock.Links_1Items_Navigation_Disabled;
 
-    beforeEach(() => {
-        widget = renderer.renderSync(mock.disabledNavigation).appendTo(document.body).getWidget();
-        root = document.querySelector('nav.pagination');
-        previousButton = root.querySelector('.pagination__previous');
-        nextButton = root.querySelector('.pagination__next');
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when the previous button is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('pagination-previous', spy);
-            testUtils.triggerEvent(previousButton, 'click');
-        });
-
-        test('then it does not emit the marko event', () => {
-            expect(spy.called).to.equal(false);
-        });
+    beforeEach(async() => {
+        component = await render(template, input);
     });
 
-    describe('when the next button is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('next-previous', spy);
-            testUtils.triggerEvent(nextButton, 'click');
+    describe('when the previous button is activated', () => {
+        describe('via click', () => {
+            beforeEach(() => {
+                fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+            });
+
+            thenItDidNotEmitThePaginationPreviousEvent();
         });
 
-        test('then it does not emit the marko event', () => {
-            expect(spy.called).to.equal(false);
+        describe('via keyDown', () => {
+            beforeEach(() => {
+                fireEvent.keyDown(component.getByLabelText(input.a11yPreviousText), {
+                    key: 'Space',
+                    keyCode: 32
+                });
+            });
+
+            thenItDidNotEmitThePaginationPreviousEvent();
         });
+
+
+        function thenItDidNotEmitThePaginationPreviousEvent() {
+            it('then it does not emit the pagination-previous event', () => {
+                expect(component.emitted('pagination-previous')).has.length(0);
+            });
+        }
+    });
+
+
+    describe('when the next button is activated', () => {
+        describe('via click', () => {
+            beforeEach(() => {
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+            });
+
+            thenItDidNotEmitThePaginationNextEvent();
+        });
+
+        describe('via keyDown', () => {
+            beforeEach(() => {
+                fireEvent.keyDown(component.getByLabelText(input.a11yNextText), {
+                    key: 'Space',
+                    keyCode: 32
+                });
+            });
+
+            thenItDidNotEmitThePaginationNextEvent();
+        });
+
+
+        function thenItDidNotEmitThePaginationNextEvent() {
+            it('then it does not emit the pagination-next event', () => {
+                expect(component.emitted('pagination-next')).has.length(0);
+            });
+        }
     });
 });
 
-describe('given the pagination has the second item selected', () => {
-    let widget;
-    let root;
+describe('given the pagination is rendered at various sizes', () => {
+    [
+        {
+            name: 'with the second item selected',
+            input: mock.Links_9Items_1Selected,
+            cases: [{
+                width: 400,
+                expect: [0, 5]
+            }, {
+                width: 540,
+                expect: [0, 7]
+            }, {
+                width: 640,
+                expect: [0, 9]
+            }]
+        }, {
+            name: 'with the fifth item selected',
+            input: mock.Links_9Items_4Selected,
+            cases: [{
+                width: 400,
+                expect: [2, 7]
+            }, {
+                width: 440,
+                expect: [2, 8]
+            }, {
+                width: 540,
+                expect: [1, 8]
+            }, {
+                width: 640,
+                expect: [0, 9]
+            }]
+        }, {
+            name: 'with the eighth item selected',
+            input: mock.Links_9Items_7Selected,
+            cases: [{
+                width: 400,
+                expect: [4, 9]
+            }, {
+                width: 540,
+                expect: [2, 9]
+            }, {
+                width: 640,
+                expect: [0, 9]
+            }]
+        }
+    ].forEach(({ name, input, cases }) => {
+        describe(name, () => {
+            beforeEach(async() => {
+                component = await render(template, input);
+            });
 
-    beforeEach(() => {
-        widget = renderer.renderSync(mock.basicLinks).appendTo(document.body).getWidget();
-        root = document.querySelector('nav.pagination');
-    });
-    afterEach(() => widget.destroy());
+            cases.forEach(({ width, expect: [from, to] }) => {
+                describe(`when it is ${width} wide`, () => {
+                    beforeEach(async () => {
+                        component.container.style.width = `${width}px`;
+                        fireEvent(window, new Event('resize'));
+                        await Promise.race([
+                            waitForDomChange(),
+                            new Promise(resolve => setTimeout(resolve, 100))
+                        ]);
+                    });
 
-    describe('when the component is 400px wide', () => {
-        beforeEach((done) => {
-            widget.el.style.width = '400px';
-            testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 100);
+                    it(`then it shows items ${from} through ${to}`, ()=> {
+                        input.items.slice(1, -1).forEach((itemData, i) => {
+                            const itemEl = component.getByText(itemData.renderBody.text);
+                            const isHidden = Boolean(itemEl.closest('[hidden]'));
+                            expect(isHidden).to.equal(i < from || i >= to, `item ${i} should be ${isHidden ? 'visible' : 'hidden'}`);
+                        });
+                    });
+                });
+            });
         });
-        afterEach(() => widget.destroy());
-
-        it('then it shows items 0 through 5', () => testItemVisibility(root, 0, 5));
-    });
-
-    describe('when the component is 540px wide', () => {
-        beforeEach((done) => {
-            widget.el.style.width = '540px';
-            testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 100);
-        });
-        afterEach(() => widget.destroy());
-
-        it('then it shows items 0 through 7', () => testItemVisibility(root, 0, 7));
-    });
-
-    describe('when the component is 640px wide', () => {
-        beforeEach((done) => {
-            widget.el.style.width = '640px';
-            testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 100);
-        });
-        afterEach(() => widget.destroy());
-
-        it('then it shows items 0 through 9', () => testItemVisibility(root, 0, 9));
-    });
-});
-
-describe('given the pagination has the fifth item selected', () => {
-    let widget;
-    let root;
-
-    beforeEach(() => {
-        widget = renderer.renderSync(mock.FifthSelected).appendTo(document.body).getWidget();
-        root = document.querySelector('nav.pagination');
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when the component is 400px wide', () => {
-        beforeEach((done) => {
-            widget.el.style.width = '400px';
-            testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 100);
-        });
-        afterEach(() => widget.destroy());
-
-        it('then it shows items 2 through 7', () => testItemVisibility(root, 2, 7));
-    });
-
-    describe('when the component is 440px wide', () => {
-        beforeEach((done) => {
-            widget.el.style.width = '440px';
-            testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 100);
-        });
-        afterEach(() => widget.destroy());
-
-        it('then it shows items 2 through 8', () => testItemVisibility(root, 2, 8));
-    });
-
-    describe('when the component is 540px wide', () => {
-        beforeEach((done) => {
-            widget.el.style.width = '540px';
-            testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 100);
-        });
-        afterEach(() => widget.destroy());
-
-        it('then it shows items 1 through 8', () => testItemVisibility(root, 1, 8));
-    });
-
-    describe('when the component is 640px wide', () => {
-        beforeEach((done) => {
-            widget.el.style.width = '640px';
-            testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 100);
-        });
-        afterEach(() => widget.destroy());
-
-        it('then it shows items 0 through 9', () => testItemVisibility(root, 0, 9));
-    });
-});
-
-describe('given the pagination has the eighth item selected', () => {
-    let widget;
-    let root;
-
-    beforeEach(() => {
-        widget = renderer.renderSync(mock.EighthSelected).appendTo(document.body).getWidget();
-        root = document.querySelector('nav.pagination');
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when the component is 400px wide', () => {
-        beforeEach((done) => {
-            widget.el.style.width = '400px';
-            testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 100);
-        });
-        afterEach(() => widget.destroy());
-
-        it('then it shows items 4 through 9', () => testItemVisibility(root, 4, 9));
-    });
-
-    describe('when the component is 540px wide', () => {
-        beforeEach((done) => {
-            widget.el.style.width = '540px';
-            testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 100);
-        });
-        afterEach(() => widget.destroy());
-
-        it('then it shows items 2 through 9', () => testItemVisibility(root, 2, 9));
-    });
-
-    describe('when the component is 640px wide', () => {
-        beforeEach((done) => {
-            widget.el.style.width = '640px';
-            testUtils.triggerEvent(window, 'resize');
-            setTimeout(done, 100);
-        });
-        afterEach(() => widget.destroy());
-
-        it('then it shows items 0 through 9', () => testItemVisibility(root, 0, 9));
     });
 });
