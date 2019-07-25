@@ -1,59 +1,46 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, cleanup } = require('@marko/testing-library');
+const template = require('..');
 
-let widget;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-function renderAndGetRoot(input) {
-    widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-    return document.querySelector('.switch');
-}
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
-describe('given switch is enabled', () => {
-    let root;
-    let input;
-    beforeEach(() => {
-        root = renderAndGetRoot({ '*': { value: 'val' } });
-        input = root.querySelector('input');
+describe('given switch button is enabled', () => {
+    beforeEach(async() => {
+        component = await render(template, { "*": { value: 'food' } });
     });
-    afterEach(() => widget.destroy());
 
-    describe('when it is clicked', () => {
-        let spy;
+    describe('when switch button is clicked', () => {
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('switch-change', spy);
-            input.click();
+            component.getByRole('switch').click();
         });
 
-        test('then it emits the event', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.value).to.equal('val');
-            expect(eventData.checked).to.equal(true);
-            testUtils.testOriginalEvent(spy);
+        it('then it emits the event', () => {
+            const changeEvents = component.emitted('switch-change');
+            expect(changeEvents).has.length(1);
+
+            const [[eventArg]] = changeEvents;
+            expect(eventArg).has.property('originalEvent').is.an.instanceof(Event);
+            expect(eventArg).has.property('value', 'food');
         });
     });
 });
 
-describe('given switch is disabled', () => {
-    let root;
-    beforeEach(() => {
-        root = renderAndGetRoot({ disabled: true });
+describe('given switch button is disabled', () => {
+    beforeEach(async() => {
+        component = await render(template, { disabled: true });
     });
-    afterEach(() => widget.destroy());
 
-    describe('when it is clicked', () => {
-        let spy;
+    describe('when switch button is clicked', () => {
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('switch-change', spy);
-            testUtils.triggerEvent(root, 'click');
+            component.getByRole('switch').click();
         });
 
-        test('then it doesn\'t emit the event', () => {
-            expect(spy.called).to.equal(false);
+        it('then it doesn\'t emit the event', () => {
+            expect(component.emitted('switch-change')).has.length(0);
         });
     });
 });
