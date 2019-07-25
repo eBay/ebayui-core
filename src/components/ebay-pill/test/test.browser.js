@@ -1,114 +1,97 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, waitForDomChange: __oldWaitForDomChange, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
 
-let widget;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-function renderAndGetRoot(input) {
-    widget = renderer.renderSync(input).appendTo(document.body).getWidget('ebay-button');
-    return document.querySelector('.btn--pill');
-}
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
-describe('given pill is enabled', () => {
-    let root;
-    beforeEach(() => {
-        root = renderAndGetRoot();
+describe.only('given pill is enabled', () => {
+    const input = mock.Basic;
+    beforeEach(async() => {
+        component = await render(template, input);
     });
-    afterEach(() => widget.destroy());
+
+    it('then it is not pressed', () => {
+        expect(component.getByRole('button')).does.not.have.attr('aria-pressed');
+    });
 
     describe('when pill is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-click', spy);
-            testUtils.triggerEvent(root, 'click');
+        beforeEach(async () => {
+            await waitForDomChange(() => {
+                fireEvent.click(component.getByRole('button'));
+            });
         });
 
-        test('the widget has a pressed state', () => {
-            expect(widget.state.pressed).to.equal(true);
+        it('then it emits the event with correct data', () => {
+            expect(component.emitted('button-click')).has.length(1);
         });
 
-        test('then it emits the event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            testUtils.testOriginalEvent(spy);
-        });
-    });
-
-    describe('when pill is clicked a second time', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-click', spy);
-            testUtils.triggerEvent(root, 'click');
-            testUtils.triggerEvent(root, 'click');
+        it('then it is pressed', () => {
+            expect(component.getByRole('button')).has.attr('aria-pressed', 'true');
         });
 
-        test('the widget does not have a pressed state', () => {
-            expect(widget.state.pressed).to.equal(false);
+        describe('when it is clicked again', () => {
+            beforeEach(async() => {
+                await waitForDomChange(() => {
+                    fireEvent.click(component.getByRole('button'));
+                });
+            });
+
+            it('then it is not pressed', () => {
+                expect(component.getByRole('button')).does.not.have.attr('aria-pressed');
+            });
         });
     });
 
     describe('when escape key is pressed', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-escape', spy);
-            testUtils.triggerEvent(root, 'keydown', 27);
+            fireEvent.keyDown(component.getByRole('button'), {
+                key: 'Escape',
+                charCode: 27
+            });
         });
 
-        test('then it emits the event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            testUtils.testOriginalEvent(spy);
+        it('then it emits the event with correct data', () => {
+            expect(component.emitted('button-escape')).has.length(1);
         });
     });
 });
 
 describe('given pill is disabled', () => {
-    let root;
-    beforeEach(() => {
-        root = renderAndGetRoot({ disabled: true });
+    beforeEach(async() => {
+        component = await render(template, { disabled: true });
     });
-    afterEach(() => widget.destroy());
 
     describe('when pill is clicked', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-click', spy);
-            testUtils.triggerEvent(root, 'click');
+            fireEvent.click(component.getByRole('button'));
         });
 
-        test('then it doesn\'t emit the event', () => {
-            expect(spy.called).to.equal(false);
+        it('then it does not emit the event', () => {
+            expect(component.emitted('button-click')).has.length(0);
         });
     });
 
     describe('when escape key is pressed', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-escape', spy);
-            testUtils.triggerEvent(root, 'keydown', 27);
+            fireEvent.keyDown(component.getByRole('button'), {
+                key: 'Escape',
+                charCode: 27
+            });
         });
 
-        test('then it doesn\'t emit the event', () => {
-            expect(spy.called).to.equal(false);
+        it('then it does not emit the event', () => {
+            expect(component.emitted('button-escape')).has.length(0);
         });
     });
 });
 
-describe('given pill is fake and pressed', () => {
-    let root; // eslint-disable-line
-    beforeEach(() => {
-        root = renderAndGetRoot({
-            href: 'https://ebay.com',
-            pressed: true
-        });
-    });
-    afterEach(() => widget.destroy());
-
-    test('the pill has a11y text for the active state', () => {
-        expect(widget.el.querySelectorAll('.pill__active-text').length).to.equal(1);
-    });
-});
+async function waitForDomChange(fn) {
+    const change = __oldWaitForDomChange();
+    if (fn) await fn();
+    await change;
+}

@@ -1,35 +1,63 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const mock = require('./mock');
+const template = require('..');
 
-test('renders defaults', context => {
-    const input = {};
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('button.btn.btn--secondary[type=button]').length).to.equal(1);
-});
+use(require('chai-dom'));
 
-test('renders fake version', context => {
-    const input = { href: '#' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('a.fake-btn[href=#]').length).to.equal(1);
-});
+describe('pill', () => {
+    it('renders defaults', async() => {
+        const input = mock.Basic;
+        const { getByText } = await render(template, input);
+        const pill = getByText(input.renderBody.text);
+        expect(pill).has.class('btn--secondary');
+        expect(pill).has.property('tagName', 'BUTTON');
+        expect(pill).does.not.have.attr('aria-pressed');
+    });
+    
+    it('renders with pressed attribute', async() => {
+        const input = mock.Pressed;
+        const { getByText } = await render(template, input);
+        const pill = getByText(input.renderBody.text);
+        expect(pill).has.attr('aria-pressed', 'true');
+    });
 
-test('renders fake version with pressed attribute', context => {
-    const input = { href: '#', pressed: true };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('a.fake-btn[href=#]').length).to.equal(1);
-});
+    it('renders with disabled attribute', async() => {
+        const input = mock.Disabled;
+        const { getByText } = await render(template, input);
+        const pill = getByText(input.renderBody.text);
+        expect(pill).has.attr('disabled');
+    });
 
-test('renders fake version with other attributes', context => {
-    const input = { href: '#', disabled: true };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('a.fake-btn[href=#][disabled]').length).to.equal(1);
-});
+    it('renders fake version', async() => {
+        const input = mock.Fake;
+        const { getByText } = await render(template, input);
+        const pill = getByText(input.renderBody.text);
+        expect(pill).has.class('fake-btn--secondary');
+        expect(pill).has.attr('href', input.href);
+        expect(pill).has.property('tagName', 'A');
+        expect(pill).does.not.have.attr('aria-pressed');
+    });
 
-test('renders disabled version', context => {
-    const input = { disabled: true };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('.btn[disabled]').length).to.equal(1);
-});
+    it('renders fake version with disabled attribute', async() => {
+        const input = mock.Fake_Disabled;
+        const { getByText } = await render(template, input);
+        const pill = getByText(input.renderBody.text);
+        expect(pill).has.attr('disabled');
+    });
 
-test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.pill'));
-test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'button.btn'));
+    it('renders fake version with pressed attribute', async() => {
+        const input = mock.Fake_Pressed;
+        const { getByText } = await render(template, input);
+        const pill = getByText(input.renderBody.text);
+        const statusText = getByText(input.a11yActiveText, { exact: false });
+        expect(pill).contains(statusText);
+    });
+
+    testPassThroughAttributes(template, {
+        getClassAndStyleEl(component) {
+            return component.getByRole('button');
+        }
+    });
+})
