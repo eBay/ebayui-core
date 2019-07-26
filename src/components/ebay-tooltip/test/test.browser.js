@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
 const pointerStyles = require('./location-styles.json');
 const template = require('..');

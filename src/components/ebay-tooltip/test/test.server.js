@@ -30,6 +30,12 @@ describe('tooltip', () => {
 
     // testPassThroughAttributes(template, {
     //     child: {
+    //         name: 'host'
+    //     }
+    // });
+
+    // testPassThroughAttributes(template, {
+    //     child: {
     //         name: 'heading'
     //     }
     // });

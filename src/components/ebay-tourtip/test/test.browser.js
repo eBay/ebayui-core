@@ -1,37 +1,27 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
+
+use(require('chai-dom'));
+afterEach(cleanup);
+
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
 describe('given the default tourtip', () => {
-    let widget;
-    let closeButton;
-    let expanderRoot;
+    const input = mock.Basic;
 
-    beforeEach(() => {
-        const input = {
-            host: {},
-            heading: {},
-            content: {}
-        };
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        closeButton = widget.el.querySelector('.tourtip__close');
-        expanderRoot = widget.el.querySelector('.tourtip');
+    beforeEach(async() => {
+        component = await render(template, input);
     });
-
-    afterEach(() => widget.destroy());
 
     thenItIsOpen();
     thenItCanBeClosed();
 
     describe('after it is rerendered', () => {
-        before(() => {
-            widget.setProps({
-                host: {},
-                heading: {},
-                content: {},
-                test: 1
-            });
+        beforeEach(async() => {
+            await component.rerender(input);
         });
 
         thenItIsOpen();
@@ -39,26 +29,23 @@ describe('given the default tourtip', () => {
     });
 
     function thenItIsOpen() {
-        test('then it is open', () => {
-            expect(expanderRoot.className).to.equal('tourtip tourtip--expanded');
+        it('then it is open', () => {
+            expect(component.getByText(input.host.renderBody.text).parentElement).has.attr('aria-expanded', 'true');
         });
     }
 
     function thenItCanBeClosed() {
-        describe('when the closeButton element is closed', () => {
-            let spy;
+        describe('when the close button is clicked', () => {
             beforeEach(() => {
-                spy = sinon.spy();
-                widget.on('tooltip-collapse', spy);
-                testUtils.triggerEvent(closeButton, 'click');
+                component.getByLabelText(input.a11yCloseText).click();
             });
 
-            test('then it emits the tooltip-collapse event', () => {
-                expect(spy.calledOnce).to.equal(true);
+            it('then it emits the tooltip-collapse event', () => {
+                expect(component.emitted('tooltip-collapse')).has.length(1);
             });
 
-            test('then it is closed', () => {
-                expect(expanderRoot.className).to.equal('tourtip');
+            it('then it is closed', () => {
+                expect(component.getByText(input.host.renderBody.text).parentElement).has.attr('aria-expanded', 'false');
             });
         });
     }

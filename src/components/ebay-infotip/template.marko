@@ -18,7 +18,7 @@
             ${processHtmlAttributes(data)}>
             <button
                 w-id="host"
-                w-preserve-attrs="aria-expanded,aria-controls,aria-described-by"
+                w-preserve-attrs="aria-expanded,aria-controls,aria-describedby"
                 class="infotip__host icon-btn"
                 disabled=data.disabled
                 aria-label=data.ariaLabel>
@@ -31,7 +31,7 @@
             </button>
             <ebay-tooltip-overlay
                 type="infotip"
-                tooltip-id=widget.elId("infotip")
+                tooltip-id=widget.elId("overlay")
                 style-left=data.styleLeft
                 style-top=data.styleTop
                 style-right=data.styleRight
