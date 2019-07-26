@@ -9,7 +9,7 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-describe.only('given pill is enabled', () => {
+describe('given pill is enabled', () => {
     const input = mock.Basic;
     beforeEach(async() => {
         component = await render(template, input);

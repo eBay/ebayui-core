@@ -1,100 +1,148 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
-const mock = require('../mock');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const mock = require('./mock');
+const template = require('..');
+
+use(require('chai-dom'));
 
 describe('tab', () => {
-    test('renders basic version with defaults', context => {
-        const input = { headings: mock.headings, panels: mock.panels };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('div.tabs').length).to.equal(1);
-        expect($('div.tabs__item').length).to.equal(3);
-        expect($('div.tabs__item:first-of-type[aria-selected="true"]').length).to.equal(1);
-        expect($('div.tabs__item:not([aria-selected="true"])').length).to.equal(2);
-        expect($('div.tabs__panel').length).to.equal(3);
-        expect($('div.tabs__panel:first-of-type:not([hidden])').length).to.equal(1);
-        expect($('div.tabs__panel[hidden]').length).to.equal(2);
+    it('renders basic version with 3 headings and 3 panels', async() => {
+        const input = mock.Basic_3Headings_3Panels_No_Index;
+        const { getByRole, getAllByRole } = await render(template, input);
+
+        const tablistEl = getByRole('tablist');
+        const headingEls = getAllByRole('tab');
+        const panelEls = getAllByRole('tabpanel');
+
+        expect(tablistEl).has.class('tabs__items');
+        expect(headingEls).has.length(3);
+        expect(panelEls).has.length(3);
+
+        input.headings.forEach((heading, i) => {
+            const headingEl = headingEls[i];
+            const panelEl = panelEls[i];
+            expect(tablistEl).contains(headingEl);
+            expect(headingEl).has.class('tabs__item');
+            expect(headingEl).has.text(heading.renderBody.text);
+            expect(headingEl).has.attr('aria-controls', panelEl.id);
+
+            if (i === 0) {
+                expect(headingEl).has.attr('aria-selected', 'true');
+            } else {
+                expect(headingEl).does.not.have.attr('aria-selected');
+            }
+        });
+
+        input.panels.forEach((panel, i) => {
+            const panelEl = panelEls[i];
+            const headingEl = headingEls[i];
+            expect(panelEl).has.class('tabs__panel');
+            expect(panelEl).has.text(panel.renderBody.text);
+            expect(panelEl).has.attr('aria-labelledby', headingEl.id);
+
+            if (i === 0) {
+                expect(panelEl).does.not.have.attr('hidden');
+            } else {
+                expect(panelEl).has.attr('hidden');
+            }
+        });
     });
 
-    test('renders selection based on index', context => {
-        const input = { index: '1', headings: mock.headings, panels: mock.panels };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('div.tabs').length).to.equal(1);
-        expect($('div.tabs__item').length).to.equal(3);
-        expect($('div.tabs__item:nth-of-type(2)[aria-selected="true"]').length).to.equal(1);
-        expect($('div.tabs__item:not([aria-selected="true"])').length).to.equal(2);
-        expect($('div.tabs__panel').length).to.equal(3);
-        expect($('div.tabs__panel:nth-of-type(2):not([hidden])').length).to.equal(1);
-        expect($('div.tabs__panel[hidden]').length).to.equal(2);
+    it('renders basic version with 3 headings and 3 panels on the second panel', async() => {
+        const input = mock.Basic_3Headings_3Panels_1Index;
+        const { getAllByRole } = await render(template, input);
+
+        getAllByRole('tab').forEach((headingEl, i) => {
+            if (i === 1) {
+                expect(headingEl).has.attr('aria-selected', 'true');
+            } else {
+                expect(headingEl).does.not.have.attr('aria-selected');
+            }
+        });
+
+        getAllByRole('tabpanel').forEach((panelEl, i) => {
+            if (i === 1) {
+                expect(panelEl).does.not.have.attr('hidden');
+            } else {
+                expect(panelEl).has.attr('hidden');
+            }
+        });
     });
 
-    test('renders fake version with defaults', context => {
-        const input = { fake: true, headings: mock.fakeHeadings, panels: mock.panels };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('div.fake-tabs').length).to.equal(1);
-        expect($('ul.fake-tabs__items').length).to.equal(1);
-        expect($('li.fake-tabs__item').length).to.equal(3);
-        expect($('li.fake-tabs__item.fake-tabs__item--current:first-of-type').length).to.equal(1);
-        expect($('li.fake-tabs__item.fake-tabs__item--current > a[aria-current="page"]').length).to.equal(1);
-        expect($('li.fake-tabs__item:not(.fake-tabs__item--current)').length).to.equal(2);
-        expect($('div.fake-tabs__content').length).to.equal(1);
-        expect($('div.fake-tabs__cell').length).to.equal(1);
-        expect($('div.fake-tabs__panel').length).to.equal(1);
+    it('renders fake version with 3 headings', async() => {
+        const input = mock.Fake_3Headings_No_Index;
+        const { getByText } = await render(template, input);
+
+        input.headings.forEach((heading, i) => {
+            const headingEl = getByText(heading.renderBody.text);
+            expect(headingEl).has.property('parentElement').with.class('fake-tabs__item');
+            expect(headingEl).has.attr('href', heading.href);
+
+            if (i === 0) {
+                expect(headingEl).has.attr('aria-current', 'page');
+            } else {
+                expect(headingEl).does.not.have.attr('aria-current');
+            }
+        });
+
+        const [panel] = input.panels;
+        const panelEl = getByText(panel.renderBody.text);
+        expect(panelEl).has.property('parentElement').with.class('fake-tabs__cell');
     });
 
-    test('renders fake version with selection based on index', context => {
-        const input = { fake: true, index: '1', headings: mock.headings, panels: mock.panels };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('div.fake-tabs').length).to.equal(1);
-        expect($('ul.fake-tabs__items').length).to.equal(1);
-        expect($('li.fake-tabs__item').length).to.equal(3);
-        expect($('li.fake-tabs__item.fake-tabs__item--current:nth-of-type(2)').length).to.equal(1);
-        expect($('li.fake-tabs__item.fake-tabs__item--current > a[aria-current="page"]').length).to.equal(1);
-        expect($('li.fake-tabs__item:not(.fake-tabs__item--current)').length).to.equal(2);
-        expect($('div.fake-tabs__content').length).to.equal(1);
-        expect($('div.fake-tabs__cell').length).to.equal(1);
-        expect($('div.fake-tabs__panel').length).to.equal(1);
+    it('renders fake version with 3 headings on the second panel', async() => {
+        const input = mock.Fake_3Headings_1Index;
+        const { getByText } = await render(template, input);
+        input.headings.forEach((heading, i) => {
+            const headingEl = getByText(heading.renderBody.text);
+
+            if (i === 1) {
+                expect(headingEl).has.attr('aria-current', 'page');
+            } else {
+                expect(headingEl).does.not.have.attr('aria-current');
+            }
+        });
     });
 
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, '.tabs'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.tabs'));
+    testPassThroughAttributes(template);
 });
 
 describe('tab-heading', () => {
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, '.tabs__item', 'headings');
+    testPassThroughAttributes(template, {
+        child: {
+            name: 'headings',
+            multiple: true
+        }
     });
 
-    test('handles custom class and style', context => {
-        testUtils.testClassAndStyle(context, '.tabs__item', 'headings');
-    });
-
-    test('handles pass-through html attributes when fake', context => {
-        const parentInput = { fake: true, panels: mock.panels };
-        testUtils.testHtmlAttributes(context, '.fake-tabs__item', 'headings', {}, parentInput);
-    });
-
-    test('handles custom class and style when fake', context => {
-        const parentInput = { fake: true, panels: mock.panels };
-        testUtils.testClassAndStyle(context, '.fake-tabs__item', 'headings', {}, parentInput);
+    describe('when fake', () => {
+        testPassThroughAttributes(template, {
+            child: {
+                name: 'headings',
+                multiple: true,
+                input: { fake: true }
+            }
+        });
     });
 });
 
 describe('tab-panel', () => {
-    test('handles pass-through html attributes', context => {
-        testUtils.testHtmlAttributes(context, '.tabs__panel', 'panels');
+    testPassThroughAttributes(template, {
+        child: {
+            name: 'panels',
+            multiple: true
+        }
     });
 
-    test('handles custom class and style', context => {
-        testUtils.testClassAndStyle(context, '.tabs__panel', 'panels');
-    });
-
-    test('handles pass-through html attributes when fake', context => {
-        const parentInput = { fake: true, headings: mock.fakeHeadings };
-        testUtils.testHtmlAttributes(context, '.fake-tabs__panel', 'panels', {}, parentInput);
-    });
-
-    test('handles custom class and style when fake', context => {
-        const parentInput = { fake: true, headings: mock.fakeHeadings };
-        testUtils.testClassAndStyle(context, '.fake-tabs__panel', 'panels', {}, parentInput);
+    describe('when fake', () => {
+        testPassThroughAttributes(template, {
+            child: {
+                name: 'panels',
+                multiple: true,
+                input: { fake: true }
+            }
+        });
     });
 });
+

@@ -1,155 +1,147 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const mock = require('../mock');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, waitForDomChange: __oldWaitForDomChange, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
 
-function testSelectEvent(spy, index) {
-    const eventData = spy.getCall(0).args[0];
-    expect(spy.calledOnce).to.equal(true);
-    expect(eventData.index).to.equal(index);
-}
+use(require('chai-dom'));
+afterEach(cleanup);
 
-function testSelectBehavior(headingEl, done) {
-    setTimeout(() => {
-        expect(headingEl.getAttribute('aria-selected')).to.equal('true');
-        done();
-    }, 10);
-}
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
 describe('given tabs with first heading selected', () => {
-    let widget;
-    let headingEls;
-    let firstHeadingEl;
-    let secondHeadingEl;
-    let thirdHeadingEl;
-    let secondHeadingInnerEl;
+    const input = mock.Basic_3Headings_3Panels_No_Index;
 
-    beforeEach(() => {
-        widget = renderer.renderSync({ headings: mock.headings }).appendTo(document.body).getWidget();
-        headingEls = document.querySelectorAll('.tabs__item');
-        firstHeadingEl = headingEls[0];
-        secondHeadingEl = headingEls[1];
-        thirdHeadingEl = headingEls[2];
-        secondHeadingInnerEl = secondHeadingEl.querySelector('span');
+    beforeEach(async() => {
+        component = await render(template, input);
     });
-    afterEach(() => widget.destroy());
 
     describe('when the first heading is clicked', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tab-select', spy);
-            testUtils.triggerEvent(firstHeadingEl, 'click');
+            component.getAllByRole('tab')[0].click();
         });
 
-        test('then it does not emit the select event', () => {
-            expect(spy.called).to.equal(false);
+        it('then it does not emit the select event', () => {
+            expect(component.emitted('tab-select')).has.length(0);
         });
     });
 
-    describe('when the second heading is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tab-select', spy);
-            testUtils.triggerEvent(secondHeadingEl, 'click');
+    describe('when the second tab is activated', () => {
+        describe('via click', () => {
+            beforeEach(async() => {
+                await waitForDomChange(() => {
+                    component.getAllByRole('tab')[1].click();
+                });
+            });
+    
+            thenItHasMovedToTab(1);
         });
 
-        test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the heading is selected', (context, done) => testSelectBehavior(secondHeadingEl, done));
+        describe('via keyboard action button', () => {
+            beforeEach(async() => {
+                await waitForDomChange(() => {
+                    fireEvent.keyDown(component.getAllByRole('tab')[1], {
+                        key: 'Space',
+                        keyCode: 32
+                    });
+                });
+            });
+    
+            thenItHasMovedToTab(1);
+        });
     });
 
-    describe('when the second heading is selected via keyboard action button', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tab-select', spy);
-            testUtils.triggerEvent(secondHeadingEl, 'keydown', 32);
+    describe('when the right arrow key is pressed', () => {
+        beforeEach(async() => {
+            await waitForDomChange(() => {
+                fireEvent.keyDown(component.getAllByRole('tab')[1], {
+                    key: 'ArrowRight',
+                    keyCode: 39
+                });
+            });
         });
 
-        test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the heading is selected', (context, done) => testSelectBehavior(secondHeadingEl, done));
+        thenItHasMovedToTab(1);
     });
 
-    describe('when the second heading\'s inner content is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('tab-select', spy);
-            testUtils.triggerEvent(secondHeadingInnerEl, 'click');
-            setTimeout(done);
+    describe('when the left arrow key is pressed', () => {
+        beforeEach(async() => {
+            await waitForDomChange(() => {
+                fireEvent.keyDown(component.getAllByRole('tab')[1], {
+                    key: 'ArrowLeft',
+                    keyCode: 37
+                });
+            });
         });
 
-        test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the heading is selected', (context, done) => testSelectBehavior(secondHeadingEl, done));
+        thenItHasMovedToTab(2);
     });
 
-    describe('when the second heading is selected via keyboard right arrow key', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tab-select', spy);
-            testUtils.triggerEvent(firstHeadingEl, 'keydown', 39);
+    function thenItHasMovedToTab(index) {
+        it('then it emits the select event with correct data', () => {
+            const selectEvents = component.emitted('tab-select');
+            expect(selectEvents).has.length(1);
+
+            const [[eventArg]] = selectEvents;
+            expect(eventArg).has.property('index', index);
         });
 
-        test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the heading is selected', (context, done) => testSelectBehavior(secondHeadingEl, done));
-    });
-
-    describe('when the third heading is selected via keyboard left arrow key', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tab-select', spy);
-            testUtils.triggerEvent(firstHeadingEl, 'keydown', 37);
+        it(`then heading ${index + 1} is selected`, () => {
+            expect(component.getAllByRole('tab')[index]).has.attr('aria-selected', 'true');
         });
-
-        test('then it emits the select event with correct data', () => testSelectEvent(spy, 2));
-        test('then the heading is selected', (context, done) => testSelectBehavior(thirdHeadingEl, done));
-    });
+    }
 });
 
 describe('given tabs with third heading selected', () => {
-    let widget;
-    let headingEls;
-    let firstHeadingEl;
-    let secondHeadingEl;
-    let thirdHeadingEl;
+    const input = mock.Basic_3Headings_3Panels_2Index;
 
-    beforeEach(() => {
-        widget = renderer.renderSync({
-            headings: mock.headings,
-            index: 2
-        }).appendTo(document.body).getWidget();
-        headingEls = document.querySelectorAll('.tabs__item');
-        firstHeadingEl = headingEls[0];
-        secondHeadingEl = headingEls[1];
-        thirdHeadingEl = headingEls[2];
+    beforeEach(async() => {
+        component = await render(template, input);
     });
-    afterEach(() => widget.destroy());
 
-    describe('when the second heading is selected via keyboard left arrow key', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tab-select', spy);
-            testUtils.triggerEvent(thirdHeadingEl, 'keydown', 37);
+    describe('when the right arrow key is pressed', () => {
+        beforeEach(async() => {
+            await waitForDomChange(() => {
+                fireEvent.keyDown(component.getAllByRole('tab')[1], {
+                    key: 'ArrowRight',
+                    keyCode: 39
+                });
+            });
         });
 
-        test('then it emits the select event with correct data', () => testSelectEvent(spy, 1));
-        test('then the heading is selected', (context, done) => testSelectBehavior(secondHeadingEl, done));
+        thenItHasMovedToTab(0);
     });
 
-    describe('when the first heading is selected via keyboard right arrow key', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tab-select', spy);
-            testUtils.triggerEvent(thirdHeadingEl, 'keydown', 39);
+    describe('when the left arrow key is pressed', () => {
+        beforeEach(async() => {
+            await waitForDomChange(() => {
+                fireEvent.keyDown(component.getAllByRole('tab')[1], {
+                    key: 'ArrowLeft',
+                    keyCode: 37
+                });
+            });
         });
 
-        test('then it emits the select event with correct data', () => testSelectEvent(spy, 0));
-        test('then the heading is selected', (context, done) => testSelectBehavior(firstHeadingEl, done));
+        thenItHasMovedToTab(1);
     });
+
+    function thenItHasMovedToTab(index) {
+        it('then it emits the select event with correct data', () => {
+            const selectEvents = component.emitted('tab-select');
+            expect(selectEvents).has.length(1);
+
+            const [[eventArg]] = selectEvents;
+            expect(eventArg).has.property('index', index);
+        });
+
+        it(`then heading ${index + 1} is selected`, () => {
+            expect(component.getAllByRole('tab')[index]).has.attr('aria-selected', 'true');
+        });
+    }
 });
+
+async function waitForDomChange(fn) {
+    const change = __oldWaitForDomChange();
+    if (fn) await fn();
+    await change;
+}
