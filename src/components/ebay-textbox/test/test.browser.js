@@ -1,81 +1,77 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
 
-let widget;
+use(require('chai-dom'));
+afterEach(cleanup);
+
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
 describe('given an input textbox', () => {
-    let root;
-    let input;
-    beforeEach(() => {
-        widget = renderer.renderSync({ value: 'val' }).appendTo(document.body).getWidget();
-        root = document.querySelector('.textbox');
-        input = root.querySelector('input');
-    });
-    afterEach(() => widget.destroy());
+    const input = mock.Basic;
 
-    ['change', 'input', 'focus', 'blur', 'keydown'].forEach(eventName => {
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+
+    ['change', 'input', 'focus', 'blur', 'keyDown'].forEach(eventName => {
         describe(`when native event is fired: ${eventName}`, () => {
-            let spy;
             beforeEach(() => {
-                spy = sinon.spy();
-                widget.on(`textbox-${eventName}`, spy);
-                testUtils.triggerEvent(input, eventName);
+                fireEvent[eventName](component.getByRole('textbox'));
             });
 
-            test('then it emits the event', () => {
-                expect(spy.calledOnce).to.equal(true);
-                const eventData = spy.getCall(0).args[0];
-                expect(eventData.value).to.equal('val');
-                testUtils.testOriginalEvent(spy);
+            it('then it emits the event', () => {
+                const events = component.emitted(`textbox-${eventName.toLowerCase()}`);
+                expect(events).has.length(1);
+
+                const [[eventArg]] = events;
+                expect(eventArg).has.property('value', input.value);
+                expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
             });
         });
     });
 });
 
-describe('given an input textbox with floating label', () => {
-    let root;
-    let input;
-    let label;
-    beforeEach(() => {
-        widget = renderer.renderSync({ 'floatingLabel': 'Email address' }).appendTo(document.body).getWidget();
-        root = document.querySelector('.textbox');
-        input = root.querySelector('input');
-        label = root.querySelector('label');
-        testUtils.triggerEvent(window, 'load');
+describe('given an input textbox with floating label and no value', () => {
+    const input = mock.Floating_Label_No_Value;
+
+    beforeEach(async() => {
+        component = await render(template, input);
     });
-    afterEach(() => widget.destroy());
+
+    it('then is showing the label inline', () => {
+        expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
+    });
 
     describe('when the input is focused', () => {
-        test('then the inline class is removed', () => {
-            expect(label.classList.contains('floating-label__label--inline')).to.equal(true);
-            testUtils.triggerEvent(input, 'focus');
-            expect(label.classList.contains('floating-label__label--inline')).to.equal(false);
+        beforeEach(() => {
+            fireEvent.focus(component.getByRole('textbox'));
         });
-    });
 
-    describe('when the input is blurred', () => {
-        test('then the inline class is added', () => {
-            label.classList.remove('floating-label__label--inline');
-            expect(label.classList.contains('floating-label__label--inline')).to.equal(false);
-            testUtils.triggerEvent(input, 'blur');
-            expect(label.classList.contains('floating-label__label--inline')).to.equal(true);
+        it('then it is not showing the label inline', () => {
+            expect(component.getByText(input.floatingLabel)).does.not.have.class('floating-label__label--inline');
+        });
+
+        describe('when the input is blurred', () => {
+            beforeEach(() => {
+                fireEvent.blur(component.getByRole('textbox'));
+            });
+    
+            it('then is showing the label inline', () => {
+                expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
+            });
         });
     });
 
     describe('when the component is updated/re-rendered', () => {
-        let updateSpy;
-
-        beforeEach(() => {
-            updateSpy = sinon.spy();
-            widget.on('textbox-floating-label-init', updateSpy);
-            widget.setProps({ 'floatingLabel': 'Email address', test: 1 });
-            widget.update();
+        beforeEach(async() => {
+            await component.rerender();
         });
 
-        test('it should send a textbox floating label init event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
+        it('it should send a textbox floating label init event', () => {
+            expect(component.emitted('textbox-floating-label-init')).has.length(1);
         });
     });
 });
