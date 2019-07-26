@@ -1,49 +1,56 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
-const options = [{
-    value: 1,
-    text: 'option 1'
-}, {
-    value: 2,
-    text: 'option 2'
-}];
-const emptyOptions = [];
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const mock = require('./mock');
+const template = require('..');
+
+use(require('chai-dom'));
 
 describe('select', () => {
-    test('renders basic version', context => {
-        const input = { options };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.select').length).to.equal(1);
+    it('renders basic version', async() => {
+        const input = mock.Basic_3Options;
+        const { getByRole, getAllByRole } = await render(template, input);
+        const rootElement = getByRole('combobox').parentElement;
+        const optionEls = getAllByRole('option');
+
+        expect(rootElement).has.class('select');
+        expect(rootElement).does.not.have.class('select--borderless');
+
+        expect(optionEls).has.length(3);
+        input.options.forEach((option, i) => {
+            const optionEl = optionEls[i];
+            expect(optionEl).has.text(option.text);
+            expect(optionEl).has.value(option.value);
+            expect(optionEl).has.property('selected', i === 0);
+        });
     });
 
-    test('renders empty', context => {
-        const input = { emptyOptions };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.select').length).to.equal(1);
-        expect($('.select select > option').length).to.equal(0);
+    it('renders empty', async() => {
+        const input = mock.Basic_0Options;
+        const { queryByRole, queryAllByRole } = await render(template, input);
+        expect(queryByRole('combobox')).does.exist;
+        expect(queryAllByRole('option')).has.length(0);
     });
 
-    test('renders with second item selected', context => {
-        const input = { options };
-        input.options[0].selected = false;
-        input.options[1].selected = true;
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.select').length).to.equal(1);
-        expect($('.select select > option[selected]:nth-child(2)').length).to.equal(1);
+    it('renders with second item selected', async() => {
+        const input = mock.Basic_3Options_1Selected;
+        const { getAllByRole } = await render(template, input);
+        getAllByRole('option').forEach((optionEl, i) => {
+            expect(optionEl).has.property('selected', i === 1);
+        });
     });
 
-    test('renders with borderless=true', context => {
-        const input = { borderless: true, options };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.select.select--borderless').length).to.equal(1);
+    it('renders with borderless=true', async() => {
+        const input = mock.Borderless_3Options;
+        const { getByRole } = await render(template, input);
+        expect(getByRole('combobox'))
+            .has.property('parentElement')
+            .with.class('select--borderless');
     });
 
-    test('renders with borderless=false', context => {
-        const input = { borderless: false, options };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.select.select--borderless').length).to.equal(0);
-    });
-
-    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, 'span.select select'));
-    test('handles custom class and style', c => testUtils.testClassAndStyle(c, 'span.select'));
+    testPassThroughAttributes(template, {
+        getClassAndStyleEl(component) {
+            return component.getByRole('combobox').parentElement;
+        }
+    })
 });

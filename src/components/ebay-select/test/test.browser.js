@@ -1,52 +1,41 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const mock = require('../mock');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, waitForDomChange: __oldWaitForDomChange, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
 
-describe('given the select is in the default state', () => {
-    let widget;
-    let root;
-    let selectElement;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-    beforeEach(() => {
-        const renderedWidget = renderer.renderSync({ options: mock.options });
-        widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.select');
-        selectElement = root.querySelector('select');
+/** @type import("@marko/testing-library").RenderResult */
+let component;
+
+describe('given the select with 3 options', () => {
+    const input = mock.Basic_3Options;
+    beforeEach(async() => {
+        component = await render(template, input);
     });
 
-    afterEach(() => widget.destroy());
 
-    describe('when the select has been initialized', () => {
-        test('then the select options should have a selected state set', () => {
-            expect(selectElement['0'].selected).to.equal(true);
-            expect(selectElement['1'].selected).to.equal(false);
-            expect(selectElement['2'].selected).to.equal(false);
+    it('then the first option should be selected', () => {
+        component.getAllByRole('option').forEach((optionEl, i) => {
+            expect(optionEl).has.property('selected', i === 0);
         });
     });
 
     describe('when the index is set through dom change event', () => {
-        const expectedIndex = 1;
-        const expectedValue = '2';
-        let spy;
-
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('select-change', spy);
-            const select = root.querySelector('select');
-            select.selectedIndex = expectedIndex;
-            testUtils.triggerEvent(select, 'change');
-            setTimeout(done);
+        beforeEach(() => {
+            const combobox = component.getByRole('combobox');
+            combobox.selectedIndex = 1;
+            fireEvent.change(combobox);
         });
 
-        test('then it emits the select-change event with the correct data', () => {
-            const eventData = spy.getCall(0).args[0];
-            expect(spy.calledOnce).to.equal(true);
-            expect(eventData.index).to.equal(expectedIndex);
-            expect(eventData.selected).to.deep.equal([expectedValue]);
-            expect(selectElement.value).to.equal(expectedValue);
-            expect(selectElement.selectedIndex).to.equal(expectedIndex);
+        it('then it emits the select-change event with the correct data', () => {
+            const changeEvents = component.emitted('select-change');
+            expect(changeEvents).has.length(1);
+
+            const [[eventArg]] = changeEvents;
+            expect(eventArg).has.property('index', 1);
+            expect(eventArg).has.property('selected').deep.equal([input.options[1].value]);
         });
     });
 });
