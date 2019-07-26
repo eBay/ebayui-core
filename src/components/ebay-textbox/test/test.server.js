@@ -6,7 +6,7 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-describe.only('ebay-textbox', () => {
+describe('ebay-textbox', () => {
     it('renders default input textbox', async() => {
         const input = mock.Basic;
         const { getByRole } = await render(template, input);

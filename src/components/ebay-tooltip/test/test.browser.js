@@ -1,91 +1,57 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
 const pointerStyles = require('./location-styles.json');
+const template = require('..');
 
-const pointerLocations = [
-    'top-left',
-    'top',
-    'top-right',
-    'right',
-    'right-bottom',
-    'right-top',
-    'bottom-left',
-    'bottom-right',
-    'bottom',
-    'left',
-    'left-bottom',
-    'left-top'
-];
+use(require('chai-dom'));
+afterEach(cleanup);
+
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
 describe('given the default tooltip', () => {
-    let widget;
-    let baseWidget;
+    const input = mock.Basic;
 
-    beforeEach(() => {
-        const input = {
-            host: {},
-            content: {}
-        };
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        baseWidget = widget.getWidget('base');
+    beforeEach(async() => {
+        component = await render(template, input);
     });
-
-    afterEach(() => widget.destroy());
 
     describe('when the host element is hovered', () => {
-        let spy;
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tooltip-expand', spy);
-            baseWidget.emit('base-expand');
+            fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
         });
 
-        test('then it emits the tooltip-expand event', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
-
-    describe('when the host element loses hover', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('tooltip-collapse', spy);
-            baseWidget.emit('base-collapse');
+        it('then it emits the tooltip-expand event', () => {
+            expect(component.emitted('tooltip-expand')).has.length(1);
         });
 
-        test('then it emits the tooltip-collapse event', () => {
-            expect(spy.calledOnce).to.equal(true);
+        describe('when the host element loses hover', () => {
+            beforeEach(() => {
+                fireEvent.mouseLeave(component.getByText(input.host.renderBody.text).parentElement);
+            });
+    
+            it('then it emits the tooltip-collapse event', () => {
+                expect(component.emitted('tooltip-collapse')).has.length(1);
+            });
         });
     });
 });
 
-describe('given a custom-aligned tooltip', () => {
-    const customLocation = '20px';
-    let widget;
-    let baseWidget;
+describe('given the a custom aligned tooltip', () => {
+    const input = mock.Custom_Pointer;
 
-    beforeEach(() => {
-        const input = {
-            host: {},
-            content: {},
-            styleLeft: customLocation,
-            styleTop: customLocation
-        };
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        baseWidget = widget.getWidget('base');
+    beforeEach(async() => {
+        component = await render(template, input);
     });
 
-    afterEach(() => widget.destroy());
-
-    describe('when the overlay is aligned', () => {
-        let overlay;
+    describe('when the host element is hovered', () => {
         beforeEach(() => {
-            overlay = widget.el.querySelector('.tooltip__overlay');
-            baseWidget.emit('base-expand');
+            fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
         });
 
-        test('then it sets the overlay styles correctly', () => {
+        it('then it sets the overlay styles correctly', () => {
+            const overlay = component.getByText(input.host.renderBody.text).nextElementSibling;
             expect(overlay.style.transform).to.equal('');
             expect(overlay.style.left).to.equal('20px');
             expect(overlay.style.top).to.equal('20px');
@@ -95,43 +61,28 @@ describe('given a custom-aligned tooltip', () => {
     });
 });
 
-pointerLocations.forEach(pointer => {
-    describe(`given the default tooltip with pointer ${pointer}`, () => {
-        let widget;
-        let baseWidget;
+mock.Pointers.forEach(input => {
+    const { pointer } = input;
 
-        beforeEach(() => {
-            const input = {
-                host: {},
-                content: {},
-                pointer
-            };
-            widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-            baseWidget = widget.getWidget('base');
+    describe(`given the tooltip with pointer ${pointer}`, () => {
+        beforeEach(async() => {
+            component = await render(template, input);
         });
-
-        afterEach(() => widget.destroy());
-
+    
         describe('when the host element is hovered', () => {
-            let spy;
-            let overlay;
             beforeEach(() => {
-                spy = sinon.spy();
-                overlay = widget.el.querySelector('.tooltip__overlay');
-                widget.on('tooltip-expand', spy);
-                baseWidget.emit('base-expand');
+                fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
             });
-
-            test('then it emits the tooltip-expand event', () => {
-                expect(spy.calledOnce).to.equal(true);
-            });
-
-            test('then it aligns the overlay', () => {
-                expect(overlay.style.transform).to.equal(pointerStyles[pointer].overlayTransform);
-                expect(overlay.style.left).to.equal(pointerStyles[pointer].overlayLeft);
-                expect(overlay.style.top).to.equal(pointerStyles[pointer].overlayTop);
-                expect(overlay.style.right).to.equal(pointerStyles[pointer].overlayRight);
-                expect(overlay.style.bottom).to.equal(pointerStyles[pointer].overlayBottom);
+    
+            it('then it sets the overlay styles correctly', () => {
+                const overlay = component.getByText(input.host.renderBody.text).nextElementSibling;
+                const overlayStyle = overlay.style;
+                const expectedStyles = pointerStyles[pointer];
+                expect(overlayStyle).has.property('transform', expectedStyles.overlayTransform);
+                expect(overlayStyle).has.property('top', expectedStyles.overlayTop);
+                expect(overlayStyle).has.property('left', expectedStyles.overlayLeft);
+                expect(overlayStyle).has.property('right', expectedStyles.overlayRight);
+                expect(overlayStyle).has.property('bottom', expectedStyles.overlayBottom);
             });
         });
     });
