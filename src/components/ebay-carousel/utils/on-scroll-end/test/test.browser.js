@@ -1,6 +1,6 @@
 const sinon = require('sinon');
-const { fireEvent } = require('@marko/testing-library');
-const { expect, simulateScroll, waitFrames } = require('../../../../../common/test-utils/browser');
+const { expect } = require('chai');
+const { simulateScroll, waitFrames } = require('../../../../../common/test-utils/browser');
 const onScrollEnd = require('../');
 
 describe('scroll-end', () => {

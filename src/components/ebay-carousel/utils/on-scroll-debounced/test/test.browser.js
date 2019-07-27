@@ -1,5 +1,6 @@
 const sinon = require('sinon');
-const { expect, simulateScroll } = require('../../../../../common/test-utils/browser');
+const { expect } = require('chai');
+const { simulateScroll } = require('../../../../../common/test-utils/browser');
 const onScroll = require('../');
 
 describe('scroll-debounced', () => {

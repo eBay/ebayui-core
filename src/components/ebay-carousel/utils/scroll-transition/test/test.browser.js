@@ -1,5 +1,5 @@
 const sinon = require('sinon');
-const { expect } = require('../../../../../common/test-utils/browser');
+const { expect } = require('chai');
 const scrollTransition = require('../');
 
 describe('scroll-transition', () => {

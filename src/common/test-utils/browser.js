@@ -13,7 +13,7 @@ module.exports = {
         el.scrollLeft = to;
         setTimeout(cb, 600);
     },
-    waitFrames(count, cb) {
+    waitFrames: function waitFrames(count, cb) {
         if (count) {
             return requestAnimationFrame(() => waitFrames(count - 1, cb));
         }
