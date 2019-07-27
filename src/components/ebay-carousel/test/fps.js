@@ -1,32 +1,28 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
+const { expect } = require('chai');
+const { render, cleanup } = require('@marko/testing-library');
 const fps = require('../../../common/test-utils/fps');
-const mock = require('../mock');
-const renderer = require('../');
+const mock = require('./mock');
+const template = require('../');
 
-function renderAndGetRoot(input) {
-    renderer.renderSync(input).appendTo(document.body);
-    return document.querySelector('.carousel');
-}
+afterEach(cleanup);
 
-it('runs at 60fps with changing index', (done) => {
-    const root = renderAndGetRoot({ items: mock.debugItems });
-    const nextButton = root.querySelector('.carousel__control--next');
-    const prevButton = root.querySelector('.carousel__control--prev');
+it('runs at 60fps with changing index', async () => {
+    const { getByLabelText } = await render(template, mock.Discrete_2PerSlide_6Items);
+    const nextButton = getByLabelText(input.a11yNextText)
+    const prevButton = getByLabelText(input.a11yPreviousText);
     let i = 0;
 
     fps.start(() => {
         if (i % 2) {
-            testUtils.triggerEvent(nextButton, 'click');
+            nextButton.click();
         } else {
-            testUtils.triggerEvent(prevButton, 'click');
+            prevButton.click();
         }
         i++;
     }, 50);
 
-    setTimeout(() => {
-        fps.end();
-        expect(fps.getAverage()).to.be.above(58);
-        done();
-    }, 1500);
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    fps.end();
+    expect(fps.getAverage()).to.be.above(58);
 });

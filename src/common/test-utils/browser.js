@@ -11,7 +11,7 @@ module.exports = {
     simulateScroll(el, to, cb) {
         fireEvent.scroll(el);
         el.scrollLeft = to;
-        setTimeout(cb, 100);
+        setTimeout(cb, 600);
     },
     waitFrames(count, cb) {
         if (count) {

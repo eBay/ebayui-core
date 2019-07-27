@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 const testUtils = require('../../../../common/test-utils/browser');
 const renderer = require('../');
 
-describe('given the default tooltip overlay', () => {
+describe.skip('given the default tooltip overlay', () => {
     let widget;
     let closeButton;
 
