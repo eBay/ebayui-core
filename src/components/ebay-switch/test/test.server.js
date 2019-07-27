@@ -20,4 +20,8 @@ test('renders disabled switch', async () => {
     expect(switchControl).to.have.property("disabled", true);
 });
 
-testPassThroughAttributes(template);
+testPassThroughAttributes(template, {
+    getClassAndStyleEl(component) {
+        return component.getByRole('switch').parentElement;
+    }
+});

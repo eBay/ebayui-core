@@ -11,7 +11,7 @@ describe('tooltip', () => {
         const input = mock.Basic;
         const { getByText, getByRole } = await render(template, input);
         expect(getByRole('tooltip')).has.class('tooltip__overlay');
-        expect(getByText(input.host.renderBody.text)).has.class('tooltip');
+        expect(getByText(input.host.renderBody.text)).has.class('tooltip__host');
         expect(getByText(input.content.renderBody.text)).has.class('tooltip__content');
         expect(getByText(input.heading.renderBody.text)).has.class('tooltip__heading');
     });

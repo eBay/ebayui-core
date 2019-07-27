@@ -18,4 +18,8 @@ test('renders disabled checkbox', async() => {
     expect(getByRole('checkbox')).has.attr('disabled');
 });
 
-testPassThroughAttributes(template);
+testPassThroughAttributes(template, {
+    getClassAndStyleEl(component) {
+        return component.getByRole('checkbox').parentElement;
+    }
+});

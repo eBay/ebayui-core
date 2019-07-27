@@ -20,4 +20,8 @@ test('renders disabled radio', async () => {
     expect(radioControl).to.have.property("disabled", true);
 });
 
-testPassThroughAttributes(template);
+testPassThroughAttributes(template, {
+    getClassAndStyleEl(component) {
+        return component.getByRole('radio').parentElement;
+    }
+});
