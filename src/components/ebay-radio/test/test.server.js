@@ -5,7 +5,7 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-test('renders default radio', async () => {
+it('renders default radio', async () => {
     const { getByRole } = await render(template);
     const radioControl = getByRole("radio");
     expect(radioControl).to.have.class("radio__control");
@@ -14,7 +14,7 @@ test('renders default radio', async () => {
     expect(radioControl).to.have.property("disabled", false);
 });
 
-test('renders disabled radio', async () => {
+it('renders disabled radio', async () => {
     const { getByRole } = await render(template, { disabled: true });
     const radioControl = getByRole("radio");
     expect(radioControl).to.have.property("disabled", true);

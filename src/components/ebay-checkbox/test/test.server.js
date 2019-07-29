@@ -5,7 +5,7 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-test('renders default checkbox', async() => {
+it('renders default checkbox', async() => {
     const { getByRole } = await render(template);
     const checkbox = getByRole('checkbox');
 
@@ -13,7 +13,7 @@ test('renders default checkbox', async() => {
     expect(checkbox.parentElement).has.class('checkbox')
 });
 
-test('renders disabled checkbox', async() => {
+it('renders disabled checkbox', async() => {
     const { getByRole } = await render(template, { disabled: true });
     expect(getByRole('checkbox')).has.attr('disabled');
 });

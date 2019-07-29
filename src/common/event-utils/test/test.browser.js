@@ -23,7 +23,7 @@ describe('handleActionKeydown()', () => {
         });
     });
 
-    test('doesn\'t call callback for other keyCode', () => {
+    it('doesn\'t call callback for other keyCode', () => {
         const callback = sinon.spy();
         handleActionKeydown({ keyCode: 1 }, callback);
         expect(callback.called).to.equal(false);
@@ -51,7 +51,7 @@ describe('handleUpDownArrowsKeydown()', () => {
         });
     });
 
-    test('doesn\'t call callback for other keyCode', () => {
+    it('doesn\'t call callback for other keyCode', () => {
         const callback = sinon.spy();
         handleUpDownArrowsKeydown({ keyCode: 1 }, callback);
         expect(callback.called).to.equal(false);
@@ -70,7 +70,7 @@ describe('handleLeftRightArrowsKeydown()', () => {
         });
     });
 
-    test('doesn\'t call callback for other keyCode', () => {
+    it('doesn\'t call callback for other keyCode', () => {
         const callback = sinon.spy();
         handleLeftRightArrowsKeydown({ keyCode: 1 }, callback);
         expect(callback.called).to.equal(false);
@@ -83,13 +83,13 @@ describe('preventDefaultIfHijax()', () => {
         preventDefaultSpy = sinon.spy();
     });
 
-    test('executes preventDefault if hijax', () => {
+    it('executes preventDefault if hijax', () => {
         const e = { preventDefault: preventDefaultSpy };
         preventDefaultIfHijax(e, true);
         expect(preventDefaultSpy.calledOnce).to.equal(true);
     });
 
-    test('does not execute preventDefault if not hijax', () => {
+    it('does not execute preventDefault if not hijax', () => {
         const e = { preventDefault: preventDefaultSpy };
         preventDefaultIfHijax(e, false);
         expect(preventDefaultSpy.called).to.equal(false);
@@ -97,7 +97,7 @@ describe('preventDefaultIfHijax()', () => {
 });
 
 describe('resizeEventUtil', () => {
-    test('the root element listens for a window resize, then calls a callback', (context, done) => {
+    it('the root element listens for a window resize, then calls a callback', (context, done) => {
         const mockCallback = sinon.spy();
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
@@ -108,7 +108,7 @@ describe('resizeEventUtil', () => {
         });
     });
 
-    test('the root element does not listen for a window resize, after eventListener is removed', (context, done) => {
+    it('the root element does not listen for a window resize, after eventListener is removed', (context, done) => {
         const mockCallback = sinon.spy();
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         resizeUtil.removeEventListener('resize', mockCallback.bind(this));

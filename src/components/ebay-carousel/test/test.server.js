@@ -9,7 +9,7 @@ use(require('chai-dom'));
 
 describe('carousel', () => {
     describe('with discrete items per slide', () => {
-        test('renders base version', async() => {
+        it('renders base version', async() => {
             const input = mock.Discrete_1PerSlide_3Items;
             const { getByText, getByLabelText, getAllByLabelText } = await render(template, input);
             const firstDotLabel = input.a11yCurrentText.replace('{currentSlide}', 1);
@@ -33,7 +33,7 @@ describe('carousel', () => {
             expect(getAllByLabelText(/go to slide/)).has.length(2);
         });
 
-        test('renders no-dots enabled', async() => {
+        it('renders no-dots enabled', async() => {
             const input = assign({ noDots: true }, mock.Discrete_1PerSlide_3Items);
             const { getByLabelText } = await render(template, input);
     
@@ -42,7 +42,7 @@ describe('carousel', () => {
             expect(() => getByLabelText(/go to slide/)).to.throw(/Unable to find a label/);
         });
 
-        test('renders without any provided items', async() => {
+        it('renders without any provided items', async() => {
             const input = mock.Discrete_1PerSlide_0Items;
             const { getByLabelText } = await render(template, input);
 
@@ -52,14 +52,14 @@ describe('carousel', () => {
         });
 
         describe('with autoplay enabled', () => {
-            test('renders base version', async() => {
+            it('renders base version', async() => {
                 const input = mock.Discrete_1PerSlide_3Items_AutoPlay;
                 const { getByLabelText } = await render(template, input);
         
                 expect(getByLabelText(input.a11yPauseText)).to.exist;
             });
 
-            test('renders paused version', async() => {
+            it('renders paused version', async() => {
                 const input = assign({ paused: true }, mock.Discrete_1PerSlide_3Items_AutoPlay);
                 const { getByLabelText } = await render(template, input);
     
@@ -69,7 +69,7 @@ describe('carousel', () => {
     });
 
     describe('without items per slide (continuous)', () => {
-        test('renders base version', async() => {
+        it('renders base version', async() => {
             const input = mock.Continuous_6Items;
             const { getByText, getByLabelText } = await render(template, input);
 
@@ -86,7 +86,7 @@ describe('carousel', () => {
             input.items.forEach(item => expect(getByText(item.renderBody.text)).does.exist);
         });
 
-        test('renders without any provided items', async() => {
+        it('renders without any provided items', async() => {
             const input = mock.Continuous_0Items;
             const { getByLabelText } = await render(template, input);
 

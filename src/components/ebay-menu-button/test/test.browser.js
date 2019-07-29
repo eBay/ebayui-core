@@ -61,7 +61,7 @@ describe('given the menu is in the default state', () => {
         });
     });
 
-    describe('when the expanded state is set to false', () => {
+    describe('when re-rendered with expanded set to false', () => {
         beforeEach(async() => {
             await component.rerender({ expanded: false, items: mock.twoItems });
         });
@@ -75,7 +75,8 @@ describe('given the menu is in the default state', () => {
         });
     });
 
-    describe.skip('when the expanded state is set to true', () => {
+    // TODO: we should make the `expanded` property controllable via input.
+    describe.skip('when re-rendered with expanded set to true', () => {
         beforeEach(async() => {
             await component.rerender({ expanded: true, items: mock.twoItems });
         });
@@ -97,7 +98,8 @@ describe('given the menu is in the expanded state', () => {
         expect(component.emitted('menu-expand')).has.length(1);
     });
 
-    describe.skip('when the expanded state is set to true', () => {
+    // TODO: we should make the `expanded` property controllable via input.
+    describe.skip('when re-rendered with expanded set to true', () => {
         beforeEach(async() => {
             await component.rerender({ expanded: true, items: mock.twoItems });
         });
@@ -111,7 +113,8 @@ describe('given the menu is in the expanded state', () => {
         });
     });
 
-    describe.skip('when the expanded state is set to false', () => {
+    // TODO: we should make the `expanded` property controllable via input.
+    describe.skip('when re-rendered with expanded set to false', () => {
         beforeEach(async() => {
             await component.rerender({ expanded: false, items: mock.twoItems });
         });

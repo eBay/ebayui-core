@@ -29,11 +29,11 @@ describe('given the default infotip', () => {
                 component.getByLabelText(input.ariaLabel).click();
             });
 
-            test('then it emits the tooltip-expand event', () => {
+            it('then it emits the tooltip-expand event', () => {
                 expect(component.emitted('tooltip-expand')).has.length(1);
             });
 
-            test('then it is expanded', () => {
+            it('then it is expanded', () => {
                 expect(component.getByLabelText(input.ariaLabel)).has.attr('aria-expanded', 'true');
             });
 
@@ -42,11 +42,11 @@ describe('given the default infotip', () => {
                     component.getByLabelText(input.ariaLabel).click();
                 });
     
-                test('then it emits the tooltip-collapse event', () => {
+                it('then it emits the tooltip-collapse event', () => {
                     expect(component.emitted('tooltip-collapse')).has.length(1);
                 });
 
-                test('then it is collapsed', () => {
+                it('then it is collapsed', () => {
                     expect(component.getByLabelText(input.ariaLabel)).does.not.have.attr('aria-expanded', 'true');
                 });
             });

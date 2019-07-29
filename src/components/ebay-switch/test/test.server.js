@@ -5,7 +5,7 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-test('renders default switch', async () => {
+it('renders default switch', async () => {
     const { getByRole } = await render(template);
     const switchControl = getByRole("switch");
     expect(switchControl).to.have.class("switch__control");
@@ -14,7 +14,7 @@ test('renders default switch', async () => {
     expect(switchControl).to.have.property("disabled", false);
 });
 
-test('renders disabled switch', async () => {
+it('renders disabled switch', async () => {
     const { getByRole } = await render(template, { disabled: true });
     const switchControl = getByRole("switch");
     expect(switchControl).to.have.property("disabled", true);

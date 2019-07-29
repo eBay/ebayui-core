@@ -27,29 +27,29 @@ Object.keys(properties).forEach(property => {
     });
 });
 
-test('renders defaults', async() => {
+it('renders defaults', async() => {
     const { getByRole } = await render(template);
     expect(getByRole('button')).has.class('btn--secondary');
 });
 
-test('renders with id override', async() => {
+it('renders with id override', async() => {
     const { getByRole } = await render(template, { id: 'test' });
     expect(getByRole('button')).has.id('test');
 });
 
-test('renders with type override', async() => {
+it('renders with type override', async() => {
     const { getByRole } = await render(template, { type: 'submit' });
     expect(getByRole('button')).has.attr('type', 'submit');
 });
 
-test('does not apply priority class for unsupported value', async() => {
+it('does not apply priority class for unsupported value', async() => {
     const { getByRole } = await render(template, { priority: 'none' });
     expect(getByRole('button'))
         .does.not.have.class('btn--none')
         .and.does.not.have.class('btn--secondary');
 });
 
-test('renders fake version', async() => {
+it('renders fake version', async() => {
     const { getByLabelText } = await render(template, {
         href: '#',
         size: 'small',
@@ -67,22 +67,22 @@ test('renders fake version', async() => {
         .and.class('fake-btn--primary');
 });
 
-test('renders disabled version', async() => {
+it('renders disabled version', async() => {
     const { getByRole } = await render(template, { disabled: true });
     expect(getByRole('button')).has.attr('disabled');
 });
 
-test('renders partially disabled version', async() => {
+it('renders partially disabled version', async() => {
     const { getByRole } = await render(template, { partiallyDisabled: true });
     expect(getByRole('button')).has.attr('aria-disabled', 'true');
 });
 
-test('renders expand variant', async() => {
+it('renders expand variant', async() => {
     const { getByRole } = await render(template, { variant: 'expand' });
     expect(getByRole('button')).has.class('expand-btn');
 });
 
-test('renders expand variant with no text', async() => {
+it('renders expand variant with no text', async() => {
     const { getByRole } = await render(template, {
         variant: 'expand',
         noText: true
@@ -92,7 +92,7 @@ test('renders expand variant with no text', async() => {
         .and.class('expand-btn--no-text');
 });
 
-test('renders icon variant', async() => {
+it('renders icon variant', async() => {
     const { getByLabelText } = await render(template, {
         variant: 'icon',
         htmlAttributes: {
@@ -103,7 +103,7 @@ test('renders icon variant', async() => {
     expect(getByLabelText('icon button')).has.class('icon-btn');
 });
 
-test('renders badged icon variant', async() => {
+it('renders badged icon variant', async() => {
     const { getByLabelText } = await render(template, {
         variant: 'icon',
         badgeNumber: 5,

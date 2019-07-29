@@ -17,13 +17,13 @@ describe('multiline-ellipsis', () => {
         document.body.removeChild(contentDiv);
     });
 
-    test('adds two spans for accessibility', () => {
+    it('adds two spans for accessibility', () => {
         expect(spans.length).to.equal(2);
         expect(spans[0].getAttribute('aria-hidden')).to.equal('true');
         expect(spans[1].className.indexOf('clipped')).to.not.equal(-1);
     });
 
-    test('adds an ellipsis character to the end of the content', () => {
+    it('adds an ellipsis character to the end of the content', () => {
         expect(spans[0].innerText.slice(-1)).to.equal('…');
     });
 });

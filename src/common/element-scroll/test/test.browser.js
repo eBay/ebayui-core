@@ -21,13 +21,13 @@ describe('element-scroll', () => {
         document.body.removeChild(contentDiv);
     });
 
-    test('scrolls the parent so the child element below the view is visible', () => {
+    it('scrolls the parent so the child element below the view is visible', () => {
         elementScroll.scroll(fifthItemEl);
         expect(contentDiv.scrollTop)
             .to.equal((fifthItemEl.offsetTop + fifthItemEl.offsetHeight) - contentDiv.offsetHeight);
     });
 
-    test('scrolls the parent so the child element above the view is visible', () => {
+    it('scrolls the parent so the child element above the view is visible', () => {
         contentDiv.scrollTop = fifthItemEl.offsetTop;
         elementScroll.scroll(secondItemEl);
         expect(contentDiv.scrollTop).to.equal(secondItemEl.offsetTop);
