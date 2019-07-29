@@ -10,7 +10,7 @@ it('renders default checkbox', async() => {
     const checkbox = getByRole('checkbox');
 
     expect(checkbox).has.property('checked', false);
-    expect(checkbox.parentElement).has.class('checkbox')
+    expect(checkbox.parentElement).has.class('checkbox');
 });
 
 it('renders disabled checkbox', async() => {

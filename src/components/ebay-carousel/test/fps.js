@@ -1,14 +1,15 @@
 const { expect } = require('chai');
 const { render, cleanup } = require('@marko/testing-library');
 const fps = require('../../../common/test-utils/fps');
-const mock = require('./mock');
 const template = require('../');
+const mock = require('./mock');
 
 afterEach(cleanup);
 
-it('runs at 60fps with changing index', async () => {
-    const { getByLabelText } = await render(template, mock.Discrete_2PerSlide_6Items);
-    const nextButton = getByLabelText(input.a11yNextText)
+it('runs at 60fps with changing index', async() => {
+    const input = mock.Discrete_2PerSlide_6Items;
+    const { getByLabelText } = await render(template, input);
+    const nextButton = getByLabelText(input.a11yNextText);
     const prevButton = getByLabelText(input.a11yPreviousText);
     let i = 0;
 

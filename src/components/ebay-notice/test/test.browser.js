@@ -17,7 +17,7 @@ describe('given the dismissable page notice', () => {
     });
 
     it('then it is visible in the dom', () => {
-        expect(component.queryByLabelText(input.a11yHeadingText)).to.exist;
+        expect(() => component.queryByLabelText(input.a11yHeadingText)).to.not.throw();
     });
 
     describe('when the dismiss button is clicked', () => {
@@ -25,11 +25,11 @@ describe('given the dismissable page notice', () => {
             component.getByLabelText(input.a11yCloseText).click();
         });
 
-       it('then it is removed from the DOM', async() => {
+        it('then it is removed from the DOM', async() => {
             await wait(() => expect(component.queryByLabelText(input.a11yHeadingText)).to.be.null);
         });
 
-       it('then it emits the close event', () => {
+        it('then it emits the close event', () => {
             expect(component.emitted('notice-close')).has.length(1);
         });
     });

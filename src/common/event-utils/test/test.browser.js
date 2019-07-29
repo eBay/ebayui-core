@@ -97,7 +97,7 @@ describe('preventDefaultIfHijax()', () => {
 });
 
 describe('resizeEventUtil', () => {
-    it('the root element listens for a window resize, then calls a callback', (context, done) => {
+    it('the root element listens for a window resize, then calls a callback', (done) => {
         const mockCallback = sinon.spy();
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
@@ -108,7 +108,7 @@ describe('resizeEventUtil', () => {
         });
     });
 
-    it('the root element does not listen for a window resize, after eventListener is removed', (context, done) => {
+    it('the root element does not listen for a window resize, after eventListener is removed', (done) => {
         const mockCallback = sinon.spy();
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         resizeUtil.removeEventListener('resize', mockCallback.bind(this));

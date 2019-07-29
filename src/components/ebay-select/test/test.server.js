@@ -27,8 +27,8 @@ describe('select', () => {
 
     it('renders empty', async() => {
         const input = mock.Basic_0Options;
-        const { queryByRole, queryAllByRole } = await render(template, input);
-        expect(queryByRole('combobox')).does.exist;
+        const { queryAllByRole } = await render(template, input);
+        expect(queryAllByRole('combobox')).has.length(1);
         expect(queryAllByRole('option')).has.length(0);
     });
 
@@ -52,5 +52,5 @@ describe('select', () => {
         getClassAndStyleEl(component) {
             return component.getByRole('combobox').parentElement;
         }
-    })
+    });
 });

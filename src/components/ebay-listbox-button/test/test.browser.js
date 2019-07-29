@@ -10,7 +10,7 @@ afterEach(cleanup);
 let component;
 
 // Tests are rendered in a form so that we can check the form data value.
-const form = document.createElement("form");
+const form = document.createElement('form');
 before(() => document.body.appendChild(form));
 after(() => document.body.removeChild(form));
 
@@ -58,15 +58,15 @@ describe('given the listbox with 3 items', () => {
                     keyCode: 38
                 });
             });
-    
+
             it('then it should not expand the listbox', () => {
                 expect(component.getByRole('button')).has.attr('aria-expanded', 'false');
             });
-    
+
             it('then it emits the listbox-change event with the correct data', () => {
                 const changeEvents = component.emitted('listbox-change');
                 expect(changeEvents).has.length(1);
-    
+
                 const [[changeEvent]] = changeEvents;
                 expect(changeEvent).has.property('index', 0);
                 expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);
@@ -95,7 +95,7 @@ describe('given the listbox with 3 items', () => {
             it('then it emits the event from expander-collapse', () => {
                 expect(component.emitted('listbox-collapse')).has.length(1);
             });
-    
+
             it('then it has collapsed the listbox', () => {
                 expect(component.getByRole('button')).has.attr('aria-expanded', 'false');
             });
@@ -151,11 +151,11 @@ describe('given the listbox is in an expanded state', () => {
                     keyCode: 38
                 });
             });
-    
+
             it('then it emits the listbox-change event with the correct data', () => {
                 const changeEvents = component.emitted('listbox-change');
                 expect(changeEvents).has.length(1);
-    
+
                 const [[changeEvent]] = changeEvents;
                 expect(changeEvent).has.property('index', 0);
                 expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);

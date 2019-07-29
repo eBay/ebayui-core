@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, waitForDomChange: __oldWaitForDomChange, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
 const template = require('..');
 
@@ -14,7 +14,6 @@ describe('given the select with 3 options', () => {
     beforeEach(async() => {
         component = await render(template, input);
     });
-
 
     it('then the first option should be selected', () => {
         component.getAllByRole('option').forEach((optionEl, i) => {

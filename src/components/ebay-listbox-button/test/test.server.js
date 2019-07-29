@@ -59,7 +59,6 @@ function isAriaSelected(el) {
     return el.getAttribute('aria-selected') === 'true';
 }
 
-
 function isVisible(el) {
     return !el.hasAttribute('hidden') && !el.closest('[hidden]');
 }

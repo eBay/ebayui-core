@@ -54,11 +54,11 @@ describe('combobox-readonly', () => {
 describe('combobox-readonly-option', () => {
     testPassThroughAttributes(template, {
         child: {
-            name: "options",
+            name: 'options',
             input: mock.Combobox_3Options.options[0],
             multiple: true
         }
-    })
+    });
 });
 
 function isAriaSelected(el) {

@@ -22,7 +22,7 @@ describe('combobox', () => {
     it('renders empty', async() => {
         const input = mock.Combobox_0Options;
         const { getByRole } = await render(template, input);
-        expect(getByRole('combobox')).does.exist;
+        expect(() => getByRole('combobox')).to.not.throw();
         expect(() => getByRole('listbox')).to.throw();
     });
 
@@ -50,11 +50,11 @@ describe('combobox', () => {
 describe('combobox-option', () => {
     testPassThroughAttributes(template, {
         child: {
-            name: "options",
+            name: 'options',
             input: mock.Combobox_3Options.options[0],
             multiple: true
         }
-    })
+    });
 });
 
 function isAriaSelected(el) {

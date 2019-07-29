@@ -92,7 +92,7 @@ describe('ebay-textbox', () => {
         getClassAndStyleEl(component) {
             return component.getByRole('textbox').parentElement;
         }
-    })
+    });
 });
 
 describe('transformer', () => {

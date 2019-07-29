@@ -30,7 +30,7 @@ describe('given the default tooltip', () => {
             beforeEach(() => {
                 fireEvent.mouseLeave(component.getByText(input.host.renderBody.text).parentElement);
             });
-    
+
             it('then it emits the tooltip-collapse event', () => {
                 expect(component.emitted('tooltip-collapse')).has.length(1);
             });
@@ -68,12 +68,12 @@ mock.Pointers.forEach(input => {
         beforeEach(async() => {
             component = await render(template, input);
         });
-    
+
         describe('when the host element is hovered', () => {
             beforeEach(() => {
                 fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
             });
-    
+
             it('then it sets the overlay styles correctly', () => {
                 const overlay = component.getByText(input.host.renderBody.text).nextElementSibling;
                 const overlayStyle = overlay.style;

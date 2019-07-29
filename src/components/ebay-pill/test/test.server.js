@@ -15,7 +15,7 @@ describe('pill', () => {
         expect(pill).has.property('tagName', 'BUTTON');
         expect(pill).does.not.have.attr('aria-pressed');
     });
-    
+
     it('renders with pressed attribute', async() => {
         const input = mock.Pressed;
         const { getByText } = await render(template, input);
@@ -60,4 +60,4 @@ describe('pill', () => {
             return component.getByRole('button');
         }
     });
-})
+});

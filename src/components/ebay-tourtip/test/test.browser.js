@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { render, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
 const template = require('..');
 
@@ -30,7 +30,8 @@ describe('given the default tourtip', () => {
 
     function thenItIsOpen() {
         it('then it is open', () => {
-            expect(component.getByText(input.host.renderBody.text).parentElement).has.attr('aria-expanded', 'true');
+            expect(component.getByText(input.host.renderBody.text).parentElement)
+                .has.attr('aria-expanded', 'true');
         });
     }
 
@@ -45,7 +46,8 @@ describe('given the default tourtip', () => {
             });
 
             it('then it is closed', () => {
-                expect(component.getByText(input.host.renderBody.text).parentElement).has.attr('aria-expanded', 'false');
+                expect(component.getByText(input.host.renderBody.text).parentElement)
+                    .has.attr('aria-expanded', 'false');
             });
         });
     }

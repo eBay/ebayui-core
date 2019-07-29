@@ -15,5 +15,11 @@
         "mocha/no-nested-tests": 2,
         "mocha/no-sibling-hooks": 2,
         "compat/compat": 2
+    },
+    "overrides": {
+        "files": ["**/test/*"],
+        "rules": {
+            "compat/compat": 0
+        }
     }
 }

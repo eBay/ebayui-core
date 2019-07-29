@@ -14,7 +14,7 @@ describe('given a basic breadcrumb', () => {
     const firstItem = mockItems[0];
     const lastItem = mockItems[mockItems.length - 1];
 
-    beforeEach(async () => {
+    beforeEach(async() => {
         component = await render(template, mock.basicItems);
     });
 

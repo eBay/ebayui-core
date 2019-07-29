@@ -58,7 +58,7 @@ describe('given an input textbox with floating label and no value', () => {
             beforeEach(() => {
                 fireEvent.blur(component.getByRole('textbox'));
             });
-    
+
             it('then is showing the label inline', () => {
                 expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
             });

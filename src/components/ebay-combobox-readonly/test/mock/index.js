@@ -4,7 +4,7 @@ exports.Combobox_0Options = {
     name: 'test-combobox',
     autocomplete: 'list',
     options: []
-}
+};
 
 exports.Combobox_3Options = {
     name: 'test-combobox',

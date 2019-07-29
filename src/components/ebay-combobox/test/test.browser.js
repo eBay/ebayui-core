@@ -72,7 +72,7 @@ describe('given the combobox with 3 items', () => {
                 });
 
                 describe('when the enter key is pressed', () => {
-                    beforeEach(async () => {
+                    beforeEach(async() => {
                         pressKey(component.getByRole('combobox'), {
                             key: 'Enter',
                             keyCode: 13
@@ -137,7 +137,7 @@ describe('given the combobox with 3 items', () => {
 describe('given the combobox starts with zero options', () => {
     const input = mock.Combobox_0Options;
 
-    beforeEach(async () => {
+    beforeEach(async() => {
         component = await render(template, input);
     });
 
@@ -149,17 +149,17 @@ describe('given the combobox starts with zero options', () => {
         it('then it has no options', () => {
             expect(() => component.getAllByRole('option')).to.throw('Unable to find an element with the role "option"');
         });
-    
+
         it('then it should not be expanded', () => {
             expect(component.getByRole('combobox')).not.has.attr('aria-expanded');
         });
     });
 
     describe('when it is rerendered with 3 items', () => {
-        const input = mock.Combobox_3Options;
+        const newInput = mock.Combobox_3Options;
 
         beforeEach(async() => {
-            await component.rerender(input);
+            await component.rerender(newInput);
         });
 
         describe('when the input receives focus', () => {
@@ -199,7 +199,7 @@ describe('given the combobox starts with zero options', () => {
                 });
 
                 describe('when the enter key is pressed', () => {
-                    beforeEach(async () => {
+                    beforeEach(async() => {
                         pressKey(component.getByRole('combobox'), {
                             key: 'Enter',
                             keyCode: 13
@@ -207,7 +207,7 @@ describe('given the combobox starts with zero options', () => {
                     });
 
                     it('then it should correctly set value for the input', () => {
-                        expect(component.getByRole('combobox').value).to.equal(input.options[0].text);
+                        expect(component.getByRole('combobox').value).to.equal(newInput.options[0].text);
                     });
 
                     it('then it emitted the select event', () => {
@@ -241,7 +241,7 @@ describe('given the combobox starts with zero options', () => {
                 });
 
                 it('then it should update the input', () => {
-                    expect(component.getByRole('combobox')).has.value(input.options[1].text);
+                    expect(component.getByRole('combobox')).has.value(newInput.options[1].text);
                 });
             });
 

@@ -18,12 +18,12 @@ describe('icon', () => {
                     ariaLabel: 'background icon'
                 }
             };
-    
+
             const { getByLabelText } = await render(template, input);
             const icon = getByLabelText(input.htmlAttributes.ariaLabel);
             expect(icon).has.class(`icon--${iconName}`);
         });
-    
+
         it('renders background type by default', async() => {
             const input = {
                 name: iconName,
@@ -31,7 +31,7 @@ describe('icon', () => {
                     ariaLabel: 'background icon'
                 }
             };
-    
+
             const { getByLabelText } = await render(template, input);
             expect(getByLabelText(input.htmlAttributes.ariaLabel)).has.class(`icon--${iconName}`);
         });
@@ -50,7 +50,7 @@ describe('icon', () => {
                 name: iconName,
                 a11yText: 'inline icon'
             };
-    
+
             const { getByRole, getByTitle } = await render(template, input);
             const svg = getByRole('img');
             const title = getByTitle(input.a11yText);
@@ -58,34 +58,34 @@ describe('icon', () => {
             expect(svg).contains(title);
             expect(svg).has.attr('aria-labelledby', title.id);
         });
-    
+
         it('renders inline type without title text', async() => {
             const input = {
                 type: 'inline',
                 name: iconName,
                 htmlAttributes: {
-                    "data-testid": "icon"
+                    'data-testid': 'icon'
                 }
             };
-    
+
             const { getByTestId } = await render(template, input);
             const svg = getByTestId('icon');
             expect(svg).does.not.have.attr('aria-labelledby');
             expect(svg).has.attr('aria-hidden', 'true');
         });
-    
+
         it('renders no-skin-classes', async() => {
             const input = {
                 type: 'inline',
                 name: iconName, noSkinClasses: true,
                 class: 'custom-class',
                 htmlAttributes: {
-                    "data-testid": "icon"
+                    'data-testid': 'icon'
                 }
             };
             const { getByTestId } = await render(template, input);
             const svg = getByTestId('icon');
-    
+
             expect(svg).has.class('custom-class');
             expect(svg).does.not.have.class(`icon--${iconName}`);
         });

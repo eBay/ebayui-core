@@ -1,13 +1,13 @@
 const assign = require('core-js-pure/features/object/assign');
 
-const Base_0Items = {
+exports.Base_0Items = {
     a11yPreviousText: 'Previous page',
     a11yNextText: 'Next page',
     a11yCurrentText: 'Results Pagination - Page 2',
     items: []
 };
 
-exports.Links_6Items_No_Selected = assign({}, Base_0Items, {
+exports.Links_6Items_No_Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -24,7 +24,7 @@ exports.Links_6Items_No_Selected = assign({}, Base_0Items, {
     )
 });
 
-exports.Links_9Items_1Selected = assign({}, Base_0Items, {
+exports.Links_9Items_1Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -42,7 +42,7 @@ exports.Links_9Items_1Selected = assign({}, Base_0Items, {
     )
 });
 
-exports.Links_9Items_4Selected = assign({}, Base_0Items, {
+exports.Links_9Items_4Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -60,7 +60,7 @@ exports.Links_9Items_4Selected = assign({}, Base_0Items, {
     )
 });
 
-exports.Links_9Items_7Selected = assign({}, Base_0Items, {
+exports.Links_9Items_7Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -78,7 +78,7 @@ exports.Links_9Items_7Selected = assign({}, Base_0Items, {
     )
 });
 
-exports.Links_1Items_Navigation_Disabled = assign({}, Base_0Items, {
+exports.Links_1Items_Navigation_Disabled = assign({}, exports.Base_0Items, {
     items: [
         {
             type: 'previous',
@@ -97,7 +97,7 @@ exports.Links_1Items_Navigation_Disabled = assign({}, Base_0Items, {
     ]
 });
 
-exports.Links_1Items_No_Navigation = assign({}, Base_0Items, {
+exports.Links_1Items_No_Navigation = assign({}, exports.Base_0Items, {
     items: [
         {
             href: `#1`,
@@ -106,7 +106,7 @@ exports.Links_1Items_No_Navigation = assign({}, Base_0Items, {
     ]
 });
 
-exports.Buttons_0Selected = assign({}, Base_0Items, {
+exports.Buttons_0Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous'

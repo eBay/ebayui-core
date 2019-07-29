@@ -17,7 +17,7 @@ module.exports = {
         if (count) {
             return requestAnimationFrame(() => waitFrames(count - 1, cb));
         }
-    
+
         cb();
     },
     fastAnimations: {

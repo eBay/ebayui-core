@@ -33,7 +33,7 @@ describe('given tabs with first heading selected', () => {
                     component.getAllByRole('tab')[1].click();
                 });
             });
-    
+
             thenItHasMovedToTab(1);
         });
 
@@ -46,7 +46,7 @@ describe('given tabs with first heading selected', () => {
                     });
                 });
             });
-    
+
             thenItHasMovedToTab(1);
         });
     });

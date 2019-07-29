@@ -10,7 +10,7 @@ let component;
 
 describe('given switch button is enabled', () => {
     beforeEach(async() => {
-        component = await render(template, { "*": { value: 'food' } });
+        component = await render(template, { '*': { value: 'food' } });
     });
 
     describe('when switch button is clicked', () => {

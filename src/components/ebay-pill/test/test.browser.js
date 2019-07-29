@@ -20,7 +20,7 @@ describe('given pill is enabled', () => {
     });
 
     describe('when pill is clicked', () => {
-        beforeEach(async () => {
+        beforeEach(async() => {
             await waitForDomChange(() => {
                 fireEvent.click(component.getByRole('button'));
             });

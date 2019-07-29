@@ -11,7 +11,7 @@ afterEach(cleanup);
 let component;
 
 // Tests are rendered in a form so that we can check the form data value.
-const form = document.createElement("form");
+const form = document.createElement('form');
 before(() => document.body.appendChild(form));
 after(() => document.body.removeChild(form));
 
@@ -23,7 +23,7 @@ describe('given the readonly combobox with 3 items', () => {
     });
 
     it('then it should not be expanded', () => {
-        expect(getVisibleCombobox(component)).has.attr('aria-expanded', 'false');
+        expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
     });
 
     it('then the native select should be initialized to the first option value', () => {
@@ -32,14 +32,14 @@ describe('given the readonly combobox with 3 items', () => {
 
     describe('when the down arrow key is pressed', () => {
         beforeEach(() => {
-            pressKey(getVisibleCombobox(component), {
+            pressKey(getVisibleCombobox(), {
                 key: 'ArrowDown',
                 keyCode: 40
             });
         });
 
         it('then it should not expand the combobox', () => {
-            expect(getVisibleCombobox(component)).has.attr('aria-expanded', 'false');
+            expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
         });
 
         it('then it emits the combobox-change event with the correct data', () => {
@@ -58,14 +58,14 @@ describe('given the readonly combobox with 3 items', () => {
 
     describe('when the up arrow key is pressed', () => {
         beforeEach(() => {
-            pressKey(getVisibleCombobox(component), {
+            pressKey(getVisibleCombobox(), {
                 key: 'ArrowUp',
                 keyCode: 38
             });
         });
 
         it('then it should not expand the combobox', () => {
-            expect(getVisibleCombobox(component)).has.attr('aria-expanded', 'false');
+            expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
         });
 
         it('then it emits the combobox-change event with the correct data', () => {
@@ -80,7 +80,7 @@ describe('given the readonly combobox with 3 items', () => {
 
     describe('when the button is clicked', () => {
         beforeEach(() => {
-            getVisibleCombobox(component).click();
+            getVisibleCombobox().click();
         });
 
         it('then it emits the event from expander-expand', () => {
@@ -88,22 +88,22 @@ describe('given the readonly combobox with 3 items', () => {
         });
 
         it('then it has expanded the combobox', () => {
-            expect(getVisibleCombobox(component)).has.attr('aria-expanded', 'true');
+            expect(getVisibleCombobox()).has.attr('aria-expanded', 'true');
         });
 
         describe('when an option is clicked', () => {
             beforeEach(() => {
-                getVisibleOptions(component)[1].click();
+                getVisibleOptions()[1].click();
             });
 
             it('then the native select should be set to the second option value', () => {
                 expect(new FormData(form).get(input.name)).to.equal(input.options[1].value);
             });
-    
+
             it('then it emits the combobox-change event with correct data', () => {
                 const changeEvents = component.emitted('combobox-change');
                 expect(changeEvents).has.length(1);
-    
+
                 const [[changeEvent]] = changeEvents;
                 expect(changeEvent).has.property('index', 1);
                 expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
@@ -114,17 +114,17 @@ describe('given the readonly combobox with 3 items', () => {
 
         describe('when the text of an option is clicked', () => {
             beforeEach(() => {
-                getVisibleOptions(component)[1].firstElementChild.click();
+                getVisibleOptions()[1].firstElementChild.click();
             });
 
             it('then the native select should be set to the second option value', () => {
                 expect(new FormData(form).get(input.name)).to.equal(input.options[1].value);
             });
-    
+
             it('then it emits the combobox-change event with correct data', () => {
                 const changeEvents = component.emitted('combobox-change');
                 expect(changeEvents).has.length(1);
-    
+
                 const [[changeEvent]] = changeEvents;
                 expect(changeEvent).has.property('index', 1);
                 expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
@@ -135,7 +135,7 @@ describe('given the readonly combobox with 3 items', () => {
 
         describe('when the button is clicked again', () => {
             beforeEach(() => {
-                getVisibleCombobox(component).click();
+                getVisibleCombobox().click();
             });
 
             thenItHasCollapsed();
@@ -143,12 +143,12 @@ describe('given the readonly combobox with 3 items', () => {
 
         describe('when the escape key is pressed', () => {
             beforeEach(() => {
-                pressKey(getVisibleCombobox(component), {
+                pressKey(getVisibleCombobox(), {
                     key: 'Escape',
                     keyCode: 27
                 });
             });
-    
+
             thenItHasCollapsed();
         });
 
@@ -156,9 +156,9 @@ describe('given the readonly combobox with 3 items', () => {
             it('then it emits the event from expander-collapse', () => {
                 expect(component.emitted('combobox-collapse')).has.length(1);
             });
-    
+
             it('then it has collapsed the combobox', () => {
-                expect(getVisibleCombobox(component)).has.attr('aria-expanded', 'false');
+                expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
             });
         }
     });
@@ -172,12 +172,12 @@ describe('given the readonly combobox with 3 items that is disabled', () => {
     });
 
     it('then it should not be expanded', () => {
-        expect(getVisibleCombobox(component)).has.attr('aria-expanded', 'false');
+        expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
     });
 
     describe('when the button is clicked', () => {
         beforeEach(() => {
-            getVisibleCombobox(component).click();
+            getVisibleCombobox().click();
         });
 
         it('then it does not emit the event from expander-expand', () => {
@@ -185,16 +185,16 @@ describe('given the readonly combobox with 3 items that is disabled', () => {
         });
 
         it('then it has not expanded the combobox', () => {
-            expect(getVisibleCombobox(component)).has.attr('aria-expanded', 'false');
+            expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
         });
     });
 });
 
-function getVisibleCombobox(component) {
+function getVisibleCombobox() {
     return find(component.getAllByRole('combobox'), isVisible);
 }
 
-function getVisibleOptions(component) {
+function getVisibleOptions() {
     return component.getAllByRole('option').filter(isVisible);
 }
 

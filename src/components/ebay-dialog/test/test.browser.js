@@ -67,13 +67,13 @@ describe('given a closed dialog', () => {
                     expect(document.activeElement).has.class(component.getByLabelText(input.a11yCloseText).className);
                 });
             });
-    
+
             it('then it emits the show event', async() => {
                 await wait(() => expect(component.emitted('dialog-show')).has.length(1));
             });
 
             describe('when it is rerendered with the same input', () => {
-                beforeEach(async () => await component.rerender());
+                beforeEach(async() => await component.rerender());
                 thenItIsOpen();
             });
         }
@@ -136,17 +136,17 @@ describe('given an open dialog', () => {
         it('then it is hidden in the DOM', () => {
             expect(component.getByRole('dialog')).has.attr('hidden');
         });
-    
+
         it('then <body> is scrollable', async() => {
             await wait(() => {
                 expect(document.body).does.not.have.attr('style');
             });
         });
-    
+
         it('then it\'s siblings are visible', () => {
             expect(sibling).does.not.have.attr('aria-hidden');
         });
-    
+
         it('then it does not trap focus', () => {
             expect(component.getByRole('document')).does.not.have.class('keyboard-trap--active');
         });
@@ -157,7 +157,7 @@ describe('given an open dialog', () => {
             });
 
             describe('when it is rerendered with the same input', () => {
-                beforeEach(async () => await component.rerender(input));
+                beforeEach(async() => await component.rerender(input));
                 thenItIsOpen();
             });
         }

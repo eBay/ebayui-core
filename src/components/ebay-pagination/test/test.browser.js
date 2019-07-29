@@ -51,12 +51,11 @@ describe('given the pagination is rendered', () => {
                 thenItEmittedThePaginationPreviousEvent();
             });
 
-    
             function thenItEmittedThePaginationPreviousEvent() {
                 it('then it emits the pagination-previous event', () => {
                     const previousEvents = component.emitted('pagination-previous');
                     expect(previousEvents).has.length(1);
-    
+
                     const [[eventArg]] = previousEvents;
                     expect(eventArg).has.property('originalEvent').instanceOf(Event);
                     expect(eventArg).has.property('el').instanceOf(HTMLElement);
@@ -84,12 +83,11 @@ describe('given the pagination is rendered', () => {
                 thenItEmittedThePaginationNextEvent();
             });
 
-    
             function thenItEmittedThePaginationNextEvent() {
                 it('then it emits the pagination-next event', () => {
                     const nextEvents = component.emitted('pagination-next');
                     expect(nextEvents).has.length(1);
-    
+
                     const [[eventArg]] = nextEvents;
                     expect(eventArg).has.property('originalEvent').instanceOf(Event);
                     expect(eventArg).has.property('el').instanceOf(HTMLElement);
@@ -117,12 +115,11 @@ describe('given the pagination is rendered', () => {
                 thenItEmittedThePaginationSelectEvent();
             });
 
-    
             function thenItEmittedThePaginationSelectEvent() {
                 it('then it emits the pagination-select event', () => {
                     const selectEvents = component.emitted('pagination-select');
                     expect(selectEvents).has.length(1);
-    
+
                     const [[eventArg]] = selectEvents;
                     expect(eventArg).has.property('originalEvent').instanceOf(Event);
                     expect(eventArg).has.property('el').instanceOf(HTMLElement);
@@ -160,14 +157,12 @@ describe('given the pagination is rendered with disabled controls', () => {
             thenItDidNotEmitThePaginationPreviousEvent();
         });
 
-
         function thenItDidNotEmitThePaginationPreviousEvent() {
             it('then it does not emit the pagination-previous event', () => {
                 expect(component.emitted('pagination-previous')).has.length(0);
             });
         }
     });
-
 
     describe('when the next button is activated', () => {
         describe('via click', () => {
@@ -188,7 +183,6 @@ describe('given the pagination is rendered with disabled controls', () => {
 
             thenItDidNotEmitThePaginationNextEvent();
         });
-
 
         function thenItDidNotEmitThePaginationNextEvent() {
             it('then it does not emit the pagination-next event', () => {
@@ -251,7 +245,7 @@ describe('given the pagination is rendered at various sizes', () => {
 
             cases.forEach(({ width, expect: [from, to] }) => {
                 describe(`when it is ${width} wide`, () => {
-                    beforeEach(async () => {
+                    beforeEach(async() => {
                         component.container.style.width = `${width}px`;
                         fireEvent(window, new Event('resize'));
                         await Promise.race([
@@ -260,11 +254,14 @@ describe('given the pagination is rendered at various sizes', () => {
                         ]);
                     });
 
-                    it(`then it shows items ${from} through ${to}`, ()=> {
+                    it(`then it shows items ${from} through ${to}`, () => {
                         input.items.slice(1, -1).forEach((itemData, i) => {
                             const itemEl = component.getByText(itemData.renderBody.text);
                             const isHidden = Boolean(itemEl.closest('[hidden]'));
-                            expect(isHidden).to.equal(i < from || i >= to, `item ${i} should be ${isHidden ? 'visible' : 'hidden'}`);
+                            expect(isHidden).to.equal(
+                                i < from || i >= to,
+                                `item ${i} should be ${isHidden ? 'visible' : 'hidden'}`
+                            );
                         });
                     });
                 });

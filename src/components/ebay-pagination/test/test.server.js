@@ -64,7 +64,7 @@ describe('pagination', () => {
             expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
     });
-    
+
     describe('with buttons', () => {
         it('renders button version', async() => {
             const input = mock.Buttons_0Selected;

@@ -41,7 +41,7 @@ describe('given the default infotip', () => {
                 beforeEach(() => {
                     component.getByLabelText(input.ariaLabel).click();
                 });
-    
+
                 it('then it emits the tooltip-collapse event', () => {
                     expect(component.emitted('tooltip-collapse')).has.length(1);
                 });

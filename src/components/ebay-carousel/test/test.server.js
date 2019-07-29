@@ -15,30 +15,30 @@ describe('carousel', () => {
             const firstDotLabel = input.a11yCurrentText.replace('{currentSlide}', 1);
             const secondDotLabel = input.a11yOtherText.replace('{slide}', 2);
             const statusEl = getByText(/\d+ of \d+/).parentElement;
-    
+
             expect(statusEl).has.property('tagName', input.a11yStatusTag.toUpperCase());
             expect(statusEl).has.text('1 of 3');
             expect(statusEl).has.attr('aria-live', 'polite');
-    
+
             expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-describedby', statusEl.id);
             expect(getByLabelText(input.a11yNextText)).has.attr('aria-describedby', statusEl.id);
-    
+
             expect(getByLabelText(firstDotLabel)).has.attr('aria-describedby', statusEl.id);
             expect(getByLabelText(firstDotLabel)).has.attr('aria-disabled', 'true');
-    
+
             expect(getByLabelText(secondDotLabel)).has.attr('aria-describedby', statusEl.id);
             expect(getByLabelText(secondDotLabel)).not.has.attr('aria-disabled');
-    
-            input.items.forEach(item => expect(getByText(item.renderBody.text)).does.exist);
+
+            input.items.forEach(item => expect(() => getByText(item.renderBody.text)).not.to.throw());
             expect(getAllByLabelText(/go to slide/)).has.length(2);
         });
 
         it('renders no-dots enabled', async() => {
             const input = assign({ noDots: true }, mock.Discrete_1PerSlide_3Items);
             const { getByLabelText } = await render(template, input);
-    
-            expect(getByLabelText(input.a11yPreviousText)).to.exist;
-            expect(getByLabelText(input.a11yNextText)).to.exist;
+
+            expect(() => getByLabelText(input.a11yPreviousText)).not.to.throw();
+            expect(() => getByLabelText(input.a11yNextText)).not.to.throw();
             expect(() => getByLabelText(/go to slide/)).to.throw(/Unable to find a label/);
         });
 
@@ -55,15 +55,15 @@ describe('carousel', () => {
             it('renders base version', async() => {
                 const input = mock.Discrete_1PerSlide_3Items_AutoPlay;
                 const { getByLabelText } = await render(template, input);
-        
-                expect(getByLabelText(input.a11yPauseText)).to.exist;
+
+                expect(() => getByLabelText(input.a11yPauseText)).not.to.throw();
             });
 
             it('renders paused version', async() => {
                 const input = assign({ paused: true }, mock.Discrete_1PerSlide_3Items_AutoPlay);
                 const { getByLabelText } = await render(template, input);
-    
-                expect(getByLabelText(input.a11yPlayText)).to.exist;
+
+                expect(() => getByLabelText(input.a11yPlayText)).not.to.throw();
             });
         });
     });
@@ -83,7 +83,7 @@ describe('carousel', () => {
             expect(getByLabelText(input.a11yPreviousText)).not.has.attr('aria-describedby');
             expect(getByLabelText(input.a11yNextText)).not.has.attr('aria-describedby');
 
-            input.items.forEach(item => expect(getByText(item.renderBody.text)).does.exist);
+            input.items.forEach(item => expect(() => getByText(item.renderBody.text)).not.to.throw());
         });
 
         it('renders without any provided items', async() => {
