@@ -1,6 +1,7 @@
 const sinon = require('sinon');
+const { expect } = require('chai');
 const { fireEvent } = require('@marko/testing-library');
-const { expect, waitFrames } = require('../../test-utils/browser');
+const { waitFrames } = require('../../test-utils/browser');
 const eventUtils = require('../');
 
 const resizeUtil = eventUtils.resizeUtil;
@@ -100,7 +101,7 @@ describe('resizeEventUtil', () => {
         const mockCallback = sinon.spy();
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
-        fireEvent.resize(window);
+        fireEvent(window, new Event('resize'));
         waitFrames(2, () => {
             expect(mockCallback.callCount).to.equal(1);
             done();
@@ -112,7 +113,7 @@ describe('resizeEventUtil', () => {
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         resizeUtil.removeEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
-        fireEvent.resize(window);
+        fireEvent(window, new Event('resize'));
         waitFrames(2, () => {
             expect(mockCallback.callCount).to.equal(0);
             done();
