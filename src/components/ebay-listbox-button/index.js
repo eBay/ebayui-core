@@ -39,7 +39,7 @@ module.exports = require('marko-widgets').defineComponent({
         this.expander = new Expander(this.el, {
             autoCollapse: true,
             expandOnClick: !this.state.disabled,
-            contentSelector: `#${optionsContainer.id}`,
+            contentSelector: `.listbox__options`,
             hostSelector: '.listbox__control',
             expandedClass: 'listbox--expanded',
             focusManagement: 'content',
