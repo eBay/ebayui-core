@@ -201,7 +201,7 @@ describe('transformer', () => {
         const tagString = '<ebay-menu-button icon="settings"/>';
         const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
-        expect(iconEl.tagName).to.equal('ebay-menu:icon');
+        expect(iconEl.tagName).to.equal('ebay-menu-button:icon');
     });
 
     test('does not transform when icon attribute is missing', () => {
