@@ -41,11 +41,13 @@ describe('listbox', () => {
         expect($('.listbox-button__option[role=option][aria-selected="true"]:nth-child(2)').length).to.equal(1);
     });
 
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.listbox-button'));
+    test('handles pass-through html attributes',
+        context => testUtils.testHtmlAttributes(context, 'span.listbox-button'));
     test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.listbox-button'));
 });
 
 describe('select-option', () => {
-    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.listbox-button__option', 'options'));
+    test('handles pass-through html attributes',
+        c => testUtils.testHtmlAttributes(c, '.listbox-button__option', 'options'));
     test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.listbox-button__option', 'options'));
 });
