@@ -106,22 +106,22 @@ function getTemplateData(state) {
     const itemsClass = [contentClass];
 
     if (state.isFake) {
-        menuClass.push('fake-menu');
-        itemsClass.push('fake-menu__items');
+        menuClass.push('fake-menu-button');
+        itemsClass.push('fake-menu-button__menu');
         if (state.reverse) {
-            itemsClass.push('fake-menu__items--reverse');
+            itemsClass.push('fake-menu-button__menu--reverse');
         }
         if (state.fixWidth) {
-            itemsClass.push('fake-menu__items--fix-width');
+            itemsClass.push('fake-menu-button__menu--fix-width');
         }
     } else {
-        menuClass.push('menu');
-        itemsClass.push('menu__items');
+        menuClass.push('menu-button');
+        itemsClass.push('menu-button__menu');
         if (state.reverse) {
-            itemsClass.push('menu__items--reverse');
+            itemsClass.push('menu-button__menu--reverse');
         }
         if (state.fixWidth) {
-            itemsClass.push('menu__items--fix-width');
+            itemsClass.push('menu-button__menu--fix-width');
         }
     }
 
@@ -154,7 +154,7 @@ function getTemplateData(state) {
 function onRender(event) {
     this.buttonEl = this.el.querySelector(buttonSelector);
     this.contentEl = this.el.querySelector(contentSelector);
-    this.itemEls = this.el.querySelectorAll('.menu__item, .fake-menu__item');
+    this.itemEls = this.el.querySelectorAll('.menu-button__item, .fake-menu-button__item');
 
     if (event.firstRender) {
         if (this.state.isCheckbox) {
