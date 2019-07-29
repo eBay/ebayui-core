@@ -1,51 +1,65 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
-const options = [{
-    value: 1,
-    text: 'option 1'
-}, {
-    value: 2,
-    text: 'option 2'
-}];
-const emptyOptions = [];
+const find = require('core-js-pure/features/array/find');
+const findIndex = require('core-js-pure/features/array/find-index');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const mock = require('./mock');
+const template = require('..');
+
+use(require('chai-dom'));
 
 describe('listbox', () => {
-    test('renders basic version', context => {
-        const input = { options, name: 'listbox-name' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.listbox').length).to.equal(1);
-        expect($('.listbox__control').length).to.equal(1);
-        expect($('.listbox__options[role=listbox]').length).to.equal(1);
-        expect($('.listbox__option[role=option]').length).to.equal(2);
-        expect($('.listbox__option[role=option][aria-selected="true"]').length).to.equal(1);
+    it('renders basic version', async() => {
+        const input = mock.Basic_3Options;
+        const { getByRole, getAllByRole } = await render(template, input);
+
+        const btnEl = getByRole('button');
+        const listboxEl = find(getAllByRole('listbox'), isVisible);
+        const visibleOptionEls = getAllByRole('option').filter(isVisible);
+
+        expect(btnEl).has.attr('aria-haspopup', 'listbox');
+        expect(btnEl).has.text(input.options[0].text);
+        expect(btnEl).has.class('listbox__control');
+
+        expect(listboxEl).has.class('listbox__options');
+
+        expect(visibleOptionEls).has.length(3);
+        visibleOptionEls.forEach((optionEl, i) => {
+            if (i === 0) {
+                expect(optionEl).has.attr('aria-selected', 'true');
+            } else {
+                expect(optionEl).does.not.have.attr('aria-selected');
+            }
+        });
     });
 
-    test('renders empty', context => {
-        const input = { emptyOptions, name: 'listbox-name' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.listbox').length).to.equal(1);
-        expect($('.listbox__control').length).to.equal(1);
-        expect($('.listbox__options[role=listbox]').length).to.equal(0);
-        expect($('.listbox__option[role=option]').length).to.equal(0);
+    it('renders empty', async() => {
+        const input = mock.Basic_0Options;
+        const { getAllByRole } = await render(template, input);
+        expect(getAllByRole('button')).has.length(1);
+        expect(getAllByRole('listbox').filter(isVisible)).has.length(0);
     });
 
-    test('renders with second item selected', context => {
-        const input = { options, name: 'listbox-name' };
-        input.options[0].selected = false;
-        input.options[1].selected = true;
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.listbox').length).to.equal(1);
-        expect($('.listbox__control').length).to.equal(1);
-        expect($('.listbox__options[role=listbox]').length).to.equal(1);
-        expect($('.listbox__option[role=option]').length).to.equal(2);
-        expect($('.listbox__option[role=option][aria-selected="true"]:nth-child(2)').length).to.equal(1);
+    it('renders with second item selected', async() => {
+        const input = mock.Basic_3Options_1Selected;
+        const { getAllByRole } = await render(template, input);
+        expect(findIndex(getAllByRole('option').filter(isVisible), isAriaSelected)).is.equal(1);
     });
 
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.listbox'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.listbox'));
+    testPassThroughAttributes(template);
+    testPassThroughAttributes(template, {
+        child: {
+            name: 'options',
+            multiple: true
+        }
+    });
 });
 
-describe('select-option', () => {
-    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.listbox__option', 'options'));
-    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.listbox__option', 'options'));
-});
+function isAriaSelected(el) {
+    return el.getAttribute('aria-selected') === 'true';
+}
+
+
+function isVisible(el) {
+    return !el.hasAttribute('hidden') && !el.closest('[hidden]');
+}

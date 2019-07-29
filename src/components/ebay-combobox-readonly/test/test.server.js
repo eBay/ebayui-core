@@ -11,7 +11,7 @@ use(require('chai-dom'));
 describe('combobox-readonly', () => {
     it('renders basic version', async() => {
         const input = mock.Combobox_3Options;
-        const { getByRole, getAllByRole } = await render(template, input);
+        const { getAllByRole } = await render(template, input);
         const combobox = find(getAllByRole('combobox'), isVisible);
         const listbox = find(getAllByRole('listbox'), isVisible);
         const visibleOptions = getAllByRole('option').filter(isVisible);

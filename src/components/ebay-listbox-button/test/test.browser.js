@@ -1,199 +1,171 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const mock = require('../mock');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
 
-describe('given the listbox is in the default state', () => {
-    let widget;
-    let root;
-    let ariaControl;
-    let nativeSelect;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-    beforeEach(() => {
-        const renderedWidget = renderer.renderSync({ options: mock.options });
-        widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.listbox');
-        ariaControl = root.querySelector('.listbox__control');
-        nativeSelect = root.querySelector('.listbox__native');
+/** @type import("@marko/testing-library").RenderResult */
+let component;
+
+// Tests are rendered in a form so that we can check the form data value.
+const form = document.createElement("form");
+before(() => document.body.appendChild(form));
+after(() => document.body.removeChild(form));
+
+describe('given the listbox with 3 items', () => {
+    const input = mock.Basic_3Options;
+
+    beforeEach(async() => {
+        component = await render(template, input, { container: form });
     });
 
-    afterEach(() => widget.destroy());
+    it('then it should not be expanded', () => {
+        expect(component.getByRole('button')).has.attr('aria-expanded', 'false');
+    });
 
-    describe('when the select has been initialized', () => {
-        test('then the select options should have a selected state set', () => {
-            expect(nativeSelect['0'].selected).to.equal(true);
-            expect(nativeSelect['1'].selected).to.equal(false);
-            expect(nativeSelect['2'].selected).to.equal(false);
-        });
+    it('then the native select should be initialized to the first option value', () => {
+        expect(new FormData(form).get(input.name)).to.equal(input.options[0].value);
     });
 
     describe('when the down arrow key is pressed', () => {
-        let spy;
-
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            ariaControl.focus();
-            testUtils.triggerEvent(ariaControl, 'keydown', 40);
-            widget.once('update', done);
+        beforeEach(() => {
+            pressKey(component.getByRole('button'), {
+                key: 'ArrowDown',
+                keyCode: 40
+            });
         });
 
-        test('then it should not expand the listbox', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
+        it('then it should not expand the listbox', () => {
+            expect(component.getByRole('button')).has.attr('aria-expanded', 'false');
         });
 
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            const nativeOption = nativeSelect.options[eventData.index].value;
-            expect(nativeOption).to.equal('2');
+        it('then it emits the listbox-change event with the correct data', () => {
+            const changeEvents = component.emitted('listbox-change');
+            expect(changeEvents).has.length(1);
+
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property('index', 1);
+            expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
+        });
+
+        describe('when the up arrow key is pressed', () => {
+            beforeEach(() => {
+                component.emitted('listbox-change');
+                pressKey(component.getByRole('button'), {
+                    key: 'ArrowUp',
+                    keyCode: 38
+                });
+            });
+    
+            it('then it should not expand the listbox', () => {
+                expect(component.getByRole('button')).has.attr('aria-expanded', 'false');
+            });
+    
+            it('then it emits the listbox-change event with the correct data', () => {
+                const changeEvents = component.emitted('listbox-change');
+                expect(changeEvents).has.length(1);
+    
+                const [[changeEvent]] = changeEvents;
+                expect(changeEvent).has.property('index', 0);
+                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);
+            });
         });
     });
 
-    describe('when the up arrow key is pressed', () => {
-        let spy;
-
+    describe('when the button is clicked', () => {
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 40);
-            testUtils.triggerEvent(ariaControl, 'keydown', 38);
+            component.getByRole('button').click();
         });
 
-        test('then it should not expand the listbox', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
+        it('then it emits the event from expander-expand', () => {
+            expect(component.emitted('listbox-expand')).has.length(1);
         });
 
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledTwice).to.equal(true);
-            const eventData = spy.getCall(1).args[0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.selected).to.deep.equal(['1']);
-            const nativeOption = nativeSelect.options[eventData.index].value;
-            expect(nativeOption).to.equal('1');
-        });
-    });
-
-    describe('when the button is clicked once', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-expand', spy);
-            testUtils.triggerEvent(ariaControl, 'expander-expand');
+        it('then it has expanded the listbox', () => {
+            expect(component.getByRole('button')).has.attr('aria-expanded', 'true');
         });
 
-        test('then it emits the event from expander-expand', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
+        describe('when the button is clicked again', () => {
+            beforeEach(() => {
+                component.getByRole('button').click();
+            });
 
-    describe('when the button is clicked twice', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-collapse', spy);
-            testUtils.triggerEvent(ariaControl, 'expander-expand');
-            testUtils.triggerEvent(ariaControl, 'expander-collapse');
-        });
-
-        test('then it emits the event from expander-collapse', () => {
-            expect(spy.calledOnce).to.equal(true);
+            it('then it emits the event from expander-collapse', () => {
+                expect(component.emitted('listbox-collapse')).has.length(1);
+            });
+    
+            it('then it has collapsed the listbox', () => {
+                expect(component.getByRole('button')).has.attr('aria-expanded', 'false');
+            });
         });
     });
 });
 
 describe('given the listbox is in an expanded state', () => {
-    let widget;
-    let root;
-    let ariaControl;
-    let secondOption;
-    let secondOptionText;
+    const input = mock.Basic_3Options;
 
-    beforeEach(() => {
-        const renderedWidget = renderer.renderSync({ options: mock.options });
-        widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.listbox');
-        ariaControl = root.querySelector('.listbox__control');
-        secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
-        secondOptionText = secondOption.querySelector('span:not(.listbox__status)');
-        testUtils.triggerEvent(ariaControl, 'expander-expand');
+    beforeEach(async() => {
+        component = await render(template, input, { container: form });
+        component.getByRole('button').click();
     });
-
-    afterEach(() => widget.destroy());
 
     describe('when an option is clicked', () => {
-        let selectSpy;
-
         beforeEach(() => {
-            selectSpy = sinon.spy();
-            widget.on('listbox-change', selectSpy);
-            testUtils.triggerEvent(secondOption, 'click');
+            component.getByText(input.options[1].text).click();
         });
 
-        test('then it emits the listbox-select event with correct data', () => {
-            expect(selectSpy.calledOnce).to.equal(true);
-            const eventData = selectSpy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            expect(eventData.el).to.deep.equal(secondOption);
-        });
-    });
+        it('then it emits the listbox-change event with correct data', () => {
+            const changeEvents = component.emitted('listbox-change');
+            expect(changeEvents).has.length(1);
 
-    describe('when an option is clicked on the text', () => {
-        let selectSpy;
-
-        beforeEach(() => {
-            selectSpy = sinon.spy();
-            widget.on('listbox-change', selectSpy);
-            testUtils.triggerEvent(secondOptionText, 'click');
-        });
-
-        test('then it emits the listbox-select event with correct data', () => {
-            expect(selectSpy.calledOnce).to.equal(true);
-            const eventData = selectSpy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            expect(eventData.el).to.deep.equal(secondOption);
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property('index', 1);
+            expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
         });
     });
 
     describe('when the down arrow key is pressed', () => {
-        let spy;
-
         beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 40);
+            pressKey(component.getByRole('button'), {
+                key: 'ArrowDown',
+                keyCode: 40
+            });
         });
 
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-        });
-    });
+        it('then it emits the listbox-change event with the correct data', () => {
+            const changeEvents = component.emitted('listbox-change');
+            expect(changeEvents).has.length(1);
 
-    describe('when the up arrow key is pressed', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 40);
-            testUtils.triggerEvent(ariaControl, 'keydown', 38);
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property('index', 1);
+            expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
         });
 
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledTwice).to.equal(true);
-            const eventData = spy.getCall(1).args[0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.selected).to.deep.equal(['1']);
+        describe('when the up arrow key is pressed', () => {
+            beforeEach(() => {
+                component.emitted('listbox-change');
+                pressKey(component.getByRole('button'), {
+                    key: 'ArrowUp',
+                    keyCode: 38
+                });
+            });
+    
+            it('then it emits the listbox-change event with the correct data', () => {
+                const changeEvents = component.emitted('listbox-change');
+                expect(changeEvents).has.length(1);
+    
+                const [[changeEvent]] = changeEvents;
+                expect(changeEvent).has.property('index', 0);
+                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);
+            });
         });
     });
 });
+
+function pressKey(el, info) {
+    fireEvent.keyDown(el, info);
+    fireEvent.keyPress(el, info);
+    fireEvent.keyUp(el, info);
+}
