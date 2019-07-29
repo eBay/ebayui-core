@@ -1,4 +1,10 @@
 {
-    "presets": ["env"],
-    "retainLines": true
+    "presets": ["@babel/preset-env"],
+    "retainLines": true,
+    "overrides": [{
+        "test": "./src/**/test/*",
+        "plugins": [
+            ["@babel/plugin-transform-runtime", { "corejs": 3 }]
+        ]
+    }]
 }
