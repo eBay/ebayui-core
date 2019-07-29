@@ -15,7 +15,7 @@ const mainButtonClass = 'expand-btn';
 const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
 const contentSelector = `.${contentClass}`;
-const checkedItemSelector = '.menu__item[role^=menuitem][aria-checked=true]';
+const checkedItemSelector = '.menu-button__item[role^=menuitem][aria-checked=true]';
 
 function getInitialState(input) {
     const type = input.type;
@@ -34,7 +34,7 @@ function getInitialState(input) {
         let tag;
 
         if (isFake) {
-            classes.push('fake-menu__item');
+            classes.push('fake-menu-button__item');
             if (itemType === 'button') {
                 tag = 'button';
             } else {
@@ -42,7 +42,7 @@ function getInitialState(input) {
             }
         } else {
             tag = 'div';
-            classes.push('menu__item');
+            classes.push('menu-button__item');
         }
 
         if (isRadio) {

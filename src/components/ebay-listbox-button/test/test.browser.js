@@ -14,10 +14,10 @@ describe('given the listbox is in the default state', () => {
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.listbox');
-        ariaControl = root.querySelector('.listbox__control');
-        secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
-        nativeSelect = root.querySelector('.listbox__native');
+        root = document.querySelector('.listbox-button');
+        ariaControl = root.querySelector('.listbox-button__control');
+        secondOption = root.querySelector('.listbox-button__listbox .listbox-button__option:nth-child(2)');
+        nativeSelect = root.querySelector('.listbox-button__native');
     });
 
     afterEach(() => widget.destroy());
@@ -139,10 +139,10 @@ describe('given the listbox is in an expanded state', () => {
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.listbox');
-        ariaControl = root.querySelector('.listbox__control');
-        secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
-        secondOptionText = secondOption.querySelector('span:not(.listbox__status)');
+        root = document.querySelector('.listbox-button');
+        ariaControl = root.querySelector('.listbox-button__control');
+        secondOption = root.querySelector('.listbox-button__listbox .listbox-button__option:nth-child(2)');
+        secondOptionText = secondOption.querySelector('span:not(.listbox-button__status)');
         testUtils.triggerEvent(ariaControl, 'expander-expand');
     });
 

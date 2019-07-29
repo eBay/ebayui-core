@@ -10,9 +10,9 @@ describe('menu', () => {
         const text = 'text';
         const input = { text };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu').length).to.equal(1);
+        expect($('.menu-button').length).to.equal(1);
         expect($('.expand-btn').length).to.equal(1);
-        expect($('.menu__items[role=menu]').length).to.equal(1);
+        expect($('.menu-button__menu').length).to.equal(1);
         const $text = $(textSelector);
         expect($text.length).to.equal(1);
         expect($text.html()).to.equal(text);
@@ -21,62 +21,62 @@ describe('menu', () => {
     test('renders fake version', context => {
         const input = { type: 'fake' };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu').length).to.equal(1);
+        expect($('.fake-menu-button').length).to.equal(1);
         expect($('.expand-btn').length).to.equal(1);
-        expect($('.fake-menu__items').length).to.equal(1);
-        expect($('.fake-menu__items[role=menu]').length).to.equal(0);
+        expect($('.fake-menu-button__menu').length).to.equal(1);
+        expect($('.fake-menu-button__menu[role=menu]').length).to.equal(0);
     });
 
     test('renders with reverse=true', context => {
         const input = { reverse: true };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu__items--reverse').length).to.equal(1);
+        expect($('.menu-button__menu--reverse').length).to.equal(1);
     });
 
     test('renders with reverse=false', context => {
         const input = { reverse: false };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu__items').length).to.equal(1);
-        expect($('.menu__items.menu__items--reverse').length).to.equal(0);
+        expect($('.menu-button__menu').length).to.equal(1);
+        expect($('.menu-button__menu.menu-button__menu--reverse').length).to.equal(0);
     });
 
     test('renders with type=fake, reverse=true', context => {
         const input = { type: 'fake', reverse: true };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu__items--reverse').length).to.equal(1);
+        expect($('.fake-menu-button__menu--reverse').length).to.equal(1);
     });
 
     test('renders with type=fake, reverse=false', context => {
         const input = { type: 'fake', reverse: false };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu__items').length).to.equal(1);
-        expect($('.fake-menu__items.fake-menu__items--reverse').length).to.equal(0);
+        expect($('.fake-menu-button__menu').length).to.equal(1);
+        expect($('.fake-menu-button__menu.fake-menu-button__menu--reverse').length).to.equal(0);
     });
 
     test('renders with fix-width=true', context => {
         const input = { fixWidth: true };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu__items--fix-width').length).to.equal(1);
+        expect($('.menu-button__menu--fix-width').length).to.equal(1);
     });
 
     test('renders with fix-width=false', context => {
         const input = { fixWidth: false };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu__items').length).to.equal(1);
-        expect($('.menu__items.menu__items--fix-width').length).to.equal(0);
+        expect($('.menu-button__menu').length).to.equal(1);
+        expect($('.menu-button__menu.menu-button__menu--fix-width').length).to.equal(0);
     });
 
     test('renders with type=fake, fix-width=true', context => {
         const input = { type: 'fake', fixWidth: true };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu__items--fix-width').length).to.equal(1);
+        expect($('.fake-menu-button__menu--fix-width').length).to.equal(1);
     });
 
     test('renders with type=fake, fix-width=false', context => {
         const input = { type: 'fake', fixWidth: false };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu__items').length).to.equal(1);
-        expect($('.fake-menu__items.fake-menu__items--fix-width').length).to.equal(0);
+        expect($('.fake-menu-button__menu').length).to.equal(1);
+        expect($('.fake-menu-button__menu.fake-menu-button__menu--fix-width').length).to.equal(0);
     });
 
     test('renders with borderless=true', context => {
@@ -137,8 +137,8 @@ describe('menu', () => {
         expect($('.expand-btn[disabled]').length).to.equal(0);
     });
 
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.menu'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.menu'));
+    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.menu-button'));
+    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.menu-button'));
 });
 
 describe('menu-label', () => {
@@ -159,7 +159,7 @@ describe('menu-item', () => {
     test('renders basic version', context => {
         const input = { items: mock.twoItems };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('div.menu__item').length).to.equal(2);
+        expect($('div.menu-button__item').length).to.equal(2);
     });
 
     test('renders fake version', context => {
@@ -167,15 +167,15 @@ describe('menu-item', () => {
         const buttonItem = { renderBody: mock.renderBody, type: 'button' };
         const input = { type: 'fake', items: [linkItem, buttonItem] };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('a.fake-menu__item[href=#]').length).to.equal(1);
-        expect($('button.fake-menu__item').length).to.equal(1);
+        expect($('a.fake-menu-button__item[href=#]').length).to.equal(1);
+        expect($('button.fake-menu-button__item').length).to.equal(1);
     });
 
     test('renders fake version without href', context => {
         const linkItem = { renderBody: mock.renderBody, href: '' };
         const input = { type: 'fake', items: [linkItem] };
         const $ = testUtils.getCheerio(context.render(input));
-        expect($('a.fake-menu__item[href]').length).to.equal(1);
+        expect($('a.fake-menu-button__item[href]').length).to.equal(1);
     });
 
     ['radio', 'checkbox'].forEach(type => {
@@ -183,15 +183,15 @@ describe('menu-item', () => {
             test(`renders with type=${type} and checked=${checked}`, context => {
                 const input = { type, items: [{ renderBody: mock.renderBody, checked }] };
                 const $ = testUtils.getCheerio(context.render(input));
-                const $root = $(`.menu__item[role=menuitem${type}][aria-checked=${checked}]`);
+                const $root = $(`.menu-button__item[role=menuitem${type}][aria-checked=${checked}]`);
                 expect($root.length).to.equal(1);
-                expect($('.menu__status', $root).length).to.equal(1);
+                expect($('.menu-button__status', $root).length).to.equal(1);
             });
         });
     });
 
-    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.menu__item', 'items'));
-    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.menu__item', 'items'));
+    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.menu-button__item', 'items'));
+    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.menu-button__item', 'items'));
 });
 
 describe('transformer', () => {

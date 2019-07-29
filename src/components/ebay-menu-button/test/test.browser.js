@@ -12,7 +12,7 @@ describe('given the menu is in the default state', () => {
 
     beforeEach(() => {
         widget = renderer.renderSync({ text: 'text', items: mock.twoItems }).appendTo(document.body).getWidget();
-        root = document.querySelector('span.menu');
+        root = document.querySelector('span.menu-button');
         button = document.querySelector('.expand-btn');
         buttonText = root.querySelector('.expand-btn > span');
     });
@@ -67,7 +67,7 @@ describe('given the menu is in the default state', () => {
             widget.on('menu-select', spy);
             widget.setProps({ items: mock.threeItems });
             setTimeout(() => {
-                thirdItem = document.querySelectorAll('.menu__item')[2];
+                thirdItem = document.querySelectorAll('.menu-button__item')[2];
                 testUtils.triggerEvent(thirdItem, 'click');
                 done();
             }, 10);
@@ -129,10 +129,10 @@ describe('given the menu is in the expanded state', () => {
 
     beforeEach((done) => {
         widget = renderer.renderSync({ items: mock.twoItems }).appendTo(document.body).getWidget();
-        root = document.querySelector('span.menu');
+        root = document.querySelector('span.menu-button');
         button = document.querySelector('.expand-btn');
-        firstItem = document.querySelector('.menu__item');
-        // secondItem = document.querySelectorAll('.menu__item')[1];
+        firstItem = document.querySelector('.menu-button__item');
+        // secondItem = document.querySelectorAll('.menu-button__item')[1];
         root.expanded = true;
         setTimeout(done);
     });
@@ -237,9 +237,9 @@ describe('given the menu is in the expanded state with radio items', () => {
             expanded: true,
             type: 'radio',
             items: mock.twoItems }).appendTo(document.body).getWidget();
-        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu__item'));
+        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu-button__item'));
         firstItemInner = firstItem.querySelector('span');
-        root = document.querySelector('span.menu');
+        root = document.querySelector('span.menu-button');
         root.expanded = true;
         setTimeout(done);
     });
@@ -436,8 +436,8 @@ describe('given the menu is in the expanded state with checkbox items', () => {
             expanded: true,
             type: 'checkbox',
             items: mock.twoItems }).appendTo(document.body).getWidget();
-        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu__item'));
-        root = document.querySelector('span.menu');
+        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu-button__item'));
+        root = document.querySelector('span.menu-button');
         root.expanded = true;
         setTimeout(done);
     });
