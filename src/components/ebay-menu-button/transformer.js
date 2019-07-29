@@ -18,7 +18,7 @@ function transform(el, context) {
                 value: builder.literal('inline')
             }
         ]);
-        const menuIconTag = context.createNodeForEl('ebay-menu:icon');
+        const menuIconTag = context.createNodeForEl('ebay-menu-button:icon');
         menuIconTag.appendChild(iconTag);
         el.prependChild(menuIconTag);
     }
