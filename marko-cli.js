@@ -15,6 +15,12 @@ module.exports = ({ config }) => {
         }
     };
 
+    if (isTravis) {
+        config.browserTestDependencies = [
+            'require-run: babel-polyfill'
+        ];
+    }
+
     config.wdioOptions = {
         browserstackOpts: {
             force: true,

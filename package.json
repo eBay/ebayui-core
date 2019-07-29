@@ -64,6 +64,7 @@
     "@marko/testing-library": "^1.1.2",
     "async": "^3.0.1",
     "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "browser-refresh": "^1.7.2",
     "chai": "^4.2.0",
