@@ -8,7 +8,6 @@ describe('given the listbox is in the default state', () => {
     let widget;
     let root;
     let ariaControl;
-    let secondOption;
     let nativeSelect;
 
     beforeEach(() => {
@@ -16,7 +15,6 @@ describe('given the listbox is in the default state', () => {
         widget = renderedWidget.appendTo(document.body).getWidget();
         root = document.querySelector('.listbox-button');
         ariaControl = root.querySelector('.listbox-button__control');
-        secondOption = root.querySelector('.listbox-button__listbox .listbox-button__option:nth-child(2)');
         nativeSelect = root.querySelector('.listbox-button__native');
     });
 
@@ -76,26 +74,6 @@ describe('given the listbox is in the default state', () => {
             expect(eventData.selected).to.deep.equal(['1']);
             const nativeOption = nativeSelect.options[eventData.index].value;
             expect(nativeOption).to.equal('1');
-        });
-    });
-
-    describe('when the option is set programmatically', () => {
-        let spy;
-
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            secondOption.selected = true;
-            widget.once('update', done);
-        });
-
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            const nativeOption = nativeSelect.options[eventData.index].value;
-            expect(nativeOption).to.equal('2');
         });
     });
 

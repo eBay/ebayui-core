@@ -1,6 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
 const FloatingLabel = require('makeup-floating-label');
-const emitAndFire = require('../../common/emit-and-fire');
 
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
@@ -44,7 +43,7 @@ module.exports = require('marko-widgets').defineComponent({
 
 function forwardEvent(eventName) {
     return function(originalEvent, el) {
-        emitAndFire(this, `textbox-${eventName}`, {
+        this.emit(`textbox-${eventName}`, {
             originalEvent,
             value: (el || this.el.querySelector('input, textarea')).value
         });

@@ -1,4 +1,3 @@
-const emitAndFire = require('../../common/emit-and-fire');
 
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
@@ -6,7 +5,7 @@ module.exports = require('marko-widgets').defineComponent({
         const target = originalEvent.target;
 
         if (!target.disabled) {
-            emitAndFire(this, 'radio-change', {
+            this.emit('radio-change', {
                 originalEvent,
                 value: target.value
             });

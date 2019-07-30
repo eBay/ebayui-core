@@ -20,16 +20,6 @@
 Marko v3 requires [Marko Widgets v6](https://github.com/marko-js/marko-widgets)\
 Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/tree/v7)*
 
-## Principles
-
-The eBayUI components are <a href="https://markojs.com">Marko</a> custom tags that follow the core principles of HTML. For example:
-
-- Input attributes can only be of type String or Boolean
-- State can be manipulated directly from the DOM node
-- Events are fired through both Marko and the DOM
-
-For more information, please read [Building a UI Component in 2017 and Beyond](https://medium.com/@senthil_hi/building-a-ui-component-in-2017-and-beyond-1f6d5c4d464).
-
 ### Browser Policy
 
 All components are developed and tested cross-browser using [BrowserStack](https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0), in accordance with our official [eBay Browser Policy](https://github.com/eBay/browserslist-config).
@@ -116,16 +106,36 @@ _template.marko_
 </ebay-menu>
 ```
 
-Some attributes are stateful and can be updated via the DOM. The text attribute, for example:
+Passing new attributes to an ebayui component will always reset it's internal state. If you want to persist this state yourself, events are exposed which allow you to synchronize the state into your own components, for example:
 
-```js
-var menu = document.querySelector('.menu');
-menu.text = 'Sortieren';
+```marko
+class {
+    onCreate() {
+        this.state = {
+            dialogIsOpen: false
+        }
+    }
+
+    handleDialogClose() {
+        this.state.dialogIsOpen = false;
+    }
+
+    handleDialogOpen() {
+        this.state.dialogIsOpen = true;
+    }
+}
+
+<ebay-dialog
+    open=state.dialogIsOpen
+    on-dialog-open('handleDialogOpen')
+    on-dialog-close('handleDialogClose')>
+    ...
+</ebay-dialog>
 ```
 
 #### Pass-Through Attributes
 
-HTML attributes can be used on any component, and they will be passed through to the most prominent tag of the component. The most prominent tag is usually the root, but individual components will note if it varies for specific cases.
+HTML attributes can be used on any component, and they will be passed through to the most prominent tag of the component. The most prominent tag is usually the root or form control, but individual components will note if it varies for specific cases.
 
 Example of static usage:
 ```marko
@@ -134,25 +144,19 @@ Example of static usage:
 
 For using pass-through attributes dynamically, they should be sent through the `html-attributes` attribute:
 ```marko
-<!-- data.htmlAttributes = { id: 'my-button' } -->
-<ebay-button html-attributes=data.htmlAttributes/>
+$ const myAttributes = { id: 'my-button' };
+<ebay-button html-attributes=myAttributes/>
 ```
 
-Static and dynamic pass-through attributes can be used simulatenously (html-attributes takes precedence in conflicts):
+Static and dynamic pass-through attributes can be used simultaneously (html-attributes takes precedence in conflicts):
 ```marko
-<!-- data.htmlAttributes = { id: 'my-button' } -->
-<ebay-button html-attributes=data.htmlAttributes type="submit"/>
+$ const myAttributes = { id: 'my-button' };
+<ebay-button html-attributes=myAttributes type="submit"/>
 ```
 
 ### Events
 
-Events can be handled via the DOM. For example, the menu emits a `menu-change` event:
-
-```js
-menu.addEventListener('menu-change', onMenuChange);
-```
-
-Events can also be handled using Marko syntax:
+Events can also be handled using [Marko syntax](https://markojs.com/docs/events/) (or the legacy syntax for [Marko v3](http://v3.markojs.com/docs/marko-widgets/taglib-api/#w-on)):
 
 _template.marko_
 
@@ -163,8 +167,6 @@ _template.marko_
     <ebay-menu-item>Distance</ebay-menu-item>
 </ebay-menu>
 ```
-
-*Note:  when using DOM events, you should also handle event destruction and delegation as needed.*
 
 ## Releases &amp; Milestones
 

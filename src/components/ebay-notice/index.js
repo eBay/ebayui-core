@@ -1,6 +1,4 @@
 const assign = require('core-js-pure/features/object/assign');
-const observer = require('../../common/property-observer');
-const emitAndFire = require('../../common/emit-and-fire');
 const template = require('./template.marko');
 
 module.exports = require('marko-widgets').defineComponent({
@@ -10,16 +8,10 @@ module.exports = require('marko-widgets').defineComponent({
             hidden: input.hidden || false
         });
     },
-    init() {
-        observer.observeRoot(this, ['hidden'], this.setHidden.bind(this), true);
-    },
-    onDismiss() {
-        this.setHidden(true);
-    },
-    setHidden(hidden) {
-        if (this.state.hidden !== hidden) {
-            this.setState('hidden', hidden);
-            emitAndFire(this, hidden ? 'notice-close' : 'notice-show');
+    handleDismiss() {
+        if (!this.state.hidden) {
+            this.setState('hidden', true);
+            this.emit('notice-close');
         }
     }
 });

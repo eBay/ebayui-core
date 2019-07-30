@@ -6,15 +6,11 @@ const renderer = require('../');
 
 describe('given the menu is in the default state', () => {
     let widget;
-    let root;
     let button;
-    let buttonText;
 
     beforeEach(() => {
         widget = renderer.renderSync({ text: 'text', items: mock.twoItems }).appendTo(document.body).getWidget();
-        root = document.querySelector('span.menu-button');
         button = document.querySelector('.expand-btn');
-        buttonText = root.querySelector('.expand-btn > span');
     });
     afterEach(() => widget.destroy());
 
@@ -45,20 +41,6 @@ describe('given the menu is in the default state', () => {
         });
     });
 
-    describe('when the text property is set', () => {
-        const newText = 'text2';
-        beforeEach(() => {
-            root.text = newText;
-        });
-
-        test('then it rerenders with the new text', (context, done) => {
-            setTimeout(() => {
-                expect(buttonText.innerText.trim()).to.equal(newText);
-                done();
-            }, 10);
-        });
-    });
-
     describe('when items are updated via parent state', () => {
         let spy;
         let thirdItem;
@@ -79,12 +61,12 @@ describe('given the menu is in the default state', () => {
         });
     });
 
-    describe('when the expanded property is set to false', () => {
+    describe('when the expanded state is set to false', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('menu-collapse', spy);
-            root.expanded = false;
+            widget.setState('expanded', false);
         });
 
         test('then it remains collapsed', () => {
@@ -96,12 +78,12 @@ describe('given the menu is in the default state', () => {
         });
     });
 
-    describe('when the expanded property is set to true', () => {
+    describe('when the expanded state is set to true', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('menu-expand', spy);
-            root.expanded = true;
+            widget.setState('expanded', true);
         });
 
         test('then it expands', (context, done) => {
@@ -122,28 +104,26 @@ describe('given the menu is in the default state', () => {
 
 describe('given the menu is in the expanded state', () => {
     let widget;
-    let root;
     let button;
     let firstItem;
     // let secondItem;
 
     beforeEach((done) => {
         widget = renderer.renderSync({ items: mock.twoItems }).appendTo(document.body).getWidget();
-        root = document.querySelector('span.menu-button');
         button = document.querySelector('.expand-btn');
         firstItem = document.querySelector('.menu-button__item');
-        // secondItem = document.querySelectorAll('.menu-button__item')[1];
-        root.expanded = true;
+        // secondItem = document.querySelectorAll('.menu__item')[1];
+        widget.setState('expanded', true);
         setTimeout(done);
     });
     afterEach(() => widget.destroy());
 
-    describe('when the expanded property is set to true', () => {
+    describe('when the expanded state is set to true', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('menu-expand', spy);
-            root.expanded = true;
+            widget.setState('expanded', true);
         });
 
         test('then it remains expanded', () => {
@@ -155,12 +135,12 @@ describe('given the menu is in the expanded state', () => {
         });
     });
 
-    describe('when the expanded property is set to false', () => {
+    describe('when the expanded state is set to false', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
             widget.on('menu-collapse', spy);
-            widget.update_expanded(false); // FIXME: fails with root.expanded = false
+            widget.update_expanded(false); // FIXME: fails with widget.setState('expanded', false)
         });
 
         test('then it collapses', () => {
@@ -226,7 +206,6 @@ describe('given the menu is in the expanded state', () => {
 });
 
 describe('given the menu is in the expanded state with radio items', () => {
-    let root;
     let widget;
     let firstItem;
     let secondItem;
@@ -239,8 +218,7 @@ describe('given the menu is in the expanded state with radio items', () => {
             items: mock.twoItems }).appendTo(document.body).getWidget();
         [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu-button__item'));
         firstItemInner = firstItem.querySelector('span');
-        root = document.querySelector('span.menu-button');
-        root.expanded = true;
+        widget.setState('expanded', true);
         setTimeout(done);
     });
     afterEach(() => widget.destroy());
@@ -263,48 +241,6 @@ describe('given the menu is in the expanded state with radio items', () => {
 
         test('then it selects the item', () => {
             expect(firstItem.getAttribute('aria-checked')).to.equal('true');
-        });
-    });
-
-    describe('when an item is clicked programmatically', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            firstItem.checked = true;
-            setTimeout(done);
-        });
-
-        test('then it emits the menu-change event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.checked).to.deep.equal([0]);
-        });
-
-        test('then it selects the item', () => {
-            expect(firstItem.getAttribute('aria-checked')).to.equal('true');
-        });
-    });
-
-    describe('when an item is set to checked programmatically', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            root.checked = 1;
-            setTimeout(done);
-        });
-
-        test('then it emits the menu-change event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.checked).to.deep.equal([1]);
-        });
-
-        test('then it selects the item', () => {
-            expect(secondItem.getAttribute('aria-checked')).to.equal('true');
         });
     });
 
@@ -397,36 +333,9 @@ describe('given the menu is in the expanded state with radio items', () => {
             expect(firstItem.getAttribute('aria-checked')).to.equal('true');
         });
     });
-
-    describe('when two items are clicked programmatically', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            firstItem.checked = true;
-            secondItem.checked = true;
-            setTimeout(done);
-        });
-
-        test('then it emits the menu-change events with correct data', () => {
-            const firstEventData = spy.getCall(0).args[0];
-            const secondEventData = spy.getCall(1).args[0];
-            expect(spy.calledTwice).to.equal(true);
-            expect(firstEventData.index).to.equal(0);
-            expect(firstEventData.checked).to.deep.equal([0]);
-            expect(secondEventData.index).to.equal(1);
-            expect(secondEventData.checked).to.deep.equal([1]);
-        });
-
-        test('then it only selects the second item', () => {
-            expect(firstItem.getAttribute('aria-checked')).to.equal('false');
-            expect(secondItem.getAttribute('aria-checked')).to.equal('true');
-        });
-    });
 });
 
 describe('given the menu is in the expanded state with checkbox items', () => {
-    let root;
     let widget;
     let firstItem;
     let secondItem;
@@ -437,8 +346,7 @@ describe('given the menu is in the expanded state with checkbox items', () => {
             type: 'checkbox',
             items: mock.twoItems }).appendTo(document.body).getWidget();
         [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu-button__item'));
-        root = document.querySelector('span.menu-button');
-        root.expanded = true;
+        widget.setState('expanded', true);
         setTimeout(done);
     });
     afterEach(() => widget.destroy());
@@ -490,79 +398,6 @@ describe('given the menu is in the expanded state with checkbox items', () => {
 
         test('then the item is unchecked', () => {
             expect(firstItem.getAttribute('aria-checked')).to.equal('false');
-        });
-    });
-
-    describe('when an item is checked programmatically', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            firstItem.checked = true;
-            setTimeout(done);
-        });
-
-        test('then it emits the menu-change events with correct data', () => {
-            const firstEventData = spy.getCall(0).args[0];
-            expect(spy.calledOnce).to.equal(true);
-            expect(firstEventData.index).to.equal(0);
-            expect(firstEventData.checked).to.deep.equal([0]);
-        });
-
-        test('then the item is checked', (context, done) => {
-            setTimeout(() => {
-                expect(firstItem.getAttribute('aria-checked')).to.equal('true');
-                done();
-            }, 10);
-        });
-    });
-
-    describe('when an item is checked and then unchecked programmatically', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            firstItem.checked = true;
-            firstItem.checked = false;
-        });
-
-        test('then it emits the menu-change events with correct data', () => {
-            const firstEventData = spy.getCall(0).args[0];
-            const secondEventData = spy.getCall(1).args[0];
-            expect(spy.calledTwice).to.equal(true);
-            expect(firstEventData.index).to.equal(0);
-            expect(firstEventData.checked).to.deep.equal([0]);
-            expect(secondEventData.index).to.equal(0);
-            expect(secondEventData.checked).to.deep.equal([]);
-        });
-
-        test('then the item is unchecked', (context, done) => {
-            setTimeout(() => {
-                expect(firstItem.getAttribute('aria-checked')).to.equal('false');
-                done();
-            }, 10);
-        });
-    });
-
-    describe('when two items are checked programmatically', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            root.setCheckedList([0, 1]);
-            setTimeout(done);
-        });
-
-        test('then it emits the menu-change events with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const firstEventData = spy.getCall(0).args[0];
-            expect(firstEventData.indexes).to.deep.equal([0, 1]);
-            expect(firstEventData.checked).to.deep.equal([0, 1]);
-        });
-
-        test('then the items are checked', () => {
-            expect(firstItem.getAttribute('aria-checked')).to.equal('true');
-            expect(secondItem.getAttribute('aria-checked')).to.equal('true');
         });
     });
 });

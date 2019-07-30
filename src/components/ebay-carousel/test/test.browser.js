@@ -54,21 +54,15 @@ function isScrollable(el) {
 
 describe('given the carousel is in the default state', () => {
     let widget;
-    let root;
 
     beforeEach(() => {
         widget = renderer.renderSync().appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
     });
     afterEach(() => widget.destroy());
 
     describe('when it is rendered', () => {
         it('then it sets state to correct defaults', () => {
             expect(widget.state.gap).to.equal(16);
-        });
-
-        it('then it exposes state on root element', () => {
-            expect(root.index).to.equal(0);
         });
     });
 });
@@ -90,33 +84,6 @@ describe('given the carousel starts in the default state with items', () => {
         waitForUpdate(widget, done);
     });
     afterEach(() => widget.destroy());
-
-    describe('when index is updated programmatically', () => {
-        let updateSpy;
-        beforeEach(done => {
-            updateSpy = sinon.spy();
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            root.index = 1;
-        });
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([1, 2, 3]);
-        });
-
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[1];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([1, 2, 3]);
-        });
-    });
 
     describe('when index is updated via parent state', () => {
         let updateSpy;
@@ -196,11 +163,11 @@ describe('given the carousel starts in the default state with items', () => {
             updateSpy = sinon.spy();
             widget.on('carousel-update', updateSpy);
             waitForChange(widget, done);
-            root.index = -1;
+            widget.setState('index', -1);
         });
 
         it('then index is normalized to the next index', () => {
-            expect(root.index).to.equal(1);
+            expect(widget.state.index).to.equal(1);
         });
 
         it('then it emits the marko events', () => {
@@ -213,12 +180,12 @@ describe('given the carousel starts in the default state with items', () => {
         beforeEach((done) => {
             updateSpy = sinon.spy();
             widget.on('carousel-update', updateSpy);
-            root.index = 6;
+            widget.setState('index', 6);
             delay(done);
         });
 
         it('then index is normalized to the next index', () => {
-            expect(root.index).to.equal(0);
+            expect(widget.state.index).to.equal(0);
         });
 
         it('then it does not emit the marko events', () => {
@@ -298,12 +265,10 @@ describe('given a continuous carousel has next button clicked', () => {
 describe('given a continuous carousel with few items', () => {
     const input = { items: mock.threeItems };
     let widget;
-    let root;
     let list;
 
     beforeEach(done => {
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
         list = document.querySelector('.carousel__list');
         waitForUpdate(widget, done);
     });
@@ -315,7 +280,7 @@ describe('given a continuous carousel with few items', () => {
             expect(getTranslateX(list)).to.equal(0);
             updateSpy = sinon.spy();
             widget.on('carousel-update', updateSpy);
-            root.index = 1;
+            widget.setState('index', 1);
         });
 
         it('then it does not emit the marko events', () => {
@@ -403,7 +368,7 @@ describe('given a continuous carousel with many items', () => {
         it('then it moves to the correct index', () => {
             const { state: { items } } = widget;
             const visibleIndexes = getVisibleIndexes(items);
-            expect(root.index).to.equal(6);
+            expect(widget.state.index).to.equal(6);
             expect(visibleIndexes).to.deep.equal([6, 7, 8]);
         });
     });
@@ -436,7 +401,7 @@ describe('given a continuous carousel with many items', () => {
         });
 
         it('then it moves to the correct index', () => {
-            expect(root.index).to.equal(3);
+            expect(widget.state.index).to.equal(3);
         });
     });
 });
@@ -734,47 +699,6 @@ describe('given a discrete carousel with half width items', () => {
             expect(visibleIndexes).to.deep.equal([2, 3]);
         });
     });
-
-    describe('when index is updated programmatically', () => {
-        let nextSpy;
-        let slideSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-update', updateSpy);
-            root.index = 4;
-            waitForChange(widget, done);
-        });
-
-        it('then it does not emit the marko next event', () => {
-            expect(nextSpy.called).to.equal(false);
-        });
-
-        it('then it does not emit the marko slide event', () => {
-            expect(slideSpy.calledOnce).to.equal(false);
-        });
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([4, 5]);
-        });
-
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[4];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([4, 5]);
-        });
-    });
 });
 
 describe('given a discrete carousel with three half width items', () => {
@@ -958,7 +882,7 @@ describe('given an autoplay carousel in the default state', () => {
         });
     });
 
-    describe('when it is set to paused programmatically', () => {
+    describe('when it is paused', () => {
         let updateSpy;
 
         beforeEach(done => {
@@ -969,7 +893,7 @@ describe('given an autoplay carousel in the default state', () => {
                 setTimeout(done, 375);
             });
 
-            root.paused = true;
+            testUtils.triggerEvent(pauseButton, 'click');
         });
 
         it('then it does not autoplay', () => {

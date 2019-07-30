@@ -825,10 +825,10 @@
   version "1.0.1"
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.1.tgz#deccafb04101fa52507b8f2204161c8ed5e70375"
 
-"@ebay/skin@7.4.6":
-  version "7.4.6"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-7.4.6.tgz#a5eecf77c022e20b6b98f9401609392cebac561c"
-  integrity sha512-DbEx9bUlG0jlO19zhXb5SoBGSRBpP1BM7aglSDlC8NxxHyOHP7LitVvvHmk6dctT8CLuMY8jKZxN/gMXiPpB8A==
+"@ebay/skin@8.0.0-0":
+  version "8.0.0-0"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-8.0.0-0.tgz#d78d2986ce025f005daedb0e2b90675fc7b8cf7d"
+  integrity sha512-Grjc1N/qz3xf8AyHf04ayrAcKXZ+hJ59/ngAltVcQKcIEn7yGnJCEjWPMwhiyRlLtiK9lJu/fp7+EVHdV5igSA==
 
 "@lasso/marko-taglib@^1.0.13":
   version "1.0.13"
@@ -8304,9 +8304,20 @@ lodash.pickby@^4.6.0:
   resolved "https://registry.npmjs.org/lodash.pickby/-/lodash.pickby-4.6.0.tgz#7dea21d8c18d7703a27c704c15d3b84a67e33aff"
   integrity sha1-feoh2MGNdwOifHBMFdO4SmfjOv8=
 
-lodash.set@^4.3.2:
-  version "4.3.2"
-  resolved "https://registry.npmjs.org/lodash.set/-/lodash.set-4.3.2.tgz#d8757b1da807dde24816b0d6a84bea1a76230b23"
+lodash.template@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.npmjs.org/lodash.template/-/lodash.template-4.5.0.tgz#f976195cf3f347d0d5f52483569fe8031ccce8ab"
+  integrity sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==
+  dependencies:
+    lodash._reinterpolate "^3.0.0"
+    lodash.templatesettings "^4.0.0"
+
+lodash.templatesettings@^4.0.0:
+  version "4.2.0"
+  resolved "https://registry.npmjs.org/lodash.templatesettings/-/lodash.templatesettings-4.2.0.tgz#e481310f049d3cf6d47e912ad09313b154f0fb33"
+  integrity sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==
+  dependencies:
+    lodash._reinterpolate "^3.0.0"
 
 lodash.template@^4.5.0:
   version "4.5.0"
