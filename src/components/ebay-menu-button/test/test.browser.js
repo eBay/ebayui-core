@@ -49,7 +49,7 @@ describe('given the menu is in the default state', () => {
             widget.on('menu-select', spy);
             widget.setProps({ items: mock.threeItems });
             setTimeout(() => {
-                thirdItem = document.querySelectorAll('.menu__item')[2];
+                thirdItem = document.querySelectorAll('.menu-button__item')[2];
                 testUtils.triggerEvent(thirdItem, 'click');
                 done();
             }, 10);
@@ -111,7 +111,7 @@ describe('given the menu is in the expanded state', () => {
     beforeEach((done) => {
         widget = renderer.renderSync({ items: mock.twoItems }).appendTo(document.body).getWidget();
         button = document.querySelector('.expand-btn');
-        firstItem = document.querySelector('.menu__item');
+        firstItem = document.querySelector('.menu-button__item');
         // secondItem = document.querySelectorAll('.menu__item')[1];
         widget.setState('expanded', true);
         setTimeout(done);
@@ -216,7 +216,7 @@ describe('given the menu is in the expanded state with radio items', () => {
             expanded: true,
             type: 'radio',
             items: mock.twoItems }).appendTo(document.body).getWidget();
-        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu__item'));
+        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu-button__item'));
         firstItemInner = firstItem.querySelector('span');
         widget.setState('expanded', true);
         setTimeout(done);
@@ -345,7 +345,7 @@ describe('given the menu is in the expanded state with checkbox items', () => {
             expanded: true,
             type: 'checkbox',
             items: mock.twoItems }).appendTo(document.body).getWidget();
-        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu__item'));
+        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu-button__item'));
         widget.setState('expanded', true);
         setTimeout(done);
     });

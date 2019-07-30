@@ -26,9 +26,9 @@ module.exports = require('marko-widgets').defineComponent({
             this.el,
             optionsContainer,
             optionsContainer,
-            '.listbox__option[role=option]',
+            '.listbox-button__option[role=option]',
             {
-                activeDescendantClassName: 'listbox__option--active',
+                activeDescendantClassName: 'listbox-button__option--active',
                 autoInit: this.state.selectedIndex,
                 autoReset: null
             },
@@ -37,9 +37,9 @@ module.exports = require('marko-widgets').defineComponent({
         this.expander = new Expander(this.el, {
             autoCollapse: true,
             expandOnClick: !this.state.disabled,
-            contentSelector: '.listbox__options',
-            hostSelector: '.listbox__control',
-            expandedClass: 'listbox--expanded',
+            contentSelector: '.listbox-button__listbox',
+            hostSelector: '.listbox-button__control',
+            expandedClass: 'listbox-button--expanded',
             focusManagement: 'content',
             simulateSpacebarClick: true
         });

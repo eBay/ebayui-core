@@ -2,7 +2,7 @@
     "dependencies": [
         {
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/menu"
+            "path": "@ebay/skin/menu-button"
         },
         "../ebay-badge",
         "../ebay-button",
