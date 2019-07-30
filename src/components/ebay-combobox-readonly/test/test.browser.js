@@ -26,7 +26,9 @@ describe('given the readonly combobox with 3 items', () => {
     });
 
     it('then the native select should be initialized to the first option value', () => {
-        expect(new FormData(form).get(input.name)).to.equal(input.options[0].value);
+        expect(form.elements)
+            .has.property(input.name)
+            .with.property('value', input.options[0].value);
     });
 
     describe('when the down arrow key is pressed', () => {
@@ -51,7 +53,9 @@ describe('given the readonly combobox with 3 items', () => {
         });
 
         it('then the native select should be set to the second option value', () => {
-            expect(new FormData(form).get(input.name)).to.equal(input.options[1].value);
+            expect(form.elements)
+                .has.property(input.name)
+                .with.property('value', input.options[1].value);
         });
     });
 
@@ -96,7 +100,9 @@ describe('given the readonly combobox with 3 items', () => {
             });
 
             it('then the native select should be set to the second option value', () => {
-                expect(new FormData(form).get(input.name)).to.equal(input.options[1].value);
+                expect(form.elements)
+                    .has.property(input.name)
+                    .with.property('value', input.options[1].value);
             });
 
             it('then it emits the combobox-change event with correct data', () => {
@@ -117,7 +123,9 @@ describe('given the readonly combobox with 3 items', () => {
             });
 
             it('then the native select should be set to the second option value', () => {
-                expect(new FormData(form).get(input.name)).to.equal(input.options[1].value);
+                expect(form.elements)
+                    .has.property(input.name)
+                    .with.property('value', input.options[1].value);
             });
 
             it('then it emits the combobox-change event with correct data', () => {

@@ -26,7 +26,9 @@ describe('given the listbox with 3 items', () => {
     });
 
     it('then the native select should be initialized to the first option value', () => {
-        expect(new FormData(form).get(input.name)).to.equal(input.options[0].value);
+        expect(form.elements)
+            .has.property(input.name)
+            .with.property('value', input.options[0].value);
     });
 
     describe('when the down arrow key is pressed', () => {
