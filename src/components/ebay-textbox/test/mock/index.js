@@ -1,30 +1,34 @@
-const assign = require('core-js-pure/features/object/assign');
-
 exports.Basic = {
     value: 'textbox value'
 };
 
-exports.Basic_With_ID = assign({}, exports.Basic, {
+exports.Basic_With_ID = {
+    ...exports.Basic,
     id: 'textbox-id'
-});
+};
 
-exports.Fluid = assign({}, exports.Basic, {
+exports.Fluid = {
+    ...exports.Basic,
     fluid: true
-});
+};
 
-exports.Disabled = assign({}, exports.Basic, {
+exports.Disabled = {
+    ...exports.Basic,
     disabled: true
-});
+};
 
-exports.Invalid = assign({}, exports.Basic, {
+exports.Invalid = {
+    ...exports.Basic,
     invalid: true
-});
+};
 
-exports.Multiline = assign({}, exports.Basic, {
+exports.Multiline = {
+    ...exports.Basic,
     multiline: true
-});
+};
 
-exports.Prefix_Icon = assign({}, exports.Basic, {
+exports.Prefix_Icon = {
+    ...exports.Basic,
     icon: 'search',
     iconTag: {
         renderBody(out) {
@@ -35,24 +39,29 @@ exports.Prefix_Icon = assign({}, exports.Basic, {
             );
         }
     }
-});
+};
 
-exports.Postfix_Icon = assign({}, exports.Prefix_Icon, {
+exports.Postfix_Icon = {
+    ...exports.Prefix_Icon,
     iconPosition: 'postfix'
-});
+};
 
-exports.Floating_Label = assign({}, exports.Basic, {
+exports.Floating_Label = {
+    ...exports.Basic,
     floatingLabel: 'Email address'
-});
+};
 
-exports.Floating_Label_No_Value = assign({}, exports.Floating_Label, {
+exports.Floating_Label_No_Value = {
+    ...exports.Floating_Label,
     value: undefined
-});
+};
 
-exports.Floating_Label_With_ID = assign({}, exports.Floating_Label, {
+exports.Floating_Label_With_ID = {
+    ...exports.Floating_Label,
     id: 'textbox-id'
-});
+};
 
-exports.Floating_Label_Disabled = assign({}, exports.Floating_Label, {
+exports.Floating_Label_Disabled = {
+    ...exports.Floating_Label,
     disabled: true
-});
+};

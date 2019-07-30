@@ -1,5 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
-
 exports.Combobox_0Options = {
     name: 'test-combobox',
     autocomplete: 'list',
@@ -21,10 +19,12 @@ exports.Combobox_3Options = {
     }]
 };
 
-exports.Combobox_3Options_2Selected = assign({}, exports.Combobox_3Options, {
+exports.Combobox_3Options_2Selected = {
+    ...exports.Combobox_3Options,
     value: exports.Combobox_3Options.options[1].text
-});
+};
 
-exports.Combobox_3Options_Borderless = assign({}, exports.Combobox_3Options, {
+exports.Combobox_3Options_Borderless = {
+    ...exports.Combobox_3Options,
     borderless: true
-});
+};

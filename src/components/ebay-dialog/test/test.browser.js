@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
@@ -41,7 +40,7 @@ describe('given a closed dialog', () => {
 
     describe('when it is rerendered to be open', () => {
         beforeEach(async() => {
-            await component.rerender(assign({}, input, { open: true }));
+            await component.rerender({ ...input, open: true });
         });
 
         thenItIsOpen(true);

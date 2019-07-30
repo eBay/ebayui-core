@@ -1,5 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
-
 exports.Basic = {
     host: {
         renderBody: createRenderBody('<span class="tooltip__host">Host Text</span>', 'Host Text')
@@ -25,12 +23,16 @@ exports.Pointers = [
     'left',
     'left-bottom',
     'left-top'
-].map(pointer => assign({}, exports.Basic, { pointer }));
+].map(pointer => ({
+    ...exports.Basic,
+    pointer
+}));
 
-exports.Custom_Pointer = assign({}, exports.Basic, {
+exports.Custom_Pointer = {
+    ...exports.Basic,
     styleTop: '20px',
     styleLeft: '20px'
-});
+};
 
 function createRenderBody(html, text) {
     renderBody.text = text || html;

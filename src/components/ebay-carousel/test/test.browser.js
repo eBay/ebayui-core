@@ -1,5 +1,3 @@
-const find = require('core-js-pure/features/array/find');
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
@@ -65,7 +63,7 @@ describe('given a continuous carousel', () => {
 
         describe('when it is rerendered to show the second item', () => {
             beforeEach(async() => {
-                await component.rerender(assign({}, input, { index: 1 }));
+                await component.rerender({ ...input, index: 1 });
                 await waitForCarouselUpdate();
             });
 
@@ -77,7 +75,7 @@ describe('given a continuous carousel', () => {
 
         describe('when it is rerendered with an index below zero', () => {
             beforeEach(async() => {
-                await component.rerender(assign({}, input, { index: -1 }));
+                await component.rerender({ ...input, index: -1 });
                 await doesNotEventuallyScroll();
             });
 
@@ -89,7 +87,7 @@ describe('given a continuous carousel', () => {
 
         describe('when it is rerendered with an index higher than the number of items', () => {
             beforeEach(async() => {
-                await component.rerender(assign({}, input, { index: 6 }));
+                await component.rerender({ ...input, index: 6 });
                 await doesNotEventuallyScroll();
             });
 
@@ -112,10 +110,9 @@ describe('given a continuous carousel', () => {
         describe('when next button is clicked', () => {
             let nextHiddenItem;
             beforeEach(async() => {
-                nextHiddenItem = find(
-                    input.items.map(item => component.getByText(item.renderBody.text)),
-                    el => el.hasAttribute('aria-hidden')
-                );
+                nextHiddenItem = input.items
+                    .map(item => component.getByText(item.renderBody.text))
+                    .find(el => el.hasAttribute('aria-hidden'));
                 fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
             });
@@ -131,7 +128,7 @@ describe('given a continuous carousel', () => {
     });
 
     describe('with 6 items at the end', () => {
-        const input = assign({}, mock.Continuous_6Items, { index: 5 });
+        const input = { ...mock.Continuous_6Items, index: 5 };
 
         beforeEach(async() => {
             component = await render(template, input);
@@ -151,12 +148,10 @@ describe('given a continuous carousel', () => {
         describe('when previous button is clicked', () => {
             let previousHiddenItem;
             beforeEach(async() => {
-                previousHiddenItem = find(
-                    input.items
-                        .map(item => component.getByText(item.renderBody.text))
-                        .reverse(),
-                    el => el.hasAttribute('aria-hidden')
-                );
+                previousHiddenItem = input.items
+                    .map(item => component.getByText(item.renderBody.text))
+                    .reverse()
+                    .find(el => el.hasAttribute('aria-hidden'));
 
                 fireEvent.click(component.getByLabelText(input.a11yPreviousText));
                 await waitForCarouselUpdate();
@@ -291,7 +286,7 @@ describe('given a discrete carousel', () => {
 
         describe('when it is rerendered to show the second item', () => {
             beforeEach(async() => {
-                await component.rerender(assign({}, input, { index: 1 }));
+                await component.rerender({ ...input, index: 1 });
                 await waitForCarouselUpdate();
             });
 
@@ -307,7 +302,7 @@ describe('given a discrete carousel', () => {
 
         describe('when it is rerendered with an index below zero', () => {
             beforeEach(async() => {
-                await component.rerender(assign({}, input, { index: -1 }));
+                await component.rerender({ ...input, index: -1 });
                 await doesNotEventuallyScroll();
             });
 
@@ -319,7 +314,7 @@ describe('given a discrete carousel', () => {
 
         describe('when it is rerendered with an index higher than the number of items', () => {
             beforeEach(async() => {
-                await component.rerender(assign({}, input, { index: 6 }));
+                await component.rerender({ ...input, index: 6 });
                 await doesNotEventuallyScroll();
             });
 
@@ -412,7 +407,7 @@ describe('given a discrete carousel', () => {
     });
 
     describe('with 1 item per slide and 3 items at the end', () => {
-        const input = assign({}, mock.Discrete_1PerSlide_3Items, { index: 2 });
+        const input = { ...mock.Discrete_1PerSlide_3Items, index: 2 };
 
         beforeEach(async() => {
             component = await render(template, input);
@@ -634,7 +629,7 @@ describe('given a discrete carousel', () => {
 
         describe('when it is paused', () => {
             beforeEach(async() => {
-                await component.rerender(assign({}, input, { paused: true }));
+                await component.rerender({ ...input, paused: true });
                 await new Promise(resolve => setTimeout(resolve, 600));
             });
 

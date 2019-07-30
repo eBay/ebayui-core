@@ -1,5 +1,3 @@
-const find = require('core-js-pure/features/array/find');
-const findIndex = require('core-js-pure/features/array/find-index');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const { testPassThroughAttributes } = require('../../../common/test-utils/server');
@@ -12,8 +10,8 @@ describe('combobox-readonly', () => {
     it('renders basic version', async() => {
         const input = mock.Combobox_3Options;
         const { getAllByRole } = await render(template, input);
-        const combobox = find(getAllByRole('combobox'), isVisible);
-        const listbox = find(getAllByRole('listbox'), isVisible);
+        const combobox = getAllByRole('combobox').find(isVisible);
+        const listbox = getAllByRole('listbox').find(isVisible);
         const visibleOptions = getAllByRole('option').filter(isVisible);
         expect(combobox).has.attr('aria-haspopup');
         expect(combobox.parentElement).does.not.have.class('combobox__control--borderless');
@@ -33,13 +31,13 @@ describe('combobox-readonly', () => {
     it('renders with second item selected', async() => {
         const input = mock.Combobox_3Options_2Selected;
         const { getAllByRole } = await render(template, input);
-        expect(findIndex(getAllByRole('option').filter(isVisible), isAriaSelected)).is.equal(1);
+        expect(getAllByRole('option').filter(isVisible).findIndex(isAriaSelected)).is.equal(1);
     });
 
     it('renders with borderless enabled', async() => {
         const input = mock.Combobox_3Options_Borderless;
         const { getAllByRole } = await render(template, input);
-        const combobox = find(getAllByRole('combobox'), isVisible);
+        const combobox = getAllByRole('combobox').find(isVisible);
         expect(combobox).has.property('parentElement').with.class('combobox__control--borderless');
     });
 

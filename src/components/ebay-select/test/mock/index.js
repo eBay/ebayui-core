@@ -1,5 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
-
 exports.Basic_0Options = {
     options: []
 };
@@ -11,9 +9,10 @@ exports.Basic_3Options = {
     }))
 };
 
-exports.Borderless_3Options = assign({}, exports.Basic_3Options, {
+exports.Borderless_3Options = {
+    ...exports.Basic_3Options,
     borderless: true
-});
+};
 
 exports.Basic_3Options_1Selected = {
     options: getNItems(3, i => ({

@@ -1,4 +1,3 @@
-const find = require('core-js-pure/features/array/find');
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
@@ -191,7 +190,7 @@ describe('given the readonly combobox with 3 items that is disabled', () => {
 });
 
 function getVisibleCombobox() {
-    return find(component.getAllByRole('combobox'), isVisible);
+    return component.getAllByRole('combobox').find(isVisible);
 }
 
 function getVisibleOptions() {

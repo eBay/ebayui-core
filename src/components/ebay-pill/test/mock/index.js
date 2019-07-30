@@ -1,29 +1,32 @@
-const assign = require('core-js-pure/features/object/assign');
-
 exports.Basic = {
     renderBody: createRenderBody('text')
 };
 
-exports.Pressed = assign({}, exports.Basic, {
+exports.Pressed = {
+    ...exports.Basic,
     pressed: true
-});
+};
 
-exports.Disabled = assign({}, exports.Basic, {
+exports.Disabled = {
+    ...exports.Basic,
     disabled: true
-});
+};
 
-exports.Fake = assign({}, exports.Basic, {
+exports.Fake = {
+    ...exports.Basic,
     href: '#fake'
-});
+};
 
-exports.Fake_Pressed = assign({}, exports.Fake, {
+exports.Fake_Pressed = {
+    ...exports.Fake,
     pressed: true,
     a11yActiveText: 'Selected Pill'
-});
+};
 
-exports.Fake_Disabled = assign({}, exports.Fake, {
+exports.Fake_Disabled = {
+    ...exports.Fake,
     disabled: true
-});
+};
 
 function createRenderBody(text) {
     renderBody.text = text;

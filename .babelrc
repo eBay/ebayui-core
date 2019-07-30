@@ -1,10 +1,23 @@
 {
-    "presets": ["@babel/preset-env"],
     "retainLines": true,
+    "presets": [
+        ["@babel/preset-env", {
+            "loose": true
+        }]
+    ],
     "overrides": [{
         "test": "./src/**/test/*",
+        "presets": [
+            ["@babel/preset-env", {
+                "corejs": 3,
+                "loose": true,
+                "useBuiltIns": "usage"
+            }]
+        ],
         "plugins": [
-            ["@babel/plugin-transform-runtime", { "corejs": 3 }]
+            ["@babel/plugin-transform-runtime", {
+                "corejs": 3
+            }]
         ]
     }]
 }

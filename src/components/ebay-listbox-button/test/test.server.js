@@ -1,5 +1,3 @@
-const find = require('core-js-pure/features/array/find');
-const findIndex = require('core-js-pure/features/array/find-index');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const { testPassThroughAttributes } = require('../../../common/test-utils/server');
@@ -14,7 +12,7 @@ describe('listbox', () => {
         const { getByRole, getAllByRole } = await render(template, input);
 
         const btnEl = getByRole('button');
-        const listboxEl = find(getAllByRole('listbox'), isVisible);
+        const listboxEl = getAllByRole('listbox').find(isVisible);
         const visibleOptionEls = getAllByRole('option').filter(isVisible);
 
         expect(btnEl).has.attr('aria-haspopup', 'listbox');
@@ -43,7 +41,7 @@ describe('listbox', () => {
     it('renders with second item selected', async() => {
         const input = mock.Basic_3Options_1Selected;
         const { getAllByRole } = await render(template, input);
-        expect(findIndex(getAllByRole('option').filter(isVisible), isAriaSelected)).is.equal(1);
+        expect(getAllByRole('option').filter(isVisible).findIndex(isAriaSelected)).is.equal(1);
     });
 
     testPassThroughAttributes(template);

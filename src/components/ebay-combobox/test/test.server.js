@@ -1,4 +1,3 @@
-const findIndex = require('core-js-pure/features/array/find-index');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const { testPassThroughAttributes } = require('../../../common/test-utils/server');
@@ -29,8 +28,8 @@ describe('combobox', () => {
     it('renders with second item selected', async() => {
         const input = mock.Combobox_3Options_2Selected;
         const { getAllByRole } = await render(template, input);
-        const selectedIndex = findIndex(input.options, ({ value }) => value === input.value);
-        expect(findIndex(getAllByRole('option'), isAriaSelected)).is.equal(selectedIndex);
+        const selectedIndex = input.options.findIndex(({ value }) => value === input.value);
+        expect(getAllByRole('option').findIndex(isAriaSelected)).is.equal(selectedIndex);
     });
 
     it('renders with borderless enabled', async() => {

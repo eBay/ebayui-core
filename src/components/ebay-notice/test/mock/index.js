@@ -1,39 +1,44 @@
-const assign = require('core-js-pure/features/object/assign');
-
 exports.Page = {
     a11yHeadingText: 'Heading Text',
     renderBody: createRenderBody('Content')
 };
 
-exports.Page_Custom_Heading_Tag = assign({}, exports.Page, {
+exports.Page_Custom_Heading_Tag = {
+    ...exports.Page,
     a11yHeadingTag: 'h3'
-});
+};
 
-exports.Page_Custom_Status = assign({}, exports.Page, {
+exports.Page_Custom_Status = {
+    ...exports.Page,
     status: 'confirmation'
-});
+};
 
-exports.Page_Dismissible = assign({}, exports.Page, {
+exports.Page_Dismissible = {
+    ...exports.Page,
     dismissible: true,
     a11yCloseText: 'Close'
-});
+};
 
-exports.Inline = assign({}, exports.Page, {
+exports.Inline = {
+    ...exports.Page,
     type: 'inline'
-});
+};
 
-exports.Inline_Custom_Heading_Tag = assign({}, exports.Inline, {
+exports.Inline_Custom_Heading_Tag = {
+    ...exports.Inline,
     a11yHeadingTag: 'h3'
-});
+};
 
-exports.Inline_Custom_Status = assign({}, exports.Inline, {
+exports.Inline_Custom_Status = {
+    ...exports.Inline,
     status: 'confirmation'
-});
+};
 
-exports.Inline_Dismissible = assign({}, exports.Inline, {
+exports.Inline_Dismissible = {
+    ...exports.Inline,
     dismissible: true,
     a11yCloseText: 'Close'
-});
+};
 
 function createRenderBody(text) {
     renderBody.text = text;
