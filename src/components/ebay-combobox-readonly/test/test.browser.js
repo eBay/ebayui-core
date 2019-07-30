@@ -31,8 +31,8 @@ describe('given the readonly combobox with 3 items', () => {
     });
 
     describe('when the down arrow key is pressed', () => {
-        beforeEach(() => {
-            pressKey(getVisibleCombobox(), {
+        beforeEach(async() => {
+            await pressKey(getVisibleCombobox(), {
                 key: 'ArrowDown',
                 keyCode: 40
             });
@@ -57,8 +57,8 @@ describe('given the readonly combobox with 3 items', () => {
     });
 
     describe('when the up arrow key is pressed', () => {
-        beforeEach(() => {
-            pressKey(getVisibleCombobox(), {
+        beforeEach(async() => {
+            await pressKey(getVisibleCombobox(), {
                 key: 'ArrowUp',
                 keyCode: 38
             });
@@ -79,8 +79,8 @@ describe('given the readonly combobox with 3 items', () => {
     });
 
     describe('when the button is clicked', () => {
-        beforeEach(() => {
-            getVisibleCombobox().click();
+        beforeEach(async() => {
+            await fireEvent.click(getVisibleCombobox());
         });
 
         it('then it emits the event from expander-expand', () => {
@@ -92,8 +92,8 @@ describe('given the readonly combobox with 3 items', () => {
         });
 
         describe('when an option is clicked', () => {
-            beforeEach(() => {
-                getVisibleOptions()[1].click();
+            beforeEach(async() => {
+                await fireEvent.click(getVisibleOptions()[1]);
             });
 
             it('then the native select should be set to the second option value', () => {
@@ -113,8 +113,8 @@ describe('given the readonly combobox with 3 items', () => {
         });
 
         describe('when the text of an option is clicked', () => {
-            beforeEach(() => {
-                getVisibleOptions()[1].firstElementChild.click();
+            beforeEach(async() => {
+                await fireEvent.click(getVisibleOptions()[1].firstElementChild);
             });
 
             it('then the native select should be set to the second option value', () => {
@@ -134,16 +134,16 @@ describe('given the readonly combobox with 3 items', () => {
         });
 
         describe('when the button is clicked again', () => {
-            beforeEach(() => {
-                getVisibleCombobox().click();
+            beforeEach(async() => {
+                await fireEvent.click(getVisibleCombobox());
             });
 
             thenItHasCollapsed();
         });
 
         describe('when the escape key is pressed', () => {
-            beforeEach(() => {
-                pressKey(getVisibleCombobox(), {
+            beforeEach(async() => {
+                await pressKey(getVisibleCombobox(), {
                     key: 'Escape',
                     keyCode: 27
                 });
@@ -176,8 +176,8 @@ describe('given the readonly combobox with 3 items that is disabled', () => {
     });
 
     describe('when the button is clicked', () => {
-        beforeEach(() => {
-            getVisibleCombobox().click();
+        beforeEach(async() => {
+            await fireEvent.click(getVisibleCombobox());
         });
 
         it('then it does not emit the event from expander-expand', () => {
@@ -202,8 +202,8 @@ function isVisible(el) {
     return !el.hasAttribute('hidden') && !el.closest('[hidden]');
 }
 
-function pressKey(el, info) {
-    fireEvent.keyDown(el, info);
-    fireEvent.keyPress(el, info);
-    fireEvent.keyUp(el, info);
+async function pressKey(el, info) {
+  await fireEvent.keyDown(el, info);
+  await fireEvent.keyPress(el, info);
+  await fireEvent.keyUp(el, info);
 }

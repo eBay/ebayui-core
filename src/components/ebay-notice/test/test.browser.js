@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, cleanup, wait } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
 const template = require('..');
 
@@ -21,12 +21,12 @@ describe('given the dismissable page notice', () => {
     });
 
     describe('when the dismiss button is clicked', () => {
-        beforeEach(() => {
-            component.getByLabelText(input.a11yCloseText).click();
+        beforeEach(async() => {
+            await fireEvent.click(component.getByLabelText(input.a11yCloseText));
         });
 
         it('then it is removed from the DOM', async() => {
-            await wait(() => expect(component.queryByLabelText(input.a11yHeadingText)).to.be.null);
+            expect(component.queryAllByLabelText(input.a11yHeadingText)).has.length(0);
         });
 
         it('then it emits the close event', () => {

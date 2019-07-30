@@ -14,8 +14,8 @@ describe('given radio button is enabled', () => {
     });
 
     describe('when radio button is clicked', () => {
-        beforeEach(() => {
-            fireEvent.click(component.getByRole('radio'));
+        beforeEach(async() => {
+          await fireEvent.click(component.getByRole('radio'));
         });
 
         it('then it emits the event', () => {
@@ -36,8 +36,8 @@ describe('given radio button is disabled', () => {
     });
 
     describe('when radio button is clicked', () => {
-        beforeEach(() => {
-            fireEvent.click(component.getByRole('radio'));
+        beforeEach(async() => {
+          await fireEvent.click(component.getByRole('radio'));
         });
 
         it('then it doesn\'t emit the event', () => {

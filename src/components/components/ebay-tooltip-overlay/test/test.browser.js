@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const template = require('..');
 
 use(require('chai-dom'));
@@ -22,8 +22,8 @@ describe('given checkbox button is enabled', () => {
     });
 
     describe('when the close button is clicked', () => {
-        beforeEach(() => {
-            component.getByLabelText(input.a11yCloseText).click();
+        beforeEach(async() => {
+            await fireEvent.click(component.getByLabelText(input.a11yCloseText));
         });
 
         it('then it emits the marko event from button click', () => {

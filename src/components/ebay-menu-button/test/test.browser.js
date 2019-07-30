@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, wait, waitForDomChange: __oldWaitForDomChange, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
 const mock = require('../mock');
 const template = require('..');
 const ESCAPE_KEY_CODE = 27;
@@ -18,7 +18,7 @@ describe('given the menu is in the default state', () => {
 
     describe('when the button is clicked once', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => fireEvent.click(component.getByRole('button')));
+            await fireEvent.click(component.getByRole('button'));
         });
 
         it('then it expands', async() => {
@@ -31,7 +31,7 @@ describe('given the menu is in the default state', () => {
 
         describe('when it is clicked again', () => {
             beforeEach(async() => {
-                await waitForDomChange(() => fireEvent.click(component.getByRole('button')));
+                await fireEvent.click(component.getByRole('button'));
             });
 
             it('then it collapses', async() => {
@@ -47,7 +47,7 @@ describe('given the menu is in the default state', () => {
     describe('when an item is added via input from its parent and the new item is clicked', () => {
         beforeEach(async() => {
             await component.rerender({ items: mock.threeItems });
-            await waitForDomChange(() => fireEvent.click(component.getByText(mock.THIRD_ITEM_TEXT)));
+            await fireEvent.click(component.getByText(mock.THIRD_ITEM_TEXT));
         });
 
         it('then the new item is selected or something');
@@ -94,7 +94,7 @@ describe('given the menu is in the default state', () => {
 describe('given the menu is in the expanded state', () => {
     beforeEach(async() => {
         component = await render(template, { items: mock.twoItems });
-        await waitForDomChange(() => fireEvent.click(component.getByRole('button')));
+        await fireEvent.click(component.getByRole('button'));
         expect(component.emitted('menu-expand')).has.length(1);
     });
 
@@ -130,27 +130,25 @@ describe('given the menu is in the expanded state', () => {
 
     describe('when an item is clicked', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => fireEvent.click(component.getByText(mock.FIRST_ITEM_TEXT)));
+            await fireEvent.click(component.getByText(mock.FIRST_ITEM_TEXT));
         });
 
         it('then it emits the menu-select event with correct data', () => {
             const selectEvents = component.emitted('menu-select');
-            expect(selectEvents).to.have.property('length', 1);
+            expect(selectEvents).to.length(1);
 
-            const eventArgs = selectEvents[0];
-            expect(eventArgs[0].el.innerText).to.equal(mock.FIRST_ITEM_TEXT);
-            expect(eventArgs[0].index).to.equal(0);
-            expect(eventArgs[0].checked).to.deep.equal([0]);
+            const [[eventArg]] = selectEvents;
+            expect(eventArg).has.property('el').with.text(mock.FIRST_ITEM_TEXT);
+            expect(eventArg).has.property('index', 0);
+            expect(eventArg).has.property('checked').to.deep.equal([0]);
         });
     });
 
     describe('when the escape key is pressed from an item', () => {
         beforeEach(async() => {
-            await waitForDomChange(() =>
-                fireEvent.keyDown(
-                    component.getByText(mock.FIRST_ITEM_TEXT),
-                    { charCode: ESCAPE_KEY_CODE }
-                )
+            await fireEvent.keyDown(
+                component.getByText(mock.FIRST_ITEM_TEXT),
+                { charCode: ESCAPE_KEY_CODE }
             );
         });
 
@@ -165,9 +163,7 @@ describe('given the menu is in the expanded state', () => {
 
     describe('when the escape key is pressed from the button', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => {
-                fireEvent.keyDown(component.getByRole('button'), { charCode: ESCAPE_KEY_CODE });
-            });
+            await fireEvent.keyDown(component.getByRole('button'), { charCode: ESCAPE_KEY_CODE });
         });
 
         it('then it collapses', () => {
@@ -190,9 +186,7 @@ describe('given the menu is in the expanded state with radio items', () => {
 
     describe('when an item is clicked', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => {
-                fireEvent.click(firstItem);
-            });
+            await fireEvent.click(firstItem);
         });
 
         it('then it emits the menu-change event with correct data', () => {
@@ -213,9 +207,7 @@ describe('given the menu is in the expanded state with radio items', () => {
     // Is it not a given that click events bubble?
     describe('when an item\'s inner span is clicked', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => {
-                fireEvent.click(component.getByText(mock.FIRST_ITEM_TEXT));
-            });
+            await fireEvent.click(component.getByText(mock.FIRST_ITEM_TEXT));
         });
 
         it('then it emits the menu-change event with correct data', () => {
@@ -234,9 +226,7 @@ describe('given the menu is in the expanded state with radio items', () => {
 
     describe('when an action button is pressed on an item', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => {
-                fireEvent.keyDown(firstItem, { charCode: ENTER_KEY_CODE });
-            });
+            await fireEvent.keyDown(firstItem, { charCode: ENTER_KEY_CODE });
         });
 
         it('then it emits the menu-change event with correct data', () => {
@@ -255,8 +245,8 @@ describe('given the menu is in the expanded state with radio items', () => {
 
     describe('when two items are clicked', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => fireEvent.click(firstItem));
-            await waitForDomChange(() => fireEvent.click(secondItem));
+            await fireEvent.click(firstItem);
+            await fireEvent.click(secondItem);
         });
 
         it('then it emits two menu-change events with correct data', () => {
@@ -279,10 +269,9 @@ describe('given the menu is in the expanded state with radio items', () => {
 
     describe('when an item is clicked multiple times', () => {
         beforeEach(async() => {
-            fireEvent.click(firstItem);
-            await wait(() => expect(firstItem).to.have.attr('aria-checked', 'true'));
-            fireEvent.click(firstItem);
-            await wait(); // no change expected, but wait a tick just because...
+          await fireEvent.click(firstItem);
+            expect(firstItem).to.have.attr('aria-checked', 'true');
+          await fireEvent.click(firstItem);
         });
 
         it('then it emits only one menu-change event with correct data', () => {
@@ -310,8 +299,8 @@ describe('given the menu is in the expanded state with checkbox items', () => {
 
     describe('when two items are clicked', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => fireEvent.click(firstItem));
-            await waitForDomChange(() => fireEvent.click(secondItem));
+            await fireEvent.click(firstItem);
+            await fireEvent.click(secondItem);
         });
 
         it('then it emits two menu-change events with correct data', () => {
@@ -334,8 +323,8 @@ describe('given the menu is in the expanded state with checkbox items', () => {
 
     describe('when an item is checked and then unchecked', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => fireEvent.click(firstItem));
-            await waitForDomChange(() => fireEvent.click(firstItem));
+            await fireEvent.click(firstItem);
+            await fireEvent.click(firstItem);
         });
 
         it('then it emits the menu-change events with correct data', () => {
@@ -355,9 +344,3 @@ describe('given the menu is in the expanded state with checkbox items', () => {
         });
     });
 });
-
-async function waitForDomChange(fn) {
-    const change = __oldWaitForDomChange();
-    if (fn) await fn();
-    await change;
-}

@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, wait, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
 const template = require('..');
 
@@ -96,16 +96,17 @@ describe('given an open dialog', () => {
     thenItIsOpen();
 
     describe('when the close button is clicked', () => {
-        beforeEach(() => {
-            component.getByLabelText(input.a11yCloseText).click();
+        beforeEach(async() => {
+            await fireEvent.click(component.getByLabelText(input.a11yCloseText));
         });
 
         thenItIsClosed(true);
     });
 
     describe('when the mask is clicked', () => {
-        beforeEach(() => {
-            component.getByRole('dialog').click(); // simulate clicking outside the dialog.
+        beforeEach(async() => {
+            // simulate clicking outside the dialog.
+            await fireEvent.click(component.getByRole('dialog'));
         });
 
         thenItIsClosed(true);

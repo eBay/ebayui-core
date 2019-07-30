@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, cleanup } = require('@marko/testing-library');
+const { render, wait, cleanup } = require('@marko/testing-library');
 const template = require('..');
 
 use(require('chai-dom'));
@@ -14,8 +14,9 @@ describe('given checkbox button is enabled', () => {
     });
 
     describe('when checkbox button is clicked', () => {
-        beforeEach(() => {
+        beforeEach(async() => {
             component.getByRole('checkbox').click();
+            await wait();
         });
 
         it('then it emitted the change event', () => {
@@ -39,8 +40,9 @@ describe('given checkbox button is disabled', () => {
     });
 
     describe('when checkbox button is clicked', () => {
-        beforeEach(() => {
+        beforeEach(async() => {
             component.getByRole('checkbox').click();
+            await wait();
         });
 
         it('then it does not emit the change event', () => {

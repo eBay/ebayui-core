@@ -30,8 +30,8 @@ describe('given the listbox with 3 items', () => {
     });
 
     describe('when the down arrow key is pressed', () => {
-        beforeEach(() => {
-            pressKey(component.getByRole('button'), {
+        beforeEach(async() => {
+            await pressKey(component.getByRole('button'), {
                 key: 'ArrowDown',
                 keyCode: 40
             });
@@ -51,9 +51,9 @@ describe('given the listbox with 3 items', () => {
         });
 
         describe('when the up arrow key is pressed', () => {
-            beforeEach(() => {
+            beforeEach(async() => {
                 component.emitted('listbox-change');
-                pressKey(component.getByRole('button'), {
+                await pressKey(component.getByRole('button'), {
                     key: 'ArrowUp',
                     keyCode: 38
                 });
@@ -75,8 +75,8 @@ describe('given the listbox with 3 items', () => {
     });
 
     describe('when the button is clicked', () => {
-        beforeEach(() => {
-            component.getByRole('button').click();
+        beforeEach(async() => {
+            await fireEvent.click(component.getByRole('button'));
         });
 
         it('then it emits the event from expander-expand', () => {
@@ -88,8 +88,8 @@ describe('given the listbox with 3 items', () => {
         });
 
         describe('when the button is clicked again', () => {
-            beforeEach(() => {
-                component.getByRole('button').click();
+            beforeEach(async() => {
+                await fireEvent.click(component.getByRole('button'));
             });
 
             it('then it emits the event from expander-collapse', () => {
@@ -108,12 +108,12 @@ describe('given the listbox is in an expanded state', () => {
 
     beforeEach(async() => {
         component = await render(template, input, { container: form });
-        component.getByRole('button').click();
+        await fireEvent.click(component.getByRole('button'));
     });
 
     describe('when an option is clicked', () => {
-        beforeEach(() => {
-            component.getByText(input.options[1].text).click();
+        beforeEach(async() => {
+            await fireEvent.click(component.getByText(input.options[1].text));
         });
 
         it('then it emits the listbox-change event with correct data', () => {
@@ -127,8 +127,8 @@ describe('given the listbox is in an expanded state', () => {
     });
 
     describe('when the down arrow key is pressed', () => {
-        beforeEach(() => {
-            pressKey(component.getByRole('button'), {
+        beforeEach(async() => {
+            await pressKey(component.getByRole('button'), {
                 key: 'ArrowDown',
                 keyCode: 40
             });
@@ -144,9 +144,9 @@ describe('given the listbox is in an expanded state', () => {
         });
 
         describe('when the up arrow key is pressed', () => {
-            beforeEach(() => {
+            beforeEach(async() => {
                 component.emitted('listbox-change');
-                pressKey(component.getByRole('button'), {
+                await pressKey(component.getByRole('button'), {
                     key: 'ArrowUp',
                     keyCode: 38
                 });
@@ -164,8 +164,8 @@ describe('given the listbox is in an expanded state', () => {
     });
 });
 
-function pressKey(el, info) {
-    fireEvent.keyDown(el, info);
-    fireEvent.keyPress(el, info);
-    fireEvent.keyUp(el, info);
+async function pressKey(el, info) {
+  await fireEvent.keyDown(el, info);
+  await fireEvent.keyPress(el, info);
+  await fireEvent.keyUp(el, info);
 }

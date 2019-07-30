@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, cleanup } = require('@marko/testing-library');
+const { render, wait, cleanup } = require('@marko/testing-library');
 const template = require('..');
 
 use(require('chai-dom'));
@@ -14,8 +14,9 @@ describe('given switch button is enabled', () => {
     });
 
     describe('when switch button is clicked', () => {
-        beforeEach(() => {
+        beforeEach(async() => {
             component.getByRole('switch').click();
+            await wait();
         });
 
         it('then it emits the event', () => {
@@ -35,8 +36,9 @@ describe('given switch button is disabled', () => {
     });
 
     describe('when switch button is clicked', () => {
-        beforeEach(() => {
+        beforeEach(async() => {
             component.getByRole('switch').click();
+            await wait();
         });
 
         it('then it doesn\'t emit the event', () => {

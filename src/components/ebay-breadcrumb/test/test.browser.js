@@ -19,8 +19,8 @@ describe('given a basic breadcrumb', () => {
     });
 
     describe('when an <a> item is clicked', () => {
-        beforeEach(() => {
-            fireEvent.click(component.getByText(firstItem.renderBody.text));
+        beforeEach(async() => {
+            await fireEvent.click(component.getByText(firstItem.renderBody.text));
         });
 
         it('then it emits the breadcrumb-select event with correct data', () => {
@@ -29,8 +29,8 @@ describe('given a basic breadcrumb', () => {
     });
 
     describe('when a <button> is clicked', () => {
-        beforeEach(() => {
-            fireEvent.click(component.getByText(lastItem.renderBody.text));
+        beforeEach(async() => {
+            await fireEvent.click(component.getByText(lastItem.renderBody.text));
         });
 
         it('then it does not emit the breadcrumb-select event', () => {

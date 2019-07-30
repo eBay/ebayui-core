@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, waitForDomChange: __oldWaitForDomChange, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
 const template = require('..');
 
@@ -17,8 +17,8 @@ describe('given tabs with first heading selected', () => {
     });
 
     describe('when the first heading is clicked', () => {
-        beforeEach(() => {
-            component.getAllByRole('tab')[0].click();
+        beforeEach(async() => {
+            await fireEvent.click(component.getAllByRole('tab')[0]);
         });
 
         it('then it does not emit the select event', () => {
@@ -29,9 +29,7 @@ describe('given tabs with first heading selected', () => {
     describe('when the second tab is activated', () => {
         describe('via click', () => {
             beforeEach(async() => {
-                await waitForDomChange(() => {
-                    component.getAllByRole('tab')[1].click();
-                });
+                await fireEvent.click(component.getAllByRole('tab')[1]);
             });
 
             thenItHasMovedToTab(1);
@@ -39,11 +37,9 @@ describe('given tabs with first heading selected', () => {
 
         describe('via keyboard action button', () => {
             beforeEach(async() => {
-                await waitForDomChange(() => {
-                    fireEvent.keyDown(component.getAllByRole('tab')[1], {
-                        key: 'Space',
-                        keyCode: 32
-                    });
+                await fireEvent.keyDown(component.getAllByRole('tab')[1], {
+                    key: 'Space',
+                    keyCode: 32
                 });
             });
 
@@ -53,11 +49,9 @@ describe('given tabs with first heading selected', () => {
 
     describe('when the right arrow key is pressed', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => {
-                fireEvent.keyDown(component.getAllByRole('tab')[1], {
-                    key: 'ArrowRight',
-                    keyCode: 39
-                });
+            await fireEvent.keyDown(component.getAllByRole('tab')[1], {
+                key: 'ArrowRight',
+                keyCode: 39
             });
         });
 
@@ -66,11 +60,9 @@ describe('given tabs with first heading selected', () => {
 
     describe('when the left arrow key is pressed', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => {
-                fireEvent.keyDown(component.getAllByRole('tab')[1], {
-                    key: 'ArrowLeft',
-                    keyCode: 37
-                });
+            await fireEvent.keyDown(component.getAllByRole('tab')[1], {
+                key: 'ArrowLeft',
+                keyCode: 37
             });
         });
 
@@ -101,11 +93,9 @@ describe('given tabs with third heading selected', () => {
 
     describe('when the right arrow key is pressed', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => {
-                fireEvent.keyDown(component.getAllByRole('tab')[1], {
-                    key: 'ArrowRight',
-                    keyCode: 39
-                });
+            await fireEvent.keyDown(component.getAllByRole('tab')[1], {
+                key: 'ArrowRight',
+                keyCode: 39
             });
         });
 
@@ -114,11 +104,9 @@ describe('given tabs with third heading selected', () => {
 
     describe('when the left arrow key is pressed', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => {
-                fireEvent.keyDown(component.getAllByRole('tab')[1], {
-                    key: 'ArrowLeft',
-                    keyCode: 37
-                });
+            await fireEvent.keyDown(component.getAllByRole('tab')[1], {
+                key: 'ArrowLeft',
+                keyCode: 37
             });
         });
 
@@ -139,9 +127,3 @@ describe('given tabs with third heading selected', () => {
         });
     }
 });
-
-async function waitForDomChange(fn) {
-    const change = __oldWaitForDomChange();
-    if (fn) await fn();
-    await change;
-}

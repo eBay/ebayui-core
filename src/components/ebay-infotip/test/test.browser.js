@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
 const template = require('..');
 
@@ -25,8 +25,8 @@ describe('given the default infotip', () => {
 
     function thenItCanBeOpenAndClosed() {
         describe('when the host element is clicked', () => {
-            beforeEach(() => {
-                component.getByLabelText(input.ariaLabel).click();
+            beforeEach(async() => {
+                await fireEvent.click(component.getByLabelText(input.ariaLabel));
             });
 
             it('then it emits the tooltip-expand event', () => {
@@ -38,8 +38,8 @@ describe('given the default infotip', () => {
             });
 
             describe('when the host element is clicked a second time to close', () => {
-                beforeEach(() => {
-                    component.getByLabelText(input.ariaLabel).click();
+                beforeEach(async() => {
+                    await fireEvent.click(component.getByLabelText(input.ariaLabel));
                 });
 
                 it('then it emits the tooltip-collapse event', () => {

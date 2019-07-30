@@ -22,10 +22,10 @@ describe('given the select with 3 options', () => {
     });
 
     describe('when the index is set through dom change event', () => {
-        beforeEach(() => {
+        beforeEach(async() => {
             const combobox = component.getByRole('combobox');
             combobox.selectedIndex = 1;
-            fireEvent.change(combobox);
+          await fireEvent.change(combobox);
         });
 
         it('then it emits the select-change event with the correct data', () => {

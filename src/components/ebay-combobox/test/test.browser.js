@@ -36,8 +36,8 @@ describe('given the combobox with 3 items', () => {
 
     function thenItIsReadyForInteraction() {
         describe('when the input receives focus', () => {
-            beforeEach(() => {
-                fireEvent.focus(component.getByRole('combobox'));
+            beforeEach(async() => {
+              await fireEvent.focus(component.getByRole('combobox'));
             });
 
             it('then it should expand the combobox', () => {
@@ -45,8 +45,8 @@ describe('given the combobox with 3 items', () => {
             });
 
             describe('when any character key is pressed', () => {
-                beforeEach(() => {
-                    pressKey(component.getByRole('combobox'), {
+                beforeEach(async () => {
+                    await pressKey(component.getByRole('combobox'), {
                         key: 'A',
                         keyCode: 65
                     });
@@ -58,8 +58,8 @@ describe('given the combobox with 3 items', () => {
             });
 
             describe('when the down arrow key is pressed', () => {
-                beforeEach(() => {
-                    pressKey(component.getByRole('combobox'), {
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
                         key: 'ArrowDown',
                         keyCode: 40
                     });
@@ -73,7 +73,7 @@ describe('given the combobox with 3 items', () => {
 
                 describe('when the enter key is pressed', () => {
                     beforeEach(async() => {
-                        pressKey(component.getByRole('combobox'), {
+                        await pressKey(component.getByRole('combobox'), {
                             key: 'Enter',
                             keyCode: 13
                         });
@@ -89,8 +89,8 @@ describe('given the combobox with 3 items', () => {
                 });
 
                 describe('when the down arrow key is pressed a second time', () => {
-                    beforeEach(() => {
-                        pressKey(component.getByRole('combobox'), {
+                    beforeEach(async() => {
+                        await pressKey(component.getByRole('combobox'), {
                             key: 'ArrowDown',
                             keyCode: 40
                         });
@@ -105,8 +105,8 @@ describe('given the combobox with 3 items', () => {
             });
 
             describe('when the second option is clicked', () => {
-                beforeEach(() => {
-                    component.getAllByRole('option')[1].click();
+                beforeEach(async() => {
+                    await fireEvent.click(component.getAllByRole('option')[1]);
                 });
 
                 it('then it should emit a change event', () => {
@@ -119,8 +119,8 @@ describe('given the combobox with 3 items', () => {
             });
 
             describe('when the escape key is pressed', () => {
-                beforeEach(() => {
-                    pressKey(component.getByRole('combobox'), {
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
                         key: 'Escape',
                         keyCode: 27
                     });
@@ -142,8 +142,8 @@ describe('given the combobox starts with zero options', () => {
     });
 
     describe('when the input receives focus', () => {
-        beforeEach(() => {
-            fireEvent.focus(component.getByRole('combobox'));
+        beforeEach(async() => {
+          await fireEvent.focus(component.getByRole('combobox'));
         });
 
         it('then it has no options', () => {
@@ -163,8 +163,8 @@ describe('given the combobox starts with zero options', () => {
         });
 
         describe('when the input receives focus', () => {
-            beforeEach(() => {
-                fireEvent.focus(component.getByRole('combobox'));
+            beforeEach(async() => {
+              await fireEvent.focus(component.getByRole('combobox'));
             });
 
             it('then it should expand the combobox', () => {
@@ -172,8 +172,8 @@ describe('given the combobox starts with zero options', () => {
             });
 
             describe('when any character key is pressed', () => {
-                beforeEach(() => {
-                    pressKey(component.getByRole('combobox'), {
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
                         key: 'A',
                         keyCode: 65
                     });
@@ -185,8 +185,8 @@ describe('given the combobox starts with zero options', () => {
             });
 
             describe('when the down arrow key is pressed', () => {
-                beforeEach(() => {
-                    pressKey(component.getByRole('combobox'), {
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
                         key: 'ArrowDown',
                         keyCode: 40
                     });
@@ -216,8 +216,8 @@ describe('given the combobox starts with zero options', () => {
                 });
 
                 describe('when the down arrow key is pressed a second time', () => {
-                    beforeEach(() => {
-                        pressKey(component.getByRole('combobox'), {
+                    beforeEach(async() => {
+                        await pressKey(component.getByRole('combobox'), {
                             key: 'ArrowDown',
                             keyCode: 40
                         });
@@ -232,8 +232,8 @@ describe('given the combobox starts with zero options', () => {
             });
 
             describe('when the second option is clicked', () => {
-                beforeEach(() => {
-                    component.getAllByRole('option')[1].click();
+                beforeEach(async() => {
+                    await fireEvent.click(component.getAllByRole('option')[1]);
                 });
 
                 it('then it should emit a change event', () => {
@@ -246,8 +246,8 @@ describe('given the combobox starts with zero options', () => {
             });
 
             describe('when the escape key is pressed', () => {
-                beforeEach(() => {
-                    pressKey(component.getByRole('combobox'), {
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
                         key: 'Escape',
                         keyCode: 27
                     });
@@ -265,8 +265,8 @@ function isAriaSelected(el) {
     return el.getAttribute('aria-selected') === 'true';
 }
 
-function pressKey(el, info) {
-    fireEvent.keyDown(el, info);
-    fireEvent.keyPress(el, info);
-    fireEvent.keyUp(el, info);
+async function pressKey(el, info) {
+  await fireEvent.keyDown(el, info);
+  await fireEvent.keyPress(el, info);
+  await fireEvent.keyUp(el, info);
 }

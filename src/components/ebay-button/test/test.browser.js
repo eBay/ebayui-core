@@ -14,8 +14,8 @@ describe('given button is enabled', () => {
     });
 
     describe('when button is clicked', () => {
-        beforeEach(() => {
-            fireEvent.click(component.getByRole('button'));
+        beforeEach(async() => {
+            await fireEvent.click(component.getByRole('button'));
         });
 
         it('then it emits the event with correct data', () => {
@@ -24,8 +24,8 @@ describe('given button is enabled', () => {
     });
 
     describe('when escape key is pressed', () => {
-        beforeEach(() => {
-            fireEvent.keyDown(component.getByRole('button'), {
+        beforeEach(async() => {
+            await fireEvent.keyDown(component.getByRole('button'), {
                 key: 'Escape',
                 charCode: 27
             });
@@ -43,8 +43,8 @@ describe('given button is disabled', () => {
     });
 
     describe('when button is clicked', () => {
-        beforeEach(() => {
-            fireEvent.click(component.getByRole('button'));
+        beforeEach(async() => {
+            await fireEvent.click(component.getByRole('button'));
         });
 
         it('then it does not emit the event', () => {
@@ -53,8 +53,8 @@ describe('given button is disabled', () => {
     });
 
     describe('when escape key is pressed', () => {
-        beforeEach(() => {
-            fireEvent.keyDown(component.getByRole('button'), {
+        beforeEach(async () => {
+            await fireEvent.keyDown(component.getByRole('button'), {
                 key: 'Escape',
                 charCode: 27
             });

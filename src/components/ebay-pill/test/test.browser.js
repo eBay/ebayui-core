@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, waitForDomChange: __oldWaitForDomChange, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
 const template = require('..');
 
@@ -21,9 +21,7 @@ describe('given pill is enabled', () => {
 
     describe('when pill is clicked', () => {
         beforeEach(async() => {
-            await waitForDomChange(() => {
-                fireEvent.click(component.getByRole('button'));
-            });
+            await fireEvent.click(component.getByRole('button'));
         });
 
         it('then it emits the event with correct data', () => {
@@ -36,9 +34,7 @@ describe('given pill is enabled', () => {
 
         describe('when it is clicked again', () => {
             beforeEach(async() => {
-                await waitForDomChange(() => {
-                    fireEvent.click(component.getByRole('button'));
-                });
+                await fireEvent.click(component.getByRole('button'));
             });
 
             it('then it is not pressed', () => {
@@ -48,8 +44,8 @@ describe('given pill is enabled', () => {
     });
 
     describe('when escape key is pressed', () => {
-        beforeEach(() => {
-            fireEvent.keyDown(component.getByRole('button'), {
+        beforeEach(async () => {
+            await fireEvent.keyDown(component.getByRole('button'), {
                 key: 'Escape',
                 charCode: 27
             });
@@ -67,8 +63,8 @@ describe('given pill is disabled', () => {
     });
 
     describe('when pill is clicked', () => {
-        beforeEach(() => {
-            fireEvent.click(component.getByRole('button'));
+        beforeEach(async() => {
+          await fireEvent.click(component.getByRole('button'));
         });
 
         it('then it does not emit the event', () => {
@@ -77,8 +73,8 @@ describe('given pill is disabled', () => {
     });
 
     describe('when escape key is pressed', () => {
-        beforeEach(() => {
-            fireEvent.keyDown(component.getByRole('button'), {
+        beforeEach(async() => {
+          await fireEvent.keyDown(component.getByRole('button'), {
                 key: 'Escape',
                 charCode: 27
             });
@@ -89,9 +85,3 @@ describe('given pill is disabled', () => {
         });
     });
 });
-
-async function waitForDomChange(fn) {
-    const change = __oldWaitForDomChange();
-    if (fn) await fn();
-    await change;
-}

@@ -66,8 +66,7 @@ describe('given a continuous carousel', () => {
         describe('when it is rerendered to show the second item', () => {
             beforeEach(async() => {
                 await component.rerender(assign({}, input, { index: 1 }));
-                // Carousels emit an update event if they have to move after the initial render.
-                await wait(() => expect(component.emitted('carousel-update')).has.length(1));
+                await waitForCarouselUpdate();
             });
 
             it('then it moved to the second item', () => {
@@ -101,8 +100,8 @@ describe('given a continuous carousel', () => {
         });
 
         describe('when the previous button is clicked while disabled', () => {
-            beforeEach(() => {
-                fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+            beforeEach(async() => {
+              await fireEvent.click(component.getByLabelText(input.a11yPreviousText));
             });
 
             it('then it did not emit the prev event', () => {
@@ -117,7 +116,7 @@ describe('given a continuous carousel', () => {
                     input.items.map(item => component.getByText(item.renderBody.text)),
                     el => el.hasAttribute('aria-hidden')
                 );
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+               fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
             });
 
@@ -136,13 +135,12 @@ describe('given a continuous carousel', () => {
 
         beforeEach(async() => {
             component = await render(template, input);
-            // Carousels emit an update event if they have to move after the initial render.
-            await wait(() => expect(component.emitted('carousel-update')).has.length(1));
+            await waitForCarouselUpdate();
         });
 
         describe('when the next button is clicked while disabled', () => {
-            beforeEach(() => {
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+            beforeEach(async() => {
+              await fireEvent.click(component.getByLabelText(input.a11yNextText));
             });
 
             it('then it did not emit the next event', () => {
@@ -160,7 +158,7 @@ describe('given a continuous carousel', () => {
                     el => el.hasAttribute('aria-hidden')
                 );
 
-                fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+               fireEvent.click(component.getByLabelText(input.a11yPreviousText));
                 await waitForCarouselUpdate();
             });
 
@@ -189,11 +187,11 @@ describe('given a continuous carousel', () => {
 
         describe('when next button is clicked three times', () => {
             beforeEach(async() => {
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+               fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+               fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+               fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
             });
 
@@ -209,13 +207,13 @@ describe('given a continuous carousel', () => {
 
         describe('when next button is clicked three times, and previous button is clicked once', () => {
             beforeEach(async() => {
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+               fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+               fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+               fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
-                fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+               fireEvent.click(component.getByLabelText(input.a11yPreviousText));
                 await waitForCarouselUpdate();
             });
 
@@ -294,8 +292,7 @@ describe('given a discrete carousel', () => {
         describe('when it is rerendered to show the second item', () => {
             beforeEach(async() => {
                 await component.rerender(assign({}, input, { index: 1 }));
-                // Carousels emit an update event if they have to move after the initial render.
-                await wait(() => expect(component.emitted('carousel-update')).has.length(1));
+                await waitForCarouselUpdate();
             });
 
             it('then it moved to the second item', () => {
@@ -333,8 +330,8 @@ describe('given a discrete carousel', () => {
         });
 
         describe('when the previous button is clicked while disabled', () => {
-            beforeEach(() => {
-                fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+            beforeEach(async() => {
+              await fireEvent.click(component.getByLabelText(input.a11yPreviousText));
             });
 
             it('then it did not emit the prev event', () => {
@@ -344,7 +341,7 @@ describe('given a discrete carousel', () => {
 
         describe('when next button is clicked', () => {
             beforeEach(async() => {
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+               fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
             });
 
@@ -361,7 +358,7 @@ describe('given a discrete carousel', () => {
 
         describe('when second slide dot is clicked', () => {
             beforeEach(async() => {
-                fireEvent.click(component.getByLabelText(input.a11yOtherText.replace('{slide}', 2)));
+               fireEvent.click(component.getByLabelText(input.a11yOtherText.replace('{slide}', 2)));
                 await waitForCarouselUpdate();
             });
 
@@ -381,7 +378,7 @@ describe('given a discrete carousel', () => {
                 const thirdItem = component.getByText(input.items[1].renderBody.text);
                 const list = thirdItem.parentElement;
                 list.scrollLeft = thirdItem.offsetLeft;
-                fireEvent.scroll(list);
+               fireEvent.scroll(list);
                 await waitForCarouselUpdate();
             });
 
@@ -419,8 +416,7 @@ describe('given a discrete carousel', () => {
 
         beforeEach(async() => {
             component = await render(template, input);
-            // Carousels emit an update event if they have to move after the initial render.
-            await wait(() => expect(component.emitted('carousel-update')).has.length(1));
+            await waitForCarouselUpdate();
         });
 
         it('then next control is disabled', () => {
@@ -434,7 +430,7 @@ describe('given a discrete carousel', () => {
 
         describe('when previous button is clicked', () => {
             beforeEach(async() => {
-                fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+               fireEvent.click(component.getByLabelText(input.a11yPreviousText));
                 await waitForCarouselUpdate();
             });
 
@@ -481,7 +477,7 @@ describe('given a discrete carousel', () => {
 
         describe('when next button is clicked', () => {
             beforeEach(async() => {
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+               fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
             });
 
@@ -494,7 +490,7 @@ describe('given a discrete carousel', () => {
 
         describe('when second slide dot is clicked', () => {
             beforeEach(async() => {
-                fireEvent.click(component.getByLabelText(input.a11yOtherText.replace('{slide}', 2)));
+               fireEvent.click(component.getByLabelText(input.a11yOtherText.replace('{slide}', 2)));
                 await waitForCarouselUpdate();
             });
 
@@ -555,7 +551,7 @@ describe('given a discrete carousel', () => {
 
         describe('when next button is clicked', () => {
             beforeEach(async() => {
-                fireEvent.click(component.getByLabelText(input.a11yNextText));
+               fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
             });
 
@@ -620,7 +616,7 @@ describe('given a discrete carousel', () => {
 
             describe('when next is clicked at the end', () => {
                 beforeEach(async() => {
-                    fireEvent.click(component.getByLabelText(input.a11yNextText));
+                   fireEvent.click(component.getByLabelText(input.a11yNextText));
                     await waitForCarouselUpdate();
                 });
 
@@ -650,8 +646,8 @@ describe('given a discrete carousel', () => {
         });
 
         describe('when it is interacted with', () => {
-            beforeEach(() => {
-                fireEvent.mouseOver(component.getByRole('heading'));
+            beforeEach(async() => {
+              await fireEvent.mouseOver(component.getByRole('heading'));
             });
 
             it('then the autoplay does not run', async() => {
@@ -660,8 +656,8 @@ describe('given a discrete carousel', () => {
             });
 
             describe('when the interaction has finished', () => {
-                beforeEach(() => {
-                    fireEvent.mouseOut(component.getByRole('heading'));
+                beforeEach(async() => {
+                  await fireEvent.mouseOut(component.getByRole('heading'));
                 });
 
                 it('then it does autoplay', async() => {

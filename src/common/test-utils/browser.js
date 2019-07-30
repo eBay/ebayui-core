@@ -9,7 +9,7 @@ module.exports = {
      * @param {function} cb A callback to call after the scroll.
      */
     simulateScroll(el, to, cb) {
-        fireEvent.scroll(el);
+      fireEvent.scroll(el);
         el.scrollLeft = to;
         setTimeout(cb, 600);
     },
