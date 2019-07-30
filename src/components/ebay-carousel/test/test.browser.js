@@ -635,7 +635,7 @@ describe('given a discrete carousel', () => {
         describe('when it is paused', () => {
             beforeEach(async() => {
                 await component.rerender(assign({}, input, { paused: true }));
-                await new Promise(resolve => setTimeout(resolve, 400));
+                await new Promise(resolve => setTimeout(resolve, 600));
             });
 
             it('then it did not emit any updates', () => {
@@ -651,7 +651,7 @@ describe('given a discrete carousel', () => {
             });
 
             it('then the autoplay does not run', async() => {
-                await new Promise(resolve => setTimeout(resolve, 400));
+                await new Promise(resolve => setTimeout(resolve, 600));
                 expect(component.emitted('carousel-update')).has.length(0);
             });
 

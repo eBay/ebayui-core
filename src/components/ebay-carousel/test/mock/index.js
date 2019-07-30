@@ -31,7 +31,7 @@ exports.Discrete_2PerSlide_6Items = assign({}, exports.Discrete_1PerSlide_0Items
 exports.Discrete_1PerSlide_3Items_AutoPlay = assign({
     a11yPlayText: 'play',
     a11yPauseText: 'pause',
-    autoplay: 200
+    autoplay: 400
 }, exports.Discrete_1PerSlide_3Items);
 
 exports.Continuous_0Items = {
