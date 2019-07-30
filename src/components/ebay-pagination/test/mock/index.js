@@ -1,3 +1,5 @@
+const assign = require('core-js-pure/features/object/assign');
+
 exports.Base_0Items = {
     a11yPreviousText: 'Previous page',
     a11yNextText: 'Next page',
@@ -5,8 +7,7 @@ exports.Base_0Items = {
     items: []
 };
 
-exports.Links_6Items_No_Selected = {
-    ...exports.Base_0Items,
+exports.Links_6Items_No_Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -21,10 +22,9 @@ exports.Links_6Items_No_Selected = {
             href: '#next'
         }
     )
-};
+});
 
-exports.Links_9Items_1Selected = {
-    ...exports.Base_0Items,
+exports.Links_9Items_1Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -40,10 +40,9 @@ exports.Links_9Items_1Selected = {
             href: '#next'
         }
     )
-};
+});
 
-exports.Links_9Items_4Selected = {
-    ...exports.Base_0Items,
+exports.Links_9Items_4Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -59,10 +58,9 @@ exports.Links_9Items_4Selected = {
             href: '#next'
         }
     )
-};
+});
 
-exports.Links_9Items_7Selected = {
-    ...exports.Base_0Items,
+exports.Links_9Items_7Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -78,10 +76,9 @@ exports.Links_9Items_7Selected = {
             href: '#next'
         }
     )
-};
+});
 
-exports.Links_1Items_Navigation_Disabled = {
-    ...exports.Base_0Items,
+exports.Links_1Items_Navigation_Disabled = assign({}, exports.Base_0Items, {
     items: [
         {
             type: 'previous',
@@ -98,20 +95,18 @@ exports.Links_1Items_Navigation_Disabled = {
             disabled: true
         }
     ]
-};
+});
 
-exports.Links_1Items_No_Navigation = {
-    ...exports.Base_0Items,
+exports.Links_1Items_No_Navigation = assign({}, exports.Base_0Items, {
     items: [
         {
             href: `#1`,
             renderBody: createRenderBody('Pagination content 1')
         }
     ]
-};
+});
 
-exports.Buttons_0Selected = {
-    ...exports.Base_0Items,
+exports.Buttons_0Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous'
@@ -124,7 +119,7 @@ exports.Buttons_0Selected = {
             type: 'next'
         }
     )
-};
+});
 
 function getNItems(n, getAttrs) {
     return Array.from({ length: n }).map((_, i) => getAttrs(i));

@@ -1,3 +1,5 @@
+const assign = require('core-js-pure/features/object/assign');
+
 exports.WithContent = {
     ariaLabel: 'Infotip label',
     content: {
@@ -5,17 +7,15 @@ exports.WithContent = {
     }
 };
 
-exports.WithContentAndHeader = {
-    ...exports.WithContent,
+exports.WithContentAndHeader = assign({}, exports.WithContent, {
     heading: {
         renderBody: createRenderBody('Infotip heading')
     }
-};
+});
 
-exports.Disabled = {
-    ...exports.WithContent,
+exports.Disabled = assign({}, exports.WithContent, {
     disabled: true
-};
+});
 
 function createRenderBody(text) {
     renderBody.text = text;

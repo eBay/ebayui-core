@@ -1,3 +1,4 @@
+const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const { testPassThroughAttributes } = require('../../../common/test-utils/server');
@@ -33,7 +34,7 @@ describe('carousel', () => {
         });
 
         it('renders no-dots enabled', async() => {
-            const input = { ...mock.Discrete_1PerSlide_3Items, noDots: true };
+            const input = assign({}, mock.Discrete_1PerSlide_3Items, { noDots: true });
             const { getByLabelText } = await render(template, input);
 
             expect(() => getByLabelText(input.a11yPreviousText)).not.to.throw();
@@ -59,7 +60,7 @@ describe('carousel', () => {
             });
 
             it('renders paused version', async() => {
-                const input = { ...mock.Discrete_1PerSlide_3Items_AutoPlay, paused: true };
+                const input = assign({}, mock.Discrete_1PerSlide_3Items_AutoPlay, { paused: true });
                 const { getByLabelText } = await render(template, input);
 
                 expect(() => getByLabelText(input.a11yPlayText)).not.to.throw();
