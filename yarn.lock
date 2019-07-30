@@ -1649,11 +1649,6 @@ anymatch@^3.0.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-app-module-path@^1.0.5:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/app-module-path/-/app-module-path-1.1.0.tgz#a6ac5368450f209b9f5b86e9a3e4a6ab6fe7531c"
-  integrity sha1-pqxTaEUPIJufW4bpo+Smq2/nUxw=
-
 app-module-path@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/app-module-path/-/app-module-path-2.2.0.tgz#641aa55dfb7d6a6f0a8141c4b9c0aa50b6c24dd5"
@@ -4383,7 +4378,7 @@ deps-sort@^2.0.0:
     subarg "^1.0.0"
     through2 "^2.0.0"
 
-deresolve@^1.0.0, deresolve@^1.1.2:
+deresolve@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/deresolve/-/deresolve-1.1.2.tgz#9cf2379c8d2d631dc4b9957294b90e4a72cb6ce0"
   dependencies:
@@ -5072,7 +5067,7 @@ espree@^5.0.1:
     acorn-jsx "^5.0.0"
     eslint-visitor-keys "^1.0.0"
 
-esprima@2.7.x, esprima@^2.7.0, esprima@^2.7.1:
+esprima@2.7.x, esprima@^2.7.1:
   version "2.7.3"
   resolved "https://registry.npmjs.org/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
 
@@ -6529,13 +6524,6 @@ htmlescape@^1.1.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/htmlescape/-/htmlescape-1.1.1.tgz#3a03edc2214bca3b66424a3e7959349509cb0351"
 
-htmljs-parser@^2.2.1:
-  version "2.6.6"
-  resolved "https://registry.npmjs.org/htmljs-parser/-/htmljs-parser-2.6.6.tgz#e3121346524acdaa7574cd8ce167c90da8985d94"
-  dependencies:
-    char-props "^0.1.5"
-    complain "^1.0.0"
-
 htmljs-parser@^2.6.1:
   version "2.6.2"
   resolved "https://registry.npmjs.org/htmljs-parser/-/htmljs-parser-2.6.2.tgz#6309da7cb0de40b5d9049eef53b6d56de988c7dc"
@@ -7955,14 +7943,6 @@ lasso-marko@^2.4.7:
   dependencies:
     callbackify "^1.1.0"
 
-lasso-modules-client@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/lasso-modules-client/-/lasso-modules-client-1.0.0.tgz#9c147fd6600ef3fc304a608a907346a0b6a0c051"
-  integrity sha1-nBR/1mAO8/wwSmCKkHNGoLagwFE=
-  dependencies:
-    lasso-package-root "^1.0.0"
-    raptor-polyfill "^1.0.2"
-
 lasso-modules-client@^2.0.4, lasso-modules-client@^2.0.5:
   version "2.0.5"
   resolved "https://registry.npmjs.org/lasso-modules-client/-/lasso-modules-client-2.0.5.tgz#d9a06724a900977636971667ee9c170d2fc4dd28"
@@ -8192,11 +8172,6 @@ lintspaces@~0.6.2:
     deep-extend "^0.6.0"
     editorconfig "^0.15.0"
     rc "^1.2.8"
-
-listener-tracker@^1.0.2:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/listener-tracker/-/listener-tracker-1.2.0.tgz#cf8bd58d79d995d95224b82788eed260167e135e"
-  integrity sha1-z4vVjXnZldlSJLgniO7SYBZ+E14=
 
 listener-tracker@^2.0.0:
   version "2.0.0"
@@ -8672,27 +8647,13 @@ marko-prettyprint@^1.5.2:
     redent "^2.0.0"
     resolve-from "^4.0.0"
 
-marko-widgets@^6:
-  version "6.6.6"
-  resolved "https://registry.npmjs.org/marko-widgets/-/marko-widgets-6.6.6.tgz#3d44480619a18830b67fc1bc4fc4cf8ae64ec670"
-  integrity sha512-mtChb95DY0XP1gZzYbRVXIPndCVKyIGIXtlo5CrUvTR3LjLl08rGfeEyYqdIHdRNwxMONp20q05BdyjkBhYJ7A==
+marko-widgets@^7:
+  version "7.0.1"
+  resolved "https://registry.npmjs.org/marko-widgets/-/marko-widgets-7.0.1.tgz#0e0df2b5609f462f6e93f52f8628535f2f4bc03f"
+  integrity sha1-Dg3ytWCfRi9uk/UvhihTXy9LwD8=
   dependencies:
-    complain "^1.0.0"
-    events "^1.0.2"
-    lasso-modules-client "^1.0.0"
-    listener-tracker "^1.0.2"
-    morphdom "^1.4.6"
-    raptor-async "^1.1.2"
     raptor-dom "^1.1.0"
-    raptor-json "^1.0.1"
-    raptor-logging "^1.0.1"
-    raptor-polyfill "^1.0.0"
-    raptor-pubsub "^1.0.2"
     raptor-renderer "^1.4.4"
-    raptor-util "^2.0.0"
-    resolve-from "^1.0.1"
-    try-require "^1.2.1"
-    warp10 "^1.3.6"
 
 marko@4.14.21:
   version "4.14.21"
@@ -8732,47 +8693,17 @@ marko@4.14.21:
     try-require "^1.2.1"
     warp10 "^2.0.1"
 
-marko@^3:
-  version "3.14.4"
-  resolved "https://registry.npmjs.org/marko/-/marko-3.14.4.tgz#31aa9b9df5efc9941338afe98beeac9805fdf4be"
-  integrity sha512-B4AWtrgqoLA3VuaTF0Ov8+bvpoi8Eb71BGXdbgheOaLDaMK2u7XE0WdKf1fA7BtbqzZCUcpf90oynZow3nEPkA==
-  dependencies:
-    app-module-path "^1.0.5"
-    async-writer "^2.0.0"
-    browser-refresh-client "^1.0.0"
-    char-props "~0.1.5"
-    deresolve "^1.0.0"
-    esprima "^2.7.0"
-    events "^1.0.2"
-    htmljs-parser "^2.2.1"
-    lasso-package-root "^1.0.0"
-    minimatch "^3.0.2"
-    object-assign "^4.1.0"
-    property-handlers "^1.0.0"
-    raptor-args "^1.0.0"
-    raptor-async "^1.1.2"
-    raptor-json "^1.0.1"
-    raptor-logging "^1.0.1"
-    raptor-polyfill "^1.0.0"
-    raptor-promises "^1.0.1"
-    raptor-regexp "^1.0.0"
-    raptor-renderer "^1.4.4"
-    raptor-strings "^1.0.0"
-    raptor-util "^2.0.1"
-    resolve-from "^1.0.0"
-    strip-json-comments "^2.0.1"
-    try-require "^1.2.1"
-
-marko@^4.10.0, marko@^4.12.3:
-  version "4.14.23"
-  resolved "https://registry.npmjs.org/marko/-/marko-4.14.23.tgz#8553b6185aa8af438780a9fe759af5d2d6af7250"
+marko@^4, marko@^4.15.2:
+  version "4.18.10"
+  resolved "https://registry.npmjs.org/marko/-/marko-4.18.10.tgz#02889b00a9dd5d12e064db720080951a3bc0c148"
+  integrity sha512-X2pmJIOBZ/39D2fCQZYtWprIjvrLF+cpEK0vjzMVwxBh13tRCyUhwoqlQO84d8Xif+RMEuR3/9fRDlwnURMSTw==
   dependencies:
     app-module-path "^2.2.0"
     argly "^1.0.0"
     browser-refresh-client "^1.0.0"
     camelcase "^5.0.0"
     char-props "~0.1.5"
-    complain "^1.3.0"
+    complain "^1.6.0"
     deresolve "^1.1.2"
     escodegen "^1.8.1"
     esprima "^4.0.0"
@@ -8780,7 +8711,7 @@ marko@^4.10.0, marko@^4.12.3:
     events "^1.0.2"
     events-light "^1.0.0"
     he "^1.1.0"
-    htmljs-parser "^2.6.1"
+    htmljs-parser "^2.6.7"
     lasso-caching-fs "^1.0.1"
     lasso-modules-client "^2.0.4"
     lasso-package-root "^1.0.1"
@@ -8800,17 +8731,16 @@ marko@^4.10.0, marko@^4.12.3:
     try-require "^1.2.1"
     warp10 "^2.0.1"
 
-marko@^4.15.2:
-  version "4.18.10"
-  resolved "https://registry.npmjs.org/marko/-/marko-4.18.10.tgz#02889b00a9dd5d12e064db720080951a3bc0c148"
-  integrity sha512-X2pmJIOBZ/39D2fCQZYtWprIjvrLF+cpEK0vjzMVwxBh13tRCyUhwoqlQO84d8Xif+RMEuR3/9fRDlwnURMSTw==
+marko@^4.10.0, marko@^4.12.3:
+  version "4.14.23"
+  resolved "https://registry.npmjs.org/marko/-/marko-4.14.23.tgz#8553b6185aa8af438780a9fe759af5d2d6af7250"
   dependencies:
     app-module-path "^2.2.0"
     argly "^1.0.0"
     browser-refresh-client "^1.0.0"
     camelcase "^5.0.0"
     char-props "~0.1.5"
-    complain "^1.6.0"
+    complain "^1.3.0"
     deresolve "^1.1.2"
     escodegen "^1.8.1"
     esprima "^4.0.0"
@@ -8818,7 +8748,7 @@ marko@^4.15.2:
     events "^1.0.2"
     events-light "^1.0.0"
     he "^1.1.0"
-    htmljs-parser "^2.6.7"
+    htmljs-parser "^2.6.1"
     lasso-caching-fs "^1.0.1"
     lasso-modules-client "^2.0.4"
     lasso-package-root "^1.0.1"
@@ -9232,11 +9162,6 @@ module-deps@^6.0.0:
     subarg "^1.0.0"
     through2 "^2.0.0"
     xtend "^4.0.0"
-
-morphdom@^1.4.6:
-  version "1.4.6"
-  resolved "https://registry.npmjs.org/morphdom/-/morphdom-1.4.6.tgz#0bd4f8207ec87c38157b676ec7b9bcf318f0838d"
-  integrity sha1-C9T4IH7IfDgVe2dux7m88xjwg40=
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -11063,7 +10988,7 @@ range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.npmjs.org/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
 
-raptor-args@^1, raptor-args@^1.0.0:
+raptor-args@^1:
   version "1.0.3"
   resolved "https://registry.npmjs.org/raptor-args/-/raptor-args-1.0.3.tgz#e096ce5c0f9de5e0848617a78bfface94c54dc86"
 
@@ -11114,7 +11039,7 @@ raptor-json@^1.0.1:
   dependencies:
     raptor-strings "^1.0.0"
 
-raptor-logging@^1.0.1, raptor-logging@^1.1.3:
+raptor-logging@^1.1.3:
   version "1.1.3"
   resolved "https://registry.npmjs.org/raptor-logging/-/raptor-logging-1.1.3.tgz#6bd8843632882e56387aa53bcafcbebaca695ca1"
   dependencies:
@@ -11171,11 +11096,6 @@ raptor-strings@^1.0.0, raptor-strings@^1.0.2:
 raptor-util@^1, raptor-util@^1.0.0, raptor-util@^1.0.10, raptor-util@^1.0.7, raptor-util@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/raptor-util/-/raptor-util-1.1.2.tgz#f2ee8076a9ae3eae2e65672e46a220074fa2dff3"
-
-raptor-util@^2.0.0, raptor-util@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/raptor-util/-/raptor-util-2.0.1.tgz#3c628b828ea182d1cee308bb1b5f45eae6fe0f8d"
-  integrity sha1-PGKLgo6hgtHO4wi7G19F6ub+D40=
 
 raptor-util@^3.2.0:
   version "3.2.0"
@@ -11648,7 +11568,7 @@ resolve-cwd@^2.0.0:
   dependencies:
     resolve-from "^3.0.0"
 
-resolve-from@^1.0.0, resolve-from@^1.0.1:
+resolve-from@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/resolve-from/-/resolve-from-1.0.1.tgz#26cbfe935d1aeeeabb29bc3fe5aeb01e93d44226"
 
@@ -13587,11 +13507,6 @@ void-elements@^2.0.0:
   version "2.0.1"
   resolved "https://registry.npmjs.org/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
   integrity sha1-wGavtYK7HLQSjWDqkjkulNXp2+w=
-
-warp10@^1.3.6:
-  version "1.3.6"
-  resolved "https://registry.npmjs.org/warp10/-/warp10-1.3.6.tgz#edffff4f06382d2e469ba88ccfcb95bb81d3bda6"
-  integrity sha512-7cijX+NprqPV+UGUZXZw1I15JFHPqoy65tNVvP6cL43Vlanpcm8hBYoQTuDYUHa5x90Bct4gHhRtqqOOkLhQkw==
 
 warp10@^2.0.1:
   version "2.0.1"
