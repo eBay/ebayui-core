@@ -6,8 +6,8 @@ const renderer = require('../');
 let widget;
 
 function renderAndGetRoot(input) {
-    widget = renderer.renderSync(input).appendTo(document.body).getWidget('ebay-button');
-    return document.querySelector('.btn--pill');
+    widget = renderer.renderSync(input).appendTo(document.body).getWidget();
+    return document.querySelector('.pill');
 }
 
 describe('given pill is enabled', () => {
@@ -21,7 +21,7 @@ describe('given pill is enabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('button-click', spy);
+            widget.on('pill-click', spy);
             testUtils.triggerEvent(root, 'click');
         });
 
@@ -31,7 +31,6 @@ describe('given pill is enabled', () => {
 
         test('then it emits the event with correct data', () => {
             expect(spy.calledOnce).to.equal(true);
-            testUtils.testOriginalEvent(spy);
         });
     });
 
@@ -39,27 +38,13 @@ describe('given pill is enabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('button-click', spy);
+            widget.on('pill-click', spy);
             testUtils.triggerEvent(root, 'click');
             testUtils.triggerEvent(root, 'click');
         });
 
         test('the widget does not have a pressed state', () => {
             expect(widget.state.pressed).to.equal(false);
-        });
-    });
-
-    describe('when escape key is pressed', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-escape', spy);
-            testUtils.triggerEvent(root, 'keydown', 27);
-        });
-
-        test('then it emits the event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            testUtils.testOriginalEvent(spy);
         });
     });
 });
@@ -75,21 +60,8 @@ describe('given pill is disabled', () => {
         let spy;
         beforeEach(() => {
             spy = sinon.spy();
-            widget.on('button-click', spy);
+            widget.on('pill-click', spy);
             testUtils.triggerEvent(root, 'click');
-        });
-
-        test('then it doesn\'t emit the event', () => {
-            expect(spy.called).to.equal(false);
-        });
-    });
-
-    describe('when escape key is pressed', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('button-escape', spy);
-            testUtils.triggerEvent(root, 'keydown', 27);
         });
 
         test('then it doesn\'t emit the event', () => {

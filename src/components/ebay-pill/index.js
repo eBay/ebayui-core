@@ -18,10 +18,9 @@ module.exports = require('marko-widgets').defineComponent({
         }
     },
     handleButtonClick(event) {
-        this.setState('pressed', !this.state.pressed);
-        this.emit('button-click', event);
-    },
-    handleButtonEscape(event) {
-        this.emit('button-escape', event);
+        if (!this.state.disabled) {
+            this.setState('pressed', !this.state.pressed);
+            this.emit('pill-click', event);
+        }
     }
 });
