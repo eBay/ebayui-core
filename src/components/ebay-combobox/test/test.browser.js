@@ -37,7 +37,7 @@ describe('given the combobox with 3 items', () => {
     function thenItIsReadyForInteraction() {
         describe('when the input receives focus', () => {
             beforeEach(async() => {
-              await fireEvent.focus(component.getByRole('combobox'));
+                await fireEvent.focus(component.getByRole('combobox'));
             });
 
             it('then it should expand the combobox', () => {
@@ -45,7 +45,7 @@ describe('given the combobox with 3 items', () => {
             });
 
             describe('when any character key is pressed', () => {
-                beforeEach(async () => {
+                beforeEach(async() => {
                     await pressKey(component.getByRole('combobox'), {
                         key: 'A',
                         keyCode: 65
@@ -143,7 +143,7 @@ describe('given the combobox starts with zero options', () => {
 
     describe('when the input receives focus', () => {
         beforeEach(async() => {
-          await fireEvent.focus(component.getByRole('combobox'));
+            await fireEvent.focus(component.getByRole('combobox'));
         });
 
         it('then it has no options', () => {
@@ -164,7 +164,7 @@ describe('given the combobox starts with zero options', () => {
 
         describe('when the input receives focus', () => {
             beforeEach(async() => {
-              await fireEvent.focus(component.getByRole('combobox'));
+                await fireEvent.focus(component.getByRole('combobox'));
             });
 
             it('then it should expand the combobox', () => {
@@ -266,7 +266,7 @@ function isAriaSelected(el) {
 }
 
 async function pressKey(el, info) {
-  await fireEvent.keyDown(el, info);
-  await fireEvent.keyPress(el, info);
-  await fireEvent.keyUp(el, info);
+    await fireEvent.keyDown(el, info);
+    await fireEvent.keyPress(el, info);
+    await fireEvent.keyUp(el, info);
 }

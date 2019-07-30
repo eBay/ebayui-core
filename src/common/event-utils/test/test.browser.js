@@ -101,7 +101,7 @@ describe('resizeEventUtil', () => {
         const mockCallback = sinon.spy();
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
-      fireEvent(window, new Event('resize'));
+        fireEvent(window, new Event('resize'));
         waitFrames(2, () => {
             expect(mockCallback.callCount).to.equal(1);
             done();
@@ -113,7 +113,7 @@ describe('resizeEventUtil', () => {
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         resizeUtil.removeEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
-      fireEvent(window, new Event('resize'));
+        fireEvent(window, new Event('resize'));
         waitFrames(2, () => {
             expect(mockCallback.callCount).to.equal(0);
             done();

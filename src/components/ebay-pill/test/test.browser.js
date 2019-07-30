@@ -44,7 +44,7 @@ describe('given pill is enabled', () => {
     });
 
     describe('when escape key is pressed', () => {
-        beforeEach(async () => {
+        beforeEach(async() => {
             await fireEvent.keyDown(component.getByRole('button'), {
                 key: 'Escape',
                 charCode: 27
@@ -64,7 +64,7 @@ describe('given pill is disabled', () => {
 
     describe('when pill is clicked', () => {
         beforeEach(async() => {
-          await fireEvent.click(component.getByRole('button'));
+            await fireEvent.click(component.getByRole('button'));
         });
 
         it('then it does not emit the event', () => {
@@ -74,7 +74,7 @@ describe('given pill is disabled', () => {
 
     describe('when escape key is pressed', () => {
         beforeEach(async() => {
-          await fireEvent.keyDown(component.getByRole('button'), {
+            await fireEvent.keyDown(component.getByRole('button'), {
                 key: 'Escape',
                 charCode: 27
             });

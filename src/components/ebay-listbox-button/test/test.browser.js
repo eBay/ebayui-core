@@ -165,7 +165,7 @@ describe('given the listbox is in an expanded state', () => {
 });
 
 async function pressKey(el, info) {
-  await fireEvent.keyDown(el, info);
-  await fireEvent.keyPress(el, info);
-  await fireEvent.keyUp(el, info);
+    await fireEvent.keyDown(el, info);
+    await fireEvent.keyPress(el, info);
+    await fireEvent.keyUp(el, info);
 }

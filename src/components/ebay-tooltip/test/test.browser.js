@@ -19,7 +19,7 @@ describe('given the default tooltip', () => {
 
     describe('when the host element is hovered', () => {
         beforeEach(async() => {
-          await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
+            await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
         });
 
         it('then it emits the tooltip-expand event', () => {
@@ -28,7 +28,7 @@ describe('given the default tooltip', () => {
 
         describe('when the host element loses hover', () => {
             beforeEach(async() => {
-              await fireEvent.mouseLeave(component.getByText(input.host.renderBody.text).parentElement);
+                await fireEvent.mouseLeave(component.getByText(input.host.renderBody.text).parentElement);
             });
 
             it('then it emits the tooltip-collapse event', () => {
@@ -47,7 +47,7 @@ describe('given the a custom aligned tooltip', () => {
 
     describe('when the host element is hovered', () => {
         beforeEach(async() => {
-          await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
+            await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
         });
 
         it('then it sets the overlay styles correctly', () => {
@@ -71,7 +71,7 @@ mock.Pointers.forEach(input => {
 
         describe('when the host element is hovered', () => {
             beforeEach(async() => {
-              await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
+                await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
             });
 
             it('then it sets the overlay styles correctly', () => {

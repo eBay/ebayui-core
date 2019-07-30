@@ -25,7 +25,7 @@ describe('given the select with 3 options', () => {
         beforeEach(async() => {
             const combobox = component.getByRole('combobox');
             combobox.selectedIndex = 1;
-          await fireEvent.change(combobox);
+            await fireEvent.change(combobox);
         });
 
         it('then it emits the select-change event with the correct data', () => {

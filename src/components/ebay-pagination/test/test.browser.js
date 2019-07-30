@@ -34,7 +34,7 @@ describe('given the pagination is rendered', () => {
         describe('when the previous button is activated', () => {
             describe('via click', () => {
                 beforeEach(async() => {
-                  await fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+                    await fireEvent.click(component.getByLabelText(input.a11yPreviousText));
                 });
 
                 thenItEmittedThePaginationPreviousEvent();
@@ -42,7 +42,7 @@ describe('given the pagination is rendered', () => {
 
             describe('via keyDown', () => {
                 beforeEach(async() => {
-                  await fireEvent.keyDown(component.getByLabelText(input.a11yPreviousText), {
+                    await fireEvent.keyDown(component.getByLabelText(input.a11yPreviousText), {
                         key: 'Space',
                         keyCode: 32
                     });
@@ -66,7 +66,7 @@ describe('given the pagination is rendered', () => {
         describe('when the next button is activated', () => {
             describe('via click', () => {
                 beforeEach(async() => {
-                  await fireEvent.click(component.getByLabelText(input.a11yNextText));
+                    await fireEvent.click(component.getByLabelText(input.a11yNextText));
                 });
 
                 thenItEmittedThePaginationNextEvent();
@@ -74,7 +74,7 @@ describe('given the pagination is rendered', () => {
 
             describe('via keyDown', () => {
                 beforeEach(async() => {
-                  await fireEvent.keyDown(component.getByLabelText(input.a11yNextText), {
+                    await fireEvent.keyDown(component.getByLabelText(input.a11yNextText), {
                         key: 'Space',
                         keyCode: 32
                     });
@@ -98,7 +98,7 @@ describe('given the pagination is rendered', () => {
         describe('when the item number is activated', () => {
             describe('via click', () => {
                 beforeEach(async() => {
-                  await fireEvent.click(component.getByText(input.items[1].renderBody.text));
+                    await fireEvent.click(component.getByText(input.items[1].renderBody.text));
                 });
 
                 thenItEmittedThePaginationSelectEvent();
@@ -106,7 +106,7 @@ describe('given the pagination is rendered', () => {
 
             describe('via keyDown', () => {
                 beforeEach(async() => {
-                  await fireEvent.keyDown(component.getByText(input.items[1].renderBody.text), {
+                    await fireEvent.keyDown(component.getByText(input.items[1].renderBody.text), {
                         key: 'Space',
                         keyCode: 32
                     });
@@ -140,7 +140,7 @@ describe('given the pagination is rendered with disabled controls', () => {
     describe('when the previous button is activated', () => {
         describe('via click', () => {
             beforeEach(async() => {
-              await fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+                await fireEvent.click(component.getByLabelText(input.a11yPreviousText));
             });
 
             thenItDidNotEmitThePaginationPreviousEvent();
@@ -148,7 +148,7 @@ describe('given the pagination is rendered with disabled controls', () => {
 
         describe('via keyDown', () => {
             beforeEach(async() => {
-              await fireEvent.keyDown(component.getByLabelText(input.a11yPreviousText), {
+                await fireEvent.keyDown(component.getByLabelText(input.a11yPreviousText), {
                     key: 'Space',
                     keyCode: 32
                 });
@@ -167,7 +167,7 @@ describe('given the pagination is rendered with disabled controls', () => {
     describe('when the next button is activated', () => {
         describe('via click', () => {
             beforeEach(async() => {
-              await fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await fireEvent.click(component.getByLabelText(input.a11yNextText));
             });
 
             thenItDidNotEmitThePaginationNextEvent();
@@ -175,7 +175,7 @@ describe('given the pagination is rendered with disabled controls', () => {
 
         describe('via keyDown', () => {
             beforeEach(async() => {
-              await fireEvent.keyDown(component.getByLabelText(input.a11yNextText), {
+                await fireEvent.keyDown(component.getByLabelText(input.a11yNextText), {
                     key: 'Space',
                     keyCode: 32
                 });
@@ -247,7 +247,7 @@ describe('given the pagination is rendered at various sizes', () => {
                 describe(`when it is ${width} wide`, () => {
                     beforeEach(async() => {
                         component.container.style.width = `${width}px`;
-                      await fireEvent(window, new Event('resize'));
+                        await fireEvent(window, new Event('resize'));
                         await new Promise(resolve => requestAnimationFrame(resolve));
                     });
 

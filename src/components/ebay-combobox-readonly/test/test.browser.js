@@ -203,7 +203,7 @@ function isVisible(el) {
 }
 
 async function pressKey(el, info) {
-  await fireEvent.keyDown(el, info);
-  await fireEvent.keyPress(el, info);
-  await fireEvent.keyUp(el, info);
+    await fireEvent.keyDown(el, info);
+    await fireEvent.keyPress(el, info);
+    await fireEvent.keyUp(el, info);
 }

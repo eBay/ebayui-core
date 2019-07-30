@@ -53,7 +53,7 @@ describe('given button is disabled', () => {
     });
 
     describe('when escape key is pressed', () => {
-        beforeEach(async () => {
+        beforeEach(async() => {
             await fireEvent.keyDown(component.getByRole('button'), {
                 key: 'Escape',
                 charCode: 27

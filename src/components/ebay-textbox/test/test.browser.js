@@ -19,7 +19,7 @@ describe('given an input textbox', () => {
     ['change', 'input', 'focus', 'blur', 'keyDown'].forEach(eventName => {
         describe(`when native event is fired: ${eventName}`, () => {
             beforeEach(async() => {
-              await fireEvent[eventName](component.getByRole('textbox'));
+                await fireEvent[eventName](component.getByRole('textbox'));
             });
 
             it('then it emits the event', () => {
@@ -47,7 +47,7 @@ describe('given an input textbox with floating label and no value', () => {
 
     describe('when the input is focused', () => {
         beforeEach(async() => {
-          await fireEvent.focus(component.getByRole('textbox'));
+            await fireEvent.focus(component.getByRole('textbox'));
         });
 
         it('then it is not showing the label inline', () => {
@@ -56,7 +56,7 @@ describe('given an input textbox with floating label and no value', () => {
 
         describe('when the input is blurred', () => {
             beforeEach(async() => {
-              await fireEvent.blur(component.getByRole('textbox'));
+                await fireEvent.blur(component.getByRole('textbox'));
             });
 
             it('then is showing the label inline', () => {

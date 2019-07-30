@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('../mock');
 const template = require('..');
 const ESCAPE_KEY_CODE = 27;
@@ -269,9 +269,9 @@ describe('given the menu is in the expanded state with radio items', () => {
 
     describe('when an item is clicked multiple times', () => {
         beforeEach(async() => {
-          await fireEvent.click(firstItem);
+            await fireEvent.click(firstItem);
             expect(firstItem).to.have.attr('aria-checked', 'true');
-          await fireEvent.click(firstItem);
+            await fireEvent.click(firstItem);
         });
 
         it('then it emits only one menu-change event with correct data', () => {
