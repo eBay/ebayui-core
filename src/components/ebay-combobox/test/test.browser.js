@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { pressKey } = require('../../../common/test-utils/browser');
 const mock = require('./mock');
 const template = require('..');
 
@@ -263,10 +264,4 @@ describe('given the combobox starts with zero options', () => {
 
 function isAriaSelected(el) {
     return el.getAttribute('aria-selected') === 'true';
-}
-
-async function pressKey(el, info) {
-    await fireEvent.keyDown(el, info);
-    await fireEvent.keyPress(el, info);
-    await fireEvent.keyUp(el, info);
 }

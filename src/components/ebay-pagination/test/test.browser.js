@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { pressKey } = require('../../../common/test-utils/browser');
 const mock = require('./mock');
 const template = require('..');
 
@@ -42,8 +43,8 @@ describe('given the pagination is rendered', () => {
 
             describe('via keyDown', () => {
                 beforeEach(async() => {
-                    await fireEvent.keyDown(component.getByLabelText(input.a11yPreviousText), {
-                        key: 'Space',
+                    await pressKey(component.getByLabelText(input.a11yPreviousText), {
+                        key: '(Space character)',
                         keyCode: 32
                     });
                 });
@@ -74,8 +75,8 @@ describe('given the pagination is rendered', () => {
 
             describe('via keyDown', () => {
                 beforeEach(async() => {
-                    await fireEvent.keyDown(component.getByLabelText(input.a11yNextText), {
-                        key: 'Space',
+                    await pressKey(component.getByLabelText(input.a11yNextText), {
+                        key: '(Space character)',
                         keyCode: 32
                     });
                 });
@@ -106,8 +107,8 @@ describe('given the pagination is rendered', () => {
 
             describe('via keyDown', () => {
                 beforeEach(async() => {
-                    await fireEvent.keyDown(component.getByText(input.items[1].renderBody.text), {
-                        key: 'Space',
+                    await pressKey(component.getByText(input.items[1].renderBody.text), {
+                        key: '(Space character)',
                         keyCode: 32
                     });
                 });
@@ -148,8 +149,8 @@ describe('given the pagination is rendered with disabled controls', () => {
 
         describe('via keyDown', () => {
             beforeEach(async() => {
-                await fireEvent.keyDown(component.getByLabelText(input.a11yPreviousText), {
-                    key: 'Space',
+                await pressKey(component.getByLabelText(input.a11yPreviousText), {
+                    key: '(Space character)',
                     keyCode: 32
                 });
             });
@@ -175,8 +176,8 @@ describe('given the pagination is rendered with disabled controls', () => {
 
         describe('via keyDown', () => {
             beforeEach(async() => {
-                await fireEvent.keyDown(component.getByLabelText(input.a11yNextText), {
-                    key: 'Space',
+                await pressKey(component.getByLabelText(input.a11yNextText), {
+                    key: '(Space character)',
                     keyCode: 32
                 });
             });

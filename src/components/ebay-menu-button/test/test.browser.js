@@ -1,9 +1,8 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { pressKey } = require('../../../common/test-utils/browser');
 const mock = require('../mock');
 const template = require('..');
-const ESCAPE_KEY_CODE = 27;
-const ENTER_KEY_CODE = 32;
 
 use(require('chai-dom'));
 afterEach(cleanup);
@@ -146,9 +145,12 @@ describe('given the menu is in the expanded state', () => {
 
     describe('when the escape key is pressed from an item', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(
+            await pressKey(
                 component.getByText(mock.FIRST_ITEM_TEXT),
-                { charCode: ESCAPE_KEY_CODE }
+                {
+                    key: 'Escape',
+                    keyCode: 27
+                }
             );
         });
 
@@ -163,7 +165,10 @@ describe('given the menu is in the expanded state', () => {
 
     describe('when the escape key is pressed from the button', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(component.getByRole('button'), { charCode: ESCAPE_KEY_CODE });
+            await pressKey(component.getByRole('button'), {
+                key: 'Escape',
+                keyCode: 27
+            });
         });
 
         it('then it collapses', () => {
@@ -226,7 +231,10 @@ describe('given the menu is in the expanded state with radio items', () => {
 
     describe('when an action button is pressed on an item', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(firstItem, { charCode: ENTER_KEY_CODE });
+            await pressKey(firstItem, {
+                key: '(Space character)',
+                keyCode: 32
+            });
         });
 
         it('then it emits the menu-change event with correct data', () => {

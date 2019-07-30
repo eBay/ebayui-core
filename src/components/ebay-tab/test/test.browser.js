@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { pressKey } = require('../../../common/test-utils/browser');
 const mock = require('./mock');
 const template = require('..');
 
@@ -37,8 +38,8 @@ describe('given tabs with first heading selected', () => {
 
         describe('via keyboard action button', () => {
             beforeEach(async() => {
-                await fireEvent.keyDown(component.getAllByRole('tab')[1], {
-                    key: 'Space',
+                await pressKey(component.getAllByRole('tab')[1], {
+                    key: '(Space character)',
                     keyCode: 32
                 });
             });
@@ -49,7 +50,7 @@ describe('given tabs with first heading selected', () => {
 
     describe('when the right arrow key is pressed', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(component.getAllByRole('tab')[1], {
+            await pressKey(component.getAllByRole('tab')[1], {
                 key: 'ArrowRight',
                 keyCode: 39
             });
@@ -60,7 +61,7 @@ describe('given tabs with first heading selected', () => {
 
     describe('when the left arrow key is pressed', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(component.getAllByRole('tab')[1], {
+            await pressKey(component.getAllByRole('tab')[1], {
                 key: 'ArrowLeft',
                 keyCode: 37
             });
@@ -93,7 +94,7 @@ describe('given tabs with third heading selected', () => {
 
     describe('when the right arrow key is pressed', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(component.getAllByRole('tab')[1], {
+            await pressKey(component.getAllByRole('tab')[1], {
                 key: 'ArrowRight',
                 keyCode: 39
             });
@@ -104,7 +105,7 @@ describe('given tabs with third heading selected', () => {
 
     describe('when the left arrow key is pressed', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(component.getAllByRole('tab')[1], {
+            await pressKey(component.getAllByRole('tab')[1], {
                 key: 'ArrowLeft',
                 keyCode: 37
             });

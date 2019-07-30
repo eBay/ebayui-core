@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { pressKey } = require('../../../common/test-utils/browser');
 const mock = require('./mock');
 const template = require('..');
 
@@ -207,10 +208,4 @@ function getVisibleOptions() {
 
 function isVisible(el) {
     return !el.hasAttribute('hidden') && !el.closest('[hidden]');
-}
-
-async function pressKey(el, info) {
-    await fireEvent.keyDown(el, info);
-    await fireEvent.keyPress(el, info);
-    await fireEvent.keyUp(el, info);
 }

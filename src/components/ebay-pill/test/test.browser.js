@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { pressKey } = require('../../../common/test-utils/browser');
 const mock = require('./mock');
 const template = require('..');
 
@@ -45,9 +46,9 @@ describe('given pill is enabled', () => {
 
     describe('when escape key is pressed', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(component.getByRole('button'), {
+            await pressKey(component.getByRole('button'), {
                 key: 'Escape',
-                charCode: 27
+                keyCode: 27
             });
         });
 
@@ -74,9 +75,9 @@ describe('given pill is disabled', () => {
 
     describe('when escape key is pressed', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(component.getByRole('button'), {
+            await pressKey(component.getByRole('button'), {
                 key: 'Escape',
-                charCode: 27
+                keyCode: 27
             });
         });
 
