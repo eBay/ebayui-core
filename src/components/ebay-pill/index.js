@@ -1,6 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
 const multilineEllipsis = require('../../common/multiline-ellipsis');
-const emitAndFire = require('../../common/emit-and-fire');
 const template = require('./template.marko');
 
 module.exports = require('marko-widgets').defineComponent({
@@ -20,9 +19,9 @@ module.exports = require('marko-widgets').defineComponent({
     },
     handleButtonClick(event) {
         this.setState('pressed', !this.state.pressed);
-        emitAndFire(this, 'button-click', event);
+        this.emit('button-click', event);
     },
     handleButtonEscape(event) {
-        emitAndFire(this, 'button-escape', event);
+        this.emit('button-escape', event);
     }
 });

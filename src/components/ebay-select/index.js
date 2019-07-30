@@ -1,7 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
 const findIndex = require('core-js-pure/features/array/find-index');
-const emitAndFire = require('../../common/emit-and-fire');
-const observer = require('../../common/property-observer');
 
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
@@ -32,19 +30,8 @@ module.exports = require('marko-widgets').defineComponent({
             value: input.options[selectedIndex] && input.options[selectedIndex].value
         });
     },
-    init() {
-        // Note: this entire function is because of the programatic API and should be removed if that is removed.
-        observer.observeRoot(this, ['selectedIndex'], this.setSelectedIndex.bind(this));
-        observer.observeRoot(this, ['value'], (value) => {
-            const index = findIndex(this.state.options, option => option.value === value);
-            const selectedIndex = index === -1 ? 0 : index;
-            this.setSelectedIndex(selectedIndex);
-        });
-    },
     handleChange(event) {
-        this.setSelectedIndex(event.target.selectedIndex);
-    },
-    setSelectedIndex(selectedIndex) {
+        const selectedIndex = event.target.selectedIndex;
         const el = this.getEls('option')[selectedIndex];
         const option = this.state.options[selectedIndex];
 
@@ -54,7 +41,7 @@ module.exports = require('marko-widgets').defineComponent({
         this.setState('value', option && option.value);
 
         // TODO: we should not cast the selected value to a string here, but this is a breaking change.
-        emitAndFire(this, 'select-change', {
+        this.emit('select-change', {
             index: selectedIndex,
             selected: [String(option.value)],
             el
