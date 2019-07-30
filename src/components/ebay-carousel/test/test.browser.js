@@ -724,13 +724,13 @@ function assertAtStartOfSlide(item) {
     const containerBounds = container.getBoundingClientRect();
 
     // Check if item is at the very start of the carousel.
-    if (itemBounds.left === containerBounds.left) {
+    if (Math.trunc(itemBounds.left) === Math.trunc(containerBounds.left)) {
         return;
     }
 
     // Also accept if the carousel has scrolled as much as possible.
     const lastItemBounds = list.lastElementChild.getBoundingClientRect();
-    if (lastItemBounds.right <= containerBounds.right) {
+    if (Math.trunc(lastItemBounds.right) <= Math.trunc(containerBounds.right)) {
         return;
     }
 
@@ -744,13 +744,13 @@ function assertAtEndOfSlide(item) {
     const parentBounds = container.getBoundingClientRect();
 
     // Check if item is at the very end of the carousel.
-    if (itemBounds.right === parentBounds.right) {
+    if (Math.trunc(itemBounds.right) === Math.trunc(parentBounds.right)) {
         return;
     }
 
     // Also accept if the carousel has scrolled as much as possible.
     const firstItemBounds = list.firstElementChild.getBoundingClientRect();
-    if (firstItemBounds.left <= parentBounds.left) {
+    if (Math.trunc(firstItemBounds.left) <= Math.trunc(parentBounds.left)) {
         return;
     }
 
