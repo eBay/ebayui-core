@@ -1,8 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const rovingTabindex = require('makeup-roving-tabindex');
-const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
-const observer = require('../../common/property-observer');
 
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
@@ -28,8 +26,6 @@ module.exports = require('marko-widgets').defineComponent({
 
             linearRovingTabindex.wrap = true;
         }
-
-        observer.observeRoot(this, ['index'], index => this.setIndex(index), true);
     },
     /**
      * Handle a11y for heading
@@ -69,7 +65,7 @@ module.exports = require('marko-widgets').defineComponent({
 
         if (index !== this.state.index) {
             this.setState('index', index);
-            emitAndFire(this, 'tab-select', { index });
+            this.emit('tab-select', { index });
         }
     }
 });

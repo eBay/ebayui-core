@@ -3,14 +3,11 @@ const Expander = require('makeup-expander');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
 const elementScroll = require('../../common/element-scroll');
-const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const NodeListUtils = require('../../common/nodelist-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
-const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
-const { forEach } = Array.prototype;
 const mainButtonClass = 'expand-btn';
 const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
@@ -161,26 +158,9 @@ function onRender(event) {
             this.el.setCheckedList = setCheckedList.bind(this);
             this.el.getCheckedList = getCheckedList.bind(this);
         }
-        observer.observeRoot(this, ['text', 'expanded']);
-        if (this.state.isRadio) {
-            observer.observeRoot(this, ['checked'], itemIndex => {
-                if (itemIndex >= 0 && itemIndex < (this.state.items.length)) {
-                    this.setCheckedItem(itemIndex);
-                } else if (itemIndex < 0) {
-                    this.setState('checked', 0);
-                } else if (itemIndex > (this.state.items.length - 1)) {
-                    console.warn('Index out of bounds. Select an available item index.');
-                }
-            });
-        }
 
-        // FIXME: should be outside of firstRender, but only if observers haven't been attached yet
-        const checkedObserverCallback = itemEl => this.processAfterStateChange([getItemElementIndex(itemEl)]);
-        forEach.call(this.itemEls, (itemEl, i) => {
-            observer.observeInner(this, itemEl, 'checked', `items[${i}]`, 'items', checkedObserverCallback);
-        });
-
-        const expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
+        // FIX ME: this should be synced with the expanded state instead of using the `update_expanded` api below.
+        this.expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
             hostSelector: buttonSelector,
             focusManagement: 'focusable',
             expandOnClick: true,
@@ -222,16 +202,16 @@ function processAfterStateChange(itemIndexes) {
     if (this.state.isCheckbox && itemIndexes.length > 1) {
         // only calling via API can have multiple item indexes
         this.setState('checked', this.getCheckedList());
-        emitAndFire(this, 'menu-change', { indexes: itemIndexes, checked: this.getCheckedList(), el: null });
+        this.emit('menu-change', { indexes: itemIndexes, checked: this.getCheckedList(), el: null });
     } else if (this.state.isCheckbox) {
         this.setState('checked', this.getCheckedList());
-        emitAndFire(this, 'menu-change', { index: itemIndex, checked: this.getCheckedList(), el: itemEl });
+        this.emit('menu-change', { index: itemIndex, checked: this.getCheckedList(), el: itemEl });
     } else if (this.state.isRadio) {
         this.setState('checked', itemIndex);
-        emitAndFire(this, 'menu-change', { index: itemIndex, checked: [itemIndex], el: itemEl });
+        this.emit('menu-change', { index: itemIndex, checked: [itemIndex], el: itemEl });
     } else {
         this.setState('checked', itemIndex);
-        emitAndFire(this, 'menu-select', { index: itemIndex, checked: [itemIndex], el: itemEl });
+        this.emit('menu-select', { index: itemIndex, checked: [itemIndex], el: itemEl });
     }
 }
 
@@ -301,13 +281,13 @@ function handleButtonEscape() {
 function handleExpand() {
     elementScroll.scroll(this.el.querySelector(checkedItemSelector));
     this.setState('expanded', true);
-    emitAndFire(this, 'menu-expand');
+    this.emit('menu-expand');
     scrollKeyPreventer.add(this.contentEl);
 }
 
 function handleCollapse() {
     this.setState('expanded', false);
-    emitAndFire(this, 'menu-collapse');
+    this.emit('menu-collapse');
     scrollKeyPreventer.remove(this.contentEl);
 }
 

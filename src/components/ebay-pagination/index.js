@@ -1,6 +1,5 @@
 const processHtmlAttributes = require('../../common/html-attributes');
 const eventUtils = require('../../common/event-utils');
-const emitAndFire = require('../../common/emit-and-fire');
 const template = require('./template.marko');
 
 const constants = {
@@ -143,7 +142,7 @@ function refresh() {
  */
 function handlePageClick(originalEvent) {
     const target = originalEvent.target;
-    emitAndFire(this, 'pagination-select', {
+    this.emit('pagination-select', {
         originalEvent,
         el: target,
         value: target.innerText
@@ -152,7 +151,7 @@ function handlePageClick(originalEvent) {
 
 function handleNextPage(originalEvent) {
     if (!this.state.nextItem.disabled) {
-        emitAndFire(this, 'pagination-next', {
+        this.emit('pagination-next', {
             originalEvent,
             el: this.nextPageEl
         });
@@ -161,7 +160,7 @@ function handleNextPage(originalEvent) {
 
 function handlePreviousPage(originalEvent) {
     if (!this.state.prevItem.disabled) {
-        emitAndFire(this, 'pagination-previous', {
+        this.emit('pagination-previous', {
             originalEvent,
             el: this.previousPageEl
         });
