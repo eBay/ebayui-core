@@ -1,13 +1,5 @@
 {
-    "dependencies": [
-        {
-            "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/menu"
-        },
-        "../ebay-badge",
-        "../ebay-button",
-        "../ebay-icon",
-        "require: marko-widgets",
-        "require: ./index.js"
-    ]
+  "dependencies": [
+    "../ebay-menu-button"
+  ]
 }

@@ -48,18 +48,15 @@ module.exports = require('marko-widgets').defineComponent({
         const wasToggled = isExpanded !== wasExpanded;
 
         if (!this.state.disabled && this.state.options.length > 0) {
-            const selectedIndex = this.getSelectedIndex(this.state.options, this.state.currentValue);
-
-            const autoInit = (selectedIndex === -1 || this.state.autocomplete === 'none') ? -1 : 0;
-
             this.activeDescendant = ActiveDescendant.createLinear(
                 this.el,
                 this.getEl('input'),
                 this.getEl('options'),
                 '.combobox__option[role=option]', {
                     activeDescendantClassName: 'combobox__option--active',
-                    autoInit,
-                    autoReset: -1
+                    autoInit: -1,
+                    autoReset: -1,
+                    axis: 'y'
                 }
             );
 
@@ -101,37 +98,33 @@ module.exports = require('marko-widgets').defineComponent({
     handleExpand() {
         const index = this.getSelectedIndex(this.state.options, this.state.currentValue);
         elementScroll.scroll(this.getEls('option')[index]);
-        this.moveCursorToEnd();
         emitAndFire(this, 'combobox-expand');
         this.setState('expanded', true);
     },
     handleCollapse() {
+        this.activeDescendant.reset();
         emitAndFire(this, 'combobox-collapse');
         this.setState('expanded', false);
     },
-    moveCursorToEnd() {
-        const currentInput = this.getEl('input');
-
-        if (currentInput) {
-            const len = currentInput.value.length;
-            currentInput.setSelectionRange(len, len);
-        }
-    },
-    handleComboboxKeyUp(originalEvent) {
+    handleComboboxKeyDown(originalEvent) {
         const optionsEl = this.getEl('options');
         const selectedEl = optionsEl && optionsEl.querySelector('.combobox__option--active');
         let newValue = this.getEl('input').value;
 
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
+            originalEvent.preventDefault();
+
             if (this.expander && !this.expander.isExpanded() && this.getEls('option').length > 0) {
+                this.activeDescendant.reset();
                 this.expander.expand();
             }
-            this.moveCursorToEnd();
         });
 
         eventUtils.handleEnterKeydown(originalEvent, () => {
             if (this.expander.isExpanded()) {
                 newValue = selectedEl && selectedEl.textContent || newValue;
+
+                this.getEl('input').value = newValue;
                 this.setState('currentValue', newValue);
                 this.setSelectedIndex();
                 if (selectedEl) {
@@ -144,8 +137,13 @@ module.exports = require('marko-widgets').defineComponent({
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.expander.collapse();
         });
+    },
+    handleComboboxKeyUp(originalEvent) {
+        const newValue = this.getEl('input').value;
 
         eventUtils.handleTextInput(originalEvent, () => {
+            this.activeDescendant.reset();
+            this.getEl('input').value = newValue;
             this.setState('currentValue', newValue);
             this.setSelectedIndex();
             this.emitChangeEvent();
@@ -154,8 +152,8 @@ module.exports = require('marko-widgets').defineComponent({
             }
         });
     },
-    handleComboboxBlur(evt) {
-        const wasClickedOption = this.getEls('option').some(option => option === evt.relatedTarget);
+    handleComboboxBlur() {
+        const wasClickedOption = this.optionClicked;
 
         if (wasClickedOption) {
             this.getEl('input').focus();
@@ -167,10 +165,16 @@ module.exports = require('marko-widgets').defineComponent({
 
         this.emitChangeEvent('change');
     },
+    handleOptionMouseDown() {
+        this.optionClicked = true;
+    },
     handleOptionClick(evt) {
         const selectedEl = evt.target.nodeName === 'DIV' ? evt.target : evt.target.parentNode;
+        const selectedValue = selectedEl.textContent;
 
-        this.setState('currentValue', selectedEl.textContent);
+        this.optionClicked = false;
+        this.getEl('input').value = selectedValue;
+        this.setState('currentValue', selectedValue);
         this.setSelectedIndex();
         this.emitChangeEvent('select');
         this.expander.collapse();

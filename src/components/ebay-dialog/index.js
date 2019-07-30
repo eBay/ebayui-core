@@ -37,8 +37,17 @@ module.exports = require('marko-widgets').defineComponent({
             bodyScroll.restore();
         }
     },
+    handleStartClick({ target }) {
+        this.startEl = target;
+    },
     handleDialogClick({ target, clientY }) {
-        const { closeEl, windowEl } = this;
+        const { closeEl, windowEl, startEl } = this;
+
+        this.startEl = null;
+        if (windowEl.contains(startEl)) {
+            // Started on dialog window and user dragged out, don't close
+            return;
+        }
 
         // Checks if we clicked inside the white panel of the dialog.
         if (!closeEl.contains(target) && windowEl.contains(target)) {

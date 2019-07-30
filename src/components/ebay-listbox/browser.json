@@ -1,9 +1,5 @@
 {
-    "dependencies": [
-        {
-            "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/listbox"
-        },
-        "require: ./index.js"
-    ]
+  "dependencies": [
+    "../ebay-listbox-button"
+  ]
 }

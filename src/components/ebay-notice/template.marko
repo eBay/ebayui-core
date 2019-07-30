@@ -3,7 +3,7 @@
 </script>
 
 <var type=(data.type || "page")/>
-<var status=(data.status || "priority")/>
+<var status=(data.status || "attention")/>
 <var isPage=(type === "page")/>
 
 <if(!data.hidden)>
@@ -14,7 +14,7 @@
         aria-labelledby=widget.elId("status")
         class=[
             "${type}-notice",
-            "${type}-notice--${data.status || 'priority'}",
+            "${type}-notice--${data.status || 'attention'}",
             data.class
         ]>
         <${isPage ? data.a11yHeadingTag || "h2" : "span"}
@@ -30,6 +30,7 @@
         <if(data.dismissible)>
             <button
                 class="page-notice__close"
+                type="button"
                 aria-label=data.a11yCloseText
                 w-onclick="onDismiss">
                 <span/>
