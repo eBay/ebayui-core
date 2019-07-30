@@ -19,6 +19,7 @@
         </>
         <button
             class="carousel__control carousel__control--prev"
+            type="button"
             w-onclick=(!data.prevControlDisabled && "handleMove")
             data-direction=-1
             aria-describedby=statusId
@@ -46,6 +47,7 @@
         <button
             w-id="next"
             class="carousel__control carousel__control--next"
+            type="button"
             w-onclick=(!data.nextControlDisabled && "handleMove")
             data-direction=1
             aria-describedby=statusId
@@ -58,6 +60,7 @@
             <if(data.paused)>
                 <button
                     class="carousel__play"
+                    type="button"
                     aria-label=data.a11yPlayText
                     w-onclick="togglePlay">
                     <ebay-icon type="inline" name="play"/>
@@ -66,6 +69,7 @@
             <else>
                 <button
                     class="carousel__pause"
+                    type="button"
                     aria-label=data.a11yPauseText
                     w-onclick="togglePlay">
                     <ebay-icon type="inline" name="pause"/>
@@ -79,6 +83,7 @@
             <var isActive=(i === data.slide)/>
             <button
                 class={"carousel__dot--active": isActive}
+                type="button"
                 w-onclick=(!isActive && "handleDotClick")
                 data-slide=i
                 aria-describedby=statusId
