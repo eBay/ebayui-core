@@ -50,7 +50,7 @@ module.exports = {
                     const classAndStyleEl = getClassAndStyleEl ? getClassAndStyleEl(component) : passThroughEl;
                     expect(classAndStyleEl).has.class('class1');
                     expect(classAndStyleEl).not.has.class('class2');
-                    expect(classAndStyleEl).attr('style', 'color:red');
+                    expect(classAndStyleEl).attr('style').contains('color:red');
                 }
             }
         );
