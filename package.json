@@ -92,7 +92,7 @@
     "lasso-marko": "^2.4.7",
     "lintspaces-cli": "^0.7.1",
     "marko": "^3",
-    "marko-cli": "^7.0.4",
+    "marko-cli": "^7.0.13",
     "marko-prettyprint": "^1.5.2",
     "marko-widgets": "^6",
     "mocha": "^6.1.4",

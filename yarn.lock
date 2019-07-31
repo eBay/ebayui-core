@@ -938,10 +938,10 @@
     webpack-dev-server "^3.1.14"
     webpack-inject-plugin "^1.1.0"
 
-"@marko/test@^6.0.9":
-  version "6.0.9"
-  resolved "https://registry.npmjs.org/@marko/test/-/test-6.0.9.tgz#997739ab69568cd9d65a6d9037b88d7f1443fa94"
-  integrity sha512-zBDifZ/4OOzSuy1cAkAtMpZQIcX4xBF420ocNFxw5uAbTN3VOHZqyvIGfaZTvSyZMKRmvzu2wFdBW2YeF31Sow==
+"@marko/test@^6.0.11":
+  version "6.0.11"
+  resolved "https://registry.npmjs.org/@marko/test/-/test-6.0.11.tgz#941044aa6cb210246682b9b7bb1edf998fcc7fbf"
+  integrity sha512-G9B0uOJyHfvFPLrp4EuZ3g/0PfQQonUTNF10JsJUSl4TPZBYXDfA3Na6oK7jk2Un5vDFnX5pgQ0JQcN1+iBT0w==
   dependencies:
     "@lasso/marko-taglib" "^1.0.13"
     "@wdio/cli" "^5.8.4"
@@ -953,7 +953,7 @@
     chalk "^2.4.1"
     cheerio "^1.0.0-rc.2"
     child-process-promise "^2.2.1"
-    chromedriver "^2.45.0"
+    chromedriver "^75.1.0"
     complain "^1.3.0"
     delay "^4.1.0"
     engine.io "^3.3.2"
@@ -974,7 +974,7 @@
     raptor-renderer "^1.5.0"
     resolve-from "^5.0.0"
     strip-ansi "2.0.1"
-    wdio-chromedriver-service "^5.0.1"
+    wdio-chromedriver-service "^5.0.2"
     webdriverio "^5.8.4"
 
 "@marko/testing-library@^2.0.0":
@@ -3520,12 +3520,12 @@ chrome-trace-event@^1.0.0:
   dependencies:
     tslib "^1.9.0"
 
-chromedriver@^2.45.0:
-  version "2.46.0"
-  resolved "https://registry.npmjs.org/chromedriver/-/chromedriver-2.46.0.tgz#3d78e7eb9bb65dd804fe327a6bf76fced12be053"
-  integrity sha512-dLtKIJW3y/PuFrPmcw6Mb8Nh+HwSqgVrK1rWgTARXhHfWvV822X2VRkx2meU/tg2+YQL6/nNgT6n5qWwIDHbwg==
+chromedriver@^75.1.0:
+  version "75.1.0"
+  resolved "https://registry.npmjs.org/chromedriver/-/chromedriver-75.1.0.tgz#edfef5d7a9b16b6f8a12ddb58cbac76ae52732fd"
+  integrity sha512-N2P0fg6FS4c+tTG0R7cCOD5qiVo+E6uAz6xVjmbZesYv1xs1iGdcCUo0IqOY+ppD/4OOObG+XWV1CFWXT6UIgA==
   dependencies:
-    del "^3.0.0"
+    del "^4.1.1"
     extract-zip "^1.6.7"
     mkdirp "^0.5.1"
     request "^2.88.0"
@@ -4536,18 +4536,6 @@ defined@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
   integrity sha1-yY2bzvdWdBiOEQlpFRGZ45sfppM=
-
-del@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/del/-/del-3.0.0.tgz#53ecf699ffcbcb39637691ab13baf160819766e5"
-  integrity sha1-U+z2mf/LyzljdpGrE7rxYIGXZuU=
-  dependencies:
-    globby "^6.1.0"
-    is-path-cwd "^1.0.0"
-    is-path-in-cwd "^1.0.0"
-    p-map "^1.1.1"
-    pify "^3.0.0"
-    rimraf "^2.2.8"
 
 del@^4.1.1:
   version "4.1.1"
@@ -7609,22 +7597,10 @@ is-object@^1.0.1:
   resolved "https://registry.npmjs.org/is-object/-/is-object-1.0.1.tgz#8952688c5ec2ffd6b03ecc85e769e02903083470"
   integrity sha1-iVJojF7C/9awPsyF52ngKQMINHA=
 
-is-path-cwd@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/is-path-cwd/-/is-path-cwd-1.0.0.tgz#d225ec23132e89edd38fda767472e62e65f1106d"
-  integrity sha1-0iXsIxMuie3Tj9p2dHLmLmXxEG0=
-
 is-path-cwd@^2.0.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/is-path-cwd/-/is-path-cwd-2.2.0.tgz#67d43b82664a7b5191fd9119127eb300048a9fdb"
   integrity sha512-w942bTcih8fdJPJmQHFzkS76NEP8Kzzvmw92cXsazb8intwLqPibPPdXf4ANdKV3rYMuuQYGIWtvz9JilB3NFQ==
-
-is-path-in-cwd@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/is-path-in-cwd/-/is-path-in-cwd-1.0.1.tgz#5ac48b345ef675339bd6c7a48a912110b241cf52"
-  integrity sha512-FjV1RTW48E7CWM7eE/J2NJvAEEVektecDBVBE5Hh3nM1Jd0kvhHtX68Pr3xsDf857xt3Y4AkwVULK1Vku62aaQ==
-  dependencies:
-    is-path-inside "^1.0.0"
 
 is-path-in-cwd@^2.0.0:
   version "2.1.0"
@@ -8982,10 +8958,10 @@ markdown-table@^1.1.0:
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-1.1.3.tgz#9fcb69bcfdb8717bfd0398c6ec2d93036ef8de60"
   integrity sha512-1RUZVgQlpJSPWYbFSpmudq5nHY1doEIv89gBtF0s4gW1GF2XorxcA/70M5vq7rLv0a6mhOUccRsqkwhwLCIQ2Q==
 
-marko-cli@^7.0.4:
-  version "7.0.11"
-  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-7.0.11.tgz#3bab535691cbcc2ffcbe90eac11d11395b10ae7c"
-  integrity sha512-SiK6HwbcckU6Hc8vn5zLq4hFhHMOlJqOc97OjTYEDRwnJiJG0RwYqMkLOBLIKAKdIQEe0JJljv/P/BnuXzc6Gg==
+marko-cli@^7.0.13:
+  version "7.0.13"
+  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-7.0.13.tgz#b3a584439597d5eb1deeb0d0b5d87c917cd3ca17"
+  integrity sha512-CziQ5jyyn8hLnbE0T+s1tPF3jF3b1uKr5IjGiM65YJgs3f2vibhGf/EfTExZVpxqsSLFwDtGow4j77m93V0LTQ==
   dependencies:
     "@babel/runtime" "^7.2.0"
     "@marko/build" "^1.0.3"
@@ -8994,7 +8970,7 @@ marko-cli@^7.0.4:
     "@marko/migrate" "^5.1.0"
     "@marko/prettyprint" "^2.1.2"
     "@marko/serve" "^1.0.3"
-    "@marko/test" "^6.0.9"
+    "@marko/test" "^6.0.11"
     app-root-dir "^1.0.2"
     argly "^1.2.0"
     complain "^1.3.0"
@@ -10318,11 +10294,6 @@ p-map-series@^1.0.0:
   integrity sha1-v5j+V1cFZYqeE1G++4WuTB8Hvco=
   dependencies:
     p-reduce "^1.0.0"
-
-p-map@^1.1.1:
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/p-map/-/p-map-1.2.0.tgz#e4e94f311eabbc8633a1e79908165fca26241b6b"
-  integrity sha512-r6zKACMNhjPJMTl8KcFH4li//gkrXWfbD6feV8l6doRHlzljFWGJ2AP6iKaCJXyZmAUMOPtvbW7EXkbWO/pLEA==
 
 p-map@^2.0.0:
   version "2.1.0"
@@ -14256,7 +14227,7 @@ wdio-browserstack-service@^0.1.18:
     request "^2.81.0"
     request-promise "^4.2.1"
 
-wdio-chromedriver-service@^5.0.1:
+wdio-chromedriver-service@^5.0.2:
   version "5.0.2"
   resolved "https://registry.npmjs.org/wdio-chromedriver-service/-/wdio-chromedriver-service-5.0.2.tgz#171c642252b7ab3bab610b366ddcfe6018a7d67a"
   integrity sha512-EvdhHJhFpKXIMXph+g84ugSKlYSTiTqg85iu0fD6JzeK6Gg5ZuLeDgvyvvTdkCMq9q4dqwkA+1IikoGQvMOpEA==
