@@ -135,6 +135,15 @@
     "<ebay-combobox-readonly-option>": {
         "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
+    "<ebay-cta-button>": {
+        "template": "./src/components/ebay-cta-button/index.marko",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@id": "string",
+        "@class": "string",
+        "@style": "string",
+        "@size": "size"
+    },
     "<ebay-dialog>": {
         "renderer": "./src/components/ebay-dialog/index.js",
         "@*": "expression",

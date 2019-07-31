@@ -92,12 +92,6 @@ test('renders expand variant with no text', context => {
     expect($('.expand-btn.expand-btn--no-text').length).to.equal(1);
 });
 
-test('renders cta variant', context => {
-    const input = { variant: 'cta', href: 'https://www.ebay.com' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('a.cta-btn > .cta-btn__cell').length).to.equal(1);
-});
-
 test('renders icon variant', context => {
     const input = { variant: 'icon' };
     const $ = testUtils.getCheerio(context.render(input));
