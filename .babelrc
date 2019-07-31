@@ -6,7 +6,10 @@
         }]
     ],
     "overrides": [{
-        "test": "./src/**/test*/*",
+        "test": [
+            "./src/**/test",
+            "./src/common/test-utils"
+        ],
         "presets": [
             ["@babel/preset-env", {
                 "corejs": 3,
