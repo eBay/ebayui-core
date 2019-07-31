@@ -22,13 +22,13 @@ module.exports = {
     },
     async pressKey(el, info) {
         for (const event of [
-            createEvent.keyDown(info),
-            createEvent.keyUp(info),
+            createEvent.keyDown(el, info),
+            createEvent.keyUp(el, info)
         ]) {
             // we assign properties to them for older browsers (chrome 49)
             Object.keys(info).forEach(key => {
                 if (event[key] !== info[key]) {
-                    Object.defineProperty(event, key, { value: info[key] })
+                    Object.defineProperty(event, key, { value: info[key] });
                 }
             });
 
