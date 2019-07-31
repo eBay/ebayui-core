@@ -1,7 +1,9 @@
 {
     "dependencies": [{
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/button"
+            "dependencies": [
+                "@ebay/skin/button"
+            ]
         },
         "../ebay-button",
         "require: ./index.js",

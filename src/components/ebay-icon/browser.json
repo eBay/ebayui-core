@@ -5,10 +5,14 @@
             "dependencies": [
                 {
                     "if-not-flag": "ebayui-no-bg-icons",
-                    "path": "@ebay/skin/icon"
+                    "dependencies": [
+                        "@ebay/skin/icon"
+                    ]
                 }, {
                     "if-flag": "ebayui-no-bg-icons",
-                    "path": "@ebay/skin/icon/foreground"
+                    "dependencies": [
+                        "@ebay/skin/icon/foreground"
+                    ]
                 }
             ]
         },
