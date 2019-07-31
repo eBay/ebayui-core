@@ -2,8 +2,6 @@ const assign = require('core-js-pure/features/object/assign');
 const keyboardTrap = require('makeup-keyboard-trap');
 const screenReaderTrap = require('makeup-screenreader-trap');
 const bodyScroll = require('../../common/body-scroll');
-const emitAndFire = require('../../common/emit-and-fire');
-const observer = require('../../common/property-observer');
 const transition = require('../../common/transition');
 
 module.exports = require('marko-widgets').defineComponent({
@@ -19,7 +17,6 @@ module.exports = require('marko-widgets').defineComponent({
         this.closeEl = this.getEl('close');
         this.bodyEl = this.getEl('body');
         this.transitionEls = [this.windowEl, this.rootEl];
-        observer.observeRoot(this, ['open']);
         // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
         this.subscribeTo(this.rootEl).on('click', () => {});
     },
@@ -59,15 +56,9 @@ module.exports = require('marko-widgets').defineComponent({
             }
         }
 
-        this.close();
+        this.setState('open', false);
     },
     handleCloseButtonClick() {
-        this.close();
-    },
-    show() {
-        this.setState('open', true);
-    },
-    close() {
         this.setState('open', false);
     },
     /**
@@ -99,10 +90,10 @@ module.exports = require('marko-widgets').defineComponent({
 
                 if (isTrapped) {
                     focusEl.focus();
-                    emitAndFire(this, 'dialog-show');
+                    this.emit('dialog-show');
                 } else {
                     bodyScroll.restore();
-                    emitAndFire(this, 'dialog-close');
+                    this.emit('dialog-close');
 
                     // Reset dialog scroll position lazily to avoid jank.
                     // Note since the dialog is not in the dom at this point none of the scroll methods will work.

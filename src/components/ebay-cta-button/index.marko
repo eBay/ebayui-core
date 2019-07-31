@@ -1,0 +1,25 @@
+<script marko-init>
+    var getWidgetId = require("../../common/get-marko-3-widget-id");
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var size=(data.size || "medium")/>
+<var baseClass="cta-btn"/>
+<var sizeClass="${baseClass}--${size}"/>
+<var htmlAttributes=processHtmlAttributes(data)/>
+
+<a
+    ${htmlAttributes}
+    id=(data.id || getWidgetId(out))
+    class=[
+        data.class,
+        baseClass,
+        sizeClass
+    ]
+    style=data.style>
+
+    <span class="cta-btn__cell">
+        <span><invoke data.renderBody(out) if(data.renderBody)/></span>
+        <ebay-icon type="inline" name="arrow-right-bold" class="cta-btn__icon" no-skin-classes/>
+    </span>
+</>

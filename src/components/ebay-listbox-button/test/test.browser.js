@@ -8,16 +8,14 @@ describe('given the listbox is in the default state', () => {
     let widget;
     let root;
     let ariaControl;
-    let secondOption;
     let nativeSelect;
 
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.listbox');
-        ariaControl = root.querySelector('.listbox__control');
-        secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
-        nativeSelect = root.querySelector('.listbox__native');
+        root = document.querySelector('.listbox-button');
+        ariaControl = root.querySelector('.listbox-button__control');
+        nativeSelect = root.querySelector('.listbox-button__native');
     });
 
     afterEach(() => widget.destroy());
@@ -79,26 +77,6 @@ describe('given the listbox is in the default state', () => {
         });
     });
 
-    describe('when the option is set programmatically', () => {
-        let spy;
-
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('listbox-change', spy);
-            secondOption.selected = true;
-            widget.once('update', done);
-        });
-
-        test('then it emits the listbox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            const nativeOption = nativeSelect.options[eventData.index].value;
-            expect(nativeOption).to.equal('2');
-        });
-    });
-
     describe('when the button is clicked once', () => {
         let spy;
 
@@ -139,10 +117,10 @@ describe('given the listbox is in an expanded state', () => {
     beforeEach(() => {
         const renderedWidget = renderer.renderSync({ options: mock.options });
         widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.listbox');
-        ariaControl = root.querySelector('.listbox__control');
-        secondOption = root.querySelector('.listbox__options .listbox__option:nth-child(2)');
-        secondOptionText = secondOption.querySelector('span:not(.listbox__status)');
+        root = document.querySelector('.listbox-button');
+        ariaControl = root.querySelector('.listbox-button__control');
+        secondOption = root.querySelector('.listbox-button__listbox .listbox-button__option:nth-child(2)');
+        secondOptionText = secondOption.querySelector('span:not(.listbox-button__status)');
         testUtils.triggerEvent(ariaControl, 'expander-expand');
     });
 

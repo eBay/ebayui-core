@@ -2,7 +2,7 @@
     "dependencies": [{
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [
-                "@ebay/skin/button"
+                "@ebay/skin/pill"
             ]
         },
         "../ebay-button",

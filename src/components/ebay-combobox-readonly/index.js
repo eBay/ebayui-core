@@ -3,16 +3,12 @@ const Expander = require('makeup-expander');
 const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
-const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
-const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
-const { forEach } = Array.prototype;
 const comboboxOptionsClass = 'combobox__options';
 const comboboxExpanderClass = 'combobox__control';
-const comboboxOptionClass = 'combobox__option';
 const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
 const comboboxBtnClass = 'combobox__control';
 const comboboxSelectedOptionSelector = '.combobox__option[role=option][aria-selected=true]';
@@ -69,8 +65,6 @@ function getTemplateData(state) {
 }
 
 function init() {
-    this.optionEls = this.el.getElementsByClassName(comboboxOptionClass);
-
     if (this.state.options && this.state.options.length > 0) {
         this.expander = new Expander(this.el, {
             autoCollapse: true,
@@ -81,22 +75,6 @@ function init() {
             simulateSpacebarClick: true
         });
 
-        observer.observeRoot(this, ['selected'], (index) => {
-            this.processAfterStateChange(this.optionEls[index]);
-        });
-
-        observer.observeRoot(this, ['disabled'], () => {
-            this.expander.expandOnClick = !this.state.disabled;
-        });
-
-        const selectedObserverCallback = (optionEl) => {
-            this.processAfterStateChange(optionEl);
-        };
-
-        forEach.call(this.optionEls, (optionEl, i) => {
-            observer.observeInner(this, optionEl, 'selected', `options[${i}]`, 'options', selectedObserverCallback);
-        });
-
         scrollKeyPreventer.add(this.el.querySelector(comboboxHostSelector));
         scrollKeyPreventer.add(this.el.querySelector(`.${comboboxOptionsClass}`));
     }
@@ -104,11 +82,11 @@ function init() {
 
 function handleExpand() {
     elementScroll.scroll(this.el.querySelector(comboboxSelectedOptionSelector));
-    emitAndFire(this, 'combobox-expand');
+    this.emit('combobox-expand');
 }
 
 function handleCollapse() {
-    emitAndFire(this, 'combobox-collapse');
+    this.emit('combobox-collapse');
 }
 
 /**
@@ -159,7 +137,7 @@ function handleComboboxKeyDown(event) {
         options[selectElementIndex].selected = true;
 
         this.setState('options', options);
-        this.processAfterStateChange(this.optionEls[selectElementIndex]);
+        this.processAfterStateChange(this.getEl('combobox__options').children[selectElementIndex]);
     });
 
     eventUtils.handleEscapeKeydown(event, () => {
@@ -196,7 +174,7 @@ function processAfterStateChange(el) {
     const optionIndex = Array.prototype.slice.call(el.parentNode.children).indexOf(el);
     this.setSelectedOption(optionValue);
     elementScroll.scroll(el);
-    emitAndFire(this, 'combobox-change', {
+    this.emit('combobox-change', {
         index: optionIndex,
         selected: [optionValue],
         el

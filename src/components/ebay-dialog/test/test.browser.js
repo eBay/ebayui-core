@@ -24,7 +24,7 @@ describe('given the dialog is in the default state', () => {
 
     describe('when it is rendered', () => {
         test('then it is hidden in the DOM', () => {
-            expect(root.hidden).to.equal(true);
+            expect(root.hasAttribute('hidden')).to.equal(true);
         });
 
         test('then <body> is scrollable', () => {
@@ -35,28 +35,15 @@ describe('given the dialog is in the default state', () => {
             expect(sibling.hasAttribute('aria-hidden')).to.equal(false);
         });
 
-        test('then it exposes state on root element', () => {
-            expect(root.open).to.equal(false);
-        });
-
         test('then it does not trap focus', () => {
             expect(dialogWindow.classList.contains('keyboard-trap--active')).to.equal(false);
         });
     });
 
-    describe('when open is set to true on the DOM', () => {
+    describe('when the open state is true', () => {
         beforeEach((done) => {
-            widget.subscribeTo(root).once('dialog-show', done);
-            root.open = true;
-        });
-
-        thenItIsOpen();
-    });
-
-    describe('when the show method is called on the widget', () => {
-        beforeEach((done) => {
-            widget.subscribeTo(root).once('dialog-show', done);
-            widget.show();
+            widget.once('dialog-show', done);
+            widget.setState('open', true);
         });
 
         thenItIsOpen();
@@ -64,8 +51,7 @@ describe('given the dialog is in the default state', () => {
 
     function thenItIsOpen(skipRerender) {
         test('then it is visible in the DOM', () => {
-            expect(root.hidden).to.equal(false);
-            expect(root.getAttribute('aria-hidden')).to.equal('false');
+            expect(root.hasAttribute('hidden')).to.equal(false);
         });
 
         test('then it\'s siblings are hidden', () => {
@@ -115,8 +101,7 @@ describe('given the dialog is in the open state', () => {
 
     describe('when it is rendered', () => {
         test('then it is visible in the DOM', () => {
-            expect(root.hidden).to.equal(false);
-            expect(root.getAttribute('aria-hidden')).to.equal('false');
+            expect(root.hasAttribute('hidden')).to.equal(false);
         });
 
         test('then it\'s siblings are hidden', () => {
@@ -133,27 +118,9 @@ describe('given the dialog is in the open state', () => {
         });
     });
 
-    describe('when open is set to false on the DOM', () => {
-        beforeEach((done) => {
-            widget.subscribeTo(root).once('dialog-close', done);
-            root.open = false;
-        });
-
-        thenItIsClosed();
-    });
-
-    describe('when close is called on the widget', () => {
-        beforeEach((done) => {
-            widget.subscribeTo(root).once('dialog-close', done);
-            widget.close();
-        });
-
-        thenItIsClosed();
-    });
-
     describe('when the close button is clicked', () => {
         beforeEach((done) => {
-            widget.subscribeTo(root).once('dialog-close', done);
+            widget.once('dialog-close', done);
             close.click();
         });
 
@@ -162,7 +129,7 @@ describe('given the dialog is in the open state', () => {
 
     describe('when the mask is clicked', () => {
         beforeEach((done) => {
-            widget.subscribeTo(root).once('dialog-close', done);
+            widget.once('dialog-close', done);
             root.click(); // simulate clicking outside the dialog.
         });
 
@@ -171,7 +138,7 @@ describe('given the dialog is in the open state', () => {
 
     function thenItIsClosed(skipRerender) {
         test('then it is hidden in the DOM', () => {
-            expect(root.hidden).to.equal(true);
+            expect(root.hasAttribute('hidden')).to.equal(true);
         });
 
         test('then <body> is scrollable', () => {
@@ -180,10 +147,6 @@ describe('given the dialog is in the open state', () => {
 
         test('then it\'s siblings are visible', () => {
             expect(sibling.hasAttribute('aria-hidden')).to.equal(false);
-        });
-
-        test('then it exposes state on root element', () => {
-            expect(root.open).to.equal(false);
         });
 
         test('then it does not trap focus', () => {
