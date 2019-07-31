@@ -1,5 +1,4 @@
 const assign = require('core-js-pure/features/object/assign');
-const multilineEllipsis = require('../../common/multiline-ellipsis');
 const template = require('./template.marko');
 
 module.exports = require('marko-widgets').defineComponent({
@@ -10,11 +9,9 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     onRender() {
-        const activeText = this.getEl('active-text');
-
-        if (activeText) {
-            // determine whether the content overflows
-            multilineEllipsis.truncate(activeText);
+        const pillBody = this.getEl('pill-raw-text');
+        if (pillBody) {
+            this.setState('text', pillBody.textContent);
         }
     },
     handleButtonClick(event) {
