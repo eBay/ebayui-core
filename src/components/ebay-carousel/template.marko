@@ -59,7 +59,7 @@
         <if(data.autoplayInterval && !data.bothControlsDisabled)>
             <if(data.paused)>
                 <button
-                    class="carousel__play"
+                    class="carousel__playback"
                     type="button"
                     aria-label=data.a11yPlayText
                     w-onclick="togglePlay">
@@ -68,7 +68,7 @@
             </if>
             <else>
                 <button
-                    class="carousel__pause"
+                    class="carousel__playback"
                     type="button"
                     aria-label=data.a11yPauseText
                     w-onclick="togglePlay">
