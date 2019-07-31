@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const { getNItems, createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Basic_3Headings_3Panels_No_Index = {
     headings: getNItems(3, i => ({
@@ -31,15 +32,3 @@ exports.Fake_3Headings_No_Index = {
 exports.Fake_3Headings_1Index = assign({}, exports.Fake_3Headings_No_Index, {
     index: 1
 });
-
-function getNItems(n, getAttrs) {
-    return Array.from({ length: n }).map((_, i) => getAttrs(i));
-}
-
-function createRenderBody(text) {
-    renderBody.text = text;
-    return renderBody;
-    function renderBody(out) {
-        out.write(text);
-    }
-}

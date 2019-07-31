@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Basic = {
     renderBody: createRenderBody('text')
@@ -24,11 +25,3 @@ exports.Fake_Pressed = assign({}, exports.Fake, {
 exports.Fake_Disabled = assign({}, exports.Fake, {
     disabled: true
 });
-
-function createRenderBody(text) {
-    renderBody.text = text;
-    return renderBody;
-    function renderBody(out) {
-        out.write(text);
-    }
-}

@@ -1,3 +1,5 @@
+const { createRenderBody } = require('../../../../common/test-utils/shared');
+
 exports.Basic = {
     a11yCloseText: 'Close Tourtip',
     host: {
@@ -10,11 +12,3 @@ exports.Basic = {
         renderBody: createRenderBody('Content Text')
     }
 };
-
-function createRenderBody(html, text) {
-    renderBody.text = text || html;
-    return renderBody;
-    function renderBody(out) {
-        out.write(html);
-    }
-}

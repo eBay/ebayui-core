@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const { getNItems, createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Discrete_1PerSlide_0Items = {
     itemsPerSlide: 1,
@@ -12,11 +13,15 @@ exports.Discrete_1PerSlide_0Items = {
 };
 
 exports.Discrete_1PerSlide_1Items = assign({}, exports.Discrete_1PerSlide_0Items, {
-    items: getNItems(1)
+    items: [{
+        renderBody: createRenderBody('carousel item content 1')
+    }]
 });
 
 exports.Discrete_1PerSlide_3Items = assign({}, exports.Discrete_1PerSlide_0Items, {
-    items: getNItems(3)
+    items: getNItems(3, i => ({
+        renderBody: createRenderBody(`carousel item content ${i}`)
+    }))
 });
 
 exports.Discrete_2_1PerSlide_3Items = assign({}, exports.Discrete_1PerSlide_3Items, {
@@ -25,7 +30,9 @@ exports.Discrete_2_1PerSlide_3Items = assign({}, exports.Discrete_1PerSlide_3Ite
 
 exports.Discrete_2PerSlide_6Items = assign({}, exports.Discrete_1PerSlide_0Items, {
     itemsPerSlide: 2,
-    items: getNItems(6)
+    items: getNItems(6, i => ({
+        renderBody: createRenderBody(`carousel item content ${i}`)
+    }))
 });
 
 exports.Discrete_1PerSlide_3Items_AutoPlay = assign({
@@ -41,30 +48,22 @@ exports.Continuous_0Items = {
 };
 
 exports.Continuous_1Item = assign({}, exports.Continuous_0Items, {
-    items: getNItems(1, {
-        style: 'width:200px'
-    })
+    items: [{
+        style: 'width:200px',
+        renderBody: createRenderBody('carousel item content 1')
+    }]
 });
 
 exports.Continuous_6Items = assign({}, exports.Continuous_0Items, {
-    items: getNItems(6, {
-        style: 'width:200px'
-    })
+    items: getNItems(6, i => ({
+        style: 'width:200px',
+        renderBody: createRenderBody(`carousel item content ${i}`)
+    }))
 });
 
 exports.Continuous_12Items = assign({}, exports.Continuous_0Items, {
-    items: getNItems(12, {
-        style: 'width:200px'
-    })
+    items: getNItems(12, i => ({
+        style: 'width:200px',
+        renderBody: createRenderBody(`carousel item content ${i}`)
+    }))
 });
-
-function getNItems(n, attrs) {
-    return Array.from({ length: n }).map((_, i) => {
-        const renderBody = out => out.write(renderBody.text);
-        renderBody.text = `carousel item content ${i}`; // used to read text data while testing
-
-        return assign({}, attrs, {
-            renderBody
-        });
-    });
-}

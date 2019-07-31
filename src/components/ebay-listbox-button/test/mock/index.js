@@ -1,3 +1,5 @@
+const { getNItems } = require('../../../../common/test-utils/shared');
+
 exports.Basic_0Options = {
     name: 'listbox-name',
     options: []
@@ -19,7 +21,3 @@ exports.Basic_3Options_1Selected = {
         text: `option ${i}`
     }))
 };
-
-function getNItems(n, getAttrs) {
-    return Array.from({ length: n }).map((_, i) => getAttrs(i));
-}

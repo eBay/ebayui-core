@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Page = {
     a11yHeadingText: 'Heading Text',
@@ -34,11 +35,3 @@ exports.Inline_Dismissible = assign({}, exports.Inline, {
     dismissible: true,
     a11yCloseText: 'Close'
 });
-
-function createRenderBody(text) {
-    renderBody.text = text;
-    return renderBody;
-    function renderBody(out) {
-        out.write(text);
-    }
-}

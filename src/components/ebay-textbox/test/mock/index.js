@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Basic = {
     value: 'textbox value'
@@ -27,13 +28,12 @@ exports.Multiline = assign({}, exports.Basic, {
 exports.Prefix_Icon = assign({}, exports.Basic, {
     icon: 'search',
     iconTag: {
-        renderBody(out) {
-            out.write(
-                '<svg class="textbox__icon" focusable="false" id="w11-w0" ' +
-                'aria-hidden="true"> <defs id="w11-w0-defs"></defs><use ' +
-                'xlink:href="#icon-profile"></use></svg>'
-            );
-        }
+        renderBody: createRenderBody(
+            '<svg class="textbox__icon" focusable="false" id="w11-w0" ' +
+            'aria-hidden="true"> <defs id="w11-w0-defs"></defs><use ' +
+            'xlink:href="#icon-profile"></use></svg>',
+            ''
+        )
     }
 });
 

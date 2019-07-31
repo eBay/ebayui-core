@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const { getNItems } = require('../../../../common/test-utils/shared');
 
 exports.Basic_0Options = {
     options: []
@@ -22,7 +23,3 @@ exports.Basic_3Options_1Selected = {
         selected: i === 1
     }))
 };
-
-function getNItems(n, getAttrs) {
-    return Array.from({ length: n }).map((_, i) => getAttrs(i));
-}

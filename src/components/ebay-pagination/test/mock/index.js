@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const { getNItems, createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Base_0Items = {
     a11yPreviousText: 'Previous page',
@@ -120,15 +121,3 @@ exports.Buttons_0Selected = assign({}, exports.Base_0Items, {
         }
     )
 });
-
-function getNItems(n, getAttrs) {
-    return Array.from({ length: n }).map((_, i) => getAttrs(i));
-}
-
-function createRenderBody(text) {
-    renderBody.text = text;
-    return renderBody;
-    function renderBody(out) {
-        out.write(text);
-    }
-}

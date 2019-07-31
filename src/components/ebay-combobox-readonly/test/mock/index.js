@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const { getNItems } = require('../../../../common/test-utils/shared');
 
 exports.Combobox_0Options = {
     name: 'test-combobox',
@@ -9,30 +10,18 @@ exports.Combobox_0Options = {
 exports.Combobox_3Options = {
     name: 'test-combobox',
     autocomplete: 'list',
-    options: [{
-        value: '1',
-        text: 'option 1'
-    }, {
-        value: '2',
-        text: 'option 2'
-    }, {
-        value: '3',
-        text: 'option 3'
-    }]
+    options: getNItems(3, i => ({
+        value: String(i),
+        text: `option ${i}`
+    }))
 };
 
 exports.Combobox_3Options_2Selected = assign({}, exports.Combobox_3Options, {
-    options: [{
-        value: '1',
-        text: 'option 1'
-    }, {
-        value: '2',
-        text: 'option 2',
-        selected: true
-    }, {
-        value: '3',
-        text: 'option 3'
-    }]
+    options: getNItems(3, i => ({
+        value: String(i),
+        text: `option ${i}`,
+        selected: i === 1
+    }))
 });
 
 exports.Combobox_3Options_Borderless = assign({}, exports.Combobox_3Options, {

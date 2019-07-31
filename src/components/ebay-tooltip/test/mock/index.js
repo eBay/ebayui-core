@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Basic = {
     host: {
@@ -31,11 +32,3 @@ exports.Custom_Pointer = assign({}, exports.Basic, {
     styleTop: '20px',
     styleLeft: '20px'
 });
-
-function createRenderBody(html, text) {
-    renderBody.text = text || html;
-    return renderBody;
-    function renderBody(out) {
-        out.write(html);
-    }
-}
