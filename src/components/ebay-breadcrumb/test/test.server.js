@@ -8,23 +8,32 @@ use(require('chai-dom'));
 
 describe('breadcrumb', () => {
     it('renders basic structure', async() => {
-        const { getByLabelText } = await render(template, mock.basicItems);
-        expect(getByLabelText(mock.basicItems.a11yHeadingText)).has.attr('role', 'navigation');
+        const input = mock.Links;
+        const { getByLabelText, getByText } = await render(template, input);
+
+        expect(getByLabelText(input.a11yHeadingText)).has.attr('role', 'navigation');
+
+        input.items.slice(0, -1).forEach(
+            item => expect(getByText(item.renderBody.text)).has.property('tagName', 'A')
+        );
+
+        expect(getByText(input.items[input.items.length - 1].renderBody.text))
+            .has.property('tagName', 'BUTTON');
     });
 
     it('renders buttons when hrefs are missing', async() => {
-        const { getByText } = await render(template, mock.buttons);
-        mock.buttons.items.forEach(
+        const input = mock.Buttons;
+        const { getByText } = await render(template, input);
+        input.items.forEach(
             item => expect(getByText(item.renderBody.text)).has.property('tagName', 'BUTTON')
         );
     });
 
     it('renders <button> for missing input href item', async() => {
-        const { getByText } = await render(template, mock.firstItemMissingHref);
-        const { items } = mock.firstItemMissingHref;
-        const anchorItems = items.slice(0, -1);
+        const input = mock.Links_First_Without_HREF;
+        const { getByText } = await render(template, input);
 
-        anchorItems.forEach(
+        input.items.slice(0, -1).forEach(
             item => {
                 const itemEl = getByText(item.renderBody.text);
                 if (item.href) {
@@ -37,22 +46,10 @@ describe('breadcrumb', () => {
         );
     });
 
-    it('renders a button when href is null on last item', async() => {
-        const { getByText } = await render(template, mock.basicItems);
-        const { items } = mock.firstItemMissingHref;
-        const lastItem = items[items.length - 1];
-        const anchorItems = items.slice(0, -1);
-        anchorItems.forEach(
-            item => expect(getByText(item.renderBody.text)).has.property('tagName', 'A')
-        );
-
-        expect(getByText(lastItem.renderBody.text)).has.property('tagName', 'BUTTON');
-    });
-
     it('renders different heading tag when specified', async() => {
-        const { getByText } = await render(template, mock.itemsWithHeadingTag);
-        const heading = getByText(mock.itemsWithHeadingTag.a11yHeadingText);
-        expect(heading).has.property('tagName', mock.itemsWithHeadingTag.a11yHeadingTag.toUpperCase());
+        const input = mock.Links_Heading_Tag;
+        const { getByText } = await render(template, input);
+        expect(getByText(input.a11yHeadingText)).has.property('tagName', input.a11yHeadingTag.toUpperCase());
     });
 });
 

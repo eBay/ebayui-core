@@ -10,12 +10,12 @@ afterEach(cleanup);
 let component;
 
 describe('given a basic breadcrumb', () => {
-    const mockItems = mock.basicItems.items;
-    const firstItem = mockItems[0];
-    const lastItem = mockItems[mockItems.length - 1];
+    const input = mock.Links;
+    const firstItem = input.items[0];
+    const lastItem = input.items[input.items.length - 1];
 
     beforeEach(async() => {
-        component = await render(template, mock.basicItems);
+        component = await render(template, input);
     });
 
     describe('when an <a> item is clicked', () => {

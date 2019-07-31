@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Fill_Dialog = {
     a11yCloseText: 'close',
@@ -8,11 +9,3 @@ exports.Fill_Dialog = {
 exports.Fill_Dialog_Open = assign({}, exports.Fill_Dialog, {
     open: true
 });
-
-function createRenderBody(text) {
-    renderBody.text = text;
-    return renderBody;
-    function renderBody(out) {
-        out.write(text);
-    }
-}
