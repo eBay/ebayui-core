@@ -33,7 +33,7 @@
     "tb": "yarn test:browser",
     "tf": "yarn test:fps",
     "ti": "yarn test:integration",
-    "tr": "yarn coverage && yarn report && opn .coverage/index.html"
+    "tr": "yarn coverage && yarn report && open .coverage/index.html"
   },
   "pre-push": [
     "lint",
@@ -92,7 +92,7 @@
     "marko-widgets": "^6",
     "mocha": "^6.1.4",
     "nyc": "^14.1.1",
-    "opn-cli": "^5.0.0",
+    "open-cli": "^5.0.0",
     "pre-push": "^0.1.1",
     "rimraf": "^2.6.2",
     "sinon": "^7.3.2",

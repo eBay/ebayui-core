@@ -837,7 +837,7 @@ describe('given an autoplay carousel in the default state', () => {
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
         root = document.querySelector('.carousel');
         list = root.querySelector('.carousel__list');
-        pauseButton = root.querySelector('.carousel__pause');
+        pauseButton = root.querySelector('.carousel__playback');
         waitForUpdate(widget, done);
     });
 
@@ -965,7 +965,7 @@ describe('given an autoplay carousel in the paused state', () => {
         widget = renderer.renderSync(input).appendTo(document.body).getWidget();
         root = document.querySelector('.carousel');
         list = root.querySelector('.carousel__list');
-        playButton = root.querySelector('.carousel__play');
+        playButton = root.querySelector('.carousel__playback');
         prevButton = root.querySelector('.carousel__control--prev');
         waitForUpdate(widget, done);
     });

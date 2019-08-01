@@ -54,9 +54,8 @@ describe('carousel', () => {
         };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.carousel__autoplay').length).to.equal(1);
-        expect($('.carousel__play').length).to.equal(0);
+        expect($('.carousel__playback').attr('aria-label')).to.equal(input.a11yPauseText);
         expect($('.carousel__dots').length).to.equal(1);
-        expect($('.carousel__pause').attr('aria-label')).to.equal('pause');
     });
 
     test('renders autoplay version without dots', context => {
@@ -84,8 +83,7 @@ describe('carousel', () => {
         };
         const $ = testUtils.getCheerio(context.render(input));
         expect($('.carousel__autoplay').length).to.equal(1);
-        expect($('.carousel__pause').length).to.equal(0);
-        expect($('.carousel__play').attr('aria-label')).to.equal('play');
+        expect($('.carousel__playback').attr('aria-label')).to.equal(input.a11yPlayText);
     });
 
     test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.carousel'));
