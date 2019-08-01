@@ -16,8 +16,8 @@ it('renders number with rounded-up value', async() => {
 });
 
 it('does not render with negative value', async() => {
-    const { getByText } = await render(template, { number: -5 });
-    expect(() => getByText(/\d+/)).to.throw('Unable to find an element');
+    const { queryByText } = await render(template, { number: -5 });
+    expect(queryByText(/\d+/)).to.equal(null);
 });
 
 describe('given number is a string', () => {
@@ -32,13 +32,13 @@ describe('given number is a string', () => {
     });
 
     it('does not renders with an invalid string', async() => {
-        const { getByText } = await render(template, { number: 'five' });
-        expect(() => getByText(/\d+/)).to.throw('Unable to find an element');
+        const { queryByText } = await render(template, { number: 'five' });
+        expect(queryByText(/\d+/)).to.equal(null);
     });
 
     it('does not renders with a negative string', async() => {
-        const { getByText } = await render(template, { number: '-5' });
-        expect(() => getByText(/\d+/)).to.throw('Unable to find an element');
+        const { queryByText } = await render(template, { number: '-5' });
+        expect(queryByText(/\d+/)).to.equal(null);
     });
 });
 

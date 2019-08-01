@@ -17,7 +17,7 @@ describe('given the dismissable page notice', () => {
     });
 
     it('then it is visible in the dom', () => {
-        expect(() => component.queryByLabelText(input.a11yHeadingText)).to.not.throw();
+        expect(component.queryByLabelText(input.a11yHeadingText)).does.not.equal(null);
     });
 
     describe('when the dismiss button is clicked', () => {

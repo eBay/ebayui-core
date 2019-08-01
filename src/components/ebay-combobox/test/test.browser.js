@@ -148,7 +148,7 @@ describe('given the combobox starts with zero options', () => {
         });
 
         it('then it has no options', () => {
-            expect(() => component.getAllByRole('option')).to.throw('Unable to find an element with the role "option"');
+            expect(component.queryAllByRole('option')).has.length(0);
         });
 
         it('then it should not be expanded', () => {

@@ -531,9 +531,9 @@ describe('given a discrete carousel', () => {
         });
 
         it('then the dot controls do not display', () => {
-            expect(() => {
-                component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', ''));
-            }).to.throw('Unable to find a label');
+            expect(
+                component.queryByLabelText(input.a11yCurrentText.replace('{currentSlide}', ''))
+            ).equals(null);
         });
 
         it('then it shows part of the next slide', () => {

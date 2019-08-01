@@ -20,9 +20,9 @@ describe('combobox', () => {
 
     it('renders empty', async() => {
         const input = mock.Combobox_0Options;
-        const { getByRole } = await render(template, input);
-        expect(() => getByRole('combobox')).to.not.throw();
-        expect(() => getByRole('listbox')).to.throw();
+        const { queryByRole } = await render(template, input);
+        expect(queryByRole('combobox')).does.not.equal(null);
+        expect(queryByRole('listbox')).equals(null);
     });
 
     it('renders with second item selected', async() => {
