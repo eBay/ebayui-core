@@ -58,6 +58,9 @@ module.exports = require('marko-widgets').defineComponent({
     handleCollapse() {
         this.emit('listbox-collapse');
     },
+    handleMouseDown() {
+        this.wasClicked = true;
+    },
     handleListboxChange(event) {
         const selectedIndex = parseInt(event.detail.toIndex, 10);
         const el = this.getEls('option')[selectedIndex];
@@ -66,11 +69,15 @@ module.exports = require('marko-widgets').defineComponent({
         elementScroll.scroll(el);
         this.setState('selectedIndex', selectedIndex);
 
-        // TODO: we should not cast the selected value to a string here, but this is a breaking change.
         this.emit('listbox-change', {
             index: selectedIndex,
-            selected: [String(option.value)],
+            selected: [option.value],
             el
         });
+
+        if (this.wasClicked) {
+            this.expander.collapse();
+            this.wasClicked = false;
+        }
     }
 });
