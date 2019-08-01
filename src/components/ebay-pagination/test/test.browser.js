@@ -35,7 +35,9 @@ describe('given the pagination is rendered', () => {
         describe('when the previous button is activated', () => {
             describe('via click', () => {
                 beforeEach(async() => {
-                    await fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+                    await fireEvent.click(component.getByLabelText(input.a11yPreviousText), {
+                        detail: 1
+                    });
                 });
 
                 thenItEmittedThePaginationPreviousEvent();
@@ -67,7 +69,9 @@ describe('given the pagination is rendered', () => {
         describe('when the next button is activated', () => {
             describe('via click', () => {
                 beforeEach(async() => {
-                    await fireEvent.click(component.getByLabelText(input.a11yNextText));
+                    await fireEvent.click(component.getByLabelText(input.a11yNextText), {
+                        detail: 1
+                    });
                 });
 
                 thenItEmittedThePaginationNextEvent();
@@ -99,7 +103,9 @@ describe('given the pagination is rendered', () => {
         describe('when the item number is activated', () => {
             describe('via click', () => {
                 beforeEach(async() => {
-                    await fireEvent.click(component.getByText(input.items[1].renderBody.text));
+                    await fireEvent.click(component.getByText(input.items[1].renderBody.text), {
+                        detail: 1
+                    });
                 });
 
                 thenItEmittedThePaginationSelectEvent();
@@ -141,7 +147,9 @@ describe('given the pagination is rendered with disabled controls', () => {
     describe('when the previous button is activated', () => {
         describe('via click', () => {
             beforeEach(async() => {
-                await fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+                await fireEvent.click(component.getByLabelText(input.a11yPreviousText), {
+                    detail: 1
+                });
             });
 
             thenItDidNotEmitThePaginationPreviousEvent();
@@ -168,7 +176,9 @@ describe('given the pagination is rendered with disabled controls', () => {
     describe('when the next button is activated', () => {
         describe('via click', () => {
             beforeEach(async() => {
-                await fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await fireEvent.click(component.getByLabelText(input.a11yNextText), {
+                    detail: 1
+                });
             });
 
             thenItDidNotEmitThePaginationNextEvent();

@@ -138,55 +138,63 @@ function refresh() {
 
 /**
  * Handle normal mouse click for item, next page and previous page respectively.
- * @param {MouseEvent} event
+ * @param {MouseEvent} originalEvent
  */
-function handlePageClick(originalEvent) {
-    const target = originalEvent.target;
-    this.emit('pagination-select', {
-        originalEvent,
-        el: target,
-        value: target.innerText
-    });
-}
-
-function handleNextPage(originalEvent) {
-    if (!this.state.nextItem.disabled) {
-        this.emit('pagination-next', {
+function handlePageClick(originalEvent, el) {
+    if (!isClickFromByKey(originalEvent)) {
+        this.emit('pagination-select', {
+            el,
             originalEvent,
-            el: this.nextPageEl
+            value: el.innerText
         });
     }
 }
 
-function handlePreviousPage(originalEvent) {
-    if (!this.state.prevItem.disabled) {
+function handleNextPage(originalEvent, el) {
+    if (!this.state.nextItem.disabled && !isClickFromByKey(originalEvent)) {
+        this.emit('pagination-next', {
+            el,
+            originalEvent
+        });
+    }
+}
+
+function handlePreviousPage(originalEvent, el) {
+    if (!this.state.prevItem.disabled && !isClickFromByKey(originalEvent)) {
         this.emit('pagination-previous', {
-            originalEvent,
-            el: this.previousPageEl
+            el,
+            originalEvent
         });
     }
 }
 
 /**
  * Handle a11y for item, next page and previous page respectively.
- * @param {KeyboardEvent} event
+ * @param {KeyboardEvent} originalEvent
  */
-function handlePageKeyDown(event) {
-    eventUtils.handleActionKeydown(event, () => {
-        this.handlePageClick(event);
+function handlePageKeyDown(originalEvent, el) {
+    eventUtils.handleActionKeydown(originalEvent, () => {
+        this.handlePageClick(originalEvent, el);
     });
 }
 
-function handleNextPageKeyDown(event) {
-    eventUtils.handleActionKeydown(event, () => {
-        this.handleNextPage(event);
+function handleNextPageKeyDown(originalEvent, el) {
+    eventUtils.handleActionKeydown(originalEvent, () => {
+        this.handleNextPage(originalEvent, el);
     });
 }
 
-function handlePreviousPageKeyDown(event) {
-    eventUtils.handleActionKeydown(event, () => {
-        this.handlePreviousPage(event);
+function handlePreviousPageKeyDown(originalEvent, el) {
+    eventUtils.handleActionKeydown(originalEvent, () => {
+        this.handlePreviousPage(originalEvent, el);
     });
+}
+
+function isClickFromByKey(event) {
+    // Keydown events can fire a click event on buttons, which caused this component
+    // to emit two events. Here we use the event.detail property to check that there was
+    // actually a click. https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail
+    return event.type === 'click' && event.detail === 0;
 }
 
 module.exports = require('marko-widgets').defineComponent({
