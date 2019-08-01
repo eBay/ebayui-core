@@ -1,0 +1,30 @@
+<script marko-init>
+    var getWidgetId = require("../../common/get-marko-3-widget-id");
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var size=(data.size || "medium")/>
+<var noText=(data.noText)/>
+<var baseClass=("expand-btn")/>
+<var sizeClass="${baseClass}--${size}"/>
+
+<button
+    ${processHtmlAttributes(data)}
+    id=(data.id || getWidgetId(out))
+    class=[
+        data.class,
+        baseClass,
+        data.noText && "${baseClass}--no-text",
+        data.fluid && "${baseClass}--fluid",
+        data.truncate && "${sizeClass}-truncated",
+        data.fixedHeight && "${sizeClass}-fixed-height",
+        !data.fixedHeight && !data.truncate && sizeClass,
+    ]
+    style=data.style
+    href=data.href
+    type="button"
+    disabled=data.disabled
+aria-disabled=(data.partiallyDisabled && "true")>
+    <span if(data.renderBody)><invoke data.renderBody(out) /></span>
+    <ebay-icon type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
+</>

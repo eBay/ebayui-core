@@ -155,6 +155,17 @@
         "@focus": "string",
         "@a11y-close-text": "string"
     },
+    "<ebay-expand-button>": {
+        "template": "./src/components/ebay-expand-button/index.marko",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@id": "string",
+        "@class": "string",
+        "@style": "string",
+        "@disabled": "boolean",
+        "@size": "size",
+        "@no-text": "boolean"
+    },
     "<ebay-icon>": {
         "template": "./src/components/ebay-icon/index.marko",
         "transformer": "./src/components/ebay-icon/transformer.js",

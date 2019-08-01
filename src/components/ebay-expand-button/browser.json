@@ -1,0 +1,11 @@
+{
+    "dependencies": [
+        {
+            "if-not-flag": "ebayui-no-skin",
+            "dependencies": [
+                "@ebay/skin/expand-button"
+            ]
+        },
+        "../ebay-icon"
+    ]
+}
