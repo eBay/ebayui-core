@@ -49,6 +49,7 @@
                     role="option"
                     tabindex="-1"
                     aria-selected=(selectedOption === option && "true")
+                    w-on-mousedown="handleMouseDown"
                     ${processHtmlAttributes(option)}>
                     <span>${option.text}</span>
                     <span class="listbox-button__status"/>
