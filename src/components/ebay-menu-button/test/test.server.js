@@ -1,202 +1,142 @@
+const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const testUtils = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
-const mock = require('../mock');
+const mock = require('./mock');
 const template = require('..');
-const getQuerySelector = async(input) => {
-    const { container } = await render(template, input);
-    return container.querySelectorAll.bind(container);
-};
-
-const textSelector = '.expand-btn__cell > span:not(.expand-btn__icon)';
 
 use(require('chai-dom'));
 
 describe('menu', () => {
     it('renders basic version', async() => {
-        const text = 'text';
-        const input = { text };
-        const $ = await getQuerySelector(input);
-        expect($('.menu').length).to.equal(1);
-        expect($('.expand-btn').length).to.equal(1);
-        expect($('.menu__items[role=menu]').length).to.equal(1);
-        const $text = $(textSelector);
-        expect($text.length).to.equal(1);
-        expect($text[0].textContent).to.equal(text);
+        const input = mock.Basic_2Items;
+        const { getByRole, getAllByRole, getByText, getByLabelText } = await render(template, input);
+        const btnEl = getByRole('button');
+        expect(btnEl).is.equal(getByLabelText(input.a11yText));
+        expect(btnEl).has.class('expand-btn');
+        expect(btnEl).has.attr('aria-haspopup', 'true');
+        expect(btnEl).has.attr('aria-expanded', 'false');
+        expect(btnEl).has.property('parentElement').with.class('menu');
+        expect(btnEl.querySelector('.expand-btn__icon')).has.property('tagName', 'svg');
+        expect(btnEl).contains(getByText(input.text));
+        expect(getByRole('menu')).has.class('menu__items');
+
+        const menuItemEls = getAllByRole('menuitem');
+        input.items.forEach((item, i) => {
+            const menuItemEl = menuItemEls[i];
+            const textEl = getByText(item.renderBody.text);
+            expect(menuItemEl).has.class('menu__item');
+            expect(menuItemEl).contains(textEl);
+        });
     });
 
     it('renders fake version', async() => {
-        const input = { type: 'fake' };
-        const $ = await getQuerySelector(input);
-        expect($('.fake-menu').length).to.equal(1);
-        expect($('.expand-btn').length).to.equal(1);
-        expect($('.fake-menu__items').length).to.equal(1);
-        expect($('.fake-menu__items[role=menu]').length).to.equal(0);
+        const input = mock.Fake_2Items;
+        const { getByText } = await render(template, input);
+
+        expect(getByText(input.text).closest('.fake-menu')).has.class('expander');
+
+        input.items.forEach(item => {
+            expect(getByText(item.renderBody.text).closest('.fake-menu__item'))
+                .has.attr('href', item.href);
+        });
     });
 
     it('renders with reverse=true', async() => {
-        const input = { reverse: true };
-        const $ = await getQuerySelector(input);
-        expect($('.menu__items--reverse').length).to.equal(1);
-    });
-
-    it('renders with reverse=false', async() => {
-        const input = { reverse: false };
-        const $ = await getQuerySelector(input);
-        expect($('.menu__items').length).to.equal(1);
-        expect($('.menu__items.menu__items--reverse').length).to.equal(0);
+        const input = assign({ reverse: true }, mock.Basic_2Items);
+        const { getByRole } = await render(template, input);
+        expect(getByRole('menu')).has.class('menu__items--reverse');
     });
 
     it('renders with type=fake, reverse=true', async() => {
-        const input = { type: 'fake', reverse: true };
-        const $ = await getQuerySelector(input);
-        expect($('.fake-menu__items--reverse').length).to.equal(1);
-    });
-
-    it('renders with type=fake, reverse=false', async() => {
-        const input = { type: 'fake', reverse: false };
-        const $ = await getQuerySelector(input);
-        expect($('.fake-menu__items').length).to.equal(1);
-        expect($('.fake-menu__items.fake-menu__items--reverse').length).to.equal(0);
+        const input = assign({ type: 'fake', reverse: true }, mock.Basic_2Items);
+        const { getByText } = await render(template, input);
+        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu__items--reverse'))
+            .does.not.equal(null);
     });
 
     it('renders with fix-width=true', async() => {
-        const input = { fixWidth: true };
-        const $ = await getQuerySelector(input);
-        expect($('.menu__items--fix-width').length).to.equal(1);
-    });
-
-    it('renders with fix-width=false', async() => {
-        const input = { fixWidth: false };
-        const $ = await getQuerySelector(input);
-        expect($('.menu__items').length).to.equal(1);
-        expect($('.menu__items.menu__items--fix-width').length).to.equal(0);
+        const input = assign({ fixWidth: true }, mock.Basic_2Items);
+        const { getByRole } = await render(template, input);
+        expect(getByRole('menu')).has.class('menu__items--fix-width');
     });
 
     it('renders with type=fake, fix-width=true', async() => {
-        const input = { type: 'fake', fixWidth: true };
-        const $ = await getQuerySelector(input);
-        expect($('.fake-menu__items--fix-width').length).to.equal(1);
-    });
-
-    it('renders with type=fake, fix-width=false', async() => {
-        const input = { type: 'fake', fixWidth: false };
-        const $ = await getQuerySelector(input);
-        expect($('.fake-menu__items').length).to.equal(1);
-        expect($('.fake-menu__items.fake-menu__items--fix-width').length).to.equal(0);
+        const input = assign({ type: 'fake', fixWidth: true }, mock.Basic_2Items);
+        const { getByText } = await render(template, input);
+        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu__items--fix-width'))
+            .does.not.equal(null);
     });
 
     it('renders with borderless=true', async() => {
-        const input = { borderless: true };
-        const $ = await getQuerySelector(input);
-        expect($('.expand-btn.expand-btn--borderless').length).to.equal(1);
-    });
-
-    it('renders with borderless=false', async() => {
-        const input = { borderless: false };
-        const $ = await getQuerySelector(input);
-        expect($('.expand-btn').length).to.equal(1);
-        expect($('.expand-btn.expand-btn--borderless').length).to.equal(0);
+        const input = assign({ borderless: true }, mock.Basic_2Items);
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.class('expand-btn--borderless');
     });
 
     it('renders with size=small', async() => {
-        const input = { size: 'small' };
-        const $ = await getQuerySelector(input);
-        expect($('.expand-btn.expand-btn--small').length).to.equal(1);
+        const input = assign({ size: 'small' }, mock.Basic_2Items);
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.class('expand-btn--small');
     });
 
     it('renders with priority=primary', async() => {
-        const input = { priority: 'primary' };
-        const $ = await getQuerySelector(input);
-        expect($('.expand-btn.expand-btn--primary').length).to.equal(1);
+        const input = assign({ priority: 'primary' }, mock.Basic_2Items);
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.class('expand-btn--primary');
     });
 
     it('renders without text', async() => {
-        const input = { text: '' };
-        const $ = await getQuerySelector(input);
-        expect($(textSelector).length).to.equal(0);
-        expect($('.expand-btn.expand-btn--no-text').length).to.equal(1);
-        expect($('svg.expand-btn__icon').length).to.equal(1);
+        const input = assign({}, mock.Basic_2Items, { text: '' });
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.class('expand-btn--no-text');
     });
 
-    it.skip('renders with icon', async() => {
-        const input = { icon: 'settings', iconTag: { renderBody: mock.iconRenderBody } };
-        const $ = await getQuerySelector(input);
-        expect($('.expand-btn:not(.expand-btn--no-text)').length).to.equal(1);
-        expect($('div.btn__icon')).has.text('icon');
+    it('renders with icon', async() => {
+        const input = mock.Settings_Icon;
+        const { getByRole, getByText } = await render(template, input);
+        const btnEl = getByRole('button');
+        expect(btnEl).does.not.have.class('expand-btn--no-text');
+        expect(btnEl).contains(getByText(input.iconTag.renderBody.text));
     });
 
     it('renders without toggle icon', async() => {
-        const input = { noToggleIcon: true };
-        const $ = await getQuerySelector(input);
-        expect($('svg.expand-btn__icon').length).to.equal(0);
+        const input = mock.No_Toggle_Icon;
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button').querySelector('expand-btn__icon')).equals(null);
     });
 
     it('renders with disabled state', async() => {
-        const input = { disabled: true };
-        const $ = await getQuerySelector(input);
-        expect($('.expand-btn[disabled]').length).to.equal(1);
+        const input = mock.Disabled;
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.attr('disabled');
     });
 
-    it('renders with no disabled state', async() => {
-        const input = {};
-        const $ = await getQuerySelector(input);
-        expect($('.expand-btn[disabled]').length).to.equal(0);
+    it('renders with a custom label', async() => {
+        const input = mock.Custom_Label;
+        const { getByRole, getByText } = await render(template, input);
+        const customLabelEl = getByText(input.label.renderBody.text);
+        expect(customLabelEl).has.class('custom_label');
+        expect(getByRole('button')).contains(customLabelEl);
     });
-
-    testUtils.testPassThroughAttributes(template);
-});
-
-describe('menu-label', () => {
-    it.skip('renders basic version', async() => {
-        const input = { label: mock.customLabel };
-        const $ = await getQuerySelector(input);
-        expect($('.expand-btn__cell .custom_label').length).to.equal(1);
-    });
-
-    it('renders basic version without any custom label', async() => {
-        const input = {};
-        const $ = await getQuerySelector(input);
-        expect($('.expand-btn__cell .custom_label').length).to.equal(0);
-    });
-});
-
-describe('menu-item', () => {
-    it('renders basic version', async() => {
-        const input = { items: mock.twoItems };
-        const $ = await getQuerySelector(input);
-        expect($('div.menu__item').length).to.equal(2);
-    });
-
-    it('renders fake version', async() => {
-        const linkItem = { renderBody: mock.renderBody, href: '#' };
-        const buttonItem = { renderBody: mock.renderBody, type: 'button' };
-        const input = { type: 'fake', items: [linkItem, buttonItem] };
-        const $ = await getQuerySelector(input);
-        expect($('a.fake-menu__item[href="#"]').length).to.equal(1);
-        expect($('button.fake-menu__item').length).to.equal(1);
-    });
-
-    it('renders fake version without href', async() => {
-        const linkItem = { renderBody: mock.renderBody, href: '' };
-        const input = { type: 'fake', items: [linkItem] };
-        const $ = await getQuerySelector(input);
-        expect($('a.fake-menu__item[href]').length).to.equal(1);
-    });
-
     ['radio', 'checkbox'].forEach(type => {
         [true, false].forEach(checked => {
             it(`renders with type=${type} and checked=${checked}`, async() => {
-                const input = { type, items: [{ renderBody: mock.renderBody, checked }] };
-                const $ = await getQuerySelector(input);
-                const $root = $(`.menu__item[role=menuitem${type}][aria-checked=${checked}]`);
-                expect($root.length).to.equal(1);
-                expect($('.menu__status', $root).length).to.equal(1);
+                const input = { type, items: [{ checked }] };
+                const { getByRole, getAllByRole } = await render(template, input);
+                const optionEls = getAllByRole(`menuitem${type}`);
+
+                expect(optionEls).has.length(1);
+                expect(optionEls[0]).has.attr('aria-checked', String(checked));
+
+                expect(getByRole('menu').querySelector('.menu__status'))
+                    .does.not.equal(null);
             });
         });
     });
 
+    testUtils.testPassThroughAttributes(template);
     testUtils.testPassThroughAttributes(template, {
         child: {
             name: 'items',
