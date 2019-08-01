@@ -162,7 +162,6 @@
         "@id": "string",
         "@class": "string",
         "@style": "string",
-        "@type": "string",
         "@disabled": "boolean",
         "@size": "size",
         "@no-text": "boolean"
