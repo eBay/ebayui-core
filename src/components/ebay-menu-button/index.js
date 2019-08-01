@@ -12,7 +12,7 @@ const mainButtonClass = 'expand-btn';
 const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
 const contentSelector = `.${contentClass}`;
-const checkedItemSelector = '.menu__item[role^=menuitem][aria-checked=true]';
+const checkedItemSelector = '.menu-button__item[role^=menuitem][aria-checked=true]';
 
 function getInitialState(input) {
     const type = input.type;
@@ -31,7 +31,7 @@ function getInitialState(input) {
         let tag;
 
         if (isFake) {
-            classes.push('fake-menu__item');
+            classes.push('fake-menu-button__item');
             if (itemType === 'button') {
                 tag = 'button';
             } else {
@@ -39,7 +39,7 @@ function getInitialState(input) {
             }
         } else {
             tag = 'div';
-            classes.push('menu__item');
+            classes.push('menu-button__item');
         }
 
         if (isRadio) {
@@ -103,22 +103,22 @@ function getTemplateData(state) {
     const itemsClass = [contentClass];
 
     if (state.isFake) {
-        menuClass.push('fake-menu');
-        itemsClass.push('fake-menu__items');
+        menuClass.push('fake-menu-button');
+        itemsClass.push('fake-menu-button__menu');
         if (state.reverse) {
-            itemsClass.push('fake-menu__items--reverse');
+            itemsClass.push('fake-menu-button__menu--reverse');
         }
         if (state.fixWidth) {
-            itemsClass.push('fake-menu__items--fix-width');
+            itemsClass.push('fake-menu-button__menu--fix-width');
         }
     } else {
-        menuClass.push('menu');
-        itemsClass.push('menu__items');
+        menuClass.push('menu-button');
+        itemsClass.push('menu-button__menu');
         if (state.reverse) {
-            itemsClass.push('menu__items--reverse');
+            itemsClass.push('menu-button__menu--reverse');
         }
         if (state.fixWidth) {
-            itemsClass.push('menu__items--fix-width');
+            itemsClass.push('menu-button__menu--fix-width');
         }
     }
 
@@ -151,7 +151,7 @@ function getTemplateData(state) {
 function onRender(event) {
     this.buttonEl = this.el.querySelector(buttonSelector);
     this.contentEl = this.el.querySelector(contentSelector);
-    this.itemEls = this.el.querySelectorAll('.menu__item, .fake-menu__item');
+    this.itemEls = this.el.querySelectorAll('.menu-button__item, .fake-menu-button__item');
 
     if (event.firstRender) {
         if (this.state.isCheckbox) {

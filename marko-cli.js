@@ -77,6 +77,8 @@ module.exports = ({ config }) => {
             capability['browserstack.local'] = true;
             capability['browserstack.debug'] = true;
             capability['browserstack.localIdentifier'] = buildID;
+            capability['browserstack.console'] = 'verbose';
+            capability['browserstack.networkLogs'] = true;
             return capability;
         })
     };

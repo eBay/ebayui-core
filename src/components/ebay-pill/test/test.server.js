@@ -9,50 +9,46 @@ use(require('chai-dom'));
 describe('pill', () => {
     it('renders defaults', async() => {
         const input = mock.Basic;
-        const { getByText } = await render(template, input);
-        const pill = getByText(input.renderBody.text);
-        expect(pill).has.class('btn--secondary');
-        expect(pill).has.property('tagName', 'BUTTON');
-        expect(pill).does.not.have.attr('aria-pressed');
+        const { getByRole, getByText } = await render(template, input);
+        const pillEl = getByRole('button');
+        expect(pillEl).has.class('pill');
+        expect(pillEl).does.not.have.attr('aria-pressed');
+        expect(pillEl).contains(getByText(input.renderBody.text));
     });
 
     it('renders with pressed attribute', async() => {
         const input = mock.Pressed;
-        const { getByText } = await render(template, input);
-        const pill = getByText(input.renderBody.text);
-        expect(pill).has.attr('aria-pressed', 'true');
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.attr('aria-pressed', 'true');
     });
 
     it('renders with disabled attribute', async() => {
         const input = mock.Disabled;
-        const { getByText } = await render(template, input);
-        const pill = getByText(input.renderBody.text);
-        expect(pill).has.attr('disabled');
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.attr('disabled');
     });
 
     it('renders fake version', async() => {
         const input = mock.Fake;
         const { getByText } = await render(template, input);
-        const pill = getByText(input.renderBody.text);
-        expect(pill).has.class('fake-btn--secondary');
-        expect(pill).has.attr('href', input.href);
-        expect(pill).has.property('tagName', 'A');
-        expect(pill).does.not.have.attr('aria-pressed');
+        const pillTextEl = getByText(input.renderBody.text);
+        const pillEl = pillTextEl.closest('a');
+        expect(pillEl).has.attr('href', input.href);
+        expect(pillEl).has.class('fake-pill');
+        expect(pillEl).does.not.have.attr('aria-pressed');
     });
 
     it('renders fake version with disabled attribute', async() => {
         const input = mock.Fake_Disabled;
         const { getByText } = await render(template, input);
-        const pill = getByText(input.renderBody.text);
-        expect(pill).has.attr('disabled');
+        expect(getByText(input.renderBody.text).closest('a')).has.attr('disabled');
     });
 
     it('renders fake version with pressed attribute', async() => {
         const input = mock.Fake_Pressed;
         const { getByText } = await render(template, input);
-        const pill = getByText(input.renderBody.text);
-        const statusText = getByText(input.a11yActiveText, { exact: false });
-        expect(pill).contains(statusText);
+        expect(getByText(input.renderBody.text).closest('a'))
+            .contains(getByText(input.a11yActiveText, { exact: false }));
     });
 
     testPassThroughAttributes(template, {

@@ -17,16 +17,16 @@ describe('menu', () => {
         expect(btnEl).has.class('expand-btn');
         expect(btnEl).has.attr('aria-haspopup', 'true');
         expect(btnEl).has.attr('aria-expanded', 'false');
-        expect(btnEl).has.property('parentElement').with.class('menu');
+        expect(btnEl).has.property('parentElement').with.class('menu-button');
         expect(btnEl.querySelector('.expand-btn__icon')).has.property('tagName', 'svg');
         expect(btnEl).contains(getByText(input.text));
-        expect(getByRole('menu')).has.class('menu__items');
+        expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu');
 
         const menuItemEls = getAllByRole('menuitem');
         input.items.forEach((item, i) => {
             const menuItemEl = menuItemEls[i];
             const textEl = getByText(item.renderBody.text);
-            expect(menuItemEl).has.class('menu__item');
+            expect(menuItemEl).has.class('menu-button__item');
             expect(menuItemEl).contains(textEl);
         });
     });
@@ -35,10 +35,10 @@ describe('menu', () => {
         const input = mock.Fake_2Items;
         const { getByText } = await render(template, input);
 
-        expect(getByText(input.text).closest('.fake-menu')).has.class('expander');
+        expect(getByText(input.text).closest('.fake-menu-button')).has.class('expander');
 
         input.items.forEach(item => {
-            expect(getByText(item.renderBody.text).closest('.fake-menu__item'))
+            expect(getByText(item.renderBody.text).closest('.fake-menu-button__item'))
                 .has.attr('href', item.href);
         });
     });
@@ -46,26 +46,26 @@ describe('menu', () => {
     it('renders with reverse=true', async() => {
         const input = assign({ reverse: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
-        expect(getByRole('menu')).has.class('menu__items--reverse');
+        expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu--reverse');
     });
 
     it('renders with type=fake, reverse=true', async() => {
         const input = assign({ type: 'fake', reverse: true }, mock.Basic_2Items);
         const { getByText } = await render(template, input);
-        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu__items--reverse'))
+        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--reverse'))
             .does.not.equal(null);
     });
 
     it('renders with fix-width=true', async() => {
         const input = assign({ fixWidth: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
-        expect(getByRole('menu')).has.class('menu__items--fix-width');
+        expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu--fix-width');
     });
 
     it('renders with type=fake, fix-width=true', async() => {
         const input = assign({ type: 'fake', fixWidth: true }, mock.Basic_2Items);
         const { getByText } = await render(template, input);
-        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu__items--fix-width'))
+        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--fix-width'))
             .does.not.equal(null);
     });
 
@@ -130,7 +130,7 @@ describe('menu', () => {
                 expect(optionEls).has.length(1);
                 expect(optionEls[0]).has.attr('aria-checked', String(checked));
 
-                expect(getByRole('menu').querySelector('.menu__status'))
+                expect(getByRole('menu').querySelector('.menu-button__status'))
                     .does.not.equal(null);
             });
         });

@@ -17,9 +17,9 @@ describe('listbox', () => {
 
         expect(btnEl).has.attr('aria-haspopup', 'listbox');
         expect(btnEl).has.text(input.options[0].text);
-        expect(btnEl).has.class('listbox__control');
+        expect(btnEl).has.class('listbox-button__control');
 
-        expect(listboxEl).has.class('listbox__options');
+        expect(listboxEl).has.class('listbox-button__listbox');
 
         expect(visibleOptionEls).has.length(3);
         visibleOptionEls.forEach((optionEl, i) => {

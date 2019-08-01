@@ -8,7 +8,6 @@
 <var variant=(!data.variant && data.href ? "fake" : data.variant)/>
 <var isIconVariant=(variant === 'icon')/>
 <var isExpandVariant=(variant === 'expand')/>
-<var isCtaVariant=(variant === 'cta')/>
 <var isBadged=Boolean(data.badgeNumber && isIconVariant)/>
 <var noText=(isIconVariant || isBadged || (isExpandVariant && data.noText))/>
 <var baseClass=(variant ? (variant === 'fake-link' ? variant : "${variant}-btn") : "btn")/>
@@ -39,21 +38,13 @@
     disabled=data.disabled
     aria-disabled=(data.partiallyDisabled && "true")>
 
-    <if(isCtaVariant)>
-        <span class="cta-btn__cell">
-            <span w-body/>
-            <ebay-icon type="inline" name="arrow-right-bold" class="cta-btn__icon" no-skin-classes/>
-        </span>
+    <var hasAriaLabel=Boolean(htmlAttributes['aria-label'])/>
+    <span body-only-if(!hasAriaLabel) w-body aria-hidden="true"/>
+    <if(isBadged)>
+        <ebay-badge
+            number=data.badgeNumber
+            type="icon"
+            aria-label=(hasAriaLabel && data.badgeAriaLabel)
+            aria-hidden=(hasAriaLabel && "true")/>
     </if>
-    <else>
-        <var hasAriaLabel=Boolean(htmlAttributes['aria-label'])/>
-        <span body-only-if(!hasAriaLabel) w-body aria-hidden="true"/>
-        <if(isBadged)>
-            <ebay-badge
-                number=data.badgeNumber
-                type="icon"
-                aria-label=(hasAriaLabel && data.badgeAriaLabel)
-                aria-hidden=(hasAriaLabel && "true")/>
-        </if>
-    </else>
 </>

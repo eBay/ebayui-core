@@ -1,6 +1,5 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { pressKey } = require('../../../common/test-utils/browser');
 const mock = require('./mock');
 const template = require('..');
 
@@ -26,7 +25,7 @@ describe('given pill is enabled', () => {
         });
 
         it('then it emits the event with correct data', () => {
-            expect(component.emitted('button-click')).has.length(1);
+            expect(component.emitted('pill-click')).has.length(1);
         });
 
         it('then it is pressed', () => {
@@ -43,19 +42,6 @@ describe('given pill is enabled', () => {
             });
         });
     });
-
-    describe('when escape key is pressed', () => {
-        beforeEach(async() => {
-            await pressKey(component.getByRole('button'), {
-                key: 'Escape',
-                keyCode: 27
-            });
-        });
-
-        it('then it emits the event with correct data', () => {
-            expect(component.emitted('button-escape')).has.length(1);
-        });
-    });
 });
 
 describe('given pill is disabled', () => {
@@ -69,20 +55,7 @@ describe('given pill is disabled', () => {
         });
 
         it('then it does not emit the event', () => {
-            expect(component.emitted('button-click')).has.length(0);
-        });
-    });
-
-    describe('when escape key is pressed', () => {
-        beforeEach(async() => {
-            await pressKey(component.getByRole('button'), {
-                key: 'Escape',
-                keyCode: 27
-            });
-        });
-
-        it('then it does not emit the event', () => {
-            expect(component.emitted('button-escape')).has.length(0);
+            expect(component.emitted('pill-click')).has.length(0);
         });
     });
 });
