@@ -13,7 +13,7 @@ const properties = {
 Object.keys(properties).forEach(property => {
     const values = properties[property];
     values.forEach(value => {
-        test(`renders button with ${property}=${value}`, async() => {
+        it(`renders button with ${property}=${value}`, async() => {
             const { getByRole } = await render(template, { [property]: value });
             expect(getByRole('button')).has.class(`btn--${value}`);
         });
@@ -21,7 +21,7 @@ Object.keys(properties).forEach(property => {
 });
 
 [false, true].forEach(fluid => {
-    test(`renders button with fluid=${fluid}`, async() => {
+    it(`renders button with fluid=${fluid}`, async() => {
         const { getByRole } = await render(template, { fluid });
         expect(getByRole('button'))[fluid ? 'has' : 'not'].class('btn--fluid');
     });

@@ -101,7 +101,6 @@
     "pre-push": "^0.1.1",
     "rimraf": "^2.6.2",
     "sinon": "^7.3.2",
-    "sinon-chai": "^3.3.0",
     "stylelint": "^10.1.0",
     "supertest": "^4.0.2",
     "wdio-browserstack-service": "^0.1.18"

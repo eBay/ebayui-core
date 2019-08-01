@@ -16,7 +16,7 @@ describe('handleActionKeydown()', () => {
         { keyCode: 13 },
         { keyCode: 32 }
     ].forEach(event => {
-        test(`calls callback for keyCode=${event.keyCode}`, () => {
+        it(`calls callback for keyCode=${event.keyCode}`, () => {
             const callback = sinon.spy();
             handleActionKeydown(event, callback);
             expect(callback.calledOnce).to.equal(true);
@@ -32,7 +32,7 @@ describe('handleActionKeydown()', () => {
 
 describe('handleEscapeKeydown()', () => {
     const escapeKeyCode = 27;
-    test(`calls callback for keyCode=${escapeKeyCode}`, () => {
+    it(`calls callback for keyCode=${escapeKeyCode}`, () => {
         const callback = sinon.spy();
         handleEscapeKeydown({ keyCode: escapeKeyCode }, callback);
         expect(callback.calledOnce).to.equal(true);
@@ -44,7 +44,7 @@ describe('handleUpDownArrowsKeydown()', () => {
         { keyCode: 38 },
         { keyCode: 40 }
     ].forEach(event => {
-        test(`calls callback for keyCode=${event.keyCode}`, () => {
+        it(`calls callback for keyCode=${event.keyCode}`, () => {
             const callback = sinon.spy();
             handleUpDownArrowsKeydown(event, callback);
             expect(callback.calledOnce).to.equal(true);
@@ -63,7 +63,7 @@ describe('handleLeftRightArrowsKeydown()', () => {
         { keyCode: 37 },
         { keyCode: 39 }
     ].forEach(event => {
-        test(`calls callback for keyCode=${event.keyCode}`, () => {
+        it(`calls callback for keyCode=${event.keyCode}`, () => {
             const callback = sinon.spy();
             handleLeftRightArrowsKeydown(event, callback);
             expect(callback.calledOnce).to.equal(true);

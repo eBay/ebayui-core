@@ -17,7 +17,7 @@
         "compat/compat": 2
     },
     "overrides": {
-        "files": ["**/test/*"],
+        "files": ["**/test/*", "**/test-utils/*"],
         "rules": {
             "compat/compat": 0
         }
