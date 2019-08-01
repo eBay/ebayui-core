@@ -1,11 +1,5 @@
 const expect = require('chai').expect;
-const isMarko3 = require('marko/package.json').version.split('.')[0] === '3';
 const testUtils = require('../../../common/test-utils/server');
-
-const properties = {
-    priority: ['primary', 'secondary'],
-    size: ['small', 'large']
-};
 
 Object.keys(properties).forEach(property => {
     const values = properties[property];
