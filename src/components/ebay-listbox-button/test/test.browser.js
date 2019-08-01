@@ -47,7 +47,7 @@ describe('given the listbox is in the default state', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
+            expect(eventData.selected).to.deep.equal([2]);
             const nativeOption = nativeSelect.options[eventData.index].value;
             expect(nativeOption).to.equal('2');
         });
@@ -71,7 +71,7 @@ describe('given the listbox is in the default state', () => {
             expect(spy.calledTwice).to.equal(true);
             const eventData = spy.getCall(1).args[0];
             expect(eventData.index).to.equal(0);
-            expect(eventData.selected).to.deep.equal(['1']);
+            expect(eventData.selected).to.deep.equal([1]);
             const nativeOption = nativeSelect.options[eventData.index].value;
             expect(nativeOption).to.equal('1');
         });
@@ -139,7 +139,7 @@ describe('given the listbox is in an expanded state', () => {
             expect(selectSpy.calledOnce).to.equal(true);
             const eventData = selectSpy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
+            expect(eventData.selected).to.deep.equal([2]);
             expect(eventData.el).to.deep.equal(secondOption);
         });
     });
@@ -157,7 +157,7 @@ describe('given the listbox is in an expanded state', () => {
             expect(selectSpy.calledOnce).to.equal(true);
             const eventData = selectSpy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
+            expect(eventData.selected).to.deep.equal([2]);
             expect(eventData.el).to.deep.equal(secondOption);
         });
     });
@@ -175,7 +175,7 @@ describe('given the listbox is in an expanded state', () => {
             expect(spy.calledOnce).to.equal(true);
             const eventData = spy.getCall(0).args[0];
             expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
+            expect(eventData.selected).to.deep.equal([2]);
         });
     });
 
@@ -193,7 +193,7 @@ describe('given the listbox is in an expanded state', () => {
             expect(spy.calledTwice).to.equal(true);
             const eventData = spy.getCall(1).args[0];
             expect(eventData.index).to.equal(0);
-            expect(eventData.selected).to.deep.equal(['1']);
+            expect(eventData.selected).to.deep.equal([1]);
         });
     });
 });
