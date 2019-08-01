@@ -1,5 +1,11 @@
 const expect = require('chai').expect;
+const isMarko3 = require('marko/package.json').version.split('.')[0] === '3';
 const testUtils = require('../../../common/test-utils/server');
+
+const properties = {
+    priority: ['primary', 'secondary'],
+    size: ['small', 'large']
+};
 
 Object.keys(properties).forEach(property => {
     const values = properties[property];
@@ -84,6 +90,12 @@ test('renders expand variant with no text', context => {
     const input = { variant: 'expand', noText: true };
     const $ = testUtils.getCheerio(context.render(input));
     expect($('.expand-btn.expand-btn--no-text').length).to.equal(1);
+});
+
+test('renders cta variant', context => {
+    const input = { variant: 'cta', href: 'https://www.ebay.com' };
+    const $ = testUtils.getCheerio(context.render(input));
+    expect($('a.cta-btn > .cta-btn__cell').length).to.equal(1);
 });
 
 test('renders icon variant', context => {
