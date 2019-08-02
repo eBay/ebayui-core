@@ -1,35 +1,33 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const template = require('..');
 
-describe('given the default tooltip overlay', () => {
-    let widget;
-    let closeButton;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-    beforeEach(() => {
-        const input = {
-            type: 'infotip',
-            tooltipId: 'fakeID-1',
-            heading: {},
-            content: {}
-        };
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        closeButton = widget.el.querySelector('.infotip__close');
+/** @type import("@marko/testing-library").RenderResult */
+let component;
+
+describe('given checkbox button is enabled', () => {
+    const input = {
+        type: 'infotip',
+        tooltipId: 'fakeID-1',
+        a11yCloseText: 'Close',
+        heading: {},
+        content: {}
+    };
+
+    beforeEach(async() => {
+        component = await render(template, input);
     });
 
-    afterEach(() => widget.destroy());
-
     describe('when the close button is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('overlay-close', spy);
-            testUtils.triggerEvent(closeButton, 'click');
+        beforeEach(async() => {
+            await fireEvent.click(component.getByLabelText(input.a11yCloseText));
         });
 
-        test('then it emits the marko event from button click', () => {
-            expect(spy.calledOnce).to.equal(true);
+        it('then it emits the marko event from button click', () => {
+            expect(component.emitted('overlay-close')).has.length(1);
         });
     });
 });

@@ -1,403 +1,344 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const mock = require('../mock');
-const renderer = require('../');
+const assign = require('core-js-pure/features/object/assign');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { pressKey } = require('../../../common/test-utils/browser');
+const mock = require('./mock');
+const template = require('..');
+
+use(require('chai-dom'));
+afterEach(cleanup);
+
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
 describe('given the menu is in the default state', () => {
-    let widget;
-    let button;
-
-    beforeEach(() => {
-        widget = renderer.renderSync({ text: 'text', items: mock.twoItems }).appendTo(document.body).getWidget();
-        button = document.querySelector('.expand-btn');
+    const input = mock.Basic_2Items;
+    beforeEach(async() => {
+        component = await render(template, input);
     });
-    afterEach(() => widget.destroy());
 
     describe('when the button is clicked once', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('menu-expand', spy);
-            testUtils.triggerEvent(button, 'click');
+        beforeEach(async() => {
+            await fireEvent.click(component.getByRole('button'));
         });
 
-        test('then it emits the marko event from expander-expand', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
-
-    describe('when the button is clicked twice', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('menu-collapse', spy);
-            testUtils.triggerEvent(button, 'click');
-            testUtils.triggerEvent(button, 'click');
+        it('then it expands', async() => {
+            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'true');
         });
 
-        test('then it emits the marko event from expander-collapse', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
-
-    describe('when items are updated via parent state', () => {
-        let spy;
-        let thirdItem;
-        beforeEach(done => {
-            spy = sinon.spy();
-            widget.on('menu-select', spy);
-            widget.setProps({ items: mock.threeItems });
-            setTimeout(() => {
-                thirdItem = document.querySelectorAll('.menu-button__item')[2];
-                testUtils.triggerEvent(thirdItem, 'click');
-                done();
-            }, 10);
+        it('then it emits the marko event from expander-expand', () => {
+            expect(component.emitted('menu-expand')).has.length(1);
         });
 
-        test('then it uses the new input in event data', () => {
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.el.innerText).to.equal(thirdItem.innerText);
+        describe('when it is clicked again', () => {
+            beforeEach(async() => {
+                await fireEvent.click(component.getByRole('button'));
+            });
+
+            it('then it collapses', async() => {
+                expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
+            });
+
+            it('then it emits the marko event from expander-collapse', () => {
+                expect(component.emitted('menu-collapse')).has.length(1);
+            });
         });
     });
 
-    describe('when the expanded state is set to false', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('menu-collapse', spy);
-            widget.setState('expanded', false);
+    describe('when an item is added via input from its parent and the new item is clicked', () => {
+        const newInput = mock.Basic_3Items;
+        const thirdItemText = newInput.items[2].renderBody.text;
+        beforeEach(async() => {
+            await component.rerender(newInput);
+            await fireEvent.click(component.getByText(thirdItemText));
         });
 
-        test('then it remains collapsed', () => {
-            expect(button.getAttribute('aria-expanded')).to.equal('false');
-        });
+        it('then the new item is selected or something');
 
-        test('then it doesn\'t emit the marko collapse event', () => {
-            expect(spy.called).to.equal(false);
+        it('then it uses the new input in event data', () => {
+            const selectEvents = component.emitted('menu-select');
+            expect(selectEvents).has.length(1);
+
+            const [[eventArg]] = selectEvents;
+            expect(eventArg)
+                .has.property('el')
+                .with.text(thirdItemText);
         });
     });
 
-    describe('when the expanded state is set to true', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('menu-expand', spy);
-            widget.setState('expanded', true);
+    describe('when re-rendered with expanded set to false', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { expanded: false }));
         });
 
-        test('then it expands', (context, done) => {
-            setTimeout(() => {
-                expect(button.getAttribute('aria-expanded')).to.equal('true');
-                done();
-            }, 10);
+        it('then it remains collapsed', () => {
+            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
         });
 
-        test('then it emits the marko expand event', (context, done) => {
-            setTimeout(() => {
-                expect(spy.calledOnce).to.equal(true);
-                done();
-            }, 10);
+        it('then it doesn\'t emit the marko collapse event', () => {
+            expect(component.emitted('menu-collapse')).has.length(0);
+        });
+    });
+
+    // TODO: we should make the `expanded` property controllable via input.
+    describe.skip('when re-rendered with expanded set to true', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { expanded: true }));
+        });
+
+        it('then it expands', () => {
+            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'true');
+        });
+
+        it('then it emits the menu-expand event', () => {
+            expect(component.emitted('menu-expand')).has.length(1);
         });
     });
 });
 
 describe('given the menu is in the expanded state', () => {
-    let widget;
-    let button;
-    let firstItem;
-    // let secondItem;
+    const input = mock.Basic_2Items;
+    const firstItemText = input.items[0].renderBody.text;
 
-    beforeEach((done) => {
-        widget = renderer.renderSync({ items: mock.twoItems }).appendTo(document.body).getWidget();
-        button = document.querySelector('.expand-btn');
-        firstItem = document.querySelector('.menu-button__item');
-        // secondItem = document.querySelectorAll('.menu__item')[1];
-        widget.setState('expanded', true);
-        setTimeout(done);
+    beforeEach(async() => {
+        component = await render(template, input);
+        await fireEvent.click(component.getByRole('button'));
+        expect(component.emitted('menu-expand')).has.length(1);
     });
-    afterEach(() => widget.destroy());
 
-    describe('when the expanded state is set to true', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('menu-expand', spy);
-            widget.setState('expanded', true);
+    // TODO: we should make the `expanded` property controllable via input.
+    describe.skip('when re-rendered with expanded set to true', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { expanded: true }));
         });
 
-        test('then it remains expanded', () => {
-            expect(button.getAttribute('aria-expanded')).to.equal('true');
+        it('then it remains expanded', () => {
+            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'true');
         });
 
-        test('then it doesn\'t emit the marko expand event', () => {
-            expect(spy.called).to.equal(false);
+        it('then it doesn\'t emit the marko expand event', () => {
+            expect(component.emitted('menu-expand')).has.length(0);
         });
     });
 
-    describe('when the expanded state is set to false', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('menu-collapse', spy);
-            widget.update_expanded(false); // FIXME: fails with widget.setState('expanded', false)
+    // TODO: we should make the `expanded` property controllable via input.
+    describe.skip('when re-rendered with expanded set to false', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { expanded: false }));
         });
 
-        test('then it collapses', () => {
-            expect(button.getAttribute('aria-expanded')).to.equal('false');
+        it('then it expands', () => {
+            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
         });
 
-        test('then it emits the marko collapse event', () => {
-            expect(spy.calledOnce).to.equal(true);
+        it('then it emits the menu-expand event', () => {
+            expect(component.emitted('menu-collapse')).has.length(1);
         });
     });
 
     describe('when an item is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('menu-select', spy);
-            testUtils.triggerEvent(firstItem, 'click');
+        beforeEach(async() => {
+            await fireEvent.click(component.getByText(firstItemText));
         });
 
-        test('then it emits the menu-select event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.checked).to.deep.equal([0]);
+        it('then it emits the menu-select event with correct data', () => {
+            const selectEvents = component.emitted('menu-select');
+            expect(selectEvents).to.length(1);
+
+            const [[eventArg]] = selectEvents;
+            expect(eventArg).has.property('el').with.text(firstItemText);
+            expect(eventArg).has.property('index', 0);
+            expect(eventArg).has.property('checked').to.deep.equal([0]);
         });
     });
 
     describe('when the escape key is pressed from an item', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-collapse', spy);
-            testUtils.triggerEvent(firstItem, 'keydown', 27);
-            setTimeout(done);
+        beforeEach(async() => {
+            await pressKey(
+                component.getByText(firstItemText),
+                {
+                    key: 'Escape',
+                    keyCode: 27
+                }
+            );
         });
 
-        test('then it collapses', () => {
-            expect(button.getAttribute('aria-expanded')).to.equal('false');
+        it('then it collapses', () => {
+            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
         });
 
-        test('then it emits the marko collapse event', () => {
-            expect(spy.calledOnce).to.equal(true);
+        it('then it emits the marko collapse event', () => {
+            expect(component.emitted('menu-collapse')).to.have.property('length', 1);
         });
     });
 
     describe('when the escape key is pressed from the button', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-collapse', spy);
-            testUtils.triggerEvent(button, 'keydown', 27);
-            setTimeout(done);
+        beforeEach(async() => {
+            await pressKey(component.getByRole('button'), {
+                key: 'Escape',
+                keyCode: 27
+            });
         });
 
-        test('then it collapses', () => {
-            expect(button.getAttribute('aria-expanded')).to.equal('false');
+        it('then it collapses', () => {
+            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
         });
 
-        test('then it emits the marko collapse event', () => {
-            expect(spy.calledOnce).to.equal(true);
+        it('then it emits the marko collapse event', () => {
+            expect(component.emitted('menu-collapse')).to.have.property('length', 1);
         });
     });
 });
 
 describe('given the menu is in the expanded state with radio items', () => {
-    let widget;
-    let firstItem;
-    let secondItem;
-    let firstItemInner;
-
-    beforeEach((done) => {
-        widget = renderer.renderSync({
-            expanded: true,
-            type: 'radio',
-            items: mock.twoItems }).appendTo(document.body).getWidget();
-        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu-button__item'));
-        firstItemInner = firstItem.querySelector('span');
-        widget.setState('expanded', true);
-        setTimeout(done);
+    const input = assign({ type: 'radio' }, mock.Basic_2Items);
+    let firstItem, secondItem;
+    beforeEach(async() => {
+        component = await render(template, input);
+        firstItem = component.getAllByRole('menuitemradio')[0];
+        secondItem = component.getAllByRole('menuitemradio')[1];
     });
-    afterEach(() => widget.destroy());
 
     describe('when an item is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            testUtils.triggerEvent(firstItem, 'click');
-            setTimeout(done);
+        beforeEach(async() => {
+            await fireEvent.click(firstItem);
         });
 
-        test('then it emits the menu-change event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
+        it('then it emits the menu-change event with correct data', () => {
+            const changeEvents = component.emitted('menu-change');
+            expect(changeEvents).to.have.length(1);
+
+            const eventData = changeEvents[0][0];
             expect(eventData.index).to.equal(0);
             expect(eventData.checked).to.deep.equal([0]);
         });
 
-        test('then it selects the item', () => {
-            expect(firstItem.getAttribute('aria-checked')).to.equal('true');
-        });
-    });
-
-    describe('when an item\'s inner span is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            testUtils.triggerEvent(firstItemInner, 'click');
-            setTimeout(done);
-        });
-
-        test('then it emits the menu-change event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.checked).to.deep.equal([0]);
-        });
-
-        test('then it selects the item', () => {
-            expect(firstItem.getAttribute('aria-checked')).to.equal('true');
+        it('then the item is selected', () => {
+            expect(firstItem).to.have.attr('aria-checked', 'true');
         });
     });
 
     describe('when an action button is pressed on an item', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            testUtils.triggerEvent(firstItem, 'keydown', 32);
-            setTimeout(done);
+        beforeEach(async() => {
+            await pressKey(firstItem, {
+                key: '(Space character)',
+                keyCode: 32
+            });
         });
 
-        test('then it emits the menu-change event with correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
+        it('then it emits the menu-change event with correct data', () => {
+            const changeEvents = component.emitted('menu-change');
+            expect(changeEvents).to.have.length(1);
+
+            const eventData = changeEvents[0][0];
             expect(eventData.index).to.equal(0);
             expect(eventData.checked).to.deep.equal([0]);
         });
 
-        test('then it selects the item', () => {
-            expect(firstItem.getAttribute('aria-checked')).to.equal('true');
+        it('then the item is selected', () => {
+            expect(firstItem).to.have.attr('aria-checked', 'true');
         });
     });
 
     describe('when two items are clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            testUtils.triggerEvent(firstItem, 'click');
-            testUtils.triggerEvent(secondItem, 'click');
-            setTimeout(done);
+        beforeEach(async() => {
+            await fireEvent.click(firstItem);
+            await fireEvent.click(secondItem);
         });
 
-        test('then it emits the menu-change events with correct data', () => {
-            const firstEventData = spy.getCall(0).args[0];
-            const secondEventData = spy.getCall(1).args[0];
-            expect(spy.calledTwice).to.equal(true);
+        it('then it emits two menu-change events with correct data', () => {
+            const changeEvents = component.emitted('menu-change');
+            expect(changeEvents).to.have.length(2);
+
+            const firstEventData = changeEvents[0][0];
+            const secondEventData = changeEvents[1][0];
             expect(firstEventData.index).to.equal(0);
             expect(firstEventData.checked).to.deep.equal([0]);
             expect(secondEventData.index).to.equal(1);
             expect(secondEventData.checked).to.deep.equal([1]);
         });
 
-        test('then it only selects the second item', () => {
-            expect(firstItem.getAttribute('aria-checked')).to.equal('false');
-            expect(secondItem.getAttribute('aria-checked')).to.equal('true');
+        it('then the second item is selected', () => {
+            expect(firstItem).to.have.attr('aria-checked', 'false');
+            expect(secondItem).to.have.attr('aria-checked', 'true');
         });
     });
 
-    describe('when an already checked item is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            testUtils.triggerEvent(firstItem, 'click');
-            testUtils.triggerEvent(firstItem, 'click');
-            setTimeout(done);
+    describe('when an item is clicked multiple times', () => {
+        beforeEach(async() => {
+            await fireEvent.click(firstItem);
+            expect(firstItem).to.have.attr('aria-checked', 'true');
+            await fireEvent.click(firstItem);
         });
 
-        test('then it emits the menu-change events with correct data', () => {
-            const firstEventData = spy.getCall(0).args[0];
-            expect(spy.calledOnce).to.equal(true);
-            expect(firstEventData.index).to.equal(0);
-            expect(firstEventData.checked).to.deep.equal([0]);
+        it('then it emits only one menu-change event with correct data', () => {
+            const changeEvents = component.emitted('menu-change');
+            expect(changeEvents).to.have.length(1);
+
+            const eventData = changeEvents[0][0];
+            expect(eventData.index).to.equal(0);
+            expect(eventData.checked).to.deep.equal([0]);
         });
 
-        test('then it selects the first item', () => {
-            expect(firstItem.getAttribute('aria-checked')).to.equal('true');
+        it('then the item is selected', () => {
+            expect(firstItem).to.have.attr('aria-checked', 'true');
         });
     });
 });
 
 describe('given the menu is in the expanded state with checkbox items', () => {
-    let widget;
-    let firstItem;
-    let secondItem;
-
-    beforeEach((done) => {
-        widget = renderer.renderSync({
-            expanded: true,
-            type: 'checkbox',
-            items: mock.twoItems }).appendTo(document.body).getWidget();
-        [firstItem, secondItem] = [].slice.call(document.querySelectorAll('.menu-button__item'));
-        widget.setState('expanded', true);
-        setTimeout(done);
+    const input = assign({ type: 'checkbox' }, mock.Basic_2Items);
+    let firstItem, secondItem;
+    beforeEach(async() => {
+        component = await render(template, input);
+        firstItem = component.getAllByRole('menuitemcheckbox')[0];
+        secondItem = component.getAllByRole('menuitemcheckbox')[1];
     });
-    afterEach(() => widget.destroy());
 
     describe('when two items are clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            testUtils.triggerEvent(firstItem, 'click');
-            testUtils.triggerEvent(secondItem, 'click');
-            setTimeout(done);
+        beforeEach(async() => {
+            await fireEvent.click(firstItem);
+            await fireEvent.click(secondItem);
         });
 
-        test('then it emits the menu-change events with correct data', () => {
-            const firstEventData = spy.getCall(0).args[0];
-            const secondEventData = spy.getCall(1).args[0];
-            expect(spy.calledTwice).to.equal(true);
+        it('then it emits two menu-change events with correct data', () => {
+            const changeEvents = component.emitted('menu-change');
+            expect(changeEvents).to.have.length(2);
+
+            const firstEventData = changeEvents[0][0];
+            const secondEventData = changeEvents[1][0];
             expect(firstEventData.index).to.equal(0);
             expect(firstEventData.checked).to.deep.equal([0]);
             expect(secondEventData.index).to.equal(1);
             expect(secondEventData.checked).to.deep.equal([0, 1]);
         });
 
-        test('then it selects both items', () => {
-            expect(firstItem.getAttribute('aria-checked')).to.equal('true');
-            expect(secondItem.getAttribute('aria-checked')).to.equal('true');
+        it('then both items are selected', () => {
+            expect(firstItem).to.have.attr('aria-checked', 'true');
+            expect(secondItem).to.have.attr('aria-checked', 'true');
         });
     });
 
     describe('when an item is checked and then unchecked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('menu-change', spy);
-            testUtils.triggerEvent(firstItem, 'click');
-            testUtils.triggerEvent(firstItem, 'click');
+        beforeEach(async() => {
+            await fireEvent.click(firstItem);
+            await fireEvent.click(firstItem);
         });
 
-        test('then it emits the menu-change events with correct data', () => {
-            const firstEventData = spy.getCall(0).args[0];
-            const secondEventData = spy.getCall(1).args[0];
-            expect(spy.calledTwice).to.equal(true);
+        it('then it emits the menu-change events with correct data', () => {
+            const changeEvents = component.emitted('menu-change');
+            expect(changeEvents).to.have.length(2);
+
+            const firstEventData = changeEvents[0][0];
+            const secondEventData = changeEvents[1][0];
             expect(firstEventData.index).to.equal(0);
             expect(firstEventData.checked).to.deep.equal([0]);
             expect(secondEventData.index).to.equal(0);
             expect(secondEventData.checked).to.deep.equal([]);
         });
 
-        test('then the item is unchecked', () => {
-            expect(firstItem.getAttribute('aria-checked')).to.equal('false');
+        it('then the item is unchecked', () => {
+            expect(firstItem).to.have.attr('aria-checked', 'false');
         });
     });
 });

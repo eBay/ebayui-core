@@ -1,59 +1,56 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, wait, cleanup } = require('@marko/testing-library');
+const template = require('..');
 
-let widget;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-function renderAndGetRoot(input) {
-    widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-    return document.querySelector('.checkbox');
-}
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
 describe('given checkbox button is enabled', () => {
-    let root;
-    let input;
-    beforeEach(() => {
-        root = renderAndGetRoot({ '*': { value: 'food' } });
-        input = root.querySelector('.checkbox__control');
+    beforeEach(async() => {
+        component = await render(template, { htmlAttributes: { value: 'food' } });
     });
-    afterEach(() => widget.destroy());
 
     describe('when checkbox button is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('checkbox-change', spy);
-            input.click();
+        beforeEach(async() => {
+            component.getByRole('checkbox').click();
+            await wait();
         });
 
-        test('then it emits the event', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.originalEvent instanceof Event).to.equal(true);
-            expect(eventData.value).to.equal('food');
-            expect(eventData.checked).to.equal(true);
+        it('then it emitted the change event', () => {
+            const changeEvents = component.emitted('checkbox-change');
+            expect(changeEvents).has.length(1);
+
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property('value', 'food');
+            expect(changeEvent).has.property('checked', true);
+        });
+
+        it('then it is checked', () => {
+            expect(component.getByRole('checkbox')).has.property('checked', true);
         });
     });
 });
 
 describe('given checkbox button is disabled', () => {
-    let root;
-    beforeEach(() => {
-        root = renderAndGetRoot({ disabled: true });
+    beforeEach(async() => {
+        component = await render(template, { disabled: true });
     });
-    afterEach(() => widget.destroy());
 
     describe('when checkbox button is clicked', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('checkbox-change', spy);
-            testUtils.triggerEvent(root, 'click');
+        beforeEach(async() => {
+            component.getByRole('checkbox').click();
+            await wait();
         });
 
-        test('then it doesn\'t emit the event', () => {
-            expect(spy.called).to.equal(false);
+        it('then it does not emit the change event', () => {
+            expect(component.emitted('checkbox-change')).has.length(0);
+        });
+
+        it('then it remains unchecked', () => {
+            expect(component.getByRole('checkbox')).has.property('checked', false);
         });
     });
 });

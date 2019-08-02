@@ -1,5 +1,4 @@
 <script marko-init>
-    var getWidgetId = require("../../common/get-marko-3-widget-id");
     var processHtmlAttributes = require("../../common/html-attributes");
 </script>
 
@@ -10,7 +9,7 @@
 
 <a
     ${htmlAttributes}
-    id=(data.id || getWidgetId(out))
+    id=data.id
     class=[
         data.class,
         baseClass,

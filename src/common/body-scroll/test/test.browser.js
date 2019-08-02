@@ -20,7 +20,7 @@ describe('body-scroll', () => {
         window.scrollTo(0, 0);
     });
 
-    test('applies correct styles when at top of the page', () => {
+    it('applies correct styles when at top of the page', () => {
         expect(body.getAttribute('style')).to.equal(null);
         bodyScroll.prevent();
         expect(body.getAttribute('style'))
@@ -33,7 +33,7 @@ describe('body-scroll', () => {
         expect(body.getAttribute('style')).to.equal(null);
     });
 
-    test('applies correct styles when scrolled', () => {
+    it('applies correct styles when scrolled', () => {
         window.scrollTo(0, 10);
         expect(body.getAttribute('style')).to.equal(null);
         bodyScroll.prevent();
@@ -47,7 +47,7 @@ describe('body-scroll', () => {
         expect(body.getAttribute('style')).to.equal(null);
     });
 
-    test('preserves existing inline body styles', () => {
+    it('preserves existing inline body styles', () => {
         expect(body.getAttribute('style')).to.equal(null);
 
         const initialStyleText = 'color:green';
@@ -63,7 +63,7 @@ describe('body-scroll', () => {
         body.removeAttribute('style');
     });
 
-    test('restores the correct styles when prevented multiple times', () => {
+    it('restores the correct styles when prevented multiple times', () => {
         expect(body.getAttribute('style')).to.equal(null);
         bodyScroll.prevent();
         bodyScroll.prevent();
