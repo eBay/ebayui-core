@@ -15,7 +15,7 @@ describe('combobox-readonly', () => {
         const visibleOptions = getAllByRole('option').filter(isVisible);
         expect(combobox).has.attr('aria-haspopup');
         expect(combobox.parentElement).does.not.have.class('combobox__control--borderless');
-        expect(listbox).has.class('combobox__options');
+        expect(listbox).has.class('combobox__listbox');
         expect(listbox).has.property('parentElement').with.class('combobox');
         expect(visibleOptions).has.length(3);
         expect(visibleOptions.filter(isAriaSelected)).has.length(1);

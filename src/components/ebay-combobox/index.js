@@ -47,7 +47,7 @@ module.exports = require('marko-widgets').defineComponent({
                 expandOnFocus: true,
                 expandOnClick: this.state.readonly && !this.state.disabled,
                 collapseOnFocusOut: !this.state.readonly,
-                contentSelector: '.combobox__options',
+                contentSelector: '.combobox__listbox',
                 hostSelector: '.combobox__control > input',
                 expandedClass: 'combobox--expanded',
                 simulateSpacebarClick: true

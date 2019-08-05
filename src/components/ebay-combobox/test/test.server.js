@@ -12,7 +12,7 @@ describe('combobox', () => {
         const { getByRole, getAllByRole } = await render(template, input);
         expect(getByRole('combobox')).has.attr('aria-haspopup');
         expect(getByRole('combobox').parentElement).does.not.have.class('combobox__control--borderless');
-        expect(getByRole('listbox')).has.class('combobox__options');
+        expect(getByRole('listbox')).has.class('combobox__listbox');
         expect(getByRole('listbox').parentElement).has.class('combobox');
         expect(getAllByRole('option')).has.length(3);
         expect(getAllByRole('option').filter(isAriaSelected)).has.length(0);
