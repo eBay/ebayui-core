@@ -49,7 +49,7 @@
                     <!-- Actual magic, please do not try to replicate. -->
                     <var lassoContext=out.global["lasso/LassoRenderContext"]/>
                     <var flags=(lassoContext && lassoContext.data.config.flags)/>
-                    <assign theme=themes[!flags || flags.indexOf("skin-ds6") !== -1 ? 1 : 0]/>
+                    <assign theme=themes[flags && flags.indexOf("skin-ds6") !== -1 ? 1 : 0]/>
                 </else>
 
                 <include(theme)/>
