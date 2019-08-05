@@ -6,6 +6,7 @@ const fs = require('fs');
 const cp = require('child_process');
 const path = require('path');
 const cheerio = require('cheerio');
+const formatHTML = require('diffable-html');
 const skinDir = path.dirname(require.resolve('@ebay/skin/package.json'));
 const svgDir = path.join(skinDir, 'src/svg');
 const outputDir = path.join(__dirname, '../../src/components/ebay-icon/symbols');
@@ -55,9 +56,7 @@ for (const [name, themes] of icons) {
     for (const theme of THEMES) {
         let content = themes[theme];
 
-        if (content) {
-            content += '\n';
-        } else {
+        if (!content) {
             const missingFile = './missing.js';
             const missingPath = path.join(iconFolder, missingFile);
             dependencies.push(Object.assign({ path: missingFile }, FLAGS[theme]));
@@ -70,7 +69,7 @@ for (const [name, themes] of icons) {
         }
 
         const filePath = path.join(iconFolder, `${theme}.marko`);
-        fs.writeFileSync(filePath, content);
+        fs.writeFileSync(filePath, `${formatHTML(content).trim()}\n`);
     }
 
     fs.writeFileSync(browserJSON, `${JSON.stringify({
