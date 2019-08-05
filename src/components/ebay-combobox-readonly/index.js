@@ -7,7 +7,7 @@ const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
 const template = require('./template.marko');
 
-const comboboxOptionsClass = 'combobox__options';
+const comboboxOptionsClass = 'combobox__listbox';
 const comboboxExpanderClass = 'combobox__control';
 const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
 const comboboxBtnClass = 'combobox__control';
@@ -137,7 +137,7 @@ function handleComboboxKeyDown(event) {
         options[selectElementIndex].selected = true;
 
         this.setState('options', options);
-        this.processAfterStateChange(this.getEl('combobox__options').children[selectElementIndex]);
+        this.processAfterStateChange(this.getEl('combobox__listbox').children[selectElementIndex]);
     });
 
     eventUtils.handleEscapeKeydown(event, () => {
