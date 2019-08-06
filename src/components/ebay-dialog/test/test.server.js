@@ -25,7 +25,7 @@ describe('dialog', () => {
     });
 
     [undefined, 'fill', 'full'].forEach(type => {
-        it(`renders with ${type || 'default'} type`, async () => {
+        it(`renders with ${type || 'default'} type`, async() => {
             const { getByRole } = await render(template, { type });
             const $dialog = getByRole('dialog');
             const $window = getByRole('document');
