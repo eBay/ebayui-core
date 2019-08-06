@@ -1,10 +1,9 @@
-require('../../../common/test-utils/transitions');
-
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const mock = require('../mock');
-const renderer = require('../');
+const assign = require('core-js-pure/features/object/assign');
+const { expect, use } = require('chai');
+const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
+const { fastAnimations } = require('../../../common/test-utils/browser');
+const mock = require('./mock');
+const template = require('..');
 const supportsNativeScrolling = CSS.supports && CSS.supports(
     `(not (-moz-appearance:none)) and (
     (-webkit-scroll-snap-coordinate: 0 0) or
@@ -13,1147 +12,747 @@ const supportsNativeScrolling = CSS.supports && CSS.supports(
     (scroll-snap-align: start))`
 );
 
-function delay(callback) {
-    setTimeout(callback, 42);
-}
+use(require('chai-dom'));
+before(fastAnimations.start);
+after(fastAnimations.stop);
+afterEach(cleanup);
 
-// wait until after marko processing and requestAnimationFrame execution
-function waitForUpdate(widget, callback) {
-    widget.once('update', () => requestAnimationFrame(() => callback()));
-}
+/** @type import("@marko/testing-library").RenderResult */
+let component;
 
-// waits for a carousel widget to emit an event from a position change.
-function waitForChange(widget, callback) {
-    widget.once('carousel-update', () => requestAnimationFrame(() => callback()));
-}
+// TODO: should be testing the tab-index of children, would need to change test setup a bit.
+// The above test should also be tested when resizing the carousel.
 
-function testControlEvent(spy) {
-    expect(spy.calledOnce).to.equal(true);
-    testUtils.testOriginalEvent(spy);
-}
+describe('given a continuous carousel', () => {
+    describe('without any items', () => {
+        const input = mock.Continuous_0Items;
 
-function getVisibleIndexes(items) {
-    const visibleIndexes = [];
-    items.forEach((item, i) => {
-        if (item.fullyVisible) visibleIndexes.push(i);
-    });
-
-    return visibleIndexes;
-}
-
-function getTranslateX(el) {
-    if (isScrollable(el)) {
-        return el.scrollLeft;
-    }
-    return parseInt(getComputedStyle(el).transform.match(/^matrix\((?:-?\d+, ?){4}(-?\d+)/)[1], 10) * -1;
-}
-
-function isScrollable(el) {
-    return getComputedStyle(el).overflowX !== 'visible';
-}
-
-describe('given the carousel is in the default state', () => {
-    let widget;
-
-    beforeEach(() => {
-        widget = renderer.renderSync().appendTo(document.body).getWidget();
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when it is rendered', () => {
-        it('then it sets state to correct defaults', () => {
-            expect(widget.state.gap).to.equal(16);
-        });
-    });
-});
-
-describe('given the carousel starts in the default state with items', () => {
-    const input = { items: mock.sixItems };
-    let widget;
-    let root;
-    let list;
-    let prevButton;
-    let nextButton;
-
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        nextButton = root.querySelector('.carousel__control--next');
-        prevButton = root.querySelector('.carousel__control--prev');
-        waitForUpdate(widget, done);
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when index is updated via parent state', () => {
-        let updateSpy;
-        beforeEach(done => {
-            updateSpy = sinon.spy();
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            widget.setProps({ index: '1', items: mock.sixItems });
+        beforeEach(async() => {
+            component = await render(template, input);
         });
 
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([1, 2, 3]);
-        });
-
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[1];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([1, 2, 3]);
+        it('then prev and next controls are disabled', () => {
+            expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
     });
 
-    describe('when the previous button is clicked while disabled', () => {
-        let prevSpy;
-        beforeEach(done => {
-            prevSpy = sinon.spy();
-            widget.on('carousel-previous', prevSpy);
-            testUtils.triggerEvent(prevButton, 'click');
-            delay(done);
+    describe('with 1 item (single slide)', () => {
+        const input = mock.Continuous_1Item;
+
+        beforeEach(async() => {
+            component = await render(template, input);
         });
 
-        it('then it does not emit the marko prev event', () => {
-            expect(prevSpy.called).to.equal(false);
-        });
-    });
-
-    describe('when next button is clicked', () => {
-        let nextSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            testUtils.triggerEvent(nextButton, 'click');
-        });
-
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([3, 4, 5]);
-        });
-
-        it('then it applies a translation', () => {
-            expect(getTranslateX(list)).to.equal(480);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([3, 4, 5]);
+        it('then prev and next controls are disabled', () => {
+            expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
     });
 
-    describe('when index is set below zero', () => {
-        let updateSpy;
-        beforeEach((done) => {
-            updateSpy = sinon.spy();
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            widget.setState('index', -1);
+    describe('with 6 items at the beginning', () => {
+        const input = mock.Continuous_6Items;
+
+        beforeEach(async() => {
+            component = await render(template, input);
+            // The carousel is not fully initialized until
+            // the next button is no longer disabled.
+            await wait(() =>
+                expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
+            );
         });
 
-        it('then index is normalized to the next index', () => {
-            expect(widget.state.index).to.equal(1);
-        });
-
-        it('then it emits the marko events', () => {
-            expect(updateSpy.called).to.equal(true);
-        });
-    });
-
-    describe('when index is set above the number of items', () => {
-        let updateSpy;
-        beforeEach((done) => {
-            updateSpy = sinon.spy();
-            widget.on('carousel-update', updateSpy);
-            widget.setState('index', 6);
-            delay(done);
-        });
-
-        it('then index is normalized to the next index', () => {
-            expect(widget.state.index).to.equal(0);
-        });
-
-        it('then it does not emit the marko events', () => {
-            expect(updateSpy.calledOnce).to.equal(false);
-        });
-    });
-});
-
-describe('given a continuous carousel has next button clicked', () => {
-    const input = { items: mock.sixItems };
-    let widget;
-    let root;
-    let list;
-    let nextButton;
-    let prevButton;
-
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        nextButton = root.querySelector('.carousel__control--next');
-        prevButton = root.querySelector('.carousel__control--prev');
-        waitForUpdate(widget, () => {
-            waitForChange(widget, () => {
-                expect(getTranslateX(list)).to.equal(480);
-                done();
+        describe('when it is rerendered to show the second item', () => {
+            beforeEach(async() => {
+                await component.rerender(assign({}, input, { index: 1 }));
+                await waitForCarouselUpdate();
             });
-            testUtils.triggerEvent(nextButton, 'click');
-        });
-    });
-    afterEach(() => widget.destroy());
 
-    describe('when the previous button is clicked', () => {
-        let prevSpy;
-        let updateSpy;
-        beforeEach(done => {
-            prevSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-previous', prevSpy);
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            testUtils.triggerEvent(prevButton, 'click');
-        });
-
-        it('then it emits the marko prev event', () => testControlEvent(prevSpy));
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([0, 1, 2]);
-        });
-
-        it('then it applies a translation back to 0', () => {
-            expect(getTranslateX(list)).to.equal(0);
-        });
-    });
-
-    describe('when the next button is clicked while disabled', () => {
-        let nextSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-update', updateSpy);
-            testUtils.triggerEvent(nextButton, 'click');
-            delay(done);
-        });
-
-        it('then it does not emit the marko events', () => {
-            expect(nextSpy.called).to.equal(false);
-            expect(updateSpy.called).to.equal(false);
-        });
-    });
-});
-
-describe('given a continuous carousel with few items', () => {
-    const input = { items: mock.threeItems };
-    let widget;
-    let list;
-
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        list = document.querySelector('.carousel__list');
-        waitForUpdate(widget, done);
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when index is set', () => {
-        let updateSpy;
-        beforeEach(() => {
-            expect(getTranslateX(list)).to.equal(0);
-            updateSpy = sinon.spy();
-            widget.on('carousel-update', updateSpy);
-            widget.setState('index', 1);
-        });
-
-        it('then it does not emit the marko events', () => {
-            expect(updateSpy.called).to.equal(false);
-        });
-    });
-});
-
-describe('given a continuous carousel with many items', () => {
-    const input = { items: mock.twelveItems };
-    let widget;
-    let root;
-    let prevButton;
-    let nextButton;
-
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        prevButton = root.querySelector('.carousel__control--prev');
-        nextButton = root.querySelector('.carousel__control--next');
-        waitForUpdate(widget, done);
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when next button is clicked three times', () => {
-        let nextSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-update', updateSpy);
-            testUtils.triggerEvent(nextButton, 'click');
-            waitForChange(widget, () => {
-                waitForChange(widget, () => {
-                    waitForChange(widget, done);
-                    testUtils.triggerEvent(nextButton, 'click');
-                });
-                testUtils.triggerEvent(nextButton, 'click');
+            it('then it moved to the second item', () => {
+                const secondItem = component.getByText(input.items[1].renderBody.text);
+                assertAtStartOfSlide(secondItem);
             });
         });
 
-        it('then it emits the marko events', () => {
-            expect(nextSpy.callCount).to.equal(3);
-            expect(updateSpy.callCount).to.equal(3);
-        });
+        describe('when it is rerendered with an index below zero', () => {
+            beforeEach(async() => {
+                await component.rerender(assign({}, input, { index: -1 }));
+                await doesNotEventuallyScroll();
+            });
 
-        it('then the last item is visible', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([9, 10, 11]);
-        });
-    });
-
-    describe('when next button is clicked three times, and previous button is clicked once', () => {
-        let prevSpy;
-        let nextSpy;
-        let updateSpy;
-        beforeEach(done => {
-            prevSpy = sinon.spy();
-            nextSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-previous', prevSpy);
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-update', updateSpy);
-            testUtils.triggerEvent(nextButton, 'click');
-            waitForChange(widget, () => {
-                testUtils.triggerEvent(nextButton, 'click');
-                waitForChange(widget, () => {
-                    testUtils.triggerEvent(nextButton, 'click');
-                    waitForChange(widget, () => {
-                        testUtils.triggerEvent(prevButton, 'click');
-                        waitForChange(widget, done);
-                    });
-                });
+            it('then shows the first item', () => {
+                const firstItem = component.getByText(input.items[0].renderBody.text);
+                assertAtStartOfSlide(firstItem);
             });
         });
 
-        it('then it emits the marko events', () => {
-            expect(prevSpy.callCount).to.equal(1);
-            expect(nextSpy.callCount).to.equal(3);
-            expect(updateSpy.callCount).to.equal(4);
+        describe('when it is rerendered with an index higher than the number of items', () => {
+            beforeEach(async() => {
+                await component.rerender(assign({}, input, { index: 6 }));
+                await doesNotEventuallyScroll();
+            });
+
+            it('then shows the first item', () => {
+                const firstItem = component.getByText(input.items[0].renderBody.text);
+                assertAtStartOfSlide(firstItem);
+            });
         });
 
-        it('then it moves to the correct index', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(widget.state.index).to.equal(6);
-            expect(visibleIndexes).to.deep.equal([6, 7, 8]);
+        describe('when the previous button is clicked while disabled', () => {
+            beforeEach(async() => {
+                await fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+            });
+
+            it('then it did not emit the prev event', () => {
+                expect(component.emitted('carousel-previous')).has.length(0);
+            });
+        });
+
+        describe('when next button is clicked', () => {
+            let nextHiddenItem;
+            beforeEach(async() => {
+                nextHiddenItem = input.items
+                    .map(item => component.getByText(item.renderBody.text))
+                    .find(el => el.hasAttribute('aria-hidden'));
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await waitForCarouselUpdate();
+            });
+
+            it('then it emitted the next event', () => {
+                expect(component.emitted('carousel-next')).has.length(1);
+            });
+
+            it('then it moved to the next hidden item', () => {
+                assertAtStartOfSlide(nextHiddenItem);
+            });
         });
     });
 
-    describe('when next button is clicked twice, and previous button is clicked once', () => {
-        let prevSpy;
-        let nextSpy;
-        let updateSpy;
-        beforeEach(done => {
-            prevSpy = sinon.spy();
-            nextSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-previous', prevSpy);
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, () => {
-                waitForChange(widget, () => {
-                    waitForChange(widget, done);
-                    testUtils.triggerEvent(prevButton, 'click');
-                });
-                testUtils.triggerEvent(nextButton, 'click');
+    describe('with 6 items at the end', () => {
+        const input = assign({}, mock.Continuous_6Items, { index: 5 });
+
+        beforeEach(async() => {
+            component = await render(template, input);
+            await waitForCarouselUpdate();
+        });
+
+        describe('when the next button is clicked while disabled', () => {
+            beforeEach(async() => {
+                await fireEvent.click(component.getByLabelText(input.a11yNextText));
             });
-            testUtils.triggerEvent(nextButton, 'click');
+
+            it('then it did not emit the next event', () => {
+                expect(component.emitted('carousel-next')).has.length(0);
+            });
         });
 
-        it('then it emits the marko events', () => {
-            expect(prevSpy.callCount).to.equal(1);
-            expect(nextSpy.callCount).to.equal(2);
-            expect(updateSpy.callCount).to.equal(3);
+        describe('when previous button is clicked', () => {
+            let previousHiddenItem;
+            beforeEach(async() => {
+                previousHiddenItem = input.items
+                    .map(item => component.getByText(item.renderBody.text))
+                    .reverse()
+                    .find(el => el.hasAttribute('aria-hidden'));
+
+                fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+                await waitForCarouselUpdate();
+            });
+
+            it('then it emitted the previous event', () => {
+                expect(component.emitted('carousel-previous')).has.length(1);
+            });
+
+            it('then it moved to the previous hidden item', () => {
+                assertAtEndOfSlide(previousHiddenItem);
+            });
+        });
+    });
+
+    describe('with 12 items', () => {
+        const input = mock.Continuous_12Items;
+
+        beforeEach(async() => {
+            component = await render(template, input);
+
+            // The carousel is not fully initialized until
+            // the next button is no longer disabled.
+            await wait(() =>
+                expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
+            );
         });
 
-        it('then it moves to the correct index', () => {
-            expect(widget.state.index).to.equal(3);
+        describe('when next button is clicked three times', () => {
+            beforeEach(async() => {
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await waitForCarouselUpdate();
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await waitForCarouselUpdate();
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await waitForCarouselUpdate();
+            });
+
+            it('then emitted 3 next events', () => {
+                expect(component.emitted('carousel-next')).has.length(3);
+            });
+
+            it('then the last item is visible', () => {
+                const lastItem = component.getByText(input.items[input.items.length - 1].renderBody.text);
+                assertAtEndOfSlide(lastItem);
+            });
+        });
+
+        describe('when next button is clicked three times, and previous button is clicked once', () => {
+            beforeEach(async() => {
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await waitForCarouselUpdate();
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await waitForCarouselUpdate();
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await waitForCarouselUpdate();
+                fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+                await waitForCarouselUpdate();
+            });
+
+            it('then emitted 3 next events', () => {
+                expect(component.emitted('carousel-next')).has.length(3);
+            });
+
+            it('then emitted a prev event', () => {
+                expect(component.emitted('carousel-previous')).has.length(1);
+            });
+
+            it('then the last item is not visible', () => {
+                const lastItem = component.getByText(input.items[input.items.length - 1].renderBody.text);
+                assertIsNotVisible(lastItem);
+            });
         });
     });
 });
 
 describe('given a discrete carousel', () => {
-    const input = { items: mock.threeItems, itemsPerSlide: 1 };
-    let widget;
-    let root;
-    let list;
-    let nextButton;
+    describe('without any items', () => {
+        const input = mock.Discrete_1PerSlide_0Items;
 
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        nextButton = root.querySelector('.carousel__control--next');
-        waitForUpdate(widget, done);
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when next button is clicked', () => {
-        let nextSpy;
-        let slideSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            testUtils.triggerEvent(nextButton, 'click');
+        beforeEach(async() => {
+            component = await render(template, input);
         });
 
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
-
-        it('then it emits the marko slide event', () => {
-            expect(slideSpy.calledOnce).to.equal(true);
-            const eventData = slideSpy.getCall(0).args[0];
-            expect(eventData.slide).to.equal(2);
-        });
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([1]);
-        });
-
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[1];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([1]);
+        it('then prev and next controls are disabled', () => {
+            expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
     });
 
-    describe('when the window is resized', () => {
-        beforeEach(() => {
-            testUtils.triggerEvent(window, 'resize');
+    describe('with 1 item per slide and 1 item', () => {
+        const input = mock.Discrete_1PerSlide_1Items;
+
+        beforeEach(async() => {
+            component = await render(template, input);
         });
 
-        it('then it causes the widget to render', (done) => {
-            widget.once('update', () => done());
+        it('then prev and next controls are disabled', () => {
+            expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+        });
+
+        it('then has the appropriate heading', () => {
+            expect(component.getByRole('heading')).has.text('1 of 1');
         });
     });
-});
 
-describe('given a discrete carousel has next button clicked', () => {
-    const input = { items: mock.threeItems, itemsPerSlide: 1 };
-    let widget;
-    let root;
-    let list;
-    let nextButton;
-    let prevButton;
+    describe('with 1 item per slide and 3 items at the beginning', () => {
+        const input = mock.Discrete_1PerSlide_3Items;
 
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        nextButton = root.querySelector('.carousel__control--next');
-        prevButton = root.querySelector('.carousel__control--prev');
-        waitForUpdate(widget, () => {
-            waitForChange(widget, () => {
-                const { offsetLeft } = list.children[1];
-                expect(getTranslateX(list)).to.equal(offsetLeft);
-                done();
+        beforeEach(async() => {
+            component = await render(template, input);
+            // The carousel is not fully initialized until
+            // the next button is no longer disabled.
+            await wait(() =>
+                expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
+            );
+        });
+
+        it('then prev control is disabled', () => {
+            expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+        });
+
+        it('then the first dot is selected and disabled', () => {
+            expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 1)))
+                .has.attr('aria-disabled', 'true');
+        });
+
+        it('then has the appropriate heading', () => {
+            expect(component.getByRole('heading')).has.text('1 of 3');
+        });
+
+        describe('when it is rerendered to show the second item', () => {
+            beforeEach(async() => {
+                await component.rerender(assign({}, input, { index: 1 }));
+                await waitForCarouselUpdate();
             });
-            testUtils.triggerEvent(nextButton, 'click');
-        });
-    });
-    afterEach(() => widget.destroy());
 
-    describe('when the previous button is clicked', () => {
-        let prevSpy;
-        let slideSpy;
-        let updateSpy;
-        beforeEach(done => {
-            prevSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-previous', prevSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            testUtils.triggerEvent(prevButton, 'click');
+            it('then it moved to the second item', () => {
+                const secondItem = component.getByText(input.items[1].renderBody.text);
+                assertAtStartOfSlide(secondItem);
+            });
+
+            it('then has the appropriate heading', () => {
+                expect(component.getByRole('heading')).has.text('2 of 3');
+            });
         });
 
-        it('then it emits the marko prev event', () => testControlEvent(prevSpy));
+        describe('when it is rerendered with an index below zero', () => {
+            beforeEach(async() => {
+                await component.rerender(assign({}, input, { index: -1 }));
+                await doesNotEventuallyScroll();
+            });
 
-        it('then it emits the marko slide event', () => {
-            expect(slideSpy.calledOnce).to.equal(true);
-            const eventData = slideSpy.getCall(0).args[0];
-            expect(eventData.slide).to.equal(1);
+            it('then shows the first item', () => {
+                const firstItem = component.getByText(input.items[0].renderBody.text);
+                assertAtStartOfSlide(firstItem);
+            });
         });
 
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([0]);
+        describe('when it is rerendered with an index higher than the number of items', () => {
+            beforeEach(async() => {
+                await component.rerender(assign({}, input, { index: 6 }));
+                await doesNotEventuallyScroll();
+            });
+
+            it('then shows the first item', () => {
+                const firstItem = component.getByText(input.items[0].renderBody.text);
+                assertAtStartOfSlide(firstItem);
+            });
         });
 
-        it('then it applies a translation back to 0', () => {
-            expect(getTranslateX(list)).to.equal(0);
+        describe('when the previous button is clicked while disabled', () => {
+            beforeEach(async() => {
+                await fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+            });
+
+            it('then it did not emit the prev event', () => {
+                expect(component.emitted('carousel-previous')).has.length(0);
+            });
         });
 
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([0]);
-        });
-    });
-});
+        describe('when next button is clicked', () => {
+            beforeEach(async() => {
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await waitForCarouselUpdate();
+            });
 
-describe('given a discrete carousel at the end', () => {
-    const input = { items: mock.sixItems, itemsPerSlide: 2, index: 4 };
-    let widget;
-    let root;
-    let list;
-    let prevButton;
+            it('then it emitted the next event', () => {
+                expect(component.emitted('carousel-next')).has.length(1);
+            });
 
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        prevButton = root.querySelector('.carousel__control--prev');
-        waitForUpdate(widget, done);
-    });
-    afterEach(() => widget.destroy());
+            it('then it emitted the slide event', () => {
+                expect(component.emitted('carousel-slide')).has.nested.property('[0][0].slide', 2);
+            });
 
-    describe('when the previous button is clicked', () => {
-        let prevSpy;
-        let slideSpy;
-        let updateSpy;
-        beforeEach(done => {
-            prevSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-previous', prevSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            testUtils.triggerEvent(prevButton, 'click');
+            thenItMovedToTheSecondSlide();
         });
 
-        it('then it emits the marko prev event', () => testControlEvent(prevSpy));
+        describe('when second slide dot is clicked', () => {
+            beforeEach(async() => {
+                fireEvent.click(component.getByLabelText(input.a11yOtherText.replace('{slide}', 2)));
+                await waitForCarouselUpdate();
+            });
 
-        it('then it emits the marko slide event', () => {
-            expect(slideSpy.calledOnce).to.equal(true);
-            const eventData = slideSpy.getCall(0).args[0];
-            expect(eventData.slide).to.equal(2);
+            it('then it emitted the slide event', () => {
+                expect(component.emitted('carousel-slide')).has.nested.property('[0][0].slide', 2);
+            });
+
+            thenItMovedToTheSecondSlide();
         });
 
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
+        //
+        (supportsNativeScrolling
+            ? describe
+            : describe.skip
+        )('when it is scrolled to the second slide', () => {
+            beforeEach(async() => { // eslint-disable-line mocha/no-sibling-hooks
+                const thirdItem = component.getByText(input.items[1].renderBody.text);
+                const list = thirdItem.parentElement;
+                list.scrollLeft = thirdItem.offsetLeft;
+                fireEvent.scroll(list);
+                await waitForCarouselUpdate();
+            });
+
+            it('then it emitted the scroll event', () => {
+                expect(component.emitted('carousel-scroll')).has.length(1);
+            });
+
+            thenItMovedToTheSecondSlide();
         });
 
-        it('then it applies a translation back to the previous slide', () => {
-            const { offsetLeft } = list.children[2];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
+        function thenItMovedToTheSecondSlide() {
+            it('then it moved to the second item', () => {
+                const secondItem = component.getByText(input.items[1].renderBody.text);
+                assertAtStartOfSlide(secondItem);
+            });
 
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([2, 3]);
-        });
-    });
-});
+            it('then prev and next controls are enabled', () => {
+                expect(component.getByLabelText(input.a11yPreviousText)).to.not.have.attr('aria-disabled');
+                expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled');
+            });
 
-describe('given a discrete carousel with half width items', () => {
-    const input = { itemsPerSlide: 2, items: mock.sixItems };
-    let widget;
-    let root;
-    let list;
-    let nextButton;
-    let nextSlideDot;
+            it('then the second dot is selected and disabled', () => {
+                expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 2)))
+                    .has.attr('aria-disabled', 'true');
+            });
 
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        nextButton = root.querySelector('.carousel__control--next');
-        nextSlideDot = root.querySelector('[data-slide="1"]');
-        waitForUpdate(widget, done);
-    });
-    afterEach(() => widget.destroy());
-
-    describe('when next button is clicked', () => {
-        let nextSpy;
-        let slideSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-update', updateSpy);
-            testUtils.triggerEvent(nextButton, 'click');
-            waitForChange(widget, done);
-        });
-
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
-
-        it('then it emits the marko slide event', () => {
-            expect(slideSpy.calledOnce).to.equal(true);
-            const eventData = slideSpy.getCall(0).args[0];
-            expect(eventData.slide).to.equal(2);
-        });
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
-        });
-
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[2];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([2, 3]);
-        });
+            it('then has updated the heading', () => {
+                expect(component.getByRole('heading')).has.text('2 of 3');
+            });
+        }
     });
 
-    describe('when next slide dot is clicked', () => {
-        let nextSpy;
-        let slideSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-update', updateSpy);
-            testUtils.triggerEvent(nextSlideDot, 'click');
-            waitForChange(widget, done);
+    describe('with 1 item per slide and 3 items at the end', () => {
+        const input = assign({}, mock.Discrete_1PerSlide_3Items, { index: 2 });
+
+        beforeEach(async() => {
+            component = await render(template, input);
+            await waitForCarouselUpdate();
         });
 
-        it('then it does not emit the marko next event', () => {
-            expect(nextSpy.called).to.equal(false);
+        it('then next control is disabled', () => {
+            expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
 
-        it('then it emits the marko slide event', () => {
-            expect(slideSpy.calledOnce).to.equal(true);
-            const eventData = slideSpy.getCall(0).args[0];
-            expect(eventData.slide).to.equal(2);
+        it('then the third dot is selected and disabled', () => {
+            expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 3)))
+                .has.attr('aria-disabled', 'true');
         });
 
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
-        });
+        describe('when previous button is clicked', () => {
+            beforeEach(async() => {
+                fireEvent.click(component.getByLabelText(input.a11yPreviousText));
+                await waitForCarouselUpdate();
+            });
 
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[2];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
+            it('then it emitted the previous event', () => {
+                expect(component.emitted('carousel-previous')).has.length(1);
+            });
 
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([2, 3]);
-        });
-    });
-});
+            it('then it emitted the slide event', () => {
+                expect(component.emitted('carousel-slide')).has.nested.property('[0][0].slide', 2);
+            });
 
-describe('given a discrete carousel with three half width items', () => {
-    const input = { itemsPerSlide: 2, items: mock.threeItems };
-    let widget;
-    let root;
-    let list;
-    let nextButton;
+            it('then it moved to the second item', () => {
+                const secondItem = component.getByText(input.items[1].renderBody.text);
+                assertAtStartOfSlide(secondItem);
+            });
 
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        nextButton = root.querySelector('.carousel__control--next');
-        waitForUpdate(widget, done);
-    });
-    afterEach(() => widget.destroy());
+            it('then prev and next controls are enabled', () => {
+                expect(component.getByLabelText(input.a11yPreviousText)).to.not.have.attr('aria-disabled');
+                expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled');
+            });
 
-    describe('when next button is clicked', () => {
-        let nextSpy;
-        let slideSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-update', updateSpy);
-            testUtils.triggerEvent(nextButton, 'click');
-            waitForChange(widget, done);
-        });
-
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
-
-        it('then it emits the marko slide event', () => {
-            expect(slideSpy.calledOnce).to.equal(true);
-            const eventData = slideSpy.getCall(0).args[0];
-            expect(eventData.slide).to.equal(2);
-        });
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([1, 2]);
-        });
-
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[1];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([1, 2]);
+            it('then the second dot is selected and disabled', () => {
+                expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 2)))
+                    .has.attr('aria-disabled', 'true');
+            });
         });
     });
-});
 
-describe('given a discrete carousel with a partial slide', () => {
-    const input = { itemsPerSlide: 2.1, items: mock.sixItems };
-    let widget;
-    let root;
-    let list;
-    let nextButton;
+    describe('with 2 items per slide and 6 items at the beginning', () => {
+        const input = mock.Discrete_2PerSlide_6Items;
 
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        nextButton = root.querySelector('.carousel__control--next');
-        waitForUpdate(widget, done);
+        beforeEach(async() => {
+            component = await render(template, input);
+            // The carousel is not fully initialized until
+            // the next button is no longer disabled.
+            await wait(() =>
+                expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
+            );
+        });
+
+        it('then has the appropriate heading', () => {
+            expect(component.getByRole('heading')).has.text('1 of 3');
+        });
+
+        describe('when next button is clicked', () => {
+            beforeEach(async() => {
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await waitForCarouselUpdate();
+            });
+
+            it('then it emitted the next event', () => {
+                expect(component.emitted('carousel-next')).has.length(1);
+            });
+
+            thenItMovedToTheSecondSlide();
+        });
+
+        describe('when second slide dot is clicked', () => {
+            beforeEach(async() => {
+                fireEvent.click(component.getByLabelText(input.a11yOtherText.replace('{slide}', 2)));
+                await waitForCarouselUpdate();
+            });
+
+            thenItMovedToTheSecondSlide();
+        });
+
+        function thenItMovedToTheSecondSlide() {
+            it('then it emitted the slide event', () => {
+                expect(component.emitted('carousel-slide')).has.length(1);
+            });
+
+            it('then it moved to the third item', () => {
+                const secondItem = component.getByText(input.items[2].renderBody.text);
+                assertAtStartOfSlide(secondItem);
+            });
+
+            it('then the second dot is selected and disabled', () => {
+                expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 2)))
+                    .has.attr('aria-disabled', 'true');
+            });
+
+            it('then has updated the heading', () => {
+                expect(component.getByRole('heading')).has.text('2 of 3');
+            });
+        }
     });
-    afterEach(() => widget.destroy());
 
-    describe('when it is rendered', () => {
+    describe('with 2.1 items per slide and 3 items at the beginning', () => {
+        const input = mock.Discrete_2_1PerSlide_3Items;
+
+        beforeEach(async() => {
+            component = await render(template, input);
+            // The carousel is not fully initialized until
+            // the next button is no longer disabled.
+            await wait(() =>
+                expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
+            );
+        });
+
+        it('then has the appropriate heading', () => {
+            expect(component.getByRole('heading')).has.text('1 of 2');
+        });
+
+        it('then the dot controls do not display', () => {
+            expect(
+                component.queryByLabelText(input.a11yCurrentText.replace('{currentSlide}', ''))
+            ).equals(null);
+        });
+
         it('then it shows part of the next slide', () => {
+            const thirdItem = component.getByText(input.items[2].renderBody.text);
+            const list = thirdItem.parentElement;
             const { right: slideRight } = list.getBoundingClientRect();
-            const { left: itemLeft, right: itemRight } = list.children[2].getBoundingClientRect();
+            const { left: itemLeft, right: itemRight } = thirdItem.getBoundingClientRect();
             expect(itemLeft).lt(slideRight);
             expect(itemRight).gt(slideRight);
         });
-    });
 
-    describe('when next button is clicked', () => {
-        let nextSpy;
-        let slideSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-update', updateSpy);
-            testUtils.triggerEvent(nextButton, 'click');
-            waitForChange(widget, done);
-        });
-
-        it('then it emits the marko next event', () => testControlEvent(nextSpy));
-
-        it('then it emits the marko slide event', () => {
-            expect(slideSpy.calledOnce).to.equal(true);
-            const eventData = slideSpy.getCall(0).args[0];
-            expect(eventData.slide).to.equal(2);
-        });
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
-        });
-
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[2];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([2, 3]);
-        });
-    });
-});
-
-describe('given an autoplay carousel in the default state', () => {
-    const input = { itemsPerSlide: 2, items: mock.sixItems, autoplay: 200 };
-    let widget;
-    let root;
-    let list;
-    let pauseButton;
-
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        pauseButton = root.querySelector('.carousel__playback');
-        waitForUpdate(widget, done);
-    });
-
-    afterEach(() => widget.destroy());
-
-    describe('when one autoplay interval has passed', () => {
-        let nextSpy;
-        let slideSpy;
-        let updateSpy;
-
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-update', updateSpy);
-            // Wait for both update events.
-            waitForChange(widget, done);
-        });
-
-        it('then it does not emit next or slide events', () => {
-            expect(nextSpy.notCalled).to.equal(true);
-            expect(slideSpy.notCalled).to.equal(true);
-        });
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
-        });
-
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[2];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([2, 3]);
-        });
-    });
-
-    describe('when it is paused', () => {
-        let updateSpy;
-
-        beforeEach(done => {
-            updateSpy = sinon.spy();
-
-            waitForUpdate(widget, () => {
-                widget.on('carousel-update', updateSpy);
-                setTimeout(done, 375);
+        describe('when next button is clicked', () => {
+            beforeEach(async() => {
+                fireEvent.click(component.getByLabelText(input.a11yNextText));
+                await waitForCarouselUpdate();
             });
 
-            testUtils.triggerEvent(pauseButton, 'click');
-        });
+            it('then it emitted the next event', () => {
+                expect(component.emitted('carousel-next')).has.length(1);
+            });
 
-        it('then it does not autoplay', () => {
-            expect(updateSpy.notCalled).to.equal(true);
+            it('then it emitted the slide event', () => {
+                expect(component.emitted('carousel-slide')).has.length(1);
+            });
+
+            it('then it moved to the third item', () => {
+                const secondItem = component.getByText(input.items[2].renderBody.text);
+                assertAtStartOfSlide(secondItem);
+            });
+
+            it('then has the appropriate heading', () => {
+                expect(component.getByRole('heading')).has.text('2 of 2');
+            });
         });
     });
 
-    describe('when it is interacted with', () => {
-        let updateSpy;
+    describe('with autoplay enabled', () => {
+        const input = mock.Discrete_1PerSlide_3Items_AutoPlay;
 
-        beforeEach(done => {
-            updateSpy = sinon.spy();
-
-            waitForUpdate(widget, () => {
-                widget.on('carousel-update', updateSpy);
-                setTimeout(done, 375);
-            });
-
-            testUtils.triggerEvent(list, 'mouseover');
+        beforeEach(async() => {
+            component = await render(template, input);
+            // The carousel is not fully initialized until
+            // the next button is no longer disabled.
+            await wait(() =>
+                expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
+            );
         });
 
-        describe('when the interaction has finished', () => {
-            beforeEach((done) => {
-                waitForUpdate(widget, () => {
-                    setTimeout(done, 375);
+        describe('when the autoplay runs twice', async() => {
+            beforeEach(async() => {
+                await waitForCarouselUpdate();
+                await waitForCarouselUpdate();
+            });
+
+            it('then it does not emit next or slide events', () => {
+                expect(component.emitted('carousel-next')).has.length(0);
+                expect(component.emitted('carousel-slide')).has.length(0);
+            });
+
+            it('then it moved to the third item', () => {
+                const thirdItem = component.getByText(input.items[2].renderBody.text);
+                assertAtStartOfSlide(thirdItem);
+            });
+
+            describe('when auto play runs at the end', () => {
+                beforeEach(async() => {
+                    await waitForCarouselUpdate();
                 });
-                testUtils.triggerEvent(list, 'mouseout');
+
+                it('then it does not emit the next event', () => {
+                    expect(component.emitted('carousel-next')).has.length(0);
+                });
+
+                thenItIsOnTheFirstSlide();
             });
 
-            it('then it does autoplay', () => {
-                expect(updateSpy.calledOnce).to.equal(true);
+            describe('when next is clicked at the end', () => {
+                beforeEach(async() => {
+                    fireEvent.click(component.getByLabelText(input.a11yNextText));
+                    await waitForCarouselUpdate();
+                });
+
+                it('then it emitted the next event', () => {
+                    expect(component.emitted('carousel-next')).has.length(1);
+                });
+
+                it('then it emitted the slide event', () => {
+                    expect(component.emitted('carousel-slide')).has.length(1);
+                });
+
+                thenItIsOnTheFirstSlide();
             });
         });
 
-        it('then it does not autoplay', () => {
-            expect(updateSpy.notCalled).to.equal(true);
-        });
-    });
-
-    describe('when the pause button is clicked', () => {
-        let updateSpy;
-
-        beforeEach(done => {
-            updateSpy = sinon.spy();
-
-            waitForUpdate(widget, () => {
-                widget.on('carousel-update', updateSpy);
-                setTimeout(done, 375);
+        describe('when it is paused', () => {
+            beforeEach(async() => {
+                await component.rerender(assign({}, input, { paused: true }));
+                await new Promise(resolve => setTimeout(resolve, 600));
             });
 
-            testUtils.triggerEvent(pauseButton, 'click');
+            it('then it did not emit any updates', () => {
+                expect(component.emitted('carousel-update')).has.length(0);
+            });
+
+            thenItIsOnTheFirstSlide();
         });
 
-        it('then it does not autoplay', () => {
-            expect(updateSpy.notCalled).to.equal(true);
+        describe('when it is interacted with', () => {
+            beforeEach(async() => {
+                await fireEvent.mouseOver(component.getByRole('heading'));
+            });
+
+            it('then the autoplay does not run', async() => {
+                await new Promise(resolve => setTimeout(resolve, 600));
+                expect(component.emitted('carousel-update')).has.length(0);
+            });
+
+            describe('when the interaction has finished', () => {
+                beforeEach(async() => {
+                    await fireEvent.mouseOut(component.getByRole('heading'));
+                });
+
+                it('then it does autoplay', async() => {
+                    await waitForCarouselUpdate();
+                });
+            });
         });
+
+        function thenItIsOnTheFirstSlide() {
+            it('then it is displaying the first item', () => {
+                const firstItem = component.getByText(input.items[0].renderBody.text);
+                assertAtStartOfSlide(firstItem);
+            });
+
+            it('then the first dot is selected and disabled', () => {
+                expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 1)))
+                    .has.attr('aria-disabled', 'true');
+            });
+
+            it('then it has the appropriate heading', () => {
+                expect(component.getByRole('heading')).has.text('1 of 3');
+            });
+        }
     });
 });
 
-describe('given an autoplay carousel in the paused state', () => {
-    const input = { itemsPerSlide: 2, items: mock.sixItems, autoplay: 200, paused: true };
-    let widget;
-    let root;
-    let list;
-    let playButton;
-    let prevButton;
+function waitForCarouselUpdate() {
+    return wait(() => expect(component.emitted('carousel-update')).has.length(1));
+}
 
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        playButton = root.querySelector('.carousel__playback');
-        prevButton = root.querySelector('.carousel__control--prev');
-        waitForUpdate(widget, done);
+function doesNotEventuallyScroll() {
+    const err = new Error('Page should not have been scrolled');
+    return new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => {
+            window.removeEventListener('scroll', handleScroll);
+            resolve();
+        }, 200);
+
+        window.addEventListener('scroll', handleScroll, true);
+
+        function handleScroll() {
+            clearTimeout(timeout);
+            window.removeEventListener('scroll', handleScroll);
+            reject(err);
+        }
     });
+}
 
-    afterEach(() => widget.destroy());
+function assertIsNotVisible(item) {
+    const itemBounds = item.getBoundingClientRect();
+    const parentBounds = item.parentElement.getBoundingClientRect();
 
-    describe('when one autoplay interval has passed', () => {
-        let updateSpy;
+    if (itemBounds.left < parentBounds.left || itemBounds.right > parentBounds.right) {
+        return;
+    }
 
-        beforeEach(done => {
-            updateSpy = sinon.spy();
-            widget.on('carousel-update', updateSpy);
-            setTimeout(done, 200);
-        });
+    throw new Error(`Expected item ${getChildIndex(item)} to not be displayed.`);
+}
 
-        it('then it does not autoplay', () => {
-            expect(updateSpy.notCalled).to.equal(true);
-        });
-    });
+function assertAtStartOfSlide(item) {
+    const list = item.parentElement;
+    const container = list.parentElement;
+    const itemBounds = item.getBoundingClientRect();
+    const containerBounds = container.getBoundingClientRect();
 
-    describe('when the play button is clicked', () => {
-        let nextSpy;
-        let updateSpy;
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            testUtils.triggerEvent(playButton, 'click');
-        });
+    // Check if item is at the very start of the carousel.
+    if (Math.trunc(itemBounds.left) === Math.trunc(containerBounds.left)) {
+        return;
+    }
 
-        it('then it does not emit the marko next event', () => {
-            expect(nextSpy.notCalled).to.equal(true);
-        });
+    // Also accept if the carousel has scrolled as much as possible.
+    const lastItemBounds = list.lastElementChild.getBoundingClientRect();
+    if (Math.trunc(lastItemBounds.right) <= Math.trunc(containerBounds.right)) {
+        return;
+    }
 
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([2, 3]);
-        });
+    throw new Error(`Expected item ${getChildIndex(item)} to be at the beginning of the carousel.`);
+}
 
-        it('then it applies a translation', () => {
-            const { offsetLeft } = list.children[2];
-            expect(getTranslateX(list)).to.equal(offsetLeft);
-        });
+function assertAtEndOfSlide(item) {
+    const list = item.parentElement;
+    const container = list.parentElement;
+    const itemBounds = item.getBoundingClientRect();
+    const parentBounds = container.getBoundingClientRect();
 
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([2, 3]);
-        });
-    });
+    // Check if item is at the very end of the carousel.
+    if (Math.trunc(itemBounds.right) === Math.trunc(parentBounds.right)) {
+        return;
+    }
 
-    describe('when the previous button is clicked', () => {
-        let nextSpy;
-        let prevSpy;
-        let updateSpy;
+    // Also accept if the carousel has scrolled as much as possible.
+    const firstItemBounds = list.firstElementChild.getBoundingClientRect();
+    if (Math.trunc(firstItemBounds.left) <= Math.trunc(parentBounds.left)) {
+        return;
+    }
 
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            prevSpy = sinon.spy();
-            updateSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-previous', prevSpy);
-            widget.on('carousel-update', updateSpy);
-            waitForChange(widget, done);
-            testUtils.triggerEvent(prevButton, 'click');
-        });
+    throw new Error(`Expected item ${getChildIndex(item)} to be at the end of the carousel.`);
+}
 
-        it('then it does not emit the marko next event', () => {
-            expect(nextSpy.notCalled).to.equal(true);
-        });
-
-        it('then it emits the marko prev event', () => {
-            expect(prevSpy.calledOnce).to.equal(true);
-        });
-
-        it('then it emits the marko update event', () => {
-            expect(updateSpy.calledOnce).to.equal(true);
-            const eventData = updateSpy.getCall(0).args[0];
-            expect(eventData.visibleIndexes).to.deep.equal([4, 5]);
-        });
-
-        it('then it moves to the last slide', () => {
-            expect(widget.state.index).to.equal(4);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([4, 5]);
-        });
-    });
-});
-
-(supportsNativeScrolling
-    ? describe
-    : describe.skip
-)('given a carousel in the default state with native scrolling', () => {
-    const input = { itemsPerSlide: 2, items: mock.sixItems };
-    let widget;
-    let root;
-    let list;
-
-    beforeEach(done => {
-        widget = renderer.renderSync(input).appendTo(document.body).getWidget();
-        root = document.querySelector('.carousel');
-        list = root.querySelector('.carousel__list');
-        waitForUpdate(widget, done);
-    });
-
-    afterEach(() => widget.destroy());
-
-    describe('when scrolling an item to the right', () => {
-        let nextSpy;
-        let slideSpy;
-        let scrollSpy;
-
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            scrollSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-scroll', scrollSpy);
-            setTimeout(() => {
-                testUtils.simulateScroll(list, list.children[2].offsetLeft);
-            }, 200);
-            waitForChange(widget, done);
-        });
-
-        it('then it does not emit next or slide events', () => {
-            expect(nextSpy.notCalled).to.equal(true);
-            expect(slideSpy.notCalled).to.equal(true);
-        });
-
-        it('then it emits the carousel scroll event', () => {
-            expect(scrollSpy.calledOnce).to.equal(true);
-            const eventData = scrollSpy.getCall(0).args[0];
-            expect(eventData.index).to.deep.equal(2);
-        });
-
-        it('then it applied the right scroll position', () => {
-            const { offsetLeft } = list.children[2];
-            expect(list.scrollLeft).to.equal(offsetLeft);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([2, 3]);
-        });
-    });
-
-    describe('when scrolling part way to the right', () => {
-        let nextSpy;
-        let slideSpy;
-        let scrollSpy;
-
-        beforeEach(done => {
-            nextSpy = sinon.spy();
-            slideSpy = sinon.spy();
-            scrollSpy = sinon.spy();
-            widget.on('carousel-next', nextSpy);
-            widget.on('carousel-slide', slideSpy);
-            widget.on('carousel-scroll', scrollSpy);
-            const secondChild = list.children[1];
-            const halfwayThroughSecondChild = secondChild.offsetLeft + (secondChild.offsetWidth / 2) + 10;
-            testUtils.simulateScroll(list, halfwayThroughSecondChild);
-            waitForChange(widget, done);
-        });
-
-        it('then it does not emit next or slide events', () => {
-            expect(nextSpy.notCalled).to.equal(true);
-            expect(slideSpy.notCalled).to.equal(true);
-        });
-
-        it('then it emits the carousel scroll event', () => {
-            expect(scrollSpy.calledOnce).to.equal(true);
-            const eventData = scrollSpy.getCall(0).args[0];
-            expect(eventData.index).to.deep.equal(2);
-        });
-
-        it('then it calculates item visibility correctly', () => {
-            const { state: { items } } = widget;
-            const visibleIndexes = getVisibleIndexes(items);
-            expect(visibleIndexes).to.deep.equal([2, 3]);
-        });
-    });
-});
+function getChildIndex(child) {
+    return [].indexOf.call(child.parentElement.children, child);
+}

@@ -26,55 +26,55 @@ describe('NodeListUtils.findNodeWithFirstChar', () => {
         const nodeList = container.querySelectorAll('#list1 li');
 
         describe('when "r" is input', () => {
-            test('then 0 is returned', () => {
+            it('then 0 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'r')).to.equal(0);
             });
         });
 
         describe('when "R" is input', () => {
-            test('then 0 is returned', () => {
+            it('then 0 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'R')).to.equal(0);
             });
         });
 
         describe('when "p" is input', () => {
-            test('then 1 is returned', () => {
+            it('then 1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'p')).to.equal(1);
             });
         });
 
         describe('when "P" is input', () => {
-            test('then 1 is returned', () => {
+            it('then 1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'P')).to.equal(1);
             });
         });
 
         describe('when "g" is input', () => {
-            test('then 2 is returned', () => {
+            it('then 2 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'g')).to.equal(2);
             });
         });
 
         describe('when "G" is input', () => {
-            test('then 2 is returned', () => {
+            it('then 2 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'G')).to.equal(2);
             });
         });
 
         describe('when "j" is input', () => {
-            test('then -1 is returned', () => {
+            it('then -1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'j')).to.equal(-1);
             });
         });
 
         describe('when "J" is input', () => {
-            test('then -1 is returned', () => {
+            it('then -1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'J')).to.equal(-1);
             });
         });
 
         describe('when "" is input', () => {
-            test('then -1 is returned', () => {
+            it('then -1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, '')).to.equal(-1);
             });
         });
@@ -84,19 +84,19 @@ describe('NodeListUtils.findNodeWithFirstChar', () => {
         const nodeList = container.querySelectorAll('#list2 li');
 
         describe('when "b" is input', () => {
-            test('then 0 is returned', () => {
+            it('then 0 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'b')).to.equal(0);
             });
         });
 
         describe('when "B" is input', () => {
-            test('then 0 is returned', () => {
+            it('then 0 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'B')).to.equal(0);
             });
         });
 
         describe('when "" is input', () => {
-            test('then -1 is returned', () => {
+            it('then -1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, '')).to.equal(-1);
             });
         });
@@ -106,19 +106,19 @@ describe('NodeListUtils.findNodeWithFirstChar', () => {
         const nodeList = container.querySelectorAll('#list3 li');
 
         describe('when "" is input', () => {
-            test('then 0 is returned', () => {
+            it('then 0 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, '')).to.equal(0);
             });
         });
 
         describe('when "b" is input', () => {
-            test('then -1 is returned', () => {
+            it('then -1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'b')).to.equal(-1);
             });
         });
 
         describe('when "B" is input', () => {
-            test('then -1 is returned', () => {
+            it('then -1 is returned', () => {
                 expect(findNodeWithFirstChar(nodeList, 'B')).to.equal(-1);
             });
         });

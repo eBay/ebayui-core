@@ -470,6 +470,7 @@
         "@style-left": "string",
         "@style-right": "string",
         "@style-bottom": "string",
+        "@a11y-close-text": "string",
         "@host <host>": {
             "@*": "expression",
             "@html-attributes": "expression",

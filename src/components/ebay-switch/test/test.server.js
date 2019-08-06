@@ -1,18 +1,27 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const template = require('..');
 
-test('renders default switch', context => {
-    const $ = testUtils.getCheerio(context.render());
-    expect($('.switch').length).to.equal(1);
-    expect($('.switch > input').length).to.equal(1);
-    expect($('.switch > span').length).to.equal(1);
+use(require('chai-dom'));
+
+it('renders default switch', async() => {
+    const { getByRole } = await render(template);
+    const switchControl = getByRole('switch');
+    expect(switchControl).to.have.class('switch__control');
+    expect(switchControl.parentElement).to.have.class('switch');
+    expect(switchControl.nextElementSibling).to.have.class('switch__button');
+    expect(switchControl).to.have.property('disabled', false);
 });
 
-test('renders disabled switch', context => {
-    const input = { disabled: true };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('.switch > input[disabled]').length).to.equal(1);
+it('renders disabled switch', async() => {
+    const { getByRole } = await render(template, { disabled: true });
+    const switchControl = getByRole('switch');
+    expect(switchControl).to.have.property('disabled', true);
 });
 
-test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, '.switch > input'));
-test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.switch'));
+testPassThroughAttributes(template, {
+    getClassAndStyleEl(component) {
+        return component.getByRole('switch').parentElement;
+    }
+});
