@@ -153,7 +153,8 @@
         "@open": "boolean",
         "@type": "string",
         "@focus": "string",
-        "@a11y-close-text": "string"
+        "@a11y-close-text": "string",
+        "@icon": "string"
     },
     "<ebay-expand-button>": {
         "template": "./src/components/ebay-expand-button/index.marko",

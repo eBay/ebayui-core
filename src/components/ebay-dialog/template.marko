@@ -5,7 +5,6 @@
 <var isFull=(data.type === "full")/>
 <var isCenter=(!data.type || data.type === "fill")/>
 <var isDocked=(data.type === "left" || data.type === "right")/>
-
 <div
     w-bind
     class=[
@@ -20,7 +19,6 @@
     role="dialog"
     w-preserve-attrs="hidden"
     w-onclick="handleDialogClick"
-    w-onmousedown="handleStartClick"
     ${processHtmlAttributes(data)}>
     <div
         w-id="window"
@@ -37,7 +35,13 @@
             type="button"
             aria-label=data.a11yCloseText
             w-onclick="handleCloseButtonClick">
-            <ebay-icon type="inline" name="close"/>
+            <if (data.icon === 'chevron-down')>
+                <ebay-icon type="inline" name="chevron-down"/>
+            </if>
+            <else>
+                <ebay-icon type="inline" name="close"/>
+            </else>
+            
         </button>
 
         <div class="dialog__body" w-id="body" w-body/>

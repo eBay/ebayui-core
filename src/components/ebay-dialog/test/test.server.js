@@ -64,4 +64,16 @@ describe('dialog', () => {
 
     test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, '.dialog'));
     test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.dialog'));
+
+    test('renders chevron instead of close button', context => {
+        const input = { icon: 'chevron-down' };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.dialog__close svg').hasClass('icon--chevron-down')).to.equal(true);
+    });
+
+    test('renders close icon as close button', context => {
+        const input = { icon: '' };
+        const $ = testUtils.getCheerio(context.render(input));
+        expect($('.dialog__close svg').hasClass('icon--close')).to.equal(true);
+    });
 });
