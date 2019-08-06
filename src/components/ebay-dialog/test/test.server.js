@@ -67,7 +67,6 @@ describe('dialog', () => {
         const input = { icon: '' };
         const { getByRole } = await render(template, input);
         const $dialog = getByRole('dialog');
-        console.log($dialog.querySelector('.dialog__close svg'))
         expect($dialog.querySelector('.dialog__close svg')).has.class('icon--close');
     });
 
