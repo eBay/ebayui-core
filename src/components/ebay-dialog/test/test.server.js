@@ -7,7 +7,7 @@ const template = require('..');
 use(require('chai-dom'));
 
 describe('dialog', () => {
-    it('renders basic version', async () => {
+    it('renders basic version', async() => {
         const input = mock.Fill_Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
 
@@ -18,7 +18,7 @@ describe('dialog', () => {
         expect(getByText(input.renderBody.text)).has.class('dialog__body');
     });
 
-    it('renders in open state', async () => {
+    it('renders in open state', async() => {
         const input = mock.Fill_Dialog_Open;
         const { getByRole } = await render(template, input);
         expect(getByRole('dialog')).does.not.have.attr('hidden');
@@ -45,7 +45,7 @@ describe('dialog', () => {
     });
 
     ['left', 'right'].forEach(type => {
-        it(`renders with ${type} type`, async () => {
+        it(`renders with ${type} type`, async() => {
             const { getByRole } = await render(template, { type });
             const $dialog = getByRole('dialog');
             const $window = getByRole('document');
@@ -56,14 +56,14 @@ describe('dialog', () => {
         });
     });
 
-    test('renders chevron instead of close button', async () => {
+    test('renders chevron instead of close button', async() => {
         const input = { icon: 'chevron-down' };
         const { getByRole } = await render(template, input);
         const $dialog = getByRole('dialog');
         expect($dialog.querySelector('.dialog__close svg')).has.class('icon--chevron-down');
     });
 
-    test('renders close icon as close button', async () => {
+    test('renders close icon as close button', async() => {
         const input = { icon: '' };
         const { getByRole } = await render(template, input);
         const $dialog = getByRole('dialog');
