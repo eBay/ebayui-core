@@ -6,11 +6,14 @@ const fs = require('fs');
 const cp = require('child_process');
 const path = require('path');
 const cheerio = require('cheerio');
-const formatHTML = require('diffable-html');
+const prettier = require('prettier');
 const skinDir = path.dirname(require.resolve('@ebay/skin/package.json'));
 const svgDir = path.join(skinDir, 'src/svg');
 const outputDir = path.join(__dirname, '../../src/components/ebay-icon/symbols');
-const missingSVG = formatHTML(fs.readFileSync(path.join(__dirname, 'missing.svg'), 'utf-8'));
+const missingSVG = prettier.format(fs.readFileSync(path.join(__dirname, 'missing.svg'), 'utf-8'), {
+    parser: 'html',
+    htmlWhitespaceSensitivity: 'ignore'
+});
 const icons = new Map();
 const THEMES = {
     ds4: {
@@ -36,7 +39,10 @@ for (const theme of THEME_NAMES) {
     for (const el of Array.from($('symbol'))) {
         const $symbol = $(el);
         const name = $symbol.attr('id').replace(/^(?:svg-)?icon-/, '');
-        const symbolContent = formatHTML($.html($symbol));
+        const symbolContent = prettier.format($.html($symbol), {
+            parser: 'html',
+            htmlWhitespaceSensitivity: 'ignore'
+        });
 
         if (icons.has(name)) {
             icons.get(name)[theme] = symbolContent;
