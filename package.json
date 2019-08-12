@@ -73,7 +73,6 @@
     "chai-dom": "^1.8.1",
     "core-js": "^3.1.4",
     "coveralls": "^3.0.4",
-    "diffable-html": "^4.0.0",
     "eslint": "^5.16.0",
     "eslint-config-ebay": "^1.1.0",
     "eslint-plugin-compat": "^2.7.0",
