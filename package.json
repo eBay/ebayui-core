@@ -64,7 +64,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/runtime-corejs3": "^7.5.5",
     "@ebay/browserslist-config": "^1.0.0",
-    "@ebay/skin": "8.0.0",
+    "@ebay/skin": "9.0.0-0",
     "@lasso/marko-taglib": "^1.0.15",
     "@marko/testing-library": "^2.0.1",
     "async": "^3.0.1",
