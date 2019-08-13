@@ -1,67 +1,60 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const mock = require('./mock');
+const template = require('..');
+
+use(require('chai-dom'));
 
 describe('dialog', () => {
-    test('renders basic version', context => {
-        const input = {};
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.dialog').prop('hidden')).to.equal(true);
-        expect($('.dialog__body').text()).to.equal('');
-        expect($('.dialog__close').attr('aria-label')).to.equal(undefined);
+    it('renders basic version', async() => {
+        const input = mock.Fill_Dialog;
+        const { getByRole, getByLabelText, getByText } = await render(template, input);
+
+        expect(getByRole('dialog')).has.attr('hidden');
+        expect(getByRole('dialog')).has.class('dialog');
+        expect(getByRole('document')).has.class('dialog__window');
+        expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
+        expect(getByText(input.renderBody.text)).has.class('dialog__body');
     });
 
-    test('renders with a renderBody', context => {
-        const input = { renderBody: out => out.write('Hello World') };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.dialog__body').text()).to.equal('Hello World');
-    });
-
-    test('renders with a11y close text', context => {
-        const input = { a11yCloseText: 'Close Dialog' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.dialog__close').attr('aria-label')).to.equal('Close Dialog');
-    });
-
-    test('renders in open state', context => {
-        const input = { open: true };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.dialog').prop('hidden')).to.equal(false);
+    it('renders in open state', async() => {
+        const input = mock.Fill_Dialog_Open;
+        const { getByRole } = await render(template, input);
+        expect(getByRole('dialog')).does.not.have.attr('hidden');
     });
 
     [undefined, 'fill', 'full'].forEach(type => {
-        test(`renders with ${type || 'default'} type`, context => {
-            const input = { type: type };
-            const $ = testUtils.getCheerio(context.render(input));
-            const $dialog = $('.dialog');
-            const $window = $('.dialog__window');
+        it(`renders with ${type || 'default'} type`, async() => {
+            const { getByRole } = await render(template, { type });
+            const $dialog = getByRole('dialog');
+            const $window = getByRole('document');
 
             if (type) {
-                expect($window.hasClass(`dialog__window--${type}`)).to.equal(true);
+                expect($window).has.class(`dialog__window--${type}`);
             }
 
             if (type === 'full') {
-                expect($dialog.hasClass('dialog--no-mask')).to.equal(true);
+                expect($dialog).has.class('dialog--no-mask');
             } else {
-                expect($dialog.hasClass('dialog--mask-fade')).to.equal(true);
+                expect($dialog).has.class('dialog--mask-fade');
             }
 
-            expect($window.hasClass('dialog__window--fade')).to.equal(true);
+            expect($window).has.class('dialog__window--fade');
         });
     });
 
     ['left', 'right'].forEach(type => {
-        test(`renders with ${type} type`, context => {
-            const input = { type: type };
-            const $ = testUtils.getCheerio(context.render(input));
-            const $dialog = $('.dialog');
-            const $window = $('.dialog__window');
+        it(`renders with ${type} type`, async() => {
+            const { getByRole } = await render(template, { type });
+            const $dialog = getByRole('dialog');
+            const $window = getByRole('document');
 
-            expect($dialog.hasClass('dialog--mask-fade-slow')).to.equal(true);
-            expect($window.hasClass(`dialog__window--${type}`)).to.equal(true);
-            expect($window.hasClass('dialog__window--slide')).to.equal(true);
+            expect($dialog).has.class('dialog--mask-fade-slow');
+            expect($window).has.class(`dialog__window--${type}`);
+            expect($window).has.class('dialog__window--slide');
         });
     });
 
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, '.dialog'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.dialog'));
+    testPassThroughAttributes(template);
 });

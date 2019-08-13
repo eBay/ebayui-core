@@ -1,49 +1,62 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const mock = require('../mock');
+const template = require('..');
+
+use(require('chai-dom'));
 
 describe('breadcrumb', () => {
-    test('renders basic structure', context => {
-        const $ = testUtils.getCheerio(context.render(mock.basicItems));
-        expect($('nav.breadcrumb').length).to.equal(1);
-        const h2Tag = $('h2.clipped');
-        expect(h2Tag.length).to.equal(1);
-        expect(h2Tag.html()).to.equal(mock.basicItems.a11yHeadingText);
-        expect($('nav li').length).to.equal(mock.basicItems.items.length);
+    it('renders basic structure', async() => {
+        const input = mock.Links;
+        const { getByLabelText, getByText } = await render(template, input);
+
+        expect(getByLabelText(input.a11yHeadingText)).has.attr('role', 'navigation');
+
+        input.items.slice(0, -1).forEach(
+            item => expect(getByText(item.renderBody.text)).has.property('tagName', 'A')
+        );
+
+        expect(getByText(input.items[input.items.length - 1].renderBody.text))
+            .has.property('tagName', 'BUTTON');
     });
 
-    test('should use buttons when hrefs are missing', context => {
-        const input = mock.buttons;
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('li button').length).to.equal(input.items.length);
+    it('renders buttons when hrefs are missing', async() => {
+        const input = mock.Buttons;
+        const { getByText } = await render(template, input);
+        input.items.forEach(
+            item => expect(getByText(item.renderBody.text)).has.property('tagName', 'BUTTON')
+        );
     });
 
-    test('renders <a> without href for missing input href on non-last item', context => {
-        const $ = testUtils.getCheerio(context.render(mock.firstItemMissingHref));
-        const li = $('nav li');
-        expect($('a', li[0]).attr('href')).to.equal(undefined);
-        expect(li.length).to.equal(mock.firstItemMissingHref.items.length);
+    it('renders <button> for missing input href item', async() => {
+        const input = mock.Links_First_Without_HREF;
+        const { getByText } = await render(template, input);
+
+        input.items.slice(0, -1).forEach(
+            item => {
+                const itemEl = getByText(item.renderBody.text);
+                if (item.href) {
+                    expect(itemEl).has.property('tagName', 'A');
+                    expect(itemEl).has.attr('href', item.href);
+                } else {
+                    expect(itemEl).has.property('tagName', 'BUTTON');
+                }
+            }
+        );
     });
 
-    test('renders a button when href is null on last item', context => {
-        const $ = testUtils.getCheerio(context.render(mock.basicItems));
-        const li = $('nav li');
-        expect(li.length).to.equal(mock.basicItems.items.length);
-        const currentElement = $('button', li[li.length - 1]);
-        expect(currentElement.attr('aria-current')).to.equal('location');
+    it('renders different heading tag when specified', async() => {
+        const input = mock.Links_Heading_Tag;
+        const { getByText } = await render(template, input);
+        expect(getByText(input.a11yHeadingText)).has.property('tagName', input.a11yHeadingTag.toUpperCase());
     });
-
-    test('renders different heading tag when specified', context => {
-        const $ = testUtils.getCheerio(context.render(mock.itemsWithHeadingTag));
-        expect($('h2').length).to.equal(0);
-        expect($('h3').length).to.equal(1);
-    });
-
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'nav'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'nav'));
 });
 
-describe('breadcrumb-item', () => {
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'li > *', 'items'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'li > *', 'items'));
+testPassThroughAttributes(template);
+testPassThroughAttributes(template, {
+    child: {
+        name: 'items',
+        multiple: true
+    }
 });

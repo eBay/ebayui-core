@@ -1,7 +1,6 @@
 <span
     class=data.class
     style=data.style
-    ${data.htmlAttributes}
     w-on-expander-expand='handleExpand'
     w-on-expander-collapse='handleCollapse'
     w-preserve-attrs="class"
@@ -14,7 +13,7 @@
             value=(data.selectedOption && data.selectedOption.text)
             disabled=data.disabled
             aria-haspopup='listbox'
-            aria-owns=widget.elId('combobox__options')
+            aria-owns=widget.elId('combobox__listbox')
             aria-expanded='false'
             w-on-keydown='handleComboboxKeyDown'
             w-preserve-attrs="aria-expanded"
@@ -23,7 +22,7 @@
     </span>
     <div
         if(data.options.length > 0)
-        w-id='combobox__options'
+        w-id='combobox__listbox'
         role='listbox'
         class=data.optionsClass>
         <div

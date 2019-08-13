@@ -2,7 +2,9 @@
     "dependencies": [
         {
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/combobox"
+            "dependencies": [
+                "@ebay/skin/combobox"
+            ]
         },
         "require: marko-widgets",
         "require: ./index.js"

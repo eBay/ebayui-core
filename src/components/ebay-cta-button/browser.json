@@ -1,0 +1,8 @@
+{
+    "dependencies": [
+        {
+            "if-not-flag": "ebayui-no-skin",
+            "path": "@ebay/skin/cta-button"
+        }
+    ]
+}

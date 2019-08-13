@@ -135,6 +135,15 @@
     "<ebay-combobox-readonly-option>": {
         "transformer": "./src/common/transformers/attribute-tags/index.js"
     },
+    "<ebay-cta-button>": {
+        "template": "./src/components/ebay-cta-button/index.marko",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@id": "string",
+        "@class": "string",
+        "@style": "string",
+        "@size": "size"
+    },
     "<ebay-dialog>": {
         "renderer": "./src/components/ebay-dialog/index.js",
         "@*": "expression",
@@ -145,6 +154,17 @@
         "@type": "string",
         "@focus": "string",
         "@a11y-close-text": "string"
+    },
+    "<ebay-expand-button>": {
+        "template": "./src/components/ebay-expand-button/index.marko",
+        "@*": "expression",
+        "@html-attributes": "expression",
+        "@id": "string",
+        "@class": "string",
+        "@style": "string",
+        "@disabled": "boolean",
+        "@size": "size",
+        "@no-text": "boolean"
     },
     "<ebay-icon>": {
         "template": "./src/components/ebay-icon/index.marko",
@@ -195,12 +215,6 @@
             "@style": "string"
         }
     },
-    "<ebay-listbox>": {
-        "transformer": "./src/common/migrators/tag-name/index.js"
-    },
-    "<ebay-listbox-option>": {
-        "transformer": "./src/common/migrators/tag-name/index.js"
-    },
     "<ebay-listbox-button>": {
         "renderer": "./src/components/ebay-listbox-button/index.js",
         "@*": "expression",
@@ -223,15 +237,6 @@
     },
     "<ebay-listbox-button-option>": {
         "transformer": "./src/common/transformers/attribute-tags/index.js"
-    },
-    "<ebay-menu>": {
-        "transformer": "./src/common/migrators/tag-name/index.js"
-    },
-    "<ebay-menu-item>": {
-        "transformer": "./src/common/migrators/tag-name/index.js"
-    },
-    "<ebay-menu-label>": {
-        "transformer": "./src/common/migrators/tag-name/index.js"
     },
     "<ebay-menu-button>": {
         "renderer": "./src/components/ebay-menu-button/index.js",
@@ -464,6 +469,7 @@
         "@style-left": "string",
         "@style-right": "string",
         "@style-bottom": "string",
+        "@a11y-close-text": "string",
         "@host <host>": {
             "@*": "expression",
             "@html-attributes": "expression",

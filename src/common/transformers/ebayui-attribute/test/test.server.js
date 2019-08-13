@@ -14,7 +14,7 @@ describe('when the ebay-button template is transformed', () => {
         outputTemplate = testUtils.getTransformedTemplate(transformer, templateSrc, templatePath);
     });
 
-    test('transforms the ebay-button template to include a data-ebayui attribute', () => {
+    it('transforms the ebay-button template to include a data-ebayui attribute', () => {
         expect(outputTemplate).to.contain('data-ebayui=true');
     });
 });

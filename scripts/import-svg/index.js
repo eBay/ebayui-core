@@ -6,21 +6,32 @@ const fs = require('fs');
 const cp = require('child_process');
 const path = require('path');
 const cheerio = require('cheerio');
+const prettier = require('prettier');
 const skinDir = path.dirname(require.resolve('@ebay/skin/package.json'));
 const svgDir = path.join(skinDir, 'src/svg');
 const outputDir = path.join(__dirname, '../../src/components/ebay-icon/symbols');
-const missingSVG = fs.readFileSync(path.join(__dirname, 'missing.svg'), 'utf-8');
+const missingSVG = prettier.format(fs.readFileSync(path.join(__dirname, 'missing.svg'), 'utf-8'), {
+    parser: 'html',
+    htmlWhitespaceSensitivity: 'ignore'
+});
 const icons = new Map();
-const FLAGS = {
-    ds4: { 'if-not-flag': 'skin-ds6' },
-    ds6: { 'if-flag': 'skin-ds6' }
+const THEMES = {
+    ds4: {
+        flags: { 'if-not-flag': 'skin-ds6' },
+        file: './index.marko'
+    },
+    ds6: {
+        flags: { 'if-flag': 'skin-ds6' },
+        file: './index[skin-ds6].marko'
+    }
 };
-const THEMES = Object.keys(FLAGS);
+
+const THEME_NAMES = Object.keys(THEMES);
 
 cp.execSync(`rm -rf ${JSON.stringify(outputDir)}`);
 fs.mkdirSync(outputDir);
 
-for (const theme of THEMES) {
+for (const theme of THEME_NAMES) {
     const svgFile = path.join(svgDir, theme, 'icons.svg');
     const svgContent = fs.readFileSync(svgFile, 'utf-8');
     const $ = cheerio.load(svgContent);
@@ -28,7 +39,10 @@ for (const theme of THEMES) {
     for (const el of Array.from($('symbol'))) {
         const $symbol = $(el);
         const name = $symbol.attr('id').replace(/^(?:svg-)?icon-/, '');
-        const symbolContent = $.html($symbol);
+        const symbolContent = prettier.format($.html($symbol), {
+            parser: 'html',
+            htmlWhitespaceSensitivity: 'ignore'
+        });
 
         if (icons.has(name)) {
             icons.get(name)[theme] = symbolContent;
@@ -48,42 +62,30 @@ Object.keys(map4To6).forEach(ds4Name => {
 for (const [name, themes] of icons) {
     const iconFolder = path.join(outputDir, name);
     const browserJSON = path.join(iconFolder, 'browser.json');
-    const dependencies = [];
 
     if (!fs.existsSync(iconFolder)) fs.mkdirSync(iconFolder);
 
-    for (const theme of THEMES) {
-        let content = themes[theme];
+    for (const theme of THEME_NAMES) {
+        const filePath = path.join(iconFolder, THEMES[theme].file);
+        const content = themes[theme] || (
+            `<% if (typeof window !== 'undefined') console.error('${theme} icon not found: ${name}') %>\n${
+                missingSVG.replace('{{name}}', name)
+            }`
+        );
 
-        if (content) {
-            content += '\n';
-        } else {
-            const missingFile = './missing.js';
-            const missingPath = path.join(iconFolder, missingFile);
-            dependencies.push(Object.assign({ path: missingFile }, FLAGS[theme]));
-            fs.writeFileSync(
-                missingPath,
-                `if (typeof window !== 'undefined') console.error('${theme} icon not found: ${name}');\n`
-            );
-
-            content = missingSVG.replace('{{name}}', name);
-        }
-
-        const filePath = path.join(iconFolder, `${theme}.marko`);
-        fs.writeFileSync(filePath, content);
+        fs.writeFileSync(filePath, `${content.trim()}\n`);
     }
 
     fs.writeFileSync(browserJSON, `${JSON.stringify({
-        dependencies,
         requireRemap: [
             Object.assign({
-                from: './ds6.marko',
-                to: './ds4.marko'
-            }, FLAGS.ds4),
+                from: THEMES.ds6.file,
+                to: THEMES.ds4.file
+            }, THEMES.ds4.flags),
             Object.assign({
-                from: './ds4.marko',
-                to: './ds6.marko'
-            }, FLAGS.ds6)
+                from: THEMES.ds4.file,
+                to: THEMES.ds6.file
+            }, THEMES.ds6.flags)
         ]
     }, null, 2)}\n`);
 }

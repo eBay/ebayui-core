@@ -1,80 +1,36 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
 
-describe('given the notice is in the default state', () => {
-    let widget;
-    let root;
-    let button;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-    beforeEach(() => {
-        widget = renderer.renderSync({ type: 'page', dismissible: true }).appendTo(document.body).getWidget();
-        root = document.querySelector('section.page-notice');
-        button = root.querySelector('.page-notice__close');
+/** @type import("@marko/testing-library").RenderResult */
+let component;
+
+describe('given the dismissable page notice', () => {
+    const input = mock.Page_Dismissible;
+
+    beforeEach(async() => {
+        component = await render(template, input);
     });
-    afterEach(() => widget.destroy());
+
+    it('then it is visible in the dom', () => {
+        expect(component.queryByLabelText(input.a11yHeadingText)).does.not.equal(null);
+    });
 
     describe('when the dismiss button is clicked', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('notice-close', spy);
-            testUtils.triggerEvent(button, 'click');
-            setTimeout(done);
-        });
-        test('then root not present in the DOM', () => {
-            expect(document.querySelector('section.page-notice')).to.equal(null);
+        beforeEach(async() => {
+            await fireEvent.click(component.getByLabelText(input.a11yCloseText));
         });
 
-        test('then it emits the marko event', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
-
-    describe('when the widget is dismissed through hidden property', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('notice-close', spy);
-            root.hidden = true;
-            setTimeout(done);
+        it('then it is removed from the DOM', async() => {
+            expect(component.queryAllByLabelText(input.a11yHeadingText)).has.length(0);
         });
 
-        test('then root not present in the DOM', () => {
-            expect(document.querySelector('section.page-notice')).to.equal(null);
-        });
-
-        test('then it emits the marko event', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
-});
-
-describe('given the notice is in the hidden state', () => {
-    let widget;
-    let root;
-    beforeEach(() => {
-        widget = renderer.renderSync({ type: 'page', dismissible: true }).appendTo(document.body).getWidget();
-        root = document.querySelector('section.page-notice');
-        root.hidden = true;
-    });
-    afterEach(() => widget.destroy());
-    describe('when the widget is undismissed through hidden property', () => {
-        let spy;
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('notice-show', spy);
-            root.hidden = false;
-            setTimeout(done);
-        });
-
-        test('then root is present in the DOM', () => {
-            expect(document.querySelector('.page-notice')).to.not.equal(null);
-        });
-
-        test('then it emits the marko event', () => {
-            expect(spy.calledOnce).to.equal(true);
+        it('then it emits the close event', () => {
+            expect(component.emitted('notice-close')).has.length(1);
         });
     });
 });

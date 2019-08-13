@@ -3,9 +3,7 @@ const findIndex = require('core-js-pure/features/array/find-index');
 const ActiveDescendant = require('makeup-active-descendant');
 const Expander = require('makeup-expander');
 const elementScroll = require('../../common/element-scroll');
-const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
-const observer = require('../../common/property-observer');
 const safeRegex = require('../../common/build-safe-regex');
 
 module.exports = require('marko-widgets').defineComponent({
@@ -24,22 +22,6 @@ module.exports = require('marko-widgets').defineComponent({
             autocomplete,
             selectedIndex: index === -1 ? null : index,
             currentValue
-        });
-    },
-    init() {
-        observer.observeRoot(this, ['disabled'], () => {
-            this.expander.expandOnClick = !this.state.disabled;
-        });
-
-        observer.observeRoot(this, ['expanded'], (bool) => {
-            this.expander.expanded = bool;
-        });
-
-        this.getEls('option').forEach((optionEl, i) => {
-            Object.defineProperty(optionEl, 'selected', {
-                get: () => this.state.selectedIndex === i,
-                set: (value) => this.setSelectedIndex(value ? i : null)
-            });
         });
     },
     onRender() {
@@ -65,7 +47,7 @@ module.exports = require('marko-widgets').defineComponent({
                 expandOnFocus: true,
                 expandOnClick: this.state.readonly && !this.state.disabled,
                 collapseOnFocusOut: !this.state.readonly,
-                contentSelector: '.combobox__options',
+                contentSelector: '.combobox__listbox',
                 hostSelector: '.combobox__control > input',
                 expandedClass: 'combobox--expanded',
                 simulateSpacebarClick: true
@@ -98,12 +80,12 @@ module.exports = require('marko-widgets').defineComponent({
     handleExpand() {
         const index = this.getSelectedIndex(this.state.options, this.state.currentValue);
         elementScroll.scroll(this.getEls('option')[index]);
-        emitAndFire(this, 'combobox-expand');
+        this.emit('combobox-expand');
         this.setState('expanded', true);
     },
     handleCollapse() {
         this.activeDescendant.reset();
-        emitAndFire(this, 'combobox-collapse');
+        this.emit('combobox-collapse');
         this.setState('expanded', false);
     },
     handleComboboxKeyDown(originalEvent) {
@@ -188,7 +170,7 @@ module.exports = require('marko-widgets').defineComponent({
         return findIndex(options, option => option.text === value);
     },
     emitChangeEvent(eventName = 'input') {
-        emitAndFire(this, `combobox-${eventName}`, {
+        this.emit(`combobox-${eventName}`, {
             currentInputValue: this.state.currentValue,
             selectedOption: this.state.options[this.state.selectedIndex],
             options: this.state.options

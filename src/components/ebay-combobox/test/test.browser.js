@@ -1,129 +1,134 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { pressKey } = require('../../../common/test-utils/browser');
 const mock = require('./mock');
+const template = require('..');
 
-describe('given the combobox is in the default state', () => {
-    let widget;
-    let root;
-    let ariaControl;
-    let firstOption;
-    let secondOption;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-    beforeEach(() => {
-        const renderedWidget = renderer.renderSync({ options: mock.options });
-        widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.combobox');
-        ariaControl = root.querySelector('input');
-        firstOption = root.querySelector('.combobox__options .combobox__option:nth-child(1)');
-        secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
+/** @type import("@marko/testing-library").RenderResult */
+let component;
+
+describe('given the combobox with 3 items', () => {
+    const input = mock.Combobox_3Options;
+
+    beforeEach(async() => {
+        component = await render(template, input);
     });
 
-    afterEach(() => widget.destroy());
+    it('has no options selected by default', () => {
+        expect(component.getAllByRole('option').filter(isAriaSelected)).has.length(0);
+    });
 
-    thenReadyForInteraction();
+    it('then it should not be expanded', () => {
+        expect(component.getByRole('combobox')).has.attr('aria-expanded', 'false');
+    });
 
     describe('after it is rerendered', () => {
-        before(() => {
-            widget.setStateDirty('test');
-            widget.update();
+        beforeEach(async() => {
+            await component.rerender();
         });
 
-        thenReadyForInteraction();
+        thenItIsReadyForInteraction();
     });
 
-    function thenReadyForInteraction() {
+    thenItIsReadyForInteraction();
+
+    function thenItIsReadyForInteraction() {
         describe('when the input receives focus', () => {
-            beforeEach(() => {
-                testUtils.triggerEvent(ariaControl, 'focus');
+            beforeEach(async() => {
+                await fireEvent.focus(component.getByRole('combobox'));
             });
 
-            test('then it should expand the combobox', () => {
-                expect(ariaControl.getAttribute('aria-expanded')).to.equal('true');
+            it('then it should expand the combobox', () => {
+                expect(component.getByRole('combobox')).has.attr('aria-expanded', 'true');
             });
 
             describe('when any character key is pressed', () => {
-                let arrowSpy;
-
-                beforeEach(() => {
-                    arrowSpy = sinon.spy();
-                    widget.on('combobox-input', arrowSpy);
-                    testUtils.triggerEvent(ariaControl, 'keydown', 65);
-                    testUtils.triggerEvent(ariaControl, 'keyup', 65);
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
+                        key: 'A',
+                        keyCode: 65
+                    });
                 });
 
-                test('then it should emit a input event', () => {
-                    expect(arrowSpy.calledOnce).to.equal(true);
+                it('then it should emit a input event', () => {
+                    expect(component.emitted('combobox-input')).has.length(1);
                 });
             });
 
             describe('when the down arrow key is pressed', () => {
-                beforeEach(() => {
-                    testUtils.triggerEvent(ariaControl, 'keydown', 40);
-                    testUtils.triggerEvent(ariaControl, 'keyup', 40);
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
+                        key: 'ArrowDown',
+                        keyCode: 40
+                    });
                 });
 
-                test('then it should correctly set aria for the listbox', () => {
-                    expect(firstOption.classList.contains('combobox__option--active')).to.equal(true);
+                it('then it should highlight the first option in the combobox', () => {
+                    const options = component.getAllByRole('option');
+                    expect(options).has.property(0).with.class('combobox__option--active');
+                    expect(options).has.property(1).not.with.class('combobox__option--active');
                 });
 
                 describe('when the enter key is pressed', () => {
-                    let enterSpy;
-
-                    beforeEach((done) => {
-                        enterSpy = sinon.spy();
-                        widget.on('combobox-select', enterSpy);
-                        testUtils.triggerEvent(ariaControl, 'keydown', 13);
-                        testUtils.triggerEvent(ariaControl, 'keyup', 13);
-                        setTimeout(done);
+                    beforeEach(async() => {
+                        await pressKey(component.getByRole('combobox'), {
+                            key: 'Enter',
+                            keyCode: 13
+                        });
                     });
 
-                    test('then it should correctly set value for the input', () => {
-                        expect(ariaControl.value).to.equal(mock.options[0].text);
+                    it('then it should correctly set value for the input', () => {
+                        expect(component.getByRole('combobox').value).to.equal(input.options[0].text);
                     });
 
-                    test('then it should emit a change event', () => {
-                        expect(enterSpy.calledOnce).to.equal(true);
+                    it('then it emitted the select event', () => {
+                        expect(component.emitted('combobox-select')).has.length(1);
                     });
                 });
 
                 describe('when the down arrow key is pressed a second time', () => {
-                    beforeEach(() => {
-                        testUtils.triggerEvent(ariaControl, 'keydown', 40);
-                        testUtils.triggerEvent(ariaControl, 'keyup', 40);
+                    beforeEach(async() => {
+                        await pressKey(component.getByRole('combobox'), {
+                            key: 'ArrowDown',
+                            keyCode: 40
+                        });
                     });
 
-                    test('then it should correctly set aria for the listbox', () => {
-                        expect(firstOption.classList.contains('combobox__option--active')).to.equal(false);
-                        expect(secondOption.classList.contains('combobox__option--active')).to.equal(true);
+                    it('then it should highlight the second option in the combobox', () => {
+                        const options = component.getAllByRole('option');
+                        expect(options).has.property(0).not.with.class('combobox__option--active');
+                        expect(options).has.property(1).with.class('combobox__option--active');
                     });
                 });
             });
 
-            describe('when any option is clicked', () => {
-                let clickSpy;
-
-                beforeEach(() => {
-                    clickSpy = sinon.spy();
-                    widget.on('combobox-select', clickSpy);
-                    testUtils.triggerEvent(secondOption, 'mousedown');
-                    testUtils.triggerEvent(secondOption, 'click');
+            describe('when the second option is clicked', () => {
+                beforeEach(async() => {
+                    await fireEvent.click(component.getAllByRole('option')[1]);
                 });
 
-                test('then it should emit a change event', () => {
-                    expect(clickSpy.called).to.equal(true);
+                it('then it should emit a change event', () => {
+                    expect(component.emitted('combobox-select')).has.length(1);
+                });
+
+                it('then it should update the input', () => {
+                    expect(component.getByRole('combobox')).has.value(input.options[1].text);
                 });
             });
 
             describe('when the escape key is pressed', () => {
-                beforeEach(() => {
-                    testUtils.triggerEvent(ariaControl, 'keydown', 27);
-                    testUtils.triggerEvent(ariaControl, 'keyup', 27);
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
+                        key: 'Escape',
+                        keyCode: 27
+                    });
                 });
 
-                test('then it should collapse the combobox', () => {
-                    expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
+                it('then it should collapse the combobox', () => {
+                    expect(component.getByRole('combobox')).has.attr('aria-expanded', 'false');
                 });
             });
         });
@@ -131,136 +136,132 @@ describe('given the combobox is in the default state', () => {
 });
 
 describe('given the combobox starts with zero options', () => {
-    let widget;
-    let root;
-    let ariaControl;
-    let firstOption;
-    let secondOption;
+    const input = mock.Combobox_0Options;
 
-    beforeEach(() => {
-        const renderedWidget = renderer.renderSync({ options: mock.zeroOptions });
-        widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.combobox');
-        ariaControl = root.querySelector('input');
+    beforeEach(async() => {
+        component = await render(template, input);
     });
-
-    afterEach(() => widget.destroy());
 
     describe('when the input receives focus', () => {
-        beforeEach(done => {
-            testUtils.triggerEvent(ariaControl, 'focus');
-            setTimeout(done);
+        beforeEach(async() => {
+            await fireEvent.focus(component.getByRole('combobox'));
         });
 
-        test('then it should not yet have an aria-expanded attribute', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal(null);
+        it('then it has no options', () => {
+            expect(component.queryAllByRole('option')).has.length(0);
         });
 
-        test('then it should have no options', () => {
-            expect(root.querySelectorAll('.combobox__option[role="option"]').length).to.equal(mock.zeroOptions.length);
+        it('then it should not be expanded', () => {
+            expect(component.getByRole('combobox')).not.has.attr('aria-expanded');
         });
     });
 
-    describe('after it is rerendered and receives focus', () => {
-        beforeEach(done => {
-            widget.setProps({ options: mock.options });
-            widget.update();
-            testUtils.triggerEvent(ariaControl, 'focus');
-            setTimeout(done);
-            firstOption = root.querySelector('.combobox__options .combobox__option:nth-child(1)');
-            secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
+    describe('when it is rerendered with 3 items', () => {
+        const newInput = mock.Combobox_3Options;
+
+        beforeEach(async() => {
+            await component.rerender(newInput);
         });
 
-        test('then it should set aria-expanded to true', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('true');
-        });
-
-        test('then it should have options', () => {
-            expect(root.querySelectorAll('.combobox__option[role="option"]').length).to.equal(mock.options.length);
-        });
-
-        describe('when any character key is pressed', () => {
-            let arrowSpy;
-
-            beforeEach(() => {
-                arrowSpy = sinon.spy();
-                widget.on('combobox-input', arrowSpy);
-                testUtils.triggerEvent(ariaControl, 'keydown', 65);
-                testUtils.triggerEvent(ariaControl, 'keyup', 65);
+        describe('when the input receives focus', () => {
+            beforeEach(async() => {
+                await fireEvent.focus(component.getByRole('combobox'));
             });
 
-            test('then it should emit a input event', () => {
-                expect(arrowSpy.calledOnce).to.equal(true);
-            });
-        });
-
-        describe('when the down arrow key is pressed', () => {
-            beforeEach(() => {
-                testUtils.triggerEvent(ariaControl, 'keydown', 40);
-                testUtils.triggerEvent(ariaControl, 'keyup', 40);
+            it('then it should expand the combobox', () => {
+                expect(component.getByRole('combobox')).has.attr('aria-expanded', 'true');
             });
 
-            test('then it should correctly set aria for the listbox', () => {
-                expect(firstOption.classList.contains('combobox__option--active')).to.equal(true);
-            });
-
-            describe('when the enter key is pressed', () => {
-                let enterSpy;
-
-                beforeEach((done) => {
-                    enterSpy = sinon.spy();
-                    widget.on('combobox-select', enterSpy);
-                    testUtils.triggerEvent(ariaControl, 'keydown', 13);
-                    testUtils.triggerEvent(ariaControl, 'keyup', 13);
-                    setTimeout(done);
+            describe('when any character key is pressed', () => {
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
+                        key: 'A',
+                        keyCode: 65
+                    });
                 });
 
-                test('then it should correctly set value for the input', () => {
-                    expect(ariaControl.value).to.equal(mock.options[0].text);
-                });
-
-                test('then it should emit a change event', () => {
-                    expect(enterSpy.calledOnce).to.equal(true);
+                it('then it should emit a input event', () => {
+                    expect(component.emitted('combobox-input')).has.length(1);
                 });
             });
 
-            describe('when the down arrow key is pressed a second time', () => {
-                beforeEach(() => {
-                    testUtils.triggerEvent(ariaControl, 'keydown', 40);
-                    testUtils.triggerEvent(ariaControl, 'keyup', 40);
+            describe('when the down arrow key is pressed', () => {
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
+                        key: 'ArrowDown',
+                        keyCode: 40
+                    });
                 });
 
-                test('then it should correctly set aria for the listbox', () => {
-                    expect(firstOption.classList.contains('combobox__option--active')).to.equal(false);
-                    expect(secondOption.classList.contains('combobox__option--active')).to.equal(true);
+                it('then it should highlight the first option in the combobox', () => {
+                    const options = component.getAllByRole('option');
+                    expect(options).has.property(0).with.class('combobox__option--active');
+                    expect(options).has.property(1).not.with.class('combobox__option--active');
+                });
+
+                describe('when the enter key is pressed', () => {
+                    beforeEach(async() => {
+                        pressKey(component.getByRole('combobox'), {
+                            key: 'Enter',
+                            keyCode: 13
+                        });
+                    });
+
+                    it('then it should correctly set value for the input', () => {
+                        expect(component.getByRole('combobox').value).to.equal(newInput.options[0].text);
+                    });
+
+                    it('then it emitted the select event', () => {
+                        expect(component.emitted('combobox-select')).has.length(1);
+                    });
+                });
+
+                describe('when the down arrow key is pressed a second time', () => {
+                    beforeEach(async() => {
+                        await pressKey(component.getByRole('combobox'), {
+                            key: 'ArrowDown',
+                            keyCode: 40
+                        });
+                    });
+
+                    it('then it should highlight the second option in the combobox', () => {
+                        const options = component.getAllByRole('option');
+                        expect(options).has.property(0).not.with.class('combobox__option--active');
+                        expect(options).has.property(1).with.class('combobox__option--active');
+                    });
                 });
             });
-        });
 
-        describe('when any option is clicked', () => {
-            let clickSpy;
+            describe('when the second option is clicked', () => {
+                beforeEach(async() => {
+                    await fireEvent.click(component.getAllByRole('option')[1]);
+                });
 
-            beforeEach(() => {
-                clickSpy = sinon.spy();
-                widget.on('combobox-select', clickSpy);
-                testUtils.triggerEvent(secondOption, 'mousedown');
-                testUtils.triggerEvent(secondOption, 'click');
+                it('then it should emit a change event', () => {
+                    expect(component.emitted('combobox-select')).has.length(1);
+                });
+
+                it('then it should update the input', () => {
+                    expect(component.getByRole('combobox')).has.value(newInput.options[1].text);
+                });
             });
 
-            test('then it should emit a change event', () => {
-                expect(clickSpy.called).to.equal(true);
-            });
-        });
+            describe('when the escape key is pressed', () => {
+                beforeEach(async() => {
+                    await pressKey(component.getByRole('combobox'), {
+                        key: 'Escape',
+                        keyCode: 27
+                    });
+                });
 
-        describe('when the escape key is pressed', () => {
-            beforeEach(() => {
-                testUtils.triggerEvent(ariaControl, 'keydown', 27);
-                testUtils.triggerEvent(ariaControl, 'keyup', 27);
-            });
-
-            test('then it should collapse the combobox', () => {
-                expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
+                it('then it should collapse the combobox', () => {
+                    expect(component.getByRole('combobox')).has.attr('aria-expanded', 'false');
+                });
             });
         });
     });
 });
+
+function isAriaSelected(el) {
+    return el.getAttribute('aria-selected') === 'true';
+}

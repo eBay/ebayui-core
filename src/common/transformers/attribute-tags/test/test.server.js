@@ -21,7 +21,7 @@ describe('when the ebay-combobox-option tag is transformed', () => {
         outputTemplate = testUtils.getTransformedTemplate(transformer, tagString.before, templatePath);
     });
 
-    test('transforms the body contents of a listbox', () => {
+    it('transforms the body contents of a listbox', () => {
         expect(outputTemplate).to.deep.equal(tagString.after);
     });
 });
@@ -38,7 +38,7 @@ describe('when the ebay-menu:item tag is transformed', () => {
         outputTemplate = testUtils.getTransformedTemplate(transformer, tagString.after, templatePath);
     });
 
-    test('leaves tag as is', () => {
+    it('leaves tag as is', () => {
         expect(outputTemplate).to.deep.equal(tagString.after);
     });
 });

@@ -3,19 +3,16 @@ const Expander = require('makeup-expander');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
 const elementScroll = require('../../common/element-scroll');
-const emitAndFire = require('../../common/emit-and-fire');
 const eventUtils = require('../../common/event-utils');
 const NodeListUtils = require('../../common/nodelist-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
-const observer = require('../../common/property-observer');
 const template = require('./template.marko');
 
-const { forEach } = Array.prototype;
 const mainButtonClass = 'expand-btn';
 const buttonSelector = `.${mainButtonClass}`;
 const contentClass = 'expander__content';
 const contentSelector = `.${contentClass}`;
-const checkedItemSelector = '.menu__item[role^=menuitem][aria-checked=true]';
+const checkedItemSelector = '.menu-button__item[role^=menuitem][aria-checked=true]';
 
 function getInitialState(input) {
     const type = input.type;
@@ -34,7 +31,7 @@ function getInitialState(input) {
         let tag;
 
         if (isFake) {
-            classes.push('fake-menu__item');
+            classes.push('fake-menu-button__item');
             if (itemType === 'button') {
                 tag = 'button';
             } else {
@@ -42,7 +39,7 @@ function getInitialState(input) {
             }
         } else {
             tag = 'div';
-            classes.push('menu__item');
+            classes.push('menu-button__item');
         }
 
         if (isRadio) {
@@ -106,22 +103,22 @@ function getTemplateData(state) {
     const itemsClass = [contentClass];
 
     if (state.isFake) {
-        menuClass.push('fake-menu');
-        itemsClass.push('fake-menu__items');
+        menuClass.push('fake-menu-button');
+        itemsClass.push('fake-menu-button__menu');
         if (state.reverse) {
-            itemsClass.push('fake-menu__items--reverse');
+            itemsClass.push('fake-menu-button__menu--reverse');
         }
         if (state.fixWidth) {
-            itemsClass.push('fake-menu__items--fix-width');
+            itemsClass.push('fake-menu-button__menu--fix-width');
         }
     } else {
-        menuClass.push('menu');
-        itemsClass.push('menu__items');
+        menuClass.push('menu-button');
+        itemsClass.push('menu-button__menu');
         if (state.reverse) {
-            itemsClass.push('menu__items--reverse');
+            itemsClass.push('menu-button__menu--reverse');
         }
         if (state.fixWidth) {
-            itemsClass.push('menu__items--fix-width');
+            itemsClass.push('menu-button__menu--fix-width');
         }
     }
 
@@ -154,33 +151,16 @@ function getTemplateData(state) {
 function onRender(event) {
     this.buttonEl = this.el.querySelector(buttonSelector);
     this.contentEl = this.el.querySelector(contentSelector);
-    this.itemEls = this.el.querySelectorAll('.menu__item, .fake-menu__item');
+    this.itemEls = this.el.querySelectorAll('.menu-button__item, .fake-menu-button__item');
 
     if (event.firstRender) {
         if (this.state.isCheckbox) {
             this.el.setCheckedList = setCheckedList.bind(this);
             this.el.getCheckedList = getCheckedList.bind(this);
         }
-        observer.observeRoot(this, ['text', 'expanded']);
-        if (this.state.isRadio) {
-            observer.observeRoot(this, ['checked'], itemIndex => {
-                if (itemIndex >= 0 && itemIndex < (this.state.items.length)) {
-                    this.setCheckedItem(itemIndex);
-                } else if (itemIndex < 0) {
-                    this.setState('checked', 0);
-                } else if (itemIndex > (this.state.items.length - 1)) {
-                    console.warn('Index out of bounds. Select an available item index.');
-                }
-            });
-        }
 
-        // FIXME: should be outside of firstRender, but only if observers haven't been attached yet
-        const checkedObserverCallback = itemEl => this.processAfterStateChange([getItemElementIndex(itemEl)]);
-        forEach.call(this.itemEls, (itemEl, i) => {
-            observer.observeInner(this, itemEl, 'checked', `items[${i}]`, 'items', checkedObserverCallback);
-        });
-
-        const expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
+        // FIX ME: this should be synced with the expanded state instead of using the `update_expanded` api below.
+        this.expander = new Expander(this.el, { // eslint-disable-line no-unused-vars
             hostSelector: buttonSelector,
             focusManagement: 'focusable',
             expandOnClick: true,
@@ -222,16 +202,16 @@ function processAfterStateChange(itemIndexes) {
     if (this.state.isCheckbox && itemIndexes.length > 1) {
         // only calling via API can have multiple item indexes
         this.setState('checked', this.getCheckedList());
-        emitAndFire(this, 'menu-change', { indexes: itemIndexes, checked: this.getCheckedList(), el: null });
+        this.emit('menu-change', { indexes: itemIndexes, checked: this.getCheckedList(), el: null });
     } else if (this.state.isCheckbox) {
         this.setState('checked', this.getCheckedList());
-        emitAndFire(this, 'menu-change', { index: itemIndex, checked: this.getCheckedList(), el: itemEl });
+        this.emit('menu-change', { index: itemIndex, checked: this.getCheckedList(), el: itemEl });
     } else if (this.state.isRadio) {
         this.setState('checked', itemIndex);
-        emitAndFire(this, 'menu-change', { index: itemIndex, checked: [itemIndex], el: itemEl });
+        this.emit('menu-change', { index: itemIndex, checked: [itemIndex], el: itemEl });
     } else {
         this.setState('checked', itemIndex);
-        emitAndFire(this, 'menu-select', { index: itemIndex, checked: [itemIndex], el: itemEl });
+        this.emit('menu-select', { index: itemIndex, checked: [itemIndex], el: itemEl });
     }
 }
 
@@ -301,13 +281,13 @@ function handleButtonEscape() {
 function handleExpand() {
     elementScroll.scroll(this.el.querySelector(checkedItemSelector));
     this.setState('expanded', true);
-    emitAndFire(this, 'menu-expand');
+    this.emit('menu-expand');
     scrollKeyPreventer.add(this.contentEl);
 }
 
 function handleCollapse() {
     this.setState('expanded', false);
-    emitAndFire(this, 'menu-collapse');
+    this.emit('menu-collapse');
     scrollKeyPreventer.remove(this.contentEl);
 }
 

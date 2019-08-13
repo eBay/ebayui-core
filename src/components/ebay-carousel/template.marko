@@ -1,6 +1,6 @@
 <div class=data.classes style=data.style w-bind ${data.htmlAttributes}>
     <var config=data.config/>
-    <var statusId=("carousel-status-" + widget.id)/>
+    <var statusId=null/>
     <div
         w-id="container"
         class=["carousel__container", data.bothControlsDisabled && "carousel__container--controls-disabled"]
@@ -10,13 +10,15 @@
         w-onfocusout=(data.autoplayInterval && "handleEndInteraction")
         w-onmouseout=(data.autoplayInterval && "handleEndInteraction")
         w-ontouchend=(data.autoplayInterval && "handleEndInteraction")>
-        <${data.a11yStatusTag}
-            if(data.totalSlides >= 1)
-            id=statusId
-            class="clipped"
-            aria-live=(data.autoplayInterval && !data.paused ? "off" : "polite")>
-            <span>${data.a11yStatusText}</span>
-        </>
+        <if(data.totalSlides >= 1)>
+            <assign statusId=("carousel-status-" + widget.id)/>
+            <${data.a11yStatusTag}
+                id=statusId
+                class="clipped"
+                aria-live=(data.autoplayInterval && !data.paused ? "off" : "polite")>
+                <span>${data.a11yStatusText}</span>
+            </>
+        </if>
         <button
             class="carousel__control carousel__control--prev"
             type="button"
@@ -59,7 +61,7 @@
         <if(data.autoplayInterval && !data.bothControlsDisabled)>
             <if(data.paused)>
                 <button
-                    class="carousel__play"
+                    class="carousel__playback"
                     type="button"
                     aria-label=data.a11yPlayText
                     w-onclick="togglePlay">
@@ -68,7 +70,7 @@
             </if>
             <else>
                 <button
-                    class="carousel__pause"
+                    class="carousel__playback"
                     type="button"
                     aria-label=data.a11yPauseText
                     w-onclick="togglePlay">

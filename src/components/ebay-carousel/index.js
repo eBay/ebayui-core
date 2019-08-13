@@ -1,9 +1,7 @@
 const focusables = require('makeup-focusables');
 const assign = require('core-js-pure/features/object/assign');
 const resizeUtil = require('../../common/event-utils').resizeUtil;
-const emitAndFire = require('../../common/emit-and-fire');
 const processHtmlAttributes = require('../../common/html-attributes');
-const observer = require('../../common/property-observer');
 const onScroll = require('./utils/on-scroll-debounced');
 const scrollTransition = require('./utils/scroll-transition');
 const template = require('./template.marko');
@@ -128,7 +126,7 @@ function getTemplateData(state) {
 }
 
 function init() {
-    const { state: { config, autoplayInterval } } = this;
+    const { state: { config } } = this;
     this.listEl = this.getEl('list');
     this.nextEl = this.getEl('next');
     this.containerEl = this.getEl('container');
@@ -137,10 +135,6 @@ function init() {
         cleanupAsync.call(this);
         onRender.call(this);
     });
-    observer.observeRoot(this, ['index']);
-    if (autoplayInterval) {
-        observer.observeRoot(this, ['paused']);
-    }
 
     if (isNativeScrolling(this.listEl)) {
         config.nativeScrolling = true;
@@ -249,7 +243,7 @@ function cleanupAsync() {
 function emitUpdate() {
     const { state: { config, items } } = this;
     config.scrollTransitioning = false;
-    emitAndFire(this, 'carousel-update', {
+    this.emit('carousel-update', {
         visibleIndexes: items
             .filter(({ fullyVisible }) => fullyVisible)
             .map(item => items.indexOf(item))
@@ -270,8 +264,8 @@ function handleMove(originalEvent, target) {
     const direction = parseInt(target.getAttribute('data-direction'), 10);
     const nextIndex = this.move(direction);
     const slide = getSlide(state, nextIndex);
-    emitAndFire(this, 'carousel-slide', { slide: slide + 1, originalEvent });
-    emitAndFire(this, `carousel-${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
+    this.emit('carousel-slide', { slide: slide + 1, originalEvent });
+    this.emit(`carousel-${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
 }
 
 /**
@@ -288,7 +282,7 @@ function handleDotClick(originalEvent, target) {
     const slide = parseInt(target.getAttribute('data-slide'), 10);
     config.preserveItems = true;
     this.setState('index', slide * itemsPerSlide);
-    emitAndFire(this, 'carousel-slide', { slide: slide + 1, originalEvent });
+    this.emit('carousel-slide', { slide: slide + 1, originalEvent });
 }
 
 /**
@@ -303,7 +297,7 @@ function togglePlay(originalEvent) {
     if (paused && !this.isMoving) {
         this.move(RIGHT);
     }
-    emitAndFire(this, `carousel-${paused ? 'play' : 'pause'}`, { originalEvent });
+    this.emit(`carousel-${paused ? 'play' : 'pause'}`, { originalEvent });
 }
 
 /**
@@ -343,7 +337,7 @@ function handleScroll(scrollLeft) {
         config.skipScrolling = true;
         config.preserveItems = true;
         this.setState('index', closest);
-        emitAndFire(this, 'carousel-scroll', { index: closest });
+        this.emit('carousel-scroll', { index: closest });
     }
 }
 
@@ -461,11 +455,15 @@ function getSlide({ index, itemsPerSlide }, i = index) {
  * @param {number} index the index to normalize.
  */
 function normalizeIndex({ items, itemsPerSlide }, index) {
-    let result = index;
-    result %= items.length || 1; // Ensure index is within bounds.
-    result -= result % (itemsPerSlide || 1); // Round index to the nearest valid slide index.
-    result = Math.abs(result); // Ensure positive value.
-    return result;
+    if (index > 0) {
+        let result = index;
+        result %= items.length || 1; // Ensure index is within bounds.
+        result -= result % (itemsPerSlide || 1); // Round index to the nearest valid slide index.
+        result = Math.abs(result); // Ensure positive value.
+        return result;
+    }
+
+    return 0;
 }
 
 /**

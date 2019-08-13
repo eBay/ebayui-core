@@ -8,7 +8,7 @@
 
 <span
     ${processHtmlAttributes(data)}
-    class=["listbox", data.class]
+    class=["listbox-button", data.class]
     style=data.style
     w-preserve-attrs="class"
     w-on-expander-expand="handleExpand"
@@ -17,7 +17,7 @@
     <button
         w-id="button"
         class=[
-            "listbox__control",
+            "listbox-button__control",
             "expand-btn",
             "expand-btn--regular",
             data.borderless && "expand-btn--borderless"
@@ -37,28 +37,29 @@
         <div
             w-id="options"
             role="listbox"
-            class="listbox__options"
+            class="listbox-button__listbox"
             tabindex="-1"
             w-preserve-attrs="class,aria-owns,aria-activedescendant,tabindex">
             <for(option in data.options)>
                 <div
                     w-id="option[]"
                     w-preserve-attrs="class,data-makeup-index,aria-selected"
-                    class=["listbox__option", option.class]
+                    class=["listbox-button__option", option.class]
                     style=option.style
                     role="option"
                     tabindex="-1"
                     aria-selected=(selectedOption === option && "true")
+                    w-on-mousedown="handleMouseDown"
                     ${processHtmlAttributes(option)}>
-                    <span>${option.text}</span>
-                    <span class="listbox__status"/>
+                    <span class="listbox-button__value">${option.text}</span>
+                    <span class="listbox-button__status"/>
                 </div>
             </for>
         </div>
     </if>
     <select
         hidden
-        class="listbox__native"
+        class="listbox-button__native"
         name=data.name>
         <for(option in data.options)>
             <option

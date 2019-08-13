@@ -1,50 +1,101 @@
-const expect = require('chai').expect;
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes, runTransformer } = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
-const testUtils = require('../../../common/test-utils/server');
+const template = require('..');
 
 const iconName = 'mic';
 
+use(require('chai-dom'));
+
 describe('icon', () => {
-    test('renders background type', context => {
-        const input = { type: 'background', name: iconName };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($(`span.icon.icon--${iconName}`).length).to.equal(1);
+    describe('with type=background', () => {
+        it('renders background type', async() => {
+            const input = {
+                type: 'background',
+                name: iconName,
+                htmlAttributes: {
+                    ariaLabel: 'background icon'
+                }
+            };
+
+            const { getByLabelText } = await render(template, input);
+            const icon = getByLabelText(input.htmlAttributes.ariaLabel);
+            expect(icon).has.class(`icon--${iconName}`);
+        });
+
+        it('renders background type by default', async() => {
+            const input = {
+                name: iconName,
+                htmlAttributes: {
+                    ariaLabel: 'background icon'
+                }
+            };
+
+            const { getByLabelText } = await render(template, input);
+            expect(getByLabelText(input.htmlAttributes.ariaLabel)).has.class(`icon--${iconName}`);
+        });
+
+        testPassThroughAttributes(template, {
+            input: {
+                type: 'background'
+            }
+        });
     });
 
-    test('renders background type by default', context => {
-        const input = { name: iconName };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($(`span.icon.icon--${iconName}`).length).to.equal(1);
-    });
+    describe('with type=inline', () => {
+        it('renders inline type with title text', async() => {
+            const input = {
+                type: 'inline',
+                name: iconName,
+                a11yText: 'inline icon'
+            };
 
-    test('renders inline type', context => {
-        const input = { type: 'inline', name: iconName };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($(`svg[aria-hidden=true].icon.icon--${iconName} > use`).length).to.equal(1);
-    });
+            const { getByRole, getByTitle } = await render(template, input);
+            const svg = getByRole('img');
+            const title = getByTitle(input.a11yText);
+            expect(svg).has.class(`icon--${iconName}`);
+            expect(svg).contains(title);
+            expect(svg).has.attr('aria-labelledby', title.id);
+        });
 
-    test('renders inline type with a11y text', context => {
-        const input = { type: 'inline', name: iconName, a11yText: 'text' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($(`svg[role=img].icon.icon--${iconName} > use`).length).to.equal(1);
-    });
+        it('renders inline type without title text', async() => {
+            const input = {
+                type: 'inline',
+                name: iconName,
+                htmlAttributes: {
+                    'data-testid': 'icon'
+                }
+            };
 
-    test('renders no-skin-classes', context => {
-        const input = { type: 'inline', name: iconName, noSkinClasses: true, class: 'class' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($(`svg[aria-hidden=true].icon.icon--${iconName} > use`).length).to.equal(0);
-        expect($(`svg[aria-hidden=true].class > use`).length).to.equal(1);
-    });
+            const { getByTestId } = await render(template, input);
+            const svg = getByTestId('icon');
+            expect(svg).does.not.have.attr('aria-labelledby');
+            expect(svg).has.attr('aria-hidden', 'true');
+        });
 
-    test('handles pass-through html attributes on type=background', context => {
-        testUtils.testHtmlAttributes(context, '.icon', null, { type: 'background', name: iconName });
-    });
+        it('renders no-skin-classes', async() => {
+            const input = {
+                type: 'inline',
+                name: iconName, noSkinClasses: true,
+                class: 'custom-class',
+                htmlAttributes: {
+                    'data-testid': 'icon'
+                }
+            };
+            const { getByTestId } = await render(template, input);
+            const svg = getByTestId('icon');
 
-    test('handles pass-through html attributes on type=inline', context => {
-        testUtils.testHtmlAttributes(context, '.icon', null, { type: 'inline', name: iconName });
-    });
+            expect(svg).has.class('custom-class');
+            expect(svg).does.not.have.class(`icon--${iconName}`);
+        });
 
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, '.icon'));
+        testPassThroughAttributes(template, {
+            input: {
+                type: 'inline'
+            }
+        });
+    });
 });
 
 describe('transformer', () => {
@@ -53,16 +104,16 @@ describe('transformer', () => {
         return `<ebay-icon name="${iconName}" type="${type}"/>`;
     }
 
-    test('transforms to add a hidden themes attribute', () => {
+    it('transforms to add a hidden themes attribute', () => {
         const tagString = getTagString('inline');
-        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { el } = runTransformer(transformer, tagString, componentPath);
         const attr = el.getAttribute('_themes');
         expect(attr).to.have.property('name', '_themes');
     });
 
-    test('does not transform a background icon', () => {
+    it('does not transform a background icon', () => {
         const tagString = getTagString('background');
-        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { el } = runTransformer(transformer, tagString, componentPath);
         const attr = el.getAttribute('_themes');
         expect(attr).equals(undefined);
     });

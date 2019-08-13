@@ -4,7 +4,9 @@
         "../ebay-icon",
         {
             "if-not-flag": "ebayui-no-skin",
-            "path": "@ebay/skin/dialog"
+            "dependencies": [
+                "@ebay/skin/dialog"
+            ]
         }
     ]
 }

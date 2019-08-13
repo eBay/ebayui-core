@@ -1,288 +1,211 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/browser');
-const mock = require('../mock');
-const renderer = require('../');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { pressKey } = require('../../../common/test-utils/browser');
+const mock = require('./mock');
+const template = require('..');
 
-describe('given the combobox is in the default state', () => {
-    let widget;
-    let root;
-    let ariaControl;
-    let secondOption;
-    let nativeSelect;
+use(require('chai-dom'));
+afterEach(cleanup);
 
-    beforeEach(() => {
-        const renderedWidget = renderer.renderSync({ options: mock.options });
-        widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.combobox');
-        ariaControl = root.querySelector('input');
-        secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
-        nativeSelect = root.querySelector('.combobox__native');
+/** @type import("@marko/testing-library").RenderResult */
+let component;
+
+// Tests are rendered in a form so that we can check the form data value.
+const form = document.createElement('form');
+before(() => document.body.appendChild(form));
+after(() => document.body.removeChild(form));
+
+describe('given the readonly combobox with 3 items', () => {
+    const input = mock.Combobox_3Options;
+
+    beforeEach(async() => {
+        component = await render(template, input, { container: form });
     });
 
-    afterEach(() => widget.destroy());
+    it('then it should not be expanded', () => {
+        expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
+    });
 
-    describe('when the select has been initialized', () => {
-        test('then the select options should have a selected state set', () => {
-            expect(nativeSelect['0'].selected).to.equal(true);
-            expect(nativeSelect['1'].selected).to.equal(false);
-            expect(nativeSelect['2'].selected).to.equal(false);
-        });
+    it('then the native select should be initialized to the first option value', () => {
+        expect(form.elements)
+            .has.property(input.name)
+            .with.property('value', input.options[0].value);
     });
 
     describe('when the down arrow key is pressed', () => {
-        let spy;
-
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('combobox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 40);
-            setTimeout(done);
+        beforeEach(async() => {
+            await pressKey(getVisibleCombobox(), {
+                key: 'ArrowDown',
+                keyCode: 40
+            });
         });
 
-        test('then it should not expand the combobox', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
+        it('then it should not expand the combobox', () => {
+            expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
         });
 
-        test('then it emits the combobox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
-            expect(nativeOption).to.equal('2');
+        it('then it emits the combobox-change event with the correct data', () => {
+            const changeEvents = component.emitted('combobox-change');
+            expect(changeEvents).has.length(1);
+
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property('index', 1);
+            expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
+        });
+
+        it('then the native select should be set to the second option value', () => {
+            expect(form.elements)
+                .has.property(input.name)
+                .with.property('value', input.options[1].value);
         });
     });
 
     describe('when the up arrow key is pressed', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('combobox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 38);
-        });
-
-        test('then it should not expand the combobox', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
-        });
-
-        test('then it emits the combobox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.selected).to.deep.equal(['1']);
-            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
-            expect(nativeOption).to.equal('1');
-        });
-    });
-
-    describe('when the option is set programmatically', () => {
-        let spy;
-
-        beforeEach((done) => {
-            spy = sinon.spy();
-            widget.on('combobox-change', spy);
-            secondOption.selected = true;
-            setTimeout(done);
-        });
-
-        test('then it emits the combobox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            const nativeOption = nativeSelect.options[nativeSelect.selectedIndex].value;
-            expect(nativeOption).to.equal('2');
-        });
-    });
-
-    describe('when the button is clicked once', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('combobox-expand', spy);
-            testUtils.triggerEvent(ariaControl, 'click');
-        });
-
-        test('then it emits the event from expander-expand', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
-
-    describe('when the button is clicked twice', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('combobox-collapse', spy);
-            testUtils.triggerEvent(ariaControl, 'click');
-            testUtils.triggerEvent(ariaControl, 'click');
-        });
-
-        test('then it emits the event from expander-collapse', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
-});
-
-describe('given the combobox is in an expanded state', () => {
-    let widget;
-    let root;
-    let ariaControl;
-    let secondOption;
-    let secondOptionText;
-
-    beforeEach(() => {
-        const renderedWidget = renderer.renderSync({ options: mock.options });
-        widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.combobox');
-        ariaControl = root.querySelector('input');
-        secondOption = root.querySelector('.combobox__options .combobox__option:nth-child(2)');
-        secondOptionText = secondOption.querySelector('span:not(.combobox__status)');
-        testUtils.triggerEvent(ariaControl, 'click');
-    });
-
-    afterEach(() => widget.destroy());
-
-    describe('when an option is clicked', () => {
-        let selectSpy;
-
-        beforeEach(() => {
-            selectSpy = sinon.spy();
-            widget.on('combobox-change', selectSpy);
-            testUtils.triggerEvent(secondOption, 'click');
-        });
-
-        test('then it emits the combobox-select event with correct data', () => {
-            expect(selectSpy.calledOnce).to.equal(true);
-            const eventData = selectSpy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            expect(eventData.el).to.deep.equal(secondOption);
-        });
-    });
-
-    describe('when an option is clicked on the text', () => {
-        let selectSpy;
-
-        beforeEach(() => {
-            selectSpy = sinon.spy();
-            widget.on('combobox-change', selectSpy);
-            testUtils.triggerEvent(secondOptionText, 'click');
-        });
-
-        test('then it emits the combobox-select event with correct data', () => {
-            expect(selectSpy.calledOnce).to.equal(true);
-            const eventData = selectSpy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-            expect(eventData.el).to.deep.equal(secondOption);
-        });
-    });
-
-    describe('when the down arrow key is pressed', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('combobox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 40);
-        });
-
-        test('then it emits the combobox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(1);
-            expect(eventData.selected).to.deep.equal(['2']);
-        });
-    });
-
-    describe('when the up arrow key is pressed', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('combobox-change', spy);
-            testUtils.triggerEvent(ariaControl, 'keydown', 38);
-        });
-
-        test('then it emits the combobox-change event with the correct data', () => {
-            expect(spy.calledOnce).to.equal(true);
-            const eventData = spy.getCall(0).args[0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.selected).to.deep.equal(['1']);
-        });
-    });
-
-    describe('when the escape key is pressed', () => {
-        let spy;
-
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('combobox-collapse', spy);
-            testUtils.triggerEvent(ariaControl, 'click');
-            testUtils.triggerEvent(ariaControl, 'keydown', 27);
-        });
-
-        test('then it collapses', () => {
-            expect(ariaControl.getAttribute('aria-expanded')).to.equal('false');
-        });
-
-        test('then it emits the collapse event', () => {
-            expect(spy.calledOnce).to.equal(true);
-        });
-    });
-});
-
-describe('given the combobox is in an disabled state', () => {
-    let widget;
-    let root;
-    let ariaControl;
-
-    beforeEach(() => {
-        const renderedWidget = renderer.renderSync({
-            options: mock.options,
-            disabled: true
-        });
-        widget = renderedWidget.appendTo(document.body).getWidget();
-        root = document.querySelector('.combobox');
-        ariaControl = root.querySelector('input');
-    });
-
-    afterEach(() => widget.destroy());
-
-    describe('when the button is clicked once', () => {
-        let spy;
-        beforeEach(() => {
-            spy = sinon.spy();
-            widget.on('combobox-expand', spy);
-            testUtils.triggerEvent(ariaControl, 'click');
-        });
-
-        test('then it does not emit the event from expander-expand', () => {
-            expect(spy.calledOnce).to.equal(false);
-        });
-    });
-
-    describe('when the disabled state is changed programmatically', () => {
-        beforeEach((done) => {
-            root.disabled = false;
-            setTimeout(done);
-        });
-
-        describe('when the button is clicked once', () => {
-            let spy;
-            beforeEach(() => {
-                spy = sinon.spy();
-                widget.on('combobox-expand', spy);
-                testUtils.triggerEvent(ariaControl, 'click');
-            });
-
-            test('then it emits the event from expander-expand', () => {
-                expect(spy.calledOnce).to.equal(true);
+        beforeEach(async() => {
+            await pressKey(getVisibleCombobox(), {
+                key: 'ArrowUp',
+                keyCode: 38
             });
         });
+
+        it('then it should not expand the combobox', () => {
+            expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
+        });
+
+        it('then it emits the combobox-change event with the correct data', () => {
+            const changeEvents = component.emitted('combobox-change');
+            expect(changeEvents).has.length(1);
+
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property('index', 0);
+            expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);
+        });
+    });
+
+    describe('when the button is clicked', () => {
+        beforeEach(async() => {
+            await fireEvent.click(getVisibleCombobox());
+        });
+
+        it('then it emits the event from expander-expand', () => {
+            expect(component.emitted('combobox-expand')).has.length(1);
+        });
+
+        it('then it has expanded the combobox', () => {
+            expect(getVisibleCombobox()).has.attr('aria-expanded', 'true');
+        });
+
+        describe('when an option is clicked', () => {
+            beforeEach(async() => {
+                await fireEvent.click(getVisibleOptions()[1]);
+            });
+
+            it('then the native select should be set to the second option value', () => {
+                expect(form.elements)
+                    .has.property(input.name)
+                    .with.property('value', input.options[1].value);
+            });
+
+            it('then it emits the combobox-change event with correct data', () => {
+                const changeEvents = component.emitted('combobox-change');
+                expect(changeEvents).has.length(1);
+
+                const [[changeEvent]] = changeEvents;
+                expect(changeEvent).has.property('index', 1);
+                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
+            });
+
+            thenItHasCollapsed();
+        });
+
+        describe('when the text of an option is clicked', () => {
+            beforeEach(async() => {
+                await fireEvent.click(getVisibleOptions()[1].firstElementChild);
+            });
+
+            it('then the native select should be set to the second option value', () => {
+                expect(form.elements)
+                    .has.property(input.name)
+                    .with.property('value', input.options[1].value);
+            });
+
+            it('then it emits the combobox-change event with correct data', () => {
+                const changeEvents = component.emitted('combobox-change');
+                expect(changeEvents).has.length(1);
+
+                const [[changeEvent]] = changeEvents;
+                expect(changeEvent).has.property('index', 1);
+                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
+            });
+
+            thenItHasCollapsed();
+        });
+
+        describe('when the button is clicked again', () => {
+            beforeEach(async() => {
+                await fireEvent.click(getVisibleCombobox());
+            });
+
+            thenItHasCollapsed();
+        });
+
+        describe('when the escape key is pressed', () => {
+            beforeEach(async() => {
+                await pressKey(getVisibleCombobox(), {
+                    key: 'Escape',
+                    keyCode: 27
+                });
+            });
+
+            thenItHasCollapsed();
+        });
+
+        function thenItHasCollapsed() {
+            it('then it emits the event from expander-collapse', () => {
+                expect(component.emitted('combobox-collapse')).has.length(1);
+            });
+
+            it('then it has collapsed the combobox', () => {
+                expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
+            });
+        }
     });
 });
+
+describe('given the readonly combobox with 3 items that is disabled', () => {
+    const input = mock.Combobox_3Options_Disabled;
+
+    beforeEach(async() => {
+        component = await render(template, input, { container: form });
+    });
+
+    it('then it should not be expanded', () => {
+        expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
+    });
+
+    describe('when the button is clicked', () => {
+        beforeEach(async() => {
+            await fireEvent.click(getVisibleCombobox());
+        });
+
+        it('then it does not emit the event from expander-expand', () => {
+            expect(component.emitted('combobox-expand')).has.length(0);
+        });
+
+        it('then it has not expanded the combobox', () => {
+            expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
+        });
+    });
+});
+
+function getVisibleCombobox() {
+    return component.getAllByRole('combobox').find(isVisible);
+}
+
+function getVisibleOptions() {
+    return component.getAllByRole('option').filter(isVisible);
+}
+
+function isVisible(el) {
+    return !el.hasAttribute('hidden') && !el.closest('[hidden]');
+}
