@@ -1,19 +1,13 @@
 {
-  "dependencies": [
-    {
-      "path": "./missing.js",
-      "if-flag": "skin-ds6"
-    }
-  ],
   "requireRemap": [
     {
-      "from": "./ds6.marko",
-      "to": "./ds4.marko",
+      "from": "./index[skin-ds6].marko",
+      "to": "./index.marko",
       "if-not-flag": "skin-ds6"
     },
     {
-      "from": "./ds4.marko",
-      "to": "./ds6.marko",
+      "from": "./index.marko",
+      "to": "./index[skin-ds6].marko",
       "if-flag": "skin-ds6"
     }
   ]

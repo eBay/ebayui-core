@@ -1,210 +1,161 @@
-const expect = require('chai').expect;
+const assign = require('core-js-pure/features/object/assign');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
 const testUtils = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
-const mock = require('../mock');
+const mock = require('./mock');
+const template = require('..');
 
-const textSelector = '.expand-btn__cell > span:not(.expand-btn__icon)';
+use(require('chai-dom'));
 
 describe('menu', () => {
-    test('renders basic version', context => {
-        const text = 'text';
-        const input = { text };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu-button').length).to.equal(1);
-        expect($('.expand-btn').length).to.equal(1);
-        expect($('.menu-button__menu').length).to.equal(1);
-        const $text = $(textSelector);
-        expect($text.length).to.equal(1);
-        expect($text.html()).to.equal(text);
+    it('renders basic version', async() => {
+        const input = mock.Basic_2Items;
+        const { getByRole, getAllByRole, getByText, getByLabelText } = await render(template, input);
+        const btnEl = getByRole('button');
+        expect(btnEl).is.equal(getByLabelText(input.a11yText));
+        expect(btnEl).has.class('expand-btn');
+        expect(btnEl).has.attr('aria-haspopup', 'true');
+        expect(btnEl).has.attr('aria-expanded', 'false');
+        expect(btnEl).has.property('parentElement').with.class('menu-button');
+        expect(btnEl.querySelector('.expand-btn__icon')).has.property('tagName', 'svg');
+        expect(btnEl).contains(getByText(input.text));
+        expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu');
+
+        const menuItemEls = getAllByRole('menuitem');
+        input.items.forEach((item, i) => {
+            const menuItemEl = menuItemEls[i];
+            const textEl = getByText(item.renderBody.text);
+            expect(menuItemEl).has.class('menu-button__item');
+            expect(menuItemEl).contains(textEl);
+        });
     });
 
-    test('renders fake version', context => {
-        const input = { type: 'fake' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu-button').length).to.equal(1);
-        expect($('.expand-btn').length).to.equal(1);
-        expect($('.fake-menu-button__menu').length).to.equal(1);
-        expect($('.fake-menu-button__menu[role=menu]').length).to.equal(0);
+    it('renders fake version', async() => {
+        const input = mock.Fake_2Items;
+        const { getByText } = await render(template, input);
+
+        expect(getByText(input.text).closest('.fake-menu-button')).has.class('expander');
+
+        input.items.forEach(item => {
+            expect(getByText(item.renderBody.text).closest('.fake-menu-button__item'))
+                .has.attr('href', item.href);
+        });
     });
 
-    test('renders with reverse=true', context => {
-        const input = { reverse: true };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu-button__menu--reverse').length).to.equal(1);
+    it('renders with reverse=true', async() => {
+        const input = assign({ reverse: true }, mock.Basic_2Items);
+        const { getByRole } = await render(template, input);
+        expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu--reverse');
     });
 
-    test('renders with reverse=false', context => {
-        const input = { reverse: false };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu-button__menu').length).to.equal(1);
-        expect($('.menu-button__menu.menu-button__menu--reverse').length).to.equal(0);
+    it('renders with type=fake, reverse=true', async() => {
+        const input = assign({ type: 'fake', reverse: true }, mock.Basic_2Items);
+        const { getByText } = await render(template, input);
+        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--reverse'))
+            .does.not.equal(null);
     });
 
-    test('renders with type=fake, reverse=true', context => {
-        const input = { type: 'fake', reverse: true };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu-button__menu--reverse').length).to.equal(1);
+    it('renders with fix-width=true', async() => {
+        const input = assign({ fixWidth: true }, mock.Basic_2Items);
+        const { getByRole } = await render(template, input);
+        expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu--fix-width');
     });
 
-    test('renders with type=fake, reverse=false', context => {
-        const input = { type: 'fake', reverse: false };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu-button__menu').length).to.equal(1);
-        expect($('.fake-menu-button__menu.fake-menu-button__menu--reverse').length).to.equal(0);
+    it('renders with type=fake, fix-width=true', async() => {
+        const input = assign({ type: 'fake', fixWidth: true }, mock.Basic_2Items);
+        const { getByText } = await render(template, input);
+        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--fix-width'))
+            .does.not.equal(null);
     });
 
-    test('renders with fix-width=true', context => {
-        const input = { fixWidth: true };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu-button__menu--fix-width').length).to.equal(1);
+    it('renders with borderless=true', async() => {
+        const input = assign({ borderless: true }, mock.Basic_2Items);
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.class('expand-btn--borderless');
     });
 
-    test('renders with fix-width=false', context => {
-        const input = { fixWidth: false };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.menu-button__menu').length).to.equal(1);
-        expect($('.menu-button__menu.menu-button__menu--fix-width').length).to.equal(0);
+    it('renders with size=small', async() => {
+        const input = assign({ size: 'small' }, mock.Basic_2Items);
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.class('expand-btn--small');
     });
 
-    test('renders with type=fake, fix-width=true', context => {
-        const input = { type: 'fake', fixWidth: true };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu-button__menu--fix-width').length).to.equal(1);
+    it('renders with priority=primary', async() => {
+        const input = assign({ priority: 'primary' }, mock.Basic_2Items);
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.class('expand-btn--primary');
     });
 
-    test('renders with type=fake, fix-width=false', context => {
-        const input = { type: 'fake', fixWidth: false };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.fake-menu-button__menu').length).to.equal(1);
-        expect($('.fake-menu-button__menu.fake-menu-button__menu--fix-width').length).to.equal(0);
+    it('renders without text', async() => {
+        const input = assign({}, mock.Basic_2Items, { text: '' });
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.class('expand-btn--no-text');
     });
 
-    test('renders with borderless=true', context => {
-        const input = { borderless: true };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn.expand-btn--borderless').length).to.equal(1);
+    it('renders with icon', async() => {
+        const input = mock.Settings_Icon;
+        const { getByRole, getByText } = await render(template, input);
+        const btnEl = getByRole('button');
+        expect(btnEl).does.not.have.class('expand-btn--no-text');
+        expect(btnEl).contains(getByText(input.iconTag.renderBody.text));
     });
 
-    test('renders with borderless=false', context => {
-        const input = { borderless: false };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn').length).to.equal(1);
-        expect($('.expand-btn.expand-btn--borderless').length).to.equal(0);
+    it('renders without toggle icon', async() => {
+        const input = mock.No_Toggle_Icon;
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button').querySelector('expand-btn__icon')).equals(null);
     });
 
-    test('renders with size=small', context => {
-        const input = { size: 'small' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn.expand-btn--small').length).to.equal(1);
+    it('renders with disabled state', async() => {
+        const input = mock.Disabled;
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).has.attr('disabled');
     });
 
-    test('renders with priority=primary', context => {
-        const input = { priority: 'primary' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn.expand-btn--primary').length).to.equal(1);
+    it('renders with a custom label', async() => {
+        const input = mock.Custom_Label;
+        const { getByRole, getByText } = await render(template, input);
+        const customLabelEl = getByText(input.label.renderBody.text);
+        expect(customLabelEl).has.class('custom_label');
+        expect(getByRole('button')).contains(customLabelEl);
     });
-
-    test('renders without text', context => {
-        const input = { text: '' };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($(textSelector).length).to.equal(0);
-        expect($('.expand-btn.expand-btn--no-text').length).to.equal(1);
-        expect($('svg.expand-btn__icon').length).to.equal(1);
-    });
-
-    test('renders with icon', context => {
-        const input = { icon: 'settings', iconTag: { renderBody: mock.iconRenderBody } };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn:not(.expand-btn--no-text)').length).to.equal(1);
-        expect($('div.btn__icon').text()).to.equal('icon');
-    });
-
-    test('renders without toggle icon', context => {
-        const input = { noToggleIcon: true };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('svg.expand-btn__icon').length).to.equal(0);
-    });
-
-    test('renders with disabled state', context => {
-        const input = { disabled: true };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn[disabled]').length).to.equal(1);
-    });
-
-    test('renders with no disabled state', context => {
-        const input = {};
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn[disabled]').length).to.equal(0);
-    });
-
-    test('handles pass-through html attributes', context => testUtils.testHtmlAttributes(context, 'span.menu-button'));
-    test('handles custom class and style', context => testUtils.testClassAndStyle(context, 'span.menu-button'));
-});
-
-describe('menu-label', () => {
-    test('renders basic version', context => {
-        const input = { label: mock.customLabel };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn__cell .custom_label').length).to.equal(1);
-    });
-
-    test('renders basic version without any custom label', context => {
-        const input = {};
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.expand-btn__cell .custom_label').length).to.equal(0);
-    });
-});
-
-describe('menu-item', () => {
-    test('renders basic version', context => {
-        const input = { items: mock.twoItems };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('div.menu-button__item').length).to.equal(2);
-    });
-
-    test('renders fake version', context => {
-        const linkItem = { renderBody: mock.renderBody, href: '#' };
-        const buttonItem = { renderBody: mock.renderBody, type: 'button' };
-        const input = { type: 'fake', items: [linkItem, buttonItem] };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('a.fake-menu-button__item[href=#]').length).to.equal(1);
-        expect($('button.fake-menu-button__item').length).to.equal(1);
-    });
-
-    test('renders fake version without href', context => {
-        const linkItem = { renderBody: mock.renderBody, href: '' };
-        const input = { type: 'fake', items: [linkItem] };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('a.fake-menu-button__item[href]').length).to.equal(1);
-    });
-
     ['radio', 'checkbox'].forEach(type => {
         [true, false].forEach(checked => {
-            test(`renders with type=${type} and checked=${checked}`, context => {
-                const input = { type, items: [{ renderBody: mock.renderBody, checked }] };
-                const $ = testUtils.getCheerio(context.render(input));
-                const $root = $(`.menu-button__item[role=menuitem${type}][aria-checked=${checked}]`);
-                expect($root.length).to.equal(1);
-                expect($('.menu-button__status', $root).length).to.equal(1);
+            it(`renders with type=${type} and checked=${checked}`, async() => {
+                const input = { type, items: [{ checked }] };
+                const { getByRole, getAllByRole } = await render(template, input);
+                const optionEls = getAllByRole(`menuitem${type}`);
+
+                expect(optionEls).has.length(1);
+                expect(optionEls[0]).has.attr('aria-checked', String(checked));
+
+                expect(getByRole('menu').querySelector('.menu-button__status'))
+                    .does.not.equal(null);
             });
         });
     });
 
-    test('handles pass-through html attributes', c => testUtils.testHtmlAttributes(c, '.menu-button__item', 'items'));
-    test('handles custom class and style', c => testUtils.testClassAndStyle(c, '.menu-button__item', 'items'));
+    testUtils.testPassThroughAttributes(template);
+    testUtils.testPassThroughAttributes(template, {
+        child: {
+            name: 'items',
+            multiple: true
+        }
+    });
 });
 
 describe('transformer', () => {
     const componentPath = '../index.js';
 
-    test('transforms an icon attribute into a tag', () => {
+    it('transforms an icon attribute into a tag', async() => {
         const tagString = '<ebay-menu-button icon="settings"/>';
         const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
         expect(iconEl.tagName).to.equal('ebay-menu-button:icon');
     });
 
-    test('does not transform when icon attribute is missing', () => {
+    it('does not transform when icon attribute is missing', () => {
         const tagString = '<ebay-menu/>';
         const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;

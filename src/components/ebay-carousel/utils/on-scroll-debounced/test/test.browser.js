@@ -1,6 +1,6 @@
 const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../../../../common/test-utils/browser');
+const { expect } = require('chai');
+const { simulateScroll } = require('../../../../../common/test-utils/browser');
 const onScroll = require('../');
 
 describe('scroll-debounced', () => {
@@ -24,8 +24,8 @@ describe('scroll-debounced', () => {
     it('calls a handler at most every 600ms', (done) => {
         const scrollSpy = sinon.spy();
         onScroll(scrollEl, scrollSpy);
-        testUtils.simulateScroll(scrollEl, 50, () => {
-            testUtils.simulateScroll(scrollEl, 100, () => {
+        simulateScroll(scrollEl, 50, () => {
+            simulateScroll(scrollEl, 100, () => {
                 setTimeout(() => {
                     expect(scrollSpy.calledOnce).to.equal(true);
                     done();
@@ -37,7 +37,7 @@ describe('scroll-debounced', () => {
     it('can be canceled', (done) => {
         const scrollEndSpy = sinon.spy();
         const cancel = onScroll(scrollEl, scrollEndSpy);
-        testUtils.simulateScroll(scrollEl, 100);
+        simulateScroll(scrollEl, 100);
         setTimeout(() => {
             expect(scrollEndSpy.notCalled).to.equal(true);
             done();

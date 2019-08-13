@@ -1,51 +1,47 @@
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
 
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
-
-const pointerLocations = [
-    'top-left',
-    'top',
-    'top-right',
-    'right',
-    'right-bottom',
-    'right-top',
-    'bottom-left',
-    'bottom-right',
-    'bottom',
-    'left',
-    'left-bottom',
-    'left-top'
-];
+use(require('chai-dom'));
 
 describe('tooltip', () => {
-    test('renders default tooltip', context => {
-        const input = {
-            host: {
-                renderyBody: ''
-            },
-            content: {
-                renderyBody: ''
-            }
-        };
-        const $ = testUtils.getCheerio(context.render(input));
-        expect($('.tooltip').length).to.equal(1);
-        expect($('.tooltip__overlay .tooltip__cell .tooltip__content').length).to.equal(1);
+    it('renders default tooltip', async() => {
+        const input = mock.Basic;
+        const { getByText, getByRole } = await render(template, input);
+        expect(getByRole('tooltip')).has.class('tooltip__overlay');
+        expect(getByText(input.host.renderBody.text)).has.class('tooltip__host');
+        expect(getByText(input.content.renderBody.text)).has.class('tooltip__content');
+        expect(getByText(input.heading.renderBody.text)).has.class('tooltip__heading');
     });
 
-    pointerLocations.forEach(pointer => {
-        test(`renders tooltip pointer: ${pointer}`, context => {
-            const input = {
-                host: {
-                    renderyBody: ''
-                },
-                content: {
-                    renderyBody: ''
-                },
-                pointer
-            };
-            const $ = testUtils.getCheerio(context.render(input));
-            expect($('.tooltip').length).to.equal(1);
-            expect($(`.tooltip__pointer.tooltip__pointer--${pointer}`).length).to.equal(1);
+    mock.Pointers.forEach(input => {
+        it(`renders tooltip pointer: ${input.pointer}`, async() => {
+            const { getByRole } = await render(template, input);
+            expect(getByRole('tooltip'))
+                .has.property('firstElementChild')
+                .with.class(`tooltip__pointer--${input.pointer}`);
         });
     });
+
+    // TODO: looks like class and style are not passed through to the tooltip.
+    // testPassThroughAttributes(template);
+
+    // testPassThroughAttributes(template, {
+    //     child: {
+    //         name: 'host'
+    //     }
+    // });
+
+    // testPassThroughAttributes(template, {
+    //     child: {
+    //         name: 'heading'
+    //     }
+    // });
+
+    // testPassThroughAttributes(template, {
+    //     child: {
+    //         name: 'content'
+    //     }
+    // });
 });

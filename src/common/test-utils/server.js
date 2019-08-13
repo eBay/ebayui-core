@@ -1,8 +1,9 @@
-const cheerio = require('cheerio');
-const expect = require('chai').expect;
-const assign = require('core-js-pure/features/object/assign');
-const prettyPrint = require('marko-prettyprint').prettyPrintAST;
 const markoCompiler = require('marko/compiler');
+const { render } = require('@marko/testing-library');
+const { expect, use } = require('chai');
+
+use(require('chai-dom'));
+
 let CompileContext;
 let Builder;
 
@@ -17,50 +18,59 @@ try {
     Builder = require(`marko/${target}/compiler/Builder`);
 }
 
-/**
- * Get Cheerio instance based on output object from rendering
- * @param {Object} output
- */
-function getCheerio(output) {
-    return cheerio.load(output.html.toString());
-}
+module.exports = {
+    /**
+     * Adds a test to assert that a template passes through additional attributes.
+     */
+    testPassThroughAttributes(template, { input, child, getClassAndStyleEl } = {}) {
+        it(
+            `passes through additional html attributes${child ? ` from child ${child.name}` : ''}`,
+            async() => {
+                for (const key of ['*', 'htmlAttributes']) {
+                    const testId = 'AttributePassthrough';
+                    const clonedInput = Object.assign({}, input);
+                    let targetInput = clonedInput;
 
-/**
- * Create input to be used for rendering through test utils
- * @param {Object} input: additional input to use with test utils
- * @param {String} arrayKey: if provided, assign input as a single-entry array (for marko nested tags)
- * @param {String} baseInput: if provided, use as base for additional input
- * @param {String} parentInput: use to modify base input of parent, rather than that of arrayKey
- */
-function setupInput(input, arrayKey, baseInput, parentInput = {}) {
-    let newInput = baseInput ? assign(baseInput, input) : input;
+                    if (child) {
+                        targetInput = Object.assign({}, child.input);
+                        clonedInput[child.name] = child.multiple ? [targetInput] : child;
+                    }
 
-    if (arrayKey) {
-        newInput = assign(parentInput, { [arrayKey]: [newInput] });
+                    Object.assign(targetInput, {
+                        [key]: { 'data-testid': testId, 'data-passed-through': 'true' },
+                        // class and style are special attributes
+                        class: { class1: true, class2: false },
+                        style: { color: 'red' }
+                    });
+
+                    const component = await render(template, clonedInput);
+                    const passThroughEl = component.getByTestId(testId);
+                    expect(passThroughEl).has.attr('data-passed-through');
+
+                    const classAndStyleEl = getClassAndStyleEl ? getClassAndStyleEl(component) : passThroughEl;
+                    expect(classAndStyleEl).has.class('class1');
+                    expect(classAndStyleEl).not.has.class('class2');
+                    expect(classAndStyleEl).attr('style').contains('color:red');
+                }
+            }
+        );
+    },
+    getTransformedTemplate(transformer, srcString, componentPath) {
+        const { prettyPrintAST } = require('marko-prettyprint');
+        const { context, templateAST } = getTransformerData(srcString, componentPath);
+        context.root = templateAST;
+        transformer(templateAST.body.array[0], context);
+        return prettyPrintAST(templateAST).replace(/\n/g, '').replace(/\s{4}/g, '');
+    },
+    runTransformer(transformer, srcString, componentPath) {
+        const { context, templateAST } = getTransformerData(srcString, componentPath);
+        transformer(templateAST.body.array[0], context);
+        return {
+            context,
+            el: templateAST.body.array[0]
+        };
     }
-
-    return newInput;
-}
-
-function testClassAndStyle(context, selector, arrayKey, baseInput, parentInput) {
-    [
-        { input: { class: { class1: true, class2: true } }, test: '.class1.class2' },
-        { input: { style: { color: 'red' } }, test: '[style*="color:red"]' }
-    ].forEach(scenario => {
-        const input = setupInput(scenario.input, arrayKey, baseInput, parentInput);
-        const $ = getCheerio(context.render(input));
-        expect($(`${selector}${scenario.test}`).length).to.equal(1);
-    });
-}
-
-function testHtmlAttributes(context, selector, arrayKey, baseInput, parentInput) {
-    // check that each method is correctly supported
-    ['*', 'htmlAttributes'].forEach(key => {
-        const input = setupInput({ [key]: { 'aria-role': 'link' } }, arrayKey, baseInput, parentInput);
-        const $ = getCheerio(context.render(input));
-        expect($(`${selector}[aria-role=link]`).length).to.equal(1);
-    });
-}
+};
 
 function getTransformerData(srcString, componentPath) {
     const templateAST = markoCompiler.parseRaw(
@@ -75,27 +85,3 @@ function getTransformerData(srcString, componentPath) {
 
     return { context, templateAST };
 }
-
-function getTransformedTemplate(transformer, srcString, componentPath) {
-    const { context, templateAST } = getTransformerData(srcString, componentPath);
-    context.root = templateAST;
-    transformer(templateAST.body.array[0], context);
-    return prettyPrint(templateAST).replace(/\n/g, '').replace(/\s{4}/g, '');
-}
-
-function runTransformer(transformer, srcString, componentPath) {
-    const { context, templateAST } = getTransformerData(srcString, componentPath);
-    transformer(templateAST.body.array[0], context);
-    return {
-        context,
-        el: templateAST.body.array[0]
-    };
-}
-
-module.exports = {
-    getCheerio,
-    testClassAndStyle,
-    testHtmlAttributes,
-    getTransformedTemplate,
-    runTransformer
-};
