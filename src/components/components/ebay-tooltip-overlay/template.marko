@@ -20,7 +20,7 @@
 <span
     class="${data.type}__overlay"
     role=typeRoles[data.type]
-    aria-labelledby=(data.type === "tourtip" && widget.elId("tourtip-label"))
+    aria-labelledby=(data.type === "tourtip" && data.heading && widget.elId("tourtip-label"))
     id=data.tooltipId
     style=overlayStyles
     w-bind>

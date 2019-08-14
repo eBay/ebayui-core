@@ -1,20 +1,32 @@
-const expect = require('chai').expect;
-const testUtils = require('../../../common/test-utils/server');
+const { expect, use } = require('chai');
+const { render } = require('@marko/testing-library');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const mock = require('./mock');
+const template = require('..');
 
-test('renders basic cta button', context => {
-    const input = { href: 'https://www.ebay.com' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('a.cta-btn > .cta-btn__cell').length).to.equal(1);
-});
+use(require('chai-dom'));
 
-test('renders small cta button', context => {
-    const input = { size: 'small', href: 'https://www.ebay.com' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('a.cta-btn.cta-btn--small > .cta-btn__cell').length).to.equal(1);
-});
+describe('cta-button', () => {
+    it('renders basic cta button', async() => {
+        const input = mock.Basic;
+        const { getByText } = await render(template, input);
+        const textEl = getByText(input.renderBody.text);
 
-test('renders large cta button', context => {
-    const input = { size: 'large', href: 'https://www.ebay.com' };
-    const $ = testUtils.getCheerio(context.render(input));
-    expect($('a.cta-btn.cta-btn--large > .cta-btn__cell').length).to.equal(1);
+        expect(textEl.closest('.cta-btn')).does.not.equal(null);
+        expect(textEl.closest('.cta-btn__cell')).does.not.equal(null);
+    });
+
+    it('renders small cta button', async() => {
+        const input = mock.Small;
+        const { getByText } = await render(template, input);
+        expect(getByText(input.renderBody.text).closest('.cta-btn')).has.class('cta-btn--small');
+    });
+
+    it('renders large cta button', async() => {
+        const input = mock.Large;
+        const { getByText } = await render(template, input);
+        expect(getByText(input.renderBody.text).closest('.cta-btn')).has.class('cta-btn--large');
+    });
+
+    testPassThroughAttributes(template);
 });

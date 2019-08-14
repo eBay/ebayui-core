@@ -38,7 +38,7 @@
     disabled=data.disabled
     aria-disabled=(data.partiallyDisabled && "true")>
 
-    <var hasAriaLabel=Boolean(htmlAttributes.ariaLabel)/>
+    <var hasAriaLabel=Boolean(htmlAttributes['aria-label'])/>
     <span body-only-if(!hasAriaLabel) w-body aria-hidden="true"/>
     <if(isBadged)>
         <ebay-badge

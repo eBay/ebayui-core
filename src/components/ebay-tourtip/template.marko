@@ -21,12 +21,13 @@
             ${processHtmlAttributes(data)}>
             <span
                 if(data.host)
-                w-preserve-attrs="aria-expanded,aria-controls,aria-described-by"
+                w-preserve-attrs="aria-expanded,aria-controls,aria-describedby"
                 class=[data.host.class, 'tourtip__host']
                 style=data.host.style
                 w-body=data.host.renderBody/>
             <ebay-tooltip-overlay
                 type="tourtip"
+                tooltip-id=widget.elId("overlay")
                 pointer=pointer
                 style-left=data.styleLeft
                 style-top=data.styleTop
