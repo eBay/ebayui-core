@@ -794,10 +794,10 @@
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.1.tgz#deccafb04101fa52507b8f2204161c8ed5e70375"
   integrity sha512-5i4XOsKwoCYomZ9cF7H5OBroeHoYUriylg55mJwTARMbQVv21RnYKF/Bwi86ZlHz4S6YepxlaQorsxR6T2xv6w==
 
-"@ebay/skin@9.0.0-0":
-  version "9.0.0-0"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-9.0.0-0.tgz#e4df8733df44128b840e4471378e1f16ef50f860"
-  integrity sha512-ljZz30I/iU6NouR9JlZFssG78mB+TbOUwmu/f3Br6LtVkw7eEYr/AoqOv7HKy99kLJ2XVjfBCT/9fMjw1n3wKA==
+"@ebay/skin@9.0.0-1":
+  version "9.0.0-1"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-9.0.0-1.tgz#26804a8c859b38a84f0e6d685ccf69864d737b66"
+  integrity sha512-otSNpBl4iOP+mvfWzn5HtINY/juQMI5skpFo8Dl13BUSMhf41nrLPHbOghrPkI0nJC8OWTW+690ooKMSNG3RQw==
 
 "@jest/types@^24.8.0":
   version "24.8.0"
