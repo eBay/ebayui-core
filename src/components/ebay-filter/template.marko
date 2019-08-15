@@ -1,0 +1,27 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var classPrefix=(data.href ? "filter-link" : "filter-button")/>
+
+<${data.href ? "a" : "button"}
+    w-bind
+    w-on-click="handleButtonClick"
+    class=[
+        classPrefix,
+        data.pressed ? classPrefix + "--selected" : classPrefix + "--unselected",
+        data.class
+    ]
+    style=data.style
+    href=data.href
+    disabled=data.disabled
+    type=(!data.href && "button")
+    aria-pressed=(!data.href && data.pressed && "true")
+    ${processHtmlAttributes(data)}>
+    <span class="${classPrefix}__cell">
+        <span w-body/>
+        <if(data.href && data.pressed)>
+            <span w-id="active-text" class="clipped"> - ${data.a11yActiveText || "Selected"}</span>
+        </if>
+    </span>
+</>
