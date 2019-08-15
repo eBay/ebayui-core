@@ -6,8 +6,8 @@ const template = require('..');
 use(require('chai-dom'));
 
 const properties = {
-    priority: ['primary', 'secondary'],
-    size: ['small', 'large']
+    priority: ['primary', 'secondary', 'delete'],
+    size: ['large']
 };
 
 Object.keys(properties).forEach(property => {
@@ -52,7 +52,7 @@ it('does not apply priority class for unsupported value', async() => {
 it('renders fake version', async() => {
     const { getByLabelText } = await render(template, {
         href: '#',
-        size: 'small',
+        size: 'large',
         priority: 'primary',
         htmlAttributes: {
             ariaLabel: 'fake button'
@@ -63,7 +63,7 @@ it('renders fake version', async() => {
     expect(btn).has.attr('href', '#');
     expect(btn).has.property('tagName', 'A');
     expect(btn)
-        .has.class('fake-btn--small')
+        .has.class('fake-btn--large')
         .and.class('fake-btn--primary');
 });
 
@@ -115,6 +115,36 @@ it('renders badged icon variant', async() => {
 
     expect(getByLabelText('Badged button')).has.class('icon-btn--badged');
     expect(getByLabelText('5 Items')).has.text('5');
+});
+
+it('renders truncated button', async() => {
+    const { getByRole } = await render(template, {
+        truncate: true
+    });
+    expect(getByRole('button')).has.class('btn--truncated');
+});
+
+it('renders large truncated button', async() => {
+    const { getByRole } = await render(template, {
+        truncate: true,
+        size: 'large'
+    });
+    expect(getByRole('button')).has.class('btn--large-truncated');
+});
+
+it('renders fixed-height button', async() => {
+    const { getByRole } = await render(template, {
+        fixedHeight: true
+    });
+    expect(getByRole('button')).has.class('btn--fixed-height');
+});
+
+it('renders large fixed-height button', async() => {
+    const { getByRole } = await render(template, {
+        fixedHeight: true,
+        size: 'large'
+    });
+    expect(getByRole('button')).has.class('btn--large-fixed-height');
 });
 
 testPassThroughAttributes(template);
