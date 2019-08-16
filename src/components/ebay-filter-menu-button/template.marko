@@ -1,0 +1,58 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var checkedItems = (data.items && data.items.filter(function(item){ return item.checked })) || []/>
+
+<span
+    w-bind
+    class=["filter-menu-button", data.class]
+    style=data.style
+    w-on-expander-expand="handleExpand"
+    w-on-expander-collapse="handleCollapse"
+    ${processHtmlAttributes(data)}>
+    <button
+        type="button"
+        class="filter-menu-button__button"
+        disabled=data.disabled
+        aria-expanded=String(data.expanded)
+        aria-haspopup="true"
+        aria-label=data.a11yText
+        aria-pressed=(checkedItems.length > 0 && !data.footerButton && "true")>
+        <span class="filter-menu-button__button-cell">
+            <span class="filter-menu-button__button-text">${data.text}</span>
+            <ebay-icon type="inline" name="chevron-down" />
+        </span>
+    </button>
+    <div class="filter-menu-button__menu">
+        <div class="filter-menu-button__items" role="menu">
+            <for(item in data.items)>
+                <div
+                    class=["filter-menu-button__item", item.class]
+                    style=item.style
+                    role="menuitemcheckbox"
+                    aria-checked=(item.checked ? "true" : "false" )
+                    data-value=item.value
+                    w-onclick="handleItemClick"
+                    w-onkeydown="handleItemKeydown"
+                    ${processHtmlAttributes(item)}>
+                    <span class="filter-menu-button__status--inline">
+                        <if(item.checked)>
+                            <ebay-icon type="inline" name="checkbox-checked" />
+                        </if>
+                        <else>
+                            <ebay-icon type="inline" name="checkbox-unchecked" />
+                        </else>
+                    </span>
+                    <span class="filter-menu-button__text" w-body=item.renderBody />
+                </div>
+            </for>
+        </div>
+        <button
+            if(data.footerButton)
+            type="button"
+            class="filter-menu-button__footer"
+            w-onclick="handleFooterButtonClick"
+            w-body=data.footerButton.renderBody/>
+    </div>
+</span>

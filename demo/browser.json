@@ -16,6 +16,7 @@
         "../src/components/ebay-dialog",
         "../src/components/ebay-expand-button",
         "../src/components/ebay-filter",
+        "../src/components/ebay-filter-menu-button",
         "../src/components/ebay-icon",
         "../src/components/ebay-infotip",
         "../src/components/ebay-listbox-button",
