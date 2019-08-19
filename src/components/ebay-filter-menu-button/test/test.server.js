@@ -10,7 +10,7 @@ describe('filter-menu-button', () => {
     it('renders basic version', async() => {
         const input = mock.Basic_2Items;
         const { getByRole, getAllByRole, getByText } = await render(template, input);
-        const btnEl = getByRole('button');
+        const btnEl = getAllByRole('button')[0];
         expect(btnEl).contains(getByText(input.text));
         expect(btnEl).has.attr('aria-label', input.a11yText);
         expect(btnEl).has.class('filter-menu-button__button');
@@ -32,8 +32,8 @@ describe('filter-menu-button', () => {
 
     it('renders with disabled state', async() => {
         const input = mock.Disabled;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('button')).has.attr('disabled');
+        const { getAllByRole } = await render(template, input);
+        expect(getAllByRole('button')[0]).has.attr('disabled');
     });
 
     it(`renders checked item`, async() => {

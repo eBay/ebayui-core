@@ -13,17 +13,20 @@ let component;
 
 describe('given the filter menu is in the default state', () => {
     const input = mock.Basic_2Items;
+    let filterButton;
+
     beforeEach(async() => {
         component = await render(template, input);
+        filterButton = component.getAllByRole('button')[0];
     });
 
     describe('when the button is clicked once', () => {
         beforeEach(async() => {
-            await fireEvent.click(component.getByRole('button'));
+            await fireEvent.click(filterButton);
         });
 
         it('then it expands', async() => {
-            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'true');
+            expect(filterButton).to.have.attr('aria-expanded', 'true');
         });
 
         it('then it emits the marko event from expander-expand', () => {
@@ -32,16 +35,179 @@ describe('given the filter menu is in the default state', () => {
 
         describe('when it is clicked again', () => {
             beforeEach(async() => {
-                await fireEvent.click(component.getByRole('button'));
+                await fireEvent.click(filterButton);
             });
 
             it('then it collapses', async() => {
-                expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
+                expect(filterButton).to.have.attr('aria-expanded', 'false');
             });
 
             it('then it emits the marko event from expander-collapse', () => {
                 expect(component.emitted('filter-menu-button-collapse')).has.length(1);
             });
+        });
+    });
+
+    describe('when re-rendered with expanded set to false', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { expanded: false }));
+        });
+
+        it('then it remains collapsed', () => {
+            expect(filterButton).to.have.attr('aria-expanded', 'false');
+        });
+
+        it('then it doesn\'t emit the marko collapse event', () => {
+            expect(component.emitted('filter-menu-button-collapse')).has.length(0);
+        });
+    });
+
+    // TODO: we should make the `expanded` property controllable via input.
+    describe.skip('when re-rendered with expanded set to true', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { expanded: true }));
+        });
+
+        it('then it expands', () => {
+            expect(filterButton).to.have.attr('aria-expanded', 'true');
+        });
+
+        it('then it emits the menu-expand event', () => {
+            expect(component.emitted('filter-menu-button-expand')).has.length(1);
+        });
+    });
+});
+
+describe('given the menu is in the expanded state', () => {
+    const input = mock.Basic_2Items;
+    const firstItemText = input.items[0].renderBody.text;
+    let filterButton, footerButton, firstItem, secondItem;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+        filterButton = component.getAllByRole('button')[0];
+        footerButton = component.getAllByRole('button')[1];
+        firstItem = component.getAllByRole('menuitemcheckbox')[0];
+        secondItem = component.getAllByRole('menuitemcheckbox')[1];
+        await fireEvent.click(filterButton);
+        expect(component.emitted('filter-menu-button-expand')).has.length(1);
+    });
+
+    // TODO: we should make the `expanded` property controllable via input.
+    describe.skip('when re-rendered with expanded set to true', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { expanded: true }));
+        });
+
+        it('then it remains expanded', () => {
+            expect(filterButton).to.have.attr('aria-expanded', 'true');
+        });
+
+        it('then it doesn\'t emit the marko expand event', () => {
+            expect(component.emitted('filter-menu-button-expand')).has.length(0);
+        });
+    });
+
+    // TODO: we should make the `expanded` property controllable via input.
+    describe.skip('when re-rendered with expanded set to false', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { expanded: false }));
+        });
+
+        it('then it expands', () => {
+            expect(filterButton).to.have.attr('aria-expanded', 'false');
+        });
+
+        it('then it emits the filter-menu-button-expand event', () => {
+            expect(component.emitted('filter-menu-button-collapse')).has.length(1);
+        });
+    });
+
+    describe('when an item is clicked', () => {
+        beforeEach(async() => {
+            await fireEvent.click(component.getByText(firstItemText));
+        });
+
+        it('then it emits the filter-menu-button-change event with correct data', () => {
+            const selectEvents = component.emitted('filter-menu-button-change');
+            expect(selectEvents).to.length(1);
+
+            const [[eventArg]] = selectEvents;
+            expect(eventArg).has.property('el').with.text(firstItemText);
+            expect(eventArg).has.property('checked').to.deep.equal([{ index: 0, value: 'item 0' }]);
+        });
+    });
+
+    describe('when two items are clicked', () => {
+        beforeEach(async() => {
+            await fireEvent.click(firstItem);
+            await fireEvent.click(secondItem);
+        });
+
+        it('then it emits two menu-change events with correct data', () => {
+            const changeEvents = component.emitted('filter-menu-button-change');
+            expect(changeEvents).to.have.length(2);
+
+            const firstEventData = changeEvents[0][0];
+            const secondEventData = changeEvents[1][0];
+            expect(firstEventData).has.property('el', firstItem);
+            expect(secondEventData).has.property('el', secondItem);
+        });
+
+        it('then both items are selected', () => {
+            expect(firstItem).to.have.attr('aria-checked', 'true');
+            expect(secondItem).to.have.attr('aria-checked', 'true');
+        });
+    });
+
+    describe('when an item is checked and then unchecked', () => {
+        beforeEach(async() => {
+            await fireEvent.click(firstItem);
+            await fireEvent.click(firstItem);
+        });
+
+        it('then it emits the filter-menu-button-change events with correct data', () => {
+            const changeEvents = component.emitted('filter-menu-button-change');
+            expect(changeEvents).to.have.length(2);
+
+            const firstEventData = changeEvents[0][0];
+            const secondEventData = changeEvents[1][0];
+            expect(firstEventData).has.property('checked').to.deep.equal([{ index: 0, value: 'item 0' }]);
+            expect(secondEventData).has.property('checked').to.deep.equal([]);
+        });
+
+        it('then the item is unchecked', () => {
+            expect(firstItem).to.have.attr('aria-checked', 'false');
+        });
+    });
+
+    describe('when an item is checked via the keyboard', () => {
+        beforeEach(async() => {
+            await pressKey(firstItem, {
+                key: '(Space character)',
+                keyCode: 32
+            });
+        });
+
+        it('then it emits the filter-menu-button-change events with correct data', () => {
+            const changeEvents = component.emitted('filter-menu-button-change');
+            expect(changeEvents).to.have.length(1);
+
+            const firstEventData = changeEvents[0][0];
+            expect(firstEventData).has.property('el').with.text(firstItemText);
+            expect(firstEventData).has.property('checked').to.deep.equal([{ index: 0, value: 'item 0' }]);
+        });
+    });
+
+    describe('when the footer button is clicked', () => {
+        beforeEach(async() => {
+            await fireEvent.click(footerButton);
+        });
+
+        it('then it emits the filter-menu-button-footer-click event', () => {
+            const changeEvents = component.emitted('filter-menu-button-footer-click');
+            expect(changeEvents).to.have.length(1);
+            expect(filterButton).to.have.attr('aria-expanded', 'false');
         });
     });
 
@@ -63,282 +229,6 @@ describe('given the filter menu is in the default state', () => {
             expect(eventArg)
                 .has.property('el')
                 .with.text(thirdItemText);
-        });
-    });
-
-    describe('when re-rendered with expanded set to false', () => {
-        beforeEach(async() => {
-            await component.rerender(assign({}, input, { expanded: false }));
-        });
-
-        it('then it remains collapsed', () => {
-            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
-        });
-
-        it('then it doesn\'t emit the marko collapse event', () => {
-            expect(component.emitted('filter-menu-button-collapse')).has.length(0);
-        });
-    });
-
-    // TODO: we should make the `expanded` property controllable via input.
-    describe.skip('when re-rendered with expanded set to true', () => {
-        beforeEach(async() => {
-            await component.rerender(assign({}, input, { expanded: true }));
-        });
-
-        it('then it expands', () => {
-            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'true');
-        });
-
-        it('then it emits the menu-expand event', () => {
-            expect(component.emitted('filter-menu-button-expand')).has.length(1);
-        });
-    });
-});
-
-describe('given the menu is in the expanded state', () => {
-    const input = mock.Basic_2Items;
-    const firstItemText = input.items[0].renderBody.text;
-
-    beforeEach(async() => {
-        component = await render(template, input);
-        await fireEvent.click(component.getByRole('button'));
-        expect(component.emitted('filter-menu-button-expand')).has.length(1);
-    });
-
-    // TODO: we should make the `expanded` property controllable via input.
-    describe.skip('when re-rendered with expanded set to true', () => {
-        beforeEach(async() => {
-            await component.rerender(assign({}, input, { expanded: true }));
-        });
-
-        it('then it remains expanded', () => {
-            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'true');
-        });
-
-        it('then it doesn\'t emit the marko expand event', () => {
-            expect(component.emitted('filter-menu-button-expand')).has.length(0);
-        });
-    });
-
-    // TODO: we should make the `expanded` property controllable via input.
-    describe.skip('when re-rendered with expanded set to false', () => {
-        beforeEach(async() => {
-            await component.rerender(assign({}, input, { expanded: false }));
-        });
-
-        it('then it expands', () => {
-            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
-        });
-
-        it('then it emits the menu-expand event', () => {
-            expect(component.emitted('filter-menu-button-collapse')).has.length(1);
-        });
-    });
-
-    describe('when an item is clicked', () => {
-        beforeEach(async() => {
-            await fireEvent.click(component.getByText(firstItemText));
-        });
-
-        it('then it emits the filter-menu-button-change event with correct data', () => {
-            const selectEvents = component.emitted('filter-menu-button-change');
-            expect(selectEvents).to.length(1);
-
-            const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property('el').with.text(firstItemText);
-            expect(eventArg).has.property('index', 0);
-            expect(eventArg).has.property('checked').to.deep.equal([0]);
-        });
-    });
-
-    describe('when the escape key is pressed from an item', () => {
-        beforeEach(async() => {
-            await pressKey(
-                component.getByText(firstItemText),
-                {
-                    key: 'Escape',
-                    keyCode: 27
-                }
-            );
-        });
-
-        it('then it collapses', () => {
-            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
-        });
-
-        it('then it emits the marko collapse event', () => {
-            expect(component.emitted('filter-menu-button-collapse')).to.have.property('length', 1);
-        });
-    });
-
-    describe('when the escape key is pressed from the button', () => {
-        beforeEach(async() => {
-            await pressKey(component.getByRole('button'), {
-                key: 'Escape',
-                keyCode: 27
-            });
-        });
-
-        it('then it collapses', () => {
-            expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
-        });
-
-        it('then it emits the marko collapse event', () => {
-            expect(component.emitted('filter-menu-button-collapse')).to.have.property('length', 1);
-        });
-    });
-});
-
-describe('given the menu is in the expanded state with radio items', () => {
-    const input = assign({ type: 'radio' }, mock.Basic_2Items);
-    let firstItem, secondItem;
-    beforeEach(async() => {
-        component = await render(template, input);
-        firstItem = component.getAllByRole('menuitemradio')[0];
-        secondItem = component.getAllByRole('menuitemradio')[1];
-    });
-
-    describe('when an item is clicked', () => {
-        beforeEach(async() => {
-            await fireEvent.click(firstItem);
-        });
-
-        it('then it emits the menu-change event with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-button-change');
-            expect(changeEvents).to.have.length(1);
-
-            const eventData = changeEvents[0][0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.checked).to.deep.equal([0]);
-        });
-
-        it('then the item is selected', () => {
-            expect(firstItem).to.have.attr('aria-checked', 'true');
-        });
-    });
-
-    describe('when an action button is pressed on an item', () => {
-        beforeEach(async() => {
-            await pressKey(firstItem, {
-                key: '(Space character)',
-                keyCode: 32
-            });
-        });
-
-        it('then it emits the menu-change event with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-button-change');
-            expect(changeEvents).to.have.length(1);
-
-            const eventData = changeEvents[0][0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.checked).to.deep.equal([0]);
-        });
-
-        it('then the item is selected', () => {
-            expect(firstItem).to.have.attr('aria-checked', 'true');
-        });
-    });
-
-    describe('when two items are clicked', () => {
-        beforeEach(async() => {
-            await fireEvent.click(firstItem);
-            await fireEvent.click(secondItem);
-        });
-
-        it('then it emits two menu-change events with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-button-change');
-            expect(changeEvents).to.have.length(2);
-
-            const firstEventData = changeEvents[0][0];
-            const secondEventData = changeEvents[1][0];
-            expect(firstEventData.index).to.equal(0);
-            expect(firstEventData.checked).to.deep.equal([0]);
-            expect(secondEventData.index).to.equal(1);
-            expect(secondEventData.checked).to.deep.equal([1]);
-        });
-
-        it('then the second item is selected', () => {
-            expect(firstItem).to.have.attr('aria-checked', 'false');
-            expect(secondItem).to.have.attr('aria-checked', 'true');
-        });
-    });
-
-    describe('when an item is clicked multiple times', () => {
-        beforeEach(async() => {
-            await fireEvent.click(firstItem);
-            expect(firstItem).to.have.attr('aria-checked', 'true');
-            await fireEvent.click(firstItem);
-        });
-
-        it('then it emits only one menu-change event with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-button-change');
-            expect(changeEvents).to.have.length(1);
-
-            const eventData = changeEvents[0][0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.checked).to.deep.equal([0]);
-        });
-
-        it('then the item is selected', () => {
-            expect(firstItem).to.have.attr('aria-checked', 'true');
-        });
-    });
-});
-
-describe('given the menu is in the expanded state with checkbox items', () => {
-    const input = assign({ type: 'checkbox' }, mock.Basic_2Items);
-    let firstItem, secondItem;
-    beforeEach(async() => {
-        component = await render(template, input);
-        firstItem = component.getAllByRole('menuitemcheckbox')[0];
-        secondItem = component.getAllByRole('menuitemcheckbox')[1];
-    });
-
-    describe('when two items are clicked', () => {
-        beforeEach(async() => {
-            await fireEvent.click(firstItem);
-            await fireEvent.click(secondItem);
-        });
-
-        it('then it emits two menu-change events with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-button-change');
-            expect(changeEvents).to.have.length(2);
-
-            const firstEventData = changeEvents[0][0];
-            const secondEventData = changeEvents[1][0];
-            expect(firstEventData.index).to.equal(0);
-            expect(firstEventData.checked).to.deep.equal([0]);
-            expect(secondEventData.index).to.equal(1);
-            expect(secondEventData.checked).to.deep.equal([0, 1]);
-        });
-
-        it('then both items are selected', () => {
-            expect(firstItem).to.have.attr('aria-checked', 'true');
-            expect(secondItem).to.have.attr('aria-checked', 'true');
-        });
-    });
-
-    describe('when an item is checked and then unchecked', () => {
-        beforeEach(async() => {
-            await fireEvent.click(firstItem);
-            await fireEvent.click(firstItem);
-        });
-
-        it('then it emits the menu-change events with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-button-change');
-            expect(changeEvents).to.have.length(2);
-
-            const firstEventData = changeEvents[0][0];
-            const secondEventData = changeEvents[1][0];
-            expect(firstEventData.index).to.equal(0);
-            expect(firstEventData.checked).to.deep.equal([0]);
-            expect(secondEventData.index).to.equal(0);
-            expect(secondEventData.checked).to.deep.equal([]);
-        });
-
-        it('then the item is unchecked', () => {
-            expect(firstItem).to.have.attr('aria-checked', 'false');
         });
     });
 });

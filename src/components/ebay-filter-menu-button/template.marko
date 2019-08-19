@@ -49,10 +49,10 @@
             </for>
         </div>
         <button
-            if(data.footerButton)
+            if(data.footerText)
             type="button"
             class="filter-menu-button__footer"
             w-onclick="handleFooterButtonClick"
-            w-body=data.footerButton.renderBody/>
+        >${data.footerText}</button>
     </div>
 </span>

@@ -10,7 +10,8 @@ module.exports = require('marko-widgets').defineComponent({
     getInitialState(input) {
         return assign({}, input, {
             pressed: input.pressed || false,
-            expanded: false
+            expanded: false,
+            items: (input.items || []).map(item => assign({}, item))
         });
     },
     onRender(event) {
@@ -94,7 +95,7 @@ module.exports = require('marko-widgets').defineComponent({
             default:
                 this.emit(`filter-menu-button-${eventType}`, {
                     el: itemEl,
-                    checkedItems: this.getCheckedItems()
+                    checked: this.getCheckedItems()
                 });
                 break;
         }

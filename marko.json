@@ -180,10 +180,10 @@
   },
   "<ebay-filter-menu-button>": {
     "renderer": "./src/components/ebay-filter-menu-button/index.js",
-    "transformer": "./src/components/ebay-filter-menu-button/transformer.js",
     "@*": "expression",
     "@html-attrbibutes": "expression",
     "@text": "string",
+    "@footer-text": "string",
     "@class": "string",
     "@style": "string",
     "@disabled": "boolean",
