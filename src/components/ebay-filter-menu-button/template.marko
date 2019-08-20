@@ -25,34 +25,41 @@
         </span>
     </button>
     <div class="filter-menu-button__menu">
-        <div class="filter-menu-button__items" role="menu">
-            <for(item in data.items)>
-                <div
-                    class=["filter-menu-button__item", item.class]
-                    style=item.style
-                    role="menuitemcheckbox"
-                    aria-checked=(item.checked ? "true" : "false" )
-                    data-value=item.value
-                    w-onclick="handleItemClick"
-                    w-onkeydown="handleItemKeydown"
-                    ${processHtmlAttributes(item)}>
-                    <span class="filter-menu-button__status--inline">
-                        <if(item.checked)>
-                            <ebay-icon type="inline" name="checkbox-checked" />
+        <form body-only-if(data.variant !== 'form') name=data.formName action=data.formAction w-on-submit="handleFormSubmit">
+            <div class="filter-menu-button__items" role="menu">
+                <for(item in data.items)>
+                    <div
+                        class=["filter-menu-button__item", item.class]
+                        style=item.style
+                        role="menuitemcheckbox"
+                        aria-checked=(item.checked ? "true" : "false" )
+                        data-value=item.value
+                        w-onclick="handleItemClick"
+                        w-onkeydown="handleItemKeydown"
+                        ${processHtmlAttributes(item)}>
+                        <if(data.variant === 'form')>
+                            <ebay-checkbox checked=item.checked/>
                         </if>
                         <else>
-                            <ebay-icon type="inline" name="checkbox-unchecked" />
+                            <span class="filter-menu-button__status--inline">
+                                <if(item.checked)>
+                                    <ebay-icon type="inline" name="checkbox-checked" />
+                                </if>
+                                <else>
+                                    <ebay-icon type="inline" name="checkbox-unchecked" />
+                                </else>
+                            </span>
                         </else>
-                    </span>
-                    <span class="filter-menu-button__text" w-body=item.renderBody />
-                </div>
-            </for>
-        </div>
-        <button
-            if(data.footerText)
-            type="button"
-            class="filter-menu-button__footer"
-            w-onclick="handleFooterButtonClick"
-        >${data.footerText}</button>
+                        <span class="filter-menu-button__text" w-body=item.renderBody />
+                    </div>
+                </for>
+            </div>
+            <button
+                if(data.footerText)
+                type=(data.variant === 'form'? "submit": "button")
+                class="filter-menu-button__footer"
+                w-onclick="handleFooterButtonClick"
+            >${data.footerText}</button>
+        </form>
     </div>
 </span>

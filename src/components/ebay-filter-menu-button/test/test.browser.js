@@ -134,7 +134,7 @@ describe('given the menu is in the expanded state', () => {
 
             const [[eventArg]] = selectEvents;
             expect(eventArg).has.property('el').with.text(firstItemText);
-            expect(eventArg).has.property('checked').to.deep.equal([{ index: 0, value: 'item 0' }]);
+            expect(eventArg).has.property('checked').to.deep.equal(['item 0']);
         });
     });
 
@@ -172,7 +172,7 @@ describe('given the menu is in the expanded state', () => {
 
             const firstEventData = changeEvents[0][0];
             const secondEventData = changeEvents[1][0];
-            expect(firstEventData).has.property('checked').to.deep.equal([{ index: 0, value: 'item 0' }]);
+            expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
             expect(secondEventData).has.property('checked').to.deep.equal([]);
         });
 
@@ -195,7 +195,7 @@ describe('given the menu is in the expanded state', () => {
 
             const firstEventData = changeEvents[0][0];
             expect(firstEventData).has.property('el').with.text(firstItemText);
-            expect(firstEventData).has.property('checked').to.deep.equal([{ index: 0, value: 'item 0' }]);
+            expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
         });
     });
 

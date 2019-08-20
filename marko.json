@@ -182,12 +182,15 @@
     "renderer": "./src/components/ebay-filter-menu-button/index.js",
     "@*": "expression",
     "@html-attrbibutes": "expression",
+    "@variant": "string",
     "@text": "string",
     "@footer-text": "string",
     "@class": "string",
     "@style": "string",
     "@disabled": "boolean",
     "@pressed": "boolean",
+    "@form-name": "string",
+    "@form-action": "string",
     "@a11y-text": "string",
     "@items <item>[]": {
       "@*": "expression",
@@ -202,9 +205,6 @@
     }
   },
   "<ebay-filter-menu-button-item>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
-  },
-  "<ebay-filter-menu-button-footer>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-icon>": {

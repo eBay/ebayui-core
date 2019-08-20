@@ -54,10 +54,7 @@ module.exports = require('marko-widgets').defineComponent({
     getCheckedItems() {
         return this.state.items
             .filter(item => item.checked)
-            .map((item, i) => ({
-                index: i,
-                value: item.value
-            }));
+            .map(item => item.value);
     },
     handleItemClick(e, itemEl) {
         this.setCheckedItem(this.getItemElementIndex(itemEl), itemEl);
@@ -68,34 +65,46 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     handleFooterButtonClick() {
-        this.emitComponentEvent('footer-click');
-        this.setState('expanded', false);
-        this.buttonEl.setAttribute('aria-expanded', false);
-        this.buttonEl.setAttribute('aria-pressed', (this.getCheckedItems().length > 0));
+        if (this.state.variant !== 'form') {
+            this.emitComponentEvent('footer-click');
+            this.setState('expanded', false);
+            this.buttonEl.setAttribute('aria-expanded', false);
+            this.buttonEl.setAttribute('aria-pressed', (this.getCheckedItems().length > 0));
+        }
     },
-    handleExpand() {
+    handleFormSubmit(originalEvent) {
+        this.emitComponentEvent('form-submit', null, originalEvent);
+    },
+    handleExpand(originalEvent) {
         scrollKeyPreventer.add(this.contentEl);
-        this.emitComponentEvent('expand');
+        this.emitComponentEvent('expand', null, originalEvent);
     },
-    handleCollapse() {
+    handleCollapse(originalEvent) {
         scrollKeyPreventer.remove(this.contentEl);
-        this.emitComponentEvent('collapse');
+        this.emitComponentEvent('collapse', null, originalEvent);
     },
     getItemElementIndex(itemEl) {
         return Array.prototype.slice.call(itemEl.parentNode.children).indexOf(itemEl);
     },
-    emitComponentEvent(eventType, itemEl) {
+    emitComponentEvent(eventType, itemEl, originalEvent) {
         switch (eventType) {
             case 'expand':
-                this.emit(`filter-menu-button-${eventType}`, {});
+                this.emit(`filter-menu-button-${eventType}`, { originalEvent });
                 break;
+            case 'form-submit':
             case 'collapse':
+                this.emit(`filter-menu-button-${eventType}`, {
+                    checked: this.getCheckedItems(),
+                    originalEvent
+                });
+                break;
             case 'change':
             case 'footer-click':
             default:
                 this.emit(`filter-menu-button-${eventType}`, {
                     el: itemEl,
-                    checked: this.getCheckedItems()
+                    checked: this.getCheckedItems(),
+                    originalEvent
                 });
                 break;
         }
