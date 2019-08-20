@@ -89,7 +89,7 @@ module.exports = require('marko-widgets').defineComponent({
     emitComponentEvent(eventType, itemEl, originalEvent) {
         switch (eventType) {
             case 'expand':
-                this.emit(`filter-menu-button-${eventType}`, { originalEvent });
+                this.emit(`filter-menu-button-${eventType}`);
                 break;
             case 'form-submit':
             case 'collapse':

@@ -199,9 +199,6 @@
       "@style": "string",
       "@checked": "boolean",
       "@value": "string"
-    },
-    "@footerButton <footer>": {
-      "@*": "expression"
     }
   },
   "<ebay-filter-menu-button-item>": {
