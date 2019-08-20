@@ -19,7 +19,8 @@
         aria-expanded=String(data.expanded)
         aria-haspopup="true"
         aria-label=data.a11yText
-        aria-pressed=(checkedItems.length > 0 && !data.footerButton && "true")>
+        aria-pressed=(checkedItems.length > 0 && !data.footerButton && "true")
+        w-onkeydown="handleButtonKeydown">
         <span class="filter-menu-button__button-cell">
             <span class="filter-menu-button__button-text">${data.text}</span>
             <ebay-icon type="inline" name="chevron-down" />

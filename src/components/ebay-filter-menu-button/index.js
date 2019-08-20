@@ -58,12 +58,21 @@ module.exports = require('marko-widgets').defineComponent({
             .filter(item => item.checked)
             .map(item => item.value);
     },
+    handleButtonKeydown(e) {
+        eventUtils.handleEscapeKeydown(e, () => {
+            this.buttonEl.setAttribute('aria-expanded', false);
+        });
+    },
     handleItemClick(e, itemEl) {
         this.setCheckedItem(this.getItemElementIndex(itemEl), itemEl);
     },
     handleItemKeydown(e, itemEl) {
         eventUtils.handleActionKeydown(e, () => {
             this.setCheckedItem(this.getItemElementIndex(itemEl), itemEl);
+        });
+
+        eventUtils.handleEscapeKeydown(e, () => {
+            this.buttonEl.setAttribute('aria-expanded', false);
         });
     },
     handleFooterButtonClick() {
