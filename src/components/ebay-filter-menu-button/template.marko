@@ -2,6 +2,7 @@
     var processHtmlAttributes = require("../../common/html-attributes");
 </script>
 
+<var isForm = data.variant === 'form'/>
 <var checkedItems = (data.items && data.items.filter(function(item){ return item.checked })) || []/>
 
 <span
@@ -25,23 +26,24 @@
         </span>
     </button>
     <div class="filter-menu-button__menu">
-        <form body-only-if(data.variant !== 'form') name=data.formName action=data.formAction w-on-submit="handleFormSubmit">
+        <form body-only-if(!isForm) name=data.formName action=data.formAction w-on-submit="handleFormSubmit">
             <div class="filter-menu-button__items" role="menu">
                 <for(item in data.items)>
-                    <div
+                    <${isForm ? "label" : "div"}
                         class=["filter-menu-button__item", item.class]
                         style=item.style
                         role="menuitemcheckbox"
                         aria-checked=(item.checked ? "true" : "false" )
                         data-value=item.value
+                        for=(isForm && widget.elId("checkbox"))
                         w-onclick="handleItemClick"
                         w-onkeydown="handleItemKeydown"
                         ${processHtmlAttributes(item)}>
-                        <if(data.variant === 'form')>
-                            <ebay-checkbox checked=item.checked/>
+                        <if(isForm)>
+                            <ebay-checkbox w-id="checkbox" checked=item.checked/>
                         </if>
                         <else>
-                            <span class="filter-menu-button__status--inline">
+                            <span class="filter-menu-button__status">
                                 <if(item.checked)>
                                     <ebay-icon type="inline" name="checkbox-checked" />
                                 </if>
@@ -51,7 +53,7 @@
                             </span>
                         </else>
                         <span class="filter-menu-button__text" w-body=item.renderBody />
-                    </div>
+                    </>
                 </for>
             </div>
             <button
