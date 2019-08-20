@@ -192,6 +192,7 @@
     "@form-name": "string",
     "@form-action": "string",
     "@a11y-text": "string",
+    "@a11y-footer-text": "string",
     "@items <item>[]": {
       "@*": "expression",
       "@html-attributes": "expression",

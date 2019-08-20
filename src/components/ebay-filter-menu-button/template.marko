@@ -27,7 +27,7 @@
     </button>
     <div class="filter-menu-button__menu">
         <form body-only-if(!isForm) name=data.formName action=data.formAction w-on-submit="handleFormSubmit">
-            <div class="filter-menu-button__items" role="menu">
+            <div class="filter-menu-button__items" role=(!isForm && "menu")>
                 <for(item in data.items)>
                     <${isForm ? "label" : "div"}
                         class=["filter-menu-button__item", item.class]
@@ -59,8 +59,9 @@
             <button
                 if(data.footerText)
                 type=(data.variant === 'form'? "submit": "button")
+                aria-label=data.a11yFooterText
                 class="filter-menu-button__footer"
-                w-onclick="handleFooterButtonClick"
+                w-onclick=(isForm ? null : "handleFooterButtonClick")
             >${data.footerText}</button>
         </form>
     </div>

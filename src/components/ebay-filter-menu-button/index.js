@@ -29,11 +29,13 @@ module.exports = require('marko-widgets').defineComponent({
                 alwaysDoFocusManagement: true
             });
 
-            // FIXME: should be outside of firstRender, but only when itemEls changes
-            this.rovingTabindex = rovingTabindex.createLinear(this.contentEl.querySelector('[role="menu"]'), 'div', {
-                index: 0,
-                autoReset: 0
-            });
+            if (this.state.variant !== 'form') {
+                // FIXME: should be outside of firstRender, but only when itemEls changes
+                this.rovingTabindex = rovingTabindex.createLinear(
+                    this.contentEl.querySelector('[role="menu"]'), 'div',
+                    { index: 0, autoReset: 0 }
+                );
+            }
         }
     },
     update_expanded(expanded) { // eslint-disable-line camelcase
@@ -65,12 +67,10 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     handleFooterButtonClick() {
-        if (this.state.variant !== 'form') {
-            this.emitComponentEvent('footer-click');
-            this.setState('expanded', false);
-            this.buttonEl.setAttribute('aria-expanded', false);
-            this.buttonEl.setAttribute('aria-pressed', (this.getCheckedItems().length > 0));
-        }
+        this.emitComponentEvent('footer-click');
+        this.setState('expanded', false);
+        this.buttonEl.setAttribute('aria-expanded', false);
+        this.buttonEl.setAttribute('aria-pressed', (this.getCheckedItems().length > 0));
     },
     handleFormSubmit(originalEvent) {
         this.emitComponentEvent('form-submit', null, originalEvent);

@@ -20,7 +20,8 @@ Name | Type | Stateful | Description
 --- | --- | --- | ---
 `text` | String | Yes | button text
 `footer-text` | String | Yes | footer button text
-`a11y-text` | String | No | a11y text for the button, especially for cases without text
+`a11y-text` | String | No | a11y text for the button
+`a11y-footer-text` | String | No | a11y text for the footer button
 `pressed` | Boolean | Yes | whether button is pressed (default is `false`)
 `expanded` | Boolean | Yes | whether content is expanded (Note: not supported as initial attribute)
 `disabled` | Boolean | Yes | Will disable the entire dropdown (disables the ebay-button label) if set to true
