@@ -35,6 +35,8 @@ module.exports = require('marko-widgets').defineComponent({
     },
     handleFloatingLabelInit: forwardEvent('floating-label-init'),
     handleKeydown: forwardEvent('keydown'),
+    handleKeypress: forwardEvent('keypress'),
+    handleKeyup: forwardEvent('keyup'),
     handleChange: forwardEvent('change'),
     handleInput: forwardEvent('input'),
     handleFocus: forwardEvent('focus'),
