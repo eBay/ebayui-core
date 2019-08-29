@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "3.0.4",
+  "version": "4.0.0-4",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "installMarkoV3": "node scripts/install-no-save marko@^3 marko-widgets@^6 -D",
@@ -66,7 +66,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/runtime-corejs3": "^7.5.5",
     "@ebay/browserslist-config": "^1.0.0",
-    "@ebay/skin": "8.0.0",
+    "@ebay/skin": "9.0.0",
     "@lasso/marko-taglib": "^1.0.15",
     "@marko/testing-library": "^2.0.1",
     "async": "^3.0.1",
@@ -94,7 +94,7 @@
     "lasso-marko": "^2.4.7",
     "lintspaces-cli": "^0.7.1",
     "marko": "^4",
-    "marko-cli": "^7.0.13",
+    "marko-cli": "^7.0.14",
     "marko-prettyprint": "^1.5.2",
     "marko-widgets": "^7",
     "mocha": "^6.1.4",
@@ -109,7 +109,7 @@
     "wdio-browserstack-service": "^0.1.18"
   },
   "peerDependencies": {
-    "@ebay/skin": "8.0.0",
+    "@ebay/skin": "9.0.0",
     "marko": "^3 || ^4",
     "marko-widgets": "^6 || ^7"
   },

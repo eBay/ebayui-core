@@ -3,7 +3,7 @@
     var processHtmlAttributes = require("../../common/html-attributes");
 </script>
 
-<var size=(data.size || "medium")/>
+<var size=data.size/>
 <var priority=(data.priority || "secondary")/>
 <var variant=(!data.variant && data.href ? "fake" : data.variant)/>
 <var isIconVariant=(variant === 'icon')/>
@@ -11,7 +11,9 @@
 <var isBadged=Boolean(data.badgeNumber && isIconVariant)/>
 <var noText=(isIconVariant || isBadged || (isExpandVariant && data.noText))/>
 <var baseClass=(variant ? (variant === 'fake-link' ? variant : "${variant}-btn") : "btn")/>
-<var sizeClass="${baseClass}--${size}"/>
+<var sizeClass=(size && "${baseClass}--${size}")/>
+<var truncateClass=(data.truncate && (sizeClass ? "${sizeClass}-truncated" : "${baseClass}--truncated"))/>
+<var fixedHeightClass=(data.fixedHeight && (sizeClass ? "${sizeClass}-fixed-height" : "${baseClass}--fixed-height"))/>
 <var htmlAttributes=processHtmlAttributes(data)/>
 <var tag=(data.href ? "a" : "button")/>
 
@@ -27,10 +29,10 @@
         noText && "${baseClass}--no-text",
         isBadged && "${baseClass}--badged",
         data.fluid && "${baseClass}--fluid",
-        data.truncate && "${sizeClass}-truncated",
-        data.fixedHeight && "${sizeClass}-fixed-height",
-        !data.fixedHeight && !data.truncate && sizeClass,
-        (priority === "secondary" || priority === "primary") && "${baseClass}--${priority}"
+        truncateClass,
+        fixedHeightClass,
+        !truncateClass && !fixedHeightClass && sizeClass,
+        (priority === "secondary" || priority === "primary" || priority === "delete") && "${baseClass}--${priority}"
     ]
     style=data.style
     href=data.href

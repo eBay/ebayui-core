@@ -794,10 +794,10 @@
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.1.tgz#deccafb04101fa52507b8f2204161c8ed5e70375"
   integrity sha512-5i4XOsKwoCYomZ9cF7H5OBroeHoYUriylg55mJwTARMbQVv21RnYKF/Bwi86ZlHz4S6YepxlaQorsxR6T2xv6w==
 
-"@ebay/skin@8.0.0":
-  version "8.0.0"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-8.0.0.tgz#5a446423c8ec0c118a94893b82b9888fdf846a70"
-  integrity sha512-F069jWy6HXkHwjrEtt7u5nLalXKUB6qg1njpQ7TWmuJ69psCfv+jMz4krWvOEvB8z4XF8es2gZbjCJxvW5CMaQ==
+"@ebay/skin@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-9.0.0.tgz#ae0310910388db929b04d902ec5ea510a84a4eee"
+  integrity sha512-IbxASBJCVSCVZhzhBkGKif8/aLuXdSZOF//4fYtF4p7yXxLbenMInDMVkzeNCu5Wfyg2WcgfUSR4UfZhCzsl0w==
 
 "@jest/types@^24.8.0":
   version "24.8.0"
@@ -938,10 +938,10 @@
     webpack-dev-server "^3.1.14"
     webpack-inject-plugin "^1.1.0"
 
-"@marko/test@^6.0.11":
-  version "6.0.11"
-  resolved "https://registry.npmjs.org/@marko/test/-/test-6.0.11.tgz#941044aa6cb210246682b9b7bb1edf998fcc7fbf"
-  integrity sha512-G9B0uOJyHfvFPLrp4EuZ3g/0PfQQonUTNF10JsJUSl4TPZBYXDfA3Na6oK7jk2Un5vDFnX5pgQ0JQcN1+iBT0w==
+"@marko/test@^6.0.12":
+  version "6.0.12"
+  resolved "https://registry.npmjs.org/@marko/test/-/test-6.0.12.tgz#915034bceeb9554c02bf32204cee076310de73c5"
+  integrity sha512-ebNCph1eRcsbJmCofHxgtUKvC0bnbHZ9xEo8KcYdp1ugv8Qc+SWPiew/udGcNpn8skstG3aRBlZsinYAflo8tQ==
   dependencies:
     "@lasso/marko-taglib" "^1.0.13"
     "@wdio/cli" "^5.8.4"
@@ -8937,10 +8937,10 @@ markdown-table@^1.1.0:
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-1.1.3.tgz#9fcb69bcfdb8717bfd0398c6ec2d93036ef8de60"
   integrity sha512-1RUZVgQlpJSPWYbFSpmudq5nHY1doEIv89gBtF0s4gW1GF2XorxcA/70M5vq7rLv0a6mhOUccRsqkwhwLCIQ2Q==
 
-marko-cli@^7.0.13:
-  version "7.0.13"
-  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-7.0.13.tgz#b3a584439597d5eb1deeb0d0b5d87c917cd3ca17"
-  integrity sha512-CziQ5jyyn8hLnbE0T+s1tPF3jF3b1uKr5IjGiM65YJgs3f2vibhGf/EfTExZVpxqsSLFwDtGow4j77m93V0LTQ==
+marko-cli@^7.0.14:
+  version "7.0.14"
+  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-7.0.14.tgz#5d7cf16e4211e02f428174d4653536339bece136"
+  integrity sha512-OoUdy6ZfWBwwN8+XPbwCcdmK5aFRci4BhnIEQpkiF04o791vCEAdh3rKURoZ3J6xRfNTGdhbeK4q3xrDyAmjoA==
   dependencies:
     "@babel/runtime" "^7.2.0"
     "@marko/build" "^1.0.3"
@@ -8949,7 +8949,7 @@ marko-cli@^7.0.13:
     "@marko/migrate" "^5.1.0"
     "@marko/prettyprint" "^2.1.2"
     "@marko/serve" "^1.0.3"
-    "@marko/test" "^6.0.11"
+    "@marko/test" "^6.0.12"
     app-root-dir "^1.0.2"
     argly "^1.2.0"
     complain "^1.3.0"
