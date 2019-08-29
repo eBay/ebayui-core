@@ -19,51 +19,31 @@
         aria-expanded=String(data.expanded)
         aria-haspopup="true"
         aria-label=data.a11yText
-        aria-pressed=(checkedItems.length > 0 && !data.footerButton && "true")
-        w-onkeydown="handleButtonKeydown">
+        aria-pressed=(checkedItems.length > 0 && !data.footerButton && "true")>
         <span class="filter-menu-button__button-cell">
             <span class="filter-menu-button__button-text">${data.text}</span>
             <ebay-icon type="inline" name="chevron-down" />
         </span>
     </button>
-    <div class="filter-menu-button__menu">
-        <form body-only-if(!isForm) name=data.formName action=data.formAction w-on-submit="handleFormSubmit">
-            <div class="filter-menu-button__items" role=(!isForm && "menu")>
-                <for(item in data.items)>
-                    <${isForm ? "label" : "div"}
-                        class=["filter-menu-button__item", item.class]
-                        style=item.style
-                        role="menuitemcheckbox"
-                        aria-checked=(item.checked ? "true" : "false" )
-                        data-value=item.value
-                        for=(isForm && widget.elId("checkbox"))
-                        w-onclick="handleItemClick"
-                        w-onkeydown="handleItemKeydown"
-                        ${processHtmlAttributes(item)}>
-                        <if(isForm)>
-                            <ebay-checkbox w-id="checkbox" checked=item.checked/>
-                        </if>
-                        <else>
-                            <span class="filter-menu-button__status">
-                                <if(item.checked)>
-                                    <ebay-icon type="inline" name="checkbox-checked" />
-                                </if>
-                                <else>
-                                    <ebay-icon type="inline" name="checkbox-unchecked" />
-                                </else>
-                            </span>
-                        </else>
-                        <span class="filter-menu-button__text" w-body=item.renderBody />
-                    </>
-                </for>
-            </div>
-            <button
-                if(data.footerText)
-                type=(data.variant === 'form'? "submit": "button")
-                aria-label=data.a11yFooterText
-                class="filter-menu-button__footer"
-                w-onclick=(isForm ? null : "handleFooterButtonClick")
-            >${data.footerText}</button>
-        </form>
-    </div>
+    <ebay-filter-menu
+        w-id="menu"
+        with-button=true
+        variant=data.variant
+        form-name=data.formName
+        form-action=data.formAction
+        footer-text=data.footerText
+        w-on-filter-menu-keydown="handleButtonKeydown"
+        w-on-filter-menu-change="handleMenuChange"
+        w-on-filter-menu-form-submit="handleFormSubmit"
+        w-on-filter-menu-footer-click="handleFooterButtonClick">
+        <for(item in data.items)>
+            <ebay-filter-menu-item
+                style=item.style
+                class=item.class
+                value=item.value
+                checked=item.checked
+                variant=data.variant
+                w-body=item.renderBody/>
+        </for>
+    </ebay-filter-menu>
 </span>
