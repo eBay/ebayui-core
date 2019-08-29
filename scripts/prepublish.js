@@ -5,7 +5,7 @@ const rootDir = path.join(__dirname, '..');
 const componentInputDir = path.join(rootDir, 'src/components');
 
 // run babel
-execSync('babel src --out-dir dist --copy-files --ignore test/,*.marko.js');
+execSync('babel src --out-dir dist --copy-files');
 
 // create top level browser.json files to map to nested ones
 fs

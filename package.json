@@ -43,7 +43,9 @@
     "extends @ebay/browserslist-config"
   ],
   "files": [
-    "dist/",
+    "dist",
+    "!*.marko.js",
+    "!**/test*",
     "marko.json",
     "yarn.lock",
     "*.browser.json",
