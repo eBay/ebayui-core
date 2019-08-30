@@ -186,7 +186,7 @@
     "@footer-text": "string",
     "@class": "string",
     "@style": "string",
-    "@with-button": "boolean",
+    "@class-prefix": "string",
     "@form-name": "string",
     "@form-action": "string",
     "@form-method": "string",

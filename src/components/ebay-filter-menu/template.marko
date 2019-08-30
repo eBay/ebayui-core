@@ -2,17 +2,17 @@
     var processHtmlAttributes = require("../../common/html-attributes");
 </script>
 
-<var baseClass = data.withButton ? 'filter-menu-button': 'filter-menu'/>
-<var outerClass = data.withButton ? `${baseClass}__menu`: 'filter-menu'/>
+<var baseClass = data.classPrefix ? data.classPrefix : 'filter-menu'/>
+<var outerClass = data.classPrefix ? `${baseClass}__menu`: 'filter-menu'/>
 <var isForm = data.variant === 'form'/>
 <var checkedItems = (data.items && data.items.filter(function(item){ return item.checked })) || []/>
 
 <span
     w-bind
-    class=[(data.withButton ? "${baseClass}__menu": baseClass), data.class]
+    class=[(data.classPrefix ? "${baseClass}__menu": baseClass), data.class]
     style=data.style
     ${processHtmlAttributes(data)}>
-    <div class="${baseClass}__menu" body-only-if(data.withButton)>
+    <div class="${baseClass}__menu" body-only-if(data.classPrefix)>
         <form
             body-only-if(!isForm)
             name=data.formName

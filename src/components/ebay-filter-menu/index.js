@@ -16,7 +16,7 @@ module.exports = require('marko-widgets').defineComponent({
         const { firstRender } = e;
         this.contentEl = this.el.querySelector('.filter-menu__menu, .filter-menu-button__menu');
 
-        if (this.state.withButton) {
+        if (this.state.classPrefix) {
             this.contentEl = this.el;
         }
 
