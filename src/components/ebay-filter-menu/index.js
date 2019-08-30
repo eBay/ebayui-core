@@ -11,26 +11,28 @@ module.exports = require('marko-widgets').defineComponent({
             items: (input.items || []).map(item => assign({}, item))
         });
     },
-    onRender(event) {
+    onRender() {
         this.contentEl = this.el.querySelector('.filter-menu__menu, .filter-menu-button__menu');
 
         if (this.state.withButton) {
             this.contentEl = this.el;
         }
 
-        if (event.firstRender) {
-            if (this.state.variant !== 'form') {
-                // FIXME: should be outside of firstRender, but only when itemEls changes
-                this.rovingTabindex = rovingTabindex.createLinear(
-                    this.contentEl.querySelector('[role="menu"]'), 'div',
-                    { index: 0, autoReset: 0 }
-                );
+        if (this.state.variant !== 'form') {
+            this.rovingTabindex = rovingTabindex.createLinear(
+                this.contentEl.querySelector('[role="menu"]'), 'div',
+                { index: 0, autoReset: null }
+            );
 
-                scrollKeyPreventer.add(this.contentEl);
-            }
+            scrollKeyPreventer.add(this.contentEl);
         }
     },
+    onBeforeUpdate() {
+        this.rovingTabindex.destroy();
+        scrollKeyPreventer.remove(this.contentEl);
+    },
     onDestroy() {
+        this.rovingTabindex.destroy();
         scrollKeyPreventer.remove(this.contentEl);
     },
     setCheckedItem(itemIndex, itemEl) {
