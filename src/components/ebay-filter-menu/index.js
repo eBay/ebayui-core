@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
 const eventUtils = require('../../common/event-utils');
@@ -11,17 +12,22 @@ module.exports = require('marko-widgets').defineComponent({
             items: (input.items || []).map(item => assign({}, item))
         });
     },
-    onRender() {
+    onRender(e) {
+        const { firstRender } = e;
         this.contentEl = this.el.querySelector('.filter-menu__menu, .filter-menu-button__menu');
 
         if (this.state.withButton) {
             this.contentEl = this.el;
         }
 
+        if (firstRender) {
+            this.tabindexPosition = 0;
+        }
+
         if (this.state.variant !== 'form') {
             this.rovingTabindex = rovingTabindex.createLinear(
                 this.contentEl.querySelector('[role="menu"]'), 'div',
-                { index: 0, autoReset: null }
+                { index: this.tabindexPosition, autoReset: null }
             );
 
             scrollKeyPreventer.add(this.contentEl);
@@ -36,6 +42,9 @@ module.exports = require('marko-widgets').defineComponent({
         scrollKeyPreventer.remove(this.contentEl);
     },
     setCheckedItem(itemIndex, itemEl) {
+        const currentTabindex = findIndex(this.rovingTabindex.filteredItems, (el) => el.tabIndex === 0);
+        this.tabindexPosition = currentTabindex;
+
         const item = this.state.items[itemIndex];
 
         if (item) {
