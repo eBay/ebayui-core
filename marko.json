@@ -190,6 +190,7 @@
     "@with-button": "boolean",
     "@form-name": "string",
     "@form-action": "string",
+    "@form-method": "string",
     "@a11y-footer-text": "string",
     "@items <item>[]": {
       "@*": "expression",
@@ -216,6 +217,7 @@
     "@pressed": "boolean",
     "@form-name": "string",
     "@form-action": "string",
+    "@form-method": "string",
     "@a11y-text": "string",
     "@a11y-footer-text": "string",
     "@items <item>[]": {

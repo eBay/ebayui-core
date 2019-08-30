@@ -69,7 +69,6 @@ module.exports = require('marko-widgets').defineComponent({
     },
     handleFormSubmit(e) {
         this.emitComponentEvent('form-submit', null, e.originalEvent);
-        e.originalEvent.preventDefault();
     },
     handleExpand(e) {
         this.emitComponentEvent('expand', null, e.originalEvent);
