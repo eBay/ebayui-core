@@ -54,11 +54,13 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     handleMenuChange(e) {
-        this.setCheckedItem(this.getItemElementIndex(e.el), e.el);
+        const { el } = e;
+        this.setCheckedItem(this.getItemElementIndex(el), el);
     },
     handleItemKeydown(e) {
-        eventUtils.handleActionKeydown(e.originalEvent, () => {
-            this.setCheckedItem(this.getItemElementIndex(e.el), e.el);
+        const { el, originalEvent } = e;
+        eventUtils.handleActionKeydown(originalEvent, () => {
+            this.setCheckedItem(this.getItemElementIndex(el), el);
         });
     },
     handleFooterButtonClick() {
@@ -68,13 +70,16 @@ module.exports = require('marko-widgets').defineComponent({
         this.buttonEl.setAttribute('aria-pressed', (this.getCheckedItems().length > 0));
     },
     handleFormSubmit(e) {
-        this.emitComponentEvent('form-submit', null, e.originalEvent);
+        const { originalEvent } = e;
+        this.emitComponentEvent('form-submit', null, originalEvent);
     },
     handleExpand(e) {
-        this.emitComponentEvent('expand', null, e.originalEvent);
+        const { originalEvent } = e;
+        this.emitComponentEvent('expand', null, originalEvent);
     },
     handleCollapse(e) {
-        this.emitComponentEvent('collapse', null, e.originalEvent);
+        const { originalEvent } = e;
+        this.emitComponentEvent('collapse', null, originalEvent);
     },
     getItemElementIndex(itemEl) {
         const parentNode = itemEl.parentNode || itemEl.el.parentNode;
