@@ -183,7 +183,6 @@
     "@*": "expression",
     "@html-attrbibutes": "expression",
     "@variant": "string",
-    "@text": "string",
     "@footer-text": "string",
     "@class": "string",
     "@style": "string",

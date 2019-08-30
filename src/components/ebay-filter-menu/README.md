@@ -7,7 +7,7 @@ The `ebay-filter-menu` component is used as a checkbox menu specificially styled
 ### ebay-filter-menu Usage
 
 ```marko
-<ebay-filter-menu text="text">
+<ebay-filter-menu>
     <ebay-filter-menu-item value="item 1">item 1</ebay-filter-menu-item>
     <ebay-filter-menu-item value="item 2">item 2</ebay-filter-menu-item>
     <ebay-filter-menu-item value="item 3">item 3</ebay-filter-menu-item>

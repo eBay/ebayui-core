@@ -117,8 +117,6 @@ describe('given the menu is in the default state', () => {
             await fireEvent.click(component.getByText(thirdItemText));
         });
 
-        it('then the new item is selected or something');
-
         it('then it uses the new input in event data', () => {
             const selectEvents = component.emitted('filter-menu-change');
             expect(selectEvents).has.length(1);
