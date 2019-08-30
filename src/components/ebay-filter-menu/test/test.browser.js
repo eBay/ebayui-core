@@ -47,8 +47,7 @@ describe('given the menu is in the default state', () => {
             const changeEvents = component.emitted('filter-menu-change');
             expect(changeEvents).to.have.length(2);
 
-            const firstEventData = changeEvents[0][0];
-            const secondEventData = changeEvents[1][0];
+            const [firstEventData, secondEventData] = changeEvents.flat();
             expect(firstEventData).has.property('el', firstItem);
             expect(secondEventData).has.property('el', secondItem);
         });
@@ -69,8 +68,7 @@ describe('given the menu is in the default state', () => {
             const changeEvents = component.emitted('filter-menu-change');
             expect(changeEvents).to.have.length(2);
 
-            const firstEventData = changeEvents[0][0];
-            const secondEventData = changeEvents[1][0];
+            const [firstEventData, secondEventData] = changeEvents.flat();
             expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
             expect(secondEventData).has.property('checked').to.deep.equal([]);
         });
@@ -92,7 +90,7 @@ describe('given the menu is in the default state', () => {
             const changeEvents = component.emitted('filter-menu-change');
             expect(changeEvents).to.have.length(1);
 
-            const firstEventData = changeEvents[0][0];
+            const [firstEventData] = changeEvents.flat();
             expect(firstEventData).has.property('el').with.text(firstItemText);
             expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
         });
