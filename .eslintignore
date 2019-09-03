@@ -1,3 +1,4 @@
 *.marko.js
 static/
 dist/
+docs/
