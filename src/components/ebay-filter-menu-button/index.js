@@ -1,7 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
 const Expander = require('makeup-expander');
-const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
-const rovingTabindex = require('makeup-roving-tabindex');
 const eventUtils = require('../../common/event-utils');
 const template = require('./template.marko');
 
@@ -28,14 +26,6 @@ module.exports = require('marko-widgets').defineComponent({
                 autoCollapse: true,
                 alwaysDoFocusManagement: true
             });
-
-            if (this.state.variant !== 'form') {
-                // FIXME: should be outside of firstRender, but only when itemEls changes
-                this.rovingTabindex = rovingTabindex.createLinear(
-                    this.contentEl.querySelector('[role="menu"]'), 'div',
-                    { index: 0, autoReset: 0 }
-                );
-            }
         }
     },
     update_expanded(expanded) { // eslint-disable-line camelcase
@@ -59,20 +49,18 @@ module.exports = require('marko-widgets').defineComponent({
             .map(item => item.value);
     },
     handleButtonKeydown(e) {
-        eventUtils.handleEscapeKeydown(e, () => {
+        eventUtils.handleEscapeKeydown(e.originalEvent, () => {
             this.buttonEl.setAttribute('aria-expanded', false);
         });
     },
-    handleItemClick(e, itemEl) {
-        this.setCheckedItem(this.getItemElementIndex(itemEl), itemEl);
+    handleMenuChange(e) {
+        const { el } = e;
+        this.setCheckedItem(this.getItemElementIndex(el), el);
     },
-    handleItemKeydown(e, itemEl) {
-        eventUtils.handleActionKeydown(e, () => {
-            this.setCheckedItem(this.getItemElementIndex(itemEl), itemEl);
-        });
-
-        eventUtils.handleEscapeKeydown(e, () => {
-            this.buttonEl.setAttribute('aria-expanded', false);
+    handleItemKeydown(e) {
+        const { el, originalEvent } = e;
+        eventUtils.handleActionKeydown(originalEvent, () => {
+            this.setCheckedItem(this.getItemElementIndex(el), el);
         });
     },
     handleFooterButtonClick() {
@@ -81,19 +69,21 @@ module.exports = require('marko-widgets').defineComponent({
         this.buttonEl.setAttribute('aria-expanded', false);
         this.buttonEl.setAttribute('aria-pressed', (this.getCheckedItems().length > 0));
     },
-    handleFormSubmit(originalEvent) {
+    handleFormSubmit(e) {
+        const { originalEvent } = e;
         this.emitComponentEvent('form-submit', null, originalEvent);
     },
-    handleExpand(originalEvent) {
-        scrollKeyPreventer.add(this.contentEl);
+    handleExpand(e) {
+        const { originalEvent } = e;
         this.emitComponentEvent('expand', null, originalEvent);
     },
-    handleCollapse(originalEvent) {
-        scrollKeyPreventer.remove(this.contentEl);
+    handleCollapse(e) {
+        const { originalEvent } = e;
         this.emitComponentEvent('collapse', null, originalEvent);
     },
     getItemElementIndex(itemEl) {
-        return Array.prototype.slice.call(itemEl.parentNode.children).indexOf(itemEl);
+        const parentNode = itemEl.parentNode || itemEl.el.parentNode;
+        return Array.prototype.slice.call(parentNode.children).indexOf(itemEl);
     },
     emitComponentEvent(eventType, itemEl, originalEvent) {
         switch (eventType) {
