@@ -24,6 +24,7 @@ Name | Type | Stateful | Description
 `form-name` | String | No | form's `name` attribute (used with `variant="form"`)
 `form-action` | String | No | form's `action` attribute (used with `variant="form"`)
 `form-method` | String | No | form's `method` attribute (used with `variant="form"`)
+`class-prefix` | String | No | "filter-menu" (default) / modifies the base prefix for all Skin classes in the menu
 
 ### ebay-filter-menu Events
 
