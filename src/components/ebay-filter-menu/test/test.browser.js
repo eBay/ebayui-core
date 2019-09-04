@@ -120,9 +120,7 @@ describe('given the menu is in the default state', () => {
             expect(selectEvents).has.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg)
-                .has.property('el')
-                .with.text(thirdItemText);
+            expect(eventArg).has.property('checked').to.deep.equal(['item 2']);
         });
     });
 });
