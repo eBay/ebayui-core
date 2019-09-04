@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const indexOf = require('core-js-pure/features/array/index-of');
 const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
@@ -14,12 +15,7 @@ module.exports = require('marko-widgets').defineComponent({
     },
     onRender(e) {
         const { firstRender } = e;
-        const baseClass = this.state.classPrefix || 'filter-menu';
-        this.contentEl = this.el.querySelector(`.${baseClass}__menu`);
-
-        if (this.state.classPrefix) {
-            this.contentEl = this.el;
-        }
+        this.contentEl = this.getEl('content') || this.el;
 
         if (firstRender) {
             this.tabindexPosition = 0;
@@ -27,7 +23,7 @@ module.exports = require('marko-widgets').defineComponent({
 
         if (this.state.variant !== 'form') {
             this.rovingTabindex = rovingTabindex.createLinear(
-                this.contentEl.querySelector('[role="menu"]'), 'div',
+                this.getEl('menu'), 'div',
                 { index: this.tabindexPosition, autoReset: null }
             );
 
@@ -42,25 +38,21 @@ module.exports = require('marko-widgets').defineComponent({
         this.rovingTabindex.destroy();
         scrollKeyPreventer.remove(this.contentEl);
     },
-    setCheckedItem(itemIndex, itemEl) {
-        const currentTabindex = findIndex(this.rovingTabindex.filteredItems, (el) => el.tabIndex === 0);
-        this.tabindexPosition = currentTabindex;
-
+    toggleItemChecked(itemEl) {
+        const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
         const item = this.state.items[itemIndex];
-
-        if (item) {
-            this.state.items[itemIndex].checked = !item.checked;
-            this.setStateDirty('items');
-            this.emitComponentEvent('change', itemEl);
-        }
+        item.checked = !item.checked;
+        this.setStateDirty('items');
+        this.emitComponentEvent('change', itemEl);
+        this.tabindexPosition = findIndex(this.rovingTabindex.filteredItems, el => el.tabIndex === 0);
     },
-    getCheckedItems() {
+    getCheckedValues() {
         return this.state.items
             .filter(item => item.checked)
             .map(item => item.value);
     },
-    handleItemClick(e, itemEl) {
-        this.setCheckedItem(this.getItemElementIndex(itemEl), itemEl);
+    handleItemClick(_, itemEl) {
+        this.toggleItemChecked(itemEl);
     },
     handleItemKeydown(e, itemEl) {
         eventUtils.handleEscapeKeydown(e, () => {
@@ -68,9 +60,7 @@ module.exports = require('marko-widgets').defineComponent({
         });
 
         if (this.state.variant !== 'form') {
-            eventUtils.handleActionKeydown(e, () => {
-                this.setCheckedItem(this.getItemElementIndex(itemEl), itemEl);
-            });
+            eventUtils.handleActionKeydown(e, () => this.toggleItemChecked(itemEl));
         }
     },
     handleFooterButtonClick(originalEvent) {
@@ -79,13 +69,10 @@ module.exports = require('marko-widgets').defineComponent({
     handleFormSubmit(originalEvent) {
         this.emitComponentEvent('form-submit', null, originalEvent);
     },
-    getItemElementIndex(itemEl) {
-        return Array.prototype.slice.call(itemEl.parentNode.children).indexOf(itemEl);
-    },
     emitComponentEvent(eventType, itemEl, originalEvent) {
         this.emit(`filter-menu-${eventType}`, {
             el: itemEl,
-            checked: this.getCheckedItems(),
+            checked: this.getCheckedValues(),
             originalEvent
         });
     }

@@ -938,10 +938,10 @@
     webpack-dev-server "^3.1.14"
     webpack-inject-plugin "^1.1.0"
 
-"@marko/test@^6.0.12":
-  version "6.0.12"
-  resolved "https://registry.npmjs.org/@marko/test/-/test-6.0.12.tgz#915034bceeb9554c02bf32204cee076310de73c5"
-  integrity sha512-ebNCph1eRcsbJmCofHxgtUKvC0bnbHZ9xEo8KcYdp1ugv8Qc+SWPiew/udGcNpn8skstG3aRBlZsinYAflo8tQ==
+"@marko/test@^6.0.14":
+  version "6.0.14"
+  resolved "https://registry.npmjs.org/@marko/test/-/test-6.0.14.tgz#0060cd6f04109c2b22615b2c4de0e1549a695264"
+  integrity sha512-y6YFO0OF7m1ICHhSVepP18KsaLfZOhENkGdjZrUura6ivjEd1akoZ+isJ0DAvQ7LGsxlCqCdic5mEm/47c3zsg==
   dependencies:
     "@lasso/marko-taglib" "^1.0.13"
     "@wdio/cli" "^5.8.4"
@@ -8937,10 +8937,10 @@ markdown-table@^1.1.0:
   resolved "https://registry.npmjs.org/markdown-table/-/markdown-table-1.1.3.tgz#9fcb69bcfdb8717bfd0398c6ec2d93036ef8de60"
   integrity sha512-1RUZVgQlpJSPWYbFSpmudq5nHY1doEIv89gBtF0s4gW1GF2XorxcA/70M5vq7rLv0a6mhOUccRsqkwhwLCIQ2Q==
 
-marko-cli@^7.0.14:
-  version "7.0.14"
-  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-7.0.14.tgz#5d7cf16e4211e02f428174d4653536339bece136"
-  integrity sha512-OoUdy6ZfWBwwN8+XPbwCcdmK5aFRci4BhnIEQpkiF04o791vCEAdh3rKURoZ3J6xRfNTGdhbeK4q3xrDyAmjoA==
+marko-cli@^7.0.16:
+  version "7.0.16"
+  resolved "https://registry.npmjs.org/marko-cli/-/marko-cli-7.0.16.tgz#e62539040bfc3969194b2644132bc997d2f9b807"
+  integrity sha512-npT044OD9Q068sZCWqEtYhe8zv+sv4ibB8N+0vCyaGZVOa8uXwrshFAWgcWGDXuCUTR1t5rQhKa4nPKWFZi5sg==
   dependencies:
     "@babel/runtime" "^7.2.0"
     "@marko/build" "^1.0.3"
@@ -8949,7 +8949,7 @@ marko-cli@^7.0.14:
     "@marko/migrate" "^5.1.0"
     "@marko/prettyprint" "^2.1.2"
     "@marko/serve" "^1.0.3"
-    "@marko/test" "^6.0.12"
+    "@marko/test" "^6.0.14"
     app-root-dir "^1.0.2"
     argly "^1.2.0"
     complain "^1.3.0"
@@ -9018,7 +9018,45 @@ marko@4.14.21:
     try-require "^1.2.1"
     warp10 "^2.0.1"
 
-marko@^4, marko@^4.10.0, marko@^4.12.3, marko@^4.15.2:
+marko@^4:
+  version "4.18.13"
+  resolved "https://registry.npmjs.org/marko/-/marko-4.18.13.tgz#3c108e46bd33d0d3e01bfa79619abf4a13f7d814"
+  integrity sha512-1sFI4yfbOXxY/48lgunZgpoiOd86ZGuO42bshBiZqlkmcumlznnHknbBPKtq+CLq+LTXL2apW/XlUSWqAe09Rw==
+  dependencies:
+    app-module-path "^2.2.0"
+    argly "^1.0.0"
+    browser-refresh-client "^1.0.0"
+    camelcase "^5.0.0"
+    char-props "~0.1.5"
+    complain "^1.6.0"
+    deresolve "^1.1.2"
+    escodegen "^1.8.1"
+    esprima "^4.0.0"
+    estraverse "^4.2.0"
+    events "^1.0.2"
+    events-light "^1.0.0"
+    he "^1.1.0"
+    htmljs-parser "^2.6.7"
+    lasso-caching-fs "^1.0.1"
+    lasso-modules-client "^2.0.4"
+    lasso-package-root "^1.0.1"
+    listener-tracker "^2.0.0"
+    minimatch "^3.0.2"
+    object-assign "^4.1.0"
+    property-handlers "^1.0.0"
+    raptor-json "^1.0.1"
+    raptor-polyfill "^1.0.0"
+    raptor-promises "^1.0.1"
+    raptor-regexp "^1.0.0"
+    raptor-util "^3.2.0"
+    resolve-from "^2.0.0"
+    shorthash "0.0.2"
+    simple-sha1 "^2.1.0"
+    strip-json-comments "^2.0.1"
+    try-require "^1.2.1"
+    warp10 "^2.0.1"
+
+marko@^4.10.0, marko@^4.12.3, marko@^4.15.2:
   version "4.18.10"
   resolved "https://registry.npmjs.org/marko/-/marko-4.18.10.tgz#02889b00a9dd5d12e064db720080951a3bc0c148"
   integrity sha512-X2pmJIOBZ/39D2fCQZYtWprIjvrLF+cpEK0vjzMVwxBh13tRCyUhwoqlQO84d8Xif+RMEuR3/9fRDlwnURMSTw==
