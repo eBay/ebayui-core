@@ -12,14 +12,14 @@
     class=[(data.classPrefix ? "${baseClass}__menu": baseClass), data.class]
     style=data.style
     ${processHtmlAttributes(data)}>
-    <div class="${baseClass}__menu" body-only-if(data.classPrefix)>
+    <div w-id="content" class="${baseClass}__menu" body-only-if(data.classPrefix)>
         <form
             body-only-if(!isForm)
             name=data.formName
             action=data.formAction
             method=data.formMethod
             w-on-submit="handleFormSubmit">
-            <div class="${baseClass}__items" role=(!isForm && "menu")>
+            <div w-id="menu" class="${baseClass}__items" role=(!isForm && "menu")>
                 <for(item in data.items)>
                     <${isForm ? "label" : "div"}
                         class=["${baseClass}__item", item.class]
