@@ -194,7 +194,7 @@ All major and minor releases should be preceded by one or more pre-releases. All
     * update the version number in `package.json`
     * commit all changes locally
     * create a Git tag
-1. Push commit to origin.
+1. Run `git push` to push the commit to origin. (**Note**: do not push tags for prereleases.)
 1. Run `npm publish --tag beta` to publish the package to NPM.
 
 ### Final Release
@@ -208,8 +208,8 @@ A final release is always made from the `master` branch.
     * update the version number in `package.json`
     * commit all changes locally
     * create a Git tag
-1. Push commit to origin.
-1. Push the git tag to origin, e.g. `git push origin v1.0.0`.
-1. Run `npm publish` to publish the package to NPM.
+2. Run `git push` to push the commit to origin.
+3. Push the git tag to origin, e.g. run `git push origin v1.0.0` using the new version tag you just created.
+4. Run `npm publish` to publish the package to NPM.
 
 After every major and minor release, please take the opportunity to upgrade any outdated dependencies and devDependencies (*hint*: run `yarn outdated` to see outdated dependencies). Except for major version upgrades, the version in `package.json` should always reflect the last known working version, not the version you are upgrading to.
