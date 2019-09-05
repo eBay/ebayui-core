@@ -186,14 +186,30 @@ A component is considered "done", and ready for merge into release branch, when 
 
 ## Releases
 
-All major and minor releases should be preceded by one or more pre-releases.
+### Pre-Release
 
-All releases should be tagged in git (`npm version` does this for you), and that tag pushed to GitHub (e.g. `git push origin v1.0.0`). From that tag, a Git release should be created.
+All major and minor releases should be preceded by one or more pre-releases. All pre-releases must be created from a `milestone` branch.
 
-Pre-releases must be published to NPM from a milestone branch using the `npm publish --tag beta` command.
+1. Run `npm version prepatch`, `npm version preminor`, or `npm version premajor`. If you need to increment an existing prerelease use `npm version prerelease`. This command will automatically:
+    * update the version number in `package.json`
+    * commit all changes locally
+    * create a Git tag
+1. Push commit to origin.
+1. Run `npm publish --tag beta` to publish the package to NPM.
 
-Final releases must be published to NPM from the `master` branch.
+### Final Release
+
+A final release is always made from the `master` branch.
+
+1. Create a GitHub PR to merge the milestone branch into master branch.
+1. Merge the PR after approval (do not squash!)
+1. Switch to your local master branch and pull the changes from origin.
+1. Run `npm version patch`, `npm version minor`, or `npm version major`. This command will automatically:
+    * update the version number in `package.json`
+    * commit all changes locally
+    * create a Git tag
+1. Push commit to origin.
+1. Push the git tag to origin, e.g. `git push origin v1.0.0`.
+1. Run `npm publish` to publish the package to NPM.
 
 After every major and minor release, please take the opportunity to upgrade any outdated dependencies and devDependencies (*hint*: run `yarn outdated` to see outdated dependencies). Except for major version upgrades, the version in `package.json` should always reflect the last known working version, not the version you are upgrading to.
-
-More information to follow.
