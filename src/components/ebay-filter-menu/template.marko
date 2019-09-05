@@ -22,6 +22,7 @@
             <div class="${baseClass}__items" role=(!isForm && "menu")>
                 <for(item in data.items)>
                     <${isForm ? "label" : "div"}
+                        w-id="item[]"
                         class=["${baseClass}__item", item.class]
                         style=item.style
                         role="menuitemcheckbox"
