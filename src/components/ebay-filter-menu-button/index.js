@@ -1,4 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
+const indexOf = require('core-js-pure/features/array/index-of');
 const Expander = require('makeup-expander');
 const eventUtils = require('../../common/event-utils');
 const template = require('./template.marko');
@@ -7,83 +8,58 @@ module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState(input) {
         return assign({}, input, {
-            pressed: input.pressed || false,
-            expanded: false,
             items: (input.items || []).map(item => assign({}, item))
         });
     },
-    onRender(event) {
-        this.contentEl = this.el.querySelector('.filter-menu-button__menu');
-        this.buttonEl = this.el.querySelector('button.filter-menu-button__button');
-
-        if (event.firstRender) {
-            // FIX ME: this should be synced with the expanded state instead of using the `update_expanded` api below.
-            this.expander = new Expander(this.el, {
-                hostSelector: '.filter-menu-button__button',
-                contentSelector: '.filter-menu-button__menu',
-                focusManagement: 'focusable',
-                expandOnClick: true,
-                autoCollapse: true,
-                alwaysDoFocusManagement: true
-            });
-        }
+    onRender() {
+        this.expander = new Expander(this.el, {
+            hostSelector: '.filter-menu-button__button',
+            contentSelector: '.filter-menu-button__menu',
+            focusManagement: 'focusable',
+            expandOnClick: true,
+            autoCollapse: true,
+            alwaysDoFocusManagement: true
+        });
     },
-    update_expanded(expanded) { // eslint-disable-line camelcase
-        if ((expanded && this.buttonEl.getAttribute('aria-expanded') === 'false') ||
-            (!expanded && this.buttonEl.getAttribute('aria-expanded') === 'true')) {
-            this.buttonEl.click();
-        }
+    onBeforeUpdate() {
+        this.expander.cancelAsync();
     },
-    setCheckedItem(itemIndex, itemEl) {
-        const item = this.state.items[itemIndex];
-
-        if (item) {
-            this.state.items[itemIndex].checked = !item.checked;
-            this.setStateDirty('items');
-            this.emitComponentEvent('change', itemEl);
-        }
+    onDestroy() {
+        this.expander.cancelAsync();
     },
-    getCheckedItems() {
+    toggleItemChecked(itemEl) {
+        const index = indexOf(itemEl.parentNode.children, itemEl);
+        const item = this.state.items[index];
+        item.checked = !item.checked;
+        this.setStateDirty('items');
+        this.emitComponentEvent('change', itemEl);
+    },
+    getCheckedValues() {
         return this.state.items
             .filter(item => item.checked)
             .map(item => item.value);
     },
-    handleButtonKeydown(e) {
-        eventUtils.handleEscapeKeydown(e.originalEvent, () => {
-            this.buttonEl.setAttribute('aria-expanded', false);
-        });
+    handleButtonKeydown({ originalEvent }) {
+        eventUtils.handleEscapeKeydown(originalEvent, () => this.expander.collapse());
     },
-    handleMenuChange(e) {
-        const { el } = e;
-        this.setCheckedItem(this.getItemElementIndex(el), el);
+    handleMenuChange({ el }) {
+        this.toggleItemChecked(el);
     },
-    handleItemKeydown(e) {
-        const { el, originalEvent } = e;
-        eventUtils.handleActionKeydown(originalEvent, () => {
-            this.setCheckedItem(this.getItemElementIndex(el), el);
-        });
+    handleItemKeydown({ el, originalEvent }) {
+        eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(el));
     },
     handleFooterButtonClick() {
         this.emitComponentEvent('footer-click');
-        this.setState('expanded', false);
-        this.buttonEl.setAttribute('aria-expanded', false);
-        this.buttonEl.setAttribute('aria-pressed', (this.getCheckedItems().length > 0));
+        this.expander.collapse();
     },
-    handleFormSubmit(e) {
-        const { originalEvent } = e;
-        this.emitComponentEvent('form-submit', null, originalEvent);
+    handleFormSubmit({ originalEvent }) {
+        this.emitComponentEvent('form-submit', originalEvent);
     },
-    handleExpand(e) {
-        const { originalEvent } = e;
+    handleExpand({ originalEvent }) {
         this.emitComponentEvent('expand', null, originalEvent);
     },
-    handleCollapse(e) {
-        const { originalEvent } = e;
+    handleCollapse({ originalEvent }) {
         this.emitComponentEvent('collapse', null, originalEvent);
-    },
-    getItemElementIndex(itemEl) {
-        const parentNode = itemEl.parentNode || itemEl.el.parentNode;
-        return Array.prototype.slice.call(parentNode.children).indexOf(itemEl);
     },
     emitComponentEvent(eventType, itemEl, originalEvent) {
         switch (eventType) {
@@ -93,7 +69,7 @@ module.exports = require('marko-widgets').defineComponent({
             case 'form-submit':
             case 'collapse':
                 this.emit(`filter-menu-button-${eventType}`, {
-                    checked: this.getCheckedItems(),
+                    checked: this.getCheckedValues(),
                     originalEvent
                 });
                 break;
@@ -102,7 +78,7 @@ module.exports = require('marko-widgets').defineComponent({
             default:
                 this.emit(`filter-menu-button-${eventType}`, {
                     el: itemEl,
-                    checked: this.getCheckedItems(),
+                    checked: this.getCheckedValues(),
                     originalEvent
                 });
                 break;

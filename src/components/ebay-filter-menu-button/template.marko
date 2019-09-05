@@ -2,7 +2,6 @@
     var processHtmlAttributes = require("../../common/html-attributes");
 </script>
 
-<var isForm = data.variant === 'form'/>
 <var checkedItems = (data.items && data.items.filter(function(item){ return item.checked })) || []/>
 
 <span
@@ -16,10 +15,11 @@
         type="button"
         class="filter-menu-button__button"
         disabled=data.disabled
-        aria-expanded=String(data.expanded)
+        aria-expanded="false"
         aria-haspopup="true"
         aria-label=data.a11yText
-        aria-pressed=(checkedItems.length > 0 && !data.footerButton && "true")>
+        aria-pressed=(checkedItems.length > 0 && !data.footerButton && "true")
+        w-preserve-attrs="aria-expanded">
         <span class="filter-menu-button__button-cell">
             <span class="filter-menu-button__button-text">${data.text}</span>
             <ebay-icon type="inline" name="chevron-down" />
