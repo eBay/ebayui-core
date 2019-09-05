@@ -15,6 +15,7 @@ describe('filter-menu-button', () => {
         expect(btnEl).has.attr('aria-label', input.a11yText);
         expect(btnEl).has.class('filter-menu-button__button');
         expect(btnEl).has.attr('aria-haspopup', 'true');
+        expect(btnEl).has.attr('aria-expanded', 'false');
         expect(btnEl).has.property('parentElement').with.class('filter-menu-button');
         expect(btnEl.querySelector('.icon--chevron-down')).has.property('tagName', 'svg');
         expect(getByRole('menu')).has.property('parentElement').with.class('filter-menu-button__menu');
