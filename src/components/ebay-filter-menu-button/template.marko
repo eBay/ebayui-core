@@ -43,8 +43,9 @@
                 class=item.class
                 value=item.value
                 checked=item.checked
-                variant=data.variant
-                w-body=item.renderBody/>
+                variant=data.variant>
+                <span body-only-if(true) w-body=item.renderBody/>
+            </ebay-filter-menu-item>
         </for>
     </ebay-filter-menu>
 </span>
