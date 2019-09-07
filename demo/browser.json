@@ -21,6 +21,7 @@
         "../src/components/ebay-icon",
         "../src/components/ebay-infotip",
         "../src/components/ebay-listbox-button",
+        "../src/components/ebay-menu",
         "../src/components/ebay-menu-button",
         "../src/components/ebay-notice",
         "../src/components/ebay-pagination",

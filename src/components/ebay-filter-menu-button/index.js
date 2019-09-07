@@ -39,7 +39,7 @@ module.exports = require('marko-widgets').defineComponent({
             .filter(item => item.checked)
             .map(item => item.value);
     },
-    handleButtonKeydown({ originalEvent }) {
+    handleMenuKeydown({ originalEvent }) {
         eventUtils.handleEscapeKeydown(originalEvent, () => this.expander.collapse());
     },
     handleMenuChange({ el }) {
