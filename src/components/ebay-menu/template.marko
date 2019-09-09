@@ -1,0 +1,53 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var isFake=(data.type === 'fake')/>
+<var isRadio=(data.type === 'radio')/>
+<var isCheckbox=(data.type === 'checkbox')/>
+<var isNotCheckable=(data.type !== "checkbox" && data.type !== "radio")/>
+<var baseClass = (data.classPrefix || (isFake ? 'fake-menu' : 'menu'))/>
+
+<span
+    w-bind
+    class=[
+        (data.classPrefix ? "${baseClass}__menu": (isFake ? 'fake-menu' : 'menu')),
+        data.class
+    ]
+    style=data.style
+    ${processHtmlAttributes(data)}>
+    <div
+        w-id="menu"
+        role=(!isFake && 'menu')
+        class=[
+            "${baseClass}__items",
+            (data.reverse && "${baseClass}__items--reverse"),
+            (data.fixWidth && "${baseClass}__items--fix-width")
+        ]>
+        <for(item in data.items)>
+            <var itemRole = (isRadio ? 'menuitemradio' : (isCheckbox ? 'menuitemcheckbox' : !isFake && 'menuitem'))/>
+            <${isFake ? (item.type === 'button' ? 'button' : 'a') : 'div'}
+                w-id="item[]"
+                class=["${baseClass}__item", item.class]
+                style=item.style
+                aria-checked=(!isNotCheckable && (item.checked ? 'true': 'false'))
+                aria-current=(isNotCheckable && item.current ? 'page' : false)
+                href=item.href
+                role=itemRole
+                w-on-click="handleItemClick"
+                w-on-keydown="handleItemKeydown"
+                w-on-keypress="handleItemKeypress"
+                ${processHtmlAttributes(item)}>
+                <span>
+                    <span body-only-if(!item.badgeNumber) aria-hidden='true'>
+                        <span w-body=item.renderBody/>
+                        <if(item.badgeNumber)>
+                            <ebay-badge type='menu' number=item.badgeNumber/>
+                        </if>
+                    </span>
+                </span>
+                <span class="${baseClass}__status"/>
+            </>
+        </for>
+    </div>
+</span>

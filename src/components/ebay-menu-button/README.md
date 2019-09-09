@@ -42,16 +42,10 @@ Event | Data | Description
 `menu-change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
 `menu-select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
 
-### ebay-menu-button Methods
-
-Method | Parameters | Description
---- | --- | ---
-`setCheckedList()` | (Array) | Accepts an array of indexes for items, to set items' checked property. In the case of checkboxes, supplying an empty array will uncheck all checkboxes. In the case of radio, use the root level `checked` property.
-`getCheckedList()` |  | Returns an array of indexes for items with the checked property set to `true`.
-
 ## ebay-menu-button-label Tag
 
 ### ebay-menu-button-label Usage
+
 ```marko
 <ebay-menu-button-label><div>Custom Label</div></ebay-menu-button-label>
 ```
@@ -70,7 +64,7 @@ Name | Type | Stateful | Description
 --- | --- | --- | ---
 `href` (fake menu) | String | No | for link that looks like a menu-item
 `type` (fake menu) | String | No | Set to "button" for fake menu-item `<button>`
-`checked` (radio or checkbox) | Boolean | Yes | whether or not the item is checked (**Note:** use the root `ebay-menu-button` element's `checked` property for radio type menus, or `setCheckedList()` method for checkbox type menus, to set this property.)
+`checked` (radio or checkbox) | Boolean | No | whether or not the item is checked
 `current` (fake menu) | Boolean | No | whether or not the href is the current href of the page
 `badge-number` | Number | No | used as the number to be placed in the badge
 `badge-aria-label` | String | No | passed as the `aria-label` directly to the badge

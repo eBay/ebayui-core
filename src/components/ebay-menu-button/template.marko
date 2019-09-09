@@ -6,27 +6,33 @@
 <var baseClass=(isFake ? 'fake-menu-button' : 'menu-button')/>
 
 <span
-    class=(isFake ? 'fake-menu-button' : 'menu-button')
+    class=[
+        (isFake ? 'fake-menu-button' : 'menu-button'),
+        data.class
+    ]
     style=data.style
     w-bind
     w-on-expander-expand="handleExpand"
     w-on-expander-collapse="handleCollapse"
-    processHtmlAttributes(data.htmlAttributes)>
+    ${processHtmlAttributes(data)}>
     <ebay-button
         w-id="button"
-        class='expand-btn'
+        class=[
+            "${baseClass}__button",
+            (data.borderless && 'expand-btn--borderless')
+        ]
         variant="expand"
         size=data.size
         priority=data.priority
-        no-text=data.noText
+        no-text=(!data.text && !data.icon)
         aria-expanded="false"
         aria-haspopup="true"
         aria-label=data.a11yText
         disabled=data.disabled
         w-on-button-escape="handleButtonEscape">
-        <span class=['expand-btn__cell', (data.customLabel && 'menu-button__control--custom-label')]>
-            <span if(data.customLabel) w-preserve-body>
-                <span w-body=data.customLabel.renderBody body-only-if(true)/>
+        <span class=['expand-btn__cell', (data.label && 'menu-button__control--custom-label')]>
+            <span if(data.label) w-preserve-body>
+                <span w-body=data.label.renderBody body-only-if(true)/>
             </span>
             <else>
                 <!-- Convoluted markup to satisfy both Skin and Marko -->
@@ -44,8 +50,9 @@
         type=data.type
         reverse=data.reverse
         fix-width=data.fixWidth
-        w-on-menu-keydown="handleButtonKeydown"
-        w-on-menu-change="handleMenuChange">
+        w-on-menu-keydown="handleMenuKeydown"
+        w-on-menu-change="handleMenuChange"
+        w-on-menu-select="handleMenuSelect">
         <for(item in data.items)>
             <ebay-menu-item
                 style=item.style
