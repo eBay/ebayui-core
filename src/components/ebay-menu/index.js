@@ -23,8 +23,7 @@ module.exports = require('marko-widgets').defineComponent({
 
         if (this.state.type !== 'fake') {
             this.rovingTabindex = rovingTabindex.createLinear(this.contentEl, 'div', {
-                index: 0,
-                autoReset: 0
+                index: this.tabindexPosition, autoReset: null
             });
 
             scrollKeyPreventer.add(this.contentEl);

@@ -1,8 +1,8 @@
 const Expander = require('makeup-expander');
 const assign = require('core-js-pure/features/object/assign');
 const indexOf = require('core-js-pure/features/array/index-of');
+const findIndex = require('core-js-pure/features/array/find-index');
 const eventUtils = require('../../common/event-utils');
-const NodeListUtils = require('../../common/nodelist-utils');
 const template = require('./template.marko');
 
 module.exports = require('marko-widgets').defineComponent({
@@ -34,21 +34,30 @@ module.exports = require('marko-widgets').defineComponent({
     toggleItemChecked(itemEl) {
         const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
         const item = this.state.items[itemIndex];
+        const currentIndex = this.state.items.findIndex(radioItem => radioItem.checked);
 
-        if (this.state.type === 'radio') {
+        if (this.state.type === 'radio' && itemIndex !== currentIndex) {
             this.state.items.forEach((eachItem, i) => {
-                if (i !== itemIndex) {
-                    eachItem.checked = false;
-                }
+                eachItem.checked = i === itemIndex;
+            });
+
+            this.setStateDirty('items');
+            this.emitComponentEvent({
+                eventType: 'change',
+                el: itemEl
+            });
+        } else if (this.state.type !== 'radio') {
+            item.checked = !item.checked;
+            this.setStateDirty('items');
+            this.emitComponentEvent({
+                eventType: this.state.type === 'fake' || !this.state.type ? 'select' : 'change',
+                el: itemEl
             });
         }
 
-        item.checked = !item.checked;
-        this.setStateDirty('items');
-        this.emitComponentEvent({
-            eventType: this.state.type !== 'fake' ? 'select' : 'change',
-            el: itemEl
-        });
+        if (this.rovingTabindex) {
+            this.tabindexPosition = findIndex(this.rovingTabindex.filteredItems, el => el.tabIndex === 0);
+        }
     },
     getCheckedValues() {
         return this.state.items
@@ -58,22 +67,15 @@ module.exports = require('marko-widgets').defineComponent({
     handleItemClick(e, itemEl) {
         this.toggleItemChecked(itemEl);
     },
-    handleMenuKeydown(e, { detail }) {
-        eventUtils.handleActionKeydown(e, () => {
-            this.handleItemClick(e, detail.el);
+    handleMenuKeydown({ el, originalEvent }) {
+        eventUtils.handleActionKeydown(originalEvent, () => {
+            this.handleItemClick(originalEvent, el);
         });
 
-        eventUtils.handleEscapeKeydown(e, () => {
-            this.buttonEl.focus();
-            this.setState('expanded', false);
+        eventUtils.handleEscapeKeydown(originalEvent, () => {
+            this.expander.collapse();
+            this.getEl('button').focus();
         });
-    },
-    handleItemKeypress(e) {
-        const itemIndex = NodeListUtils.findNodeWithFirstChar(this.itemEls, e.key);
-
-        if (itemIndex !== -1) {
-            this.rovingTabindex.index = itemIndex;
-        }
     },
     handleButtonEscape() {
         this.expander.collapse();
@@ -84,8 +86,8 @@ module.exports = require('marko-widgets').defineComponent({
     handleCollapse() {
         this.emitComponentEvent({ eventType: 'collapse' });
     },
-    handleMenuChange({ el, originalEvent }) {
-        this.emitComponentEvent({ eventType: 'change', el, originalEvent });
+    handleMenuChange({ el }) {
+        this.toggleItemChecked(el);
     },
     handleMenuSelect({ el, originalEvent }) {
         this.emitComponentEvent({ eventType: 'select', el, originalEvent });

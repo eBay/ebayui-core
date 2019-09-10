@@ -5,12 +5,14 @@ exports.Basic_2Items = {
     text: 'Basic Menu',
     a11yText: 'Menu A11y Text',
     items: getNItems(2, i => ({
+        value: `item ${i}`,
         renderBody: createRenderBody(`Item text ${i}`)
     }))
 };
 
 exports.Basic_3Items = assign({}, exports.Basic_2Items, {
     items: getNItems(3, i => ({
+        value: `item ${i}`,
         renderBody: createRenderBody(`Item text ${i}`)
     }))
 });
