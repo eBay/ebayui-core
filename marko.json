@@ -175,8 +175,8 @@
     "@disabled": "boolean",
     "@href": "string",
     "@priority": "string",
-    "@pressed": "boolean",
-    "@aria-selected-text": "string"
+    "@selected": "boolean",
+    "@a11y-selected-text": "string"
   },
   "<ebay-filter-menu>": {
     "renderer": "./src/components/ebay-filter-menu/index.js",
@@ -213,7 +213,7 @@
     "@class": "string",
     "@style": "string",
     "@disabled": "boolean",
-    "@pressed": "boolean",
+    "@selected": "boolean",
     "@form-name": "string",
     "@form-action": "string",
     "@form-method": "string",

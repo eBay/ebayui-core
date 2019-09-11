@@ -15,7 +15,7 @@ describe('given filter is enabled', () => {
         component = await render(template, input);
     });
 
-    it('then it is not pressed', () => {
+    it('then it is not selected', () => {
         expect(component.getByRole('button')).does.not.have.attr('aria-pressed');
     });
 
@@ -28,7 +28,7 @@ describe('given filter is enabled', () => {
             expect(component.emitted('filter-click')).has.length(1);
         });
 
-        it('then it is pressed', () => {
+        it('then it is selected', () => {
             expect(component.getByRole('button')).has.attr('aria-pressed', 'true');
         });
 
@@ -37,7 +37,7 @@ describe('given filter is enabled', () => {
                 await fireEvent.click(component.getByRole('button'));
             });
 
-            it('then it is not pressed', () => {
+            it('then it is not selected', () => {
                 expect(component.getByRole('button')).does.not.have.attr('aria-pressed');
             });
         });
