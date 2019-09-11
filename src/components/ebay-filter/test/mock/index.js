@@ -5,8 +5,8 @@ exports.Basic = {
     renderBody: createRenderBody('text')
 };
 
-exports.Pressed = assign({}, exports.Basic, {
-    pressed: true
+exports.Selected = assign({}, exports.Basic, {
+    selected: true
 });
 
 exports.Disabled = assign({}, exports.Basic, {
@@ -17,9 +17,9 @@ exports.Fake = assign({}, exports.Basic, {
     href: '#fake'
 });
 
-exports.Fake_Pressed = assign({}, exports.Fake, {
-    pressed: true,
-    a11yActiveText: 'Selected Filter'
+exports.Fake_Selected = assign({}, exports.Fake, {
+    selected: true,
+    a11ySelectedText: 'Selected Filter'
 });
 
 exports.Fake_Disabled = assign({}, exports.Fake, {

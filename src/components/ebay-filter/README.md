@@ -12,8 +12,8 @@ Name | Type | Stateful | Description
 --- | --- | --- | ---
 `href` | String | No | for link that looks like a button
 `disabled` | Boolean | No |
-`pressed` | Boolean | No |
-`a11y-active-text` | String | No | **Note:** only for fake filters; defaults to `"Selected"`, but should be changed based on L10N or I18N
+`selected` | Boolean | No |
+`a11y-selected-text` | String | No | **Note:** only for fake filters; defaults to `"Selected"`, but should be changed based on L10N or I18N
 
 ## ebay-filter Events
 
