@@ -19,7 +19,6 @@ Name | Type | Stateful | Description
 `type` | String | No | Can be "fake" / "radio" / "checkbox"
 `reverse` | Boolean | No | expand menu flyout to the left
 `fix-width` | Boolean | No | constrain items container width to button width
-`size` | String | No | button size, "small" or "large" (default: medium)
 `priority` | String | No | button priority, "primary" / "secondary" (default) / "none"
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 
@@ -46,6 +45,7 @@ Name | Type | Stateful | Description
 --- | --- | --- | ---
 `href` (fake menu) | String | No | for link that looks like a menu-item
 `type` (fake menu) | String | No | Set to "button" for fake menu-item `<button>`
+`value` (radio or checkbox) | String | No | the value to use with event responses for for the `checked` array
 `checked` (radio or checkbox) | Boolean | No | whether or not the item is checked
 `current` (fake menu) | Boolean | No | whether or not the href is the current href of the page
 `badge-number` | Number | No | used as the number to be placed in the badge

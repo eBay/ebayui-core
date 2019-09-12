@@ -27,7 +27,7 @@ Name | Type | Stateful | Description
 `reverse` | Boolean | No | expand menu flyout to the left
 `fix-width` | Boolean | No | constrain items container width to button width
 `borderless` | Boolean | No | whether button has borders
-`size` | String | No | button size, "small" or "large" (default: medium)
+`size` | String | No | button size, "small" or "large" (default: small)
 `priority` | String | No | button priority, "primary" / "secondary" (default) / "none"
 `checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 `disabled` | Boolean | Yes | Will disable the entire dropdown (disables the ebay-button label) if set to true

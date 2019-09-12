@@ -48,7 +48,7 @@ module.exports = require('marko-widgets').defineComponent({
 
         if (this.state.type === 'radio' && itemIndex !== currentIndex) {
             this.state.items.forEach((eachItem, i) => {
-                eachItem.checked = i === itemIndex;
+                eachItem.checked = (i === itemIndex);
             });
 
             this.setStateDirty('items');
