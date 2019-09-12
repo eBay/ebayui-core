@@ -70,7 +70,7 @@ describe('given the menu has radio items', () => {
             expect(changeEvents).to.have.length(1);
 
             const eventData = changeEvents[0][0];
-            expect(eventData.checked).to.deep.equal(['item 0']);
+            expect(eventData.checked).to.deep.equal([0]);
         });
 
         it('then the item is selected', () => {
@@ -91,7 +91,7 @@ describe('given the menu has radio items', () => {
             expect(changeEvents).to.have.length(1);
 
             const eventData = changeEvents[0][0];
-            expect(eventData.checked).to.deep.equal(['item 0']);
+            expect(eventData.checked).to.deep.equal([0]);
         });
 
         it('then the item is selected', () => {
@@ -111,8 +111,8 @@ describe('given the menu has radio items', () => {
 
             const firstEventData = changeEvents[0][0];
             const secondEventData = changeEvents[1][0];
-            expect(firstEventData.checked).to.deep.equal(['item 0']);
-            expect(secondEventData.checked).to.deep.equal(['item 1']);
+            expect(firstEventData.checked).to.deep.equal([0]);
+            expect(secondEventData.checked).to.deep.equal([1]);
         });
 
         it('then the second item is selected', () => {
@@ -133,7 +133,7 @@ describe('given the menu has radio items', () => {
             expect(changeEvents).to.have.length(1);
 
             const eventData = changeEvents[0][0];
-            expect(eventData.checked).to.deep.equal(['item 0']);
+            expect(eventData.checked).to.deep.equal([0]);
         });
 
         it('then the item is selected', () => {
@@ -164,8 +164,8 @@ describe('given the menu has checkbox items', () => {
 
             const firstEventData = changeEvents[0][0];
             const secondEventData = changeEvents[1][0];
-            expect(firstEventData.checked).to.deep.equal(['item 0']);
-            expect(secondEventData.checked).to.deep.equal(['item 0', 'item 1']);
+            expect(firstEventData.checked).to.deep.equal([0]);
+            expect(secondEventData.checked).to.deep.equal([0, 1]);
         });
 
         it('then both items are selected', () => {
@@ -186,7 +186,7 @@ describe('given the menu has checkbox items', () => {
 
             const firstEventData = changeEvents[0][0];
             const secondEventData = changeEvents[1][0];
-            expect(firstEventData.checked).to.deep.equal(['item 0']);
+            expect(firstEventData.checked).to.deep.equal([0]);
             expect(secondEventData.checked).to.deep.equal([]);
         });
 

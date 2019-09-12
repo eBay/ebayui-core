@@ -147,7 +147,7 @@ describe('given the menu is in the expanded state', () => {
 
             const [[eventArg]] = selectEvents;
             expect(eventArg).has.property('el').with.text(firstItemText);
-            expect(eventArg).has.property('checked').to.deep.equal([]);
+            expect(eventArg).has.property('checked').to.deep.equal([0]);
         });
     });
 
@@ -208,7 +208,7 @@ describe('given the menu is in the expanded state with radio items', () => {
             expect(changeEvents).to.have.length(1);
 
             const [[eventData]] = changeEvents;
-            expect(eventData.checked).to.deep.equal([input.items[1].value]);
+            expect(eventData.checked).to.deep.equal([1]);
         });
 
         it('then the item is selected', () => {
@@ -229,7 +229,7 @@ describe('given the menu is in the expanded state with radio items', () => {
             expect(changeEvents).to.have.length(1);
 
             const [[eventData]] = changeEvents;
-            expect(eventData.checked).to.deep.equal([input.items[0].value]);
+            expect(eventData.checked).to.deep.equal([0]);
         });
 
         it('then the item is selected', () => {
@@ -248,8 +248,8 @@ describe('given the menu is in the expanded state with radio items', () => {
             expect(changeEvents).to.have.length(2);
 
             const [[firstEventData], [secondEventData]] = changeEvents;
-            expect(firstEventData.checked).to.deep.equal([input.items[0].value]);
-            expect(secondEventData.checked).to.deep.equal([input.items[1].value]);
+            expect(firstEventData.checked).to.deep.equal([0]);
+            expect(secondEventData.checked).to.deep.equal([1]);
         });
 
         it('then the second item is selected', () => {
@@ -270,7 +270,7 @@ describe('given the menu is in the expanded state with radio items', () => {
             expect(changeEvents).to.have.length(1);
 
             const [[eventData]] = changeEvents;
-            expect(eventData.checked).to.deep.equal([input.items[0].value]);
+            expect(eventData.checked).to.deep.equal([0]);
         });
 
         it('then the item is selected', () => {
@@ -299,8 +299,8 @@ describe('given the menu is in the expanded state with checkbox items', () => {
             expect(changeEvents).to.have.length(2);
 
             const [[firstEventData], [secondEventData]] = changeEvents;
-            expect(firstEventData.checked).to.deep.equal([input.items[0].value]);
-            expect(secondEventData.checked).to.deep.equal([input.items[0].value, input.items[1].value]);
+            expect(firstEventData.checked).to.deep.equal([0]);
+            expect(secondEventData.checked).to.deep.equal([0, 1]);
         });
 
         it('then both items are selected', () => {
@@ -320,7 +320,7 @@ describe('given the menu is in the expanded state with checkbox items', () => {
             expect(changeEvents).to.have.length(2);
 
             const [[firstEventData], [secondEventData]] = changeEvents;
-            expect(firstEventData.checked).to.deep.equal([input.items[0].value]);
+            expect(firstEventData.checked).to.deep.equal([0]);
             expect(secondEventData.checked).to.deep.equal([]);
         });
 

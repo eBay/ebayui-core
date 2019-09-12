@@ -41,7 +41,7 @@ module.exports = require('marko-widgets').defineComponent({
             scrollKeyPreventer.remove(this.contentEl);
         }
     },
-    toggleItemChecked(itemEl) {
+    toggleItemChecked(originalEvent, itemEl) {
         const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
         const item = this.state.items[itemIndex];
         const currentIndex = this.state.items.findIndex(radioItem => radioItem.checked);
@@ -54,14 +54,16 @@ module.exports = require('marko-widgets').defineComponent({
             this.setStateDirty('items');
             this.emitComponentEvent({
                 eventType: 'change',
-                el: itemEl
+                el: itemEl,
+                originalEvent
             });
         } else if (this.state.type !== 'radio') {
             item.checked = !item.checked;
             this.setStateDirty('items');
             this.emitComponentEvent({
                 eventType: this.state.type === 'fake' || !this.state.type ? 'select' : 'change',
-                el: itemEl
+                el: itemEl,
+                originalEvent
             });
         }
 
@@ -74,15 +76,20 @@ module.exports = require('marko-widgets').defineComponent({
             .filter(item => item.checked)
             .map(item => item.value);
     },
-    handleItemClick(e, itemEl) {
-        this.toggleItemChecked(itemEl);
+    getCheckedIndexes() {
+        return this.state.items
+            .map((item, i) => item.checked && i)
+            .filter(item => item !== false && typeof item !== 'undefined');
     },
-    handleItemKeydown(e, itemEl) {
-        eventUtils.handleEscapeKeydown(e, () => {
-            this.emitComponentEvent({ eventType: 'keydown', originalEvent: e });
+    handleItemClick(originalEvent, itemEl) {
+        this.toggleItemChecked(originalEvent, itemEl);
+    },
+    handleItemKeydown(originalEvent, itemEl) {
+        eventUtils.handleEscapeKeydown(originalEvent, () => {
+            this.emitComponentEvent({ eventType: 'keydown', originalEvent });
         });
 
-        eventUtils.handleActionKeydown(e, () => this.toggleItemChecked(itemEl));
+        eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(originalEvent, itemEl));
     },
     handleItemKeypress({ key }) {
         const itemIndex = NodeListUtils.findNodeWithFirstChar(this.getEls('item'), key);
@@ -92,10 +99,35 @@ module.exports = require('marko-widgets').defineComponent({
         }
     },
     emitComponentEvent({ eventType, el, originalEvent }) {
-        this.emit(`menu-${eventType}`, {
+        const checkedIndexes = this.getCheckedIndexes();
+        const itemIndex = el && indexOf(el.parentNode.children, el);
+        const isCheckbox = this.state.type === 'checkbox';
+        const isRadio = this.state.type === 'radio';
+
+        const eventObj = {
             el,
-            checked: this.getCheckedValues(),
             originalEvent
-        });
+        };
+
+        if (isCheckbox && checkedIndexes.length > 1) {
+            assign(eventObj, {
+                indexes: this.getCheckedIndexes(), // DEPRECATED in v5
+                checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
+                checkedValues: this.getCheckedValues() // DEPRECATED in v5
+            });
+        } else if (isCheckbox || isRadio) {
+            assign(eventObj, {
+                index: itemIndex, // DEPRECATED in v5
+                checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
+                checkedValues: this.getCheckedValues() // DEPRECATED in v5
+            });
+        } else {
+            assign(eventObj, {
+                index: itemIndex, // DEPRECATED in v5
+                checked: [itemIndex] // DEPRECATED in v5 (keep but change from indexes to values)
+            });
+        }
+
+        this.emit(`menu-${eventType}`, eventObj);
     }
 });

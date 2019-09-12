@@ -64,6 +64,11 @@ module.exports = require('marko-widgets').defineComponent({
             .filter(item => item.checked)
             .map(item => item.value);
     },
+    getCheckedIndexes() {
+        return this.state.items
+            .map((item, i) => item.checked && i)
+            .filter(item => item !== false && typeof item !== 'undefined');
+    },
     handleItemClick(e, itemEl) {
         this.toggleItemChecked(itemEl);
     },
@@ -93,10 +98,35 @@ module.exports = require('marko-widgets').defineComponent({
         this.emitComponentEvent({ eventType: 'select', el, originalEvent });
     },
     emitComponentEvent({ eventType, el, originalEvent }) {
-        this.emit(`menu-button-${eventType}`, {
+        const checkedIndexes = this.getCheckedIndexes();
+        const itemIndex = el && indexOf(el.parentNode.children, el);
+        const isCheckbox = this.state.type === 'checkbox';
+        const isRadio = this.state.type === 'radio';
+
+        const eventObj = {
             el,
-            checked: this.getCheckedValues(),
             originalEvent
-        });
+        };
+
+        if (isCheckbox && checkedIndexes.length > 1) {
+            assign(eventObj, {
+                indexes: this.getCheckedIndexes(), // DEPRECATED in v5
+                checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
+                checkedValues: this.getCheckedValues() // DEPRECATED in v5
+            });
+        } else if (isCheckbox || isRadio) {
+            assign(eventObj, {
+                index: itemIndex, // DEPRECATED in v5
+                checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
+                checkedValues: this.getCheckedValues() // DEPRECATED in v5
+            });
+        } else if (eventType !== 'expand' && eventType !== 'collapse') {
+            assign(eventObj, {
+                index: itemIndex, // DEPRECATED in v5
+                checked: [itemIndex] // DEPRECATED in v5 (keep but change from indexes to values)
+            });
+        }
+
+        this.emit(`menu-button-${eventType}`, eventObj);
     }
 });
