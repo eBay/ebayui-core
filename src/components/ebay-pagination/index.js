@@ -4,7 +4,7 @@ const template = require('./template.marko');
 
 const constants = {
     indexForNavigation: 2,
-    minPagesRequired: 5,
+    minPagesRequired: 3,
     maxPagesAllowed: 9,
     margin: 8
 };
@@ -88,6 +88,7 @@ function onUpdate() {
 
 function refresh() {
     let current = 0;
+    this.pageContainerEl.style.overflow = 'hidden';
     for (let i = 0; i < this.state.items.length; i++) {
         if (this.state.items[i].current) {
             current = i;
@@ -134,6 +135,7 @@ function refresh() {
             this.pageEls[i].removeAttribute('hidden');
         }
     }
+    this.pageContainerEl.style.overflow = 'visible';
 }
 
 /**

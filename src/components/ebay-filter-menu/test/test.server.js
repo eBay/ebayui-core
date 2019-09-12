@@ -6,34 +6,22 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-describe('filter-menu-button', () => {
+describe('filter-menu', () => {
     it('renders basic version', async() => {
         const input = mock.Basic_2Items;
         const { getByRole, getAllByRole, getByText } = await render(template, input);
-        const btnEl = getAllByRole('button')[0];
-        expect(btnEl).contains(getByText(input.text));
-        expect(btnEl).has.attr('aria-label', input.a11yText);
-        expect(btnEl).has.class('filter-menu-button__button');
-        expect(btnEl).has.attr('aria-haspopup', 'true');
-        expect(btnEl).has.attr('aria-expanded', 'false');
-        expect(btnEl).has.property('parentElement').with.class('filter-menu-button');
-        expect(btnEl.querySelector('.icon--chevron-down')).has.property('tagName', 'svg');
-        expect(getByRole('menu')).has.property('parentElement').with.class('filter-menu-button__menu');
+        const menuEl = getByRole('menu');
+        expect(menuEl).has.class('filter-menu__items');
+        expect(menuEl).has.property('parentElement').with.class('filter-menu__menu');
 
         const menuItemEls = getAllByRole('menuitemcheckbox');
         input.items.forEach((item, i) => {
             const menuItemEl = menuItemEls[i];
             const textEl = getByText(item.renderBody.text);
-            expect(menuItemEl).has.class('filter-menu-button__item');
+            expect(menuItemEl).has.class('filter-menu__item');
             expect(menuItemEl).has.attr('data-value', menuItemEl.value);
             expect(menuItemEl).contains(textEl);
         });
-    });
-
-    it('renders with disabled state', async() => {
-        const input = mock.Disabled;
-        const { getAllByRole } = await render(template, input);
-        expect(getAllByRole('button')[0]).has.attr('disabled');
     });
 
     it(`renders checked item`, async() => {
@@ -46,4 +34,10 @@ describe('filter-menu-button', () => {
     });
 
     testUtils.testPassThroughAttributes(template);
+    testUtils.testPassThroughAttributes(template, {
+        child: {
+            name: 'items',
+            multiple: true
+        }
+    });
 });

@@ -6,8 +6,6 @@
         {
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [
-                "@ebay/skin/utility",
-                "@ebay/skin/less",
                 "@ebay/skin/icon/foreground",
                 "@ebay/skin/carousel"
             ]
