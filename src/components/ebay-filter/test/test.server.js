@@ -17,7 +17,7 @@ describe('filter', () => {
     });
 
     it('renders with pressed attribute', async() => {
-        const input = mock.Pressed;
+        const input = mock.Selected;
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.attr('aria-pressed', 'true');
     });
@@ -45,10 +45,10 @@ describe('filter', () => {
     });
 
     it('renders fake version with pressed attribute', async() => {
-        const input = mock.Fake_Pressed;
+        const input = mock.Fake_Selected;
         const { getByText } = await render(template, input);
         expect(getByText(input.renderBody.text).closest('a'))
-            .contains(getByText(input.a11yActiveText, { exact: false }));
+            .contains(getByText(input.a11ySelectedText, { exact: false }));
     });
 
     testPassThroughAttributes(template, {

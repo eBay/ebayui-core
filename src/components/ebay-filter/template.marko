@@ -9,19 +9,19 @@
     w-on-click="handleButtonClick"
     class=[
         classPrefix,
-        data.pressed ? classPrefix + "--selected" : classPrefix + "--unselected",
+        data.selected ? classPrefix + "--selected" : classPrefix + "--unselected",
         data.class
     ]
     style=data.style
     href=data.href
     disabled=data.disabled
     type=(!data.href && "button")
-    aria-pressed=(!data.href && data.pressed && "true")
+    aria-pressed=(!data.href && data.selected && "true")
     ${processHtmlAttributes(data)}>
     <span class="${classPrefix}__cell">
         <span w-body/>
-        <if(data.href && data.pressed)>
-            <span w-id="active-text" class="clipped"> - ${data.a11yActiveText || "Selected"}</span>
+        <if(data.href && data.selected)>
+            <span w-id="active-text" class="clipped"> - ${data.a11ySelectedText || "Selected"}</span>
         </if>
     </span>
 </>

@@ -5,7 +5,7 @@ module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState(input) {
         return assign({}, input, {
-            pressed: input.pressed || false
+            selected: input.selected || false
         });
     },
     onRender() {
@@ -16,7 +16,7 @@ module.exports = require('marko-widgets').defineComponent({
     },
     handleButtonClick(event) {
         if (!this.state.disabled) {
-            this.setState('pressed', !this.state.pressed);
+            this.setState('selected', !this.state.selected);
             this.emit('filter-click', event);
         }
     }
