@@ -31,12 +31,16 @@ module.exports = require('marko-widgets').defineComponent({
         }
     },
     onBeforeUpdate() {
-        this.rovingTabindex.destroy();
-        scrollKeyPreventer.remove(this.contentEl);
+        this._handleDestroy();
     },
     onDestroy() {
-        this.rovingTabindex.destroy();
-        scrollKeyPreventer.remove(this.contentEl);
+        this._handleDestroy();
+    },
+    _handleDestroy() {
+        if (this.state.variant !== 'form') {
+            this.rovingTabindex.destroy();
+            scrollKeyPreventer.remove(this.contentEl);
+        }
     },
     setCheckedItem(itemIndex, itemEl) {
         const currentTabindex = findIndex(this.rovingTabindex.filteredItems, (el) => el.tabIndex === 0);
