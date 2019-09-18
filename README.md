@@ -20,6 +20,8 @@
 Marko v3 requires [Marko Widgets v6](https://github.com/marko-js/marko-widgets)\
 Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/tree/v7)*
 
+*Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components. eBayUI Core presently relies on the `skin-ds6` flag to toggle designs to use the Design System 6 version of Skin.*
+
 ### Browser Policy
 
 All components are developed and tested cross-browser using [BrowserStack](https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0), in accordance with our official [eBay Browser Policy](https://github.com/eBay/browserslist-config).
@@ -28,7 +30,7 @@ All components are developed and tested cross-browser using [BrowserStack](https
 
 ### Accessibility (A11Y)
 
-We take accessibility very seriously. Very seriously indeed. Therefore all components are built in accordance to the <a href="https://ebay.gitbooks.io/mindpatterns/content/">eBay MIND Patterns</a>. These patterns, in turn, build on from the specifications provided by the <a href="https://w3c.github.io/aria-practices/">WAI-ARIA Authoring Practices</a>.
+We take accessibility very seriously. Very seriously indeed. Therefore, all components are built in accordance to the <a href="https://ebay.gitbooks.io/mindpatterns/content/">eBay MIND Patterns</a>. These patterns, in turn, build on from the specifications provided by the <a href="https://w3c.github.io/aria-practices/">WAI-ARIA Authoring Practices</a>.
 
 Components are built in a layered, progressively enhanced fashion, utilizing the following resources:
 
@@ -39,6 +41,7 @@ Components are built in a layered, progressively enhanced fashion, utilizing the
 Each layer does its bit to enforce and enhance accessibility. We consider this level of support to be one of our chief selling points, and we hope you do too!
 
 ## Components
+
 * [`ebay-badge`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-badge)
 * [`ebay-breadcrumb`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumb)
 * [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
@@ -79,7 +82,8 @@ yarn add @ebay/ebayui-core
 
 Once the package dependency is added, the eBay [customs tags](https://markojs.com/docs/custom-tags/) are now available for use in your Marko templates. For example, to use an `ebay-menu` component:
 
-_template.marko_
+#### _template.marko_
+
 ```marko
 <ebay-menu text="Sort" type="radio">
     <ebay-menu-item>Price</ebay-menu-item>
@@ -90,7 +94,8 @@ _template.marko_
 
 On Marko v3, remember to include the component's resources in your `browser.json` file.
 
-_browser.json_
+#### _browser.json_
+
 ```js
 {
     "dependencies": [
@@ -103,7 +108,7 @@ _browser.json_
 
 Attributes provide initial state for a component. We can see that the menu has `text` and `type` attributes:
 
-_template.marko_
+#### _template.marko_
 
 ```marko
 <ebay-menu text="Sort" type="radio">
@@ -145,17 +150,20 @@ class {
 HTML attributes can be used on any component, and they will be passed through to the most prominent tag of the component. The most prominent tag is usually the root or form control, but individual components will note if it varies for specific cases.
 
 Example of static usage:
+
 ```marko
 <ebay-button id="my-button"/>
 ```
 
 For using pass-through attributes dynamically, they should be sent through the `html-attributes` attribute:
+
 ```marko
 $ const myAttributes = { id: 'my-button' };
 <ebay-button html-attributes=myAttributes/>
 ```
 
 Static and dynamic pass-through attributes can be used simultaneously (html-attributes takes precedence in conflicts):
+
 ```marko
 $ const myAttributes = { id: 'my-button' };
 <ebay-button html-attributes=myAttributes type="submit"/>
@@ -165,7 +173,7 @@ $ const myAttributes = { id: 'my-button' };
 
 Events can also be handled using [Marko syntax](https://markojs.com/docs/events/) (or the legacy syntax for [Marko v3](http://v3.markojs.com/docs/marko-widgets/taglib-api/#w-on)):
 
-_template.marko_
+#### _template.marko_
 
 ```marko
 <ebay-menu text="Sort" type="radio" on-change("onMenuChange")>
@@ -212,4 +220,4 @@ Looking to contribute to eBay UI? Please visit our [contributing page](CONTRIBUT
 
 Copyright (c) 2018 eBay Inc.
 
-Use of this source code is governed by a MIT-style license that can be found in the LICENSE file or at https://opensource.org/licenses/MIT.
+Use of this source code is governed by a MIT-style license that can be found in the LICENSE file or at [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT).
