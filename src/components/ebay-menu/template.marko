@@ -12,6 +12,8 @@
     w-bind
     class=[
         (data.classPrefix ? "${baseClass}__menu": (isFake ? 'fake-menu' : 'menu')),
+        (data.reverse && "${baseClass}__menu--reverse"),
+        (data.fixWidth && "${baseClass}__menu--fix-width"),
         data.class
     ]
     style=data.style
@@ -19,11 +21,7 @@
     <div
         w-id="menu"
         role=(!isFake && 'menu')
-        class=[
-            "${baseClass}__items",
-            (data.reverse && "${baseClass}__items--reverse"),
-            (data.fixWidth && "${baseClass}__items--fix-width")
-        ]>
+        class="${baseClass}__items">
         <for(item in data.items)>
             <var itemRole = (isRadio ? 'menuitemradio' : (isCheckbox ? 'menuitemcheckbox' : !isFake && 'menuitem'))/>
             <${isFake ? (item.type === 'button' ? 'button' : 'a') : 'div'}
