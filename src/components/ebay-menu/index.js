@@ -92,7 +92,7 @@ module.exports = require('marko-widgets').defineComponent({
         eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(originalEvent, itemEl));
     },
     handleItemKeypress({ key }) {
-        const itemIndex = NodeListUtils.findNodeWithFirstChar(this.getEls('item'), key);
+        const itemIndex = NodeListUtils.findNodeWithFirstChar(this.getEl('menu').children, key);
 
         if (itemIndex !== -1) {
             this.tabindexPosition = this.rovingTabindex.index = itemIndex;
