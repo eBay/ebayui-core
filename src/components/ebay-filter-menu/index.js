@@ -36,8 +36,10 @@ module.exports = require('marko-widgets').defineComponent({
         this._handleDestroy();
     },
     _handleDestroy() {
-        this.rovingTabindex.destroy();
-        scrollKeyPreventer.remove(this.contentEl);
+        if (this.state.variant !== 'form') {
+            this.rovingTabindex.destroy();
+            scrollKeyPreventer.remove(this.contentEl);
+        }
     },
     toggleItemChecked(itemEl) {
         const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
