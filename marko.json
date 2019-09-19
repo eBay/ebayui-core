@@ -303,6 +303,33 @@
   "<ebay-listbox-button-option>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
+  "<ebay-menu>": {
+    "renderer": "./src/components/ebay-menu/index.js",
+    "@*": "expression",
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@class-prefix": "string",
+    "@type": "string",
+    "@reverse": "boolean",
+    "@fix-width": "boolean",
+    "@items <item>[]": {
+      "@*": "expression",
+      "@html-attributes": "expression",
+      "@class": "string",
+      "@style": "string",
+      "@href": "string",
+      "@type": "string",
+      "@value": "string",
+      "@checked": "boolean",
+      "@current": "boolean",
+      "@badge-number": "expression",
+      "@badge-aria-label": "string"
+    }
+  },
+  "<ebay-menu-item>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
   "<ebay-menu-button>": {
     "renderer": "./src/components/ebay-menu-button/index.js",
     "transformer": "./src/components/ebay-menu-button/transformer.js",
@@ -330,6 +357,7 @@
       "@style": "string",
       "@href": "string",
       "@type": "string",
+      "@value": "string",
       "@checked": "boolean",
       "@current": "boolean",
       "@badge-number": "expression",

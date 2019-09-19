@@ -24,7 +24,9 @@
     href=data.href
     type="button"
     disabled=data.disabled
-aria-disabled=(data.partiallyDisabled && "true")>
-    <span if(data.renderBody)><invoke data.renderBody(out) /></span>
-    <ebay-icon type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
-</>
+    aria-disabled=(data.partiallyDisabled && "true")>
+    <span class="${baseClass}__cell">
+        <span if(data.renderBody)><invoke data.renderBody(out) /></span>
+        <ebay-icon type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
+    </span>
+</button>
