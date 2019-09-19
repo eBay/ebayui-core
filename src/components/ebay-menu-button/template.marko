@@ -1,25 +1,38 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<var isFake=(data.type === 'fake')/>
+<var baseClass=(isFake ? 'fake-menu-button' : 'menu-button')/>
+
 <span
-    class=data.menuClass
+    class=[
+        (isFake ? 'fake-menu-button' : 'menu-button'),
+        data.class
+    ]
     style=data.style
     w-bind
     w-on-expander-expand="handleExpand"
     w-on-expander-collapse="handleCollapse"
-    ${data.htmlAttributes}>
+    ${processHtmlAttributes(data)}>
     <ebay-button
         w-id="button"
-        class=data.buttonClass
+        class=[
+            "${baseClass}__button",
+            (data.borderless && 'expand-btn--borderless')
+        ]
         variant="expand"
         size=data.size
         priority=data.priority
-        no-text=data.noText
-        aria-expanded=String(data.expanded)
+        no-text=(!data.text && !data.icon)
+        aria-expanded="false"
         aria-haspopup="true"
         aria-label=data.a11yText
         disabled=data.disabled
         w-on-button-escape="handleButtonEscape">
-        <span class=['expand-btn__cell', (data.customLabel && 'menu-button__control--custom-label')]>
-            <span if(data.customLabel) w-preserve-body>
-                <span w-body=data.customLabel.renderBody body-only-if(true)/>
+        <span class=['expand-btn__cell', (data.label && 'menu-button__control--custom-label')]>
+            <span if(data.label) w-preserve-body>
+                <span w-body=data.label.renderBody body-only-if(true)/>
             </span>
             <else>
                 <!-- Convoluted markup to satisfy both Skin and Marko -->
@@ -31,33 +44,27 @@
             <ebay-icon if(!data.noToggleIcon) type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
         </span>
     </ebay-button>
-    <!-- w-id needed for proper DOM diffing with makeup -->
-    <div w-id="content" class=data.itemsClass>
-        <span role=data.role>
+    <ebay-menu
+        w-id="content"
+        class-prefix=baseClass
+        type=data.type
+        reverse=data.reverse
+        fix-width=data.fixWidth
+        w-on-menu-keydown="handleMenuKeydown"
+        w-on-menu-change="handleMenuChange"
+        w-on-menu-select="handleMenuSelect">
         <for(item in data.items)>
-            <${item.tag}
-                class=item.classes
+            <ebay-menu-item
                 style=item.style
-                aria-checked=(data.isNotCheckable ? false : String(item.checked))
-                aria-current=((data.isNotCheckable && item.current) ? 'page' : false)
+                class=item.class
                 href=item.href
-                role=item.role
-                w-onclick="handleItemClick"
-                w-onkeydown="handleItemKeydown"
-                w-onkeypress="handleItemKeypress"
-                w-preserve-attrs="tabindex,data-makeup-index"
-                ${item.htmlAttributes}>
-                <span>
-                    <span body-only-if(!item.badgeNumber) aria-hidden='true'>
-                        <span w-body=item.renderBody/>
-                        <if(item.badgeNumber)>
-                            <ebay-badge type='menu' number=item.badgeNumber/>
-                        </if>
-                    </span>
-                </span>
-                <span if(item.useCheckIcon) class="menu-button__status"/>
-            </>
+                checked=item.checked
+                current=item.current
+                value=item.value
+                badge-number=item.badgeNumber
+                badge-aria-label=item.badgeAriaLabel>
+                <span body-only-if(true) w-body=item.renderBody/>
+            </ebay-menu-item>
         </for>
-        </span>
-    </div>
+    </ebay-menu>
 </span>

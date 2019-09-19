@@ -8,7 +8,7 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-describe('menu', () => {
+describe('menu-button', () => {
     it('renders basic version', async() => {
         const input = mock.Basic_2Items;
         const { getByRole, getAllByRole, getByText, getByLabelText } = await render(template, input);
@@ -35,8 +35,6 @@ describe('menu', () => {
         const input = mock.Fake_2Items;
         const { getByText } = await render(template, input);
 
-        expect(getByText(input.text).closest('.fake-menu-button')).has.class('expander');
-
         input.items.forEach(item => {
             expect(getByText(item.renderBody.text).closest('.fake-menu-button__item'))
                 .has.attr('href', item.href);
@@ -46,7 +44,7 @@ describe('menu', () => {
     it('renders with reverse=true', async() => {
         const input = assign({ reverse: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
-        expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu--reverse');
+        expect(getByRole('menu').closest('.menu-button__menu')).with.class('menu-button__menu--reverse');
     });
 
     it('renders with type=fake, reverse=true', async() => {
@@ -59,7 +57,7 @@ describe('menu', () => {
     it('renders with fix-width=true', async() => {
         const input = assign({ fixWidth: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
-        expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu--fix-width');
+        expect(getByRole('menu').closest('.menu-button__menu')).with.class('menu-button__menu--fix-width');
     });
 
     it('renders with type=fake, fix-width=true', async() => {
@@ -120,6 +118,7 @@ describe('menu', () => {
         expect(customLabelEl).has.class('custom_label');
         expect(getByRole('button')).contains(customLabelEl);
     });
+
     ['radio', 'checkbox'].forEach(type => {
         [true, false].forEach(checked => {
             it(`renders with type=${type} and checked=${checked}`, async() => {
@@ -137,12 +136,6 @@ describe('menu', () => {
     });
 
     testUtils.testPassThroughAttributes(template);
-    testUtils.testPassThroughAttributes(template, {
-        child: {
-            name: 'items',
-            multiple: true
-        }
-    });
 });
 
 describe('transformer', () => {

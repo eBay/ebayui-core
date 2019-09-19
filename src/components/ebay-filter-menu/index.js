@@ -13,8 +13,7 @@ module.exports = require('marko-widgets').defineComponent({
             items: (input.items || []).map(item => assign({}, item))
         });
     },
-    onRender(e) {
-        const { firstRender } = e;
+    onRender({ firstRender }) {
         this.contentEl = this.getEl('content') || this.el;
 
         if (firstRender) {
@@ -31,24 +30,14 @@ module.exports = require('marko-widgets').defineComponent({
         }
     },
     onBeforeUpdate() {
-        this.rovingTabindex.destroy();
-        scrollKeyPreventer.remove(this.contentEl);
+        this._handleDestroy();
     },
     onDestroy() {
+        this._handleDestroy();
+    },
+    _handleDestroy() {
         this.rovingTabindex.destroy();
         scrollKeyPreventer.remove(this.contentEl);
-    },
-    setCheckedItem(itemIndex, itemEl) {
-        const currentTabindex = findIndex(this.rovingTabindex.filteredItems, (el) => el.tabIndex === 0);
-        this.tabindexPosition = currentTabindex;
-
-        const item = this.state.items[itemIndex];
-
-        if (item) {
-            this.state.items[itemIndex].checked = !item.checked;
-            this.setStateDirty('items');
-            this.emitComponentEvent('change', itemEl);
-        }
     },
     toggleItemChecked(itemEl) {
         const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
