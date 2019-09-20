@@ -1,3 +1,5 @@
+/* eslint-disable compat/compat */
+
 /**
  * Loads DS4 and DS6 icons from skin and adds them to the ebay-icon symbols.
  */
