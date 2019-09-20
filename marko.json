@@ -466,6 +466,26 @@
   "<ebay-select-option>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
+  "<ebay-success-message>": {
+    "template": "./src/components/ebay-success-message/index.marko",
+    "@*": "expression",
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@full": "boolean",
+    "@title": "string",
+    "@title-heading-tag": "string",
+    "@icon-a11y-text": "string",
+    "@content <content>": {
+      "@*": "expression",
+      "@html-attributes": "expression",
+      "@class": "string",
+      "@style": "string"
+    }
+  },
+  "<ebay-success-message-content>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
   "<ebay-switch>": {
     "renderer": "./src/components/ebay-switch/index.js",
     "@*": "expression",

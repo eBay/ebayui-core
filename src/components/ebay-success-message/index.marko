@@ -1,0 +1,25 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<section
+    aria-labelledby=widget.elId("title")
+    class=["success-message", data.full && "success-message--full", data.class]
+    style=data.style
+    role="region"
+    ${processHtmlAttributes(data)}>
+
+    <${data.titleHeadingTag || "h2"} id=widget.elId("title") class="success-message__title">
+        <span class="success-message__status" role="img" aria-label=data.iconA11yText></span>
+        <span>${data.title}</span>
+    </>
+
+    <p
+        class=["success-message__content", data.content.class]
+        style=data.content.style
+        if(data.content && data.content.renderBody)>
+        <invoke data.content.renderBody(out) />
+    </>
+
+    <invoke data.renderBody(out) if(data.renderBody)/>
+</section>
