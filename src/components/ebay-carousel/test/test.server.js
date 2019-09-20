@@ -33,6 +33,15 @@ describe('carousel', () => {
             expect(getAllByLabelText(/go to slide/)).has.length(2);
         });
 
+        it('renders without paddles', async() => {
+            const input = assign({}, mock.Discrete_1PerSlide_3Items, { itemsPerSlide: '3' });
+            const { queryByLabelText } = await render(template, input);
+
+            expect(queryByLabelText(input.a11yPreviousText)).to.equal(null);
+            expect(queryByLabelText(input.a11yNextText)).to.equal(null);
+            expect(queryByLabelText(/go to slide/)).to.equal(null);
+        });
+
         it('renders no-dots enabled', async() => {
             const input = assign({}, mock.Discrete_1PerSlide_3Items, { noDots: true });
             const { queryByLabelText } = await render(template, input);
@@ -44,10 +53,10 @@ describe('carousel', () => {
 
         it('renders without any provided items', async() => {
             const input = mock.Discrete_1PerSlide_0Items;
-            const { getByLabelText, queryByLabelText } = await render(template, input);
+            const { queryByLabelText } = await render(template, input);
 
-            expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
-            expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+            expect(queryByLabelText(input.a11yPreviousText)).to.equal(null);
+            expect(queryByLabelText(input.a11yNextText)).to.equal(null);
             expect(queryByLabelText(/go to slide/)).to.equal(null);
         });
 
