@@ -4,8 +4,14 @@ const template = require('./template.marko');
 module.exports = require('marko-widgets').defineComponent({
     template,
     getInitialState(input) {
+        let prefix = input.type || 'page';
+        if (input.type === 'guidance') {
+            prefix = 'page';
+        }
+
         return assign({}, input, {
-            hidden: input.hidden || false
+            hidden: input.hidden || false,
+            prefix: prefix
         });
     },
     handleDismiss() {

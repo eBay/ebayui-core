@@ -91,4 +91,21 @@ describe('notice', () => {
             input: mock.Inline
         });
     });
+
+    describe('with type=guidance', () => {
+        it('renders with defaults', async() => {
+            const input = mock.GuidanceInfo;
+            const { getByLabelText, getByText } = await render(template, input);
+            const status = getByLabelText(input.a11yHeadingText).parentElement;
+            expect(status).has.class('page-notice__status');
+            expect(status).has.property('tagName', 'H2');
+
+            const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
+            expect(containerUsingLabel).has.class('page-notice--information');
+
+            const content = getByText(input.renderBody.text);
+            expect(content).has.property('tagName', 'DIV');
+            expect(content).has.class('page-notice__content');
+        });
+    });
 });

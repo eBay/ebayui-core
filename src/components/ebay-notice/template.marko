@@ -1,10 +1,13 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
 </script>
-
 <var type=(data.type || "page")/>
+<var prefix=data.prefix/>
 <var status=(data.status || "attention")/>
-<var isPage=(type === "page")/>
+<var isGuidance=(type === "guidance")/>
+<var isPage=(type === "page" || isGuidance)/>
+<var isLightGuidance=(isGuidance && !data.status)/>
+<var cta=(data.cta)/>
 
 <if(!data.hidden)>
     <${isPage ? "section" : "div"}
@@ -13,20 +16,19 @@
         style=data.style
         aria-labelledby=widget.elId("status")
         class=[
-            "${type}-notice",
-            "${type}-notice--${data.status || 'attention'}",
+            "${prefix}-notice",
+            !isLightGuidance ? "${prefix}-notice--${status}" : "",
+            isGuidance ? "${prefix}-notice--guidance" : "",
             data.class
         ]>
-        <${isPage ? data.a11yHeadingTag || "h2" : "span"}
-            class="${type}-notice__status"
-            w-id="status">
-            <span aria-label=data.a11yHeadingText role="img"/>
-        </>
-
-        <${isPage ? "div" : "span"}
-            class="${type}-notice__content"
-            w-body/>
-
+        <if(!isLightGuidance)>
+            <${isPage ? data.a11yHeadingTag || "h2" : "span"}
+                class="${prefix}-notice__status"
+                w-id="status">
+                <span aria-label=data.a11yHeadingText role="img"/>
+            </>
+        </if>
+        <${isPage ? "div" : "span"} class="${prefix}-notice__content" w-body/>
         <if(data.dismissible)>
             <button
                 class="page-notice__close"
@@ -35,6 +37,14 @@
                 w-onclick="handleDismiss">
                 <span/>
             </button>
+        </if>
+        <if(cta)>
+            <${cta.href ? "a" : "button"}
+                class=["page-notice__cta", cta.class]
+                href=cta.href
+                ${processHtmlAttributes(cta)}
+                w-body=cta.renderBody
+            ></>
         </if>
     </>
 </if>

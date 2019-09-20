@@ -385,7 +385,17 @@
     "@a11y-heading-text": "string",
     "@a11y-heading-tag": "string",
     "@a11y-close-text": "string",
-    "@dismissible": "boolean"
+    "@dismissible": "boolean",
+    "@cta <cta>": {
+      "@*": "expression",
+      "@class": "string",
+      "@html-attributes": "expression",
+      "@href": "string"
+    }
+
+  },
+  "<ebay-notice-cta>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-pagination>": {
     "renderer": "./src/components/ebay-pagination/index.js",
