@@ -28,6 +28,7 @@
         "../src/components/ebay-pill",
         "../src/components/ebay-radio",
         "../src/components/ebay-select",
+        "../src/components/ebay-success-message",
         "../src/components/ebay-switch",
         "../src/components/ebay-tab",
         "../src/components/ebay-textbox",
