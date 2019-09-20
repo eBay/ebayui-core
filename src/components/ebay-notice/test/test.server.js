@@ -44,6 +44,22 @@ describe('notice', () => {
             expect(getByLabelText(input.a11yCloseText)).has.class('page-notice__close');
         });
 
+        it('renders with cta button', async() => {
+            const input = mock.Cta_Button;
+            const { getByText } = await render(template, input);
+            const button = getByText(input.cta.renderBody.text);
+            expect(button).has.property('tagName', 'BUTTON');
+            expect(button).has.class('page-notice__cta');
+        });
+
+        it('renders with cta link', async() => {
+            const input = mock.Cta_Link;
+            const { getByText } = await render(template, input);
+            const button = getByText(input.cta.renderBody.text);
+            expect(button).has.property('tagName', 'A');
+            expect(button).has.class('page-notice__cta');
+        });
+
         testPassThroughAttributes(template, {
             input: mock.Page
         });
@@ -93,8 +109,8 @@ describe('notice', () => {
     });
 
     describe('with type=guidance', () => {
-        it('renders with defaults', async() => {
-            const input = mock.GuidanceInfo;
+        it('renders with status', async() => {
+            const input = mock.Guidance_Info;
             const { getByLabelText, getByText } = await render(template, input);
             const status = getByLabelText(input.a11yHeadingText).parentElement;
             expect(status).has.class('page-notice__status');
@@ -106,6 +122,24 @@ describe('notice', () => {
             const content = getByText(input.renderBody.text);
             expect(content).has.property('tagName', 'DIV');
             expect(content).has.class('page-notice__content');
+
+            const container = content.parentElement;
+            expect(container).has.class('page-notice--guidance');
+            expect(container).has.class('page-notice');
+            expect(container).has.class('page-notice--information');
+        });
+
+        it('renders with light', async() => {
+            const input = mock.Guidance_Light;
+            const { getByText } = await render(template, input);
+            const container = getByText(input.renderBody.text).parentElement;
+            expect(container).has.class('page-notice--guidance');
+            expect(container).has.class('page-notice');
+            expect(container).does.not.have.class('page-notice--attention');
+
+            const firstChild = container.children[0];
+            expect(firstChild).does.not.have.property('tagName', 'H2');
+            expect(firstChild).does.not.have.class('page-notice__status');
         });
     });
 });

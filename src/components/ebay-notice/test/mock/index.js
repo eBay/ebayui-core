@@ -36,21 +36,27 @@ exports.Inline_Dismissible = assign({}, exports.Inline, {
     a11yCloseText: 'Close'
 });
 
-exports.GuidanceInfo = {
+exports.Guidance_Info = {
     a11yHeadingText: 'Heading Text',
     type: 'guidance',
     status: 'information',
     renderBody: createRenderBody('Content')
 };
 
-exports.GuidanceLight = {
-    a11yHeadingText: 'Heading Text',
+exports.Guidance_Light = {
     type: 'guidance',
     renderBody: createRenderBody('Content')
 };
 
-exports.CtaButton = {
+exports.Cta_Button = {
     cta: {
+        renderBody: createRenderBody('Content')
+    }
+};
+
+exports.Cta_Link = {
+    cta: {
+        href: '#',
         renderBody: createRenderBody('Content')
     }
 };
