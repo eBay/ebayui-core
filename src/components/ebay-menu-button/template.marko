@@ -37,7 +37,7 @@
             <else>
                 <!-- Convoluted markup to satisfy both Skin and Marko -->
                 <div if(data.icon) w-preserve-body class="btn__icon">
-                    <span if(data.iconTag) w-body=data.iconTag body-only-if(true)/>
+                    <span if(data.iconTag) w-body=data.iconTag.renderBody body-only-if(true)/>
                 </div>
                 <span if(data.text)>${data.text}</span>
             </else>
