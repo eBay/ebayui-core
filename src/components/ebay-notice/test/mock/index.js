@@ -49,14 +49,8 @@ exports.Guidance_Light = {
 };
 
 exports.Cta_Button = {
-    cta: {
-        renderBody: createRenderBody('Content')
-    }
-};
-
-exports.Cta_Link = {
-    cta: {
-        href: '#',
-        renderBody: createRenderBody('Content')
+    renderBody: createRenderBody('<button>Action</button>'),
+    content: {
+        renderBody: createRenderBody('Body')
     }
 };

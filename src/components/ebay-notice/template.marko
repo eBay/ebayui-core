@@ -7,7 +7,9 @@
 <var isGuidance=(type === "guidance")/>
 <var isPage=(type === "page" || isGuidance)/>
 <var isLightGuidance=(isGuidance && !data.status)/>
+<var content=(data.content)/>
 <var cta=(data.cta)/>
+<var contentTag=(isPage ? "div" : "span")/>
 
 <if(!data.hidden)>
     <${isPage ? "section" : "div"}
@@ -28,7 +30,17 @@
                 <span aria-label=data.a11yHeadingText role="img"/>
             </>
         </if>
-        <${isPage ? "div" : "span"} class="${prefix}-notice__content" w-body/>
+        <if(content && content.renderBody)>
+            <${contentTag}
+                ${processHtmlAttributes(content)}
+                class=[content.class, "${prefix}-notice__content"]
+                style=content.style
+                w-body=data.content.renderBody/>
+            <div body-only-if(true) w-body/>
+        </if>
+        <else>
+            <${contentTag} class="${prefix}-notice__content" w-body/>
+        </else>
         <if(data.dismissible)>
             <button
                 class="page-notice__close"
@@ -37,14 +49,6 @@
                 w-onclick="handleDismiss">
                 <span/>
             </button>
-        </if>
-        <if(cta)>
-            <${cta.href ? "a" : "button"}
-                class=["page-notice__cta", cta.class]
-                href=cta.href
-                ${processHtmlAttributes(cta)}
-                w-body=cta.renderBody
-            ></>
         </if>
     </>
 </if>

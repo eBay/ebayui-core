@@ -13,6 +13,7 @@
 <var baseClass=(variant ? (variant === 'fake-link' ? variant : "${variant}-btn") : "btn")/>
 <var sizeClass=(size && "${baseClass}--${size}")/>
 <var truncateClass=(data.truncate && (sizeClass ? "${sizeClass}-truncated" : "${baseClass}--truncated"))/>
+<var transparentClass=(data.transparent ? "${baseClass}--transparent" : "")/>
 <var fixedHeightClass=(data.fixedHeight && (sizeClass ? "${sizeClass}-fixed-height" : "${baseClass}--fixed-height"))/>
 <var htmlAttributes=processHtmlAttributes(data)/>
 <var tag=(data.href ? "a" : "button")/>
@@ -31,6 +32,7 @@
         data.fluid && "${baseClass}--fluid",
         truncateClass,
         fixedHeightClass,
+        transparentClass,
         !truncateClass && !fixedHeightClass && sizeClass,
         (priority === "secondary" || priority === "primary" || priority === "delete") && "${baseClass}--${priority}"
     ]

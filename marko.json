@@ -46,6 +46,7 @@
     "@variant": "string",
     "@fixed-height": "boolean",
     "@truncate": "boolean",
+    "@transparent": "boolean",
     "@badge-number": "expression",
     "@badge-aria-label": "string"
   },
@@ -386,15 +387,14 @@
     "@a11y-heading-tag": "string",
     "@a11y-close-text": "string",
     "@dismissible": "boolean",
-    "@cta <cta>": {
+    "@content <content>": {
       "@*": "expression",
-      "@class": "string",
       "@html-attributes": "expression",
-      "@href": "string"
+      "@class": "string",
+      "@style": "string"
     }
-
   },
-  "<ebay-notice-cta>": {
+  "<ebay-notice-content>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-pagination>": {

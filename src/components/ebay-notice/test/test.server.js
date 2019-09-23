@@ -47,17 +47,11 @@ describe('notice', () => {
         it('renders with cta button', async() => {
             const input = mock.Cta_Button;
             const { getByText } = await render(template, input);
-            const button = getByText(input.cta.renderBody.text);
-            expect(button).has.property('tagName', 'BUTTON');
-            expect(button).has.class('page-notice__cta');
-        });
-
-        it('renders with cta link', async() => {
-            const input = mock.Cta_Link;
-            const { getByText } = await render(template, input);
-            const button = getByText(input.cta.renderBody.text);
-            expect(button).has.property('tagName', 'A');
-            expect(button).has.class('page-notice__cta');
+            const content = getByText(input.content.renderBody.text);
+            const button = content.nextElementSibling;
+            expect(content).has.class('page-notice__content');
+            expect(content.parentElement).has.class('page-notice');
+            expect(button.textContent).to.equal('Action');
         });
 
         testPassThroughAttributes(template, {
