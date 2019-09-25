@@ -36,15 +36,15 @@ exports.Inline_Dismissible = assign({}, exports.Inline, {
     a11yCloseText: 'Close'
 });
 
-exports.Guidance_Info = {
+exports.Section_Info = {
     a11yHeadingText: 'Heading Text',
-    type: 'guidance',
+    type: 'section',
     status: 'information',
     renderBody: createRenderBody('Content')
 };
 
-exports.Guidance_Light = {
-    type: 'guidance',
+exports.Section_Light = {
+    type: 'section',
     renderBody: createRenderBody('Content')
 };
 
