@@ -10,6 +10,20 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
+function thenItHasMovedToTab(index) {
+    it('then it emits the select event with correct data', () => {
+        const selectEvents = component.emitted('tab-select');
+        expect(selectEvents).has.length(1);
+
+        const [[eventArg]] = selectEvents;
+        expect(eventArg).has.property('index', index);
+    });
+
+    it(`then heading ${index + 1} is selected`, () => {
+        expect(component.getAllByRole('tab')[index]).has.attr('aria-selected', 'true');
+    });
+}
+
 describe('given tabs with first heading selected', () => {
     const input = mock.Basic_3Headings_3Panels_No_Index;
 
@@ -56,20 +70,6 @@ describe('given tabs with first heading selected', () => {
 
         thenItHasMovedToTab(2);
     });
-
-    function thenItHasMovedToTab(index) {
-        it('then it emits the select event with correct data', () => {
-            const selectEvents = component.emitted('tab-select');
-            expect(selectEvents).has.length(1);
-
-            const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property('index', index);
-        });
-
-        it(`then heading ${index + 1} is selected`, () => {
-            expect(component.getAllByRole('tab')[index]).has.attr('aria-selected', 'true');
-        });
-    }
 });
 
 describe('given tabs with manual activation', () => {
@@ -102,20 +102,6 @@ describe('given tabs with manual activation', () => {
 
         thenItHasMovedToTab(1);
     });
-
-    function thenItHasMovedToTab(index) {
-        it('then it emits the select event with correct data', () => {
-            const selectEvents = component.emitted('tab-select');
-            expect(selectEvents).has.length(1);
-
-            const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property('index', index);
-        });
-
-        it(`then heading ${index + 1} is selected`, () => {
-            expect(component.getAllByRole('tab')[index]).has.attr('aria-selected', 'true');
-        });
-    }
 });
 
 describe('given tabs with third heading selected', () => {
@@ -146,18 +132,4 @@ describe('given tabs with third heading selected', () => {
 
         thenItHasMovedToTab(1);
     });
-
-    function thenItHasMovedToTab(index) {
-        it('then it emits the select event with correct data', () => {
-            const selectEvents = component.emitted('tab-select');
-            expect(selectEvents).has.length(1);
-
-            const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property('index', index);
-        });
-
-        it(`then heading ${index + 1} is selected`, () => {
-            expect(component.getAllByRole('tab')[index]).has.attr('aria-selected', 'true');
-        });
-    }
 });
