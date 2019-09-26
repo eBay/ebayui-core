@@ -27,25 +27,12 @@ describe('given tabs with first heading selected', () => {
         });
     });
 
-    describe('when the second tab is activated', () => {
-        describe('via click', () => {
-            beforeEach(async() => {
-                await fireEvent.click(component.getAllByRole('tab')[1]);
-            });
-
-            thenItHasMovedToTab(1);
+    describe('when the second tab is activated via click', () => {
+        beforeEach(async() => {
+            await fireEvent.click(component.getAllByRole('tab')[1]);
         });
 
-        describe('via keyboard action button', () => {
-            beforeEach(async() => {
-                await pressKey(component.getAllByRole('tab')[1], {
-                    key: '(Space character)',
-                    keyCode: 32
-                });
-            });
-
-            thenItHasMovedToTab(1);
-        });
+        thenItHasMovedToTab(1);
     });
 
     describe('when the right arrow key is pressed', () => {
@@ -68,6 +55,52 @@ describe('given tabs with first heading selected', () => {
         });
 
         thenItHasMovedToTab(2);
+    });
+
+    function thenItHasMovedToTab(index) {
+        it('then it emits the select event with correct data', () => {
+            const selectEvents = component.emitted('tab-select');
+            expect(selectEvents).has.length(1);
+
+            const [[eventArg]] = selectEvents;
+            expect(eventArg).has.property('index', index);
+        });
+
+        it(`then heading ${index + 1} is selected`, () => {
+            expect(component.getAllByRole('tab')[index]).has.attr('aria-selected', 'true');
+        });
+    }
+});
+
+describe('given tabs with manual activation', () => {
+    const input = mock.Basic_3Headings_3Panels_ActivationManual;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+
+    describe('when the first heading is activated via keybaord action button', () => {
+        beforeEach(async() => {
+            await pressKey(component.getAllByRole('tab')[0], {
+                key: '(Space character)',
+                keyCode: 32
+            });
+        });
+
+        it('then it does not emit the select event', () => {
+            expect(component.emitted('tab-select')).has.length(0);
+        });
+    });
+
+    describe('when the second tab is activated via keyboard action button', () => {
+        beforeEach(async() => {
+            await pressKey(component.getAllByRole('tab')[1], {
+                key: '(Space character)',
+                keyCode: 32
+            });
+        });
+
+        thenItHasMovedToTab(1);
     });
 
     function thenItHasMovedToTab(index) {

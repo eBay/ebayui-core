@@ -37,7 +37,7 @@ module.exports = require('marko-widgets').defineComponent({
         eventUtils.handleActionKeydown(event, () => {
             event.preventDefault();
 
-            if (this.state.activation === 'auto') {
+            if (this.state.activation === 'manual') {
                 this.setIndex(el.dataset.index);
             }
         });

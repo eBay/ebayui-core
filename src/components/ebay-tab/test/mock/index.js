@@ -18,6 +18,10 @@ exports.Basic_3Headings_3Panels_2Index = assign({}, exports.Basic_3Headings_3Pan
     index: 2
 });
 
+exports.Basic_3Headings_3Panels_ActivationManual = assign({}, exports.Basic_3Headings_3Panels_No_Index, {
+    activation: 'manual'
+});
+
 exports.Fake_3Headings_No_Index = {
     fake: true,
     headings: getNItems(3, i => ({
