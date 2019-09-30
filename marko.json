@@ -350,6 +350,7 @@
     "@priority": "string",
     "@iconTag <icon>": {},
     "@disabled": "boolean",
+    "@variant": "string",
     "@items <item>[]": {
       "@*": "expression",
       "@html-attributes": "expression",

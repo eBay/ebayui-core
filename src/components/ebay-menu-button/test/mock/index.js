@@ -49,3 +49,8 @@ exports.Custom_Label = assign({}, exports.Basic_2Items, {
         )
     }
 });
+
+exports.Overflow_Variant = assign({}, exports.Basic_2Items, {
+    text: '',
+    variant: 'overflow'
+});

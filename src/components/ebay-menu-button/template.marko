@@ -15,35 +15,54 @@
     w-on-expander-expand="handleExpand"
     w-on-expander-collapse="handleCollapse"
     ${processHtmlAttributes(data)}>
-    <ebay-button
-        w-id="button"
-        class=[
-            "${baseClass}__button",
-            (data.borderless && 'expand-btn--borderless')
-        ]
-        variant="expand"
-        size=data.size
-        priority=data.priority
-        no-text=(!data.text && !data.icon)
-        aria-expanded="false"
-        aria-haspopup="true"
-        aria-label=data.a11yText
-        disabled=data.disabled
-        w-on-button-escape="handleButtonEscape">
-        <span class=['expand-btn__cell', (data.label && 'menu-button__control--custom-label')]>
-            <span if(data.label) w-preserve-body>
-                <span w-body=data.label.renderBody body-only-if(true)/>
+    <if(data.variant === 'overflow')>
+        <ebay-button
+            w-id="button"
+            class=[
+                "${baseClass}__button",
+                "expand-btn"
+            ]
+            style="border:0;"
+            variant="icon"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-label=data.a11yText
+            disabled=data.disabled
+            w-on-button-escape="handleButtonEscape">
+            <ebay-icon type="inline" name="overflow-small" class="expand-btn__icon"/>
+        </ebay-button>
+    </if>
+    <else>
+        <ebay-button
+            w-id="button"
+            class=[
+                "${baseClass}__button",
+                (data.borderless && 'expand-btn--borderless')
+            ]
+            variant="expand"
+            size=data.size
+            priority=data.priority
+            no-text=(!data.text && !data.icon)
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-label=data.a11yText
+            disabled=data.disabled
+            w-on-button-escape="handleButtonEscape">
+            <span class=['expand-btn__cell', (data.label && 'menu-button__control--custom-label')]>
+                <span if(data.label) w-preserve-body>
+                    <span w-body=data.label.renderBody body-only-if(true)/>
+                </span>
+                <else>
+                    <!-- Convoluted markup to satisfy both Skin and Marko -->
+                    <div if(data.icon) w-preserve-body class="btn__icon">
+                        <span if(data.iconTag) w-body=data.iconTag.renderBody body-only-if(true)/>
+                    </div>
+                    <span if(data.text)>${data.text}</span>
+                </else>
+                <ebay-icon if(!data.noToggleIcon) type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
             </span>
-            <else>
-                <!-- Convoluted markup to satisfy both Skin and Marko -->
-                <div if(data.icon) w-preserve-body class="btn__icon">
-                    <span if(data.iconTag) w-body=data.iconTag.renderBody body-only-if(true)/>
-                </div>
-                <span if(data.text)>${data.text}</span>
-            </else>
-            <ebay-icon if(!data.noToggleIcon) type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
-        </span>
-    </ebay-button>
+        </ebay-button>
+    </else>
     <ebay-menu
         w-id="content"
         class-prefix=baseClass
