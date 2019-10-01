@@ -18,18 +18,14 @@
     <if(data.variant === 'overflow')>
         <ebay-button
             w-id="button"
-            class=[
-                "${baseClass}__button",
-                "expand-btn"
-            ]
-            style="border:0;"
+            class="${baseClass}__button"
             variant="icon"
             aria-expanded="false"
             aria-haspopup="true"
             aria-label=data.a11yText
             disabled=data.disabled
             w-on-button-escape="handleButtonEscape">
-            <ebay-icon type="inline" name="overflow-small" class="expand-btn__icon"/>
+            <ebay-icon type="inline" name="overflow" class="icon"/>
         </ebay-button>
     </if>
     <else>

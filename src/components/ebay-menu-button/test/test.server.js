@@ -124,12 +124,11 @@ describe('menu-button', () => {
         const { getByRole, getByLabelText } = await render(template, input);
         const btnEl = getByRole('button');
         expect(btnEl).is.equal(getByLabelText(input.a11yText));
-        expect(btnEl).has.class('expand-btn');
         expect(btnEl).has.class('icon-btn');
         expect(btnEl).has.attr('aria-haspopup', 'true');
         expect(btnEl).has.attr('aria-expanded', 'false');
         expect(btnEl).has.property('parentElement').with.class('menu-button');
-        expect(btnEl.querySelector('.expand-btn__icon')).has.property('tagName', 'svg');
+        expect(btnEl.querySelector('.icon')).has.property('tagName', 'svg');
         expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu');
     });
 

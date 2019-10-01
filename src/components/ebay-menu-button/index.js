@@ -14,7 +14,7 @@ module.exports = require('marko-widgets').defineComponent({
     },
     onRender() {
         this.expander = new Expander(this.el, {
-            hostSelector: '.expand-btn',
+            hostSelector: '.menu-button__button, .fake-menu-button__button',
             contentSelector: '.menu-button__menu, .fake-menu-button__menu',
             focusManagement: 'focusable',
             expandOnClick: true,
