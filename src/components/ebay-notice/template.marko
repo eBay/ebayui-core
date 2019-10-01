@@ -17,6 +17,7 @@
         w-bind
         style=data.style
         aria-labelledby=widget.elId("status")
+        aria-label=(isLightGuidance ? data.a11yHeadingText : null)
         class=[
             "${type}-notice",
             !isLightGuidance ? "${type}-notice--${status}" : "",
