@@ -41,6 +41,10 @@ function handleLeftRightArrowsKeydown(e, callback) {
     handleKeydown([37, 39], e, callback);
 }
 
+function handleArrowsKeydown(e, callback) {
+    handleKeydown([37, 38, 39, 40], e, callback);
+}
+
 // only fire for character input, not modifier/meta keys (enter, escape, backspace, tab, etc.)
 function handleTextInput(e, callback) {
     const keys = [
@@ -95,6 +99,7 @@ module.exports = {
     handleEscapeKeydown,
     handleUpDownArrowsKeydown,
     handleLeftRightArrowsKeydown,
+    handleArrowsKeydown,
     handleTextInput,
     preventDefaultIfHijax,
     resizeUtil: {

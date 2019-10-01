@@ -5,7 +5,6 @@
                 "@ebay/skin/filter-button"
             ]
         },
-        "../ebay-button",
-        "require: ./index.js"
+        "../ebay-button"
     ]
 }

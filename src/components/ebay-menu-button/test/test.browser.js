@@ -27,7 +27,7 @@ describe('given the menu is in the default state', () => {
         });
 
         it('then it emits the marko event from expander-expand', () => {
-            expect(component.emitted('menu-expand')).has.length(1);
+            expect(component.emitted('menu-button-expand')).has.length(1);
         });
 
         describe('when it is clicked again', () => {
@@ -40,7 +40,7 @@ describe('given the menu is in the default state', () => {
             });
 
             it('then it emits the marko event from expander-collapse', () => {
-                expect(component.emitted('menu-collapse')).has.length(1);
+                expect(component.emitted('menu-button-collapse')).has.length(1);
             });
         });
     });
@@ -56,7 +56,7 @@ describe('given the menu is in the default state', () => {
         it('then the new item is selected or something');
 
         it('then it uses the new input in event data', () => {
-            const selectEvents = component.emitted('menu-select');
+            const selectEvents = component.emitted('menu-button-select');
             expect(selectEvents).has.length(1);
 
             const [[eventArg]] = selectEvents;
@@ -76,7 +76,7 @@ describe('given the menu is in the default state', () => {
         });
 
         it('then it doesn\'t emit the marko collapse event', () => {
-            expect(component.emitted('menu-collapse')).has.length(0);
+            expect(component.emitted('menu-button-collapse')).has.length(0);
         });
     });
 
@@ -90,8 +90,8 @@ describe('given the menu is in the default state', () => {
             expect(component.getByRole('button')).to.have.attr('aria-expanded', 'true');
         });
 
-        it('then it emits the menu-expand event', () => {
-            expect(component.emitted('menu-expand')).has.length(1);
+        it('then it emits the menu-button-expand event', () => {
+            expect(component.emitted('menu-button-expand')).has.length(1);
         });
     });
 });
@@ -103,7 +103,7 @@ describe('given the menu is in the expanded state', () => {
     beforeEach(async() => {
         component = await render(template, input);
         await fireEvent.click(component.getByRole('button'));
-        expect(component.emitted('menu-expand')).has.length(1);
+        expect(component.emitted('menu-button-expand')).has.length(1);
     });
 
     // TODO: we should make the `expanded` property controllable via input.
@@ -117,7 +117,7 @@ describe('given the menu is in the expanded state', () => {
         });
 
         it('then it doesn\'t emit the marko expand event', () => {
-            expect(component.emitted('menu-expand')).has.length(0);
+            expect(component.emitted('menu-button-expand')).has.length(0);
         });
     });
 
@@ -131,8 +131,8 @@ describe('given the menu is in the expanded state', () => {
             expect(component.getByRole('button')).to.have.attr('aria-expanded', 'false');
         });
 
-        it('then it emits the menu-expand event', () => {
-            expect(component.emitted('menu-collapse')).has.length(1);
+        it('then it emits the menu-button-expand event', () => {
+            expect(component.emitted('menu-button-collapse')).has.length(1);
         });
     });
 
@@ -141,13 +141,12 @@ describe('given the menu is in the expanded state', () => {
             await fireEvent.click(component.getByText(firstItemText));
         });
 
-        it('then it emits the menu-select event with correct data', () => {
-            const selectEvents = component.emitted('menu-select');
+        it('then it emits the menu-button-select event with correct data', () => {
+            const selectEvents = component.emitted('menu-button-select');
             expect(selectEvents).to.length(1);
 
             const [[eventArg]] = selectEvents;
             expect(eventArg).has.property('el').with.text(firstItemText);
-            expect(eventArg).has.property('index', 0);
             expect(eventArg).has.property('checked').to.deep.equal([0]);
         });
     });
@@ -168,7 +167,7 @@ describe('given the menu is in the expanded state', () => {
         });
 
         it('then it emits the marko collapse event', () => {
-            expect(component.emitted('menu-collapse')).to.have.property('length', 1);
+            expect(component.emitted('menu-button-collapse')).to.have.property('length', 1);
         });
     });
 
@@ -185,7 +184,7 @@ describe('given the menu is in the expanded state', () => {
         });
 
         it('then it emits the marko collapse event', () => {
-            expect(component.emitted('menu-collapse')).to.have.property('length', 1);
+            expect(component.emitted('menu-button-collapse')).to.have.property('length', 1);
         });
     });
 });
@@ -201,20 +200,19 @@ describe('given the menu is in the expanded state with radio items', () => {
 
     describe('when an item is clicked', () => {
         beforeEach(async() => {
-            await fireEvent.click(firstItem);
+            await fireEvent.click(secondItem);
         });
 
-        it('then it emits the menu-change event with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits the menu-button-change event with correct data', () => {
+            const changeEvents = component.emitted('menu-button-change');
             expect(changeEvents).to.have.length(1);
 
-            const eventData = changeEvents[0][0];
-            expect(eventData.index).to.equal(0);
-            expect(eventData.checked).to.deep.equal([0]);
+            const [[eventData]] = changeEvents;
+            expect(eventData.checked).to.deep.equal([1]);
         });
 
         it('then the item is selected', () => {
-            expect(firstItem).to.have.attr('aria-checked', 'true');
+            expect(secondItem).to.have.attr('aria-checked', 'true');
         });
     });
 
@@ -226,12 +224,11 @@ describe('given the menu is in the expanded state with radio items', () => {
             });
         });
 
-        it('then it emits the menu-change event with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits the menu-button-change event with correct data', () => {
+            const changeEvents = component.emitted('menu-button-change');
             expect(changeEvents).to.have.length(1);
 
-            const eventData = changeEvents[0][0];
-            expect(eventData.index).to.equal(0);
+            const [[eventData]] = changeEvents;
             expect(eventData.checked).to.deep.equal([0]);
         });
 
@@ -246,15 +243,12 @@ describe('given the menu is in the expanded state with radio items', () => {
             await fireEvent.click(secondItem);
         });
 
-        it('then it emits two menu-change events with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits two menu-button-change events with correct data', () => {
+            const changeEvents = component.emitted('menu-button-change');
             expect(changeEvents).to.have.length(2);
 
-            const firstEventData = changeEvents[0][0];
-            const secondEventData = changeEvents[1][0];
-            expect(firstEventData.index).to.equal(0);
+            const [[firstEventData], [secondEventData]] = changeEvents;
             expect(firstEventData.checked).to.deep.equal([0]);
-            expect(secondEventData.index).to.equal(1);
             expect(secondEventData.checked).to.deep.equal([1]);
         });
 
@@ -271,12 +265,11 @@ describe('given the menu is in the expanded state with radio items', () => {
             await fireEvent.click(firstItem);
         });
 
-        it('then it emits only one menu-change event with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits only one menu-button-change event with correct data', () => {
+            const changeEvents = component.emitted('menu-button-change');
             expect(changeEvents).to.have.length(1);
 
-            const eventData = changeEvents[0][0];
-            expect(eventData.index).to.equal(0);
+            const [[eventData]] = changeEvents;
             expect(eventData.checked).to.deep.equal([0]);
         });
 
@@ -301,15 +294,12 @@ describe('given the menu is in the expanded state with checkbox items', () => {
             await fireEvent.click(secondItem);
         });
 
-        it('then it emits two menu-change events with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits two menu-button-change events with correct data', () => {
+            const changeEvents = component.emitted('menu-button-change');
             expect(changeEvents).to.have.length(2);
 
-            const firstEventData = changeEvents[0][0];
-            const secondEventData = changeEvents[1][0];
-            expect(firstEventData.index).to.equal(0);
+            const [[firstEventData], [secondEventData]] = changeEvents;
             expect(firstEventData.checked).to.deep.equal([0]);
-            expect(secondEventData.index).to.equal(1);
             expect(secondEventData.checked).to.deep.equal([0, 1]);
         });
 
@@ -325,15 +315,12 @@ describe('given the menu is in the expanded state with checkbox items', () => {
             await fireEvent.click(firstItem);
         });
 
-        it('then it emits the menu-change events with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits the menu-button-change events with correct data', () => {
+            const changeEvents = component.emitted('menu-button-change');
             expect(changeEvents).to.have.length(2);
 
-            const firstEventData = changeEvents[0][0];
-            const secondEventData = changeEvents[1][0];
-            expect(firstEventData.index).to.equal(0);
+            const [[firstEventData], [secondEventData]] = changeEvents;
             expect(firstEventData.checked).to.deep.equal([0]);
-            expect(secondEventData.index).to.equal(0);
             expect(secondEventData.checked).to.deep.equal([]);
         });
 
