@@ -54,7 +54,7 @@
         w-id="content"
         class-prefix=baseClass
         type=data.type
-        reverse=data.reverse
+        reverse=(isOverflowVariant ? !data.reverse : data.reverse)
         fix-width=data.fixWidth
         w-on-menu-keydown="handleMenuKeydown"
         w-on-menu-change="handleMenuChange"

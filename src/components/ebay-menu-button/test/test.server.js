@@ -129,7 +129,9 @@ describe('menu-button', () => {
         expect(btnEl).has.attr('aria-expanded', 'false');
         expect(btnEl).has.property('parentElement').with.class('menu-button');
         expect(btnEl.querySelector('.icon')).has.property('tagName', 'svg');
-        expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu');
+        const menuEl = getByRole('menu');
+        expect(menuEl).has.property('parentElement').with.class('menu-button__menu');
+        expect(menuEl).has.property('parentElement').with.class('menu-button__menu--reverse');
     });
 
     ['radio', 'checkbox'].forEach(type => {
