@@ -4,6 +4,7 @@
 
 <var isFake=(data.type === 'fake')/>
 <var baseClass=(isFake ? 'fake-menu-button' : 'menu-button')/>
+<var isOverflowVariant=(data.variant === 'overflow')/>
 
 <span
     class=[
@@ -15,35 +16,25 @@
     w-on-expander-expand="handleExpand"
     w-on-expander-collapse="handleCollapse"
     ${processHtmlAttributes(data)}>
-    <if(data.variant === 'overflow')>
-        <ebay-button
-            w-id="button"
-            class="${baseClass}__button"
-            variant="icon"
-            aria-expanded="false"
-            aria-haspopup="true"
-            aria-label=data.a11yText
-            disabled=data.disabled
-            w-on-button-escape="handleButtonEscape">
+    <ebay-button
+        w-id="button"
+        class=[
+            "${baseClass}__button",
+            (data.borderless && !isOverflowVariant && 'expand-btn--borderless')
+        ]
+        variant=(isOverflowVariant ? "icon" : "expand")
+        size=data.size
+        priority=data.priority
+        no-text=(!data.text && !data.icon && !isOverflowVariant)
+        aria-expanded="false"
+        aria-haspopup="true"
+        aria-label=data.a11yText
+        disabled=data.disabled
+        w-on-button-escape="handleButtonEscape">
+        <if(isOverflowVariant)>
             <ebay-icon type="inline" name="overflow"/>
-        </ebay-button>
-    </if>
-    <else>
-        <ebay-button
-            w-id="button"
-            class=[
-                "${baseClass}__button",
-                (data.borderless && 'expand-btn--borderless')
-            ]
-            variant="expand"
-            size=data.size
-            priority=data.priority
-            no-text=(!data.text && !data.icon)
-            aria-expanded="false"
-            aria-haspopup="true"
-            aria-label=data.a11yText
-            disabled=data.disabled
-            w-on-button-escape="handleButtonEscape">
+        </if>
+        <else>
             <span class=['expand-btn__cell', (data.label && 'menu-button__control--custom-label')]>
                 <span if(data.label) w-preserve-body>
                     <span w-body=data.label.renderBody body-only-if(true)/>
@@ -57,8 +48,8 @@
                 </else>
                 <ebay-icon if(!data.noToggleIcon) type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
             </span>
-        </ebay-button>
-    </else>
+        </else>
+    </ebay-button>
     <ebay-menu
         w-id="content"
         class-prefix=baseClass
