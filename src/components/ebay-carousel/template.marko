@@ -20,6 +20,7 @@
             </>
         </if>
         <button
+            if(data.showPaddles)
             class="carousel__control carousel__control--prev"
             type="button"
             w-onclick=(!data.prevControlDisabled && "handleMove")
@@ -47,6 +48,7 @@
         </ul>
 
         <button
+            if(data.showPaddles)
             w-id="next"
             class="carousel__control carousel__control--next"
             type="button"

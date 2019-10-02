@@ -16,10 +16,12 @@
         "mocha/no-sibling-hooks": 2,
         "compat/compat": 2
     },
-    "overrides": {
-        "files": ["**/test/*", "**/test-utils/*"],
-        "rules": {
-            "compat/compat": 0
+    "overrides": [
+        {
+            "files": ["**/test/*", "**/test-utils/*"],
+            "rules": {
+                "compat/compat": 0
+            }
         }
-    }
+    ]
 }

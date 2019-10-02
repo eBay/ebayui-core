@@ -36,18 +36,15 @@ module.exports = require('marko-widgets').defineComponent({
     handleHeadingKeydown(event, el) {
         eventUtils.handleActionKeydown(event, () => {
             event.preventDefault();
-
-            if (this.state.activation === 'auto') {
-                this.setIndex(el.dataset.index);
-            }
+            this.setIndex(el.dataset.index);
         });
 
-        eventUtils.handleLeftRightArrowsKeydown(event, () => {
+        eventUtils.handleArrowsKeydown(event, () => {
             event.preventDefault();
 
             const len = this.state.headings.length;
             const keyCode = event.charCode || event.keyCode;
-            const direction = keyCode === 37 ? -1 : 1;
+            const direction = keyCode === 37 || keyCode === 38 ? -1 : 1;
             const index = (this.state.index + len + direction) % len;
             this.getEl(`tab-${index}`).focus();
 
