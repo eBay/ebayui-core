@@ -119,6 +119,21 @@ describe('menu-button', () => {
         expect(getByRole('button')).contains(customLabelEl);
     });
 
+    it('renders with overflow variant', async() => {
+        const input = mock.Overflow_Variant;
+        const { getByRole, getByLabelText } = await render(template, input);
+        const btnEl = getByRole('button');
+        expect(btnEl).is.equal(getByLabelText(input.a11yText));
+        expect(btnEl).has.class('icon-btn');
+        expect(btnEl).has.attr('aria-haspopup', 'true');
+        expect(btnEl).has.attr('aria-expanded', 'false');
+        expect(btnEl).has.property('parentElement').with.class('menu-button');
+        expect(btnEl.querySelector('.icon')).has.property('tagName', 'svg');
+        const menuEl = getByRole('menu');
+        expect(menuEl).has.property('parentElement').with.class('menu-button__menu');
+        expect(menuEl).has.property('parentElement').with.class('menu-button__menu--reverse');
+    });
+
     ['radio', 'checkbox'].forEach(type => {
         [true, false].forEach(checked => {
             it(`renders with type=${type} and checked=${checked}`, async() => {
