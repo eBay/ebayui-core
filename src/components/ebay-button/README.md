@@ -17,6 +17,7 @@ Name | Type | Stateful | Description
 `fluid` | Boolean | No |
 `disabled` | Boolean | Yes |
 `partially-disabled` | Boolean | No |
+`transparent` | Boolean | Yes | optional, to add Skin classes "transparent"
 `variant` | String | No | optional, to alter Skin classes: "expand" / "fake-link" / "delete"
 `fixed-height` | Boolean | No | fixes the height based on `size`
 `truncate` | Boolean | No | will truncate the text of the button onto a single line, and adds an ellipsis, when the button's text overflows
