@@ -31,6 +31,7 @@ Name | Type | Stateful | Required | Description
 `priority` | String | No | No | button priority, "primary" / "secondary" (default) / "none"
 `checked` (radio) | Number | Yes | No | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 `disabled` | Boolean | Yes | No | Will disable the entire dropdown (disables the ebay-button label) if set to true
+`variant` | String | No | No | will change the button style, "overflow" / "default"
 
 ### ebay-menu-button Events
 
