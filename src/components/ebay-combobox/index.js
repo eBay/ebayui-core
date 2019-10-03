@@ -149,6 +149,7 @@ module.exports = require('marko-widgets').defineComponent({
 
         if (this.valueChanged) {
             this.emitComboboxEvent('change');
+            this.valueChanged = false;
         }
     },
     handleOptionMouseDown() {
