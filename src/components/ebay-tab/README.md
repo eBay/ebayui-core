@@ -21,6 +21,8 @@ Name | Type | Stateful | Description
 `fake` | Boolean | No | Whether to use link behavior for tab headings
 `activation` | String | Yes | whether to use automatic or manual activation when navigating by keyboard, "auto" (default) / "manual"
 
+> *Note:* When using fake tabs there is no `preventDefault` applied, and therefore the link in the tab heading will work as a normal and navigate to the URL provided in the `href`.
+
 ## ebay-tab Events
 
 Event | Data | Description
