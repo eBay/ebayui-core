@@ -30,13 +30,15 @@ The `background` icon will set the background image to an SVG image via CSS. Thi
 ```
 
 ## ebay-icon Attributes
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`type` | String | No | "background" via CSS (default) or "inline" via HTML
-`name` | String | No | name of the icon from Skin
-`no-skin-classes` | Boolean | No | Used for special cases where `icon` classes from Skin should not be applied
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`type` | String | No | No | "background" via CSS (default) or "inline" via HTML
+`name` | String | No | Yes | name of the icon from Skin
+`no-skin-classes` | Boolean | No | No | Used for special cases where `icon` classes from Skin should not be applied
 
 ### Additional Attributes for type="inline"
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`a11y-text` | String | No | text for non-decorative inline icon; icon is assumed to be decorative if this is not passed
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`a11y-text` | String | No | Yes | text for non-decorative inline icon; icon is assumed to be decorative if this is not passed

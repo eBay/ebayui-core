@@ -8,12 +8,17 @@
 
 ## ebay-pill Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`href` | String | No | for link that looks like a button
-`disabled` | Boolean | No |
-`pressed` | Boolean | No |
-`a11y-active-text` | String | No | **Note:** only for fake pills; defaults to `"Selected"`, but should be changed based on L10N or I18N
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`href` | String | No | No | for link that looks like a button
+`disabled` | Boolean | No | No |
+`pressed` | Boolean | No | No |
+
+### Additional attributes for fake pills
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`a11y-active-text` | String | No | Yes | defaults to `"Selected"`, but should be changed based on L10N or I18N
 
 ## ebay-pill Events
 

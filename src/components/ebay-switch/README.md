@@ -8,11 +8,11 @@
 
 ## ebay-switch Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`disabled` | Boolean | No |
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`disabled` | Boolean | No | No |
 
-Note: For this component, `class`/`style` are applied to the root tag, while all other HTML attributes are applied to the `input` tag.
+**Note:** For this component, `class`/`style` are applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 
 ## ebay-switch Events
 

@@ -16,21 +16,21 @@
 
 ### ebay-menu-button Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`text` | String | Yes | button text
-`icon` | String | No | name of an `<ebay-icon>` to show to the left of the text
-`a11y-text` | String | No | a11y text for the button, especially for cases without text
-`no-toggle-icon` | Boolean | No | whether to hide the chevron toggle icon
-`expanded` | Boolean | Yes | whether content is expanded (Note: not supported as initial attribute)
-`type` | String | No | Can be "fake" / "radio" / "checkbox"
-`reverse` | Boolean | No | expand menu flyout to the left
-`fix-width` | Boolean | No | constrain items container width to button width
-`borderless` | Boolean | No | whether button has borders
-`size` | String | No | button size, "small" or "large" (default: small)
-`priority` | String | No | button priority, "primary" / "secondary" (default) / "none"
-`checked` (radio) | Number | Yes | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
-`disabled` | Boolean | Yes | Will disable the entire dropdown (disables the ebay-button label) if set to true
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`text` | String | Yes | Yes | button text
+`icon` | String | No | No | name of an `<ebay-icon>` to show to the left of the text
+`a11y-text` | String | No | No | a11y text for the button, especially for cases without text
+`no-toggle-icon` | Boolean | No | No | whether to hide the chevron toggle icon
+`expanded` | Boolean | Yes | No | whether content is expanded (Note: not supported as initial attribute)
+`type` | String | No | No | Can be "fake" / "radio" / "checkbox"
+`reverse` | Boolean | No | No | expand menu flyout to the left
+`fix-width` | Boolean | No | No | constrain items container width to button width
+`borderless` | Boolean | No | No | whether button has borders
+`size` | String | No | No | button size, "small" or "large" (default: small)
+`priority` | String | No | No | button priority, "primary" / "secondary" (default) / "none"
+`checked` (radio) | Number | Yes | No | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
+`disabled` | Boolean | Yes | No | Will disable the entire dropdown (disables the ebay-button label) if set to true
 
 ### ebay-menu-button Events
 
@@ -60,11 +60,11 @@ Event | Data | Description
 
 ### ebay-menu-button-item Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`href` (fake menu) | String | No | for link that looks like a menu-item
-`type` (fake menu) | String | No | Set to "button" for fake menu-item `<button>`
-`checked` (radio or checkbox) | Boolean | No | whether or not the item is checked
-`current` (fake menu) | Boolean | No | whether or not the href is the current href of the page
-`badge-number` | Number | No | used as the number to be placed in the badge
-`badge-aria-label` | String | No | passed as the `aria-label` directly to the badge
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`href` (fake menu) | String | No | No | for link that looks like a menu-item
+`type` (fake menu) | String | No | No | Set to "button" for fake menu-item `<button>`
+`checked` (radio or checkbox) | Boolean | No | No | whether or not the item is checked
+`current` (fake menu) | Boolean | No | No | whether or not the href is the current href of the page
+`badge-number` | Number | No | No | used as the number to be placed in the badge
+`badge-aria-label` | String | No | Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge

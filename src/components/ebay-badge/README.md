@@ -8,11 +8,10 @@
 
 ## ebay-badge Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`number` | Number | No | used as the number to be placed in the badge
-
-**Note:** In order for the badge to meet accessibility standards you must supply an `aria-label`.
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`number` | Number | No | Yes | used as the number to be placed in the badge
+`aria-label` | String | No | Yes | A descriptive label of what the badge represents (e.g. "5 unread items")
 
 ## ebay-badge Events
 

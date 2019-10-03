@@ -38,13 +38,13 @@ When the combobox should not filter the listbox options list:
 
 ### ebay-combobox Attributes
 
-Name | Required | Type | Stateful | Description
+Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`name` | Yes | String | No | used for the `name` attribute of the `<input>` element
-`borderless` | No | Boolean | No | whether the input has borders
-`disabled` | No | Boolean | Yes | sets the disabled attribute of the input
-`expanded` | No | Boolean | Yes | sets whether the listbox is expanded
-`autocomplete` | No | String | Yes | default is `none`; available values are `none` and `list`
+`name` | String | No | Yes | used for the `name` attribute of the `<input>` element
+`borderless` | Boolean | No | No | whether the input has borders
+`disabled` | Boolean | Yes | No | sets the disabled attribute of the input
+`expanded` | Boolean | Yes | No | sets whether the listbox is expanded
+`autocomplete` | String | Yes | No | default is `none`; available values are `none` and `list`
 
 Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 
@@ -68,6 +68,6 @@ Event | Data |  Description
 
 ### ebay-combobox-option Attributes
 
-Name | Required | Type | Stateful | Description
+Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`text` | No | String | No | string to use in the option
+`text` | String | No | No | string to use in the option

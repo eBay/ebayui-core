@@ -54,8 +54,8 @@ Event | Data |  Description
 
 ### ebay-select-option Attributes
 
-Name | Required | Type | Stateful | Description
+Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`text` | No | String | No | text to use in the option
-`selected` | No | Boolean | Yes | whether or not the option is selected (**Note:** use the root `ebay-select` element's `selected` property to set this property)
-`value` | Yes | String | Yes | used for the `value` attribute of the native `<option>`
+`text` | String | No | No | text to use in the option
+`selected` | Boolean | Yes | No | whether or not the option is selected (**Note:** use the root `ebay-select` element's `selected` property to set this property)
+`value` | String | Yes | Yes | used for the `value` attribute of the native `<option>`

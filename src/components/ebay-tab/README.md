@@ -15,11 +15,11 @@
 
 ## ebay-tab Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`index` | String | Yes | 0-based index of selected tab heading and panel
-`fake` | Boolean | No | Whether to use link behavior for tab headings
-`activation` | String | Yes | whether to use automatic or manual activation when navigating by keyboard, "auto" (default) / "manual"
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`index` | String | Yes | No | 0-based index of selected tab heading and panel
+`fake` | Boolean | No | No | Whether to use link behavior for tab headings
+`activation` | String | Yes | No | whether to use automatic or manual activation when navigating by keyboard, "auto" (default) / "manual"
 
 ## ebay-tab Events
 
@@ -37,9 +37,9 @@ Event | Data | Description
 
 ## ebay-tab-heading Attributes
 
-Name | Type | Stateful | Description
+Name | Type | Stateful | Required | Description
 --- | --- | --- | ---
-`href` | String | No | For use with `fake` tab component
+`href` | String | No | No | For use with `fake` tab component
 
 ## ebay-tab-panel Tag
 
