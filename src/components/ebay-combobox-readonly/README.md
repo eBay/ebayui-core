@@ -30,11 +30,11 @@ When a selected option is specified:
 
 ### ebay-combobox-readonly Attributes
 
-Name | Required | Type | Stateful | Description
+Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`name` | Yes | String | No | used for the `name` attribute of the native `<select>`
-`selected` | n/a | Number | Yes | allows you to set the selected index option to `selected`
-`borderless` | No | Boolean | No | whether button has borders
+`name` | String | No | Yes | used for the `name` attribute of the native `<select>`
+`selected` | Number | Yes | n/a | allows you to set the selected index option to `selected`
+`borderless` | Boolean | No | No | whether button has borders
 
 Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 
@@ -57,8 +57,8 @@ Event | Data |  Description
 
 ### ebay-combobox-readonly-option Attributes
 
-Name | Required | Type | Stateful | Description
+Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`text` | No | String | No | string to use in the option
-`selected` | No | Boolean | Yes | whether or not the option is selected (**Note:** use the root `ebay-combobox-readonly` element's `selected` property to set this property)
-`value` | Yes | String | Yes | used for the `value` attribute of the native `<option>`
+`text` | String | No | No | string to use in the option
+`selected` | Boolean | Yes | No | whether or not the option is selected (**Note:** use the root `ebay-combobox-readonly` element's `selected` property to set this property)
+`value`  | String | Yes | Yes | used for the `value` attribute of the native `<option>`

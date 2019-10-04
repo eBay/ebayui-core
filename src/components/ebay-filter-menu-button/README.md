@@ -16,18 +16,28 @@
 
 ### ebay-filter-menu-button Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`text` | String | Yes | button text
-`footer-text` | String | Yes | footer button text
-`a11y-text` | String | No | a11y text for the button
-`a11y-footer-text` | String | No | a11y text for the footer button
-`pressed` | Boolean | Yes | whether button is pressed (default is `false`)
-`expanded` | Boolean | Yes | whether content is expanded (Note: not supported as initial attribute)
-`disabled` | Boolean | Yes | Will disable the entire dropdown (disables the ebay-button label) if set to true
-`variant` | String | No | "" (default) / "form"
-`form-name` | String | No | form's `name` attribute (used with `variant="form"`)
-`form-action` | String | No | form's `action` attribute (used with `variant="form"`)
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`text` | String | Yes | Yes | button text
+`a11y-text` | String | No | No | a11y text for the button
+`footer-text` | String | Yes | No | footer button text
+`pressed` | Boolean | Yes | No | whether button is pressed (default is `false`)
+`expanded` | Boolean | Yes | No | whether content is expanded (Note: not supported as initial attribute)
+`disabled` | Boolean | Yes | No | Will disable the entire dropdown (disables the ebay-button label) if set to true
+`variant` | String | No | No | "" (default) / "form"
+
+#### Additional attributes when footer-text is set
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`a11y-footer-text` | String | No | No | a11y text for the footer button
+
+#### Additional attributes when variant="form"
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`form-name` | String | No | Yes | form's `name` attribute
+`form-action` | String | No | No | form's `action` attribute
 
 ### ebay-filter-menu-button Events
 
@@ -49,7 +59,7 @@ Event | Data | Description
 
 ### ebay-filter-menu-button-item Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`checked` | Boolean | Yes | whether or not the item is checked
-`value` | Boolean | Yes | the item's value (returned in emitted events when checked)
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`checked` | Boolean | Yes | No | whether or not the item is checked
+`value` | Boolean | Yes | No | the item's value (returned in emitted events when checked)

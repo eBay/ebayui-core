@@ -33,15 +33,20 @@ Tag | Required | Description
 
 ## ebay-notice Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`type` | String | No | "inline", "section", or "page" (default)
-`status`  | String | No | "attention" (default for "page" and "inline"), "confirmation" or "information". The default for "section" type will render with grey background and no icon
-`a11y-heading-text` | String | No | adding description for the notice for a11y users
-`a11y-heading-tag` | String | No| used in case of "page" level notices to specify the heading tag according to the notice's placement (default: `"h2"`)
-`dismissible` | Boolean | No | used to specify the dismiss button in page notice
-`hidden` | Boolean | Yes | whether the widget is hidden or not.
-`a11y-close-text` | String | No | adding description for the button for a11y users
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`type` | String | No | No | "inline", "section", or "page" (default)
+`status`  | String | No | No | "attention" (default for "page" and "inline"), "confirmation" or "information". The default for "section" type will render with grey background and no icon
+`a11y-heading-text` | String | No | Yes | adding description for the notice for a11y users
+`dismissible` | Boolean | No | No | used to specify the dismiss button in page notice
+`hidden` | Boolean | Yes | No | whether the widget is hidden or not.
+`a11y-close-text` | String | No | Yes | adding description for the button for a11y users
+
+### Additional attributes when type="page"
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`a11y-heading-tag` | String | No | Yes | used to specify the heading tag according to the notice's placement (default: `"h2"`)
 
 ### ebay-notice Events
 

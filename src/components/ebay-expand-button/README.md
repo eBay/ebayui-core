@@ -8,8 +8,8 @@
 
 ## ebay-button Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`size` | String | No | "small" or "large" (default: medium)
-`no-text` | Boolean | No | used to adjust padding for "expand" variant without text
-`disabled` | Boolean | Yes |
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`size` | String | No | No | "small" or "large" (default: medium)
+`no-text` | Boolean | No | No | used to adjust padding for "expand" variant without text
+`disabled` | Boolean | Yes | No |

@@ -18,16 +18,17 @@ Tag | Required | Description
 
 ## ebay-infotip Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`icon` | String | No | name of an `<ebay-icon>` to show for the icon button
-`pointer` | String | No | options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`
-`disabled` | Boolean | Yes | adds a `disabled` attribute to the button
-`style-top` | String | No | a style property for the CSS `top` rule
-`style-left` | String | No | a style property for the CSS `left` rule
-`style-right` | String | No | a style property for the CSS `right` rule
-`style-bottom` | String | No | a style property for the CSS `bottom` rule
-`a11y-close-text` | String | No | A11y text for close button
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`icon` | String | No | No | name of an `<ebay-icon>` to show for the icon button
+`pointer` | String | No | No | options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`
+`disabled` | Boolean | Yes | No | adds a `disabled` attribute to the button
+`style-top` | String | No | No | a style property for the CSS `top` rule
+`style-left` | String | No | No | a style property for the CSS `left` rule
+`style-right` | String | No | No | a style property for the CSS `right` rule
+`style-bottom` | String | No | No | a style property for the CSS `bottom` rule
+`a11y-close-text` | String | No | Yes | A11y text for close button
+`aria-label` | String | No | Yes | A descriptive label of what the infotip button represents (e.g. "Important information")
 
 **IMPORTANT:** In order for the `ebay-infotip` type to meet accessibility standards you must supply an `aria-label` attribute.
 
