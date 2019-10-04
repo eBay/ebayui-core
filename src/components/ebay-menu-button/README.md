@@ -37,11 +37,11 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`menu-expand` |  | expand content
-`menu-collapse` |  | collapse content
-`menu-change` (radio) | `{ el, index, checked }` | item changed/checked
-`menu-change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
-`menu-select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
+`menu-button-expand` |  | expand content
+`menu-button-collapse` |  | collapse content
+`menu-button-change` (radio) | `{ el, index, checked }` | item changed/checked
+`menu-button-change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
+`menu-button-select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
 
 ## ebay-menu-button-label Tag
 
