@@ -97,7 +97,8 @@ function getInitialState(input) {
         items,
         checked: checkedItems,
         customLabel: input.label,
-        disabled: input.disabled || false
+        disabled: input.disabled || false,
+        scrollManagement: input.scrollManagement || 'checked'
     };
 }
 
@@ -147,7 +148,8 @@ function getTemplateData(state) {
         role: !state.isFake ? 'menu' : null,
         items: state.items,
         customLabel: state.customLabel,
-        disabled: state.disabled
+        disabled: state.disabled,
+        scrollManagement: state.scrollManagement
     };
 }
 
@@ -299,7 +301,9 @@ function handleButtonEscape() {
 }
 
 function handleExpand() {
-    elementScroll.scroll(this.el.querySelector(checkedItemSelector));
+    if (this.state.scrollManagement === 'checked') {
+        elementScroll.scroll(this.el.querySelector(checkedItemSelector));
+    }
     this.setState('expanded', true);
     emitAndFire(this, 'menu-expand');
     scrollKeyPreventer.add(this.contentEl);

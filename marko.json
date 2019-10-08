@@ -253,6 +253,7 @@
         "@priority": "string",
         "@iconTag <icon>": {},
         "@disabled": "boolean",
+        "@scroll-management": "string",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
