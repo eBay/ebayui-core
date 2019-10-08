@@ -115,6 +115,7 @@ describe('icon', () => {
 
 describe('transformer', () => {
     const componentPath = '../index.js';
+
     function getTagString(type) {
         return `<ebay-icon name="${iconName}" type="${type}"/>`;
     }
@@ -126,13 +127,26 @@ describe('transformer', () => {
         expect(attr).to.have.property('name', '_themes');
     });
 
-    it('supports custom symbol paths', () => {
-        const tagString = `<ebay-icon name="custom-add" type="inline" path="${__dirname}/custom-symbols"/>`;
-        const {el, context} = runTransformer(transformer, tagString, componentPath);
-        const attr = el.getAttribute('_themes');
-        expect(attr).to.have.property('name', '_themes');
-        expect(context.getStaticVars().icon_custom_add.elements[0].args[0].value).to.deep.equal('./ebayui-core/src/components/ebay-icon/test/custom-symbols/custom-add');
-        expect(context.getStaticVars().icon_custom_add.elements[1].args[0].value).to.deep.equal('./ebayui-core/src/components/ebay-icon/test/custom-symbols/custom-add/index[skin-ds6].marko');
+    const tagStrings = [
+        {
+            input: `<ebay-icon name="custom-add" type="inline" path="${__dirname}/custom-symbols"/>`,
+            ds4Path: './ebayui-core/src/components/ebay-icon/test/custom-symbols/custom-add',
+            ds6Path: './ebayui-core/src/components/ebay-icon/test/custom-symbols/custom-add/index[skin-ds6].marko',
+        }, {
+            input:`<ebay-icon name="custom-add" type="inline" path="./custom-symbols"/>`,
+            ds4Path: "./custom-symbols/custom-add/index.marko",
+            ds6Path: "./custom-symbols/custom-add/index[skin-ds6].marko"
+        }
+    ];
+
+    tagStrings.forEach(({input, ds4Path, ds6Path}) => {
+        it(`supports custom symbol paths (${input})`, () => {
+            const { el, context } = runTransformer(transformer, input, componentPath);
+            const attr = el.getAttribute('_themes');
+            expect(attr).to.have.property('name', '_themes');
+            expect(context.getStaticVars().icon_custom_add.elements[0].args[0].value).to.deep.equal(ds4Path);
+            expect(context.getStaticVars().icon_custom_add.elements[1].args[0].value).to.deep.equal(ds6Path);
+        });
     });
 
     it('does not transform a background icon', () => {
