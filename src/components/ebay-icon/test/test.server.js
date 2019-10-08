@@ -1,9 +1,9 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
+const sinon = require('sinon');
 const { testPassThroughAttributes, runTransformer } = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
 const template = require('..');
-const sinon = require('sinon');
 
 const iconName = 'mic';
 
@@ -132,15 +132,15 @@ describe('transformer', () => {
         {
             input: `<ebay-icon name="custom-add" type="inline" path="${__dirname}/custom-symbols"/>`,
             ds4Path: './ebayui-core/src/components/ebay-icon/test/custom-symbols/custom-add',
-            ds6Path: './ebayui-core/src/components/ebay-icon/test/custom-symbols/custom-add/index[skin-ds6].marko',
+            ds6Path: './ebayui-core/src/components/ebay-icon/test/custom-symbols/custom-add/index[skin-ds6].marko'
         }, {
-            input:`<ebay-icon name="custom-add" type="inline" path="./custom-symbols"/>`,
-            ds4Path: "./custom-symbols/custom-add/index.marko",
-            ds6Path: "./custom-symbols/custom-add/index[skin-ds6].marko"
+            input: `<ebay-icon name="custom-add" type="inline" path="./custom-symbols"/>`,
+            ds4Path: './custom-symbols/custom-add/index.marko',
+            ds6Path: './custom-symbols/custom-add/index[skin-ds6].marko'
         }
     ];
 
-    tagStrings.forEach(({input, ds4Path, ds6Path}) => {
+    tagStrings.forEach(({ input, ds4Path, ds6Path }) => {
         it(`supports custom symbol paths (${input})`, () => {
             const { el, context } = runTransformer(transformer, input, componentPath);
             const attr = el.getAttribute('_themes');
@@ -152,7 +152,8 @@ describe('transformer', () => {
 
     it('shows a warning message if the path format is not supported', () => {
         const mock = sinon.mock(console);
-        mock.expects("warn").once().withArgs('The entered path format is not supported. Valid example: <ebay-icon type="inline" name="custom-add" path="./custom-symbols" />');
+        mock.expects('warn').once().withArgs('The entered path format is not supported. Valid example: ' +
+            '<ebay-icon type="inline" name="custom-add" path="./custom-symbols" />');
         // this is the scenarie for when one uses the path stored in a variable
         const tagString = `<ebay-icon name="custom-add" type="inline" path=foo/>`;
         runTransformer(transformer, tagString, componentPath);

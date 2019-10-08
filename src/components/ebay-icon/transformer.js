@@ -46,20 +46,17 @@ function transform(el, context) {
 
 function extractPathFromAttr(symbolPathAttribute, context) {
     const symbolPath = symbolPathAttribute.value.value;
-    if (path.isAbsolute(symbolPath)) {
-        return symbolPath;
-    } else {
-        return path.join(context.dirname, symbolPath);
-    }
+
+    return path.isAbsolute(symbolPath) ? symbolPath : path.join(context.dirname, symbolPath);
 }
 
 function isSupportedCustomPathAttr(symbolPathAttribute) {
     const isSupported = symbolPathAttribute && symbolPathAttribute.value && symbolPathAttribute.value.value;
     if (symbolPathAttribute && !isSupported) {
-        console.warn('The entered path format is not supported. Valid example: <ebay-icon type="inline" name="custom-add" path="./custom-symbols" />');
+        console.warn('The entered path format is not supported. Valid example: ' +
+            '<ebay-icon type="inline" name="custom-add" path="./custom-symbols" />');
     }
     return isSupported;
 }
 
 module.exports = transform;
-
