@@ -3,6 +3,7 @@ const { render } = require('@marko/testing-library');
 const { testPassThroughAttributes, runTransformer } = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
 const template = require('..');
+const sinon = require('sinon');
 
 const iconName = 'mic';
 
@@ -147,6 +148,16 @@ describe('transformer', () => {
             expect(context.getStaticVars().icon_custom_add.elements[0].args[0].value).to.deep.equal(ds4Path);
             expect(context.getStaticVars().icon_custom_add.elements[1].args[0].value).to.deep.equal(ds6Path);
         });
+    });
+
+    it('shows a warning message if the path format is not supported', () => {
+        const mock = sinon.mock(console);
+        mock.expects("warn").once().withArgs('The entered path format is not supported. Valid example: <ebay-icon type="inline" name="custom-add" path="./custom-symbols" />');
+        // this is the scenarie for when one uses the path stored in a variable
+        const tagString = `<ebay-icon name="custom-add" type="inline" path=foo/>`;
+        runTransformer(transformer, tagString, componentPath);
+        mock.verify();
+        mock.restore();
     });
 
     it('does not transform a background icon', () => {
