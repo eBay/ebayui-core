@@ -253,6 +253,7 @@
         "@priority": "string",
         "@iconTag <icon>": {},
         "@disabled": "boolean",
+        "@focus-first": "boolean",
         "@items <item>[]": {
             "@*": "expression",
             "@html-attributes": "expression",
