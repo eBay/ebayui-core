@@ -33,6 +33,7 @@ Name | Type | Stateful | Required | Description
 `name` | String | No | Yes | used for the `name` attribute of the native `<select>`
 `selected` | Number | Yes | n/a | allows you to set the selected index option to `selected`
 `borderless` | Boolean | No | No | whether button has borders
+`fluid` | Boolean | No | No | wether listbox width is 100%
 
 **Note:** For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 

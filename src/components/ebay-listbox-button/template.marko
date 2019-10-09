@@ -5,11 +5,10 @@
 <var options=data.options/>
 <var selectedOption=options[data.selectedIndex]/>
 <var selectedText=(selectedOption && selectedOption.text)/>
-
 <span
     ${processHtmlAttributes(data)}
     class=["listbox-button", data.class]
-    style=data.style
+    style= data.style
     w-preserve-attrs="class"
     w-on-expander-expand="handleExpand"
     w-on-expander-collapse="handleCollapse"
@@ -20,6 +19,7 @@
             "listbox-button__control",
             "expand-btn",
             "expand-btn--regular",
+            data.fluid && "expand-btn--fluid",
             data.borderless && "expand-btn--borderless"
         ]
         value=selectedText
