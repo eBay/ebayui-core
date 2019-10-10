@@ -443,6 +443,60 @@
     "@style": "string",
     "@disabled": "boolean"
   },
+  "<ebay-section-title>": {
+    "renderer": "./src/components/ebay-section-title/index.js",
+    "@*": "expression",
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@size": "size",
+    "@title <title>": {
+      "@*": "expression",
+      "@html-attributes": "expression",
+      "@class": "string",
+      "@style": "string"
+    },
+    "@subtitle <subtitle>": {
+      "@*": "expression",
+      "@html-attributes": "expression",
+      "@class": "string",
+      "@style": "string"
+    },
+    "@cta <cta>": {
+      "@*": "expression",
+      "@html-attributes": "expression",
+      "@class": "string",
+      "@style": "string",
+      "@href": "string"
+    },
+    "@info <info>": {
+      "@*": "expression",
+      "@html-attributes": "expression",
+      "@class": "string",
+      "@style": "string"
+    },
+    "@overflow <overflow>": {
+      "@*": "expression",
+      "@html-attributes": "expression",
+      "@class": "string",
+      "@style": "string"
+    }
+  },
+  "<ebay-section-title-title>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
+  "<ebay-section-title-subtitle>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
+  "<ebay-section-title-cta>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
+  "<ebay-section-title-info>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
+  "<ebay-section-title-overflow>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
   "<ebay-select>": {
     "renderer": "./src/components/ebay-select/index.js",
     "@*": "expression",

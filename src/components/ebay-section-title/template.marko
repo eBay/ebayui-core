@@ -1,0 +1,67 @@
+<script marko-init>
+    var processHtmlAttributes = require("../../common/html-attributes");
+</script>
+
+<div w-bind class=[
+        "section-title",
+        data.size && "section-title--${data.size}",
+        data.class
+    ]
+    style=data.style
+    ${processHtmlAttributes(data)}>
+    <div class=[
+            "section-title__title",
+            data.title.class
+        ]
+        style=data.title.style>
+        <!-- Title-->
+        <if(data.cta && data.cta.href)>
+            <h2><a href=data.cta.href w-body=data.title.renderBody/></h2>
+        </if>
+        <else>
+            <h2 w-body=data.title.renderBody/>
+        </else>
+
+        <!-- Subtitle-->
+        <span if(data.subtitle)
+            class=[
+                "section-title__subtitle",
+                data.subtitle.classs
+            ]
+            style=data.subtitle.style
+            w-body=data.subtitle.renderBody
+            ${processHtmlAttributes(data.subtitle)}/>
+    </div>
+
+    <!-- CTA -->
+    <div if(data.cta && data.cta.href) class=[
+            "section-title__cta",
+            !data.cta.renderBody && "section-title__cta--no-text",
+            data.cta.class
+        ]
+        style=data.cta.style
+        ${processHtmlAttributes(data.cta)}>
+        <a href=data.cta.href tabindex="-1">
+            <span if(data.cta.renderBody) w-body=data.cta.renderBody/>
+            <ebay-icon type="inline" name="arrow-right-bold" class="section-title__cta-icon" no-skin-classes/>
+        </a>
+    </div>
+
+    <!-- Info-->
+    <div if(data.info && data.info.renderBody) class=[
+            "section-title__info",
+            data.info.class
+        ]
+        style=data.info.style
+        w-body=data.info.renderBody
+        ${processHtmlAttributes(data.info)}/>
+
+    <!-- Overflow-->
+    <div if(data.overflow && data.overflow.renderBody) class=[
+            "section-title__overflow",
+            data.overflow.class
+        ]
+        style=data.overflow.style
+        w-body=data.overflow.renderBody
+        ${processHtmlAttributes(data.overflow)}/>
+</div>
