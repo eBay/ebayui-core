@@ -7,7 +7,7 @@
 <var selectedText=(selectedOption && selectedOption.text)/>
 <span
     ${processHtmlAttributes(data)}
-    class= (data.fluid ? ["listbox-button--fluid", data.class] : ["listbox-button", data.class])
+    class= ["listbox-button", data.class, {"listbox-button--fluid": data.fluid}]
     style= data.style
     w-preserve-attrs="class"
     w-on-expander-expand="handleExpand"
