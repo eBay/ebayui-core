@@ -14,10 +14,8 @@ module.exports = require('marko-widgets').defineComponent({
     },
     getInitialState(input) {
         const index = findIndex(input.options, option => option.selected);
-        const style = (input.fluid ? ['display:block'] : []).concat(input.style || []);
         return assign({}, input, {
-            selectedIndex: index === -1 ? 0 : index,
-            style: style
+            selectedIndex: index === -1 ? 0 : index
         });
     },
     init() {
