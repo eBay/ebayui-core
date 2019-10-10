@@ -110,7 +110,7 @@ module.exports = require('marko-widgets').defineComponent({
                 this.setState('currentValue', newValue);
                 this.setSelectedIndex();
                 if (selectedEl) {
-                    this.emitChangeEvent('select');
+                    this.emitComboboxEvent('select');
                 }
                 this.expander.collapse();
             }
@@ -124,11 +124,13 @@ module.exports = require('marko-widgets').defineComponent({
         const newValue = this.getEl('input').value;
 
         eventUtils.handleTextInput(originalEvent, () => {
+            this.valueChanged = this.getEl('input').value !== newValue;
+
             this.activeDescendant.reset();
             this.getEl('input').value = newValue;
             this.setState('currentValue', newValue);
             this.setSelectedIndex();
-            this.emitChangeEvent();
+            this.emitComboboxEvent();
             if (this.expander) {
                 this.toggleListbox();
             }
@@ -145,7 +147,10 @@ module.exports = require('marko-widgets').defineComponent({
             this.expander.collapse();
         }
 
-        this.emitChangeEvent('change');
+        if (this.valueChanged) {
+            this.emitComboboxEvent('change');
+            this.valueChanged = false;
+        }
     },
     handleOptionMouseDown() {
         this.optionClicked = true;
@@ -155,10 +160,12 @@ module.exports = require('marko-widgets').defineComponent({
         const selectedValue = selectedEl.textContent;
 
         this.optionClicked = false;
+        this.valueChanged = this.getEl('input').value !== selectedValue;
+
         this.getEl('input').value = selectedValue;
         this.setState('currentValue', selectedValue);
         this.setSelectedIndex();
-        this.emitChangeEvent('select');
+        this.emitComboboxEvent('select');
         this.expander.collapse();
     },
     setSelectedIndex(index = 0) {
@@ -169,7 +176,7 @@ module.exports = require('marko-widgets').defineComponent({
     getSelectedIndex(options, value) {
         return findIndex(options, option => option.text === value);
     },
-    emitChangeEvent(eventName = 'input') {
+    emitComboboxEvent(eventName = 'input') {
         this.emit(`combobox-${eventName}`, {
             currentInputValue: this.state.currentValue,
             selectedOption: this.state.options[this.state.selectedIndex],

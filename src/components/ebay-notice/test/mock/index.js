@@ -35,3 +35,22 @@ exports.Inline_Dismissible = assign({}, exports.Inline, {
     dismissible: true,
     a11yCloseText: 'Close'
 });
+
+exports.Section_Info = {
+    a11yHeadingText: 'Heading Text',
+    type: 'section',
+    status: 'information',
+    renderBody: createRenderBody('Content')
+};
+
+exports.Section_Light = {
+    type: 'section',
+    renderBody: createRenderBody('Content')
+};
+
+exports.Cta_Button = {
+    renderBody: createRenderBody('<button>Action</button>'),
+    content: {
+        renderBody: createRenderBody('Body')
+    }
+};

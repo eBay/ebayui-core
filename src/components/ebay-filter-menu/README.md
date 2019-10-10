@@ -16,15 +16,20 @@ The `ebay-filter-menu` component is used as a checkbox menu specificially styled
 
 ### ebay-filter-menu Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`footer-text` | String | Yes | footer button text
-`a11y-footer-text` | String | No | a11y text for the footer button
-`variant` | String | No | "" (default) / "form"
-`form-name` | String | No | form's `name` attribute (used with `variant="form"`)
-`form-action` | String | No | form's `action` attribute (used with `variant="form"`)
-`form-method` | String | No | form's `method` attribute (used with `variant="form"`)
-`class-prefix` | String | No | "filter-menu" (default) / modifies the base prefix for all Skin classes in the menu
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`footer-text` | String | Yes | No | footer button text
+`variant` | String | No | No | "" (default) / "form"
+`form-name` | String | No | No | form's `name` attribute (used with `variant="form"`)
+`form-action` | String | No | No | form's `action` attribute (used with `variant="form"`)
+`form-method` | String | No | No |form's `method` attribute (used with `variant="form"`)
+`class-prefix` | String | No | No | "filter-menu" (default) / modifies the base prefix for all Skin classes in the menu
+
+#### Additional attributes for when footer-text is set
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`a11y-footer-text` | String | No | Yes | a11y text for the footer button
 
 ### ebay-filter-menu Events
 
@@ -44,7 +49,7 @@ Event | Data | Description
 
 ### ebay-filter-menu-item Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`checked` | Boolean | Yes | whether or not the item is checked
-`value` | Boolean | Yes | the item's value (returned in emitted events when checked)
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`checked` | Boolean | Yes | No | whether or not the item is checked
+`value` | Boolean | Yes | No | the item's value (returned in emitted events when checked)

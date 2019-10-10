@@ -4,6 +4,7 @@
 
 <var isFake=(data.type === 'fake')/>
 <var baseClass=(isFake ? 'fake-menu-button' : 'menu-button')/>
+<var isOverflowVariant=(data.variant === 'overflow')/>
 
 <span
     class=[
@@ -19,36 +20,41 @@
         w-id="button"
         class=[
             "${baseClass}__button",
-            (data.borderless && 'expand-btn--borderless')
+            (data.borderless && !isOverflowVariant && 'expand-btn--borderless')
         ]
-        variant="expand"
+        variant=(isOverflowVariant ? "icon" : "expand")
         size=data.size
         priority=data.priority
-        no-text=(!data.text && !data.icon)
+        no-text=(!data.text && !data.icon && !isOverflowVariant)
         aria-expanded="false"
         aria-haspopup="true"
         aria-label=data.a11yText
         disabled=data.disabled
         w-on-button-escape="handleButtonEscape">
-        <span class=['expand-btn__cell', (data.label && 'menu-button__control--custom-label')]>
-            <span if(data.label) w-preserve-body>
-                <span w-body=data.label.renderBody body-only-if(true)/>
+        <if(isOverflowVariant)>
+            <ebay-icon type="inline" name="overflow"/>
+        </if>
+        <else>
+            <span class=['expand-btn__cell', (data.label && 'menu-button__control--custom-label')]>
+                <span if(data.label) w-preserve-body>
+                    <span w-body=data.label.renderBody body-only-if(true)/>
+                </span>
+                <else>
+                    <!-- Convoluted markup to satisfy both Skin and Marko -->
+                    <div if(data.icon) w-preserve-body class="btn__icon">
+                        <span if(data.iconTag) w-body=data.iconTag.renderBody body-only-if(true)/>
+                    </div>
+                    <span if(data.text)>${data.text}</span>
+                </else>
+                <ebay-icon if(!data.noToggleIcon) type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
             </span>
-            <else>
-                <!-- Convoluted markup to satisfy both Skin and Marko -->
-                <div if(data.icon) w-preserve-body class="btn__icon">
-                    <span if(data.iconTag) w-body=data.iconTag.renderBody body-only-if(true)/>
-                </div>
-                <span if(data.text)>${data.text}</span>
-            </else>
-            <ebay-icon if(!data.noToggleIcon) type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
-        </span>
+        </else>
     </ebay-button>
     <ebay-menu
         w-id="content"
         class-prefix=baseClass
         type=data.type
-        reverse=data.reverse
+        reverse=(isOverflowVariant ? !data.reverse : data.reverse)
         fix-width=data.fixWidth
         w-on-menu-keydown="handleMenuKeydown"
         w-on-menu-change="handleMenuChange"

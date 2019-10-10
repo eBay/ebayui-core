@@ -1,10 +1,15 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
 </script>
-
 <var type=(data.type || "page")/>
+<var prefix=data.prefix/>
 <var status=(data.status || "attention")/>
-<var isPage=(type === "page")/>
+<var isSection=(type === "section")/>
+<var isPage=(type === "page" || isSection)/>
+<var isLightGuidance=(isSection && !data.status)/>
+<var content=(data.content)/>
+<var cta=(data.cta)/>
+<var contentTag=(isPage ? "div" : "span")/>
 
 <if(!data.hidden)>
     <${isPage ? "section" : "div"}
@@ -12,21 +17,30 @@
         w-bind
         style=data.style
         aria-labelledby=widget.elId("status")
+        aria-label=(isLightGuidance ? data.a11yHeadingText : null)
         class=[
             "${type}-notice",
-            "${type}-notice--${data.status || 'attention'}",
+            !isLightGuidance ? "${type}-notice--${status}" : "",
             data.class
         ]>
-        <${isPage ? data.a11yHeadingTag || "h2" : "span"}
-            class="${type}-notice__status"
-            w-id="status">
-            <span aria-label=data.a11yHeadingText role="img"/>
-        </>
-
-        <${isPage ? "div" : "span"}
-            class="${type}-notice__content"
-            w-body/>
-
+        <if(!isLightGuidance)>
+            <${isPage ? data.a11yHeadingTag || "h2" : "span"}
+                class="${type}-notice__status"
+                w-id="status">
+                <span aria-label=data.a11yHeadingText role="img"/>
+            </>
+        </if>
+        <if(content && content.renderBody)>
+            <${contentTag}
+                ${processHtmlAttributes(content)}
+                class=[content.class, "${type}-notice__content"]
+                style=content.style
+                w-body=data.content.renderBody/>
+            <div body-only-if(true) w-body/>
+        </if>
+        <else>
+            <${contentTag} class="${type}-notice__content" w-body/>
+        </else>
         <if(data.dismissible)>
             <button
                 class="page-notice__close"

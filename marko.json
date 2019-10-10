@@ -46,6 +46,7 @@
     "@variant": "string",
     "@fixed-height": "boolean",
     "@truncate": "boolean",
+    "@transparent": "boolean",
     "@badge-number": "expression",
     "@badge-aria-label": "string"
   },
@@ -350,6 +351,7 @@
     "@priority": "string",
     "@iconTag <icon>": {},
     "@disabled": "boolean",
+    "@variant": "string",
     "@items <item>[]": {
       "@*": "expression",
       "@html-attributes": "expression",
@@ -385,7 +387,16 @@
     "@a11y-heading-text": "string",
     "@a11y-heading-tag": "string",
     "@a11y-close-text": "string",
-    "@dismissible": "boolean"
+    "@dismissible": "boolean",
+    "@content <content>": {
+      "@*": "expression",
+      "@html-attributes": "expression",
+      "@class": "string",
+      "@style": "string"
+    }
+  },
+  "<ebay-notice-content>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-pagination>": {
     "renderer": "./src/components/ebay-pagination/index.js",

@@ -10,13 +10,13 @@ Default input textbox:
 
 ## ebay-textbox Attributes
 
-Name | Type | Stateful | Description
---- | --- | --- | ---
-`fluid` | Boolean | No |
-`multiline` | Boolean | No | renders a multi-line texbox if true
-`invalid` | Boolean | No | indicates a field-level error with red border if true
-`icon` | String | No | name of the icon from skin
-`icon-position` | String | No | Can be "prefix" / "postfix". If not specified or if the value passed is neither "prefix" nor "postfix",  the `icon-position` is set by default to "prefix"
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`fluid` | Boolean | No | No |
+`multiline` | Boolean | No | No | renders a multi-line texbox if true
+`invalid` | Boolean | No | No | indicates a field-level error with red border if true
+`icon` | String | No | No | name of the icon from skin
+`icon-position` | String | No | No | Can be "prefix" / "postfix". If not specified or if the value passed is neither "prefix" nor "postfix",  the `icon-position` is set by default to "prefix"
 
 ## ebay-textbox Events
 
