@@ -10,16 +10,18 @@
     style=data.style
     ${processHtmlAttributes(data)}>
     <div class=[
-            "section-title__title",
+            "section-title__title-container",
             data.title.class
         ]
         style=data.title.style>
         <!-- Title-->
         <if(data.cta && data.cta.href)>
-            <h2 w-id="title"><a href=data.cta.href w-body=data.title.renderBody/></h2>
+            <h2 class="section-title__title" w-id="title">
+                <a href=data.cta.href w-body=data.title.renderBody/>
+            </h2>
         </if>
         <else>
-            <h2 w-id="title" w-body=data.title.renderBody/>
+            <h2 class="section-title__title" w-id="title" w-body=data.title.renderBody/>
         </else>
 
         <!-- Subtitle-->
