@@ -245,6 +245,19 @@
     "@no-skin-classes": "boolean",
     "@_themes": "expression"
   },
+  "<ebay-custom-icon>": {
+    "template": "./src/components/ebay-icon/index.marko",
+    "transformer": "./src/components/ebay-custom-icon/transformer.js",
+    "@*": "expression",
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@type": "string",
+    "@name": "string",
+    "@a11y-text": "string",
+    "@no-skin-classes": "boolean",
+    "@_themes": "expression"
+  },
   "<ebay-infotip>": {
     "renderer": "./src/components/ebay-infotip/index.js",
     "transformer": "./src/components/ebay-infotip/transformer.js",

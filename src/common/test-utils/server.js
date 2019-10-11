@@ -62,9 +62,9 @@ module.exports = {
         transformer(templateAST.body.array[0], context);
         return prettyPrintAST(templateAST).replace(/\n/g, '').replace(/\s{4}/g, '');
     },
-    runTransformer(transformer, srcString, componentPath) {
+    runTransformer(transformer, srcString, componentPath, ...options) {
         const { context, templateAST } = getTransformerData(srcString, componentPath);
-        transformer(templateAST.body.array[0], context);
+        transformer(templateAST.body.array[0], context, ...options);
         return {
             context,
             el: templateAST.body.array[0]
