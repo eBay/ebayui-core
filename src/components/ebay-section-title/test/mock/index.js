@@ -14,16 +14,12 @@ exports.Subtitle = assign({}, exports.Title, {
 });
 
 exports.CTA_SeeAll = assign({}, exports.Title, {
-    cta: {
-        href: 'https://www.ebay.com/',
-        renderBody: createRenderBody('See All')
-    }
+    ctaText: 'See All',
+    href: 'https://www.ebay.com/'
 });
 
 exports.CTA_NoText = assign({}, exports.Title, {
-    cta: {
-        href: 'https://www.ebay.com/'
-    }
+    href: 'https://www.ebay.com/'
 });
 
 exports.Info = assign({}, exports.Title, {
@@ -36,4 +32,8 @@ exports.Overflow = assign({}, exports.Title, {
     overflow: {
         renderBody: createRenderBody('Overflow content')
     }
+});
+
+exports.Size = assign({}, exports.Title, {
+    size: 'large'
 });

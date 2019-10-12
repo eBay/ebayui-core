@@ -12,7 +12,8 @@ describe('section-title', () => {
         const { getByText } = await render(template, input);
         const title = getByText(input.title.renderBody.text);
         expect(title.parentElement.parentElement).has.class('section-title');
-        expect(title.parentElement).has.class('section-title__title');
+        expect(title.parentElement).has.class('section-title__title-container');
+        expect(title).has.class('section-title__title');
         expect(title).has.property('tagName', 'H2');
     });
 
@@ -20,7 +21,7 @@ describe('section-title', () => {
         const input = mock.Subtitle;
         const { getByText } = await render(template, input);
         const subtitle = getByText(input.subtitle.renderBody.text);
-        expect(subtitle.parentElement).has.class('section-title__title');
+        expect(subtitle.parentElement).has.class('section-title__title-container');
         expect(subtitle).has.class('section-title__subtitle');
         expect(subtitle).has.property('tagName', 'SPAN');
     });
@@ -32,11 +33,11 @@ describe('section-title', () => {
         const title = getByText(input.title.renderBody.text);
         expect(title.parentElement).has.property('tagName', 'H2');
         expect(title).has.property('tagName', 'A');
-        expect(title).has.attr('href', input.cta.href);
+        expect(title).has.attr('href', input.href);
 
-        const cta = getByText(input.cta.renderBody.text);
+        const cta = getByText(input.ctaText);
         expect(cta).has.property('tagName', 'SPAN');
-        expect(cta.parentElement).has.attr('href', input.cta.href);
+        expect(cta.parentElement).has.attr('href', input.href);
         expect(cta.parentElement.parentElement).has.class('section-title__cta');
         expect(cta.parentElement.parentElement.querySelector('svg')).has.class('section-title__cta-icon');
     });
@@ -48,11 +49,11 @@ describe('section-title', () => {
         const title = getByText(input.title.renderBody.text);
         expect(title.parentElement).has.property('tagName', 'H2');
         expect(title).has.property('tagName', 'A');
-        expect(title).has.attr('href', input.cta.href);
+        expect(title).has.attr('href', input.href);
 
         const cta = container.querySelector('svg');
         expect(cta).has.class('section-title__cta-icon');
-        expect(cta.parentElement).has.attr('href', input.cta.href);
+        expect(cta.parentElement).has.attr('href', input.href);
         expect(cta.parentElement.parentElement).has.class('section-title__cta');
         expect(cta.parentElement.parentElement).has.class('section-title__cta--no-text');
     });
@@ -71,6 +72,15 @@ describe('section-title', () => {
         const overflow = getByText(input.overflow.renderBody.text);
         expect(overflow).has.class('section-title__overflow');
         expect(overflow).has.property('tagName', 'DIV');
+    });
+
+    it('renders with large size', async() => {
+        const input = mock.Size;
+        const { container } = await render(template, input);
+        const section = container.firstElementChild;
+        expect(section).has.class('section-title');
+        expect(section).has.class('section-title--large');
+        expect(section).has.property('tagName', 'DIV');
     });
 
     testPassThroughAttributes(template, {

@@ -15,9 +15,9 @@
         ]
         style=data.title.style>
         <!-- Title-->
-        <if(data.cta && data.cta.href)>
+        <if(data.href)>
             <h2 class="section-title__title" w-id="title">
-                <a href=data.cta.href w-body=data.title.renderBody/>
+                <a href=data.href w-body=data.title.renderBody/>
             </h2>
         </if>
         <else>
@@ -36,15 +36,12 @@
     </div>
 
     <!-- CTA -->
-    <div if(data.cta && data.cta.href) class=[
+    <div if(data.href) class=[
             "section-title__cta",
-            !data.cta.renderBody && "section-title__cta--no-text",
-            data.cta.class
-        ]
-        style=data.cta.style
-        ${processHtmlAttributes(data.cta)}>
-        <a href=data.cta.href tabindex="-1" aria-labelledby=widget.elId("title")>
-            <span if(data.cta.renderBody) w-body=data.cta.renderBody/>
+            !data.ctaText && "section-title__cta--no-text"
+        ]>
+        <a href=data.href tabindex="-1" aria-labelledby=widget.elId("title")>
+            <span if(data.ctaText) w-body=data.ctaText/>
             <ebay-icon type="inline" name="arrow-right-bold" class="section-title__cta-icon" no-skin-classes/>
         </a>
     </div>

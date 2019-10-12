@@ -3,16 +3,19 @@
 ## ebay-section-title Usage
 
 ```marko
-<ebay-section-title>
+<ebay-section-title href="https://www.ebay.com" cta-text="See All">
     <ebay-section-title-title>Today’s Deals – All With Free Shipping</ebay-section-title-title>
     <ebay-section-title-subtitle>Plus, guaranteed best prices.</ebay-section-title-subtitle>
-    <ebay-section-title-cta href="https://www.ebay.com">See All</ebay-section-title-cta>
 </ebay-section-title>
 ```
 
 ## ebay-section-title Attributes
 
-None
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`cta-text` | String | No | No | Optional CTA content to be displayed next to title
+`href` | String | No | No | URL. Title content and optional CTA content will link to this.
+`size` | String | No | No | "small", "large", or "giant" (default: medium)
 
 ## ebay-section-title Sub-tags
 
@@ -46,25 +49,7 @@ None
 
 ### ebay-section-title-subtitle Attributes
 
-`size` | String | No | No | "small", "large", or "giant" (default: medium)
-
-## ebay-section-title-cta
-
-### ebay-section-title-cta Usage
-
-```marko
-<ebay-section-title-cta href="https://www.ebay.com">See All</ebay-section-title-cta>
-```
-
-```marko
-<ebay-section-title-cta href="https://www.ebay.com"/>
-```
-
-### ebay-section-title-cta Attributes
-
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`href` | String | No | Yes | link target
+None
 
 ## ebay-section-title-info
 

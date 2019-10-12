@@ -449,6 +449,8 @@
     "@html-attributes": "expression",
     "@class": "string",
     "@style": "string",
+    "@cta-text": "string",
+    "@href": "string",
     "@size": "size",
     "@title <title>": {
       "@*": "expression",
@@ -461,13 +463,6 @@
       "@html-attributes": "expression",
       "@class": "string",
       "@style": "string"
-    },
-    "@cta <cta>": {
-      "@*": "expression",
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string",
-      "@href": "string"
     },
     "@info <info>": {
       "@*": "expression",
@@ -486,9 +481,6 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-section-title-subtitle>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
-  },
-  "<ebay-section-title-cta>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-section-title-info>": {
