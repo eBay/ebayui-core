@@ -3,7 +3,6 @@
 </script>
 
 <var titleContent=(!data.title && data.renderBody || data.title.renderBody)/>
-<var infoContent=(data.title && data.renderBody)/>
 
 <div w-bind class=[
         "section-title",
@@ -50,7 +49,13 @@
     </div>
 
     <!-- Info-->
-    <div if(infoContent) class="section-title__info" w-body=infoContent/>
+    <div if(data.info && data.info.renderBody) class=[
+        "section-title__info",
+        data.info.class
+    ]
+    style=data.info.style
+    w-body=data.info.renderBody
+    ${processHtmlAttributes(data.info)}/>
 
     <!-- Overflow-->
     <div if(data.overflow && data.overflow.renderBody) class=[

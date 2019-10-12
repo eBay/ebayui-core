@@ -27,7 +27,9 @@ exports.CTA_NoText = assign({}, exports.Title, {
 });
 
 exports.Info = assign({}, exports.Title, {
-    renderBody: createRenderBody('Info content')
+    info: {
+        renderBody: createRenderBody('Info content')
+    }
 });
 
 exports.Overflow = assign({}, exports.Title, {

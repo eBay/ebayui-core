@@ -71,7 +71,7 @@ describe('section-title', () => {
     it('renders with info', async() => {
         const input = mock.Info;
         const { getByText } = await render(template, input);
-        const info = getByText(input.renderBody.text);
+        const info = getByText(input.info.renderBody.text);
         expect(info).has.class('section-title__info');
         expect(info).has.property('tagName', 'DIV');
     });

@@ -464,6 +464,12 @@
       "@class": "string",
       "@style": "string"
     },
+    "@info <info>": {
+      "@*": "expression",
+      "@html-attributes": "expression",
+      "@class": "string",
+      "@style": "string"
+    },
     "@overflow <overflow>": {
       "@*": "expression",
       "@html-attributes": "expression",
@@ -475,6 +481,9 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-section-title-subtitle>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
+  "<ebay-section-title-info>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-section-title-overflow>": {

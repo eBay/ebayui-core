@@ -13,17 +13,6 @@
 </ebay-section-title>
 ```
 
-```marko
-<ebay-section-title>
-    <ebay-section-title-title>Today’s Deals – All With Free Shipping</ebay-section-title-title>
-    <ebay-section-title-subtitle>Plus, guaranteed best prices.</ebay-section-title-subtitle>
-    <ebay-infotip a11y-close-text="Dismiss infotip" aria-label="Important information" icon="information" pointer="top-left">
-        <ebay-infotip-heading>Important</ebay-infotip-heading>
-        <ebay-infotip-content><p>This is some important info</p></ebay-infotip-content>
-    </ebay-infotip>
-</ebay-section-title>
-```
-
 ## ebay-section-title Attributes
 
 Name | Type | Stateful | Required | Description
@@ -42,8 +31,9 @@ None.
 
 Tag | Required | Description
 --- | --- | ---
-`<ebay-section-title-title>` | No | The main title content to be displayed
+`<ebay-section-title-title>` | No | The main title content to be displayed. Title tag is required when using other sub-tags.
 `<ebay-section-title-subtitle>` | No | The subtitle content to be displayed
+`<ebay-section-title-info>` | No | Placeholder for `<ebay-infotip>` component
 `<ebay-section-title-overflow>` | No | Placeholder for `<ebay-menu-button>` component
 
 ## ebay-section-title-title
@@ -67,6 +57,23 @@ None
 ```
 
 ### ebay-section-title-subtitle Attributes
+
+None
+
+## ebay-section-title-info
+
+### ebay-section-title-info Usage
+
+```marko
+<ebay-section-title-info>
+    <ebay-infotip a11y-close-text="Dismiss infotip" aria-label="Important information" icon="information" pointer="top-left">
+        <ebay-infotip-heading>Important</ebay-infotip-heading>
+        <ebay-infotip-content><p>This is some important info</p></ebay-infotip-content>
+    </ebay-infotip>
+</ebay-section-title-info>
+```
+
+### ebay-section-title-info Attributes
 
 None
 
