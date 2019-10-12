@@ -41,7 +41,7 @@
             !data.ctaText && "section-title__cta--no-text"
         ]>
         <a href=data.href tabindex="-1" aria-labelledby=widget.elId("title")>
-            <span if(data.ctaText) w-body=data.ctaText/>
+            <span if(data.ctaText) class="section-title__cta-text" w-body=data.ctaText/>
             <ebay-icon type="inline" name="arrow-right-bold" class="section-title__cta-icon" no-skin-classes/>
         </a>
     </div>
