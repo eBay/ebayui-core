@@ -1,6 +1,10 @@
 const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 
+exports.TitleBasic = {
+    renderBody: createRenderBody('Title content')
+};
+
 exports.Title = {
     title: {
         renderBody: createRenderBody('Title content')
@@ -23,9 +27,7 @@ exports.CTA_NoText = assign({}, exports.Title, {
 });
 
 exports.Info = assign({}, exports.Title, {
-    info: {
-        renderBody: createRenderBody('Info content')
-    }
+    renderBody: createRenderBody('Info content')
 });
 
 exports.Overflow = assign({}, exports.Title, {

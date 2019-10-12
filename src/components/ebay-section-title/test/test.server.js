@@ -8,6 +8,16 @@ use(require('chai-dom'));
 
 describe('section-title', () => {
     it('renders with title', async() => {
+        const input = mock.TitleBasic;
+        const { getByText } = await render(template, input);
+        const title = getByText(input.renderBody.text);
+        expect(title.parentElement.parentElement).has.class('section-title');
+        expect(title.parentElement).has.class('section-title__title-container');
+        expect(title).has.class('section-title__title');
+        expect(title).has.property('tagName', 'H2');
+    });
+
+    it('renders with title tag', async() => {
         const input = mock.Title;
         const { getByText } = await render(template, input);
         const title = getByText(input.title.renderBody.text);
@@ -61,7 +71,7 @@ describe('section-title', () => {
     it('renders with info', async() => {
         const input = mock.Info;
         const { getByText } = await render(template, input);
-        const info = getByText(input.info.renderBody.text);
+        const info = getByText(input.renderBody.text);
         expect(info).has.class('section-title__info');
         expect(info).has.property('tagName', 'DIV');
     });

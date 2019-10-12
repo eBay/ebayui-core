@@ -2,6 +2,9 @@
     var processHtmlAttributes = require("../../common/html-attributes");
 </script>
 
+<var titleContent=(!data.title && data.renderBody || data.title.renderBody)/>
+<var infoContent=(data.title && data.renderBody)/>
+
 <div w-bind class=[
         "section-title",
         data.size && "section-title--${data.size}",
@@ -11,17 +14,17 @@
     ${processHtmlAttributes(data)}>
     <div class=[
             "section-title__title-container",
-            data.title.class
+            data.title && data.title.class
         ]
-        style=data.title.style>
+        style=(data.title && data.title.style)>
         <!-- Title-->
         <if(data.href)>
             <h2 class="section-title__title" w-id="title">
-                <a href=data.href w-body=data.title.renderBody/>
+                <a href=data.href w-body=titleContent/>
             </h2>
         </if>
         <else>
-            <h2 class="section-title__title" w-id="title" w-body=data.title.renderBody/>
+            <h2 class="section-title__title" w-id="title" w-body=titleContent/>
         </else>
 
         <!-- Subtitle-->
@@ -47,13 +50,7 @@
     </div>
 
     <!-- Info-->
-    <div if(data.info && data.info.renderBody) class=[
-            "section-title__info",
-            data.info.class
-        ]
-        style=data.info.style
-        w-body=data.info.renderBody
-        ${processHtmlAttributes(data.info)}/>
+    <div if(infoContent) class="section-title__info" w-body=infoContent/>
 
     <!-- Overflow-->
     <div if(data.overflow && data.overflow.renderBody) class=[
