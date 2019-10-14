@@ -23,5 +23,8 @@
                 "compat/compat": 0
             }
         }
-    ]
+    ],
+    "parserOptions": {
+        "sourceType": "module"
+    }
 }

@@ -1,0 +1,39 @@
+<h3>Basic</h3>
+<% const basicExample = `<ebay-badge number="5" aria-label="5 unread items"/>` %>
+
+<pre>${basicExample}</pre>
+
+<ebay-badge number="5" aria-label="5 unread items"/>
+
+<h3>Menu</h3>
+<% const menuExample = `<ebay-menu-button text="eBay Menu">
+    <ebay-menu-button-item badge-number="5" aria-label="item 1 (5 unread items)">item 1</ebay-menu-button-item>
+    <ebay-menu-button-item badge-number="23" aria-label="item 2 (23 unread items)">item 2</ebay-menu-button-item>
+    <ebay-menu-button-item>item 3</ebay-menu-button-item>
+</ebay-menu-button>` %>
+
+<pre>${menuExample}</pre>
+
+<ebay-menu-button text="eBay Menu">
+    <ebay-menu-button-item badge-number="5" aria-label="item 1 (5 unread items)">item 1</ebay-menu-button-item>
+    <ebay-menu-button-item badge-number="23" aria-label="item 2 (23 unread items)">item 2</ebay-menu-button-item>
+    <ebay-menu-button-item>item 3</ebay-menu-button-item>
+</ebay-menu-button>
+
+<h3>Icon</h3>
+<% const iconExample = `<ebay-button aria-label="Menu (5 unread items)" variant="icon" badge-number="5">
+    <ebay-icon type="inline" name="menu"/>
+</ebay-button>` %>
+
+<pre>${iconExample}</pre>
+
+<ebay-button aria-label="Menu (5 unread items)" variant="icon" badge-number="5">
+    <ebay-icon type="inline" name="menu"/>
+</ebay-button>
+
+<h3>Truncated</h3>
+<% const truncatedExample = `<ebay-badge number="150" aria-label="150 todo items"/>` %>
+
+<pre>${truncatedExample}</pre>
+
+<ebay-badge number="150" aria-label="150 todo items"/>
