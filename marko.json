@@ -291,7 +291,7 @@
     "@grow": "boolean",
     "@borderless": "boolean",
     "@disabled": "boolean",
-    "@aria-invalid": "string",
+    "@invalid": "boolean",
     "@options <option>[]": {
       "@*": "expression",
       "@html-attributes": "expression",

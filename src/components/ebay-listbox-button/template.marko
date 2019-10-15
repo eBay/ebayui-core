@@ -26,7 +26,7 @@
         type="button"
         disabled=data.disabled
         aria-haspopup="listbox"
-        aria-invalid=data.ariaInvalid
+        aria-invalid=(data.invalid && 'true')
         w-preserve-attrs="aria-expanded,aria-controls">
         <span class="expand-btn__cell">
             <span>${selectedText}</span>
