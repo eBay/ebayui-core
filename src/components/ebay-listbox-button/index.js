@@ -14,6 +14,7 @@ module.exports = require('marko-widgets').defineComponent({
     },
     getInitialState(input) {
         const index = findIndex(input.options, option => option.selected);
+
         return assign({}, input, {
             selectedIndex: index === -1 ? 0 : index
         });

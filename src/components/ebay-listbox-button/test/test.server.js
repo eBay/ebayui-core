@@ -40,10 +40,9 @@ describe('listbox', () => {
 
     it('renders fluid layout', async() => {
         const input = mock.Basic_3Options_fluid;
-        const { getAllByRole, getByRole } = await render(template, input);
+        const { getAllByRole } = await render(template, input);
         expect(getAllByRole('button')).has.length(1);
         expect(getAllByRole('listbox')[0].parentNode).has.class('listbox-button--fluid');
-        expect(getByRole('button')).has.class('expand-btn--fluid');
     });
 
     it('renders with second item selected', async() => {
