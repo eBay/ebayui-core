@@ -377,6 +377,7 @@
   },
   "<ebay-notice>": {
     "renderer": "./src/components/ebay-notice/index.js",
+    "transformer": "./src/components/ebay-notice/transformer.js",
     "@*": "expression",
     "@html-attributes": "expression",
     "@class": "string",
@@ -388,6 +389,9 @@
     "@a11y-heading-tag": "string",
     "@a11y-close-text": "string",
     "@dismissible": "boolean",
+    "@_default <_default>": {
+      "@*": "expression"
+    },
     "@content <content>": {
       "@*": "expression",
       "@html-attributes": "expression",
