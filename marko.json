@@ -445,6 +445,7 @@
   },
   "<ebay-section-title>": {
     "renderer": "./src/components/ebay-section-title/index.js",
+    "transformer": "./src/components/ebay-section-title/transformer.js",
     "@*": "expression",
     "@html-attributes": "expression",
     "@class": "string",
@@ -452,6 +453,9 @@
     "@cta-text": "string",
     "@href": "string",
     "@size": "size",
+    "@_default <_default>": {
+      "@*": "expression"
+    },
     "@title <title>": {
       "@*": "expression",
       "@html-attributes": "expression",

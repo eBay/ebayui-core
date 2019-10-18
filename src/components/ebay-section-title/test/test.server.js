@@ -1,6 +1,7 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const { runTransformer, testPassThroughAttributes } = require('../../../common/test-utils/server');
+const transformer = require('../transformer');
 const mock = require('./mock');
 const template = require('..');
 
@@ -10,7 +11,7 @@ describe('section-title', () => {
     it('renders with title', async() => {
         const input = mock.TitleBasic;
         const { getByText } = await render(template, input);
-        const title = getByText(input.renderBody.text);
+        const title = getByText(input._default.renderBody.text);
         expect(title.parentElement.parentElement).has.class('section-title');
         expect(title.parentElement).has.class('section-title__title-container');
         expect(title).has.class('section-title__title');
@@ -95,5 +96,27 @@ describe('section-title', () => {
 
     testPassThroughAttributes(template, {
         input: mock.Title
+    });
+});
+
+describe('transformer', () => {
+    const componentPath = '../index.js';
+
+    it('transforms body to _default', () => {
+        const tagString = '<ebay-section-title size="large"><span>Content</span></ebay-section-title>';
+        const { el } = runTransformer(transformer, tagString, componentPath);
+        const { body: { array: [def] } } = el;
+        expect(def.tagName).to.equal('ebay-section-title:_default');
+    });
+
+    it('transforms a body to _default and ignores content tag', () => {
+        const tagString = `<ebay-section-title size="large">
+            <ebay-section-title-subtitle>Other</ebay-section-title-subtitle>Content
+        </ebay-section-title>
+        `;
+        const { el } = runTransformer(transformer, tagString, componentPath);
+        const { body: { array: [def, content] } } = el;
+        expect(def.tagName).to.equal('ebay-section-title:_default');
+        expect(content.tagName).to.equal('ebay-section-title-subtitle');
     });
 });
