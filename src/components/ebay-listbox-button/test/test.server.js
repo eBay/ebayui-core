@@ -38,6 +38,13 @@ describe('listbox', () => {
         expect(getAllByRole('listbox').filter(isVisible)).has.length(0);
     });
 
+    it('renders fluid layout', async() => {
+        const input = mock.Basic_3Options_fluid;
+        const { getAllByRole } = await render(template, input);
+        expect(getAllByRole('button')).has.length(1);
+        expect(getAllByRole('listbox')[0].parentNode).has.class('listbox-button--fluid');
+    });
+
     it('renders with second item selected', async() => {
         const input = mock.Basic_3Options_1Selected;
         const { getAllByRole } = await render(template, input);
