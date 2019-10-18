@@ -21,7 +21,7 @@ Name | Type | Stateful | Required | Description
 `href` | String | No | No | URL. Title content and optional CTA content will link to this. Populating `cta-text` is optional.
 `size` | String | No | No | "small", "large", or "giant" (default: medium)
 
-### ebay-section-title Events
+## ebay-section-title Events
 
 None.
 
