@@ -292,6 +292,7 @@
     "@borderless": "boolean",
     "@disabled": "boolean",
     "@fluid": "boolean",
+    "@invalid": "boolean",
     "@options <option>[]": {
       "@*": "expression",
       "@html-attributes": "expression",
