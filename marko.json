@@ -295,6 +295,7 @@
     "@disabled": "boolean",
     "@fluid": "boolean",
     "@invalid": "boolean",
+    "@button-name": "string",
     "@options <option>[]": {
       "@*": "expression",
       "@html-attributes": "expression",
