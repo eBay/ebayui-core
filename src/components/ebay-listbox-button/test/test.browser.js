@@ -26,6 +26,10 @@ describe('given the listbox with 3 items', () => {
         expect(component.getByRole('button')).has.attr('aria-expanded', 'false');
     });
 
+    it('then it should have button with name attribute', () => {
+        expect(component.getByRole('button')).has.attr('name', 'listbox-button-name');
+    });
+
     it('then the native select should be initialized to the first option value', () => {
         expect(form.elements)
             .has.property(input.name)
