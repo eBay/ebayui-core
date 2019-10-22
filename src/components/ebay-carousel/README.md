@@ -16,6 +16,8 @@ This component will bundle different resources depending on Lasso flags provided
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
+`a11y-heading-text` | String | No | No | a11y heading text used to describe the carousel (continuous only)
+`a11y-heading-tag` | String | No | No | use h1-h6 when there isn't a visible heading before the carousel (continuous only) (default: "h2")
 `a11y-previous-text` | String | No | Yes | a11y text for previous control (default: "Previous Slide")
 `a11y-next-text` | String | No | Yes | a11y text for next control (default: "Next Slide")
 `index` | String | Yes | No | 0-based index position

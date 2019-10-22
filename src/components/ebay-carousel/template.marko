@@ -1,6 +1,7 @@
 <div class=data.classes style=data.style w-bind ${data.htmlAttributes}>
     <var config=data.config/>
-    <var statusId=null/>
+    <var discrete=(data.totalSlides >= 1)/>
+    <var statusId=(discrete && "carousel-status-" + widget.id)/>
     <div
         w-id="container"
         class=["carousel__container", data.bothControlsDisabled && "carousel__container--controls-disabled"]
@@ -10,15 +11,18 @@
         w-onfocusout=(data.autoplayInterval && "handleEndInteraction")
         w-onmouseout=(data.autoplayInterval && "handleEndInteraction")
         w-ontouchend=(data.autoplayInterval && "handleEndInteraction")>
-        <if(data.totalSlides >= 1)>
-            <assign statusId=("carousel-status-" + widget.id)/>
-            <${data.a11yStatusTag}
-                id=statusId
-                class="clipped"
-                aria-live=(data.autoplayInterval && !data.paused ? "off" : "polite")>
+        <${discrete ? data.a11yStatusTag : data.a11yHeadingTag}
+            id=statusId
+            class="clipped"
+            aria-live=(discrete ? (data.autoplayInterval && !data.paused ? "off" : "polite") : false)
+            if(data.a11yStatusText || data.a11yHeadingText)>
+            <if(discrete)>
                 <span>${data.a11yStatusText}</span>
-            </>
-        </if>
+            </if>
+            <else>
+                <span>${data.a11yHeadingText}</span>
+            </else>
+        </>
         <button
             if(data.showPaddles)
             class="carousel__control carousel__control--prev"
