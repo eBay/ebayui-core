@@ -42,7 +42,6 @@ Name | Type | Stateful | Required | Description
 `a11y-pause-text` | String | No | Yes | autoplay pause button text (default: "Pause - Carousel")
 `paused` | Boolean | Yes | No | pauses the autoplay carousel
 `no-dots` | Boolean | No | No | hides the slide dot controls
-`paddles` | String | No | No | set to "on" to always shows paddles even when not hovering (default: "auto" which shows/hides paddles on hover)
 
 ## ebay-carousel Events
 

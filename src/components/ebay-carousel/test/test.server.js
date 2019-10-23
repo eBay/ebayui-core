@@ -49,22 +49,9 @@ describe('carousel', () => {
             expect(queryByLabelText(input.a11yPreviousText)).not.to.equal(null);
             expect(queryByLabelText(input.a11yNextText)).not.to.equal(null);
             expect(queryByLabelText(/go to slide/)).to.equal(null);
-        });
-
-        it('renders with paddles enabled', async() => {
-            const input = assign({}, mock.Discrete_1PerSlide_3Items, { paddles: 'on' });
-            const { queryByLabelText } = await render(template, input);
 
             expect(queryByLabelText(input.a11yPreviousText)).has.class('show-control');
             expect(queryByLabelText(input.a11yNextText)).has.class('show-control');
-        });
-
-        it('renders with paddles normally', async() => {
-            const input = assign({}, mock.Discrete_1PerSlide_3Items, { paddles: 'auto' });
-            const { queryByLabelText } = await render(template, input);
-
-            expect(queryByLabelText(input.a11yPreviousText)).does.not.have.class('show-control');
-            expect(queryByLabelText(input.a11yNextText)).does.not.have.class('show-control');
         });
 
         it('renders without any provided items', async() => {

@@ -119,7 +119,7 @@ function getTemplateData(state) {
         offset: hasOverride ? config.offsetOverride : offset,
         disableTransition: hasOverride,
         showPaddles: itemsPerSlide ? items.length > itemsPerSlide : true,
-        alwaysShowPaddles: state.paddles === 'on',
+        alwaysShowPaddles: state.noDots && state.peek === 0,
         totalSlides,
         a11yStatusText,
         prevControlDisabled,
