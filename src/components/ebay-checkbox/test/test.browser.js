@@ -69,4 +69,3 @@ describe('when native focus event is fired', () => {
         expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
     });
 });
-
