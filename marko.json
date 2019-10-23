@@ -60,7 +60,6 @@
     "@type": "string",
     "@slide": "string",
     "@gap": "string",
-    "@paddles": "string",
     "@autoplay": "boolean",
     "@paused": "boolean",
     "@no-dots": "boolean",
