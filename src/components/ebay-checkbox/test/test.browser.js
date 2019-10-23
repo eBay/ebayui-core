@@ -55,7 +55,7 @@ describe('given checkbox button is disabled', () => {
     });
 });
 
-describe('when native "focus" event is fired', () => {
+describe('when native focus event is fired', () => {
     beforeEach(async() => {
         component = await render(template, { htmlAttributes: { value: 'food' } });
         await fireEvent.focus(component.getByRole('checkbox'));

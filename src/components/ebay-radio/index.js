@@ -10,5 +10,15 @@ module.exports = require('marko-widgets').defineComponent({
                 value: target.value
             });
         }
-    }
+    },
+    handleFocus: forwardEvent('focus')
 });
+
+function forwardEvent(eventName) {
+    return function(originalEvent, el) {
+        this.emit(`radio-${eventName}`, {
+            originalEvent,
+            value: (el || this.el.querySelector('input')).value
+        });
+    };
+}
