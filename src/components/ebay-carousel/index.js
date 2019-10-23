@@ -54,9 +54,6 @@ function getInitialState(input) {
             state.interacting = false;
         }
     }
-    if (state.paddles === 'on') {
-        state.classes.push('show-control');
-    }
 
     state.items = (input.items || []).map((item, i) => {
         const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;

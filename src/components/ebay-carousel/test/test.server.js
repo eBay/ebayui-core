@@ -55,8 +55,8 @@ describe('carousel', () => {
             const input = assign({}, mock.Discrete_1PerSlide_3Items, { paddles: 'on' });
             const { queryByLabelText } = await render(template, input);
 
-            const top = queryByLabelText(input.a11yPreviousText).parentElement.parentElement;
-            expect(top.className.indexOf('show-control') > -1).to.equal(true);
+            expect(queryByLabelText(input.a11yPreviousText)).has.class('show-control');
+            expect(queryByLabelText(input.a11yNextText)).has.class('show-control');
         });
 
         it('renders without any provided items', async() => {
