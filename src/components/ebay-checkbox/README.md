@@ -20,4 +20,3 @@ Event | Data | Description
 --- | --- | --
 `checkbox-change` | `{ originalEvent, value, checked }` | selected value and checked status
 `checkbox-focus` | `{ originalEvent, value }` |
-
