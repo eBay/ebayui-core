@@ -19,7 +19,6 @@ function getInitialState(input) {
         config: {}, // A place to store values that should not trigger an update by themselves.
         gap: isNaN(gap) ? 16 : gap,
         noDots: input.noDots,
-        paddles: input.paddles || 'auto',
         index: parseInt(input.index, 10) || 0,
         itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
         a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
