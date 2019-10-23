@@ -7,5 +7,15 @@ module.exports = require('marko-widgets').defineComponent({
             value: originalEvent.target.value,
             checked: originalEvent.target.checked
         });
-    }
+    },
+    handleFocus: forwardEvent('focus')
 });
+
+function forwardEvent(eventName) {
+    return function(originalEvent, el) {
+        this.emit(`checkbox-${eventName}`, {
+            originalEvent,
+            value: (el || this.el.querySelector('input')).value
+        });
+    };
+}

@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, wait, cleanup } = require('@marko/testing-library');
+const { render, wait, cleanup, fireEvent } = require('@marko/testing-library');
 const template = require('..');
 
 use(require('chai-dom'));
@@ -54,3 +54,19 @@ describe('given checkbox button is disabled', () => {
         });
     });
 });
+
+describe('when native "focus" event is fired', () => {
+    beforeEach(async() => {
+        component = await render(template, { htmlAttributes: { value: 'food' } });
+        await fireEvent.focus(component.getByRole('checkbox'));
+    });
+
+    it('then it emits the event', () => {
+        const events = component.emitted('checkbox-focus');
+        expect(events).has.length(1);
+
+        const [[eventArg]] = events;
+        expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+    });
+});
+
