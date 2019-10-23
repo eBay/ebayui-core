@@ -54,6 +54,16 @@ describe('carousel', () => {
             expect(queryByLabelText(input.a11yNextText)).has.class('show-control');
         });
 
+        it('renders autoplay with no-dots', async() => {
+            const input = assign({}, mock.Discrete_1PerSlide_3Items_AutoPlay, { noDots: true });
+            const { queryByLabelText } = await render(template, input);
+
+            expect(queryByLabelText(input.a11yPauseText)).to.not.equal(null);
+
+            expect(queryByLabelText(input.a11yPreviousText)).does.not.have.class('show-control');
+            expect(queryByLabelText(input.a11yNextText)).does.not.have.class('show-control');
+        });
+
         it('renders without any provided items', async() => {
             const input = mock.Discrete_1PerSlide_0Items;
             const { queryByLabelText } = await render(template, input);
