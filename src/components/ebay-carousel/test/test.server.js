@@ -51,6 +51,14 @@ describe('carousel', () => {
             expect(queryByLabelText(/go to slide/)).to.equal(null);
         });
 
+        it('renders with paddles enabled', async() => {
+            const input = assign({}, mock.Discrete_1PerSlide_3Items, { paddles: 'on' });
+            const { queryByLabelText } = await render(template, input);
+
+            const top = queryByLabelText(input.a11yPreviousText).parentElement.parentElement;
+            expect(top.className.indexOf('show-control') > -1).to.equal(true);
+        });
+
         it('renders without any provided items', async() => {
             const input = mock.Discrete_1PerSlide_0Items;
             const { queryByLabelText } = await render(template, input);

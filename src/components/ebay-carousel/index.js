@@ -19,6 +19,7 @@ function getInitialState(input) {
         config: {}, // A place to store values that should not trigger an update by themselves.
         gap: isNaN(gap) ? 16 : gap,
         noDots: input.noDots,
+        paddles: input.paddles || 'auto',
         index: parseInt(input.index, 10) || 0,
         itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
         a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
@@ -52,6 +53,9 @@ function getInitialState(input) {
             state.paused = isSingleSlide || input.paused; // Force paused state if not enough slides provided;
             state.interacting = false;
         }
+    }
+    if (state.paddles === 'on') {
+        state.classes.push('show-control');
     }
 
     state.items = (input.items || []).map((item, i) => {
@@ -118,6 +122,7 @@ function getTemplateData(state) {
         offset: hasOverride ? config.offsetOverride : offset,
         disableTransition: hasOverride,
         showPaddles: itemsPerSlide ? items.length > itemsPerSlide : true,
+        alwaysShowPaddles: state.paddles === 'on',
         totalSlides,
         a11yStatusText,
         prevControlDisabled,
