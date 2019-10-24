@@ -16,6 +16,7 @@ describe('listbox', () => {
         const visibleOptionEls = getAllByRole('option').filter(isVisible);
 
         expect(btnEl).has.attr('aria-haspopup', 'listbox');
+        expect(btnEl).has.attr('name', input.buttonName);
         expect(btnEl).has.text(input.options[0].text);
         expect(btnEl).has.class('listbox-button__control');
 
