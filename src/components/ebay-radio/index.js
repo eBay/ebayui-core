@@ -7,7 +7,7 @@ module.exports = require('marko-widgets').defineComponent({
 
 function forwardEvent(eventName) {
     return function(originalEvent, el) {
-        if (eventName !== 'change' || (eventName === 'change' && !el.disabled)) {
+        if (!el.disabled) {
             this.emit(`radio-${eventName}`, {
                 originalEvent,
                 value: (el || this.el.querySelector('input')).value

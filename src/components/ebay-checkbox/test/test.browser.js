@@ -66,6 +66,7 @@ describe('when native focus event is fired', () => {
         expect(events).has.length(1);
 
         const [[eventArg]] = events;
+        expect(eventArg).has.property('value', 'food');
         expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
     });
 });
