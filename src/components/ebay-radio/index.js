@@ -1,14 +1,17 @@
 
 module.exports = require('marko-widgets').defineComponent({
     template: require('./template.marko'),
-    handleClick(originalEvent) {
-        const target = originalEvent.target;
+    handleClick: forwardEvent('change'),
+    handleFocus: forwardEvent('focus')
+});
 
-        if (!target.disabled) {
-            this.emit('radio-change', {
+function forwardEvent(eventName) {
+    return function(originalEvent, el) {
+        if (!el.disabled) {
+            this.emit(`radio-${eventName}`, {
                 originalEvent,
-                value: target.value
+                value: (el || this.el.querySelector('input')).value
             });
         }
-    }
-});
+    };
+}

@@ -19,3 +19,4 @@ Name | Type | Stateful | Required | Description
 Event | Data | Description
 --- | --- | --
 `radio-change` | `{ originalEvent, value }` | selected value
+`radio-focus` | `{ originalEvent, value }` |
