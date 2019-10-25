@@ -21,7 +21,7 @@
         w-onclick="handlePreviousPage"
         ${data.prevItem.htmlAttributes}
         if(data.prevItem)>
-        <ebay-icon type="inline" name="arrow-left-small"/>
+        <ebay-icon type="inline" name="pagination-prev"/>
     </>
     <ol class="pagination__items">
         <li for(item in data.items)>
@@ -47,6 +47,6 @@
         w-onclick="handleNextPage"
         ${data.nextItem.htmlAttributes}
         if(data.nextItem)>
-        <ebay-icon type="inline" name="arrow-right-small"/>
+        <ebay-icon type="inline" name="pagination-next"/>
     </>
 </nav>
