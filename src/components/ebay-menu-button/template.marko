@@ -60,18 +60,7 @@
         w-on-menu-change="handleMenuChange"
         w-on-menu-select="handleMenuSelect">
         <for(item in data.items)>
-            <ebay-menu-item
-                style=item.style
-                class=item.class
-                href=item.href
-                checked=item.checked
-                current=item.current
-                value=item.value
-                badge-number=item.badgeNumber
-                badge-aria-label=item.badgeAriaLabel
-                ${processHtmlAttributes(item)}>
-                <span body-only-if(true) w-body=item.renderBody/>
-            </ebay-menu-item>
+            <ebay-menu-item ${item} />
         </for>
     </ebay-menu>
 </span>
