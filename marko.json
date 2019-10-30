@@ -30,7 +30,10 @@
   },
   "<ebay-button>": {
     "renderer": "./src/components/ebay-button/index.js",
-    "@*": "expression",
+    "@*": {
+      "type": "expression",
+      "targetProperty": null
+    },
     "@html-attributes": "expression",
     "@id": "string",
     "@class": "string",

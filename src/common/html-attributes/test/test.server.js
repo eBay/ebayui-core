@@ -20,3 +20,10 @@ it('uses htmlAttributes over * in case of conflict', () => {
     const htmlAttributes = { 'aria-role': 'button' };
     expect(processHtmlAttributes(input)).to.deep.equal(htmlAttributes);
 });
+
+it('should use the ignore list', () => {
+    const input = { htmlAttributes: { b: 2 }, dataAttribute: 'something', style: 'some style', renderBody: () => {} };
+    const ignoreList = ['style'];
+    const htmlAttributes = { b: 2, 'data-attribute': 'something' };
+    expect(processHtmlAttributes(input, ignoreList)).to.deep.equal(htmlAttributes);
+});
