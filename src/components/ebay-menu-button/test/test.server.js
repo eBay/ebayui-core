@@ -151,6 +151,12 @@ describe('menu-button', () => {
     });
 
     testUtils.testPassThroughAttributes(template);
+    testUtils.testPassThroughAttributes(template, {
+        child: {
+            name: 'items',
+            multiple: true
+        }
+    });
 });
 
 describe('transformer', () => {

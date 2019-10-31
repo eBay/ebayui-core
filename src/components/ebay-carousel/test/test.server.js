@@ -49,6 +49,19 @@ describe('carousel', () => {
             expect(queryByLabelText(input.a11yPreviousText)).not.to.equal(null);
             expect(queryByLabelText(input.a11yNextText)).not.to.equal(null);
             expect(queryByLabelText(/go to slide/)).to.equal(null);
+
+            expect(queryByLabelText(input.a11yPreviousText)).has.class('carousel__control--show');
+            expect(queryByLabelText(input.a11yNextText)).has.class('carousel__control--show');
+        });
+
+        it('renders autoplay with no-dots', async() => {
+            const input = assign({}, mock.Discrete_1PerSlide_3Items_AutoPlay, { noDots: true });
+            const { queryByLabelText } = await render(template, input);
+
+            expect(queryByLabelText(input.a11yPauseText)).to.not.equal(null);
+
+            expect(queryByLabelText(input.a11yPreviousText)).does.not.have.class('carousel__control--show');
+            expect(queryByLabelText(input.a11yNextText)).does.not.have.class('carousel__control--show');
         });
 
         it('renders without any provided items', async() => {

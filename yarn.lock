@@ -1099,10 +1099,10 @@
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.1.tgz#deccafb04101fa52507b8f2204161c8ed5e70375"
   integrity sha512-5i4XOsKwoCYomZ9cF7H5OBroeHoYUriylg55mJwTARMbQVv21RnYKF/Bwi86ZlHz4S6YepxlaQorsxR6T2xv6w==
 
-"@ebay/skin@9.3.0":
-  version "9.3.0"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-9.3.0.tgz#3ba776039ba2f61a60540b10a0e70af3f6e25460"
-  integrity sha512-R9FnRdQXAUYKLSrLEYbcCaFEzrvLiP2xcR7kC4pRt2xKTw6omJ9wVzUow0X5cDIAAbzUT/mnFnA496KfFWSapg==
+"@ebay/skin@9.4.0":
+  version "9.4.0"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-9.4.0.tgz#43d8028dbfb7f159e21c78c4a4782e67da34ef12"
+  integrity sha512-sMM0Re4dqASVEUX0AywlgeZ8Df5Mvkego3WRVHVBIgTSNFqML4wyIMqL5OMfYileDr7gk+o8EXFX40C82zqL/g==
 
 "@emotion/cache@^10.0.17", "@emotion/cache@^10.0.9":
   version "10.0.17"
@@ -6527,9 +6527,9 @@ error-stack-parser@^2.0.0, error-stack-parser@^2.0.1:
     stackframe "^1.0.4"
 
 es-abstract@^1.10.0, es-abstract@^1.11.0, es-abstract@^1.12.0, es-abstract@^1.13.0, es-abstract@^1.4.3, es-abstract@^1.5.1, es-abstract@^1.7.0:
-  version "1.14.0"
-  resolved "https://registry.npmjs.org/es-abstract/-/es-abstract-1.14.0.tgz#f59d9d44278ea8f90c8ff3de1552537c2fd739b4"
-  integrity sha512-lri42nNq1tIohUuwFBYEM3wKwcrcJa78jukGDdWsuaNxTtxBFGFkKUQ15nc9J+ipje4mhbQR6JwABb4VvawR3A==
+  version "1.14.2"
+  resolved "https://registry.npmjs.org/es-abstract/-/es-abstract-1.14.2.tgz#7ce108fad83068c8783c3cdf62e504e084d8c497"
+  integrity sha512-DgoQmbpFNOofkjJtKwr87Ma5EW4Dc8fWhD0R+ndq7Oc456ivUfGOOP6oAZTTKl5/CcNMP+EN+e3/iUzgE0veZg==
   dependencies:
     es-to-primitive "^1.2.0"
     function-bind "^1.1.1"

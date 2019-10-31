@@ -61,6 +61,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 * [`ebay-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-notice)
 * [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
 * [`ebay-radio`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-radio)
+* [`ebay-section-title`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-title)
 * [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
 * [`ebay-switch`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-switch)
 * [`ebay-tab`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tab)

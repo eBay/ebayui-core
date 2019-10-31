@@ -46,3 +46,18 @@ describe('given radio button is disabled', () => {
         });
     });
 });
+
+describe('when native focus event is fired', () => {
+    beforeEach(async() => {
+        component = await render(template, { '*': { value: 'food' } });
+        await fireEvent.focus(component.getByRole('radio'));
+    });
+
+    it('then it emits the event', () => {
+        const events = component.emitted('radio-focus');
+        expect(events).has.length(1);
+
+        const [[eventArg]] = events;
+        expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+    });
+});
