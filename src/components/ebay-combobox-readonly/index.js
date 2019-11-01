@@ -18,12 +18,9 @@ function getInitialState(input) {
         htmlAttributes: processHtmlAttributes(option, [
             "class",
             "style",
-            "name",
-            "borderless",
-            "disabled",
-            "autocomplete",
-            "expanded",
-            "options"
+            "value",
+            "text",
+            "selected"
         ]),
         class: option.class,
         style: option.style,
@@ -43,9 +40,12 @@ function getInitialState(input) {
         htmlAttributes: processHtmlAttributes(input, [
             "class",
             "style",
+            "name",
             "value",
             "text",
-            "selected"
+            "options",
+            "disabled",
+            "borderless"
         ]),
         class: input.class,
         style: input.style,

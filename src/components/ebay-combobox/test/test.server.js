@@ -27,9 +27,9 @@ describe('combobox', () => {
 
     it('renders with second item selected', async() => {
         const input = mock.Combobox_3Options_2Selected;
-        const { getAllByRole } = await render(template, input);
-        const selectedIndex = input.options.findIndex(({ value }) => value === input.value);
-        expect(getAllByRole('option').findIndex(isAriaSelected)).is.equal(selectedIndex);
+        const { getByRole } = await render(template, input);
+        const selectedIndex = input.options.findIndex(({ text }) => text === input.value);
+        expect(getByRole('option').textContent).is.equal(input.value);
     });
 
     it('renders with borderless enabled', async() => {

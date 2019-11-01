@@ -34,7 +34,7 @@
             w-on-keyup='handleComboboxKeyUp'
             autocomplete="new-password"
             w-preserve-attrs="aria-controls,aria-activedescendant,aria-owns,aria-expanded"
-            ${processHtmlAttributes(data, ["class",  "style",  "name",  "borderless",  "disabled",  "autocomplete",  "expanded",  "options"])}/>
+            ${processHtmlAttributes(data, ["class",  "style",  "name",  "borderless",  "disabled",  "autocomplete", "options"])}/>
         <span class="combobox__icon" aria-hidden="true"></span>
     </span>
     <if(options.length)>
@@ -58,7 +58,7 @@
                     w-preserve-attrs="tabindex,data-makeup-index,class,aria-selected"
                     aria-selected=(isSelected && "true")
                     data-option-value=option.value
-                    ${processHtmlAttributes(option, ["class", "style", "value", "text", "selected"])}>
+                    ${processHtmlAttributes(option, ["class", "style", "text"])}>
                     <span>${option.text}</span>
                 </div>
             </for>
