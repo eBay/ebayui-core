@@ -10,7 +10,7 @@
     style=data.style
     w-on-expander-expand="handleExpand"
     w-on-expander-collapse="handleCollapse"
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ["variant",  "text",  "footerText",  "class",  "style",  "disabled",  "selected",  "formName",  "formAction",  "formMethod",  "a11yText",  "a11yFooterText",  "items"])}>
     <button
         type="button"
         class="filter-menu-button__button"

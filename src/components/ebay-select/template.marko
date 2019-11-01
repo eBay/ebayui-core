@@ -17,7 +17,7 @@
     <select
         w-onchange="handleChange"
         disabled=data.disabled
-        ${processHtmlAttributes(data)}>
+        ${processHtmlAttributes(data, ["class", "style", "grow", "borderless", "disabled", "options"])}>
         <for(option in options)>
             <var withinOptgroup = (option.optgroup && renderedOptGroups.indexOf(option.optgroup) === -1)/>
             <option
@@ -27,7 +27,7 @@
                 style=option.style
                 selected=(option === selectedOption)
                 body-only-if(option.optgroup)
-                ${processHtmlAttributes(option)}>
+                ${processHtmlAttributes(option, ["class", "style", "value", "text", "selected", "optgroup"])}>
                 <if(withinOptgroup)>
                     <optgroup label=option.optgroup>
                         <for(subOption in data.optGroups[option.optgroup])>

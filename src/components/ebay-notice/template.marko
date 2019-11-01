@@ -13,7 +13,7 @@
 
 <if(!data.hidden)>
     <${isPage ? "section" : "div"}
-        ${processHtmlAttributes(data)}
+        ${processHtmlAttributes(data, ["class",  "style",  "type",  "status",  "hidden",  "a11yHeadingText",  "a11yHeadingTag",  "a11yCloseText",  "dismissible",  "content"])}
         w-bind
         style=data.style
         aria-labelledby=widget.elId("status")
@@ -32,7 +32,7 @@
         </if>
         <if(content && content.renderBody)>
             <${contentTag}
-                ${processHtmlAttributes(content)}
+                ${processHtmlAttributes(content, ["class", "style"])}
                 class=[content.class, "${type}-notice__content"]
                 style=content.style
                 w-body=data.content.renderBody/>

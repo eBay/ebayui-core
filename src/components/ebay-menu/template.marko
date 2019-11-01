@@ -17,7 +17,7 @@
         data.class
     ]
     style=data.style
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ["class",  "style",  "classPrefix",  "type",  "reverse",  "fixWidth",  "items"])}>
     <div
         w-id="menu"
         role=(!isFake && 'menu')
@@ -35,7 +35,7 @@
                 w-on-click="handleItemClick"
                 w-on-keydown="handleItemKeydown"
                 w-on-keypress="handleItemKeypress"
-                ${processHtmlAttributes(item)}>
+                ${processHtmlAttributes(item, ["class",  "style",  "href",  "type",  "value",  "checked",  "current",  "badgeNumber",  "badgeAriaLabel"])}>
                 <span>
                     <span body-only-if(!item.badgeNumber) aria-hidden='true'>
                         <span w-body=item.renderBody/>

@@ -4,7 +4,7 @@
 
 <var classPrefix=(data.href ? "fake-pill" : "pill")/>
 
-<span w-bind class="pill__wrapper" ${processHtmlAttributes(data)}>
+<span w-bind class="pill__wrapper" ${processHtmlAttributes(data, ["class", "style", "disabled", "href", "priority", "pressed", "ariaSelectedText"])}>
     <${data.href ? "a" : "button"}
         w-id="pill"
         w-on-click="handleButtonClick"

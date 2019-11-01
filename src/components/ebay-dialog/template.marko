@@ -21,7 +21,7 @@
     w-preserve-attrs="hidden"
     w-onclick="handleDialogClick"
     w-onmousedown="handleStartClick"
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ["class", "style", "open", "type", "focus", "a11yCloseText"])}>
     <div
         w-id="window"
         role="document"

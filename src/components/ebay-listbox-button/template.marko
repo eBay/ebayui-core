@@ -7,7 +7,7 @@
 <var selectedText=(selectedOption && selectedOption.text)/>
 
 <span
-    ${processHtmlAttributes(data)}
+    ${processHtmlAttributes(data, ["class",  "style",  "name",  "grow",  "borderless",  "disabled",  "fluid",  "invalid",  "buttonName",  "options"])}
     class=["listbox-button", data.class, data.fluid && "listbox-button--fluid"]
     style=data.style
     w-preserve-attrs="class"
@@ -52,7 +52,7 @@
                     tabindex="-1"
                     aria-selected=(selectedOption === option && "true")
                     w-on-mousedown="handleMouseDown"
-                    ${processHtmlAttributes(option)}>
+                    ${processHtmlAttributes(option, ["class",  "style",  "value",  "text",  "selected"])}>
                     <span class="listbox-button__value">${option.text}</span>
                     <span class="listbox-button__status"/>
                 </div>

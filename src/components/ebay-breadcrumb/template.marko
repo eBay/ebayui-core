@@ -7,7 +7,7 @@
     class=["breadcrumb", data.class]
     style=data.style
     role="navigation"
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ["class", "style", "a11yHeadingText", "a11yHeadingTag", "hijax", "items"])}>
 
     <${data.a11yHeadingTag || "h2"} id=widget.elId("breadcrumb-heading") class="clipped">
         ${data.a11yHeadingText}
@@ -22,7 +22,7 @@
                 style=item.style
                 w-body=item.renderBody
                 w-onclick=(!current && "handleClick")
-                ${processHtmlAttributes(item)}/>
+                ${processHtmlAttributes(item, ["class", "style", "href"])}/>
         </li>
     </ul>
 </nav>

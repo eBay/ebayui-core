@@ -18,7 +18,7 @@
             w-id="expander-root"
             w-preserve-attrs="class"
             class="tourtip"
-            ${processHtmlAttributes(data)}>
+            ${processHtmlAttributes(data, ["class", "style", "pointer", "styleTop", "styleLeft", "styleRight", "styleBottom", "a11yCloseText", "host <host>"])}>
             <span
                 if(data.host)
                 w-preserve-attrs="aria-expanded,aria-controls,aria-describedby"

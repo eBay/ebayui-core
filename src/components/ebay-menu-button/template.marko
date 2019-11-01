@@ -15,7 +15,25 @@
     w-bind
     w-on-expander-expand="handleExpand"
     w-on-expander-collapse="handleCollapse"
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, [
+        "class",
+        "style",
+        "type",
+        "text",
+        "icon",
+        "a11yText",
+        "noToggleIcon",
+        "expanded",
+        "reverse",
+        "fixWidth",
+        "borderless",
+        "size",
+        "priority",
+        "iconTag",
+        "disabled",
+        "variant",
+        "items",
+        "label"])}>
     <ebay-button
         w-id="button"
         class=[

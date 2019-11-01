@@ -10,7 +10,7 @@
         data.class
     ]
     style=data.style
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ["class", "style", "cta-text", "href", "size", "_default", "title", "subtitle", "info", "overflow"])}>
     <div class=[
             "section-title__title-container",
             data.title && data.title.class
@@ -34,7 +34,7 @@
             ]
             style=data.subtitle.style
             w-body=data.subtitle.renderBody
-            ${processHtmlAttributes(data.subtitle)}/>
+            ${processHtmlAttributes(data.subtitle, ["class", "style"])}/>
     </div>
 
     <!-- CTA -->
@@ -55,7 +55,7 @@
     ]
     style=data.info.style
     w-body=data.info.renderBody
-    ${processHtmlAttributes(data.info)}/>
+    ${processHtmlAttributes(data.info, ["class", "style"])}/>
 
     <!-- Overflow-->
     <div if(data.overflow && data.overflow.renderBody) class=[
@@ -64,5 +64,5 @@
         ]
         style=data.overflow.style
         w-body=data.overflow.renderBody
-        ${processHtmlAttributes(data.overflow)}/>
+        ${processHtmlAttributes(data.overflow, ["class", "style"])}/>
 </div>

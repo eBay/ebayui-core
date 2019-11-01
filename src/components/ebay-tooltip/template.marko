@@ -20,7 +20,7 @@
             w-id="expander-root"
             w-preserve-attrs="class"
             class="tooltip"
-            ${processHtmlAttributes(data)}>
+            ${processHtmlAttributes(data, [ "class",  "style",  "pointer",  "styleTop",  "styleLeft",  "styleRight",  "styleBottom",  "noHover",  "host"])}>
             <span
                 if(data.host)
                 body-only-if(true)

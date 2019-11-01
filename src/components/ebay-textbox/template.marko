@@ -52,7 +52,21 @@
         w-oninput="handleInput"
         w-onfocus="handleFocus"
         w-onblur="handleBlur"
-        ${processHtmlAttributes(data)}>
+        ${processHtmlAttributes(data, [
+            "id",
+            "class",
+            "style",
+            "type",
+            "value",
+            "invalid",
+            "disabled",
+            "fluid",
+            "multiline",
+            "icon",
+            "iconPosition",
+            "iconTag",
+            "floatingLabel"
+        ])}>
         <if(data.multiline && data.value)>
             ${data.value}
         </if>

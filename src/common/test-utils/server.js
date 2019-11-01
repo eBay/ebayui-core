@@ -26,32 +26,34 @@ module.exports = {
         it(
             `passes through additional html attributes${child ? ` from child ${child.name}` : ''}`,
             async() => {
-                for (const key of ['*', 'htmlAttributes']) {
-                    const testId = 'AttributePassthrough';
-                    const clonedInput = Object.assign({}, input);
-                    let targetInput = clonedInput;
+                const testId = 'AttributePassthrough';
+                const clonedInput = Object.assign({}, input);
+                let targetInput = clonedInput;
 
-                    if (child) {
-                        targetInput = Object.assign({}, child.input);
-                        clonedInput[child.name] = child.multiple ? [targetInput] : child;
-                    }
-
-                    Object.assign(targetInput, {
-                        [key]: { 'data-testid': testId, 'data-passed-through': 'true' },
-                        // class and style are special attributes
-                        class: { class1: true, class2: false },
-                        style: { color: 'red' }
-                    });
-
-                    const component = await render(template, clonedInput);
-                    const passThroughEl = component.getByTestId(testId);
-                    expect(passThroughEl).has.attr('data-passed-through');
-
-                    const classAndStyleEl = getClassAndStyleEl ? getClassAndStyleEl(component) : passThroughEl;
-                    expect(classAndStyleEl).has.class('class1');
-                    expect(classAndStyleEl).not.has.class('class2');
-                    expect(classAndStyleEl).attr('style').contains('color:red');
+                if (child) {
+                    targetInput = Object.assign({}, child.input);
+                    clonedInput[child.name] = child.multiple ? [targetInput] : child;
                 }
+                Object.assign(targetInput, {
+                    htmlAttributes: {
+                        type: 'number'
+                    },
+                    'data-testid': testId,
+                    'data-passed-through': 'true',
+                    // class and style are special attributes
+                    class: { class1: true, class2: false },
+                    style: { color: 'red' }
+                });
+
+                const component = await render(template, clonedInput);
+                const passThroughEl = component.getByTestId(testId);
+                expect(passThroughEl).has.attr('data-passed-through');
+                expect(passThroughEl).has.attr('type');
+
+                const classAndStyleEl = getClassAndStyleEl ? getClassAndStyleEl(component) : passThroughEl;
+                expect(classAndStyleEl).has.class('class1');
+                expect(classAndStyleEl).not.has.class('class2');
+                expect(classAndStyleEl).attr('style').contains('color:red');
             }
         );
     },

@@ -5,7 +5,7 @@
 <var size=(data.size || "medium")/>
 <var baseClass="cta-btn"/>
 <var sizeClass="${baseClass}--${size}"/>
-<var htmlAttributes=processHtmlAttributes(data)/>
+<var htmlAttributes=processHtmlAttributes(data, ["id", "class", "style", "size"])/>
 
 <a
     ${htmlAttributes}

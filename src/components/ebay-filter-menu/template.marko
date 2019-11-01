@@ -10,7 +10,7 @@
     w-bind
     class=[(data.classPrefix ? "${baseClass}__menu": baseClass), data.class]
     style=data.style
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ["variant",  "footerText",  "class",  "style",  "classPrefix",  "formName",  "formAction",  "formMethod",  "a11yFooterText",  "items"])}>
     <div w-id="content" class="${baseClass}__menu" body-only-if(data.classPrefix)>
         <form
             body-only-if(!isForm)
@@ -30,7 +30,7 @@
                         for=(isForm && widget.elId("checkbox"))
                         w-onclick="handleItemClick"
                         w-onkeydown="handleItemKeydown"
-                        ${processHtmlAttributes(item)}>
+                        ${processHtmlAttributes(item, ["class", "style", "checked", "value"])}>
                         <if(isForm)>
                             <ebay-checkbox w-id="checkbox" checked=item.checked/>
                         </if>

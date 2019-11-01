@@ -6,7 +6,16 @@
     w-bind
     class=[data.class, data.fake ? "fake-tabs" : "tabs"]
     style=data.style
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, [
+        "html-attributes",
+        "class",
+        "style",
+        "index",
+        "fake",
+        "activation",
+        "headings",
+        "panels"
+    ])}>
     <if(data.fake)>
         <var selectedPanel=data.panels[0]/>
         <ul class="fake-tabs__items">
@@ -14,7 +23,7 @@
                 <var i=status.getIndex()/>
                 <var isSelected=(data.index === i)/>
                 <li
-                    ${processHtmlAttributes(heading)}
+                    ${processHtmlAttributes(heading, ["class", "style", "href"])}
                     class=[
                         heading.class,
                         "fake-tabs__item",
@@ -30,7 +39,7 @@
         </ul>
         <div class="fake-tabs__content">
             <div
-                ${processHtmlAttributes(selectedPanel)}
+                ${processHtmlAttributes(selectedPanel, ["class", "style"])}
                 class=[selectedPanel.class, "fake-tabs__panel"]
                 style=selectedPanel.style>
                 <div class="fake-tabs__cell">
@@ -55,7 +64,7 @@
                     w-onclick="handleHeadingClick"
                     w-onkeydown="handleHeadingKeydown"
                     w-preserve-attrs="tabindex,data-makeup-index"
-                    ${processHtmlAttributes(heading)}>
+                    ${processHtmlAttributes(heading, ["class", "style", "href"])}>
                     <span w-body=heading.renderBody/>
                 </div>
             </for>
@@ -71,7 +80,7 @@
                     class=[panel.class, "tabs__panel"]
                     style=panel.style
                     hidden=!isSelected
-                    ${processHtmlAttributes(panel)}>
+                    ${processHtmlAttributes(panel, ["class", "style"])}>
                     <div class="tabs__cell">
                         <div w-body=panel.renderBody/>
                     </div>
