@@ -9,6 +9,7 @@
 <var isLightGuidance=(isSection && !data.status)/>
 <var content=(data.content)/>
 <var cta=(data.cta)/>
+<var defRender=(data._default && data._default.renderBody) />
 <var contentTag=(isPage ? "div" : "span")/>
 
 <if(!data.hidden)>
@@ -36,10 +37,10 @@
                 class=[content.class, "${type}-notice__content"]
                 style=content.style
                 w-body=data.content.renderBody/>
-            <div body-only-if(true) w-body/>
+            <div body-only-if(true) w-body=defRender />
         </if>
         <else>
-            <${contentTag} class="${type}-notice__content" w-body/>
+            <${contentTag} class="${type}-notice__content" w-body=defRender />
         </else>
         <if(data.dismissible)>
             <button
