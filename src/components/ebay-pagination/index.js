@@ -20,7 +20,15 @@ function getInitialState(input) {
         const href = item.href;
         const current = item.current;
         const tempItem = {
-            htmlAttributes: processHtmlAttributes(item, ["class","style","current","disabled","href","type","role"]),
+            htmlAttributes: processHtmlAttributes(item, [
+                'class',
+                'style',
+                'current',
+                'disabled',
+                'href',
+                'type',
+                'role'
+            ]),
             style: item.style,
             renderBody: item.renderBody,
             href,
@@ -46,7 +54,15 @@ function getInitialState(input) {
     }
 
     return {
-        htmlAttributes: processHtmlAttributes(input, ["class", "style", "a11y-previous-text", "a11y-next-text", "a11y-current-text", "hijax", "items"]),
+        htmlAttributes: processHtmlAttributes(input, [
+            'class',
+            'style',
+            'a11yPreviousText',
+            'a11yNextText',
+            'a11yCurrentText',
+            'hijax',
+            'items'
+        ]),
         classes: ['pagination', input.class],
         style: input.style,
         nextItem: nextItem || { class: 'pagination__next', disabled: true, htmlAttributes: {} },

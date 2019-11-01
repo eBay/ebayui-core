@@ -16,11 +16,11 @@ const comboboxSelectedOptionSelector = '.combobox__option[role=option][aria-sele
 function getInitialState(input) {
     const options = (input.options || []).map(option => ({
         htmlAttributes: processHtmlAttributes(option, [
-            "class",
-            "style",
-            "value",
-            "text",
-            "selected"
+            'class',
+            'style',
+            'value',
+            'text',
+            'selected'
         ]),
         class: option.class,
         style: option.style,
@@ -38,14 +38,14 @@ function getInitialState(input) {
 
     return {
         htmlAttributes: processHtmlAttributes(input, [
-            "class",
-            "style",
-            "name",
-            "value",
-            "text",
-            "options",
-            "disabled",
-            "borderless"
+            'class',
+            'style',
+            'name',
+            'value',
+            'text',
+            'options',
+            'disabled',
+            'borderless'
         ]),
         class: input.class,
         style: input.style,

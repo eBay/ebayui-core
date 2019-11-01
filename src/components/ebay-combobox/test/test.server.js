@@ -28,7 +28,6 @@ describe('combobox', () => {
     it('renders with second item selected', async() => {
         const input = mock.Combobox_3Options_2Selected;
         const { getByRole } = await render(template, input);
-        const selectedIndex = input.options.findIndex(({ text }) => text === input.value);
         expect(getByRole('option').textContent).is.equal(input.value);
     });
 
