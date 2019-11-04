@@ -55,6 +55,7 @@ function getInitialState(input) {
         a11yPlayText: input.a11yPlayText || 'Play - Carousel'
     };
 
+    const itemSkippedAttributes = ['class', 'style'];
     const { itemsPerSlide } = state;
     if (itemsPerSlide) {
         state.peek = itemsPerSlide % 1;
@@ -79,7 +80,7 @@ function getInitialState(input) {
     state.items = (input.items || []).map((item, i) => {
         const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
         return {
-            htmlAttributes: processHtmlAttributes(item, ['class', 'style']),
+            htmlAttributes: processHtmlAttributes(item, itemSkippedAttributes),
             class: isStartOfSlide ? ['carousel__snap-point', item.class] : item.class,
             style: item.style,
             renderBody: item.renderBody

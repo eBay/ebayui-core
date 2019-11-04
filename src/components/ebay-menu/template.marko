@@ -1,5 +1,7 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes =["class",  "style",  "classPrefix",  "type",  "reverse",  "fixWidth",  "items"];
+    var itemIgnoredAttributes = ["class",  "style",  "href",  "type",  "value",  "checked",  "current",  "badgeNumber",  "badgeAriaLabel"];
 </script>
 
 <var isFake=(data.type === 'fake')/>
@@ -17,7 +19,7 @@
         data.class
     ]
     style=data.style
-    ${processHtmlAttributes(data, ["class",  "style",  "classPrefix",  "type",  "reverse",  "fixWidth",  "items"])}>
+    ${processHtmlAttributes(data, ignoredAttributes)}>
     <div
         w-id="menu"
         role=(!isFake && 'menu')
@@ -35,7 +37,7 @@
                 w-on-click="handleItemClick"
                 w-on-keydown="handleItemKeydown"
                 w-on-keypress="handleItemKeypress"
-                ${processHtmlAttributes(item, ["class",  "style",  "href",  "type",  "value",  "checked",  "current",  "badgeNumber",  "badgeAriaLabel"])}>
+                ${processHtmlAttributes(item, itemIgnoredAttributes)}>
                 <span>
                     <span body-only-if(!item.badgeNumber) aria-hidden='true'>
                         <span w-body=item.renderBody/>

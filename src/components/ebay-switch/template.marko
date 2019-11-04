@@ -1,5 +1,6 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class", "style", "disabled"];
 </script>
 
 <span
@@ -12,6 +13,6 @@
         role="switch"
         class="switch__control"
         disabled=data.disabled
-        ${processHtmlAttributes(data, ["class", "style", "disabled"])}/>
+        ${processHtmlAttributes(data, ignoredAttributes)}/>
     <span class="switch__button"/>
 </span>

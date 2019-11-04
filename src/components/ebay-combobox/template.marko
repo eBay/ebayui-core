@@ -1,6 +1,8 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
     var safeRegex = require("../../common/build-safe-regex");
+    var ignoredAttributes = ["class",  "style",  "name",  "borderless",  "disabled",  "autocomplete", "options"];
+    var itemIgnoredAttributes = ["class", "style", "text"];
 </script>
 
 <var options=data.options/>
@@ -34,7 +36,7 @@
             w-on-keyup='handleComboboxKeyUp'
             autocomplete="new-password"
             w-preserve-attrs="aria-controls,aria-activedescendant,aria-owns,aria-expanded"
-            ${processHtmlAttributes(data, ["class",  "style",  "name",  "borderless",  "disabled",  "autocomplete", "options"])}/>
+            ${processHtmlAttributes(data, ignoredAttributes)}/>
         <span class="combobox__icon" aria-hidden="true"></span>
     </span>
     <if(options.length)>
@@ -58,7 +60,7 @@
                     w-preserve-attrs="tabindex,data-makeup-index,class,aria-selected"
                     aria-selected=(isSelected && "true")
                     data-option-value=option.value
-                    ${processHtmlAttributes(option, ["class", "style", "text"])}>
+                    ${processHtmlAttributes(option, itemIgnoredAttributes)}>
                     <span>${option.text}</span>
                 </div>
             </for>

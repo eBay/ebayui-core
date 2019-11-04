@@ -1,11 +1,12 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["id", "class", "style", "size"];
 </script>
 
 <var size=(data.size || "medium")/>
 <var baseClass="cta-btn"/>
 <var sizeClass="${baseClass}--${size}"/>
-<var htmlAttributes=processHtmlAttributes(data, ["id", "class", "style", "size"])/>
+<var htmlAttributes=processHtmlAttributes(data, ignoredAttributes)/>
 
 <a
     ${htmlAttributes}

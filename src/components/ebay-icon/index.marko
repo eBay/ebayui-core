@@ -3,6 +3,7 @@
     var processHtmlAttributes = require("../../common/html-attributes");
     var isBrowser = typeof window !== "undefined";
     var browserLookup = {};
+    var ignoredAttributes = ["class", "style", "type", "name", "a11yText", "noSkinClasses", "_themes"];
 </script>
 
 <var lookup=(isBrowser ? browserLookup : out.global)/>
@@ -27,7 +28,7 @@
     xmlns=(isInline && "http://www.w3.org/2000/svg")
     style=data.style
     focusable=(isInline && "false")
-    ${processHtmlAttributes(data, ["class", "style", "type", "name", "a11yText", "noSkinClasses", "_themes"])}
+    ${processHtmlAttributes(data, ignoredAttributes)}
     ${a11yAttributes}>
     <if(isInline)>
         <!-- Here we check if we should render the inline svg symbol. -->

@@ -1,5 +1,7 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class",  "style",  "type",  "status",  "hidden",  "a11yHeadingText",  "a11yHeadingTag",  "a11yCloseText",  "dismissible",  "content"];
+    var itemIgnoredAttributes = ["class", "style"];
 </script>
 <var type=(data.type || "page")/>
 <var prefix=data.prefix/>
@@ -14,7 +16,7 @@
 
 <if(!data.hidden)>
     <${isPage ? "section" : "div"}
-        ${processHtmlAttributes(data, ["class",  "style",  "type",  "status",  "hidden",  "a11yHeadingText",  "a11yHeadingTag",  "a11yCloseText",  "dismissible",  "content"])}
+        ${processHtmlAttributes(data, ignoredAttributes)}
         w-bind
         style=data.style
         aria-labelledby=widget.elId("status")
@@ -33,7 +35,7 @@
         </if>
         <if(content && content.renderBody)>
             <${contentTag}
-                ${processHtmlAttributes(content, ["class", "style"])}
+                ${processHtmlAttributes(content, itemIgnoredAttributes)}
                 class=[content.class, "${type}-notice__content"]
                 style=content.style
                 w-body=data.content.renderBody/>

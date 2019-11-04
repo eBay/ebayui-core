@@ -1,5 +1,6 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["variant",  "text",  "footerText",  "class",  "style",  "disabled",  "selected",  "formName",  "formAction",  "formMethod",  "a11yText",  "a11yFooterText",  "items"];
 </script>
 
 <var checkedItems = (data.items && data.items.filter(function(item){ return item.checked })) || []/>
@@ -10,7 +11,7 @@
     style=data.style
     w-on-expander-expand="handleExpand"
     w-on-expander-collapse="handleCollapse"
-    ${processHtmlAttributes(data, ["variant",  "text",  "footerText",  "class",  "style",  "disabled",  "selected",  "formName",  "formAction",  "formMethod",  "a11yText",  "a11yFooterText",  "items"])}>
+    ${processHtmlAttributes(data, ignoredAttributes)}>
     <button
         type="button"
         class="filter-menu-button__button"
