@@ -1,5 +1,20 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = [
+        "id",
+        "class",
+        "style",
+        "type",
+        "value",
+        "invalid",
+        "disabled",
+        "fluid",
+        "multiline",
+        "icon",
+        "iconPosition",
+        "iconTag",
+        "floatingLabel"
+    ];
 </script>
 
 <var iconPosition=(data.iconPosition || "prefix")/>
@@ -52,21 +67,7 @@
         w-oninput="handleInput"
         w-onfocus="handleFocus"
         w-onblur="handleBlur"
-        ${processHtmlAttributes(data, [
-            "id",
-            "class",
-            "style",
-            "type",
-            "value",
-            "invalid",
-            "disabled",
-            "fluid",
-            "multiline",
-            "icon",
-            "iconPosition",
-            "iconTag",
-            "floatingLabel"
-        ])}>
+        ${processHtmlAttributes(data, ignoredAttributes)}>
         <if(data.multiline && data.value)>
             ${data.value}
         </if>

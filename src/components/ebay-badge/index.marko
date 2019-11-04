@@ -1,5 +1,11 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "type",
+        "number"
+    ];
 </script>
 
 <var number=Math.round(data.number)/>
@@ -10,12 +16,7 @@
         role=ariaRole
         class=["badge", data.class]
         style=data.style
-        ${processHtmlAttributes(data, [
-            "class",
-            "style",
-            "type",
-            "number",
-        ])}>
+        ${processHtmlAttributes(data, ignoredAttributes)}>
         ${number > 99 ? "99+" : number}
     </span>
 </if>
