@@ -5,9 +5,12 @@
 <var prefix=data.prefix/>
 <var status=(data.status || "attention")/>
 <var isSection=(type === "section")/>
-<var isPage=(type === "page" || isSection)/>
+<var isWindow=(type === "window")/>
+<var isCelebration=(status === "celebration")/>
+<var isPage=(type === "page" || isSection || isWindow)/>
 <var isLightGuidance=(isSection && !data.status)/>
 <var content=(data.content)/>
+<var title=(data.title)/>
 <var cta=(data.cta)/>
 <var defRender=(data._default && data._default.renderBody) />
 <var contentTag=(isPage ? "div" : "span")/>
@@ -28,19 +31,35 @@
             <${isPage ? data.a11yHeadingTag || "h2" : "span"}
                 class="${type}-notice__status"
                 w-id="status">
-                <span aria-label=data.a11yHeadingText role="img"/>
+                <if(isWindow && title && title.renderBody)>
+                    <span class="${type}-notice__icon" aria-label=data.a11yHeadingText role="img"/>
+                    <span class="${type}-notice__title" w-body=title.renderBody/>
+                </if>
+                <else>
+                    <span aria-label=data.a11yHeadingText role="img"/>
+                </else>
+
             </>
         </if>
-        <if(content && content.renderBody)>
+       <if(content && content.renderBody)>
             <${contentTag}
                 ${processHtmlAttributes(content)}
                 class=[content.class, "${type}-notice__content"]
-                style=content.style
-                w-body=data.content.renderBody/>
+                style=content.style>
+                <if(isCelebration && title && title.renderBody)>
+                    <span class="${type}-notice__title" w-body=title.renderBody/>
+                </if>
+                <div body-only-if(true) w-body=content.renderBody/>
+            </>
             <div body-only-if(true) w-body=defRender />
         </if>
         <else>
-            <${contentTag} class="${type}-notice__content" w-body=defRender />
+            <${contentTag} class="${type}-notice__content">
+                <if(isCelebration && title && title.renderBody)>
+                    <span class="${type}-notice__title" w-body=title.renderBody/>
+                </if>
+                <div body-only-if(true) w-body=defRender />
+            </>
         </else>
         <if(data.dismissible)>
             <button
