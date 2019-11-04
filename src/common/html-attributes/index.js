@@ -1,13 +1,13 @@
 const assign = require('core-js-pure/features/object/assign');
 const skipAttributes = [
-    '*',
     'htmlAttributes',
     'renderBody',
     'widgetState',
-    'widgetBody',
     'widgetProps',
-    '__widgetProps'
+    'widgetConfig',
+    'widgetBody'
 ];
+
 /**
  * Convert camelCase to kebab-case
  * @param {String} s
