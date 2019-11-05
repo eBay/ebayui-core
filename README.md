@@ -22,6 +22,8 @@ Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/t
 
 *Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components. eBayUI Core presently relies on the `skin-ds6` flag to toggle designs to use the Design System 6 version of Skin.*
 
+*Note: In order for spread attributes to work properly, `marko@3.14.5` or `marko@4.18.22` at least is required*
+
 ### Browser Policy
 
 All components are developed and tested cross-browser using [BrowserStack](https://www.browserstack.com/automate/public-build/TDJIdHBrVHFTRmdhQUVFZDNLMjlHa2NlbzVtV1JBQUQ4M2V6NWV2VklUMD0tLWp4TGg0WXM2MWRvczZRQXZDdnVPS1E9PQ==--d4c94a4abb28b6aa3bf5fd56068b01e77a0952a0), in accordance with our official [eBay Browser Policy](https://github.com/eBay/browserslist-config).

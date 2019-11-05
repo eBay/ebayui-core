@@ -1,5 +1,6 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class", "style", "disabled", "href", "priority", "selected", "a11ySelectedText"];
 </script>
 
 <var classPrefix=(data.href ? "filter-link" : "filter-button")/>
@@ -17,7 +18,7 @@
     disabled=data.disabled
     type=(!data.href && "button")
     aria-pressed=(!data.href && data.selected && "true")
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ignoredAttributes)}>
     <span class="${classPrefix}__cell">
         <span w-body/>
         <if(data.href && data.selected)>

@@ -1,5 +1,7 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class",  "style",  "name",  "grow",  "borderless",  "disabled",  "fluid",  "invalid",  "buttonName",  "options"];
+    var itemIgnoredAttributes = ["class",  "style",  "value",  "text",  "selected"];
 </script>
 
 <var options=data.options/>
@@ -7,7 +9,7 @@
 <var selectedText=(selectedOption && selectedOption.text)/>
 
 <span
-    ${processHtmlAttributes(data)}
+    ${processHtmlAttributes(data, ignoredAttributes)}
     class=["listbox-button", data.class, data.fluid && "listbox-button--fluid"]
     style=data.style
     w-preserve-attrs="class"
@@ -52,7 +54,7 @@
                     tabindex="-1"
                     aria-selected=(selectedOption === option && "true")
                     w-on-mousedown="handleMouseDown"
-                    ${processHtmlAttributes(option)}>
+                    ${processHtmlAttributes(option, itemIgnoredAttributes)}>
                     <span class="listbox-button__value">${option.text}</span>
                     <span class="listbox-button__status"/>
                 </div>

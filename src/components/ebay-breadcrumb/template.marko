@@ -1,5 +1,7 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class", "style", "a11yHeadingText", "a11yHeadingTag", "hijax", "items"];
+    var itemIgnoredAttributes = ["class", "style", "href"];
 </script>
 
 <nav w-bind
@@ -7,7 +9,7 @@
     class=["breadcrumb", data.class]
     style=data.style
     role="navigation"
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ignoredAttributes)}>
 
     <${data.a11yHeadingTag || "h2"} id=widget.elId("breadcrumb-heading") class="clipped">
         ${data.a11yHeadingText}
@@ -22,7 +24,7 @@
                 style=item.style
                 w-body=item.renderBody
                 w-onclick=(!current && "handleClick")
-                ${processHtmlAttributes(item)}/>
+                ${processHtmlAttributes(item, itemIgnoredAttributes)}/>
         </li>
     </ul>
 </nav>

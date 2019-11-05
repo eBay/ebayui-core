@@ -1,5 +1,6 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class", "style", "open", "type", "focus", "a11yCloseText"];
 </script>
 
 <var isFull=(data.type === "full")/>
@@ -21,7 +22,7 @@
     w-preserve-attrs="hidden"
     w-onclick="handleDialogClick"
     w-onmousedown="handleStartClick"
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ignoredAttributes)}>
     <div
         w-id="window"
         role="document"

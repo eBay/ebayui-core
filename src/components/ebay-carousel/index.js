@@ -13,7 +13,29 @@ const RIGHT = 1;
 function getInitialState(input) {
     const gap = parseInt(input.gap, 10);
     const state = {
-        htmlAttributes: processHtmlAttributes(input),
+        htmlAttributes: processHtmlAttributes(input, [
+            'class',
+            'style',
+            'index',
+            'type',
+            'slide',
+            'gap',
+            'autoplay',
+            'paused',
+            'no-dots',
+            'itemsPerSlide',
+            'a11yPreviousText',
+            'a11yNextText',
+            'a11yStatusText',
+            'a11yStatusTag',
+            'a11yHeadingText',
+            'a11yHeadingTag',
+            'a11yCurrentText',
+            'a11yOtherText',
+            'a11yPlayText',
+            'a11yPauseText',
+            'items'
+        ]),
         classes: ['carousel', input.class],
         style: input.style,
         config: {}, // A place to store values that should not trigger an update by themselves.
@@ -33,6 +55,7 @@ function getInitialState(input) {
         a11yPlayText: input.a11yPlayText || 'Play - Carousel'
     };
 
+    const itemSkippedAttributes = ['class', 'style'];
     const { itemsPerSlide } = state;
     if (itemsPerSlide) {
         state.peek = itemsPerSlide % 1;
@@ -57,7 +80,7 @@ function getInitialState(input) {
     state.items = (input.items || []).map((item, i) => {
         const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
         return {
-            htmlAttributes: processHtmlAttributes(item),
+            htmlAttributes: processHtmlAttributes(item, itemSkippedAttributes),
             class: isStartOfSlide ? ['carousel__snap-point', item.class] : item.class,
             style: item.style,
             renderBody: item.renderBody

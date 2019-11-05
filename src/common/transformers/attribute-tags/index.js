@@ -12,6 +12,8 @@ function transform(el, context) {
         el.getAttributes()
     );
     replacement.body = replacement.makeContainer(el.body.items);
+    replacement.argument = el.argument;
+    replacement.params = el.params;
     el.replaceWith(replacement);
 }
 

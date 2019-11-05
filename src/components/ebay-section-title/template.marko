@@ -1,5 +1,7 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class", "style", "ctaText", "href", "size", "_default", "title", "subtitle", "info", "overflow"];
+    var itemIgnoredAttributes = ["class", "style"];
 </script>
 
 <var titleContent=(!data.title && data._default.renderBody || data.title.renderBody)/>
@@ -10,7 +12,7 @@
         data.class
     ]
     style=data.style
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ignoredAttributes)}>
     <div class=[
             "section-title__title-container",
             data.title && data.title.class
@@ -34,7 +36,7 @@
             ]
             style=data.subtitle.style
             w-body=data.subtitle.renderBody
-            ${processHtmlAttributes(data.subtitle)}/>
+            ${processHtmlAttributes(data.subtitle, itemIgnoredAttributes)}/>
     </div>
 
     <!-- CTA -->
@@ -55,7 +57,7 @@
     ]
     style=data.info.style
     w-body=data.info.renderBody
-    ${processHtmlAttributes(data.info)}/>
+    ${processHtmlAttributes(data.info, itemIgnoredAttributes)}/>
 
     <!-- Overflow-->
     <div if(data.overflow && data.overflow.renderBody) class=[
@@ -64,5 +66,5 @@
         ]
         style=data.overflow.style
         w-body=data.overflow.renderBody
-        ${processHtmlAttributes(data.overflow)}/>
+        ${processHtmlAttributes(data.overflow, itemIgnoredAttributes)}/>
 </div>

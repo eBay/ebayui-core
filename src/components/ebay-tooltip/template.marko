@@ -1,5 +1,6 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = [ "class",  "style",  "pointer",  "styleTop",  "styleLeft",  "styleRight",  "styleBottom",  "noHover",  "host"];
 </script>
 
 <var pointer=(data.pointer || "bottom")/>
@@ -20,7 +21,7 @@
             w-id="expander-root"
             w-preserve-attrs="class"
             class="tooltip"
-            ${processHtmlAttributes(data)}>
+            ${processHtmlAttributes(data, ignoredAttributes)}>
             <span
                 if(data.host)
                 body-only-if(true)
