@@ -1,6 +1,7 @@
 <script marko-init>
     var getWidgetId = require("../../common/get-marko-3-widget-id");
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["id", "class", "style", "type", "disabled", "partiallyDisabled", "href", "priority", "size", "noText", "fluid", "variant", "fixedHeight", "truncate", "transparent", "badgeNumber", "badgeAriaLabel"];
 </script>
 
 <var size=data.size/>
@@ -15,11 +16,10 @@
 <var truncateClass=(data.truncate && (sizeClass ? "${sizeClass}-truncated" : "${baseClass}--truncated"))/>
 <var transparentClass=(data.transparent ? "${baseClass}--transparent" : "")/>
 <var fixedHeightClass=(data.fixedHeight && (sizeClass ? "${sizeClass}-fixed-height" : "${baseClass}--fixed-height"))/>
-<var htmlAttributes=processHtmlAttributes(data)/>
 <var tag=(data.href ? "a" : "button")/>
+<var htmlAttributes=(processHtmlAttributes(data, ignoredAttributes))/>
 
 <${tag}
-    ${htmlAttributes}
     w-bind
     w-onclick="handleClick"
     w-onkeydown="handleKeydown"
@@ -40,7 +40,8 @@
     href=data.href
     type=(tag === "button" && data.type || "button")
     disabled=data.disabled
-    aria-disabled=(data.partiallyDisabled && "true")>
+    aria-disabled=(data.partiallyDisabled && "true")
+    ${htmlAttributes}>
 
     <var hasAriaLabel=Boolean(htmlAttributes['aria-label'])/>
     <span body-only-if(!hasAriaLabel) w-body aria-hidden="true"/>

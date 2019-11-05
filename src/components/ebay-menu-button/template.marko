@@ -1,5 +1,25 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "type",
+        "text",
+        "icon",
+        "a11yText",
+        "noToggleIcon",
+        "expanded",
+        "reverse",
+        "fixWidth",
+        "borderless",
+        "size",
+        "priority",
+        "iconTag",
+        "disabled",
+        "variant",
+        "items",
+        "label"
+        ];
 </script>
 
 <var isFake=(data.type === 'fake')/>
@@ -15,7 +35,7 @@
     w-bind
     w-on-expander-expand="handleExpand"
     w-on-expander-collapse="handleCollapse"
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ignoredAttributes)}>
     <ebay-button
         w-id="button"
         class=[

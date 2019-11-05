@@ -11215,10 +11215,10 @@ marko@^4.10.0, marko@^4.12.3, marko@^4.15.2:
     try-require "^1.2.1"
     warp10 "^2.0.1"
 
-marko@^4.18.21:
-  version "4.18.21"
-  resolved "https://registry.npmjs.org/marko/-/marko-4.18.21.tgz#cd308bdbbf39fb00f894eb6915a8399b1bb2a760"
-  integrity sha512-Gmp7a4H2zuEKv7pMnb70QDLQTscUeZ45DHZGecSG1rr0WlDQy88+DxAvzYueeJWUpkigiNCbavU4lDJ8/rG9YA==
+marko@^4.18.22:
+  version "4.18.22"
+  resolved "https://registry.npmjs.org/marko/-/marko-4.18.22.tgz#9977c353661ed18a0d04b3ca895bb00c1ef4fe74"
+  integrity sha512-GLu8uM2axIEUleLlTXt6U4Ih7/Ur0FFWOqHsf6NBqmGDo8jEAaAIHArotqjF2km1Sk/XOOc+N4UApBOnc9ajVA==
   dependencies:
     app-module-path "^2.2.0"
     argly "^1.0.0"

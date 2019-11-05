@@ -1,10 +1,11 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class", "style", "disabled", "href", "priority", "pressed", "ariaSelectedText"];
 </script>
 
 <var classPrefix=(data.href ? "fake-pill" : "pill")/>
 
-<span w-bind class="pill__wrapper" ${processHtmlAttributes(data)}>
+<span w-bind class="pill__wrapper" ${processHtmlAttributes(data, ignoredAttributes)}>
     <${data.href ? "a" : "button"}
         w-id="pill"
         w-on-click="handleButtonClick"

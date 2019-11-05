@@ -10,7 +10,7 @@ let component;
 
 describe('given radio button is enabled', () => {
     beforeEach(async() => {
-        component = await render(template, { '*': { value: 'food' } });
+        component = await render(template, { value: 'food' });
     });
 
     describe('when radio button is clicked', () => {
@@ -49,7 +49,7 @@ describe('given radio button is disabled', () => {
 
 describe('when native focus event is fired', () => {
     beforeEach(async() => {
-        component = await render(template, { '*': { value: 'food' } });
+        component = await render(template, { value: 'food' });
         await fireEvent.focus(component.getByRole('radio'));
     });
 
