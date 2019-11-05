@@ -17,7 +17,7 @@
 <var transparentClass=(data.transparent ? "${baseClass}--transparent" : "")/>
 <var fixedHeightClass=(data.fixedHeight && (sizeClass ? "${sizeClass}-fixed-height" : "${baseClass}--fixed-height"))/>
 <var tag=(data.href ? "a" : "button")/>
-<var htmlAttributes=(processHtmlAttributes(input, ignoredAttributes))/>
+<var htmlAttributes=(processHtmlAttributes(data, ignoredAttributes))/>
 
 <${tag}
     w-bind
