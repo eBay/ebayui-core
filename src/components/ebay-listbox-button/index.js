@@ -31,7 +31,7 @@ module.exports = require('marko-widgets').defineComponent({
                 activeDescendantClassName: 'listbox-button__option--active',
                 autoInit: this.state.selectedIndex,
                 autoReset: null
-            },
+            }
         );
 
         this.expander = new Expander(this.el, {
