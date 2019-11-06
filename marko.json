@@ -480,6 +480,7 @@
     "@html-attributes": "expression",
     "@class": "string",
     "@style": "string",
+    "@fill": "boolean",
     "@type": "string",
     "@status": "string",
     "@hidden": "boolean",

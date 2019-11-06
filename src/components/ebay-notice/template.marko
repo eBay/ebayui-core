@@ -1,6 +1,6 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
-    var ignoredAttributes = ["class",  "style",  "type",  "status",  "hidden",  "a11yHeadingText",  "a11yHeadingTag",  "a11yCloseText",  "dismissible",  "content"];
+    var ignoredAttributes = ["class",  "style",  "type",  "fill", "status",  "hidden",  "a11yHeadingText",  "a11yHeadingTag",  "a11yCloseText",  "dismissible",  "content", "title"];
     var itemIgnoredAttributes = ["class", "style"];
 </script>
 <var type=(data.type || "page")/>
@@ -27,6 +27,7 @@
         class=[
             "${type}-notice",
             !isLightGuidance ? "${type}-notice--${status}" : "",
+            data.fill ? "${type}-notice--fill" : "",
             data.class
         ]>
         <if(!isLightGuidance)>
