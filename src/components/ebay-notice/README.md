@@ -48,6 +48,12 @@ Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `a11y-heading-tag` | String | No | Yes | used to specify the heading tag according to the notice's placement (default: `"h2"`)
 
+### Additional attributes when type="window"
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`fill-window` | Boolean | No | No | used to specify whether the notice should fill the full height of it's window/container (default: `false`)
+
 ### ebay-notice Events
 
 Event | Description

@@ -1,6 +1,6 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
-    var ignoredAttributes = ["class",  "style",  "type",  "fill", "status",  "hidden",  "a11yHeadingText",  "a11yHeadingTag",  "a11yCloseText",  "dismissible",  "content", "title"];
+    var ignoredAttributes = ["class",  "style",  "type",  "fillWindow", "status",  "hidden",  "a11yHeadingText",  "a11yHeadingTag",  "a11yCloseText",  "dismissible",  "content", "title"];
     var itemIgnoredAttributes = ["class", "style"];
 </script>
 <var type=(data.type || "page")/>
@@ -27,7 +27,7 @@
         class=[
             "${type}-notice",
             !isLightGuidance && !isWindow ? "${type}-notice--${status}" : "",
-            data.fill ? "${type}-notice--fill" : "",
+            data.fillWindow ? "${type}-notice--fill" : "",
             data.class
         ]>
         <if(!isLightGuidance)>
@@ -35,16 +35,23 @@
                 class="${type}-notice__status"
                 w-id="status">
                 <if(isWindow && title && title.renderBody)>
-                    <span class="${type}-notice__icon" aria-label=data.a11yHeadingText role="img"/>
+                    <ebay-icon class="window-notice__icon" type="inline" name="confirmation-filled" aria-label=data.a11yHeadingText/>
                     <span class=["${type}-notice__title", title.class]
                         style=title.style
                         ${processHtmlAttributes(title, itemIgnoredAttributes)}
                         w-body=title.renderBody/>
                 </if>
                 <else>
-                    <span aria-label=data.a11yHeadingText role="img"/>
+                    <if(status==="confirmation" || status==="celebration")>
+                        <ebay-icon type="inline" name="confirmation-filled" aria-label=data.a11yHeadingText/>
+                    </if>
+                    <if(status==="attention")>
+                        <ebay-icon type="inline" name="attention-filled" aria-label=data.a11yHeadingText/>
+                    </if>
+                    <if(status==="information")>
+                        <ebay-icon type="inline" name="information-filled" aria-label=data.a11yHeadingText/>
+                    </if>
                 </else>
-
             </>
         </if>
        <if(content && content.renderBody)>

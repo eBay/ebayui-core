@@ -168,7 +168,7 @@ describe('notice', () => {
         });
 
         it('renders fill window', async() => {
-            const input = assign({}, mock.Window_Notice, { fill: true });
+            const input = assign({}, mock.Window_Notice, { fillWindow: true });
             const { getByText } = await render(template, input);
             const container = getByText(input.content.renderBody.text).parentElement;
             expect(container).has.class('window-notice');
