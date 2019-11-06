@@ -48,6 +48,28 @@ exports.Section_Light = {
     _default: { renderBody: createRenderBody('Content') }
 };
 
+exports.Window_Notice = {
+    type: 'window',
+    title: {
+        renderBody: createRenderBody('Title')
+    },
+    content: {
+        renderBody: createRenderBody('Body')
+    }
+};
+
+exports.Page_Celebration = {
+    type: 'page',
+    a11yHeadingText: 'Heading Text',
+    status: 'celebration',
+    title: {
+        renderBody: createRenderBody('Title')
+    },
+    content: {
+        renderBody: createRenderBody('Body')
+    }
+};
+
 exports.Cta_Button = {
     _default: { renderBody: createRenderBody('<button>Action</button>') },
     content: {

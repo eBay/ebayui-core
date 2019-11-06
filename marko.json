@@ -480,6 +480,7 @@
     "@html-attributes": "expression",
     "@class": "string",
     "@style": "string",
+    "@fill": "boolean",
     "@type": "string",
     "@status": "string",
     "@hidden": "boolean",
@@ -490,6 +491,12 @@
     "@_default <_default>": {
       "@*": "expression"
     },
+    "@title <title>": {
+      "@*": "expression",
+      "@html-attributes": "expression",
+      "@class": "string",
+      "@style": "string"
+    },
     "@content <content>": {
       "@*": {
         "targetProperty": null,
@@ -499,6 +506,10 @@
       "@class": "string",
       "@style": "string"
     }
+  },
+
+  "<ebay-notice-title>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-notice-content>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"

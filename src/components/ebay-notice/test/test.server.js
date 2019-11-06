@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
+const assign = require('core-js-pure/features/object/assign');
 const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const { runTransformer } = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
@@ -54,6 +55,21 @@ describe('notice', () => {
             expect(content).has.class('page-notice__content');
             expect(content.parentElement).has.class('page-notice');
             expect(button.textContent).to.equal('Action');
+        });
+
+        it('renders with celebration', async() => {
+            const input = mock.Page_Celebration;
+            const { getByText, getByLabelText } = await render(template, input);
+            const content = getByText(input.content.renderBody.text);
+            expect(content).has.class('page-notice__content');
+            expect(content.parentElement).has.class('page-notice');
+            const status = getByLabelText(input.a11yHeadingText).parentElement;
+
+            const containerUsingLabel = status.closest(`[aria-labelledBy="${status.id}"]`);
+            expect(containerUsingLabel).has.class('page-notice--celebration');
+
+            const title = getByText(input.title.renderBody.text);
+            expect(title).has.class('page-notice__title');
         });
 
         testPassThroughAttributes(template, {
@@ -134,6 +150,29 @@ describe('notice', () => {
             const firstChild = container.children[0];
             expect(firstChild).does.not.have.property('tagName', 'H2');
             expect(firstChild).does.not.have.class('section-notice__status');
+        });
+    });
+
+    describe('with type=window', () => {
+        it('renders normal window', async() => {
+            const input = mock.Window_Notice;
+            const { getByText } = await render(template, input);
+            const container = getByText(input.content.renderBody.text).parentElement;
+            expect(container).has.class('window-notice');
+            expect(container).does.not.have.class('window-notice--attention');
+            expect(container).does.not.have.class('window-notice--fill');
+
+            const title = getByText(input.title.renderBody.text);
+            expect(title).has.class('window-notice__title');
+            expect(title.parentElement).has.class('window-notice__status');
+        });
+
+        it('renders fill window', async() => {
+            const input = assign({}, mock.Window_Notice, { fill: true });
+            const { getByText } = await render(template, input);
+            const container = getByText(input.content.renderBody.text).parentElement;
+            expect(container).has.class('window-notice');
+            expect(container).has.class('window-notice--fill');
         });
     });
 });
