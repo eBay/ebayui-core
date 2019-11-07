@@ -283,12 +283,11 @@ function emitUpdate() {
  * @param {MouseEvent} originalEvent
  * @param {HTMLElement} target
  */
-function handleMove(originalEvent, target) {
+function handleMove(direction, originalEvent) {
     if (this.isMoving) {
         return;
     }
     const { state } = this;
-    const direction = parseInt(target.getAttribute('data-direction'), 10);
     const nextIndex = this.move(direction);
     const slide = getSlide(state, nextIndex);
     this.emit('carousel-slide', { slide: slide + 1, originalEvent });
@@ -299,14 +298,13 @@ function handleMove(originalEvent, target) {
  * Moves the carousel to the slide at `data-slide` for the clicked element if possible.
  *
  * @param {MouseEvent} originalEvent
- * @param {HTMLElement} target
+ * @param {int} slide
  */
-function handleDotClick(originalEvent, target) {
+function handleDotClick(slide, originalEvent) {
     if (this.isMoving) {
         return;
     }
     const { state: { config, itemsPerSlide } } = this;
-    const slide = parseInt(target.getAttribute('data-slide'), 10);
     config.preserveItems = true;
     this.setState('index', slide * itemsPerSlide);
     this.emit('carousel-slide', { slide: slide + 1, originalEvent });

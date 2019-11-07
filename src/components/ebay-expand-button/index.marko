@@ -1,5 +1,4 @@
 <script marko-init>
-    var getWidgetId = require("../../common/get-marko-3-widget-id");
     var processHtmlAttributes = require("../../common/html-attributes");
     var ignoredAttributes = ["variant", "footerText", "class", "style", "classPrefix", "formName", "formAction", "formMethod", "a11yFooterText", "items"];
 </script>
@@ -11,7 +10,7 @@
 
 <button
     ${processHtmlAttributes(data, ignoredAttributes)}
-    id=(data.id || getWidgetId(out))
+    id=(data.id)
     class=[
         data.class,
         baseClass,

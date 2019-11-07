@@ -1,5 +1,4 @@
 <script marko-init>
-    var getWidgetId = require("../../common/get-marko-3-widget-id");
     var processHtmlAttributes = require("../../common/html-attributes");
     var isBrowser = typeof window !== "undefined";
     var browserLookup = {};
@@ -12,9 +11,8 @@
 <var titleId/>
 
 <if(isInline)>
-    <assign titleId=(data.a11yText && "icon-title-" + getWidgetId(out))/>
-    <assign a11yAttributes=(titleId
-        ? { "aria-labelledby": titleId, role: "img" }
+    <assign a11yAttributes=(data.a11yText
+        ? { role: "img" }
         : { "aria-hidden": "true" }
     )/>
 </if>
@@ -28,6 +26,7 @@
     xmlns=(isInline && "http://www.w3.org/2000/svg")
     style=data.style
     focusable=(isInline && "false")
+    aria-labelledby:scoped="a11y"
     ${processHtmlAttributes(data, ignoredAttributes)}
     ${a11yAttributes}>
     <if(isInline)>
@@ -57,8 +56,8 @@
             </defs>
         </if>
 
-        <if(titleId)>
-            <title id=titleId>
+        <if(data.a11yText)>
+            <title id:scoped="a11y">
                 ${data.a11yText}
             </title>
         </if>

@@ -1,5 +1,4 @@
 <script marko-init>
-    var getWidgetId = require("../../common/get-marko-3-widget-id");
     var processHtmlAttributes = require("../../common/html-attributes");
     var ignoredAttributes = ["id", "class", "style", "type", "disabled", "partiallyDisabled", "href", "priority", "size", "noText", "fluid", "variant", "fixedHeight", "truncate", "transparent", "badgeNumber", "badgeAriaLabel"];
 </script>
@@ -23,7 +22,7 @@
     w-bind
     w-onclick="handleClick"
     w-onkeydown="handleKeydown"
-    id=(data.id || getWidgetId(out))
+    id=(data.id)
     class=[
         data.class,
         baseClass,

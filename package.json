@@ -3,8 +3,6 @@
   "version": "4.5.0-0",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
-    "installMarkoV3": "node scripts/install-no-save marko@^3 marko-widgets@^6 -D",
-    "installMarkoV4": "yarn --frozen-lockfile # reinstall according to package.json/yarn.lock",
     "prepublishOnly": "node scripts/prepublish",
     "postversion": "npm run storybook:build",
     "postpublish": "node scripts/postpublish",
@@ -16,7 +14,7 @@
     "test:server": "marko test --server",
     "test:browser": "marko test --browser",
     "test:fps": "karma start",
-    "test:integration": "yarn installMarkoV3 && mocha integration && yarn clean:integration && yarn installMarkoV4 && mocha integration; r=$?; (yarn installMarkoV4 && yarn clean:integration); exit $r",
+    "test:integration": "mocha integration",
     "test:browserstack": "env $(cat .env | xargs) yarn tb",
     "clean": "rimraf .coverage .karma .nyc_output demo/static && yarn clean:integration",
     "clean:integration": "rimraf integration/*.marko.js integration/static",
@@ -24,10 +22,8 @@
     "lint:less": "stylelint '**/**.less'",
     "lint:js": "eslint .",
     "lint:whitespace": "lintspaces *.md src/**/*.md src/**/*.marko 'src/**/!(*.marko).js' src/**/*.less --newline --maxnewlines 1 --trailingspaces --spaces 4",
-    "build": "yarn lint && yarn build:v3 && yarn build:v4; r=$?; (yarn clean && yarn installMarkoV4); exit $r",
-    "build:ci": "yarn lint && yarn test && mocha integration && yarn build:v4",
-    "build:v3": "yarn installMarkoV3 && yarn clean:integration && yarn test && mocha integration",
-    "build:v4": "yarn installMarkoV4 && yarn clean:integration && yarn test && mocha integration",
+    "build": "yarn lint && yarn clean:integration && yarn test && mocha integration",
+    "build:ci": "yarn lint && yarn test && mocha integration && yarn build",
     "shrinkwrap": "rimraf yarn.lock; rimraf node_modules; yarn cache clean && yarn",
     "storybook:build": "DS=6 build-storybook -o ./docs && DS=4 build-storybook -o ./docs/ds4",
     "storybook:start": "start-storybook -p 6006",
@@ -125,8 +121,8 @@
   "peerDependencies": {
     "@ebay/skin": "9.4.0",
     "chromedriver": "^77.0.0",
-    "marko": "^3 || ^4",
-    "marko-widgets": "^6 || ^7"
+    "marko": "^4",
+    "marko-widgets": "^7"
   },
   "dependencies": {
     "core-js-pure": "^3.2.1",

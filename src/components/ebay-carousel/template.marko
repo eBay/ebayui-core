@@ -27,8 +27,7 @@
             if(data.showPaddles)
             class=["carousel__control", "carousel__control--prev", data.alwaysShowPaddles && "carousel__control--show"]
             type="button"
-            w-onclick=(!data.prevControlDisabled && "handleMove")
-            data-direction=-1
+            on-click(!data.prevControlDisabled && "handleMove", -1)
             aria-describedby=statusId
             aria-label=data.a11yPreviousText
             aria-disabled=(data.prevControlDisabled && 'true')>
@@ -56,8 +55,7 @@
             w-id="next"
             class=["carousel__control", "carousel__control--next", data.alwaysShowPaddles && "carousel__control--show"]
             type="button"
-            w-onclick=(!data.nextControlDisabled && "handleMove")
-            data-direction=1
+            on-click(!data.nextControlDisabled && "handleMove", 1)
             aria-describedby=statusId
             aria-label=data.a11yNextText
             aria-disabled=(data.nextControlDisabled && 'true')>
@@ -92,8 +90,7 @@
             <button
                 class={"carousel__dot--active": isActive}
                 type="button"
-                w-onclick=(!isActive && "handleDotClick")
-                data-slide=i
+                on-click(!isActive && "handleDotClick", i)
                 aria-describedby=statusId
                 aria-disabled=(isActive && 'true')
                 aria-label=(isActive ?
