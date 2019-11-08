@@ -8,6 +8,6 @@
             ]
         },
         "../ebay-icon",
-        "require: ./index.js"
+        "require: ./index.marko"
     ]
 }
