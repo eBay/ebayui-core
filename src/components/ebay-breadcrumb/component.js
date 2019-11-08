@@ -1,6 +1,5 @@
-module.exports = require('marko-widgets').defineComponent({
-    template: require('./template.marko'),
+module.exports = {
     handleClick(originalEvent) {
         this.emit('breadcrumb-select', { originalEvent, el: originalEvent.target });
     }
-});
+};

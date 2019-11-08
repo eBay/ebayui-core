@@ -1,0 +1,53 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "a11yHeadingText",
+        "a11yHeadingTag",
+        "hijax",
+        "items"
+    ];
+}
+
+static {
+    var itemIgnoredAttributes = ["class", "style", "href"];
+}
+
+<nav
+    ...processHtmlAttributes(data, ignoredAttributes)
+    aria-labelledby:scoped="breadcrumb-heading"
+    class=["breadcrumb", data.class]
+    style=data.style
+    role="navigation">
+    <${data.a11yHeadingTag || "h2"} id:scoped="breadcrumb-heading" class="clipped">
+        ${data.a11yHeadingText}
+    </>
+    <ul>
+        <for|item, statusIndex, statusAll| of=data.items>
+            <li>
+                $ {
+                    var current =
+                                        !item.href && statusIndex === statusAll.length - 1;
+                }
+                <${item.href ? "a" : "button"}
+                    ...processHtmlAttributes(item, itemIgnoredAttributes)
+                    href=item.href
+                    aria-current=(current && "location")
+                    class=item.class
+                    style=item.style
+                    onClick(!current && "handleClick")>
+                    <if(
+                        item.renderBody &&
+                        (typeof item.renderBody === "function" ||
+                            typeof item.renderBody.renderBody === "function")
+                    )>
+                        <${item.renderBody}/>
+                    </if>
+                    <else>${item.renderBody}</else>
+                </>
+            </li>
+        </for>
+    </ul>
+</nav>

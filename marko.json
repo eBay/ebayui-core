@@ -12,7 +12,7 @@
     "@number": "expression"
   },
   "<ebay-breadcrumb>": {
-    "renderer": "./src/components/ebay-breadcrumb/index.js",
+    "renderer": "./src/components/ebay-breadcrumb/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"

@@ -7,6 +7,6 @@
                 "@ebay/skin/utility"
             ]
         },
-        "require: ./index.js"
+        "require: ./index.marko"
     ]
 }
