@@ -2,8 +2,6 @@ const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const assign = require('core-js-pure/features/object/assign');
 const { testPassThroughAttributes } = require('../../../common/test-utils/server');
-const { runTransformer } = require('../../../common/test-utils/server');
-const transformer = require('../transformer');
 const mock = require('./mock');
 const template = require('..');
 
@@ -21,7 +19,7 @@ describe('notice', () => {
             const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
             expect(containerUsingLabel).has.class('page-notice--attention');
 
-            const content = getByText(input._default.renderBody.text);
+            const content = getByText(input.renderBody.text);
             expect(content).has.property('tagName', 'DIV');
             expect(content).has.class('page-notice__content');
         });
@@ -88,7 +86,7 @@ describe('notice', () => {
             const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
             expect(containerUsingLabel).has.class('inline-notice--attention');
 
-            const content = getByText(input._default.renderBody.text);
+            const content = getByText(input.renderBody.text);
             expect(content).has.property('tagName', 'SPAN');
             expect(content).has.class('inline-notice__content');
         });
@@ -131,7 +129,7 @@ describe('notice', () => {
             const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
             expect(containerUsingLabel).has.class('section-notice--information');
 
-            const content = getByText(input._default.renderBody.text);
+            const content = getByText(input.renderBody.text);
             expect(content).has.property('tagName', 'DIV');
             expect(content).has.class('section-notice__content');
 
@@ -143,7 +141,7 @@ describe('notice', () => {
         it('renders with light', async() => {
             const input = mock.Section_Light;
             const { getByText } = await render(template, input);
-            const container = getByText(input._default.renderBody.text).parentElement;
+            const container = getByText(input.renderBody.text).parentElement;
             expect(container).has.class('section-notice');
             expect(container).does.not.have.class('section-notice--attention');
 
@@ -174,27 +172,5 @@ describe('notice', () => {
             expect(container).has.class('window-notice');
             expect(container).has.class('window-notice--fill');
         });
-    });
-});
-
-describe('transformer', () => {
-    const componentPath = '../index.js';
-
-    it('transforms body to _default', () => {
-        const tagString = '<ebay-notice type="page"><p>Content</p></ebay-notice>';
-        const { el } = runTransformer(transformer, tagString, componentPath);
-        const { body: { array: [def] } } = el;
-        expect(def.tagName).to.equal('ebay-notice:_default');
-    });
-
-    it('transforms an body to _default and ignores content tag', () => {
-        const tagString = `<ebay-notice type="page">
-            <ebay-notice-content>Other</ebay-notice-content>Content
-        </ebay-notice>
-        `;
-        const { el } = runTransformer(transformer, tagString, componentPath);
-        const { body: { array: [def, content] } } = el;
-        expect(def.tagName).to.equal('ebay-notice:_default');
-        expect(content.tagName).to.equal('ebay-notice-content');
     });
 });
