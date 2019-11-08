@@ -71,7 +71,7 @@ exports.Page_Celebration = {
 };
 
 exports.Cta_Button = {
-    renderBody: createRenderBody('<button>Action</button>') ,
+    renderBody: createRenderBody('<button>Action</button>'),
     content: {
         renderBody: createRenderBody('Body')
     }
