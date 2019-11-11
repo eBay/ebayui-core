@@ -8,14 +8,14 @@ exports.pointerStyles = {
         transform: 'translateX(16px) translateY(-50%)',
         left: '100%',
         right: 'auto',
-        top: '50%',
+        top: '0',
         bottom: 'auto'
     },
     'left-top': {
         transform: 'translateX(16px)',
         left: '100%',
         right: 'auto',
-        top: '-8px',
+        top: '-100%',
         bottom: 'auto'
     },
     'left-bottom': {
@@ -23,20 +23,20 @@ exports.pointerStyles = {
         left: '100%',
         right: 'auto',
         top: 'auto',
-        bottom: '-8px'
+        bottom: '-10px'
     },
     'right': {
         transform: 'translateX(-16px) translateY(-50%)',
         left: 'auto',
         right: '100%',
-        top: '50%',
+        top: '0',
         bottom: 'auto'
     },
     'right-top': {
         transform: 'translateX(-16px)',
         left: 'auto',
         right: '100%',
-        top: '-8px',
+        top: '-100%',
         bottom: 'auto'
     },
     'right-bottom': {
@@ -44,44 +44,44 @@ exports.pointerStyles = {
         left: 'auto',
         right: '100%',
         top: 'auto',
-        bottom: '-8px'
+        bottom: '-50%'
     },
     'top': {
         transform: 'translateX(-50%)',
         left: '50%',
         right: 'auto',
-        top: 'calc(100% + 16px)',
+        top: 'calc(100% + 2px)',
         bottom: 'auto'
     },
     'top-left': {
-        left: '0px',
+        left: '-10px',
         right: 'auto',
-        top: 'calc(100% + 16px)',
+        top: 'calc(100% + 2px)',
         bottom: 'auto'
     },
     'top-right': {
         left: 'auto',
-        right: '0px',
-        top: 'calc(100% + 16px)',
+        right: '-10px',
+        top: 'calc(100% + 2px)',
         bottom: 'auto'
     },
     'bottom-right': {
         left: 'auto',
-        right: '0px',
+        right: '-10px',
         top: 'auto',
-        bottom: 'calc(100% + 16px)'
+        bottom: 'calc(100% + 12px)'
     },
     'bottom-left': {
-        left: '0px',
+        left: '-10px',
         right: 'auto',
         top: 'auto',
-        bottom: 'calc(100% + 16px)'
+        bottom: 'calc(100% + 12px)'
     },
     'bottom': {
         transform: 'translateX(-50%)',
         left: '50%',
         right: 'auto',
         top: 'auto',
-        bottom: 'calc(100% + 16px)'
+        bottom: 'calc(100% + 12px)'
     }
 };
