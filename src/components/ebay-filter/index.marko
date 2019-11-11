@@ -1,0 +1,45 @@
+$ var data = state;
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "disabled",
+        "href",
+        "priority",
+        "selected",
+        "a11ySelectedText"
+    ];
+}
+
+$ var classPrefix = data.href ? "filter-link" : "filter-button";
+<${data.href ? "a" : "button"}
+    ...processHtmlAttributes(data, ignoredAttributes)
+    onClick("handleButtonClick")
+    class=[
+        classPrefix,
+        data.selected
+            ? classPrefix + "--selected"
+            : classPrefix + "--unselected",
+        data.class
+    ]
+    style=data.style
+    href=data.href
+    disabled=data.disabled
+    type=(!data.href && "button")
+    aria-pressed=(!data.href && data.selected && "true")>
+    <span class=`${classPrefix}__cell`>
+        <span>
+            <if(typeof input.renderBody === "function")>
+                <${input}/>
+            </if>
+            <else>${input.renderBody}</else>
+        </span>
+        <if(data.href && data.selected)>
+            <span class="clipped" key="active-text" id:scoped="active-text">
+                - ${data.a11ySelectedText || "Selected"}
+            </span>
+        </if>
+    </span>
+</>
