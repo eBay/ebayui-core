@@ -6,8 +6,6 @@
                 "@ebay/skin/filter-menu"
             ]
         },
-        "../ebay-icon",
-        "require: marko-widgets",
-        "require: ./index.js"
+        "../ebay-icon"
     ]
 }
