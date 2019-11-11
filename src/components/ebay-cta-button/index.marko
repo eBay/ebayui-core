@@ -1,25 +1,28 @@
-<script marko-init>
-    var processHtmlAttributes = require("../../common/html-attributes");
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
     var ignoredAttributes = ["id", "class", "style", "size"];
-</script>
+}
 
-<var size=(data.size || "medium")/>
-<var baseClass="cta-btn"/>
-<var sizeClass="${baseClass}--${size}"/>
-<var htmlAttributes=processHtmlAttributes(data, ignoredAttributes)/>
-
+$ var size = data.size || "medium";
+$ var baseClass = "cta-btn";
+$ var sizeClass = baseClass + "--" + size;
+$ var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
 <a
-    ${htmlAttributes}
+    ...htmlAttributes
     id=data.id
-    class=[
-        data.class,
-        baseClass,
-        sizeClass
-    ]
+    class=[data.class, baseClass, sizeClass]
     style=data.style>
-
     <span class="cta-btn__cell">
-        <span><invoke data.renderBody(out) if(data.renderBody)/></span>
-        <ebay-icon type="inline" name="arrow-right-bold" class="cta-btn__icon" no-skin-classes/>
+        <span>
+            <if(data.renderBody)>
+                <${data}/>
+            </if>
+        </span>
+        <ebay-icon
+            type="inline"
+            name="arrow-right-bold"
+            class="cta-btn__icon"
+            no-skin-classes/>
     </span>
-</>
+</a>
