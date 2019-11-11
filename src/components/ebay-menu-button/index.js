@@ -29,7 +29,9 @@ module.exports = require('marko-widgets').defineComponent({
         this._handleDestroy();
     },
     _handleDestroy() {
-        this.expander.cancelAsync();
+        if (this.expander) {
+            this.expander.cancelAsync();
+        }
     },
     toggleItemChecked(itemEl) {
         const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
