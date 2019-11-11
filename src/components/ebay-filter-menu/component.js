@@ -1,5 +1,4 @@
 const assign = require('core-js-pure/features/object/assign');
-const indexOf = require('core-js-pure/features/array/index-of');
 const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
@@ -59,14 +58,14 @@ module.exports = {
         });
     },
 
-    onCreate(input, out) {
+    onInput(input) {
         this.state = assign({}, input, {
             items: (input.items || []).map(item => assign({}, item))
         });
     },
 
     onRender() {
-        if (typeof window !== "undefined") {
+        if (typeof window !== 'undefined') {
             this._handleDestroy();
         }
     },
@@ -87,10 +86,10 @@ module.exports = {
         this._handleDestroy();
     },
 
-    onRenderLegacy(event) {
+    onRenderLegacy({ firstRender }) {
         this.contentEl = this.getEl('content') || this.el;
 
-        if (event.firstRender) {
+        if (firstRender) {
             this.tabindexPosition = 0;
         }
 

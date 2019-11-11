@@ -1,4 +1,3 @@
-$ var data = state;
 import processHtmlAttributes from "../../common/html-attributes"
 
 static {
@@ -20,32 +19,32 @@ static {
     var itemIgnoredAttributes = ["class", "style", "checked", "value"];
 }
 
-$ var baseClass = data.classPrefix || "filter-menu";
-$ var isForm = data.variant === "form";
+$ var baseClass = input.classPrefix || "filter-menu";
+$ var isForm = input.variant === "form";
 $ {
     var checkedItems =
-        (data.items &&
-            data.items.filter(function(item) {
+        (state.items &&
+            state.items.filter(function(item) {
                 return item.checked;
             })) ||
         [];
 }
 <span
-    ...processHtmlAttributes(data, ignoredAttributes)
-    class=[data.classPrefix ? `${baseClass}__menu` : baseClass, data.class]
-    style=data.style>
-    <${data.classPrefix ? null : "div"} key="content" class=`${baseClass}__menu`>
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[input.classPrefix ? `${baseClass}__menu` : baseClass, input.class]
+    style=input.style>
+    <${input.classPrefix ? null : "div"} key="content" class=`${baseClass}__menu`>
         <${!isForm ? null : "form"}
-            name=data.formName
-            action=data.formAction
-            method=data.formMethod
+            name=input.formName
+            action=input.formAction
+            method=input.formMethod
             onSubmit("handleFormSubmit")>
             <div
                 class=`${baseClass}__items`
                 role=(!isForm && "menu")
                 key="menu"
                 id:scoped="menu">
-                <for|item, index| of=data.items>
+                <for|item, index| of=state.items>
                     <${isForm ? "label" : "div"}
                         ...processHtmlAttributes(item, itemIgnoredAttributes)
                         class=[`${baseClass}__item`, item.class]
@@ -84,13 +83,13 @@ $ {
                     </>
                 </for>
             </div>
-            <if(data.footerText)>
+            <if(input.footerText)>
                 <button
-                    type=(data.variant === "form" ? "submit" : "button")
-                    aria-label=data.a11yFooterText
+                    type=(input.variant === "form" ? "submit" : "button")
+                    aria-label=input.a11yFooterText
                     class=`${baseClass}__footer`
                     onClick(isForm ? null : "handleFooterButtonClick")>
-                    ${data.footerText}
+                    ${input.footerText}
                 </button>
             </if>
         </>
