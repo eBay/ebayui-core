@@ -6,6 +6,6 @@
             ]
         },
         "require: marko-widgets",
-        "require: ./index.js"
+        "require: ./index.marko"
     ]
 }
