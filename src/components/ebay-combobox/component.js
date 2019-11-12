@@ -185,7 +185,7 @@ module.exports = {
         this._handleDestroy();
     },
 
-    onRenderLegacy(event) {
+    onRenderLegacy() {
         const wasExpanded = this.expanded || false;
         const isExpanded = this.expanded = this.state.expanded;
         const wasToggled = isExpanded !== wasExpanded;
