@@ -176,7 +176,7 @@ module.exports = {
     setSelectedOption,
     clearComboboxSelections,
 
-    onCreate(input, out) {
+    onCreate(input) {
         const options = (input.options || []).map(option => ({
             htmlAttributes: processHtmlAttributes(option, [
                 'class',
