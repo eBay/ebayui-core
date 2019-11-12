@@ -1,4 +1,3 @@
-$ var data = state;
 import processHtmlAttributes from "../../common/html-attributes"
 import safeRegex from "../../common/build-safe-regex"
 
@@ -18,19 +17,19 @@ static {
     var itemIgnoredAttributes = ["class", "style", "text"];
 }
 
-$ var options = data.options || [];
-$ var selectedOption = options[data.selectedIndex];
-$ var currentValue = data.currentValue;
+$ var options = input.options || [];
+$ var selectedOption = options[state.selectedIndex];
+$ var currentValue = state.currentValue;
 <span
-    class:no-update=["combobox", data.class]
-    style=data.style
+    class:no-update=["combobox", input.class]
+    style=input.style
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")
     id:no-update=null>
     <span class=[
         "combobox__control",
         {
-            "combobox__control--borderless": data.borderless
+            "combobox__control--borderless": input.borderless
         }
     ]>
         <!--
@@ -40,12 +39,12 @@ $ var currentValue = data.currentValue;
         <input
             ...processHtmlAttributes(data, ignoredAttributes)
             type="text"
-            name=data.name
+            name=input.name
             role="combobox"
             value=currentValue
-            readonly=data.readonly
-            disabled=data.disabled
-            aria-autocomplete=data.autocomplete
+            readonly=input.readonly
+            disabled=input.disabled
+            aria-autocomplete=state.autocomplete
             aria-haspopup="listbox"
             onBlur("handleComboboxBlur")
             onKeydown("handleComboboxKeyDown")
@@ -66,9 +65,9 @@ $ var currentValue = data.currentValue;
                 $ var isSelected = selectedOption === option;
                 $ {
                     var isVisible =
-                                        (data.autocomplete === "list" &&
+                                        (state.autocomplete === "list" &&
                                             (isSelected || currentValueReg.test(option.text))) ||
-                                        data.autocomplete === "none";
+                                        state.autocomplete === "none";
                 }
                 <if(isVisible && option.text)>
                     <div

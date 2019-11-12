@@ -4,8 +4,6 @@
             "dependencies": [
                 "@ebay/skin/combobox"
             ]
-        },
-        "require: marko-widgets",
-        "require: ./index.marko"
+        }
     ]
 }
