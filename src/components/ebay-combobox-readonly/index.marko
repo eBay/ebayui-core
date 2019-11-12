@@ -1,0 +1,53 @@
+$ var data = component.getTemplateData(state, input);
+<span
+    class:no-update=data.class
+    style=data.style
+    onExpander-expand("handleExpand")
+    onExpander-collapse("handleCollapse")>
+    <span class:no-update=data.btnClass>
+        <input
+            ...data.htmlAttributes
+            type="text"
+            role="combobox"
+            readonly
+            value=(data.selectedOption && data.selectedOption.text)
+            disabled=data.disabled
+            aria-haspopup="listbox"
+            aria-owns:scoped="combobox__listbox"
+            aria-expanded:no-update="false"
+            onKeydown("handleComboboxKeyDown")/>
+        <span class="combobox__icon" aria-hidden="true"/>
+    </span>
+    <if(data.options.length > 0)>
+        <div
+            role="listbox"
+            class=data.optionsClass
+            key="combobox__listbox"
+            id:scoped="combobox__listbox">
+            <for|option| of=data.options>
+                <div
+                    ...option.htmlAttributes
+                    role="option"
+                    class=[
+                        "combobox__option",
+                        option.class,
+                        option.selected && "combobox__option--active"
+                    ]
+                    style=option.style
+                    tabindex:no-update="-1"
+                    onClick("handleOptionClick")
+                    aria-selected=String(option.selected)
+                    data-option-value=option.value
+                    data-makeup-index:no-update=null>
+                    <span>${option.text}</span>
+                    <span class="combobox__status"/>
+                </div>
+            </for>
+        </div>
+    </if>
+    <select hidden class="combobox__native" name=data.name>
+        <for|option| of=data.options>
+            <option value=option.value selected=option.selected class=option.class/>
+        </for>
+    </select>
+</span>
