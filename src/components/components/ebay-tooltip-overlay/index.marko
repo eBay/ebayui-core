@@ -1,0 +1,81 @@
+import constants from "./constants"
+
+static var typeRoles = constants.typeRoles;
+
+static var pointerStyles = constants.pointerStyles;
+
+$ {
+    var hasUserStyles =
+        input.styleTop || input.styleLeft || input.styleRight || input.styleBottom;
+}
+$ {
+    var overlayStyles = hasUserStyles
+        ? {
+              top: input.styleTop,
+              left: input.styleLeft,
+              right: input.styleRight,
+              bottom: input.styleBottom
+          }
+        : pointerStyles[input.pointer || "bottom"];
+}
+<span
+    class=`${input.type}__overlay`
+    role=typeRoles[input.type]
+    aria-labelledby=(
+        input.type === "tourtip" &&
+        input.heading &&
+        component.elId("tourtip-label")
+    )
+    id=input.tooltipId
+    style=overlayStyles>
+    <span class=`${input.type}__pointer ${input.type}__pointer--${input.pointer}`/>
+    <span class=`${input.type}__mask`>
+        <span class=`${input.type}__cell`>
+            <span class=`${input.type}__content`>
+                <if(input.heading)>
+                    <span
+                        class=[`${input.type}__heading`, input.heading.class]
+                        style=input.heading.style
+                        key="tourtip-label"
+                        id:scoped="tourtip-label">
+                        <if(
+                            input.heading.renderBody &&
+                            (typeof input.heading.renderBody === "function" ||
+                                typeof input.heading.renderBody.renderBody ===
+                                    "function")
+                        )>
+                            <${input.heading.renderBody}/>
+                        </if>
+                        <else>${input.heading.renderBody}</else>
+                    </span>
+                </if>
+                <if(input.content)>
+                    <${!input.content.class && !input.content.style
+                        ? null
+                        : "span"}
+                        class=input.content.class
+                        style=input.content.style>
+                        <if(
+                            input.content.renderBody &&
+                            (typeof input.content.renderBody === "function" ||
+                                typeof input.content.renderBody.renderBody ===
+                                    "function")
+                        )>
+                            <${input.content.renderBody}/>
+                        </if>
+                        <else>${input.content.renderBody}</else>
+                    </>
+                </if>
+            </span>
+            <if(input.type !== "tooltip")>
+                <button
+                    aria-label=input.a11yCloseText
+                    class=`${input.type}__close`
+                    type="button"
+                    onClick("handleCloseButton")>
+                    <span aria-hidden="true" role="img"/>
+                </button>
+            </if>
+        </span>
+    </span>
+</span>

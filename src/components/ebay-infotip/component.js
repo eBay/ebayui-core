@@ -1,12 +1,12 @@
 
-module.exports = require('marko-widgets').defineComponent({
-    template: require('./template.marko'),
+module.exports = {
     handleExpand() {
         this.emit('tooltip-expand');
     },
+
     handleCollapse() {
-        this.getWidget('base').expander.collapse();
+        this.getComponent('base').expander.collapse();
         this.getEl('host').focus();
         this.emit('tooltip-collapse');
     }
-});
+};

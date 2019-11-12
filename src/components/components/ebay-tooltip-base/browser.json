@@ -7,6 +7,6 @@
                 "@ebay/skin/tooltip"
             ]
         },
-        "require: ./index.js"
+        "require: ./index.marko"
     ]
 }

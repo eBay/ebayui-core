@@ -1,12 +1,40 @@
 const Expander = require('makeup-expander');
 const focusables = require('makeup-focusables');
 
-module.exports = require('marko-widgets').defineComponent({
-    template: require('./template.marko'),
-    getInitialState(input) {
-        return input;
+module.exports = {
+    handleExpand() {
+        this.emit('base-expand');
     },
+
+    handleCollapse() {
+        this.emit('base-collapse');
+    },
+
+    onInput(input) {
+        this.state = input;
+    },
+
     onRender() {
+        if (typeof window !== 'undefined') {
+            if (this.expander) {
+                this.expander.cancelAsync();
+            }
+        }
+    },
+
+    onMount() {
+        this.onRenderLegacy({
+            firstRender: true
+        });
+    },
+
+    onUpdate() {
+        this.onRenderLegacy({
+            firstRender: false
+        });
+    },
+
+    onRenderLegacy() {
         const hostClass = `${this.state.type}__host`;
         const hostSelector = `.${hostClass}`;
         const expanderEl = this.el.getElementsByClassName(this.state.type)[0];
@@ -40,16 +68,5 @@ module.exports = require('marko-widgets').defineComponent({
                 this.host.setAttribute('aria-describedby', `${this.el.parentElement.id}-overlay`);
             }
         }
-    },
-    onBeforeUpdate() {
-        if (this.expander) {
-            this.expander.cancelAsync();
-        }
-    },
-    handleExpand() {
-        this.emit('base-expand');
-    },
-    handleCollapse() {
-        this.emit('base-collapse');
     }
-});
+};

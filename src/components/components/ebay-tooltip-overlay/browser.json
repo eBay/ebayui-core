@@ -1,5 +1,5 @@
 {
     "dependencies": [
-        "require: ./index.js"
+        "require: ./index.marko"
     ]
 }

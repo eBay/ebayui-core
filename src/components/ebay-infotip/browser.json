@@ -1,6 +1,5 @@
 {
     "dependencies": [
-        "../ebay-icon",
-        "require: ./index.js"
+        "../ebay-icon"
     ]
 }
