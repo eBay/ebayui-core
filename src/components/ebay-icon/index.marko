@@ -1,67 +1,79 @@
-<script marko-init>
-    var processHtmlAttributes = require("../../common/html-attributes");
-    var isBrowser = typeof window !== "undefined";
-    var browserLookup = {};
-    var ignoredAttributes = ["class", "style", "type", "name", "a11yText", "noSkinClasses", "_themes"];
-</script>
+import processHtmlAttributes from "../../common/html-attributes"
 
-<var lookup=(isBrowser ? browserLookup : out.global)/>
-<var isInline=(data.type === "inline")/>
-<var a11yAttributes/>
-<var titleId/>
+static var isBrowser = typeof window !== "undefined";
 
+static var browserLookup = {};
+
+static {
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "type",
+        "name",
+        "a11yText",
+        "noSkinClasses",
+        "_themes"
+    ];
+}
+
+$ var lookup = isBrowser ? browserLookup : out.global;
+$ var isInline = data.type === "inline";
+$ var a11yAttributes;
+$ var titleId;
 <if(isInline)>
-    <assign a11yAttributes=(data.a11yText
-        ? { role: "img" }
-        : { "aria-hidden": "true" }
-    )/>
+    $ {
+        a11yAttributes = data.a11yText
+                ? {
+                      role: "img"
+                  }
+                : {
+                      "aria-hidden": "true"
+                  };
+    }
 </if>
-
 <${isInline ? "svg" : "span"}
-    w-bind
-    class=[
-        data.class,
-        !data.noSkinClasses && "icon icon--${data.name}"
-    ]
+    ...a11yAttributes
+    ...processHtmlAttributes(data, ignoredAttributes)
+    class=[data.class, !data.noSkinClasses && `icon icon--${data.name}`]
     xmlns=(isInline && "http://www.w3.org/2000/svg")
     style=data.style
     focusable=(isInline && "false")
-    aria-labelledby:scoped="a11y"
-    ${processHtmlAttributes(data, ignoredAttributes)}
-    ${a11yAttributes}>
+    aria-labelledby:scoped="a11y">
     <if(isInline)>
         <!-- Here we check if we should render the inline svg symbol. -->
         <!-- Server side we store a flag in `out.global` to check if the symbol was rendered. -->
         <!-- Client side we check the `browserLookup` object to see if the symbol is already present in root svg. -->
-        <var themes=data._themes/>
-        <var lookupName=("rendered_ebay_icon_" + data.name)/>
-        <var renderDefs=!lookup[lookupName]/>
-        <assign lookup[lookupName]=true/>
-
+        $ var themes = data._themes;
+        $ var lookupName = "rendered_ebay_icon_" + data.name;
+        $ var renderDefs = !lookup[lookupName];
+        $ lookup[lookupName] = true;
         <if(renderDefs && themes)>
-            <defs w-id="defs">
-                <var theme/>
+            <defs key="defs" id:scoped="defs">
+                $ var theme;
                 <if(isBrowser)>
                     <!-- All icons should be remapped to the right one in the browser, just use the first. -->
-                    <assign theme=themes.filter(Boolean)[0]/>
+                    $ theme = themes.filter(Boolean)[0];
                 </if>
                 <else>
                     <!-- Actual magic, please do not try to replicate. -->
-                    <var lassoContext=out.global["lasso/LassoRenderContext"]/>
-                    <var flags=(lassoContext && lassoContext.data.config.flags)/>
-                    <assign theme=themes[flags && flags.indexOf("skin-ds6") !== -1 ? 1 : 0]/>
+                    $ var lassoContext = out.global["lasso/LassoRenderContext"];
+                    $ var flags = lassoContext && lassoContext.data.config.flags;
+                    $ {
+                        theme =
+                                                themes[
+                                                    flags && flags.indexOf("skin-ds6") !== -1 ? 1 : 0
+                                                ];
+                    }
                 </else>
-
-                <include(theme)/>
+                <if(typeof theme === "string")>${theme}</if>
+                <else>
+                    <${theme}/>
+                </else>
             </defs>
         </if>
-
         <if(data.a11yText)>
-            <title id:scoped="a11y">
-                ${data.a11yText}
-            </title>
+            <title id:scoped="a11y">${data.a11yText}</title>
         </if>
-
-        <use xlink:href="#icon-${data.name}"/>
+        <use xlink:href=`#icon-${data.name}`/>
     </if>
 </>

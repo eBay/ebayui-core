@@ -1,7 +1,7 @@
 let rootSvg;
 
-module.exports = require('marko-widgets').defineWidget({
-    init() {
+module.exports = {
+    onMount() {
         // Create a hidden svg to store all symbols on startup.
         if (!rootSvg) {
             rootSvg = document.createElement('svg');
@@ -21,4 +21,4 @@ module.exports = require('marko-widgets').defineWidget({
             }
         }
     }
-});
+};

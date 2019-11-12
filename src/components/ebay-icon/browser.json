@@ -16,6 +16,6 @@
                 }
             ]
         },
-        "require: ./widget.js"
+        "require: ./component-browser.js"
     ]
 }
