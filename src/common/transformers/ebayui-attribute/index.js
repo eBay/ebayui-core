@@ -3,7 +3,7 @@ const path = require('path');
 const COMPONENT_DIR = path.join(__dirname, '../../../components');
 const COMPONENT_FILES = fs
     .readdirSync(COMPONENT_DIR)
-    .map(entry => path.join(COMPONENT_DIR, entry, 'template.marko'));
+    .map(entry => path.join(COMPONENT_DIR, entry, 'index.marko'));
 
 /**
  * Transform to add the `data-ebayui` attribute to top level elements for all components.

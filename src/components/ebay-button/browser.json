@@ -8,7 +8,6 @@
             ]
         },
         "../ebay-badge",
-        "../ebay-icon",
-        "require: ./index.js"
+        "../ebay-icon"
     ]
 }
