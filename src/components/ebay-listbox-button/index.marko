@@ -1,0 +1,87 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "name",
+        "grow",
+        "borderless",
+        "disabled",
+        "fluid",
+        "invalid",
+        "buttonName",
+        "options"
+    ];
+}
+
+static {
+    var itemIgnoredAttributes = ["class", "style", "value", "text", "selected"];
+}
+
+$ var options = state.options;
+$ var selectedOption = options[state.selectedIndex];
+$ var selectedText = selectedOption && selectedOption.text;
+<span
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class:no-update=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
+    style=input.style
+    onExpander-expand("handleExpand")
+    onExpander-collapse("handleCollapse")>
+    <button
+        class=[
+            "listbox-button__control",
+            "expand-btn",
+            "expand-btn--regular",
+            input.borderless && "expand-btn--borderless"
+        ]
+        value=selectedText
+        type="button"
+        disabled=state.disabled
+        name=input.buttonName
+        aria-haspopup="listbox"
+        aria-invalid=(input.invalid && "true")
+        key="button"
+        id:scoped="button"
+        aria-expanded:no-update=null
+        aria-controls:no-update=null>
+        <span class="expand-btn__cell">
+            <span>${selectedText}</span>
+            <span class="expand-btn__icon"/>
+        </span>
+    </button>
+    <if(options.length)>
+        <div
+            role="listbox"
+            class:no-update="listbox-button__listbox"
+            tabindex:no-update="-1"
+            key="options"
+            id:scoped="options"
+            aria-owns:no-update=null
+            aria-activedescendant:no-update=null>
+            <for|option| of=state.options>
+                <div
+                    ...processHtmlAttributes(option, itemIgnoredAttributes)
+                    class:no-update=["listbox-button__option", option.class]
+                    style=option.style
+                    role="option"
+                    tabindex="-1"
+                    aria-selected:no-update=(selectedOption === option && "true")
+                    onMousedown("handleMouseDown")
+                    key="option[]"
+                    data-makeup-index:no-update=null>
+                    <span class="listbox-button__value">${option.text}</span>
+                    <span class="listbox-button__status"/>
+                </div>
+            </for>
+        </div>
+    </if>
+    <select hidden class="listbox-button__native" name=input.name>
+        <for|option| of=state.options>
+            <option
+                value=option.value
+                selected=(option === selectedOption)
+                class=option.class/>
+        </for>
+    </select>
+</span>

@@ -356,7 +356,7 @@
     }
   },
   "<ebay-listbox-button>": {
-    "renderer": "./src/components/ebay-listbox-button/index.js",
+    "renderer": "./src/components/ebay-listbox-button/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
