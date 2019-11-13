@@ -1,3 +1,4 @@
+const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const mock = require('./mock');
@@ -21,7 +22,7 @@ describe('given the default tourtip', () => {
 
     describe('after it is rerendered', () => {
         beforeEach(async() => {
-            await component.rerender(input);
+            await component.rerender(assign({}, input, { disabled: false }));
         });
 
         thenItIsOpen();
