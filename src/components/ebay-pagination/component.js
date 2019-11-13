@@ -1,6 +1,5 @@
 const processHtmlAttributes = require('../../common/html-attributes');
 const eventUtils = require('../../common/event-utils');
-const template = require('./template.marko');
 
 const constants = {
     indexForNavigation: 2,
@@ -8,99 +7,6 @@ const constants = {
     maxPagesAllowed: 9,
     margin: 8
 };
-
-function getInitialState(input) {
-    let prevItem;
-    let nextItem;
-    const items = [];
-    const inputItems = input.items || [];
-
-    for (let i = 0; i < inputItems.length; ++i) {
-        const item = inputItems[i];
-        const href = item.href;
-        const current = item.current;
-        const tempItem = {
-            htmlAttributes: processHtmlAttributes(item, [
-                'class',
-                'style',
-                'current',
-                'disabled',
-                'href',
-                'type',
-                'role'
-            ]),
-            style: item.style,
-            renderBody: item.renderBody,
-            href,
-            current
-        };
-
-        if (item.type === 'previous') {
-            prevItem = tempItem;
-            prevItem.class = ['pagination__previous', item.class];
-            prevItem.disabled = item.disabled;
-            continue;
-        } else if (item.type === 'next') {
-            nextItem = tempItem;
-            nextItem.class = ['pagination__next', item.class];
-            nextItem.disabled = item.disabled;
-            continue;
-        } else {
-            tempItem.class = ['pagination__item', item.class];
-            tempItem.current = item.current;
-        }
-
-        items.push(tempItem);
-    }
-
-    return {
-        htmlAttributes: processHtmlAttributes(input, [
-            'class',
-            'style',
-            'a11yPreviousText',
-            'a11yNextText',
-            'a11yCurrentText',
-            'hijax',
-            'items'
-        ]),
-        classes: ['pagination', input.class],
-        style: input.style,
-        nextItem: nextItem || { class: 'pagination__next', disabled: true, htmlAttributes: {} },
-        prevItem: prevItem || { class: 'pagination__previous', disabled: true, htmlAttributes: {} },
-        items,
-        a11yPreviousText: input.a11yPreviousText || 'Previous page',
-        a11yNextText: input.a11yNextText || 'Next page',
-        a11yCurrentText: input.a11yCurrentText || 'Results Pagination - Page 1'
-    };
-}
-
-function getTemplateData(state) {
-    return state;
-}
-
-function init() {
-    this.pageContainerEl = this.el.querySelector('.pagination__items');
-    this.pageContainerEl.style.flexWrap = 'nowrap';
-    this.pageEls = this.pageContainerEl.children;
-    this.containerEl = this.el;
-    this.previousPageEl = this.el.querySelector('.pagination__previous');
-    this.nextPageEl = this.el.querySelector('.pagination__next');
-    this.subscribeTo(eventUtils.resizeUtil).on('resize', refresh.bind(this));
-    this.timeoutRef = 0;
-    this.refresh();
-}
-
-function onBeforeUpdate() {
-    clearTimeout(this.timeoutRef);
-}
-
-function onDestroy() {
-    clearTimeout(this.timeoutRef);
-}
-
-function onUpdate() {
-    this.timeoutRef = setTimeout(this.refresh.bind(this), 0);
-}
 
 function refresh() {
     let current = 0;
@@ -215,12 +121,7 @@ function isSyntheticClick(event) {
     return event.type === 'click' && event.detail === 0;
 }
 
-module.exports = require('marko-widgets').defineComponent({
-    template,
-    init,
-    onUpdate,
-    onBeforeUpdate,
-    onDestroy,
+module.exports = {
     refresh,
     handlePageNumber,
     handleNextPage,
@@ -228,6 +129,81 @@ module.exports = require('marko-widgets').defineComponent({
     handlePageNumberKeyDown,
     handleNextPageKeyDown,
     handlePreviousPageKeyDown,
-    getInitialState,
-    getTemplateData
-});
+
+    onCreate(input, out) {
+        let prevItem;
+        let nextItem;
+        const items = [];
+        const inputItems = input.items || [];
+
+        for (let i = 0; i < inputItems.length; ++i) {
+            const item = inputItems[i];
+            const href = item.href;
+            const current = item.current;
+            const tempItem = {
+                htmlAttributes: processHtmlAttributes(item, [
+                    'class',
+                    'style',
+                    'current',
+                    'disabled',
+                    'href',
+                    'type',
+                    'role'
+                ]),
+                style: item.style,
+                renderBody: item.renderBody,
+                href,
+                current
+            };
+
+            if (item.type === 'previous') {
+                prevItem = tempItem;
+                prevItem.class = ['pagination__previous', item.class];
+                prevItem.disabled = item.disabled;
+                continue;
+            } else if (item.type === 'next') {
+                nextItem = tempItem;
+                nextItem.class = ['pagination__next', item.class];
+                nextItem.disabled = item.disabled;
+                continue;
+            } else {
+                tempItem.class = ['pagination__item', item.class];
+                tempItem.current = item.current;
+            }
+
+            items.push(tempItem);
+        }
+
+        this.state = {
+            nextItem: nextItem || { class: 'pagination__next', disabled: true, htmlAttributes: {} },
+            prevItem: prevItem || { class: 'pagination__previous', disabled: true, htmlAttributes: {} },
+            items
+        };
+    },
+
+    onRender() {
+        if (typeof window !== "undefined") {
+            clearTimeout(this.timeoutRef);
+        }
+    },
+
+    onMount() {
+        this.pageContainerEl = this.el.querySelector('.pagination__items');
+        this.pageContainerEl.style.flexWrap = 'nowrap';
+        this.pageEls = this.pageContainerEl.children;
+        this.containerEl = this.el;
+        this.previousPageEl = this.el.querySelector('.pagination__previous');
+        this.nextPageEl = this.el.querySelector('.pagination__next');
+        this.subscribeTo(eventUtils.resizeUtil).on('resize', refresh.bind(this));
+        this.timeoutRef = 0;
+        this.refresh();
+    },
+
+    onUpdate() {
+        this.timeoutRef = setTimeout(this.refresh.bind(this), 0);
+    },
+
+    onDestroy() {
+        clearTimeout(this.timeoutRef);
+    }
+};
