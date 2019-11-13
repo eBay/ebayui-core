@@ -1,0 +1,52 @@
+<span
+    class:no-update=["combobox",state.class]
+    style=state.style
+    onExpander-expand("handleExpand")
+    onExpander-collapse("handleCollapse")>
+    <span class:no-update=["combobox__control", state.borderless && "combobox__control--borderless"]>
+        <input
+            ...state.htmlAttributes
+            type="text"
+            role="combobox"
+            readonly
+            value=(state.selected && state.selected.text)
+            disabled=state.disabled
+            aria-haspopup="listbox"
+            aria-owns:scoped="combobox__listbox"
+            aria-expanded:no-update="false"
+            onKeydown("handleComboboxKeyDown")/>
+        <span class="combobox__icon" aria-hidden="true"/>
+    </span>
+    <if(data.options.length > 0)>
+        <div
+            role="listbox"
+            class="combobox__listbox"
+            key="combobox__listbox"
+            id:scoped="combobox__listbox">
+            <for|option| of=state.options>
+                <div
+                    ...option.htmlAttributes
+                    role="option"
+                    class=[
+                        "combobox__option",
+                        option.class,
+                        option.selected && "combobox__option--active"
+                    ]
+                    style=option.style
+                    tabindex:no-update="-1"
+                    onClick("handleOptionClick")
+                    aria-selected=String(option.selected)
+                    data-option-value=option.value
+                    data-makeup-index:no-update=null>
+                    <span>${option.text}</span>
+                    <span class="combobox__status"/>
+                </div>
+            </for>
+        </div>
+    </if>
+    <select hidden class="combobox__native" name=state.name>
+        <for|option| of=state.options>
+            <option value=option.value selected=option.selected class=option.class/>
+        </for>
+    </select>
+</span>
