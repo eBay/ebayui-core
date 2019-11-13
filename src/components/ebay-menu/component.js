@@ -110,14 +110,14 @@ module.exports = {
         this.emit(`menu-${eventType}`, eventObj);
     },
 
-    onCreate(input, out) {
+    onInput(input) {
         this.state = assign({}, input, {
             items: (input.items || []).map(item => assign({}, item))
         });
     },
 
     onRender() {
-        if (typeof window !== "undefined") {
+        if (typeof window !== 'undefined') {
             this._handleDestroy();
         }
     },

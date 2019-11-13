@@ -1,0 +1,116 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "type",
+        "text",
+        "icon",
+        "a11yText",
+        "noToggleIcon",
+        "expanded",
+        "reverse",
+        "fixWidth",
+        "borderless",
+        "size",
+        "priority",
+        "iconTag",
+        "disabled",
+        "variant",
+        "items",
+        "label"
+    ];
+}
+
+$ var isFake = state.type === "fake";
+$ var baseClass = isFake ? "fake-menu-button" : "menu-button";
+$ var isOverflowVariant = state.variant === "overflow";
+<span
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[isFake ? "fake-menu-button" : "menu-button", input.class]
+    style=input.style
+    onExpander-expand("handleExpand")
+    onExpander-collapse("handleCollapse")>
+    <ebay-button
+        class=[
+            `${baseClass}__button`,
+            input.borderless && !isOverflowVariant && "expand-btn--borderless"
+        ]
+        variant=(isOverflowVariant ? "icon" : "expand")
+        size=input.size
+        priority=input.priority
+        no-text=(!input.text && !input.icon && !isOverflowVariant)
+        aria-expanded="false"
+        aria-haspopup="true"
+        aria-label=input.a11yText
+        disabled=input.disabled
+        onButton-escape("handleButtonEscape")
+        key="button">
+        <if(isOverflowVariant)>
+            <ebay-icon type="inline" name="overflow"/>
+        </if>
+        <else>
+            <span class=[
+                "expand-btn__cell",
+                input.label && "menu-button__control--custom-label"
+            ]>
+                <if(input.label)>
+                    <span no-update-body>
+                        <if(
+                            input.label.renderBody &&
+                            (typeof input.label.renderBody === "function" ||
+                                typeof input.label.renderBody.renderBody ===
+                                    "function")
+                        )>
+                            <${input.label.renderBody}/>
+                        </if>
+                        <else>${input.label.renderBody}</else>
+                    </span>
+                </if>
+                <else>
+                    <!-- Convoluted markup to satisfy both Skin and Marko -->
+                    <if(input.icon)>
+                        <div no-update-body class="btn__icon">
+                            <if(input.iconTag)>
+                                <if(
+                                    input.iconTag.renderBody &&
+                                    (typeof input.iconTag.renderBody ===
+                                        "function" ||
+                                        typeof input.iconTag.renderBody
+                                            .renderBody === "function")
+                                )>
+                                    <${input.iconTag.renderBody}/>
+                                </if>
+                                <else>${input.iconTag.renderBody}</else>
+                            </if>
+                        </div>
+                    </if>
+                    <if(input.text)>
+                        <span>${input.text}</span>
+                    </if>
+                </else>
+                <if(!input.noToggleIcon)>
+                    <ebay-icon
+                        type="inline"
+                        name="chevron-down-bold"
+                        class="expand-btn__icon"
+                        no-skin-classes/>
+                </if>
+            </span>
+        </else>
+    </ebay-button>
+    <ebay-menu
+        class-prefix=baseClass
+        type=input.type
+        reverse=(isOverflowVariant ? !input.reverse : input.reverse)
+        fix-width=input.fixWidth
+        onMenu-keydown("handleMenuKeydown")
+        onMenu-change("handleMenuChange")
+        onMenu-select("handleMenuSelect")
+        key="content">
+        <for|item| of=state.items>
+            <ebay-menu-item(item)/>
+        </for>
+    </ebay-menu>
+</span>

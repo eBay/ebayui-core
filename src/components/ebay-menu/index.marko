@@ -1,4 +1,3 @@
-$ var data = state;
 import processHtmlAttributes from "../../common/html-attributes"
 
 static {
@@ -27,26 +26,26 @@ static {
     ];
 }
 
-$ var isFake = data.type === "fake";
-$ var isRadio = data.type === "radio";
-$ var isCheckbox = data.type === "checkbox";
-$ var isNotCheckable = data.type !== "checkbox" && data.type !== "radio";
-$ var baseClass = data.classPrefix || (isFake ? "fake-menu" : "menu");
+$ var isFake = input.type === "fake";
+$ var isRadio = input.type === "radio";
+$ var isCheckbox = input.type === "checkbox";
+$ var isNotCheckable = input.type !== "checkbox" && input.type !== "radio";
+$ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
 <span
-    ...processHtmlAttributes(data, ignoredAttributes)
+    ...processHtmlAttributes(input, ignoredAttributes)
     class=[
-        data.classPrefix ? `${baseClass}__menu` : isFake ? "fake-menu" : "menu",
-        data.reverse && `${baseClass}__menu--reverse`,
-        data.fixWidth && `${baseClass}__menu--fix-width`,
-        data.class
+        input.classPrefix ? `${baseClass}__menu` : isFake ? "fake-menu" : "menu",
+        input.reverse && `${baseClass}__menu--reverse`,
+        input.fixWidth && `${baseClass}__menu--fix-width`,
+        input.class
     ]
-    style=data.style>
+    style=input.style>
     <div
         role=(!isFake && "menu")
         class=`${baseClass}__items`
         key="menu"
         id:scoped="menu">
-        <for|item| of=data.items>
+        <for|item| of=state.items>
             $ {
                 var itemRole = isRadio
                                 ? "menuitemradio"

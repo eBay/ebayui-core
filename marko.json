@@ -421,7 +421,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-menu-button>": {
-    "renderer": "./src/components/ebay-menu-button/index.js",
+    "renderer": "./src/components/ebay-menu-button/index.marko",
     "transformer": "./src/components/ebay-menu-button/transformer.js",
     "@*": {
       "targetProperty": null,

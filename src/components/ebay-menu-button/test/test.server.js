@@ -160,7 +160,7 @@ describe('menu-button', () => {
 });
 
 describe('transformer', () => {
-    const componentPath = '../index.js';
+    const componentPath = '../index.marko';
 
     it('transforms an icon attribute into a tag', async() => {
         const tagString = '<ebay-menu-button icon="settings"/>';

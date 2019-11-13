@@ -3,36 +3,14 @@ const assign = require('core-js-pure/features/object/assign');
 const indexOf = require('core-js-pure/features/array/index-of');
 const findIndex = require('core-js-pure/features/array/find-index');
 const eventUtils = require('../../common/event-utils');
-const template = require('./template.marko');
 
-module.exports = require('marko-widgets').defineComponent({
-    template,
-    getInitialState(input) {
-        return assign({}, input, {
-            items: (input.items || []).map(item => assign({}, item))
-        });
-    },
-    onRender() {
-        this.expander = new Expander(this.el, {
-            hostSelector: '.menu-button__button, .fake-menu-button__button',
-            contentSelector: '.menu-button__menu, .fake-menu-button__menu',
-            focusManagement: 'focusable',
-            expandOnClick: true,
-            autoCollapse: true,
-            alwaysDoFocusManagement: true
-        });
-    },
-    onBeforeUpdate() {
-        this._handleDestroy();
-    },
-    onDestroy() {
-        this._handleDestroy();
-    },
+module.exports = {
     _handleDestroy() {
         if (this.expander) {
             this.expander.cancelAsync();
         }
     },
+
     toggleItemChecked(itemEl) {
         const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
         const item = this.state.items[itemIndex];
@@ -61,19 +39,23 @@ module.exports = require('marko-widgets').defineComponent({
             this.tabindexPosition = findIndex(this.rovingTabindex.filteredItems, el => el.tabIndex === 0);
         }
     },
+
     getCheckedValues() {
         return this.state.items
             .filter(item => item.checked)
             .map(item => item.value);
     },
+
     getCheckedIndexes() {
         return this.state.items
             .map((item, i) => item.checked && i)
             .filter(item => item !== false && typeof item !== 'undefined');
     },
+
     handleItemClick(e, itemEl) {
         this.toggleItemChecked(itemEl);
     },
+
     handleMenuKeydown({ el, originalEvent }) {
         eventUtils.handleActionKeydown(originalEvent, () => {
             this.handleItemClick(originalEvent, el);
@@ -84,21 +66,27 @@ module.exports = require('marko-widgets').defineComponent({
             this.getEl('button').focus();
         });
     },
+
     handleButtonEscape() {
         this.expander.collapse();
     },
+
     handleExpand() {
         this.emitComponentEvent({ eventType: 'expand' });
     },
+
     handleCollapse() {
         this.emitComponentEvent({ eventType: 'collapse' });
     },
+
     handleMenuChange({ el }) {
         this.toggleItemChecked(el);
     },
+
     handleMenuSelect({ el, originalEvent }) {
         this.emitComponentEvent({ eventType: 'select', el, originalEvent });
     },
+
     emitComponentEvent({ eventType, el, originalEvent }) {
         const checkedIndexes = this.getCheckedIndexes();
         const itemIndex = el && indexOf(el.parentNode.children, el);
@@ -130,5 +118,44 @@ module.exports = require('marko-widgets').defineComponent({
         }
 
         this.emit(`menu-button-${eventType}`, eventObj);
+    },
+
+    onInput(input) {
+        this.state = assign({}, input, {
+            items: (input.items || []).map(item => assign({}, item))
+        });
+    },
+
+    onRender() {
+        if (typeof window !== 'undefined') {
+            this._handleDestroy();
+        }
+    },
+
+    onMount() {
+        this.onRenderLegacy({
+            firstRender: true
+        });
+    },
+
+    onUpdate() {
+        this.onRenderLegacy({
+            firstRender: false
+        });
+    },
+
+    onDestroy() {
+        this._handleDestroy();
+    },
+
+    onRenderLegacy() {
+        this.expander = new Expander(this.el, {
+            hostSelector: '.menu-button__button, .fake-menu-button__button',
+            contentSelector: '.menu-button__menu, .fake-menu-button__menu',
+            focusManagement: 'focusable',
+            expandOnClick: true,
+            autoCollapse: true,
+            alwaysDoFocusManagement: true
+        });
     }
-});
+};
