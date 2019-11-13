@@ -1,5 +1,3 @@
 {
-    "dependencies": [
-        "require: ./index.js"
-    ]
+    "dependencies": []
 }
