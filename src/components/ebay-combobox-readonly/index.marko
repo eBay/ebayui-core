@@ -1,17 +1,16 @@
-$ var data = component.getTemplateData(state, input);
 <span
-    class:no-update=data.class
-    style=data.style
+    class:no-update=["combobox",state.class]
+    style=state.style
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")>
-    <span class:no-update=data.btnClass>
+    <span class:no-update=["combobox__control", state.borderless && "combobox__control--borderless"]>
         <input
-            ...data.htmlAttributes
+            ...state.htmlAttributes
             type="text"
             role="combobox"
             readonly
-            value=(data.selectedOption && data.selectedOption.text)
-            disabled=data.disabled
+            value=(state.selected && state.selected.text)
+            disabled=state.disabled
             aria-haspopup="listbox"
             aria-owns:scoped="combobox__listbox"
             aria-expanded:no-update="false"
@@ -21,10 +20,10 @@ $ var data = component.getTemplateData(state, input);
     <if(data.options.length > 0)>
         <div
             role="listbox"
-            class=data.optionsClass
+            class="combobox__listbox"
             key="combobox__listbox"
             id:scoped="combobox__listbox">
-            <for|option| of=data.options>
+            <for|option| of=state.options>
                 <div
                     ...option.htmlAttributes
                     role="option"
@@ -45,8 +44,8 @@ $ var data = component.getTemplateData(state, input);
             </for>
         </div>
     </if>
-    <select hidden class="combobox__native" name=data.name>
-        <for|option| of=data.options>
+    <select hidden class="combobox__native" name=state.name>
+        <for|option| of=state.options>
             <option value=option.value selected=option.selected class=option.class/>
         </for>
     </select>

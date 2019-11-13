@@ -8,30 +8,7 @@ const processHtmlAttributes = require('../../common/html-attributes');
 const comboboxOptionsClass = 'combobox__listbox';
 const comboboxExpanderClass = 'combobox__control';
 const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
-const comboboxBtnClass = 'combobox__control';
 const comboboxSelectedOptionSelector = '.combobox__option[role=option][aria-selected=true]';
-
-function getTemplateData(state) {
-    const comboboxClass = ['combobox', state.class];
-    const btnClass = [comboboxBtnClass];
-    const optionsClass = [comboboxOptionsClass];
-
-    if (state.borderless) {
-        btnClass.push('combobox__control--borderless');
-    }
-
-    return {
-        htmlAttributes: state.htmlAttributes,
-        class: comboboxClass,
-        style: state.style,
-        btnClass,
-        optionsClass,
-        name: state.name,
-        selectedOption: state.selected,
-        options: state.options,
-        disabled: state.disabled
-    };
-}
 
 function handleExpand() {
     elementScroll.scroll(this.el.querySelector(comboboxSelectedOptionSelector));
@@ -167,7 +144,6 @@ function clearComboboxSelections(options) {
 }
 
 module.exports = {
-    getTemplateData,
     handleExpand,
     handleCollapse,
     handleOptionClick,
