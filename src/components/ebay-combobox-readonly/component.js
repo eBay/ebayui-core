@@ -1,99 +1,14 @@
-const markoWidgets = require('marko-widgets');
 const Expander = require('makeup-expander');
 const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
 const eventUtils = require('../../common/event-utils');
 const processHtmlAttributes = require('../../common/html-attributes');
-const template = require('./template.marko');
 
 const comboboxOptionsClass = 'combobox__listbox';
 const comboboxExpanderClass = 'combobox__control';
 const comboboxHostSelector = `.${comboboxExpanderClass} > input`;
-const comboboxBtnClass = 'combobox__control';
 const comboboxSelectedOptionSelector = '.combobox__option[role=option][aria-selected=true]';
-
-function getInitialState(input) {
-    const options = (input.options || []).map(option => ({
-        htmlAttributes: processHtmlAttributes(option, [
-            'class',
-            'style',
-            'value',
-            'text',
-            'selected'
-        ]),
-        class: option.class,
-        style: option.style,
-        value: option.value,
-        text: option.text,
-        selected: Boolean(option.selected),
-        renderBody: option.renderBody
-    }));
-
-    const selectedOption = options.filter(option => option.selected)[0] || options[0];
-
-    if (options.length > 0 && selectedOption.value === options[0].value) {
-        options[0].selected = true;
-    }
-
-    return {
-        htmlAttributes: processHtmlAttributes(input, [
-            'class',
-            'style',
-            'name',
-            'value',
-            'text',
-            'options',
-            'disabled',
-            'borderless'
-        ]),
-        class: input.class,
-        style: input.style,
-        name: input.name,
-        options,
-        selected: selectedOption,
-        disabled: input.disabled,
-        borderless: Boolean(input.borderless)
-    };
-}
-
-function getTemplateData(state) {
-    const comboboxClass = ['combobox', state.class];
-    const btnClass = [comboboxBtnClass];
-    const optionsClass = [comboboxOptionsClass];
-
-    if (state.borderless) {
-        btnClass.push('combobox__control--borderless');
-    }
-
-    return {
-        htmlAttributes: state.htmlAttributes,
-        class: comboboxClass,
-        style: state.style,
-        btnClass,
-        optionsClass,
-        name: state.name,
-        selectedOption: state.selected,
-        options: state.options,
-        disabled: state.disabled
-    };
-}
-
-function init() {
-    if (this.state.options && this.state.options.length > 0) {
-        this.expander = new Expander(this.el, {
-            autoCollapse: true,
-            expandOnClick: !this.state.disabled,
-            contentSelector: `.${comboboxOptionsClass}`,
-            hostSelector: comboboxHostSelector,
-            expandedClass: 'combobox--expanded',
-            simulateSpacebarClick: true
-        });
-
-        scrollKeyPreventer.add(this.el.querySelector(comboboxHostSelector));
-        scrollKeyPreventer.add(this.el.querySelector(`.${comboboxOptionsClass}`));
-    }
-}
 
 function handleExpand() {
     elementScroll.scroll(this.el.querySelector(comboboxSelectedOptionSelector));
@@ -228,16 +143,72 @@ function clearComboboxSelections(options) {
     });
 }
 
-module.exports = markoWidgets.defineComponent({
-    template,
-    getInitialState,
-    getTemplateData,
-    init,
+module.exports = {
     handleExpand,
     handleCollapse,
     handleOptionClick,
     handleComboboxKeyDown,
     processAfterStateChange,
     setSelectedOption,
-    clearComboboxSelections
-});
+    clearComboboxSelections,
+
+    onCreate(input) {
+        const options = (input.options || []).map(option => ({
+            htmlAttributes: processHtmlAttributes(option, [
+                'class',
+                'style',
+                'value',
+                'text',
+                'selected'
+            ]),
+            class: option.class,
+            style: option.style,
+            value: option.value,
+            text: option.text,
+            selected: Boolean(option.selected),
+            renderBody: option.renderBody
+        }));
+
+        const selectedOption = options.filter(option => option.selected)[0] || options[0];
+
+        if (options.length > 0 && selectedOption.value === options[0].value) {
+            options[0].selected = true;
+        }
+
+        this.state = {
+            htmlAttributes: processHtmlAttributes(input, [
+                'class',
+                'style',
+                'name',
+                'value',
+                'text',
+                'options',
+                'disabled',
+                'borderless'
+            ]),
+            class: input.class,
+            style: input.style,
+            name: input.name,
+            options,
+            selected: selectedOption,
+            disabled: input.disabled,
+            borderless: Boolean(input.borderless)
+        };
+    },
+
+    onMount() {
+        if (this.state.options && this.state.options.length > 0) {
+            this.expander = new Expander(this.el, {
+                autoCollapse: true,
+                expandOnClick: !this.state.disabled,
+                contentSelector: `.${comboboxOptionsClass}`,
+                hostSelector: comboboxHostSelector,
+                expandedClass: 'combobox--expanded',
+                simulateSpacebarClick: true
+            });
+
+            scrollKeyPreventer.add(this.el.querySelector(comboboxHostSelector));
+            scrollKeyPreventer.add(this.el.querySelector(`.${comboboxOptionsClass}`));
+        }
+    }
+};

@@ -6,68 +6,7 @@ const elementScroll = require('../../common/element-scroll');
 const eventUtils = require('../../common/event-utils');
 const safeRegex = require('../../common/build-safe-regex');
 
-module.exports = require('marko-widgets').defineComponent({
-    template: require('./template.marko'),
-    getInitialProps(input) {
-        return assign({
-            options: []
-        }, input);
-    },
-    getInitialState(input) {
-        const autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
-        const currentValue = input.value;
-        const index = findIndex(input.options, option => option.text === currentValue);
-
-        return assign({}, input, {
-            autocomplete,
-            selectedIndex: index === -1 ? null : index,
-            currentValue
-        });
-    },
-    onRender() {
-        const wasExpanded = this.expanded || false;
-        const isExpanded = this.expanded = this.state.expanded;
-        const wasToggled = isExpanded !== wasExpanded;
-
-        if (!this.state.disabled && this.state.options.length > 0) {
-            this.activeDescendant = ActiveDescendant.createLinear(
-                this.el,
-                this.getEl('input'),
-                this.getEl('options'),
-                '.combobox__option[role=option]', {
-                    activeDescendantClassName: 'combobox__option--active',
-                    autoInit: -1,
-                    autoReset: -1,
-                    axis: 'y'
-                }
-            );
-
-            this.expander = new Expander(this.el, {
-                autoCollapse: true,
-                expandOnFocus: true,
-                expandOnClick: this.state.readonly && !this.state.disabled,
-                collapseOnFocusOut: !this.state.readonly,
-                contentSelector: '.combobox__listbox',
-                hostSelector: '.combobox__control > input',
-                expandedClass: 'combobox--expanded',
-                simulateSpacebarClick: true
-            });
-
-            if (wasToggled) {
-                if (isExpanded) {
-                    this.expander.expand();
-                } else {
-                    this.expander.collapse();
-                }
-            }
-        }
-    },
-    onBeforeUpdate() {
-        this._handleDestroy();
-    },
-    onDestroy() {
-        this._handleDestroy();
-    },
+module.exports = {
     _handleDestroy() {
         if (this.activeDescendant) {
             this.activeDescendant.destroy();
@@ -77,17 +16,20 @@ module.exports = require('marko-widgets').defineComponent({
             this.expander.cancelAsync();
         }
     },
+
     handleExpand() {
         const index = this.getSelectedIndex(this.state.options, this.state.currentValue);
         elementScroll.scroll(this.getEls('option')[index]);
         this.emit('combobox-expand');
         this.setState('expanded', true);
     },
+
     handleCollapse() {
         this.activeDescendant.reset();
         this.emit('combobox-collapse');
         this.setState('expanded', false);
     },
+
     handleComboboxKeyDown(originalEvent) {
         const optionsEl = this.getEl('options');
         const selectedEl = optionsEl && optionsEl.querySelector('.combobox__option--active');
@@ -120,6 +62,7 @@ module.exports = require('marko-widgets').defineComponent({
             this.expander.collapse();
         });
     },
+
     handleComboboxKeyUp(originalEvent) {
         const newValue = this.getEl('input').value;
 
@@ -136,6 +79,7 @@ module.exports = require('marko-widgets').defineComponent({
             }
         });
     },
+
     handleComboboxBlur() {
         const wasClickedOption = this.optionClicked;
 
@@ -152,9 +96,11 @@ module.exports = require('marko-widgets').defineComponent({
             this.valueChanged = false;
         }
     },
+
     handleOptionMouseDown() {
         this.optionClicked = true;
     },
+
     handleOptionClick(evt) {
         const selectedEl = evt.target.nodeName === 'DIV' ? evt.target : evt.target.parentNode;
         const selectedValue = selectedEl.textContent;
@@ -168,14 +114,17 @@ module.exports = require('marko-widgets').defineComponent({
         this.emitComboboxEvent('select');
         this.expander.collapse();
     },
+
     setSelectedIndex(index = 0) {
         const newIndex = index || this.getSelectedIndex(this.state.options, this.state.currentValue);
 
         this.setState('selectedIndex', newIndex);
     },
+
     getSelectedIndex(options, value) {
         return findIndex(options, option => option.text === value);
     },
+
     emitComboboxEvent(eventName = 'input') {
         this.emit(`combobox-${eventName}`, {
             currentInputValue: this.state.currentValue,
@@ -183,6 +132,7 @@ module.exports = require('marko-widgets').defineComponent({
             options: this.state.options
         });
     },
+
     toggleListbox() {
         const query = this.getEl('input').value;
         const queryReg = safeRegex(query);
@@ -198,5 +148,79 @@ module.exports = require('marko-widgets').defineComponent({
                 this.expander.expand();
             }
         }
+    },
+
+    onInput(input) {
+        const autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
+        const currentValue = input.value;
+
+        const index = findIndex(input.options || [], option => option.text === currentValue);
+
+        this.state = assign({}, input, {
+            autocomplete,
+            selectedIndex: index === -1 ? null : index,
+            currentValue
+        });
+    },
+
+    onRender() {
+        if (typeof window !== 'undefined') {
+            this._handleDestroy();
+        }
+    },
+
+    onMount() {
+        this.onRenderLegacy({
+            firstRender: true
+        });
+    },
+
+    onUpdate() {
+        this.onRenderLegacy({
+            firstRender: false
+        });
+    },
+
+    onDestroy() {
+        this._handleDestroy();
+    },
+
+    onRenderLegacy() {
+        const wasExpanded = this.expanded || false;
+        const isExpanded = this.expanded = this.state.expanded;
+        const wasToggled = isExpanded !== wasExpanded;
+
+        if (!this.state.disabled && this.state.options && this.state.options.length > 0) {
+            this.activeDescendant = ActiveDescendant.createLinear(
+                this.el,
+                this.getEl('input'),
+                this.getEl('options'),
+                '.combobox__option[role=option]', {
+                    activeDescendantClassName: 'combobox__option--active',
+                    autoInit: -1,
+                    autoReset: -1,
+                    axis: 'y'
+                }
+            );
+
+            this.expander = new Expander(this.el, {
+                autoCollapse: true,
+                expandOnFocus: true,
+                expandOnClick: this.state.readonly && !this.state.disabled,
+                collapseOnFocusOut: !this.state.readonly,
+                contentSelector: '.combobox__listbox',
+                hostSelector: '.combobox__control > input',
+                expandedClass: 'combobox--expanded',
+                simulateSpacebarClick: true
+            });
+
+            if (wasToggled) {
+                if (isExpanded) {
+                    this.expander.expand();
+                } else {
+                    this.expander.collapse();
+                }
+            }
+        }
     }
-});
+};
