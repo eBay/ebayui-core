@@ -1,0 +1,91 @@
+$ var data = state;
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "classPrefix",
+        "type",
+        "reverse",
+        "fixWidth",
+        "items"
+    ];
+}
+
+static {
+    var itemIgnoredAttributes = [
+        "class",
+        "style",
+        "href",
+        "type",
+        "value",
+        "checked",
+        "current",
+        "badgeNumber",
+        "badgeAriaLabel"
+    ];
+}
+
+$ var isFake = data.type === "fake";
+$ var isRadio = data.type === "radio";
+$ var isCheckbox = data.type === "checkbox";
+$ var isNotCheckable = data.type !== "checkbox" && data.type !== "radio";
+$ var baseClass = data.classPrefix || (isFake ? "fake-menu" : "menu");
+<span
+    ...processHtmlAttributes(data, ignoredAttributes)
+    class=[
+        data.classPrefix ? `${baseClass}__menu` : isFake ? "fake-menu" : "menu",
+        data.reverse && `${baseClass}__menu--reverse`,
+        data.fixWidth && `${baseClass}__menu--fix-width`,
+        data.class
+    ]
+    style=data.style>
+    <div
+        role=(!isFake && "menu")
+        class=`${baseClass}__items`
+        key="menu"
+        id:scoped="menu">
+        <for|item| of=data.items>
+            $ {
+                var itemRole = isRadio
+                                ? "menuitemradio"
+                                : isCheckbox
+                                ? "menuitemcheckbox"
+                                : !isFake && "menuitem";
+            }
+            <${isFake ? (item.type === "button" ? "button" : "a") : "div"}
+                ...processHtmlAttributes(item, itemIgnoredAttributes)
+                class=[`${baseClass}__item`, item.class]
+                style=item.style
+                aria-checked=(!isNotCheckable && (item.checked ? "true" : "false"))
+                aria-current=(isNotCheckable && item.current ? "page" : false)
+                href=item.href
+                role=itemRole
+                onClick("handleItemClick")
+                onKeydown("handleItemKeydown")
+                onKeypress("handleItemKeypress")
+                key="item[]">
+                <span>
+                    <${!item.badgeNumber ? null : "span"} aria-hidden="true">
+                        <span>
+                            <if(
+                                item.renderBody &&
+                                (typeof item.renderBody === "function" ||
+                                    typeof item.renderBody.renderBody ===
+                                        "function")
+                            )>
+                                <${item.renderBody}/>
+                            </if>
+                            <else>${item.renderBody}</else>
+                        </span>
+                        <if(item.badgeNumber)>
+                            <ebay-badge type="menu" number=item.badgeNumber/>
+                        </if>
+                    </>
+                </span>
+                <span class=`${baseClass}__status`/>
+            </>
+        </for>
+    </div>
+</span>

@@ -5,42 +5,15 @@ const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
 const eventUtils = require('../../common/event-utils');
 const NodeListUtils = require('../../common/nodelist-utils');
-const template = require('./template.marko');
 
-module.exports = require('marko-widgets').defineComponent({
-    template,
-    getInitialState(input) {
-        return assign({}, input, {
-            items: (input.items || []).map(item => assign({}, item))
-        });
-    },
-    onRender({ firstRender }) {
-        this.contentEl = this.getEl('menu');
-
-        if (firstRender) {
-            this.tabindexPosition = 0;
-        }
-
-        if (this.state.type !== 'fake') {
-            this.rovingTabindex = rovingTabindex.createLinear(this.contentEl, 'div', {
-                index: this.tabindexPosition, autoReset: null
-            });
-
-            scrollKeyPreventer.add(this.contentEl);
-        }
-    },
-    onBeforeUpdate() {
-        this._handleDestroy();
-    },
-    onDestroy() {
-        this._handleDestroy();
-    },
+module.exports = {
     _handleDestroy() {
-        if (this.state.type !== 'fake') {
+        if (this.state.type !== 'fake' && this.rovingTabindex) {
             this.rovingTabindex.destroy();
             scrollKeyPreventer.remove(this.contentEl);
         }
     },
+
     toggleItemChecked(originalEvent, itemEl) {
         const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
         const item = this.state.items[itemIndex];
@@ -71,19 +44,23 @@ module.exports = require('marko-widgets').defineComponent({
             this.tabindexPosition = findIndex(this.rovingTabindex.filteredItems, el => el.tabIndex === 0);
         }
     },
+
     getCheckedValues() {
         return this.state.items
             .filter(item => item.checked)
             .map(item => item.value);
     },
+
     getCheckedIndexes() {
         return this.state.items
             .map((item, i) => item.checked && i)
             .filter(item => item !== false && typeof item !== 'undefined');
     },
+
     handleItemClick(originalEvent, itemEl) {
         this.toggleItemChecked(originalEvent, itemEl);
     },
+
     handleItemKeydown(originalEvent, itemEl) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.emitComponentEvent({ eventType: 'keydown', originalEvent });
@@ -91,6 +68,7 @@ module.exports = require('marko-widgets').defineComponent({
 
         eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(originalEvent, itemEl));
     },
+
     handleItemKeypress({ key }) {
         const itemIndex = NodeListUtils.findNodeWithFirstChar(this.getEl('menu').children, key);
 
@@ -98,6 +76,7 @@ module.exports = require('marko-widgets').defineComponent({
             this.tabindexPosition = this.rovingTabindex.index = itemIndex;
         }
     },
+
     emitComponentEvent({ eventType, el, originalEvent }) {
         const checkedIndexes = this.getCheckedIndexes();
         const itemIndex = el && indexOf(el.parentNode.children, el);
@@ -129,5 +108,49 @@ module.exports = require('marko-widgets').defineComponent({
         }
 
         this.emit(`menu-${eventType}`, eventObj);
+    },
+
+    onCreate(input, out) {
+        this.state = assign({}, input, {
+            items: (input.items || []).map(item => assign({}, item))
+        });
+    },
+
+    onRender() {
+        if (typeof window !== "undefined") {
+            this._handleDestroy();
+        }
+    },
+
+    onMount() {
+        this.onRenderLegacy({
+            firstRender: true
+        });
+    },
+
+    onUpdate() {
+        this.onRenderLegacy({
+            firstRender: false
+        });
+    },
+
+    onDestroy() {
+        this._handleDestroy();
+    },
+
+    onRenderLegacy({ firstRender }) {
+        this.contentEl = this.getEl('menu');
+
+        if (firstRender) {
+            this.tabindexPosition = 0;
+        }
+
+        if (this.state.type !== 'fake') {
+            this.rovingTabindex = rovingTabindex.createLinear(this.contentEl, 'div', {
+                index: this.tabindexPosition, autoReset: null
+            });
+
+            scrollKeyPreventer.add(this.contentEl);
+        }
     }
-});
+};

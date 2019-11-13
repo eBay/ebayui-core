@@ -7,8 +7,6 @@
             ]
         },
         "../ebay-badge",
-        "../ebay-button",
-        "require: marko-widgets",
-        "require: ./index.js"
+        "../ebay-button"
     ]
 }
