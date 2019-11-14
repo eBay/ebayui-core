@@ -1,6 +1,5 @@
 
-module.exports = require('marko-widgets').defineComponent({
-    template: require('./template.marko'),
+module.exports = {
     handleChange(originalEvent) {
         this.emit('switch-change', {
             originalEvent,
@@ -8,4 +7,4 @@ module.exports = require('marko-widgets').defineComponent({
             checked: originalEvent.target.checked
         });
     }
-});
+};
