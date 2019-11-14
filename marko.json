@@ -673,7 +673,7 @@
     "@disabled": "boolean"
   },
   "<ebay-tab>": {
-    "renderer": "./src/components/ebay-tab/index.js",
+    "renderer": "./src/components/ebay-tab/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
