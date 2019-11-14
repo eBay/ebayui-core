@@ -100,7 +100,7 @@ describe('section-title', () => {
 });
 
 describe('transformer', () => {
-    const componentPath = '../index.js';
+    const componentPath = '../index.marko';
 
     it('transforms body to _default', () => {
         const tagString = '<ebay-section-title size="large"><span>Content</span></ebay-section-title>';
