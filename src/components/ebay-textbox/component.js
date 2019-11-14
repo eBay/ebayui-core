@@ -1,25 +1,9 @@
 const assign = require('core-js-pure/features/object/assign');
 const FloatingLabel = require('makeup-floating-label');
 
-module.exports = require('marko-widgets').defineComponent({
-    template: require('./template.marko'),
-    getWidgetConfig(input) {
-        return { floatingLabel: input.floatingLabel };
-    },
-    getInitialState(input) {
-        return assign({}, input, {
-            disabled: Boolean(input.disabled)
-        });
-    },
-    init(config) {
-        this.config = config;
-        this.initFloatingLabel();
-    },
-    onUpdate() {
-        this.initFloatingLabel();
-    },
+module.exports = {
     initFloatingLabel() {
-        if (this.config.floatingLabel) {
+        if (this.state.floatingLabel) {
             if (this.floatingLabel) {
                 this.floatingLabel.refresh();
                 this.handleFloatingLabelInit();
@@ -33,6 +17,7 @@ module.exports = require('marko-widgets').defineComponent({
             }
         }
     },
+
     handleFloatingLabelInit: forwardEvent('floating-label-init'),
     handleKeydown: forwardEvent('keydown'),
     handleKeypress: forwardEvent('keypress'),
@@ -40,8 +25,22 @@ module.exports = require('marko-widgets').defineComponent({
     handleChange: forwardEvent('change'),
     handleInput: forwardEvent('input'),
     handleFocus: forwardEvent('focus'),
-    handleBlur: forwardEvent('blur')
-});
+    handleBlur: forwardEvent('blur'),
+
+    onInput(input) {
+        this.state = assign({}, input, {
+            disabled: Boolean(input.disabled)
+        });
+    },
+
+    onMount() {
+        this.initFloatingLabel();
+    },
+
+    onUpdate() {
+        this.initFloatingLabel();
+    }
+};
 
 function forwardEvent(eventName) {
     return function(originalEvent, el) {
