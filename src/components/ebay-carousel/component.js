@@ -4,91 +4,10 @@ const resizeUtil = require('../../common/event-utils').resizeUtil;
 const processHtmlAttributes = require('../../common/html-attributes');
 const onScroll = require('./utils/on-scroll-debounced');
 const scrollTransition = require('./utils/scroll-transition');
-const template = require('./template.marko');
 
 // Used for carousel slide direction.
 const LEFT = -1;
 const RIGHT = 1;
-
-function getInitialState(input) {
-    const gap = parseInt(input.gap, 10);
-    const state = {
-        htmlAttributes: processHtmlAttributes(input, [
-            'class',
-            'style',
-            'index',
-            'type',
-            'slide',
-            'gap',
-            'autoplay',
-            'paused',
-            'no-dots',
-            'itemsPerSlide',
-            'a11yPreviousText',
-            'a11yNextText',
-            'a11yStatusText',
-            'a11yStatusTag',
-            'a11yHeadingText',
-            'a11yHeadingTag',
-            'a11yCurrentText',
-            'a11yOtherText',
-            'a11yPlayText',
-            'a11yPauseText',
-            'items'
-        ]),
-        classes: ['carousel', input.class],
-        style: input.style,
-        config: {}, // A place to store values that should not trigger an update by themselves.
-        gap: isNaN(gap) ? 16 : gap,
-        noDots: input.noDots,
-        index: parseInt(input.index, 10) || 0,
-        itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
-        a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
-        a11yNextText: input.a11yNextText || 'Next Slide',
-        a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
-        a11yStatusTag: input.a11yStatusTag || 'span',
-        a11yHeadingText: input.a11yHeadingText,
-        a11yHeadingTag: input.a11yHeadingTag || 'h2',
-        a11yCurrentText: input.a11yCurrentText || 'Current Slide {currentSlide} - Carousel',
-        a11yOtherText: input.a11yOtherText || 'Slide {slide} - Carousel',
-        a11yPauseText: input.a11yPauseText || 'Pause - Carousel',
-        a11yPlayText: input.a11yPlayText || 'Play - Carousel'
-    };
-
-    const itemSkippedAttributes = ['class', 'style'];
-    const { itemsPerSlide } = state;
-    if (itemsPerSlide) {
-        state.peek = itemsPerSlide % 1;
-        state.itemsPerSlide = itemsPerSlide - state.peek;
-        state.classes.push('carousel--slides');
-
-        if (state.peek) {
-            state.classes.push('carousel--peek');
-            state.noDots = true;
-        }
-
-        // Only allow autoplay option for discrete carousels.
-        if (input.autoplay) {
-            const isSingleSlide = input.items.length <= itemsPerSlide;
-            state.autoplayInterval = parseInt(input.autoplay, 10) || 4000;
-            state.classes.push('carousel__autoplay');
-            state.paused = isSingleSlide || input.paused; // Force paused state if not enough slides provided;
-            state.interacting = false;
-        }
-    }
-
-    state.items = (input.items || []).map((item, i) => {
-        const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
-        return {
-            htmlAttributes: processHtmlAttributes(item, itemSkippedAttributes),
-            class: isStartOfSlide ? ['carousel__snap-point', item.class] : item.class,
-            style: item.style,
-            renderBody: item.renderBody
-        };
-    });
-
-    return state;
-}
 
 function getTemplateData(state) {
     const { config, autoplayInterval, items, itemsPerSlide, slideWidth, gap } = state;
@@ -150,33 +69,6 @@ function getTemplateData(state) {
     });
 
     return data;
-}
-
-function init() {
-    const { state: { config } } = this;
-    this.listEl = this.getEl('list');
-    this.nextEl = this.getEl('next');
-    this.containerEl = this.getEl('container');
-    this.emitUpdate = emitUpdate.bind(this);
-    this.subscribeTo(resizeUtil).on('resize', () => {
-        cleanupAsync.call(this);
-        onRender.call(this);
-    });
-
-    if (isNativeScrolling(this.listEl)) {
-        config.nativeScrolling = true;
-        this.once('destroy', onScroll(this.listEl, () => {
-            if (!config.scrollTransitioning) {
-                handleScroll.call(this, this.listEl.scrollLeft);
-            }
-        }));
-    } else {
-        this.subscribeTo(this.listEl).on('transitionend', ({ target }) => {
-            if (target === this.listEl) {
-                this.emitUpdate();
-            }
-        });
-    }
 }
 
 function onRender() {
@@ -550,18 +442,143 @@ function isNativeScrolling(el) {
     return getComputedStyle(el).overflowX !== 'visible';
 }
 
-module.exports = require('marko-widgets').defineComponent({
-    template,
-    getInitialState,
+module.exports = {
     getTemplateData,
-    init,
-    onRender,
-    onBeforeUpdate: cleanupAsync,
-    onBeforeDestroy: cleanupAsync,
     move,
     handleMove,
     handleDotClick,
     handleStartInteraction,
     handleEndInteraction,
-    togglePlay
-});
+    togglePlay,
+
+    onInput(input) {
+        const gap = parseInt(input.gap, 10);
+        const state = {
+            htmlAttributes: processHtmlAttributes(input, [
+                'class',
+                'style',
+                'index',
+                'type',
+                'slide',
+                'gap',
+                'autoplay',
+                'paused',
+                'no-dots',
+                'itemsPerSlide',
+                'a11yPreviousText',
+                'a11yNextText',
+                'a11yStatusText',
+                'a11yStatusTag',
+                'a11yHeadingText',
+                'a11yHeadingTag',
+                'a11yCurrentText',
+                'a11yOtherText',
+                'a11yPlayText',
+                'a11yPauseText',
+                'items'
+            ]),
+            classes: ['carousel', input.class],
+            style: input.style,
+            config: {}, // A place to store values that should not trigger an update by themselves.
+            gap: isNaN(gap) ? 16 : gap,
+            noDots: input.noDots,
+            index: parseInt(input.index, 10) || 0,
+            itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
+            a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
+            a11yNextText: input.a11yNextText || 'Next Slide',
+            a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
+            a11yStatusTag: input.a11yStatusTag || 'span',
+            a11yHeadingText: input.a11yHeadingText,
+            a11yHeadingTag: input.a11yHeadingTag || 'h2',
+            a11yCurrentText: input.a11yCurrentText || 'Current Slide {currentSlide} - Carousel',
+            a11yOtherText: input.a11yOtherText || 'Slide {slide} - Carousel',
+            a11yPauseText: input.a11yPauseText || 'Pause - Carousel',
+            a11yPlayText: input.a11yPlayText || 'Play - Carousel'
+        };
+
+        const itemSkippedAttributes = ['class', 'style'];
+        const { itemsPerSlide } = state;
+        if (itemsPerSlide) {
+            state.peek = itemsPerSlide % 1;
+            state.itemsPerSlide = itemsPerSlide - state.peek;
+            state.classes.push('carousel--slides');
+
+            if (state.peek) {
+                state.classes.push('carousel--peek');
+                state.noDots = true;
+            }
+
+            // Only allow autoplay option for discrete carousels.
+            if (input.autoplay) {
+                const isSingleSlide = input.items.length <= itemsPerSlide;
+                state.autoplayInterval = parseInt(input.autoplay, 10) || 4000;
+                state.classes.push('carousel__autoplay');
+                state.paused = isSingleSlide || input.paused; // Force paused state if not enough slides provided;
+                state.interacting = false;
+            }
+        }
+
+        state.items = (input.items || []).map((item, i) => {
+            const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
+            return {
+                htmlAttributes: processHtmlAttributes(item, itemSkippedAttributes),
+                class: isStartOfSlide ? ['carousel__snap-point', item.class] : item.class,
+                style: item.style,
+                renderBody: item.renderBody
+            };
+        });
+
+        this.state = state;
+    },
+
+    onRender() {
+        if (typeof window !== 'undefined') {
+            cleanupAsync.call(this);
+        }
+    },
+
+    onMount() {
+        const { state: { config } } = this;
+        this.listEl = this.getEl('list');
+        this.nextEl = this.getEl('next');
+        this.containerEl = this.getEl('container');
+        this.emitUpdate = emitUpdate.bind(this);
+        this.subscribeTo(resizeUtil).on('resize', () => {
+            cleanupAsync.call(this);
+            onRender.call(this);
+        });
+
+        if (isNativeScrolling(this.listEl)) {
+            config.nativeScrolling = true;
+            this.once('destroy', onScroll(this.listEl, () => {
+                if (!config.scrollTransitioning) {
+                    handleScroll.call(this, this.listEl.scrollLeft);
+                }
+            }));
+        } else {
+            this.subscribeTo(this.listEl).on('transitionend', ({ target }) => {
+                if (target === this.listEl) {
+                    this.emitUpdate();
+                }
+            });
+        }
+
+        this.onRenderLegacy({
+            firstRender: true
+        });
+    },
+
+    onUpdate() {
+        this.onRenderLegacy({
+            firstRender: false
+        });
+    },
+
+    onDestroy() {
+        cleanupAsync.call(this);
+    },
+
+    onRenderLegacy() {
+        onRender.call(this);
+    }
+};

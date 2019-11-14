@@ -1,7 +1,5 @@
 {
     "dependencies": [
-        "require: marko-widgets",
-        "require: ./index.js",
         "../ebay-icon",
         {
             "if-not-flag": "ebayui-no-skin",

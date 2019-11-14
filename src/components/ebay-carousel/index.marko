@@ -1,0 +1,146 @@
+$ var data = component.getTemplateData(state, input);
+<div ...data.htmlAttributes class=data.classes style=data.style>
+    $ var config = data.config;
+    $ var discrete = data.totalSlides >= 1;
+    $ var statusId = discrete && "carousel-status-" + component.id;
+    <div
+        class=[
+            "carousel__container",
+            data.bothControlsDisabled &&
+                "carousel__container--controls-disabled"
+        ]
+        onFocusin(data.autoplayInterval && "handleStartInteraction")
+        onTouchstart(data.autoplayInterval && "handleStartInteraction")
+        onMouseover(data.autoplayInterval && "handleStartInteraction")
+        onFocusout(data.autoplayInterval && "handleEndInteraction")
+        onMouseout(data.autoplayInterval && "handleEndInteraction")
+        onTouchend(data.autoplayInterval && "handleEndInteraction")
+        key="container"
+        id:scoped="container">
+        <if(data.a11yStatusText || data.a11yHeadingText)>
+            <${discrete ? data.a11yStatusTag : data.a11yHeadingTag}
+                id=statusId
+                class="clipped"
+                aria-live=(
+                    discrete
+                        ? data.autoplayInterval && !data.paused
+                            ? "off"
+                            : "polite"
+                        : false
+                )>
+                <if(discrete)>
+                    <span>${data.a11yStatusText}</span>
+                </if>
+                <else>
+                    <span>${data.a11yHeadingText}</span>
+                </else>
+            </>
+        </if>
+        <if(data.showPaddles)>
+            <button
+                class=[
+                    "carousel__control",
+                    "carousel__control--prev",
+                    data.alwaysShowPaddles && "carousel__control--show"
+                ]
+                type="button"
+                on-click(!data.prevControlDisabled && "handleMove", -1)
+                aria-describedby=statusId
+                aria-label=data.a11yPreviousText
+                aria-disabled=(data.prevControlDisabled && "true")>
+                <ebay-icon type="inline" name="chevron-left-small"/>
+            </button>
+        </if>
+        <ul
+            class="carousel__list"
+            style=(
+                !config.nativeScrolling &&
+                    data.offset && {
+                        transform: "translate3d(" + data.offset * -1 + "px,0,0)",
+                        transition: data.disableTransition ? "none" : undefined
+                    }
+            )
+            key="list"
+            id:scoped="list">
+            <for|item| of=data.items>
+                <li
+                    ...item.htmlAttributes
+                    class=item.class
+                    style=item.style
+                    aria-hidden=(!item.fullyVisible && "true")
+                    no-update-body-if(!!config.preserveItems)>
+                    <if(
+                        item.renderBody &&
+                        (typeof item.renderBody === "function" ||
+                            typeof item.renderBody.renderBody === "function")
+                    )>
+                        <${item.renderBody}/>
+                    </if>
+                    <else>${item.renderBody}</else>
+                </li>
+            </for>
+        </ul>
+        <if(data.showPaddles)>
+            <button
+                class=[
+                    "carousel__control",
+                    "carousel__control--next",
+                    data.alwaysShowPaddles && "carousel__control--show"
+                ]
+                type="button"
+                on-click(!data.nextControlDisabled && "handleMove", 1)
+                aria-describedby=statusId
+                aria-label=data.a11yNextText
+                aria-disabled=(data.nextControlDisabled && "true")
+                key="next"
+                id:scoped="next">
+                <ebay-icon type="inline" name="chevron-right-small"/>
+            </button>
+        </if>
+        <if(data.autoplayInterval && !data.bothControlsDisabled)>
+            <if(data.paused)>
+                <button
+                    class="carousel__playback"
+                    type="button"
+                    aria-label=data.a11yPlayText
+                    onClick("togglePlay")>
+                    <ebay-icon type="inline" name="play"/>
+                </button>
+            </if>
+            <else>
+                <button
+                    class="carousel__playback"
+                    type="button"
+                    aria-label=data.a11yPauseText
+                    onClick("togglePlay")>
+                    <ebay-icon type="inline" name="pause"/>
+                </button>
+            </else>
+        </if>
+    </div>
+    <if(!data.noDots && data.totalSlides > 1)>
+        <ul class="carousel__dots">
+            <for|i| from=0 to=(data.totalSlides - 1)>
+                <li>
+                    $ var isActive = i === data.slide;
+                    <button
+                        class={
+                            "carousel__dot--active": isActive
+                        }
+                        type="button"
+                        on-click(!isActive && "handleDotClick", i)
+                        aria-describedby=statusId
+                        aria-disabled=(isActive && "true")
+                        aria-label=(
+                            isActive
+                                ? data.a11yCurrentText.replace(
+                                      "{currentSlide}",
+                                      i + 1
+                                  )
+                                : data.a11yOtherText.replace("{slide}", i + 1)
+                        )/>
+                </li>
+            </for>
+        </ul>
+    </if>
+</div>
