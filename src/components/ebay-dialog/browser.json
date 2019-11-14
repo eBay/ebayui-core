@@ -1,6 +1,6 @@
 {
     "dependencies": [
-        "require: ./index.js",
+        "require: ./index.marko",
         "../ebay-icon",
         {
             "if-not-flag": "ebayui-no-skin",

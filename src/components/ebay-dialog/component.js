@@ -4,39 +4,11 @@ const screenReaderTrap = require('makeup-screenreader-trap');
 const bodyScroll = require('../../common/body-scroll');
 const transition = require('../../common/transition');
 
-module.exports = require('marko-widgets').defineComponent({
-    template: require('./template.marko'),
-    getInitialState(input) {
-        return assign({}, input, {
-            open: input.open || false
-        });
-    },
-    init() {
-        this.rootEl = this.getEl();
-        this.windowEl = this.getEl('window');
-        this.closeEl = this.getEl('close');
-        this.bodyEl = this.getEl('body');
-        this.transitionEls = [this.windowEl, this.rootEl];
-        // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
-        this.subscribeTo(this.rootEl).on('click', () => {});
-    },
-    onRender(opts) {
-        this._trap(opts);
-    },
-    onBeforeUpdate() {
-        this._release();
-    },
-    onBeforeDestroy() {
-        this._cancelAsync();
-        this._release();
-
-        if (this.isTrapped) {
-            bodyScroll.restore();
-        }
-    },
+module.exports = {
     handleStartClick({ target }) {
         this.startEl = target;
     },
+
     handleDialogClick({ target, clientY }) {
         const { closeEl, windowEl, startEl } = this;
 
@@ -58,9 +30,11 @@ module.exports = require('marko-widgets').defineComponent({
 
         this.setState('open', false);
     },
+
     handleCloseButtonClick() {
         this.setState('open', false);
     },
+
     /**
      * Ensures that if a component is supposed to be trapped that this is
      * trapped after rendering.
@@ -128,6 +102,7 @@ module.exports = require('marko-widgets').defineComponent({
             }
         }
     },
+
     /**
      * Releases the trap before each render and on destroy so
      * that Marko can update normally without the inserted dom nodes.
@@ -141,6 +116,7 @@ module.exports = require('marko-widgets').defineComponent({
             this.restoreTrap = false;
         }
     },
+
     _cancelAsync() {
         if (this.cancelScrollReset) {
             clearTimeout(this.cancelScrollReset);
@@ -151,5 +127,50 @@ module.exports = require('marko-widgets').defineComponent({
             this.cancelTransition();
             this.cancelTransition = undefined;
         }
+    },
+
+    onInput(input) {
+        this.state = assign({}, input, {
+            open: input.open || false
+        });
+    },
+
+    onRender() {
+        if (typeof window !== "undefined") {
+            this._release();
+        }
+    },
+
+    onMount() {
+        this.rootEl = this.getEl();
+        this.windowEl = this.getEl('window');
+        this.closeEl = this.getEl('close');
+        this.bodyEl = this.getEl('body');
+        this.transitionEls = [this.windowEl, this.rootEl];
+        // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
+        this.subscribeTo(this.rootEl).on('click', () => {});
+
+        this.onRenderLegacy({
+            firstRender: true
+        });
+    },
+
+    onUpdate() {
+        this.onRenderLegacy({
+            firstRender: false
+        });
+    },
+
+    onDestroy() {
+        this._cancelAsync();
+        this._release();
+
+        if (this.isTrapped) {
+            bodyScroll.restore();
+        }
+    },
+
+    onRenderLegacy(event) {
+        this._trap(event);
     }
-});
+};
