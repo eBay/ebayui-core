@@ -130,7 +130,7 @@ module.exports = {
     handleNextPageKeyDown,
     handlePreviousPageKeyDown,
 
-    onCreate(input, out) {
+    onCreate(input) {
         let prevItem;
         let nextItem;
         const items = [];
@@ -182,7 +182,7 @@ module.exports = {
     },
 
     onRender() {
-        if (typeof window !== "undefined") {
+        if (typeof window !== 'undefined') {
             clearTimeout(this.timeoutRef);
         }
     },

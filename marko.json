@@ -542,7 +542,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-pill>": {
-    "renderer": "./src/components/ebay-pill/index.js",
+    "renderer": "./src/components/ebay-pill/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
