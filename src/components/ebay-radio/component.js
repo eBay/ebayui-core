@@ -1,9 +1,8 @@
 
-module.exports = require('marko-widgets').defineComponent({
-    template: require('./template.marko'),
+module.exports = {
     handleClick: forwardEvent('change'),
     handleFocus: forwardEvent('focus')
-});
+};
 
 function forwardEvent(eventName) {
     return function(originalEvent, el) {

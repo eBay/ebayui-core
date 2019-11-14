@@ -557,7 +557,7 @@
     "@aria-selected-text": "string"
   },
   "<ebay-radio>": {
-    "renderer": "./src/components/ebay-radio/index.js",
+    "renderer": "./src/components/ebay-radio/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
