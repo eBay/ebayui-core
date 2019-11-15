@@ -6,7 +6,6 @@
                 "@ebay/skin/actionable",
                 "@ebay/skin/tooltip"
             ]
-        },
-        "require: ./index.marko"
+        }
     ]
 }

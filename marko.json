@@ -12,7 +12,7 @@
     "@number": "expression"
   },
   "<ebay-breadcrumb>": {
-    "renderer": "./src/components/ebay-breadcrumb/index.marko",
+    "template": "./src/components/ebay-breadcrumb/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -38,7 +38,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-button>": {
-    "renderer": "./src/components/ebay-button/index.marko",
+    "template": "./src/components/ebay-button/index.marko",
     "@*": {
       "type": "expression",
       "targetProperty": null
@@ -63,7 +63,7 @@
     "@badge-aria-label": "string"
   },
   "<ebay-carousel>": {
-    "renderer": "./src/components/ebay-carousel/index.marko",
+    "template": "./src/components/ebay-carousel/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -103,7 +103,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-checkbox>": {
-    "renderer": "./src/components/ebay-checkbox/index.marko",
+    "template": "./src/components/ebay-checkbox/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -114,7 +114,7 @@
     "@disabled": "boolean"
   },
   "<ebay-combobox>": {
-    "renderer": "./src/components/ebay-combobox/index.marko",
+    "template": "./src/components/ebay-combobox/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -144,7 +144,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-combobox-readonly>": {
-    "renderer": "./src/components/ebay-combobox-readonly/index.marko",
+    "template": "./src/components/ebay-combobox-readonly/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -184,7 +184,7 @@
     "@size": "size"
   },
   "<ebay-dialog>": {
-    "renderer": "./src/components/ebay-dialog/index.marko",
+    "template": "./src/components/ebay-dialog/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -212,7 +212,7 @@
     "@no-text": "boolean"
   },
   "<ebay-filter>": {
-    "renderer": "./src/components/ebay-filter/index.marko",
+    "template": "./src/components/ebay-filter/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -227,7 +227,7 @@
     "@a11y-selected-text": "string"
   },
   "<ebay-filter-menu>": {
-    "renderer": "./src/components/ebay-filter-menu/index.marko",
+    "template": "./src/components/ebay-filter-menu/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -258,7 +258,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-filter-menu-button>": {
-    "renderer": "./src/components/ebay-filter-menu-button/index.marko",
+    "template": "./src/components/ebay-filter-menu-button/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -308,7 +308,7 @@
     "@_themes": "expression"
   },
   "<ebay-infotip>": {
-    "renderer": "./src/components/ebay-infotip/index.marko",
+    "template": "./src/components/ebay-infotip/index.marko",
     "transformer": "./src/components/ebay-infotip/transformer.js",
     "@*": {
       "targetProperty": null,
@@ -356,7 +356,7 @@
     }
   },
   "<ebay-listbox-button>": {
-    "renderer": "./src/components/ebay-listbox-button/index.marko",
+    "template": "./src/components/ebay-listbox-button/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -388,7 +388,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-menu>": {
-    "renderer": "./src/components/ebay-menu/index.marko",
+    "template": "./src/components/ebay-menu/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -421,7 +421,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-menu-button>": {
-    "renderer": "./src/components/ebay-menu-button/index.marko",
+    "template": "./src/components/ebay-menu-button/index.marko",
     "transformer": "./src/components/ebay-menu-button/transformer.js",
     "@*": {
       "targetProperty": null,
@@ -471,7 +471,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-notice>": {
-    "renderer": "./src/components/ebay-notice/index.marko",
+    "template": "./src/components/ebay-notice/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -511,7 +511,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-pagination>": {
-    "renderer": "./src/components/ebay-pagination/index.marko",
+    "template": "./src/components/ebay-pagination/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -542,7 +542,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-pill>": {
-    "renderer": "./src/components/ebay-pill/index.marko",
+    "template": "./src/components/ebay-pill/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -557,7 +557,7 @@
     "@aria-selected-text": "string"
   },
   "<ebay-radio>": {
-    "renderer": "./src/components/ebay-radio/index.marko",
+    "template": "./src/components/ebay-radio/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -568,7 +568,7 @@
     "@disabled": "boolean"
   },
   "<ebay-section-title>": {
-    "renderer": "./src/components/ebay-section-title/index.marko",
+    "template": "./src/components/ebay-section-title/index.marko",
     "transformer": "./src/components/ebay-section-title/transformer.js",
     "@*": {
       "targetProperty": null,
@@ -633,7 +633,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-select>": {
-    "renderer": "./src/components/ebay-select/index.marko",
+    "template": "./src/components/ebay-select/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -662,7 +662,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-switch>": {
-    "renderer": "./src/components/ebay-switch/index.marko",
+    "template": "./src/components/ebay-switch/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -673,7 +673,7 @@
     "@disabled": "boolean"
   },
   "<ebay-tab>": {
-    "renderer": "./src/components/ebay-tab/index.marko",
+    "template": "./src/components/ebay-tab/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -712,7 +712,7 @@
   },
   "<ebay-textbox>": {
     "transformer": "./src/components/ebay-textbox/transformer.js",
-    "renderer": "./src/components/ebay-textbox/index.marko",
+    "template": "./src/components/ebay-textbox/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -733,7 +733,7 @@
     "@floating-label": "string"
   },
   "<ebay-tooltip>": {
-    "renderer": "./src/components/ebay-tooltip/index.marko",
+    "template": "./src/components/ebay-tooltip/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -782,7 +782,7 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-tourtip>": {
-    "renderer": "./src/components/ebay-tourtip/index.marko",
+    "template": "./src/components/ebay-tourtip/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"

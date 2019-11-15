@@ -6,9 +6,6 @@
                 "@ebay/skin/actionable",
                 "@ebay/skin/button"
             ]
-        },
-        "../ebay-badge",
-        "../ebay-icon",
-        "require: ./index.marko"
+        }
     ]
 }

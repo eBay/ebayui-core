@@ -7,7 +7,6 @@
                 "@ebay/skin/utility",
                 "@ebay/skin/icon/foreground"
             ]
-        },
-        "require: ./index.marko"
+        }
     ]
 }

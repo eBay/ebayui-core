@@ -5,9 +5,6 @@
             "dependencies": [
                 "@ebay/skin/menu-button"
             ]
-        },
-        "../ebay-button",
-        "../ebay-icon",
-        "require: ./index.marko"
+        }
     ]
 }

@@ -5,7 +5,6 @@
             "dependencies": [
                 "@ebay/skin/combobox"
             ]
-        },
-        "require: ./index.marko"
+        }
     ]
 }

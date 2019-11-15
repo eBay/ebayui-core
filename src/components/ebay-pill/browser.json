@@ -4,8 +4,6 @@
             "dependencies": [
                 "@ebay/skin/pill"
             ]
-        },
-        "../ebay-button",
-        "require: ./index.marko"
+        }
     ]
 }

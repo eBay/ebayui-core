@@ -1,5 +1,4 @@
 {
     "dependencies": [
-        "require: ./index.marko"
     ]
 }

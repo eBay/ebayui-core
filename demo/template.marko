@@ -1,15 +1,18 @@
-<var designSystem=data.params.designSystem/>
-<var currentComponent=data.params.component/>
-
-<lasso-page name="demo" package-path="./browser.json" flags=data.lassoFlags dependencies=data.model.dependencies/>
-
+$ var designSystem = data.params.designSystem;
+$ var currentComponent = data.params.component;
+<lasso-page
+    name=`demo-${designSystem}-${currentComponent}`
+    cache-key=`demo-${designSystem}-${currentComponent}`
+    package-path="./browser.json"
+    flags=data.lassoFlags
+    dependencies=data.model.dependencies/>
 <!DOCTYPE html>
 <html class=designSystem>
     <head>
         <meta charset="utf-8"/>
-        <link rel="shortcut icon" href="/favicon.ico">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width">
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width"/>
         <title>ebayui-core</title>
         <lasso-head/>
     </head>
@@ -17,27 +20,34 @@
         <section class="grid">
             <nav class="demo-nav">
                 <span class="demo-nav__ds">
-                    <a href=`/ds4/${currentComponent}` body-only-if(designSystem === 'ds4')><span>DS4</span></a>
+                    <${designSystem === "ds4" ? null : "a"} href=`/ds4/${currentComponent}`>
+                        <span>DS4</span>
+                    </>
                     &nbsp;&middot;&nbsp;
-                    <a href=`/ds6/${currentComponent}` body-only-if(designSystem === 'ds6')><span>DS6</span></a>
+                    <${designSystem === "ds6" ? null : "a"} href=`/ds6/${currentComponent}`>
+                        <span>DS6</span>
+                    </>
                 </span>
-                <for (component in data.model.components)>
-                    <a href=`/${designSystem}/${component}`><span>${component}</span></a>
+                <for|component| of=data.model.components>
+                    <a href=`/${designSystem}/${component}`>
+                        <span>${component}</span>
+                    </a>
                 </for>
             </nav>
             <main>
                 <h1>${data.params.component}</h1>
-                <for (example in data.model.examples)>
+                <for|example| of=data.model.examples>
                     <div class="example">
                         <h2>${example.name}</h2>
                         <div class="example-code">$!{example.code}</div>
-                        <div><include(example.template)/></div>
+                        <div>
+                            <${example.template}/>
+                        </div>
                     </div>
                 </for>
             </main>
         </section>
         <lasso-body/>
-        <init-widgets/>
         <script src=process.env.BROWSER_REFRESH_URL/>
     </body>
 </html>

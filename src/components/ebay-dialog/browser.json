@@ -6,7 +6,6 @@
             "dependencies": [
                 "@ebay/skin/dialog"
             ]
-        },
-        "require: ./index.marko"
+        }
     ]
 }

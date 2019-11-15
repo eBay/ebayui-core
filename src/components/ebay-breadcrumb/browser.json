@@ -6,7 +6,6 @@
                 "@ebay/skin/breadcrumb",
                 "@ebay/skin/utility"
             ]
-        },
-        "require: ./index.marko"
+        }
     ]
 }

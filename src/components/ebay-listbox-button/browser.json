@@ -5,7 +5,6 @@
             "dependencies": [
                 "@ebay/skin/listbox-button"
             ]
-        },
-        "require: ./index.marko"
+        }
     ]
 }
