@@ -1,6 +1,5 @@
 {
     "dependencies": [
-        "../ebay-icon",
         {
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [

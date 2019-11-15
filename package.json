@@ -103,7 +103,6 @@
     "marko": "^4.18.22",
     "marko-cli": "^7.0.25",
     "marko-prettyprint": "^1.5.2",
-    "marko-widgets": "^7",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1",
     "open-cli": "^5.0.0",
@@ -121,8 +120,7 @@
   "peerDependencies": {
     "@ebay/skin": "9.4.0",
     "chromedriver": "^77.0.0",
-    "marko": "^4",
-    "marko-widgets": "^7"
+    "marko": "^4"
   },
   "dependencies": {
     "core-js-pure": "^3.2.1",

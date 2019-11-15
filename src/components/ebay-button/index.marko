@@ -77,7 +77,12 @@ $ var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
     disabled=state.disabled
     aria-disabled=(input.partiallyDisabled && "true")>
     $ var hasAriaLabel = Boolean(htmlAttributes["aria-label"]);
-    <${!hasAriaLabel ? null : "span"} w-body aria-hidden="true"/>
+    <${!hasAriaLabel ? null : "span"} aria-hidden="true">
+        <if(typeof input.renderBody === "function")>
+            <${input}/>
+        </if>
+        <else>${input.renderBody}</else>
+    </>
     <if(isBadged)>
         <ebay-badge
             number=input.badgeNumber
