@@ -1,22 +1,20 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static {
-    var ignoredAttributes = [
-        "id",
-        "class",
-        "style",
-        "type",
-        "value",
-        "invalid",
-        "disabled",
-        "fluid",
-        "multiline",
-        "icon",
-        "iconPosition",
-        "iconTag",
-        "floatingLabel"
-    ];
-}
+static var ignoredAttributes = [
+    "id",
+    "class",
+    "style",
+    "type",
+    "value",
+    "invalid",
+    "disabled",
+    "fluid",
+    "multiline",
+    "icon",
+    "iconPosition",
+    "iconTag",
+    "floatingLabel"
+];
 
 $ var iconPosition = input.iconPosition || "prefix";
 $ var displayIcon = Boolean(!input.multiline && input.iconTag);
@@ -29,7 +27,7 @@ $ var displayIcon = Boolean(!input.multiline && input.iconTag);
     ]>
     <if(state.floatingLabel)>
         <label
-            for=(input.id || component.getElId('textbox'))
+            for=(input.id || component.getElId("textbox"))
             class=[
                 "floating-label__label",
                 state.disabled && "floating-label__label--disabled"
@@ -38,18 +36,11 @@ $ var displayIcon = Boolean(!input.multiline && input.iconTag);
         </label>
     </if>
     <if(displayIcon && iconPosition === "prefix")>
-        <if(
-            input.iconTag.renderBody &&
-            (typeof input.iconTag.renderBody === "function" ||
-                typeof input.iconTag.renderBody.renderBody === "function")
-        )>
-            <${input.iconTag.renderBody}/>
-        </if>
-        <else>${input.iconTag.renderBody}</else>
+        <${input.iconTag.renderBody}/>
     </if>
     <${input.multiline ? "textarea" : "input"}
         ...processHtmlAttributes(input, ignoredAttributes)
-        id=(input.id || component.getElId('textbox'))
+        id=(input.id || component.getElId("textbox"))
         class=[
             "textbox__control",
             input.fluid && "textbox__control--fluid",
@@ -69,13 +60,6 @@ $ var displayIcon = Boolean(!input.multiline && input.iconTag);
         <if(input.multiline && input.value)>${input.value}</if>
     </>
     <if(displayIcon && iconPosition === "postfix")>
-        <if(
-            input.iconTag.renderBody &&
-            (typeof input.iconTag.renderBody === "function" ||
-                typeof input.iconTag.renderBody.renderBody === "function")
-        )>
-            <${input.iconTag.renderBody}/>
-        </if>
-        <else>${input.iconTag.renderBody}</else>
+        <${input.iconTag.renderBody}/>
     </if>
 </>

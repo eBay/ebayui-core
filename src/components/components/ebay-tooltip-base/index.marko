@@ -2,8 +2,5 @@
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")
     overlay-style=input.overlayStyle>
-    <if(typeof input.renderBody === "function")>
-        <${input}/>
-    </if>
-    <else>${input.renderBody}</else>
+    <${input}/>
 </span>

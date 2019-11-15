@@ -4,17 +4,15 @@ static var isBrowser = typeof window !== "undefined";
 
 static var browserLookup = {};
 
-static {
-    var ignoredAttributes = [
-        "class",
-        "style",
-        "type",
-        "name",
-        "a11yText",
-        "noSkinClasses",
-        "_themes"
-    ];
-}
+static var ignoredAttributes = [
+    "class",
+    "style",
+    "type",
+    "name",
+    "a11yText",
+    "noSkinClasses",
+    "_themes"
+];
 
 $ var lookup = isBrowser ? browserLookup : out.global;
 $ var isInline = data.type === "inline";

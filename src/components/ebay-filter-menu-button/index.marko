@@ -1,23 +1,21 @@
 $ var data = state;
 import processHtmlAttributes from "../../common/html-attributes"
 
-static {
-    var ignoredAttributes = [
-        "variant",
-        "text",
-        "footerText",
-        "class",
-        "style",
-        "disabled",
-        "selected",
-        "formName",
-        "formAction",
-        "formMethod",
-        "a11yText",
-        "a11yFooterText",
-        "items"
-    ];
-}
+static var ignoredAttributes = [
+    "variant",
+    "text",
+    "footerText",
+    "class",
+    "style",
+    "disabled",
+    "selected",
+    "formName",
+    "formAction",
+    "formMethod",
+    "a11yText",
+    "a11yFooterText",
+    "items"
+];
 
 $ {
     var checkedItems =
@@ -65,14 +63,7 @@ $ {
                 value=item.value
                 checked=item.checked
                 variant=data.variant>
-                <if(
-                    item.renderBody &&
-                    (typeof item.renderBody === "function" ||
-                        typeof item.renderBody.renderBody === "function")
-                )>
-                    <${item.renderBody}/>
-                </if>
-                <else>${item.renderBody}</else>
+                <${item.renderBody}/>
             </ebay-filter-menu-item>
         </for>
     </ebay-filter-menu>

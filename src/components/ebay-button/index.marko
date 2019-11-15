@@ -1,26 +1,24 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static {
-    var ignoredAttributes = [
-        "id",
-        "class",
-        "style",
-        "type",
-        "disabled",
-        "partiallyDisabled",
-        "href",
-        "priority",
-        "size",
-        "noText",
-        "fluid",
-        "variant",
-        "fixedHeight",
-        "truncate",
-        "transparent",
-        "badgeNumber",
-        "badgeAriaLabel"
-    ];
-}
+static var ignoredAttributes = [
+    "id",
+    "class",
+    "style",
+    "type",
+    "disabled",
+    "partiallyDisabled",
+    "href",
+    "priority",
+    "size",
+    "noText",
+    "fluid",
+    "variant",
+    "fixedHeight",
+    "truncate",
+    "transparent",
+    "badgeNumber",
+    "badgeAriaLabel"
+];
 
 $ var size = input.size;
 $ var priority = input.priority || "secondary";

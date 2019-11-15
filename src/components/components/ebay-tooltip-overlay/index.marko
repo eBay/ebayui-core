@@ -7,8 +7,6 @@ static var pointerStyles = constants.pointerStyles;
 $ {
     var hasUserStyles =
         input.styleTop || input.styleLeft || input.styleRight || input.styleBottom;
-}
-$ {
     var overlayStyles = hasUserStyles
         ? {
               top: input.styleTop,
@@ -38,15 +36,7 @@ $ {
                         style=input.heading.style
                         key="tourtip-label"
                         id:scoped="tourtip-label">
-                        <if(
-                            input.heading.renderBody &&
-                            (typeof input.heading.renderBody === "function" ||
-                                typeof input.heading.renderBody.renderBody ===
-                                    "function")
-                        )>
-                            <${input.heading.renderBody}/>
-                        </if>
-                        <else>${input.heading.renderBody}</else>
+                        <${input.heading.renderBody}/>
                     </span>
                 </if>
                 <if(input.content)>
@@ -55,15 +45,7 @@ $ {
                         : "span"}
                         class=input.content.class
                         style=input.content.style>
-                        <if(
-                            input.content.renderBody &&
-                            (typeof input.content.renderBody === "function" ||
-                                typeof input.content.renderBody.renderBody ===
-                                    "function")
-                        )>
-                            <${input.content.renderBody}/>
-                        </if>
-                        <else>${input.content.renderBody}</else>
+                        <${input.content.renderBody}/>
                     </>
                 </if>
             </span>

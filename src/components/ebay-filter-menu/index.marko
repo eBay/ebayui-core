@@ -13,9 +13,6 @@ static {
         "a11yFooterText",
         "items"
     ];
-}
-
-static {
     var itemIgnoredAttributes = ["class", "style", "checked", "value"];
 }
 
@@ -70,15 +67,7 @@ $ {
                             </span>
                         </else>
                         <span class=`${baseClass}__text`>
-                            <if(
-                                item.renderBody &&
-                                (typeof item.renderBody === "function" ||
-                                    typeof item.renderBody.renderBody ===
-                                        "function")
-                            )>
-                                <${item.renderBody}/>
-                            </if>
-                            <else>${item.renderBody}</else>
+                            <${item.renderBody}/>
                         </span>
                     </>
                 </for>

@@ -1,16 +1,14 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static {
-    var ignoredAttributes = [
-        "class",
-        "style",
-        "disabled",
-        "href",
-        "priority",
-        "pressed",
-        "ariaSelectedText"
-    ];
-}
+static var ignoredAttributes = [
+    "class",
+    "style",
+    "disabled",
+    "href",
+    "priority",
+    "pressed",
+    "ariaSelectedText"
+];
 
 $ var classPrefix = input.href ? "fake-pill" : "pill";
 <span ...processHtmlAttributes(input, ignoredAttributes) class="pill__wrapper">

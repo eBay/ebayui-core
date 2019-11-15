@@ -11,9 +11,6 @@ static {
         "autocomplete",
         "options"
     ];
-}
-
-static {
     var itemIgnoredAttributes = ["class", "style", "text"];
 }
 
@@ -64,10 +61,9 @@ $ var currentValue = state.currentValue;
             <for|option| of=options>
                 $ var isSelected = selectedOption === option;
                 $ {
-                    var isVisible =
-                                        (state.autocomplete === "list" &&
-                                            (isSelected || currentValueReg.test(option.text))) ||
-                                        state.autocomplete === "none";
+                    var isVisible = (state.autocomplete === "list" &&
+                        (isSelected || currentValueReg.test(option.text))) ||
+                        state.autocomplete === "none";
                 }
                 <if(isVisible && option.text)>
                     <div

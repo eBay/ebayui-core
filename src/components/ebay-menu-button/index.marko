@@ -1,27 +1,25 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static {
-    var ignoredAttributes = [
-        "class",
-        "style",
-        "type",
-        "text",
-        "icon",
-        "a11yText",
-        "noToggleIcon",
-        "expanded",
-        "reverse",
-        "fixWidth",
-        "borderless",
-        "size",
-        "priority",
-        "iconTag",
-        "disabled",
-        "variant",
-        "items",
-        "label"
-    ];
-}
+static var ignoredAttributes = [
+    "class",
+    "style",
+    "type",
+    "text",
+    "icon",
+    "a11yText",
+    "noToggleIcon",
+    "expanded",
+    "reverse",
+    "fixWidth",
+    "borderless",
+    "size",
+    "priority",
+    "iconTag",
+    "disabled",
+    "variant",
+    "items",
+    "label"
+];
 
 $ var isFake = state.type === "fake";
 $ var baseClass = isFake ? "fake-menu-button" : "menu-button";
@@ -57,15 +55,7 @@ $ var isOverflowVariant = state.variant === "overflow";
             ]>
                 <if(input.label)>
                     <span no-update-body>
-                        <if(
-                            input.label.renderBody &&
-                            (typeof input.label.renderBody === "function" ||
-                                typeof input.label.renderBody.renderBody ===
-                                    "function")
-                        )>
-                            <${input.label.renderBody}/>
-                        </if>
-                        <else>${input.label.renderBody}</else>
+                        <${input.label.renderBody}/>
                     </span>
                 </if>
                 <else>
@@ -73,16 +63,7 @@ $ var isOverflowVariant = state.variant === "overflow";
                     <if(input.icon)>
                         <div no-update-body class="btn__icon">
                             <if(input.iconTag)>
-                                <if(
-                                    input.iconTag.renderBody &&
-                                    (typeof input.iconTag.renderBody ===
-                                        "function" ||
-                                        typeof input.iconTag.renderBody
-                                            .renderBody === "function")
-                                )>
-                                    <${input.iconTag.renderBody}/>
-                                </if>
-                                <else>${input.iconTag.renderBody}</else>
+                                <${input.iconTag.renderBody}/>
                             </if>
                         </div>
                     </if>

@@ -13,9 +13,7 @@ static {
         "info",
         "overflow"
     ];
-}
 
-static {
     var itemIgnoredAttributes = ["class", "style"];
 }
 
@@ -38,27 +36,13 @@ $ {
         <if(input.href)>
             <h2 class="section-title__title" key="title" id:scoped="title">
                 <a href=input.href>
-                    <if(
-                        titleContent &&
-                        (typeof titleContent === "function" ||
-                            typeof titleContent.renderBody === "function")
-                    )>
-                        <${titleContent}/>
-                    </if>
-                    <else>${titleContent}</else>
+                    <${titleContent}/>
                 </a>
             </h2>
         </if>
         <else>
             <h2 class="section-title__title" key="title" id:scoped="title">
-                <if(
-                    titleContent &&
-                    (typeof titleContent === "function" ||
-                        typeof titleContent.renderBody === "function")
-                )>
-                    <${titleContent}/>
-                </if>
-                <else>${titleContent}</else>
+                <${titleContent}/>
             </h2>
         </else>
         <!-- Subtitle-->
@@ -67,15 +51,7 @@ $ {
                 ...processHtmlAttributes(input.subtitle, itemIgnoredAttributes)
                 class=["section-title__subtitle", input.subtitle.classs]
                 style=input.subtitle.style>
-                <if(
-                    input.subtitle.renderBody &&
-                    (typeof input.subtitle.renderBody === "function" ||
-                        typeof input.subtitle.renderBody.renderBody ===
-                            "function")
-                )>
-                    <${input.subtitle.renderBody}/>
-                </if>
-                <else>${input.subtitle.renderBody}</else>
+                <${input.subtitle.renderBody}/>
             </span>
         </if>
     </div>
@@ -112,14 +88,7 @@ $ {
             ...processHtmlAttributes(input.info, itemIgnoredAttributes)
             class=["section-title__info", input.info.class]
             style=input.info.style>
-            <if(
-                input.info.renderBody &&
-                (typeof input.info.renderBody === "function" ||
-                    typeof input.info.renderBody.renderBody === "function")
-            )>
-                <${input.info.renderBody}/>
-            </if>
-            <else>${input.info.renderBody}</else>
+            <${input.info.renderBody}/>
         </div>
     </if>
     <!-- Overflow-->
@@ -128,14 +97,7 @@ $ {
             ...processHtmlAttributes(input.overflow, itemIgnoredAttributes)
             class=["section-title__overflow", input.overflow.class]
             style=input.overflow.style>
-            <if(
-                input.overflow.renderBody &&
-                (typeof input.overflow.renderBody === "function" ||
-                    typeof input.overflow.renderBody.renderBody === "function")
-            )>
-                <${input.overflow.renderBody}/>
-            </if>
-            <else>${input.overflow.renderBody}</else>
+            <${input.overflow.renderBody}/>
         </div>
     </if>
 </div>

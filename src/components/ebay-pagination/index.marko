@@ -47,14 +47,7 @@ static {
                     style=item.style
                     onKeydown("handlePageNumberKeyDown")
                     onClick("handlePageNumber")>
-                    <if(
-                        item.renderBody &&
-                        (typeof item.renderBody === "function" ||
-                            typeof item.renderBody.renderBody === "function")
-                    )>
-                        <${item.renderBody}/>
-                    </if>
-                    <else>${item.renderBody}</else>
+                    <${item.renderBody}/>
                 </>
             </li>
         </for>

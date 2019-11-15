@@ -10,9 +10,6 @@ static {
         "fixWidth",
         "items"
     ];
-}
-
-static {
     var itemIgnoredAttributes = [
         "class",
         "style",
@@ -34,7 +31,11 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
-        input.classPrefix ? `${baseClass}__menu` : isFake ? "fake-menu" : "menu",
+        input.classPrefix
+            ? `${baseClass}__menu`
+            : isFake
+            ? "fake-menu"
+            : "menu",
         input.reverse && `${baseClass}__menu--reverse`,
         input.fixWidth && `${baseClass}__menu--fix-width`,
         input.class
@@ -68,15 +69,7 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
                 <span>
                     <${!item.badgeNumber ? null : "span"} aria-hidden="true">
                         <span>
-                            <if(
-                                item.renderBody &&
-                                (typeof item.renderBody === "function" ||
-                                    typeof item.renderBody.renderBody ===
-                                        "function")
-                            )>
-                                <${item.renderBody}/>
-                            </if>
-                            <else>${item.renderBody}</else>
+                            <${item.renderBody}/>
                         </span>
                         <if(item.badgeNumber)>
                             <ebay-badge type="menu" number=item.badgeNumber/>

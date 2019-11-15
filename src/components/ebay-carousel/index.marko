@@ -69,14 +69,7 @@ $ var data = component.getTemplateData(state, input);
                     style=item.style
                     aria-hidden=(!item.fullyVisible && "true")
                     no-update-body-if(!!config.preserveItems)>
-                    <if(
-                        item.renderBody &&
-                        (typeof item.renderBody === "function" ||
-                            typeof item.renderBody.renderBody === "function")
-                    )>
-                        <${item.renderBody}/>
-                    </if>
-                    <else>${item.renderBody}</else>
+                    <${item.renderBody}/>
                 </li>
             </for>
         </ul>
