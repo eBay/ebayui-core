@@ -6,6 +6,7 @@
                 "@ebay/skin/filter-menu"
             ]
         },
-        "../ebay-icon"
+        "../ebay-icon",
+        "require: ./index.marko"
     ]
 }

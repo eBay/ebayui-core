@@ -5,6 +5,7 @@
             "dependencies": [
                 "@ebay/skin/switch"
             ]
-        }
+        },
+        "require: ./index.marko"
     ]
 }

@@ -7,6 +7,7 @@
             ]
         },
         "../ebay-button",
-        "../ebay-icon"
+        "../ebay-icon",
+        "require: ./index.marko"
     ]
 }

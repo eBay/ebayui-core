@@ -8,6 +8,7 @@
             ]
         },
         "../ebay-badge",
-        "../ebay-icon"
+        "../ebay-icon",
+        "require: ./index.marko"
     ]
 }

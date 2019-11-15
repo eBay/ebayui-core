@@ -1,12 +1,12 @@
 {
     "dependencies": [
-        "require: ./index.marko",
         "../ebay-icon",
         {
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [
                 "@ebay/skin/dialog"
             ]
-        }
+        },
+        "require: ./index.marko"
     ]
 }

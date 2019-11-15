@@ -5,6 +5,7 @@
             "dependencies": [
                 "@ebay/skin/tab"
             ]
-        }
+        },
+        "require: ./index.marko"
     ]
 }

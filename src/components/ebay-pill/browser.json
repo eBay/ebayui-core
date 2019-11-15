@@ -5,6 +5,7 @@
                 "@ebay/skin/pill"
             ]
         },
-        "../ebay-button"
+        "../ebay-button",
+        "require: ./index.marko"
     ]
 }
