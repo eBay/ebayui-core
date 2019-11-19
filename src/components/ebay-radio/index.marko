@@ -1,0 +1,29 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
+    var ignoredAttributes = ["class", "style", "disabled"];
+}
+
+<span class=["radio", input.class] style=input.style>
+    <input
+        ...processHtmlAttributes(input, ignoredAttributes)
+        onClick("handleClick")
+        onFocus("handleFocus")
+        type="radio"
+        class="radio__control"
+        disabled=input.disabled/>
+    <span class="radio__icon" hidden>
+        <ebay-icon
+            type="inline"
+            name="radio-unchecked"
+            class="radio__unchecked"
+            focusable="false"
+            no-skin-classes/>
+        <ebay-icon
+            type="inline"
+            name="radio-checked"
+            class="radio__checked"
+            focusable="false"
+            no-skin-classes/>
+    </span>
+</span>

@@ -32,7 +32,7 @@ describe('infotip', () => {
 });
 
 describe('transformer', () => {
-    const componentPath = '../index.js';
+    const componentPath = '../index.marko';
 
     it('transforms an icon attribute into a tag', () => {
         const tagString = '<ebay-infotip icon="settings"/>';

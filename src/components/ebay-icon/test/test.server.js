@@ -70,7 +70,6 @@ describe('icon', () => {
 
             const { getByTestId } = await render(template, input);
             const svg = getByTestId('icon');
-            expect(svg).does.not.have.attr('aria-labelledby');
             expect(svg).has.attr('aria-hidden', 'true');
         });
 

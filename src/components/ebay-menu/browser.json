@@ -5,10 +5,6 @@
             "dependencies": [
                 "@ebay/skin/menu"
             ]
-        },
-        "../ebay-badge",
-        "../ebay-button",
-        "require: marko-widgets",
-        "require: ./index.js"
+        }
     ]
 }

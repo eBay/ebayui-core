@@ -6,8 +6,6 @@
                 "@ebay/skin/checkbox",
                 "@ebay/skin/field"
             ]
-        },
-        "../ebay-icon",
-        "require: ./index.js"
+        }
     ]
 }

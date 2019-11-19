@@ -1,33 +1,49 @@
-<script marko-init>
-    var getWidgetId = require("../../common/get-marko-3-widget-id");
-    var processHtmlAttributes = require("../../common/html-attributes");
-    var ignoredAttributes = ["variant", "footerText", "class", "style", "classPrefix", "formName", "formAction", "formMethod", "a11yFooterText", "items"];
-</script>
+import processHtmlAttributes from "../../common/html-attributes"
 
-<var size=(data.size || "medium")/>
-<var noText=(data.noText)/>
-<var baseClass=("expand-btn")/>
-<var sizeClass="${baseClass}--${size}"/>
+static var ignoredAttributes = [
+    "variant",
+    "footerText",
+    "class",
+    "style",
+    "classPrefix",
+    "formName",
+    "formAction",
+    "formMethod",
+    "a11yFooterText",
+    "items"
+];
 
+$ var size = data.size || "medium";
+$ var noText = data.noText;
+$ var baseClass = "expand-btn";
+$ var sizeClass = baseClass + "--" + size;
 <button
-    ${processHtmlAttributes(data, ignoredAttributes)}
-    id=(data.id || getWidgetId(out))
+    ...processHtmlAttributes(data, ignoredAttributes)
+    id=data.id
     class=[
         data.class,
         baseClass,
-        data.noText && "${baseClass}--no-text",
-        data.fluid && "${baseClass}--fluid",
-        data.truncate && "${sizeClass}-truncated",
-        data.fixedHeight && "${sizeClass}-fixed-height",
-        !data.fixedHeight && !data.truncate && sizeClass,
+        data.noText && `${baseClass}--no-text`,
+        data.fluid && `${baseClass}--fluid`,
+        data.truncate && `${sizeClass}-truncated`,
+        data.fixedHeight && `${sizeClass}-fixed-height`,
+        !data.fixedHeight && !data.truncate && sizeClass
     ]
     style=data.style
     href=data.href
     type="button"
     disabled=data.disabled
     aria-disabled=(data.partiallyDisabled && "true")>
-    <span class="${baseClass}__cell">
-        <span if(data.renderBody)><invoke data.renderBody(out) /></span>
-        <ebay-icon type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
+    <span class=`${baseClass}__cell`>
+        <if(data.renderBody)>
+            <span>
+                <${data}/>
+            </span>
+        </if>
+        <ebay-icon
+            type="inline"
+            name="chevron-down-bold"
+            class="expand-btn__icon"
+            no-skin-classes/>
     </span>
 </button>

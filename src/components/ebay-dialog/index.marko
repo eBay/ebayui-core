@@ -1,0 +1,55 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+        "class",
+        "style",
+        "open",
+        "type",
+        "focus",
+        "a11yCloseText"
+    ];
+
+$ var isFull = input.type === "full";
+$ var isCenter = !input.type || input.type === "fill";
+$ var isDocked = input.type === "left" || input.type === "right";
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[
+        "dialog",
+        input.class,
+        isDocked && "dialog--mask-fade-slow",
+        isFull && "dialog--no-mask",
+        isCenter && "dialog--mask-fade"
+    ]
+    style=input.style
+    hidden:no-update=!state.open
+    role="dialog"
+    onClick("handleDialogClick")
+    onMousedown("handleStartClick")>
+    <div
+        role="document"
+        class=[
+            "dialog__window",
+            input.type && `dialog__window--${input.type}`,
+            isDocked && "dialog__window--slide",
+            (isFull || isCenter) && "dialog__window--fade"
+        ]
+        key="window"
+        id:scoped="window">
+        <button
+            class="dialog__close"
+            type="button"
+            aria-label=input.a11yCloseText
+            onClick("handleCloseButtonClick")
+            key="close"
+            id:scoped="close">
+            <ebay-icon type="inline" name="close"/>
+        </button>
+        <div class="dialog__body" key="body" id:scoped="body">
+            <if(typeof input.renderBody === "function")>
+                <${input}/>
+            </if>
+            <else>${input.renderBody}</else>
+        </div>
+    </div>
+</div>

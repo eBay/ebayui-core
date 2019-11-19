@@ -3,7 +3,7 @@ const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Page = {
     a11yHeadingText: 'Heading Text',
-    _default: { renderBody: createRenderBody('Content') }
+    renderBody: createRenderBody('Content')
 };
 
 exports.Page_Custom_Heading_Tag = assign({}, exports.Page, {
@@ -40,12 +40,12 @@ exports.Section_Info = {
     a11yHeadingText: 'Heading Text',
     type: 'section',
     status: 'information',
-    _default: { renderBody: createRenderBody('Content') }
+    renderBody: createRenderBody('Content')
 };
 
 exports.Section_Light = {
     type: 'section',
-    _default: { renderBody: createRenderBody('Content') }
+    renderBody: createRenderBody('Content')
 };
 
 exports.Window_Notice = {
@@ -71,7 +71,7 @@ exports.Page_Celebration = {
 };
 
 exports.Cta_Button = {
-    _default: { renderBody: createRenderBody('<button>Action</button>') },
+    renderBody: createRenderBody('<button>Action</button>'),
     content: {
         renderBody: createRenderBody('Body')
     }

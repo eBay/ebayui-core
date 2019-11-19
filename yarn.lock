@@ -11131,14 +11131,6 @@ marko-prettyprint@^1.5.2:
     redent "^2.0.0"
     resolve-from "^4.0.0"
 
-marko-widgets@^7:
-  version "7.0.1"
-  resolved "https://registry.npmjs.org/marko-widgets/-/marko-widgets-7.0.1.tgz#0e0df2b5609f462f6e93f52f8628535f2f4bc03f"
-  integrity sha1-Dg3ytWCfRi9uk/UvhihTXy9LwD8=
-  dependencies:
-    raptor-dom "^1.1.0"
-    raptor-renderer "^1.4.4"
-
 marko@4.14.21:
   version "4.14.21"
   resolved "https://registry.npmjs.org/marko/-/marko-4.14.21.tgz#2f9c561503b5d56d28d22ac4aa7c9cb7b032f74d"
@@ -11215,10 +11207,10 @@ marko@^4.10.0, marko@^4.12.3, marko@^4.15.2:
     try-require "^1.2.1"
     warp10 "^2.0.1"
 
-marko@^4.18.22:
-  version "4.18.22"
-  resolved "https://registry.npmjs.org/marko/-/marko-4.18.22.tgz#9977c353661ed18a0d04b3ca895bb00c1ef4fe74"
-  integrity sha512-GLu8uM2axIEUleLlTXt6U4Ih7/Ur0FFWOqHsf6NBqmGDo8jEAaAIHArotqjF2km1Sk/XOOc+N4UApBOnc9ajVA==
+marko@^4.18.24:
+  version "4.18.24"
+  resolved "https://registry.npmjs.org/marko/-/marko-4.18.24.tgz#bf38433fa4583cb5d7ec7fc2cb3c6462a24d7e8c"
+  integrity sha512-lFCFvLBgSx1FUYt41ZgT2JYOo9g7a9IVqp5dj961g5sSdYNNBpq9UXgJmTiq2cZC06Ie3nCnQYhTVLLFKg/09w==
   dependencies:
     app-module-path "^2.2.0"
     argly "^1.0.0"
@@ -14097,7 +14089,7 @@ raptor-detect@^1.0.1:
   resolved "https://registry.npmjs.org/raptor-detect/-/raptor-detect-1.0.1.tgz#0a54c639056ef66dfd52be3945fa22cc6d1466f3"
   integrity sha1-ClTGOQVu9m39Ur45RfoizG0UZvM=
 
-raptor-dom@^1.0.0, raptor-dom@^1.1.0:
+raptor-dom@^1.0.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/raptor-dom/-/raptor-dom-1.1.1.tgz#5ede30a72dc0f997a2c1731fc1f2c44b3fb5ac5a"
   integrity sha1-Xt4wpy3A+ZeiwXMfwfLESz+1rFo=
@@ -14160,7 +14152,7 @@ raptor-regexp@^1.0.0, raptor-regexp@^1.0.1:
   resolved "https://registry.npmjs.org/raptor-regexp/-/raptor-regexp-1.0.1.tgz#ecf0f66c6671c0cd9f5e48c3705026c5509995c0"
   integrity sha1-7PD2bGZxwM2fXkjDcFAmxVCZlcA=
 
-raptor-renderer@^1.4.4, raptor-renderer@^1.5.0:
+raptor-renderer@^1.5.0:
   version "1.5.0"
   resolved "https://registry.npmjs.org/raptor-renderer/-/raptor-renderer-1.5.0.tgz#958c20ce6ee2b2f7f22b0f34c11e8223fb2e4f79"
   integrity sha512-Bf6aIh/80cjFz9+xJ//5aV/rIDbqMNYZOsCxgXbXJfNLGjGPO4wn9nixdSASl/Pl3wCUTIixU542qjbCQBRYvQ==

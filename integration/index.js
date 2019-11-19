@@ -9,7 +9,7 @@ const request = require('supertest')(`http://localhost:${port}`);
 const demoUtils = require('../demo/utils');
 
 execSync('yarn prepublishOnly');
-async.forEachSeries([3, 4], (markoVersion, callback) => {
+async.forEachSeries([4], (markoVersion, callback) => {
     // need to manually call install() in v3
     if (markoNodeHook.install) {
         markoNodeHook.install();
@@ -39,13 +39,8 @@ async.forEachSeries([3, 4], (markoVersion, callback) => {
                     example,
                     markup: fs.readFileSync(`${examplesPath}/${example}/template.marko`, 'utf8')
                 })).forEach((exampleData) => {
-                    let browserJson = fs.readFileSync(`${__dirname}/base.json`, 'utf8');
-                    browserJson = browserJson.replace('#INJECT#', `../${componentName}`);
-                    fs.writeFileSync(`${__dirname}/browser.json`, browserJson);
-
                     let templateMarkup = fs.readFileSync(`${__dirname}/base.marko`, 'utf8');
                     templateMarkup = templateMarkup.replace('#INJECT#', exampleData.markup);
-                    templateMarkup = templateMarkup.replace('base.json', 'browser.json');
                     fs.writeFileSync(`${__dirname}/template.marko`, templateMarkup);
 
                     // clear cache of previously loaded template

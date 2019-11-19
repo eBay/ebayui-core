@@ -1,0 +1,55 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "class",
+    "style",
+    "pointer",
+    "styleTop",
+    "styleLeft",
+    "styleRight",
+    "styleBottom",
+    "a11yCloseText",
+    "host"
+];
+
+$ var pointer = data.pointer || "bottom";
+<span>
+    <ebay-tooltip-base
+        type="tourtip"
+        pointer=pointer
+        style-left=data.styleLeft
+        style-top=data.styleTop
+        style-right=data.styleRight
+        style-bottom=data.styleBottom
+        onBase-collapse("handleCollapse")
+        key="base">
+        <span
+            ...processHtmlAttributes(data, ignoredAttributes)
+            class:no-update="tourtip"
+            key="expander-root"
+            id:scoped="expander-root">
+            <if(data.host)>
+                <span
+                    class=[data.host.class, "tourtip__host"]
+                    style=data.host.style
+                    aria-expanded:no-update=null
+                    aria-controls:no-update=null
+                    aria-describedby:no-update=null>
+                    <${data.host.renderBody}/>
+                </span>
+            </if>
+            <ebay-tooltip-overlay
+                type="tourtip"
+                tooltip-id:scoped="overlay"
+                pointer=pointer
+                style-left=data.styleLeft
+                style-top=data.styleTop
+                style-right=data.styleRight
+                style-bottom=data.styleBottom
+                heading=data.heading
+                content=data.content
+                a11y-close-text=data.a11yCloseText
+                onOverlay-close("handleCollapse")/>
+        </span>
+    </ebay-tooltip-base>
+</span>

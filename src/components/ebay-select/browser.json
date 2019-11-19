@@ -6,8 +6,6 @@
                 "@ebay/skin/select",
                 "@ebay/skin/icon/foreground"
             ]
-        },
-        "../ebay-button",
-        "require: ./index.js"
+        }
     ]
 }

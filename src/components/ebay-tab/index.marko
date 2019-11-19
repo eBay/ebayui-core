@@ -1,0 +1,106 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
+    var ignoredAttributes = [
+        "cla-ss",
+        "style",
+        "index",
+        "fake",
+        "activation",
+        "headings",
+        "panels"
+    ];
+    var itemIgnoredAttributes = ["class", "style"];
+    var itemAnchorIgnoredAttributes = ["class", "style", "href"];
+}
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[input.class, input.fake ? "fake-tabs" : "tabs"]
+    style=input.style>
+    <if(input.fake)>
+        $ var selectedPanel = state.panels[0];
+        <ul class="fake-tabs__items">
+            <for|heading, statusIndex, statusAll| of=state.headings>
+                $ var i = statusIndex;
+                $ var isSelected = state.index === i;
+                <li
+                    ...processHtmlAttributes(
+                        heading,
+                        itemAnchorIgnoredAttributes
+                    )
+                    class=[
+                        heading.class,
+                        "fake-tabs__item",
+                        isSelected && "fake-tabs__item--current"
+                    ]
+                    style=heading.style>
+                    <a aria-current=(isSelected && "page") href=heading.href>
+                        <${heading.renderBody}/>
+                    </a>
+                </li>
+            </for>
+        </ul>
+        <div class="fake-tabs__content">
+            <div
+                ...processHtmlAttributes(selectedPanel, itemIgnoredAttributes)
+                class=[selectedPanel.class, "fake-tabs__panel"]
+                style=selectedPanel.style>
+                <div class="fake-tabs__cell">
+                    <div>
+                        <${selectedPanel.renderBody}/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </if>
+    <else>
+        <div class="tabs__items" role="tablist" key="headings" id:scoped="headings">
+            <for|heading, statusIndex, statusAll| of=state.headings>
+                $ var i = statusIndex;
+                $ var isSelected = state.index === i;
+                <div
+                    ...processHtmlAttributes(
+                        heading,
+                        itemAnchorIgnoredAttributes
+                    )
+                    aria-controls:scoped=`tabpanel-${i}`
+                    role="tab"
+                    aria-selected=(isSelected && "true")
+                    class=[heading.class, "tabs__item"]
+                    style=heading.style
+                    onClick("handleHeadingClick", i)
+                    onKeydown("handleHeadingKeydown", i)
+                    key=`tab-${i}`
+                    id:scoped=`tab-${i}`
+                    tabindex:no-update=null
+                    data-makeup-index:no-update=null>
+                    <span>
+                        <${heading.renderBody}/>
+                    </span>
+                </div>
+            </for>
+        </div>
+        <div class="tabs__content">
+            <for|panel, statusIndex, statusAll| of=state.panels>
+                $ var i = statusIndex;
+                $ var isSelected = state.index === i;
+                <div
+                    ...processHtmlAttributes(panel, itemIgnoredAttributes)
+                    aria-labelledby:scoped=`tab-${i}`
+                    role="tabpanel"
+                    class=[panel.class, "tabs__panel"]
+                    style=panel.style
+                    hidden=!isSelected
+                    key=`tabpanel-${i}`
+                    id:scoped=`tabpanel-${i}`>
+                    <div class="tabs__cell">
+                        <div>
+                            <${panel.renderBody}/>
+                        </div>
+                    </div>
+                </div>
+            </for>
+        </div>
+    </else>
+</div>

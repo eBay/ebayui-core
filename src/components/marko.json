@@ -1,9 +1,9 @@
 {
   "<ebay-tooltip-base>": {
-    "renderer": "./components/ebay-tooltip-base/index.js"
+    "renderer": "./components/ebay-tooltip-base/index.marko"
   },
   "<ebay-tooltip-overlay>": {
-    "renderer": "./components/ebay-tooltip-overlay/index.js"
+    "renderer": "./components/ebay-tooltip-overlay/index.marko"
   },
   "<*>": {
     "transformer": "../common/transformers/ebayui-attribute/index.js"

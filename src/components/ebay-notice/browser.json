@@ -6,9 +6,6 @@
                 "@ebay/skin/notice",
                 "@ebay/skin/icon/foreground"
             ]
-        },
-        "../ebay-icon",
-        "require: marko-widgets",
-        "require: ./index.js"
+        }
     ]
 }

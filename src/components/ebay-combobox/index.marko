@@ -1,0 +1,90 @@
+import processHtmlAttributes from "../../common/html-attributes"
+import safeRegex from "../../common/build-safe-regex"
+
+static {
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "name",
+        "borderless",
+        "disabled",
+        "autocomplete",
+        "options"
+    ];
+    var itemIgnoredAttributes = ["class", "style", "text"];
+}
+
+$ var options = input.options || [];
+$ var selectedOption = options[state.selectedIndex];
+$ var currentValue = state.currentValue;
+<span
+    class:no-update=["combobox", input.class]
+    style=input.style
+    onExpander-expand("handleExpand")
+    onExpander-collapse("handleCollapse")
+    id:no-update=null>
+    <span class=[
+        "combobox__control",
+        {
+            "combobox__control--borderless": input.borderless
+        }
+    ]>
+        <!--
+        NOTE: Uses autocomplete="new-password" because of a problem with Chrome where the autfill does not
+        respect the "off" key. Tested and works in all other browsers properly as well.
+        -->
+        <input
+            ...processHtmlAttributes(data, ignoredAttributes)
+            type="text"
+            name=input.name
+            role="combobox"
+            value=currentValue
+            readonly=input.readonly
+            disabled=input.disabled
+            aria-autocomplete=state.autocomplete
+            aria-haspopup="listbox"
+            onBlur("handleComboboxBlur")
+            onKeydown("handleComboboxKeyDown")
+            onKeyup("handleComboboxKeyUp")
+            autocomplete="new-password"
+            key="input"
+            id:scoped="input"
+            aria-controls:no-update=null
+            aria-activedescendant:no-update=null
+            aria-owns:no-update=null
+            aria-expanded:no-update=null/>
+        <span class="combobox__icon" aria-hidden="true"/>
+    </span>
+    <if(options.length)>
+        <div role="listbox" class="combobox__listbox" key="options" id:scoped="options">
+            $ var currentValueReg = safeRegex(currentValue);
+            <for|option| of=options>
+                $ var isSelected = selectedOption === option;
+                $ {
+                    var isVisible = (state.autocomplete === "list" &&
+                        (isSelected || currentValueReg.test(option.text))) ||
+                        state.autocomplete === "none";
+                }
+                <if(isVisible && option.text)>
+                    <div
+                        ...processHtmlAttributes(
+                            option,
+                            itemIgnoredAttributes
+                        )
+                        role="option"
+                        class:no-update=["combobox__option", option.class]
+                        style=option.style
+                        tabindex:no-update="-1"
+                        onClick("handleOptionClick")
+                        onMousedown("handleOptionMouseDown")
+                        aria-selected:no-update=(isSelected && "true")
+                        data-option-value=option.value
+                        key="option[]"
+                        data-makeup-index:no-update=null>
+                        <span>${option.text}</span>
+                    </div>
+                </if>
+            </for>
+        </div>
+    </if>
+</span>

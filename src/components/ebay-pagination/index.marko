@@ -1,0 +1,68 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
+    var ignoredAttributes = [
+        'class',
+        'style',
+        'a11yPreviousText',
+        'a11yNextText',
+        'a11yCurrentText',
+        'hijax',
+        'items'
+    ];
+}
+
+<nav
+    ...processHtmlAttributes(input, ignoredAttributes)
+    role="navigation"
+    class=['pagination', input.class]
+    style=input.style
+    aria-labelledby=`pagination-heading-${component.elId()}`>
+    <span aria-live="polite" role="status">
+        <h2 class="clipped" id=`pagination-heading-${component.elId()}`>
+            ${input.a11yCurrentText || 'Results Pagination - Page 1'}
+        </h2>
+    </span>
+    <if(state.prevItem)>
+        <${state.prevItem.href ? "a" : "button"}
+            ...state.prevItem.htmlAttributes
+            aria-disabled=(state.prevItem.disabled && "true")
+            aria-label=(input.a11yPreviousText || 'Previous page')
+            class=state.prevItem.class
+            style=state.prevItem.style
+            href=state.prevItem.href
+            onKeydown("handlePreviousPageKeyDown")
+            onClick("handlePreviousPage")>
+            <ebay-icon type="inline" name="pagination-prev"/>
+        </>
+    </if>
+    <ol class="pagination__items">
+        <for|item| of=state.items>
+            <li>
+                <${item.href ? "a" : "button"}
+                    ...item.htmlAttributes
+                    aria-current=(item.current && "page")
+                    href=item.href
+                    class=item.class
+                    style=item.style
+                    onKeydown("handlePageNumberKeyDown")
+                    onClick("handlePageNumber")>
+                    <${item.renderBody}/>
+                </>
+            </li>
+        </for>
+    </ol>
+    <if(state.nextItem)>
+        <${state.nextItem.href ? "a" : "button"}
+            ...state.nextItem.htmlAttributes
+            aria-disabled=(state.nextItem.disabled && "true")
+            aria-label=(input.a11yNextText || 'Next page')
+            class=state.nextItem.class
+            style=state.nextItem.style
+            href=state.nextItem.href
+            onKeydown("handleNextPageKeyDown")
+            onClick("handleNextPage")>
+            <ebay-icon type="inline" name="pagination-next"/>
+        </>
+    </if>
+</nav>

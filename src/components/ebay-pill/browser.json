@@ -4,9 +4,6 @@
             "dependencies": [
                 "@ebay/skin/pill"
             ]
-        },
-        "../ebay-button",
-        "require: ./index.js",
-        "./style.less"
+        }
     ]
 }

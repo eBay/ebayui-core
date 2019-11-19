@@ -1,0 +1,70 @@
+$ var data = state;
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "variant",
+    "text",
+    "footerText",
+    "class",
+    "style",
+    "disabled",
+    "selected",
+    "formName",
+    "formAction",
+    "formMethod",
+    "a11yText",
+    "a11yFooterText",
+    "items"
+];
+
+$ {
+    var checkedItems =
+        (state.items &&
+            state.items.filter(function(item) {
+                return item.checked;
+            })) ||
+        [];
+}
+<span
+    ...processHtmlAttributes(data, ignoredAttributes)
+    class=["filter-menu-button", data.class]
+    style=data.style
+    onExpander-expand("handleExpand")
+    onExpander-collapse("handleCollapse")>
+    <button
+        type="button"
+        class="filter-menu-button__button"
+        disabled=data.disabled
+        aria-expanded:no-update="false"
+        aria-haspopup="true"
+        aria-label=data.a11yText
+        aria-pressed=(checkedItems.length > 0 && !data.footerButton && "true")>
+        <span class="filter-menu-button__button-cell">
+            <span class="filter-menu-button__button-text">${data.text}</span>
+            <ebay-icon type="inline" name="chevron-down"/>
+        </span>
+    </button>
+    <ebay-filter-menu
+        class-prefix="filter-menu-button"
+        variant=data.variant
+        form-name=data.formName
+        form-action=data.formAction
+        form-method=data.formMethod
+        footer-text=data.footerText
+        onFilter-menu-keydown("handleMenuKeydown")
+        onFilter-menu-change("handleMenuChange")
+        onFilter-menu-form-submit("handleFormSubmit")
+        onFilter-menu-footer-click("handleFooterButtonClick")
+        key="menu">
+        <for|item| of=state.items>
+            <ebay-filter-menu-item
+                style=item.style
+                class=item.class
+                value=item.value
+                checked=item.checked
+                variant=data.variant>
+                <${item.renderBody}/>
+            </ebay-filter-menu-item>
+        </for>
+    </ebay-filter-menu>
+</span>

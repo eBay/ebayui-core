@@ -5,7 +5,6 @@
             "dependencies": [
                 "@ebay/skin/section-title"
             ]
-        },
-        "require: ./index.js"
+        }
     ]
 }

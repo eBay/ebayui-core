@@ -1,0 +1,65 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "id",
+    "class",
+    "style",
+    "type",
+    "value",
+    "invalid",
+    "disabled",
+    "fluid",
+    "multiline",
+    "icon",
+    "iconPosition",
+    "iconTag",
+    "floatingLabel"
+];
+
+$ var iconPosition = input.iconPosition || "prefix";
+$ var displayIcon = Boolean(!input.multiline && input.iconTag);
+<${input.fluid ? "div" : "span"}
+    style=input.style
+    class=[
+        "textbox",
+        input.class,
+        displayIcon && iconPosition === "postfix" && "textbox--icon-end"
+    ]>
+    <if(state.floatingLabel)>
+        <label
+            for=(input.id || component.getElId("textbox"))
+            class=[
+                "floating-label__label",
+                state.disabled && "floating-label__label--disabled"
+            ]>
+            ${state.floatingLabel}
+        </label>
+    </if>
+    <if(displayIcon && iconPosition === "prefix")>
+        <${input.iconTag.renderBody}/>
+    </if>
+    <${input.multiline ? "textarea" : "input"}
+        ...processHtmlAttributes(input, ignoredAttributes)
+        id=(input.id || component.getElId("textbox"))
+        class=[
+            "textbox__control",
+            input.fluid && "textbox__control--fluid",
+            input.floatingLabel && "textbox__control--underline"
+        ]
+        type=(input.type === "password" ? "password" : "text")
+        value=(!input.multiline && input.value)
+        disabled=state.disabled
+        aria-invalid=(input.invalid && "true")
+        onKeydown("handleKeydown")
+        onKeypress("handleKeypress")
+        onKeyup("handleKeyup")
+        onChange("handleChange")
+        onInput("handleInput")
+        onFocus("handleFocus")
+        onBlur("handleBlur")>
+        <if(input.multiline && input.value)>${input.value}</if>
+    </>
+    <if(displayIcon && iconPosition === "postfix")>
+        <${input.iconTag.renderBody}/>
+    </if>
+</>

@@ -69,7 +69,7 @@ app.get('/:designSystem/:component?', (req, res) => {
         }
     });
 
-    model.dependencies = model.examples.map(example => `marko-dependencies: ${example.templatePath}`);
+    model.dependencies = model.examples.map(example => `marko-hydrate: ${example.templatePath}`);
 
     req.model = model;
 
