@@ -1,17 +1,16 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static {
-    var ignoredAttributes = ["class", "style", "type", "number"];
-}
+static var ignoredAttributes = ["class", "style", "type", "number"];
 
-$ var number = Math.round(data.number);
-$ var ariaRole = data.type !== "menu" && data.type !== "icon" && "img";
+$ var number = Math.round(input.number);
+$ var ariaRole = input.type !== "menu" && input.type !== "icon" && "img";
+
 <if(number > 0)>
     <span
-        ...processHtmlAttributes(data, ignoredAttributes)
+        ...processHtmlAttributes(input, ignoredAttributes)
         role=ariaRole
-        class=["badge", data.class]
-        style=data.style>
+        class=["badge", input.class]
+        style=input.style>
         ${number > 99 ? "99+" : number}
     </span>
 </if>
