@@ -1,13 +1,7 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import processHtmlAttributes from "../../common/html-attributes";
 
 static var ignoredAttributes = [
-    "id",
-    "class",
-    "style",
-    "type",
-    "disabled",
     "partiallyDisabled",
-    "href",
     "priority",
     "size",
     "noText",
@@ -20,39 +14,35 @@ static var ignoredAttributes = [
     "badgeAriaLabel"
 ];
 
-$ var size = input.size;
-$ var priority = input.priority || "secondary";
-$ var variant = !input.variant && input.href ? "fake" : input.variant;
-$ var isIconVariant = variant === "icon";
-$ var isExpandVariant = variant === "expand";
-$ var isBadged = Boolean(input.badgeNumber && isIconVariant);
-$ var noText = isIconVariant || isBadged || (isExpandVariant && input.noText);
 $ {
+    var size = input.size;
+    var priority = input.priority || "secondary";
+    var variant = !input.variant && input.href ? "fake" : input.variant;
+    var isIconVariant = variant === "icon";
+    var isExpandVariant = variant === "expand";
+    var isBadged = Boolean(input.badgeNumber && isIconVariant);
+    var noText = isIconVariant || isBadged || (isExpandVariant && input.noText);
     var baseClass = variant
         ? variant === "fake-link"
             ? variant
             : variant + "-btn"
         : "btn";
-}
-$ var sizeClass = size && baseClass + "--" + size;
-$ {
+    var sizeClass = size && baseClass + "--" + size;
     var truncateClass =
         input.truncate &&
         (sizeClass ? sizeClass + "-truncated" : baseClass + "--truncated");
-}
-$ var transparentClass = input.transparent ? baseClass + "--transparent" : "";
-$ {
+    var transparentClass = input.transparent ? baseClass + "--transparent" : "";
     var fixedHeightClass =
         input.fixedHeight &&
         (sizeClass ? sizeClass + "-fixed-height" : baseClass + "--fixed-height");
+    var tag = input.href ? "a" : "button";
+    var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
 }
-$ var tag = input.href ? "a" : "button";
-$ var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
+
 <${tag}
     ...htmlAttributes
     onClick("handleClick")
     onKeydown("handleKeydown")
-    id=input.id
     class=[
         input.class,
         baseClass,
@@ -69,17 +59,11 @@ $ var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
             `${baseClass}--${priority}`
     ]
     data-ebayui=true
-    style=input.style
-    href=input.href
     type=((tag === "button" && input.type) || "button")
-    disabled=state.disabled
     aria-disabled=(input.partiallyDisabled && "true")>
     $ var hasAriaLabel = Boolean(htmlAttributes["aria-label"]);
     <${!hasAriaLabel ? null : "span"} aria-hidden="true">
-        <if(typeof input.renderBody === "function")>
-            <${input}/>
-        </if>
-        <else>${input.renderBody}</else>
+        <${input.renderBody}/>
     </>
     <if(isBadged)>
         <ebay-badge
