@@ -96,7 +96,6 @@
     "renderer": "./src/components/ebay-combobox/index.js",
     "@*": "expression",
     "@html-attributes": "expression",
-    "@input-id": "string",
     "@class": "string",
     "@style": "string",
     "@name": "string",
