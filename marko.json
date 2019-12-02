@@ -18,7 +18,6 @@
     },
     "@html-attributes": "expression",
     "@class": "string",
-    "@style": "string",
     "@a11y-heading-text": "string",
     "@a11y-heading-tag": "string",
     "@hijax": "boolean",
