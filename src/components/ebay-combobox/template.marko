@@ -20,7 +20,7 @@
         respect the "off" key. Tested and works in all other browsers properly as well.
         -->
         <input
-            w-id="input"
+            id=(data.inputId || component.id + "-input")
             type='text'
             name=data.name
             role="combobox"
