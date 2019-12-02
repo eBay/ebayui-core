@@ -1,23 +1,25 @@
 {
   "<ebay-badge>": {
     "template": "./src/components/ebay-badge/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@type": "string",
-    "@number": "expression"
+    "@type": {
+      "enum": ["icon"]
+    },
+    "@number": "number"
   },
   "<ebay-breadcrumb>": {
     "template": "./src/components/ebay-breadcrumb/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
     "@a11y-heading-text": "string",
     "@a11y-heading-tag": "string",
     "@hijax": "boolean",
@@ -26,10 +28,8 @@
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string",
-      "@href": "string"
+      "attribute-groups": ["html-attributes"],
+      "@html-attributes": "expression"
     }
   },
   "<ebay-breadcrumb-item>": {

@@ -1,11 +1,7 @@
 const assign = require('core-js-pure/features/object/assign');
 const skipAttributes = [
     'htmlAttributes',
-    'renderBody',
-    'widgetState',
-    'widgetProps',
-    'widgetConfig',
-    'widgetBody'
+    'renderBody'
 ];
 
 /**
@@ -32,7 +28,7 @@ function processHtmlAttributes(input, ignore) {
         obj = assign({}, htmlAttributes);
     }
     Object.keys(input).forEach((key) => {
-        if (ignore.indexOf(key) === -1 && skipAttributes.indexOf(key) === -1 && !obj[key]) {
+        if ((!ignore || ignore.indexOf(key) === -1) && skipAttributes.indexOf(key) === -1 && !obj[key]) {
             obj[key] = input[key];
         }
     });
