@@ -7,7 +7,6 @@
     },
     "@html-attributes": "expression",
     "@class": "string",
-    "@style": "string",
     "@type": "string",
     "@number": "expression"
   },
