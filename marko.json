@@ -134,14 +134,22 @@
   },
   "<ebay-checkbox>": {
     "template": "./src/components/ebay-checkbox/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
-    "@disabled": "boolean"
+    "@autocomplete": "#html-autocomplete",
+    "@autofocus": "#html-autofocus",
+    "@capture": "#html-capture",
+    "@checked": "#html-checked",
+    "@disabled": "#html-disabled",
+    "@form": "#html-form",
+    "@name": "#html-name",
+    "@readonly": "#html-readonly",
+    "@required": "#html-required",
+    "@value": "#html-value"
   },
   "<ebay-combobox>": {
     "template": "./src/components/ebay-combobox/index.marko",
