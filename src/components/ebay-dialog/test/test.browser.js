@@ -88,7 +88,8 @@ describe('given an open dialog', () => {
     let sibling;
 
     beforeEach(async() => {
-        sibling = document.body.appendChild(document.createElement('div'));
+        sibling = document.body.appendChild(document.createElement('button'));
+        sibling.focus();
         component = await render(template, input);
     });
 
@@ -151,8 +152,9 @@ describe('given an open dialog', () => {
             expect(sibling).does.not.have.attr('aria-hidden');
         });
 
-        it('then it does not trap focus', () => {
+        it('then it restores the previous focus', async() => {
             expect(component.getByRole('document')).does.not.have.class('keyboard-trap--active');
+            await wait(() => expect(document.activeElement).to.equal(sibling));
         });
 
         if (wasToggled) {
