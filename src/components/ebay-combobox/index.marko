@@ -1,5 +1,4 @@
 import processHtmlAttributes from "../../common/html-attributes"
-import safeRegex from "../../common/build-safe-regex"
 
 static var ignoredAttributes = [
     "class",
@@ -10,9 +9,9 @@ static var ignoredAttributes = [
 ];
 static var itemIgnoredAttributes = ["text"];
 
-$ var options = input.options || [];
-$ var selectedOption = options[state.selectedIndex];
 $ var currentValue = state.currentValue;
+$ var selectedOption = component.getSelectedOption();
+
 <span
     class:no-update=["combobox", input.class]
     style=input.style
@@ -28,8 +27,7 @@ $ var currentValue = state.currentValue;
         -->
         <input
             ...processHtmlAttributes(input, ignoredAttributes)
-            key="input"
-            id:scoped="input"
+            key="combobox"
             type="text"
             role="combobox"
             value=currentValue
@@ -41,31 +39,24 @@ $ var currentValue = state.currentValue;
             onKeyup("handleComboboxKeyUp")/>
         <span class="combobox__icon" aria-hidden="true"/>
     </span>
-    <if(options.length)>
-        <div role="listbox" class="combobox__listbox" key="options" id:scoped="options">
-            $ var currentValueReg = safeRegex(currentValue);
-            <for|option| of=options>
-                $ var isSelected = selectedOption === option;
-                $ var isVisible = ((input.autocomplete === "list" &&
-                        (isSelected || currentValueReg.test(option.text))) ||
-                        input.autocomplete === "none"
-                );
-                <if(isVisible && option.text)>
-                    <div
-                        ...processHtmlAttributes(
-                            option,
-                            itemIgnoredAttributes
-                        )
-                        key="option[]"
-                        role="option"
-                        class:no-update=["combobox__option", option.class]
-                        tabindex:no-update="-1"
-                        aria-selected:no-update=(isSelected && "true")
-                        onClick("handleOptionClick")
-                        onMousedown("handleOptionMouseDown")>
-                        <span>${option.text}</span>
-                    </div>
-                </if>
+    <if(component.hasVisibleOptions())>
+        <div key="listbox" role="listbox" class="combobox__listbox">
+            <for|option| of=component.getVisibleOptions()>
+                $ var isSelected = option === selectedOption;
+                <div
+                    ...processHtmlAttributes(
+                        option,
+                        itemIgnoredAttributes
+                    )
+                    key="options[]"
+                    role="option"
+                    class:no-update=["combobox__option", option.class]
+                    tabindex:no-update="-1"
+                    aria-selected=(isSelected && "true")
+                    onClick("handleSelectOption", option.text)
+                    onMousedown("handleSelectOption", option.text)>
+                    <span>${option.text}</span>
+                </div>
             </for>
         </div>
     </if>
