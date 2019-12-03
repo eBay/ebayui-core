@@ -23,6 +23,8 @@
     "@a11y-heading-text": "string",
     "@a11y-heading-tag": "string",
     "@hijax": "boolean",
+    "@aria-labelledby": false,
+    "@role": false,
     "@items <item>[]": {
       "@*": {
         "targetProperty": null,
@@ -48,7 +50,8 @@
       "@ping": "#html-ping",
       "@referrerpolicy": "#html-referrerpolicy",
       "@rel": "#html-rel",
-      "@target": "#html-target"
+      "@target": "#html-target",
+      "@aria-current": false
     }
   },
   "<ebay-breadcrumb-item>": {
