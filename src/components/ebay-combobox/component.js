@@ -67,7 +67,7 @@ module.exports = {
     },
 
     handleComboboxBlur() {
-        if (this.expander.isExpanded()) {
+        if (this.expander && this.expander.isExpanded()) {
             this.expander.collapse();
         }
 
