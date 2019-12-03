@@ -93,7 +93,8 @@
     "@ping": "#html-ping",
     "@referrerpolicy": "#html-referrerpolicy",
     "@rel": "#html-rel",
-    "@target": "#html-target"
+    "@target": "#html-target",
+    "@aria-disabled": false
   },
   "<ebay-carousel>": {
     "template": "./src/components/ebay-carousel/index.marko",
