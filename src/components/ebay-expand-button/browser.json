@@ -6,6 +6,7 @@
                 "@ebay/skin/expand-button"
             ]
         },
-        "../ebay-icon"
+        "../ebay-icon",
+        "require: ./index.js"
     ]
 }
