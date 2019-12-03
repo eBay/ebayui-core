@@ -14,14 +14,21 @@ module.exports = require('marko-widgets').defineComponent({
         }, input);
     },
     getInitialState(input) {
+        let currentValue;
+        let inputId;
         const autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
-        const currentValue = input['*'] && input['*'].value;
         const index = findIndex(input.options, option => option.text === currentValue);
+
+        if (input['*']) {
+            currentValue = input['*'].value;
+            inputId = input['*'].id;
+        }
 
         return assign({}, input, {
             autocomplete,
             selectedIndex: index === -1 ? null : index,
-            currentValue
+            currentValue,
+            id: inputId
         });
     },
     onRender() {
@@ -29,10 +36,12 @@ module.exports = require('marko-widgets').defineComponent({
         const isExpanded = this.expanded = this.state.expanded;
         const wasToggled = isExpanded !== wasExpanded;
 
+        this.inputEl = this.el.querySelector('input');
+
         if (!this.state.disabled && this.state.options.length > 0) {
             this.activeDescendant = ActiveDescendant.createLinear(
                 this.el,
-                this.getEl('input'),
+                this.inputEl,
                 this.getEl('options'),
                 '.combobox__option[role=option]', {
                     activeDescendantClassName: 'combobox__option--active',
@@ -91,7 +100,7 @@ module.exports = require('marko-widgets').defineComponent({
     handleComboboxKeyDown(originalEvent) {
         const optionsEl = this.getEl('options');
         const selectedEl = optionsEl && optionsEl.querySelector('.combobox__option--active');
-        let newValue = this.getEl('input').value;
+        let newValue = this.inputEl.value;
 
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             originalEvent.preventDefault();
@@ -106,7 +115,7 @@ module.exports = require('marko-widgets').defineComponent({
             if (this.expander.isExpanded()) {
                 newValue = selectedEl && selectedEl.textContent || newValue;
 
-                this.getEl('input').value = newValue;
+                this.inputEl.value = newValue;
                 this.setState('currentValue', newValue);
                 this.setSelectedIndex();
                 if (selectedEl) {
@@ -121,13 +130,13 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     handleComboboxKeyUp(originalEvent) {
-        const newValue = this.getEl('input').value;
+        const newValue = this.inputEl.value;
 
         eventUtils.handleTextInput(originalEvent, () => {
-            this.valueChanged = this.getEl('input').value !== newValue;
+            this.valueChanged = this.inputEl.value !== newValue;
 
             this.activeDescendant.reset();
-            this.getEl('input').value = newValue;
+            this.inputEl.value = newValue;
             this.setState('currentValue', newValue);
             this.setSelectedIndex();
             this.emitComboboxEvent();
@@ -140,7 +149,7 @@ module.exports = require('marko-widgets').defineComponent({
         const wasClickedOption = this.optionClicked;
 
         if (wasClickedOption) {
-            this.getEl('input').focus();
+            this.inputEl.focus();
         }
 
         if (this.expander && this.expander.isExpanded() && !wasClickedOption) {
@@ -160,9 +169,9 @@ module.exports = require('marko-widgets').defineComponent({
         const selectedValue = selectedEl.textContent;
 
         this.optionClicked = false;
-        this.valueChanged = this.getEl('input').value !== selectedValue;
+        this.valueChanged = this.inputEl.value !== selectedValue;
 
-        this.getEl('input').value = selectedValue;
+        this.inputEl.value = selectedValue;
         this.setState('currentValue', selectedValue);
         this.setSelectedIndex();
         this.emitComboboxEvent('select');
@@ -184,7 +193,7 @@ module.exports = require('marko-widgets').defineComponent({
         });
     },
     toggleListbox() {
-        const query = this.getEl('input').value;
+        const query = this.inputEl.value;
         const queryReg = safeRegex(query);
 
         const showListbox =
