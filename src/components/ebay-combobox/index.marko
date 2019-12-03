@@ -1,18 +1,14 @@
 import processHtmlAttributes from "../../common/html-attributes"
 import safeRegex from "../../common/build-safe-regex"
 
-static {
-    var ignoredAttributes = [
-        "class",
-        "style",
-        "name",
-        "borderless",
-        "disabled",
-        "autocomplete",
-        "options"
-    ];
-    var itemIgnoredAttributes = ["class", "style", "text"];
-}
+static var ignoredAttributes = [
+    "class",
+    "style",
+    "borderless",
+    "autocomplete",
+    "options"
+];
+static var itemIgnoredAttributes = ["text"];
 
 $ var options = input.options || [];
 $ var selectedOption = options[state.selectedIndex];
@@ -21,38 +17,28 @@ $ var currentValue = state.currentValue;
     class:no-update=["combobox", input.class]
     style=input.style
     onExpander-expand("handleExpand")
-    onExpander-collapse("handleCollapse")
-    id:no-update=null>
+    onExpander-collapse("handleCollapse")>
     <span class=[
         "combobox__control",
-        {
-            "combobox__control--borderless": input.borderless
-        }
+        input.borderless && "combobox__control--borderless"
     ]>
         <!--
         NOTE: Uses autocomplete="new-password" because of a problem with Chrome where the autfill does not
         respect the "off" key. Tested and works in all other browsers properly as well.
         -->
         <input
-            ...processHtmlAttributes(data, ignoredAttributes)
-            type="text"
-            name=input.name
-            role="combobox"
-            value=currentValue
-            readonly=input.readonly
-            disabled=input.disabled
-            aria-autocomplete=state.autocomplete
-            aria-haspopup="listbox"
-            onBlur("handleComboboxBlur")
-            onKeydown("handleComboboxKeyDown")
-            onKeyup("handleComboboxKeyUp")
-            autocomplete="new-password"
+            ...processHtmlAttributes(input, ignoredAttributes)
             key="input"
             id:scoped="input"
-            aria-controls:no-update=null
-            aria-activedescendant:no-update=null
-            aria-owns:no-update=null
-            aria-expanded:no-update=null/>
+            type="text"
+            role="combobox"
+            value=currentValue
+            aria-autocomplete=input.autocomplete
+            aria-haspopup="listbox"
+            autocomplete="new-password"
+            onBlur("handleComboboxBlur")
+            onKeydown("handleComboboxKeyDown")
+            onKeyup("handleComboboxKeyUp")/>
         <span class="combobox__icon" aria-hidden="true"/>
     </span>
     <if(options.length)>
@@ -60,27 +46,23 @@ $ var currentValue = state.currentValue;
             $ var currentValueReg = safeRegex(currentValue);
             <for|option| of=options>
                 $ var isSelected = selectedOption === option;
-                $ {
-                    var isVisible = (state.autocomplete === "list" &&
+                $ var isVisible = ((input.autocomplete === "list" &&
                         (isSelected || currentValueReg.test(option.text))) ||
-                        state.autocomplete === "none";
-                }
+                        input.autocomplete === "none"
+                );
                 <if(isVisible && option.text)>
                     <div
                         ...processHtmlAttributes(
                             option,
                             itemIgnoredAttributes
                         )
+                        key="option[]"
                         role="option"
                         class:no-update=["combobox__option", option.class]
-                        style=option.style
                         tabindex:no-update="-1"
-                        onClick("handleOptionClick")
-                        onMousedown("handleOptionMouseDown")
                         aria-selected:no-update=(isSelected && "true")
-                        data-option-value=option.value
-                        key="option[]"
-                        data-makeup-index:no-update=null>
+                        onClick("handleOptionClick")
+                        onMousedown("handleOptionMouseDown")>
                         <span>${option.text}</span>
                     </div>
                 </if>

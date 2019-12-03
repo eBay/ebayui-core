@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const findIndex = require('core-js-pure/features/array/find-index');
 const ActiveDescendant = require('makeup-active-descendant');
 const Expander = require('makeup-expander');
@@ -7,18 +6,8 @@ const eventUtils = require('../../common/event-utils');
 const safeRegex = require('../../common/build-safe-regex');
 
 module.exports = {
-    _handleDestroy() {
-        if (this.activeDescendant) {
-            this.activeDescendant.destroy();
-        }
-
-        if (this.expander) {
-            this.expander.cancelAsync();
-        }
-    },
-
     handleExpand() {
-        const index = this.getSelectedIndex(this.state.options, this.state.currentValue);
+        const index = this.getSelectedIndex(this.input.options, this.state.currentValue);
         elementScroll.scroll(this.getEls('option')[index]);
         this.emit('combobox-expand');
         this.setState('expanded', true);
@@ -116,7 +105,7 @@ module.exports = {
     },
 
     setSelectedIndex(index = 0) {
-        const newIndex = index || this.getSelectedIndex(this.state.options, this.state.currentValue);
+        const newIndex = index || this.getSelectedIndex(this.input.options, this.state.currentValue);
 
         this.setState('selectedIndex', newIndex);
     },
@@ -128,8 +117,8 @@ module.exports = {
     emitComboboxEvent(eventName = 'input') {
         this.emit(`combobox-${eventName}`, {
             currentInputValue: this.state.currentValue,
-            selectedOption: this.state.options[this.state.selectedIndex],
-            options: this.state.options
+            selectedOption: this.input.options[this.state.selectedIndex],
+            options: this.input.options
         });
     },
 
@@ -138,8 +127,8 @@ module.exports = {
         const queryReg = safeRegex(query);
 
         const showListbox =
-            (this.state.autocomplete === 'list' && this.state.options.some(option => queryReg.test(option.text)))
-            || this.state.autocomplete === 'none';
+            (this.input.autocomplete === 'list' && this.input.options.some(option => queryReg.test(option.text)))
+            || this.input.autocomplete === 'none';
 
         if (this.expander) {
             if (!showListbox) {
@@ -151,46 +140,40 @@ module.exports = {
     },
 
     onInput(input) {
-        const autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
-        const currentValue = input.value;
+        const index = findIndex(input.options || [], option => option.text === input.value);
+        input.autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
 
-        const index = findIndex(input.options || [], option => option.text === currentValue);
-
-        this.state = assign({}, input, {
-            autocomplete,
+        this.state = {
+            expanded: false,
             selectedIndex: index === -1 ? null : index,
-            currentValue
-        });
+            currentValue: input.value
+        };
+    },
+
+    onMount() {
+        this._setupMakeup();
+    },
+
+    onUpdate() {
+        this._setupMakeup();
     },
 
     onRender() {
         if (typeof window !== 'undefined') {
-            this._handleDestroy();
+            this._cleanupMakeup();
         }
     },
 
-    onMount() {
-        this.onRenderLegacy({
-            firstRender: true
-        });
-    },
-
-    onUpdate() {
-        this.onRenderLegacy({
-            firstRender: false
-        });
-    },
-
     onDestroy() {
-        this._handleDestroy();
+        this._cleanupMakeup();
     },
 
-    onRenderLegacy() {
+    _setupMakeup() {
         const wasExpanded = this.expanded || false;
         const isExpanded = this.expanded = this.state.expanded;
         const wasToggled = isExpanded !== wasExpanded;
 
-        if (!this.state.disabled && this.state.options && this.state.options.length > 0) {
+        if (!this.input.disabled && this.input.options && this.input.options.length > 0) {
             this.activeDescendant = ActiveDescendant.createLinear(
                 this.el,
                 this.getEl('input'),
@@ -206,8 +189,8 @@ module.exports = {
             this.expander = new Expander(this.el, {
                 autoCollapse: true,
                 expandOnFocus: true,
-                expandOnClick: this.state.readonly && !this.state.disabled,
-                collapseOnFocusOut: !this.state.readonly,
+                expandOnClick: this.input.readonly && !this.input.disabled,
+                collapseOnFocusOut: !this.input.readonly,
                 contentSelector: '.combobox__listbox',
                 hostSelector: '.combobox__control > input',
                 expandedClass: 'combobox--expanded',
@@ -221,6 +204,16 @@ module.exports = {
                     this.expander.collapse();
                 }
             }
+        }
+    },
+
+    _cleanupMakeup() {
+        if (this.activeDescendant) {
+            this.activeDescendant.destroy();
+        }
+
+        if (this.expander) {
+            this.expander.cancelAsync();
         }
     }
 };
