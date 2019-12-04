@@ -61,7 +61,7 @@ module.exports = {
         }
     },
 
-    onCreate(input) {
+    onInput(input) {
         input.options = input.options || [];
         this.state = {
             selectedIndex: Math.max(
