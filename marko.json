@@ -23,8 +23,8 @@
     "@a11y-heading-text": "string",
     "@a11y-heading-tag": "string",
     "@hijax": "boolean",
-    "@aria-labelledby": false,
-    "@role": false,
+    "@aria-labelledby": "never",
+    "@role": "never",
     "@items <item>[]": {
       "@*": {
         "targetProperty": null,
@@ -51,7 +51,7 @@
       "@referrerpolicy": "#html-referrerpolicy",
       "@rel": "#html-rel",
       "@target": "#html-target",
-      "@aria-current": false
+      "@aria-current": "never"
     }
   },
   "<ebay-breadcrumb-item>": {
@@ -94,7 +94,7 @@
     "@referrerpolicy": "#html-referrerpolicy",
     "@rel": "#html-rel",
     "@target": "#html-target",
-    "@aria-disabled": false
+    "@aria-disabled": "never"
   },
   "<ebay-carousel>": {
     "template": "./src/components/ebay-carousel/index.marko",
@@ -165,9 +165,9 @@
     "@html-attributes": "expression",
     "@borderless": "boolean",
     "@autocomplete": "string",
-    "@role": false,
-    "@aria-autocomplete": false,
-    "@aria-haspopup": false,
+    "@role": "never",
+    "@aria-autocomplete": "never",
+    "@aria-haspopup": "never",
     "@disabled": "#html-disabled",
     "@form": "#html-form",
     "@name": "#html-name",
@@ -184,9 +184,9 @@
       "@value": "string",
       "@text": "string",
       "@selected": "boolean",
-      "@tabindex": false,
-      "@role": false,
-      "@aria-selected": false
+      "@tabindex": "never",
+      "@role": "never",
+      "@aria-selected": "never"
     }
   },
   "<ebay-combobox-option>": {
@@ -202,13 +202,13 @@
     "@html-attributes": "expression",
     "@borderless": "boolean",
     "@name": "#html-name",
-    "@type": false,
-    "@role": false,
-    "@readonly": false,
-    "@value": false,
-    "@aria-haspopup": false,
-    "@aria-owns": false,
-    "@aria-expanded": false,
+    "@type": "never",
+    "@role": "never",
+    "@readonly": "never",
+    "@value": "never",
+    "@aria-haspopup": "never",
+    "@aria-owns": "never",
+    "@aria-expanded": "never",
     "@options <option>[]": {
       "attribute-groups": ["html-attributes"],
       "@*": {
@@ -219,17 +219,17 @@
       "@text": "string",
       "@selected": "#html-selected",
       "@value": "#html-value",
-      "@role": false,
-      "@tabindex": false,
-      "@aria-selected": false
+      "@role": "never",
+      "@tabindex": "never",
+      "@aria-selected": "never"
     }
   },
   "<ebay-combobox-readonly-option>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-cta-button>": {
-    "attribute-groups": ["html-attributes"],
     "template": "./src/components/ebay-cta-button/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -239,17 +239,18 @@
   },
   "<ebay-dialog>": {
     "template": "./src/components/ebay-dialog/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
     "@open": "boolean",
     "@type": "string",
     "@focus": "string",
-    "@a11y-close-text": "string"
+    "@a11y-close-text": "string",
+    "@role": "never",
+    "@hidden": "never"
   },
   "<ebay-expand-button>": {
     "template": "./src/components/ebay-expand-button/index.marko",

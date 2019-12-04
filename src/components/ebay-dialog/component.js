@@ -28,11 +28,11 @@ module.exports = {
             }
         }
 
-        this.setState('open', false);
+        this.state.open = false;
     },
 
     handleCloseButtonClick() {
-        this.setState('open', false);
+        this.state.open = false;
     },
 
     /**
@@ -130,9 +130,7 @@ module.exports = {
     },
 
     onInput(input) {
-        this.state = assign({}, input, {
-            open: input.open || false
-        });
+        this.state = { open: input.open || false };
     },
 
     onRender() {
@@ -150,13 +148,13 @@ module.exports = {
         // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
         this.subscribeTo(this.rootEl).on('click', () => {});
 
-        this.onRenderLegacy({
+        this._trap({
             firstRender: true
         });
     },
 
     onUpdate() {
-        this.onRenderLegacy({
+        this._trap({
             firstRender: false
         });
     },
@@ -168,9 +166,5 @@ module.exports = {
         if (this.isTrapped) {
             bodyScroll.restore();
         }
-    },
-
-    onRenderLegacy(event) {
-        this._trap(event);
     }
 };
