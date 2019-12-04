@@ -22,4 +22,9 @@ Name | Type | Stateful | Required | Description
 
 ## ebay-filter Events
 
-Please see [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button#ebay-button-events).
+## ebay-button Events
+
+Event | Data | Description
+--- | --- | ---
+`filter-click` | `{ originalEvent, selected }` | click or action key pressed (space and enter)
+

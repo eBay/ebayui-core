@@ -1,42 +1,29 @@
-$ var data = state;
 import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
-    "class",
-    "style",
-    "disabled",
-    "href",
-    "priority",
     "selected",
     "a11ySelectedText"
 ];
 
-$ var classPrefix = data.href ? "filter-link" : "filter-button";
-<${data.href ? "a" : "button"}
-    ...processHtmlAttributes(data, ignoredAttributes)
-    onClick("handleButtonClick")
+$ var baseClass = input.href ? "filter-link" : "filter-button";
+
+<${input.href ? "a" : "button"}
+    ...processHtmlAttributes(input, ignoredAttributes)
     class=[
-        classPrefix,
-        data.selected
-            ? classPrefix + "--selected"
-            : classPrefix + "--unselected",
-        data.class
+        baseClass,
+        `${baseClass}--${state.selected ? "selected" : "unselected"}`,
+        input.class
     ]
-    style=data.style
-    href=data.href
-    disabled=data.disabled
-    type=(!data.href && "button")
-    aria-pressed=(!data.href && data.selected && "true")>
-    <span class=`${classPrefix}__cell`>
+    type=(!input.href && "button")
+    aria-pressed=(!input.href && state.selected && "true")
+    onClick("handleButtonClick")>
+    <span class=`${baseClass}__cell`>
         <span>
-            <if(typeof input.renderBody === "function")>
-                <${input}/>
-            </if>
-            <else>${input.renderBody}</else>
+            <${input.renderBody}/>
         </span>
-        <if(data.href && data.selected)>
+        <if(input.href && state.selected)>
             <span class="clipped" key="active-text" id:scoped="active-text">
-                - ${data.a11ySelectedText || "Selected"}
+                - ${input.a11ySelectedText || "Selected"}
             </span>
         </if>
     </span>

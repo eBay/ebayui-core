@@ -273,18 +273,26 @@
   },
   "<ebay-filter>": {
     "template": "./src/components/ebay-filter/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
-    "@disabled": "boolean",
-    "@href": "string",
     "@priority": "string",
     "@selected": "boolean",
-    "@a11y-selected-text": "string"
+    "@a11y-selected-text": "string",
+    "@autofocus": "#html-autofocus",
+    "@disabled": "#html-disabled",
+    "@download": "#html-download",
+    "@href": "#html-href",
+    "@hreflang": "#html-hreflang",
+    "@media": "#html-media",
+    "@ping": "#html-ping",
+    "@referrerpolicy": "#html-referrerpolicy",
+    "@rel": "#html-rel",
+    "@target": "#html-target",
+    "@aria-pressed": "never"
   },
   "<ebay-filter-menu>": {
     "template": "./src/components/ebay-filter-menu/index.marko",

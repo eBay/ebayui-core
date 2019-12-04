@@ -25,7 +25,11 @@ describe('given filter is enabled', () => {
         });
 
         it('then it emits the event with correct data', () => {
-            expect(component.emitted('filter-click')).has.length(1);
+            const clickEvents = component.emitted('filter-click');
+            expect(clickEvents).has.length(1);
+            const [[clickEventArg]] = clickEvents;
+            expect(clickEventArg).has.property("originalEvent");
+            expect(clickEventArg).has.property("selected", true);
         });
 
         it('then it is selected', () => {
