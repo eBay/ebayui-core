@@ -1,21 +1,13 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = ["id", "class", "style", "size"];
+static var ignoredAttributes = ["size"];
 
-$ var size = data.size || "medium";
-$ var baseClass = "cta-btn";
-$ var sizeClass = baseClass + "--" + size;
-$ var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
 <a
-    ...htmlAttributes
-    id=data.id
-    class=[data.class, baseClass, sizeClass]
-    style=data.style>
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=["cta-btn", `cta-btn--${input.size || "medium"}`, input.class]>
     <span class="cta-btn__cell">
         <span>
-            <if(data.renderBody)>
-                <${data}/>
-            </if>
+            <${input.renderBody}/>
         </span>
         <ebay-icon
             type="inline"

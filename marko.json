@@ -228,16 +228,14 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-cta-button>": {
+    "attribute-groups": ["html-attributes"],
     "template": "./src/components/ebay-cta-button/index.marko",
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@id": "string",
-    "@class": "string",
-    "@style": "string",
-    "@size": "size"
+    "@size": "string"
   },
   "<ebay-dialog>": {
     "template": "./src/components/ebay-dialog/index.marko",
