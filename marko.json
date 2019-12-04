@@ -254,17 +254,22 @@
   },
   "<ebay-expand-button>": {
     "template": "./src/components/ebay-expand-button/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@id": "string",
-    "@class": "string",
-    "@style": "string",
-    "@disabled": "boolean",
     "@size": "size",
-    "@no-text": "boolean"
+    "@no-text": "boolean",
+    "@fluid": "boolean",
+    "@truncate": "boolean",
+    "@fixed-height": "boolean",
+    "@partially-disabled": "boolean",
+    "@autofocus": "#html-autofocus",
+    "@disabled": "#html-disabled",
+    "@type": "never",
+    "@aria-disabled": "never"
   },
   "<ebay-filter>": {
     "template": "./src/components/ebay-filter/index.marko",
