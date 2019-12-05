@@ -198,7 +198,7 @@
     "@a11y-close-text": "string"
   },
   "<ebay-expand-button>": {
-    "template": "./src/components/ebay-expand-button/index.marko",
+    "renderer": "./src/components/ebay-expand-button/index.js",
     "@*": {
       "targetProperty": null,
       "type": "expression"

@@ -10,6 +10,7 @@
 <var sizeClass="${baseClass}--${size}"/>
 
 <button
+    w-bind
     ${processHtmlAttributes(data, ignoredAttributes)}
     id=(data.id || getWidgetId(out))
     class=[
@@ -25,7 +26,9 @@
     href=data.href
     type="button"
     disabled=data.disabled
-    aria-disabled=(data.partiallyDisabled && "true")>
+    aria-disabled=(data.partiallyDisabled && "true")
+    w-onclick="handleClick"
+    w-onkeydown="handleKeydown">
     <span class="${baseClass}__cell">
         <span if(data.renderBody)><invoke data.renderBody(out) /></span>
         <ebay-icon type="inline" name="chevron-down-bold" class="expand-btn__icon" no-skin-classes/>
