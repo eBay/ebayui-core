@@ -1,10 +1,8 @@
 const assign = require('core-js-pure/features/object/assign');
-const indexOf = require('core-js-pure/features/array/index-of');
 const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
 const eventUtils = require('../../common/event-utils');
-const NodeListUtils = require('../../common/nodelist-utils');
 
 module.exports = {
     _handleDestroy() {
@@ -15,7 +13,6 @@ module.exports = {
     },
 
     toggleItemChecked(index, originalEvent, itemEl) {
-        const item = this.input.items[index];
         const currentIndex = this.state.checkedItems.findIndex(checked => checked);
 
         if (this.type === 'radio' && index !== currentIndex) {
@@ -49,7 +46,7 @@ module.exports = {
     },
 
     getCheckedIndexes() {
-       return this.input.items
+        return this.input.items
             .map((item, i) => this.state.checkedItems[i] && i)
             .filter(item => item !== false && typeof item !== 'undefined');
     },
@@ -82,6 +79,7 @@ module.exports = {
 
         if (isCheckbox && checkedIndexes.length > 1) {
             assign(eventObj, {
+                index,
                 indexes: this.getCheckedIndexes(), // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues() // DEPRECATED in v5
@@ -107,7 +105,7 @@ module.exports = {
         this.state = {
             checkedItems: (input.items || []).map(item => item.checked || false)
 
-        }
+        };
     },
 
     onRender() {
@@ -118,9 +116,14 @@ module.exports = {
 
     onMount() {
         this.tabindexPosition = 0;
+        this.setContent();
     },
 
     onUpdate() {
+        this.setContent();
+    },
+
+    setContent() {
         this.contentEl = this.getEl('menu');
 
         if (this.type !== 'fake') {
