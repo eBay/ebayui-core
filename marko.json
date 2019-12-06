@@ -388,16 +388,30 @@
   "<ebay-infotip>": {
     "template": "./src/components/ebay-infotip/index.marko",
     "transformer": "./src/components/ebay-infotip/transformer.js",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
     "@icon": "string",
     "@disabled": "boolean",
-    "@pointer": "string",
+    "@pointer": {
+      "enum": [
+        "top-left",
+        "top",
+        "top-right",
+        "right",
+        "right-bottom",
+        "right-top",
+        "bottom-left",
+        "bottom-right",
+        "bottom",
+        "left",
+        "left-bottom",
+        "left-top"
+      ]
+    },
     "@style-top": "string",
     "@style-left": "string",
     "@style-right": "string",
@@ -405,32 +419,21 @@
     "@aria-label": "string",
     "@a11y-close-text": "string",
     "@iconTag <icon>": {},
-    "@host <host>": {
-      "@*": {
-        "targetProperty": null,
-        "type": "expression"
-      },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
-    },
     "@heading <heading>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
     },
     "@content <content>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
     }
   },
   "<ebay-listbox-button>": {
@@ -812,36 +815,48 @@
   },
   "<ebay-tooltip>": {
     "template": "./src/components/ebay-tooltip/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
-    "@pointer": "string",
+    "@pointer": {
+      "enum": [
+        "top-left",
+        "top",
+        "top-right",
+        "right",
+        "right-bottom",
+        "right-top",
+        "bottom-left",
+        "bottom-right",
+        "bottom",
+        "left",
+        "left-bottom",
+        "left-top"
+      ]
+    },
     "@style-top": "string",
     "@style-left": "string",
     "@style-right": "string",
     "@style-bottom": "string",
     "@no-hover": "boolean",
-    "@host <host>": {
+    "@heading <heading>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
     },
     "@content <content>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
     }
   },
   "<ebay-tooltip-host>": {
@@ -861,45 +876,56 @@
   },
   "<ebay-tourtip>": {
     "template": "./src/components/ebay-tourtip/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
-    "@pointer": "string",
+    "@pointer": {
+      "enum": [
+        "top-left",
+        "top",
+        "top-right",
+        "right",
+        "right-bottom",
+        "right-top",
+        "bottom-left",
+        "bottom-right",
+        "bottom",
+        "left",
+        "left-bottom",
+        "left-top"
+      ]
+    },
     "@style-top": "string",
     "@style-left": "string",
     "@style-right": "string",
     "@style-bottom": "string",
     "@a11y-close-text": "string",
     "@host <host>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
     },
     "@heading <heading>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
     },
     "@content <content>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
     }
   },
   "<ebay-tourtip-host>": {

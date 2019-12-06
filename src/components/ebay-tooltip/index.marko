@@ -1,8 +1,6 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import processHtmlAttributes from "../../common/html-attributes";
 
 static var ignoredAttributes = [
-    "class",
-    "style",
     "pointer",
     "styleTop",
     "styleLeft",
@@ -12,37 +10,34 @@ static var ignoredAttributes = [
     "host"
 ];
 
-$ var pointer = data.pointer || "bottom";
+$ var pointer = input.pointer || "bottom";
+
 <span>
     <ebay-tooltip-base
         type="tooltip"
         pointer=pointer
-        style-left=data.styleLeft
-        style-top=data.styleTop
-        style-right=data.styleRight
-        style-bottom=data.styleBottom
-        no-hover=data.noHover
-        onBase-expand("handleExpand")
-        onBase-collapse("handleCollapse")
-        key="base">
+        overlay-id:scoped="overlay"
+        style-left=input.styleLeft
+        style-top=input.styleTop
+        style-right=input.styleRight
+        style-bottom=input.styleBottom
+        no-hover=input.noHover
+        onBase-expand("emit", "tooltip-expand")
+        onBase-collapse("emit", "tooltip-collapse")>
         <span
-            ...processHtmlAttributes(data, ignoredAttributes)
-            class:no-update="tooltip"
-            key="expander-root"
-            id:scoped="expander-root">
-            <if(data.host)>
-                <${data.host.renderBody}/>
-            </if>
+            ...processHtmlAttributes(input, ignoredAttributes)
+            class:no-update="tooltip">
+            <${input.host}/>
             <ebay-tooltip-overlay
                 type="tooltip"
-                tooltip-id:scoped="overlay"
+                id:scoped="overlay"
                 pointer=pointer
-                style-left=data.styleLeft
-                style-top=data.styleTop
-                style-right=data.styleRight
-                style-bottom=data.styleBottom
-                heading=data.heading
-                content=data.content/>
+                style-left=input.styleLeft
+                style-top=input.styleTop
+                style-right=input.styleRight
+                style-bottom=input.styleBottom
+                heading=input.heading
+                content=input.content/>
         </span>
     </ebay-tooltip-base>
 </span>
