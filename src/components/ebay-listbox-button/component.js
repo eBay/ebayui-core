@@ -22,10 +22,10 @@ module.exports = {
     handleListboxChange(event) {
         const selectedIndex = parseInt(event.detail.toIndex, 10);
         const el = this.getEls('option')[selectedIndex];
-        const option = this.state.options[selectedIndex];
+        const option = this.input.options[selectedIndex];
 
         elementScroll.scroll(el);
-        this.setState('selectedIndex', selectedIndex);
+        this.state.selectedIndex = selectedIndex;
 
         this.emit('listbox-change', {
             index: selectedIndex,
@@ -34,50 +34,83 @@ module.exports = {
         });
 
         if (this.wasClicked) {
-            this.expander.collapse();
+            this._expander.collapse();
             this.wasClicked = false;
         }
     },
 
-    onCreate(input) {
-        input.options = input.options || [];
-        const index = findIndex(input.options, option => option.selected);
+    onCreate() {
+        this.state = {
+            selectedIndex: 0
+        };
+    },
 
-        this.state = assign({}, input, {
-            selectedIndex: index === -1 ? 0 : index
-        });
+    onInput(input) {
+        const { state } = this;
+        input.options = input.options || [];
+        state.selectedIndex = Math.max(0, findIndex(input.options, option => option.selected));
     },
 
     onMount() {
-        // TODO: needs to be in on render.
-        const optionsContainer = this.getEl('options');
-        this.activeDescendant = ActiveDescendant.createLinear(
-            this.el,
-            optionsContainer,
-            optionsContainer,
-            '.listbox-button__option[role=option]',
-            {
-                activeDescendantClassName: 'listbox-button__option--active',
-                autoInit: this.state.selectedIndex,
-                autoReset: null
-            }
-        );
+        this._setupMakeup();
+    },
 
-        this.expander = new Expander(this.el, {
-            autoCollapse: true,
-            expandOnClick: !this.state.disabled,
-            contentSelector: '.listbox-button__listbox',
-            hostSelector: '.listbox-button__control',
-            expandedClass: 'listbox-button--expanded',
-            focusManagement: 'content',
-            simulateSpacebarClick: true
-        });
+    onUpdate() {
+        this._setupMakeup();
+    },
 
-        this
-            .subscribeTo(this.el)
-            .on('activeDescendantChange', this.handleListboxChange.bind(this));
+    onRender() {
+        if (typeof window !== "undefined") {
+            this._cleanupMakeup();
+        }
+    },
 
-        scrollKeyPreventer.add(this.getEl('button'));
-        scrollKeyPreventer.add(this.getEl('options'));
+    onDestroy() {
+        this._cleanupMakeup();
+    },
+
+    _setupMakeup() {
+        const { input, state } = this;
+
+        if (input.options.length && !input.disabled) {
+            const container = this.getEl('container');
+            const optionsContainer = this.getEl('options');
+            this._activeDescendant = ActiveDescendant.createLinear(
+                container,
+                optionsContainer,
+                optionsContainer,
+                '.listbox-button__option[role=option]',
+                {
+                    activeDescendantClassName: 'listbox-button__option--active',
+                    autoInit: state.selectedIndex,
+                    autoReset: null
+                }
+            );
+    
+            this._expander = new Expander(container, {
+                autoCollapse: true,
+                expandOnClick: true,
+                simulateSpacebarClick: true,
+                contentSelector: '.listbox-button__listbox',
+                hostSelector: '.listbox-button__control',
+                expandedClass: 'listbox-button--expanded',
+                focusManagement: 'content'
+            });
+
+            scrollKeyPreventer.add(this.getEl('button'));
+            scrollKeyPreventer.add(optionsContainer);
+        }
+    },
+
+    _cleanupMakeup() {
+        if (this._expander) {
+            this._expander.cancelAsync();
+            this._expander = undefined;
+        }
+
+        if (this._activeDescendant) {
+            this._activeDescendant.destroy();
+            this._activeDescendant = undefined;
+        }
     }
 };

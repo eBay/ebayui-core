@@ -1,31 +1,30 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import processHtmlAttributes from "../../common/html-attributes";
 
-static {
-    var ignoredAttributes = [
-        "class",
-        "style",
-        "name",
-        "grow",
-        "borderless",
-        "disabled",
-        "fluid",
-        "invalid",
-        "buttonName",
-        "options"
-    ];
-    var itemIgnoredAttributes = ["class", "style", "value", "text", "selected"];
-}
+static var ignoredAttributes = [
+    "name",
+    "grow",
+    "borderless",
+    "disabled",
+    "fluid",
+    "invalid",
+    "buttonName",
+    "options"
+];
 
-$ var options = state.options;
-$ var selectedOption = options[state.selectedIndex];
+static var itemIgnoredAttributes = ["value", "text", "selected"];
+
+$ var selectedOption = input.options[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
+
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
+    key="container"
     class:no-update=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
-    style=input.style
-    onExpander-expand("handleExpand")
-    onExpander-collapse("handleCollapse")>
+    on-expander-expand("handleExpand")
+    on-expander-collapse("handleCollapse")
+    on-activeDescendantChange("handleListboxChange")>
     <button
+        key="button"
         class=[
             "listbox-button__control",
             "expand-btn",
@@ -34,39 +33,30 @@ $ var selectedText = selectedOption && selectedOption.text;
         ]
         value=selectedText
         type="button"
-        disabled=state.disabled
+        disabled=input.disabled
         name=input.buttonName
         aria-haspopup="listbox"
-        aria-invalid=(input.invalid && "true")
-        key="button"
-        id:scoped="button"
-        aria-expanded:no-update=null
-        aria-controls:no-update=null>
+        aria-invalid=(input.invalid && "true")>
         <span class="expand-btn__cell">
             <span>${selectedText}</span>
             <span class="expand-btn__icon"/>
         </span>
     </button>
-    <if(options.length)>
+    <if(input.options.length)>
         <div
+            key="options"
             role="listbox"
             class:no-update="listbox-button__listbox"
-            tabindex:no-update="-1"
-            key="options"
-            id:scoped="options"
-            aria-owns:no-update=null
-            aria-activedescendant:no-update=null>
-            <for|option| of=state.options>
+            tabindex:no-update="-1">
+            <for|option| of=input.options>
                 <div
                     ...processHtmlAttributes(option, itemIgnoredAttributes)
+                    key="option[]"
                     class:no-update=["listbox-button__option", option.class]
-                    style=option.style
                     role="option"
                     tabindex="-1"
                     aria-selected:no-update=(selectedOption === option && "true")
-                    onMousedown("handleMouseDown")
-                    key="option[]"
-                    data-makeup-index:no-update=null>
+                    onMousedown("handleMouseDown")>
                     <span class="listbox-button__value">${option.text}</span>
                     <span class="listbox-button__status"/>
                 </div>
@@ -74,7 +64,7 @@ $ var selectedText = selectedOption && selectedOption.text;
         </div>
     </if>
     <select hidden class="listbox-button__native" name=input.name>
-        <for|option| of=state.options>
+        <for|option| of=input.options>
             <option
                 value=option.value
                 selected=(option === selectedOption)

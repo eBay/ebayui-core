@@ -438,31 +438,32 @@
   },
   "<ebay-listbox-button>": {
     "template": "./src/components/ebay-listbox-button/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
-    "@name": "string",
     "@grow": "boolean",
     "@borderless": "boolean",
-    "@disabled": "boolean",
     "@fluid": "boolean",
     "@invalid": "boolean",
-    "@button-name": "string",
+    "@name": "#html-name",
+    "@button-name": "#html-name",
+    "@disabled": "#html-disabled",
     "@options <option>[]": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
       "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string",
-      "@value": "string",
       "@text": "string",
-      "@selected": "boolean"
+      "@selected": "#html-selected",
+      "@value": "#html-value",
+      "@role": "never",
+      "@tabindex": "never",
+      "@aria-selected": "never"
     }
   },
   "<ebay-listbox-button-option>": {
