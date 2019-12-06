@@ -8,33 +8,30 @@ const NodeListUtils = require('../../common/nodelist-utils');
 
 module.exports = {
     _handleDestroy() {
-        if (this.state.type !== 'fake' && this.rovingTabindex) {
+        if (this.type !== 'fake' && this.rovingTabindex) {
             this.rovingTabindex.destroy();
             scrollKeyPreventer.remove(this.contentEl);
         }
     },
 
-    toggleItemChecked(originalEvent, itemEl) {
-        const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
-        const item = this.state.items[itemIndex];
-        const currentIndex = this.state.items.findIndex(radioItem => radioItem.checked);
+    toggleItemChecked(index, originalEvent, itemEl) {
+        const item = this.input.items[index];
+        const currentIndex = this.state.checkedItems.findIndex(checked => checked);
 
-        if (this.state.type === 'radio' && itemIndex !== currentIndex) {
-            this.state.items.forEach((eachItem, i) => {
-                eachItem.checked = (i === itemIndex);
-            });
-
-            this.setStateDirty('items');
+        if (this.type === 'radio' && index !== currentIndex) {
+            this.setState('checkedItems', this.state.checkedItems.map((item, i) => i === index));
             this.emitComponentEvent({
+                index,
                 eventType: 'change',
                 el: itemEl,
                 originalEvent
             });
-        } else if (this.state.type !== 'radio') {
-            item.checked = !item.checked;
-            this.setStateDirty('items');
+        } else if (this.type !== 'radio') {
+            this.state.checkedItems[index] = !this.state.checkedItems[index];
+            this.setStateDirty('checkedItems');
             this.emitComponentEvent({
-                eventType: this.state.type === 'fake' || !this.state.type ? 'select' : 'change',
+                index,
+                eventType: this.type === 'fake' || !this.type ? 'select' : 'change',
                 el: itemEl,
                 originalEvent
             });
@@ -46,42 +43,37 @@ module.exports = {
     },
 
     getCheckedValues() {
-        return this.state.items
-            .filter(item => item.checked)
+        return this.input.items
+            .filter((item, index) => this.state.checkedItems[index])
             .map(item => item.value);
     },
 
     getCheckedIndexes() {
-        return this.state.items
-            .map((item, i) => item.checked && i)
+       return this.input.items
+            .map((item, i) => this.state.checkedItems[i] && i)
             .filter(item => item !== false && typeof item !== 'undefined');
     },
 
-    handleItemClick(originalEvent, itemEl) {
-        this.toggleItemChecked(originalEvent, itemEl);
+    handleItemClick(index, originalEvent, itemEl) {
+        this.toggleItemChecked(index, originalEvent, itemEl);
     },
 
-    handleItemKeydown(originalEvent, itemEl) {
+    handleItemKeydown(index, originalEvent, itemEl) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.emitComponentEvent({ eventType: 'keydown', originalEvent });
+            this.emitComponentEvent({ eventType: 'keydown', originalEvent, index });
         });
 
-        eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(originalEvent, itemEl));
+        eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(index, originalEvent, itemEl));
     },
 
-    handleItemKeypress({ key }) {
-        const itemIndex = NodeListUtils.findNodeWithFirstChar(this.getEl('menu').children, key);
-
-        if (itemIndex !== -1) {
-            this.tabindexPosition = this.rovingTabindex.index = itemIndex;
-        }
+    handleItemKeypress(index) {
+        this.tabindexPosition = this.rovingTabindex.index = index;
     },
 
-    emitComponentEvent({ eventType, el, originalEvent }) {
+    emitComponentEvent({ eventType, el, originalEvent, index }) {
         const checkedIndexes = this.getCheckedIndexes();
-        const itemIndex = el && indexOf(el.parentNode.children, el);
-        const isCheckbox = this.state.type === 'checkbox';
-        const isRadio = this.state.type === 'radio';
+        const isCheckbox = this.type === 'checkbox';
+        const isRadio = this.type === 'radio';
 
         const eventObj = {
             el,
@@ -96,14 +88,14 @@ module.exports = {
             });
         } else if (isCheckbox || isRadio) {
             assign(eventObj, {
-                index: itemIndex, // DEPRECATED in v5
+                index, // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues() // DEPRECATED in v5
             });
         } else {
             assign(eventObj, {
-                index: itemIndex, // DEPRECATED in v5
-                checked: [itemIndex] // DEPRECATED in v5 (keep but change from indexes to values)
+                index, // DEPRECATED in v5
+                checked: [index] // DEPRECATED in v5 (keep but change from indexes to values)
             });
         }
 
@@ -111,9 +103,11 @@ module.exports = {
     },
 
     onInput(input) {
-        this.state = assign({}, input, {
-            items: (input.items || []).map(item => assign({}, item))
-        });
+        this.type = input.type;
+        this.state = {
+            checkedItems: (input.items || []).map(item => item.checked || false)
+
+        }
     },
 
     onRender() {
@@ -123,34 +117,22 @@ module.exports = {
     },
 
     onMount() {
-        this.onRenderLegacy({
-            firstRender: true
-        });
+        this.tabindexPosition = 0;
     },
 
     onUpdate() {
-        this.onRenderLegacy({
-            firstRender: false
-        });
-    },
-
-    onDestroy() {
-        this._handleDestroy();
-    },
-
-    onRenderLegacy({ firstRender }) {
         this.contentEl = this.getEl('menu');
 
-        if (firstRender) {
-            this.tabindexPosition = 0;
-        }
-
-        if (this.state.type !== 'fake') {
+        if (this.type !== 'fake') {
             this.rovingTabindex = rovingTabindex.createLinear(this.contentEl, 'div', {
                 index: this.tabindexPosition, autoReset: null
             });
 
             scrollKeyPreventer.add(this.contentEl);
         }
+    },
+
+    onDestroy() {
+        this._handleDestroy();
     }
 };

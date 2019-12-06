@@ -46,25 +46,26 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
         class=`${baseClass}__items`
         key="menu"
         id:scoped="menu">
-        <for|item| of=state.items>
+        <for|item, index| of=input.items>
             $ {
                 var itemRole = isRadio
                                 ? "menuitemradio"
                                 : isCheckbox
                                 ? "menuitemcheckbox"
                                 : !isFake && "menuitem";
+                var checked = state.checkedItems[index];
             }
             <${isFake ? (item.type === "button" ? "button" : "a") : "div"}
                 ...processHtmlAttributes(item, itemIgnoredAttributes)
                 class=[`${baseClass}__item`, item.class]
                 style=item.style
-                aria-checked=(!isNotCheckable && (item.checked ? "true" : "false"))
+                aria-checked=(!isNotCheckable && (checked ? "true" : "false"))
                 aria-current=(isNotCheckable && item.current ? "page" : false)
                 href=item.href
                 role=itemRole
-                onClick("handleItemClick")
-                onKeydown("handleItemKeydown")
-                onKeypress("handleItemKeypress")
+                onClick("handleItemClick", index)
+                onKeydown("handleItemKeydown", index)
+                onKeypress("handleItemKeypress", index)
                 key="item[]">
                 <span>
                     <${!item.badgeNumber ? null : "span"} aria-hidden="true">
