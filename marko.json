@@ -165,15 +165,15 @@
     "@html-attributes": "expression",
     "@borderless": "boolean",
     "@autocomplete": "string",
-    "@role": "never",
-    "@aria-autocomplete": "never",
-    "@aria-haspopup": "never",
     "@disabled": "#html-disabled",
     "@form": "#html-form",
     "@name": "#html-name",
     "@placeholder": "#html-placeholder",
     "@required": "#html-required",
     "@value": "#html-value",
+    "@role": "never",
+    "@aria-autocomplete": "never",
+    "@aria-haspopup": "never",
     "@options <option>[]": {
       "attribute-groups": ["html-attributes"],
       "@*": {
@@ -246,7 +246,9 @@
     },
     "@html-attributes": "expression",
     "@open": "boolean",
-    "@type": "string",
+    "@type": {
+      "enum": ["full", "fill", "left", "right"]
+    },
     "@focus": "string",
     "@a11y-close-text": "string",
     "@role": "never",
@@ -302,10 +304,10 @@
       "type": "expression"
     },
     "@html-attrbibutes": "expression",
-    "@variant": "string",
+    "@variant": {
+      "enum": ["form"]
+    },
     "@footer-text": "string",
-    "@class": "string",
-    "@style": "string",
     "@class-prefix": "string",
     "@form-name": "string",
     "@form-action": "string",
@@ -330,33 +332,35 @@
   },
   "<ebay-filter-menu-button>": {
     "template": "./src/components/ebay-filter-menu-button/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attrbibutes": "expression",
-    "@variant": "string",
+    "@variant": {
+      "enum": ["form"]
+    },
     "@text": "string",
     "@footer-text": "string",
-    "@class": "string",
-    "@style": "string",
     "@disabled": "boolean",
-    "@selected": "boolean",
     "@form-name": "string",
     "@form-action": "string",
     "@form-method": "string",
     "@a11y-text": "string",
     "@a11y-footer-text": "string",
     "@items <item>[]": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
       "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string",
       "@checked": "boolean",
-      "@value": "string"
+      "@value": "string",
+      "@role": "never",
+      "@aria-checked": "never",
+      "@for": "never"
     }
   },
   "<ebay-filter-menu-button-item>": {
