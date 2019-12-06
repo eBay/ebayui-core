@@ -365,18 +365,21 @@
   "<ebay-icon>": {
     "template": "./src/components/ebay-icon/index.marko",
     "transformer": "./src/components/ebay-icon/transformer.js",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
-    "@type": "string",
+    "@type": {
+      "enum": ["inline", "background"]
+    },
     "@name": "string",
     "@a11y-text": "string",
     "@no-skin-classes": "boolean",
-    "@_themes": "expression"
+    "@_themes": "expression",
+    "@role": "never",
+    "@aria-labelledby": "never"
   },
   "<ebay-infotip>": {
     "template": "./src/components/ebay-infotip/index.marko",
