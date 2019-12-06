@@ -10,7 +10,7 @@ module.exports = {
     handleItemKeydown(index, ev, itemEl) {
         eventUtils.handleEscapeKeydown(ev, () => {
             // TODO: this event is not documented.
-            // Do we need it?
+            // Do we need it? (it is only used by the filter-menu-button)
             this._emitComponentEvent('keydown', null, ev);
         });
 
@@ -84,6 +84,7 @@ module.exports = {
             scrollKeyPreventer.add(this.getEl('container'));
         }
     },
+
     _cleanupMakeup() {
         if (this._rovingTabIndex) {
             this.lastTabIndexPosition = this._rovingTabIndex.index;

@@ -38,7 +38,7 @@ $ var isForm = input.variant === "form";
                     class=[`${baseClass}__item`, item.class]
                     role="menuitemcheckbox"
                     aria-checked=(String(isChecked))
-                    for:scoped=(isForm && `checkbox-${i}`)
+                    for=(isForm && component.elId(`checkbox-${i}`))
                     onClick("handleItemClick", i)
                     onKeydown("handleItemKeydown", i)>
                     <if(isForm)>

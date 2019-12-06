@@ -1,112 +1,84 @@
-const assign = require('core-js-pure/features/object/assign');
-const indexOf = require('core-js-pure/features/array/index-of');
 const Expander = require('makeup-expander');
 const eventUtils = require('../../common/event-utils');
 
 module.exports = {
-    toggleItemChecked(itemEl) {
-        const index = indexOf(itemEl.parentNode.children, itemEl);
-        const item = this.state.items[index];
-        item.checked = !item.checked;
-        this.setStateDirty('items');
-        this.emitComponentEvent('change', itemEl);
-    },
-
-    getCheckedValues() {
-        return this.state.items
-            .filter(item => item.checked)
-            .map(item => item.value);
-    },
-
     handleMenuKeydown({ originalEvent }) {
-        eventUtils.handleEscapeKeydown(originalEvent, () => this.expander.collapse());
+        eventUtils.handleEscapeKeydown(originalEvent, () => this._expander.collapse());
     },
 
-    handleMenuChange({ el }) {
-        this.toggleItemChecked(el);
-    },
-
-    handleItemKeydown({ el, originalEvent }) {
-        eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(el));
+    handleMenuChange({ checked, el, originalEvent }) {
+        // TODO: the event data from the filter-menu should probably
+        // change to include which items are checked not just the values.
+        this.state.isChecked = this.input.items.map(item => checked.indexOf(item.value) !== -1);
+        this._emitComponentEvent('change', el, originalEvent);
     },
 
     handleFooterButtonClick() {
-        this.emitComponentEvent('footer-click');
-        this.expander.collapse();
+        this._emitComponentEvent('footer-click');
+        this._expander.collapse();
     },
 
     handleFormSubmit({ originalEvent }) {
-        this.emitComponentEvent('form-submit', originalEvent);
+        this._emitComponentEvent('form-submit', originalEvent);
     },
 
     handleExpand({ originalEvent }) {
-        this.emitComponentEvent('expand', null, originalEvent);
+        this._emitComponentEvent('expand', null, originalEvent);
     },
 
     handleCollapse({ originalEvent }) {
-        this.emitComponentEvent('collapse', null, originalEvent);
-    },
-
-    emitComponentEvent(eventType, itemEl, originalEvent) {
-        switch (eventType) {
-            case 'expand':
-                this.emit(`filter-menu-button-${eventType}`);
-                break;
-            case 'form-submit':
-            case 'collapse':
-                this.emit(`filter-menu-button-${eventType}`, {
-                    checked: this.getCheckedValues(),
-                    originalEvent
-                });
-                break;
-            case 'change':
-            case 'footer-click':
-            default:
-                this.emit(`filter-menu-button-${eventType}`, {
-                    el: itemEl,
-                    checked: this.getCheckedValues(),
-                    originalEvent
-                });
-                break;
-        }
+        this._emitComponentEvent('collapse', null, originalEvent);
     },
 
     onInput(input) {
-        this.state = assign({}, input, {
-            items: (input.items || []).map(item => assign({}, item))
-        });
+        input.items = input.items || [];
+        this.state = {
+            isChecked: input.items.map(item => Boolean(item.checked))
+        };
+    },
+
+    onMount() {
+        this._setupMakeup();
+    },
+
+    onUpdate() {
+        this._setupMakeup();
     },
 
     onRender() {
         if (typeof window !== 'undefined') {
-            this._onDestroy();
-        }
-    },
-
-    onMount() {
-        this.onRenderLegacy({
-            firstRender: true
-        });
-    },
-
-    onUpdate() {
-        this.onRenderLegacy({
-            firstRender: false
-        });
-    },
-
-    _onDestroy() {
-        if (this.expander) {
-            this.expander.cancelAsync();
+            this._cleanupMakeup();
         }
     },
 
     onDestroy() {
-        this._onDestroy();
+        this._cleanupMakeup();
     },
 
-    onRenderLegacy() {
-        this.expander = new Expander(this.el, {
+    _emitComponentEvent(eventType, el, originalEvent) {
+        switch (eventType) {
+            case 'expand':
+                this.emit(`filter-menu-button-${eventType}`);
+                break;
+            case 'change':
+            case 'collapse':
+            case 'form-submit':
+            case 'footer-click':
+                const { input, state } = this;
+                const checked = input.items
+                    .filter((_, i) => state.isChecked[i])
+                    .map(item => item.value);
+                this.emit(`filter-menu-button-${eventType}`, {
+                    el,
+                    checked,
+                    originalEvent
+                });
+                break;
+        }
+    },
+
+    _setupMakeup() {
+        this._expander = new Expander(this.getEl('container'), {
             hostSelector: '.filter-menu-button__button',
             contentSelector: '.filter-menu-button__menu',
             focusManagement: 'focusable',
@@ -114,5 +86,12 @@ module.exports = {
             autoCollapse: true,
             alwaysDoFocusManagement: true
         });
+    },
+
+    _cleanupMakeup() {
+        if (this._expander) {
+            this._expander.cancelAsync();
+            this._expander = undefined;
+        }
     }
 };
