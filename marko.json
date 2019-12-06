@@ -554,35 +554,40 @@
   },
   "<ebay-notice>": {
     "template": "./src/components/ebay-notice/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
-    "@fill": "boolean",
-    "@type": "string",
-    "@status": "string",
+    "@fill-window": "boolean",
+    "@type": {
+      "enum": ["page", "section", "window"]
+    },
+    "@status": {
+      "enum": ["attention", "confirmation", "information", "celebration"]
+    },
     "@hidden": "boolean",
+    "@dismissible": "boolean",
     "@a11y-heading-text": "string",
     "@a11y-heading-tag": "string",
     "@a11y-close-text": "string",
-    "@dismissible": "boolean",
+    "@aria-labelledby": "never",
     "@title <title>": {
-      "@*": "expression",
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
-    },
-    "@content <content>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
+    },
+    "@content <content>": {
+      "attribute-groups": ["html-attributes"],
+      "@*": {
+        "targetProperty": null,
+        "type": "expression"
+      },
+      "@html-attributes": "expression"
     }
   },
 

@@ -82,10 +82,10 @@ $ var isLightGuidance = isSection && !input.status;
                 </span>
             </if>
 
-            <${input.content && input.content.renderBody || input.renderBody}/>
+            <${input.content || input.renderBody}/>
         </>
 
-        <if(!input.content || !input.content.renderBody)>
+        <if(input.content)>
             <${input.renderBody}/>
         </if>
    
