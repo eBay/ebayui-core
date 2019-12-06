@@ -25,7 +25,6 @@ describe('filter-menu-button', () => {
             const menuItemEl = menuItemEls[i];
             const textEl = getByText(item.renderBody.text);
             expect(menuItemEl).has.class('filter-menu-button__item');
-            expect(menuItemEl).has.attr('data-value', menuItemEl.value);
             expect(menuItemEl).contains(textEl);
         });
     });

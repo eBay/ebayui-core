@@ -296,6 +296,7 @@
   },
   "<ebay-filter-menu>": {
     "template": "./src/components/ebay-filter-menu/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -311,15 +312,17 @@
     "@form-method": "string",
     "@a11y-footer-text": "string",
     "@items <item>[]": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
       "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string",
       "@checked": "boolean",
-      "@value": "string"
+      "@value": "string",
+      "@role": "never",
+      "@aria-checked": "never",
+      "@for": "never"
     }
   },
   "<ebay-filter-menu-item>": {

@@ -12,14 +12,13 @@ describe('filter-menu', () => {
         const { getByRole, getAllByRole, getByText } = await render(template, input);
         const menuEl = getByRole('menu');
         expect(menuEl).has.class('filter-menu__items');
-        expect(menuEl).has.property('parentElement').with.class('filter-menu__menu');
+        expect(menuEl).has.property('parentElement').with.class('filter-menu');
 
         const menuItemEls = getAllByRole('menuitemcheckbox');
         input.items.forEach((item, i) => {
             const menuItemEl = menuItemEls[i];
             const textEl = getByText(item.renderBody.text);
             expect(menuItemEl).has.class('filter-menu__item');
-            expect(menuItemEl).has.attr('data-value', menuItemEl.value);
             expect(menuItemEl).contains(textEl);
         });
     });
