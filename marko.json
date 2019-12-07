@@ -772,14 +772,21 @@
   },
   "<ebay-switch>": {
     "template": "./src/components/ebay-switch/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
-    "@disabled": "boolean"
+    "@autofocus": "#html-autofocus",
+    "@checked": "#html-checked",
+    "@disabled": "#html-disabled",
+    "@form": "#html-form",
+    "@name": "#html-name",
+    "@readonly": "#html-readonly",
+    "@value": "#html-value",
+    "@type": "never",
+    "@role": "never"
   },
   "<ebay-tab>": {
     "template": "./src/components/ebay-tab/index.marko",
