@@ -676,17 +676,17 @@
   },
   "<ebay-section-title>": {
     "template": "./src/components/ebay-section-title/index.marko",
-    "transformer": "./src/components/ebay-section-title/transformer.js",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
     "@cta-text": "string",
-    "@href": "string",
-    "@size": "size",
+    "@size": {
+      "enum": ["small", "large", "giant"]
+    },
+    "@href": "#html-href",
     "@_default <_default>": {
       "@*": "expression"
     },
@@ -695,36 +695,32 @@
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
       "@class": "string",
       "@style": "string"
     },
     "@subtitle <subtitle>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
     },
     "@info <info>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
     },
     "@overflow <overflow>": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
-      "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string"
+      "@html-attributes": "expression"
     }
   },
   "<ebay-section-title-title>": {
