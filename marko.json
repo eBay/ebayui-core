@@ -737,28 +737,34 @@
   },
   "<ebay-select>": {
     "template": "./src/components/ebay-select/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
-    "@grow": "boolean",
     "@borderless": "boolean",
-    "@disabled": "boolean",
+    "@autocomplete": "#html-autocomplete",
+    "@autofocus": "#html-autofocus",
+    "@disabled": "#html-disabled",
+    "@form": "#html-form",
+    "@multiple": "#html-multiple",
+    "@name": "#html-name",
+    "@required": "#html-required",
+    "@size": "#html-size",
     "@options <option>[]": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
       "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string",
-      "@value": "string",
       "@text": "string",
-      "@selected": "boolean",
-      "@optgroup": "string"
+      "@optgroup": "string",
+      "@disabled": "#html-disabled",
+      "@label": "#html-label",
+      "@selected": "#html-selected",
+      "@value": "#html-value"
     }
   },
   "<ebay-select-option>": {
