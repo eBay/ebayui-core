@@ -235,7 +235,15 @@
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@size": "string"
+    "@size": "string",
+    "@download": "#html-download",
+    "@href": "#html-href",
+    "@hreflang": "#html-hreflang",
+    "@media": "#html-media",
+    "@ping": "#html-ping",
+    "@referrerpolicy": "#html-referrerpolicy",
+    "@rel": "#html-rel",
+    "@target": "#html-target"
   },
   "<ebay-dialog>": {
     "template": "./src/components/ebay-dialog/index.marko",
@@ -599,30 +607,38 @@
   },
   "<ebay-pagination>": {
     "template": "./src/components/ebay-pagination/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
     "@a11y-previous-text": "string",
     "@a11y-next-text": "string",
     "@a11y-current-text": "string",
-    "@hijax": "boolean",
+    "@role": "never",
+    "@aria-labelledby": "never",
     "@items <item>[]": {
+      "attribute-groups": ["html-attributes"],
       "@*": {
         "targetProperty": null,
         "type": "expression"
       },
       "@html-attributes": "expression",
-      "@class": "string",
-      "@style": "string",
+      "@type": {
+        "enum": ["previous", "next"]
+      },
       "@current": "boolean",
-      "@disabled": "boolean",
-      "@href": "string",
-      "@type": "string",
-      "@role": "string"
+      "@disabled": "#html-disabled",
+      "@download": "#html-download",
+      "@href": "#html-href",
+      "@hreflang": "#html-hreflang",
+      "@media": "#html-media",
+      "@ping": "#html-ping",
+      "@referrerpolicy": "#html-referrerpolicy",
+      "@rel": "#html-rel",
+      "@target": "#html-target",
+      "@aria-current": "never"
     }
   },
   "<ebay-pagination-item>": {

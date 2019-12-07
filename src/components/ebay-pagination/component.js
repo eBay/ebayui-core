@@ -1,209 +1,119 @@
-const processHtmlAttributes = require('../../common/html-attributes');
+const findIndex = require('core-js-pure/features/array/find-index');
 const eventUtils = require('../../common/event-utils');
+const MAX_PAGES = 9;
+const MIN_PAGES = 3;
 
-const constants = {
-    indexForNavigation: 2,
-    minPagesRequired: 3,
-    maxPagesAllowed: 9,
-    margin: 8
-};
-
-function refresh() {
-    let current = 0;
-    this.pageContainerEl.style.overflow = 'hidden';
-    for (let i = 0; i < this.state.items.length; i++) {
-        if (this.state.items[i].current) {
-            current = i;
-        }
-        this.pageEls[i].removeAttribute('hidden');
-    }
-
-    const totalPages = this.pageEls.length;
-    const pageNumWidth = this.pageEls[0].children[0].offsetWidth + constants.margin;
-    const numPagesAllowed = (((this.pageContainerEl.offsetWidth) / pageNumWidth));
-    const adjustedNumPages = Math.floor(Math.min(constants.maxPagesAllowed,
-        Math.max(numPagesAllowed, constants.minPagesRequired)));
-
-    let start = 0;
-    let end = adjustedNumPages;
-    let rangeLeft = Math.floor(adjustedNumPages * 0.5);
-    const rangeRight = Math.floor(adjustedNumPages * 0.5);
-
-    if (rangeLeft + rangeRight + 1 > adjustedNumPages) {
-        rangeLeft -= 1;
-    }
-
-    start = current - rangeLeft;
-    end = current + rangeRight;
-
-    if (totalPages < constants.maxPagesAllowed) {
-        end = totalPages;
-    }
-
-    if (current + rangeRight >= totalPages) {
-        end = totalPages;
-        start = end - adjustedNumPages;
-    }
-
-    if (start <= 0) {
-        end = adjustedNumPages - 1;
-        start = 0;
-    }
-
-    for (let i = 0; i < totalPages; i++) {
-        if (i < start || i > end) {
-            this.pageEls[i].setAttribute('hidden', true);
-        } else {
-            this.pageEls[i].removeAttribute('hidden');
-        }
-    }
-    this.pageContainerEl.style.overflow = 'visible';
-}
-
-/**
- * Handle normal mouse click for item, next page and previous page respectively.
- * @param {MouseEvent} originalEvent
- */
-function handlePageNumber(originalEvent, el) {
-    if (!isSyntheticClick(originalEvent)) {
+module.exports = {
+    /**
+     * Handle normal mouse click for item, next page and previous page respectively.
+     * @param {MouseEvent} originalEvent
+     */
+    handlePageNumberClick(originalEvent, el) {
         this.emit('pagination-select', {
             el,
             originalEvent,
             value: el.innerText
         });
-    }
-}
-
-function handleNextPage(originalEvent, el) {
-    if (!this.state.nextItem.disabled && !isSyntheticClick(originalEvent)) {
-        this.emit('pagination-next', {
-            el,
-            originalEvent
-        });
-    }
-}
-
-function handlePreviousPage(originalEvent, el) {
-    if (!this.state.prevItem.disabled && !isSyntheticClick(originalEvent)) {
-        this.emit('pagination-previous', {
-            el,
-            originalEvent
-        });
-    }
-}
-
-/**
- * Handle a11y for item, next page and previous page respectively.
- * @param {KeyboardEvent} originalEvent
- */
-function handlePageNumberKeyDown(originalEvent, el) {
-    eventUtils.handleActionKeydown(originalEvent, () => {
-        this.handlePageNumber(originalEvent, el);
-    });
-}
-
-function handleNextPageKeyDown(originalEvent, el) {
-    eventUtils.handleActionKeydown(originalEvent, () => {
-        this.handleNextPage(originalEvent, el);
-    });
-}
-
-function handlePreviousPageKeyDown(originalEvent, el) {
-    eventUtils.handleActionKeydown(originalEvent, () => {
-        this.handlePreviousPage(originalEvent, el);
-    });
-}
-
-function isSyntheticClick(event) {
-    // Keydown events can fire a click event on buttons, which caused this component
-    // to emit two events. Here we use the event.detail property to check that there was
-    // actually a click. https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail
-    return event.type === 'click' && event.detail === 0;
-}
-
-module.exports = {
-    refresh,
-    handlePageNumber,
-    handleNextPage,
-    handlePreviousPage,
-    handlePageNumberKeyDown,
-    handleNextPageKeyDown,
-    handlePreviousPageKeyDown,
-
-    onCreate(input) {
-        let prevItem;
-        let nextItem;
-        const items = [];
-        const inputItems = input.items || [];
-
-        for (let i = 0; i < inputItems.length; ++i) {
-            const item = inputItems[i];
-            const href = item.href;
-            const current = item.current;
-            const tempItem = {
-                htmlAttributes: processHtmlAttributes(item, [
-                    'class',
-                    'style',
-                    'current',
-                    'disabled',
-                    'href',
-                    'type',
-                    'role'
-                ]),
-                style: item.style,
-                renderBody: item.renderBody,
-                href,
-                current
-            };
-
-            if (item.type === 'previous') {
-                prevItem = tempItem;
-                prevItem.class = ['pagination__previous', item.class];
-                prevItem.disabled = item.disabled;
-                continue;
-            } else if (item.type === 'next') {
-                nextItem = tempItem;
-                nextItem.class = ['pagination__next', item.class];
-                nextItem.disabled = item.disabled;
-                continue;
-            } else {
-                tempItem.class = ['pagination__item', item.class];
-                tempItem.current = item.current;
-            }
-
-            items.push(tempItem);
-        }
-
-        this.state = {
-            nextItem: nextItem || { class: 'pagination__next', disabled: true, htmlAttributes: {} },
-            prevItem: prevItem || { class: 'pagination__previous', disabled: true, htmlAttributes: {} },
-            items
-        };
     },
 
-    onRender() {
-        if (typeof window !== 'undefined') {
-            clearTimeout(this.timeoutRef);
+    handleNextPageClick(originalEvent, el) {
+        if (!el.hasAttribute("aria-disabled")) {
+            this.emit('pagination-next', {
+                el,
+                originalEvent
+            });
         }
+    },
+    
+    handlePreviousPageClick(originalEvent, el) {
+        if (!el.hasAttribute("aria-disabled")) {
+            this.emit('pagination-previous', {
+                el,
+                originalEvent
+            });
+        }
+    },
+
+    onCreate() {
+        this.state = { maxItems: 0 };
+    },
+
+    onInput(input) {
+        input.items = input.items || [];
     },
 
     onMount() {
-        this.pageContainerEl = this.el.querySelector('.pagination__items');
-        this.pageContainerEl.style.flexWrap = 'nowrap';
-        this.pageEls = this.pageContainerEl.children;
-        this.containerEl = this.el;
-        this.previousPageEl = this.el.querySelector('.pagination__previous');
-        this.nextPageEl = this.el.querySelector('.pagination__next');
-        this.subscribeTo(eventUtils.resizeUtil).on('resize', refresh.bind(this));
-        this.timeoutRef = 0;
-        this.refresh();
+        this._calculateMaxItems();
+        this.subscribeTo(eventUtils.resizeUtil)
+            .on('resize', this._calculateMaxItems.bind(this));
     },
 
-    onUpdate() {
-        this.timeoutRef = setTimeout(this.refresh.bind(this), 0);
+    /**
+     * Calculates the start and end offsets given the current maximum items
+     * that can be displayed.
+     */
+    _getVisibleRange(items) {
+        const { state } = this;
+        const { maxItems } = state;
+        const lastIndex = items.length - 1;
+
+        if (!maxItems) {
+            return { start: 0, end: lastIndex };
+        }
+ 
+        const i = findIndex(items, item => item.current);
+        const range = Math.floor(maxItems / 2);
+        let start = i - range;
+        let end = i + range;
+
+        if (start <= 0) {
+            end = maxItems - 1;
+            start = 0;
+        } else if (end >= lastIndex) {
+            end = lastIndex;
+            start = lastIndex - (maxItems - 1);
+        } else if (maxItems % 2 === 0) {
+            start++;
+        }
+
+        return { start, end };
     },
 
-    onDestroy() {
-        clearTimeout(this.timeoutRef);
+    _calculateMaxItems() {
+        const { input, state } = this;
+
+        if (!input.items.some(item => !item.type)) {
+            return;
+        }
+
+        const itemContainer = this.getEl("items");
+        state.maxItems = Math.max(
+            MIN_PAGES,
+            Math.min(
+                MAX_PAGES,
+                Math.floor(
+                    getMaxWidth(itemContainer) /
+                    itemContainer.firstElementChild.offsetWidth
+                )
+            )
+        );
     }
 };
+
+/**
+ * Calculates the maximum width for an element within its container.
+ * Works my making the element as large as possible, reading its width,
+ * and then restoring its original width.
+ * 
+ * @param {HTMLElement} el the element to get the max width for
+ * @return {number}
+ */
+function getMaxWidth(el) {
+    let result;
+    el.style.overflow = "hidden";
+    el.style.width = `${window.innerWidth}px`;
+    result = el.offsetWidth;
+    el.style.width = null;
+    el.style.overflow = "visible";
+    return result;
+}
