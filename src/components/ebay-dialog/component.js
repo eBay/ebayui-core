@@ -53,6 +53,7 @@ module.exports = {
 
         // Ensure focus is set and body scroll prevented on initial render.
         if (isFirstRender && isTrapped) {
+            this._prevFocusEl = document.activeElement;
             focusEl.focus();
             bodyScroll.prevent();
         }
@@ -67,7 +68,17 @@ module.exports = {
                     this.emit('dialog-show');
                 } else {
                     bodyScroll.restore();
+                    const activeElement = document.activeElement;
                     this.emit('dialog-close');
+
+                    if (
+                        // Skip restoring focus if the focused element was changed via the dialog-close event
+                        activeElement === document.activeElement &&
+                        // Skip restoring focus if the previously focused element was removed from the DOM.
+                        document.documentElement.contains(this._prevFocusEl)
+                    ) {
+                        this._prevFocusEl.focus();
+                    }
 
                     // Reset dialog scroll position lazily to avoid jank.
                     // Note since the dialog is not in the dom at this point none of the scroll methods will work.
@@ -80,6 +91,7 @@ module.exports = {
 
             if (isTrapped) {
                 if (!isFirstRender) {
+                    this._prevFocusEl = document.activeElement;
                     bodyScroll.prevent();
                     this.cancelTransition = transition({
                         el: this.rootEl,
