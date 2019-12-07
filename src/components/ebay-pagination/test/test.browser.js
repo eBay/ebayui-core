@@ -1,6 +1,5 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { pressKey } = require('../../../common/test-utils/browser');
 const mock = require('./mock');
 const template = require('..');
 
@@ -43,16 +42,6 @@ describe('given the pagination is rendered', () => {
                 thenItEmittedThePaginationPreviousEvent();
             });
 
-            describe('via keyDown', () => {
-                beforeEach(async() => {
-                    await pressKey(component.getByLabelText(input.a11yPreviousText), {
-                        key: '(Space character)',
-                        keyCode: 32
-                    });
-                });
-
-                thenItEmittedThePaginationPreviousEvent();
-            });
 
             function thenItEmittedThePaginationPreviousEvent() {
                 it('then it emits the pagination-previous event', () => {
@@ -77,16 +66,6 @@ describe('given the pagination is rendered', () => {
                 thenItEmittedThePaginationNextEvent();
             });
 
-            describe('via keyDown', () => {
-                beforeEach(async() => {
-                    await pressKey(component.getByLabelText(input.a11yNextText), {
-                        key: '(Space character)',
-                        keyCode: 32
-                    });
-                });
-
-                thenItEmittedThePaginationNextEvent();
-            });
 
             function thenItEmittedThePaginationNextEvent() {
                 it('then it emits the pagination-next event', () => {
@@ -105,17 +84,6 @@ describe('given the pagination is rendered', () => {
                 beforeEach(async() => {
                     await fireEvent.click(component.getByText(input.items[1].renderBody.text), {
                         detail: 1
-                    });
-                });
-
-                thenItEmittedThePaginationSelectEvent();
-            });
-
-            describe('via keyDown', () => {
-                beforeEach(async() => {
-                    await pressKey(component.getByText(input.items[1].renderBody.text), {
-                        key: '(Space character)',
-                        keyCode: 32
                     });
                 });
 
@@ -155,16 +123,6 @@ describe('given the pagination is rendered with disabled controls', () => {
             thenItDidNotEmitThePaginationPreviousEvent();
         });
 
-        describe('via keyDown', () => {
-            beforeEach(async() => {
-                await pressKey(component.getByLabelText(input.a11yPreviousText), {
-                    key: '(Space character)',
-                    keyCode: 32
-                });
-            });
-
-            thenItDidNotEmitThePaginationPreviousEvent();
-        });
 
         function thenItDidNotEmitThePaginationPreviousEvent() {
             it('then it does not emit the pagination-previous event', () => {
@@ -184,16 +142,6 @@ describe('given the pagination is rendered with disabled controls', () => {
             thenItDidNotEmitThePaginationNextEvent();
         });
 
-        describe('via keyDown', () => {
-            beforeEach(async() => {
-                await pressKey(component.getByLabelText(input.a11yNextText), {
-                    key: '(Space character)',
-                    keyCode: 32
-                });
-            });
-
-            thenItDidNotEmitThePaginationNextEvent();
-        });
 
         function thenItDidNotEmitThePaginationNextEvent() {
             it('then it does not emit the pagination-next event', () => {
@@ -210,10 +158,10 @@ describe('given the pagination is rendered at various sizes', () => {
             input: mock.Links_9Items_1Selected,
             cases: [{
                 width: 400,
-                expect: [0, 6]
+                expect: [0, 5]
             }, {
                 width: 540,
-                expect: [0, 8]
+                expect: [0, 7]
             }, {
                 width: 640,
                 expect: [0, 9]
@@ -223,13 +171,13 @@ describe('given the pagination is rendered at various sizes', () => {
             input: mock.Links_9Items_4Selected,
             cases: [{
                 width: 400,
-                expect: [2, 8]
+                expect: [2, 7]
             }, {
                 width: 440,
                 expect: [2, 8]
             }, {
                 width: 540,
-                expect: [1, 9]
+                expect: [1, 8]
             }, {
                 width: 640,
                 expect: [0, 9]
@@ -239,10 +187,10 @@ describe('given the pagination is rendered at various sizes', () => {
             input: mock.Links_9Items_7Selected,
             cases: [{
                 width: 400,
-                expect: [3, 9]
+                expect: [4, 9]
             }, {
                 width: 540,
-                expect: [1, 9]
+                expect: [2, 9]
             }, {
                 width: 640,
                 expect: [0, 9]
@@ -259,7 +207,10 @@ describe('given the pagination is rendered at various sizes', () => {
                     beforeEach(async() => {
                         component.container.style.width = `${width}px`;
                         await fireEvent(window, new Event('resize'));
+                        // Wait one frame for the resize util to emit.
                         await new Promise(resolve => requestAnimationFrame(resolve));
+                        // Wait a setTimeout for Marko to finish rendering.
+                        await new Promise(resolve => setTimeout(resolve));
                     });
 
                     it(`then it shows items ${from} through ${to}`, () => {

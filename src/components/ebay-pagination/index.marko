@@ -43,29 +43,24 @@ $ var range = component._getVisibleRange(items);
         class=["pagination__previous", prevItem.class]
         aria-disabled=(prevItem.disabled && "true")
         aria-label=(input.a11yPreviousText || 'Previous page')
+        style=[prevItem.style, { minWidth: 48 }]
         onClick("handlePreviousPageClick")>
         <ebay-icon type="inline" name="pagination-prev"/>
     </>
 
     <ol
         key="items"
-        class="pagination__items"
-        style=(state.maxItems && {
-            flexWrap: "nowrap",
-            overflow: "visible"
-        })>
+        class="pagination__items">
         <for|item, i| of=items>
-            <if(i >= range.start && i <= range.end)>
-                <li>
-                    <${item.href ? "a" : "button"}
-                        ...processHtmlAttributes(item, ignoredItemAttributes)
-                        class=["pagination__item", item.class]
-                        aria-current=(item.current && "page")
-                        onClick("handlePageNumberClick")>
-                        <${item.renderBody}/>
-                    </>
-                </li>
-            </if>
+            <li hidden=(i < range.start || i > range.end)>
+                <${item.href ? "a" : "button"}
+                    ...processHtmlAttributes(item, ignoredItemAttributes)
+                    class=["pagination__item", item.class]
+                    aria-current=(item.current && "page")
+                    onClick("handlePageNumberClick")>
+                    <${item.renderBody}/>
+                </>
+            </li>
         </for>
     </ol>
 
@@ -74,6 +69,7 @@ $ var range = component._getVisibleRange(items);
         class=["pagination__next", nextItem.class]
         aria-disabled=(nextItem.disabled && "true")
         aria-label=(input.a11yNextText || 'Next page')
+        style=[nextItem.style, { minWidth: 48 }]
         onClick("handleNextPageClick")>
         <ebay-icon type="inline" name="pagination-next"/>
     </>

@@ -17,7 +17,7 @@ module.exports = {
     },
 
     handleNextPageClick(originalEvent, el) {
-        if (!el.hasAttribute("aria-disabled")) {
+        if (!el.hasAttribute('aria-disabled')) {
             this.emit('pagination-next', {
                 el,
                 originalEvent
@@ -26,7 +26,7 @@ module.exports = {
     },
     
     handlePreviousPageClick(originalEvent, el) {
-        if (!el.hasAttribute("aria-disabled")) {
+        if (!el.hasAttribute('aria-disabled')) {
             this.emit('pagination-previous', {
                 el,
                 originalEvent
@@ -86,14 +86,19 @@ module.exports = {
             return;
         }
 
-        const itemContainer = this.getEl("items");
+        const itemContainer = this.getEl('items');
+        const itemWidth = (
+            this._itemWidth || // Cache the item width since it should be static.
+            (this._itemWidth = itemContainer.firstElementChild.offsetWidth)
+        );
+
         state.maxItems = Math.max(
             MIN_PAGES,
             Math.min(
                 MAX_PAGES,
                 Math.floor(
                     getMaxWidth(itemContainer) /
-                    itemContainer.firstElementChild.offsetWidth
+                    itemWidth
                 )
             )
         );
@@ -110,10 +115,8 @@ module.exports = {
  */
 function getMaxWidth(el) {
     let result;
-    el.style.overflow = "hidden";
-    el.style.width = `${window.innerWidth}px`;
+    el.style.width = '100vw';
     result = el.offsetWidth;
     el.style.width = null;
-    el.style.overflow = "visible";
     return result;
 }
