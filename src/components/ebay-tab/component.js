@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const rovingTabindex = require('makeup-roving-tabindex');
 const eventUtils = require('../../common/event-utils');
 
@@ -12,58 +11,89 @@ module.exports = {
     handleHeadingKeydown(dataIndex, event) {
         eventUtils.handleActionKeydown(event, () => {
             event.preventDefault();
-            this.setIndex(dataIndex);
+            this._setIndex(dataIndex);
         });
 
         eventUtils.handleArrowsKeydown(event, () => {
             event.preventDefault();
 
-            const len = this.state.headings.length;
+            const { input, state } = this;
+            const len = input.headings.length;
             const keyCode = event.charCode || event.keyCode;
             const direction = keyCode === 37 || keyCode === 38 ? -1 : 1;
-            const index = (this.state.index + len + direction) % len;
+            const index = (state.index + len + direction) % len;
             this.getEl(`tab-${index}`).focus();
 
-            if (this.state.activation === 'auto') {
-                this.setIndex(index);
+            if (!input.activation || input.activation === 'auto') {
+                this._setIndex(index);
             }
         });
     },
 
     handleHeadingClick(index) {
-        this.setIndex(index);
+        this._setIndex(index);
     },
 
-    setIndex(rawIndex) {
-        const len = this.state.headings.length;
-        const index = ((parseInt(rawIndex, 10) || 0) + len) % len;
+    onCreate() {
+        this.state = { index: 0 };
+    },
 
-        if (index !== this.state.index) {
-            this.setState('index', index);
+    onInput(input) {
+        const { state } = this;
+        input.headings = input.headings || [];
+        input.panels = input.panels || [];
+
+        if (!isNaN(input.index)) {
+            state.index = parseInt(input.index, 10) % (input.headings.length || 1);
+        }
+    },
+
+    onMount() {
+        this._setupMakeup();
+    },
+
+    onUpdate() {
+        this._setupMakeup();
+    },
+
+    onRender() {
+        if (typeof window !== "undefined") {
+            this._cleanupMakeup();
+        }
+    },
+
+    onDestroy() {
+        this._cleanupMakeup();
+    },
+
+    _setIndex(index) {
+        const { state } = this;
+
+        if (index !== state.index) {
+            state.index = index;
             this.emit('tab-select', { index });
         }
     },
 
-    onInput(input) {
-        const headings = input.headings || [];
-        this.state = assign({
-            activation: 'auto',
-            headings,
-            panels: []
-        }, input, {
-            index: (parseInt(input.index, 10) || 0) % (headings.length || 1)
-        });
-    },
+    _setupMakeup() {
+        const { input, state } = this;
 
-    onMount() {
-        if (!this.state.fake) {
-            const linearRovingTabindex = rovingTabindex.createLinear(
+        if (!input.fake) {
+            this._linearRovingTabindex = rovingTabindex.createLinear(
                 this.getEl('headings'),
                 '.tabs__item',
-                { index: this.state.index }
+                {
+                    index: state.index,
+                    wrap: true
+                }
             );
+        }
+    },
 
-            linearRovingTabindex.wrap = true;
+    _cleanupMakeup() {
+        if (this._rovingTabIndex) {
+            this._rovingTabIndex.destroy();
+            this._rovingTabIndex = undefined;
         }
     }
 };
