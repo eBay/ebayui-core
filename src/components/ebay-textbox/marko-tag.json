@@ -1,4 +1,5 @@
 {
+  "template": "./index.marko",
   "transformer": "./transformer.js",
   "attribute-groups": ["html-attributes"],
   "@*": {
