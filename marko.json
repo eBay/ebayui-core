@@ -424,7 +424,7 @@
     "@style-bottom": "string",
     "@aria-label": "string",
     "@a11y-close-text": "string",
-    "@iconTag <icon>": {},
+    "@iconTag <_icon>": {},
     "@heading <heading>": {
       "attribute-groups": ["html-attributes"],
       "@*": {
@@ -529,7 +529,7 @@
     "@borderless": "boolean",
     "@size": "string",
     "@priority": "string",
-    "@iconTag <icon>": {},
+    "@iconTag <_icon>": {},
     "@disabled": "boolean",
     "@variant": "string",
     "@items <item>[]": {

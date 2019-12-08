@@ -9,9 +9,6 @@ static var ignoredAttributes = [
 ];
 static var itemIgnoredAttributes = ["text"];
 
-$ var currentValue = state.currentValue;
-$ var selectedOption = component.getSelectedOption();
-
 <span
     class:no-update=["combobox", input.class]
     style=input.style
@@ -30,7 +27,7 @@ $ var selectedOption = component.getSelectedOption();
             key="combobox"
             type="text"
             role="combobox"
-            value=currentValue
+            value=state.currentValue
             aria-autocomplete=input.autocomplete
             aria-haspopup="listbox"
             autocomplete="new-password"
@@ -39,10 +36,10 @@ $ var selectedOption = component.getSelectedOption();
             onKeyup("handleComboboxKeyUp")/>
         <span class="combobox__icon" aria-hidden="true"/>
     </span>
-    <if(component.hasVisibleOptions())>
+    <if(component._hasVisibleOptions())>
         <div key="listbox" role="listbox" class="combobox__listbox">
-            <for|option| of=component.getVisibleOptions()>
-                $ var isSelected = option === selectedOption;
+            <for|option| of=component._getVisibleOptions()>
+                $ var isSelected = option.value === state.currentValue;
                 <div
                     ...processHtmlAttributes(
                         option,

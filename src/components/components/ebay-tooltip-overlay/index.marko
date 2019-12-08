@@ -4,7 +4,12 @@ import constants from "./constants";
 static var typeRoles = constants.typeRoles;
 static var pointerStyles = constants.pointerStyles;
 
-$ var hasUserStyles = input.styleTop || input.styleLeft || input.styleRight || input.styleBottom;
+$ var hasUserStyles = (
+    input.styleTop ||
+    input.styleLeft ||
+    input.styleRight ||
+    input.styleBottom
+);
 $ var overlayStyles = hasUserStyles ? {
     top: input.styleTop,
     left: input.styleLeft,
@@ -17,7 +22,9 @@ $ var overlayStyles = hasUserStyles ? {
     class=`${input.type}__overlay`
     role=typeRoles[input.type]
     aria-labelledby=(
-        input.type === "tourtip" && input.heading && component.elId("tourtip-label")
+        input.type === "tourtip" &&
+        input.heading &&
+        component.elId("tourtip-label")
     )
     style=overlayStyles>
     <span class=`${input.type}__pointer ${input.type}__pointer--${input.pointer}`/>

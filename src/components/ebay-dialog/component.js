@@ -34,6 +34,45 @@ module.exports = {
         this.state.open = false;
     },
 
+    onInput(input) {
+        this.state = { open: input.open || false };
+    },
+
+    onRender() {
+        if (typeof window !== 'undefined') {
+            this._release();
+        }
+    },
+
+    onMount() {
+        this.rootEl = this.getEl();
+        this.windowEl = this.getEl('window');
+        this.closeEl = this.getEl('close');
+        this.bodyEl = this.getEl('body');
+        this.transitionEls = [this.windowEl, this.rootEl];
+        // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
+        this.subscribeTo(this.rootEl).on('click', () => {});
+
+        this._trap({
+            firstRender: true
+        });
+    },
+
+    onUpdate() {
+        this._trap({
+            firstRender: false
+        });
+    },
+
+    onDestroy() {
+        this._cancelAsync();
+        this._release();
+
+        if (this.isTrapped) {
+            bodyScroll.restore();
+        }
+    },
+
     /**
      * Ensures that if a component is supposed to be trapped that this is
      * trapped after rendering.
@@ -125,45 +164,6 @@ module.exports = {
         if (this.cancelTransition) {
             this.cancelTransition();
             this.cancelTransition = undefined;
-        }
-    },
-
-    onInput(input) {
-        this.state = { open: input.open || false };
-    },
-
-    onRender() {
-        if (typeof window !== 'undefined') {
-            this._release();
-        }
-    },
-
-    onMount() {
-        this.rootEl = this.getEl();
-        this.windowEl = this.getEl('window');
-        this.closeEl = this.getEl('close');
-        this.bodyEl = this.getEl('body');
-        this.transitionEls = [this.windowEl, this.rootEl];
-        // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
-        this.subscribeTo(this.rootEl).on('click', () => {});
-
-        this._trap({
-            firstRender: true
-        });
-    },
-
-    onUpdate() {
-        this._trap({
-            firstRender: false
-        });
-    },
-
-    onDestroy() {
-        this._cancelAsync();
-        this._release();
-
-        if (this.isTrapped) {
-            bodyScroll.restore();
         }
     }
 };

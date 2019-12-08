@@ -22,8 +22,6 @@ Name | Type | Stateful | Required | Description
 
 ## ebay-filter Events
 
-## ebay-button Events
-
 Event | Data | Description
 --- | --- | ---
 `filter-click` | `{ originalEvent, selected }` | click or action key pressed (space and enter)

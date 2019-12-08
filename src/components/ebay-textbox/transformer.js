@@ -1,6 +1,6 @@
 const ebayUIAttributeTransformer = require('../../common/transformers/ebayui-attribute');
 
-// Transforms an `icon` attribute into an `<ebay-textbox:icon>` tag
+// Transforms an `icon` attribute into an `<ebay-textbox:_icon>` tag
 function transform(el, context) {
     ebayUIAttributeTransformer(el, context);
 

@@ -19,7 +19,7 @@ module.exports = {
      * @param {HTMLDivElement} el
      */
     handleOptionClick(index) {
-        this.setSelectedIndex(index);
+        this._setSelectedIndex(index);
         this.expander.collapse();
         this.getEl('combobox').focus();
     },
@@ -32,7 +32,7 @@ module.exports = {
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             const code = originalEvent.charCode || originalEvent.keyCode;
             const direction = code === 40 /* down */ ? 1 : -1;
-            this.setSelectedIndex(
+            this._setSelectedIndex(
                 Math.max(
                     0,
                     Math.min(
@@ -47,18 +47,6 @@ module.exports = {
             this.expander.collapse();
             this.getEl('combobox').focus();
         });
-    },
-    setSelectedIndex(index) {
-        if (index !== this.state.selectedIndex) {
-            const el = this.getEls('options')[index];
-            this.state.selectedIndex = index;
-            elementScroll.scroll(el);
-            this.emit('combobox-change', {
-                index,
-                selected: [this.input.options[index].value],
-                el
-            });
-        }
     },
 
     onInput(input) {
@@ -87,6 +75,19 @@ module.exports = {
 
     onDestroy() {
         this._cleanupMakeup();
+    },
+
+    _setSelectedIndex(index) {
+        if (index !== this.state.selectedIndex) {
+            const el = this.getEls('options')[index];
+            this.state.selectedIndex = index;
+            elementScroll.scroll(el);
+            this.emit('combobox-change', {
+                index,
+                selected: [this.input.options[index].value],
+                el
+            });
+        }
     },
 
     _setupMakeup() {
