@@ -31,7 +31,7 @@ module.exports = {
     _setupMakeup() {
         const { input } = this;
         const { type } = input;
-        const container = this.getEl("container");
+        const container = this.getEl('container');
         const isTooltip = type === 'tooltip';
         const isInfotip = type === 'infotip';
         const hostClass = `${type}__host`;

@@ -63,7 +63,7 @@ module.exports = {
             case 'change':
             case 'collapse':
             case 'form-submit':
-            case 'footer-click':
+            case 'footer-click': {
                 const { input, state } = this;
                 const checked = input.items
                     .filter((_, i) => state.isChecked[i])
@@ -73,6 +73,9 @@ module.exports = {
                     checked,
                     originalEvent
                 });
+                break;
+            }
+            default:
                 break;
         }
     },

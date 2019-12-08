@@ -53,7 +53,7 @@ module.exports = {
     handleComboboxKeyUp(originalEvent) {
         eventUtils.handleTextInput(originalEvent, () => {
             this.state.currentValue = this.getEl('combobox').value;
-            this.once("update", () => {
+            this.once('update', () => {
                 // If we have an expander after the update
                 // that could mean that new content was made visible.
                 // We force the expander open just in case.
@@ -73,7 +73,7 @@ module.exports = {
 
         if (this.lastValue !== this.state.currentValue) {
             this.lastValue = this.state.currentValue;
-            this._emitComboboxEvent("change");
+            this._emitComboboxEvent('change');
         }
     },
 
@@ -100,13 +100,12 @@ module.exports = {
     },
 
     getVisibleOptions() {
-        if (this.input.autocomplete === "none") {
+        if (this.input.autocomplete === 'none') {
             return this.input.options;
         }
 
-
         const currentValueReg = safeRegex(this.state.currentValue);
-        return this.input.options.filter(option => currentValueReg.test(option.text || ""));
+        return this.input.options.filter(option => currentValueReg.test(option.text || ''));
     },
 
     hasVisibleOptions() {
@@ -183,5 +182,5 @@ module.exports = {
             selectedOption: this.getSelectedOption(),
             options: this.input.options
         });
-    },
+    }
 };

@@ -57,7 +57,7 @@ module.exports = {
     },
 
     onRender() {
-        if (typeof window !== "undefined") {
+        if (typeof window !== 'undefined') {
             this._cleanupMakeup();
         }
     },

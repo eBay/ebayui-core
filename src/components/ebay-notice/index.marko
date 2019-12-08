@@ -54,7 +54,7 @@ $ var isLightGuidance = isSection && !input.status;
                     </if>
                     <else if(status === "attention")>
                         <ebay-icon
-                            type="inline" 
+                            type="inline"
                             name="attention-filled"
                             aria-label=input.a11yHeadingText/>
                     </else>
@@ -88,7 +88,7 @@ $ var isLightGuidance = isSection && !input.status;
         <if(input.content)>
             <${input.renderBody}/>
         </if>
-   
+
         <if(input.dismissible)>
             <button
                 class="page-notice__close"

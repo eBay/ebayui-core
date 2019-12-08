@@ -16,7 +16,7 @@ module.exports = {
 
         if (this.input.variant !== 'form') {
             eventUtils.handleActionKeydown(ev, () => {
-                this._toggleItemChecked(index, itemEl)
+                this._toggleItemChecked(index, itemEl);
             });
         }
     },
@@ -92,5 +92,5 @@ module.exports = {
             this._rovingTabIndex = undefined;
             scrollKeyPreventer.remove(this.getEl('container'));
         }
-    },
+    }
 };

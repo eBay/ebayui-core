@@ -42,7 +42,6 @@ describe('given the pagination is rendered', () => {
                 thenItEmittedThePaginationPreviousEvent();
             });
 
-
             function thenItEmittedThePaginationPreviousEvent() {
                 it('then it emits the pagination-previous event', () => {
                     const previousEvents = component.emitted('pagination-previous');
@@ -65,7 +64,6 @@ describe('given the pagination is rendered', () => {
 
                 thenItEmittedThePaginationNextEvent();
             });
-
 
             function thenItEmittedThePaginationNextEvent() {
                 it('then it emits the pagination-next event', () => {
@@ -123,7 +121,6 @@ describe('given the pagination is rendered with disabled controls', () => {
             thenItDidNotEmitThePaginationPreviousEvent();
         });
 
-
         function thenItDidNotEmitThePaginationPreviousEvent() {
             it('then it does not emit the pagination-previous event', () => {
                 expect(component.emitted('pagination-previous')).has.length(0);
@@ -141,7 +138,6 @@ describe('given the pagination is rendered with disabled controls', () => {
 
             thenItDidNotEmitThePaginationNextEvent();
         });
-
 
         function thenItDidNotEmitThePaginationNextEvent() {
             it('then it does not emit the pagination-next event', () => {

@@ -1,5 +1,5 @@
 const assign = require('core-js-pure/features/object/assign');
-const skipAttributes = /^htmlAttributes|renderBody|a11y.*$/
+const skipAttributes = /^htmlAttributes|renderBody|a11y.*$/;
 const EMPTY_ARR = [];
 
 /**

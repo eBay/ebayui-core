@@ -67,11 +67,11 @@ describe('given the readonly combobox with 3 items', () => {
                     keyCode: 38
                 });
             });
-    
+
             it('then it emits the combobox-change event with the correct data', () => {
                 const changeEvents = component.emitted('combobox-change');
                 expect(changeEvents).has.length(1);
-    
+
                 const [[changeEvent]] = changeEvents;
                 expect(changeEvent).has.property('index', 0);
                 expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);

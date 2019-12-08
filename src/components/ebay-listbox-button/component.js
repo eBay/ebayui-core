@@ -1,5 +1,4 @@
 const Expander = require('makeup-expander');
-const assign = require('core-js-pure/features/object/assign');
 const findIndex = require('core-js-pure/features/array/find-index');
 const ActiveDescendant = require('makeup-active-descendant');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
@@ -60,7 +59,7 @@ module.exports = {
     },
 
     onRender() {
-        if (typeof window !== "undefined") {
+        if (typeof window !== 'undefined') {
             this._cleanupMakeup();
         }
     },
@@ -86,7 +85,7 @@ module.exports = {
                     autoReset: null
                 }
             );
-    
+
             this._expander = new Expander(container, {
                 autoCollapse: true,
                 expandOnClick: true,

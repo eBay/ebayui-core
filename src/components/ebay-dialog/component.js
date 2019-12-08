@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const keyboardTrap = require('makeup-keyboard-trap');
 const screenReaderTrap = require('makeup-screenreader-trap');
 const bodyScroll = require('../../common/body-scroll');

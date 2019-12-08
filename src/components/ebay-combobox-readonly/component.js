@@ -6,7 +6,7 @@ const eventUtils = require('../../common/event-utils');
 
 module.exports = {
     handleExpand() {
-        elementScroll.scroll(this.getEls("options")[this.state.selectedIndex]);
+        elementScroll.scroll(this.getEls('options')[this.state.selectedIndex]);
         this.emit('combobox-expand');
     },
     handleCollapse() {
@@ -21,7 +21,7 @@ module.exports = {
     handleOptionClick(index) {
         this.setSelectedIndex(index);
         this.expander.collapse();
-        this.getEl("combobox").focus();
+        this.getEl('combobox').focus();
     },
     /**
      * Handle selection of options when the combobox is closed
@@ -31,7 +31,7 @@ module.exports = {
     handleComboboxKeyDown(originalEvent) {
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             const code = originalEvent.charCode || originalEvent.keyCode;
-            const direction = code ===  40 /* down */ ? 1 : -1;
+            const direction = code === 40 /* down */ ? 1 : -1;
             this.setSelectedIndex(
                 Math.max(
                     0,
@@ -45,12 +45,12 @@ module.exports = {
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.expander.collapse();
-            this.getEl("combobox").focus();
+            this.getEl('combobox').focus();
         });
     },
     setSelectedIndex(index) {
         if (index !== this.state.selectedIndex) {
-            const el = this.getEls("options")[index];
+            const el = this.getEls('options')[index];
             this.state.selectedIndex = index;
             elementScroll.scroll(el);
             this.emit('combobox-change', {
@@ -68,7 +68,7 @@ module.exports = {
                 0,
                 findIndex(input.options, option => option.selected)
             )
-        }
+        };
     },
 
     onMount() {
@@ -100,8 +100,8 @@ module.exports = {
                 simulateSpacebarClick: true
             });
 
-            scrollKeyPreventer.add(this.getEl("combobox"));
-            scrollKeyPreventer.add(this.getEl("listbox"));
+            scrollKeyPreventer.add(this.getEl('combobox'));
+            scrollKeyPreventer.add(this.getEl('listbox'));
         }
     },
 
@@ -110,8 +110,8 @@ module.exports = {
             this.expander.cancelAsync();
             this.expander = null;
 
-            scrollKeyPreventer.remove(this.getEl("combobox"));
-            scrollKeyPreventer.remove(this.getEl("listbox"));
+            scrollKeyPreventer.remove(this.getEl('combobox'));
+            scrollKeyPreventer.remove(this.getEl('listbox'));
         }
     }
 };

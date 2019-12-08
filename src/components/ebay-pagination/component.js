@@ -24,7 +24,7 @@ module.exports = {
             });
         }
     },
-    
+
     handlePreviousPageClick(originalEvent, el) {
         if (!el.hasAttribute('aria-disabled')) {
             this.emit('pagination-previous', {
@@ -60,7 +60,7 @@ module.exports = {
         if (!maxItems) {
             return { start: 0, end: lastIndex };
         }
- 
+
         const i = findIndex(items, item => item.current);
         const range = Math.floor(maxItems / 2);
         let start = i - range;
@@ -109,14 +109,13 @@ module.exports = {
  * Calculates the maximum width for an element within its container.
  * Works my making the element as large as possible, reading its width,
  * and then restoring its original width.
- * 
+ *
  * @param {HTMLElement} el the element to get the max width for
  * @return {number}
  */
 function getMaxWidth(el) {
-    let result;
     el.style.width = '100vw';
-    result = el.offsetWidth;
+    const result = el.offsetWidth;
     el.style.width = null;
     return result;
 }

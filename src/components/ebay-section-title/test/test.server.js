@@ -97,4 +97,3 @@ describe('section-title', () => {
         input: mock.Title
     });
 });
-
