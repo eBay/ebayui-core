@@ -26,7 +26,7 @@ function transform(el, context) {
                 value: builder.literal('textbox__icon')
             }
         ]);
-        const ebayTextIconTag = context.createNodeForEl('ebay-textbox:icon');
+        const ebayTextIconTag = context.createNodeForEl('ebay-textbox:_icon');
         ebayTextIconTag.appendChild(iconTag);
         el.prependChild(ebayTextIconTag);
     }

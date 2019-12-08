@@ -1,13 +1,9 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
-    "id",
     "class",
     "style",
-    "type",
-    "value",
     "invalid",
-    "disabled",
     "fluid",
     "multiline",
     "icon",
@@ -16,31 +12,35 @@ static var ignoredAttributes = [
     "floatingLabel"
 ];
 
-$ var iconPosition = input.iconPosition || "prefix";
+$ var isPostfixIcon = input.iconPosition === "postfix" ;
 $ var displayIcon = Boolean(!input.multiline && input.iconTag);
+$ var id = input.id || component.getElId("textbox");
+
 <${input.fluid ? "div" : "span"}
     style=input.style
     class=[
         "textbox",
         input.class,
-        displayIcon && iconPosition === "postfix" && "textbox--icon-end"
+        displayIcon && isPostfixIcon && "textbox--icon-end"
     ]>
-    <if(state.floatingLabel)>
+    <if(input.floatingLabel)>
         <label
-            for=(input.id || component.getElId("textbox"))
+            for=id
             class=[
                 "floating-label__label",
-                state.disabled && "floating-label__label--disabled"
+                input.disabled && "floating-label__label--disabled"
             ]>
-            ${state.floatingLabel}
+            ${input.floatingLabel}
         </label>
     </if>
-    <if(displayIcon && iconPosition === "prefix")>
-        <${input.iconTag.renderBody}/>
+
+    <if(displayIcon && !isPostfixIcon)>
+        <${input.iconTag}/>
     </if>
+
     <${input.multiline ? "textarea" : "input"}
         ...processHtmlAttributes(input, ignoredAttributes)
-        id=(input.id || component.getElId("textbox"))
+        id=id
         class=[
             "textbox__control",
             input.fluid && "textbox__control--fluid",
@@ -48,7 +48,6 @@ $ var displayIcon = Boolean(!input.multiline && input.iconTag);
         ]
         type=(input.type === "password" ? "password" : "text")
         value=(!input.multiline && input.value)
-        disabled=state.disabled
         aria-invalid=(input.invalid && "true")
         onKeydown("handleKeydown")
         onKeypress("handleKeypress")
@@ -59,7 +58,8 @@ $ var displayIcon = Boolean(!input.multiline && input.iconTag);
         onBlur("handleBlur")>
         <if(input.multiline && input.value)>${input.value}</if>
     </>
-    <if(displayIcon && iconPosition === "postfix")>
-        <${input.iconTag.renderBody}/>
+
+    <if(displayIcon && isPostfixIcon)>
+        <${input.iconTag}/>
     </if>
 </>

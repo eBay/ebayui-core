@@ -1,23 +1,6 @@
-const assign = require('core-js-pure/features/object/assign');
 const FloatingLabel = require('makeup-floating-label');
 
 module.exports = {
-    initFloatingLabel() {
-        if (this.state.floatingLabel) {
-            if (this.floatingLabel) {
-                this.floatingLabel.refresh();
-                this.handleFloatingLabelInit();
-            } else if (document.readyState === 'complete') {
-                if (this.el) {
-                    this.floatingLabel = new FloatingLabel(this.el);
-                    this.handleFloatingLabelInit();
-                }
-            } else {
-                window.addEventListener('load', this.initFloatingLabel.bind(this));
-            }
-        }
-    },
-
     handleFloatingLabelInit: forwardEvent('floating-label-init'),
     handleKeydown: forwardEvent('keydown'),
     handleKeypress: forwardEvent('keypress'),
@@ -27,18 +10,32 @@ module.exports = {
     handleFocus: forwardEvent('focus'),
     handleBlur: forwardEvent('blur'),
 
-    onInput(input) {
-        this.state = assign({}, input, {
-            disabled: Boolean(input.disabled)
-        });
-    },
-
     onMount() {
-        this.initFloatingLabel();
+        this._setupMakeup();
     },
 
     onUpdate() {
-        this.initFloatingLabel();
+        this._setupMakeup();
+    },
+
+    _setupMakeup() {
+        // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
+        // It probably makes more sense to just move this functionality into Marko though.
+        if (this.input.floatingLabel) {
+            if (this._floatingLabel) {
+                this._floatingLabel.refresh();
+                this.handleFloatingLabelInit();
+            } else if (document.readyState === 'complete') {
+                if (this.el) {
+                    this._floatingLabel = new FloatingLabel(this.el);
+                    this.handleFloatingLabelInit();
+                }
+            } else {
+                this
+                    .subscribeTo(window)
+                    .once('load', this._setupMakeup.bind(this));
+            }
+        }
     }
 };
 

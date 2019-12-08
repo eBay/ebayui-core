@@ -829,24 +829,39 @@
   "<ebay-textbox>": {
     "transformer": "./src/components/ebay-textbox/transformer.js",
     "template": "./src/components/ebay-textbox/index.marko",
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
     "@html-attributes": "expression",
-    "@id": "string",
-    "@class": "string",
-    "@style": "string",
-    "@type": "string",
-    "@value": "string",
+    "@type": {
+      "enum": ["text", "password"]
+    },
     "@invalid": "boolean",
-    "@disabled": "boolean",
     "@fluid": "boolean",
     "@multiline": "boolean",
+    "@floating-label": "string",
     "@icon": "string",
-    "@icon-position": "string",
-    "@iconTag <icon>": {},
-    "@floating-label": "string"
+    "@icon-position": {
+      "enum": ["prefix", "postfix"]
+    },
+    "@iconTag <_icon>": {},
+    "@autocomplete": "#html-autocomplete",
+    "@autofocus": "#html-autofocus",
+    "@dirname": "#html-dirname",
+    "@disabled": "#html-disabled",
+    "@form": "#html-form",
+    "@maxlength": "#html-maxlength",
+    "@minlength": "#html-minlength",
+    "@name": "#html-name",
+    "@pattern": "#html-pattern",
+    "@placeholder": "#html-placeholder",
+    "@readonly": "#html-readonly",
+    "@required": "#html-required",
+    "@size": "#html-size",
+    "@value": "#html-value",
+    "@aria-invalid": "never"
   },
   "<ebay-tooltip>": {
     "template": "./src/components/ebay-tooltip/index.marko",
