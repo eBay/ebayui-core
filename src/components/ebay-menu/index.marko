@@ -53,7 +53,7 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
                                 : isCheckbox
                                 ? "menuitemcheckbox"
                                 : !isFake && "menuitem";
-                var checked = state.checkedItems[index];
+                var checked = component.isChecked(index);
             }
             <${isFake ? (item.type === "button" ? "button" : "a") : "div"}
                 ...processHtmlAttributes(item, itemIgnoredAttributes)

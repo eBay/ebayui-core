@@ -5,6 +5,11 @@ const rovingTabindex = require('makeup-roving-tabindex');
 const eventUtils = require('../../common/event-utils');
 
 module.exports = {
+
+    get isRadio() {
+        return this.type === 'radio';
+    },
+
     _handleDestroy() {
         if (this.type !== 'fake' && this.rovingTabindex) {
             this.rovingTabindex.destroy();
@@ -12,11 +17,16 @@ module.exports = {
         }
     },
 
-    toggleItemChecked(index, originalEvent, itemEl) {
-        const currentIndex = this.state.checkedItems.findIndex(checked => checked);
+    isChecked(index) {
+        if (this.isRadio) {
+            return index === this.state.checkedIndex;
+        }
+        return this.state.checkedItems[index];
+    },
 
-        if (this.type === 'radio' && index !== currentIndex) {
-            this.setState('checkedItems', this.state.checkedItems.map((item, i) => i === index));
+    toggleItemChecked(index, originalEvent, itemEl) {
+        if (this.isRadio && index !== this.state.checkedIndex) {
+            this.state.checkedIndex = index;
             this.emitComponentEvent({
                 index,
                 eventType: 'change',
@@ -40,12 +50,19 @@ module.exports = {
     },
 
     getCheckedValues() {
+        if (this.isRadio) {
+            const item = this.input.items[this.state.checkedIndex] || {};
+            return [item.value];
+        }
         return this.input.items
             .filter((item, index) => this.state.checkedItems[index])
             .map(item => item.value);
     },
 
     getCheckedIndexes() {
+        if (this.isRadio) {
+            return [this.state.checkedIndex];
+        }
         return this.input.items
             .map((item, i) => this.state.checkedItems[i] && i)
             .filter(item => item !== false && typeof item !== 'undefined');
@@ -70,7 +87,6 @@ module.exports = {
     emitComponentEvent({ eventType, el, originalEvent, index }) {
         const checkedIndexes = this.getCheckedIndexes();
         const isCheckbox = this.type === 'checkbox';
-        const isRadio = this.type === 'radio';
 
         const eventObj = {
             el,
@@ -84,7 +100,7 @@ module.exports = {
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues() // DEPRECATED in v5
             });
-        } else if (isCheckbox || isRadio) {
+        } else if (isCheckbox || this.isRadio) {
             assign(eventObj, {
                 index, // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
@@ -102,10 +118,15 @@ module.exports = {
 
     onInput(input) {
         this.type = input.type;
-        this.state = {
-            checkedItems: (input.items || []).map(item => item.checked || false)
-
-        };
+        if (this.isRadio) {
+            this.state = {
+                checkedIndex: (input.items || []).findIndex(item => item.checked || false)
+            };
+        } else {
+            this.state = {
+                checkedItems: (input.items || []).map(item => item.checked || false)
+            };
+        }
     },
 
     onRender() {

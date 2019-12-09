@@ -91,7 +91,7 @@ $ var isOverflowVariant = input.variant === "overflow";
         onMenu-select("handleMenuSelect")
         key="content">
         <for|item,index| of=input.items>
-            <ebay-menu-item  ...item checked=state.checkedItems[index] />
+            <@item  ...item checked=component.isChecked(index) />
         </for>
     </ebay-menu>
 </span>
