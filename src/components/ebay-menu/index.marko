@@ -65,7 +65,7 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
                 role=itemRole
                 onClick("handleItemClick", index)
                 onKeydown("handleItemKeydown", index)
-                onKeypress("handleItemKeypress", index)
+                onKeypress("handleItemKeypress")
                 key="item[]">
                 <span>
                     <${!item.badgeNumber ? null : "span"} aria-hidden="true">

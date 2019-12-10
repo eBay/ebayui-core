@@ -3,6 +3,7 @@ const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
 const eventUtils = require('../../common/event-utils');
+const NodeListUtils = require('../../common/nodelist-utils');
 
 module.exports = {
 
@@ -80,8 +81,12 @@ module.exports = {
         eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(index, originalEvent, itemEl));
     },
 
-    handleItemKeypress(index) {
-        this.tabindexPosition = this.rovingTabindex.index = index;
+    handleItemKeypress({ key }) {
+        const itemIndex = NodeListUtils.findNodeWithFirstChar(this.getEl('menu').children, key);
+
+        if (itemIndex !== -1) {
+            this.tabindexPosition = this.rovingTabindex.index = itemIndex;
+        }
     },
 
     emitComponentEvent({ eventType, el, originalEvent, index }) {
