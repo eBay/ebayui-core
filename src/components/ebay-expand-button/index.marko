@@ -34,8 +34,8 @@ $ var sizeClass = baseClass + "--" + size;
     type="button"
     disabled=data.disabled
     aria-disabled=(data.partiallyDisabled && "true")
-    w-onclick="handleClick"
-    w-onkeydown="handleKeydown">
+    onClick("handleClick")
+    onKeydown("handleKeydown")>
     <span class=`${baseClass}__cell`>
         <if(data.renderBody)>
             <span>
