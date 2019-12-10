@@ -33,7 +33,9 @@ $ var sizeClass = baseClass + "--" + size;
     href=data.href
     type="button"
     disabled=data.disabled
-    aria-disabled=(data.partiallyDisabled && "true")>
+    aria-disabled=(data.partiallyDisabled && "true")
+    w-onclick="handleClick"
+    w-onkeydown="handleKeydown">
     <span class=`${baseClass}__cell`>
         <if(data.renderBody)>
             <span>
