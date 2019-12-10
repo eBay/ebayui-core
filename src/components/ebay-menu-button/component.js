@@ -4,12 +4,6 @@ const findIndex = require('core-js-pure/features/array/find-index');
 const eventUtils = require('../../common/event-utils');
 
 module.exports = {
-    _handleDestroy() {
-        if (this.expander) {
-            this.expander.cancelAsync();
-        }
-    },
-
     get isRadio() {
         return this.type === 'radio';
     },
@@ -144,23 +138,23 @@ module.exports = {
 
     onRender() {
         if (typeof window !== 'undefined') {
-            this._handleDestroy();
+            this._cleanupMakeup();
         }
     },
 
     onMount() {
-        this.setExpander();
+        this._setupMakeup();
     },
 
     onUpdate() {
-        this.setExpander();
+        this._setupMakeup();
     },
 
     onDestroy() {
-        this._handleDestroy();
+        this._cleanupMakeup();
     },
 
-    setExpander() {
+    _setupMakeup() {
         this.expander = new Expander(this.el, {
             hostSelector: '.menu-button__button, .fake-menu-button__button',
             contentSelector: '.menu-button__menu, .fake-menu-button__menu',
@@ -169,5 +163,12 @@ module.exports = {
             autoCollapse: true,
             alwaysDoFocusManagement: true
         });
+    },
+
+    _cleanupMakeup() {
+        if (this.expander) {
+            this.expander.cancelAsync();
+        }
     }
+
 };

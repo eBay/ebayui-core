@@ -11,13 +11,6 @@ module.exports = {
         return this.type === 'radio';
     },
 
-    _handleDestroy() {
-        if (this.type !== 'fake' && this.rovingTabindex) {
-            this.rovingTabindex.destroy();
-            scrollKeyPreventer.remove(this.contentEl);
-        }
-    },
-
     isChecked(index) {
         if (this.isRadio) {
             return index === this.state.checkedIndex;
@@ -136,20 +129,24 @@ module.exports = {
 
     onRender() {
         if (typeof window !== 'undefined') {
-            this._handleDestroy();
+            this._cleanupMakeup();
         }
     },
 
     onMount() {
         this.tabindexPosition = 0;
-        this.setContent();
+        this._setupMakeup();
     },
 
     onUpdate() {
-        this.setContent();
+        this._setupMakeup();
     },
 
-    setContent() {
+    onDestroy() {
+        this._cleanupMakeup();
+    },
+
+    _setupMakeup() {
         this.contentEl = this.getEl('menu');
 
         if (this.type !== 'fake') {
@@ -161,7 +158,11 @@ module.exports = {
         }
     },
 
-    onDestroy() {
-        this._handleDestroy();
+    _cleanupMakeup() {
+        if (this.type !== 'fake' && this.rovingTabindex) {
+            this.rovingTabindex.destroy();
+            scrollKeyPreventer.remove(this.contentEl);
+        }
     }
+
 };
