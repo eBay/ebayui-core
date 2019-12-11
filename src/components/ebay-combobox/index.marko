@@ -34,7 +34,12 @@ $ var currentValue = state.currentValue;
         respect the "off" key. Tested and works in all other browsers properly as well.
         -->
         <input
-            ...processHtmlAttributes(data, ignoredAttributes)
+            ...processHtmlAttributes(
+                Object.assign(data, {
+                    id: data.id || component.id + "-input"
+                }),
+                ignoredAttributes
+            )
             type="text"
             name=input.name
             role="combobox"
@@ -61,9 +66,10 @@ $ var currentValue = state.currentValue;
             <for|option| of=options>
                 $ var isSelected = selectedOption === option;
                 $ {
-                    var isVisible = (state.autocomplete === "list" &&
-                        (isSelected || currentValueReg.test(option.text))) ||
-                        state.autocomplete === "none";
+                    var isVisible =
+                                        (state.autocomplete === "list" &&
+                                            (isSelected || currentValueReg.test(option.text))) ||
+                                        state.autocomplete === "none";
                 }
                 <if(isVisible && option.text)>
                     <div
