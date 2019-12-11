@@ -1,8 +1,6 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import processHtmlAttributes from "../../common/html-attributes";
 
 static var ignoredAttributes = [
-    "class",
-    "style",
     "pointer",
     "styleTop",
     "styleLeft",
@@ -12,43 +10,40 @@ static var ignoredAttributes = [
     "host"
 ];
 
-$ var pointer = data.pointer || "bottom";
+$ var pointer = input.pointer || "bottom";
+
 <span>
     <ebay-tooltip-base
+        key="base"
         type="tourtip"
         pointer=pointer
-        style-left=data.styleLeft
-        style-top=data.styleTop
-        style-right=data.styleRight
-        style-bottom=data.styleBottom
-        onBase-collapse("handleCollapse")
-        key="base">
+        overlay-id:scoped="overlay"
+        style-left=input.styleLeft
+        style-top=input.styleTop
+        style-right=input.styleRight
+        style-bottom=input.styleBottom
+        onBase-collapse("handleCollapse")>
         <span
-            ...processHtmlAttributes(data, ignoredAttributes)
-            class:no-update="tourtip"
-            key="expander-root"
-            id:scoped="expander-root">
-            <if(data.host)>
+            ...processHtmlAttributes(input, ignoredAttributes)
+            class:no-update="tourtip">
+            <if(input.host)>
                 <span
-                    class=[data.host.class, "tourtip__host"]
-                    style=data.host.style
-                    aria-expanded:no-update=null
-                    aria-controls:no-update=null
-                    aria-describedby:no-update=null>
-                    <${data.host.renderBody}/>
+                    class=[input.host.class, "tourtip__host"]
+                    ...processHtmlAttributes(input.host)>
+                    <${input.host.renderBody}/>
                 </span>
             </if>
             <ebay-tooltip-overlay
                 type="tourtip"
-                tooltip-id:scoped="overlay"
+                id:scoped="overlay"
                 pointer=pointer
-                style-left=data.styleLeft
-                style-top=data.styleTop
-                style-right=data.styleRight
-                style-bottom=data.styleBottom
-                heading=data.heading
-                content=data.content
-                a11y-close-text=data.a11yCloseText
+                style-left=input.styleLeft
+                style-top=input.styleTop
+                style-right=input.styleRight
+                style-bottom=input.styleBottom
+                heading=input.heading
+                content=input.content
+                a11y-close-text=input.a11yCloseText
                 onOverlay-close("handleCollapse")/>
         </span>
     </ebay-tooltip-base>

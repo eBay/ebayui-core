@@ -10,63 +10,68 @@ module.exports = {
         this.emit('base-collapse');
     },
 
-    onInput(input) {
-        this.state = input;
+    onMount() {
+        this._setupMakeup();
+    },
+
+    onUpdate() {
+        this._setupMakeup();
     },
 
     onRender() {
         if (typeof window !== 'undefined') {
-            if (this.expander) {
-                this.expander.cancelAsync();
+            this._cleanupMakeup();
+        }
+    },
+
+    onDestroy() {
+        this._cleanupMakeup();
+    },
+
+    _setupMakeup() {
+        const { input } = this;
+        const { type } = input;
+        const container = this.getEl('container');
+        const isTooltip = type === 'tooltip';
+        const isInfotip = type === 'infotip';
+        const hostClass = `${type}__host`;
+        const hostSelector = `.${hostClass}`;
+        const expanderEl = container.getElementsByClassName(type)[0];
+        let host = container.querySelector(hostSelector);
+
+        if (!host) {
+            const curFocusable = focusables(container)[0];
+            if (curFocusable) {
+                host = curFocusable;
+
+                if (!curFocusable.classList.has(hostClass)) {
+                    curFocusable.classList.add(hostClass);
+                }
             }
         }
-    },
 
-    onMount() {
-        this.onRenderLegacy({
-            firstRender: true
-        });
-    },
-
-    onUpdate() {
-        this.onRenderLegacy({
-            firstRender: false
-        });
-    },
-
-    onRenderLegacy() {
-        const hostClass = `${this.state.type}__host`;
-        const hostSelector = `.${hostClass}`;
-        const expanderEl = this.el.getElementsByClassName(this.state.type)[0];
-
-        this.curFocusable = focusables(this.el)[0];
-
-        if (this.curFocusable) {
-            this.curFocusable.classList.add(hostClass);
-        }
-
-        this.host = this.el.querySelector(hostSelector);
-
-        const hostAriaDescribedBy = this.host &&
-            this.host.hasAttribute('aria-describedby') &&
-            this.host.getAttribute('aria-describedby');
-        const isTooltip = this.state.type === 'tooltip';
-
-        if (this.host) {
-            this.expander = new Expander(expanderEl, {
+        if (host) {
+            this._expander = new Expander(expanderEl, {
                 hostSelector: hostSelector,
-                contentSelector: `.${this.state.type}__overlay`,
-                expandedClass: `${this.state.type}--expanded`,
+                contentSelector: `.${type}__overlay`,
+                expandedClass: `${type}--expanded`,
                 focusManagement: null,
                 expandOnFocus: isTooltip,
-                expandOnHover: isTooltip && !this.state.noHover,
-                expandOnClick: this.state.type === 'infotip',
+                expandOnHover: isTooltip && !input.noHover,
+                expandOnClick: isInfotip,
                 autoCollapse: isTooltip
             });
 
-            if (!hostAriaDescribedBy && this.el.parentElement) {
-                this.host.setAttribute('aria-describedby', `${this.el.parentElement.id}-overlay`);
+            if (!host.hasAttribute('aria-describedby')) {
+                host.setAttribute('aria-describedby', input.overlayId);
             }
+        }
+    },
+
+    _cleanupMakeup() {
+        if (this._expander) {
+            this._expander.cancelAsync();
+            this._expander = undefined;
         }
     }
 };

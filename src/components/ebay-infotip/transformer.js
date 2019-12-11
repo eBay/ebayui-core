@@ -1,6 +1,6 @@
 const ebayUIAttributeTransformer = require('../../common/transformers/ebayui-attribute');
 
-// Transforms an `icon` attribute into an `<ebay-infotip:icon>` tag
+// Transforms an `icon` attribute into an `<ebay-infotip:_icon>` tag
 function transform(el, context) {
     ebayUIAttributeTransformer(el, context);
 
@@ -18,7 +18,7 @@ function transform(el, context) {
                 value: builder.literal('inline')
             }
         ]);
-        const menuIconTag = context.createNodeForEl('ebay-infotip:icon');
+        const menuIconTag = context.createNodeForEl('ebay-infotip:_icon');
         menuIconTag.appendChild(iconTag);
         el.prependChild(menuIconTag);
     }

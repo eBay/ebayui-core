@@ -200,6 +200,10 @@ Given a version number MAJOR.MINOR.PATCH:
 * MINOR version is incremented when we add functionality in a backwards-compatible manner
 * PATCH version is incremented when we make backwards-compatible bug fixes.
 
+### Deprecations
+
+Deprecations will be communicated via [release notes](https://github.com/eBay/ebayui-core/releases), so please ensure that you read those carefully. In general, expect any deprecated feature to be removed in the next major version. However, in some cases we may wait a while longer.
+
 ### Issues
 
 Please use our [issues page](https://github.com/eBay/ebayui-core/issues) to ask questions, report issues or submit feature requests.

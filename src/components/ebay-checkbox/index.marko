@@ -1,15 +1,15 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import processHtmlAttributes from "../../common/html-attributes";
 
-static var ignoredAttributes = ["class", "style", "disabled"];
+static var ignoredAttributes = ["class", "style"];
 
-<span class=["checkbox", data.class] style=data.style>
+<span class=["checkbox", input.class] style=input.style>
     <input
-        ...processHtmlAttributes(data, ignoredAttributes)
+        ...processHtmlAttributes(input, ignoredAttributes)
+        key="input"
         class="checkbox__control"
         type="checkbox"
         onChange("handleChange")
-        onFocus("handleFocus")
-        disabled=data.disabled/>
+        onFocus("handleFocus")/>
     <span class="checkbox__icon" hidden>
         <ebay-icon
             type="inline"

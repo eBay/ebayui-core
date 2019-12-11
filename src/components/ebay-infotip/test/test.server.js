@@ -38,7 +38,7 @@ describe('transformer', () => {
         const tagString = '<ebay-infotip icon="settings"/>';
         const { el } = runTransformer(transformer, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
-        expect(iconEl.tagName).to.equal('ebay-infotip:icon');
+        expect(iconEl.tagName).to.equal('ebay-infotip:_icon');
     });
 
     it('does not transform when icon attribute is missing', () => {

@@ -1,0 +1,33 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@borderless": "boolean",
+  "@autocomplete": "string",
+  "@disabled": "#html-disabled",
+  "@form": "#html-form",
+  "@name": "#html-name",
+  "@placeholder": "#html-placeholder",
+  "@required": "#html-required",
+  "@value": "#html-value",
+  "@role": "never",
+  "@aria-autocomplete": "never",
+  "@aria-haspopup": "never",
+  "@options <option>[]": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@value": "string",
+    "@text": "string",
+    "@selected": "boolean",
+    "@tabindex": "never",
+    "@role": "never",
+    "@aria-selected": "never"
+  }
+}

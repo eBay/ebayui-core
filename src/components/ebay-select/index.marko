@@ -1,66 +1,67 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import processHtmlAttributes from "../../common/html-attributes";
 
-static {
-    var ignoredAttributes = [
-        "class",
-        "style",
-        "grow",
-        "borderless",
-        "disabled",
-        "options"
-    ];
+static var ignoredAttributes = [
+    "class",
+    "style",
+    "borderless",
+    "options"
+];
+static var itemIgnoredAttributes = [
+    "selected",
+    "optgroup"
+];
 
-    var itemIgnoredAttributes = [
-        "class",
-        "style",
-        "value",
-        "text",
-        "selected",
-        "optgroup"
-    ];
-}
+$ var selectedOption = input.options[state.selectedIndex];
+$ var list = [];
+$ var optgroups = {};
+$ input.options.forEach(function (option) {
+    var optgroup = option.optgroup;
 
-$ var options = state.options;
-$ var selectedOption = options[state.selectedIndex];
-$ var renderedOptGroups = [];
+    if (optgroup) {
+        if (optgroups[optgroup]) {
+            optgroups[optgroup].options.push(option);
+        } else {
+            list.push(optgroups[optgroup] = {
+                optgroup: optgroup,
+                options: [option]
+            });
+        }
+    } else {
+        list.push(option);
+    }
+});
+
 <span
-    class=[input.class, "select", input.borderless && "select--borderless"]
+    class=[
+        "select",
+        input.borderless && "select--borderless",
+        input.class
+    ]
     style=input.style>
     <select
         ...processHtmlAttributes(input, ignoredAttributes)
-        onChange("handleChange")
-        disabled=state.disabled>
-        <for|option| of=options>
-            $ {
-                var withinOptgroup =
-                                option.optgroup &&
-                                renderedOptGroups.indexOf(option.optgroup) === -1;
-            }
-            <${option.optgroup ? null : "option"}
-                id:scoped="options"
-                key="options[]"
-                value=option.value
-                class=option.class
-                style=option.style
-                selected=(option === selectedOption)
-                ...processHtmlAttributes(option, itemIgnoredAttributes)>
-                <if(withinOptgroup)>
-                    <optgroup label=option.optgroup>
-                        <for|subOption| of=state.optGroups[option.optgroup]>
-                            <option
-                                value=subOption.value
-                                class=subOption.class
-                                style=subOption.style
-                                selected=(subOption === selectedOption)
-                                key="option[]">
-                                ${subOption.text}
-                            </option>
-                        </for>
-                    </optgroup>
-                    <% renderedOptGroups.push(option.optgroup); %>
-                </if>
-                <else-if(!option.optgroup)>${option.text}</else-if>
-            </>
+        onChange("handleChange")>
+        <for|optionOrGroup| of=list>
+            <if(optionOrGroup.optgroup)>
+                <optgroup label=optionOrGroup.optgroup>
+                    <for|option| of=optionOrGroup.options>
+                        <option
+                            ...processHtmlAttributes(option, itemIgnoredAttributes)
+                            key="option[]"
+                            selected=(option === selectedOption)>
+                            ${option.text}
+                        </option>
+                    </for>
+                </optgroup>
+            </if>
+            <else>
+                <option
+                    ...processHtmlAttributes(optionOrGroup, itemIgnoredAttributes)
+                    key="option[]"
+                    selected=(optionOrGroup === selectedOption)>
+                    ${optionOrGroup.text}
+                </option>
+            </else>
         </for>
     </select>
     <span class="select__icon"/>

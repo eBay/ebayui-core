@@ -1,73 +1,48 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static {
-    var ignoredAttributes = [
-        "class",
-        "style",
-        "type",
-        "fillWindow",
-        "status",
-        "hidden",
-        "a11yHeadingText",
-        "a11yHeadingTag",
-        "a11yCloseText",
-        "dismissible",
-        "content",
-        "title"
-    ];
-
-    var itemIgnoredAttributes = ["class", "style"];
-}
+static var ignoredAttributes = [
+    "type",
+    "fillWindow",
+    "status",
+    "hidden",
+    "dismissible",
+    "content",
+    "title"
+];
 
 $ var type = input.type || "page";
-$ var prefix = input.prefix;
 $ var status = input.status || "attention";
 $ var isSection = type === "section";
 $ var isWindow = type === "window";
 $ var isCelebration = status === "celebration";
 $ var isPage = type === "page" || isSection || isWindow;
 $ var isLightGuidance = isSection && !input.status;
-$ var content = input.content;
-$ var title = input.title;
-$ var cta = input.cta;
-$ var defRender = input.renderBody;
-$ var contentTag = isPage ? "div" : "span";
+
 <if(!state.hidden)>
     <${isPage ? "section" : "div"}
         ...processHtmlAttributes(input, ignoredAttributes)
-        style=input.style
         aria-labelledby:scoped="status"
-        aria-label=(isLightGuidance ? input.a11yHeadingText : null)
+        aria-label=(isLightGuidance && input.a11yHeadingText)
         class=[
             `${type}-notice`,
-            !isLightGuidance && !isWindow ? `${type}-notice--${status}` : "",
-            input.fillWindow ? `${type}-notice--fill` : "",
+            !isLightGuidance && !isWindow && `${type}-notice--${status}`,
+            input.fillWindow && `${type}-notice--fill`,
             input.class
         ]>
         <if(!isLightGuidance)>
             <${isPage ? input.a11yHeadingTag || "h2" : "span"}
                 class=`${type}-notice__status`
-                key="status"
                 id:scoped="status">
-                <if(isWindow && title && title.renderBody)>
+                <if(isWindow && input.title)>
                     <ebay-icon
                         class="window-notice__icon"
                         type="inline"
                         name="confirmation-filled"
                         aria-label=input.a11yHeadingText/>
                     <span
-                        ...processHtmlAttributes(title, itemIgnoredAttributes)
-                        class=[`${type}-notice__title`, title.class]
-                        style=title.style>
-                        <if(
-                            title.renderBody &&
-                            (typeof title.renderBody === "function" ||
-                                typeof title.renderBody.renderBody ===
-                                    "function")
-                        )>
-                            <${title.renderBody}/>
-                        </if>
-                        <else>${title.renderBody}</else>
+                        ...processHtmlAttributes(input.title)
+                        class=[`${type}-notice__title`, input.title.class]>
+                        <${input.title}/>
                     </span>
                 </if>
                 <else>
@@ -77,85 +52,43 @@ $ var contentTag = isPage ? "div" : "span";
                             name="confirmation-filled"
                             aria-label=input.a11yHeadingText/>
                     </if>
-                    <if(status === "attention")>
-                        <ebay-icon type="inline" name="attention-filled" aria-label=input.a11yHeadingText/>
-                    </if>
-                    <if(status === "information")>
+                    <else if(status === "attention")>
+                        <ebay-icon
+                            type="inline"
+                            name="attention-filled"
+                            aria-label=input.a11yHeadingText/>
+                    </else>
+                    <else if(status === "information")>
                         <ebay-icon
                             type="inline"
                             name="information-filled"
                             aria-label=input.a11yHeadingText/>
-                    </if>
+                    </else>
                 </else>
             </>
         </if>
-        <if(content && content.renderBody)>
-            <${contentTag}
-                ...processHtmlAttributes(content, itemIgnoredAttributes)
-                class=[content.class, `${type}-notice__content`]
-                style=content.style>
-                <if(isCelebration && title && title.renderBody)>
-                    <span
-                        ...processHtmlAttributes(title, itemIgnoredAttributes)
-                        class=[`${type}-notice__title`, title.class]
-                        style=title.style>
-                        <if(
-                            title.renderBody &&
-                            (typeof title.renderBody === "function" ||
-                                typeof title.renderBody.renderBody ===
-                                    "function")
-                        )>
-                            <${title.renderBody}/>
-                        </if>
-                        <else>${title.renderBody}</else>
-                    </span>
-                </if>
-                <if(
-                    content.renderBody &&
-                    (typeof content.renderBody === "function" ||
-                        typeof content.renderBody.renderBody === "function")
-                )>
-                    <${content.renderBody}/>
-                </if>
-                <else>${content.renderBody}</else>
-            </>
-            <if(
-                defRender &&
-                (typeof defRender === "function" ||
-                    typeof defRender.renderBody === "function")
-            )>
-                <${defRender}/>
+
+        <${isPage ? "div" : "span"}
+            ...(input.content && processHtmlAttributes(input.content))
+            class=[
+                `${type}-notice__content`,
+                input.content && input.content.class
+            ]>
+            <if(isCelebration && input.title)>
+                <span
+                    ...processHtmlAttributes(input.title)
+                    class=[`${type}-notice__title`, input.title.class]>
+                    <${input.title.renderBody}/>
+                </span>
             </if>
-            <else>${defRender}</else>
+
+            <${input.content || input.renderBody}/>
+        </>
+
+        <if(input.content)>
+            <${input.renderBody}/>
         </if>
-        <else>
-            <${contentTag} class=`${type}-notice__content`>
-                <if(isCelebration && title && title.renderBody)>
-                    <span
-                        ...processHtmlAttributes(title, itemIgnoredAttributes)
-                        class=[`${type}-notice__title`, title.class]
-                        style=title.style>
-                        <if(
-                            title.renderBody &&
-                            (typeof title.renderBody === "function" ||
-                                typeof title.renderBody.renderBody ===
-                                    "function")
-                        )>
-                            <${title.renderBody}/>
-                        </if>
-                        <else>${title.renderBody}</else>
-                    </span>
-                </if>
-                <if(
-                    defRender &&
-                    (typeof defRender === "function" ||
-                        typeof defRender.renderBody === "function")
-                )>
-                    <${defRender}/>
-                </if>
-                <else>${defRender}</else>
-            </>
-        </else>
+
         <if(input.dismissible)>
             <button
                 class="page-notice__close"

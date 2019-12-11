@@ -1,86 +1,75 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static {
-    var ignoredAttributes = [
-        "variant",
-        "footerText",
-        "class",
-        "style",
-        "classPrefix",
-        "formName",
-        "formAction",
-        "formMethod",
-        "a11yFooterText",
-        "items"
-    ];
-    var itemIgnoredAttributes = ["class", "style", "checked", "value"];
-}
+static var ignoredAttributes = [
+    "variant",
+    "footerText",
+    "class",
+    "style",
+    "classPrefix",
+    "formName",
+    "formAction",
+    "formMethod",
+    "items"
+];
+
+static var itemIgnoredAttributes = ["checked", "value"];
 
 $ var baseClass = input.classPrefix || "filter-menu";
 $ var isForm = input.variant === "form";
-$ {
-    var checkedItems =
-        (state.items &&
-            state.items.filter(function(item) {
-                return item.checked;
-            })) ||
-        [];
-}
+
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
+    key="container"
     class=[input.classPrefix ? `${baseClass}__menu` : baseClass, input.class]
     style=input.style>
-    <${input.classPrefix ? null : "div"} key="content" class=`${baseClass}__menu`>
-        <${!isForm ? null : "form"}
-            name=input.formName
-            action=input.formAction
-            method=input.formMethod
-            onSubmit("handleFormSubmit")>
-            <div
-                class=`${baseClass}__items`
-                role=(!isForm && "menu")
-                key="menu"
-                id:scoped="menu">
-                <for|item, index| of=state.items>
-                    <${isForm ? "label" : "div"}
-                        ...processHtmlAttributes(item, itemIgnoredAttributes)
-                        class=[`${baseClass}__item`, item.class]
-                        style=item.style
-                        role="menuitemcheckbox"
-                        aria-checked=(item.checked ? "true" : "false")
-                        data-value=item.value
-                        for:scoped=(isForm && `checkbox-${index}`)
-                        onClick("handleItemClick", index)
-                        onKeydown("handleItemKeydown", index)
-                        key="item[]">
-                        <if(isForm)>
-                            <ebay-checkbox id:scoped=`checkbox-${index}` checked=item.checked key="checkbox"/>
-                        </if>
-                        <else>
-                            <span class=`${baseClass}__status`>
-                                <if(item.checked)>
-                                    <ebay-icon type="inline" name="checkbox-checked"/>
-                                </if>
-                                <else>
-                                    <ebay-icon type="inline" name="checkbox-unchecked"/>
-                                </else>
-                            </span>
-                        </else>
-                        <span class=`${baseClass}__text`>
-                            <${item.renderBody}/>
+    <${isForm && "form"}
+        name=input.formName
+        action=input.formAction
+        method=input.formMethod
+        onSubmit("handleFormSubmit")>
+        <div
+            key="menu"
+            class=`${baseClass}__items`
+            role=(!isForm && "menu")>
+            <for|item, i| of=input.items>
+                $ var isChecked = state.isChecked[i];
+                <${isForm ? "label" : "div"}
+                    ...processHtmlAttributes(item, itemIgnoredAttributes)
+                    class=[`${baseClass}__item`, item.class]
+                    role="menuitemcheckbox"
+                    aria-checked=(String(isChecked))
+                    for=(isForm && component.elId(`checkbox-${i}`))
+                    onClick("handleItemClick", i)
+                    onKeydown("handleItemKeydown", i)>
+                    <if(isForm)>
+                        <ebay-checkbox id:scoped=`checkbox-${i}` checked=isChecked/>
+                    </if>
+                    <else>
+                        <span class=`${baseClass}__status`>
+                            <if(isChecked)>
+                                <ebay-icon type="inline" name="checkbox-checked"/>
+                            </if>
+                            <else>
+                                <ebay-icon type="inline" name="checkbox-unchecked"/>
+                            </else>
                         </span>
-                    </>
-                </for>
-            </div>
-            <if(input.footerText)>
-                <button
-                    type=(input.variant === "form" ? "submit" : "button")
-                    aria-label=input.a11yFooterText
-                    class=`${baseClass}__footer`
-                    onClick(isForm ? null : "handleFooterButtonClick")>
-                    ${input.footerText}
-                </button>
-            </if>
-        </>
+                    </else>
+
+                    <span class=`${baseClass}__text`>
+                        <${item.renderBody}/>
+                    </span>
+                </>
+            </for>
+        </div>
+
+        <if(input.footerText)>
+            <button
+                type=(isForm ? "submit" : "button")
+                aria-label=input.a11yFooterText
+                class=`${baseClass}__footer`
+                onClick(!isForm && "handleFooterButtonClick")>
+                ${input.footerText}
+            </button>
+        </if>
     </>
 </span>

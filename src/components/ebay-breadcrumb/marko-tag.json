@@ -1,0 +1,41 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@a11y-heading-text": "string",
+  "@a11y-heading-tag": "string",
+  "@hijax": "boolean",
+  "@aria-labelledby": "never",
+  "@role": "never",
+  "@items <item>[]": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "attribute-groups": ["html-attributes"],
+    "@html-attributes": "expression",
+    "@autofocus": "#html-autofocus",
+    "@disabled": "#html-disabled",
+    "@form": "#html-form",
+    "@formaction": "#html-formaction",
+    "@formenctype": "#html-formenctype",
+    "@formmethod": "#html-formmethod",
+    "@formnovalidate": "#html-formnovalidate",
+    "@formtarget": "#html-formtarget",
+    "@name": "#html-name",
+    "@type": "#html-type",
+    "@value": "#html-value",
+    "@download": "#html-download",
+    "@href": "#html-href",
+    "@hreflang": "#html-hreflang",
+    "@media": "#html-media",
+    "@ping": "#html-ping",
+    "@referrerpolicy": "#html-referrerpolicy",
+    "@rel": "#html-rel",
+    "@target": "#html-target",
+    "@aria-current": "never"
+  }
+}
