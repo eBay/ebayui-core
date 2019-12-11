@@ -1,56 +1,42 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import processHtmlAttributes from "../../common/html-attributes";
 
-static {
-    var ignoredAttributes = [
-        "class",
-        "style",
-        "ctaText",
-        "href",
-        "size",
-        "_default",
-        "title",
-        "subtitle",
-        "info",
-        "overflow"
-    ];
+static var ignoredAttributes = [
+    "ctaText",
+    "href",
+    "size",
+    "title",
+    "subtitle",
+    "info",
+    "overflow"
+];
 
-    var itemIgnoredAttributes = ["class", "style"];
-}
-
-$ {
-    var titleContent =
-        (!input.title && input._default.renderBody) || input.title.renderBody;
-}
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
         "section-title",
         input.size && `section-title--${input.size}`,
         input.class
-    ]
-    style=input.style>
+    ]>
     <div
-        class=["section-title__title-container", input.title && input.title.class]
+        class=[
+            "section-title__title-container",
+            // Does this make more sense on the h2?
+            // If so then we should probably spread in the rest of the
+            // title attrs.
+            input.title && input.title.class
+        ]
         style=(input.title && input.title.style)>
         <!-- Title-->
-        <if(input.href)>
-            <h2 class="section-title__title" key="title" id:scoped="title">
-                <a href=input.href>
-                    <${titleContent}/>
-                </a>
-            </h2>
-        </if>
-        <else>
-            <h2 class="section-title__title" key="title" id:scoped="title">
-                <${titleContent}/>
-            </h2>
-        </else>
+        <h2 class="section-title__title" key="title" id:scoped="title">
+            <${input.href && "a"} href=input.href>
+                <${input.title || input.renderBody}/>
+            </>
+        </h2>
         <!-- Subtitle-->
         <if(input.subtitle)>
             <span
-                ...processHtmlAttributes(input.subtitle, itemIgnoredAttributes)
-                class=["section-title__subtitle", input.subtitle.classs]
-                style=input.subtitle.style>
+                ...processHtmlAttributes(input.subtitle)
+                class=["section-title__subtitle", input.subtitle.class]>
                 <${input.subtitle.renderBody}/>
             </span>
         </if>
@@ -64,14 +50,7 @@ $ {
             <a href=input.href tabindex="-1" aria-hidden="true">
                 <if(input.ctaText)>
                     <span class="section-title__cta-text">
-                        <if(
-                            input.ctaText &&
-                            (typeof input.ctaText === "function" ||
-                                typeof input.ctaText.renderBody === "function")
-                        )>
-                            <${input.ctaText}/>
-                        </if>
-                        <else>${input.ctaText}</else>
+                        ${input.ctaText}
                     </span>
                 </if>
                 <ebay-icon
@@ -83,20 +62,18 @@ $ {
         </div>
     </if>
     <!-- Info-->
-    <if(input.info && input.info.renderBody)>
+    <if(input.info)>
         <div
-            ...processHtmlAttributes(input.info, itemIgnoredAttributes)
-            class=["section-title__info", input.info.class]
-            style=input.info.style>
+            ...processHtmlAttributes(input.info)
+            class=["section-title__info", input.info.class]>
             <${input.info.renderBody}/>
         </div>
     </if>
     <!-- Overflow-->
-    <if(input.overflow && input.overflow.renderBody)>
+    <if(input.overflow)>
         <div
-            ...processHtmlAttributes(input.overflow, itemIgnoredAttributes)
-            class=["section-title__overflow", input.overflow.class]
-            style=input.overflow.style>
+            ...processHtmlAttributes(input.overflow)
+            class=["section-title__overflow", input.overflow.class]>
             <${input.overflow.renderBody}/>
         </div>
     </if>

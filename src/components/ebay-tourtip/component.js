@@ -1,14 +1,14 @@
 
 module.exports = {
     handleCollapse() {
-        if (this.expander.isExpanded()) {
-            this.expander.collapse();
+        if (this._expander.isExpanded()) {
+            this._expander.collapse();
             this.emit('tooltip-collapse');
         }
     },
 
     onMount() {
-        this.expander = this.getComponent('base').expander;
-        this.expander.expand();
+        this._expander = this.getComponent('base')._expander;
+        this._expander.expand();
     }
 };

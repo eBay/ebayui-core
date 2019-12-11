@@ -1,0 +1,37 @@
+{
+  "template": "./index.marko",
+  "transformer": "./transformer.js",
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@type": {
+    "enum": ["text", "password"]
+  },
+  "@invalid": "boolean",
+  "@fluid": "boolean",
+  "@multiline": "boolean",
+  "@floating-label": "string",
+  "@icon": "string",
+  "@icon-position": {
+    "enum": ["prefix", "postfix"]
+  },
+  "@iconTag <_icon>": {},
+  "@autocomplete": "#html-autocomplete",
+  "@autofocus": "#html-autofocus",
+  "@dirname": "#html-dirname",
+  "@disabled": "#html-disabled",
+  "@form": "#html-form",
+  "@maxlength": "#html-maxlength",
+  "@minlength": "#html-minlength",
+  "@name": "#html-name",
+  "@pattern": "#html-pattern",
+  "@placeholder": "#html-placeholder",
+  "@readonly": "#html-readonly",
+  "@required": "#html-required",
+  "@size": "#html-size",
+  "@value": "#html-value",
+  "@aria-invalid": "never"
+}

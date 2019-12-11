@@ -1,0 +1,12 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@type": {
+    "enum": ["icon"]
+  },
+  "@number": "number"
+}

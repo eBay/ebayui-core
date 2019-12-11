@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const keyboardTrap = require('makeup-keyboard-trap');
 const screenReaderTrap = require('makeup-screenreader-trap');
 const bodyScroll = require('../../common/body-scroll');
@@ -28,11 +27,50 @@ module.exports = {
             }
         }
 
-        this.setState('open', false);
+        this.state.open = false;
     },
 
     handleCloseButtonClick() {
-        this.setState('open', false);
+        this.state.open = false;
+    },
+
+    onInput(input) {
+        this.state = { open: input.open || false };
+    },
+
+    onRender() {
+        if (typeof window !== 'undefined') {
+            this._release();
+        }
+    },
+
+    onMount() {
+        this.rootEl = this.getEl();
+        this.windowEl = this.getEl('window');
+        this.closeEl = this.getEl('close');
+        this.bodyEl = this.getEl('body');
+        this.transitionEls = [this.windowEl, this.rootEl];
+        // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
+        this.subscribeTo(this.rootEl).on('click', () => {});
+
+        this._trap({
+            firstRender: true
+        });
+    },
+
+    onUpdate() {
+        this._trap({
+            firstRender: false
+        });
+    },
+
+    onDestroy() {
+        this._cancelAsync();
+        this._release();
+
+        if (this.isTrapped) {
+            bodyScroll.restore();
+        }
     },
 
     /**
@@ -139,50 +177,5 @@ module.exports = {
             this.cancelTransition();
             this.cancelTransition = undefined;
         }
-    },
-
-    onInput(input) {
-        this.state = assign({}, input, {
-            open: input.open || false
-        });
-    },
-
-    onRender() {
-        if (typeof window !== 'undefined') {
-            this._release();
-        }
-    },
-
-    onMount() {
-        this.rootEl = this.getEl();
-        this.windowEl = this.getEl('window');
-        this.closeEl = this.getEl('close');
-        this.bodyEl = this.getEl('body');
-        this.transitionEls = [this.windowEl, this.rootEl];
-        // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
-        this.subscribeTo(this.rootEl).on('click', () => {});
-
-        this.onRenderLegacy({
-            firstRender: true
-        });
-    },
-
-    onUpdate() {
-        this.onRenderLegacy({
-            firstRender: false
-        });
-    },
-
-    onDestroy() {
-        this._cancelAsync();
-        this._release();
-
-        if (this.isTrapped) {
-            bodyScroll.restore();
-        }
-    },
-
-    onRenderLegacy(event) {
-        this._trap(event);
     }
 };

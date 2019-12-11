@@ -1,52 +1,58 @@
+import processHtmlAttributes from "../../common/html-attributes";
+
+static var ignoreAttributes = ["class", "style", "name", "options", "borderless"];
+static var ignoreOptionAttributes = ["text", "selected", "value"];
+
+$ var selectedOption = input.options && input.options[state.selectedIndex];
+
 <span
-    class:no-update=["combobox",state.class]
-    style=state.style
+    class:no-update=["combobox", input.class]
+    style=input.style
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")>
-    <span class:no-update=["combobox__control", state.borderless && "combobox__control--borderless"]>
+    <span class:no-update=["combobox__control", input.borderless && "combobox__control--borderless"]>
         <input
-            ...state.htmlAttributes
+            ...processHtmlAttributes(input, ignoreAttributes)
+            key="combobox"
             type="text"
             role="combobox"
             readonly
-            value=(state.selected && state.selected.text)
-            disabled=state.disabled
+            value=(selectedOption && selectedOption.text)
             aria-haspopup="listbox"
             aria-owns:scoped="combobox__listbox"
             aria-expanded:no-update="false"
             onKeydown("handleComboboxKeyDown")/>
         <span class="combobox__icon" aria-hidden="true"/>
     </span>
-    <if(data.options.length > 0)>
+    <if(input.options.length > 0)>
         <div
+            key="listbox"
             role="listbox"
             class="combobox__listbox"
-            key="combobox__listbox"
             id:scoped="combobox__listbox">
-            <for|option| of=state.options>
+            <for|option, i| of=input.options>
+                $ var isSelected = option === selectedOption;
                 <div
-                    ...option.htmlAttributes
+                    ...processHtmlAttributes(option, ignoreOptionAttributes)
+                    key="options[]"
                     role="option"
                     class=[
                         "combobox__option",
                         option.class,
-                        option.selected && "combobox__option--active"
+                        isSelected && "combobox__option--active"
                     ]
-                    style=option.style
                     tabindex:no-update="-1"
-                    onClick("handleOptionClick")
-                    aria-selected=String(option.selected)
-                    data-option-value=option.value
-                    data-makeup-index:no-update=null>
+                    aria-selected=(isSelected && "true")
+                    onClick("handleOptionClick", i)>
                     <span>${option.text}</span>
                     <span class="combobox__status"/>
                 </div>
             </for>
         </div>
     </if>
-    <select hidden class="combobox__native" name=state.name>
-        <for|option| of=state.options>
-            <option value=option.value selected=option.selected class=option.class/>
+    <select hidden class="combobox__native" name=input.name>
+        <for|option| of=input.options>
+            <option value=option.value selected=(option === selectedOption)/>
         </for>
     </select>
 </span>

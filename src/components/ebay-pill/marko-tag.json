@@ -1,0 +1,14 @@
+{
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@class": "string",
+  "@style": "string",
+  "@disabled": "boolean",
+  "@href": "string",
+  "@priority": "string",
+  "@pressed": "boolean",
+  "@aria-selected-text": "string"
+}

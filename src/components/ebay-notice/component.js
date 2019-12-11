@@ -1,16 +1,14 @@
-const assign = require('core-js-pure/features/object/assign');
-
 module.exports = {
     handleDismiss() {
         if (!this.state.hidden) {
-            this.setState('hidden', true);
+            this.state.hidden = true;
             this.emit('notice-close');
         }
     },
 
     onInput(input) {
-        this.state = assign({}, input, {
+        this.state = {
             hidden: input.hidden || false
-        });
+        };
     }
 };

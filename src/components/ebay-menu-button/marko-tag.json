@@ -1,0 +1,44 @@
+{
+  "template": "./index.marko",
+  "transformer": "./transformer.js",
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@class": "string",
+  "@style": "string",
+  "@type": "string",
+  "@text": "string",
+  "@icon": "string",
+  "@a11y-text": "string",
+  "@no-toggle-icon": "boolean",
+  "@expanded": "boolean",
+  "@reverse": "boolean",
+  "@fix-width": "boolean",
+  "@borderless": "boolean",
+  "@size": "string",
+  "@priority": "string",
+  "@iconTag <_icon>": {},
+  "@disabled": "boolean",
+  "@variant": "string",
+  "@items <item>[]": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@href": "string",
+    "@type": "string",
+    "@value": "string",
+    "@checked": "boolean",
+    "@current": "boolean",
+    "@badge-number": "expression",
+    "@badge-aria-label": "string"
+  },
+  "@label <label>": {
+    "@*": "expression"
+  }
+}

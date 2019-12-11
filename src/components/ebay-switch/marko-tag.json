@@ -1,0 +1,17 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@autofocus": "#html-autofocus",
+  "@checked": "#html-checked",
+  "@disabled": "#html-disabled",
+  "@form": "#html-form",
+  "@name": "#html-name",
+  "@readonly": "#html-readonly",
+  "@value": "#html-value",
+  "@type": "never",
+  "@role": "never"
+}

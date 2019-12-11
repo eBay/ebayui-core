@@ -1,0 +1,30 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attrbibutes": "expression",
+  "@variant": {
+    "enum": ["form"]
+  },
+  "@footer-text": "string",
+  "@class-prefix": "string",
+  "@form-name": "string",
+  "@form-action": "string",
+  "@form-method": "string",
+  "@a11y-footer-text": "string",
+  "@items <item>[]": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@checked": "boolean",
+    "@value": "string",
+    "@role": "never",
+    "@aria-checked": "never",
+    "@for": "never"
+  }
+}

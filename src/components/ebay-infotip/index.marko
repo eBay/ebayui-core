@@ -1,8 +1,6 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import processHtmlAttributes from "../../common/html-attributes";
 
 static var ignoredAttributes = [
-    "class",
-    "style",
     "icon",
     "disabled",
     "pointer",
@@ -19,38 +17,25 @@ static var ignoredAttributes = [
 ];
 
 $ var pointer = input.pointer || "bottom";
+
 <span>
     <ebay-tooltip-base
         type="infotip"
         pointer=pointer
+        overlay-id:scoped="overlay"
         onBase-expand("handleExpand")
-        onBase-collapse("handleCollapse")
-        key="base">
+        onBase-collapse("handleCollapse")>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
-            class:no-update="infotip"
-            key="expander-root"
-            id:scoped="expander-root">
+            class:no-update=["infotip", input.class]>
             <button
+                key="host"
                 class="infotip__host icon-btn"
                 type="button"
                 disabled=input.disabled
-                aria-label=input.ariaLabel
-                key="host"
-                id:scoped="host"
-                aria-expanded:no-update=null
-                aria-controls:no-update=null
-                aria-describedby:no-update=null>
+                aria-label=input.ariaLabel>
                 <if(input.iconTag)>
-                    <if(
-                        input.iconTag.renderBody &&
-                        (typeof input.iconTag.renderBody === "function" ||
-                            typeof input.iconTag.renderBody.renderBody ===
-                                "function")
-                    )>
-                        <${input.iconTag.renderBody}/>
-                    </if>
-                    <else>${input.iconTag.renderBody}</else>
+                    <${input.iconTag}/>
                 </if>
                 <else>
                     <ebay-icon type="inline" name="information"/>
@@ -58,7 +43,7 @@ $ var pointer = input.pointer || "bottom";
             </button>
             <ebay-tooltip-overlay
                 type="infotip"
-                tooltip-id:scoped="overlay"
+                id:scoped="overlay"
                 style-left=input.styleLeft
                 style-top=input.styleTop
                 style-right=input.styleRight
