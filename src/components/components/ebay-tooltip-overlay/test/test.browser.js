@@ -11,7 +11,7 @@ let component;
 describe('given checkbox button is enabled', () => {
     const input = {
         type: 'infotip',
-        tooltipId: 'fakeID-1',
+        overlayId: 'fakeID-1',
         a11yCloseText: 'Close',
         heading: {},
         content: {}

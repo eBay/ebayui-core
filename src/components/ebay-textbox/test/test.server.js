@@ -102,7 +102,7 @@ describe('transformer', () => {
         const tagString = '<ebay-textbox icon="settings"/>';
         const { el } = runTransformer(transformer, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
-        expect(iconEl.tagName).to.equal('ebay-textbox:icon');
+        expect(iconEl.tagName).to.equal('ebay-textbox:_icon');
     });
 
     it('does not transform when icon attribute is missing', () => {

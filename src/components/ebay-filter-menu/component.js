@@ -1,105 +1,96 @@
-const assign = require('core-js-pure/features/object/assign');
-const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
-const rovingTabindex = require('makeup-roving-tabindex');
+const rovingTabIndex = require('makeup-roving-tabindex');
 const eventUtils = require('../../common/event-utils');
 
 module.exports = {
-    _handleDestroy() {
-        if (this.state.variant !== 'form' && this.rovingTabindex) {
-            this.rovingTabindex.destroy();
-            scrollKeyPreventer.remove(this.contentEl);
-        }
+    handleItemClick(index, ev, itemEl) {
+        this._toggleItemChecked(index, itemEl);
     },
 
-    toggleItemChecked(index, itemEl) {
-        const item = this.state.items[index];
-        item.checked = !item.checked;
-        this.setStateDirty('items');
-        this.emitComponentEvent('change', itemEl);
-        if (this.rovingTabIndex) {
-            this.tabindexPosition = findIndex(this.rovingTabindex.filteredItems, el => el.tabIndex === 0);
-        }
-    },
-
-    getCheckedValues() {
-        return this.state.items
-            .filter(item => item.checked)
-            .map(item => item.value);
-    },
-
-    handleItemClick(index, e, itemEl) {
-        this.toggleItemChecked(index, itemEl);
-    },
-
-    handleItemKeydown(index, e, itemEl) {
-        eventUtils.handleEscapeKeydown(e, () => {
-            this.emitComponentEvent('keydown', null, e);
+    handleItemKeydown(index, ev, itemEl) {
+        eventUtils.handleEscapeKeydown(ev, () => {
+            // TODO: this event is not documented.
+            // Do we need it? (it is only used by the filter-menu-button)
+            this._emitComponentEvent('keydown', null, ev);
         });
 
-        if (this.state.variant !== 'form') {
-            eventUtils.handleActionKeydown(e, () => this.toggleItemChecked(index, itemEl));
+        if (this.input.variant !== 'form') {
+            eventUtils.handleActionKeydown(ev, () => {
+                this._toggleItemChecked(index, itemEl);
+            });
         }
     },
 
     handleFooterButtonClick(originalEvent) {
-        this.emitComponentEvent('footer-click', null, originalEvent);
+        this._emitComponentEvent('footer-click', null, originalEvent);
     },
 
     handleFormSubmit(originalEvent) {
-        this.emitComponentEvent('form-submit', null, originalEvent);
-    },
-
-    emitComponentEvent(eventType, itemEl, originalEvent) {
-        this.emit(`filter-menu-${eventType}`, {
-            el: itemEl,
-            checked: this.getCheckedValues(),
-            originalEvent
-        });
+        this._emitComponentEvent('form-submit', null, originalEvent);
     },
 
     onInput(input) {
-        this.state = assign({}, input, {
-            items: (input.items || []).map(item => assign({}, item))
-        });
+        input.items = input.items || [];
+        this.state = {
+            isChecked: input.items.map(item => Boolean(item.checked))
+        };
+    },
+
+    onMount() {
+        this._setupMakeup();
+    },
+
+    onUpdate() {
+        this._setupMakeup();
     },
 
     onRender() {
         if (typeof window !== 'undefined') {
-            this._handleDestroy();
+            this._cleanupMakeup();
         }
-    },
-
-    onMount() {
-        this.onRenderLegacy({
-            firstRender: true
-        });
-    },
-
-    onUpdate() {
-        this.onRenderLegacy({
-            firstRender: false
-        });
     },
 
     onDestroy() {
-        this._handleDestroy();
+        this._cleanupMakeup();
     },
 
-    onRenderLegacy({ firstRender }) {
-        this.contentEl = this.getEl('content') || this.el;
+    _toggleItemChecked(index, itemEl) {
+        this.state.isChecked[index] = !this.state.isChecked[index];
+        this.setStateDirty('isChecked');
+        this._emitComponentEvent('change', itemEl);
+    },
 
-        if (firstRender) {
-            this.tabindexPosition = 0;
-        }
+    _emitComponentEvent(eventType, el, originalEvent) {
+        const { input, state } = this;
+        const checked = input.items
+            .filter((_, i) => state.isChecked[i])
+            .map(item => item.value);
 
-        if (this.state.variant !== 'form') {
-            this.rovingTabindex = rovingTabindex.createLinear(
-                this.getEl('menu'), 'div',
-                { index: this.tabindexPosition, autoReset: null }
+        this.emit(`filter-menu-${eventType}`, {
+            el,
+            checked,
+            originalEvent
+        });
+    },
+
+    _setupMakeup() {
+        if (this.input.variant !== 'form') {
+            this._rovingTabIndex = rovingTabIndex.createLinear(
+                this.getEl('menu'),
+                'div',
+                { index: this.lastTabIndexPosition || 0 }
             );
 
-            scrollKeyPreventer.add(this.contentEl);
+            scrollKeyPreventer.add(this.getEl('container'));
+        }
+    },
+
+    _cleanupMakeup() {
+        if (this._rovingTabIndex) {
+            this.lastTabIndexPosition = this._rovingTabIndex.index;
+            this._rovingTabIndex.destroy();
+            this._rovingTabIndex = undefined;
+            scrollKeyPreventer.remove(this.getEl('container'));
         }
     }
 };

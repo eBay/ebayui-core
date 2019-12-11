@@ -1,0 +1,17 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@size": "string",
+  "@download": "#html-download",
+  "@href": "#html-href",
+  "@hreflang": "#html-hreflang",
+  "@media": "#html-media",
+  "@ping": "#html-ping",
+  "@referrerpolicy": "#html-referrerpolicy",
+  "@rel": "#html-rel",
+  "@target": "#html-target"
+}

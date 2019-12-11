@@ -1,77 +1,62 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
 static var isBrowser = typeof window !== "undefined";
-
 static var browserLookup = {};
-
 static var ignoredAttributes = [
-    "class",
-    "style",
     "type",
     "name",
-    "a11yText",
     "noSkinClasses",
     "_themes"
 ];
 
 $ var lookup = isBrowser ? browserLookup : out.global;
-$ var isInline = data.type === "inline";
+$ var isInline = input.type === "inline";
 $ var a11yAttributes;
-$ var titleId;
-<if(isInline)>
-    $ {
-        a11yAttributes = data.a11yText
-                ? {
-                      role: "img"
-                  }
-                : {
-                      "aria-hidden": "true"
-                  };
-    }
-</if>
+
+$ if (isInline) {
+    a11yAttributes = input.a11yText
+        ? { role: "img" }
+        : { "aria-hidden": "true" }
+}
+
 <${isInline ? "svg" : "span"}
     ...a11yAttributes
-    ...processHtmlAttributes(data, ignoredAttributes)
-    class=[data.class, !data.noSkinClasses && `icon icon--${data.name}`]
-    xmlns=(isInline && "http://www.w3.org/2000/svg")
-    style=data.style
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[input.class, !input.noSkinClasses && `icon icon--${input.name}`]
     focusable=(isInline && "false")
-    aria-labelledby:scoped="a11y">
+    aria-labelledby:scoped="text">
     <if(isInline)>
         <!-- Here we check if we should render the inline svg symbol. -->
         <!-- Server side we store a flag in `out.global` to check if the symbol was rendered. -->
         <!-- Client side we check the `browserLookup` object to see if the symbol is already present in root svg. -->
-        $ var themes = data._themes;
-        $ var lookupName = "rendered_ebay_icon_" + data.name;
+        $ var themes = input._themes;
+        $ var lookupName = "rendered_ebay_icon_" + input.name;
         $ var renderDefs = !lookup[lookupName];
         $ lookup[lookupName] = true;
         <if(renderDefs && themes)>
             <defs key="defs" id:scoped="defs">
-                $ var theme;
-                <if(isBrowser)>
-                    <!-- All icons should be remapped to the right one in the browser, just use the first. -->
-                    $ theme = themes.filter(Boolean)[0];
-                </if>
-                <else>
-                    <!-- Actual magic, please do not try to replicate. -->
-                    $ var lassoContext = out.global["lasso/LassoRenderContext"];
-                    $ var flags = lassoContext && lassoContext.data.config.flags;
-                    $ {
-                        theme =
-                                                themes[
-                                                    flags && flags.indexOf("skin-ds6") !== -1 ? 1 : 0
-                                                ];
+                $ {
+                    var theme;
+
+                    if (isBrowser) {
+                        // All icons should be remapped to the right one in the browser, just use the first.
+                        theme = themes.filter(Boolean)[0];
+                    } else {
+                        // Actual magic, please do not try to replicate.
+                        var lassoContext = out.global["lasso/LassoRenderContext"];
+                        var flags = lassoContext && lassoContext.data.config.flags;
+                        theme = themes[flags && flags.indexOf("skin-ds6") !== -1 ? 1 : 0];
                     }
-                </else>
-                <if(typeof theme === "string")>${theme}</if>
-                <else>
-                    <${theme}/>
-                </else>
+                }
+
+                <${theme}/>
             </defs>
         </if>
-        <if(data.a11yText)>
-            <title id:scoped="a11y">${data.a11yText}</title>
+
+        <if(input.a11yText)>
+            <title id:scoped="text">${input.a11yText}</title>
         </if>
-        <use xlink:href=`#icon-${data.name}`/>
+
+        <use xlink:href=`#icon-${input.name}`/>
     </if>
 </>

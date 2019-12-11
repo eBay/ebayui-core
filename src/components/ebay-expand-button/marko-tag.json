@@ -1,0 +1,18 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@size": "size",
+  "@no-text": "boolean",
+  "@fluid": "boolean",
+  "@truncate": "boolean",
+  "@fixed-height": "boolean",
+  "@partially-disabled": "boolean",
+  "@autofocus": "#html-autofocus",
+  "@disabled": "#html-disabled",
+  "@type": "never",
+  "@aria-disabled": "never"
+}

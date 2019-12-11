@@ -1,12 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
-const skipAttributes = [
-    'htmlAttributes',
-    'renderBody',
-    'widgetState',
-    'widgetProps',
-    'widgetConfig',
-    'widgetBody'
-];
+const skipAttributes = /^htmlAttributes|renderBody|a11y.*$/;
+const EMPTY_ARR = [];
 
 /**
  * Convert camelCase to kebab-case
@@ -23,7 +17,7 @@ function camelToKebab(s) {
  * @param {Object} input
  * @param {Array} ignore
  */
-function processHtmlAttributes(input, ignore) {
+function processHtmlAttributes(input, ignore = EMPTY_ARR) {
     const attributes = {};
     const htmlAttributes = input.htmlAttributes;
 
@@ -32,7 +26,7 @@ function processHtmlAttributes(input, ignore) {
         obj = assign({}, htmlAttributes);
     }
     Object.keys(input).forEach((key) => {
-        if (ignore.indexOf(key) === -1 && skipAttributes.indexOf(key) === -1 && !obj[key]) {
+        if (ignore.indexOf(key) === -1 && !skipAttributes.test(key) && !obj[key]) {
             obj[key] = input[key];
         }
     });

@@ -5,11 +5,11 @@ module.exports = {
 };
 
 function forwardEvent(eventName) {
-    return function(originalEvent, el) {
+    return function(originalEvent) {
         this.emit(`checkbox-${eventName}`, {
             originalEvent,
-            value: (el || this.el.querySelector('input')).value,
-            checked: (el || this.el.querySelector('input')).checked
+            value: this.getEl('input').value,
+            checked: this.getEl('input').checked
         });
     };
 }

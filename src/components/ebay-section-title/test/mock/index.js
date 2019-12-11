@@ -2,9 +2,7 @@ const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.TitleBasic = {
-    _default: {
-        renderBody: createRenderBody('Title content')
-    }
+    renderBody: createRenderBody('Title content')
 };
 
 exports.Title = {

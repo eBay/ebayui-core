@@ -1,0 +1,31 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@borderless": "boolean",
+  "@autocomplete": "#html-autocomplete",
+  "@autofocus": "#html-autofocus",
+  "@disabled": "#html-disabled",
+  "@form": "#html-form",
+  "@multiple": "#html-multiple",
+  "@name": "#html-name",
+  "@required": "#html-required",
+  "@size": "#html-size",
+  "@options <option>[]": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@text": "string",
+    "@optgroup": "string",
+    "@disabled": "#html-disabled",
+    "@label": "#html-label",
+    "@selected": "#html-selected",
+    "@value": "#html-value"
+  }
+}
