@@ -21,9 +21,9 @@ static var ignoredAttributes = [
     "label"
 ];
 
-$ var isFake = state.type === "fake";
+$ var isFake = input.type === "fake";
 $ var baseClass = isFake ? "fake-menu-button" : "menu-button";
-$ var isOverflowVariant = state.variant === "overflow";
+$ var isOverflowVariant = input.variant === "overflow";
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[isFake ? "fake-menu-button" : "menu-button", input.class]
@@ -90,8 +90,8 @@ $ var isOverflowVariant = state.variant === "overflow";
         onMenu-change("handleMenuChange")
         onMenu-select("handleMenuSelect")
         key="content">
-        <for|item| of=state.items>
-            <ebay-menu-item(item)/>
+        <for|item,index| of=input.items>
+            <@item  ...item checked=component.isChecked(index) />
         </for>
     </ebay-menu>
 </span>

@@ -1,36 +1,34 @@
 const Expander = require('makeup-expander');
 const assign = require('core-js-pure/features/object/assign');
-const indexOf = require('core-js-pure/features/array/index-of');
 const findIndex = require('core-js-pure/features/array/find-index');
 const eventUtils = require('../../common/event-utils');
 
 module.exports = {
-    _handleDestroy() {
-        if (this.expander) {
-            this.expander.cancelAsync();
-        }
+    get isRadio() {
+        return this.type === 'radio';
     },
 
-    toggleItemChecked(itemEl) {
-        const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
-        const item = this.state.items[itemIndex];
-        const currentIndex = this.state.items.findIndex(radioItem => radioItem.checked);
+    isChecked(index) {
+        if (this.isRadio) {
+            return index === this.state.checkedIndex;
+        }
+        return this.state.checkedItems[index];
+    },
 
-        if (this.state.type === 'radio' && itemIndex !== currentIndex) {
-            this.state.items.forEach((eachItem, i) => {
-                eachItem.checked = i === itemIndex;
-            });
-
-            this.setStateDirty('items');
+    toggleItemChecked(index, itemEl) {
+        if (this.isRadio && index !== this.state.checkedIndex) {
+            this.state.checkedIndex = index;
             this.emitComponentEvent({
+                index,
                 eventType: 'change',
                 el: itemEl
             });
-        } else if (this.state.type !== 'radio') {
-            item.checked = !item.checked;
-            this.setStateDirty('items');
+        } else if (this.type !== 'radio') {
+            this.state.checkedItems[index] = !this.state.checkedItems[index];
+            this.setStateDirty('checkedItems');
             this.emitComponentEvent({
-                eventType: this.state.type === 'fake' || !this.state.type ? 'select' : 'change',
+                index,
+                eventType: this.type === 'fake' || !this.type ? 'select' : 'change',
                 el: itemEl
             });
         }
@@ -41,24 +39,31 @@ module.exports = {
     },
 
     getCheckedValues() {
-        return this.state.items
-            .filter(item => item.checked)
+        if (this.isRadio) {
+            const item = this.input.items[this.state.checkedIndex] || {};
+            return [item.value];
+        }
+        return this.input.items
+            .filter((item, index) => this.state.checkedItems[index])
             .map(item => item.value);
     },
 
     getCheckedIndexes() {
-        return this.state.items
-            .map((item, i) => item.checked && i)
+        if (this.isRadio) {
+            return [this.state.checkedIndex];
+        }
+        return this.input.items
+            .map((item, i) => this.state.checkedItems[i] && i)
             .filter(item => item !== false && typeof item !== 'undefined');
     },
 
-    handleItemClick(e, itemEl) {
-        this.toggleItemChecked(itemEl);
+    handleItemClick(index, e, itemEl) {
+        this.toggleItemChecked(index, itemEl);
     },
 
-    handleMenuKeydown({ el, originalEvent }) {
+    handleMenuKeydown({ el, originalEvent, index }) {
         eventUtils.handleActionKeydown(originalEvent, () => {
-            this.handleItemClick(originalEvent, el);
+            this.handleItemClick(index, originalEvent, el);
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
@@ -79,19 +84,17 @@ module.exports = {
         this.emitComponentEvent({ eventType: 'collapse' });
     },
 
-    handleMenuChange({ el }) {
-        this.toggleItemChecked(el);
+    handleMenuChange({ el, index }) {
+        this.toggleItemChecked(index, el);
     },
 
-    handleMenuSelect({ el, originalEvent }) {
-        this.emitComponentEvent({ eventType: 'select', el, originalEvent });
+    handleMenuSelect({ el, originalEvent, index }) {
+        this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
     },
 
-    emitComponentEvent({ eventType, el, originalEvent }) {
+    emitComponentEvent({ eventType, el, originalEvent, index }) {
         const checkedIndexes = this.getCheckedIndexes();
-        const itemIndex = el && indexOf(el.parentNode.children, el);
-        const isCheckbox = this.state.type === 'checkbox';
-        const isRadio = this.state.type === 'radio';
+        const isCheckbox = this.type === 'checkbox';
 
         const eventObj = {
             el,
@@ -104,16 +107,16 @@ module.exports = {
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues() // DEPRECATED in v5
             });
-        } else if (isCheckbox || isRadio) {
+        } else if (isCheckbox || this.isRadio) {
             assign(eventObj, {
-                index: itemIndex, // DEPRECATED in v5
+                index, // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues() // DEPRECATED in v5
             });
         } else if (eventType !== 'expand' && eventType !== 'collapse') {
             assign(eventObj, {
-                index: itemIndex, // DEPRECATED in v5
-                checked: [itemIndex] // DEPRECATED in v5 (keep but change from indexes to values)
+                index, // DEPRECATED in v5
+                checked: [index] // DEPRECATED in v5 (keep but change from indexes to values)
             });
         }
 
@@ -121,34 +124,37 @@ module.exports = {
     },
 
     onInput(input) {
-        this.state = assign({}, input, {
-            items: (input.items || []).map(item => assign({}, item))
-        });
+        this.type = input.type;
+        if (this.isRadio) {
+            this.state = {
+                checkedIndex: (input.items || []).findIndex(item => item.checked || false)
+            };
+        } else {
+            this.state = {
+                checkedItems: (input.items || []).map(item => item.checked || false)
+            };
+        }
     },
 
     onRender() {
         if (typeof window !== 'undefined') {
-            this._handleDestroy();
+            this._cleanupMakeup();
         }
     },
 
     onMount() {
-        this.onRenderLegacy({
-            firstRender: true
-        });
+        this._setupMakeup();
     },
 
     onUpdate() {
-        this.onRenderLegacy({
-            firstRender: false
-        });
+        this._setupMakeup();
     },
 
     onDestroy() {
-        this._handleDestroy();
+        this._cleanupMakeup();
     },
 
-    onRenderLegacy() {
+    _setupMakeup() {
         this.expander = new Expander(this.el, {
             hostSelector: '.menu-button__button, .fake-menu-button__button',
             contentSelector: '.menu-button__menu, .fake-menu-button__menu',
@@ -157,5 +163,12 @@ module.exports = {
             autoCollapse: true,
             alwaysDoFocusManagement: true
         });
+    },
+
+    _cleanupMakeup() {
+        if (this.expander) {
+            this.expander.cancelAsync();
+        }
     }
+
 };

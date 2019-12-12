@@ -1,5 +1,4 @@
 const assign = require('core-js-pure/features/object/assign');
-const indexOf = require('core-js-pure/features/array/index-of');
 const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
@@ -7,34 +6,33 @@ const eventUtils = require('../../common/event-utils');
 const NodeListUtils = require('../../common/nodelist-utils');
 
 module.exports = {
-    _handleDestroy() {
-        if (this.state.type !== 'fake' && this.rovingTabindex) {
-            this.rovingTabindex.destroy();
-            scrollKeyPreventer.remove(this.contentEl);
-        }
+
+    get isRadio() {
+        return this.type === 'radio';
     },
 
-    toggleItemChecked(originalEvent, itemEl) {
-        const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
-        const item = this.state.items[itemIndex];
-        const currentIndex = this.state.items.findIndex(radioItem => radioItem.checked);
+    isChecked(index) {
+        if (this.isRadio) {
+            return index === this.state.checkedIndex;
+        }
+        return this.state.checkedItems[index];
+    },
 
-        if (this.state.type === 'radio' && itemIndex !== currentIndex) {
-            this.state.items.forEach((eachItem, i) => {
-                eachItem.checked = (i === itemIndex);
-            });
-
-            this.setStateDirty('items');
+    toggleItemChecked(index, originalEvent, itemEl) {
+        if (this.isRadio && index !== this.state.checkedIndex) {
+            this.state.checkedIndex = index;
             this.emitComponentEvent({
+                index,
                 eventType: 'change',
                 el: itemEl,
                 originalEvent
             });
-        } else if (this.state.type !== 'radio') {
-            item.checked = !item.checked;
-            this.setStateDirty('items');
+        } else if (this.type !== 'radio') {
+            this.state.checkedItems[index] = !this.state.checkedItems[index];
+            this.setStateDirty('checkedItems');
             this.emitComponentEvent({
-                eventType: this.state.type === 'fake' || !this.state.type ? 'select' : 'change',
+                index,
+                eventType: this.type === 'fake' || !this.type ? 'select' : 'change',
                 el: itemEl,
                 originalEvent
             });
@@ -46,27 +44,34 @@ module.exports = {
     },
 
     getCheckedValues() {
-        return this.state.items
-            .filter(item => item.checked)
+        if (this.isRadio) {
+            const item = this.input.items[this.state.checkedIndex] || {};
+            return [item.value];
+        }
+        return this.input.items
+            .filter((item, index) => this.state.checkedItems[index])
             .map(item => item.value);
     },
 
     getCheckedIndexes() {
-        return this.state.items
-            .map((item, i) => item.checked && i)
+        if (this.isRadio) {
+            return [this.state.checkedIndex];
+        }
+        return this.input.items
+            .map((item, i) => this.state.checkedItems[i] && i)
             .filter(item => item !== false && typeof item !== 'undefined');
     },
 
-    handleItemClick(originalEvent, itemEl) {
-        this.toggleItemChecked(originalEvent, itemEl);
+    handleItemClick(index, originalEvent, itemEl) {
+        this.toggleItemChecked(index, originalEvent, itemEl);
     },
 
-    handleItemKeydown(originalEvent, itemEl) {
+    handleItemKeydown(index, originalEvent, itemEl) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.emitComponentEvent({ eventType: 'keydown', originalEvent });
+            this.emitComponentEvent({ eventType: 'keydown', originalEvent, index });
         });
 
-        eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(originalEvent, itemEl));
+        eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(index, originalEvent, itemEl));
     },
 
     handleItemKeypress({ key }) {
@@ -77,11 +82,9 @@ module.exports = {
         }
     },
 
-    emitComponentEvent({ eventType, el, originalEvent }) {
+    emitComponentEvent({ eventType, el, originalEvent, index }) {
         const checkedIndexes = this.getCheckedIndexes();
-        const itemIndex = el && indexOf(el.parentNode.children, el);
-        const isCheckbox = this.state.type === 'checkbox';
-        const isRadio = this.state.type === 'radio';
+        const isCheckbox = this.type === 'checkbox';
 
         const eventObj = {
             el,
@@ -90,20 +93,21 @@ module.exports = {
 
         if (isCheckbox && checkedIndexes.length > 1) {
             assign(eventObj, {
+                index,
                 indexes: this.getCheckedIndexes(), // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues() // DEPRECATED in v5
             });
-        } else if (isCheckbox || isRadio) {
+        } else if (isCheckbox || this.isRadio) {
             assign(eventObj, {
-                index: itemIndex, // DEPRECATED in v5
+                index, // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues() // DEPRECATED in v5
             });
         } else {
             assign(eventObj, {
-                index: itemIndex, // DEPRECATED in v5
-                checked: [itemIndex] // DEPRECATED in v5 (keep but change from indexes to values)
+                index, // DEPRECATED in v5
+                checked: [index] // DEPRECATED in v5 (keep but change from indexes to values)
             });
         }
 
@@ -111,46 +115,54 @@ module.exports = {
     },
 
     onInput(input) {
-        this.state = assign({}, input, {
-            items: (input.items || []).map(item => assign({}, item))
-        });
+        this.type = input.type;
+        if (this.isRadio) {
+            this.state = {
+                checkedIndex: (input.items || []).findIndex(item => item.checked || false)
+            };
+        } else {
+            this.state = {
+                checkedItems: (input.items || []).map(item => item.checked || false)
+            };
+        }
     },
 
     onRender() {
         if (typeof window !== 'undefined') {
-            this._handleDestroy();
+            this._cleanupMakeup();
         }
     },
 
     onMount() {
-        this.onRenderLegacy({
-            firstRender: true
-        });
+        this.tabindexPosition = 0;
+        this._setupMakeup();
     },
 
     onUpdate() {
-        this.onRenderLegacy({
-            firstRender: false
-        });
+        this._setupMakeup();
     },
 
     onDestroy() {
-        this._handleDestroy();
+        this._cleanupMakeup();
     },
 
-    onRenderLegacy({ firstRender }) {
+    _setupMakeup() {
         this.contentEl = this.getEl('menu');
 
-        if (firstRender) {
-            this.tabindexPosition = 0;
-        }
-
-        if (this.state.type !== 'fake') {
+        if (this.type !== 'fake') {
             this.rovingTabindex = rovingTabindex.createLinear(this.contentEl, 'div', {
                 index: this.tabindexPosition, autoReset: null
             });
 
             scrollKeyPreventer.add(this.contentEl);
         }
+    },
+
+    _cleanupMakeup() {
+        if (this.type !== 'fake' && this.rovingTabindex) {
+            this.rovingTabindex.destroy();
+            scrollKeyPreventer.remove(this.contentEl);
+        }
     }
+
 };
