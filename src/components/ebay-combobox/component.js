@@ -67,7 +67,13 @@ module.exports = {
     },
 
     handleComboboxBlur() {
-        if (this.expander && this.expander.isExpanded()) {
+        const wasClickedOption = this.optionClicked;
+
+        if (wasClickedOption) {
+            this.getEl('input').focus();
+        }
+
+        if (this.expander && this.expander.isExpanded() && !wasClickedOption) {
             this.expander.collapse();
         }
 
@@ -85,7 +91,7 @@ module.exports = {
         input.autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
         input.options = input.options || [];
         this.lastValue = input.value;
-        this.state = { currentValue: input.value };
+        this.state = { currentValue: this.lastValue };
     },
 
     onMount() {
