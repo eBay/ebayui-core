@@ -25,7 +25,7 @@ static var itemIgnoredAttributes = ["text"];
         <input
             ...processHtmlAttributes(
                 Object.assign(data, {
-                    id: data.id || component.id + "-input"
+                    id: input.id || component.id + "-input"
                 }),
                 ignoredAttributes
             )
