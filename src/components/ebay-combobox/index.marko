@@ -7,6 +7,7 @@ static var ignoredAttributes = [
     "autocomplete",
     "options"
 ];
+
 static var itemIgnoredAttributes = ["text"];
 
 <span
@@ -24,8 +25,8 @@ static var itemIgnoredAttributes = ["text"];
         -->
         <input
             ...processHtmlAttributes(
-                Object.assign(data, {
-                    id: input.id || component.id + "-input"
+                Object.assign(input, {
+                    id: input.id || component.getElId("input")
                 }),
                 ignoredAttributes
             )
@@ -46,10 +47,7 @@ static var itemIgnoredAttributes = ["text"];
             <for|option| of=component._getVisibleOptions()>
                 $ var isSelected = option.value === state.currentValue;
                 <div
-                    ...processHtmlAttributes(
-                        option,
-                        itemIgnoredAttributes
-                    )
+                    ...processHtmlAttributes(option, itemIgnoredAttributes)
                     key="options[]"
                     role="option"
                     class:no-update=["combobox__option", option.class]
