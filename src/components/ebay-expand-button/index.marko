@@ -10,7 +10,6 @@ static var ignoredAttributes = [
 ];
 
 $ var size = input.size || "medium";
-
 <button
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
@@ -23,7 +22,7 @@ $ var size = input.size || "medium";
         input.class
     ]
     type="button"
-    disabled=data.disabled
+    disabled=input.disabled
     aria-disabled=(input.partiallyDisabled && "true")
     onClick("handleClick")
     onKeydown("handleKeydown")>
