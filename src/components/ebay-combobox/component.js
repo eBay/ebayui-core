@@ -90,14 +90,8 @@ module.exports = {
     onInput(input) {
         input.autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
         input.options = input.options || [];
-        let inputId;
-        if (input['*']) {
-            this.lastValue = input['*'].value;
-            inputId = input['*'].id;
-        } else {
-            this.lastValue = input.value;
-        }
-        this.state = { currentValue: this.lastValue, id: inputId };
+        this.lastValue = input.value;
+        this.state = { currentValue: this.lastValue };
     },
 
     onMount() {
