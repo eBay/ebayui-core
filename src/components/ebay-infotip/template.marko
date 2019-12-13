@@ -1,5 +1,6 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class",  "style",  "icon",  "disabled",  "pointer",  "styleTop",  "styleLeft",  "styleRight",  "styleBottom",  "ariaLabel",  "a11yCloseText",  "iconTag",  "host",  "heading",  "content"];
 </script>
 
 <var pointer=(data.pointer || "bottom")/>
@@ -15,11 +16,11 @@
             w-id="expander-root"
             w-preserve-attrs="class"
             class="infotip"
-            ${processHtmlAttributes(data)}>
+            ${processHtmlAttributes(data, ignoredAttributes)}>
             <button
                 w-id="host"
                 w-preserve-attrs="aria-expanded,aria-controls,aria-describedby"
-                class="infotip__host icon-btn"
+                class="icon-btn infotip__host"
                 type="button"
                 disabled=data.disabled
                 aria-label=data.ariaLabel>
@@ -27,7 +28,7 @@
                     <span body-only-if(true) w-body=data.iconTag.renderBody/>
                 </if>
                 <else>
-                    <ebay-icon type="inline" name="information"/>
+                    <ebay-icon type="inline" name="information-small"/>
                 </else>
             </button>
             <ebay-tooltip-overlay

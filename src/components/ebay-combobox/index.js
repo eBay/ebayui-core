@@ -14,21 +14,14 @@ module.exports = require('marko-widgets').defineComponent({
         }, input);
     },
     getInitialState(input) {
-        let currentValue;
-        let inputId;
         const autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
+        const currentValue = input.value;
         const index = findIndex(input.options, option => option.text === currentValue);
-
-        if (input['*']) {
-            currentValue = input['*'].value;
-            inputId = input['*'].id;
-        }
 
         return assign({}, input, {
             autocomplete,
             selectedIndex: index === -1 ? null : index,
-            currentValue,
-            id: inputId
+            currentValue
         });
     },
     onRender() {

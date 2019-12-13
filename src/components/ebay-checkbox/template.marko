@@ -1,5 +1,6 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class", "style", "disabled"];
 </script>
 
 <span w-bind class=["checkbox", data.class] style=data.style>
@@ -9,7 +10,7 @@
         w-onchange="handleChange"
         w-onfocus="handleFocus"
         disabled=data.disabled
-        ${processHtmlAttributes(data)}/>
+        ${processHtmlAttributes(data, ignoredAttributes)}/>
     <span class="checkbox__icon" hidden>
         <ebay-icon type="inline" name="checkbox-unchecked" class="checkbox__unchecked" focusable="false" no-skin-classes/>
         <ebay-icon type="inline" name="checkbox-checked" class="checkbox__checked" focusable="false" no-skin-classes/>

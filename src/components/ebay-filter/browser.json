@@ -5,6 +5,8 @@
                 "@ebay/skin/filter-button"
             ]
         },
-        "../ebay-button"
+        "../ebay-button",
+        "require: marko-widgets",
+        "require: ./index.js"
     ]
 }

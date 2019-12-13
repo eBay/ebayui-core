@@ -1,12 +1,24 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = [
+        "cla-ss",
+        "style",
+        "index",
+        "fake",
+        "activation",
+        "headings",
+        "panels"
+    ];
+    var itemIgnoredAttributes = ["class", "style"];
+    var itemAnchorIgnoredAttributes = ["class", "style", "href"];
+
 </script>
 
 <div
     w-bind
     class=[data.class, data.fake ? "fake-tabs" : "tabs"]
     style=data.style
-    ${processHtmlAttributes(data)}>
+    ${processHtmlAttributes(data, ignoredAttributes)}>
     <if(data.fake)>
         <var selectedPanel=data.panels[0]/>
         <ul class="fake-tabs__items">
@@ -14,7 +26,7 @@
                 <var i=status.getIndex()/>
                 <var isSelected=(data.index === i)/>
                 <li
-                    ${processHtmlAttributes(heading)}
+                    ${processHtmlAttributes(heading, itemAnchorIgnoredAttributes)}
                     class=[
                         heading.class,
                         "fake-tabs__item",
@@ -30,7 +42,7 @@
         </ul>
         <div class="fake-tabs__content">
             <div
-                ${processHtmlAttributes(selectedPanel)}
+                ${processHtmlAttributes(selectedPanel, itemIgnoredAttributes)}
                 class=[selectedPanel.class, "fake-tabs__panel"]
                 style=selectedPanel.style>
                 <div class="fake-tabs__cell">
@@ -55,7 +67,7 @@
                     w-onclick="handleHeadingClick"
                     w-onkeydown="handleHeadingKeydown"
                     w-preserve-attrs="tabindex,data-makeup-index"
-                    ${processHtmlAttributes(heading)}>
+                    ${processHtmlAttributes(heading, itemAnchorIgnoredAttributes)}>
                     <span w-body=heading.renderBody/>
                 </div>
             </for>
@@ -71,7 +83,7 @@
                     class=[panel.class, "tabs__panel"]
                     style=panel.style
                     hidden=!isSelected
-                    ${processHtmlAttributes(panel)}>
+                    ${processHtmlAttributes(panel, itemIgnoredAttributes)}>
                     <div class="tabs__cell">
                         <div w-body=panel.renderBody/>
                     </div>

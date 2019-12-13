@@ -1,46 +1,84 @@
 <script marko-init>
     var processHtmlAttributes = require("../../common/html-attributes");
+    var ignoredAttributes = ["class",  "style",  "type",  "fillWindow", "status",  "hidden",  "a11yHeadingText",  "a11yHeadingTag",  "a11yCloseText",  "dismissible",  "content", "title"];
+    var itemIgnoredAttributes = ["class", "style"];
 </script>
 <var type=(data.type || "page")/>
 <var prefix=data.prefix/>
 <var status=(data.status || "attention")/>
 <var isSection=(type === "section")/>
-<var isPage=(type === "page" || isSection)/>
+<var isWindow=(type === "window")/>
+<var isCelebration=(status === "celebration")/>
+<var isPage=(type === "page" || isSection || isWindow)/>
 <var isLightGuidance=(isSection && !data.status)/>
 <var content=(data.content)/>
+<var title=(data.title)/>
 <var cta=(data.cta)/>
 <var defRender=(data._default && data._default.renderBody) />
 <var contentTag=(isPage ? "div" : "span")/>
 
 <if(!data.hidden)>
     <${isPage ? "section" : "div"}
-        ${processHtmlAttributes(data)}
+        ${processHtmlAttributes(data, ignoredAttributes)}
         w-bind
         style=data.style
         aria-labelledby=widget.elId("status")
         aria-label=(isLightGuidance ? data.a11yHeadingText : null)
         class=[
             "${type}-notice",
-            !isLightGuidance ? "${type}-notice--${status}" : "",
+            !isLightGuidance && !isWindow ? "${type}-notice--${status}" : "",
+            data.fillWindow ? "${type}-notice--fill" : "",
             data.class
         ]>
         <if(!isLightGuidance)>
             <${isPage ? data.a11yHeadingTag || "h2" : "span"}
                 class="${type}-notice__status"
                 w-id="status">
-                <span aria-label=data.a11yHeadingText role="img"/>
+                <if(isWindow && title && title.renderBody)>
+                    <ebay-icon class="window-notice__icon" type="inline" name="confirmation-filled" aria-label=data.a11yHeadingText/>
+                    <span class=["${type}-notice__title", title.class]
+                        style=title.style
+                        ${processHtmlAttributes(title, itemIgnoredAttributes)}
+                        w-body=title.renderBody/>
+                </if>
+                <else>
+                    <if(status==="confirmation" || status==="celebration")>
+                        <ebay-icon type="inline" name="confirmation-filled" aria-label=data.a11yHeadingText/>
+                    </if>
+                    <if(status==="attention")>
+                        <ebay-icon type="inline" name="attention-filled" aria-label=data.a11yHeadingText/>
+                    </if>
+                    <if(status==="information")>
+                        <ebay-icon type="inline" name="information-filled" aria-label=data.a11yHeadingText/>
+                    </if>
+                </else>
             </>
         </if>
-        <if(content && content.renderBody)>
+       <if(content && content.renderBody)>
             <${contentTag}
-                ${processHtmlAttributes(content)}
+                ${processHtmlAttributes(content, itemIgnoredAttributes)}
                 class=[content.class, "${type}-notice__content"]
-                style=content.style
-                w-body=data.content.renderBody/>
+                style=content.style>
+                <if(isCelebration && title && title.renderBody)>
+                    <span class=["${type}-notice__title", title.class]
+                        style=title.style
+                        ${processHtmlAttributes(title, itemIgnoredAttributes)}
+                        w-body=title.renderBody/>
+                </if>
+                <div body-only-if(true) w-body=content.renderBody/>
+            </>
             <div body-only-if(true) w-body=defRender />
         </if>
         <else>
-            <${contentTag} class="${type}-notice__content" w-body=defRender />
+            <${contentTag} class="${type}-notice__content">
+                <if(isCelebration && title && title.renderBody)>
+                    <span class=["${type}-notice__title", title.class]
+                        style=title.style
+                        ${processHtmlAttributes(title, itemIgnoredAttributes)}
+                        w-body=title.renderBody/>
+                </if>
+                <div body-only-if(true) w-body=defRender />
+            </>
         </else>
         <if(data.dismissible)>
             <button

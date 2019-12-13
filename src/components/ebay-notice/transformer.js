@@ -10,7 +10,7 @@ function transform(el, context) {
     const defaultRenderBody = context.createNodeForEl('ebay-notice:_default');
 
     el.forEachChild(child => {
-        if (child.tagName === 'ebay-notice-content') {
+        if (child.tagName === 'ebay-notice-content' || child.tagName === 'ebay-notice-title') {
             return;
         }
 

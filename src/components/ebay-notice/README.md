@@ -35,8 +35,8 @@ Tag | Required | Description
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`type` | String | No | No | "inline", "section", or "page" (default)
-`status`  | String | No | No | "attention" (default for "page" and "inline"), "confirmation" or "information". The default for "section" type will render with grey background and no icon
+`type` | String | No | No | "inline", "section", "window", or "page" (default)
+`status`  | String | No | No | "attention" (default for "page" and "inline"), "confirmation" "information", or "celebration" (page notice only).  The default for "section" type will render with grey background and no icon
 `a11y-heading-text` | String | No | Yes | adding description for the notice for a11y users
 `dismissible` | Boolean | No | No | used to specify the dismiss button in page notice
 `hidden` | Boolean | Yes | No | whether the widget is hidden or not.
@@ -47,6 +47,12 @@ Name | Type | Stateful | Required | Description
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `a11y-heading-tag` | String | No | Yes | used to specify the heading tag according to the notice's placement (default: `"h2"`)
+
+### Additional attributes when type="window"
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`fill-window` | Boolean | No | No | used to specify whether the notice should fill the full height of it's window/container (default: `false`)
 
 ### ebay-notice Events
 
