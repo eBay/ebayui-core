@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, wait, cleanup } = require('@marko/testing-library');
+const { cleanup, fireEvent, render, wait } = require('@marko/testing-library');
 const template = require('..');
 
 use(require('chai-dom'));
@@ -26,6 +26,32 @@ describe('given switch button is enabled', () => {
             const [[eventArg]] = changeEvents;
             expect(eventArg).has.property('originalEvent').is.an.instanceof(Event);
             expect(eventArg).has.property('value', 'food');
+        });
+    });
+    describe('when switch button gets focus', () => {
+        beforeEach(async() => {
+            await fireEvent.focus(component.getByRole('switch'));
+        });
+
+        it('then it emits switch-focus', () => {
+            const changeEvents = component.emitted('switch-focus');
+            const [[eventArg]] = changeEvents;
+
+            expect(changeEvents).has.length(1);
+            expect(eventArg).has.property('originalEvent').is.an.instanceof(Event);
+        });
+    });
+    describe('when switch button loses focus', () => {
+        beforeEach(async() => {
+            await fireEvent.blur(component.getByRole('switch'));
+        });
+
+        it('then it emits switch-blur', () => {
+            const changeEvents = component.emitted('switch-blur');
+            const [[eventArg]] = changeEvents;
+
+            expect(changeEvents).has.length(1);
+            expect(eventArg).has.property('originalEvent').is.an.instanceof(Event);
         });
     });
 });

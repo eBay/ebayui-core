@@ -19,3 +19,5 @@ Name | Type | Stateful | Required | Description
 Event | Data | Description
 --- | --- | ---
 `switch-change` | `{ originalEvent, value, checked }` | selected value and checked status
+`switch-focus` | `{ originalEvent, value, checked }` | -
+`switch-blur` | `{ originalEvent, value, checked }` | -
