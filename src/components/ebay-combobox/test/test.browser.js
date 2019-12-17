@@ -120,7 +120,7 @@ describe('given the combobox with 3 items', () => {
                     await fireEvent.click(component.getAllByRole('option')[1]);
                 });
 
-                it('then it should emit a change event', () => {
+                it('then it should emit a select event', () => {
                     expect(component.emitted('combobox-select')).has.length(1);
                 });
 
@@ -257,7 +257,7 @@ describe('given the combobox starts with zero options', () => {
                     await fireEvent.click(component.getAllByRole('option')[1]);
                 });
 
-                it('then it should emit a change event', () => {
+                it('then it should emit a select event', () => {
                     expect(component.emitted('combobox-select')).has.length(1);
                 });
 
