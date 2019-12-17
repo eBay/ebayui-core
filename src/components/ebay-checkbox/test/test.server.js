@@ -18,6 +18,11 @@ it('renders disabled checkbox', async() => {
     expect(getByRole('checkbox')).has.attr('disabled');
 });
 
+it('renders checkbox with id', async() => {
+    const { getByRole } = await render(template, { id: 'abc123' });
+    expect(getByRole('checkbox')).attr('id').contains('abc123');
+});
+
 testPassThroughAttributes(template, {
     getClassAndStyleEl(component) {
         return component.getByRole('checkbox').parentElement;
