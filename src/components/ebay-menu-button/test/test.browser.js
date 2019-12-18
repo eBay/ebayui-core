@@ -138,6 +138,7 @@ describe('given the menu is in the expanded state', () => {
 
     describe('when an item is clicked', () => {
         beforeEach(async() => {
+            await fireEvent.mouseDown(component.getByText(firstItemText));
             await fireEvent.click(component.getByText(firstItemText));
         });
 
@@ -148,6 +149,10 @@ describe('given the menu is in the expanded state', () => {
             const [[eventArg]] = selectEvents;
             expect(eventArg).has.property('el').with.text(firstItemText);
             expect(eventArg).has.property('checked').to.deep.equal([0]);
+        });
+
+        it('then it emits the mousedown event', () => {
+            expect(component.emitted('menu-button-mousedown')).has.length(1);
         });
     });
 

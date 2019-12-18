@@ -97,6 +97,9 @@ module.exports = require('marko-widgets').defineComponent({
     handleMenuSelect({ el, originalEvent }) {
         this.emitComponentEvent({ eventType: 'select', el, originalEvent });
     },
+    handleMousedown({ el, originalEvent }) {
+        this.emitComponentEvent({ eventType: 'mousedown', el, originalEvent });
+    },
     emitComponentEvent({ eventType, el, originalEvent }) {
         const checkedIndexes = this.getCheckedIndexes();
         const itemIndex = el && indexOf(el.parentNode.children, el);
