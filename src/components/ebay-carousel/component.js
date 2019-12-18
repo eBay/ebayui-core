@@ -110,10 +110,10 @@ function onRender() {
                     // Animate to the new scrolling position and emit update events afterward.
                     config.scrollTransitioning = true;
                     this.cancelScrollTransition = scrollTransition(listEl, offset, this.emitUpdate);
-                } else if (offset !== 0) {
+                } else {
                     // Race condition where user clicks the paddles quickly and by the time the offset is calculated
                     // its equal to the element position, so emitUpdate is never called
-                    this.emitUpdate();
+                    this.isMoving = false;
                 }
             }
         }
