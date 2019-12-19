@@ -56,6 +56,16 @@ describe('given the combobox with 3 items', () => {
                 it('then it should emit a input event', () => {
                     expect(component.emitted('combobox-input')).has.length(1);
                 });
+
+                describe('when blur happens on the combobox', () => {
+                    beforeEach(async() => {
+                        await fireEvent.blur(component.getByRole('combobox'));
+                    });
+
+                    it('then it should emit a change event', () => {
+                        expect(component.emitted('combobox-change')).has.length(1);
+                    });
+                });
             });
 
             describe('when the down arrow key is pressed', () => {
@@ -110,7 +120,7 @@ describe('given the combobox with 3 items', () => {
                     await fireEvent.click(component.getAllByRole('option')[1]);
                 });
 
-                it('then it should emit a change event', () => {
+                it('then it should emit a select event', () => {
                     expect(component.emitted('combobox-select')).has.length(1);
                 });
 
@@ -183,6 +193,16 @@ describe('given the combobox starts with zero options', () => {
                 it('then it should emit a input event', () => {
                     expect(component.emitted('combobox-input')).has.length(1);
                 });
+
+                describe('when blur happens on the combobox', () => {
+                    beforeEach(async() => {
+                        await fireEvent.blur(component.getByRole('combobox'));
+                    });
+
+                    it('then it should emit a change event', () => {
+                        expect(component.emitted('combobox-change')).has.length(1);
+                    });
+                });
             });
 
             describe('when the down arrow key is pressed', () => {
@@ -237,7 +257,7 @@ describe('given the combobox starts with zero options', () => {
                     await fireEvent.click(component.getAllByRole('option')[1]);
                 });
 
-                it('then it should emit a change event', () => {
+                it('then it should emit a select event', () => {
                     expect(component.emitted('combobox-select')).has.length(1);
                 });
 
