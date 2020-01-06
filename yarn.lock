@@ -11868,15 +11868,23 @@ makeup-exit-emitter@~0.2.0:
     custom-event-polyfill "^1"
     makeup-next-id "~0.1.1"
 
-makeup-expander@~0.8.0:
-  version "0.8.0"
-  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.8.0.tgz#05291645afbfd3c098cdd1b0a984d4fc2ba051c8"
-  integrity sha512-svM1OJGjGODdGtkuXJRxhsYtACrNInRDihkdELeABioHsjI3oi4TUYa9q7LC9GV2nsrqhhl/fHCFkbXnVo0Xng==
+makeup-exit-emitter@~0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/makeup-exit-emitter/-/makeup-exit-emitter-0.2.1.tgz#62c4cbe598a0b1b20e76435b4f1d14be1f137de4"
+  integrity sha512-Tv0qjuoePao6FbmJqaU3fQZON56AmAvYzF5Z8Q5l3MRYCF3MPKeCzUdqAf4DZOZuGbuH+3q2/vG/D4RubTW04A==
   dependencies:
     custom-event-polyfill "^1"
-    makeup-exit-emitter "~0.2.0"
+    makeup-next-id "~0.1.2"
+
+makeup-expander@~0.8.1:
+  version "0.8.1"
+  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.8.1.tgz#7cd284744193f7fc4ee604e8c82a0a1d655a0701"
+  integrity sha512-U7f9Aocjs31KMtsVPmcYYLblkycGfopmsAdn2X0uk2UnK+iMYCDLkoZU86tzXfpMapWaGwXPKfK7SEvtMtVyPQ==
+  dependencies:
+    custom-event-polyfill "^1"
+    makeup-exit-emitter "~0.2.1"
     makeup-focusables "~0.0.4"
-    makeup-next-id "~0.1.1"
+    makeup-next-id "~0.1.2"
 
 makeup-floating-label@~0.0.5:
   version "0.0.5"
@@ -11917,6 +11925,13 @@ makeup-next-id@~0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/makeup-next-id/-/makeup-next-id-0.1.1.tgz#1ea704fed3195c219ab13d7c55731615c3e0eaf0"
   integrity sha512-igmvG0iQYp+j+PiRz2Q5AfcS+MeBz45me7APWSpwtiktRvNKEpbM8I32gT8E3RMxt3rw//wciuS1Y7kYWxbRUg==
+  dependencies:
+    nanoid "^2"
+
+makeup-next-id@~0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/makeup-next-id/-/makeup-next-id-0.1.2.tgz#d324dfdc02bee85b74408a8bd245fd21ea0e88a9"
+  integrity sha512-l2spZVz00LcEZJNe2JcUIpgaFavtT4BBgaeIk0/yqfAnPKd3zDqXap9htLkaoTcW4hOhD3xPyZMZYqdFlMCOuQ==
   dependencies:
     nanoid "^2"
 
@@ -12671,9 +12686,9 @@ nan@^2.0.9, nan@^2.12.1, nan@^2.13.2:
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
 
 nanoid@^2:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-2.1.0.tgz#3de3dbd68cfb2f3bd52550e2bfd439cf75040eb2"
-  integrity sha512-g5WwS+p6Cm+zQhO2YOpRbQThZVnNb7DDq74h8YDCLfAGynrEOrbx2E16dc8ciENiP1va5sqaAruqn2sN+xpkWg==
+  version "2.1.8"
+  resolved "https://registry.npmjs.org/nanoid/-/nanoid-2.1.8.tgz#2dbb0224231b246e3b4c819de7bfea6384dabf08"
+  integrity sha512-g1z+n5s26w0TGKh7gjn7HCqurNKMZWzH08elXzh/gM/csQHd/UqDV6uxMghQYg9IvqRPm1QpeMk50YMofHvEjQ==
 
 nanomatch@^1.2.9:
   version "1.2.13"
