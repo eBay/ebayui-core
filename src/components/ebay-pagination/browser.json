@@ -5,7 +5,7 @@
             "dependencies": [
                 "@ebay/skin/pagination",
                 "@ebay/skin/utility",
-                "@ebay/skin/icon/foreground"
+                "@ebay/skin/icon"
             ]
         }
     ]

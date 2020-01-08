@@ -39,7 +39,7 @@ $ var selectedText = selectedOption && selectedOption.text;
         aria-invalid=(input.invalid && "true")>
         <span class="expand-btn__cell">
             <span>${selectedText}</span>
-            <span class="expand-btn__icon"/>
+            <ebay-icon name="dropdown"/>
         </span>
     </button>
     <if(input.options.length)>
@@ -58,7 +58,7 @@ $ var selectedText = selectedOption && selectedOption.text;
                     aria-selected:no-update=(selectedOption === option && "true")
                     onMousedown("handleMouseDown")>
                     <span class="listbox-button__value">${option.text}</span>
-                    <span class="listbox-button__status"/>
+                    <ebay-icon name="tick-small"/>
                 </div>
             </for>
         </div>

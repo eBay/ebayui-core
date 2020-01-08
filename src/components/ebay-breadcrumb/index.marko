@@ -18,13 +18,17 @@ static var ignoredAttributes = [
     <ul>
         <for|item, i| of=input.items>
             <li>
-                $ var current = !item.href && i === input.items.length - 1;
+                $ var isLast = i === input.items.length - 1;
+                $ var current = !item.href && isLast;
                 <${item.href ? "a" : "button"}
                     ...processHtmlAttributes(item)
                     aria-current=(current && "location")
                     onClick(!current && "handleClick")>
                     <${item.renderBody} />
                 </>
+                <if (!isLast)>
+                    <ebay-icon name="breadcrumb" />
+                </if>
             </li>
         </for>
     </ul>
