@@ -75,7 +75,9 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
                         </if>
                     </>
                 </span>
-                <span class=`${baseClass}__status`/>
+                <if(!isNotCheckable && checked || isNotCheckable && item.current)>
+                    <ebay-icon name="tick-small"/>
+                </if>
             </>
         </for>
     </div>
