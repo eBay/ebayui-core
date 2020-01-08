@@ -15,10 +15,8 @@ const path = require('path');
 function transform(el, context) {
     const { builder } = context;
     const nameAttribute = el.getAttribute('name');
-    const typeAttribute = el.getAttribute('type');
-    const isInline = typeAttribute && typeAttribute.value.value === 'inline';
     const iconName = nameAttribute && nameAttribute.value.value;
-    if (isInline && iconName) {
+    if (iconName) {
         const iconPath = path.join(__dirname, 'symbols', iconName);
         const ds4Path = path.join(iconPath, 'index.marko');
         const ds6Path = path.join(iconPath, 'index[skin-ds6].marko');
