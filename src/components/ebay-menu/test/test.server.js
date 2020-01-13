@@ -8,7 +8,7 @@ const template = require('..');
 use(require('chai-dom'));
 
 describe('menu', () => {
-    it('renders basic version', async () => {
+    it('renders basic version', async() => {
         const input = mock.Basic_2Items;
         const { getByRole, getAllByRole, getByText } = await render(template, input);
         expect(getByRole('menu')).with.class('menu__items');
@@ -22,7 +22,7 @@ describe('menu', () => {
         });
     });
 
-    it('renders fake version', async () => {
+    it('renders fake version', async() => {
         const input = mock.Fake_2Items;
         const { getByText } = await render(template, input);
 
@@ -32,26 +32,26 @@ describe('menu', () => {
         });
     });
 
-    it('renders with reverse=true', async () => {
+    it('renders with reverse=true', async() => {
         const input = assign({ reverse: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu')).with.class('menu__menu--reverse');
     });
 
-    it('renders with type=fake, reverse=true', async () => {
+    it('renders with type=fake, reverse=true', async() => {
         const input = assign({ type: 'fake', reverse: true }, mock.Basic_2Items);
         const { getByText } = await render(template, input);
         expect(getByText(input.items[0].renderBody.text).closest('.fake-menu__menu--reverse'))
             .does.not.equal(null);
     });
 
-    it('renders with fix-width=true', async () => {
+    it('renders with fix-width=true', async() => {
         const input = assign({ fixWidth: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu')).with.class('menu__menu--fix-width');
     });
 
-    it('renders with type=fake, fix-width=true', async () => {
+    it('renders with type=fake, fix-width=true', async() => {
         const input = assign({ type: 'fake', fixWidth: true }, mock.Basic_2Items);
         const { getByText } = await render(template, input);
         expect(getByText(input.items[0].renderBody.text).closest('.fake-menu__menu--fix-width'))
@@ -60,7 +60,7 @@ describe('menu', () => {
 
     ['radio', 'checkbox'].forEach(type => {
         [true, false].forEach(checked => {
-            it(`renders with type=${type} and checked=${checked}`, async () => {
+            it(`renders with type=${type} and checked=${checked}`, async() => {
                 const input = { type, items: [{ checked }] };
                 const { getByRole, getAllByRole } = await render(template, input);
                 const optionEls = getAllByRole(`menuitem${type}`);
