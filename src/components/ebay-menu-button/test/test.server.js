@@ -18,7 +18,7 @@ describe('menu-button', () => {
         expect(btnEl).has.attr('aria-haspopup', 'true');
         expect(btnEl).has.attr('aria-expanded', 'false');
         expect(btnEl).has.property('parentElement').with.class('menu-button');
-        expect(btnEl.querySelector('.expand-btn__icon')).has.property('tagName', 'svg');
+        expect(btnEl.querySelector('.icon--dropdown')).has.property('tagName', 'svg');
         expect(btnEl).contains(getByText(input.text));
         expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu');
 
@@ -102,7 +102,7 @@ describe('menu-button', () => {
     it('renders without toggle icon', async() => {
         const input = mock.No_Toggle_Icon;
         const { getByRole } = await render(template, input);
-        expect(getByRole('button').querySelector('expand-btn__icon')).equals(null);
+        expect(getByRole('button').querySelector('icon--dropdown')).equals(null);
     });
 
     it('renders with disabled state', async() => {
@@ -143,9 +143,12 @@ describe('menu-button', () => {
 
                 expect(optionEls).has.length(1);
                 expect(optionEls[0]).has.attr('aria-checked', String(checked));
-
-                expect(getByRole('menu').querySelector('.menu-button__status'))
-                    .does.not.equal(null);
+                const checkedIcon = getByRole('menu').querySelector('.icon--tick-small');
+                if (checked) {
+                    expect(checkedIcon).does.not.equal(null);
+                } else {
+                    expect(checkedIcon).equals(null);
+                }
             });
         });
     });
