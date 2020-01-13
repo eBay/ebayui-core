@@ -12,6 +12,7 @@ $ var isCenter = !input.type || input.type === "fill";
 $ var isDocked = input.type === "left" || input.type === "right";
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
+    aria-modal="true"
     role="dialog"
     class=[
         "dialog",
@@ -25,7 +26,6 @@ $ var isDocked = input.type === "left" || input.type === "right";
     onMousedown("handleStartClick")>
     <div
         key="window"
-        role="document"
         class=[
             "dialog__window",
             input.type && `dialog__window--${input.type}`,

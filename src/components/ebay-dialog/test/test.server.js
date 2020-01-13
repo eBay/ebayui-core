@@ -13,7 +13,6 @@ describe('dialog', () => {
 
         expect(getByRole('dialog')).has.attr('hidden');
         expect(getByRole('dialog')).has.class('dialog');
-        expect(getByRole('document')).has.class('dialog__window');
         expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
         expect(getByText(input.renderBody.text)).has.class('dialog__body');
     });
@@ -28,7 +27,7 @@ describe('dialog', () => {
         it(`renders with ${type || 'default'} type`, async() => {
             const { getByRole } = await render(template, { type });
             const $dialog = getByRole('dialog');
-            const $window = getByRole('document');
+            const $window = $dialog.children[0];
 
             if (type) {
                 expect($window).has.class(`dialog__window--${type}`);
@@ -48,7 +47,7 @@ describe('dialog', () => {
         it(`renders with ${type} type`, async() => {
             const { getByRole } = await render(template, { type });
             const $dialog = getByRole('dialog');
-            const $window = getByRole('document');
+            const $window = $dialog.children[0];
 
             expect($dialog).has.class('dialog--mask-fade-slow');
             expect($window).has.class(`dialog__window--${type}`);
