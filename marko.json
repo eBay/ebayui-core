@@ -1,7 +1,7 @@
 {
   "taglib-id": "ebayui-core",
   "tags-dir": "./src/components",
-  "<ebay-breadcrumb-item>": {
+  "<ebay-breadcrumbs-item>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-carousel-item>": {
@@ -53,12 +53,6 @@
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-select-option>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
-  },
-  "<ebay-tab-heading>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
-  },
-  "<ebay-tab-panel>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-tabs-heading>": {
