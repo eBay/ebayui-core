@@ -55,7 +55,7 @@ $ var selectedText = selectedOption && selectedOption.text;
                     class:no-update=["listbox-button__option", option.class]
                     role="option"
                     tabindex="-1"
-                    aria-selected:no-update=(selectedOption === option && "true")
+                    aria-selected=(selectedOption === option && "true")
                     onMousedown("handleMouseDown")>
                     <span class="listbox-button__value">${option.text}</span>
                     <ebay-icon name="tick-small"/>
