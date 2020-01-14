@@ -3,7 +3,7 @@
         {
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [
-                "@ebay/skin/icon/foreground",
+                "@ebay/skin/icon",
                 "@ebay/skin/carousel"
             ]
         }

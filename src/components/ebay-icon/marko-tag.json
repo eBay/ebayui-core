@@ -7,9 +7,6 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@type": {
-    "enum": ["inline", "background"]
-  },
   "@name": "string",
   "@a11y-text": "string",
   "@no-skin-classes": "boolean",

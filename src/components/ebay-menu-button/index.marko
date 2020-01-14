@@ -46,7 +46,7 @@ $ var isOverflowVariant = input.variant === "overflow";
         onButton-escape("handleButtonEscape")
         key="button">
         <if(isOverflowVariant)>
-            <ebay-icon type="inline" name="overflow"/>
+            <ebay-icon name="overflow"/>
         </if>
         <else>
             <span class=[
@@ -73,10 +73,7 @@ $ var isOverflowVariant = input.variant === "overflow";
                 </else>
                 <if(!input.noToggleIcon)>
                     <ebay-icon
-                        type="inline"
-                        name="chevron-down-bold"
-                        class="expand-btn__icon"
-                        no-skin-classes/>
+                        name="dropdown"/>
                 </if>
             </span>
         </else>

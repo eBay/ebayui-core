@@ -48,7 +48,7 @@ $ var data = component.getTemplateData(state, input);
                 aria-describedby=statusId
                 aria-label=data.a11yPreviousText
                 aria-disabled=(data.prevControlDisabled && "true")>
-                <ebay-icon type="inline" name="chevron-left-small"/>
+                <ebay-icon name="carousel-prev"/>
             </button>
         </if>
         <ul
@@ -87,7 +87,7 @@ $ var data = component.getTemplateData(state, input);
                 aria-disabled=(data.nextControlDisabled && "true")
                 key="next"
                 id:scoped="next">
-                <ebay-icon type="inline" name="chevron-right-small"/>
+                <ebay-icon name="carousel-next"/>
             </button>
         </if>
         <if(data.autoplayInterval && !data.bothControlsDisabled)>
@@ -97,7 +97,7 @@ $ var data = component.getTemplateData(state, input);
                     type="button"
                     aria-label=data.a11yPlayText
                     onClick("togglePlay")>
-                    <ebay-icon type="inline" name="play"/>
+                    <ebay-icon name="play"/>
                 </button>
             </if>
             <else>
@@ -106,7 +106,7 @@ $ var data = component.getTemplateData(state, input);
                     type="button"
                     aria-label=data.a11yPauseText
                     onClick("togglePlay")>
-                    <ebay-icon type="inline" name="pause"/>
+                    <ebay-icon name="pause"/>
                 </button>
             </else>
         </if>

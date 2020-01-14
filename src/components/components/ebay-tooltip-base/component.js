@@ -44,7 +44,7 @@ module.exports = {
             if (curFocusable) {
                 host = curFocusable;
 
-                if (!curFocusable.classList.has(hostClass)) {
+                if (!curFocusable.classList.contains(hostClass)) {
                     curFocusable.classList.add(hostClass);
                 }
             }

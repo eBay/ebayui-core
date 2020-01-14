@@ -22,7 +22,7 @@ $ var selectedOption = input.options && input.options[state.selectedIndex];
             aria-owns:scoped="combobox__listbox"
             aria-expanded:no-update="false"
             onKeydown("handleComboboxKeyDown")/>
-        <span class="combobox__icon" aria-hidden="true"/>
+        <ebay-icon name="dropdown"/>
     </span>
     <if(input.options.length > 0)>
         <div
@@ -45,7 +45,9 @@ $ var selectedOption = input.options && input.options[state.selectedIndex];
                     aria-selected=(isSelected && "true")
                     onClick("handleOptionClick", i)>
                     <span>${option.text}</span>
-                    <span class="combobox__status"/>
+                    <if(isSelected)>
+                        <ebay-icon name="tick-small"/>
+                    </>
                 </div>
             </for>
         </div>
