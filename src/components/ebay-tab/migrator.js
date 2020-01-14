@@ -1,6 +1,6 @@
 module.exports = function migrator(el, context) {
     context.deprecate("<ebay-tab> has been renamed to <ebay-tabs>");
-    el.setTagName('ebay-tabs', el.tagName.replace(/ebay-tab(-.*)?$/g, 'ebay-tabs$1'));
+    el.setTagName('ebay-tab')
 
     el.forEachChild(child => {
         if (child.tagName === 'ebay-tab-heading') {
