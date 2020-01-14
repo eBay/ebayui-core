@@ -61,6 +61,12 @@
   "<ebay-tab-panel>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
+  "<ebay-tabs-heading>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
+  "<ebay-tabs-panel>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
   "<ebay-tooltip-host>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },

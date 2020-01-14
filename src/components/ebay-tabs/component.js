@@ -22,7 +22,7 @@ module.exports = {
             const keyCode = event.charCode || event.keyCode;
             const direction = keyCode === 37 || keyCode === 38 ? -1 : 1;
             const index = (state.index + len + direction) % len;
-            this.getEl(`tab-${index}`).focus();
+            this.getEl(`tabs-${index}`).focus();
 
             if (!input.activation || input.activation === 'auto') {
                 this._setIndex(index);
