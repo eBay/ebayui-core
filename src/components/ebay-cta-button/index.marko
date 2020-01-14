@@ -4,7 +4,7 @@ static var ignoredAttributes = ["size"];
 
 <a
     ...processHtmlAttributes(input, ignoredAttributes)
-    class=["cta-btn", `cta-btn--${input.size || "medium"}`, input.class]>
+    class=["cta-btn", `cta-btn--${input.size || "default"}`, input.class]>
     <span class="cta-btn__cell">
         <span>
             <${input.renderBody}/>
