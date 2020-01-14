@@ -143,12 +143,7 @@ describe('menu-button', () => {
 
                 expect(optionEls).has.length(1);
                 expect(optionEls[0]).has.attr('aria-checked', String(checked));
-                const checkedIcon = getByRole('menu').querySelector('.icon--tick-small');
-                if (checked) {
-                    expect(checkedIcon).does.not.equal(null);
-                } else {
-                    expect(checkedIcon).equals(null);
-                }
+                expect(getByRole('menu').querySelector('.icon--tick-small')).does.not.equal(null);
             });
         });
     });
