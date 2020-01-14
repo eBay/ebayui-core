@@ -1,6 +1,8 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const migrator = require('../../ebay-tab/migrator');
+const { runTransformer } = require('../../../common/test-utils/server');
 const mock = require('./mock');
 const template = require('..');
 
@@ -143,5 +145,27 @@ describe('tabs-panel', () => {
                 input: { fake: true }
             }
         });
+    });
+});
+
+describe('migrator', () => {
+    const componentPath = '../../ebay-tab/index.marko';
+
+    it('migrates ebay-tab to ebay-tabs', () => {
+        // eslint-disable-next-line max-len
+        const tagString = '<ebay-tab><ebay-tab-heading>item</ebay-tab-heading><ebay-tab-panel>item</ebay-tab-panel></ebay-tab>';
+        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { body: { array: [heading, panel] } } = el;
+        expect(el.tagName).to.equal('ebay-tabs');
+        expect(heading.tagName).to.equal('ebay-tabs-heading');
+        expect(panel.tagName).to.equal('ebay-tabs-panel');
+    });
+
+    it('migrates tab-select event to tabs-select', () => {
+        // eslint-disable-next-line max-len
+        const tagString = '<ebay-tab on-tab-select(() => {})><ebay-tab-heading>item</ebay-tab-heading><ebay-tab-panel>item</ebay-tab-panel></ebay-tab>';
+        const { el } = runTransformer(migrator, tagString, componentPath);
+        expect(el.tagName).to.equal('ebay-tabs');
+        expect(el.hasAttribute('on-tabs-select')).equals(true);
     });
 });

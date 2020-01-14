@@ -1,19 +1,19 @@
-# ebay-tab
+# ebay-tabs
 
-## ebay-tab Usage
+## ebay-tabs Usage
 
 ```marko
-<ebay-tab>
-    <ebay-tab-heading>Tab 1</ebay-tab-heading>
-    <ebay-tab-heading>Tab 2</ebay-tab-heading>
-    <ebay-tab-heading>Tab 3</ebay-tab-heading>
-    <ebay-tab-panel>Panel 1</ebay-tab-panel>
-    <ebay-tab-panel>Panel 2</ebay-tab-panel>
-    <ebay-tab-panel>Panel 3</ebay-tab-panel>
-</ebay-tab>
+<ebay-tabs>
+    <ebay-tabs-heading>Tab 1</ebay-tabs-heading>
+    <ebay-tabs-heading>Tab 2</ebay-tabs-heading>
+    <ebay-tabs-heading>Tab 3</ebay-tabs-heading>
+    <ebay-tabs-panel>Panel 1</ebay-tabs-panel>
+    <ebay-tabs-panel>Panel 2</ebay-tabs-panel>
+    <ebay-tabs-panel>Panel 3</ebay-tabs-panel>
+</ebay-tabs>
 ```
 
-## ebay-tab Attributes
+## ebay-tabs Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
@@ -23,30 +23,30 @@ Name | Type | Stateful | Required | Description
 
 > *Note:* When using fake tabs there is no `preventDefault` applied, and therefore the link in the tab heading will work as a normal and navigate to the URL provided in the `href`.
 
-## ebay-tab Events
+## ebay-tabs Events
 
 Event | Data | Description
 --- | --- | ---
 `tabs-select` | `{ index }` |
 
-## ebay-tab-heading Tag
+## ebay-tabs-heading Tag
 
-### ebay-tab-heading Usage
+### ebay-tabs-heading Usage
 
 ```marko
-<ebay-tab-heading>Tab 1</ebay-tab-heading>
+<ebay-tabs-heading>Tab 1</ebay-tabs-heading>
 ```
 
-## ebay-tab-heading Attributes
+## ebay-tabs-heading Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | ---
 `href` | String | No | No | For use with `fake` tab component
 
-## ebay-tab-panel Tag
+## ebay-tabs-panel Tag
 
-### ebay-tab-panel Usage
+### ebay-tabs-panel Usage
 
 ```marko
-<ebay-tab-panel>Panel 1</ebay-tab-panel>
+<ebay-tabs-panel>Panel 1</ebay-tabs-panel>
 ```

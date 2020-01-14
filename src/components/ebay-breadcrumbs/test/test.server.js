@@ -1,6 +1,8 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const migrator = require('../../ebay-breadcrumb/migrator');
+const { runTransformer } = require('../../../common/test-utils/server');
 const mock = require('../mock');
 const template = require('..');
 
@@ -59,4 +61,25 @@ testPassThroughAttributes(template, {
         name: 'items',
         multiple: true
     }
+});
+
+describe('migrator', () => {
+    const componentPath = '../../ebay-breadcrumb/index.marko';
+
+    it('migrates ebay-breadcrumb to ebay-breadcrumbs', () => {
+        // eslint-disable-next-line max-len
+        const tagString = '<ebay-breadcrumb><ebay-breadcrumb-item>item</ebay-breadcrumb-item></ebay-breadcrumb>';
+        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { body: { array: [elItem] } } = el;
+        expect(el.tagName).to.equal('ebay-breadcrumbs');
+        expect(elItem.tagName).to.equal('ebay-breadcrumbs-item');
+    });
+
+    it('migrates breadcrumb-select event to breadcrumbs-select', () => {
+        // eslint-disable-next-line max-len
+        const tagString = '<ebay-breadcrumb on-breadcrumb-select(() => {})><ebay-breadcrumb-item>item</ebay-breadcrumb-item></ebay-breadcrumb>';
+        const { el } = runTransformer(migrator, tagString, componentPath);
+        expect(el.tagName).to.equal('ebay-breadcrumbs');
+        expect(el.hasAttribute('on-breadcrumbs-select')).equals(true);
+    });
 });

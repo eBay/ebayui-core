@@ -71,8 +71,6 @@ module.exports = {
 
         if (index !== state.index) {
             state.index = index;
-            // TODO remove since non plural is deprecated
-            this.emit('tab-select', { index });
             this.emit('tabs-select', { index });
         }
     },

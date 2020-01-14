@@ -1,31 +1,31 @@
-# ebay-breadcrumb
+# ebay-breadcrumbs
 
-## ebay-breadcrumb Usage
+## ebay-breadcrumbs Usage
 
 ### Last item as the parent
 
 ```marko
-<ebay-breadcrumb a11y-heading-text='Page navigation'>
-    <ebay-breadcrumb-item href='https://...'>eBay</ebay-breadcrumb-item>
-    <ebay-breadcrumb-item href='https://...'>Auto Parts and Vehicles</ebay-breadcrumb-item>
-    <ebay-breadcrumb-item href='https://...'>Motors Parts and Accessories</ebay-breadcrumb-item>
-</ebay-breadcrumb>
+<ebay-breadcrumbs a11y-heading-text='Page navigation'>
+    <ebay-breadcrumbs-item href='https://...'>eBay</ebay-breadcrumbs-item>
+    <ebay-breadcrumbs-item href='https://...'>Auto Parts and Vehicles</ebay-breadcrumbs-item>
+    <ebay-breadcrumbs-item href='https://...'>Motors Parts and Accessories</ebay-breadcrumbs-item>
+</ebay-breadcrumbs>
 ```
 
-## ebay-breadcrumb Attributes
+## ebay-breadcrumbs Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `a11y-heading-text` | String | No | Yes | heading for breadcrumb which will be clipped
 `a11y-heading-tag` | String | No | No | heading tag for breadcrumb (default: `"h2"`)
 
-## ebay-breadcrumb Events
+## ebay-breadcrumbs Events
 
 Event | Description | Data
 --- | ---
 `breadcrumbs-select` | click breadcrumb items | `{ originalEvent, el }`
 
-## ebay-breadcrumb-item Attributes
+## ebay-breadcrumbs-item Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
