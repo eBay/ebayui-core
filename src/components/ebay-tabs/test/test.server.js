@@ -6,7 +6,7 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-describe('tab', () => {
+describe('tabs', () => {
     it('renders basic version with 3 headings and 3 panels', async() => {
         const input = mock.Basic_3Headings_3Panels_No_Index;
         const { getByRole, getAllByRole } = await render(template, input);
@@ -108,7 +108,7 @@ describe('tab', () => {
     testPassThroughAttributes(template);
 });
 
-describe('tab-heading', () => {
+describe('tabs-heading', () => {
     testPassThroughAttributes(template, {
         child: {
             name: 'headings',
@@ -127,7 +127,7 @@ describe('tab-heading', () => {
     });
 });
 
-describe('tab-panel', () => {
+describe('tabs-panel', () => {
     testPassThroughAttributes(template, {
         child: {
             name: 'panels',

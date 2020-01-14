@@ -12,7 +12,7 @@ let component;
 
 function thenItHasMovedToTab(index) {
     it('then it emits the select event with correct data', () => {
-        const selectEvents = component.emitted('tab-select');
+        const selectEvents = component.emitted('tabs-select');
         expect(selectEvents).has.length(1);
 
         const [[eventArg]] = selectEvents;
@@ -37,7 +37,7 @@ describe('given tabs with first heading selected', () => {
         });
 
         it('then it does not emit the select event', () => {
-            expect(component.emitted('tab-select')).has.length(0);
+            expect(component.emitted('tabs-select')).has.length(0);
         });
     });
 
@@ -88,7 +88,7 @@ describe('given tabs with manual activation', () => {
         });
 
         it('then it does not emit the select event', () => {
-            expect(component.emitted('tab-select')).has.length(0);
+            expect(component.emitted('tabs-select')).has.length(0);
         });
     });
 

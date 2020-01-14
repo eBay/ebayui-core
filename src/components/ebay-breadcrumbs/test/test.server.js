@@ -6,7 +6,7 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-describe('breadcrumb', () => {
+describe('breadcrumbs', () => {
     it('renders basic structure', async() => {
         const input = mock.Links;
         const { getByLabelText, getByText } = await render(template, input);

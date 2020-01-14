@@ -27,7 +27,7 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`tab-select` | `{ index }` |
+`tabs-select` | `{ index }` |
 
 ## ebay-tab-heading Tag
 
