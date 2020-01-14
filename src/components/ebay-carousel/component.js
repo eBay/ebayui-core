@@ -110,6 +110,10 @@ function onRender() {
                     // Animate to the new scrolling position and emit update events afterward.
                     config.scrollTransitioning = true;
                     this.cancelScrollTransition = scrollTransition(listEl, offset, this.emitUpdate);
+                } else if (this.isMoving) {
+                    // Animate to the new scrolling position and emit update events afterward.
+                    config.scrollTransitioning = true;
+                    this.cancelScrollTransition = scrollTransition(listEl, getOffset(state), this.emitUpdate);
                 }
             }
         }
