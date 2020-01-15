@@ -5,31 +5,38 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@index": "string",
-  "@fake": "boolean",
-  "@activation": {
-    "enum": ["auto", "manual"]
-  },
-  "@headings <heading>[]": {
-    "attribute-groups": ["html-attributes"],
+  "@a11y-heading-text": "string",
+  "@a11y-heading-tag": "string",
+  "@hijax": "boolean",
+  "@aria-labelledby": "never",
+  "@role": "never",
+  "@items <item>[]": {
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
-    "@html-attributes": "expression",
-    "@href": "#html-href"
-  },
-  "@panels <panel>[]": {
     "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
-    },
     "@html-attributes": "expression",
-    "@id": "never",
-    "@aria-labelledby": "never",
-    "@role": "never",
-    "@hidden": "never"
-  },
-  "migrator": "./migrator"
+    "@autofocus": "#html-autofocus",
+    "@disabled": "#html-disabled",
+    "@form": "#html-form",
+    "@formaction": "#html-formaction",
+    "@formenctype": "#html-formenctype",
+    "@formmethod": "#html-formmethod",
+    "@formnovalidate": "#html-formnovalidate",
+    "@formtarget": "#html-formtarget",
+    "@name": "#html-name",
+    "@type": "#html-type",
+    "@value": "#html-value",
+    "@download": "#html-download",
+    "@href": "#html-href",
+    "@hreflang": "#html-hreflang",
+    "@media": "#html-media",
+    "@ping": "#html-ping",
+    "@referrerpolicy": "#html-referrerpolicy",
+    "@rel": "#html-rel",
+    "@target": "#html-target",
+    "@aria-current": "never",
+    "migrator": "./migrator"
+  }
 }

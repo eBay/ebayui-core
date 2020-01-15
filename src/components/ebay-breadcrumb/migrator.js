@@ -10,9 +10,13 @@ module.exports = function migrator(el, context) {
         el.addAttribute(attribute);
     }
 
-    el.forEachChild(child => {
-        if (child.tagName === 'ebay-breadcrumb-item') {
-            child.setTagName('ebay-breadcrumbs-item');
+    const walker = context.createWalker({
+        enter(node) {
+            if (node.tagName === 'ebay-breadcrumb-item') {
+                node.setTagName('ebay-breadcrumbs-item');
+            }
         }
     });
+
+    walker.walk(el);
 };

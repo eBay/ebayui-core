@@ -5,16 +5,17 @@ module.exports = function migrator(el, context) {
     el.setTagName('ebay-tabs');
     if (el.hasAttribute(oldAttribute)) {
         const attribute = el.getAttribute(oldAttribute);
-        el.removeAttribute(oldAttribute);
         attribute.name = newAttribute;
-        el.addAttribute(attribute);
     }
-
-    el.forEachChild(child => {
-        if (child.tagName === 'ebay-tab-heading') {
-            child.setTagName('ebay-tabs-heading');
-        } else if (child.tagName === 'ebay-tab-panel') {
-            child.setTagName('ebay-tabs-panel');
+    const walker = context.createWalker({
+        enter(node) {
+            if (node.tagName === 'ebay-tab-heading') {
+                node.setTagName('ebay-tabs-heading');
+            } else if (node.tagName === 'ebay-tab-panel') {
+                node.setTagName('ebay-tabs-panel');
+            }
         }
     });
+
+    walker.walk(el);
 };
