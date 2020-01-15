@@ -30,5 +30,6 @@
     "@aria-labelledby": "never",
     "@role": "never",
     "@hidden": "never"
-  }
+  },
+  "migrator": "./migrator.js"
 }
