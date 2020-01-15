@@ -5,9 +5,7 @@ module.exports = function migrator(el, context) {
     el.setTagName('ebay-breadcrumbs');
     if (el.hasAttribute(oldAttribute)) {
         const attribute = el.getAttribute(oldAttribute);
-        el.removeAttribute(oldAttribute);
         attribute.name = newAttribute;
-        el.addAttribute(attribute);
     }
 
     const walker = context.createWalker({
