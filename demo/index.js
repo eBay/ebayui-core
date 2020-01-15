@@ -58,7 +58,7 @@ app.get('/:designSystem/:component?', (req, res) => {
         components: demoUtils.getComponentsWithExamples('src')
     };
 
-    const dsFlag = req.params.designSystem === 'ds6' ? 'skin-ds6' : '';
+    const dsFlag = req.params.designSystem === 'ds6' ? '' : 'ds-4';
     const lassoFlags = ['ebayui-no-bg-icons'];
 
     // allow .only in example folder name

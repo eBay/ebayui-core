@@ -5,7 +5,7 @@
         "./atom-light-syntax.css",
         "./style.less",
         {
-            "if-flag": "skin-ds6",
+            "if-not-flag": "ds-4",
             "dependencies": [
                 "@ebay/skin/marketsans"
             ]

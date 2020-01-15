@@ -6,7 +6,7 @@ const buildID = `${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUM
 module.exports = ({ config }) => {
     config.mochaOptions = { timeout: 20000 };
     config.lassoOptions = {
-        flags: ['skin-ds6'],
+        flags: [],
         plugins: ['lasso-less'],
         require: isTravis && {
             transforms: [{

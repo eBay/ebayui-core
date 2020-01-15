@@ -3,12 +3,12 @@
     {
       "from": "./index[skin-ds6].marko",
       "to": "./index.marko",
-      "if-not-flag": "skin-ds6"
+      "if-flag": "ds-4"
     },
     {
       "from": "./index.marko",
       "to": "./index[skin-ds6].marko",
-      "if-flag": "skin-ds6"
+      "if-not-flag": "ds-4"
     }
   ]
 }
