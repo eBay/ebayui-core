@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes";
+import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "ctaText",
@@ -49,12 +49,9 @@ static var ignoredAttributes = [
         ]>
             <a href=input.href tabindex="-1" aria-hidden="true">
                 <if(input.ctaText)>
-                    <span class="section-title__cta-text">
-                        ${input.ctaText}
-                    </span>
+                    <span class="section-title__cta-text">${input.ctaText}</span>
                 </if>
                 <ebay-icon
-                    type="inline"
                     name="arrow-right-bold"
                     class="section-title__cta-icon"
                     no-skin-classes/>

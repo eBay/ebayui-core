@@ -16,7 +16,6 @@ static var itemIgnoredAttributes = ["checked", "value"];
 
 $ var baseClass = input.classPrefix || "filter-menu";
 $ var isForm = input.variant === "form";
-
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     key="container"
@@ -27,17 +26,14 @@ $ var isForm = input.variant === "form";
         action=input.formAction
         method=input.formMethod
         onSubmit("handleFormSubmit")>
-        <div
-            key="menu"
-            class=`${baseClass}__items`
-            role=(!isForm && "menu")>
+        <div key="menu" class=`${baseClass}__items` role=(!isForm && "menu")>
             <for|item, i| of=input.items>
                 $ var isChecked = state.isChecked[i];
                 <${isForm ? "label" : "div"}
                     ...processHtmlAttributes(item, itemIgnoredAttributes)
                     class=[`${baseClass}__item`, item.class]
                     role="menuitemcheckbox"
-                    aria-checked=(String(isChecked))
+                    aria-checked=String(isChecked)
                     for=(isForm && component.elId(`checkbox-${i}`))
                     onClick("handleItemClick", i)
                     onKeydown("handleItemKeydown", i)>
@@ -47,21 +43,19 @@ $ var isForm = input.variant === "form";
                     <else>
                         <span class=`${baseClass}__status`>
                             <if(isChecked)>
-                                <ebay-icon type="inline" name="checkbox-checked"/>
+                                <ebay-icon name="checkbox-checked"/>
                             </if>
                             <else>
-                                <ebay-icon type="inline" name="checkbox-unchecked"/>
+                                <ebay-icon name="checkbox-unchecked"/>
                             </else>
                         </span>
                     </else>
-
                     <span class=`${baseClass}__text`>
                         <${item.renderBody}/>
                     </span>
                 </>
             </for>
         </div>
-
         <if(input.footerText)>
             <button
                 type=(isForm ? "submit" : "button")

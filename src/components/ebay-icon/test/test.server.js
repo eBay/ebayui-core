@@ -2,6 +2,7 @@ const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const { runTransformer } = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
+const migrator = require('../migrator');
 const template = require('..');
 
 const iconName = 'mic';
@@ -63,5 +64,19 @@ describe('transformer', () => {
         const { el } = runTransformer(transformer, tagString, componentPath);
         const attr = el.getAttribute('_themes');
         expect(attr).to.have.property('name', '_themes');
+    });
+});
+
+describe('migrator', () => {
+    const componentPath = '../index.js';
+    function getTagString() {
+        return `<ebay-icon type="inline" name="${iconName}" />`;
+    }
+
+    it('removes type attribute', () => {
+        const tagString = getTagString();
+        const { el } = runTransformer(migrator, tagString, componentPath);
+        const attr = el.hasAttribute('type');
+        expect(attr).to.equal(false);
     });
 });

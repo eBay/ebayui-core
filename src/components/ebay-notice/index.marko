@@ -17,7 +17,6 @@ $ var isWindow = type === "window";
 $ var isCelebration = status === "celebration";
 $ var isPage = type === "page" || isSection || isWindow;
 $ var isLightGuidance = isSection && !input.status;
-
 <if(!state.hidden)>
     <${isPage ? "section" : "div"}
         ...processHtmlAttributes(input, ignoredAttributes)
@@ -36,7 +35,6 @@ $ var isLightGuidance = isSection && !input.status;
                 <if(isWindow && input.title)>
                     <ebay-icon
                         class="window-notice__icon"
-                        type="inline"
                         name="confirmation-filled"
                         aria-label=input.a11yHeadingText/>
                     <span
@@ -47,27 +45,17 @@ $ var isLightGuidance = isSection && !input.status;
                 </if>
                 <else>
                     <if(status === "confirmation" || status === "celebration")>
-                        <ebay-icon
-                            type="inline"
-                            name="confirmation-filled"
-                            aria-label=input.a11yHeadingText/>
+                        <ebay-icon name="confirmation-filled" aria-label=input.a11yHeadingText/>
                     </if>
                     <else if(status === "attention")>
-                        <ebay-icon
-                            type="inline"
-                            name="attention-filled"
-                            aria-label=input.a11yHeadingText/>
+                        <ebay-icon name="attention-filled" aria-label=input.a11yHeadingText/>
                     </else>
                     <else if(status === "information")>
-                        <ebay-icon
-                            type="inline"
-                            name="information-filled"
-                            aria-label=input.a11yHeadingText/>
+                        <ebay-icon name="information-filled" aria-label=input.a11yHeadingText/>
                     </else>
                 </else>
             </>
         </if>
-
         <${isPage ? "div" : "span"}
             ...(input.content && processHtmlAttributes(input.content))
             class=[
@@ -81,14 +69,11 @@ $ var isLightGuidance = isSection && !input.status;
                     <${input.title.renderBody}/>
                 </span>
             </if>
-
             <${input.content || input.renderBody}/>
         </>
-
         <if(input.content)>
             <${input.renderBody}/>
         </if>
-
         <if(input.dismissible)>
             <button
                 class="page-notice__close"

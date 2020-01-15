@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes";
+import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "variant",
@@ -28,7 +28,7 @@ static var ignoredAttributes = [
         aria-pressed=(state.isChecked.some(Boolean) && "true")>
         <span class="filter-menu-button__button-cell">
             <span class="filter-menu-button__button-text">${input.text}</span>
-            <ebay-icon type="inline" name="chevron-down"/>
+            <ebay-icon name="chevron-down"/>
         </span>
     </button>
     <ebay-filter-menu

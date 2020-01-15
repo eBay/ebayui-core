@@ -1,11 +1,6 @@
-import processHtmlAttributes from "../../common/html-attributes";
+import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = [
-    "open",
-    "type",
-    "focus",
-    "a11yCloseText"
-];
+static var ignoredAttributes = ["open", "type", "focus", "a11yCloseText"];
 
 $ var isFull = input.type === "full";
 $ var isCenter = !input.type || input.type === "fill";
@@ -38,7 +33,7 @@ $ var isDocked = input.type === "left" || input.type === "right";
             type="button"
             aria-label=input.a11yCloseText
             onClick("handleCloseButtonClick")>
-            <ebay-icon type="inline" name="close"/>
+            <ebay-icon name="close"/>
         </button>
         <div key="body" class="dialog__body">
             <${input.renderBody}/>
