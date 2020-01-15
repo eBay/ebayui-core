@@ -1,7 +1,10 @@
 {
   "taglib-id": "ebayui-core",
   "tags-dir": "./src/components",
-  "<ebay-breadcrumb-item>": {
+  "<ebay-breadcumb>": {
+    "migrator": "./src/components/ebay-breadcrumbs/migrator.js"
+  },
+  "<ebay-breadcrumbs-item>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-carousel-item>": {
@@ -55,10 +58,13 @@
   "<ebay-select-option>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
-  "<ebay-tab-heading>": {
+  "<ebay-tab>": {
+    "migrator": "./src/components/ebay-tabs/migrator.js"
+  },
+  "<ebay-tabs-heading>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
-  "<ebay-tab-panel>": {
+  "<ebay-tabs-panel>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
   "<ebay-tooltip-host>": {
