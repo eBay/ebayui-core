@@ -1,6 +1,7 @@
 {
   "template": "./index.marko",
   "transformer": "./transformer.js",
+  "migrator": "./migrator.js",
   "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,
