@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes";
+import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "icon",
@@ -17,7 +17,6 @@ static var ignoredAttributes = [
 ];
 
 $ var pointer = input.pointer || "bottom";
-
 <span>
     <ebay-tooltip-base
         type="infotip"
@@ -38,7 +37,7 @@ $ var pointer = input.pointer || "bottom";
                     <${input.iconTag}/>
                 </if>
                 <else>
-                    <ebay-icon type="inline" name="information"/>
+                    <ebay-icon name="information"/>
                 </else>
             </button>
             <ebay-tooltip-overlay

@@ -67,7 +67,6 @@ describe('transformer', () => {
     });
 });
 
-
 describe('migrator', () => {
     const componentPath = '../index.js';
     function getTagString() {
