@@ -1,8 +1,8 @@
 {
   "flagSets": {
     "Theme": {
-      "DS6": ["skin-ds6"],
-      "DS4": []
+      "DS6": [],
+      "DS4": ["ds-4"]
     }
   }
 }
