@@ -17,6 +17,7 @@ module.exports = require('marko-widgets').defineComponent({
         const autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
         const currentValue = input.value;
         const index = findIndex(input.options, option => option.text === currentValue);
+        this.changeValue = currentValue;
 
         return assign({}, input, {
             autocomplete,
@@ -126,8 +127,6 @@ module.exports = require('marko-widgets').defineComponent({
         const newValue = this.inputEl.value;
 
         eventUtils.handleTextInput(originalEvent, () => {
-            this.valueChanged = this.state.currentValue !== newValue;
-
             this.activeDescendant.reset();
             this.inputEl.value = newValue;
             this.setState('currentValue', newValue);
@@ -140,6 +139,7 @@ module.exports = require('marko-widgets').defineComponent({
     },
     handleComboboxBlur() {
         const wasClickedOption = this.optionClicked;
+        const newValue = this.inputEl.value;
 
         if (wasClickedOption) {
             this.inputEl.focus();
@@ -149,9 +149,9 @@ module.exports = require('marko-widgets').defineComponent({
             this.expander.collapse();
         }
 
-        if (this.valueChanged) {
+        if (this.changeValue !== this.state.currentValue || this.state.currentValue !== newValue) {
             this.emitComboboxEvent('change');
-            this.valueChanged = false;
+            this.changeValue = this.state.currentValue;
         }
     },
     handleOptionMouseDown() {
@@ -162,7 +162,6 @@ module.exports = require('marko-widgets').defineComponent({
         const selectedValue = selectedEl.textContent;
 
         this.optionClicked = false;
-        this.valueChanged = this.inputEl.value !== selectedValue;
 
         this.inputEl.value = selectedValue;
         this.setState('currentValue', selectedValue);
