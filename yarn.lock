@@ -1894,10 +1894,10 @@
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.1.tgz#deccafb04101fa52507b8f2204161c8ed5e70375"
   integrity sha512-5i4XOsKwoCYomZ9cF7H5OBroeHoYUriylg55mJwTARMbQVv21RnYKF/Bwi86ZlHz4S6YepxlaQorsxR6T2xv6w==
 
-"@ebay/skin@9.5.0":
-  version "9.5.0"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-9.5.0.tgz#839ec68f643f5d6af23787da4f87f0cde3ae19a4"
-  integrity sha512-XjsKmYvHvxD6Gg70Nw304g4TaUUXEoH9loh6CX+YHpFpoOaGJRn1uA/2kW8bxEc6dQfX1qGxW8q440lQ94MYiw==
+"@ebay/skin@9.5.4":
+  version "9.5.4"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-9.5.4.tgz#d6a052bf8f2547f49b86fcce226b45bb3074c17c"
+  integrity sha512-eLQneE+NJ7sSsUUkqsLIesapfDe4BCjCjy/bfvA8v+QUEsbHD5nMCnVox526IJMSd+hn2jDvAveS8ae7BzykQw==
 
 "@emotion/cache@^10.0.17", "@emotion/cache@^10.0.9":
   version "10.0.17"
@@ -9328,9 +9328,9 @@ handle-thing@^2.0.0:
   integrity sha512-d4sze1JNC454Wdo2fkuyzCr6aHcbL6PGGuFAz0Li/NcOm1tCHGnWDRmJP85dh9IhQErTc2svWFEX5xHIOo//kQ==
 
 handlebars@^4.0.1, handlebars@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.npmjs.org/handlebars/-/handlebars-4.1.2.tgz#b6b37c1ced0306b221e094fc7aca3ec23b131b67"
-  integrity sha512-nvfrjqvt9xQ8Z/w0ijewdD/vvWDTOweBUm96NTr66Wfvo1mJenBLwcYmPs3TIBP5ruzYGD7Hx/DaM9RmhroGPw==
+  version "4.5.3"
+  resolved "https://registry.npmjs.org/handlebars/-/handlebars-4.5.3.tgz#5cf75bd8714f7605713511a56be7c349becb0482"
+  integrity sha512-3yPecJoJHK/4c6aZhSvxOyG4vJKDshV36VHp0iVCDVh7o9w2vwi3NSnL2MMPj3YdduqaBcu7cGbggJQM0br9xA==
   dependencies:
     neo-async "^2.6.0"
     optimist "^0.6.1"
@@ -11868,15 +11868,23 @@ makeup-exit-emitter@~0.2.0:
     custom-event-polyfill "^1"
     makeup-next-id "~0.1.1"
 
-makeup-expander@~0.8.0:
-  version "0.8.0"
-  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.8.0.tgz#05291645afbfd3c098cdd1b0a984d4fc2ba051c8"
-  integrity sha512-svM1OJGjGODdGtkuXJRxhsYtACrNInRDihkdELeABioHsjI3oi4TUYa9q7LC9GV2nsrqhhl/fHCFkbXnVo0Xng==
+makeup-exit-emitter@~0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/makeup-exit-emitter/-/makeup-exit-emitter-0.2.1.tgz#62c4cbe598a0b1b20e76435b4f1d14be1f137de4"
+  integrity sha512-Tv0qjuoePao6FbmJqaU3fQZON56AmAvYzF5Z8Q5l3MRYCF3MPKeCzUdqAf4DZOZuGbuH+3q2/vG/D4RubTW04A==
   dependencies:
     custom-event-polyfill "^1"
-    makeup-exit-emitter "~0.2.0"
+    makeup-next-id "~0.1.2"
+
+makeup-expander@~0.8.1:
+  version "0.8.1"
+  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.8.1.tgz#7cd284744193f7fc4ee604e8c82a0a1d655a0701"
+  integrity sha512-U7f9Aocjs31KMtsVPmcYYLblkycGfopmsAdn2X0uk2UnK+iMYCDLkoZU86tzXfpMapWaGwXPKfK7SEvtMtVyPQ==
+  dependencies:
+    custom-event-polyfill "^1"
+    makeup-exit-emitter "~0.2.1"
     makeup-focusables "~0.0.4"
-    makeup-next-id "~0.1.1"
+    makeup-next-id "~0.1.2"
 
 makeup-floating-label@~0.0.5:
   version "0.0.5"
@@ -11917,6 +11925,13 @@ makeup-next-id@~0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/makeup-next-id/-/makeup-next-id-0.1.1.tgz#1ea704fed3195c219ab13d7c55731615c3e0eaf0"
   integrity sha512-igmvG0iQYp+j+PiRz2Q5AfcS+MeBz45me7APWSpwtiktRvNKEpbM8I32gT8E3RMxt3rw//wciuS1Y7kYWxbRUg==
+  dependencies:
+    nanoid "^2"
+
+makeup-next-id@~0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/makeup-next-id/-/makeup-next-id-0.1.2.tgz#d324dfdc02bee85b74408a8bd245fd21ea0e88a9"
+  integrity sha512-l2spZVz00LcEZJNe2JcUIpgaFavtT4BBgaeIk0/yqfAnPKd3zDqXap9htLkaoTcW4hOhD3xPyZMZYqdFlMCOuQ==
   dependencies:
     nanoid "^2"
 
@@ -12671,9 +12686,9 @@ nan@^2.0.9, nan@^2.12.1, nan@^2.13.2:
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
 
 nanoid@^2:
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-2.1.0.tgz#3de3dbd68cfb2f3bd52550e2bfd439cf75040eb2"
-  integrity sha512-g5WwS+p6Cm+zQhO2YOpRbQThZVnNb7DDq74h8YDCLfAGynrEOrbx2E16dc8ciENiP1va5sqaAruqn2sN+xpkWg==
+  version "2.1.8"
+  resolved "https://registry.npmjs.org/nanoid/-/nanoid-2.1.8.tgz#2dbb0224231b246e3b4c819de7bfea6384dabf08"
+  integrity sha512-g1z+n5s26w0TGKh7gjn7HCqurNKMZWzH08elXzh/gM/csQHd/UqDV6uxMghQYg9IvqRPm1QpeMk50YMofHvEjQ==
 
 nanomatch@^1.2.9:
   version "1.2.13"
