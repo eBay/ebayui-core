@@ -31,9 +31,9 @@
             disabled=data.disabled
             aria-autocomplete=data.autocomplete
             aria-haspopup='listbox'
-            w-on-blur='handleComboboxBlur'
             w-on-keydown='handleComboboxKeyDown'
             w-on-keyup='handleComboboxKeyUp'
+            w-on-blur='handleComboboxBlur'
             autocomplete="new-password"
             w-preserve-attrs="aria-controls,aria-activedescendant,aria-owns,aria-expanded"
             ${processHtmlAttributes(data, ignoredAttributes)}/>
