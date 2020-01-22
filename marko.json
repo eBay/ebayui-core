@@ -1,7 +1,7 @@
 {
   "taglib-id": "ebayui-core",
   "tags-dir": "./src/components",
-  "<ebay-breadcumb>": {
+  "<ebay-breadcrumb>": {
     "migrator": "./src/components/ebay-breadcrumbs/migrator.js"
   },
   "<ebay-breadcrumbs-item>": {
