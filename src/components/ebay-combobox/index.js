@@ -24,6 +24,9 @@ module.exports = require('marko-widgets').defineComponent({
             currentValue
         });
     },
+    init() {
+        this.changeValue = this.state.currentValue;
+    },
     onRender() {
         const wasExpanded = this.expanded || false;
         const isExpanded = this.expanded = this.state.expanded;
@@ -126,8 +129,6 @@ module.exports = require('marko-widgets').defineComponent({
         const newValue = this.inputEl.value;
 
         eventUtils.handleTextInput(originalEvent, () => {
-            this.valueChanged = this.state.currentValue !== newValue;
-
             this.activeDescendant.reset();
             this.inputEl.value = newValue;
             this.setState('currentValue', newValue);
@@ -149,9 +150,11 @@ module.exports = require('marko-widgets').defineComponent({
             this.expander.collapse();
         }
 
-        if (this.valueChanged) {
+        // We are setting it this way because change DOM events do not trigger from
+        // setting values here because it rerenders the input which makes it in a clean state
+        if (this.changeValue !== this.state.currentValue) {
+            this.changeValue = this.state.currentValue;
             this.emitComboboxEvent('change');
-            this.valueChanged = false;
         }
     },
     handleOptionMouseDown() {
@@ -162,7 +165,6 @@ module.exports = require('marko-widgets').defineComponent({
         const selectedValue = selectedEl.textContent;
 
         this.optionClicked = false;
-        this.valueChanged = this.inputEl.value !== selectedValue;
 
         this.inputEl.value = selectedValue;
         this.setState('currentValue', selectedValue);
