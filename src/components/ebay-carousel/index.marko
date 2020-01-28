@@ -7,7 +7,11 @@ $ var data = component.getTemplateData(state, input);
         class=[
             "carousel__container",
             data.bothControlsDisabled &&
-                "carousel__container--controls-disabled"
+                "carousel__container--controls-disabled",
+            !data.itemsPerSlide &&
+            !data.nextControlDisabled &&
+            !data.autoplayInterval &&
+                "carousel__container--fade-right"
         ]
         onFocusin(data.autoplayInterval && "handleStartInteraction")
         onTouchstart(data.autoplayInterval && "handleStartInteraction")
