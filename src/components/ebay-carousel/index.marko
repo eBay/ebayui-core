@@ -7,11 +7,7 @@ $ var data = component.getTemplateData(state, input);
         class=[
             "carousel__container",
             data.bothControlsDisabled &&
-                "carousel__container--controls-disabled",
-            !data.itemsPerSlide &&
-            !data.nextControlDisabled &&
-            !data.autoplayInterval &&
-                "carousel__container--fade-right"
+                "carousel__container--controls-disabled"
         ]
         onFocusin(data.autoplayInterval && "handleStartInteraction")
         onTouchstart(data.autoplayInterval && "handleStartInteraction")
@@ -54,28 +50,34 @@ $ var data = component.getTemplateData(state, input);
                 <ebay-icon name="carousel-prev"/>
             </button>
         </if>
-        <ul
-            class="carousel__list"
-            style=(
-                !config.nativeScrolling &&
-                    data.offset && {
-                        transform: "translate3d(" + data.offset * -1 + "px,0,0)",
-                        transition: data.disableTransition ? "none" : undefined
-                    }
-            )
-            key="list"
-            id:scoped="list">
-            <for|item| of=data.items>
-                <li
-                    ...item.htmlAttributes
-                    class=item.class
-                    style=item.style
-                    aria-hidden=(!item.fullyVisible && "true")
-                    no-update-body-if(!!config.preserveItems)>
-                    <${item.renderBody}/>
-                </li>
-            </for>
-        </ul>
+        <div class=[
+            !data.itemsPerSlide &&
+            !data.nextControlDisabled &&
+            !data.autoplayInterval &&
+                "carousel__fade-right"]>
+            <ul
+                class="carousel__list"
+                style=(
+                    !config.nativeScrolling &&
+                        data.offset && {
+                            transform: "translate3d(" + data.offset * -1 + "px,0,0)",
+                            transition: data.disableTransition ? "none" : undefined
+                        }
+                )
+                key="list"
+                id:scoped="list">
+                <for|item| of=data.items>
+                    <li
+                        ...item.htmlAttributes
+                        class=item.class
+                        style=item.style
+                        aria-hidden=(!item.fullyVisible && "true")
+                        no-update-body-if(!!config.preserveItems)>
+                        <${item.renderBody}/>
+                    </li>
+                </for>
+            </ul>
+        </div>
         <if(data.showPaddles)>
             <button
                 class=[
