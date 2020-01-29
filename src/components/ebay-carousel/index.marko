@@ -44,8 +44,7 @@ $ var data = component.getTemplateData(state, input);
             <button
                 class=[
                     "carousel__control",
-                    "carousel__control--prev",
-                    data.alwaysShowPaddles && "carousel__control--show"
+                    "carousel__control--prev"
                 ]
                 type="button"
                 on-click(!data.prevControlDisabled && "handleMove", -1)
@@ -81,8 +80,7 @@ $ var data = component.getTemplateData(state, input);
             <button
                 class=[
                     "carousel__control",
-                    "carousel__control--next",
-                    data.alwaysShowPaddles && "carousel__control--show"
+                    "carousel__control--next"
                 ]
                 type="button"
                 on-click(!data.nextControlDisabled && "handleMove", 1)
@@ -115,29 +113,4 @@ $ var data = component.getTemplateData(state, input);
             </else>
         </if>
     </div>
-    <if(!data.noDots && data.totalSlides > 1)>
-        <ul class="carousel__dots">
-            <for|i| from=0 to=(data.totalSlides - 1)>
-                <li>
-                    $ var isActive = i === data.slide;
-                    <button
-                        class={
-                            "carousel__dot--active": isActive
-                        }
-                        type="button"
-                        on-click(!isActive && "handleDotClick", i)
-                        aria-describedby=statusId
-                        aria-disabled=(isActive && "true")
-                        aria-label=(
-                            isActive
-                                ? data.a11yCurrentText.replace(
-                                      "{currentSlide}",
-                                      i + 1
-                                  )
-                                : data.a11yOtherText.replace("{slide}", i + 1)
-                        )/>
-                </li>
-            </for>
-        </ul>
-    </if>
 </div>

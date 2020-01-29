@@ -7,8 +7,6 @@ exports.Discrete_1PerSlide_0Items = {
     a11yNextText: 'next',
     a11yStatusText: '{currentSlide} of {totalSlides}',
     a11yStatusTag: 'h2',
-    a11yCurrentText: 'current slide {currentSlide}',
-    a11yOtherText: 'go to slide {slide}',
     items: []
 };
 
