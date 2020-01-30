@@ -39,12 +39,6 @@ describe('notice', () => {
             expect(containerUsingLabel).has.class(`page-notice--${input.status}`);
         });
 
-        it('renders with dismiss button', async() => {
-            const input = mock.Page_Dismissible;
-            const { getByLabelText } = await render(template, input);
-            expect(getByLabelText(input.a11yCloseText)).has.class('page-notice__close');
-        });
-
         it('renders with cta button', async() => {
             const input = mock.Cta_Button;
             const { getByText } = await render(template, input);
@@ -104,13 +98,6 @@ describe('notice', () => {
             const status = getByLabelText(input.a11yHeadingText).parentElement;
             const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
             expect(containerUsingLabel).has.class(`inline-notice--${input.status}`);
-        });
-
-        it('renders with dismiss button', async() => {
-            const input = mock.Inline_Dismissible;
-            const { getByLabelText } = await render(template, input);
-            // TODO: Is this supposed to be inline-notice?
-            expect(getByLabelText(input.a11yCloseText)).has.class('page-notice__close');
         });
 
         testPassThroughAttributes(template, {
