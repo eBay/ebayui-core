@@ -19,6 +19,7 @@ static var ignoredAttributes = [
 $ var pointer = input.pointer || "bottom";
 <span>
     <ebay-tooltip-base
+        key="base"
         type="infotip"
         pointer=pointer
         overlay-id:scoped="overlay"
@@ -51,7 +52,7 @@ $ var pointer = input.pointer || "bottom";
                 heading=input.heading
                 content=input.content
                 a11y-close-text=input.a11yCloseText
-                onOverlay-close("handleCollapse")/>
+                onOverlay-close("handleOverlayClose")/>
         </span>
     </ebay-tooltip-base>
 </span>
