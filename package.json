@@ -124,7 +124,7 @@
   },
   "dependencies": {
     "core-js-pure": "^3.4.1",
-    "makeup-active-descendant": "~0.3.0",
+    "makeup-active-descendant": "0.3.2",
     "makeup-expander": "~0.8.0",
     "makeup-floating-label": "~0.0.5",
     "makeup-focusables": "~0.0.4",

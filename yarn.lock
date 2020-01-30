@@ -11829,10 +11829,10 @@ make-dir@^3.0.0:
   dependencies:
     semver "^6.0.0"
 
-makeup-active-descendant@~0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/makeup-active-descendant/-/makeup-active-descendant-0.3.0.tgz#5a48a3459f807dd2917112703c1c453bff33d18f"
-  integrity sha512-cOKhxl4FKd3yteeAR3seeOPWeGB4WEGLD56WXTXT5W+CLkelT0QKSPOGR1RPJSrKetlRX1T5U5hU96MAvKa3CA==
+makeup-active-descendant@0.3.2:
+  version "0.3.2"
+  resolved "https://registry.npmjs.org/makeup-active-descendant/-/makeup-active-descendant-0.3.2.tgz#f3c405ffa594cf4b05f28e049a240e7e2b6c8828"
+  integrity sha512-B69HlaKJx/o8SHXuRk1FPWlQObekE3Y4gGKXxC5KCH9AfcsjA26kvlYzD4KPpTFhht6oisDIMpzQvWUnLiWRGA==
   dependencies:
     custom-event-polyfill "^1"
     makeup-navigation-emitter "~0.3.0"
