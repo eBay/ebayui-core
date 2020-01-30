@@ -44,7 +44,7 @@ module.exports = require('marko-widgets').defineComponent({
                     autoInit: -1,
                     autoReset: -1,
                     axis: 'y',
-                    scrollInView: true
+                    autoScroll: true
                 }
             );
 
