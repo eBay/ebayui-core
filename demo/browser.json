@@ -1,6 +1,6 @@
 {
     "dependencies": [
-        "@ebay/skin/global",
+        "@ebay/skin/core",
         "@ebay/skin/less",
         "./atom-light-syntax.css",
         "./style.less",

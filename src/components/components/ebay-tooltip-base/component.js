@@ -24,6 +24,10 @@ module.exports = {
         }
     },
 
+    collapse() {
+        this._expander.collapse();
+    },
+
     onDestroy() {
         this._cleanupMakeup();
     },

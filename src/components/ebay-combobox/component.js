@@ -122,7 +122,8 @@ module.exports = {
                     activeDescendantClassName: 'combobox__option--active',
                     autoInit: -1,
                     autoReset: -1,
-                    axis: 'y'
+                    axis: 'y',
+                    autoScroll: true
                 }
             );
 

@@ -5,7 +5,6 @@ static var ignoredAttributes = [
     "fillWindow",
     "status",
     "hidden",
-    "dismissible",
     "content",
     "title"
 ];
@@ -17,71 +16,60 @@ $ var isWindow = type === "window";
 $ var isCelebration = status === "celebration";
 $ var isPage = type === "page" || isSection || isWindow;
 $ var isLightGuidance = isSection && !input.status;
-<if(!state.hidden)>
-    <${isPage ? "section" : "div"}
-        ...processHtmlAttributes(input, ignoredAttributes)
-        aria-labelledby:scoped="status"
-        aria-label=(isLightGuidance && input.a11yHeadingText)
-        class=[
-            `${type}-notice`,
-            !isLightGuidance && !isWindow && `${type}-notice--${status}`,
-            input.fillWindow && `${type}-notice--fill`,
-            input.class
-        ]>
-        <if(!isLightGuidance)>
-            <${isPage ? input.a11yHeadingTag || "h2" : "span"}
-                class=`${type}-notice__status`
-                id:scoped="status">
-                <if(isWindow && input.title)>
-                    <ebay-icon
-                        class="window-notice__icon"
-                        name="confirmation-filled"
-                        aria-label=input.a11yHeadingText/>
-                    <span
-                        ...processHtmlAttributes(input.title)
-                        class=[`${type}-notice__title`, input.title.class]>
-                        <${input.title}/>
-                    </span>
-                </if>
-                <else>
-                    <if(status === "confirmation" || status === "celebration")>
-                        <ebay-icon name="confirmation-filled" aria-label=input.a11yHeadingText/>
-                    </if>
-                    <else if(status === "attention")>
-                        <ebay-icon name="attention-filled" aria-label=input.a11yHeadingText/>
-                    </else>
-                    <else if(status === "information")>
-                        <ebay-icon name="information-filled" aria-label=input.a11yHeadingText/>
-                    </else>
-                </else>
-            </>
-        </if>
-        <${isPage ? "div" : "span"}
-            ...(input.content && processHtmlAttributes(input.content))
-            class=[
-                `${type}-notice__content`,
-                input.content && input.content.class
-            ]>
-            <if(isCelebration && input.title)>
+<${isPage ? "section" : "div"}
+    ...processHtmlAttributes(input, ignoredAttributes)
+    aria-labelledby:scoped="status"
+    aria-label=(isLightGuidance && input.a11yHeadingText)
+    class=[
+        `${type}-notice`,
+        !isLightGuidance && !isWindow && `${type}-notice--${status}`,
+        input.fillWindow && `${type}-notice--fill`,
+        input.class
+    ]>
+    <if(!isLightGuidance)>
+        <${isPage ? input.a11yHeadingTag || "h2" : "span"}
+            class=`${type}-notice__status`
+            id:scoped="status">
+            <if(isWindow && input.title)>
+                <ebay-icon
+                    class="window-notice__icon"
+                    name="confirmation-filled"
+                    aria-label=input.a11yHeadingText/>
                 <span
                     ...processHtmlAttributes(input.title)
                     class=[`${type}-notice__title`, input.title.class]>
-                    <${input.title.renderBody}/>
+                    <${input.title}/>
                 </span>
             </if>
-            <${input.content || input.renderBody}/>
+            <else>
+                <if(status === "confirmation" || status === "celebration")>
+                    <ebay-icon name="confirmation-filled" aria-label=input.a11yHeadingText/>
+                </if>
+                <else if(status === "attention")>
+                    <ebay-icon name="attention-filled" aria-label=input.a11yHeadingText/>
+                </else>
+                <else if(status === "information")>
+                    <ebay-icon name="information-filled" aria-label=input.a11yHeadingText/>
+                </else>
+            </else>
         </>
-        <if(input.content)>
-            <${input.renderBody}/>
+    </if>
+    <${isPage ? "div" : "span"}
+        ...(input.content && processHtmlAttributes(input.content))
+        class=[
+            `${type}-notice__content`,
+            input.content && input.content.class
+        ]>
+        <if(isCelebration && input.title)>
+            <span
+                ...processHtmlAttributes(input.title)
+                class=[`${type}-notice__title`, input.title.class]>
+                <${input.title.renderBody}/>
+            </span>
         </if>
-        <if(input.dismissible)>
-            <button
-                class="page-notice__close"
-                type="button"
-                aria-label=input.a11yCloseText
-                onClick("handleDismiss")>
-                <span/>
-            </button>
-        </if>
+        <${input.content || input.renderBody}/>
     </>
-</if>
+    <if(input.content)>
+        <${input.renderBody}/>
+    </if>
+</>
