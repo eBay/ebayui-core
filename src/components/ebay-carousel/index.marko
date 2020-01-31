@@ -40,8 +40,7 @@ $ var data = component.getTemplateData(state, input);
             <button
                 class=[
                     "carousel__control",
-                    "carousel__control--prev",
-                    data.alwaysShowPaddles && "carousel__control--show"
+                    "carousel__control--prev"
                 ]
                 type="button"
                 on-click(!data.prevControlDisabled && "handleMove", -1)
@@ -51,34 +50,39 @@ $ var data = component.getTemplateData(state, input);
                 <ebay-icon name="carousel-prev"/>
             </button>
         </if>
-        <ul
-            class="carousel__list"
-            style=(
-                !config.nativeScrolling &&
-                    data.offset && {
-                        transform: "translate3d(" + data.offset * -1 + "px,0,0)",
-                        transition: data.disableTransition ? "none" : undefined
-                    }
-            )
-            key="list"
-            id:scoped="list">
-            <for|item| of=data.items>
-                <li
-                    ...item.htmlAttributes
-                    class=item.class
-                    style=item.style
-                    aria-hidden=(!item.fullyVisible && "true")
-                    no-update-body-if(!!config.preserveItems)>
-                    <${item.renderBody}/>
-                </li>
-            </for>
-        </ul>
+        <div class=[
+            !data.itemsPerSlide &&
+            !data.nextControlDisabled &&
+            !data.autoplayInterval &&
+                "carousel__mask"]>
+            <ul
+                class="carousel__list"
+                style=(
+                    !config.nativeScrolling &&
+                        data.offset && {
+                            transform: "translate3d(" + data.offset * -1 + "px,0,0)",
+                            transition: data.disableTransition ? "none" : undefined
+                        }
+                )
+                key="list"
+                id:scoped="list">
+                <for|item| of=data.items>
+                    <li
+                        ...item.htmlAttributes
+                        class=item.class
+                        style=item.style
+                        aria-hidden=(!item.fullyVisible && "true")
+                        no-update-body-if(!!config.preserveItems)>
+                        <${item.renderBody}/>
+                    </li>
+                </for>
+            </ul>
+        </div>
         <if(data.showPaddles)>
             <button
                 class=[
                     "carousel__control",
-                    "carousel__control--next",
-                    data.alwaysShowPaddles && "carousel__control--show"
+                    "carousel__control--next"
                 ]
                 type="button"
                 on-click(!data.nextControlDisabled && "handleMove", 1)
@@ -111,29 +115,4 @@ $ var data = component.getTemplateData(state, input);
             </else>
         </if>
     </div>
-    <if(!data.noDots && data.totalSlides > 1)>
-        <ul class="carousel__dots">
-            <for|i| from=0 to=(data.totalSlides - 1)>
-                <li>
-                    $ var isActive = i === data.slide;
-                    <button
-                        class={
-                            "carousel__dot--active": isActive
-                        }
-                        type="button"
-                        on-click(!isActive && "handleDotClick", i)
-                        aria-describedby=statusId
-                        aria-disabled=(isActive && "true")
-                        aria-label=(
-                            isActive
-                                ? data.a11yCurrentText.replace(
-                                      "{currentSlide}",
-                                      i + 1
-                                  )
-                                : data.a11yOtherText.replace("{slide}", i + 1)
-                        )/>
-                </li>
-            </for>
-        </ul>
-    </if>
 </div>

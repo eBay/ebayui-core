@@ -276,11 +276,6 @@ describe('given a discrete carousel', () => {
             expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
         });
 
-        it('then the first dot is selected and disabled', () => {
-            expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 1)))
-                .has.attr('aria-disabled', 'true');
-        });
-
         it('then has the appropriate heading', () => {
             expect(component.getByRole('heading')).has.text('1 of 3');
         });
@@ -352,19 +347,6 @@ describe('given a discrete carousel', () => {
             thenItMovedToTheSecondSlide();
         });
 
-        describe('when second slide dot is clicked', () => {
-            beforeEach(async() => {
-                fireEvent.click(component.getByLabelText(input.a11yOtherText.replace('{slide}', 2)));
-                await waitForCarouselUpdate();
-            });
-
-            it('then it emitted the slide event', () => {
-                expect(component.emitted('carousel-slide')).has.nested.property('[0][0].slide', 2);
-            });
-
-            thenItMovedToTheSecondSlide();
-        });
-
         //
         (supportsNativeScrolling
             ? describe
@@ -396,11 +378,6 @@ describe('given a discrete carousel', () => {
                 expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled');
             });
 
-            it('then the second dot is selected and disabled', () => {
-                expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 2)))
-                    .has.attr('aria-disabled', 'true');
-            });
-
             it('then has updated the heading', () => {
                 expect(component.getByRole('heading')).has.text('2 of 3');
             });
@@ -417,11 +394,6 @@ describe('given a discrete carousel', () => {
 
         it('then next control is disabled', () => {
             expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
-        });
-
-        it('then the third dot is selected and disabled', () => {
-            expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 3)))
-                .has.attr('aria-disabled', 'true');
         });
 
         describe('when previous button is clicked', () => {
@@ -446,11 +418,6 @@ describe('given a discrete carousel', () => {
             it('then prev and next controls are enabled', () => {
                 expect(component.getByLabelText(input.a11yPreviousText)).to.not.have.attr('aria-disabled');
                 expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled');
-            });
-
-            it('then the second dot is selected and disabled', () => {
-                expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 2)))
-                    .has.attr('aria-disabled', 'true');
             });
         });
     });
@@ -484,15 +451,6 @@ describe('given a discrete carousel', () => {
             thenItMovedToTheSecondSlide();
         });
 
-        describe('when second slide dot is clicked', () => {
-            beforeEach(async() => {
-                fireEvent.click(component.getByLabelText(input.a11yOtherText.replace('{slide}', 2)));
-                await waitForCarouselUpdate();
-            });
-
-            thenItMovedToTheSecondSlide();
-        });
-
         function thenItMovedToTheSecondSlide() {
             it('then it emitted the slide event', () => {
                 expect(component.emitted('carousel-slide')).has.length(1);
@@ -501,11 +459,6 @@ describe('given a discrete carousel', () => {
             it('then it moved to the third item', () => {
                 const secondItem = component.getByText(input.items[2].renderBody.text);
                 assertAtStartOfSlide(secondItem);
-            });
-
-            it('then the second dot is selected and disabled', () => {
-                expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 2)))
-                    .has.attr('aria-disabled', 'true');
             });
 
             it('then has updated the heading', () => {
@@ -528,12 +481,6 @@ describe('given a discrete carousel', () => {
 
         it('then has the appropriate heading', () => {
             expect(component.getByRole('heading')).has.text('1 of 2');
-        });
-
-        it('then the dot controls do not display', () => {
-            expect(
-                component.queryByLabelText(input.a11yCurrentText.replace('{currentSlide}', ''))
-            ).equals(null);
         });
 
         it('then it shows part of the next slide', () => {
@@ -666,11 +613,6 @@ describe('given a discrete carousel', () => {
             it('then it is displaying the first item', () => {
                 const firstItem = component.getByText(input.items[0].renderBody.text);
                 assertAtStartOfSlide(firstItem);
-            });
-
-            it('then the first dot is selected and disabled', () => {
-                expect(component.getByLabelText(input.a11yCurrentText.replace('{currentSlide}', 1)))
-                    .has.attr('aria-disabled', 'true');
             });
 
             it('then it has the appropriate heading', () => {

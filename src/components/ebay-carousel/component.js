@@ -60,7 +60,6 @@ function getTemplateData(state) {
         offset: hasOverride ? config.offsetOverride : offset,
         disableTransition: hasOverride,
         showPaddles: itemsPerSlide ? items.length > itemsPerSlide : true,
-        alwaysShowPaddles: state.noDots && state.peek === 0 && !state.autoplayInterval,
         totalSlides,
         a11yStatusText,
         prevControlDisabled,
@@ -188,22 +187,6 @@ function handleMove(direction, originalEvent) {
     const slide = getSlide(state, nextIndex);
     this.emit('carousel-slide', { slide: slide + 1, originalEvent });
     this.emit(`carousel-${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
-}
-
-/**
- * Moves the carousel to the slide at `data-slide` for the clicked element if possible.
- *
- * @param {MouseEvent} originalEvent
- * @param {int} slide
- */
-function handleDotClick(slide, originalEvent) {
-    if (this.isMoving) {
-        return;
-    }
-    const { state: { config, itemsPerSlide } } = this;
-    config.preserveItems = true;
-    this.setState('index', slide * itemsPerSlide);
-    this.emit('carousel-slide', { slide: slide + 1, originalEvent });
 }
 
 /**
@@ -450,7 +433,6 @@ module.exports = {
     getTemplateData,
     move,
     handleMove,
-    handleDotClick,
     handleStartInteraction,
     handleEndInteraction,
     togglePlay,
@@ -467,7 +449,6 @@ module.exports = {
                 'gap',
                 'autoplay',
                 'paused',
-                'no-dots',
                 'itemsPerSlide',
                 'a11yPreviousText',
                 'a11yNextText',
@@ -475,8 +456,6 @@ module.exports = {
                 'a11yStatusTag',
                 'a11yHeadingText',
                 'a11yHeadingTag',
-                'a11yCurrentText',
-                'a11yOtherText',
                 'a11yPlayText',
                 'a11yPauseText',
                 'items'
@@ -485,7 +464,6 @@ module.exports = {
             style: input.style,
             config: {}, // A place to store values that should not trigger an update by themselves.
             gap: isNaN(gap) ? 16 : gap,
-            noDots: input.noDots,
             index: parseInt(input.index, 10) || 0,
             itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
             a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
@@ -494,8 +472,6 @@ module.exports = {
             a11yStatusTag: input.a11yStatusTag || 'span',
             a11yHeadingText: input.a11yHeadingText,
             a11yHeadingTag: input.a11yHeadingTag || 'h2',
-            a11yCurrentText: input.a11yCurrentText || 'Current Slide {currentSlide} - Carousel',
-            a11yOtherText: input.a11yOtherText || 'Slide {slide} - Carousel',
             a11yPauseText: input.a11yPauseText || 'Pause - Carousel',
             a11yPlayText: input.a11yPlayText || 'Play - Carousel'
         };
@@ -507,9 +483,12 @@ module.exports = {
             state.itemsPerSlide = itemsPerSlide - state.peek;
             state.classes.push('carousel--slides');
 
+            if (!state.peek && !input.autoplay) {
+                state.peek = 0.1;
+            }
+
             if (state.peek) {
                 state.classes.push('carousel--peek');
-                state.noDots = true;
             }
 
             // Only allow autoplay option for discrete carousels.
