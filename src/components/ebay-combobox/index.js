@@ -168,6 +168,7 @@ module.exports = require('marko-widgets').defineComponent({
         this.optionClicked = false;
 
         this.inputEl.value = selectedValue;
+        this.changeValue = selectedValue;
         this.setState('currentValue', selectedValue);
         this.setSelectedIndex();
         this.emitComboboxEvent('select');
