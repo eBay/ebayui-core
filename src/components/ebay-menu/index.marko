@@ -66,15 +66,12 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
                 onKeypress("handleItemKeypress")
                 key="item[]">
                 <span>
-                    <${!item.badgeNumber ? null : "span"} aria-hidden="true">
-                        <span>
-                            <${item.renderBody}/>
-                        </span>
-                        <if(item.badgeNumber)>
-                            <ebay-badge type="menu" number=item.badgeNumber/>
-                        </if>
-                    </>
+                    <${item.renderBody}/>
                 </span>
+                <if(item.badgeNumber)>
+                    <ebay-badge type="menu" number=item.badgeNumber/>
+                </if>
+
                 <ebay-icon name="tick-small" />
             </>
         </for>

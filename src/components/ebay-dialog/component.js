@@ -82,7 +82,7 @@ module.exports = {
         const isTrapped = this.isTrapped = this.state.open;
         const isFirstRender = (opts && opts.firstRender);
         const wasToggled = isTrapped !== wasTrapped;
-        const focusEl = (this.state.focus && document.getElementById(this.state.focus)) || this.closeEl;
+        const focusEl = (this.input.focus && document.getElementById(this.input.focus)) || this.closeEl;
 
         if (restoreTrap || (isTrapped && !wasTrapped)) {
             screenReaderTrap.trap(this.windowEl);
