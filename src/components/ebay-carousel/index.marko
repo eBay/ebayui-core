@@ -51,10 +51,11 @@ $ var data = component.getTemplateData(state, input);
             </button>
         </if>
         <div class=[
+            "carousel__viewport",
             !data.itemsPerSlide &&
             !data.nextControlDisabled &&
             !data.autoplayInterval &&
-                "carousel__mask"]>
+                "carousel__viewport--mask"]>
             <ul
                 class="carousel__list"
                 style=(
