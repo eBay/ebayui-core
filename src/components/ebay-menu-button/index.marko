@@ -29,7 +29,8 @@ $ var isOverflowVariant = input.variant === "overflow";
     class=[isFake ? "fake-menu-button" : "menu-button", input.class]
     style=input.style
     onExpander-expand("handleExpand")
-    onExpander-collapse("handleCollapse")>
+    onExpander-collapse("handleCollapse")
+    onMousedown("handleMousedown")>
     <ebay-button
         class=[
             `${baseClass}__button`,

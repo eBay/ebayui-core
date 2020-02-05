@@ -91,7 +91,9 @@ module.exports = {
     handleMenuSelect({ el, originalEvent, index }) {
         this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
     },
-
+    handleMousedown({ el, originalEvent }) {
+        this.emitComponentEvent({ eventType: 'mousedown', el, originalEvent });
+    },
     emitComponentEvent({ eventType, el, originalEvent, index }) {
         const checkedIndexes = this.getCheckedIndexes();
         const isCheckbox = this.type === 'checkbox';
