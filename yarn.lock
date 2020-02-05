@@ -6675,12 +6675,7 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-custom-event-polyfill@^1:
-  version "1.0.7"
-  resolved "https://registry.npmjs.org/custom-event-polyfill/-/custom-event-polyfill-1.0.7.tgz#9bc993ddda937c1a30ccd335614c6c58c4f87aee"
-  integrity sha512-TDDkd5DkaZxZFM8p+1I3yAlvM3rSr1wbrOliG4yJiwinMZN8z/iGL7BTlDkrJcYTmgUSb4ywVCc3ZaUtOtC76w==
-
-custom-event@~1.0.0:
+custom-event@^1, custom-event@~1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/custom-event/-/custom-event-1.0.1.tgz#5d02a46850adf1b4a317946a3928fccb5bfd0425"
   integrity sha1-XQKkaFCt8bSjF5RqOSj8y1v9BCU=
@@ -11829,32 +11824,32 @@ make-dir@^3.0.0:
   dependencies:
     semver "^6.0.0"
 
-makeup-active-descendant@0.3.2:
-  version "0.3.2"
-  resolved "https://registry.npmjs.org/makeup-active-descendant/-/makeup-active-descendant-0.3.2.tgz#f3c405ffa594cf4b05f28e049a240e7e2b6c8828"
-  integrity sha512-B69HlaKJx/o8SHXuRk1FPWlQObekE3Y4gGKXxC5KCH9AfcsjA26kvlYzD4KPpTFhht6oisDIMpzQvWUnLiWRGA==
+makeup-active-descendant@0.3.6:
+  version "0.3.6"
+  resolved "https://registry.npmjs.org/makeup-active-descendant/-/makeup-active-descendant-0.3.6.tgz#d12c660a5a081e5d47121b8e32b44a04e4f70fec"
+  integrity sha512-xfvN9JJ0NfV7rmhFwFrH7MwtdQ7YiV4SaHK5daSYjliBL+UFN9PtVc+DVvEKgRiwY7YxREa0rUBtjEsx2roPDw==
   dependencies:
-    custom-event-polyfill "^1"
-    makeup-navigation-emitter "~0.3.0"
+    custom-event "^1"
+    makeup-navigation-emitter "~0.3.4"
     nodelist-foreach-polyfill "^1"
 
-makeup-exit-emitter@~0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/makeup-exit-emitter/-/makeup-exit-emitter-0.2.0.tgz#8db51f2f815bd80d1544ddaa3e24edb2546ef261"
-  integrity sha512-rYWxuFyF7rdf36B06IvN/Y6Q/vQqhrIRyzyR7y2BL3cdkqboYlMxGceqVWPpS9ZyQ7b36r7lRG4sxavec5rzfw==
+makeup-exit-emitter@~0.2.4:
+  version "0.2.4"
+  resolved "https://registry.npmjs.org/makeup-exit-emitter/-/makeup-exit-emitter-0.2.4.tgz#852792d62566ea26b84582fedca690f4302cccbc"
+  integrity sha512-NzNwlUnPaqZIbgktqJnuiD6jAtZwpF9SSyzH4HV3t6g3lc6BR0cGQywqEow3r6sHan8UnTPeLqIbco/cPXXmlw==
   dependencies:
-    custom-event-polyfill "^1"
-    makeup-next-id "~0.1.1"
+    custom-event "^1"
+    makeup-next-id "~0.1.2"
 
-makeup-expander@~0.8.0:
-  version "0.8.0"
-  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.8.0.tgz#05291645afbfd3c098cdd1b0a984d4fc2ba051c8"
-  integrity sha512-svM1OJGjGODdGtkuXJRxhsYtACrNInRDihkdELeABioHsjI3oi4TUYa9q7LC9GV2nsrqhhl/fHCFkbXnVo0Xng==
+makeup-expander@~0.8.4:
+  version "0.8.4"
+  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.8.4.tgz#21fdefebada4ba7c9428d9ef593c758c7d8e8ea9"
+  integrity sha512-PvHB/ip3f1TANeUNNM3Cb8Yiye8LlFBXxxVY2bpxBdPEl9vVGNT82poRSsL4KikLGjqCI2pilqeRyneWmEB9vw==
   dependencies:
-    custom-event-polyfill "^1"
-    makeup-exit-emitter "~0.2.0"
+    custom-event "^1"
+    makeup-exit-emitter "~0.2.4"
     makeup-focusables "~0.0.4"
-    makeup-next-id "~0.1.1"
+    makeup-next-id "~0.1.2"
 
 makeup-floating-label@~0.0.5:
   version "0.0.5"
@@ -11866,35 +11861,35 @@ makeup-focusables@~0.0.4:
   resolved "https://registry.npmjs.org/makeup-focusables/-/makeup-focusables-0.0.4.tgz#1a324b1e7c026f2254dd599caa4099344f1c266c"
   integrity sha512-2yOaXhTnltA9Fb9+sSk2d2oS5150/qMhyjvFYUUWBxlnVpSR7H7cktH/WLgYl7Nab79W29pNUnAIHX9SpnWKKQ==
 
-makeup-key-emitter@~0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/makeup-key-emitter/-/makeup-key-emitter-0.1.0.tgz#0a6b43763d6cfd808217f8a3d3c21a071b61e25c"
-  integrity sha512-c0pPu1dQ6+K7oq9oT+2Bc95tsGV0sZqzuszdNn5a44cl1n3uFUW4LkBhwRfRglPllAlPMRZB3vYium8yXjEOHQ==
+makeup-key-emitter@~0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/makeup-key-emitter/-/makeup-key-emitter-0.1.2.tgz#9e9dd655846912a7ff94390486dd3d4506c10509"
+  integrity sha512-r/NLb/QJTgLFeiGyYlaoEmf3OQITPp4zCEeavBiBdQpvi7xKAKAa2mJkx26uly0VRWvIYJ1egPWkbE3D0Gnsvg==
   dependencies:
-    custom-event-polyfill "^1"
+    custom-event "^1"
 
-makeup-keyboard-trap@~0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/makeup-keyboard-trap/-/makeup-keyboard-trap-0.2.0.tgz#c4746eb0722c9548340668a30d27a67e25381e46"
-  integrity sha512-BKbX/kye6bhv5O8KSwT2VkwW4Rk3SVPZAvKqGMz7osgFd1CHwWl/dQcRs8TTafCDA6HlAlPYm4EFXXVt1NnyLQ==
+makeup-keyboard-trap@~0.2.2:
+  version "0.2.2"
+  resolved "https://registry.npmjs.org/makeup-keyboard-trap/-/makeup-keyboard-trap-0.2.2.tgz#81dafcfcd5ce3b8bf290e8b3c016bf2b71f0dbab"
+  integrity sha512-2QQF86c/+ugsUvh/hki1p54sbtYkfuwMGXCT167uvjxiinjH8DyJid37juuoBT50uYOHGXrJr0kHrkc/VKeC3Q==
   dependencies:
-    custom-event-polyfill "^1"
+    custom-event "^1"
     makeup-focusables "~0.0.4"
 
-makeup-navigation-emitter@~0.3.0:
-  version "0.3.0"
-  resolved "https://registry.npmjs.org/makeup-navigation-emitter/-/makeup-navigation-emitter-0.3.0.tgz#7e05afd7e9ce81060534095ecc723a8c27c10630"
-  integrity sha512-jZaZyOmuV0h8Aj2Tq69GcLlHQF+Ihi00rIP47co3k5GQPK/fkzgAK4hXdYpzAZG2ep8TAwmGvapxCpSpL6GUUA==
+makeup-navigation-emitter@~0.3.4:
+  version "0.3.4"
+  resolved "https://registry.npmjs.org/makeup-navigation-emitter/-/makeup-navigation-emitter-0.3.4.tgz#abd500f25d1336267995cba6ba65e16b6b6363c6"
+  integrity sha512-fP9IdzQ9tjSrpms0HN3n8EuwFhtmU2XF4LDnBgliik90VYMDq6bAtZWmZbugWP6nkbdDuU5pNnxhMZ5SfUC/zQ==
   dependencies:
-    custom-event-polyfill "^1"
-    makeup-exit-emitter "~0.2.0"
-    makeup-key-emitter "~0.1.0"
+    custom-event "^1"
+    makeup-exit-emitter "~0.2.4"
+    makeup-key-emitter "~0.1.2"
     nodelist-foreach-polyfill "^1"
 
-makeup-next-id@~0.1.1:
-  version "0.1.1"
-  resolved "https://registry.npmjs.org/makeup-next-id/-/makeup-next-id-0.1.1.tgz#1ea704fed3195c219ab13d7c55731615c3e0eaf0"
-  integrity sha512-igmvG0iQYp+j+PiRz2Q5AfcS+MeBz45me7APWSpwtiktRvNKEpbM8I32gT8E3RMxt3rw//wciuS1Y7kYWxbRUg==
+makeup-next-id@~0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmjs.org/makeup-next-id/-/makeup-next-id-0.1.2.tgz#d324dfdc02bee85b74408a8bd245fd21ea0e88a9"
+  integrity sha512-l2spZVz00LcEZJNe2JcUIpgaFavtT4BBgaeIk0/yqfAnPKd3zDqXap9htLkaoTcW4hOhD3xPyZMZYqdFlMCOuQ==
   dependencies:
     nanoid "^2"
 
@@ -11903,21 +11898,21 @@ makeup-prevent-scroll-keys@~0.0.3:
   resolved "https://registry.npmjs.org/makeup-prevent-scroll-keys/-/makeup-prevent-scroll-keys-0.0.3.tgz#71eb9045f3ebe3cac17933c8222de69b7c4e6f56"
   integrity sha512-R3x0jd3/WkYzOlL6VzGhsTdmLLDvARtPNejaO4xKWUIzfaeDFMdpvtonNuoDqwi7KpKpm9cR9oNgYd9e0SCoGw==
 
-makeup-roving-tabindex@~0.3.1:
-  version "0.3.1"
-  resolved "https://registry.npmjs.org/makeup-roving-tabindex/-/makeup-roving-tabindex-0.3.1.tgz#3685637d85e24ee5fd3b52c2408881c42535d509"
-  integrity sha512-B3mie98pRwupjC9usmnPlnJ8V7wW2psBaIbgMGfZ1GuGhQhA5TPYZHmQyM1dLPhUnb3976/Pt/9gG59Wj2JVyw==
+makeup-roving-tabindex@~0.3.5:
+  version "0.3.5"
+  resolved "https://registry.npmjs.org/makeup-roving-tabindex/-/makeup-roving-tabindex-0.3.5.tgz#d8b37134710123197f987d58dc032fae1526f04e"
+  integrity sha512-VfmlFTsv5F1cuyhqHiXgyTXuuldkRtZ3UUoFC71WnMSRmJTvWUL926S1YVdYvYMsYtFMpIIlcU5kSDe/DjwwcQ==
   dependencies:
-    custom-event-polyfill "^1"
-    makeup-navigation-emitter "~0.3.0"
+    custom-event "^1"
+    makeup-navigation-emitter "~0.3.4"
     nodelist-foreach-polyfill "^1"
 
-makeup-screenreader-trap@~0.1.0:
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/makeup-screenreader-trap/-/makeup-screenreader-trap-0.1.0.tgz#accbd8d23c81cbbd55ac972078b2e5a82e26d024"
-  integrity sha512-bEBOPrZp/LgdAEAFylqSzFqjxQdIbwknpUeTwl2dqVGrEVPMOSaoxogSlaIckB70mkNLRXwzbyuySYIzu1lXqA==
+makeup-screenreader-trap@~0.1.3:
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/makeup-screenreader-trap/-/makeup-screenreader-trap-0.1.3.tgz#17b8b187581591513c427242794920fb0541b8a3"
+  integrity sha512-1ieRcv56QLB43bpaBWK5SL8JjcZpcVHKLfH1hBJ93LtEFcMzFnSYe0nNDgCt0AM9moGK92d6Zix160LdIyzu+g==
   dependencies:
-    custom-event-polyfill "^1"
+    custom-event "^1"
 
 mamacro@^0.0.3:
   version "0.0.3"
