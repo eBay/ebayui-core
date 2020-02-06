@@ -153,7 +153,7 @@ module.exports = require('marko-widgets').defineComponent({
 
         // We are setting it this way because change DOM events do not trigger from
         // setting values here because it rerenders the input which makes it in a clean state
-        if (this.changeValue !== this.state.currentValue) {
+        if (this.changeValue !== this.state.currentValue && !wasClickedOption) {
             this.changeValue = this.state.currentValue;
             this.emitComboboxEvent('change');
         }
@@ -168,6 +168,7 @@ module.exports = require('marko-widgets').defineComponent({
         this.optionClicked = false;
 
         this.inputEl.value = selectedValue;
+        this.changeValue = selectedValue;
         this.setState('currentValue', selectedValue);
         this.setSelectedIndex();
         this.emitComboboxEvent('select');
