@@ -12,6 +12,7 @@
         w-onfocus="handleFocus"
         type="radio"
         class="radio__control"
+        id=(data.id || widget.id + "-input")
         disabled=data.disabled
         ${processHtmlAttributes(data, ignoredAttributes)}/>
     <span class="radio__icon" hidden>
