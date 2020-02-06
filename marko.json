@@ -567,6 +567,7 @@
       "type": "expression"
     },
     "@html-attributes": "expression",
+    "@id": "string",
     "@class": "string",
     "@style": "string",
     "@disabled": "boolean"
