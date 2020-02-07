@@ -1,0 +1,49 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "variant",
+    "text",
+    "footerText",
+    "disabled",
+    "selected",
+    "formName",
+    "formAction",
+    "formMethod",
+    "items"
+];
+
+<span
+    ...processHtmlAttributes(input, ignoredAttributes)
+    key="container"
+    class=["filter-menu-button", input.class]
+    onExpander-expand("handleExpand")
+    onExpander-collapse("handleCollapse")>
+    <button
+        type="button"
+        class="filter-menu-button__button"
+        disabled=input.disabled
+        aria-expanded:no-update="false"
+        aria-haspopup="true"
+        aria-label=input.a11yText
+        aria-pressed=(state.isChecked.some(Boolean) && "true")>
+        <span class="filter-menu-button__button-cell">
+            <span class="filter-menu-button__button-text">${input.text}</span>
+            <ebay-icon name="chevron-down"/>
+        </span>
+    </button>
+    <ebay-filter-menu
+        class-prefix="filter-menu-button"
+        variant=input.variant
+        form-name=input.formName
+        form-action=input.formAction
+        form-method=input.formMethod
+        footer-text=input.footerText
+        onFilter-menu-keydown("handleMenuKeydown")
+        onFilter-menu-change("handleMenuChange")
+        onFilter-menu-form-submit("handleFormSubmit")
+        onFilter-menu-footer-click("handleFooterButtonClick")>
+        <for|item, i| of=input.items>
+            <@item ...item checked=state.isChecked[i]/>
+        </for>
+    </ebay-filter-menu>
+</span>

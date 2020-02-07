@@ -20,7 +20,7 @@
 Marko v3 requires [Marko Widgets v6](https://github.com/marko-js/marko-widgets)\
 Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/tree/v7)*
 
-*Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components. eBayUI Core presently relies on the `skin-ds6` flag to toggle designs to use the Design System 6 version of Skin.*
+*Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components.*
 
 *Note: In order for spread attributes to work properly, `marko@3.14.5` or `marko@4.18.22` at least is required*
 

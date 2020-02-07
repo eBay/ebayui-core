@@ -1,0 +1,29 @@
+{
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@class": "string",
+  "@style": "string",
+  "@class-prefix": "string",
+  "@type": "string",
+  "@reverse": "boolean",
+  "@fix-width": "boolean",
+  "@items <item>[]": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@href": "string",
+    "@type": "string",
+    "@value": "string",
+    "@checked": "boolean",
+    "@current": "boolean",
+    "@badge-number": "expression",
+    "@badge-aria-label": "string"
+  }
+}

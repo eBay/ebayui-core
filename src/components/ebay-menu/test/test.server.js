@@ -68,8 +68,7 @@ describe('menu', () => {
                 expect(optionEls).has.length(1);
                 expect(optionEls[0]).has.attr('aria-checked', String(checked));
 
-                expect(getByRole('menu').querySelector('.menu__status'))
-                    .does.not.equal(null);
+                expect(getByRole('menu').querySelector('.icon--tick-small')).does.not.equal(null);
             });
         });
     });

@@ -1,0 +1,35 @@
+import processHtmlAttributes from "../../common/html-attributes";
+
+static var ignoredAttributes = [
+    "a11yHeadingText",
+    "a11yHeadingTag",
+    "hijax",
+    "items"
+];
+
+<nav
+    ...processHtmlAttributes(input, ignoredAttributes)
+    aria-labelledby:scoped="breadcrumbs-heading"
+    class=["breadcrumbs", input.class]
+    role="navigation">
+    <${input.a11yHeadingTag || "h2"} id:scoped="breadcrumbs-heading" class="clipped">
+        ${input.a11yHeadingText}
+    </>
+    <ul>
+        <for|item, i| of=input.items>
+            <li>
+                $ var isLast = i === input.items.length - 1;
+                $ var current = !item.href && isLast;
+                <${item.href ? "a" : "button"}
+                    ...processHtmlAttributes(item)
+                    aria-current=(current && "location")
+                    onClick(!current && "handleClick")>
+                    <${item.renderBody} />
+                </>
+                <if (!isLast)>
+                    <ebay-icon name="breadcrumb" />
+                </if>
+            </li>
+        </for>
+    </ul>
+</nav>

@@ -1,0 +1,69 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "variant",
+    "footerText",
+    "class",
+    "style",
+    "classPrefix",
+    "formName",
+    "formAction",
+    "formMethod",
+    "items"
+];
+
+static var itemIgnoredAttributes = ["checked", "value"];
+
+$ var baseClass = input.classPrefix || "filter-menu";
+$ var isForm = input.variant === "form";
+<span
+    ...processHtmlAttributes(input, ignoredAttributes)
+    key="container"
+    class=[input.classPrefix ? `${baseClass}__menu` : baseClass, input.class]
+    style=input.style>
+    <${isForm && "form"}
+        name=input.formName
+        action=input.formAction
+        method=input.formMethod
+        onSubmit("handleFormSubmit")>
+        <div key="menu" class=`${baseClass}__items` role=(!isForm && "menu")>
+            <for|item, i| of=input.items>
+                $ var isChecked = state.isChecked[i];
+                <${isForm ? "label" : "div"}
+                    ...processHtmlAttributes(item, itemIgnoredAttributes)
+                    class=[`${baseClass}__item`, item.class]
+                    role="menuitemcheckbox"
+                    aria-checked=String(isChecked)
+                    for=(isForm && component.elId(`checkbox-${i}`))
+                    onClick("handleItemClick", i)
+                    onKeydown("handleItemKeydown", i)>
+                    <if(isForm)>
+                        <ebay-checkbox id:scoped=`checkbox-${i}` checked=isChecked/>
+                    </if>
+                    <else>
+                        <span class=`${baseClass}__status`>
+                            <if(isChecked)>
+                                <ebay-icon name="checkbox-checked"/>
+                            </if>
+                            <else>
+                                <ebay-icon name="checkbox-unchecked"/>
+                            </else>
+                        </span>
+                    </else>
+                    <span class=`${baseClass}__text`>
+                        <${item.renderBody}/>
+                    </span>
+                </>
+            </for>
+        </div>
+        <if(input.footerText)>
+            <button
+                type=(isForm ? "submit" : "button")
+                aria-label=input.a11yFooterText
+                class=`${baseClass}__footer`
+                onClick(!isForm && "handleFooterButtonClick")>
+                ${input.footerText}
+            </button>
+        </if>
+    </>
+</span>

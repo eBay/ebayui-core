@@ -16,7 +16,7 @@ module.exports = async ({ config }) => {
   });
 
   config.plugins.push(new BrowserJSONPlugin({
-    flags: process.env.DS === "4" ? [] : ['skin-ds6']
+    flags: process.env.DS === "4" ? ['ds-4'] : []
   }));
 
   return config;

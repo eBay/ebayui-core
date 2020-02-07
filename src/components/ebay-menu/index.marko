@@ -1,0 +1,79 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "classPrefix",
+        "type",
+        "reverse",
+        "fixWidth",
+        "items"
+    ];
+    var itemIgnoredAttributes = [
+        "class",
+        "style",
+        "type",
+        "value",
+        "checked",
+        "current",
+        "badgeNumber",
+        "badgeAriaLabel"
+    ];
+}
+
+$ var isFake = input.type === "fake";
+$ var isRadio = input.type === "radio";
+$ var isCheckbox = input.type === "checkbox";
+$ var isNotCheckable = input.type !== "checkbox" && input.type !== "radio";
+$ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
+<span
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[
+        input.classPrefix
+            ? `${baseClass}__menu`
+            : isFake
+            ? "fake-menu"
+            : "menu",
+        input.reverse && `${baseClass}__menu--reverse`,
+        input.fixWidth && `${baseClass}__menu--fix-width`,
+        input.class
+    ]
+    style=input.style>
+    <div
+        role=(!isFake && "menu")
+        class=`${baseClass}__items`
+        key="menu"
+        id:scoped="menu">
+        <for|item, index| of=input.items>
+            $ {
+                var itemRole = isRadio
+                                ? "menuitemradio"
+                                : isCheckbox
+                                ? "menuitemcheckbox"
+                                : !isFake && "menuitem";
+                var checked = component.isChecked(index);
+            }
+            <${isFake ? (item.type === "button" ? "button" : "a") : "div"}
+                ...processHtmlAttributes(item, itemIgnoredAttributes)
+                class=[`${baseClass}__item`, item.class]
+                style=item.style
+                aria-checked=(!isNotCheckable && (checked ? "true" : "false"))
+                aria-current=(isNotCheckable && item.current ? "page" : false)
+                role=itemRole
+                onClick("handleItemClick", index)
+                onKeydown("handleItemKeydown", index)
+                onKeypress("handleItemKeypress")
+                key="item[]">
+                <span>
+                    <${item.renderBody}/>
+                </span>
+                <if(item.badgeNumber)>
+                    <ebay-badge type="menu" number=item.badgeNumber/>
+                </if>
+
+                <ebay-icon name="tick-small" />
+            </>
+        </for>
+    </div>
+</span>

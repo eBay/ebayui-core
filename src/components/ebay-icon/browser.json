@@ -4,18 +4,11 @@
             "if-not-flag": "ebayui-no-skin",
             "dependencies": [
                 {
-                    "if-not-flag": "ebayui-no-bg-icons",
                     "dependencies": [
                         "@ebay/skin/icon"
                     ]
-                }, {
-                    "if-flag": "ebayui-no-bg-icons",
-                    "dependencies": [
-                        "@ebay/skin/icon/foreground"
-                    ]
                 }
             ]
-        },
-        "require: ./widget.js"
+        }
     ]
 }

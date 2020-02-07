@@ -1,0 +1,37 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "size",
+    "noText",
+    "fluid",
+    "truncate",
+    "fixedHeight",
+    "partiallyDisabled"
+];
+
+$ var size = input.size || "default";
+<button
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[
+        "expand-btn",
+        input.noText && "expand-btn--no-text",
+        input.fluid && "expand-btn--fluid",
+        input.truncate && `expand-btn--${size}-truncated`,
+        input.fixedHeight && `expand-btn--${size}-fixed-height`,
+        !input.fixedHeight && !input.truncate && `expand-btn--${size}`,
+        input.class
+    ]
+    type="button"
+    disabled=input.disabled
+    aria-disabled=(input.partiallyDisabled && "true")
+    onClick("handleClick")
+    onKeydown("handleKeydown")>
+    <span class="expand-btn__cell">
+        <if(input.renderBody)>
+            <span>
+                <${input.renderBody}/>
+            </span>
+        </if>
+        <ebay-icon name="dropdown"/>
+    </span>
+</button>

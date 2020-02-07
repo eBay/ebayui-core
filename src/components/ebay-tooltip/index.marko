@@ -1,0 +1,43 @@
+import processHtmlAttributes from "../../common/html-attributes";
+
+static var ignoredAttributes = [
+    "pointer",
+    "styleTop",
+    "styleLeft",
+    "styleRight",
+    "styleBottom",
+    "noHover",
+    "host"
+];
+
+$ var pointer = input.pointer || "bottom";
+
+<span>
+    <ebay-tooltip-base
+        type="tooltip"
+        pointer=pointer
+        overlay-id:scoped="overlay"
+        style-left=input.styleLeft
+        style-top=input.styleTop
+        style-right=input.styleRight
+        style-bottom=input.styleBottom
+        no-hover=input.noHover
+        onBase-expand("emit", "tooltip-expand")
+        onBase-collapse("emit", "tooltip-collapse")>
+        <span
+            ...processHtmlAttributes(input, ignoredAttributes)
+            class:no-update="tooltip">
+            <${input.host}/>
+            <ebay-tooltip-overlay
+                type="tooltip"
+                id:scoped="overlay"
+                pointer=pointer
+                style-left=input.styleLeft
+                style-top=input.styleTop
+                style-right=input.styleRight
+                style-bottom=input.styleBottom
+                heading=input.heading
+                content=input.content/>
+        </span>
+    </ebay-tooltip-base>
+</span>

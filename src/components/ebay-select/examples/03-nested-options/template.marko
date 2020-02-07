@@ -1,11 +1,22 @@
-<var options=[
-    { value: 1, text: 'Option 1' },
-    { value: 2, text: 'Option 2', selected: true },
-    { value: 3, text: 'Option 3' }
-]/>
-
+$ var options = [
+    {
+        value: 1,
+        text: "Option 1"
+    },
+    {
+        value: 2,
+        text: "Option 2",
+        selected: true
+    },
+    {
+        value: 3,
+        text: "Option 3"
+    }
+];
 <ebay-select name="formFieldName">
     <if(true)>
-        <ebay-select-option for(option in options) value=option.value text=option.text selected=option.selected/>
+        <for|option| of=options>
+            <ebay-select-option value=option.value text=option.text selected=option.selected/>
+        </for>
     </if>
 </ebay-select>

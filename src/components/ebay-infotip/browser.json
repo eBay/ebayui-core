@@ -1,6 +1,0 @@
-{
-    "dependencies": [
-        "../ebay-icon",
-        "require: ./index.js"
-    ]
-}

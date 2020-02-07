@@ -39,7 +39,7 @@ describe('given a closed dialog', () => {
     });
 
     it('then it does not trap focus', () => {
-        expect(component.getByRole('document')).does.not.have.class('keyboard-trap--active');
+        expect(component.getByRole('dialog').children[0]).does.not.have.class('keyboard-trap--active');
     });
 
     describe('when it is rerendered to be open', () => {
@@ -66,7 +66,7 @@ describe('given a closed dialog', () => {
         if (wasToggled) {
             it('then it traps focus', async() => {
                 await wait(() => {
-                    expect(component.getByRole('document')).has.class('keyboard-trap--active');
+                    expect(component.getByRole('dialog').children[1]).has.class('keyboard-trap--active');
                     expect(document.activeElement).has.class(component.getByLabelText(input.a11yCloseText).className);
                 });
             });
@@ -88,7 +88,8 @@ describe('given an open dialog', () => {
     let sibling;
 
     beforeEach(async() => {
-        sibling = document.body.appendChild(document.createElement('div'));
+        sibling = document.body.appendChild(document.createElement('button'));
+        sibling.focus();
         component = await render(template, input);
     });
 
@@ -130,7 +131,7 @@ describe('given an open dialog', () => {
 
         it('then it traps focus', async() => {
             await wait(() => {
-                expect(component.getByRole('document')).has.class('keyboard-trap--active');
+                expect(component.getByRole('dialog').children[1]).has.class('keyboard-trap--active');
                 expect(document.activeElement).has.class(component.getByLabelText(input.a11yCloseText).className);
             });
         });
@@ -151,8 +152,9 @@ describe('given an open dialog', () => {
             expect(sibling).does.not.have.attr('aria-hidden');
         });
 
-        it('then it does not trap focus', () => {
-            expect(component.getByRole('document')).does.not.have.class('keyboard-trap--active');
+        it('then it restores the previous focus', async() => {
+            expect(component.getByRole('dialog').children[0]).does.not.have.class('keyboard-trap--active');
+            await wait(() => expect(document.activeElement).to.equal(sibling));
         });
 
         if (wasToggled) {

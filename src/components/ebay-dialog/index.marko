@@ -1,0 +1,42 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = ["open", "type", "focus", "a11yCloseText"];
+
+$ var isFull = input.type === "full";
+$ var isCenter = !input.type || input.type === "fill";
+$ var isDocked = input.type === "left" || input.type === "right";
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    aria-modal="true"
+    role="dialog"
+    class=[
+        "dialog",
+        input.class,
+        isDocked && "dialog--mask-fade-slow",
+        isFull && "dialog--no-mask",
+        isCenter && "dialog--mask-fade"
+    ]
+    hidden:no-update=!state.open
+    onClick("handleDialogClick")
+    onMousedown("handleStartClick")>
+    <div
+        key="window"
+        class=[
+            "dialog__window",
+            input.type && `dialog__window--${input.type}`,
+            isDocked && "dialog__window--slide",
+            (isFull || isCenter) && "dialog__window--fade"
+        ]>
+        <button
+            key="close"
+            class="dialog__close"
+            type="button"
+            aria-label=input.a11yCloseText
+            onClick("handleCloseButtonClick")>
+            <ebay-icon name="close"/>
+        </button>
+        <div key="body" class="dialog__body">
+            <${input.renderBody}/>
+        </div>
+    </div>
+</div>

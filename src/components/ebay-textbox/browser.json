@@ -6,8 +6,6 @@
         "@ebay/skin/label",
         "@ebay/skin/textbox"
       ]
-    },
-    "../ebay-icon",
-    "require: ./index.js"
+    }
   ]
 }

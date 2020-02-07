@@ -19,11 +19,11 @@ const missingSVG = prettier.format(fs.readFileSync(path.join(__dirname, 'missing
 const icons = new Map();
 const THEMES = {
     ds4: {
-        flags: { 'if-not-flag': 'skin-ds6' },
+        flags: { 'if-flag': 'ds-4' },
         file: './index.marko'
     },
     ds6: {
-        flags: { 'if-flag': 'skin-ds6' },
+        flags: { 'if-not-flag': 'ds-4' },
         file: './index[skin-ds6].marko'
     }
 };

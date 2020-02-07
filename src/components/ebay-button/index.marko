@@ -1,0 +1,75 @@
+import processHtmlAttributes from "../../common/html-attributes";
+
+static var ignoredAttributes = [
+    "partiallyDisabled",
+    "priority",
+    "size",
+    "noText",
+    "fluid",
+    "variant",
+    "fixedHeight",
+    "truncate",
+    "transparent",
+    "badgeNumber",
+    "badgeAriaLabel"
+];
+
+$ {
+    var size = input.size;
+    var priority = input.priority || "secondary";
+    var variant = !input.variant && input.href ? "fake" : input.variant;
+    var isIconVariant = variant === "icon";
+    var isExpandVariant = variant === "expand";
+    var isBadged = Boolean(input.badgeNumber && isIconVariant);
+    var noText = isIconVariant || isBadged || (isExpandVariant && input.noText);
+    var baseClass = variant
+        ? variant === "fake-link"
+            ? variant
+            : variant + "-btn"
+        : "btn";
+    var sizeClass = size && baseClass + "--" + size;
+    var truncateClass =
+        input.truncate &&
+        (sizeClass ? sizeClass + "-truncated" : baseClass + "--truncated");
+    var transparentClass = input.transparent ? baseClass + "--transparent" : "";
+    var fixedHeightClass =
+        input.fixedHeight &&
+        (sizeClass ? sizeClass + "-fixed-height" : baseClass + "--fixed-height");
+    var tag = input.href ? "a" : "button";
+    var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
+}
+
+<${tag}
+    ...htmlAttributes
+    onClick("handleClick")
+    onKeydown("handleKeydown")
+    class=[
+        input.class,
+        baseClass,
+        noText && `${baseClass}--no-text`,
+        isBadged && `${baseClass}--badged`,
+        input.fluid && `${baseClass}--fluid`,
+        truncateClass,
+        fixedHeightClass,
+        transparentClass,
+        !truncateClass && !fixedHeightClass && sizeClass,
+        (priority === "secondary" ||
+            priority === "primary" ||
+            priority === "delete") &&
+            `${baseClass}--${priority}`
+    ]
+    data-ebayui=true
+    type=((tag === "button" && input.type) || "button")
+    aria-disabled=(input.partiallyDisabled && "true")>
+    $ var hasAriaLabel = Boolean(htmlAttributes["aria-label"]);
+    <${!hasAriaLabel ? null : "span"} aria-hidden="true">
+        <${input.renderBody}/>
+    </>
+    <if(isBadged)>
+        <ebay-badge
+            number=input.badgeNumber
+            type="icon"
+            aria-label=(hasAriaLabel && input.badgeAriaLabel)
+            aria-hidden=(hasAriaLabel && "true")/>
+    </if>
+</>

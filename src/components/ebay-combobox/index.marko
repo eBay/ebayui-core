@@ -1,0 +1,63 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "class",
+    "style",
+    "borderless",
+    "autocomplete",
+    "options"
+];
+
+static var itemIgnoredAttributes = ["text"];
+
+<span
+    class:no-update=["combobox", input.class]
+    style=input.style
+    onExpander-expand("handleExpand")
+    onExpander-collapse("handleCollapse")>
+    <span class=[
+        "combobox__control",
+        input.borderless && "combobox__control--borderless"
+    ]>
+        <!--
+        NOTE: Uses autocomplete="new-password" because of a problem with Chrome where the autfill does not
+        respect the "off" key. Tested and works in all other browsers properly as well.
+        -->
+        <input
+            ...processHtmlAttributes(
+                Object.assign(input, {
+                    id: input.id || component.getElId("input")
+                }),
+                ignoredAttributes
+            )
+            key="combobox"
+            type="text"
+            role="combobox"
+            value=state.currentValue
+            aria-autocomplete=input.autocomplete
+            aria-haspopup="listbox"
+            autocomplete="new-password"
+            onBlur("handleComboboxBlur")
+            onKeydown("handleComboboxKeyDown")
+            onKeyup("handleComboboxKeyUp")/>
+        <ebay-icon name="dropdown"/>
+    </span>
+    <if(component._hasVisibleOptions())>
+        <div key="listbox" role="listbox" class="combobox__listbox">
+            <for|option| of=component._getVisibleOptions()>
+                $ var isSelected = option.value === state.currentValue;
+                <div
+                    ...processHtmlAttributes(option, itemIgnoredAttributes)
+                    key="options[]"
+                    role="option"
+                    class:no-update=["combobox__option", option.class]
+                    tabindex:no-update="-1"
+                    aria-selected=(isSelected && "true")
+                    onClick("handleSelectOption", option.text)
+                    onMousedown("handleSelectOption", option.text)>
+                    <span>${option.text}</span>
+                </div>
+            </for>
+        </div>
+    </if>
+</span>

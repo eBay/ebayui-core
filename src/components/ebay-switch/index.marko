@@ -1,0 +1,13 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = ["class", "style"];
+
+<span class=["switch", input.class] style=input.style>
+    <input
+        ...processHtmlAttributes(input, ignoredAttributes)
+        onChange("handleChange")
+        type="checkbox"
+        role="switch"
+        class="switch__control"/>
+    <span class="switch__button"/>
+</span>

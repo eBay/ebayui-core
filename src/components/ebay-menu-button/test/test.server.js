@@ -18,7 +18,7 @@ describe('menu-button', () => {
         expect(btnEl).has.attr('aria-haspopup', 'true');
         expect(btnEl).has.attr('aria-expanded', 'false');
         expect(btnEl).has.property('parentElement').with.class('menu-button');
-        expect(btnEl.querySelector('.expand-btn__icon')).has.property('tagName', 'svg');
+        expect(btnEl.querySelector('.icon--dropdown')).has.property('tagName', 'svg');
         expect(btnEl).contains(getByText(input.text));
         expect(getByRole('menu')).has.property('parentElement').with.class('menu-button__menu');
 
@@ -102,7 +102,7 @@ describe('menu-button', () => {
     it('renders without toggle icon', async() => {
         const input = mock.No_Toggle_Icon;
         const { getByRole } = await render(template, input);
-        expect(getByRole('button').querySelector('expand-btn__icon')).equals(null);
+        expect(getByRole('button').querySelector('icon--dropdown')).equals(null);
     });
 
     it('renders with disabled state', async() => {
@@ -143,9 +143,7 @@ describe('menu-button', () => {
 
                 expect(optionEls).has.length(1);
                 expect(optionEls[0]).has.attr('aria-checked', String(checked));
-
-                expect(getByRole('menu').querySelector('.menu-button__status'))
-                    .does.not.equal(null);
+                expect(getByRole('menu').querySelector('.icon--tick-small')).does.not.equal(null);
             });
         });
     });
@@ -160,13 +158,13 @@ describe('menu-button', () => {
 });
 
 describe('transformer', () => {
-    const componentPath = '../index.js';
+    const componentPath = '../index.marko';
 
     it('transforms an icon attribute into a tag', async() => {
         const tagString = '<ebay-menu-button icon="settings"/>';
         const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
-        expect(iconEl.tagName).to.equal('ebay-menu-button:icon');
+        expect(iconEl.tagName).to.equal('ebay-menu-button:_icon');
     });
 
     it('does not transform when icon attribute is missing', () => {

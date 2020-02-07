@@ -1,0 +1,68 @@
+import processHtmlAttributes from "../../common/html-attributes";
+
+static var ignoredAttributes = [
+    "class",
+    "style",
+    "borderless",
+    "options"
+];
+static var itemIgnoredAttributes = [
+    "selected",
+    "optgroup"
+];
+
+$ var selectedOption = input.options[state.selectedIndex];
+$ var list = [];
+$ var optgroups = {};
+$ input.options.forEach(function (option) {
+    var optgroup = option.optgroup;
+
+    if (optgroup) {
+        if (optgroups[optgroup]) {
+            optgroups[optgroup].options.push(option);
+        } else {
+            list.push(optgroups[optgroup] = {
+                optgroup: optgroup,
+                options: [option]
+            });
+        }
+    } else {
+        list.push(option);
+    }
+});
+
+<span
+    class=[
+        "select",
+        input.borderless && "select--borderless",
+        input.class
+    ]
+    style=input.style>
+    <select
+        ...processHtmlAttributes(input, ignoredAttributes)
+        onChange("handleChange")>
+        <for|optionOrGroup| of=list>
+            <if(optionOrGroup.optgroup)>
+                <optgroup label=optionOrGroup.optgroup>
+                    <for|option| of=optionOrGroup.options>
+                        <option
+                            ...processHtmlAttributes(option, itemIgnoredAttributes)
+                            key="option[]"
+                            selected=(option === selectedOption)>
+                            ${option.text}
+                        </option>
+                    </for>
+                </optgroup>
+            </if>
+            <else>
+                <option
+                    ...processHtmlAttributes(optionOrGroup, itemIgnoredAttributes)
+                    key="option[]"
+                    selected=(optionOrGroup === selectedOption)>
+                    ${optionOrGroup.text}
+                </option>
+            </else>
+        </for>
+    </select>
+    <ebay-icon name="dropdown"/>
+</span>

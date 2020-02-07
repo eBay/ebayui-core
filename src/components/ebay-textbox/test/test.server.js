@@ -23,7 +23,7 @@ describe('ebay-textbox', () => {
     it('renders default input textbox with an id', async() => {
         const input = mock.Basic_With_ID;
         const { getByRole } = await render(template, input);
-        expect(getByRole('textbox')).has.id(input.id);
+        expect(getByRole('textbox')).contains.id(input.id);
     });
 
     it('renders fluid input textbox', async() => {
@@ -96,13 +96,13 @@ describe('ebay-textbox', () => {
 });
 
 describe('transformer', () => {
-    const componentPath = '../index.js';
+    const componentPath = '../index.marko';
 
     it('transforms an icon attribute into a tag', () => {
         const tagString = '<ebay-textbox icon="settings"/>';
         const { el } = runTransformer(transformer, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
-        expect(iconEl.tagName).to.equal('ebay-textbox:icon');
+        expect(iconEl.tagName).to.equal('ebay-textbox:_icon');
     });
 
     it('does not transform when icon attribute is missing', () => {

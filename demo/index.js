@@ -58,7 +58,7 @@ app.get('/:designSystem/:component?', (req, res) => {
         components: demoUtils.getComponentsWithExamples('src')
     };
 
-    const dsFlag = req.params.designSystem === 'ds6' ? 'skin-ds6' : '';
+    const dsFlag = req.params.designSystem === 'ds6' ? '' : 'ds-4';
     const lassoFlags = ['ebayui-no-bg-icons'];
 
     // allow .only in example folder name
@@ -69,7 +69,7 @@ app.get('/:designSystem/:component?', (req, res) => {
         }
     });
 
-    model.dependencies = model.examples.map(example => `marko-dependencies: ${example.templatePath}`);
+    model.dependencies = model.examples.map(example => `marko-hydrate: ${example.templatePath}`);
 
     req.model = model;
 

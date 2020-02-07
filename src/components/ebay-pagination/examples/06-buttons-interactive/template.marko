@@ -1,0 +1,37 @@
+static const SIZE = 15;
+
+class {
+    onCreate() {
+        this.state = { current: 0 };
+    }
+    handlePrev() {
+        this.state.current = Math.max(
+            this.state.current - 1,
+            0
+        );
+    }
+    handleNext() {
+        this.state.current = Math.min(
+            this.state.current + 1,
+            SIZE
+        );
+    }
+    handleSelect({ value }) {
+        this.state.current = parseInt(value, 10);
+    }
+}
+
+<ebay-pagination
+    on-pagination-previous("handlePrev")
+    on-pagination-next("handleNext")
+    on-pagination-select("handleSelect")>
+    <ebay-pagination-item type="previous" disabled=(state.current === 0)/>
+
+    <for|i| from=0 to=SIZE>
+        <ebay-pagination-item current=(i === state.current)>
+            ${i}
+        </ebay-pagination-item>
+    </for>
+
+    <ebay-pagination-item type="next" disabled=(state.current === SIZE)/>
+</ebay-pagination>

@@ -1,0 +1,58 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "icon",
+    "disabled",
+    "pointer",
+    "styleTop",
+    "styleLeft",
+    "styleRight",
+    "styleBottom",
+    "ariaLabel",
+    "a11yCloseText",
+    "iconTag",
+    "host",
+    "heading",
+    "content"
+];
+
+$ var pointer = input.pointer || "bottom";
+<span>
+    <ebay-tooltip-base
+        key="base"
+        type="infotip"
+        pointer=pointer
+        overlay-id:scoped="overlay"
+        onBase-expand("handleExpand")
+        onBase-collapse("handleCollapse")>
+        <span
+            ...processHtmlAttributes(input, ignoredAttributes)
+            class:no-update=["infotip", input.class]>
+            <button
+                key="host"
+                class="infotip__host icon-btn"
+                type="button"
+                disabled=input.disabled
+                aria-label=input.ariaLabel>
+                <if(input.iconTag)>
+                    <${input.iconTag}/>
+                </if>
+                <else>
+                    <ebay-icon name="information"/>
+                </else>
+            </button>
+            <ebay-tooltip-overlay
+                type="infotip"
+                id:scoped="overlay"
+                style-left=input.styleLeft
+                style-top=input.styleTop
+                style-right=input.styleRight
+                style-bottom=input.styleBottom
+                pointer=pointer
+                heading=input.heading
+                content=input.content
+                a11y-close-text=input.a11yCloseText
+                onOverlay-close("handleOverlayClose")/>
+        </span>
+    </ebay-tooltip-base>
+</span>

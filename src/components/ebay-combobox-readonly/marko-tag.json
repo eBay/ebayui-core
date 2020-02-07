@@ -1,0 +1,31 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@borderless": "boolean",
+  "@name": "#html-name",
+  "@type": "never",
+  "@role": "never",
+  "@readonly": "never",
+  "@value": "never",
+  "@aria-haspopup": "never",
+  "@aria-owns": "never",
+  "@aria-expanded": "never",
+  "@options <option>[]": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@text": "string",
+    "@selected": "#html-selected",
+    "@value": "#html-value",
+    "@role": "never",
+    "@tabindex": "never",
+    "@aria-selected": "never"
+  }
+}

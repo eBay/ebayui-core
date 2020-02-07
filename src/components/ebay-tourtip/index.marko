@@ -1,0 +1,50 @@
+import processHtmlAttributes from "../../common/html-attributes";
+
+static var ignoredAttributes = [
+    "pointer",
+    "styleTop",
+    "styleLeft",
+    "styleRight",
+    "styleBottom",
+    "a11yCloseText",
+    "host"
+];
+
+$ var pointer = input.pointer || "bottom";
+
+<span>
+    <ebay-tooltip-base
+        key="base"
+        type="tourtip"
+        pointer=pointer
+        overlay-id:scoped="overlay"
+        style-left=input.styleLeft
+        style-top=input.styleTop
+        style-right=input.styleRight
+        style-bottom=input.styleBottom
+        onBase-collapse("handleCollapse")>
+        <span
+            ...processHtmlAttributes(input, ignoredAttributes)
+            class:no-update="tourtip">
+            <if(input.host)>
+                <span
+                    class=[input.host.class, "tourtip__host"]
+                    ...processHtmlAttributes(input.host)>
+                    <${input.host.renderBody}/>
+                </span>
+            </if>
+            <ebay-tooltip-overlay
+                type="tourtip"
+                id:scoped="overlay"
+                pointer=pointer
+                style-left=input.styleLeft
+                style-top=input.styleTop
+                style-right=input.styleRight
+                style-bottom=input.styleBottom
+                heading=input.heading
+                content=input.content
+                a11y-close-text=input.a11yCloseText
+                onOverlay-close("handleCollapse")/>
+        </span>
+    </ebay-tooltip-base>
+</span>

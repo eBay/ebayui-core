@@ -1,0 +1,76 @@
+import findIndex from "core-js-pure/features/array/find-index";
+import processHtmlAttributes from "../../common/html-attributes";
+
+static var disabledItem = { disabled: true };
+static var ignoredAttributes = [
+    'items'
+];
+static var ignoredItemAttributes = [
+    'current',
+    'disabled'
+];
+
+$ var lastItemIndex = input.items.length - 1;
+$ var prevItem = (
+    input.items[0] &&
+    input.items[0].type === "previous" &&
+    input.items[0]
+) || disabledItem;
+$ var nextItem = (
+    input.items[lastItemIndex] &&
+    input.items[lastItemIndex].type === "next" &&
+    input.items[lastItemIndex]
+) || disabledItem;
+$ var items = input.items.slice(
+    prevItem === disabledItem ? 0 : 1,
+    nextItem === disabledItem ? undefined : lastItemIndex
+);
+$ var range = component._getVisibleRange(items);
+
+<nav
+    ...processHtmlAttributes(input, ignoredAttributes)
+    role="navigation"
+    class=['pagination', input.class]
+    aria-labelledby:scoped="heading">
+    <span aria-live="polite" role="status">
+        <h2 class="clipped" id:scoped="heading">
+            ${input.a11yCurrentText || 'Results Pagination - Page 1'}
+        </h2>
+    </span>
+
+    <${prevItem.href ? "a" : "button"}
+        ...processHtmlAttributes(prevItem, ignoredItemAttributes)
+        class=["pagination__previous", prevItem.class]
+        aria-disabled=(prevItem.disabled && "true")
+        aria-label=(input.a11yPreviousText || 'Previous page')
+        style=[prevItem.style, { minWidth: 48 }]
+        onClick("handlePreviousPageClick")>
+        <ebay-icon name="pagination-prev"/>
+    </>
+
+    <ol
+        key="items"
+        class="pagination__items">
+        <for|item, i| of=items>
+            <li hidden=(i < range.start || i > range.end)>
+                <${item.href ? "a" : "button"}
+                    ...processHtmlAttributes(item, ignoredItemAttributes)
+                    class=["pagination__item", item.class]
+                    aria-current=(item.current && "page")
+                    onClick("handlePageNumberClick")>
+                    <${item.renderBody}/>
+                </>
+            </li>
+        </for>
+    </ol>
+
+    <${nextItem.href ? "a" : "button"}
+        ...processHtmlAttributes(nextItem, ignoredItemAttributes)
+        class=["pagination__next", nextItem.class]
+        aria-disabled=(nextItem.disabled && "true")
+        aria-label=(input.a11yNextText || 'Next page')
+        style=[nextItem.style, { minWidth: 48 }]
+        onClick("handleNextPageClick")>
+        <ebay-icon name="pagination-next"/>
+    </>
+</nav>
