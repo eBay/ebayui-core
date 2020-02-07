@@ -4,7 +4,7 @@ const isTravis = require('is-travis');
 const buildID = `${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBER}`;
 
 module.exports = ({ config }) => {
-    config.mochaOptions = { timeout: 20000 };
+    config.mochaOptions = { timeout: 60000 };
     config.lassoOptions = {
         flags: [],
         plugins: ['lasso-less'],
@@ -16,6 +16,8 @@ module.exports = ({ config }) => {
     };
 
     config.wdioOptions = {
+        idleTimeout: 60000, // Automatically disconnect after 1min of inactivity by default.
+        timeout: 60000,
         browserstackOpts: {
             force: true,
             onlyAutomate: isTravis,
@@ -32,8 +34,8 @@ module.exports = ({ config }) => {
             os_version: '7'
         }, {
             browser: 'Firefox',
-            os: 'OS X',
-            os_version: 'Mojave'
+            os: 'Windows',
+            os_version: '7'
         // }, {
         //     browser: 'Firefox',
         //     browser_version: '48.0',
