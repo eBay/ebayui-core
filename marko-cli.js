@@ -32,8 +32,8 @@ module.exports = ({ config }) => {
             os_version: '7'
         }, {
             browser: 'Firefox',
-            os: 'Windows',
-            os_version: '10'
+            os: 'OS X',
+            os_version: 'Mojave'
         // }, {
         //     browser: 'Firefox',
         //     browser_version: '48.0',
