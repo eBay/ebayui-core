@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "prepublishOnly": "node scripts/prepublish",
@@ -119,7 +119,6 @@
   },
   "peerDependencies": {
     "@ebay/skin": "10.0.0",
-    "chromedriver": "^80.0.0",
     "marko": "^4"
   },
   "dependencies": {

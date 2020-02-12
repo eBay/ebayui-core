@@ -9,7 +9,7 @@
 ## ebay-checkbox Attributes
 
 Name | Type | Stateful | Required | Description
---- | --- | --- | ---
+--- | --- | --- | --- | ---
 `disabled` | Boolean | No | No |
 
 Note: For this component, `class`/`style` are applied to the root tag, while all other HTML attributes are applied to the `input` tag.
