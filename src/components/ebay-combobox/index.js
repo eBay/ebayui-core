@@ -130,7 +130,9 @@ module.exports = require('marko-widgets').defineComponent({
         const newValue = this.inputEl.value;
 
         eventUtils.handleTextInput(originalEvent, () => {
-            this.activeDescendant.reset();
+            if (this.activeDescendant) {
+                this.activeDescendant.reset();
+            }
             this.inputEl.value = newValue;
             this.setState('currentValue', newValue);
             this.setSelectedIndex();
