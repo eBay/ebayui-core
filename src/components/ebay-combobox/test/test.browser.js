@@ -166,6 +166,28 @@ describe('given the combobox starts with zero options', () => {
         });
     });
 
+    describe('when the input receives keyup with no options', () => {
+        beforeEach(async() => {
+            await pressKey(component.getByRole('combobox'), {
+                key: 'A',
+                keyCode: 65
+            });
+        });
+
+        it('then it should emit a input event', () => {
+            expect(component.emitted('combobox-input')).has.length(1);
+        });
+        describe('when blur happens on the combobox', () => {
+            beforeEach(async() => {
+                await fireEvent.blur(component.getByRole('combobox'));
+            });
+
+            it('then it should emit a change event', () => {
+                expect(component.emitted('combobox-change')).has.length(1);
+            });
+        });
+    });
+
     describe('when it is rerendered with 3 items', () => {
         const newInput = mock.Combobox_3Options;
 
