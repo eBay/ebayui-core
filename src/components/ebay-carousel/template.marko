@@ -65,24 +65,18 @@
         </button>
 
         <if(data.autoplayInterval && !data.bothControlsDisabled)>
-            <if(data.paused)>
-                <button
-                    class="carousel__playback"
-                    type="button"
-                    aria-label=data.a11yPlayText
-                    w-onclick="togglePlay">
-                    <ebay-icon type="inline" name="play"/>
-                </button>
-            </if>
-            <else>
-                <button
-                    class="carousel__playback"
-                    type="button"
-                    aria-label=data.a11yPauseText
-                    w-onclick="togglePlay">
-                    <ebay-icon type="inline" name="pause"/>
-                </button>
-            </else>
+            <button
+                class="carousel__playback"
+                type="button"
+                aria-label=(data.paused ? data.a11yPlayText : data.a11yPauseText)
+                w-onclick="togglePlay">
+                <if (data.paused)>
+                    <ebay-icon type="inline" name="play" />
+                </if>
+                <else>
+                    <ebay-icon type="inline" name="pause" />
+                </else>
+            </button>
         </if>
     </div>
 
