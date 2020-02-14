@@ -1,0 +1,14 @@
+{
+  "requireRemap": [
+    {
+      "from": "./index[skin-ds6].marko",
+      "to": "./index.marko",
+      "if-flag": "ds-4"
+    },
+    {
+      "from": "./index.marko",
+      "to": "./index[skin-ds6].marko",
+      "if-not-flag": "ds-4"
+    }
+  ]
+}
