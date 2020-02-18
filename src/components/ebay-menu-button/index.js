@@ -56,6 +56,9 @@ module.exports = require('marko-widgets').defineComponent({
                 eventType: this.state.type === 'fake' || !this.state.type ? 'select' : 'change',
                 el: itemEl
             });
+            if (this.state.collapseOnSelect) {
+                this.expander.collapse();
+            }
         }
 
         if (this.rovingTabindex) {
