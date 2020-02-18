@@ -443,6 +443,7 @@
     "@priority": "string",
     "@iconTag <icon>": {},
     "@disabled": "boolean",
+    "@collapseOnSelect": "boolean",
     "@variant": "string",
     "@items <item>[]": {
       "@*": {
