@@ -21,6 +21,7 @@
   "@priority": "string",
   "@iconTag <_icon>": {},
   "@disabled": "boolean",
+  "@collapseOnSelect": "boolean",
   "@variant": "string",
   "@items <item>[]": {
     "@*": {
