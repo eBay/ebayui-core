@@ -32,6 +32,7 @@ Name | Type | Stateful | Required | Description
 `checked` (radio) | Number | Yes | No | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 `disabled` | Boolean | Yes | No | Will disable the entire dropdown (disables the ebay-button label) if set to true
 `variant` | String | No | No | will change the button style, "overflow" / "default"
+`collapseOnSelect` | Boolean | Yes | No | Will collapse whole menu when an item is selected in menu. Typically used in `type="radio"`
 
 ### ebay-menu-button Events
 
