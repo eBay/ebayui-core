@@ -1,6 +1,6 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = ["class", "style"];
+static var ignoredAttributes = ["class", "style", "size"];
 
 <span class=["radio", input.class] style=input.style>
     <input
@@ -10,15 +10,29 @@ static var ignoredAttributes = ["class", "style"];
         onClick("handleClick")
         onFocus("handleFocus")/>
     <span class="radio__icon" hidden>
-        <ebay-icon
-            name="radio-unchecked"
-            class="radio__unchecked"
-            focusable="false"
-            no-skin-classes/>
-        <ebay-icon
-            name="radio-checked"
-            class="radio__checked"
-            focusable="false"
-            no-skin-classes/>
+        <if (input.size === "large")>
+            <ebay-icon
+                name="radio-unchecked-large"
+                class="radio__unchecked"
+                focusable="false"
+                no-skin-classes/>
+            <ebay-icon
+                name="radio-checked-large"
+                class="radio__checked"
+                focusable="false"
+                no-skin-classes/>
+        </if>
+        <else>
+            <ebay-icon
+                name="radio-unchecked"
+                class="radio__unchecked"
+                focusable="false"
+                no-skin-classes/>
+            <ebay-icon
+                name="radio-checked"
+                class="radio__checked"
+                focusable="false"
+                no-skin-classes/>
+        </else>
     </span>
 </span>

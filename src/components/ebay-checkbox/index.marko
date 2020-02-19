@@ -1,6 +1,6 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = ["class", "style"];
+static var ignoredAttributes = ["class", "style", "size"];
 
 <span class=["checkbox", input.class] style=input.style>
     <input
@@ -11,15 +11,29 @@ static var ignoredAttributes = ["class", "style"];
         onChange("handleChange")
         onFocus("handleFocus")/>
     <span class="checkbox__icon" hidden>
-        <ebay-icon
-            name="checkbox-unchecked"
-            class="checkbox__unchecked"
-            focusable="false"
-            no-skin-classes/>
-        <ebay-icon
-            name="checkbox-checked"
-            class="checkbox__checked"
-            focusable="false"
-            no-skin-classes/>
+        <if (input.size === 'large')>
+            <ebay-icon
+                name="checkbox-unchecked-large"
+                class="checkbox__unchecked"
+                focusable="false"
+                no-skin-classes/>
+            <ebay-icon
+                name="checkbox-checked-large"
+                class="checkbox__checked"
+                focusable="false"
+                no-skin-classes/>
+        </if>
+        <else>
+            <ebay-icon
+                name="checkbox-unchecked"
+                class="checkbox__unchecked"
+                focusable="false"
+                no-skin-classes/>
+            <ebay-icon
+                name="checkbox-checked"
+                class="checkbox__checked"
+                focusable="false"
+                no-skin-classes/>
+        </else>
     </span>
 </span>
