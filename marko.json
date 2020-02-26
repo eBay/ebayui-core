@@ -28,8 +28,14 @@
   "<ebay-menu-item>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
+  "<ebay-menu-separator>": {
+    "transformer": "./src/common/transformers/menu-separator/index.js"
+  },
   "<ebay-menu-button-item>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
+  "<ebay-menu-button-separator>": {
+    "transformer": "./src/common/transformers/menu-separator/index.js"
   },
   "<ebay-menu-button-label>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"

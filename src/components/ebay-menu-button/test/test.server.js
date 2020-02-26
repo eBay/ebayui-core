@@ -134,6 +134,26 @@ describe('menu-button', () => {
         expect(menuEl).has.property('parentElement').with.class('menu-button__menu--reverse');
     });
 
+    it('renders with separators', async() => {
+        const input = mock.Separator_4Items;
+        const { queryByText, getAllByRole, getByText } = await render(template, input);
+        const menuItemEls = getAllByRole('menuitem');
+        const separators = getAllByRole('separator');
+        input.items.forEach((item) => {
+            if (item.isSeparator) {
+                const menuItemEl = separators.shift();
+                const textEl = queryByText(item.renderBody.text);
+                expect(textEl).to.equal(null);
+                expect(menuItemEl).has.class('menu-button__separator');
+            } else {
+                const menuItemEl = menuItemEls.shift();
+                const textEl = getByText(item.renderBody.text);
+                expect(menuItemEl).has.class('menu-button__item');
+                expect(menuItemEl).contains(textEl);
+            }
+        });
+    });
+
     ['radio', 'checkbox'].forEach(type => {
         [true, false].forEach(checked => {
             it(`renders with type=${type} and checked=${checked}`, async() => {

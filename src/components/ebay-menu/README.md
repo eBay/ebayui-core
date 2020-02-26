@@ -48,3 +48,17 @@ Name | Type | Stateful | Required | Description
 `current` (fake menu) | Boolean | No | No | whether or not the href is the current href of the page
 `badge-number` | Number | No | No | used as the number to be placed in the badge
 `badge-aria-label` | String | No | Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge
+
+## ebay-menu-separator
+
+Adds a line separator between each menu item
+
+### ebay-menu-separator Usage
+
+```marko
+<ebay-menu>
+    <ebay-menu-item>Item1</ebay-menu-item>
+    <ebay-menu-separator/>
+    <ebay-menu-item>Item2</ebay-menu-item>
+</ebay-menu>
+```

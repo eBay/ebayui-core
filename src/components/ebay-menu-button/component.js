@@ -18,6 +18,9 @@ module.exports = {
     toggleItemChecked(index, itemEl) {
         if (this.isRadio && index !== this.state.checkedIndex) {
             this.state.checkedIndex = index;
+            if (this.input.collapseOnSelect) {
+                this.expander.collapse();
+            }
             this.emitComponentEvent({
                 index,
                 eventType: 'change',
@@ -26,6 +29,9 @@ module.exports = {
         } else if (this.type !== 'radio') {
             this.state.checkedItems[index] = !this.state.checkedItems[index];
             this.setStateDirty('checkedItems');
+            if (this.input.collapseOnSelect) {
+                this.expander.collapse();
+            }
             this.emitComponentEvent({
                 index,
                 eventType: this.type === 'fake' || !this.type ? 'select' : 'change',

@@ -54,6 +54,10 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
                                 : !isFake && "menuitem";
                 var checked = component.isChecked(index);
             }
+            <if (item.isSeparator)>
+                <hr class=`${baseClass}__separator` role="separator" />
+            </if>
+            <else>
             <${isFake ? (item.type === "button" ? "button" : "a") : "div"}
                 ...processHtmlAttributes(item, itemIgnoredAttributes)
                 class=[`${baseClass}__item`, item.class]
@@ -74,6 +78,7 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
 
                 <ebay-icon name="tick-small" />
             </>
+            </else>
         </for>
     </div>
 </span>

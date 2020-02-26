@@ -17,6 +17,14 @@ exports.Basic_3Items = assign({}, exports.Basic_2Items, {
     }))
 });
 
+exports.Separator_4Items = assign({}, exports.Basic_2Items, {
+    items: getNItems(4, i => ({
+        value: `item ${i}`,
+        isSeparator: i === 2,
+        renderBody: createRenderBody(`Item text ${i}`)
+    }))
+});
+
 exports.Fake_2Items = assign({}, exports.Basic_2Items, {
     type: 'fake',
     items: getNItems(2, i => ({
