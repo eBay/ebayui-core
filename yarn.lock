@@ -12274,13 +12274,13 @@ make-dir@^3.0.0:
   dependencies:
     semver "^6.0.0"
 
-makeup-active-descendant@0.3.6:
-  version "0.3.6"
-  resolved "https://registry.npmjs.org/makeup-active-descendant/-/makeup-active-descendant-0.3.6.tgz#d12c660a5a081e5d47121b8e32b44a04e4f70fec"
-  integrity sha512-xfvN9JJ0NfV7rmhFwFrH7MwtdQ7YiV4SaHK5daSYjliBL+UFN9PtVc+DVvEKgRiwY7YxREa0rUBtjEsx2roPDw==
+makeup-active-descendant@0.3.7:
+  version "0.3.7"
+  resolved "https://registry.npmjs.org/makeup-active-descendant/-/makeup-active-descendant-0.3.7.tgz#f9d4a0bf3bd05c6d179a1ff9cc1bf1f76935ae41"
+  integrity sha512-UdR7WCCaXobQ5lo08swYADuZzKcoONI+Nq0mGAalJ2iu1AZDXITASyBv9XuVE6ZSE/h6XbGgEbf/udW2jgEplA==
   dependencies:
     custom-event "^1"
-    makeup-navigation-emitter "~0.3.4"
+    makeup-navigation-emitter "~0.3.5"
     nodelist-foreach-polyfill "^1"
 
 makeup-exit-emitter@~0.2.4:
@@ -12326,10 +12326,10 @@ makeup-keyboard-trap@~0.2.2:
     custom-event "^1"
     makeup-focusables "~0.0.4"
 
-makeup-navigation-emitter@~0.3.4:
-  version "0.3.4"
-  resolved "https://registry.npmjs.org/makeup-navigation-emitter/-/makeup-navigation-emitter-0.3.4.tgz#abd500f25d1336267995cba6ba65e16b6b6363c6"
-  integrity sha512-fP9IdzQ9tjSrpms0HN3n8EuwFhtmU2XF4LDnBgliik90VYMDq6bAtZWmZbugWP6nkbdDuU5pNnxhMZ5SfUC/zQ==
+makeup-navigation-emitter@~0.3.5:
+  version "0.3.5"
+  resolved "https://registry.npmjs.org/makeup-navigation-emitter/-/makeup-navigation-emitter-0.3.5.tgz#e2579ad6ab0281e02844169c23f2636bc854e2b4"
+  integrity sha512-uEuc3H/ypukl3BsKSLPRC2BKrwXjepyWrDomT4AkhGJLWhCzaXhgUj845yC0ZU/lzLsAs595fe2pp6N8MQ/4Hw==
   dependencies:
     custom-event "^1"
     makeup-exit-emitter "~0.2.4"
@@ -12348,13 +12348,13 @@ makeup-prevent-scroll-keys@~0.0.3:
   resolved "https://registry.npmjs.org/makeup-prevent-scroll-keys/-/makeup-prevent-scroll-keys-0.0.3.tgz#71eb9045f3ebe3cac17933c8222de69b7c4e6f56"
   integrity sha512-R3x0jd3/WkYzOlL6VzGhsTdmLLDvARtPNejaO4xKWUIzfaeDFMdpvtonNuoDqwi7KpKpm9cR9oNgYd9e0SCoGw==
 
-makeup-roving-tabindex@~0.3.5:
-  version "0.3.5"
-  resolved "https://registry.npmjs.org/makeup-roving-tabindex/-/makeup-roving-tabindex-0.3.5.tgz#d8b37134710123197f987d58dc032fae1526f04e"
-  integrity sha512-VfmlFTsv5F1cuyhqHiXgyTXuuldkRtZ3UUoFC71WnMSRmJTvWUL926S1YVdYvYMsYtFMpIIlcU5kSDe/DjwwcQ==
+makeup-roving-tabindex@~0.3.6:
+  version "0.3.6"
+  resolved "https://registry.npmjs.org/makeup-roving-tabindex/-/makeup-roving-tabindex-0.3.6.tgz#92bc24d4fc9acb36323da381f2159cb08ff5c902"
+  integrity sha512-2PgXi+dhUh+rG2iXSq5mDwlVXF+w4rU5FzBJXWJhfA+BfA9rVwbHTjdOIq0GFTqDkMS0N/JGommO9goMnrLe+A==
   dependencies:
     custom-event "^1"
-    makeup-navigation-emitter "~0.3.4"
+    makeup-navigation-emitter "~0.3.5"
     nodelist-foreach-polyfill "^1"
 
 makeup-screenreader-trap@~0.1.3:
