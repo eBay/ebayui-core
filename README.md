@@ -13,16 +13,12 @@
 ## Requirements
 
 * [Node.js](https://nodejs.org/en/)
-* [Marko](https://markojs.com) (v3+)
-* [eBay Skin](https://ebay.github.io/skin/) (v7+)
-
-*Note:\
-Marko v3 requires [Marko Widgets v6](https://github.com/marko-js/marko-widgets)\
-Marko v4 requires [Marko Widgets v7](https://github.com/marko-js/marko-widgets/tree/v7)*
+* [Marko](https://markojs.com) (v4+)
+* [eBay Skin](https://ebay.github.io/skin/) (v10+)
 
 *Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components.*
 
-*Note: In order for spread attributes to work properly, `marko@3.14.5` or `marko@4.18.22` at least is required*
+*Note: In order for spread attributes to work properly, `marko@4.18.22` at least is required*
 
 ### Browser Policy
 
@@ -174,7 +170,7 @@ $ const myAttributes = { id: 'my-button' };
 
 ### Events
 
-Events can also be handled using [Marko syntax](https://markojs.com/docs/events/) (or the legacy syntax for [Marko v3](http://v3.markojs.com/docs/marko-widgets/taglib-api/#w-on)):
+Events can also be handled using [Marko syntax](https://markojs.com/docs/events/):
 
 #### _template.marko_
 
