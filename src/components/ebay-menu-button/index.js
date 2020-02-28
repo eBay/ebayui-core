@@ -34,7 +34,7 @@ module.exports = require('marko-widgets').defineComponent({
     toggleItemChecked(itemEl) {
         const itemIndex = indexOf(itemEl.parentNode.children, itemEl);
         const item = this.state.items[itemIndex];
-        const currentIndex = this.state.items.findIndex(radioItem => radioItem.checked);
+        const currentIndex = findIndex(this.state.items, radioItem => radioItem.checked);
 
         if (this.state.type === 'radio' && itemIndex !== currentIndex) {
             this.state.items.forEach((eachItem, i) => {
