@@ -22,6 +22,7 @@
     ${processHtmlAttributes(data, ignoredAttributes)}>
     <div
         w-id="menu"
+        tabindex=(isFake ? "-1" : null)
         role=(!isFake && 'menu')
         class="${baseClass}__items">
         <for(item in data.items)>
