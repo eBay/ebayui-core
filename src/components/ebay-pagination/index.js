@@ -159,17 +159,15 @@ function refresh() {
  * @param {MouseEvent} originalEvent
  */
 function handlePageNumber(originalEvent, el) {
-    if (!isSyntheticClick(originalEvent)) {
-        this.emit('pagination-select', {
-            el,
-            originalEvent,
-            value: el.innerText
-        });
-    }
+    this.emit('pagination-select', {
+        el,
+        originalEvent,
+        value: el.innerText
+    });
 }
 
 function handleNextPage(originalEvent, el) {
-    if (!this.state.nextItem.disabled && !isSyntheticClick(originalEvent)) {
+    if (!this.state.nextItem.disabled) {
         this.emit('pagination-next', {
             el,
             originalEvent
@@ -178,41 +176,12 @@ function handleNextPage(originalEvent, el) {
 }
 
 function handlePreviousPage(originalEvent, el) {
-    if (!this.state.prevItem.disabled && !isSyntheticClick(originalEvent)) {
+    if (!this.state.prevItem.disabled) {
         this.emit('pagination-previous', {
             el,
             originalEvent
         });
     }
-}
-
-/**
- * Handle a11y for item, next page and previous page respectively.
- * @param {KeyboardEvent} originalEvent
- */
-function handlePageNumberKeyDown(originalEvent, el) {
-    eventUtils.handleActionKeydown(originalEvent, () => {
-        this.handlePageNumber(originalEvent, el);
-    });
-}
-
-function handleNextPageKeyDown(originalEvent, el) {
-    eventUtils.handleActionKeydown(originalEvent, () => {
-        this.handleNextPage(originalEvent, el);
-    });
-}
-
-function handlePreviousPageKeyDown(originalEvent, el) {
-    eventUtils.handleActionKeydown(originalEvent, () => {
-        this.handlePreviousPage(originalEvent, el);
-    });
-}
-
-function isSyntheticClick(event) {
-    // Keydown events can fire a click event on buttons, which caused this component
-    // to emit two events. Here we use the event.detail property to check that there was
-    // actually a click. https://developer.mozilla.org/en-US/docs/Web/API/UIEvent/detail
-    return event.type === 'click' && event.detail === 0;
 }
 
 module.exports = require('marko-widgets').defineComponent({
@@ -225,9 +194,6 @@ module.exports = require('marko-widgets').defineComponent({
     handlePageNumber,
     handleNextPage,
     handlePreviousPage,
-    handlePageNumberKeyDown,
-    handleNextPageKeyDown,
-    handlePreviousPageKeyDown,
     getInitialState,
     getTemplateData
 });

@@ -1,6 +1,5 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { pressKey } = require('../../../common/test-utils/browser');
 const mock = require('./mock');
 const template = require('..');
 
@@ -43,17 +42,6 @@ describe('given the pagination is rendered', () => {
                 thenItEmittedThePaginationPreviousEvent();
             });
 
-            describe('via keyDown', () => {
-                beforeEach(async() => {
-                    await pressKey(component.getByLabelText(input.a11yPreviousText), {
-                        key: '(Space character)',
-                        keyCode: 32
-                    });
-                });
-
-                thenItEmittedThePaginationPreviousEvent();
-            });
-
             function thenItEmittedThePaginationPreviousEvent() {
                 it('then it emits the pagination-previous event', () => {
                     const previousEvents = component.emitted('pagination-previous');
@@ -77,17 +65,6 @@ describe('given the pagination is rendered', () => {
                 thenItEmittedThePaginationNextEvent();
             });
 
-            describe('via keyDown', () => {
-                beforeEach(async() => {
-                    await pressKey(component.getByLabelText(input.a11yNextText), {
-                        key: '(Space character)',
-                        keyCode: 32
-                    });
-                });
-
-                thenItEmittedThePaginationNextEvent();
-            });
-
             function thenItEmittedThePaginationNextEvent() {
                 it('then it emits the pagination-next event', () => {
                     const nextEvents = component.emitted('pagination-next');
@@ -105,17 +82,6 @@ describe('given the pagination is rendered', () => {
                 beforeEach(async() => {
                     await fireEvent.click(component.getByText(input.items[1].renderBody.text), {
                         detail: 1
-                    });
-                });
-
-                thenItEmittedThePaginationSelectEvent();
-            });
-
-            describe('via keyDown', () => {
-                beforeEach(async() => {
-                    await pressKey(component.getByText(input.items[1].renderBody.text), {
-                        key: '(Space character)',
-                        keyCode: 32
                     });
                 });
 
@@ -155,17 +121,6 @@ describe('given the pagination is rendered with disabled controls', () => {
             thenItDidNotEmitThePaginationPreviousEvent();
         });
 
-        describe('via keyDown', () => {
-            beforeEach(async() => {
-                await pressKey(component.getByLabelText(input.a11yPreviousText), {
-                    key: '(Space character)',
-                    keyCode: 32
-                });
-            });
-
-            thenItDidNotEmitThePaginationPreviousEvent();
-        });
-
         function thenItDidNotEmitThePaginationPreviousEvent() {
             it('then it does not emit the pagination-previous event', () => {
                 expect(component.emitted('pagination-previous')).has.length(0);
@@ -178,17 +133,6 @@ describe('given the pagination is rendered with disabled controls', () => {
             beforeEach(async() => {
                 await fireEvent.click(component.getByLabelText(input.a11yNextText), {
                     detail: 1
-                });
-            });
-
-            thenItDidNotEmitThePaginationNextEvent();
-        });
-
-        describe('via keyDown', () => {
-            beforeEach(async() => {
-                await pressKey(component.getByLabelText(input.a11yNextText), {
-                    key: '(Space character)',
-                    keyCode: 32
                 });
             });
 

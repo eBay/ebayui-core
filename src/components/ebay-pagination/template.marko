@@ -17,7 +17,6 @@
         class=data.prevItem.class
         style=data.prevItem.style
         href=data.prevItem.href
-        w-onkeydown="handlePreviousPageKeyDown"
         w-onclick="handlePreviousPage"
         ${data.prevItem.htmlAttributes}
         if(data.prevItem)>
@@ -31,7 +30,6 @@
                 class=item.class
                 style=item.style
                 ${item.htmlAttributes}
-                w-onkeydown="handlePageNumberKeyDown"
                 w-onclick="handlePageNumber"
                 w-body=item.renderBody>
             </>
@@ -43,7 +41,6 @@
         class=data.nextItem.class
         style=data.nextItem.style
         href=data.nextItem.href
-        w-onkeydown="handleNextPageKeyDown"
         w-onclick="handleNextPage"
         ${data.nextItem.htmlAttributes}
         if(data.nextItem)>
