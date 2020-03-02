@@ -1,0 +1,117 @@
+const assign = require('core-js-pure/features/object/assign');
+const { expect, use } = require('chai');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const mock = require('./mock');
+const template = require('..');
+
+use(require('chai-dom'));
+afterEach(cleanup);
+let component;
+
+describe('given the details is in the default state', () => {
+    const input = mock.Default_Details;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+
+    it('should render with open false', () => {
+        expect(component.getByTestId('test').open).to.equal(false);
+    });
+});
+
+describe('given the details is in the open state', () => {
+    const input = mock.Open_Details;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+
+    it('should render with open false', () => {
+        expect(component.getByTestId('test').open).to.equal(true);
+    });
+});
+
+describe('given the details is in the default state and click is triggered', () => {
+    const input = mock.Default_Details;
+    const detailsText = input.text;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+        await fireEvent.click(component.getByText(detailsText));
+    });
+
+    it('then it emits the details-toggle', () => {
+        const toggleEvent = component.emitted('details-toggle');
+        expect(toggleEvent).to.length(1);
+        const [[eventArg]] = toggleEvent;
+        expect(eventArg).has.property('open', true);
+        expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+    });
+
+    describe('details should properly toggle open property', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { open: true }));
+        });
+
+        it('then it should have open true', () => {
+            expect(component.getByTestId('test').open).to.equal(true);
+        });
+
+        describe('click after rerender', () => {
+            beforeEach(async() => {
+                await fireEvent.click(component.getByText(detailsText).parentNode);
+            });
+            it('then it should be closed', () => {
+                const toggleEvent = component.emitted('details-toggle');
+                expect(toggleEvent).to.length(2);
+
+                const [eventArg] = toggleEvent[1];
+                expect(eventArg).has.property('open', false);
+                expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+            });
+        });
+    });
+});
+
+describe('given the details is in the open state and click is triggered', () => {
+    const input = mock.Open_Details;
+    const detailsText = input.text;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+        await fireEvent.click(component.getByText(detailsText));
+    });
+
+    it('then it emits the details-toggle', () => {
+        const toggleEvent = component.emitted('details-toggle');
+        expect(toggleEvent).to.length(1);
+
+        const [[eventArg]] = toggleEvent;
+        expect(eventArg).has.property('open', false);
+        expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+    });
+
+    describe('details should properly toggle open property', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { open: false }));
+        });
+
+        it('then it should have open true', () => {
+            expect(component.getByTestId('test').open).to.equal(false);
+        });
+        describe('click after rerender', () => {
+            beforeEach(async() => {
+                await fireEvent.click(component.getByText(detailsText).parentNode);
+            });
+            it('then it should be open', () => {
+                const toggleEvent = component.emitted('details-toggle');
+                expect(toggleEvent).to.length(2);
+
+                const [eventArg] = toggleEvent[1];
+                expect(eventArg).has.property('open', true);
+                expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+            });
+        });
+    });
+});

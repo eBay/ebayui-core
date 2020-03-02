@@ -1,5 +1,5 @@
 class {}
 
-<ebay-details text="details" rtl size="small" type="center" open on-details-toggle(() => console.log('toggle')) >
+<ebay-details text="details" rtl size="small" type="center" open on-details-toggle((ev) => console.log('toggle', ev.open)) >
     Sample content inside of details
 </ebay-details>
