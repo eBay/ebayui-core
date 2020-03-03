@@ -16,7 +16,7 @@ describe('given the details is in the default state', () => {
     });
 
     it('should render with open false', () => {
-        expect(component.getByTestId('test').open).to.equal(false);
+        expect(component.getByText(input.text).closest('details').open).to.equal(false);
     });
 });
 
@@ -28,7 +28,7 @@ describe('given the details is in the open state', () => {
     });
 
     it('should render with open false', () => {
-        expect(component.getByTestId('test').open).to.equal(true);
+        expect(component.getByText(input.text).closest('details').open).to.equal(true);
     });
 });
 
@@ -55,7 +55,7 @@ describe('given the details is in the default state and click is triggered', () 
         });
 
         it('then it should have open true', () => {
-            expect(component.getByTestId('test').open).to.equal(true);
+            expect(component.getByText(detailsText).closest('details').open).to.equal(true);
         });
 
         describe('click after rerender', () => {
@@ -98,7 +98,7 @@ describe('given the details is in the open state and click is triggered', () => 
         });
 
         it('then it should have open true', () => {
-            expect(component.getByTestId('test').open).to.equal(false);
+            expect(component.getByText(detailsText).closest('details').open).to.equal(false);
         });
         describe('click after rerender', () => {
             beforeEach(async() => {

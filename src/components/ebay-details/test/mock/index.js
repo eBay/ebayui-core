@@ -3,7 +3,6 @@ const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Default_Details = {
     text: 'open',
-    'data-testid': 'test',
     renderBody: createRenderBody('body content')
 };
 
