@@ -44,6 +44,7 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
         role=(!isFake && "menu")
         class=`${baseClass}__items`
         key="menu"
+        tabindex=(isFake && "-1")
         id:scoped="menu">
         <for|item, index| of=input.items>
             $ {
