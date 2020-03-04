@@ -21,3 +21,4 @@ Name | Type | Stateful | Required | Description
 Event | Data | Description
 --- | --- | ---
 `details-toggle` | `{ originalEvent, open }` | details toggled. Open is boolean if true then details was opened, otherwise false means details closed
+`details-click` | `{ originalEvent }` | details clicked

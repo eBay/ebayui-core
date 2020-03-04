@@ -45,8 +45,9 @@ describe('given the details is in the default state and click is triggered', () 
             await fireEvent.click(component.getByText(detailsText));
         });
 
-        it('then it emits the details-toggle', () => {
+        it('then it emits the details-toggle and click', () => {
             verifyToggleEvent(true);
+            verifyClickEvent();
         });
     });
 
@@ -68,6 +69,7 @@ describe('given the details is in the default state and click is triggered', () 
 
             it('then it should be closed', () => {
                 verifyToggleEvent(false);
+                verifyClickEvent();
             });
         });
     });
@@ -88,8 +90,9 @@ describe('given the details is in the open state and click is triggered', () => 
             await fireEvent.click(component.getByText(detailsText));
         });
 
-        it('then it emits the details-toggle', () => {
+        it('then it emits the details-toggle and click', () => {
             verifyToggleEvent(false);
+            verifyClickEvent();
         });
     });
     describe('details should properly toggle open property', () => {
@@ -108,6 +111,7 @@ describe('given the details is in the open state and click is triggered', () => 
             });
             it('then it should be open', () => {
                 verifyToggleEvent(true);
+                verifyClickEvent();
             });
         });
     });
@@ -119,5 +123,13 @@ function verifyToggleEvent(isOpen) {
 
     const [[eventArg]] = toggleEvent;
     expect(eventArg).has.property('open', isOpen);
+    expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+}
+
+function verifyClickEvent() {
+    const toggleEvent = component.emitted('details-click');
+    expect(toggleEvent).to.length(1);
+
+    const [[eventArg]] = toggleEvent;
     expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
 }
