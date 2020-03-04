@@ -72,8 +72,6 @@ describe('given the details is in the open state and click is triggered', () => 
 
     describe('click on details', () => {
         beforeEach(async() => {
-            verifyToggleEvent(true);
-
             await fireEvent.click(component.getByText(detailsText));
         });
 
@@ -85,7 +83,6 @@ describe('given the details is in the open state and click is triggered', () => 
 
     describe('details should properly toggle open property', () => {
         beforeEach(async() => {
-            verifyToggleEvent(true);
             await component.rerender(assign({}, input, { open: false }));
         });
 
