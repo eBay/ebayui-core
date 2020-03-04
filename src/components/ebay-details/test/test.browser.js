@@ -59,19 +59,6 @@ describe('given the details is in the default state and click is triggered', () 
         it('then it should have open true', () => {
             expect(component.getByText(detailsText).closest('details').open).to.equal(true);
         });
-
-        describe('click after rerender', () => {
-            beforeEach(async() => {
-                verifyToggleEvent(true);
-
-                await fireEvent.click(component.getByText(detailsText).parentNode);
-            });
-
-            it('then it should be closed', () => {
-                verifyToggleEvent(false);
-                verifyClickEvent();
-            });
-        });
     });
 });
 
@@ -95,6 +82,7 @@ describe('given the details is in the open state and click is triggered', () => 
             verifyClickEvent();
         });
     });
+
     describe('details should properly toggle open property', () => {
         beforeEach(async() => {
             verifyToggleEvent(true);
@@ -103,16 +91,6 @@ describe('given the details is in the open state and click is triggered', () => 
 
         it('then it should have open true', () => {
             expect(component.getByText(detailsText).closest('details').open).to.equal(false);
-        });
-        describe('click after rerender', () => {
-            beforeEach(async() => {
-                verifyToggleEvent(false);
-                await fireEvent.click(component.getByText(detailsText).parentNode);
-            });
-            it('then it should be open', () => {
-                verifyToggleEvent(true);
-                verifyClickEvent();
-            });
         });
     });
 });
