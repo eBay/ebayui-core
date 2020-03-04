@@ -38,15 +38,16 @@ describe('given the details is in the default state and click is triggered', () 
 
     beforeEach(async() => {
         component = await render(template, input);
-        await fireEvent.click(component.getByText(detailsText));
     });
 
-    it('then it emits the details-toggle', () => {
-        const toggleEvent = component.emitted('details-toggle');
-        expect(toggleEvent).to.length(1);
-        const [[eventArg]] = toggleEvent;
-        expect(eventArg).has.property('open', true);
-        expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+    describe('click on details', () => {
+        beforeEach(async() => {
+            await fireEvent.click(component.getByText(detailsText));
+        });
+
+        it('then it emits the details-toggle', () => {
+            verifyToggleEvent(true);
+        });
     });
 
     describe('details should properly toggle open property', () => {
@@ -60,15 +61,13 @@ describe('given the details is in the default state and click is triggered', () 
 
         describe('click after rerender', () => {
             beforeEach(async() => {
+                verifyToggleEvent(true);
+
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
-            it('then it should be closed', () => {
-                const toggleEvent = component.emitted('details-toggle');
-                expect(toggleEvent).to.length(2);
 
-                const [eventArg] = toggleEvent[1];
-                expect(eventArg).has.property('open', false);
-                expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+            it('then it should be closed', () => {
+                verifyToggleEvent(false);
             });
         });
     });
@@ -80,20 +79,22 @@ describe('given the details is in the open state and click is triggered', () => 
 
     beforeEach(async() => {
         component = await render(template, input);
-        await fireEvent.click(component.getByText(detailsText));
     });
 
-    it('then it emits the details-toggle', () => {
-        const toggleEvent = component.emitted('details-toggle');
-        expect(toggleEvent).to.length(1);
+    describe('click on details', () => {
+        beforeEach(async() => {
+            verifyToggleEvent(true);
 
-        const [[eventArg]] = toggleEvent;
-        expect(eventArg).has.property('open', false);
-        expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+            await fireEvent.click(component.getByText(detailsText));
+        });
+
+        it('then it emits the details-toggle', () => {
+            verifyToggleEvent(false);
+        });
     });
-
     describe('details should properly toggle open property', () => {
         beforeEach(async() => {
+            verifyToggleEvent(true);
             await component.rerender(assign({}, input, { open: false }));
         });
 
@@ -102,16 +103,21 @@ describe('given the details is in the open state and click is triggered', () => 
         });
         describe('click after rerender', () => {
             beforeEach(async() => {
+                verifyToggleEvent(false);
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
             it('then it should be open', () => {
-                const toggleEvent = component.emitted('details-toggle');
-                expect(toggleEvent).to.length(2);
-
-                const [eventArg] = toggleEvent[1];
-                expect(eventArg).has.property('open', true);
-                expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+                verifyToggleEvent(true);
             });
         });
     });
 });
+
+function verifyToggleEvent(isOpen) {
+    const toggleEvent = component.emitted('details-toggle');
+    expect(toggleEvent).to.length(1);
+
+    const [[eventArg]] = toggleEvent;
+    expect(eventArg).has.property('open', isOpen);
+    expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+}
