@@ -49,7 +49,7 @@ describe('given the details is in the default state and click is triggered', () 
         });
 
         it('then it emits the details-toggle and click', async() => {
-            verifyToggleEvent(true);
+            verifyToggleEvent();
             verifyClickEvent();
         });
     });
@@ -68,7 +68,7 @@ describe('given the details is in the default state and click is triggered', () 
             });
 
             it('then it should be closed', async() => {
-                verifyToggleEvent(false);
+                verifyToggleEvent();
                 verifyClickEvent();
             });
         });
@@ -89,7 +89,7 @@ describe('given the details is in the open state and click is triggered', () => 
         });
 
         it('then it emits the details-toggle and click', async() => {
-            verifyToggleEvent(false);
+            verifyToggleEvent();
             verifyClickEvent();
         });
     });
@@ -107,19 +107,19 @@ describe('given the details is in the open state and click is triggered', () => 
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
             it('then it should be open', async() => {
-                verifyToggleEvent(true);
+                verifyToggleEvent();
                 verifyClickEvent();
             });
         });
     });
 });
 
-function verifyToggleEvent(isOpen) {
+function verifyToggleEvent() {
     const toggleEvent = component.emitted('details-toggle');
     expect(toggleEvent.length).to.be.greaterThan(0);
 
     const [eventArg] = toggleEvent.pop();
-    expect(eventArg).has.property('open', isOpen);
+    expect(eventArg).has.property('open');
     expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
 }
 
