@@ -61,8 +61,6 @@ describe('given the details is in the default state and click is triggered', () 
         });
         describe('click after rerender', () => {
             beforeEach(async() => {
-                flushToggleEvent(true);
-
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
 
@@ -103,7 +101,6 @@ describe('given the details is in the open state and click is triggered', () => 
         });
         describe('click after rerender', () => {
             beforeEach(async() => {
-                flushToggleEvent(false);
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
             it('then it should be open', async() => {
@@ -114,22 +111,11 @@ describe('given the details is in the open state and click is triggered', () => 
     });
 });
 
-// In some older browsers, the toggleEvent is not fired consistently
-// On rerender, so adding a flush to make sure that it is synced up correctly
-function flushToggleEvent(isOpen) {
-    const toggleEvent = component.emitted('details-toggle');
-    if (toggleEvent.length > 0) {
-        const [[eventArg]] = toggleEvent;
-        expect(eventArg).has.property('open', isOpen);
-        expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
-    }
-}
-
 function verifyToggleEvent(isOpen) {
     const toggleEvent = component.emitted('details-toggle');
-    expect(toggleEvent).to.length(1);
+    expect(toggleEvent.length).to.be.greaterThan(0);
 
-    const [[eventArg]] = toggleEvent;
+    const [eventArg] = toggleEvent.pop();
     expect(eventArg).has.property('open', isOpen);
     expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
 }
