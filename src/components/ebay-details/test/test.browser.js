@@ -46,7 +46,7 @@ describe('given the details is in the default state and click is triggered', () 
         });
 
         it('then it emits the details-toggle and click', async() => {
-            verifyToggleEvent(true);
+            await verifyToggleEvent(true);
             verifyClickEvent();
         });
     });
@@ -59,7 +59,6 @@ describe('given the details is in the default state and click is triggered', () 
         it('then it should have open true', () => {
             expect(component.getByText(detailsText).closest('details').open).to.equal(true);
         });
-
         describe('click after rerender', () => {
             beforeEach(async() => {
                 await verifyToggleEvent(true);
@@ -85,19 +84,17 @@ describe('given the details is in the open state and click is triggered', () => 
 
     describe('click on details', () => {
         beforeEach(async() => {
-            verifyToggleEvent(true);
-
             await fireEvent.click(component.getByText(detailsText));
         });
 
         it('then it emits the details-toggle and click', async() => {
-            verifyToggleEvent(false);
-            await verifyClickEvent();
+            await verifyToggleEvent(false);
+            verifyClickEvent();
         });
     });
+
     describe('details should properly toggle open property', () => {
         beforeEach(async() => {
-            verifyToggleEvent(true);
             await component.rerender(assign({}, input, { open: false }));
         });
 
@@ -106,12 +103,12 @@ describe('given the details is in the open state and click is triggered', () => 
         });
         describe('click after rerender', () => {
             beforeEach(async() => {
-                verifyToggleEvent(false);
+                await verifyToggleEvent(false);
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
             it('then it should be open', async() => {
-                verifyToggleEvent(true);
-                await verifyClickEvent();
+                await verifyToggleEvent(true);
+                verifyClickEvent();
             });
         });
     });
