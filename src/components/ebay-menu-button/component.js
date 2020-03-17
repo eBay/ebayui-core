@@ -163,10 +163,16 @@ module.exports = {
     },
 
     _setupMakeup() {
+        // In expander we set focusManagement to interactive for fake menu
+        // This is related to setting the tabindex=-1 on menu-button div container for fake menu
+        // In Safari and Firefox when clicking on a button/anchor focus is triggered on
+        // the closest element with tabindex=-1 if there are any above it.
+        // This would cause the menu to close before events are fired
+
         this.expander = new Expander(this.el, {
             hostSelector: '.menu-button__button, .fake-menu-button__button',
             contentSelector: '.menu-button__menu, .fake-menu-button__menu',
-            focusManagement: 'focusable',
+            focusManagement: this.input.type === 'fake' ? 'interactive' : 'focusable',
             expandOnClick: true,
             autoCollapse: true,
             alwaysDoFocusManagement: true
