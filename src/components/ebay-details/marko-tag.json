@@ -1,0 +1,17 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@type": {
+    "enum": ["regular", "center"]
+  },
+  "@size": {
+    "enum": ["regular", "small"]
+  },
+  "@text": "string",
+  "@open": "boolean",
+  "@rtl": "boolean"
+}
