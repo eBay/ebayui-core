@@ -17,6 +17,18 @@ describe('dialog', () => {
         expect(getByText(input.renderBody.text)).has.class('dialog__body');
     });
 
+    it('renders with header and footer', async() => {
+        const input = mock.Header_Footer_Dialog;
+        const { getByRole, getByLabelText, getByText } = await render(template, input);
+
+        expect(getByRole('dialog')).has.attr('hidden');
+        expect(getByRole('dialog')).has.class('dialog');
+        expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
+        expect(getByText(input.renderBody.text)).has.class('dialog__body');
+        expect(getByText(input.header.renderBody.text)).has.class('dialog__header');
+        expect(getByText(input.footer.renderBody.text)).has.class('dialog__footer');
+    });
+
     it('renders in open state', async() => {
         const input = mock.Fill_Dialog_Open;
         const { getByRole } = await render(template, input);
@@ -35,11 +47,11 @@ describe('dialog', () => {
 
             if (type === 'full') {
                 expect($dialog).has.class('dialog--no-mask');
+                expect($window).has.class('dialog__window--slide');
             } else {
                 expect($dialog).has.class('dialog--mask-fade');
+                expect($window).has.class('dialog__window--fade');
             }
-
-            expect($window).has.class('dialog__window--fade');
         });
     });
 

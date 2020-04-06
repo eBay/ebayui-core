@@ -24,19 +24,25 @@ $ var isDocked = input.type === "left" || input.type === "right";
         class=[
             "dialog__window",
             input.type && `dialog__window--${input.type}`,
-            isDocked && "dialog__window--slide",
-            (isFull || isCenter) && "dialog__window--fade"
+            (isDocked ||isFull) && "dialog__window--slide",
+            isCenter && "dialog__window--fade"
         ]>
-        <button
-            key="close"
-            class="dialog__close"
-            type="button"
-            aria-label=input.a11yCloseText
-            onClick("handleCloseButtonClick")>
-            <ebay-icon name="close"/>
-        </button>
+        <${input.header && "div"} class="dialog__header">
+            <button
+                key="close"
+                class="dialog__close"
+                type="button"
+                aria-label=input.a11yCloseText
+                onClick("handleCloseButtonClick")>
+                <ebay-icon name="close"/>
+            </button>
+            <${input.header.renderBody} if(input.header) />
+        </>
         <div key="body" class="dialog__body">
             <${input.renderBody}/>
+        </div>
+        <div class="dialog__footer" if(input.footer)>
+            <${input.footer.renderBody} />
         </div>
     </div>
 </div>
