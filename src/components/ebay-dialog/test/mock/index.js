@@ -6,6 +6,17 @@ exports.Fill_Dialog = {
     renderBody: createRenderBody('body content')
 };
 
+exports.Header_Footer_Dialog = {
+    a11yCloseText: 'close',
+    footer: {
+        renderBody: createRenderBody('footer content')
+    },
+    header: {
+        renderBody: createRenderBody('title content')
+    },
+    renderBody: createRenderBody('body content')
+};
+
 exports.Fill_Dialog_Open = assign({}, exports.Fill_Dialog, {
     open: true
 });
