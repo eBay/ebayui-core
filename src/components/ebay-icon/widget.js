@@ -1,6 +1,11 @@
 let rootSvg;
 
+function noop() {}
+
 module.exports = require('marko-widgets').defineWidget({
+    getInitialProps(input) {
+        input.toJSON = noop;
+    },
     init() {
         // Create a hidden svg to store all symbols on startup.
         if (!rootSvg) {
