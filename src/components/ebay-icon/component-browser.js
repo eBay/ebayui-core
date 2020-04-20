@@ -1,6 +1,11 @@
 let rootSvg;
 
+function noop() {}
+
 module.exports = {
+    onInput(input) {
+        input.toJSON = noop;
+    },
     onMount() {
         // Create a hidden svg to store all symbols on startup.
         if (!rootSvg) {
