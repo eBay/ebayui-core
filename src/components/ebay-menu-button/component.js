@@ -135,7 +135,7 @@ module.exports = {
         this.type = input.type;
         if (this.isRadio) {
             this.state = {
-                checkedIndex: (input.items || []).findIndex(item => item.checked || false)
+                checkedIndex: findIndex(input.items || [], item => item.checked || false)
             };
         } else {
             this.state = {
