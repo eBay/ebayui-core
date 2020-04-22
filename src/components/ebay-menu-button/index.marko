@@ -55,9 +55,7 @@ $ var isOverflowVariant = input.variant === "overflow";
                 input.label && "menu-button__control--custom-label"
             ]>
                 <if(input.label)>
-                    <span no-update-body>
-                        <${input.label.renderBody}/>
-                    </span>
+                    <${input.label.renderBody}/>
                 </if>
                 <else>
                     <!-- Convoluted markup to satisfy both Skin and Marko -->
