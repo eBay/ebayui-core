@@ -12,6 +12,5 @@
     "enum": ["regular", "small"]
   },
   "@text": "string",
-  "@open": "boolean",
-  "@rtl": "boolean"
+  "@open": "boolean"
 }

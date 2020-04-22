@@ -26,7 +26,7 @@ describe('details', () => {
     });
 
     it('renders left-to-right', async() => {
-        const input = Object.assign({}, mock.Default_Details, { rtl: true });
+        const input = Object.assign({}, mock.Default_Details, { dir: 'rtl' });
         const { getByText } = await render(template, input);
         expect(getByText(input.text).closest('details')).has.property('dir', 'rtl');
     });
