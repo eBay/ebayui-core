@@ -1,8 +1,8 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = ["open", "type", "size", "rtl", "text"];
+static var ignoredAttributes = ["open", "type", "size", "text"];
 
-<details class="details" open=input.open dir=(input.rtl && 'rtl') key="root" on-toggle('toggleDetails') on-click('clickDetails') ...processHtmlAttributes(input, ignoredAttributes)>
+<details class="details" open=input.open key="root" on-toggle('toggleDetails') on-click('clickDetails') ...processHtmlAttributes(input, ignoredAttributes)>
     <summary class=[
         "details__summary",
         input.size === "small" && "details__summary--small",
