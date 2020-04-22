@@ -1,5 +1,7 @@
 {
-  "attribute-groups": ["html-attributes"],
+  "attribute-groups": [
+    "html-attributes"
+  ],
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -7,10 +9,35 @@
   "@html-attributes": "expression",
   "@open": "boolean",
   "@type": {
-    "enum": ["full", "fill", "left", "right"]
+    "enum": [
+      "full",
+      "fill",
+      "left",
+      "right"
+    ]
   },
   "@focus": "string",
   "@a11y-close-text": "string",
   "@role": "never",
-  "@hidden": "never"
+  "@hidden": "never",
+  "@header <header>": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
+  "@footer <footer>": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  }
 }

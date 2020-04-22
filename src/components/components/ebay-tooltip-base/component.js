@@ -66,7 +66,7 @@ module.exports = {
                 autoCollapse: isTooltip
             });
 
-            if (!host.hasAttribute('aria-describedby')) {
+            if (isTooltip && !host.hasAttribute('aria-describedby')) {
                 host.setAttribute('aria-describedby', input.overlayId);
             }
         }

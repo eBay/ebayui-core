@@ -25,12 +25,6 @@ describe('details', () => {
         expect(getByText(input.renderBody.text).closest('details')).has.property('open', true);
     });
 
-    it('renders left-to-right', async() => {
-        const input = Object.assign({}, mock.Default_Details, { rtl: true });
-        const { getByText } = await render(template, input);
-        expect(getByText(input.text).closest('details')).has.property('dir', 'rtl');
-    });
-
     it('renders small version', async() => {
         const input = Object.assign({}, mock.Default_Details, { size: 'small' });
         const { getByText } = await render(template, input);
