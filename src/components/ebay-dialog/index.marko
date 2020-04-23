@@ -7,8 +7,8 @@ $ var isDocked = input.type === "left" || input.type === "right";
     ...input
     open=input.open
     type="dialog"
-    on-modal-show('dialogShow')
-    on-modal-close('dialogClose')
+    on-modal-show("emit", "dialog-show")
+    on-modal-close("emit", "dialog-close")
     class=[
         input.class,
         isDocked && "dialog--mask-fade-slow",
