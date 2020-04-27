@@ -26,8 +26,8 @@ describe('given a closed dialog', () => {
         document.body.removeChild(sibling);
     });
 
-    it('then it is hidden in the DOM', () => {
-        expect(component.getByRole('dialog')).has.attr('hidden');
+    it('then it is hidden in the DOM', async() => {
+        await wait(() => expect(component.getByRole('dialog')).has.attr('hidden'));
     });
 
     it('then <body> is scrollable', () => {
@@ -51,8 +51,8 @@ describe('given a closed dialog', () => {
     });
 
     function thenItIsOpen(wasToggled) {
-        it('then it is visible in the DOM', () => {
-            expect(component.getByRole('dialog')).does.not.have.attr('hidden');
+        it('then it is visible in the DOM', async() => {
+            await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
         });
 
         it('then <body> is not scrollable', () => {
@@ -117,8 +117,8 @@ describe('given an open dialog', () => {
     });
 
     function thenItIsOpen() {
-        it('then it is visible in the DOM', () => {
-            expect(component.getByRole('dialog')).does.not.have.attr('hidden');
+        it('then it is visible in the DOM', async() => {
+            await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
         });
 
         it('then <body> is not scrollable', () => {
@@ -138,8 +138,8 @@ describe('given an open dialog', () => {
     }
 
     function thenItIsClosed(wasToggled) {
-        it('then it is hidden in the DOM', () => {
-            expect(component.getByRole('dialog')).has.attr('hidden');
+        it('then it is hidden in the DOM', async() => {
+            await wait(() => expect(component.getByRole('dialog')).has.attr('hidden'));
         });
 
         it('then <body> is scrollable', async() => {

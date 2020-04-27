@@ -1,8 +1,11 @@
 import processHtmlAttributes from "../../../common/html-attributes"
 
-static var ignoredAttributes = ["open", "type", "classPrefix", "focus", "a11yCloseText", "windowClass"];
+static var ignoredAttributes = ["open", "type", "classPrefix", "focus", "a11yCloseText", "windowClass", "baseEl", "header", "footer", "transitionEl"];
 
-<div
+$ const buttonPosition = input.buttonPosition || 'left';
+$ const baseEl = input.baseEl || 'div';
+
+<${baseEl}
     ...processHtmlAttributes(input, ignoredAttributes)
     aria-modal="true"
     role="dialog"
@@ -15,6 +18,9 @@ static var ignoredAttributes = ["open", "type", "classPrefix", "focus", "a11yClo
             <${input.top.renderBody}/>
         </if>
         <${input.header ? "div" : null} class=`${input.classPrefix}__header`>
+            <if(input.header && buttonPosition === 'right')>
+                <${input.header.renderBody} />
+            </if>
             <button
                 key="close"
                 class=`${input.classPrefix}__close`
@@ -23,7 +29,7 @@ static var ignoredAttributes = ["open", "type", "classPrefix", "focus", "a11yClo
                 onClick("handleCloseButtonClick")>
                 <ebay-icon name="close"/>
             </button>
-            <if(input.header)>
+            <if(input.header && buttonPosition === 'left')>
                 <${input.header.renderBody} />
             </if>
         </>
@@ -34,4 +40,4 @@ static var ignoredAttributes = ["open", "type", "classPrefix", "focus", "a11yClo
             <${input.footer.renderBody} />
         </div>
     </div>
-</div>
+</>

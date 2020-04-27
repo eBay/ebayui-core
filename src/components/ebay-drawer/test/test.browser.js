@@ -166,8 +166,8 @@ describe('given an open and non expanded drawer for touch events', () => {
             await wait(() => expect(component.emitted('drawer-close')).has.length(1));
         });
 
-        it('then it is hidden in the DOM when dragged down', () => {
-            expect(component.getByRole('dialog')).has.attr('hidden');
+        it('then it is hidden in the DOM when dragged down', async() => {
+            await wait(() => expect(component.getByRole('dialog')).has.attr('hidden'));
         });
     });
 });
