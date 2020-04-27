@@ -8,6 +8,10 @@ module.exports = {
         this.startEl = target;
     },
 
+    handleScroll() {
+        this.emit('modal-scroll');
+    },
+
     handleDialogClick({ target, clientY }) {
         const { closeEl, windowEl, startEl } = this;
 
