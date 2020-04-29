@@ -40,7 +40,6 @@ module.exports = {
 
     onInput(input) {
         this.state = { open: input.open || false };
-        this.type = input.type;
     },
 
     onRender() {
