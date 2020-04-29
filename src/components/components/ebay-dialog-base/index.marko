@@ -1,20 +1,20 @@
 import processHtmlAttributes from "../../../common/html-attributes"
 
-static var ignoredAttributes = ["open", "type", "focus", "a11yCloseText", "class", "windowClass"];
+static var ignoredAttributes = ["open", "type", "classPrefix", "focus", "a11yCloseText", "windowClass"];
 
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
     aria-modal="true"
     role="dialog"
-    class=[input.type, input.class]
+    class=[input.classPrefix, input.class]
     hidden:no-update=!state.open
     onClick("handleDialogClick")
     onMousedown("handleStartClick")>
-    <div key="window" class=[`${input.type}__window`, input.windowClass]>
-        <${input.header ? "div" : null} class=`${input.type}__header`>
+    <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>
+        <${input.header ? "div" : null} class=`${input.classPrefix}__header`>
             <button
                 key="close"
-                class=`${input.type}__close`
+                class=`${input.classPrefix}__close`
                 type="button"
                 aria-label=input.a11yCloseText
                 onClick("handleCloseButtonClick")>
@@ -24,10 +24,10 @@ static var ignoredAttributes = ["open", "type", "focus", "a11yCloseText", "class
                 <${input.header.renderBody} />
             </if>
         </>
-        <div class=`${input.type}__body` key="body">
+        <div class=`${input.classPrefix}__body` key="body">
             <${input.renderBody}/>
         </div>
-        <div class=`${input.type}__footer` if(input.footer)>
+        <div class=`${input.classPrefix}__footer` if(input.footer)>
             <${input.footer.renderBody} />
         </div>
     </div>

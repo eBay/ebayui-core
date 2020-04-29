@@ -36,7 +36,6 @@ module.exports = {
 
     onInput(input) {
         this.state = { open: input.open || false };
-        this.type = input.type;
     },
 
     onRender() {
@@ -134,7 +133,7 @@ module.exports = {
                     bodyScroll.prevent();
                     this.cancelTransition = transition({
                         el: this.rootEl,
-                        className: `${this.type}--show`,
+                        className: `${this.input.classPrefix}--show`,
                         waitFor: this.transitionEls
                     }, onFinishTransition);
                 }
@@ -144,7 +143,7 @@ module.exports = {
                 if (!isFirstRender) {
                     this.cancelTransition = transition({
                         el: this.rootEl,
-                        className: `${this.type}--hide`,
+                        className: `${this.input.classPrefix}--hide`,
                         waitFor: this.transitionEls
                     }, onFinishTransition);
                 }

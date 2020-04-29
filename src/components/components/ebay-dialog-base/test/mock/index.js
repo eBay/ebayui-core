@@ -2,7 +2,7 @@ const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../../common/test-utils/shared');
 
 exports.Fill_Dialog = {
-    type: 'dialog',
+    classPrefix: 'dialog',
     class: 'dialog--mask-fade',
     windowClass: 'dialog__window--fade',
     a11yCloseText: 'close',
@@ -10,7 +10,7 @@ exports.Fill_Dialog = {
 };
 
 exports.Header_Footer_Dialog = {
-    type: 'dialog',
+    classPrefix: 'dialog',
     class: 'dialog--mask-fade',
     windowClass: 'dialog__window--fade',
     a11yCloseText: 'close',

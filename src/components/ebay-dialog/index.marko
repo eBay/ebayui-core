@@ -6,7 +6,7 @@ $ var isDocked = input.type === "left" || input.type === "right";
 <ebay-dialog-base
     ...input
     open=input.open
-    type="dialog"
+    classPrefix="dialog"
     on-modal-show("emit", "dialog-show")
     on-modal-close("emit", "dialog-close")
     class=[
