@@ -1,7 +1,7 @@
 const keyboardTrap = require('makeup-keyboard-trap');
 const screenReaderTrap = require('makeup-screenreader-trap');
-const bodyScroll = require('../../common/body-scroll');
-const transition = require('../../common/transition');
+const bodyScroll = require('../../../common/body-scroll');
+const transition = require('../../../common/transition');
 
 module.exports = {
     handleStartClick({ target }) {
@@ -103,11 +103,11 @@ module.exports = {
 
                 if (isTrapped) {
                     focusEl.focus();
-                    this.emit('dialog-show');
+                    this.emit('modal-show');
                 } else {
                     bodyScroll.restore();
                     const activeElement = document.activeElement;
-                    this.emit('dialog-close');
+                    this.emit('modal-close');
 
                     if (
                         // Skip restoring focus if the focused element was changed via the dialog-close event
@@ -133,7 +133,7 @@ module.exports = {
                     bodyScroll.prevent();
                     this.cancelTransition = transition({
                         el: this.rootEl,
-                        className: 'dialog--show',
+                        className: `${this.input.classPrefix}--show`,
                         waitFor: this.transitionEls
                     }, onFinishTransition);
                 }
@@ -143,7 +143,7 @@ module.exports = {
                 if (!isFirstRender) {
                     this.cancelTransition = transition({
                         el: this.rootEl,
-                        className: 'dialog--hide',
+                        className: `${this.input.classPrefix}--hide`,
                         waitFor: this.transitionEls
                     }, onFinishTransition);
                 }

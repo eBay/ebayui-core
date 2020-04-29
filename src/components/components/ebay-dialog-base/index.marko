@@ -1,0 +1,34 @@
+import processHtmlAttributes from "../../../common/html-attributes"
+
+static var ignoredAttributes = ["open", "type", "classPrefix", "focus", "a11yCloseText", "windowClass"];
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    aria-modal="true"
+    role="dialog"
+    class=[input.classPrefix, input.class]
+    hidden:no-update=!state.open
+    onClick("handleDialogClick")
+    onMousedown("handleStartClick")>
+    <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>
+        <${input.header ? "div" : null} class=`${input.classPrefix}__header`>
+            <button
+                key="close"
+                class=`${input.classPrefix}__close`
+                type="button"
+                aria-label=input.a11yCloseText
+                onClick("handleCloseButtonClick")>
+                <ebay-icon name="close"/>
+            </button>
+            <if(input.header)>
+                <${input.header.renderBody} />
+            </if>
+        </>
+        <div class=`${input.classPrefix}__body` key="body">
+            <${input.renderBody}/>
+        </div>
+        <div class=`${input.classPrefix}__footer` if(input.footer)>
+            <${input.footer.renderBody} />
+        </div>
+    </div>
+</div>
