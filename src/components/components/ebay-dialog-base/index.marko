@@ -27,7 +27,7 @@ static var ignoredAttributes = ["open", "type", "classPrefix", "focus", "a11yClo
                 <${input.header.renderBody} />
             </if>
         </>
-        <div class=`${input.classPrefix}__body` key="body" onScroll("handleScroll")>
+        <div class=`${input.classPrefix}__main` key="body" onScroll("handleScroll")>
             <${input.renderBody}/>
         </div>
         <div class=`${input.classPrefix}__footer` if(input.footer)>
