@@ -11,6 +11,7 @@ $ const baseEl = input.baseEl || 'div';
     role="dialog"
     class=[input.classPrefix, input.class]
     hidden:no-update=!state.open
+    onKeydown('handleKeydown')
     onClick("handleDialogClick")
     onMousedown("handleStartClick")>
     <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>

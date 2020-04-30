@@ -4,6 +4,12 @@ const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../../common/test-utils/browser');
 const mock = require('./mock');
 const template = require('..');
+const escapeEvent = {
+    key: 'Escape',
+    code: 'Escape',
+    keyCode: 27,
+    charCode: 27
+};
 
 use(require('chai-dom'));
 before(fastAnimations.start);
@@ -105,6 +111,25 @@ describe('given an open dialog', () => {
         });
 
         thenItIsClosed(true);
+    });
+
+    describe('when the escape is pressed', () => {
+        beforeEach(async() => {
+            await fireEvent.keyDown(component.getByLabelText(input.a11yCloseText), escapeEvent);
+        });
+
+        thenItIsClosed(true);
+    });
+
+    describe('when the escape is pressed on input', () => {
+        beforeEach(async() => {
+            const inputEl = document.createElement('input');
+            inputEl.setAttribute('placeholder', 'sample input');
+            component.getByRole('dialog').appendChild(inputEl);
+            await fireEvent.keyDown(component.getByPlaceholderText('sample input'), escapeEvent);
+        });
+
+        thenItIsOpen();
     });
 
     describe('when the mask is clicked', () => {

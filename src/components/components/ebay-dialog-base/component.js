@@ -1,6 +1,7 @@
 const keyboardTrap = require('makeup-keyboard-trap');
 const screenReaderTrap = require('makeup-screenreader-trap');
 const bodyScroll = require('../../../common/body-scroll');
+const eventUtils = require('../../../common/event-utils');
 const transition = require('../../../common/transition');
 
 module.exports = {
@@ -10,6 +11,15 @@ module.exports = {
 
     handleScroll() {
         this.emit('modal-scroll');
+    },
+
+    handleKeydown(event) {
+        eventUtils.handleEscapeKeydown(event, () => {
+            // Do not close if the target is an input
+            if (event.target.tagName !== 'INPUT') {
+                this.state.open = false;
+            }
+        });
     },
 
     handleDialogClick({ target, clientY }) {
