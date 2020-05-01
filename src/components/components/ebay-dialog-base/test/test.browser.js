@@ -2,14 +2,9 @@ const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../../common/test-utils/browser');
+const { pressKey } = require('../../../../common/test-utils/browser');
 const mock = require('./mock');
 const template = require('..');
-const escapeEvent = {
-    key: 'Escape',
-    code: 'Escape',
-    keyCode: 27,
-    charCode: 27
-};
 
 use(require('chai-dom'));
 before(fastAnimations.start);
@@ -115,7 +110,10 @@ describe('given an open dialog', () => {
 
     describe('when the escape is pressed', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(component.getByText(input.renderBody.text), escapeEvent);
+            await pressKey(component.getByText(input.renderBody.text), {
+                key: 'Escape',
+                keyCode: 27
+            });
         });
 
         thenItIsClosed(true);
@@ -126,7 +124,10 @@ describe('given an open dialog', () => {
             const inputEl = document.createElement('input');
             inputEl.setAttribute('placeholder', 'sample input');
             component.getByRole('dialog').appendChild(inputEl);
-            await fireEvent.keyDown(component.getByPlaceholderText('sample input'), escapeEvent);
+            await pressKey(component.getByPlaceholderText('sample input'), {
+                key: 'Escape',
+                keyCode: 27
+            });
         });
 
         thenItIsOpen();
