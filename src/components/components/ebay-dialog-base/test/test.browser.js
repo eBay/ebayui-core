@@ -194,3 +194,37 @@ describe('given an open dialog', () => {
         }
     }
 });
+
+describe('given an open dialog with no trap', () => {
+    const input = mock.Fill_Dialog_Open;
+    let sibling;
+
+    beforeEach(async() => {
+        sibling = document.body.appendChild(document.createElement('button'));
+        sibling.focus();
+        component = await render(template, assign({}, input, { noTrap: true }));
+    });
+
+    afterEach(() => {
+        document.body.removeChild(sibling);
+    });
+
+    it('then it is visible in the DOM', async() => {
+        await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+    });
+
+    it('then <body> is scrollable', () => {
+        expect(document.body).does.not.have.attr('style');
+    });
+
+    it('then it\'s siblings are not hidden', () => {
+        expect(sibling).does.not.have.attr('aria-hidden', 'true');
+    });
+
+    it('then it does not traps focus', async() => {
+        await wait(() => {
+            expect(component.getByRole('dialog').children[1]).to.equal(undefined);
+            expect(document.activeElement).does.not.have.class(component.getByLabelText(input.a11yCloseText).className);
+        });
+    });
+});

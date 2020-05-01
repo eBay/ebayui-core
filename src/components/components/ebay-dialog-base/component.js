@@ -82,8 +82,14 @@ module.exports = {
         });
     },
 
+    triggerFocus(focusEl) {
+        if (!this.input.noTrap) {
+            focusEl.focus();
+        }
+    },
+
     triggerBodyScroll(prevent) {
-        if (!this.input.noBodyTrap) {
+        if (!this.input.noTrap) {
             if (prevent) {
                 bodyScroll.prevent();
             } else {
@@ -112,15 +118,15 @@ module.exports = {
         const wasToggled = isTrapped !== wasTrapped;
         const focusEl = (this.input.focus && document.getElementById(this.input.focus)) || this.closeEl;
 
-        if (restoreTrap || (isTrapped && !wasTrapped)) {
+        if (!this.input.noTrap && (restoreTrap || (isTrapped && !wasTrapped))) {
             screenReaderTrap.trap(this.windowEl);
             keyboardTrap.trap(this.windowEl);
         }
 
         // Ensure focus is set and body scroll prevented on initial render.
-        if (isFirstRender && isTrapped) {
+        if (isFirstRender && !this.input.noTrap && isTrapped) {
             this._prevFocusEl = document.activeElement;
-            focusEl.focus();
+            this.triggerFocus(focusEl);
             this.triggerBodyScroll(true);
         }
 
@@ -131,7 +137,7 @@ module.exports = {
 
                 if (isTrapped) {
                     this.rootEl.removeAttribute('hidden');
-                    focusEl.focus();
+                    this.triggerFocus(focusEl);
                     this.emit('modal-show');
                 } else {
                     this.triggerBodyScroll(false);
