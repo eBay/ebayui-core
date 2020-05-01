@@ -115,7 +115,7 @@ describe('given an open dialog', () => {
 
     describe('when the escape is pressed', () => {
         beforeEach(async() => {
-            await fireEvent.keyDown(component.getByLabelText(input.a11yCloseText), escapeEvent);
+            await fireEvent.keyDown(component.getByText(input.renderBody.text), escapeEvent);
         });
 
         thenItIsClosed(true);
