@@ -203,7 +203,7 @@ describe('given an open dialog with no trap', () => {
     beforeEach(async() => {
         sibling = document.body.appendChild(document.createElement('button'));
         sibling.focus();
-        component = await render(template, assign({}, input, { noTrap: true }));
+        component = await render(template, assign({}, input, { isModal: false }));
     });
 
     afterEach(() => {
