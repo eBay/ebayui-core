@@ -14,7 +14,7 @@ describe('dialog', () => {
         expect(getByRole('dialog')).has.attr('hidden');
         expect(getByRole('dialog')).has.class('dialog');
         expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
-        expect(getByText(input.renderBody.text)).has.class('dialog__body');
+        expect(getByText(input.renderBody.text)).has.class('dialog__main');
     });
 
     it('renders with header and footer', async() => {
@@ -24,7 +24,7 @@ describe('dialog', () => {
         expect(getByRole('dialog')).has.attr('hidden');
         expect(getByRole('dialog')).has.class('dialog');
         expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
-        expect(getByText(input.renderBody.text)).has.class('dialog__body');
+        expect(getByText(input.renderBody.text)).has.class('dialog__main');
         expect(getByText(input.header.renderBody.text)).has.class('dialog__header');
         expect(getByText(input.footer.renderBody.text)).has.class('dialog__footer');
     });
