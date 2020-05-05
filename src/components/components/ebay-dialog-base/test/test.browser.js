@@ -141,7 +141,7 @@ describe('given an open dialog', () => {
             });
         });
 
-        thenItIsOpen();
+        thenItIsClosed(true);
     });
 
     describe('when the mask is clicked', () => {

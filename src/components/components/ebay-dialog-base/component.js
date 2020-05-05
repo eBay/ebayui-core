@@ -15,10 +15,7 @@ module.exports = {
 
     handleKeydown(event) {
         eventUtils.handleEscapeKeydown(event, () => {
-            // Do not close if the target is an input
-            if (event.target.tagName !== 'INPUT') {
-                this.state.open = false;
-            }
+            this.state.open = false;
         });
     },
 
