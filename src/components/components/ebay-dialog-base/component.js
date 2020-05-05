@@ -72,6 +72,10 @@ module.exports = {
         // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
         this.subscribeTo(this.rootEl).on('click', () => {});
 
+        // Added to document in case the object is not a modal type
+        // This is so we can escape even if focus is not present on popup
+        document.addEventListener('keydown', this.handleKeydown.bind(this));
+
         this._trap({
             firstRender: true
         });
@@ -106,6 +110,8 @@ module.exports = {
         if (this.isTrapped) {
             this.triggerBodyScroll(false);
         }
+
+        document.removeEventListener('keydown', this.handleKeydown.bind(this));
     },
 
     /**
