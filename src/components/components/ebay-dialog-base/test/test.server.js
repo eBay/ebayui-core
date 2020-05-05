@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
+const assign = require('core-js-pure/features/object/assign');
 const { testPassThroughAttributes } = require('../../../../common/test-utils/server');
 const mock = require('./mock');
 const template = require('..');
@@ -31,6 +32,12 @@ describe('dialog-base', () => {
         const input = mock.Fill_Dialog_Open;
         const { getByRole } = await render(template, input);
         expect(getByRole('dialog')).does.not.have.attr('hidden');
+    });
+
+    it('renders non modal', async() => {
+        const input = mock.Fill_Dialog;
+        const { getByRole } = await render(template, assign({}, input, { isModal: false }));
+        expect(getByRole('dialog')).has.attribute('aria-live', 'polite');
     });
 
     testPassThroughAttributes(template);
