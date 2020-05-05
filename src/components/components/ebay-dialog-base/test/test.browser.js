@@ -119,6 +119,17 @@ describe('given an open dialog', () => {
         thenItIsClosed(true);
     });
 
+    describe('when the escape is outside modal', () => {
+        beforeEach(async() => {
+            await pressKey(document, {
+                key: 'Escape',
+                keyCode: 27
+            });
+        });
+
+        thenItIsClosed(true);
+    });
+
     describe('when the escape is pressed on input', () => {
         beforeEach(async() => {
             const inputEl = document.createElement('input');
