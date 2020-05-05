@@ -69,10 +69,6 @@ module.exports = {
         // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
         this.subscribeTo(this.rootEl).on('click', () => {});
 
-        // Added to document in case the object is not a modal type
-        // This is so we can escape even if focus is not present on popup
-        document.addEventListener('keydown', this.handleKeydown.bind(this));
-
         this._trap({
             firstRender: true
         });
@@ -84,13 +80,13 @@ module.exports = {
         });
     },
 
-    triggerFocus(focusEl) {
+    _triggerFocus(focusEl) {
         if (this.input.isModal) {
             focusEl.focus();
         }
     },
 
-    triggerBodyScroll(prevent) {
+    _triggerBodyScroll(prevent) {
         if (this.input.isModal) {
             if (prevent) {
                 bodyScroll.prevent();
@@ -105,10 +101,8 @@ module.exports = {
         this._release();
 
         if (this.isTrapped) {
-            this.triggerBodyScroll(false);
+            this._triggerBodyScroll(false);
         }
-
-        document.removeEventListener('keydown', this.handleKeydown.bind(this));
     },
 
     /**
@@ -130,8 +124,8 @@ module.exports = {
         // Ensure focus is set and body scroll prevented on initial render.
         if (isFirstRender && this.input.isModal && isTrapped) {
             this._prevFocusEl = document.activeElement;
-            this.triggerFocus(focusEl);
-            this.triggerBodyScroll(true);
+            this._triggerFocus(focusEl);
+            this._triggerBodyScroll(true);
         }
 
         if (wasToggled) {
@@ -141,10 +135,10 @@ module.exports = {
 
                 if (isTrapped) {
                     this.rootEl.removeAttribute('hidden');
-                    this.triggerFocus(focusEl);
+                    this._triggerFocus(focusEl);
                     this.emit('modal-show');
                 } else {
-                    this.triggerBodyScroll(false);
+                    this._triggerBodyScroll(false);
                     const activeElement = document.activeElement;
                     this.rootEl.setAttribute('hidden', '');
                     this.emit('modal-close');
@@ -170,7 +164,7 @@ module.exports = {
             if (isTrapped) {
                 if (!isFirstRender) {
                     this._prevFocusEl = document.activeElement;
-                    this.triggerBodyScroll(true);
+                    this._triggerBodyScroll(true);
                     this.cancelTransition = transition({
                         el: this.rootEl,
                         className: `${this.input.classPrefix}--show`,

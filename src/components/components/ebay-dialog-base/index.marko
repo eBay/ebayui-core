@@ -14,13 +14,16 @@ $ const baseEl = input.baseEl || 'div';
     aria-live=(!input.isModal && "polite")
     onClick("handleDialogClick")
     onMousedown("handleStartClick")>
+    <if (state.open)>
+        <subscribe to=document on-keydown("handleKeydown")/>
+    </if>
     <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>
         <if(input.top)>
             <${input.top.renderBody}/>
         </if>
         <${input.header ? "div" : null} class=`${input.classPrefix}__header`>
-            <if(input.header && buttonPosition === 'right')>
-                <${input.header.renderBody} />
+            <if(buttonPosition === 'right')>
+                <${input.header} />
             </if>
             <button
                 key="close"
@@ -30,8 +33,8 @@ $ const baseEl = input.baseEl || 'div';
                 onClick("handleCloseButtonClick")>
                 <ebay-icon name="close"/>
             </button>
-            <if(input.header && buttonPosition === 'left')>
-                <${input.header.renderBody} />
+            <if(buttonPosition === 'left')>
+                <${input.header} />
             </if>
         </>
         <div class=`${input.classPrefix}__main` key="body" onScroll("handleScroll")>
