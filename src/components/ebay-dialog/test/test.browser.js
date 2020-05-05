@@ -71,8 +71,8 @@ describe('given an open dialog', () => {
     });
 
     function thenItIsClosed() {
-        it('then it is hidden in the DOM', () => {
-            expect(component.getByRole('dialog')).has.attr('hidden');
+        it('then it is hidden in the DOM', async() => {
+            await wait(() => expect(component.getByRole('dialog')).has.attr('hidden'));
         });
 
         it('then it restores the previous focus', async() => {

@@ -1,6 +1,7 @@
 const keyboardTrap = require('makeup-keyboard-trap');
 const screenReaderTrap = require('makeup-screenreader-trap');
 const bodyScroll = require('../../../common/body-scroll');
+const eventUtils = require('../../../common/event-utils');
 const transition = require('../../../common/transition');
 
 module.exports = {
@@ -10,6 +11,12 @@ module.exports = {
 
     handleScroll() {
         this.emit('modal-scroll');
+    },
+
+    handleKeydown(event) {
+        eventUtils.handleEscapeKeydown(event, () => {
+            this.state.open = false;
+        });
     },
 
     handleDialogClick({ target, clientY }) {
@@ -39,6 +46,7 @@ module.exports = {
     },
 
     onInput(input) {
+        input.isModal = input.isModal !== false;
         this.state = { open: input.open || false };
     },
 
@@ -53,7 +61,11 @@ module.exports = {
         this.windowEl = this.getEl('window');
         this.closeEl = this.getEl('close');
         this.bodyEl = this.getEl('body');
-        this.transitionEls = [this.windowEl, this.rootEl];
+        if (this.input.transitionEl === 'root') {
+            this.transitionEls = [this.rootEl];
+        } else {
+            this.transitionEls = [this.windowEl, this.rootEl];
+        }
         // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
         this.subscribeTo(this.rootEl).on('click', () => {});
 
@@ -68,12 +80,28 @@ module.exports = {
         });
     },
 
+    _triggerFocus(focusEl) {
+        if (this.input.isModal) {
+            focusEl.focus();
+        }
+    },
+
+    _triggerBodyScroll(prevent) {
+        if (this.input.isModal) {
+            if (prevent) {
+                bodyScroll.prevent();
+            } else {
+                bodyScroll.restore();
+            }
+        }
+    },
+
     onDestroy() {
         this._cancelAsync();
         this._release();
 
         if (this.isTrapped) {
-            bodyScroll.restore();
+            this._triggerBodyScroll(false);
         }
     },
 
@@ -88,16 +116,16 @@ module.exports = {
         const wasToggled = isTrapped !== wasTrapped;
         const focusEl = (this.input.focus && document.getElementById(this.input.focus)) || this.closeEl;
 
-        if (restoreTrap || (isTrapped && !wasTrapped)) {
+        if (this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped))) {
             screenReaderTrap.trap(this.windowEl);
             keyboardTrap.trap(this.windowEl);
         }
 
         // Ensure focus is set and body scroll prevented on initial render.
-        if (isFirstRender && isTrapped) {
+        if (isFirstRender && this.input.isModal && isTrapped) {
             this._prevFocusEl = document.activeElement;
-            focusEl.focus();
-            bodyScroll.prevent();
+            this._triggerFocus(focusEl);
+            this._triggerBodyScroll(true);
         }
 
         if (wasToggled) {
@@ -106,11 +134,13 @@ module.exports = {
                 this.cancelTransition = undefined;
 
                 if (isTrapped) {
-                    focusEl.focus();
+                    this.rootEl.removeAttribute('hidden');
+                    this._triggerFocus(focusEl);
                     this.emit('modal-show');
                 } else {
-                    bodyScroll.restore();
+                    this._triggerBodyScroll(false);
                     const activeElement = document.activeElement;
+                    this.rootEl.setAttribute('hidden', '');
                     this.emit('modal-close');
 
                     if (
@@ -134,15 +164,15 @@ module.exports = {
             if (isTrapped) {
                 if (!isFirstRender) {
                     this._prevFocusEl = document.activeElement;
-                    bodyScroll.prevent();
+                    this._triggerBodyScroll(true);
                     this.cancelTransition = transition({
                         el: this.rootEl,
                         className: `${this.input.classPrefix}--show`,
                         waitFor: this.transitionEls
                     }, onFinishTransition);
+                } else {
+                    this.rootEl.removeAttribute('hidden');
                 }
-
-                this.rootEl.removeAttribute('hidden');
             } else {
                 if (!isFirstRender) {
                     this.cancelTransition = transition({
@@ -150,9 +180,9 @@ module.exports = {
                         className: `${this.input.classPrefix}--hide`,
                         waitFor: this.transitionEls
                     }, onFinishTransition);
+                } else {
+                    this.rootEl.setAttribute('hidden', '');
                 }
-
-                this.rootEl.setAttribute('hidden', '');
             }
         }
     },
