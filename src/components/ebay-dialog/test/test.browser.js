@@ -2,8 +2,8 @@ const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
-const mock = require('./mock');
 const template = require('..');
+const mock = require('./mock');
 
 use(require('chai-dom'));
 before(fastAnimations.start);

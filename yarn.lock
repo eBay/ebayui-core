@@ -11629,6 +11629,20 @@ marko-cli@^7.0.25:
     resolve-from "^4.0.0"
     update-notifier "^2.5.0"
 
+marko-prettyprint@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.npmjs.org/marko-prettyprint/-/marko-prettyprint-1.5.2.tgz#a0fb75ea744b85d414aa3a5d7296ae9ac2a2da6c"
+  integrity sha512-m9D/6uPJF2gBBtT6fIr6GiCbknefF3Mpjm4n3MJyQ7Bo2DkWXEfEFwK2+2DlAklOew9cEd0DjEMpPngnzg99eg==
+  dependencies:
+    argly "^1.2.0"
+    editorconfig "^0.15.0"
+    lasso-package-root "^1.0.1"
+    marko "^4.12.3"
+    minimatch "^3.0.4"
+    prettier "^1.13.7"
+    redent "^2.0.0"
+    resolve-from "^4.0.0"
+
 marko@4.14.21:
   version "4.14.21"
   resolved "https://registry.npmjs.org/marko/-/marko-4.14.21.tgz#2f9c561503b5d56d28d22ac4aa7c9cb7b032f74d"
@@ -11699,7 +11713,7 @@ marko@^4.10.0, marko@^4.15.2:
     strip-json-comments "^2.0.1"
     warp10 "^2.0.1"
 
-marko@^4.18.51:
+marko@^4.12.3, marko@^4.18.51:
   version "4.21.7"
   resolved "https://registry.npmjs.org/marko/-/marko-4.21.7.tgz#33d6d60c97e8b5991500485398e41be87b4d3aa2"
   integrity sha512-ajvTF4AHdFq+qWBkOVRCb/yFkZ7YHNs5e++kIdkn9+fBJKDcgnzeSrrHdVUjfAuwHwFqoDIPM5awH9B1Gvf7Ow==
@@ -14215,7 +14229,7 @@ preserve@^0.2.0:
   resolved "https://registry.npmjs.org/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
   integrity sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
 
-prettier@^1.15.3, prettier@^1.19.1:
+prettier@^1.13.7, prettier@^1.15.3, prettier@^1.19.1:
   version "1.19.1"
   resolved "https://registry.npmjs.org/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
   integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==

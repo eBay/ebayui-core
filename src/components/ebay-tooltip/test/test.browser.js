@@ -1,8 +1,8 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const template = require('..');
 const mock = require('./mock');
 const pointerStyles = require('./location-styles.json');
-const template = require('..');
 
 use(require('chai-dom'));
 afterEach(cleanup);
