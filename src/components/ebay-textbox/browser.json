@@ -1,11 +1,7 @@
 {
-  "dependencies": [
-    {
-      "if-not-flag": "ebayui-no-skin",
-      "dependencies": [
-        "@ebay/skin/label",
-        "@ebay/skin/textbox"
-      ]
-    }
-  ]
+    "requireRemap": [{
+        "from": "./style.js",
+        "to": "../../common/empty.js",
+        "if-flag": "ebayui-no-skin"
+    }]
 }

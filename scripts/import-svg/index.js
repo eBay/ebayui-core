@@ -20,11 +20,11 @@ const icons = new Map();
 const THEMES = {
     ds4: {
         flags: { 'if-flag': 'ds-4' },
-        file: './index.marko'
+        file: './index[ds-4].marko'
     },
     ds6: {
         flags: { 'if-not-flag': 'ds-4' },
-        file: './index[skin-ds6].marko'
+        file: './index.marko'
     }
 };
 

@@ -18,8 +18,8 @@ function transform(el, context) {
     const iconName = nameAttribute && nameAttribute.value.value;
     if (iconName) {
         const iconPath = path.join(__dirname, 'symbols', iconName);
-        const ds4Path = path.join(iconPath, 'index.marko');
-        const ds6Path = path.join(iconPath, 'index[skin-ds6].marko');
+        const ds4Path = path.join(iconPath, 'index[ds-4].marko');
+        const ds6Path = path.join(iconPath, 'index.marko');
         if (!el.hasAttribute('w-id') && context.compilerVersion && context.compilerVersion.indexOf('4.') !== 0) {
             // can be removed in Marko 4
             el.setAttributeValue('id',
