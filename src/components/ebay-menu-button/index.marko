@@ -82,6 +82,7 @@ $ var isOverflowVariant = input.variant === "overflow";
         type=input.type
         reverse=(isOverflowVariant ? !input.reverse : input.reverse)
         fix-width=input.fixWidth
+        tabindex=-1
         onMenu-keydown("handleMenuKeydown")
         onMenu-change("handleMenuChange")
         onMenu-select("handleMenuSelect")
