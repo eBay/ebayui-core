@@ -11861,6 +11861,14 @@ makeup-active-descendant@~0.3.6:
     makeup-navigation-emitter "~0.3.4"
     nodelist-foreach-polyfill "^1"
 
+makeup-exit-emitter@latest:
+  version "0.2.6"
+  resolved "https://registry.npmjs.org/makeup-exit-emitter/-/makeup-exit-emitter-0.2.6.tgz#0dcc2ed64896689d6f7289c43c972eea52f0d878"
+  integrity sha512-Z96cKFAZ2MZNmu24qylOhStUNrNMDVAqJuDdfocH71/MN3dn23k9QhNr0mXFIs3c72Gyn1Wg5qqNbeO5ZTSMOQ==
+  dependencies:
+    custom-event "^1"
+    makeup-next-id "~0.1.3"
+
 makeup-exit-emitter@~0.2.4:
   version "0.2.4"
   resolved "https://registry.npmjs.org/makeup-exit-emitter/-/makeup-exit-emitter-0.2.4.tgz#852792d62566ea26b84582fedca690f4302cccbc"
@@ -11869,20 +11877,25 @@ makeup-exit-emitter@~0.2.4:
     custom-event "^1"
     makeup-next-id "~0.1.2"
 
-makeup-expander@~0.8.4:
-  version "0.8.4"
-  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.8.4.tgz#21fdefebada4ba7c9428d9ef593c758c7d8e8ea9"
-  integrity sha512-PvHB/ip3f1TANeUNNM3Cb8Yiye8LlFBXxxVY2bpxBdPEl9vVGNT82poRSsL4KikLGjqCI2pilqeRyneWmEB9vw==
+makeup-expander@~0.8.6:
+  version "0.8.6"
+  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.8.6.tgz#caa312352685a8ec0e0ef28368d29504f8f8a8ef"
+  integrity sha512-BgDQjSz7CxirGofMtT7w1kI4VJMjpXvoSMBYnu7rbLIFdCi2+1Sygs6Ho2D0PBgiMsXDPTgL+5Vwzl20ZZl02A==
   dependencies:
     custom-event "^1"
-    makeup-exit-emitter "~0.2.4"
-    makeup-focusables "~0.0.4"
-    makeup-next-id "~0.1.2"
+    makeup-exit-emitter latest
+    makeup-focusables latest
+    makeup-next-id latest
 
 makeup-floating-label@~0.0.5:
   version "0.0.5"
   resolved "https://registry.npmjs.org/makeup-floating-label/-/makeup-floating-label-0.0.5.tgz#203a293d9100403600573f9f6bba1059dd62da78"
   integrity sha512-RvdHYWKWWn6ZIh7P+47+ByFD8jw4qdjRZWdttxwzJhNLWrDMjjTAgwZmxjOlt4S6WTxKBo5Fu/oPV+lilkTgvQ==
+
+makeup-focusables@latest:
+  version "0.0.5"
+  resolved "https://registry.npmjs.org/makeup-focusables/-/makeup-focusables-0.0.5.tgz#591490ba28b442c63882783082c8a7d960866985"
+  integrity sha512-64FMsmJ6icCZTrXdHex12JQu4sPdFVX2qFRFNxnDco4ZT+PzFaGKC8rWPeXE+Cy/7TtjKViXjO1FePts8wAaeA==
 
 makeup-focusables@~0.0.4:
   version "0.0.4"
@@ -11913,6 +11926,13 @@ makeup-navigation-emitter@~0.3.4:
     makeup-exit-emitter "~0.2.4"
     makeup-key-emitter "~0.1.2"
     nodelist-foreach-polyfill "^1"
+
+makeup-next-id@latest, makeup-next-id@~0.1.3:
+  version "0.1.3"
+  resolved "https://registry.npmjs.org/makeup-next-id/-/makeup-next-id-0.1.3.tgz#937fd8e22e10a24cba5aedc5b36cdafd0e68159e"
+  integrity sha512-X0iLqUblyFBbGA78JCTpoXno08NseFOBx6ywTKk0+o1A/rqs1fAr6xdNLGSQhAwbppIztGS3ByjZ/t/Gd7Azdg==
+  dependencies:
+    nanoid "^2"
 
 makeup-next-id@~0.1.2:
   version "0.1.2"
