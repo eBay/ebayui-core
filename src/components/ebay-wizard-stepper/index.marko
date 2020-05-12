@@ -1,0 +1,61 @@
+import processHtmlAttributes from "../../common/html-attributes";
+import findIndex from 'core-js-pure/features/array/find-index';
+import helper from './helper';
+
+static var ignoredAttributes = [
+    "step",
+    "vertical",
+    "class"
+];
+
+static var ignoredStepAttributes = [
+    "badge",
+    "current",
+    "information",
+    "attention",
+    "class"
+];
+
+<div class=["wizard-stepper", input.vertical && "wizard-stepper--vertical", input.class] ...processHtmlAttributes(input, ignoredAttributes)>
+    <div class="wizard-stepper__items" role="list" >
+        $ const current = findIndex(input.step || [], (item) => item.current);
+        <for|item, index, list| of=input.step>
+            $ const itemData = helper.getStepClass(index, current, list);
+            <if(index > 0)>
+                <hr class="wizard-stepper__separator" role="presentation"/>
+            </if>
+            <div
+                class=[
+                    "wizard-stepper__item",
+                    `wizard-stepper__item--${itemData.itemClass}`,
+                    itemData.transition &&
+                        `wizard-stepper__item--transition-${itemData.transition}`,
+                    item.class
+                ]
+                aria-current=(current === index && "step")
+                role="listitem"
+                ...processHtmlAttributes(item, ignoredStepAttributes)>
+                <span class="wizard-stepper__icon">
+                    <if(item.type === 'attention')>
+                        <ebay-icon width="24" height="24" name="attention-filled"/>
+                    </if>
+                    <else-if(item.type === 'information')>
+                        <ebay-icon width="24" height="24" name="information-filled"/>
+                    </else-if>
+                    <else-if(item.number)>
+                        <ebay-badge number=item.number/>
+                    </else-if>
+                    <else-if(index < current)>
+                        <ebay-icon width="24" height="24" name="confirmation-filled"/>
+                    </else-if>
+                    <else>
+                        <ebay-icon width="24" height="24" name="circle"/>
+                    </else>
+                </span>
+                <span class="wizard-stepper__text">
+                    <${item.renderBody}/>
+                </span>
+            </div>
+        </for>
+    </div>
+</div>

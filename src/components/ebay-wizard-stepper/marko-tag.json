@@ -1,0 +1,25 @@
+{
+  "attribute-groups": [
+    "html-attributes"
+  ],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@step <step>[]": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@current": "boolean",
+    "@type": {
+      "enum": ["attention", "default", "confirmation"]
+    },
+    "@number": "number"
+  }
+}
