@@ -11358,10 +11358,10 @@ makeup-exit-emitter@latest, makeup-exit-emitter@~0.2.6:
     custom-event "^1"
     makeup-next-id "~0.1.3"
 
-makeup-expander@~0.8.5:
-  version "0.8.5"
-  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.8.5.tgz#2ca0bad39959af5855bdecc8d0efc116b9e5f213"
-  integrity sha512-pLDUIykEoj3fbfbt+8bZ6OJe0BYm88ZjQeZXuViU7HmKTTK5tkshLYlmdjAtzv53hDMf8bWsDcHiv6gFhEMDOQ==
+makeup-expander@~0.8.6:
+  version "0.8.6"
+  resolved "https://registry.npmjs.org/makeup-expander/-/makeup-expander-0.8.6.tgz#caa312352685a8ec0e0ef28368d29504f8f8a8ef"
+  integrity sha512-BgDQjSz7CxirGofMtT7w1kI4VJMjpXvoSMBYnu7rbLIFdCi2+1Sygs6Ho2D0PBgiMsXDPTgL+5Vwzl20ZZl02A==
   dependencies:
     custom-event "^1"
     makeup-exit-emitter latest
