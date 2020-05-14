@@ -4,7 +4,7 @@ import helper from './helper';
 
 static var ignoredAttributes = [
     "step",
-    "vertical",
+    "direction",
     "class"
 ];
 
@@ -16,7 +16,9 @@ static var ignoredStepAttributes = [
     "class"
 ];
 
-<div class=["wizard-stepper", input.vertical && "wizard-stepper--vertical", input.class] ...processHtmlAttributes(input, ignoredAttributes)>
+$ const direction = input.direction || 'column';
+
+<div class=["wizard-stepper", direction === 'column' && "wizard-stepper--vertical", input.class] ...processHtmlAttributes(input, ignoredAttributes)>
     <div class="wizard-stepper__items" role="list" >
         $ const current = findIndex(input.step || [], (item) => item.current);
         <for|item, index, list| of=input.step>

@@ -7,6 +7,12 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
+  "@direction": {
+    "enum": [
+      "column",
+      "row"
+    ]
+  },
   "@step <step>[]": {
     "attribute-groups": [
       "html-attributes"
@@ -18,7 +24,11 @@
     "@html-attributes": "expression",
     "@current": "boolean",
     "@type": {
-      "enum": ["attention", "default", "confirmation"]
+      "enum": [
+        "attention",
+        "default",
+        "confirmation"
+      ]
     },
     "@number": "number"
   }

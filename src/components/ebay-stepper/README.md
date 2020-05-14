@@ -1,29 +1,29 @@
-# ebay-wizard-stepper
+# ebay-stepper
 
-## ebay-wizard-stepper Example
+## ebay-stepper Example
 
 ```marko
-<ebay-wizard-stepper>
+<ebay-stepper>
     <@step>Started</@step>
     <@step>Shipped</@step>
     <@step current>Transit</@step>
     <@step>Delivered</@step>
-</ebay-wizard-stepper>
+</ebay-stepper>
 ```
 
-## ebay-wizard-stepper Sub-tags
+## ebay-stepper Sub-tags
 
 Tag | Required | Description
 --- | --- | ---
 `<@step>` | Yes | Each step to represented. The body will display as text next to the current state
 
-## ebay-wizard-stepper Attributes
+## ebay-stepper Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`vertical` | Boolean | No | No | If true, then renders vertical version of stepper
+`direction` | Enum | No | No | Either 'column' or 'row'. Will display stepper as a vertical column or horizontal row. Default is 'colunn'
 
-## ebay-wizard-stepper @step Attributes
+## ebay-stepper @step Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

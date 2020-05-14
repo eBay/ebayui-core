@@ -11,7 +11,7 @@ class {
         }
     }
     next() {
-        if (this.state.current < this.items.length) {
+        if (this.state.current < this.items.length - 1) {
             this.state.current++;
         }
     }
@@ -21,9 +21,9 @@ class {
     <ebay-button on-button-click('prev')>Previous</ebay-button>
     <ebay-button on-button-click('next')>Next</ebay-button>
 
-    <ebay-wizard-stepper>
+    <ebay-stepper direction="row">
         <for|item, index| of=component.items>
             <@step current=state.current === index>${item}</@step>
         </for>
-    </ebay-wizard-stepper>
+    </ebay-stepper>
 </div>

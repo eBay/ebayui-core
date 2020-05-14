@@ -16,8 +16,8 @@ exports.WizardStepper = {
     }))
 };
 
-exports.WizardStepper_Vertical = assign({}, exports.WizardStepper, {
-    vertical: true
+exports.WizardStepper_Horizontal = assign({}, exports.WizardStepper, {
+    direction: 'row'
 });
 
 exports.WizardStepper_States = {
