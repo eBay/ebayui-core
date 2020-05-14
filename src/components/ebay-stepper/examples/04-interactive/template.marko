@@ -21,7 +21,7 @@ class {
     <ebay-button on-button-click('prev')>Previous</ebay-button>
     <ebay-button on-button-click('next')>Next</ebay-button>
 
-    <ebay-stepper direction="row">
+    <ebay-stepper>
         <for|item, index| of=component.items>
             <@step current=state.current === index>${item}</@step>
         </for>

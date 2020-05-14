@@ -11,7 +11,7 @@ describe('wizard-stepper', () => {
         const input = mock.WizardStepper;
         const { getByRole, getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(3);
-        expect(getByRole('list').parentElement).has.class('wizard-stepper--vertical');
+        expect(getByRole('list').parentElement).does.not.have.class('wizard-stepper--vertical');
 
         const list = getAllByRole('listitem');
         expect(list).has.length(4);
@@ -23,10 +23,10 @@ describe('wizard-stepper', () => {
     });
 
     it('renders vertical stepper', async() => {
-        const input = mock.WizardStepper_Horizontal;
+        const input = mock.WizardStepper_Vertical;
         const { getByRole, getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(3);
-        expect(getByRole('list').parentElement).does.not.have.class('wizard-stepper--vertical');
+        expect(getByRole('list').parentElement).has.class('wizard-stepper--vertical');
 
         const list = getAllByRole('listitem');
         expect(list).has.length(4);

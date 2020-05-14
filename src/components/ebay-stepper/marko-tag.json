@@ -9,8 +9,8 @@
   "@html-attributes": "expression",
   "@direction": {
     "enum": [
-      "column",
-      "row"
+      "row",
+      "column"
     ]
   },
   "@step <step>[]": {
