@@ -36,20 +36,18 @@ $ var data = component.getTemplateData(state, input);
                 </else>
             </>
         </if>
-        <if(data.showPaddles)>
-            <button
-                class=[
-                    "carousel__control",
-                    "carousel__control--prev"
-                ]
-                type="button"
-                on-click(!data.prevControlDisabled && "handleMove", -1)
-                aria-describedby=statusId
-                aria-label=data.a11yPreviousText
-                aria-disabled=(data.prevControlDisabled && "true")>
-                <ebay-icon name="carousel-prev"/>
-            </button>
-        </if>
+        <button
+            class=[
+                "carousel__control",
+                "carousel__control--prev"
+            ]
+            type="button"
+            on-click(!data.prevControlDisabled && "handleMove", -1)
+            aria-describedby=statusId
+            aria-label=data.a11yPreviousText
+            aria-disabled=(data.prevControlDisabled && "true")>
+            <ebay-icon name="carousel-prev"/>
+        </button>
         <div class=[
             "carousel__viewport",
             !data.itemsPerSlide &&
@@ -79,22 +77,20 @@ $ var data = component.getTemplateData(state, input);
                 </for>
             </ul>
         </div>
-        <if(data.showPaddles)>
-            <button
-                class=[
-                    "carousel__control",
-                    "carousel__control--next"
-                ]
-                type="button"
-                on-click(!data.nextControlDisabled && "handleMove", 1)
-                aria-describedby=statusId
-                aria-label=data.a11yNextText
-                aria-disabled=(data.nextControlDisabled && "true")
-                key="next"
-                id:scoped="next">
-                <ebay-icon name="carousel-next"/>
-            </button>
-        </if>
+        <button
+            class=[
+                "carousel__control",
+                "carousel__control--next"
+            ]
+            type="button"
+            on-click(!data.nextControlDisabled && "handleMove", 1)
+            aria-describedby=statusId
+            aria-label=data.a11yNextText
+            aria-disabled=(data.nextControlDisabled && "true")
+            key="next"
+            id:scoped="next">
+            <ebay-icon name="carousel-next"/>
+        </button>
         <if(data.autoplayInterval && !data.bothControlsDisabled)>
             <button
                 class="carousel__playback"
