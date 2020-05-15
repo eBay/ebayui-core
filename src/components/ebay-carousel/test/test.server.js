@@ -57,7 +57,7 @@ describe('carousel', () => {
     describe('without items per slide (continuous)', () => {
         it('renders base version', async() => {
             const input = mock.Continuous_6Items;
-            const { queryByText, queryByLabelText, getByLabelText } = await render(template, input);
+            const { queryByText, queryByLabelText } = await render(template, input);
 
             // Status text is only used for discrete carousels.
             expect(queryByText(/\d+ of \d+/)).equals(null);
@@ -65,19 +65,19 @@ describe('carousel', () => {
             // Also it should not have the dot controls.
             expect(queryByLabelText(/go to slide/)).equals(null);
 
-            // Controls should not be linked to the status text (slide x of y).
-            expect(getByLabelText(input.a11yPreviousText)).not.has.attr('aria-describedby');
-            expect(getByLabelText(input.a11yNextText)).not.has.attr('aria-describedby');
+            // Controls will not be rendered by server because server cannot check carousel width
+            expect(queryByLabelText(input.a11yPreviousText)).to.equal(null);
+            expect(queryByLabelText(input.a11yNextText)).to.equal(null);
 
             input.items.forEach(item => expect(queryByText(item.renderBody.text)).does.not.equal(null));
         });
 
         it('renders without any provided items', async() => {
             const input = mock.Continuous_0Items;
-            const { getByLabelText } = await render(template, input);
+            const { queryByLabelText } = await render(template, input);
 
-            expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
-            expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+            expect(queryByLabelText(input.a11yPreviousText)).to.equal(null);
+            expect(queryByLabelText(input.a11yNextText)).to.equal(null);
         });
     });
 

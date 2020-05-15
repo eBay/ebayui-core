@@ -31,9 +31,9 @@ describe('given a continuous carousel', () => {
             component = await render(template, input);
         });
 
-        it('then prev and next controls are disabled', () => {
-            expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
-            expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+        it('then prev and next controls are not present', () => {
+            expect(component.queryByLabelText(input.a11yPreviousText)).to.equal(null);
+            expect(component.queryByLabelText(input.a11yNextText)).to.equal(null);
         });
     });
 
@@ -44,9 +44,9 @@ describe('given a continuous carousel', () => {
             component = await render(template, input);
         });
 
-        it('then prev and next controls are disabled', () => {
-            expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
-            expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+        it('then prev and next controls not present', () => {
+            expect(component.queryByLabelText(input.a11yPreviousText)).to.equal(null);
+            expect(component.queryByLabelText(input.a11yNextText)).to.equal(null);
         });
     });
 
