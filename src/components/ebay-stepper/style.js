@@ -1,1 +1,1 @@
-require('@ebay/skin/wizard-stepper');
+require('@ebay/skin/stepper');

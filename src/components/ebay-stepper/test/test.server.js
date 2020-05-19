@@ -6,12 +6,12 @@ const mock = require('./mock');
 
 use(require('chai-dom'));
 
-describe('wizard-stepper', () => {
+describe('stepper', () => {
     it('renders basic stepper', async() => {
         const input = mock.WizardStepper;
         const { getByRole, getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(3);
-        expect(getByRole('list').parentElement).does.not.have.class('wizard-stepper--vertical');
+        expect(getByRole('list').parentElement).does.not.have.class('stepper--vertical');
 
         const list = getAllByRole('listitem');
         expect(list).has.length(4);
@@ -26,7 +26,7 @@ describe('wizard-stepper', () => {
         const input = mock.WizardStepper_Vertical;
         const { getByRole, getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(3);
-        expect(getByRole('list').parentElement).has.class('wizard-stepper--vertical');
+        expect(getByRole('list').parentElement).has.class('stepper--vertical');
 
         const list = getAllByRole('listitem');
         expect(list).has.length(4);
@@ -54,9 +54,9 @@ describe('wizard-stepper', () => {
     });
 
     function checkItem(list, cls, icon, transition) {
-        expect(list).has.class(`wizard-stepper__item--${cls}`);
+        expect(list).has.class(`stepper__item--${cls}`);
         if (transition) {
-            expect(list).has.class(`wizard-stepper__item--transition-${transition}`);
+            expect(list).has.class(`stepper__item--transition-${transition}`);
         }
         const firstChild = list.children[0].children[0];
         const iconClass = icon === 'number' ? 'badge' : `icon--${icon}`;
