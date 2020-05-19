@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup, wait } = require('@marko/testing-library');
 const template = require('..');
 const mock = require('./mock');
 const pointerStyles = require('./location-styles.json');
@@ -31,8 +31,8 @@ describe('given the default tooltip', () => {
                 await fireEvent.mouseLeave(component.getByText(input.host.renderBody.text).parentElement);
             });
 
-            it('then it emits the tooltip-collapse event', () => {
-                expect(component.emitted('tooltip-collapse')).has.length(1);
+            it('then it emits the tooltip-collapse event', async() => {
+                await wait(() => expect(component.emitted('tooltip-collapse')).has.length(1));
             });
         });
     });

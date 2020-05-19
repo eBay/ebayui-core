@@ -238,8 +238,8 @@ describe('given a discrete carousel', () => {
         });
 
         it('then prev and next controls are disabled', () => {
-            expect(component.queryByLabelText(input.a11yPreviousText)).to.equal(null);
-            expect(component.queryByLabelText(input.a11yNextText)).to.equal(null);
+            expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
     });
 
@@ -251,8 +251,8 @@ describe('given a discrete carousel', () => {
         });
 
         it('then prev and next controls are disabled', () => {
-            expect(component.queryByLabelText(input.a11yPreviousText)).to.equal(null);
-            expect(component.queryByLabelText(input.a11yNextText)).to.equal(null);
+            expect(component.getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
 
         it('then has the appropriate heading', () => {

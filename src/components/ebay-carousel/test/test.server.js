@@ -21,20 +21,12 @@ describe('carousel', () => {
             input.items.forEach(item => expect(queryByText(item.renderBody.text)).not.to.equal(null));
         });
 
-        it('renders without paddles', async() => {
-            const input = assign({}, mock.Discrete_1PerSlide_3Items, { itemsPerSlide: '3' });
-            const { queryByLabelText } = await render(template, input);
-
-            expect(queryByLabelText(input.a11yPreviousText)).to.equal(null);
-            expect(queryByLabelText(input.a11yNextText)).to.equal(null);
-        });
-
         it('renders without any provided items', async() => {
             const input = mock.Discrete_1PerSlide_0Items;
-            const { queryByLabelText } = await render(template, input);
+            const { getByLabelText } = await render(template, input);
 
-            expect(queryByLabelText(input.a11yPreviousText)).to.equal(null);
-            expect(queryByLabelText(input.a11yNextText)).to.equal(null);
+            expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
 
         describe('with autoplay enabled', () => {
