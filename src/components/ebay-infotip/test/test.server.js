@@ -38,6 +38,7 @@ describe('infotip modal', () => {
         const { getByLabelText, getByText } = await render(template, input);
         expect(getByLabelText(input.ariaLabel)).has.class('dialog--mini__host');
         expect(getByText(input.content.renderBody.text)).has.class('dialog__main');
+        expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
     });
 
     it('renders modal infotip without header', async() => {

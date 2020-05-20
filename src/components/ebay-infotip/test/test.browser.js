@@ -82,28 +82,30 @@ describe('given the modal infotip', () => {
             });
 
             it('then it is expanded', async() => {
+        // await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
                 await wait(() => {
                     expect(component.getByLabelText(input.ariaLabel)).has.attr('aria-expanded', 'true');
                     expect(component.getByRole('dialog')).does.not.have.attr('hidden');
                 });
             });
 
-            describe('when the host element is clicked a second time to close', () => {
-                beforeEach(async() => {
-                    await fireEvent.click(component.getByLabelText(input.ariaLabel));
-                });
+        //     describe('when the host element is clicked a second time to close', () => {
+        //         beforeEach(async() => {
+        //             await fireEvent.click(component.getByLabelText(input.ariaLabel));
+        //         });
 
-                it('then it emits the tooltip-collapse event', () => {
-                    expect(component.emitted('tooltip-collapse')).has.length(1);
-                });
+        //         it('then it emits the tooltip-collapse event', () => {
+        //             expect(component.emitted('tooltip-collapse')).has.length(1);
+        //         });
 
-                it('then it is collapsed', async() => {
-                    await wait(() => {
-                        expect(component.getByLabelText(input.ariaLabel)).does.not.have.attr('aria-expanded', 'true');
-                        expect(component.getByRole('dialog')).has.attr('hidden');
-                    });
-                });
-            });
+        //         it('then it is collapsed', async() => {
+        // // await wait(() => expect(component.getByRole('dialog')).has.attr('hidden'));
+        //             // await wait(() => {
+        //                 expect(component.getByLabelText(input.ariaLabel)).does.not.have.attr('aria-expanded', 'true');
+        //                 // expect(component.getByRole('dialog')).has.attr('hidden');
+        //             // });
+        //         });
+        //     });
         });
     }
 });

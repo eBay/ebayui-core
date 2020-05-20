@@ -15,7 +15,8 @@ exports.WithContentAndHeader = assign({}, exports.WithContent, {
 });
 
 exports.Disabled = assign({}, exports.WithContent, {
-    disabled: true
+    disabled: true,
+    a11yCloseText: "Close mini dialog"
 });
 
 exports.ModalWithContent = assign({}, exports.WithContent, { modal: true });
