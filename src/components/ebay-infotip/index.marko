@@ -17,7 +17,7 @@ static var ignoredAttributes = [
     "modal"
 ];
 
-$ var classPrefix = (input.modal !== true ? "infotip" : "dialog--mini");
+$ var classPrefix = input.modal !== true ? "infotip" : "dialog--mini";
 $ var pointer = input.pointer || "bottom";
 <span>
     <ebay-tooltip-base
@@ -29,13 +29,14 @@ $ var pointer = input.pointer || "bottom";
         onBase-collapse("handleCollapse")>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
-            class:no-update=["infotip", input.modal === true && "dialog--mini", input.class]>
+            class:no-update=[
+                "infotip",
+                input.modal === true && "dialog--mini",
+                input.class
+            ]>
             <button
                 key="host"
-                class=[
-                    `${classPrefix}__host`,
-                    "icon-btn"
-                ]
+                class=[`${classPrefix}__host`, "icon-btn"]
                 type="button"
                 disabled=input.disabled
                 aria-label=input.ariaLabel>
@@ -46,20 +47,7 @@ $ var pointer = input.pointer || "bottom";
                     <ebay-icon name="information"/>
                 </else>
             </button>
-            <if(input.modal === true)>
-                <ebay-dialog-base
-                    open=state.open
-                    buttonPosition="right"
-                    classPrefix="dialog"
-                    class=[`${classPrefix}__overlay`]
-                    windowClass=["dialog__window--mini", "dialog__window--fade"]
-                    renderBody=input.content.renderBody
-                    on-modal-show("handleExpand")
-                    on-modal-close("handleOverlayClose")
-                    ...input
-                ></ebay-dialog-base>
-            </if>
-            <else>
+            <if(input.modal !== true)>
                 <ebay-tooltip-overlay
                     type="infotip"
                     id:scoped="overlay"
@@ -71,8 +59,20 @@ $ var pointer = input.pointer || "bottom";
                     heading=input.heading
                     content=input.content
                     a11y-close-text=input.a11yCloseText
-                    onOverlay-close("handleOverlayClose")>
-                    </>
+                    onOverlay-close("handleOverlayClose")/>
+            </if>
+            <else>
+                <ebay-dialog-base
+                    open=state.open
+                    buttonPosition="right"
+                    classPrefix="dialog"
+                    class=[`${classPrefix}__overlay`]
+                    windowClass=["dialog__window--mini", "dialog__window--fade"]
+                    a11y-close-text=input.a11yCloseText
+                    on-modal-show("handleExpand")
+                    on-modal-close("handleOverlayClose")>
+                    <${input.content}/>
+                </ebay-dialog-base>
             </else>
         </span>
     </ebay-tooltip-base>

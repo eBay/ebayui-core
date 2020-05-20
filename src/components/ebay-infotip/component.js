@@ -6,6 +6,12 @@ module.exports = {
         };
     },
 
+    onMount() {
+        if (this.state.open) {
+            this.getComponent('base').expand();
+        }
+    },
+
     setOpen(isOpen) {
         if (this.input.modal) {
             this.state.open = isOpen;
