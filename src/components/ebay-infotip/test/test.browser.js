@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup, wait } = require('@marko/testing-library');
 const template = require('..');
 const mock = require('./mock');
 
@@ -50,6 +50,58 @@ describe('given the default infotip', () => {
 
                 it('then it is collapsed', () => {
                     expect(component.getByLabelText(input.ariaLabel)).does.not.have.attr('aria-expanded', 'true');
+                });
+            });
+        });
+    }
+});
+
+describe('given the modal infotip', () => {
+    const input = mock.ModalWithContent;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+
+    thenItCanBeOpenAndClosed();
+
+    describe('when it is rerendered', () => {
+        // Needed to change input for rerender to work correctly
+        beforeEach(async() => await component.rerender(assign({}, input, { disabled: false })));
+        thenItCanBeOpenAndClosed();
+    });
+
+    function thenItCanBeOpenAndClosed() {
+        describe('when the host element is clicked', () => {
+            beforeEach(async() => {
+                await fireEvent.click(component.getByLabelText(input.ariaLabel));
+            });
+
+            it('then it emits the tooltip-expand event', () => {
+                expect(component.emitted('tooltip-expand')).has.length(1);
+            });
+
+            it('then it is expanded', async() => {
+                await wait(() => {
+                    expect(component.getByLabelText(input.ariaLabel)).has.attr('aria-expanded', 'true');
+                    expect(component.getByRole('dialog')).does.not.have.attr('hidden');
+                });
+            });
+
+            describe('when the host element is clicked a second time to close', () => {
+                beforeEach(async() => {
+                    await fireEvent.click(component.getByLabelText(input.ariaLabel));
+                });
+
+                it('then it emits the tooltip-collapse event', () => {
+                    expect(component.emitted('tooltip-collapse')).has.length(1);
+                });
+
+                it('then it is collapsed', async() => {
+                    await wait(() => {
+                        expect(component.getByLabelText(input.ariaLabel)).does.not.have.attr('aria-expanded', 'true');
+                        expect(component.getByRole('dialog')).has.attr('hidden');
+                    });
                 });
             });
         });

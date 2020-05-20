@@ -37,7 +37,7 @@ module.exports = {
         const { type } = input;
         const container = this.getEl('container');
         const isTooltip = type === 'tooltip';
-        const isInfotip = type === 'infotip';
+        const isInfotip = type === 'infotip' || type === 'dialog--mini';
         const hostClass = `${type}__host`;
         const hostSelector = `.${hostClass}`;
         const expanderEl = container.getElementsByClassName(type)[0];

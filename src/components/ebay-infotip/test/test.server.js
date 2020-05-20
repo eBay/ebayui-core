@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
+const assign = require('core-js-pure/features/object/assign');
 const { runTransformer } = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
 const template = require('..');
@@ -29,6 +30,21 @@ describe('infotip', () => {
 
     // TODO: Does not look like this tag passes through class and style?
     // testPassThroughAttributes(template);
+});
+
+describe('infotip modal', () => {
+    it('renders modal infotip', async() => {
+        const input = mock.ModalWithContent;
+        const { getByLabelText, getByText } = await render(template, input);
+        expect(getByLabelText(input.ariaLabel)).has.class('dialog--mini__host');
+        expect(getByText(input.content.renderBody.text)).has.class('dialog__main');
+    });
+
+    it('renders modal infotip without header', async() => {
+        const input = assign({}, mock.WithContentAndHeader, { modal: true });
+        const { queryByText } = await render(template, input);
+        expect(queryByText(input.heading.renderBody.text)).equals(null);
+    });
 });
 
 describe('transformer', () => {

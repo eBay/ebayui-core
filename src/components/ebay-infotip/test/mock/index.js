@@ -17,3 +17,9 @@ exports.WithContentAndHeader = assign({}, exports.WithContent, {
 exports.Disabled = assign({}, exports.WithContent, {
     disabled: true
 });
+
+exports.ModalWithContent = assign({}, exports.WithContent, { modal: true });
+
+exports.ModalDisabled = assign({}, exports.ModalWithContent, {
+    disabled: true
+});
