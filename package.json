@@ -100,7 +100,7 @@
     "less": "^3.11.1",
     "less-loader": "^6.0.0",
     "lintspaces-cli": "^0.7.1",
-    "marko": "^4.18.51",
+    "marko": "^4.21.10",
     "marko-cli": "^7.0.25",
     "marko-prettyprint": "^1.5.2",
     "mocha": "^7.1.0",
