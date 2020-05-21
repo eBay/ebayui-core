@@ -26,16 +26,18 @@ module.exports = {
         elementScroll.scroll(el);
         this.state.selectedIndex = selectedIndex;
 
-        this.emit('listbox-change', {
-            index: selectedIndex,
-            selected: [option.value],
-            el
-        });
-
         if (this.wasClicked) {
             this._expander.collapse();
             this.wasClicked = false;
         }
+
+        setTimeout(() => {
+            this.emit('listbox-change', {
+                index: selectedIndex,
+                selected: [option.value],
+                el
+            });
+        }, 0);
     },
 
     onCreate() {
