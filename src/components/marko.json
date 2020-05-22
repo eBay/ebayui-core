@@ -1,4 +1,7 @@
 {
+  "<ebay-dialog-base>": {
+    "renderer": "./components/ebay-dialog-base/index.marko"
+  },
   "<ebay-tooltip-base>": {
     "renderer": "./components/ebay-tooltip-base/index.marko"
   },
