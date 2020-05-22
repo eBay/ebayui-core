@@ -10,9 +10,6 @@
     "enum": ["small", "large", "giant"]
   },
   "@href": "#html-href",
-  "@_default <_default>": {
-    "@*": "expression"
-  },
   "@title <title>": {
     "@*": {
       "targetProperty": null,

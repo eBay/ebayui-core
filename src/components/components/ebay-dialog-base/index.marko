@@ -1,0 +1,47 @@
+import processHtmlAttributes from "../../../common/html-attributes"
+
+static var ignoredAttributes = ["open", "type", "classPrefix", "focus", "a11yCloseText", "windowClass", "baseEl", "header", "footer", "transitionEl", "isModal"];
+
+$ const buttonPosition = input.buttonPosition || 'left';
+$ const baseEl = input.baseEl || 'div';
+
+<${baseEl}
+    ...processHtmlAttributes(input, ignoredAttributes)
+    aria-modal="true"
+    role="dialog"
+    class=[input.classPrefix, input.class]
+    hidden:no-update=!state.open
+    aria-live=(!input.isModal && "polite")
+    onClick("handleDialogClick")
+    onMousedown("handleStartClick")>
+    <if(state.open)>
+        <subscribe to=document on-keydown("handleKeydown")/>
+    </if>
+    <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>
+        <if(input.top)>
+            <${input.top.renderBody}/>
+        </if>
+        <${input.header ? "div" : null} class=`${input.classPrefix}__header`>
+            <if(buttonPosition === 'right')>
+                <${input.header} />
+            </if>
+            <button
+                key="close"
+                class=`${input.classPrefix}__close`
+                type="button"
+                aria-label=input.a11yCloseText
+                onClick("handleCloseButtonClick")>
+                <ebay-icon name="close"/>
+            </button>
+            <if(buttonPosition === 'left')>
+                <${input.header} />
+            </if>
+        </>
+        <div class=`${input.classPrefix}__main` key="body" onScroll("handleScroll")>
+            <${input.renderBody}/>
+        </div>
+        <div class=`${input.classPrefix}__footer` if(input.footer)>
+            <${input.footer.renderBody} />
+        </div>
+    </div>
+</>

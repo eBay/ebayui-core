@@ -1,8 +1,8 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const mock = require('./mock');
 const template = require('..');
+const mock = require('./mock');
 
 use(require('chai-dom'));
 afterEach(cleanup);

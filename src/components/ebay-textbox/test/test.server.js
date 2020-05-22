@@ -2,8 +2,8 @@ const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const { testPassThroughAttributes, runTransformer } = require('../../../common/test-utils/server');
 const transformer = require('../transformer');
-const mock = require('./mock');
 const template = require('..');
+const mock = require('./mock');
 
 use(require('chai-dom'));
 

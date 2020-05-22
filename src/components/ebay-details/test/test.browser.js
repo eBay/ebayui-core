@@ -1,9 +1,9 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup, wait } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
-const mock = require('./mock');
 const template = require('..');
+const mock = require('./mock');
 
 use(require('chai-dom'));
 before(fastAnimations.start);
@@ -49,8 +49,8 @@ describe('given the details is in the default state and click is triggered', () 
         });
 
         it('then it emits the details-toggle and click', async() => {
-            verifyToggleEvent();
-            verifyClickEvent();
+            wait(() => verifyToggleEvent());
+            wait(() => verifyClickEvent());
         });
     });
 
@@ -68,8 +68,8 @@ describe('given the details is in the default state and click is triggered', () 
             });
 
             it('then it should be closed', async() => {
-                verifyToggleEvent();
-                verifyClickEvent();
+                wait(() => verifyToggleEvent());
+                wait(() => verifyClickEvent());
             });
         });
     });
@@ -89,8 +89,8 @@ describe('given the details is in the open state and click is triggered', () => 
         });
 
         it('then it emits the details-toggle and click', async() => {
-            verifyToggleEvent();
-            verifyClickEvent();
+            wait(() => verifyToggleEvent());
+            wait(() => verifyClickEvent());
         });
     });
 
@@ -107,8 +107,8 @@ describe('given the details is in the open state and click is triggered', () => 
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
             it('then it should be open', async() => {
-                verifyToggleEvent();
-                verifyClickEvent();
+                wait(() => verifyToggleEvent());
+                wait(() => verifyClickEvent());
             });
         });
     });

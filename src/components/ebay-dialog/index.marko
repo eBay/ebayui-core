@@ -1,48 +1,24 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = ["open", "type", "focus", "a11yCloseText"];
-
 $ var isFull = input.type === "full";
 $ var isCenter = !input.type || input.type === "fill";
 $ var isDocked = input.type === "left" || input.type === "right";
-<div
-    ...processHtmlAttributes(input, ignoredAttributes)
-    aria-modal="true"
-    role="dialog"
+<ebay-dialog-base
+    ...input
+    open=input.open
+    classPrefix="dialog"
+    on-modal-show("emit", "dialog-show")
+    on-modal-close("emit", "dialog-close")
     class=[
-        "dialog",
         input.class,
         isDocked && "dialog--mask-fade-slow",
         isFull && "dialog--no-mask",
         isCenter && "dialog--mask-fade"
     ]
-    hidden:no-update=!state.open
-    onClick("handleDialogClick")
-    onMousedown("handleStartClick")>
-    <div
-        key="window"
-        class=[
-            "dialog__window",
+    window-class=[
             input.type && `dialog__window--${input.type}`,
             (isDocked ||isFull) && "dialog__window--slide",
             isCenter && "dialog__window--fade"
         ]>
-        <${input.header && "div"} class="dialog__header">
-            <button
-                key="close"
-                class="dialog__close"
-                type="button"
-                aria-label=input.a11yCloseText
-                onClick("handleCloseButtonClick")>
-                <ebay-icon name="close"/>
-            </button>
-            <${input.header.renderBody} if(input.header) />
-        </>
-        <div key="body" class="dialog__body">
-            <${input.renderBody}/>
-        </div>
-        <div class="dialog__footer" if(input.footer)>
-            <${input.footer.renderBody} />
-        </div>
-    </div>
-</div>
+    <${input.renderBody}/>
+</ebay-dialog-base>
