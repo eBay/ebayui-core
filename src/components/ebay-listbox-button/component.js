@@ -23,9 +23,14 @@ module.exports = {
         const el = this.getEls('option')[selectedIndex];
         const option = this.input.options[selectedIndex];
 
-        if (this.state.selectedIndex !== selectedIndex) {
-            elementScroll.scroll(el);
+        elementScroll.scroll(el);
 
+        if (this.wasClicked) {
+            this._expander.collapse();
+            this.wasClicked = false;
+        }
+
+        if (this.state.selectedIndex !== selectedIndex) {
             this.state.selectedIndex = selectedIndex;
             this.once('update', () => {
                 this.emit('listbox-change', {
@@ -34,11 +39,6 @@ module.exports = {
                     el
                 });
             });
-
-            if (this.wasClicked) {
-                this._expander.collapse();
-                this.wasClicked = false;
-            }
         }
     },
 
