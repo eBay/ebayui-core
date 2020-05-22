@@ -23,20 +23,22 @@ module.exports = {
         const el = this.getEls('option')[selectedIndex];
         const option = this.input.options[selectedIndex];
 
-        elementScroll.scroll(el);
-        this.state.selectedIndex = selectedIndex;
+        if (this.state.selectedIndex !== selectedIndex) {
+            elementScroll.scroll(el);
 
-        this.once('update', () => {
-            this.emit('listbox-change', {
-                index: selectedIndex,
-                selected: [option.value],
-                el
+            this.state.selectedIndex = selectedIndex;
+            this.once('update', () => {
+                this.emit('listbox-change', {
+                    index: selectedIndex,
+                    selected: [option.value],
+                    el
+                });
             });
-        });
 
-        if (this.wasClicked) {
-            this._expander.collapse();
-            this.wasClicked = false;
+            if (this.wasClicked) {
+                this._expander.collapse();
+                this.wasClicked = false;
+            }
         }
     },
 
