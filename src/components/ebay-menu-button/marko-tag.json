@@ -39,7 +39,5 @@
     "@badge-number": "expression",
     "@badge-aria-label": "string"
   },
-  "@label <label>": {
-    "@*": "expression"
-  }
+  "@label <label>": {}
 }
