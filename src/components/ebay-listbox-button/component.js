@@ -26,10 +26,12 @@ module.exports = {
         elementScroll.scroll(el);
         this.state.selectedIndex = selectedIndex;
 
-        this.emit('listbox-change', {
-            index: selectedIndex,
-            selected: [option.value],
-            el
+        this.once('update', () => {
+            this.emit('listbox-change', {
+                index: selectedIndex,
+                selected: [option.value],
+                el
+            });
         });
 
         if (this.wasClicked) {
