@@ -5,21 +5,21 @@ const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
 
 module.exports = {
-    handleExpand() {
+    handleExpand(originalEvent) {
         elementScroll.scroll(this.getEls('option')[this.state.selectedIndex]);
-        this.emit('listbox-expand');
+        this.emit('listbox-expand', { originalEvent });
     },
 
-    handleCollapse() {
-        this.emit('listbox-collapse');
+    handleCollapse(originalEvent) {
+        this.emit('listbox-collapse', { originalEvent });
     },
 
     handleMouseDown() {
         this.wasClicked = true;
     },
 
-    handleListboxChange(event) {
-        const selectedIndex = parseInt(event.detail.toIndex, 10);
+    handleListboxChange(originalEvent) {
+        const selectedIndex = parseInt(originalEvent.detail.toIndex, 10);
         const el = this.getEls('option')[selectedIndex];
         const option = this.input.options[selectedIndex];
 
@@ -29,6 +29,7 @@ module.exports = {
         this.emit('listbox-change', {
             index: selectedIndex,
             selected: [option.value],
+            originalEvent,
             el
         });
 

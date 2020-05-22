@@ -42,9 +42,9 @@ Name | Type | Stateful | Required | Description
 
 Event | Data |  Description
 --- | --- | ---
-`listbox-collapse` | | collapse content
-`listbox-expand` | | expand content
-`listbox-change` | `{ el, index, selected }` | option selected
+`listbox-collapse` |`{ originalEvent }` | collapse content
+`listbox-expand` |`{ originalEvent }` | expand content
+`listbox-change` | `{ el, index, selected, originalEvent }` | option selected
 ---
 
 ## ebay-listbox-button-option Tag
