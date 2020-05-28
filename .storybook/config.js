@@ -10,6 +10,12 @@ configure(() => {
     return result;
   }, {});
 
+  if (process.env.DS !== "4") {
+    require('@ebay/skin/marketsans');
+  }
+
+  require('@ebay/skin/global');
+
   const requireExample = require.context(
     "../src",
     true,
