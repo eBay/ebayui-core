@@ -4,7 +4,7 @@
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "prepublishOnly": "node scripts/prepublish",
-    "postversion": "npm run storybook:build",
+    "version": "npm run storybook:build && git add -A docs",
     "postpublish": "node scripts/postpublish",
     "start": "yarn clean; browser-refresh demo/",
     "start:prod": "NODE_ENV=production yarn start",
@@ -76,7 +76,7 @@
     "browser-refresh": "^1.7.2",
     "chai": "^4.2.0",
     "chai-dom": "^1.8.1",
-    "chromedriver": "^81.0.0",
+    "chromedriver": "^83.0.0",
     "core-js": "^3.4.8",
     "coveralls": "^3.1.0",
     "css-loader": "^3.4.2",
