@@ -2,7 +2,8 @@
   "flagSets": {
     "Theme": {
       "DS6": [],
-      "DS4": ["ds-4"]
+      "DS4": ["ds-4"],
+      "DSn": ["ds-n"]
     }
   }
 }

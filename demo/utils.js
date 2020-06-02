@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 // check that paths exist as directories
 function isDirectory(obj) {
     return obj.sources.every(path => {
