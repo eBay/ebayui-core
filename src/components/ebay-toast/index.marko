@@ -1,5 +1,6 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
+$ const header = input.header || {};
 <ebay-dialog-base
     ...input
     open=input.open
@@ -10,9 +11,9 @@ import processHtmlAttributes from "../../common/html-attributes"
     buttonPosition="right"
     on-modal-show("emit", "toast-show")
     on-modal-close("emit", "toast-close")
-    class=[
-        input.class,
-        "toast--transition"
-    ]>
+    class=[input.class, "toast--transition"]>
+    <@header class=[header.class, "toast__title"] ...header>
+        <${header.renderBody}/>
+    </@header>
     <${input.renderBody}/>
 </ebay-dialog-base>
