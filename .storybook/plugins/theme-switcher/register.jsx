@@ -12,6 +12,10 @@ const LINKS = [{
   id: '2',
   title: 'DS4',
   href: `${START_PATH}ds4/`
+}, {
+  id: '2',
+  title: 'DSn',
+  href: `${START_PATH}dsn/`
 }].map(link => ({
   ...link,
   href: link.href + (location.search || ""),
