@@ -3,35 +3,38 @@ class {
         this.state = {
             s: "init"
         };
-        this.states = {
-            loading: true,
-            confirmation: true
-        };
     }
 
     changeStates() {
+        clearTimeout(this.to);
         if (this.state.s === "init") {
-            this.state.s = "loading";
-            setTimeout(() => {
-                this.state.s = "confirmation";
-            }, 5000);
+            this.setLoading();
         } else if (this.state.s === "confirmation") {
-            this.state.s = "init";
+            this.setInit();
         }
+    }
+
+    setLoading() {
+        this.state.s = "loading";
+        setTimeout(() => this.setConfirmation(), 3000);
+    }
+
+    setConfirmation() {
+        this.state.s = "confirmation";
+        this.to = setTimeout(() => this.setInit(), 3000);
+    }
+
+    setInit() {
+        this.state.s = "init";
     }
 }
 
 <ebay-button
-    priority=(state.s === "init" ? "primary": "none")
-    ...{
-        [state.s]: component.states[state.s]
-    }
+    priority=(state.s === "init" ? "primary" : "none")
+    loading=(state.s === "loading")
+    confirmation=(state.s === 'confirmation')
     on-button-click("changeStates")>
-    <if(state.s === "loading")>
-        <span class="spinner"/>
-    </if>
-    <else-if(state.s === "confirmation")>
-        <ebay-icon name="tick"/>
-    </else-if>
+    <if(state.s === "loading")><span class="spinner"/></if>
+    <else-if(state.s === "confirmation")><ebay-icon name="tick"/></else-if>
     <else>Click to load</else>
 </ebay-button>
