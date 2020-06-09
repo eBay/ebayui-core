@@ -1,12 +1,32 @@
 import processHtmlAttributes from "../../../common/html-attributes"
 
-static var ignoredAttributes = ["open", "type", "classPrefix", "focus", "a11yCloseText", "windowClass", "baseEl", "header", "footer", "transitionEl", "isModal", "ariaLabelledby"];
+static var ignoredAttributes = [
+    "open",
+    "type",
+    "classPrefix",
+    "focus",
+    "a11yCloseText",
+    "windowClass",
+    "baseEl",
+    "header",
+    "footer",
+    "transitionEl",
+    "isModal",
+    "ariaLabelledby"
+];
+
 static var ignoredHeaderAttributes = ["id", "as"];
 
-$ const buttonPosition = input.buttonPosition || 'left';
-$ const baseEl = input.baseEl || 'div';
+$ const buttonPosition = input.buttonPosition || "left";
+$ const baseEl = input.baseEl || "div";
 $ const header = input.header;
-
+<macro name="render-header">
+    <${header.as || "h2"}
+        ...processHtmlAttributes(header, ignoredHeaderAttributes)
+        id=(header.id || component.getElId("dialog-title"))>
+        <${header.renderBody}/>
+    </>
+</macro>
 <${baseEl}
     ...processHtmlAttributes(input, ignoredAttributes)
     aria-labelledby=(input.ariaLabelledby || component.getElId("dialog-title"))
@@ -25,12 +45,8 @@ $ const header = input.header;
             <${input.top.renderBody}/>
         </if>
         <${header ? "div" : null} class=`${input.classPrefix}__header`>
-            <if(header && buttonPosition === 'right')>
-                <${header.as || "h2"}
-                    ...processHtmlAttributes(header, ignoredHeaderAttributes)
-                    id=(header.id || component.getElId("dialog-title"))>
-                    <${header.renderBody} />
-                </>
+            <if(header && buttonPosition === "right")>
+                <render-header/>
             </if>
             <button
                 key="close"
@@ -40,20 +56,15 @@ $ const header = input.header;
                 onClick("handleCloseButtonClick")>
                 <ebay-icon name="close"/>
             </button>
-            <if(header && buttonPosition === 'left')>
-                <${header.as || "h2"}
-                    ...processHtmlAttributes(header, ignoredHeaderAttributes)
-                    id=(header.id || component.getElId("dialog-title"))>
-                    <${header.renderBody} />
-                </>
-
+            <if(header && buttonPosition === "left")>
+                <render-header />
             </if>
         </>
         <div class=`${input.classPrefix}__main` key="body" onScroll("handleScroll")>
             <${input.renderBody}/>
         </div>
         <div class=`${input.classPrefix}__footer` if(input.footer)>
-            <${input.footer.renderBody} />
+            <${input.footer.renderBody}/>
         </div>
     </div>
 </>
