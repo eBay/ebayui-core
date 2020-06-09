@@ -524,7 +524,6 @@ module.exports = {
 
     onMount() {
         const { state: { config } } = this;
-        this.cancelFocusList = [];
         this.listEl = this.getEl('list');
         this.nextEl = this.getEl('next');
         this.containerEl = this.getEl('container');
