@@ -16,7 +16,7 @@ function migrator(el, context) {
                     if (!foundH2 && headerRegExp.test(tag)) {
                         foundH2 = true;
                         const isDefault = tag === 'h2';
-                        const message = isDefault ? `<@header>` : `<@header as=${tag}>`;
+                        const message = isDefault ? `<@header>` : `<@header as="${tag}">`;
 
                         context.deprecate(
                             `${tag} is no longer needed in dialog @header. Use ${message}Title</@header> instead`);
