@@ -20,7 +20,7 @@ static var ignoredHeaderAttributes = ["id", "as"];
 $ const buttonPosition = input.buttonPosition || "left";
 $ const baseEl = input.baseEl || "div";
 $ const header = input.header;
-<macro name="render-header">
+<macro name="header-content">
     <${header.as || "h2"}
         ...processHtmlAttributes(header, ignoredHeaderAttributes)
         id=(header.id || component.getElId("dialog-title"))>
@@ -46,7 +46,7 @@ $ const header = input.header;
         </if>
         <${header ? "div" : null} class=`${input.classPrefix}__header`>
             <if(header && buttonPosition === "right")>
-                <render-header/>
+                <header-content/>
             </if>
             <button
                 key="close"
@@ -57,7 +57,7 @@ $ const header = input.header;
                 <ebay-icon name="close"/>
             </button>
             <if(header && buttonPosition === "left")>
-                <render-header />
+                <header-content />
             </if>
         </>
         <div class=`${input.classPrefix}__main` key="body" onScroll("handleScroll")>
