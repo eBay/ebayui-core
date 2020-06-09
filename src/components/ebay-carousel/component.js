@@ -91,14 +91,13 @@ function onRender() {
 
         // Ensure only visible items within the carousel are focusable.
         // We don't have access to these items in the template so me must update manually.
-        forEls(listEl, itemEl => {
-            cleanupFocusables.call(this);
-            this.cancelFocusList.push(focusables(itemEl, false, (focusEl) => {
-                focusEl.forEach(itemEl.getAttribute('aria-hidden') !== 'true'
+        this.focusFrame = requestAnimationFrame(() => {
+            forEls(listEl, itemEl => {
+                focusables(itemEl).forEach(itemEl.getAttribute('aria-hidden') !== 'true'
                     ? child => child.removeAttribute('tabindex')
                     : child => child.setAttribute('tabindex', '-1')
                 );
-            }));
+            });
         });
 
         if (config.nativeScrolling) {
@@ -151,19 +150,13 @@ function onRender() {
     });
 }
 
-function cleanupFocusables() {
-    while (this.cancelFocusList && this.cancelFocusList.length) {
-        this.cancelFocusList.pop()();
-    }
-}
-
 /**
  * Called before updates and before the widget is destroyed to remove any pending async timers / actions.
  */
 function cleanupAsync() {
     clearTimeout(this.autoplayTimeout);
     cancelAnimationFrame(this.renderFrame);
-    cleanupFocusables.call(this);
+    cancelAnimationFrame(this.focusFrame);
 
     if (this.cancelScrollTransition) {
         this.cancelScrollTransition();
