@@ -24,17 +24,21 @@ module.exports = {
         const option = this.input.options[selectedIndex];
 
         elementScroll.scroll(el);
-        this.state.selectedIndex = selectedIndex;
-
-        this.emit('listbox-change', {
-            index: selectedIndex,
-            selected: [option.value],
-            el
-        });
 
         if (this.wasClicked) {
             this._expander.collapse();
             this.wasClicked = false;
+        }
+
+        if (this.state.selectedIndex !== selectedIndex) {
+            this.state.selectedIndex = selectedIndex;
+            this.once('update', () => {
+                this.emit('listbox-change', {
+                    index: selectedIndex,
+                    selected: [option.value],
+                    el
+                });
+            });
         }
     },
 
