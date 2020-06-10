@@ -29,7 +29,7 @@ module.exports = ({ config }) => {
             os_version: '10'
         }, {
             browser: 'Chrome',
-            browser_version: '49.0',
+            browser_version: '55.0',
             os: 'Windows',
             os_version: '7'
         // }, {
