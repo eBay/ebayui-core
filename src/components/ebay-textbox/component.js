@@ -18,6 +18,10 @@ module.exports = {
         this._setupMakeup();
     },
 
+    focus() {
+        this.getEl('input').focus();
+    },
+
     _setupMakeup() {
         // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
         // It probably makes more sense to just move this functionality into Marko though.

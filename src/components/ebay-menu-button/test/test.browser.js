@@ -1,6 +1,7 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { getComponentForEl } = require('marko/components');
 const { pressKey } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
@@ -93,6 +94,11 @@ describe('given the menu is in the default state', () => {
         it('then it emits the menu-button-expand event', () => {
             expect(component.emitted('menu-button-expand')).has.length(1);
         });
+    });
+
+    it('focuses element on focus call', () => {
+        getComponentForEl(component.container.firstElementChild).focus();
+        expect(document.activeElement).to.equal(component.getByRole('button'));
     });
 });
 
