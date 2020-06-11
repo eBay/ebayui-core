@@ -20,3 +20,23 @@ Event | Data | Description
 --- | --- | ---
 `toast-show` |  | toast opened
 `toast-close` |  | toast closed
+
+## @header
+
+Creates a header for the toast
+
+### @header Usage
+
+```marko
+<ebay-toast open a11y-close-text="Close Toast">
+  <@header>Title</header>
+  <h1>Hello World</h1>
+</ebay-toast>
+
+```
+
+### @header attributes
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`as` | String | No | No | The tag to render which wraps the rest of the header content. Default is "h2"

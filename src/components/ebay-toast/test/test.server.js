@@ -16,7 +16,8 @@ describe('toast', () => {
         expect(getByRole('dialog')).has.class('toast--transition');
         expect(getByLabelText(input.a11yCloseText)).has.class('toast__close');
         expect(getByText(input.renderBody.text)).has.class('toast__main');
-        expect(getByText(input.header.renderBody.text)).has.class('toast__header');
+        expect(getByText(input.header.renderBody.text).parentElement).has.class('toast__header');
+        expect(getByText(input.header.renderBody.text)).has.class('toast__title');
         expect(getByText(input.footer.renderBody.text)).has.class('toast__footer');
     });
 
