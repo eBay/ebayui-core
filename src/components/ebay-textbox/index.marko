@@ -41,6 +41,7 @@ $ var id = input.id || component.getElId("textbox");
     <${input.multiline ? "textarea" : "input"}
         ...processHtmlAttributes(input, ignoredAttributes)
         id=id
+        key="input"
         class=[
             "textbox__control",
             input.fluid && "textbox__control--fluid",
