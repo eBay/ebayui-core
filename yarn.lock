@@ -12037,6 +12037,11 @@ makeup-focusables@~0.0.4:
   resolved "https://registry.npmjs.org/makeup-focusables/-/makeup-focusables-0.0.4.tgz#1a324b1e7c026f2254dd599caa4099344f1c266c"
   integrity sha512-2yOaXhTnltA9Fb9+sSk2d2oS5150/qMhyjvFYUUWBxlnVpSR7H7cktH/WLgYl7Nab79W29pNUnAIHX9SpnWKKQ==
 
+makeup-focusables@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/makeup-focusables/-/makeup-focusables-0.1.0.tgz#df3a0d70b58f6e40cb973514855f4fbd3b53febc"
+  integrity sha512-rBUb7cECtGGC60Z1zRjEUyweCh4gMqWOUzDERLu2xEKBGdh+upDciOucrLiGt/gawJhFnI+HA3AabLSo6mm43Q==
+
 makeup-key-emitter@~0.1.2:
   version "0.1.2"
   resolved "https://registry.npmjs.org/makeup-key-emitter/-/makeup-key-emitter-0.1.2.tgz#9e9dd655846912a7ff94390486dd3d4506c10509"

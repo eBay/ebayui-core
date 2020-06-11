@@ -133,7 +133,7 @@
     "makeup-active-descendant": "~0.3.6",
     "makeup-expander": "~0.8.6",
     "makeup-floating-label": "~0.0.5",
-    "makeup-focusables": "~0.0.4",
+    "makeup-focusables": "~0.1.0",
     "makeup-key-emitter": "~0.1.2",
     "makeup-keyboard-trap": "~0.2.2",
     "makeup-prevent-scroll-keys": "~0.0.3",
