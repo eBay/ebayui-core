@@ -49,6 +49,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 * [`ebay-cta-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-cta-button)
 * [`ebay-details`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-details)
 * [`ebay-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-dialog)
+* [`ebay-drawer`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-drawer)
 * [`ebay-expand-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-expand-button)
 * [`ebay-filter`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter)
 * [`ebay-filter-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter-menu)
@@ -65,6 +66,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 * [`ebay-switch`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-switch)
 * [`ebay-tab`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tab)
 * [`ebay-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-textbox)
+* [`ebay-toast`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toast)
 * [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
 * [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
 
