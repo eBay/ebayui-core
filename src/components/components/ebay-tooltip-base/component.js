@@ -32,27 +32,13 @@ module.exports = {
         this._cleanupMakeup();
     },
 
-    _setupMakeup() {
+    _setupExpander(host, hostSelector) {
         const { input } = this;
         const { type } = input;
         const container = this.getEl('container');
         const isTooltip = type === 'tooltip';
         const isInfotip = type === 'infotip';
-        const hostClass = `${type}__host`;
-        const hostSelector = `.${hostClass}`;
         const expanderEl = container.getElementsByClassName(type)[0];
-        let host = container.querySelector(hostSelector);
-
-        if (!host) {
-            const curFocusable = focusables(container)[0];
-            if (curFocusable) {
-                host = curFocusable;
-
-                if (!curFocusable.classList.contains(hostClass)) {
-                    curFocusable.classList.add(hostClass);
-                }
-            }
-        }
 
         if (host) {
             this._expander = new Expander(expanderEl, {
@@ -72,7 +58,40 @@ module.exports = {
         }
     },
 
+    _setupMakeup() {
+        const { input } = this;
+        const { type } = input;
+        const container = this.getEl('container');
+        const hostClass = `${type}__host`;
+        const hostSelector = `.${hostClass}`;
+        let host = container.querySelector(hostSelector);
+
+        if (!host) {
+            if (this.cancelFocus) {
+                this.cancelFocus();
+            }
+
+            this.cancelFocus = focusables(container, false, (curFocusables) => {
+                const curFocusable = curFocusables[0];
+                if (curFocusable) {
+                    host = curFocusable;
+
+                    if (!curFocusable.classList.contains(hostClass)) {
+                        curFocusable.classList.add(hostClass);
+                    }
+                }
+                this._setupExpander(host, hostSelector);
+            });
+        } else {
+            this._setupExpander(host, hostSelector);
+        }
+    },
+
     _cleanupMakeup() {
+        if (this.cancelFocus) {
+            this.cancelFocus();
+        }
+
         if (this._expander) {
             this._expander.cancelAsync();
             this._expander = undefined;
