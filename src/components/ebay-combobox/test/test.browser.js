@@ -304,6 +304,36 @@ describe('given the combobox starts with zero options', () => {
     });
 });
 
+describe('when it is rerendered with actionable', () => {
+    const input = mock.Combobox_3Options_Actionable;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+
+    describe('when the actionable is clicked', () => {
+        beforeEach(async() => {
+            await fireEvent.click(component.getByText(input.actionable.renderBody.text));
+        });
+
+        it('should emit event', () => {
+            expect(component.emitted('combobox-actionable-click')).has.length(1);
+        });
+    });
+
+    describe('when it is expanded and actionable is clicked', () => {
+        beforeEach(async() => {
+            await fireEvent.focus(component.getByRole('combobox'));
+            await fireEvent.click(component.getByText(input.actionable.renderBody.text));
+        });
+
+        it('should emit event and not close', () => {
+            expect(component.getByRole('combobox')).has.attr('aria-expanded', 'true');
+            expect(component.emitted('combobox-actionable-click')).has.length(1);
+        });
+    });
+});
+
 function isAriaSelected(el) {
     return el.getAttribute('aria-selected') === 'true';
 }

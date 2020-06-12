@@ -16,6 +16,14 @@
   "@role": "never",
   "@aria-autocomplete": "never",
   "@aria-haspopup": "never",
+  "@actionable <actionable>": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
   "@options <option>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {

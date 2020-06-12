@@ -37,6 +37,18 @@ describe('combobox', () => {
         expect(getByRole('combobox').parentElement).has.class('combobox__control--borderless');
     });
 
+    it('renders with actionable button', async() => {
+        const input = mock.Combobox_3Options_Actionable;
+        const { getByText } = await render(template, input);
+        expect(getByText(input.actionable.renderBody.text)).has.class('icon-btn');
+    });
+
+    it('renders with default actionable button', async() => {
+        const input = mock.Combobox_3Options_Actionable_No_Body;
+        const { getByLabelText } = await render(template, input);
+        expect(getByLabelText(input.actionable.ariaLabel)).has.class('icon-btn');
+    });
+
     testPassThroughAttributes(template, {
         input: mock.Combobox_3Options,
         getClassAndStyleEl(component) {

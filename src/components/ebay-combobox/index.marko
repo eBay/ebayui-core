@@ -8,8 +8,13 @@ static var ignoredAttributes = [
     "options"
 ];
 
+static var ignoredActionableAttributes = [
+    "class"
+];
+
 static var itemIgnoredAttributes = ["text"];
 
+$ var hasActionable = !!input.actionable;
 <span
     class:no-update=["combobox", input.class]
     style=input.style
@@ -17,6 +22,7 @@ static var itemIgnoredAttributes = ["text"];
     onExpander-collapse("handleCollapse")>
     <span class=[
         "combobox__control",
+        hasActionable && "combobox__control--actionable",
         input.borderless && "combobox__control--borderless"
     ]>
         <!--
@@ -40,7 +46,18 @@ static var itemIgnoredAttributes = ["text"];
             onBlur("handleComboboxBlur")
             onKeydown("handleComboboxKeyDown")
             onKeyup("handleComboboxKeyUp")/>
-        <ebay-icon name="dropdown"/>
+        <${hasActionable ? "button" : null}
+            ...processHtmlAttributes(input.actionable, ignoredActionableAttributes)
+            onClick("handleActionableClick")
+            key="actionable"
+            class=["icon-btn", hasActionable && input.actionable.class]>
+            <if(hasActionable && input.actionable.renderBody)>
+                <${input.actionable.renderBody}/>
+            </if>
+            <else>
+                <ebay-icon name="dropdown"/>
+            </else>
+        </>
     </span>
     <if(component._hasVisibleOptions())>
         <div key="listbox" role="listbox" class="combobox__listbox">
