@@ -1,3 +1,5 @@
+const findIndex = require('core-js-pure/features/array/find-index');
+
 function _getType(step) {
     let type = step.type;
     if (step.number) {
@@ -7,6 +9,9 @@ function _getType(step) {
 }
 
 module.exports = {
+    getCurrent(step) {
+        return findIndex(step || [], (item) => item.current);
+    },
     getStepClass(index, current, list) {
         const step = list[index];
         let itemClass = _getType(step);
