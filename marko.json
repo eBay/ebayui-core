@@ -7,6 +7,9 @@
   "<ebay-breadcrumbs-item>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
+  "<ebay-dialog-base>": {
+    "migrator": "./src/components/components/ebay-dialog-base/migrator.js"
+  },
   "<ebay-carousel-item>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },

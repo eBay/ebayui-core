@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { getComponentForEl } = require('marko/components');
 const template = require('..');
 const mock = require('./mock');
 
@@ -31,6 +32,11 @@ describe('given an input textbox', () => {
                 expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
             });
         });
+    });
+
+    it('focuses element on focus call', () => {
+        getComponentForEl(component.container.firstElementChild).focus();
+        expect(document.activeElement).to.equal(component.getByRole('textbox'));
     });
 });
 

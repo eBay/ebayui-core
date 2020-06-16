@@ -91,11 +91,13 @@ function onRender() {
 
         // Ensure only visible items within the carousel are focusable.
         // We don't have access to these items in the template so me must update manually.
-        forEls(listEl, itemEl => {
-            focusables(itemEl).forEach(itemEl.getAttribute('aria-hidden') !== 'true'
-                ? child => child.removeAttribute('tabindex')
-                : child => child.setAttribute('tabindex', '-1')
-            );
+        this.focusFrame = requestAnimationFrame(() => {
+            forEls(listEl, itemEl => {
+                focusables(itemEl).forEach(itemEl.getAttribute('aria-hidden') !== 'true'
+                    ? child => child.removeAttribute('tabindex')
+                    : child => child.setAttribute('tabindex', '-1')
+                );
+            });
         });
 
         if (config.nativeScrolling) {
@@ -154,6 +156,7 @@ function onRender() {
 function cleanupAsync() {
     clearTimeout(this.autoplayTimeout);
     cancelAnimationFrame(this.renderFrame);
+    cancelAnimationFrame(this.focusFrame);
 
     if (this.cancelScrollTransition) {
         this.cancelScrollTransition();
