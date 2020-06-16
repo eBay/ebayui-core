@@ -12,17 +12,10 @@ static var ignoredAttributes = [
     "floatingLabel"
 ];
 
-$ var isPostfixIcon = input.iconPosition === "postfix" ;
+$ var isPostfixIcon = input.iconPosition === "postfix";
 $ var displayIcon = Boolean(!input.multiline && input.iconTag);
 $ var id = input.id || component.getElId("textbox");
-
-<${input.fluid ? "div" : "span"}
-    style=input.style
-    class=[
-        "textbox",
-        input.class,
-        displayIcon && isPostfixIcon && "textbox--icon-end"
-    ]>
+<${input.floatingLabel && "span"} class="floating-label">
     <if(input.floatingLabel)>
         <label
             for=id
@@ -33,34 +26,39 @@ $ var id = input.id || component.getElId("textbox");
             ${input.floatingLabel}
         </label>
     </if>
-
-    <if(displayIcon && !isPostfixIcon)>
-        <${input.iconTag}/>
-    </if>
-
-    <${input.multiline ? "textarea" : "input"}
-        ...processHtmlAttributes(input, ignoredAttributes)
-        id=id
-        key="input"
+    <${input.fluid ? "div" : "span"}
+        style=input.style
         class=[
-            "textbox__control",
-            input.fluid && "textbox__control--fluid",
-            input.floatingLabel && "textbox__control--underline"
-        ]
-        type=(input.type === "password" ? "password" : "text")
-        value=(!input.multiline && input.value)
-        aria-invalid=(input.invalid && "true")
-        onKeydown("handleKeydown")
-        onKeypress("handleKeypress")
-        onKeyup("handleKeyup")
-        onChange("handleChange")
-        onInput("handleInput")
-        onFocus("handleFocus")
-        onBlur("handleBlur")>
-        <if(input.multiline && input.value)>${input.value}</if>
+            "textbox",
+            input.class,
+            displayIcon && isPostfixIcon && "textbox--icon-end"
+        ]>
+        <if(displayIcon && !isPostfixIcon)>
+            <${input.iconTag}/>
+        </if>
+        <${input.multiline ? "textarea" : "input"}
+            ...processHtmlAttributes(input, ignoredAttributes)
+            id=id
+            key="input"
+            class=[
+                "textbox__control",
+                input.fluid && "textbox__control--fluid",
+                input.floatingLabel && "textbox__control--underline"
+            ]
+            type=(input.type === "password" ? "password" : "text")
+            value=(!input.multiline && input.value)
+            aria-invalid=(input.invalid && "true")
+            onKeydown("handleKeydown")
+            onKeypress("handleKeypress")
+            onKeyup("handleKeyup")
+            onChange("handleChange")
+            onInput("handleInput")
+            onFocus("handleFocus")
+            onBlur("handleBlur")>
+            <if(input.multiline && input.value)>${input.value}</if>
+        </>
+        <if(displayIcon && isPostfixIcon)>
+            <${input.iconTag}/>
+        </if>
     </>
-
-    <if(displayIcon && isPostfixIcon)>
-        <${input.iconTag}/>
-    </if>
 </>

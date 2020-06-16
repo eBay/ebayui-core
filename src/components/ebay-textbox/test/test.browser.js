@@ -47,6 +47,10 @@ describe('given an input textbox with floating label and no value', () => {
         component = await render(template, input);
     });
 
+    it('then component is wrapped into floating label element', () => {
+        expect(component.container.firstElementChild).has.class('floating-label');
+    });
+
     it('then is showing the label inline', () => {
         expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
     });
