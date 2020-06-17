@@ -20,6 +20,7 @@ Tag | Required | Description
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
+`modal` | Boolean | No | No | Show modal version of infotip if present
 `icon` | String | No | No | name of an `<ebay-icon>` to show for the icon button
 `pointer` | String | No | No | options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`
 `disabled` | Boolean | Yes | No | adds a `disabled` attribute to the button
