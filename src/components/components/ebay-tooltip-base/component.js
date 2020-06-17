@@ -28,6 +28,10 @@ module.exports = {
         this._expander.collapse();
     },
 
+    expand() {
+        this._expander.expand();
+    },
+
     onDestroy() {
         this._cleanupMakeup();
     },
@@ -37,7 +41,7 @@ module.exports = {
         const { type } = input;
         const container = this.getEl('container');
         const isTooltip = type === 'tooltip';
-        const isInfotip = type === 'infotip';
+        const isInfotip = type === 'infotip' || type === 'dialog--mini';
         const expanderEl = container.getElementsByClassName(type)[0];
 
         if (host) {
