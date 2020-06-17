@@ -9,6 +9,7 @@ module.exports = {
     handleInput: forwardEvent('input'),
     handleFocus: forwardEvent('focus'),
     handleBlur: forwardEvent('blur'),
+    handlePostfixClick: forwardEvent('postfix-click'),
 
     onMount() {
         this._setupMakeup();

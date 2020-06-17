@@ -85,3 +85,16 @@ describe('given an input textbox with floating label and no value', () => {
         });
     });
 });
+
+describe('when the component has a postfix button', () => {
+    const input = mock.Postfix_Icon_Button;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+        await fireEvent.click(component.getByLabelText(input.postfixAriaLabel));
+    });
+
+    it('it should trigger a postfix click event', () => {
+        expect(component.emitted('textbox-postfix-click')).has.length(1);
+    });
+});

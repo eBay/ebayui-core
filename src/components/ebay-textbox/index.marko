@@ -6,14 +6,14 @@ static var ignoredAttributes = [
     "invalid",
     "fluid",
     "multiline",
-    "icon",
-    "iconPosition",
-    "iconTag",
-    "floatingLabel"
+    "floatingLabel",
+    "prefix-icon",
+    "postfix-icon"
 ];
 
-$ var isPostfixIcon = input.iconPosition === "postfix";
-$ var displayIcon = Boolean(!input.multiline && input.iconTag);
+$ var isPostfix = !!input.postfixIcon;
+$ var hasIcon = (input.prefixIcon || isPostfix);
+$ var displayIcon = Boolean(!input.multiline && hasIcon);
 $ var id = input.id || component.getElId("textbox");
 <${input.floatingLabel && "span"} class="floating-label">
     <if(input.floatingLabel)>
@@ -31,10 +31,10 @@ $ var id = input.id || component.getElId("textbox");
         class=[
             "textbox",
             input.class,
-            displayIcon && isPostfixIcon && "textbox--icon-end"
+            displayIcon && isPostfix && "textbox--icon-end"
         ]>
-        <if(displayIcon && !isPostfixIcon)>
-            <${input.iconTag}/>
+        <if(displayIcon && input.prefixIcon)>
+            <${input.prefixIconTag}/>
         </if>
         <${input.multiline ? "textarea" : "input"}
             ...processHtmlAttributes(input, ignoredAttributes)
@@ -57,8 +57,10 @@ $ var id = input.id || component.getElId("textbox");
             onBlur("handleBlur")>
             <if(input.multiline && input.value)>${input.value}</if>
         </>
-        <if(displayIcon && isPostfixIcon)>
-            <${input.iconTag}/>
+        <if(displayIcon && input.postfixIcon)>
+            <${input.postfixAriaLabel && "button"} class="icon-btn" aria-label=input.postfixAriaLabel on-click("handlePostfixClick") >
+                <${input.postfixIconTag} />
+            </>
         </if>
     </>
 </>
