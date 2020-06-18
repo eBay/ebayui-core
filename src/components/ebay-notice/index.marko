@@ -16,7 +16,7 @@ $ var isWindow = type === "window";
 $ var isCelebration = status === "celebration";
 $ var isPage = type === "page" || isSection || isWindow;
 $ var isLightGuidance = isSection && !input.status;
-$ var isIconVisible = !input.iconHidden;
+$ var isIconVisible = input.icon !== "hidden";
 <${isPage ? "section" : "div"}
     ...processHtmlAttributes(input, ignoredAttributes)
     aria-labelledby:scoped="status"

@@ -15,7 +15,7 @@ exports.Page_Custom_Status = assign({}, exports.Page, {
 });
 
 exports.Page_Icon_Hidden = assign({}, exports.Page, {
-    iconHidden: true
+    icon: 'hidden'
 });
 
 exports.Inline = assign({}, exports.Page, {
