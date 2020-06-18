@@ -1,5 +1,10 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
+static function toJSON() {
+    return {
+        floatingLabel: this.floatingLabel
+    }
+}
 static var ignoredAttributes = [
     "class",
     "style",
@@ -11,6 +16,7 @@ static var ignoredAttributes = [
     "postfix-icon"
 ];
 
+$ input.toJSON = toJSON;
 $ var isPostfix = !!input.postfixIcon;
 $ var hasIcon = (input.prefixIcon || isPostfix);
 $ var displayIcon = Boolean(!input.multiline && hasIcon);
