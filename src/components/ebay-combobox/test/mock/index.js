@@ -26,13 +26,13 @@ exports.Combobox_3Options_Borderless = assign({}, exports.Combobox_3Options, {
 });
 
 exports.Combobox_3Options_Actionable = assign({}, exports.Combobox_3Options, {
-    actionable: {
+    button: {
         renderBody: createRenderBody('actionable')
     }
 });
 
 exports.Combobox_3Options_Actionable_No_Body = assign({}, exports.Combobox_3Options, {
-    actionable: {
+    button: {
         ariaLabel: 'actionable label'
     }
 });

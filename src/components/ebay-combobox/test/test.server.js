@@ -40,13 +40,13 @@ describe('combobox', () => {
     it('renders with actionable button', async() => {
         const input = mock.Combobox_3Options_Actionable;
         const { getByText } = await render(template, input);
-        expect(getByText(input.actionable.renderBody.text)).has.class('icon-btn');
+        expect(getByText(input.button.renderBody.text)).has.class('icon-btn');
     });
 
     it('renders with default actionable button', async() => {
         const input = mock.Combobox_3Options_Actionable_No_Body;
         const { getByLabelText } = await render(template, input);
-        expect(getByLabelText(input.actionable.ariaLabel)).has.class('icon-btn');
+        expect(getByLabelText(input.button.ariaLabel)).has.class('icon-btn');
     });
 
     testPassThroughAttributes(template, {

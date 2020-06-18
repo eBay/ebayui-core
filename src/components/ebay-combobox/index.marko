@@ -8,13 +8,13 @@ static var ignoredAttributes = [
     "options"
 ];
 
-static var ignoredActionableAttributes = [
+static var ignoredButtonAttributes = [
     "class"
 ];
 
 static var itemIgnoredAttributes = ["text"];
 
-$ var hasActionable = !!input.actionable;
+$ var hasButton = !!input.button;
 <span
     class:no-update=["combobox", input.class]
     style=input.style
@@ -22,7 +22,7 @@ $ var hasActionable = !!input.actionable;
     onExpander-collapse("handleCollapse")>
     <span class=[
         "combobox__control",
-        hasActionable && "combobox__control--actionable",
+        hasButton && "combobox__control--actionable",
         input.borderless && "combobox__control--borderless"
     ]>
         <!--
@@ -46,13 +46,13 @@ $ var hasActionable = !!input.actionable;
             onBlur("handleComboboxBlur")
             onKeydown("handleComboboxKeyDown")
             onKeyup("handleComboboxKeyUp")/>
-        <${hasActionable ? "button" : null}
-            ...processHtmlAttributes(input.actionable, ignoredActionableAttributes)
-            onClick("handleActionableClick")
+        <${hasButton ? "button" : null}
+            ...processHtmlAttributes(input.button, ignoredButtonAttributes)
+            onClick("handleButtonClick")
             key="actionable"
-            class=["icon-btn", hasActionable && input.actionable.class]>
-            <if(hasActionable && input.actionable.renderBody)>
-                <${input.actionable.renderBody}/>
+            class=["icon-btn", hasButton && input.button.class]>
+            <if(hasButton && input.button.renderBody)>
+                <${input.button.renderBody}/>
             </if>
             <else>
                 <ebay-icon name="dropdown"/>

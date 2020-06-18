@@ -313,23 +313,23 @@ describe('when it is rerendered with actionable', () => {
 
     describe('when the actionable is clicked', () => {
         beforeEach(async() => {
-            await fireEvent.click(component.getByText(input.actionable.renderBody.text));
+            await fireEvent.click(component.getByText(input.button.renderBody.text));
         });
 
         it('should emit event', () => {
-            expect(component.emitted('combobox-actionable-click')).has.length(1);
+            expect(component.emitted('combobox-button-click')).has.length(1);
         });
     });
 
     describe('when it is expanded and actionable is clicked', () => {
         beforeEach(async() => {
             await fireEvent.focus(component.getByRole('combobox'));
-            await fireEvent.click(component.getByText(input.actionable.renderBody.text));
+            await fireEvent.click(component.getByText(input.button.renderBody.text));
         });
 
         it('should emit event and not close', () => {
             expect(component.getByRole('combobox')).has.attr('aria-expanded', 'true');
-            expect(component.emitted('combobox-actionable-click')).has.length(1);
+            expect(component.emitted('combobox-button-click')).has.length(1);
         });
     });
 });

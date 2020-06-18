@@ -18,9 +18,9 @@ module.exports = {
         return this.expander.collapse();
     },
 
-    handleActionableClick(originalEvent) {
-        this.clickedActionable = true;
-        this.emit('combobox-actionable-click', { originalEvent });
+    handleButtonClick(originalEvent) {
+        this.buttonClicked = true;
+        this.emit('combobox-button-click', { originalEvent });
     },
 
     handleExpand() {
@@ -90,11 +90,11 @@ module.exports = {
             this.focus();
         }
 
-        if (this.expander && this.expander.isExpanded() && !wasClickedOption && !this.clickedActionable) {
+        if (this.expander && this.expander.isExpanded() && !wasClickedOption && !this.buttonClicked) {
             this.expander.collapse();
         }
 
-        this.actionableClicked = false;
+        this.buttonClicked = false;
 
         if (this.lastValue !== this.state.currentValue) {
             this.lastValue = this.state.currentValue;
@@ -150,7 +150,7 @@ module.exports = {
                 autoCollapse: true,
                 expandOnFocus: true,
                 expandOnClick: this.input.readonly && !this.input.disabled,
-                collapseOnFocusOut: !this.input.readonly && !this.input.actionable,
+                collapseOnFocusOut: !this.input.readonly && !this.input.button,
                 contentSelector: '[role="listbox"]',
                 hostSelector: '[role="combobox"]',
                 expandedClass: 'combobox--expanded',
