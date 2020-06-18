@@ -6,6 +6,23 @@ const eventUtils = require('../../common/event-utils');
 const safeRegex = require('../../common/build-safe-regex');
 
 module.exports = {
+    focus() {
+        this.getEl('combobox').focus();
+    },
+
+    isExpanded() {
+        return this.expander.isExpanded();
+    },
+
+    collapse() {
+        return this.expander.collapse();
+    },
+
+    handleButtonClick(originalEvent) {
+        this.buttonClicked = true;
+        this.emit('combobox-button-click', { originalEvent });
+    },
+
     handleExpand() {
         const selectedEl = this.getEls('options')[
             this._getVisibleOptions().indexOf(this._getSelectedOption())
@@ -70,12 +87,14 @@ module.exports = {
         const wasClickedOption = this.optionClicked;
 
         if (wasClickedOption) {
-            this.getEl('input').focus();
+            this.focus();
         }
 
-        if (this.expander && this.expander.isExpanded() && !wasClickedOption) {
+        if (this.expander && this.expander.isExpanded() && !wasClickedOption && !this.buttonClicked) {
             this.expander.collapse();
         }
+
+        this.buttonClicked = false;
 
         if (this.lastValue !== this.state.currentValue) {
             this.lastValue = this.state.currentValue;
@@ -131,7 +150,7 @@ module.exports = {
                 autoCollapse: true,
                 expandOnFocus: true,
                 expandOnClick: this.input.readonly && !this.input.disabled,
-                collapseOnFocusOut: !this.input.readonly,
+                collapseOnFocusOut: !this.input.readonly && !this.input.button,
                 contentSelector: '[role="listbox"]',
                 hostSelector: '[role="combobox"]',
                 expandedClass: 'combobox--expanded',

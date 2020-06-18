@@ -1,5 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { getNItems } = require('../../../../common/test-utils/shared');
+const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Combobox_0Options = {
     name: 'test-combobox',
@@ -22,4 +23,16 @@ exports.Combobox_3Options_2Selected = assign({}, exports.Combobox_3Options, {
 
 exports.Combobox_3Options_Borderless = assign({}, exports.Combobox_3Options, {
     borderless: true
+});
+
+exports.Combobox_3Options_Actionable = assign({}, exports.Combobox_3Options, {
+    button: {
+        renderBody: createRenderBody('actionable')
+    }
+});
+
+exports.Combobox_3Options_Actionable_No_Body = assign({}, exports.Combobox_3Options, {
+    button: {
+        ariaLabel: 'actionable label'
+    }
 });
