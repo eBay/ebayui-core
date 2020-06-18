@@ -1,25 +1,13 @@
 class {
-    onCreate() {
-        this.state = {
-            autocomplete: true
-        }
-    }
-
     toggle() {
-        this.state.autocomplete = !this.state.autocomplete;
-
+        console.log(this.getComponent('combobox').isExpanded());
     }
 }
 
-<ebay-combobox key="combobox" name="example2text" value="Basic Offer 22" autocomplete=(state.autocomplete && "list")
+<ebay-combobox key="combobox" name="example2text" value="Basic Offer 22" autocomplete="list"
     on-combobox-actionable-click("toggle")>
     <@actionable aria-label="Toggle autocomplete">
-        <if (state.autocomplete)>
-            <ebay-icon name="filter-single-selected" />
-        </if>
-        <else>
-            <ebay-icon name="filter-single" />
-        </else>
+        <ebay-icon name="dropdown"/>
     </@actionable>
     <ebay-combobox-option text="August Campaign"/>
     <ebay-combobox-option text="4th of July Sale (paused)"/>
