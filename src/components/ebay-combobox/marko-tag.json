@@ -28,6 +28,7 @@
     "@selected": "boolean",
     "@tabindex": "never",
     "@role": "never",
-    "@aria-selected": "never"
+    "@aria-selected": "never",
+    "@sticky": "boolean"
   }
 }

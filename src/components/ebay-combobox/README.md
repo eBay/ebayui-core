@@ -71,3 +71,4 @@ Event | Data |  Description
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `text` | String | No | No | string to use in the option
+`sticky` | Boolean | No | No | If true, the option will always be shown even if it doesn't match the filter

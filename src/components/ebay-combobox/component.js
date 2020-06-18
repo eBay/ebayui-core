@@ -176,7 +176,7 @@ module.exports = {
         }
 
         const currentValueReg = safeRegex(this.state.currentValue);
-        return this.input.options.filter(option => currentValueReg.test(option.text || ''));
+        return this.input.options.filter(option => currentValueReg.test(option.text || '') || option.sticky);
     },
 
     _hasVisibleOptions() {
