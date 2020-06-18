@@ -17,7 +17,7 @@ Name | Type | Stateful | Required | Description
 `invalid` | Boolean | No | No | indicates a field-level error with red border if true
 `prefix-icon` | String | No | No | name of the icon from skin to show as the prefix icon
 `postfix-icon` | String | No | No | name of the icon from skin to show as the postfix icon
-`postfix-aria-label` | String | No | No | aria-label for postfix. Required to be set in order to render postfix button and attach a `textbox-postfix-click event`
+`button-aria-label` | String | No | No | aria-label for postfix. Required to be set in order to render postfix button and attach a `textbox-button-click event`
 
 ## ebay-textbox Events
 
@@ -31,4 +31,4 @@ Event | Data | Description
 `textbox-keypress` | `{ originalEvent, value }` |
 `textbox-keyup` | `{ originalEvent, value }` |
 `textbox-floating-label-init` | `{ originalEvent: null, value: null }` |
-`textbox-postfix-click` | `{ originalEvent, value }` | Triggers when clicking on postfix-icon-button. Requires postfix-aria-label to be present in order to attach correctly
+`textbox-button-click` | `{ originalEvent, value }` | Triggers when clicking on postfix-icon-button. Requires button-aria-label to be present in order to attach correctly

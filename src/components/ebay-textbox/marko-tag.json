@@ -23,7 +23,7 @@
   },
   "@postfixIconTag <_postfixIcon>": {},
   "@prefixIconTag <_prefixIcon>": {},
-  "@postfix-aria-label": "string",
+  "@button-aria-label": "string",
   "@autocomplete": "#html-autocomplete",
   "@autofocus": "#html-autofocus",
   "@dirname": "#html-dirname",

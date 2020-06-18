@@ -44,7 +44,7 @@ exports.Postfix_Icon = assign({}, exports.Basic, {
 });
 
 exports.Postfix_Icon_Button = assign({}, exports.Postfix_Icon, {
-    postfixAriaLabel: 'search button'
+    buttonAriaLabel: 'search button'
 });
 
 exports.Floating_Label = assign({}, exports.Basic, {

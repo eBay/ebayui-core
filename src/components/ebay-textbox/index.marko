@@ -58,7 +58,7 @@ $ var id = input.id || component.getElId("textbox");
             <if(input.multiline && input.value)>${input.value}</if>
         </>
         <if(displayIcon && input.postfixIcon)>
-            <${input.postfixAriaLabel && "button"} class="icon-btn" aria-label=input.postfixAriaLabel on-click("handlePostfixClick") >
+            <${input.buttonAriaLabel && "button"} class="icon-btn" aria-label=input.buttonAriaLabel on-click("handleButtonClick") >
                 <${input.postfixIconTag} />
             </>
         </if>

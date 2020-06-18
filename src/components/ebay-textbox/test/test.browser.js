@@ -91,10 +91,10 @@ describe('when the component has a postfix button', () => {
 
     beforeEach(async() => {
         component = await render(template, input);
-        await fireEvent.click(component.getByLabelText(input.postfixAriaLabel));
+        await fireEvent.click(component.getByLabelText(input.buttonAriaLabel));
     });
 
     it('it should trigger a postfix click event', () => {
-        expect(component.emitted('textbox-postfix-click')).has.length(1);
+        expect(component.emitted('textbox-button-click')).has.length(1);
     });
 });
