@@ -5,7 +5,8 @@ static var ignoredAttributes = [
     "style",
     "borderless",
     "autocomplete",
-    "options"
+    "options",
+    "roledescription"
 ];
 
 static var ignoredButtonAttributes = [
@@ -13,6 +14,12 @@ static var ignoredButtonAttributes = [
 ];
 
 static var itemIgnoredAttributes = ["text"];
+$ {
+    const roledescription = input.roledescription ||
+        (`Use up and down arrow keys to navigate options.${
+            input.autocomplete === 'none' ? '': ' Options change based on text input'
+        }`);
+}
 
 $ var hasButton = !!input.button;
 <span
@@ -41,6 +48,7 @@ $ var hasButton = !!input.button;
             role="combobox"
             value=state.currentValue
             aria-autocomplete=input.autocomplete
+            aria-roledescription=roledescription
             aria-haspopup="listbox"
             autocomplete="new-password"
             onBlur("handleComboboxBlur")
