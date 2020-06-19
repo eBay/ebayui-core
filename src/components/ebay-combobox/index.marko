@@ -6,12 +6,12 @@ static var ignoredAttributes = [
     "borderless",
     "autocomplete",
     "options",
-    "ariaRoledescription"
+    "roledescription"
 ];
 
 static var itemIgnoredAttributes = ["text"];
 $ {
-    const roleDescription = input.ariaRoledescription ||
+    const roledescription = input.roledescription ||
         (`Use up and down arrow keys to navigate options.${
             input.autocomplete === 'none' ? '': ' Options change based on text input'
         }`);
@@ -42,7 +42,7 @@ $ {
             role="combobox"
             value=state.currentValue
             aria-autocomplete=input.autocomplete
-            aria-roledescription=roleDescription
+            aria-roledescription=roledescription
             aria-haspopup="listbox"
             autocomplete="new-password"
             onBlur("handleComboboxBlur")
