@@ -51,7 +51,7 @@ $ var id = input.id || component.getElId("textbox");
                 input.fluid && "textbox__control--fluid",
                 input.floatingLabel && "textbox__control--underline"
             ]
-            type=(input.type === "password" ? "password" : "text")
+            type=(!input.multiline && (input.type === "password" ? "password" : "text"))
             value=(!input.multiline && input.value)
             aria-invalid=(input.invalid && "true")
             onKeydown("handleKeydown")
