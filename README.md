@@ -18,6 +18,8 @@
 
 *Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components.*
 
+*Note: `@ebay/skin/global` is required to be loaded by your app for all modules to load correctly. Also for DS6 `@ebay/skin/marketsans` is also required.*
+
 *Note: In order for spread attributes to work properly, `marko@4.18.22` at least is required*
 
 ### Browser Policy
@@ -49,6 +51,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 * [`ebay-cta-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-cta-button)
 * [`ebay-details`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-details)
 * [`ebay-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-dialog)
+* [`ebay-drawer`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-drawer)
 * [`ebay-expand-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-expand-button)
 * [`ebay-filter`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter)
 * [`ebay-filter-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter-menu)
@@ -65,6 +68,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 * [`ebay-switch`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-switch)
 * [`ebay-tab`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tab)
 * [`ebay-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-textbox)
+* [`ebay-toast`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toast)
 * [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
 * [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
 

@@ -1,5 +1,13 @@
 const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
+const iconBody = {
+    renderBody: createRenderBody(
+        '<svg class="textbox__icon" focusable="false" id="w11-w0" ' +
+        'aria-hidden="true"> <defs id="w11-w0-defs"></defs><use ' +
+        'xlink:href="#icon-profile"></use></svg>',
+        ''
+    )
+};
 
 exports.Basic = {
     value: 'textbox value'
@@ -26,19 +34,17 @@ exports.Multiline = assign({}, exports.Basic, {
 });
 
 exports.Prefix_Icon = assign({}, exports.Basic, {
-    icon: 'search',
-    iconTag: {
-        renderBody: createRenderBody(
-            '<svg class="textbox__icon" focusable="false" id="w11-w0" ' +
-            'aria-hidden="true"> <defs id="w11-w0-defs"></defs><use ' +
-            'xlink:href="#icon-profile"></use></svg>',
-            ''
-        )
-    }
+    prefixIcon: 'search',
+    prefixIconTag: iconBody
 });
 
-exports.Postfix_Icon = assign({}, exports.Prefix_Icon, {
-    iconPosition: 'postfix'
+exports.Postfix_Icon = assign({}, exports.Basic, {
+    postfixIcon: 'search',
+    postfixIconTag: iconBody
+});
+
+exports.Postfix_Icon_Button = assign({}, exports.Postfix_Icon, {
+    buttonAriaLabel: 'search button'
 });
 
 exports.Floating_Label = assign({}, exports.Basic, {

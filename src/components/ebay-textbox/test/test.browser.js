@@ -1,8 +1,10 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { getComponentForEl } = require('marko/components');
 const template = require('..');
 const mock = require('./mock');
 
+require('../component-browser').renderer = template._; // Allow re-rendering the split component for testing.
 use(require('chai-dom'));
 afterEach(cleanup);
 
@@ -32,6 +34,11 @@ describe('given an input textbox', () => {
             });
         });
     });
+
+    it('focuses element on focus call', () => {
+        getComponentForEl(component.container.firstElementChild).focus();
+        expect(document.activeElement).to.equal(component.getByRole('textbox'));
+    });
 });
 
 describe('given an input textbox with floating label and no value', () => {
@@ -39,6 +46,10 @@ describe('given an input textbox with floating label and no value', () => {
 
     beforeEach(async() => {
         component = await render(template, input);
+    });
+
+    it('then component is wrapped into floating label element', () => {
+        expect(component.container.firstElementChild).has.class('floating-label');
     });
 
     it('then is showing the label inline', () => {
@@ -73,5 +84,18 @@ describe('given an input textbox with floating label and no value', () => {
         it('it should send a textbox floating label init event', () => {
             expect(component.emitted('textbox-floating-label-init')).has.length(1);
         });
+    });
+});
+
+describe('when the component has a postfix button', () => {
+    const input = mock.Postfix_Icon_Button;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+        await fireEvent.click(component.getByLabelText(input.buttonAriaLabel));
+    });
+
+    it('it should trigger a postfix click event', () => {
+        expect(component.emitted('textbox-button-click')).has.length(1);
     });
 });

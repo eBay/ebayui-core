@@ -1,6 +1,7 @@
 import processHtmlAttributes from "../../common/html-attributes"
 import dsUtil from '../../common/ds-util';
 
+static function noop() {}
 static var isBrowser = typeof window !== "undefined";
 static var browserLookup = {};
 static var ignoredAttributes = [
@@ -9,6 +10,7 @@ static var ignoredAttributes = [
     "_themes"
 ];
 
+$ input.toJSON = noop;
 $ var lookup = isBrowser ? browserLookup : out.global;
 $ var a11yAttributes = input.a11yText ? { role: "img" } : { "aria-hidden": "true" }
 
@@ -36,7 +38,11 @@ $ var a11yAttributes = input.a11yText ? { role: "img" } : { "aria-hidden": "true
                 } else {
                     // Actual magic, please do not try to replicate.
                     var lassoContext = out.global["lasso/LassoRenderContext"];
-                    var flags = lassoContext && lassoContext.data.config.flags;
+
+                    var flags = lassoContext &&
+                        lassoContext.data &&
+                        lassoContext.data.config &&
+                        lassoContext.data.config.flags;
                     theme = themes[dsUtil.getDSFromFlag(flags)];
                 }
             }

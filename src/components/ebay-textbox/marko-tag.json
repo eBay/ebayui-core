@@ -1,6 +1,7 @@
 {
   "template": "./index.marko",
   "transformer": "./transformer.js",
+  "migrator": "./migrator.js",
   "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,
@@ -15,10 +16,14 @@
   "@multiline": "boolean",
   "@floating-label": "string",
   "@icon": "string",
+  "@prefix-icon": "string",
+  "@postfix-icon": "string",
   "@icon-position": {
     "enum": ["prefix", "postfix"]
   },
-  "@iconTag <_icon>": {},
+  "@postfixIconTag <_postfixIcon>": {},
+  "@prefixIconTag <_prefixIcon>": {},
+  "@button-aria-label": "string",
   "@autocomplete": "#html-autocomplete",
   "@autofocus": "#html-autofocus",
   "@dirname": "#html-dirname",

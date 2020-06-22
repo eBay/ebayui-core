@@ -1091,10 +1091,10 @@
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.1.tgz#deccafb04101fa52507b8f2204161c8ed5e70375"
   integrity sha512-5i4XOsKwoCYomZ9cF7H5OBroeHoYUriylg55mJwTARMbQVv21RnYKF/Bwi86ZlHz4S6YepxlaQorsxR6T2xv6w==
 
-"@ebay/skin@10.5.0-0":
-  version "10.5.0-0"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-10.5.0-0.tgz#8e9517fd0f13d20c404808a9ad1aedb3c2c36d01"
-  integrity sha512-P7HoGDT2541knzUl9spI0NoKvIH6L0tMJIyG1UGfEiJI6aSUpDuyNuL1uz+QBn8Gf0+AyJcYhD3R0FNbDM0h8A==
+"@ebay/skin@10.5.0":
+  version "10.5.0"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-10.5.0.tgz#8c66b906a54f6a6a753409f693f1a8e8b5545173"
+  integrity sha512-jC+pVpxwSG5tIzEVt6CQFKljGmKpCDvDx1MXnAeTZkAwP2KdlTjoarWbXRMfAWeCZ8/2nwTz//1wG79Lisq55w==
 
 "@emotion/cache@^10.0.27", "@emotion/cache@^10.0.9":
   version "10.0.29"
@@ -11374,6 +11374,11 @@ makeup-focusables@latest, makeup-focusables@~0.0.5:
   resolved "https://registry.npmjs.org/makeup-focusables/-/makeup-focusables-0.0.5.tgz#591490ba28b442c63882783082c8a7d960866985"
   integrity sha512-64FMsmJ6icCZTrXdHex12JQu4sPdFVX2qFRFNxnDco4ZT+PzFaGKC8rWPeXE+Cy/7TtjKViXjO1FePts8wAaeA==
 
+makeup-focusables@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npmjs.org/makeup-focusables/-/makeup-focusables-0.1.0.tgz#df3a0d70b58f6e40cb973514855f4fbd3b53febc"
+  integrity sha512-rBUb7cECtGGC60Z1zRjEUyweCh4gMqWOUzDERLu2xEKBGdh+upDciOucrLiGt/gawJhFnI+HA3AabLSo6mm43Q==
+
 makeup-key-emitter@~0.1.2, makeup-key-emitter@~0.1.3:
   version "0.1.3"
   resolved "https://registry.npmjs.org/makeup-key-emitter/-/makeup-key-emitter-0.1.3.tgz#2537a5733622d843759b91d1670222b09d05c57b"
@@ -18244,9 +18249,9 @@ websocket-driver@>=0.5.1:
     websocket-extensions ">=0.1.1"
 
 websocket-extensions@>=0.1.1:
-  version "0.1.3"
-  resolved "https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
-  integrity sha512-nqHUnMXmBzT0w570r2JpJxfiSD1IzoI+HGVdd3aZ0yNi3ngvQ4jv1dtHt5VGxfI2yj5yqImPhOK4vmIh2xMbGg==
+  version "0.1.4"
+  resolved "https://registry.npmjs.org/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
+  integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
 
 whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.5:
   version "1.0.5"

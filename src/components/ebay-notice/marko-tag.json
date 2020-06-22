@@ -13,6 +13,7 @@
     "enum": ["attention", "confirmation", "information", "celebration"]
   },
   "@hidden": "boolean",
+  "@icon": "string",
   "@dismissible": "boolean",
   "@a11y-heading-text": "string",
   "@a11y-heading-tag": "string",
