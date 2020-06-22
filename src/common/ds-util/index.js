@@ -33,11 +33,21 @@ DSData.forEach((data) => {
 });
 
 const requireRemap = dsList
-    .filter((key) => key !== defaultDS)
-    .map((key) => assign({
-        from: dsFilenames[defaultDS],
-        to: dsFilenames[key]
-    }, { 'if-flag': dsFlags[key].join('') }));
+    .map((key) => {
+        if (key === defaultDS) {
+            // TODO need to fix this to allow multiple checks
+            return assign({
+                from: dsFilenames['4'],
+                to: dsFilenames[key]
+            }, { 'if-not-flag': dsFlags['4'].join('') });
+        }
+        return assign({
+            from: dsFilenames[defaultDS],
+            to: dsFilenames[key]
+        }, { 'if-flag': dsFlags[key].join('') });
+    });
+
+requireRemap.reverse();
 
 function getDSVersion(dsV) {
     const dsVFull = dsV || process.env.DS || defaultDS;
