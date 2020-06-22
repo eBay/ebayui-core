@@ -8,10 +8,6 @@ const DSData = [
     {
         name: '4',
         flags: 'ds-4'
-    },
-    {
-        name: 'n',
-        flags: 'ds-n'
     }
 ];
 

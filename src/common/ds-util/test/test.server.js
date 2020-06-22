@@ -15,12 +15,10 @@ describe('ds-utils', () => {
         expect(util.getDSFlags('6')).to.deep.equal([]);
         expect(util.getDSFlags('ds6')).to.deep.equal([]);
         expect(util.getDSFlags('ds4')).to.deep.equal(['ds-4']);
-        expect(util.getDSFlags('n')).to.deep.equal(['ds-n']);
     });
     it('should get the right index', () => {
         expect(util.getDSFromFlag('ds-6')).to.deep.equal(0);
         expect(util.getDSFromFlag('ds-4')).to.deep.equal(1);
-        expect(util.getDSFromFlag('ds-n')).to.deep.equal(2);
         expect(util.getDSFromFlag('')).to.deep.equal(0);
         expect(util.getDSFromFlag(null)).to.deep.equal(0);
     });
