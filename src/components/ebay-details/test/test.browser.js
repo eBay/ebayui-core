@@ -5,6 +5,7 @@ const { fastAnimations } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
 
+require('../component-browser').renderer = template._; // Allow re-rendering the split component for testing.
 use(require('chai-dom'));
 before(fastAnimations.start);
 after(fastAnimations.stop);

@@ -1,0 +1,23 @@
+class {
+    onCreate() {
+        this.state = {
+            value: ""
+        };
+    }
+    change({ value }) {
+        this.state.value = value
+    }
+    clear() {
+        this.state.value = "";
+    }
+}
+
+<ebay-textbox
+    key="textbox"
+    value=state.value
+    prefix-icon="user-profile"
+    postfix-icon="close"
+    button-aria-label="Clear"
+    placeholder="name"
+    on-textbox-change("change")
+    on-textbox-button-click("clear")/>

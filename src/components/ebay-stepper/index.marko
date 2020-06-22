@@ -1,5 +1,4 @@
 import processHtmlAttributes from "../../common/html-attributes";
-import findIndex from 'core-js-pure/features/array/find-index';
 import helper from './helper';
 
 static var ignoredAttributes = [
@@ -17,10 +16,10 @@ static var ignoredStepAttributes = [
 ];
 
 $ const direction = input.direction || 'row';
+$ const current = helper.getCurrent(input.step);
 
 <div class=["stepper", direction === 'column' && "stepper--vertical", input.class] ...processHtmlAttributes(input, ignoredAttributes)>
     <div class="stepper__items" role="list" >
-        $ const current = findIndex(input.step || [], (item) => item.current);
         <for|item, index, list| of=input.step>
             $ const itemData = helper.getStepClass(index, current, list);
             <if(index > 0)>

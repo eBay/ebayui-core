@@ -74,8 +74,12 @@ module.exports = {
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.expander.collapse();
-            this.getEl('button').focus();
+            this.focus();
         });
+    },
+
+    focus() {
+        this.getEl('button').focus();
     },
 
     handleButtonEscape() {
