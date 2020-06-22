@@ -39,7 +39,7 @@ describe('notice', () => {
             expect(containerUsingLabel).has.class(`page-notice--${input.status}`);
         });
 
-        it('renders with icon hidden', async() => {
+        it('renders with no icon', async() => {
             const input = mock.Page_Icon_Hidden;
             const { queryByLabelText } = await render(template, input);
             const statusWithIcon = queryByLabelText(input.a11yHeadingText);
