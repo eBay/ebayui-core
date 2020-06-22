@@ -13,9 +13,11 @@ $ var type = input.type || "page";
 $ var status = input.status || "attention";
 $ var isSection = type === "section";
 $ var isWindow = type === "window";
+$ var isWindowTitle = isWindow && input.title;
 $ var isCelebration = status === "celebration";
 $ var isPage = type === "page" || isSection || isWindow;
 $ var isLightGuidance = isSection && !input.status;
+$ var isIconVisible = input.icon !== "none";
 <${isPage ? "section" : "div"}
     ...processHtmlAttributes(input, ignoredAttributes)
     aria-labelledby:scoped="status"
@@ -26,15 +28,17 @@ $ var isLightGuidance = isSection && !input.status;
         input.fillWindow && `${type}-notice--fill`,
         input.class
     ]>
-    <if(!isLightGuidance)>
+    <if(!isLightGuidance && (isIconVisible || isWindowTitle))>
         <${isPage ? input.a11yHeadingTag || "h2" : "span"}
             class=`${type}-notice__status`
             id:scoped="status">
-            <if(isWindow && input.title)>
-                <ebay-icon
-                    class="window-notice__icon"
-                    name="confirmation-filled"
-                    aria-label=input.a11yHeadingText/>
+            <if(isWindowTitle)>
+                <if(isIconVisible)>
+                    <ebay-icon
+                        class="window-notice__icon"
+                        name="confirmation-filled"
+                        aria-label=input.a11yHeadingText/>
+                </if>
                 <span
                     ...processHtmlAttributes(input.title)
                     class=[`${type}-notice__title`, input.title.class]>
@@ -56,10 +60,7 @@ $ var isLightGuidance = isSection && !input.status;
     </if>
     <${isPage ? "div" : "span"}
         ...(input.content && processHtmlAttributes(input.content))
-        class=[
-            `${type}-notice__content`,
-            input.content && input.content.class
-        ]>
+        class=[`${type}-notice__content`, input.content && input.content.class]>
         <if(isCelebration && input.title)>
             <span
                 ...processHtmlAttributes(input.title)

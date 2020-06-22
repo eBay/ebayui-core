@@ -14,6 +14,10 @@ exports.Page_Custom_Status = assign({}, exports.Page, {
     status: 'confirmation'
 });
 
+exports.Page_Icon_Hidden = assign({}, exports.Page, {
+    icon: 'none'
+});
+
 exports.Inline = assign({}, exports.Page, {
     type: 'inline'
 });
