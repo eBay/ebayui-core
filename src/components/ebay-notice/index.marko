@@ -13,6 +13,7 @@ $ var type = input.type || "page";
 $ var status = input.status || "attention";
 $ var isSection = type === "section";
 $ var isWindow = type === "window";
+$ var isWindowTitle = isWindow && input.title;
 $ var isCelebration = status === "celebration";
 $ var isPage = type === "page" || isSection || isWindow;
 $ var isLightGuidance = isSection && !input.status;
@@ -27,11 +28,11 @@ $ var isIconVisible = input.icon !== "none";
         input.fillWindow && `${type}-notice--fill`,
         input.class
     ]>
-    <if(!isLightGuidance && (isIconVisible || input.title))>
+    <if(!isLightGuidance && (isIconVisible || isWindowTitle))>
         <${isPage ? input.a11yHeadingTag || "h2" : "span"}
             class=`${type}-notice__status`
             id:scoped="status">
-            <if(isWindow && input.title)>
+            <if(isWindowTitle)>
                 <if(isIconVisible)>
                     <ebay-icon
                         class="window-notice__icon"
@@ -44,7 +45,7 @@ $ var isIconVisible = input.icon !== "none";
                     <${input.title}/>
                 </span>
             </if>
-            <else if(isIconVisible)>
+            <else>
                 <if(status === "confirmation" || status === "celebration")>
                     <ebay-icon name="confirmation-filled" aria-label=input.a11yHeadingText/>
                 </if>
