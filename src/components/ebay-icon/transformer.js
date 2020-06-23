@@ -20,22 +20,21 @@ function transform(el, context) {
     if (iconName) {
         const iconPath = path.join(__dirname, 'symbols', iconName);
 
-        const clientArray = [toRequire(path.join(iconPath, util.dsFilenames[util.defaultDS]))];
-        const serverArray = util.dsList.map((key) =>
-            toRequire(path.join(iconPath, util.dsFilenames[key]))
-        );
+        const builderArray = context.target === 'browser' ?
+            [toRequire(path.join(iconPath, util.dsFilenames[util.defaultDS]))] :
+            util.dsList.map((key) =>
+                toRequire(path.join(iconPath, util.dsFilenames[key]))
+            );
 
         if (!el.hasAttribute('w-id') && context.compilerVersion && context.compilerVersion.indexOf('4.') !== 0) {
             // can be removed in Marko 4
             el.setAttributeValue('id',
                 builder.expression(`typeof widget !== "undefined" && widget.elId("use_icon_${iconName}")`));
         }
+
         el.setAttributeValue('_themes',
             context.addStaticVar(`icon_${iconName}`,
-                builder.conditionalExpression(
-                    builder.expression('typeof window !== "undefined"'),
-                    builder.arrayExpression(clientArray),
-                    builder.arrayExpression(serverArray))));
+                builder.arrayExpression(builderArray)));
     }
 
     return context;
