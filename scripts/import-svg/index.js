@@ -9,6 +9,7 @@ const cp = require('child_process');
 const path = require('path');
 const cheerio = require('cheerio');
 const prettier = require('prettier');
+const util = require('../../src/common/ds-util');
 const skinDir = path.dirname(require.resolve('@ebay/skin/package.json'));
 const svgDir = path.join(skinDir, 'src/svg');
 const outputDir = path.join(__dirname, '../../src/components/ebay-icon/symbols');
@@ -17,18 +18,8 @@ const missingSVG = prettier.format(fs.readFileSync(path.join(__dirname, 'missing
     htmlWhitespaceSensitivity: 'ignore'
 });
 const icons = new Map();
-const THEMES = {
-    ds4: {
-        flags: { 'if-flag': 'ds-4' },
-        file: './index[ds-4].marko'
-    },
-    ds6: {
-        flags: { 'if-not-flag': 'ds-4' },
-        file: './index.marko'
-    }
-};
 
-const THEME_NAMES = Object.keys(THEMES);
+const THEME_NAMES = util.dsIconThemes;
 
 cp.execSync(`rm -rf ${JSON.stringify(outputDir)}`);
 fs.mkdirSync(outputDir);
@@ -68,7 +59,8 @@ for (const [name, themes] of icons) {
     if (!fs.existsSync(iconFolder)) fs.mkdirSync(iconFolder);
 
     for (const theme of THEME_NAMES) {
-        const filePath = path.join(iconFolder, THEMES[theme].file);
+        const shortTheme = util.getDSVersion(theme);
+        const filePath = path.join(iconFolder, util.dsFilenames[shortTheme]);
         const content = themes[theme] || (
             `<% if (typeof window !== 'undefined') console.error('${theme} icon not found: ${name}') %>\n${
                 missingSVG.replace('{{name}}', name)
@@ -79,15 +71,6 @@ for (const [name, themes] of icons) {
     }
 
     fs.writeFileSync(browserJSON, `${JSON.stringify({
-        requireRemap: [
-            Object.assign({
-                from: THEMES.ds6.file,
-                to: THEMES.ds4.file
-            }, THEMES.ds4.flags),
-            Object.assign({
-                from: THEMES.ds4.file,
-                to: THEMES.ds6.file
-            }, THEMES.ds6.flags)
-        ]
+        requireRemap: util.requireRemap
     }, null, 2)}\n`);
 }

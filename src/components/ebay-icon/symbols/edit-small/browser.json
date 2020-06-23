@@ -4,11 +4,6 @@
       "from": "./index.marko",
       "to": "./index[ds-4].marko",
       "if-flag": "ds-4"
-    },
-    {
-      "from": "./index[ds-4].marko",
-      "to": "./index.marko",
-      "if-not-flag": "ds-4"
     }
   ]
 }

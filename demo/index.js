@@ -4,6 +4,7 @@ const path = require('path');
 const lasso = require('lasso');
 const express = require('express');
 const highlight = require('gh-highlight');
+const dsUtils = require('../src/common/ds-util');
 const demoUtils = require('./utils.js');
 const template = require('./template.marko');
 
@@ -28,12 +29,10 @@ app.get('/', (req, res) => {
     res.redirect(301, '/ds6');
 });
 
-app.get('/ds4', (req, res) => {
-    res.redirect(301, `/ds4/${defaultComponentRoute}`);
-});
-
-app.get('/ds6', (req, res) => {
-    res.redirect(301, `/ds6/${defaultComponentRoute}`);
+dsUtils.dsList.forEach((key) => {
+    app.get(`/ds${key}`, (req, res) => {
+        res.redirect(301, `/ds${key}/${defaultComponentRoute}`);
+    });
 });
 
 app.get('/:designSystem/:component?', (req, res) => {
@@ -58,7 +57,7 @@ app.get('/:designSystem/:component?', (req, res) => {
         components: demoUtils.getComponentsWithExamples('src')
     };
 
-    const dsFlag = req.params.designSystem === 'ds6' ? '' : 'ds-4';
+    const dsFlag = dsUtils.getDSFlags(req.params.designSystem);
     const lassoFlags = ['ebayui-no-bg-icons'];
 
     // allow .only in example folder name
@@ -73,9 +72,7 @@ app.get('/:designSystem/:component?', (req, res) => {
 
     req.model = model;
 
-    lassoFlags.push(dsFlag);
-
-    req.lassoFlags = lassoFlags;
+    req.lassoFlags = lassoFlags.concat(dsFlag);
 
     template.render(req, res);
 });
