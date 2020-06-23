@@ -64,7 +64,7 @@ Event | Data | Description
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`href` (fake menu) | String | No | No | for link that looks like a menu-item
+`href` (fake menu) | String | No | No | for link that looks like a menu-item. If not set for fake type, will also disable the item
 `type` (fake menu) | String | No | No | Set to "button" for fake menu-item `<button>`
 `checked` (radio or checkbox) | Boolean | No | No | whether or not the item is checked
 `current` (fake menu) | Boolean | No | No | whether or not the href is the current href of the page
