@@ -20,9 +20,7 @@ function transform(el, context) {
     if (iconName) {
         const iconPath = path.join(__dirname, 'symbols', iconName);
 
-        const builderArray = util.dsList.map((key) =>
-            toRequire(path.join(iconPath, util.dsFilenames[key]))
-        );
+        const builderArray = [toRequire(path.join(iconPath, util.dsFilenames[util.defaultDS]))];
 
         if (!el.hasAttribute('w-id') && context.compilerVersion && context.compilerVersion.indexOf('4.') !== 0) {
             // can be removed in Marko 4
