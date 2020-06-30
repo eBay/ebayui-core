@@ -6,6 +6,8 @@
 </ebay-dialog>
 ```
 
+*Note: When opening the dialog the `<body>` and `role=main` elements are modified. Please do not rely on setting styles based on `role=main` since it is changed to `role=presentation`*
+
 ## Attributes
 
 Name | Type | Stateful | Required | Description
