@@ -25,6 +25,9 @@
   "<ebay-filter-menu-button-item>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
+  "<ebay-listbox-option>": {
+    "transformer": "./src/common/transformers/attribute-tags/index.js"
+  },
   "<ebay-listbox-button-option>": {
     "transformer": "./src/common/transformers/attribute-tags/index.js"
   },
