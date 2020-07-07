@@ -18,7 +18,7 @@ Name | Type | Stateful | Required | Description
 `disabled` | Boolean | Yes | No |
 `partially-disabled` | Boolean | No | No |
 `transparent` | Boolean | Yes | No | optional, to add Skin classes "transparent"
-`variant` | String | No | No | optional, to alter Skin classes: "expand" / "fake-link" / "delete"
+`variant` | String | No | No | optional, to alter Skin classes: "expand" / "fake-link" / "icon" (for icon button)
 `fixed-height` | Boolean | No | No | fixes the height based on `size`
 `truncate` | Boolean | No | No | will truncate the text of the button onto a single line, and adds an ellipsis, when the button's text overflows
 `badge-number` | Number | No | No | used as the number to be placed in the badge
