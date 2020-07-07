@@ -1,12 +1,10 @@
 const Expander = require('makeup-expander');
 const findIndex = require('core-js-pure/features/array/find-index');
-const ActiveDescendant = require('makeup-active-descendant');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
-const elementScroll = require('../../common/element-scroll');
 
 module.exports = {
     handleExpand() {
-        elementScroll.scroll(this.getEls('option')[this.state.selectedIndex]);
+        this.getComponent('options').elementScroll();
         this.emit('listbox-expand');
     },
 
@@ -14,32 +12,13 @@ module.exports = {
         this.emit('listbox-collapse');
     },
 
-    handleMouseDown() {
-        this.wasClicked = true;
-    },
-
     handleListboxChange(event) {
-        const selectedIndex = parseInt(event.detail.toIndex, 10);
-        const el = this.getEls('option')[selectedIndex];
-        const option = this.input.options[selectedIndex];
-
-        elementScroll.scroll(el);
-
-        if (this.wasClicked) {
+        if (event.wasClicked) {
             this._expander.collapse();
-            this.wasClicked = false;
         }
-
-        if (this.state.selectedIndex !== selectedIndex) {
-            this.state.selectedIndex = selectedIndex;
-            this.once('update', () => {
-                this.emit('listbox-change', {
-                    index: selectedIndex,
-                    selected: [option.value],
-                    el
-                });
-            });
-        }
+        const selectedIndex = event.index;
+        this.state.selectedIndex = selectedIndex;
+        this.emit('listbox-change', event);
     },
 
     onCreate() {
@@ -73,22 +52,10 @@ module.exports = {
     },
 
     _setupMakeup() {
-        const { input, state } = this;
+        const { input } = this;
 
         if (input.options.length && !input.disabled) {
             const container = this.getEl('container');
-            const optionsContainer = this.getEl('options');
-            this._activeDescendant = ActiveDescendant.createLinear(
-                container,
-                optionsContainer,
-                optionsContainer,
-                '.listbox-button__option[role=option]',
-                {
-                    activeDescendantClassName: 'listbox-button__option--active',
-                    autoInit: state.selectedIndex,
-                    autoReset: null
-                }
-            );
 
             this._expander = new Expander(container, {
                 autoCollapse: true,
@@ -101,7 +68,6 @@ module.exports = {
             });
 
             scrollKeyPreventer.add(this.getEl('button'));
-            scrollKeyPreventer.add(optionsContainer);
         }
     },
 
@@ -109,11 +75,6 @@ module.exports = {
         if (this._expander) {
             this._expander.cancelAsync();
             this._expander = undefined;
-        }
-
-        if (this._activeDescendant) {
-            this._activeDescendant.destroy();
-            this._activeDescendant = undefined;
         }
     }
 };

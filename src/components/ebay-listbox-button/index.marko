@@ -11,8 +11,6 @@ static var ignoredAttributes = [
     "options"
 ];
 
-static var itemIgnoredAttributes = ["value", "text", "selected"];
-
 $ var selectedOption = input.options[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
 
@@ -21,8 +19,7 @@ $ var selectedText = selectedOption && selectedOption.text;
     key="container"
     class:no-update=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
     on-expander-expand("handleExpand")
-    on-expander-collapse("handleCollapse")
-    on-activeDescendantChange("handleListboxChange")>
+    on-expander-collapse("handleCollapse")>
     <button
         key="button"
         class=[
@@ -42,33 +39,14 @@ $ var selectedText = selectedOption && selectedOption.text;
             <ebay-icon name="dropdown"/>
         </span>
     </button>
-    <if(input.options.length)>
-        <div
-            key="options"
-            role="listbox"
-            class:no-update="listbox-button__listbox"
-            tabindex:no-update="-1">
-            <for|option| of=input.options>
-                <div
-                    ...processHtmlAttributes(option, itemIgnoredAttributes)
-                    key="option[]"
-                    class:no-update=["listbox-button__option", option.class]
-                    role="option"
-                    tabindex="-1"
-                    aria-selected=(selectedOption === option && "true")
-                    onMousedown("handleMouseDown")>
-                    <span class="listbox-button__value">${option.text}</span>
-                    <ebay-icon name="tick-small"/>
-                </div>
-            </for>
-        </div>
-    </if>
-    <select hidden class="listbox-button__native" name=input.name>
+    <ebay-listbox
+        key="options"
+        class="listbox-button__listbox"
+        name=input.name
+        tabindex=-1
+        on-listbox-change("handleListboxChange")>
         <for|option| of=input.options>
-            <option
-                value=option.value
-                selected=(option === selectedOption)
-                class=option.class/>
+            <@option ...option selected=(selectedOption === option) />
         </for>
-    </select>
+    </ebay-listbox>
 </span>

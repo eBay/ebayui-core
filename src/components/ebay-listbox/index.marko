@@ -1,0 +1,46 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "name",
+    "grow",
+    "borderless",
+    "disabled",
+    "fluid",
+    "invalid",
+    "buttonName",
+    "options"
+];
+
+static var itemIgnoredAttributes = ["value", "text", "selected"];
+
+$ var selectedOption = input.options[state.selectedIndex];
+$ var selectedText = selectedOption && selectedOption.text;
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    key="options"
+    role="listbox"
+    class:no-update=["listbox__options", input.class]
+    tabindex:no-update=(input.tabindex || 0)
+    on-activeDescendantChange("handleListboxChange")>
+    <for|option| of=input.options>
+        <div
+            ...processHtmlAttributes(option, itemIgnoredAttributes)
+            key="option[]"
+            class:no-update=["listbox__option", option.class]
+            role="option"
+            tabindex=(option.disabled ? -1 : option.tabindex)
+            aria-selected=(selectedOption === option && "true")
+            onMousedown("handleMouseDown")>
+            <span class="listbox__value">${option.text}</span>
+            <ebay-icon name="tick-small"/>
+        </div>
+    </for>
+</div>
+<select hidden class="listbox__native" name=input.name>
+    <for|option| of=input.options>
+        <option
+            value=option.value
+            selected=(option === selectedOption)
+            class=option.class/>
+    </for>
+</select>
