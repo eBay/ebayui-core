@@ -20,7 +20,7 @@ $ var selectedText = selectedOption && selectedOption.text;
     key="options"
     role="listbox"
     class:no-update=["listbox__options", input.class]
-    tabindex:no-update="-1"
+    tabindex:no-update=(input.tabindex || 0)
     on-activeDescendantChange("handleListboxChange")>
     <for|option| of=input.options>
         <div

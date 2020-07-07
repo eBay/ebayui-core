@@ -43,6 +43,7 @@ $ var selectedText = selectedOption && selectedOption.text;
         key="options"
         class="listbox-button__listbox"
         name=input.name
+        tabindex=-1
         on-listbox-change("handleListboxChange")>
         <for|option| of=input.options>
             <@option ...option selected=(selectedOption === option) />
