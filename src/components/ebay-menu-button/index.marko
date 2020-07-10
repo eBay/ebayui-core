@@ -18,7 +18,8 @@ static var ignoredAttributes = [
     "disabled",
     "variant",
     "items",
-    "label"
+    "label",
+    "textAlign"
 ];
 
 $ var isFake = input.type === "fake";
@@ -52,7 +53,8 @@ $ var isOverflowVariant = input.variant === "overflow";
         <else>
             <span class=[
                 "expand-btn__cell",
-                input.label && "menu-button__control--custom-label"
+                input.label && "menu-button__control--custom-label",
+                input.textAlign === 'center' && "expand-btn__cell--center"
             ]>
                 <if(input.label)>
                     <${input.label.renderBody}/>
