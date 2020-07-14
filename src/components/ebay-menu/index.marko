@@ -67,7 +67,6 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
                 aria-checked=(!isNotCheckable && (checked ? "true" : "false"))
                 aria-current=(isNotCheckable && item.current ? "page" : false)
                 aria-disabled=(item.disabled && "true")
-                tabindex=(item.disabled ? -1 : item.tabindex)
                 href=(item.disabled ? null : item.href)
                 role=itemRole
                 onClick("handleItemClick", index)
