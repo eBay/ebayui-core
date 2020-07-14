@@ -1,10 +1,14 @@
+const assign = require('core-js-pure/features/object/assign');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabIndex = require('makeup-roving-tabindex');
 const eventUtils = require('../../common/event-utils');
+const menuUtils = require('../../common/menu-utils');
 
-module.exports = {
+module.exports = assign({}, menuUtils, {
     handleItemClick(index, ev, itemEl) {
-        this._toggleItemChecked(index, itemEl);
+        if (this.input.variant !== 'form' || ev.target.tagName !== 'INPUT') {
+            this._toggleItemChecked(index, itemEl);
+        }
     },
 
     handleItemKeydown(index, ev, itemEl) {
@@ -30,10 +34,7 @@ module.exports = {
     },
 
     onInput(input) {
-        input.items = input.items || [];
-        this.state = {
-            isChecked: input.items.map(item => Boolean(item.checked))
-        };
+        this.state = this.getInputState(input);
     },
 
     onMount() {
@@ -55,20 +56,18 @@ module.exports = {
     },
 
     _toggleItemChecked(index, itemEl) {
-        this.state.isChecked[index] = !this.state.isChecked[index];
-        this.setStateDirty('isChecked');
+        this.toggleChecked(index);
         this._emitComponentEvent('change', itemEl);
     },
 
     _emitComponentEvent(eventType, el, originalEvent) {
-        const { input, state } = this;
-        const checked = input.items
-            .filter((_, i) => state.isChecked[i])
-            .map(item => item.value);
+        const checked = this.getCheckedValues();
+        const checkedIndex = this.getCheckedIndexes();
 
         this.emit(`filter-menu-${eventType}`, {
             el,
             checked,
+            checkedIndex,
             originalEvent
         });
     },
@@ -93,4 +92,4 @@ module.exports = {
             scrollKeyPreventer.remove(this.getEl('container'));
         }
     }
-};
+});
