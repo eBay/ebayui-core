@@ -7,7 +7,6 @@
   "@html-attributes": "expression",
   "@a11y-heading-text": "string",
   "@a11y-heading-tag": "string",
-  "@hijax": "boolean",
   "@aria-labelledby": "never",
   "@role": "never",
   "@items <item>[]": {

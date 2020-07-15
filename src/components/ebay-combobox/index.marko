@@ -5,11 +5,23 @@ static var ignoredAttributes = [
     "style",
     "borderless",
     "autocomplete",
-    "options"
+    "options",
+    "roledescription"
+];
+
+static var ignoredButtonAttributes = [
+    "class"
 ];
 
 static var itemIgnoredAttributes = ["text"];
+$ {
+    const roledescription = input.roledescription ||
+        (`Use up and down arrow keys to navigate options.${
+            input.autocomplete === 'none' ? '': ' Options change based on text input'
+        }`);
+}
 
+$ var hasButton = !!input.button;
 <span
     class:no-update=["combobox", input.class]
     style=input.style
@@ -17,6 +29,7 @@ static var itemIgnoredAttributes = ["text"];
     onExpander-collapse("handleCollapse")>
     <span class=[
         "combobox__control",
+        hasButton && "combobox__control--actionable",
         input.borderless && "combobox__control--borderless"
     ]>
         <!--
@@ -35,12 +48,24 @@ static var itemIgnoredAttributes = ["text"];
             role="combobox"
             value=state.currentValue
             aria-autocomplete=input.autocomplete
+            aria-roledescription=roledescription
             aria-haspopup="listbox"
             autocomplete="new-password"
             onBlur("handleComboboxBlur")
             onKeydown("handleComboboxKeyDown")
             onKeyup("handleComboboxKeyUp")/>
-        <ebay-icon name="dropdown"/>
+        <${hasButton ? "button" : null}
+            ...processHtmlAttributes(input.button, ignoredButtonAttributes)
+            onClick("handleButtonClick")
+            key="actionable"
+            class=["icon-btn", hasButton && input.button.class]>
+            <if(hasButton && input.button.renderBody)>
+                <${input.button.renderBody}/>
+            </if>
+            <else>
+                <ebay-icon name="dropdown"/>
+            </else>
+        </>
     </span>
     <if(component._hasVisibleOptions())>
         <div key="listbox" role="listbox" class="combobox__listbox">

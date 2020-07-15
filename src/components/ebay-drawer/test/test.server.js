@@ -18,7 +18,7 @@ describe('drawer', () => {
         expect(getByLabelText(input.a11yCloseText)).has.class('drawer__close');
         expect(getByLabelText(input.a11yHandleText)).has.class('drawer__handle');
         expect(getByText(input.renderBody.text)).has.class('drawer__main');
-        expect(getByText(input.header.renderBody.text)).has.class('drawer__header');
+        expect(getByText(input.header.renderBody.text).parentElement).has.class('drawer__header');
         expect(getByText(input.footer.renderBody.text)).has.class('drawer__footer');
     });
 

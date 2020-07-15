@@ -1,8 +1,11 @@
 import processHtmlAttributes from "../../../common/html-attributes";
 import constants from "./constants";
 
+static function noop() {}
 static var typeRoles = constants.typeRoles;
 static var pointerStyles = constants.pointerStyles;
+
+$ input.toJSON = noop;
 
 $ var hasUserStyles = (
     input.styleTop ||

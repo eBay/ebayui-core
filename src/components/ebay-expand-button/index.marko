@@ -1,14 +1,21 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
+static function toJSON() {
+    return {
+        disabled: this.disabled
+    }
+}
 static var ignoredAttributes = [
     "size",
     "noText",
     "fluid",
     "truncate",
     "fixedHeight",
-    "partiallyDisabled"
+    "partiallyDisabled",
+    "toJSON"
 ];
 
+$ input.toJSON = toJSON;
 $ var size = input.size || "default";
 <button
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -22,7 +29,6 @@ $ var size = input.size || "default";
         input.class
     ]
     type="button"
-    disabled=input.disabled
     aria-disabled=(input.partiallyDisabled && "true")
     onClick("handleClick")
     onKeydown("handleKeydown")>

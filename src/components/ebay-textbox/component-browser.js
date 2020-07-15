@@ -9,6 +9,7 @@ module.exports = {
     handleInput: forwardEvent('input'),
     handleFocus: forwardEvent('focus'),
     handleBlur: forwardEvent('blur'),
+    handleButtonClick: forwardEvent('button-click'),
 
     onMount() {
         this._setupMakeup();
@@ -16,6 +17,10 @@ module.exports = {
 
     onUpdate() {
         this._setupMakeup();
+    },
+
+    focus() {
+        this.getEl('input').focus();
     },
 
     _setupMakeup() {

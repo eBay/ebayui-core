@@ -1,5 +1,6 @@
 import processHtmlAttributes from "../../common/html-attributes";
 
+static function noop() {}
 static var ignoredAttributes = [
     "pointer",
     "styleTop",
@@ -7,9 +8,11 @@ static var ignoredAttributes = [
     "styleRight",
     "styleBottom",
     "a11yCloseText",
-    "host"
+    "host",
+    "toJSON"
 ];
 
+$ input.toJSON = noop;
 $ var pointer = input.pointer || "bottom";
 
 <span>

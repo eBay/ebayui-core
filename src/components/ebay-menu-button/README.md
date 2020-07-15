@@ -27,7 +27,7 @@ Name | Type | Stateful | Required | Description
 `reverse` | Boolean | No | No | expand menu flyout to the left
 `fix-width` | Boolean | No | No | constrain items container width to button width
 `borderless` | Boolean | No | No | whether button has borders
-`size` | String | No | No | button size, "small" or "large" (default: small)
+`size` | String | No | No | button size, "large" (default: "none")
 `priority` | String | No | No | button priority, "primary" / "secondary" (default) / "none"
 `checked` (radio) | Number | Yes | No | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
 `disabled` | Boolean | Yes | No | Will disable the entire dropdown (disables the ebay-button label) if set to true
@@ -64,7 +64,7 @@ Event | Data | Description
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`href` (fake menu) | String | No | No | for link that looks like a menu-item
+`href` (fake menu) | String | No | No | for link that looks like a menu-item. If not set for fake type, will also disable the item
 `type` (fake menu) | String | No | No | Set to "button" for fake menu-item `<button>`
 `checked` (radio or checkbox) | Boolean | No | No | whether or not the item is checked
 `current` (fake menu) | Boolean | No | No | whether or not the href is the current href of the page

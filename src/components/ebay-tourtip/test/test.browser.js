@@ -4,6 +4,7 @@ const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const template = require('..');
 const mock = require('./mock');
 
+require('../component-browser').renderer = template._; // Allow re-rendering the split component for testing.
 use(require('chai-dom'));
 afterEach(cleanup);
 

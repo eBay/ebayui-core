@@ -34,7 +34,8 @@ Name | Type | Stateful | Required | Description
 `type` | String | No | No | "inline", "section", "window", or "page" (default)
 `status`  | String | No | No | "attention" (default for "page" and "inline"), "confirmation" "information", or "celebration" (page notice only).  The default for "section" type will render with grey background and no icon
 `a11y-heading-text` | String | No | Yes | adding description for the notice for a11y users
-`hidden` | Boolean | Yes | No | whether the widget is hidden or not.
+`hidden` | Boolean | Yes | No | whether the widget is hidden or not
+`icon` | String | Yes | No | "default" (matches whatever is specified by the "status") or "none"
 
 ### Additional attributes when type="page"
 

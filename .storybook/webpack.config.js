@@ -1,6 +1,5 @@
 const { BrowserJSONPlugin } = require('webpack-plugin-browser-json');
-
-console.log(process.env.DS);
+const { getDSFlags } = require('../src/common/ds-util');
 
 module.exports = async ({ config }) => {
   config.devtool = "none";
@@ -16,7 +15,7 @@ module.exports = async ({ config }) => {
   });
 
   config.plugins.push(new BrowserJSONPlugin({
-    flags: process.env.DS === "4" ? ['ds-4'] : []
+    flags: getDSFlags()
   }));
 
   return config;

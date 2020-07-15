@@ -1,4 +1,5 @@
 const path = require('path');
+const util = require('../../common/ds-util');
 
 /**
  * @description
@@ -18,17 +19,22 @@ function transform(el, context) {
     const iconName = nameAttribute && nameAttribute.value.value;
     if (iconName) {
         const iconPath = path.join(__dirname, 'symbols', iconName);
-        const ds4Path = path.join(iconPath, 'index[ds-4].marko');
-        const ds6Path = path.join(iconPath, 'index.marko');
+
+        const builderArray = context.target === 'browser' ?
+            [toRequire(path.join(iconPath, util.dsFilenames[util.defaultDS]))] :
+            util.dsList.map((key) =>
+                toRequire(path.join(iconPath, util.dsFilenames[key]))
+            );
+
         if (!el.hasAttribute('w-id') && context.compilerVersion && context.compilerVersion.indexOf('4.') !== 0) {
             // can be removed in Marko 4
             el.setAttributeValue('id',
                 builder.expression(`typeof widget !== "undefined" && widget.elId("use_icon_${iconName}")`));
         }
-        el.setAttributeValue('_themes', context.addStaticVar(`icon_${iconName}`, builder.arrayExpression([
-            toRequire(ds4Path),
-            toRequire(ds6Path)
-        ])));
+
+        el.setAttributeValue('_themes',
+            context.addStaticVar(`icon_${iconName}`,
+                builder.arrayExpression(builderArray)));
     }
 
     return context;

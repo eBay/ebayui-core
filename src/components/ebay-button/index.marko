@@ -1,5 +1,10 @@
 import processHtmlAttributes from "../../common/html-attributes";
 
+static function toJSON() {
+    return {
+        disabled: this.disabled
+    }
+}
 static var ignoredAttributes = [
     "partiallyDisabled",
     "priority",
@@ -11,10 +16,12 @@ static var ignoredAttributes = [
     "truncate",
     "transparent",
     "badgeNumber",
-    "badgeAriaLabel"
+    "badgeAriaLabel",
+    "toJSON"
 ];
 
 $ {
+    input.toJSON = toJSON;
     var size = input.size;
     var priority = input.priority || "secondary";
     var variant = !input.variant && input.href ? "fake" : input.variant;

@@ -1,5 +1,6 @@
 $ var designSystem = data.params.designSystem;
 $ var currentComponent = data.params.component;
+import util from '../src/common/ds-util';
 <lasso-page
     name=`demo-${designSystem}-${currentComponent}`
     cache-key=`demo-${designSystem}-${currentComponent}`
@@ -20,13 +21,15 @@ $ var currentComponent = data.params.component;
         <section class="grid">
             <nav class="demo-nav">
                 <span class="demo-nav__ds">
-                    <${designSystem === "ds4" ? null : "a"} href=`/ds4/${currentComponent}`>
-                        <span>DS4</span>
-                    </>
-                    &nbsp;&middot;&nbsp;
-                    <${designSystem === "ds6" ? null : "a"} href=`/ds6/${currentComponent}`>
-                        <span>DS6</span>
-                    </>
+                    <for|name, index| of=util.dsList>
+                        $ const ds = `ds${name}`;
+                        <if (index > 0)>
+                            &nbsp;&middot;&nbsp;
+                        </if>
+                        <${designSystem === ds ? null : "a"} href=`/${ds}/${currentComponent}`>
+                            <span>DS${name}</span>
+                        </>
+                    </for>
                 </span>
                 <for|component| of=data.model.components>
                     <a href=`/${designSystem}/${component}`>

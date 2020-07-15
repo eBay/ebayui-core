@@ -54,6 +54,7 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
                                 ? "menuitemcheckbox"
                                 : !isFake && "menuitem";
                 var checked = component.isChecked(index);
+                var isDisabled = (isFake && !item.href) || item.disabled;
             }
             <if (item.isSeparator)>
                 <hr class=`${baseClass}__separator` role="separator" />
@@ -65,6 +66,8 @@ $ var baseClass = input.classPrefix || (isFake ? "fake-menu" : "menu");
                 style=item.style
                 aria-checked=(!isNotCheckable && (checked ? "true" : "false"))
                 aria-current=(isNotCheckable && item.current ? "page" : false)
+                aria-disabled=(item.disabled && "true")
+                href=(item.disabled ? null : item.href)
                 role=itemRole
                 onClick("handleItemClick", index)
                 onKeydown("handleItemKeydown", index)

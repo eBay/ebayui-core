@@ -45,6 +45,7 @@ Name | Type | Stateful | Required | Description
 `disabled` | Boolean | Yes | No | sets the disabled attribute of the input
 `expanded` | Boolean | Yes | No | sets whether the listbox is expanded
 `autocomplete` | String | Yes | No | default is `none`; available values are `none` and `list`
+`roledescription` | String | No | No | The role description for accessibility. Default text is set and will be in english. Pass this to override for different locales
 
 Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 
@@ -71,3 +72,4 @@ Event | Data |  Description
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `text` | String | No | No | string to use in the option
+`sticky` | Boolean | No | No | If true, the option will always be shown even if it doesn't match the filter

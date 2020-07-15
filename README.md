@@ -18,6 +18,8 @@
 
 *Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components.*
 
+*Note: `@ebay/skin/global` is required to be loaded by your app for all modules to load correctly. Also for DS6 `@ebay/skin/marketsans` is also required.*
+
 *Note: In order for spread attributes to work properly, `marko@4.18.22` at least is required*
 
 ### Browser Policy
