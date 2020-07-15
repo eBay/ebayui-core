@@ -17,6 +17,7 @@
     "test:integration": "mocha integration",
     "test:browserstack": "env $(cat .env | xargs) yarn tb",
     "clean": "rimraf .coverage .karma .nyc_output demo/static && yarn clean:integration",
+    "clean:git": "git clean -xdf",
     "clean:integration": "rimraf integration/*.marko.js integration/static",
     "lint": "yarn lint:less && yarn lint:js && yarn lint:whitespace",
     "lint:less": "stylelint '**/**.less'",
