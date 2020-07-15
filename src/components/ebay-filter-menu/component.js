@@ -5,8 +5,13 @@ const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 
 module.exports = assign({}, menuUtils, {
+    handleRadioClick(index, ev, itemEl) {
+        this._toggleItemChecked(index, itemEl);
+    },
+
     handleItemClick(index, ev, itemEl) {
-        if (this.input.variant !== 'form' || ev.target.tagName !== 'INPUT') {
+        const targetEv = ev.originalEvent || ev;
+        if (this.input.variant !== 'form' || targetEv.target.tagName !== 'INPUT') {
             this._toggleItemChecked(index, itemEl);
         }
     },
