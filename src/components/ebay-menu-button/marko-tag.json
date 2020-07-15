@@ -12,6 +12,7 @@
   "@text": "string",
   "@icon": "string",
   "@a11y-text": "string",
+  "@text-align": "string",
   "@no-toggle-icon": "boolean",
   "@expanded": "boolean",
   "@reverse": "boolean",
