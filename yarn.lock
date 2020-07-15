@@ -1091,10 +1091,10 @@
   resolved "https://registry.npmjs.org/@ebay/browserslist-config/-/browserslist-config-1.0.1.tgz#deccafb04101fa52507b8f2204161c8ed5e70375"
   integrity sha512-5i4XOsKwoCYomZ9cF7H5OBroeHoYUriylg55mJwTARMbQVv21RnYKF/Bwi86ZlHz4S6YepxlaQorsxR6T2xv6w==
 
-"@ebay/skin@10.6.0-0":
-  version "10.6.0-0"
-  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-10.6.0-0.tgz#bcf85bb3020b348d44009bf92d4d704b1391a716"
-  integrity sha512-ZeOh3+V7lSlQ3hC1ZVCEZqJ1/tfOTSl5BOSve51GmTGe60ugdm7/gsIX9ldfDF9Y+d3VT4CwtvRSDps5w37ZwA==
+"@ebay/skin@10.6.0":
+  version "10.6.0"
+  resolved "https://registry.npmjs.org/@ebay/skin/-/skin-10.6.0.tgz#3d4984e4c82de5130f4f64fba40e237fbb245936"
+  integrity sha512-5HqJTWf/MacHUuxGw04r8/fAKEjEG7jqi8IYykUd/aRBZQXHqzA2g33boAUWMFKgft2WgA37eXJ5IWTxsTUVyg==
 
 "@emotion/cache@^10.0.27", "@emotion/cache@^10.0.9":
   version "10.0.29"
