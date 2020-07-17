@@ -1,15 +1,17 @@
+const assign = require('core-js-pure/features/object/assign');
 const Expander = require('makeup-expander');
 const eventUtils = require('../../common/event-utils');
+const menuUtils = require('../../common/menu-utils');
 
-module.exports = {
+module.exports = assign({}, menuUtils, {
     handleMenuKeydown({ originalEvent }) {
         eventUtils.handleEscapeKeydown(originalEvent, () => this._expander.collapse());
     },
 
-    handleMenuChange({ checked, el, originalEvent }) {
+    handleMenuChange({ checkedIndex, el, originalEvent }) {
         // TODO: the event data from the filter-menu should probably
         // change to include which items are checked not just the values.
-        this.state.isChecked = this.input.items.map(item => checked.indexOf(item.value) !== -1);
+        this.toggleChecked(checkedIndex);
         this._emitComponentEvent('change', el, originalEvent);
     },
 
@@ -32,9 +34,7 @@ module.exports = {
 
     onInput(input) {
         input.items = input.items || [];
-        this.state = {
-            isChecked: input.items.map(item => Boolean(item.checked))
-        };
+        this.state = this.getInputState(input);
     },
 
     onMount() {
@@ -64,10 +64,7 @@ module.exports = {
             case 'collapse':
             case 'form-submit':
             case 'footer-click': {
-                const { input, state } = this;
-                const checked = input.items
-                    .filter((_, i) => state.isChecked[i])
-                    .map(item => item.value);
+                const checked = this.getCheckedValues();
                 this.emit(`filter-menu-button-${eventType}`, {
                     el,
                     checked,
@@ -97,4 +94,4 @@ module.exports = {
             this._expander = undefined;
         }
     }
-};
+});

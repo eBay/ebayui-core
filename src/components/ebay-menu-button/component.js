@@ -2,22 +2,16 @@ const Expander = require('makeup-expander');
 const assign = require('core-js-pure/features/object/assign');
 const findIndex = require('core-js-pure/features/array/find-index');
 const eventUtils = require('../../common/event-utils');
+const menuUtils = require('../../common/menu-utils');
 
-module.exports = {
-    get isRadio() {
-        return this.type === 'radio';
-    },
-
-    isChecked(index) {
-        if (this.isRadio) {
-            return index === this.state.checkedIndex;
-        }
-        return this.state.checkedItems[index];
-    },
-
+module.exports = assign({}, menuUtils, {
     toggleItemChecked(index, itemEl) {
-        if (this.isRadio && index !== this.state.checkedIndex) {
-            this.state.checkedIndex = index;
+        // This needs to be at start since toggleChecked swaps the checkedIndex
+        // and then the right events will not fire correctly
+        const shouldEmitRadio = this.isRadio() && index !== this.state.checkedIndex;
+        this.toggleChecked(index);
+
+        if (shouldEmitRadio) {
             if (this.input.collapseOnSelect) {
                 this.expander.collapse();
             }
@@ -27,8 +21,6 @@ module.exports = {
                 el: itemEl
             });
         } else if (this.type !== 'radio') {
-            this.state.checkedItems[index] = !this.state.checkedItems[index];
-            this.setStateDirty('checkedItems');
             if (this.input.collapseOnSelect) {
                 this.expander.collapse();
             }
@@ -42,25 +34,6 @@ module.exports = {
         if (this.rovingTabindex) {
             this.tabindexPosition = findIndex(this.rovingTabindex.filteredItems, el => el.tabIndex === 0);
         }
-    },
-
-    getCheckedValues() {
-        if (this.isRadio) {
-            const item = this.input.items[this.state.checkedIndex] || {};
-            return [item.value];
-        }
-        return this.input.items
-            .filter((item, index) => this.state.checkedItems[index])
-            .map(item => item.value);
-    },
-
-    getCheckedIndexes() {
-        if (this.isRadio) {
-            return [this.state.checkedIndex];
-        }
-        return this.input.items
-            .map((item, i) => this.state.checkedItems[i] && i)
-            .filter(item => item !== false && typeof item !== 'undefined');
     },
 
     handleItemClick(index, e, itemEl) {
@@ -119,7 +92,7 @@ module.exports = {
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues() // DEPRECATED in v5
             });
-        } else if (isCheckbox || this.isRadio) {
+        } else if (isCheckbox || this.isRadio()) {
             assign(eventObj, {
                 index, // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
@@ -136,16 +109,7 @@ module.exports = {
     },
 
     onInput(input) {
-        this.type = input.type;
-        if (this.isRadio) {
-            this.state = {
-                checkedIndex: findIndex(input.items || [], item => item.checked || false)
-            };
-        } else {
-            this.state = {
-                checkedItems: (input.items || []).map(item => item.checked || false)
-            };
-        }
+        this.state = this.getInputState(input);
     },
 
     onRender() {
@@ -188,5 +152,4 @@ module.exports = {
             this.expander.cancelAsync();
         }
     }
-
-};
+});
