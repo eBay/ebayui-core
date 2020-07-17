@@ -5,34 +5,10 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@fill-window": "boolean",
-  "@type": {
-    "enum": ["page", "section", "window"]
-  },
   "@status": {
-    "enum": ["attention", "confirmation", "information", "celebration"]
+    "enum": ["attention", "confirmation", "information"]
   },
-  "@hidden": "boolean",
   "@icon": "string",
-  "@dismissible": "boolean",
-  "@a11y-heading-text": "string",
-  "@a11y-heading-tag": "string",
-  "@a11y-close-text": "string",
-  "@aria-labelledby": "never",
-  "@title <title>": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
-    },
-    "@html-attributes": "expression"
-  },
-  "@content <content>": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
-    },
-    "@html-attributes": "expression"
-  }
+  "@a11y-text": "string",
+  "@aria-labelledby": "never"
 }
