@@ -1,0 +1,21 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@status": {
+    "enum": ["attention", "confirmation", "information"]
+  },
+  "@icon": "string",
+  "@a11y-text": "string",
+  "@footer <footer>": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  }
+}
