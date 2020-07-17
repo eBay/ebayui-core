@@ -1,1 +1,0 @@
-require('@ebay/skin/icon');

@@ -1,0 +1,62 @@
+import processHtmlAttributes from "../../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "status",
+    "a11yText",
+    "iconClass",
+    "class",
+    "root",
+    "headerRoot",
+    "a11yRoleDescription",
+    "prefixClass",
+    "title",
+    "footer"
+];
+
+$ var status = input.status;
+$ var prefixClass = input.prefixClass;
+<${input.root || "section"}
+    aria-labelledby:scoped="status"
+    class=[prefixClass, input.class]
+    ...processHtmlAttributes(input, ignoredAttributes)>
+    <${input.headerRoot || "div"} class=`${prefixClass}__header` id:scoped="status"
+        aria-roledescription=input.a11yRoleDescription
+    >
+
+        <if(input.icon !== "none")>
+            <if(status === "confirmation" || status === "celebration")>
+                <ebay-icon
+                    name="confirmation-filled"
+                    aria-label=input.a11yText
+                    class=input.iconClass/>
+            </if>
+            <else if(status === "attention")>
+                <ebay-icon
+                    name="attention-filled"
+                    aria-label=input.a11yText
+                    class=input.iconClass/>
+            </else>
+            <else if(status === "information")>
+                <ebay-icon
+                    name="information-filled"
+                    aria-label=input.a11yText
+                    class=input.iconClass/>
+            </else>
+        </if>
+    </>
+    <${input.mainRoot || "div"} class=`${prefixClass}__main`>
+        <if(input.title)>
+            <${input.title.as || "h2"}
+                class=[`${prefixClass}__title`, input.title.class]
+                ...input.title>
+                <${input.title.renderBody}/>
+            </>
+        </if>
+        <${input.renderBody}/>
+    </>
+    <if(input.footer)>
+        <div class=`${prefixClass}__footer`>
+            <${input.footer}/>
+        </div>
+    </if>
+</>
