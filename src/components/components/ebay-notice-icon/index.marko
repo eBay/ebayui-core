@@ -1,0 +1,11 @@
+$ var status = input.status || "attention";
+
+<if(status === "confirmation" || status === "celebration")>
+    <ebay-icon name="confirmation-filled" aria-label=input.a11yHeadingText class=input.class/>
+</if>
+<else if(status === "attention")>
+    <ebay-icon name="attention-filled" aria-label=input.a11yHeadingText class=input.class/>
+</else>
+<else if(status === "information")>
+    <ebay-icon name="information-filled" aria-label=input.a11yHeadingText class=input.class/>
+</else>
