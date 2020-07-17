@@ -1,0 +1,9 @@
+$ var status = input.status || 'attention';
+
+<ebay-notice-base
+    class=[`page-notice--${status}`, input.class]
+    status=status
+    role="region"
+    prefixClass="page-notice"
+    ...input
+/>
