@@ -1,0 +1,27 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@fill-window": "boolean",
+  "@icon": "string",
+  "@a11y-text": "string",
+  "@title <title>": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
+  "@footer <footer>": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  }
+}
