@@ -20,7 +20,7 @@ $ var a11yAttributes = input.a11yText ? { role: "img" } : { "aria-hidden": "true
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[input.class, !input.noSkinClasses && `icon icon--${input.name}`]
     focusable="false"
-    aria-labelledby:scoped="text">
+    aria-labelledby=(input.a11yText && component.elId("text"))>
     <!-- Here we check if we should render the inline svg symbol. -->
     <!-- Server side we store a flag in `out.global` to check if the symbol was rendered. -->
     <!-- Client side we check the `browserLookup` object to see if the symbol is already present in root svg. -->
