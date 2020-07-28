@@ -22,7 +22,8 @@ $ var isPostfix = !!input.postfixIcon;
 $ var hasIcon = (input.prefixIcon || isPostfix);
 $ var displayIcon = Boolean(!input.multiline && hasIcon);
 $ var id = input.id || component.getElId("textbox");
-<${input.floatingLabel && "span"} class="floating-label">
+$ var defaultTag = input.fluid ? "div" : "span";
+<${input.floatingLabel && defaultTag} class="floating-label">
     <if(input.floatingLabel)>
         <label
             for=id
@@ -33,7 +34,7 @@ $ var id = input.id || component.getElId("textbox");
             ${input.floatingLabel}
         </label>
     </if>
-    <${input.fluid ? "div" : "span"}
+    <${defaultTag}
         style=input.style
         class=[
             "textbox",
