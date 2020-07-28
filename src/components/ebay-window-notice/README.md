@@ -27,4 +27,4 @@ Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `a11y-text` | String | No | Yes | adding description for the notice for a11y users
 `icon` | String | Yes | No | "default" (matches whatever is specified by the "status") or "none"
-`fill-window` | Boolean | No | No | used to specify whether the notice should fill the full height of it's window/container (default: `false`)
+`window` | String | No | No | either "fullscreen" or "lightbox" (default). If set to full screen the notice will fill the full height of it's window/container
