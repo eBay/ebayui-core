@@ -20,6 +20,7 @@ $ var isLightGuidance = isSection && !input.status;
 $ var isIconVisible = input.icon !== "none";
 <${isPage ? "section" : "div"}
     ...processHtmlAttributes(input, ignoredAttributes)
+    role=(isPage && "region")
     aria-labelledby:scoped="status"
     aria-label=(isLightGuidance && input.a11yHeadingText)
     class=[
