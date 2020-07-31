@@ -1,0 +1,24 @@
+# ebay-panel-dialog
+
+```marko
+<ebay-panel-dialog open a11y-close-text="Close Dialog">
+  <h1>Hello World</h1>
+</ebay-panel-dialog>
+```
+
+##
+
+## Attributes
+
+Name | Type | Stateful | Required | Description
+--- | --- | --- | --- | ---
+`open` | Boolean | Yes | No | Whether dialog is open.
+`focus` | String | No | No | An id for an element which will receive focus when the dialog opens (defaults to close button).
+`a11y-close-text` | String | No | Yes | A11y text for close button and mask.
+
+## Events
+
+Event | Data | Description
+--- | --- | ---
+`panel-dialog-open` |  | dialog opened
+`panel-dialog-close` |  | dialog closed
