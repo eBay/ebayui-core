@@ -1,0 +1,21 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+$ var isMini = input.mode === 'mini';
+
+<ebay-dialog-base
+    ...input
+    open=input.open
+    classPrefix="lightbox-dialog"
+    on-modal-open("emit", "lightbox-dialog-open")
+    on-modal-close("emit", "lightbox-dialog-close")
+    buttonPosition=(isMini && "bottom")
+    class=[
+        input.class,
+        "lightbox-dialog--mask-fade"
+    ]
+    window-class=[
+        "lightbox-dialog__window--fade",
+        isMini && "lightbox-dialog__window--mini"
+    ]>
+    <${input.renderBody}/>
+</ebay-dialog-base>
