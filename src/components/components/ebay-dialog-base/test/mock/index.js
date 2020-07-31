@@ -1,8 +1,8 @@
 const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../../common/test-utils/shared');
 
-exports.Fill_Dialog = {
-    classPrefix: 'dialog',
+exports.Dialog = {
+    classPrefix: 'lightbox-dialog',
     class: 'dialog--mask-fade',
     windowClass: 'dialog__window--fade',
     a11yCloseText: 'close',
@@ -10,7 +10,7 @@ exports.Fill_Dialog = {
 };
 
 exports.Header_Footer_Dialog = {
-    classPrefix: 'dialog',
+    classPrefix: 'lightbox-dialog',
     class: 'dialog--mask-fade',
     windowClass: 'dialog__window--fade',
     a11yCloseText: 'close',
@@ -23,6 +23,6 @@ exports.Header_Footer_Dialog = {
     renderBody: createRenderBody('body content')
 };
 
-exports.Fill_Dialog_Open = assign({}, exports.Fill_Dialog, {
+exports.Dialog_Open = assign({}, exports.Fill_Dialog, {
     open: true
 });
