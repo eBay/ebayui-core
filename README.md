@@ -141,12 +141,12 @@ class {
     }
 }
 
-<ebay-dialog
+<ebay-lightbox-dialog
     open=state.dialogIsOpen
-    on-dialog-open('handleDialogOpen')
-    on-dialog-close('handleDialogClose')>
+    on-lightbox-dialog-open('handleDialogOpen')
+    on-lightbox-dialog-close('handleDialogClose')>
     ...
-</ebay-dialog>
+</ebay-lightbox-dialog>
 ```
 
 #### Pass-Through Attributes
