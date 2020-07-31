@@ -35,8 +35,8 @@ describe('dialog', () => {
         expect(getByRole('dialog')).does.not.have.attr('hidden');
     });
 
-    it(`renders with end type`, async () => {
-        const { getByRole } = await render(template, { position: "end" });
+    it(`renders with end type`, async() => {
+        const { getByRole } = await render(template, { position: 'end' });
         const $dialog = getByRole('dialog');
         const $window = $dialog.children[0];
 

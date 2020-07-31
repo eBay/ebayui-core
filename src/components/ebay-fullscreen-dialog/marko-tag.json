@@ -9,14 +9,6 @@
   },
   "@html-attributes": "expression",
   "@open": "boolean",
-  "@type": {
-    "enum": [
-      "full",
-      "fill",
-      "left",
-      "right"
-    ]
-  },
   "@focus": "string",
   "@a11y-close-text": "string",
   "@role": "never",

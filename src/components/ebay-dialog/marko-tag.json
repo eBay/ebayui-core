@@ -1,9 +1,3 @@
 {
-  "migrator": "./migrator.js",
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression"
+  "migrator": "./migrator.js"
 }

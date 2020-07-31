@@ -1,4 +1,3 @@
 # ebay-dialog
 
 ## DEPRECATED
-
