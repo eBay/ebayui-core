@@ -64,4 +64,11 @@ describe('notice-migrations', () => {
         expect(content.bodyText).to.contain('Test');
         expect(footer).to.equal(undefined);
     });
+
+    it('fails migration on dynamic attribute', () => {
+        // eslint-disable-next-line max-len
+        const tagString = '<ebay-notice type=(true && "inline")></ebay-notice>';
+        const { context } = runTransformer(migrator, tagString, componentPath);
+        expect(context.hasErrors()).to.equal(true);
+    });
 });

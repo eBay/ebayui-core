@@ -47,8 +47,8 @@ $ var prefixClass = input.prefixClass;
     <${input.mainRoot || "div"} class=`${prefixClass}__main`>
         <if(input.title)>
             <${input.title.as || "h2"}
-                class=[`${prefixClass}__title`, input.title.class]
-                ...input.title>
+                ...input.title
+                class=[`${prefixClass}__title`, input.title.class]>
                 <${input.title.renderBody}/>
             </>
         </if>

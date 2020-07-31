@@ -1,14 +1,11 @@
-import processHtmlAttributes from "../../common/html-attributes"
-
 $ var status = input.status || "attention";
-static var ignoredAttributes = ["status", "a11yHeadingText"];
 
 <ebay-notice-base
+    ...input
     class=[`inline-notice--${status}`, input.class]
     status=status
     prefixClass="inline-notice"
     root="div"
     header-root="span"
     main-root="span"
-    ...input
 />

@@ -14,7 +14,16 @@ function setAttribute(el, oldName, newName) {
 }
 
 function migrator(el, context) {
-    const type = el.hasAttribute('type') && el.getAttributeValue('type').value;
+    let type;
+    if (el.hasAttribute('type')) {
+        const typeAttribute = el.getAttributeValue('type');
+        if (typeAttribute.type !== 'Literal') {
+            // eslint-disable-next-line max-len
+            context.addError(el, 'Dynamic "type" attribute is no longer supported on <ebay-notice>. Please migrate manually.');
+            return;
+        }
+        type = typeAttribute.value;
+    }
 
     if (type === 'inline') {
         context.deprecate('<ebay-notice type="inline"/> has been renamed to <ebay-inline-notice>');
