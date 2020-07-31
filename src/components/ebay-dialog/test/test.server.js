@@ -45,8 +45,8 @@ describe('ebay-dialog', () => {
             const tagString = '<ebay-dialog on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
             const { el } = runTransformer(migrator, tagString, componentPath);
             expect(el.tagName).to.equal('ebay-lightbox-dialog');
-            expect(el.hasAttribute('on-lightbox-dialog-open')).equals(true);
-            expect(el.hasAttribute('on-lightbox-dialog-close')).equals(true);
+            expect(el.hasAttribute('on-open')).equals(true);
+            expect(el.hasAttribute('on-close')).equals(true);
         });
 
         it('migrates dialog type=full with events to fullscreen-dialog', () => {
@@ -54,8 +54,8 @@ describe('ebay-dialog', () => {
             const tagString = '<ebay-dialog type="full" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
             const { el } = runTransformer(migrator, tagString, componentPath);
             expect(el.tagName).to.equal('ebay-fullscreen-dialog');
-            expect(el.hasAttribute('on-fullscreen-dialog-open')).equals(true);
-            expect(el.hasAttribute('on-fullscreen-dialog-close')).equals(true);
+            expect(el.hasAttribute('on-open')).equals(true);
+            expect(el.hasAttribute('on-close')).equals(true);
         });
 
         it('migrates dialog type=left with events to panel-dialog', () => {
@@ -63,8 +63,8 @@ describe('ebay-dialog', () => {
             const tagString = '<ebay-dialog type="left" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
             const { el } = runTransformer(migrator, tagString, componentPath);
             expect(el.tagName).to.equal('ebay-panel-dialog');
-            expect(el.hasAttribute('on-panel-dialog-open')).equals(true);
-            expect(el.hasAttribute('on-panel-dialog-close')).equals(true);
+            expect(el.hasAttribute('on-open')).equals(true);
+            expect(el.hasAttribute('on-close')).equals(true);
         });
 
         it('migrates dialog type=right with events to panel-dialog', () => {
@@ -72,8 +72,8 @@ describe('ebay-dialog', () => {
             const tagString = '<ebay-dialog type="right" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
             const { el } = runTransformer(migrator, tagString, componentPath);
             expect(el.tagName).to.equal('ebay-panel-dialog');
-            expect(el.hasAttribute('on-panel-dialog-open')).equals(true);
-            expect(el.hasAttribute('on-panel-dialog-close')).equals(true);
+            expect(el.hasAttribute('on-open')).equals(true);
+            expect(el.hasAttribute('on-close')).equals(true);
             expect(el.hasAttribute('position')).equals(true);
         });
     });

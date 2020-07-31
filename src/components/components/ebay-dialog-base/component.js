@@ -10,7 +10,7 @@ module.exports = {
     },
 
     handleScroll() {
-        this.emit('modal-scroll');
+        this.emit('scroll');
     },
 
     handleKeydown(event) {
@@ -138,12 +138,12 @@ module.exports = {
                 if (isTrapped) {
                     this.rootEl.removeAttribute('hidden');
                     this._triggerFocus(focusEl);
-                    this.emit('modal-open');
+                    this.emit('open');
                 } else {
                     this._triggerBodyScroll(false);
                     const activeElement = document.activeElement;
                     this.rootEl.setAttribute('hidden', '');
-                    this.emit('modal-close');
+                    this.emit('close');
 
                     if (
                         // Skip restoring focus if the focused element was changed via the dialog-close event

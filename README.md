@@ -143,8 +143,8 @@ class {
 
 <ebay-lightbox-dialog
     open=state.dialogIsOpen
-    on-lightbox-dialog-open('handleDialogOpen')
-    on-lightbox-dialog-close('handleDialogClose')>
+    on-open('handleDialogOpen')
+    on-close('handleDialogClose')>
     ...
 </ebay-lightbox-dialog>
 ```

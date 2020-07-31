@@ -30,7 +30,7 @@ describe('given a closed dialog', () => {
         });
 
         it('then it is visible in the DOM', async() => {
-            await wait(() => expect(component.emitted('lightbox-dialog-open')).has.length(1));
+            await wait(() => expect(component.emitted('open')).has.length(1));
         });
     });
 });
@@ -76,7 +76,7 @@ describe('given an open dialog', () => {
         });
 
         it('then it restores the previous focus', async() => {
-            await wait(() => expect(component.emitted('lightbox-dialog-close')).has.length(1));
+            await wait(() => expect(component.emitted('close')).has.length(1));
         });
     }
 });

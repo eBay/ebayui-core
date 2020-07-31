@@ -6,9 +6,9 @@ import processHtmlAttributes from "../../common/html-attributes"
     classPrefix="drawer"
     buttonPosition="right"
     key="dialog"
-    on-modal-scroll('handleScroll')
-    on-modal-open("emit", "drawer-show")
-    on-modal-close("emit", "drawer-close")
+    on-scroll('handleScroll')
+    on-open("emit", "drawer-show")
+    on-close("emit", "drawer-close")
     class=[
         input.class,
         "drawer--mask-fade-slow"

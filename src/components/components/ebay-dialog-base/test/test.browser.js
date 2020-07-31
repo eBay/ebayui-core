@@ -75,7 +75,7 @@ describe('given a closed dialog', () => {
             });
 
             it('then it emits the open event', async() => {
-                await wait(() => expect(component.emitted('modal-open')).has.length(1));
+                await wait(() => expect(component.emitted('open')).has.length(1));
             });
 
             describe('when it is rerendered with the same input', () => {
@@ -198,7 +198,7 @@ describe('given an open dialog', () => {
 
         if (wasToggled) {
             it('then it emits the close event', async() => {
-                await wait(() => expect(component.emitted('modal-close')).has.length(1));
+                await wait(() => expect(component.emitted('close')).has.length(1));
             });
 
             describe('when it is rerendered with the same input', () => {

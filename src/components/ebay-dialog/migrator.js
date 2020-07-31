@@ -29,8 +29,8 @@ function migrator(el, context) {
     }
 
     el.setTagName(`ebay-${dialogType}-dialog`);
-    setAttributeIfPresent(el, 'on-dialog-show', `on-${dialogType}-dialog-open`);
-    setAttributeIfPresent(el, 'on-dialog-close', `on-${dialogType}-dialog-close`);
+    setAttributeIfPresent(el, 'on-dialog-show', `on-open`);
+    setAttributeIfPresent(el, 'on-dialog-close', `on-close`);
     el.removeAttribute('type');
     return el;
 }

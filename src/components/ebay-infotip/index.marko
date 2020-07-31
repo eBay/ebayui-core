@@ -65,10 +65,10 @@ $ var pointer = input.pointer || "bottom";
                 <ebay-lightbox-dialog
                     open=state.open
                     class=[`${classPrefix}__overlay`]
-                    mode="mini"
+                    variant="_mini"
                     a11y-close-text=input.a11yCloseText
-                    on-lightbox-dialog-open("handleExpand")
-                    on-lightbox-dialog-close("handleOverlayClose")>
+                    on-open("handleExpand")
+                    on-close("handleOverlayClose")>
                     <${input.content}/>
                 </ebay-lightbox-dialog>
             </else>

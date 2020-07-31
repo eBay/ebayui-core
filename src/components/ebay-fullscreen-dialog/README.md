@@ -18,5 +18,5 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`fullscreen-dialog-open` |  | dialog opened
-`fullscreen-dialog-close` |  | dialog closed
+`open` |  | dialog opened
+`close` |  | dialog closed

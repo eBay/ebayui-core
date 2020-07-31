@@ -20,5 +20,5 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`panel-dialog-open` |  | dialog opened
-`panel-dialog-close` |  | dialog closed
+`open` |  | dialog opened
+`close` |  | dialog closed

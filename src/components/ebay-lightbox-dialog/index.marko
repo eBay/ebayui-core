@@ -1,11 +1,11 @@
-$ var isMini = input.mode === 'mini';
+$ var isMini = input.variant === '_mini';
 
 <ebay-dialog-base
     ...input
     open=input.open
     classPrefix="lightbox-dialog"
-    on-modal-open("emit", "lightbox-dialog-open")
-    on-modal-close("emit", "lightbox-dialog-close")
+    on-open("emit", "open")
+    on-close("emit", "close")
     buttonPosition=(isMini && "bottom")
     class=[
         input.class,

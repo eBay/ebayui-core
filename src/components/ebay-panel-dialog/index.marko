@@ -2,8 +2,8 @@
     ...input
     open=input.open
     classPrefix="panel-dialog"
-    on-modal-open("emit", "panel-dialog-open")
-    on-modal-close("emit", "panel-dialog-close")
+    on-open("emit", "open")
+    on-close("emit", "close")
     class=[input.class, "panel-dialog--mask-fade-slow"]
     window-class=[
         "panel-dialog__window--slide",
