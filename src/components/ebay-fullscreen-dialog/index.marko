@@ -1,0 +1,13 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+<ebay-dialog-base
+    ...input
+    open=input.open
+    classPrefix="fullscreen-dialog"
+    transitionEl="window"
+    on-modal-open("emit", "fullscreen-dialog-open")
+    on-modal-close("emit", "fullscreen-dialog-close")
+    class=input.class
+    window-class="fullscreen-dialog__window--slide">
+    <${input.renderBody}/>
+</ebay-dialog-base>
