@@ -28,5 +28,5 @@ Name | Type | Stateful | Required | Description
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `current` | Boolean | No | Yes | The current step. All steps before will be rendered as complete, and all after will render as upcoming.
-`type` | Enumm | No | No | Either `attention` or `information`. This takes prescedence over current. Will render the current step (and the line leading up to it) with the given icon and color
+`type` | Enumm | No | No | Either `attention`, `information`, or `complete`. This takes prescedence over current. Will render the current step (and the line leading up to it) with the given icon and color
 `number` | Number | No | No | Renders the current step with the number passed in badge (as well as the line leading up to it)
