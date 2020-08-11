@@ -1,0 +1,11 @@
+<ebay-dialog-base
+    ...input
+    open=input.open
+    classPrefix="fullscreen-dialog"
+    transitionEl="window"
+    on-open("emit", "open")
+    on-close("emit", "close")
+    class=input.class
+    window-class="fullscreen-dialog__window--slide">
+    <${input.renderBody}/>
+</ebay-dialog-base>

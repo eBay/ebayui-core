@@ -37,8 +37,8 @@ describe('infotip modal', () => {
         const input = mock.ModalWithContent;
         const { getByLabelText, getByText } = await render(template, input);
         expect(getByLabelText(input.ariaLabel)).has.class('dialog--mini__host');
-        expect(getByText(input.content.renderBody.text)).has.class('dialog__main');
-        expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
+        expect(getByText(input.content.renderBody.text)).has.class('lightbox-dialog__main');
+        expect(getByLabelText(input.a11yCloseText)).has.class('lightbox-dialog__close');
     });
 
     it('renders modal infotip without header', async() => {

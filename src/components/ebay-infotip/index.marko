@@ -62,17 +62,15 @@ $ var pointer = input.pointer || "bottom";
                     onOverlay-close("handleOverlayClose")/>
             </if>
             <else>
-                <ebay-dialog-base
+                <ebay-lightbox-dialog
                     open=state.open
-                    buttonPosition="right"
-                    classPrefix="dialog"
                     class=[`${classPrefix}__overlay`]
-                    windowClass=["dialog__window--mini", "dialog__window--fade"]
+                    variant="_mini"
                     a11y-close-text=input.a11yCloseText
-                    on-modal-show("handleExpand")
-                    on-modal-close("handleOverlayClose")>
+                    on-open("handleExpand")
+                    on-close("handleOverlayClose")>
                     <${input.content}/>
-                </ebay-dialog-base>
+                </ebay-lightbox-dialog>
             </else>
         </span>
     </ebay-tooltip-base>

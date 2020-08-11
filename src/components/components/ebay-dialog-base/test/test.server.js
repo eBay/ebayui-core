@@ -11,12 +11,12 @@ use(require('chai-dom'));
 
 describe('dialog-base', () => {
     it('renders basic version', async() => {
-        const input = mock.Fill_Dialog;
+        const input = mock.Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
 
         expect(getByRole('dialog')).has.attr('hidden');
-        expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
-        expect(getByText(input.renderBody.text)).has.class('dialog__main');
+        expect(getByLabelText(input.a11yCloseText)).has.class('lightbox-dialog__close');
+        expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');
     });
 
     it('renders with header and footer', async() => {
@@ -24,21 +24,21 @@ describe('dialog-base', () => {
         const { getByRole, getByLabelText, getByText } = await render(template, input);
 
         expect(getByRole('dialog')).has.attr('hidden');
-        expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
-        expect(getByText(input.renderBody.text)).has.class('dialog__main');
+        expect(getByLabelText(input.a11yCloseText)).has.class('lightbox-dialog__close');
+        expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');
         expect(getByText(input.header.renderBody.text)).has.tagName('H2');
-        expect(getByText(input.header.renderBody.text).parentElement).has.class('dialog__header');
-        expect(getByText(input.footer.renderBody.text)).has.class('dialog__footer');
+        expect(getByText(input.header.renderBody.text).parentElement).has.class('lightbox-dialog__header');
+        expect(getByText(input.footer.renderBody.text)).has.class('lightbox-dialog__footer');
     });
 
     it('renders in open state', async() => {
-        const input = mock.Fill_Dialog_Open;
+        const input = mock.Dialog_Open;
         const { getByRole } = await render(template, input);
         expect(getByRole('dialog')).does.not.have.attr('hidden');
     });
 
     it('renders non modal', async() => {
-        const input = mock.Fill_Dialog;
+        const input = mock.Dialog;
         const { getByRole } = await render(template, assign({}, input, { isModal: false }));
         expect(getByRole('dialog')).has.attribute('aria-live', 'polite');
     });

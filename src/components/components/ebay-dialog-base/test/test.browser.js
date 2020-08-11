@@ -5,17 +5,19 @@ const { fastAnimations } = require('../../../../common/test-utils/browser');
 const { pressKey } = require('../../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
+require('@ebay/skin/lightbox-dialog');
 
 use(require('chai-dom'));
 before(fastAnimations.start);
 after(fastAnimations.stop);
 afterEach(cleanup);
+// Because dialog base does not have all the data this needs to be run by each module separately
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
 describe('given a closed dialog', () => {
-    const input = mock.Fill_Dialog;
+    const input = mock.Dialog;
     let sibling;
 
     beforeEach(async() => {
@@ -72,8 +74,8 @@ describe('given a closed dialog', () => {
                 });
             });
 
-            it('then it emits the show event', async() => {
-                await wait(() => expect(component.emitted('modal-show')).has.length(1));
+            it('then it emits the open event', async() => {
+                await wait(() => expect(component.emitted('open')).has.length(1));
             });
 
             describe('when it is rerendered with the same input', () => {
@@ -85,7 +87,7 @@ describe('given a closed dialog', () => {
 });
 
 describe('given an open dialog', () => {
-    const input = mock.Fill_Dialog_Open;
+    const input = mock.Dialog_Open;
     let sibling;
 
     beforeEach(async() => {
@@ -196,7 +198,7 @@ describe('given an open dialog', () => {
 
         if (wasToggled) {
             it('then it emits the close event', async() => {
-                await wait(() => expect(component.emitted('modal-close')).has.length(1));
+                await wait(() => expect(component.emitted('close')).has.length(1));
             });
 
             describe('when it is rerendered with the same input', () => {
@@ -208,7 +210,7 @@ describe('given an open dialog', () => {
 });
 
 describe('given an open dialog with no trap', () => {
-    const input = mock.Fill_Dialog_Open;
+    const input = mock.Dialog_Open;
     let sibling;
 
     beforeEach(async() => {
