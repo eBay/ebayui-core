@@ -46,7 +46,7 @@ $ const current = helper.getCurrent(input.step);
                     <else-if(item.number)>
                         <ebay-badge number=item.number/>
                     </else-if>
-                    <else-if(index < current)>
+                    <else-if(index < current || item.type === "confirmation")>
                         <ebay-icon width="24" height="24" name="confirmation-filled"/>
                     </else-if>
                     <else>
