@@ -20,7 +20,7 @@ describe('given expand button is enabled', () => {
         });
 
         it('then it emits the event with correct data', () => {
-            expect(component.emitted('button-click')).has.length(1);
+            expect(component.emitted('click')).has.length(1);
         });
     });
 
@@ -33,7 +33,7 @@ describe('given expand button is enabled', () => {
         });
 
         it('then it emits the event with correct data', () => {
-            expect(component.emitted('button-escape')).has.length(1);
+            expect(component.emitted('escape')).has.length(1);
         });
     });
 });
@@ -49,7 +49,7 @@ describe('given expand button is disabled', () => {
         });
 
         it('then it does not emit the event', () => {
-            expect(component.emitted('button-click')).has.length(0);
+            expect(component.emitted('click')).has.length(0);
         });
     });
 
@@ -62,7 +62,7 @@ describe('given expand button is disabled', () => {
         });
 
         it('then it does not emit the event', () => {
-            expect(component.emitted('button-escape')).has.length(0);
+            expect(component.emitted('escape')).has.length(0);
         });
     });
 });

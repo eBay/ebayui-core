@@ -14,4 +14,4 @@ function setAttributeIfPresent(el, context, oldAttribute, newAttribute) {
 
 module.exports = {
     setAttributeIfPresent
-}
+};

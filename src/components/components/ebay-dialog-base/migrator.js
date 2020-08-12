@@ -8,12 +8,13 @@ const headerRegExp = /^h[1-6]$/;
 function migrator(el, context) {
     el.forEachChild((child) => {
         let found = false;
-        if (!found && child && child.tagName === "h2") {
-            child.setTagName("@header");
+        if (!found && child && child.tagName === 'h2') {
+            found = true;
+            child.setTagName('@header');
             context.deprecate(
-                "<h2> on dialog is not longer supported as the title tag. Use <@header> instead")
+                '<h2> on dialog is not longer supported as the title tag. Use <@header> instead');
         }
-    })
+    });
 
     const walker = context.createWalker({
         enter(node) {
