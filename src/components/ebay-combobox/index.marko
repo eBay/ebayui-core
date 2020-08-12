@@ -15,7 +15,7 @@ static var ignoredButtonAttributes = [
 
 static var itemIgnoredAttributes = ["text"];
 $ {
-    const roledescription = input.roledescription ||
+    var roledescription = input.roledescription ||
         (`Use up and down arrow keys to navigate options.${
             input.autocomplete === 'none' ? '': ' Options change based on text input'
         }`);
