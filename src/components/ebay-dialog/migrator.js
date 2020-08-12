@@ -1,14 +1,4 @@
-
-/**
- * @description
- * Changes @heading content if wrapped with <h[1-6]> to be unrapped
- */
-function setAttributeIfPresent(el, oldAttribute, newAttribute) {
-    if (el.hasAttribute(oldAttribute)) {
-        el.setAttributeValue(newAttribute, el.getAttribute(oldAttribute));
-        el.removeAttribute(oldAttribute);
-    }
-}
+const { setAttributeIfPresent } = require('../../common/migrators');
 
 function migrator(el, context) {
     let dialogType;

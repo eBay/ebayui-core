@@ -12361,10 +12361,10 @@ marko@^4.12.3:
     strip-json-comments "^2.0.1"
     warp10 "^2.0.1"
 
-marko@^4.22.0:
-  version "4.22.0"
-  resolved "https://registry.npmjs.org/marko/-/marko-4.22.0.tgz#1ebd9d7a37f58f6f7b8e743350ed5e2e766d27e2"
-  integrity sha512-Cv404hwA0RZvRNGCSKC0rLvCNSj2AuLwO4ctkelzYFvkLq5BXonT6eeZEcMRsxOoMe5u4P3pQO3jmqlNJ8mtDA==
+marko@^4.22.6:
+  version "4.22.6"
+  resolved "https://registry.npmjs.org/marko/-/marko-4.22.6.tgz#325b2c961ed3e709237559acd165429252bf4d49"
+  integrity sha512-1JUQrYzlZaQM0XISkEHm/zx9znjiblzehibGkbWkYFBM66NwYQxORJzyt7C0CJavALt7QwL8UZcupMOeaLaHIw==
   dependencies:
     app-module-path "^2.2.0"
     argly "^1.0.0"

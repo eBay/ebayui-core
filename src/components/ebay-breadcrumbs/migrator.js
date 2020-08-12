@@ -1,3 +1,5 @@
+const { setAttributeIfPresent } = require('../../common/migrators');
+
 module.exports = function migrator(el, context) {
     const oldAttribute = 'on-breadcrumb-select';
     const newAttribute = 'on-breadcrumbs-select';
@@ -6,10 +8,7 @@ module.exports = function migrator(el, context) {
         context.deprecate('<ebay-breadcrumb> has been renamed to <ebay-breadcrumbs>');
         el.setTagName('ebay-breadcrumbs');
     }
-    if (el.hasAttribute(oldAttribute)) {
-        const attribute = el.getAttribute(oldAttribute);
-        attribute.name = newAttribute;
-    }
+    setAttributeIfPresent(el, oldAttribute, newAttribute);
 
     const walker = context.createWalker({
         enter(node) {

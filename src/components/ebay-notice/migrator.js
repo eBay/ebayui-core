@@ -1,3 +1,5 @@
+const { setAttributeIfPresent } = require('../../common/migrators');
+
 /**
  * @description
  * Migrates each notice to different types
@@ -5,13 +7,6 @@
 
 // Types of buttons that if they are direct children of root will be wrapped in footer
 const buttonTypes = ['ebay-button', 'ebay-menu-button'];
-
-function setAttribute(el, oldName, newName) {
-    if (el.hasAttribute(oldName)) {
-        const attribute = el.getAttribute(oldName);
-        attribute.name = newName;
-    }
-}
 
 function migrator(el, context) {
     let type;
@@ -40,7 +35,7 @@ function migrator(el, context) {
         el.setTagName('ebay-page-notice');
     }
 
-    setAttribute(el, 'a11y-heading-text', 'attyText');
+    setAttributeIfPresent(el, 'a11y-heading-text', 'attyText');
     const walker = context.createWalker({
         enter(node) {
             if (node.tagName === 'ebay-notice-content') {
