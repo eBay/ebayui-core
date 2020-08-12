@@ -1,4 +1,5 @@
 const { setAttributeIfPresent } = require('../../common/migrators');
+const dialogBaseMigrator = require('../components/ebay-dialog-base/migrator');
 
 function migrator(el, context) {
     let dialogType;
@@ -19,9 +20,11 @@ function migrator(el, context) {
     }
 
     el.setTagName(`ebay-${dialogType}-dialog`);
-    setAttributeIfPresent(el, 'on-dialog-show', `on-open`);
-    setAttributeIfPresent(el, 'on-dialog-close', `on-close`);
+    setAttributeIfPresent(el, context, 'on-dialog-show', `on-open`);
+    setAttributeIfPresent(el, context, 'on-dialog-close', `on-close`);
     el.removeAttribute('type');
+    dialogBaseMigrator(el, context);
+
     return el;
 }
 

@@ -8,7 +8,7 @@ module.exports = function migrator(el, context) {
         context.deprecate('<ebay-breadcrumb> has been renamed to <ebay-breadcrumbs>');
         el.setTagName('ebay-breadcrumbs');
     }
-    setAttributeIfPresent(el, oldAttribute, newAttribute);
+    setAttributeIfPresent(el, context, oldAttribute, newAttribute);
 
     const walker = context.createWalker({
         enter(node) {
