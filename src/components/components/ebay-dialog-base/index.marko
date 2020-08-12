@@ -17,9 +17,9 @@ static var ignoredAttributes = [
 
 static var ignoredHeaderAttributes = ["id", "as"];
 
-$ const buttonPosition = input.buttonPosition || "left";
-$ const baseEl = input.baseEl || "div";
-$ const header = input.header;
+$ var buttonPosition = input.buttonPosition || "left";
+$ var baseEl = input.baseEl || "div";
+$ var header = input.header;
 <macro name="header-content">
     <${header.as || "h2"}
         ...processHtmlAttributes(header, ignoredHeaderAttributes)

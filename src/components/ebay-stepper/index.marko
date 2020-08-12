@@ -15,13 +15,13 @@ static var ignoredStepAttributes = [
     "class"
 ];
 
-$ const direction = input.direction || 'row';
-$ const current = helper.getCurrent(input.step);
+$ var direction = input.direction || 'row';
+$ var current = helper.getCurrent(input.step);
 
 <div class=["stepper", direction === 'column' && "stepper--vertical", input.class] ...processHtmlAttributes(input, ignoredAttributes)>
     <div class="stepper__items" role="list" >
         <for|item, index, list| of=input.step>
-            $ const itemData = helper.getStepClass(index, current, list);
+            $ var itemData = helper.getStepClass(index, current, list);
             <if(index > 0)>
                 <hr class="stepper__separator" role="presentation"/>
             </if>
@@ -46,7 +46,7 @@ $ const current = helper.getCurrent(input.step);
                     <else-if(item.number)>
                         <ebay-badge number=item.number/>
                     </else-if>
-                    <else-if(index < current)>
+                    <else-if(index < current || item.type === "confirmation")>
                         <ebay-icon width="24" height="24" name="confirmation-filled"/>
                     </else-if>
                     <else>
