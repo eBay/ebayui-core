@@ -1,7 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const { runTransformer } = require('../../../common/test-utils/server');
-const transformer = require('../transformer');
 const migrator = require('../migrator');
 const template = require('..');
 
@@ -12,7 +11,7 @@ use(require('chai-dom'));
 describe('icon', () => {
     it('renders inline type with title text', async() => {
         const input = {
-            name: iconName,
+            _name: iconName,
             a11yText: 'inline icon'
         };
 
@@ -26,7 +25,7 @@ describe('icon', () => {
 
     it('renders inline type without title text', async() => {
         const input = {
-            name: iconName,
+            _name: iconName,
             htmlAttributes: {
                 'data-testid': 'icon'
             }
@@ -39,7 +38,7 @@ describe('icon', () => {
 
     it('renders no-skin-classes', async() => {
         const input = {
-            name: iconName, noSkinClasses: true,
+            _name: iconName, noSkinClasses: true,
             class: 'custom-class',
             htmlAttributes: {
                 'data-testid': 'icon'
@@ -53,20 +52,6 @@ describe('icon', () => {
     });
 });
 
-describe('transformer', () => {
-    const componentPath = '../index.js';
-    function getTagString() {
-        return `<ebay-icon name="${iconName}" />`;
-    }
-
-    it('transforms to add a hidden themes attribute', () => {
-        const tagString = getTagString();
-        const { el } = runTransformer(transformer, tagString, componentPath);
-        const attr = el.getAttribute('_themes');
-        expect(attr).to.have.property('name', '_themes');
-    });
-});
-
 describe('migrator', () => {
     const componentPath = '../index.js';
     function getTagString() {
@@ -77,6 +62,14 @@ describe('migrator', () => {
         const tagString = getTagString();
         const { el } = runTransformer(migrator, tagString, componentPath);
         const attr = el.hasAttribute('type');
+        expect(attr).to.equal(false);
+    });
+
+    it('changes name attribute', () => {
+        const tagString = getTagString();
+        const { el } = runTransformer(migrator, tagString, componentPath);
+        expect(el.tagName).to.equal('ebay-mic-icon');
+        const attr = el.hasAttribute('name');
         expect(attr).to.equal(false);
     });
 });

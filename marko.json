@@ -1,6 +1,7 @@
 {
   "taglib-id": "ebayui-core",
   "tags-dir": "./src/components",
+  "taglib-imports": ["./src/components/ebay-icon/marko.json"],
   "<ebay-breadcrumb>": {
     "migrator": "./src/components/ebay-breadcrumbs/migrator.js"
   },

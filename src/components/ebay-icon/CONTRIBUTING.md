@@ -7,4 +7,4 @@
 
 Notes:
 
-* All Icons are automatically added to `./src/components/ebay-icon/symbols` and this folder should not be touched.
+* All Icons are automatically added to `./src/components/components/ebay-icon-base/icons` and this folder should not be touched.

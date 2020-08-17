@@ -12,7 +12,8 @@ const prettier = require('prettier');
 const util = require('../../src/common/ds-util');
 const skinDir = path.dirname(require.resolve('@ebay/skin/package.json'));
 const svgDir = path.join(skinDir, 'src/svg');
-const outputDir = path.join(__dirname, '../../src/components/ebay-icon/symbols');
+const outputDir = path.join(__dirname, '../../src/components/ebay-icon/icons');
+const markoTagJson = require('../../src/components/ebay-icon/marko-tag.json');
 const missingSVG = prettier.format(fs.readFileSync(path.join(__dirname, 'missing.svg'), 'utf-8'), {
     parser: 'html',
     htmlWhitespaceSensitivity: 'ignore'
@@ -23,6 +24,12 @@ const THEME_NAMES = util.dsIconThemes;
 
 cp.execSync(`rm -rf ${JSON.stringify(outputDir)}`);
 fs.mkdirSync(outputDir);
+
+// Remove unused tags in markoTag
+delete markoTagJson.migrator;
+delete markoTagJson.transformer;
+delete markoTagJson['@_name'];
+delete markoTagJson['@_themes'];
 
 for (const theme of THEME_NAMES) {
     const svgFile = path.join(svgDir, theme, 'icons.svg');
@@ -53,8 +60,10 @@ Object.keys(map4To6).forEach(ds4Name => {
 });
 
 for (const [name, themes] of icons) {
-    const iconFolder = path.join(outputDir, name);
+    const iconFolder = path.join(outputDir, `ebay-${name}-icon`);
     const browserJSON = path.join(iconFolder, 'browser.json');
+    const markoTag = path.join(iconFolder, 'marko-tag.json');
+    const index = path.join(iconFolder, 'index.marko');
 
     if (!fs.existsSync(iconFolder)) fs.mkdirSync(iconFolder);
 
@@ -73,4 +82,8 @@ for (const [name, themes] of icons) {
     fs.writeFileSync(browserJSON, `${JSON.stringify({
         requireRemap: util.requireRemap
     }, null, 2)}\n`);
+    fs.writeFileSync(markoTag, `${JSON.stringify(markoTagJson, null, 2)}\n`);
+
+    // eslint-disable-next-line max-len
+    fs.writeFileSync(index, `<ebay-icon ...input _name="${name}" _themes=[require("./symbol.marko"), require("./symbol[ds-4].marko")]/>`);
 }

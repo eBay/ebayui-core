@@ -1,28 +1,44 @@
 {
   "template": "./index.marko",
-  "transformer": "./transformer.js",
   "migrator": "./migrator.js",
-  "attribute-groups": ["html-attributes"],
+  "attribute-groups": [
+    "html-attributes"
+  ],
   "@*": {
     "targetProperty": null,
     "type": "expression"
   },
   "@html-attributes": "expression",
   "@type": {
-    "enum": ["text", "password"]
+    "enum": [
+      "text",
+      "password"
+    ]
   },
   "@invalid": "boolean",
   "@fluid": "boolean",
   "@multiline": "boolean",
   "@floating-label": "string",
-  "@icon": "string",
-  "@prefix-icon": "string",
-  "@postfix-icon": "string",
-  "@icon-position": {
-    "enum": ["prefix", "postfix"]
+  "@postfix-icon <postfix-icon>": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
   },
-  "@postfixIconTag <_postfixIcon>": {},
-  "@prefixIconTag <_prefixIcon>": {},
+  "@prefix-icon <prefix-icon>": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
   "@button-aria-label": "string",
   "@autocomplete": "#html-autocomplete",
   "@autofocus": "#html-autofocus",

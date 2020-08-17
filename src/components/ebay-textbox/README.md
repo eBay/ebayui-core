@@ -8,6 +8,12 @@ Default input textbox:
 <ebay-textbox />
 ```
 
+## ebay-textbox Attribute tags
+Tag | Required | Description
+--- | --- | ---
+`prefix-icon` | No | An `<ebay-{name}-icon>` to show as the prefix icon.
+`postfix-icon` | No | An `<ebay-{name}-icon>` to show as the postfix icon.
+
 ## ebay-textbox Attributes
 
 Name | Type | Stateful | Required | Description
@@ -15,8 +21,6 @@ Name | Type | Stateful | Required | Description
 `fluid` | Boolean | No | No |
 `multiline` | Boolean | No | No | renders a multi-line texbox if true
 `invalid` | Boolean | No | No | indicates a field-level error with red border if true
-`prefix-icon` | String | No | No | name of the icon from skin to show as the prefix icon
-`postfix-icon` | String | No | No | name of the icon from skin to show as the postfix icon
 `button-aria-label` | String | No | No | aria-label for postfix. Required to be set in order to render postfix button and attach a `textbox-button-click event`
 
 ## ebay-textbox Events

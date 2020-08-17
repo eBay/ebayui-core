@@ -1,6 +1,6 @@
 {
   "template": "./index.marko",
-  "transformer": "./transformer.js",
+  "migrator": "./migrator.js",
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -20,7 +20,13 @@
   "@borderless": "boolean",
   "@size": "string",
   "@priority": "string",
-  "@iconTag <_icon>": {},
+  "@icon <icon>": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
   "@disabled": "boolean",
   "@collapseOnSelect": "boolean",
   "@variant": "string",

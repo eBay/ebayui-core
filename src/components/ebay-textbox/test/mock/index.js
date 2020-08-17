@@ -2,7 +2,7 @@ const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 const iconBody = {
     renderBody: createRenderBody(
-        '<svg class="textbox__icon" focusable="false" id="w11-w0" ' +
+        '<svg class="icon" focusable="false" id="w11-w0" ' +
         'aria-hidden="true"> <defs id="w11-w0-defs"></defs><use ' +
         'xlink:href="#icon-profile"></use></svg>',
         ''
@@ -34,13 +34,11 @@ exports.Multiline = assign({}, exports.Basic, {
 });
 
 exports.Prefix_Icon = assign({}, exports.Basic, {
-    prefixIcon: 'search',
-    prefixIconTag: iconBody
+    prefixIcon: iconBody
 });
 
 exports.Postfix_Icon = assign({}, exports.Basic, {
-    postfixIcon: 'search',
-    postfixIconTag: iconBody
+    postfixIcon: iconBody
 });
 
 exports.Postfix_Icon_Button = assign({}, exports.Postfix_Icon, {
