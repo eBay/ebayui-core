@@ -23,6 +23,11 @@ module.exports = {
         const { closeEl, windowEl, startEl } = this;
 
         this.startEl = null;
+
+        if (this.input.buttonPosition === 'hidden') {
+            return;
+        }
+
         if (windowEl.contains(startEl)) {
             // Started on dialog window and user dragged out, don't close
             return;
@@ -83,7 +88,7 @@ module.exports = {
     },
 
     _triggerFocus(focusEl) {
-        if (this.input.isModal) {
+        if (this.input.isModal && focusEl) {
             focusEl.focus();
         }
     },

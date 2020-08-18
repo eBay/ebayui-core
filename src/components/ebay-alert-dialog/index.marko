@@ -1,0 +1,14 @@
+$ var confirmId = component.getElId("lightbox-dialog-confirm");
+
+<ebay-lightbox-dialog
+    variant="_alert"
+    ignore-escape
+    open=input.open
+    on-open("emit", "open")
+    focus=confirmId
+    ...input>
+    <${input.renderBody}/>
+    <@footer>
+        <ebay-button priority="primary" on-click("emit", "confirm") key="confirm" id=confirmId class="lightbox-dialog__confirm">${input.confirmText}</ebay-button>
+    </@footer>
+</ebay-lightbox-dialog>

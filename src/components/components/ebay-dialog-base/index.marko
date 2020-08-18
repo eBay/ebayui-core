@@ -12,6 +12,8 @@ static var ignoredAttributes = [
     "footer",
     "transitionEl",
     "isModal",
+    "closeEl",
+    "ignoreEscape",
     "ariaLabelledby"
 ];
 
@@ -27,18 +29,18 @@ $ var header = input.header;
         <${header.renderBody}/>
     </>
 </macro>
-
 <macro name="button-content">
-    <button
-        key="close"
-        class=`${input.classPrefix}__close`
-        type="button"
-        aria-label=input.a11yCloseText
-        onClick("handleCloseButtonClick")>
-        <ebay-icon name="close"/>
-    </button>
+    <if(buttonPosition !== "hidden")>
+        <button
+            key="close"
+            class=`${input.classPrefix}__close`
+            type="button"
+            aria-label=input.a11yCloseText
+            onClick("handleCloseButtonClick")>
+            <ebay-icon name="close"/>
+        </button>
+    </if>
 </macro>
-
 <${baseEl}
     ...processHtmlAttributes(input, ignoredAttributes)
     aria-labelledby=(input.ariaLabelledby || component.getElId("dialog-title"))
@@ -49,7 +51,7 @@ $ var header = input.header;
     aria-live=(!input.isModal && "polite")
     onClick("handleDialogClick")
     onMousedown("handleStartClick")>
-    <if(state.open)>
+    <if(!input.ignoreEscape && state.open)>
         <subscribe to=document on-keydown("handleKeydown")/>
     </if>
     <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>
@@ -60,19 +62,21 @@ $ var header = input.header;
             <if(header && buttonPosition === "right")>
                 <header-content/>
             </if>
-            <if (buttonPosition !== 'bottom')>
+            <if(buttonPosition !== "bottom")>
                 <button-content/>
             </if>
-            <if(header && buttonPosition === "left")>
-                <header-content />
+            <if(header && (buttonPosition === "left" || buttonPosition === "hidden"))>
+                <header-content/>
             </if>
         </>
         <div class=`${input.classPrefix}__main` key="body" onScroll("handleScroll")>
             <${input.renderBody}/>
         </div>
-        <div class=`${input.classPrefix}__footer` if(input.footer || buttonPosition === 'bottom')>
+        <div
+            class=`${input.classPrefix}__footer`
+            if(input.footer || buttonPosition === "bottom")>
             <${input.footer && input.footer.renderBody}/>
-            <if (buttonPosition === 'bottom')>
+            <if(buttonPosition === "bottom")>
                 <button-content/>
             </if>
         </div>

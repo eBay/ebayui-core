@@ -1,19 +1,25 @@
 $ var isMini = input.variant === '_mini';
+$ var isAlert = input.variant === '_alert';
+$ var isConfirm = input.variant === '_confirm';
+$ var buttonPosition = ((isAlert || isConfirm) && "hidden") || (isMini && "bottom") || input.buttonPosition;
 
 <ebay-dialog-base
     ...input
     open=input.open
     classPrefix="lightbox-dialog"
+    ignore-escape=isAlert
     on-open("emit", "open")
     on-close("emit", "close")
-    buttonPosition=(isMini && "bottom")
+    buttonPosition=buttonPosition
     class=[
         input.class,
         "lightbox-dialog--mask-fade"
     ]
     window-class=[
         "lightbox-dialog__window--fade",
-        isMini && "lightbox-dialog__window--mini"
+        isMini && "lightbox-dialog__window--mini",
+        isAlert && "lightbox-dialog__window--alert",
+        isConfirm && "lightbox-dialog__window--confirm"
     ]>
     <${input.renderBody}/>
 </ebay-dialog-base>
