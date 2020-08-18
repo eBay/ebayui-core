@@ -8,7 +8,6 @@
     "demo",
     "**/*.marko.js",
     "src/common/test-utils",
-    "src/components/ebay-icon/symbols",
     "src/components/ebay-icon/icons"
   ],
   "sourceMap": true,
