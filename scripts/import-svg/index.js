@@ -85,5 +85,5 @@ for (const [name, themes] of icons) {
     fs.writeFileSync(markoTag, `${JSON.stringify(markoTagJson, null, 2)}\n`);
 
     // eslint-disable-next-line max-len
-    fs.writeFileSync(index, `<ebay-icon ...input _name="${name}" _themes=[require("./symbol.marko"), require("./symbol[ds-4].marko")]/>`);
+    fs.writeFileSync(index, `import symbol from "./symbol.marko";\nimport symbolDS4 from "./symbol[ds-4].marko"\n<ebay-icon ...input _name="${name}" _themes=[symbol, symbolDS4]/>\n`);
 }
