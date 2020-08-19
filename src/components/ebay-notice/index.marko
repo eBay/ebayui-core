@@ -38,7 +38,7 @@ $ var isIconVisible = input.icon !== "none";
                     <ebay-icon
                         class="window-notice__icon"
                         name="confirmation-filled"
-                        aria-label=input.a11yHeadingText/>
+                        a11y-text=input.a11yHeadingText/>
                 </if>
                 <span
                     ...processHtmlAttributes(input.title)
@@ -48,13 +48,13 @@ $ var isIconVisible = input.icon !== "none";
             </if>
             <else>
                 <if(status === "confirmation" || status === "celebration")>
-                    <ebay-icon name="confirmation-filled" aria-label=input.a11yHeadingText/>
+                    <ebay-icon name="confirmation-filled" a11y-text=input.a11yHeadingText/>
                 </if>
                 <else if(status === "attention")>
-                    <ebay-icon name="attention-filled" aria-label=input.a11yHeadingText/>
+                    <ebay-icon name="attention-filled" a11y-text=input.a11yHeadingText/>
                 </else>
                 <else if(status === "information")>
-                    <ebay-icon name="information-filled" aria-label=input.a11yHeadingText/>
+                    <ebay-icon name="information-filled" a11y-text=input.a11yHeadingText/>
                 </else>
             </else>
         </>
