@@ -3,7 +3,7 @@
  * Removes type attribute.
  */
 
-function migrator(el, context) {
+function migratorMarko4(el, context) {
     if (el.hasAttribute('type')) {
         context.deprecate('type attribute is no longer supported for icon. All icons default to inline now');
         el.removeAttribute('type');
@@ -16,4 +16,14 @@ function migrator(el, context) {
     }
 }
 
-module.exports = migrator;
+function migratorMarko5() {
+    return;
+}
+
+module.exports = function migrator(a, b) {
+    if (a.hub) {
+        return migratorMarko5(a, b);
+    }
+
+    return migratorMarko4(a, b);
+};

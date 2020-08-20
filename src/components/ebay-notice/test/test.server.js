@@ -38,7 +38,7 @@ describe('notice-migrations', () => {
 
     it('migrates notice body to be outer element', () => {
         // eslint-disable-next-line max-len
-        const tagString = '<ebay-notice type="section"><ebay-notice-content><p>Test</p></ebay-notice-content></ebay-notice>';
+        const tagString = '<ebay-notice type="section"><@content><p>Test</p></@content></ebay-notice>';
         const { el } = runTransformer(migrator, tagString, componentPath);
         const { body: { array: [content] } } = el;
         expect(el.tagName).to.equal('ebay-section-notice');
@@ -47,7 +47,7 @@ describe('notice-migrations', () => {
 
     it('migrates button to be in footer element', () => {
         // eslint-disable-next-line max-len
-        const tagString = '<ebay-notice type="section"><ebay-notice-content><p>Test</p></ebay-notice-content><ebay-button/></ebay-notice>';
+        const tagString = '<ebay-notice type="section"><@content><p>Test</p></@content><ebay-button/></ebay-notice>';
         const { el } = runTransformer(migrator, tagString, componentPath);
         const { body: { array: [content, footer] } } = el;
         expect(el.tagName).to.equal('ebay-section-notice');
@@ -57,7 +57,7 @@ describe('notice-migrations', () => {
 
     it('migrates skips migrating button to be in footer element if it\s not in root', () => {
         // eslint-disable-next-line max-len
-        const tagString = '<ebay-notice type="section"><ebay-notice-content><ebay-button>Test</ebay-button></ebay-notice-content></ebay-notice>';
+        const tagString = '<ebay-notice type="section"><@content><ebay-button>Test</ebay-button></@content></ebay-notice>';
         const { el } = runTransformer(migrator, tagString, componentPath);
         const { body: { array: [content, footer] } } = el;
         expect(el.tagName).to.equal('ebay-section-notice');

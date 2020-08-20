@@ -5,7 +5,7 @@ const testUtils = require('../../../test-utils/server');
 function getTagString(rootTag, nestedTag) {
     return {
         'before': `<${rootTag}-${nestedTag}/>`,
-        'after': `<${rootTag}:${nestedTag}/>`
+        'after': `<@${nestedTag}/>`
     };
 }
 

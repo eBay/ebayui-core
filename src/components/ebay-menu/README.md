@@ -6,9 +6,9 @@
 
 ```marko
 <ebay-menu text="text">
-    <ebay-menu-item>item 1</ebay-menu-item>
-    <ebay-menu-item>item 2</ebay-menu-item>
-    <ebay-menu-item>item 3</ebay-menu-item>
+    <@item>item 1</@item>
+    <@item>item 2</@item>
+    <@item>item 3</@item>
 </ebay-menu>
 ```
 
@@ -29,15 +29,15 @@ Event | Data | Description
 `menu-change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
 `menu-select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
 
-## ebay-menu-item Tag
+## @item Tag
 
-### ebay-menu-item Usage
+### @item Usage
 
 ```marko
-<ebay-menu-item>item 1</ebay-menu-item>
+<@item>item 1</@item>
 ```
 
-### ebay-menu-item Attributes
+### @item Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
@@ -57,8 +57,8 @@ Adds a line separator between each menu item
 
 ```marko
 <ebay-menu>
-    <ebay-menu-item>Item1</ebay-menu-item>
-    <ebay-menu-separator/>
-    <ebay-menu-item>Item2</ebay-menu-item>
+    <@item>Item1</@item>
+    <@separator/>
+    <@item>Item2</@item>
 </ebay-menu>
 ```

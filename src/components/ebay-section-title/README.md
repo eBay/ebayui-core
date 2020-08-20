@@ -8,8 +8,8 @@
 
 ```marko
 <ebay-section-title href="https://www.ebay.com" cta-text="See All">
-    <ebay-section-title-title>Today’s Deals – All With Free Shipping</ebay-section-title-title>
-    <ebay-section-title-subtitle>Plus, guaranteed best prices.</ebay-section-title-subtitle>
+    <@title>Today’s Deals – All With Free Shipping</@title>
+    <@subtitle>Plus, guaranteed best prices.</@subtitle>
 </ebay-section-title>
 ```
 
@@ -31,66 +31,67 @@ None.
 
 Tag | Required | Description
 --- | --- | ---
-`<ebay-section-title-title>` | No | The main title content to be displayed. Title tag is required when using other sub-tags.
-`<ebay-section-title-subtitle>` | No | The subtitle content to be displayed
-`<ebay-section-title-info>` | No | Placeholder for `<ebay-infotip>` component
-`<ebay-section-title-overflow>` | No | Placeholder for `<ebay-menu-button>` component
+`<@title>` | No | The main title content to be displayed. Title tag is required when using other sub-tags.
+`<@subtitle>` | No | The subtitle content to be displayed
+`<@info>` | No | Placeholder for `<ebay-infotip>` component
+`<@overflow>` | No | Placeholder for `<ebay-menu-button>` component
 
-## ebay-section-title-title
+## @title
 
-### ebay-section-title-title Usage
+### @title Usage
 
 ```marko
-<ebay-section-title-title>Today’s Deals – All With Free Shipping</ebay-section-title-title>
+<@title>Today’s Deals – All With Free Shipping</@title>
 ```
 
-### ebay-section-title-title Attributes
+### @title Attributes
 
 None
 
-## ebay-section-title-subtitle
+## @subtitle
 
-### ebay-section-title-subtitle Usage
+### @subtitle Usage
 
 ```marko
- <ebay-section-title-subtitle>Plus, guaranteed best prices.</ebay-section-title-subtitle>
+ <@subtitle>Plus, guaranteed best prices.</@subtitle>
 ```
 
-### ebay-section-title-subtitle Attributes
+### @subtitle Attributes
 
 None
 
-## ebay-section-title-info
+## @info
 
-### ebay-section-title-info Usage
+### @info Usage
 
 ```marko
-<ebay-section-title-info>
-    <ebay-infotip a11y-close-text="Dismiss infotip" aria-label="Important information" icon="information" pointer="top-left">
-        <ebay-infotip-heading>Important</ebay-infotip-heading>
-        <ebay-infotip-content><p>This is some important info</p></ebay-infotip-content>
+<@info>
+    <ebay-infotip a11y-close-text="Dismiss infotip" aria-label="Important information" pointer="top-left">
+        <@icon><ebay-icon-information/></@icon>
+        <@heading>Important</@heading>
+        <@content><p>This is some important info</p></@content>
     </ebay-infotip>
-</ebay-section-title-info>
+</@info>
 ```
 
-### ebay-section-title-info Attributes
+### @info Attributes
 
 None
 
-## ebay-section-title-overflow
+## @overflow
 
-### ebay-section-title-overflow Usage
+### @overflow Usage
 
 ```marko
-<ebay-section-title-overflow>
+<@overflow>
     <ebay-menu-button variant="overflow" a11y-text="eBay Menu">
-        <ebay-menu-button-item>item 1</ebay-menu-button-item>
-        <ebay-menu-button-item>item 2</ebay-menu-button-item>
-        <ebay-menu-button-item>item 3</ebay-menu-button-item>
+        <@item>item 1</@item>
+        <@item>item 2</@item>
+        <@item>item 3</@item>
     </ebay-menu-button>
-</ebay-section-title-overflow>
+</@overflow>
 ```
 
-### ebay-section-title-overflow Attributes
+### @overflow Attributes
 
 None

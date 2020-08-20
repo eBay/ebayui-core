@@ -1,5 +1,6 @@
 {
   "template": "./index.marko",
+  "transformer": "../../common/transformers/menu-separator",
   "migrator": "./migrator.js",
   "@*": {
     "targetProperty": null,

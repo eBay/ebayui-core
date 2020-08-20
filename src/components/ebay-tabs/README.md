@@ -4,12 +4,12 @@
 
 ```marko
 <ebay-tabs>
-    <ebay-tabs-heading>Tab 1</ebay-tabs-heading>
-    <ebay-tabs-heading>Tab 2</ebay-tabs-heading>
-    <ebay-tabs-heading>Tab 3</ebay-tabs-heading>
-    <ebay-tabs-panel>Panel 1</ebay-tabs-panel>
-    <ebay-tabs-panel>Panel 2</ebay-tabs-panel>
-    <ebay-tabs-panel>Panel 3</ebay-tabs-panel>
+    <@heading>Tab 1</@heading>
+    <@heading>Tab 2</@heading>
+    <@heading>Tab 3</@heading>
+    <@panel>Panel 1</@panel>
+    <@panel>Panel 2</@panel>
+    <@panel>Panel 3</@panel>
 </ebay-tabs>
 ```
 
@@ -29,24 +29,24 @@ Event | Data | Description
 --- | --- | ---
 `tabs-select` | `{ index }` |
 
-## ebay-tabs-heading Tag
+## @heading Tag
 
-### ebay-tabs-heading Usage
+### @heading Usage
 
 ```marko
-<ebay-tabs-heading>Tab 1</ebay-tabs-heading>
+<@heading>Tab 1</@heading>
 ```
 
-## ebay-tabs-heading Attributes
+## @heading Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | ---
 `href` | String | No | No | For use with `fake` tab component
 
-## ebay-tabs-panel Tag
+## @panel Tag
 
-### ebay-tabs-panel Usage
+### @panel Usage
 
 ```marko
-<ebay-tabs-panel>Panel 1</ebay-tabs-panel>
+<@panel>Panel 1</@panel>
 ```

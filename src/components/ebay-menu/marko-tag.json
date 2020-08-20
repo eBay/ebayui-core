@@ -3,6 +3,8 @@
     "targetProperty": null,
     "type": "expression"
   },
+  "template": "./index.marko",
+  "transformer": "../../common/transformers/menu-separator",
   "@html-attributes": "expression",
   "@class": "string",
   "@style": "string",

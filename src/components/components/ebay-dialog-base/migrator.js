@@ -5,7 +5,7 @@ const headerRegExp = /^h[1-6]$/;
  * Changes @heading content if wrapped with <h[1-6]> to be unrapped
  */
 
-function migrator(el, context) {
+function migratorMarko4(el, context) {
     el.forEachChild((child) => {
         let found = false;
         if (!found && child && child.tagName === 'h2') {
@@ -50,4 +50,14 @@ function migrator(el, context) {
     walker.walk(el);
 }
 
-module.exports = migrator;
+function migratorMarko5() {
+    return;
+}
+
+module.exports = function migrator(a, b) {
+    if (a.hub) {
+        return migratorMarko5(a, b);
+    }
+
+    return migratorMarko4(a, b);
+};

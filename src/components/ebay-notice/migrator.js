@@ -8,7 +8,7 @@ const { setAttributeIfPresent } = require('../../common/migrators');
 // Types of buttons that if they are direct children of root will be wrapped in footer
 const buttonTypes = ['ebay-button', 'ebay-menu-button'];
 
-function migrator(el, context) {
+function migratorMarko4(el, context) {
     let type;
     if (el.hasAttribute('type')) {
         const typeAttribute = el.getAttributeValue('type');
@@ -38,9 +38,9 @@ function migrator(el, context) {
     setAttributeIfPresent(el, context, 'a11y-heading-text', 'attyText');
     const walker = context.createWalker({
         enter(node) {
-            if (node.tagName === 'ebay-notice-content') {
+            if (node.tagName === '@content') {
                 context.deprecate(
-                    'ebay-notice-content is no longer supported. Add content in render body'
+                    '@content is no longer supported. Add content in render body'
                 );
 
                 node.forEachChild((child) => {
@@ -60,4 +60,14 @@ function migrator(el, context) {
     walker.walk(el);
 }
 
-module.exports = migrator;
+function migratorMarko5() {
+    return;
+}
+
+module.exports = function migrator(a, b) {
+    if (a.hub) {
+        return migratorMarko5(a, b);
+    }
+
+    return migratorMarko4(a, b);
+};

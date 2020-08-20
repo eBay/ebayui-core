@@ -131,8 +131,9 @@ describe('migrator', () => {
     it('migrates icon without position to prefix-icon', () => {
         const tagString = '<ebay-textbox icon="close"/>';
         const { el } = runTransformer(migrator, tagString, componentPath);
-        expect(el.hasAttribute('prefix-icon')).to.equal(true);
-        expect(el.getAttributeValue('prefix-icon').value).to.equal('close');
+        const { body: { array: [iconEl] } } = el;
+        expect(iconEl.tagName).to.equal('@prefix-icon');
+        expect(el.hasAttribute('prefix-icon')).to.equal(false);
         expect(el.hasAttribute('postfix-icon')).to.equal(false);
         expect(el.hasAttribute('icon')).to.equal(false);
         expect(el.hasAttribute('icon-position')).to.equal(false);
@@ -141,8 +142,10 @@ describe('migrator', () => {
     it('migrates icon with postfix position to postfix-icon', () => {
         const tagString = '<ebay-textbox icon="close" icon-position="postfix"/>';
         const { el } = runTransformer(migrator, tagString, componentPath);
-        expect(el.hasAttribute('postfix-icon')).to.equal(true);
-        expect(el.getAttributeValue('postfix-icon').value).to.equal('close');
+        const { body: { array: [iconEl] } } = el;
+        expect(iconEl.tagName).to.equal('@postfix-icon');
+
+        expect(el.hasAttribute('postfix-icon')).to.equal(false);
         expect(el.hasAttribute('prefix-icon')).to.equal(false);
         expect(el.hasAttribute('icon')).to.equal(false);
         expect(el.hasAttribute('icon-position')).to.equal(false);
