@@ -25,20 +25,17 @@ $ var prefixClass = input.prefixClass;
 
         <if(input.icon !== "none")>
             <if(status === "confirmation" || status === "celebration")>
-                <ebay-icon
-                    name="confirmation-filled"
+                <ebay-confirmation-filled-icon
                     aria-label=input.a11yText
                     class=input.iconClass/>
             </if>
             <else if(status === "attention")>
-                <ebay-icon
-                    name="attention-filled"
+                <ebay-attention-filled-icon
                     aria-label=input.a11yText
                     class=input.iconClass/>
             </else>
             <else if(status === "information")>
-                <ebay-icon
-                    name="information-filled"
+                <ebay-information-filled-icon
                     aria-label=input.a11yText
                     class=input.iconClass/>
             </else>

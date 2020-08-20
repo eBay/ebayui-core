@@ -13,13 +13,18 @@
     <ebay-menu-button-item>item 3</ebay-menu-button-item>
 </ebay-menu-button>
 ```
+## ebay-menu-buton Sub-tags
+
+Tag | Required | Description
+--- | --- | ---
+`@item` | No | All items to be displayed for menu-button
+`@icon` | No | An `<ebay-{name}-icon>` to show for the icon button
 
 ### ebay-menu-button Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `text` | String | Yes | Yes | button text
-`icon` | String | No | No | name of an `<ebay-icon>` to show to the left of the text
 `a11y-text` | String | No | No | a11y text for the button, especially for cases without text
 `no-toggle-icon` | Boolean | No | No | whether to hide the chevron toggle icon
 `expanded` | Boolean | Yes | No | whether content is expanded (Note: not supported as initial attribute)

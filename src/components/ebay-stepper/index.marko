@@ -38,19 +38,19 @@ $ var current = helper.getCurrent(input.step);
                 ...processHtmlAttributes(item, ignoredStepAttributes)>
                 <span class="stepper__icon">
                     <if(item.type === 'attention')>
-                        <ebay-icon width="24" height="24" name="attention-filled"/>
+                        <ebay-attention-filled-icon width="24" height="24" />
                     </if>
                     <else-if(item.type === 'information')>
-                        <ebay-icon width="24" height="24" name="information-filled"/>
+                        <ebay-information-filled-icon width="24" height="24" />
                     </else-if>
                     <else-if(item.number)>
                         <ebay-badge number=item.number/>
                     </else-if>
                     <else-if(index < current || item.type === "confirmation")>
-                        <ebay-icon width="24" height="24" name="confirmation-filled"/>
+                        <ebay-confirmation-filled-icon width="24" height="24" />
                     </else-if>
                     <else>
-                        <ebay-icon width="24" height="24" name="circle"/>
+                        <ebay-circle-icon width="24" height="24" />
                     </else>
                 </span>
                 <span class="stepper__text">

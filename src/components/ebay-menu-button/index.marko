@@ -48,7 +48,7 @@ $ var isOverflowVariant = input.variant === "overflow";
         on-escape("handleButtonEscape")
         key="button">
         <if(isOverflowVariant)>
-            <ebay-icon name="overflow"/>
+            <ebay-overflow-icon/>
         </if>
         <else>
             <span class=[
@@ -63,9 +63,7 @@ $ var isOverflowVariant = input.variant === "overflow";
                     <!-- Convoluted markup to satisfy both Skin and Marko -->
                     <if(input.icon)>
                         <div no-update-body class="btn__icon">
-                            <if(input.iconTag)>
-                                <${input.iconTag.renderBody}/>
-                            </if>
+                            <${input.icon}/>
                         </div>
                     </if>
                     <if(input.text)>
@@ -73,8 +71,7 @@ $ var isOverflowVariant = input.variant === "overflow";
                     </if>
                 </else>
                 <if(!input.noToggleIcon)>
-                    <ebay-icon
-                        name="dropdown"/>
+                    <ebay-dropdown-icon/>
                 </if>
             </span>
         </else>

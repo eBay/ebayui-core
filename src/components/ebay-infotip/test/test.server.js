@@ -2,7 +2,7 @@ const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const assign = require('core-js-pure/features/object/assign');
 const { runTransformer } = require('../../../common/test-utils/server');
-const transformer = require('../transformer');
+const migrator = require('../migrator');
 const template = require('..');
 const mock = require('./mock');
 
@@ -48,19 +48,21 @@ describe('infotip modal', () => {
     });
 });
 
-describe('transformer', () => {
+describe('migrator', () => {
     const componentPath = '../index.marko';
 
     it('transforms an icon attribute into a tag', () => {
         const tagString = '<ebay-infotip icon="settings"/>';
-        const { el } = runTransformer(transformer, tagString, componentPath);
+        const { el } = runTransformer(migrator, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
-        expect(iconEl.tagName).to.equal('ebay-infotip:_icon');
+        const { body: { array: [tag] } } = iconEl;
+        expect(iconEl.tagName).to.equal('@icon');
+        expect(tag.tagName).to.equal('ebay-settings-icon');
     });
 
     it('does not transform when icon attribute is missing', () => {
         const tagString = '<ebay-infotip/>';
-        const { el } = runTransformer(transformer, tagString, componentPath);
+        const { el } = runTransformer(migrator, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
         expect(iconEl).to.equal(undefined);
     });
