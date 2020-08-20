@@ -10,7 +10,6 @@ static var ignoredAttributes = [
     "styleBottom",
     "ariaLabel",
     "a11yCloseText",
-    "iconTag",
     "host",
     "heading",
     "content",
@@ -40,11 +39,11 @@ $ var pointer = input.pointer || "bottom";
                 type="button"
                 disabled=input.disabled
                 aria-label=input.ariaLabel>
-                <if(input.iconTag)>
-                    <${input.iconTag}/>
+                <if(input.icon)>
+                    <${input.icon}/>
                 </if>
                 <else>
-                    <ebay-icon name="information"/>
+                    <ebay-information-icon/>
                 </else>
             </button>
             <if(input.modal !== true)>

@@ -2,7 +2,7 @@ const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const testUtils = require('../../../common/test-utils/server');
-const transformer = require('../transformer');
+const migrator = require('../migrator');
 const template = require('..');
 const mock = require('./mock');
 
@@ -96,7 +96,7 @@ describe('menu-button', () => {
         const { getByRole, getByText } = await render(template, input);
         const btnEl = getByRole('button');
         expect(btnEl).does.not.have.class('expand-btn--no-text');
-        expect(btnEl).contains(getByText(input.iconTag.renderBody.text));
+        expect(btnEl).contains(getByText(input.icon.renderBody.text));
     });
 
     it('renders without toggle icon', async() => {
@@ -177,19 +177,21 @@ describe('menu-button', () => {
     });
 });
 
-describe('transformer', () => {
+describe('migrator', () => {
     const componentPath = '../index.marko';
 
     it('transforms an icon attribute into a tag', async() => {
         const tagString = '<ebay-menu-button icon="settings"/>';
-        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { el } = testUtils.runTransformer(migrator, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
-        expect(iconEl.tagName).to.equal('ebay-menu-button:_icon');
+        const { body: { array: [tag] } } = iconEl;
+        expect(iconEl.tagName).to.equal('@icon');
+        expect(tag.tagName).to.equal('ebay-settings-icon');
     });
 
     it('does not transform when icon attribute is missing', () => {
         const tagString = '<ebay-menu/>';
-        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { el } = testUtils.runTransformer(migrator, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
         expect(iconEl).to.equal(undefined);
     });

@@ -43,8 +43,7 @@ exports.Disabled = assign({}, exports.Basic_3Items, {
 
 exports.Settings_Icon = assign({}, exports.Basic_2Items, {
     text: '',
-    icon: 'settings',
-    iconTag: {
+    icon: {
         renderBody: createRenderBody('icon content')
     }
 });

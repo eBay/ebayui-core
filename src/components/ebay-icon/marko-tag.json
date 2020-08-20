@@ -1,6 +1,5 @@
 {
   "template": "./index.marko",
-  "transformer": "./transformer.js",
   "migrator": "./migrator.js",
   "attribute-groups": ["html-attributes"],
   "@*": {
@@ -8,7 +7,7 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@name": "string",
+  "@_name": "string",
   "@a11y-text": "string",
   "@no-skin-classes": "boolean",
   "@_themes": "expression",
