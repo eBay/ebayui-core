@@ -1,4 +1,3 @@
-const traverse = require('@babel/traverse');
 /**
  * @param {Object} el
  * @param {Object} context
@@ -16,11 +15,11 @@ function transformMarko4(el, context) {
     return el;
 }
 function transformMarko5(path, t) {
-    traverse(path, {
-        enter(subPath) {
-            if (subPath.isIdentifier({ name: '@separator' })) {
-                subPath.node.name = '@item';
-                subPath.pushContainer('attributes', t.markoAttribute('isSeparator', t.booleanLiteral(true)));
+    path.traverse({
+        MarkoTag(tag) {
+            if (tag.get('name').isStringLiteral({ name: '@separator' })) {
+                tag.set('name.value', '@item');
+                tag.pushContainer('attributes', t.markoAttribute('isSeparator', t.booleanLiteral(true)));
             }
         }
     });

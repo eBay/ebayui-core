@@ -2,7 +2,7 @@ $ var i = 0;
 <ebay-menu-button text="eBay Radio Menu" type="radio">
     <for|idx| from=1 to=100>
         <@item value=`item ${idx}` checked=(idx === 24)>
-            <% i++ %>
+            $ i++;
             item
             ${i}
         </@item>
@@ -15,7 +15,7 @@ $ var j = 0;
     style="margin-left: 8px;">
     <for|idx| from=1 to=100>
         <@item value=`item ${idx}` checked=(idx === 24 || idx === 49)>
-            <% j++ %>
+            $ j++;
             item
             ${j}
         </@item>
