@@ -45,27 +45,27 @@ Name | Type | Stateful | Required | Description
 Event | Data | Description
 --- | --- | ---
 `carousel-update` | { [visibleIndexes] } | called whenever item visibility changes, including initialization
-`carousel-next` | { originalEvent } | click next control
-`carousel-previous` | { originalEvent } | click previous control
+`next` | { originalEvent } | click next control
+`previous` | { originalEvent } | click previous control
 
 ### Additional Events for when items-per-slide is set
 
 Event | Data | Description
 --- | --- | ---
-`carousel-slide` | `{ slide }` | new slide is navigated to (by controls or API)
+`slide` | `{ slide }` | new slide is navigated to (by controls or API)
 
 ### Additional Events for when autoplay is set
 
 Event | Data | Description
 --- | --- | ---
-`carousel-play` | `{ originalEvent }` | called when the autoplay play button is pressed
-`carousel-pause` | `{ originalEvent }` | called when the autoplay pause button is pressed
+`play` | `{ originalEvent }` | called when the autoplay play button is pressed
+`pause` | `{ originalEvent }` | called when the autoplay pause button is pressed
 
 ### Additional Events for touch devices
 
 Event | Data | Description
 --- | --- | ---
-`carousel-scroll` | `{ index }` | new index is navigated to by native scrolling
+`scroll` | `{ index }` | new index is navigated to by native scrolling
 
 **Notes:**
 
