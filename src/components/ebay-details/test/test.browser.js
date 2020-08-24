@@ -49,7 +49,7 @@ describe('given the details is in the default state and click is triggered', () 
             await fireEvent.click(component.getByText(detailsText));
         });
 
-        it('then it emits the details-toggle and click', async() => {
+        it('then it emits the toggle and click', async() => {
             wait(() => verifyToggleEvent());
             wait(() => verifyClickEvent());
         });
@@ -89,7 +89,7 @@ describe('given the details is in the open state and click is triggered', () => 
             await fireEvent.click(component.getByText(detailsText));
         });
 
-        it('then it emits the details-toggle and click', async() => {
+        it('then it emits the toggle and click', async() => {
             wait(() => verifyToggleEvent());
             wait(() => verifyClickEvent());
         });
@@ -116,7 +116,7 @@ describe('given the details is in the open state and click is triggered', () => 
 });
 
 function verifyToggleEvent() {
-    const toggleEvent = component.emitted('details-toggle');
+    const toggleEvent = component.emitted('toggle');
     expect(toggleEvent.length).to.be.greaterThan(0);
 
     const [eventArg] = toggleEvent.pop();
@@ -125,7 +125,7 @@ function verifyToggleEvent() {
 }
 
 function verifyClickEvent() {
-    const toggleEvent = component.emitted('details-click');
+    const toggleEvent = component.emitted('click');
     expect(toggleEvent).to.length(1);
     const [[eventArg]] = toggleEvent;
     expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
