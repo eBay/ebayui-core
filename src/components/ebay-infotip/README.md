@@ -4,8 +4,8 @@
 
 ```marko
 <ebay-infotip a11y-close-text="Dismiss infotip" aria-label="Important information">
-    <ebay-infotip-heading>Important</ebay-infotip-heading>
-    <ebay-infotip-content><p>This is some important info</p></ebay-infotip-content>
+    <@heading>Important</@heading>
+    <@content><p>This is some important info</p></@content>
 </ebay-infotip>
 ```
 
@@ -13,8 +13,8 @@
 
 Tag | Required | Description
 --- | --- | ---
-`<ebay-infotip-heading>` | No | The heading to be displayed in the infotip
-`<ebay-infotip-content>` | Yes | The content to be displayed in the infotip
+`<@heading>` | No | The heading to be displayed in the infotip
+`<@content>` | Yes | The content to be displayed in the infotip
 `@icon` | No | An `<ebay-{name}-icon>` to show for the icon button
 
 ## ebay-infotip Attributes

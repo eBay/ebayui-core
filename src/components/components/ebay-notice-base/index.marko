@@ -29,16 +29,16 @@ $ var prefixClass = input.prefixClass;
                     aria-label=input.a11yText
                     class=input.iconClass/>
             </if>
-            <else if(status === "attention")>
+            <else-if(status === "attention")>
                 <ebay-attention-filled-icon
                     aria-label=input.a11yText
                     class=input.iconClass/>
-            </else>
-            <else if(status === "information")>
+            </else-if>
+            <else-if(status === "information")>
                 <ebay-information-filled-icon
                     aria-label=input.a11yText
                     class=input.iconClass/>
-            </else>
+            </else-if>
         </if>
     </>
     <${input.mainRoot || "div"} class=`${prefixClass}__main`>

@@ -20,6 +20,7 @@ function createIconFromAttribute(el, context, attribute) {
         const iconContainer = context.createNodeForEl(`@${attribute}`);
         iconContainer.appendChild(iconTag);
         el.prependChild(iconContainer);
+        el.removeAttribute(attribute);
     }
 }
 

@@ -1,5 +1,7 @@
 import processHtmlAttributes from "../../../common/html-attributes"
 
+static const isBrowser = typeof window !== "undefined";
+
 static var ignoredAttributes = [
     "open",
     "type",
@@ -51,7 +53,7 @@ $ var header = input.header;
     aria-live=(!input.isModal && "polite")
     onClick("handleDialogClick")
     onMousedown("handleStartClick")>
-    <if(!input.ignoreEscape && state.open)>
+    <if(state.open && isBrowser && !input.ignoreEscape)>
         <subscribe to=document on-keydown("handleKeydown")/>
     </if>
     <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>
@@ -72,13 +74,13 @@ $ var header = input.header;
         <div class=`${input.classPrefix}__main` key="body" onScroll("handleScroll")>
             <${input.renderBody}/>
         </div>
-        <div
-            class=`${input.classPrefix}__footer`
-            if(input.footer || buttonPosition === "bottom")>
-            <${input.footer && input.footer.renderBody}/>
-            <if(buttonPosition === "bottom")>
-                <button-content/>
-            </if>
-        </div>
+        <if(input.footer || buttonPosition === "bottom")>
+            <div class=`${input.classPrefix}__footer`>
+                <${input.footer && input.footer.renderBody}/>
+                <if(buttonPosition === "bottom")>
+                    <button-content/>
+                </if>
+            </div>
+        </if>
     </div>
 </>

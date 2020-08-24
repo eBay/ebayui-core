@@ -12,9 +12,9 @@ When no selected option is specified:
 
 ```marko
 <ebay-combobox-readonly name="formFieldName">
-    <ebay-combobox-readonly-option value="1" text="Option 1"/>
-    <ebay-combobox-readonly-option value="2" text="Option 2"/>
-    <ebay-combobox-readonly-option value="3" text="Option 3"/>
+    <@option value="1" text="Option 1"/>
+    <@option value="2" text="Option 2"/>
+    <@option value="3" text="Option 3"/>
 </ebay-combobox-readonly>
 ```
 
@@ -22,9 +22,9 @@ When a selected option is specified:
 
 ```marko
 <ebay-combobox-readonly name="formFieldName">
-    <ebay-combobox-readonly-option value="1" text="Option 1"/>
-    <ebay-combobox-readonly-option value="2" text="Option 2" selected/>
-    <ebay-combobox-readonly-option value="3" text="Option 3"/>
+    <@option value="1" text="Option 1"/>
+    <@option value="2" text="Option 2" selected/>
+    <@option value="3" text="Option 3"/>
 </ebay-combobox-readonly>
 ```
 
@@ -47,15 +47,15 @@ Event | Data |  Description
 `combobox-change` | `{ el, index, selected }` | option selected
 ---
 
-## ebay-combobox-readonly-option Tag
+## @option Tag
 
-### ebay-combobox-readonly-option Usage
+### @option Usage
 
 ```marko
-<ebay-combobox-readonly-option value="1" text="Option 1"/>
+<@option value="1" text="Option 1"/>
 ```
 
-### ebay-combobox-readonly-option Attributes
+### @option Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

@@ -10,9 +10,9 @@ When no selected option is specified:
 
 ```marko
 <ebay-combobox name="formFieldName" autocomplete="list">
-    <ebay-combobox-option text="Option 1"/>
-    <ebay-combobox-option text="Option 2"/>
-    <ebay-combobox-option text="Option 3"/>
+    <@option text="Option 1"/>
+    <@option text="Option 2"/>
+    <@option text="Option 3"/>
 </ebay-combobox>
 ```
 
@@ -20,9 +20,9 @@ When a selected option is specified:
 
 ```marko
 <ebay-combobox name="formFieldName" autocomplete="list" value="Option 2">
-    <ebay-combobox-option text="Option 1"/>
-    <ebay-combobox-option text="Option 2"/>
-    <ebay-combobox-option text="Option 3"/>
+    <@option text="Option 1"/>
+    <@option text="Option 2"/>
+    <@option text="Option 3"/>
 </ebay-combobox>
 ```
 
@@ -30,9 +30,9 @@ When the combobox should not filter the listbox options list:
 
 ```marko
 <ebay-combobox name="formFieldName">
-    <ebay-combobox-option text="Option 1"/>
-    <ebay-combobox-option text="Option 2"/>
-    <ebay-combobox-option text="Option 3"/>
+    <@option text="Option 1"/>
+    <@option text="Option 2"/>
+    <@option text="Option 3"/>
 </ebay-combobox>
 ```
 
@@ -59,15 +59,15 @@ Event | Data |  Description
 `combobox-input` | `{ el, index, selected }` | same as the `onInput` event, which fires with every keypress
 `combobox-select` | `{ el, index, selected }` | similar to a `<select>`, which fires when an option is clicked or selected
 
-## ebay-combobox-option Tag
+## @option Tag
 
-### ebay-combobox-option Usage
+### @option Usage
 
 ```marko
-<ebay-combobox-option text="Option 1"/>
+<@option text="Option 1"/>
 ```
 
-### ebay-combobox-option Attributes
+### @option Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

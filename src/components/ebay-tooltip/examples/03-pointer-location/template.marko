@@ -15,24 +15,24 @@ $ var locations = [
 <div>
     default (none specified):
     <ebay-tooltip>
-        <ebay-tooltip-host>
+        <@host>
             <a href="https://www.ebay.com">test link</a>
-        </ebay-tooltip-host>
-        <ebay-tooltip-content>
+        </@host>
+        <@content>
             <p>This is the default tooltip. The pointer is located to the bottom.</p>
-        </ebay-tooltip-content>
+        </@content>
     </ebay-tooltip>
 </div>
 <for|loc| of=locations>
     <div style="margin-top: 8px;">
         ${loc}:
         <ebay-tooltip pointer=loc>
-            <ebay-tooltip-host>
+            <@host>
                 <a href="https://www.ebay.com">test link</a>
-            </ebay-tooltip-host>
-            <ebay-tooltip-content>
+            </@host>
+            <@content>
                 <p>This is the tool tip with ${loc} specified, following skin class names.</p>
-            </ebay-tooltip-content>
+            </@content>
         </ebay-tooltip>
     </div>
 </for>

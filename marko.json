@@ -2,106 +2,100 @@
   "taglib-id": "ebayui-core",
   "tags-dir": "./src/components",
   "taglib-imports": ["./src/components/ebay-icon/marko.json"],
-  "<ebay-breadcrumb>": {
-    "migrator": "./src/components/ebay-breadcrumbs/migrator.js"
-  },
   "<ebay-breadcrumbs-item>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-dialog-base>": {
     "migrator": "./src/components/components/ebay-dialog-base/migrator.js"
   },
   "<ebay-carousel-item>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-combobox-option>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-combobox-readonly-option>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-filter-menu-item>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-filter-menu-button-item>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-listbox-option>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-listbox-button-option>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-menu-item>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-menu-separator>": {
-    "transformer": "./src/common/transformers/menu-separator/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-menu-button-item>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-menu-button-separator>": {
-    "transformer": "./src/common/transformers/menu-separator/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-menu-button-label>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-notice-title>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-notice-content>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-pagination-item>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-section-title-title>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-section-title-subtitle>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-section-title-info>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-section-title-overflow>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-select-option>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
-  },
-  "<ebay-tab>": {
-    "migrator": "./src/components/ebay-tabs/migrator.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-tabs-heading>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-tabs-panel>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-tooltip-host>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-tooltip-content>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-infotip-host>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-infotip-heading>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-infotip-content>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-tourtip-host>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-tourtip-heading>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
   "<ebay-tourtip-content>": {
-    "transformer": "./src/common/transformers/attribute-tags/index.js"
+    "migrator": "./src/common/migrators/attribute-tags/index.js"
   }
 }

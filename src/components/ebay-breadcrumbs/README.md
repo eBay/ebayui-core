@@ -6,9 +6,9 @@
 
 ```marko
 <ebay-breadcrumbs a11y-heading-text='Page navigation'>
-    <ebay-breadcrumbs-item href='https://...'>eBay</ebay-breadcrumbs-item>
-    <ebay-breadcrumbs-item href='https://...'>Auto Parts and Vehicles</ebay-breadcrumbs-item>
-    <ebay-breadcrumbs-item href='https://...'>Motors Parts and Accessories</ebay-breadcrumbs-item>
+    <@item href='https://...'>eBay</@item>
+    <@item href='https://...'>Auto Parts and Vehicles</@item>
+    <@item href='https://...'>Motors Parts and Accessories</@item>
 </ebay-breadcrumbs>
 ```
 
@@ -25,7 +25,7 @@ Event | Description | Data
 --- | --- | ---
 `breadcrumbs-select` | click breadcrumb items | `{ originalEvent, el }`
 
-## ebay-breadcrumbs-item Attributes
+## @item Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
