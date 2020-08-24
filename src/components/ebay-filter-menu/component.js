@@ -69,7 +69,7 @@ module.exports = assign({}, menuUtils, {
         const checked = this.getCheckedValues();
         const checkedIndex = this.getCheckedIndexes();
 
-        this.emit(`filter-menu-${eventType}`, {
+        this.emit(`${eventType}`, {
             el,
             checked,
             checkedIndex,
