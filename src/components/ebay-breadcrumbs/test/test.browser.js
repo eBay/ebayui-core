@@ -23,8 +23,8 @@ describe('given a basic breadcrumb', () => {
             await fireEvent.click(component.getByText(firstItem.renderBody.text));
         });
 
-        it('then it emits the breadcrumbs-select event with correct data', () => {
-            expect(component.emitted('breadcrumbs-select')).has.length(1);
+        it('then it emits the select event with correct data', () => {
+            expect(component.emitted('select')).has.length(1);
         });
     });
 
@@ -33,8 +33,8 @@ describe('given a basic breadcrumb', () => {
             await fireEvent.click(component.getByText(lastItem.renderBody.text));
         });
 
-        it('then it does not emit the breadcrumbs-select event', () => {
-            expect(component.emitted('breadcrumbs-select')).has.length(0);
+        it('then it does not emit the select event', () => {
+            expect(component.emitted('select')).has.length(0);
         });
     });
 });
