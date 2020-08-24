@@ -7,9 +7,9 @@ module.exports = {
         if (isExpanded !== this.state.expanded) {
             this.state.expanded = isExpanded;
             if (isExpanded) {
-                this.emit('drawer-expanded');
+                this.emit('expanded');
             } else {
-                this.emit('drawer-collapsed');
+                this.emit('collapsed');
             }
         }
     },
