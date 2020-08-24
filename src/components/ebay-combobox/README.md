@@ -53,11 +53,11 @@ Note: For this component, `class` is applied to the root tag, while all other HT
 
 Event | Data |  Description
 --- | --- | ---
-`combobox-collapse` | | collapsed content
-`combobox-expand` | | expanded content
-`combobox-change` | `{ el, index, selected }` | same as the `onChange` event, which fires on blur
-`combobox-input` | `{ el, index, selected }` | same as the `onInput` event, which fires with every keypress
-`combobox-select` | `{ el, index, selected }` | similar to a `<select>`, which fires when an option is clicked or selected
+`collapse` | | collapsed content
+`expand` | | expanded content
+`change` | `{ el, index, selected }` | same as the `onChange` event, which fires on blur
+`input-change` | `{ el, index, selected }` | same as the `onInput` event, which fires with every keypress
+`select` | `{ el, index, selected }` | similar to a `<select>`, which fires when an option is clicked or selected
 
 ## @option Tag
 
