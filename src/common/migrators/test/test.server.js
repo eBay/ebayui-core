@@ -39,7 +39,7 @@ describe('migrators', () => {
         expect(el.hasAttribute('on-menu-button-click')).to.equal(false);
     });
 
-    it('does not changes attributes if they do notexist', async() => {
+    it('does not changes attributes if they do not exist', async() => {
         const tagString = '<ebay-menu-button on-button-click(() => {})/>';
         const { el } = runTransformer(migratorFn, tagString, componentPath);
 
@@ -48,14 +48,14 @@ describe('migrators', () => {
     });
 
     it('does multiple changes', async() => {
-        const tagString = '<ebay-menu-button on-button-click(() => {}) icon="settings" old-attribute="val"/>';
+        const tagString = '<ebay-menu-button on-button-click(() => {}) icon="settings" oldAttribute="val"/>';
         const { el } = runTransformer(migratorFn, tagString, componentPath);
 
         const { body: { array: [iconEl] } } = el;
         const { body: { array: [tag] } } = iconEl;
         expect(el.hasAttribute('on-click')).to.equal(false);
         expect(el.hasAttribute('on-button-click')).to.equal(true);
-        expect(el.getAttributeValue('new-attribute').value).to.equal('val');
+        expect(el.getAttributeValue('newAttribute').value).to.equal('val');
         expect(iconEl.tagName).to.equal('@icon');
         expect(tag.tagName).to.equal('ebay-settings-icon');
     });
