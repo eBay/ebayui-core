@@ -7,8 +7,5 @@
   },
   "<ebay-tooltip-overlay>": {
     "renderer": "./components/ebay-tooltip-overlay/index.marko"
-  },
-  "<*>": {
-    "transformer": "../common/transformers/ebayui-attribute/index.js"
   }
 }

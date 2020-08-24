@@ -1,7 +1,7 @@
 const { createIconFromAttribute } = require('../../common/migrators');
 
 // Transforms old icon to prefix or postfix icon
-function migrate(el, context) {
+function migratorMarko4(el, context) {
     if (el.hasAttribute('icon') && typeof el.getAttributeValue('icon').value === 'string') {
         const attr = el.getAttribute('icon');
         const isPostfix = el.hasAttribute('icon-position') &&
@@ -18,4 +18,14 @@ function migrate(el, context) {
     createIconFromAttribute(el, context, 'postfix-icon');
 }
 
-module.exports = migrate;
+function migratorMarko5() {
+    return;
+}
+
+module.exports = function migrator(a, b) {
+    if (a.hub) {
+        return migratorMarko5(a, b);
+    }
+
+    return migratorMarko4(a, b);
+};

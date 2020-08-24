@@ -12,6 +12,7 @@ const COMPONENT_FILES = fs
  * @param {Object} context
  */
 function transform(el, context) {
+    // DEPRECATED, remove possibly unless needed
     // Only runs on top level ebay ui templates (skips demos).
     const isEbayUIComponentFile = COMPONENT_FILES.indexOf(context.filename) !== -1;
 

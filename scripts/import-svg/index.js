@@ -71,7 +71,7 @@ for (const [name, themes] of icons) {
         const shortTheme = util.getDSVersion(theme);
         const filePath = path.join(iconFolder, util.dsFilenames[shortTheme]);
         const content = themes[theme] || (
-            `<% if (typeof window !== 'undefined') console.error('${theme} icon not found: ${name}') %>\n${
+            `$ if (typeof window !== 'undefined') console.error('${theme} icon not found: ${name}');\n${
                 missingSVG.replace('{{name}}', name)
             }`
         );

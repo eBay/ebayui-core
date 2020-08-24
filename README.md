@@ -90,9 +90,9 @@ Once the package dependency is added, the eBay [customs tags](https://markojs.co
 
 ```marko
 <ebay-menu text="Sort" type="radio">
-    <ebay-menu-item>Price</ebay-menu-item>
-    <ebay-menu-item>Time</ebay-menu-item>
-    <ebay-menu-item>Distance</ebay-menu-item>
+    <@item>Price</@item>
+    <@item>Time</@item>
+    <@item>Distance</@item>
 </ebay-menu>
 ```
 
@@ -116,9 +116,9 @@ Attributes provide initial state for a component. We can see that the menu has `
 
 ```marko
 <ebay-menu text="Sort" type="radio">
-    <ebay-menu-item>Price</ebay-menu-item>
-    <ebay-menu-item>Time</ebay-menu-item>
-    <ebay-menu-item>Distance</ebay-menu-item>
+    <@item>Price</@item>
+    <@item>Time</@item>
+    <@item>Distance</@item>
 </ebay-menu>
 ```
 
@@ -181,9 +181,9 @@ Events can also be handled using [Marko syntax](https://markojs.com/docs/events/
 
 ```marko
 <ebay-menu text="Sort" type="radio" on-change("onMenuChange")>
-    <ebay-menu-item>Price</ebay-menu-item>
-    <ebay-menu-item>Time</ebay-menu-item>
-    <ebay-menu-item>Distance</ebay-menu-item>
+    <@item>Price</@item>
+    <@item>Time</@item>
+    <@item>Distance</@item>
 </ebay-menu>
 ```
 

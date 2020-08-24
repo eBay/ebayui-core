@@ -8,9 +8,9 @@
 
 ```marko
 <ebay-menu-button text="text">
-    <ebay-menu-button-item>item 1</ebay-menu-button-item>
-    <ebay-menu-button-item>item 2</ebay-menu-button-item>
-    <ebay-menu-button-item>item 3</ebay-menu-button-item>
+    <@item>item 1</@item>
+    <@item>item 2</@item>
+    <@item>item 3</@item>
 </ebay-menu-button>
 ```
 ## ebay-menu-buton Sub-tags
@@ -49,23 +49,23 @@ Event | Data | Description
 `menu-button-change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
 `menu-button-select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
 
-## ebay-menu-button-label Tag
+## @label Tag
 
-### ebay-menu-button-label Usage
-
-```marko
-<ebay-menu-button-label><div>Custom Label</div></ebay-menu-button-label>
-```
-
-## ebay-menu-button-item Tag
-
-### ebay-menu-button-item Usage
+### @label Usage
 
 ```marko
-<ebay-menu-button-item>item 1</ebay-menu-button-item>
+<@label><div>Custom Label</div></@label>
 ```
 
-### ebay-menu-button-item Attributes
+## @item Tag
+
+### @item Usage
+
+```marko
+<@item>item 1</@item>
+```
+
+### @item Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
@@ -84,8 +84,8 @@ Adds a line separator between each menu button items
 
 ```marko
 <ebay-menu>
-    <ebay-menu-button-item>Item1</ebay-menu-button-item>
+    <@item>Item1</@item>
     <ebay-menu-button-separator/>
-    <ebay-menu-button-item>Item2</ebay-menu-button-item>
+    <@item>Item2</@item>
 </ebay-menu>
 ```

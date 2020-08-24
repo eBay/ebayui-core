@@ -1,7 +1,7 @@
 const { setAttributeIfPresent } = require('../../common/migrators');
 const dialogBaseMigrator = require('../components/ebay-dialog-base/migrator');
 
-function migrator(el, context) {
+function migratorMarko4(el, context) {
     let dialogType;
     const type = el.hasAttribute('type') && el.getAttributeValue('type').value;
     if (type === 'full') {
@@ -28,4 +28,14 @@ function migrator(el, context) {
     return el;
 }
 
-module.exports = migrator;
+function migratorMarko5() {
+    return;
+}
+
+module.exports = function migrator(a, b) {
+    if (a.hub) {
+        return migratorMarko5(a, b);
+    }
+
+    return migratorMarko4(a, b);
+};
