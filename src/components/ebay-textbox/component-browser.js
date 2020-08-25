@@ -6,7 +6,7 @@ module.exports = {
     handleKeypress: forwardEvent('keypress'),
     handleKeyup: forwardEvent('keyup'),
     handleChange: forwardEvent('change'),
-    handleInput: forwardEvent('input'),
+    handleInput: forwardEvent('input-change'),
     handleFocus: forwardEvent('focus'),
     handleBlur: forwardEvent('blur'),
     handleButtonClick: forwardEvent('button-click'),
@@ -46,7 +46,7 @@ module.exports = {
 
 function forwardEvent(eventName) {
     return function(originalEvent, el) {
-        this.emit(`textbox-${eventName}`, {
+        this.emit(eventName, {
             originalEvent,
             value: (el || this.el.querySelector('input, textarea')).value
         });
