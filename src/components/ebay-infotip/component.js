@@ -20,7 +20,7 @@ module.exports = {
 
     handleExpand() {
         this.setOpen(true);
-        this.emit('tooltip-expand');
+        this.emit('expand');
     },
 
     handleOverlayClose() {
@@ -31,6 +31,6 @@ module.exports = {
         this.setOpen(false);
 
         this.getEl('host').focus();
-        this.emit('tooltip-collapse');
+        this.emit('collapse');
     }
 };

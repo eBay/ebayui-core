@@ -1,11 +1,8 @@
+const { setAttributeIfPresent } = require('../../common/migrators');
 
-const { createIconFromAttribute, setAttributeIfPresent } = require('../../common/migrators');
-
+// Transforms an `icon` attribute into an `<ebay-menu:_icon>` tag
 function migratorMarko4(el, context) {
-    createIconFromAttribute(el, context, 'icon');
-    setAttributeIfPresent(el, context, 'on-tooltip-expand', 'on-expand');
     setAttributeIfPresent(el, context, 'on-tooltip-collapse', 'on-collapse');
-
 }
 
 function migratorMarko5() {

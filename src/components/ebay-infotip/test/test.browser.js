@@ -34,8 +34,8 @@ describe('given the default infotip', () => {
                 await fireEvent.click(component.getByLabelText(input.ariaLabel));
             });
 
-            it('then it emits the tooltip-expand event', () => {
-                expect(component.emitted('tooltip-expand')).has.length(1);
+            it('then it emits the expand event', () => {
+                expect(component.emitted('expand')).has.length(1);
             });
 
             it('then it is expanded', () => {
@@ -47,8 +47,8 @@ describe('given the default infotip', () => {
                     await fireEvent.click(component.getByLabelText(input.ariaLabel));
                 });
 
-                it('then it emits the tooltip-collapse event', () => {
-                    expect(component.emitted('tooltip-collapse')).has.length(1);
+                it('then it emits the collapse event', () => {
+                    expect(component.emitted('collapse')).has.length(1);
                 });
 
                 it('then it is collapsed', () => {
@@ -71,8 +71,8 @@ describe('given the modal infotip', () => {
             await fireEvent.click(component.getByLabelText(input.ariaLabel));
         });
 
-        it('then it emits the tooltip-expand event', async() => {
-            await wait(() => expect(component.emitted('tooltip-expand')).has.length(1));
+        it('then it emits the expand event', async() => {
+            await wait(() => expect(component.emitted('expand')).has.length(1));
         });
 
         it('then it is expanded', async() => {
@@ -96,8 +96,8 @@ describe('given the modal infotip opened', () => {
             await fireEvent.click(component.getByLabelText(input.ariaLabel));
         });
 
-        it('then it emits the tooltip-collapse event', async() => {
-            await wait(() => expect(component.emitted('tooltip-collapse')).has.length(1));
+        it('then it emits the collapse event', async() => {
+            await wait(() => expect(component.emitted('collapse')).has.length(1));
         });
 
         it('then it is collapsed', async() => {
