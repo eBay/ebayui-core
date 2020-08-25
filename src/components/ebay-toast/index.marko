@@ -9,8 +9,8 @@ $ var header = input.header || {};
     isModal=false
     classPrefix="toast"
     buttonPosition="right"
-    on-open("emit", "toast-show")
-    on-close("emit", "toast-close")
+    on-open("emit", "open")
+    on-close("emit", "close")
     class=[input.class, "toast--transition"]>
     <@header ...header class=[header.class, "toast__title"] />
     <${input.renderBody}/>
