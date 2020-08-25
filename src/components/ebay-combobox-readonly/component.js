@@ -7,10 +7,10 @@ const eventUtils = require('../../common/event-utils');
 module.exports = {
     handleExpand() {
         elementScroll.scroll(this.getEls('options')[this.state.selectedIndex]);
-        this.emit('combobox-expand');
+        this.emit('expand');
     },
     handleCollapse() {
-        this.emit('combobox-collapse');
+        this.emit('collapse');
     },
 
     /**
@@ -82,7 +82,7 @@ module.exports = {
             const el = this.getEls('options')[index];
             this.state.selectedIndex = index;
             elementScroll.scroll(el);
-            this.emit('combobox-change', {
+            this.emit('change', {
                 index,
                 selected: [this.input.options[index].value],
                 el

@@ -71,7 +71,7 @@ module.exports = {
 
         if (index !== state.index) {
             state.index = index;
-            this.emit('tabs-select', { index });
+            this.emit('select', { index });
         }
     },
 

@@ -104,7 +104,7 @@ describe('given a continuous carousel', () => {
             });
 
             it('then it did not emit the prev event', () => {
-                expect(component.emitted('carousel-previous')).has.length(0);
+                expect(component.emitted('previous')).has.length(0);
             });
         });
 
@@ -119,7 +119,7 @@ describe('given a continuous carousel', () => {
             });
 
             it('then it emitted the next event', () => {
-                expect(component.emitted('carousel-next')).has.length(1);
+                expect(component.emitted('next')).has.length(1);
             });
 
             it('then it moved to the next hidden item', () => {
@@ -142,7 +142,7 @@ describe('given a continuous carousel', () => {
             });
 
             it('then it did not emit the next event', () => {
-                expect(component.emitted('carousel-next')).has.length(0);
+                expect(component.emitted('next')).has.length(0);
             });
         });
 
@@ -159,7 +159,7 @@ describe('given a continuous carousel', () => {
             });
 
             it('then it emitted the previous event', () => {
-                expect(component.emitted('carousel-previous')).has.length(1);
+                expect(component.emitted('previous')).has.length(1);
             });
 
             it('then it moved to the previous hidden item', () => {
@@ -192,7 +192,7 @@ describe('given a continuous carousel', () => {
             });
 
             it('then emitted 3 next events', () => {
-                expect(component.emitted('carousel-next')).has.length(3);
+                expect(component.emitted('next')).has.length(3);
             });
 
             it('then the last item is visible', () => {
@@ -214,11 +214,11 @@ describe('given a continuous carousel', () => {
             });
 
             it('then emitted 3 next events', () => {
-                expect(component.emitted('carousel-next')).has.length(3);
+                expect(component.emitted('next')).has.length(3);
             });
 
             it('then emitted a prev event', () => {
-                expect(component.emitted('carousel-previous')).has.length(1);
+                expect(component.emitted('previous')).has.length(1);
             });
 
             it('then the last item is not visible', () => {
@@ -326,7 +326,7 @@ describe('given a discrete carousel', () => {
             });
 
             it('then it did not emit the prev event', () => {
-                expect(component.emitted('carousel-previous')).has.length(0);
+                expect(component.emitted('previous')).has.length(0);
             });
         });
 
@@ -337,11 +337,11 @@ describe('given a discrete carousel', () => {
             });
 
             it('then it emitted the next event', () => {
-                expect(component.emitted('carousel-next')).has.length(1);
+                expect(component.emitted('next')).has.length(1);
             });
 
             it('then it emitted the slide event', () => {
-                expect(component.emitted('carousel-slide')).has.nested.property('[0][0].slide', 2);
+                expect(component.emitted('slide')).has.nested.property('[0][0].slide', 2);
             });
 
             thenItMovedToTheSecondSlide();
@@ -361,7 +361,7 @@ describe('given a discrete carousel', () => {
             });
 
             it('then it emitted the scroll event', () => {
-                expect(component.emitted('carousel-scroll')).has.length(1);
+                expect(component.emitted('scroll')).has.length(1);
             });
 
             thenItMovedToTheSecondSlide();
@@ -403,11 +403,11 @@ describe('given a discrete carousel', () => {
             });
 
             it('then it emitted the previous event', () => {
-                expect(component.emitted('carousel-previous')).has.length(1);
+                expect(component.emitted('previous')).has.length(1);
             });
 
             it('then it emitted the slide event', () => {
-                expect(component.emitted('carousel-slide')).has.nested.property('[0][0].slide', 2);
+                expect(component.emitted('slide')).has.nested.property('[0][0].slide', 2);
             });
 
             it('then it moved to the second item', () => {
@@ -445,7 +445,7 @@ describe('given a discrete carousel', () => {
             });
 
             it('then it emitted the next event', () => {
-                expect(component.emitted('carousel-next')).has.length(1);
+                expect(component.emitted('next')).has.length(1);
             });
 
             thenItMovedToTheSecondSlide();
@@ -453,7 +453,7 @@ describe('given a discrete carousel', () => {
 
         function thenItMovedToTheSecondSlide() {
             it('then it emitted the slide event', () => {
-                expect(component.emitted('carousel-slide')).has.length(1);
+                expect(component.emitted('slide')).has.length(1);
             });
 
             it('then it moved to the third item', () => {
@@ -499,11 +499,11 @@ describe('given a discrete carousel', () => {
             });
 
             it('then it emitted the next event', () => {
-                expect(component.emitted('carousel-next')).has.length(1);
+                expect(component.emitted('next')).has.length(1);
             });
 
             it('then it emitted the slide event', () => {
-                expect(component.emitted('carousel-slide')).has.length(1);
+                expect(component.emitted('slide')).has.length(1);
             });
 
             it('then it moved to the third item', () => {
@@ -536,8 +536,8 @@ describe('given a discrete carousel', () => {
             });
 
             it('then it does not emit next or slide events', () => {
-                expect(component.emitted('carousel-next')).has.length(0);
-                expect(component.emitted('carousel-slide')).has.length(0);
+                expect(component.emitted('next')).has.length(0);
+                expect(component.emitted('slide')).has.length(0);
             });
 
             it('then it moved to the third item', () => {
@@ -551,7 +551,7 @@ describe('given a discrete carousel', () => {
                 });
 
                 it('then it does not emit the next event', () => {
-                    expect(component.emitted('carousel-next')).has.length(0);
+                    expect(component.emitted('next')).has.length(0);
                 });
 
                 thenItIsOnTheFirstSlide();
@@ -564,11 +564,11 @@ describe('given a discrete carousel', () => {
                 });
 
                 it('then it emitted the next event', () => {
-                    expect(component.emitted('carousel-next')).has.length(1);
+                    expect(component.emitted('next')).has.length(1);
                 });
 
                 it('then it emitted the slide event', () => {
-                    expect(component.emitted('carousel-slide')).has.length(1);
+                    expect(component.emitted('slide')).has.length(1);
                 });
 
                 thenItIsOnTheFirstSlide();
@@ -582,7 +582,7 @@ describe('given a discrete carousel', () => {
             });
 
             it('then it did not emit any updates', () => {
-                expect(component.emitted('carousel-update')).has.length(0);
+                expect(component.emitted('move')).has.length(0);
             });
 
             thenItIsOnTheFirstSlide();
@@ -595,7 +595,7 @@ describe('given a discrete carousel', () => {
 
             it('then the autoplay does not run', async() => {
                 await new Promise(resolve => setTimeout(resolve, 600));
-                expect(component.emitted('carousel-update')).has.length(0);
+                expect(component.emitted('move')).has.length(0);
             });
 
             describe('when the interaction has finished', () => {
@@ -623,7 +623,7 @@ describe('given a discrete carousel', () => {
 });
 
 function waitForCarouselUpdate() {
-    return wait(() => expect(component.emitted('carousel-update')).has.length(1));
+    return wait(() => expect(component.emitted('move')).has.length(1));
 }
 
 function doesNotEventuallyScroll() {

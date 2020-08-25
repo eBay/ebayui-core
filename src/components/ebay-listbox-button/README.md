@@ -42,9 +42,9 @@ Name | Type | Stateful | Required | Description
 
 Event | Data |  Description
 --- | --- | ---
-`listbox-collapse` | | collapse content
-`listbox-expand` | | expand content
-`listbox-change` | `{ el, index, selected }` | option selected
+`collapse` | | collapse content
+`expand` | | expand content
+`change` | `{ el, index, selected }` | option selected
 ---
 
 ## @option Tag

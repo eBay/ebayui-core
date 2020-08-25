@@ -27,12 +27,12 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`textbox-change` | `{ originalEvent, value }` |
-`textbox-input` | `{ originalEvent, value }` |
-`textbox-focus` | `{ originalEvent, value }` |
-`textbox-blur` | `{ originalEvent, value }` |
-`textbox-keydown` | `{ originalEvent, value }` |
-`textbox-keypress` | `{ originalEvent, value }` |
-`textbox-keyup` | `{ originalEvent, value }` |
-`textbox-floating-label-init` | `{ originalEvent: null, value: null }` |
-`textbox-button-click` | `{ originalEvent, value }` | Triggers when clicking on postfix-icon-button. Requires button-aria-label to be present in order to attach correctly
+`change` | `{ originalEvent, value }` |
+`input-change` | `{ originalEvent, value }` |
+`focus` | `{ originalEvent, value }` |
+`blur` | `{ originalEvent, value }` |
+`keydown` | `{ originalEvent, value }` |
+`keypress` | `{ originalEvent, value }` |
+`keyup` | `{ originalEvent, value }` |
+`floating-label-init` | `{ originalEvent: null, value: null }` |
+`button-click` | `{ originalEvent, value }` | Triggers when clicking on postfix-icon-button. Requires button-aria-label to be present in order to attach correctly

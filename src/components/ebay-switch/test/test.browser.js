@@ -20,7 +20,7 @@ describe('given switch button is enabled', () => {
         });
 
         it('then it emits the event', () => {
-            const changeEvents = component.emitted('switch-change');
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(1);
 
             const [[eventArg]] = changeEvents;
@@ -42,7 +42,7 @@ describe('given switch button is disabled', () => {
         });
 
         it('then it doesn\'t emit the event', () => {
-            expect(component.emitted('switch-change')).has.length(0);
+            expect(component.emitted('change')).has.length(0);
         });
     });
 });

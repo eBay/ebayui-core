@@ -41,7 +41,7 @@ Note: For this component, `class`/`style` are applied to the root tag, while all
 
 Event | Data |  Description
 --- | --- | ---
-`select-change` | `{ el, index, selected }` | option selected
+`change` | `{ el, index, selected }` | option selected
 ---
 
 ## @option Tag

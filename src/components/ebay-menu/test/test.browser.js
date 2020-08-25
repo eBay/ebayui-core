@@ -24,8 +24,8 @@ describe('given the menu is in the default state', () => {
             await fireEvent.click(component.getByText(firstItemText));
         });
 
-        it('then it emits the menu-select event with correct data', () => {
-            const selectEvents = component.emitted('menu-select');
+        it('then it emits the select event with correct data', () => {
+            const selectEvents = component.emitted('select');
             expect(selectEvents).to.length(1);
 
             const [[eventArg]] = selectEvents;
@@ -45,7 +45,7 @@ describe('given the menu is in the default state', () => {
         });
 
         it('then it emits the marko keydown event', () => {
-            expect(component.emitted('menu-keydown')).to.have.property('length', 1);
+            expect(component.emitted('keydown')).to.have.property('length', 1);
         });
     });
 });
@@ -65,8 +65,8 @@ describe('given the menu has radio items', () => {
             await fireEvent.click(firstItem);
         });
 
-        it('then it emits the menu-change event with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits the change event with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(1);
 
             const eventData = changeEvents[0][0];
@@ -86,8 +86,8 @@ describe('given the menu has radio items', () => {
             });
         });
 
-        it('then it emits the menu-change event with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits the change event with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(1);
 
             const eventData = changeEvents[0][0];
@@ -105,8 +105,8 @@ describe('given the menu has radio items', () => {
             await fireEvent.click(secondItem);
         });
 
-        it('then it emits two menu-change events with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits two change events with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
             const firstEventData = changeEvents[0][0];
@@ -128,8 +128,8 @@ describe('given the menu has radio items', () => {
             await fireEvent.click(firstItem);
         });
 
-        it('then it emits two menu-change events with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits two change events with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(1);
 
             const eventData = changeEvents[0][0];
@@ -158,8 +158,8 @@ describe('given the menu has checkbox items', () => {
             await fireEvent.click(secondItem);
         });
 
-        it('then it emits two menu-change events with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits two change events with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
             const firstEventData = changeEvents[0][0];
@@ -180,8 +180,8 @@ describe('given the menu has checkbox items', () => {
             await fireEvent.click(firstItem);
         });
 
-        it('then it emits the menu-change events with correct data', () => {
-            const changeEvents = component.emitted('menu-change');
+        it('then it emits the change events with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
             const firstEventData = changeEvents[0][0];

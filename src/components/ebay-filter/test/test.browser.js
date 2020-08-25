@@ -25,7 +25,7 @@ describe('given filter is enabled', () => {
         });
 
         it('then it emits the event with correct data', () => {
-            const clickEvents = component.emitted('filter-click');
+            const clickEvents = component.emitted('click');
             expect(clickEvents).has.length(1);
             const [[clickEventArg]] = clickEvents;
             expect(clickEventArg).has.property('originalEvent');
@@ -59,7 +59,7 @@ describe('given filter is disabled', () => {
         });
 
         it('then it does not emit the event', () => {
-            expect(component.emitted('filter-click')).has.length(0);
+            expect(component.emitted('click')).has.length(0);
         });
     });
 });

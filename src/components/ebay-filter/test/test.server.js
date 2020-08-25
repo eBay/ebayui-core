@@ -1,6 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -56,4 +56,5 @@ describe('filter', () => {
             return component.getByRole('button');
         }
     });
+    testEventsMigrator(require('../migrator'), 'filter', ['click'], '../index.marko');
 });

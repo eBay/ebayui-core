@@ -25,7 +25,7 @@ describe('given an input textbox', () => {
             });
 
             it('then it emits the event', () => {
-                const events = component.emitted(`textbox-${eventName.toLowerCase()}`);
+                const events = component.emitted(eventName === 'input' ? 'input-change' : eventName.toLowerCase());
                 expect(events).has.length(1);
 
                 const [[eventArg]] = events;
@@ -82,7 +82,7 @@ describe('given an input textbox with floating label and no value', () => {
         });
 
         it('it should send a textbox floating label init event', () => {
-            expect(component.emitted('textbox-floating-label-init')).has.length(1);
+            expect(component.emitted('floating-label-init')).has.length(1);
         });
     });
 });
@@ -96,6 +96,6 @@ describe('when the component has a postfix button', () => {
     });
 
     it('it should trigger a postfix click event', () => {
-        expect(component.emitted('textbox-button-click')).has.length(1);
+        expect(component.emitted('button-click')).has.length(1);
     });
 });

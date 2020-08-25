@@ -43,11 +43,11 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`menu-button-expand` |  | expand content
-`menu-button-collapse` |  | collapse content
-`menu-button-change` (radio) | `{ el, index, checked }` | item changed/checked
-`menu-button-change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
-`menu-button-select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
+`expand` |  | expand content
+`collapse` |  | collapse content
+`change` (radio) | `{ el, index, checked }` | item changed/checked
+`change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
+`select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
 
 ## @label Tag
 

@@ -54,7 +54,7 @@ describe('given the combobox with 3 items', () => {
                 });
 
                 it('then it should emit a input event', () => {
-                    expect(component.emitted('combobox-input')).has.length(1);
+                    expect(component.emitted('input-change')).has.length(1);
                 });
 
                 describe('when blur happens on the combobox', () => {
@@ -63,7 +63,7 @@ describe('given the combobox with 3 items', () => {
                     });
 
                     it('then it should emit a change event', () => {
-                        expect(component.emitted('combobox-change')).has.length(1);
+                        expect(component.emitted('change')).has.length(1);
                     });
                 });
             });
@@ -95,7 +95,7 @@ describe('given the combobox with 3 items', () => {
                     });
 
                     it('then it emitted the select event', () => {
-                        expect(component.emitted('combobox-select')).has.length(1);
+                        expect(component.emitted('select')).has.length(1);
                     });
                 });
 
@@ -121,7 +121,7 @@ describe('given the combobox with 3 items', () => {
                 });
 
                 it('then it should emit a select event', () => {
-                    expect(component.emitted('combobox-select')).has.length(1);
+                    expect(component.emitted('select')).has.length(1);
                 });
 
                 it('then it should update the input', () => {
@@ -175,7 +175,7 @@ describe('given the combobox starts with zero options', () => {
         });
 
         it('then it should emit a input event', () => {
-            expect(component.emitted('combobox-input')).has.length(1);
+            expect(component.emitted('input-change')).has.length(1);
         });
         describe('when blur happens on the combobox', () => {
             beforeEach(async() => {
@@ -183,7 +183,7 @@ describe('given the combobox starts with zero options', () => {
             });
 
             it('then it should emit a change event', () => {
-                expect(component.emitted('combobox-change')).has.length(1);
+                expect(component.emitted('change')).has.length(1);
             });
         });
     });
@@ -213,7 +213,7 @@ describe('given the combobox starts with zero options', () => {
                 });
 
                 it('then it should emit a input event', () => {
-                    expect(component.emitted('combobox-input')).has.length(1);
+                    expect(component.emitted('input-change')).has.length(1);
                 });
 
                 describe('when blur happens on the combobox', () => {
@@ -222,7 +222,7 @@ describe('given the combobox starts with zero options', () => {
                     });
 
                     it('then it should emit a change event', () => {
-                        expect(component.emitted('combobox-change')).has.length(1);
+                        expect(component.emitted('change')).has.length(1);
                     });
                 });
             });
@@ -254,7 +254,7 @@ describe('given the combobox starts with zero options', () => {
                     });
 
                     it('then it emitted the select event', () => {
-                        expect(component.emitted('combobox-select')).has.length(1);
+                        expect(component.emitted('select')).has.length(1);
                     });
                 });
 
@@ -280,7 +280,7 @@ describe('given the combobox starts with zero options', () => {
                 });
 
                 it('then it should emit a select event', () => {
-                    expect(component.emitted('combobox-select')).has.length(1);
+                    expect(component.emitted('select')).has.length(1);
                 });
 
                 it('then it should update the input', () => {
@@ -317,7 +317,7 @@ describe('when it is rerendered with actionable', () => {
         });
 
         it('should emit event', () => {
-            expect(component.emitted('combobox-button-click')).has.length(1);
+            expect(component.emitted('button-click')).has.length(1);
         });
     });
 
@@ -329,7 +329,7 @@ describe('when it is rerendered with actionable', () => {
 
         it('should emit event and not close', () => {
             expect(component.getByRole('combobox')).has.attr('aria-expanded', 'true');
-            expect(component.emitted('combobox-button-click')).has.length(1);
+            expect(component.emitted('button-click')).has.length(1);
         });
     });
 });

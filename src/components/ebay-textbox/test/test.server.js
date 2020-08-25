@@ -1,6 +1,10 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, runTransformer } = require('../../../common/test-utils/server');
+const {
+    runTransformer,
+    testPassThroughAttributes,
+    testEventsMigrator
+} = require('../../../common/test-utils/server');
 const migrator = require('../migrator');
 const template = require('..');
 const mock = require('./mock');
@@ -150,4 +154,8 @@ describe('migrator', () => {
         expect(el.hasAttribute('icon')).to.equal(false);
         expect(el.hasAttribute('icon-position')).to.equal(false);
     });
+
+    testEventsMigrator(require('../migrator'), 'textbox',
+        ['change', { from: 'input', to: 'input-change' }, 'focus', 'blur', 'keydown', 'keypress',
+            'keyup', 'floating-label-init', 'button-click'], '../index.marko');
 });

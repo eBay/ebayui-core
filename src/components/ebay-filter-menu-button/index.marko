@@ -40,10 +40,10 @@ static var ignoredAttributes = [
         form-action=input.formAction
         form-method=input.formMethod
         footer-text=input.footerText
-        onFilter-menu-keydown("handleMenuKeydown")
-        onFilter-menu-change("handleMenuChange")
-        onFilter-menu-form-submit("handleFormSubmit")
-        onFilter-menu-footer-click("handleFooterButtonClick")>
+        on-keydown("handleMenuKeydown")
+        on-change("handleMenuChange")
+        on-form-submit("handleFormSubmit")
+        on-footer-click("handleFooterButtonClick")>
         <for|item, i| of=input.items>
             <@item ...item checked=component.isChecked(i)/>
         </for>

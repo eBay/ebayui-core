@@ -105,7 +105,7 @@ module.exports = assign({}, menuUtils, {
             });
         }
 
-        this.emit(`menu-button-${eventType}`, eventObj);
+        this.emit(`${eventType}`, eventObj);
     },
 
     onInput(input) {

@@ -20,7 +20,7 @@ describe('given checkbox button is enabled', () => {
         });
 
         it('then it emitted the change event', () => {
-            const changeEvents = component.emitted('checkbox-change');
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(1);
 
             const [[changeEvent]] = changeEvents;
@@ -46,7 +46,7 @@ describe('given checkbox button is disabled', () => {
         });
 
         it('then it does not emit the change event', () => {
-            expect(component.emitted('checkbox-change')).has.length(0);
+            expect(component.emitted('change')).has.length(0);
         });
 
         it('then it remains unchecked', () => {
@@ -62,7 +62,7 @@ describe('when native focus event is fired', () => {
     });
 
     it('then it emits the event', () => {
-        const events = component.emitted('checkbox-focus');
+        const events = component.emitted('focus');
         expect(events).has.length(1);
 
         const [[eventArg]] = events;

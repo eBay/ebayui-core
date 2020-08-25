@@ -37,5 +37,5 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`tooltip-expand` | | overlay has been expanded
-`tooltip-collapse` | | overlay has been collapsed
+`expand` | | overlay has been expanded
+`collapse` | | overlay has been collapsed

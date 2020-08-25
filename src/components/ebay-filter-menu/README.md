@@ -36,9 +36,9 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`filter-menu-button-change` | `{ el, checked, originalEvent }` | items changed/checked
-`filter-menu-button-footer-click` | `{ checked, originalEvent }` | footer button clicked
-`filter-menu-button-form-submit` |  | `{ checked, originalEvent }` | when using `variant="form"`, and form is submitted (emits current checked state)
+`change` | `{ el, checked, originalEvent }` | items changed/checked
+`footer-click` | `{ checked, originalEvent }` | footer button clicked
+`form-submit` |  | `{ checked, originalEvent }` | when using `variant="form"`, and form is submitted (emits current checked state)
 
 ## @item Tag
 

@@ -37,7 +37,7 @@ Name | Type | Stateful | Required | Description
 
 Event | Data |  Description
 --- | --- | ---
-`listbox-change` | `{ el, index, selected, wasClicked }` | option selected
+`change` | `{ el, index, selected, wasClicked }` | option selected
 ---
 
 ## @option Tag

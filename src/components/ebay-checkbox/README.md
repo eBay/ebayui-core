@@ -19,5 +19,5 @@ Note: For this component, `class`/`style` are applied to the root tag, while all
 
 Event | Data | Description
 --- | --- | --
-`checkbox-change` | `{ originalEvent, value, checked }` | selected value and checked status
-`checkbox-focus` | `{ originalEvent, value }` |
+`change` | `{ originalEvent, value, checked }` | selected value and checked status
+`focus` | `{ originalEvent, value }` |

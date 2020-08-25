@@ -7,8 +7,8 @@ import processHtmlAttributes from "../../common/html-attributes"
     buttonPosition="right"
     key="dialog"
     on-scroll('handleScroll')
-    on-open("emit", "drawer-show")
-    on-close("emit", "drawer-close")
+    on-open("emit", "open")
+    on-close("emit", "close")
     class=[
         input.class,
         "drawer--mask-fade-slow"

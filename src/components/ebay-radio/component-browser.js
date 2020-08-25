@@ -7,7 +7,7 @@ module.exports = {
 function forwardEvent(eventName) {
     return function(originalEvent, el) {
         if (!el.disabled) {
-            this.emit(`radio-${eventName}`, {
+            this.emit(eventName, {
                 originalEvent,
                 value: (el || this.el.querySelector('input')).value
             });
