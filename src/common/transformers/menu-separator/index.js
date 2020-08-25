@@ -1,13 +1,34 @@
-const attributeTranformer = require('../attribute-tags/index');
-
 /**
  * @param {Object} el
  * @param {Object} context
  */
-function transform(el, context) {
-    el.setTagName(el.tagName.replace(/^(.*)-separator$/, '$1-item'));
-    el.setAttributeValue('isSeparator', context.builder.literalTrue());
-    attributeTranformer(el, context);
+function transformMarko4(el, context) {
+    const walker = context.createWalker({
+        enter(node) {
+            if (node.tagName === '@separator') {
+                node.setTagName('@item');
+                node.setAttributeValue('isSeparator', context.builder.literalTrue());
+            }
+        }
+    });
+    walker.walk(el);
+    return el;
+}
+function transformMarko5(path, t) {
+    path.traverse({
+        MarkoTag(tag) {
+            if (tag.get('name').isStringLiteral({ name: '@separator' })) {
+                tag.set('name.value', '@item');
+                tag.pushContainer('attributes', t.markoAttribute('isSeparator', t.booleanLiteral(true)));
+            }
+        }
+    });
 }
 
-module.exports = transform;
+module.exports = function transform(a, b) {
+    if (a.hub) {
+        return transformMarko5(a, b);
+    }
+
+    return transformMarko4(a, b);
+};

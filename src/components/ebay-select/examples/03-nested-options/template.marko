@@ -16,7 +16,7 @@ $ var options = [
 <ebay-select name="formFieldName">
     <if(true)>
         <for|option| of=options>
-            <ebay-select-option value=option.value text=option.text selected=option.selected/>
+            <@option value=option.value text=option.text selected=option.selected/>
         </for>
     </if>
 </ebay-select>

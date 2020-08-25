@@ -36,6 +36,5 @@
     "@rel": "#html-rel",
     "@target": "#html-target",
     "@aria-current": "never"
-  },
-  "migrator": "./migrator.js"
+  }
 }

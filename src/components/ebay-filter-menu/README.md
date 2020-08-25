@@ -8,9 +8,9 @@ The `ebay-filter-menu` component is used as a checkbox menu specificially styled
 
 ```marko
 <ebay-filter-menu>
-    <ebay-filter-menu-item value="item 1">item 1</ebay-filter-menu-item>
-    <ebay-filter-menu-item value="item 2">item 2</ebay-filter-menu-item>
-    <ebay-filter-menu-item value="item 3">item 3</ebay-filter-menu-item>
+    <@item value="item 1">item 1</@item>
+    <@item value="item 2">item 2</@item>
+    <@item value="item 3">item 3</@item>
 </ebay-filter-menu>
 ```
 
@@ -40,15 +40,15 @@ Event | Data | Description
 `filter-menu-button-footer-click` | `{ checked, originalEvent }` | footer button clicked
 `filter-menu-button-form-submit` |  | `{ checked, originalEvent }` | when using `variant="form"`, and form is submitted (emits current checked state)
 
-## ebay-filter-menu-item Tag
+## @item Tag
 
-### ebay-filter-menu-item Usage
+### @item Usage
 
 ```marko
-<ebay-filter-menu-item>item 1</ebay-filter-menu-item>
+<@item>item 1</@item>
 ```
 
-### ebay-filter-menu-item Attributes
+### @item Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

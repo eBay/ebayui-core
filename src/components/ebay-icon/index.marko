@@ -5,7 +5,7 @@ static function noop() {}
 static var isBrowser = typeof window !== "undefined";
 static var browserLookup = {};
 static var ignoredAttributes = [
-    "name",
+    "_name",
     "noSkinClasses",
     "_themes",
     "toJSON"
@@ -18,14 +18,14 @@ $ var a11yAttributes = input.a11yText ? { role: "img" } : { "aria-hidden": "true
 <svg
     ...a11yAttributes
     ...processHtmlAttributes(input, ignoredAttributes)
-    class=[input.class, !input.noSkinClasses && `icon icon--${input.name}`]
+    class=[input.class, !input.noSkinClasses && `icon icon--${input._name}`]
     focusable="false"
     aria-labelledby=(input.a11yText && component.elId("text"))>
     <!-- Here we check if we should render the inline svg symbol. -->
     <!-- Server side we store a flag in `out.global` to check if the symbol was rendered. -->
     <!-- Client side we check the `browserLookup` object to see if the symbol is already present in root svg. -->
     $ var themes = input._themes;
-    $ var lookupName = "rendered_ebay_icon_" + input.name;
+    $ var lookupName = "rendered_ebay_icon_" + input._name;
     $ var renderDefs = !lookup[lookupName];
     $ lookup[lookupName] = true;
     <if(renderDefs && themes)>
@@ -56,5 +56,5 @@ $ var a11yAttributes = input.a11yText ? { role: "img" } : { "aria-hidden": "true
         <title id:scoped="text">${input.a11yText}</title>
     </if>
 
-    <use xlink:href=`#icon-${input.name}`/>
+    <use xlink:href=`#icon-${input._name}`/>
 </>

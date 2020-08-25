@@ -1,5 +1,8 @@
 const { BrowserJSONPlugin } = require('webpack-plugin-browser-json');
+const markoCompiler = require("marko/compiler")
 const { getDSFlags } = require('../src/common/ds-util');
+
+markoCompiler.taglibFinder.excludePackage("@lasso/marko-taglib");
 
 module.exports = async ({ config }) => {
   config.devtool = "none";

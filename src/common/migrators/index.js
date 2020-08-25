@@ -12,6 +12,19 @@ function setAttributeIfPresent(el, context, oldAttribute, newAttribute) {
     }
 }
 
+function createIconFromAttribute(el, context, attribute) {
+    if (el.hasAttribute(attribute) && typeof el.getAttributeValue(attribute).value === 'string') {
+        context.deprecate(`${attribute} is no longer supported on ${el.tagName}. Use <@${attribute}> tag instead.`);
+        const value = el.getAttributeValue(attribute).value;
+        const iconTag = context.createNodeForEl(`ebay-${value}-icon`);
+        const iconContainer = context.createNodeForEl(`@${attribute}`);
+        iconContainer.appendChild(iconTag);
+        el.prependChild(iconContainer);
+        el.removeAttribute(attribute);
+    }
+}
+
 module.exports = {
-    setAttributeIfPresent
+    setAttributeIfPresent,
+    createIconFromAttribute
 };

@@ -4,9 +4,9 @@
 
 ```marko
 <ebay-carousel>
-    <ebay-carousel-item>Item 1</ebay-carousel-item>
-    <ebay-carousel-item>Item 2</ebay-carousel-item>
-    <ebay-carousel-item>Item 3</ebay-carousel-item>
+    <@item>Item 1</@item>
+    <@item>Item 2</@item>
+    <@item>Item 3</@item>
 </ebay-carousel>
 ```
 
@@ -70,6 +70,6 @@ Event | Data | Description
 **Notes:**
 
 * The carousel will use native scrolling if a sufficient implementation of the css scroll snapping api is available. Otherwise it will fall back to using a transform with manual user navigation via the controls.
-* The `carousel` will manipulate the `tabindex` property of nested focusable elements inside `<ebay-carousel-item>`.
+* The `carousel` will manipulate the `tabindex` property of nested focusable elements inside `<@item>`.
 * The `autoplay` carousel currently does not support native scrolling and will use transforms instead.
 * The `items-per-slide` attribute can be set to a float such as `3.5` to show 3 items, and half of the 4th item. If `items-per-slide` are set as a whole number, it will automatically be set as a x.1 peek if carousel is not autoplay.

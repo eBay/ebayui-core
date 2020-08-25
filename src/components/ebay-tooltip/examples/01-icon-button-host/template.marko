@@ -1,13 +1,15 @@
 <ebay-tooltip>
-    <ebay-tooltip-host>
+    <@host>
         <button
             name="icon-btn-1"
             accesskey="i"
-            class='icon-btn tooltip__host'
+            class="icon-btn tooltip__host"
             type="button"
-            aria-label='Developer-handled label'>
-            <ebay-icon name="cart"/>
+            aria-label="Developer-handled label">
+            <ebay-cart-icon/>
         </button>
-    </ebay-tooltip-host>
-    <ebay-tooltip-content><p>Use Access Key 'S' to display settings.</p></ebay-tooltip-content>
+    </@host>
+    <@content>
+        <p>Use Access Key 'S' to display settings.</p>
+    </@content>
 </ebay-tooltip>
