@@ -44,7 +44,7 @@ module.exports = ({ config }) => {
         }, {
             browser: 'Safari',
             os: 'OS X',
-            os_version: 'Mojave'
+            os_version: 'Catalina'
         // }, {
         //     // Doesn't seem to be supporting timeouts?
         //     browser: 'Safari',
