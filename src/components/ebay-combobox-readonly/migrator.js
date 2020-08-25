@@ -7,7 +7,7 @@ const { setAttributeIfPresent } = require('../../common/migrators');
 
 function migratorMarko4(el, context) {
     setAttributeIfPresent(el, context, 'on-combobox-change', 'on-change');
-    setAttributeIfPresent(el, context, 'on-combobox-collpase', 'on-collpase');
+    setAttributeIfPresent(el, context, 'on-combobox-collapse', 'on-collapse');
     setAttributeIfPresent(el, context, 'on-combobox-expand', 'on-expand');
     return el;
 }

@@ -5,7 +5,6 @@ function migratorMarko4(el, context) {
     createIconFromAttribute(el, context, 'icon');
     setAttributeIfPresent(el, context, 'on-tooltip-expand', 'on-expand');
     setAttributeIfPresent(el, context, 'on-tooltip-collapse', 'on-collapse');
-
 }
 
 function migratorMarko5() {

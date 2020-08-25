@@ -57,6 +57,26 @@ module.exports = {
             }
         );
     },
+    testEventsMigrator(migrator, component, events, componentPath) {
+        it(`checks all events ${component.component || component} events are migrated ${events.join(',')}`, () => {
+            const str = events.map((event) =>
+                `on-${component.event || component}-${event.from || event}(() => {})`)
+                .join(' ');
+            const srcString = `<ebay-${component.component || component} ${str}/>`;
+
+            const { context, templateAST } = getTransformerData(srcString, componentPath);
+            migrator(templateAST.body.array[0], context);
+            const el = templateAST.body.array[0];
+
+            events.forEach((event) => {
+                const fromEvent = event.from || event;
+                const toEvent = event.to || event;
+
+                expect(el.hasAttribute(`on-${toEvent}`)).to.equal(true, `should have on-${toEvent}`);
+                expect(el.hasAttribute(`on-${component.event || component}-${fromEvent}`)).to.equal(false);
+            });
+        });
+    },
     getTransformedTemplate(transformer, srcString, componentPath) {
         const { prettyPrintAST } = require('marko-prettyprint');
         const { context, templateAST } = getTransformerData(srcString, componentPath);

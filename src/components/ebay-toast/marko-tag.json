@@ -1,5 +1,5 @@
 {
-  "migrator": "../components/ebay-dialog-base/migrator.js",
+  "migrator": "./migrator.js",
   "attribute-groups": [
     "html-attributes"
   ],

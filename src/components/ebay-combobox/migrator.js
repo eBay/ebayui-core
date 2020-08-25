@@ -9,7 +9,7 @@ function migratorMarko4(el, context) {
     setAttributeIfPresent(el, context, 'on-combobox-change', 'on-change');
     setAttributeIfPresent(el, context, 'on-combobox-input', 'on-input-change');
     setAttributeIfPresent(el, context, 'on-combobox-select', 'on-select');
-    setAttributeIfPresent(el, context, 'on-combobox-collpase', 'on-collpase');
+    setAttributeIfPresent(el, context, 'on-combobox-collapse', 'on-collapse');
     setAttributeIfPresent(el, context, 'on-combobox-expand', 'on-expand');
     setAttributeIfPresent(el, context, 'on-combobox-focus', 'on-focus');
     setAttributeIfPresent(el, context, 'on-combobox-button-click', 'on-button-click');
