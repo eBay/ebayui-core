@@ -19,7 +19,7 @@ describe('given radio button is enabled', () => {
         });
 
         it('then it emits the event', () => {
-            const changeEvents = component.emitted('radio-change');
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(1);
 
             const eventArgs = changeEvents[0];
@@ -41,7 +41,7 @@ describe('given radio button is disabled', () => {
         });
 
         it('then it doesn\'t emit the event', () => {
-            const changeEvents = component.emitted('radio-change');
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(0);
         });
     });
@@ -54,7 +54,7 @@ describe('when native focus event is fired', () => {
     });
 
     it('then it emits the event', () => {
-        const events = component.emitted('radio-focus');
+        const events = component.emitted('focus');
         expect(events).has.length(1);
 
         const [[eventArg]] = events;
