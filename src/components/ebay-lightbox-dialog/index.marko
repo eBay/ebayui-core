@@ -8,6 +8,7 @@ $ var buttonPosition = ((isAlert || isConfirm) && "hidden") || (isMini && "botto
     open=input.open
     classPrefix="lightbox-dialog"
     ignore-escape=isAlert
+    window-type=((isAlert || isConfirm) && "compact")
     on-open("emit", "open")
     on-close("emit", "close")
     buttonPosition=buttonPosition
@@ -18,8 +19,6 @@ $ var buttonPosition = ((isAlert || isConfirm) && "hidden") || (isMini && "botto
     window-class=[
         "lightbox-dialog__window--fade",
         isMini && "lightbox-dialog__window--mini",
-        isAlert && "lightbox-dialog__window--alert",
-        isConfirm && "lightbox-dialog__window--confirm"
     ]>
     <${input.renderBody}/>
 </ebay-dialog-base>

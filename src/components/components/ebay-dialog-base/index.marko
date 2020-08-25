@@ -14,6 +14,7 @@ static var ignoredAttributes = [
     "isModal",
     "closeEl",
     "ignoreEscape",
+    "windowType",
     "ariaLabelledby"
 ];
 
@@ -54,7 +55,14 @@ $ var header = input.header;
     <if(!input.ignoreEscape && state.open)>
         <subscribe to=document on-keydown("handleKeydown")/>
     </if>
-    <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>
+    <div
+        key="window"
+        class=[
+            input.windowType
+                ? `${input.classPrefix}__${input.windowType}-window`
+                : `${input.classPrefix}__window`,
+            input.windowClass
+        ]>
         <if(input.top)>
             <${input.top.renderBody}/>
         </if>
@@ -65,7 +73,10 @@ $ var header = input.header;
             <if(buttonPosition !== "bottom")>
                 <button-content/>
             </if>
-            <if(header && (buttonPosition === "left" || buttonPosition === "hidden"))>
+            <if(
+                header &&
+                (buttonPosition === "left" || buttonPosition === "hidden")
+            )>
                 <header-content/>
             </if>
         </>
