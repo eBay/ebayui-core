@@ -24,10 +24,10 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`menu-keydown` | `{ el, index, checked }` |
-`menu-change` (radio) | `{ el, index, checked }` | item changed/checked
-`menu-change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
-`menu-select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
+`keydown` | `{ el, index, checked }` |
+`change` (radio) | `{ el, index, checked }` | item changed/checked
+`change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
+`select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
 
 ## @item Tag
 
