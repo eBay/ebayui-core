@@ -23,7 +23,7 @@ Name | Type | Stateful | Required | Description
 
 Event | Description | Data
 --- | --- | ---
-`breadcrumbs-select` | click breadcrumb items | `{ originalEvent, el }`
+`select` | click breadcrumb items | `{ originalEvent, el }`
 
 ## @item Attributes
 
@@ -31,4 +31,4 @@ Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `href` | String | No | No | anchor href; omitting the href will switch to a button
 
-**Note:** If you want to have client side or ajax based navigation then you should omit the `href` attribute on each item. This will cause each item to be `<button>` instead of an `<a>`. Alternatively you can manually `preventDefault` the provided `originalEvent` on the `breadcrumbs-select` event.
+**Note:** If you want to have client side or ajax based navigation then you should omit the `href` attribute on each item. This will cause each item to be `<button>` instead of an `<a>`. Alternatively you can manually `preventDefault` the provided `originalEvent` on the `select` event.

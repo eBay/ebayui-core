@@ -1,7 +1,7 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -81,3 +81,7 @@ describe('carousel', () => {
         }
     });
 });
+
+testEventsMigrator(require('../migrator'), 'carousel',
+    [{ from: 'update', to: 'move' },
+        'next', 'previous', 'slide', 'play', 'pause', 'scroll'], '../index.marko');

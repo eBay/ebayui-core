@@ -3,7 +3,7 @@ module.exports = {
         if (!this.input.disabled) {
             const selected = !this.state.selected;
             this.state.selected = selected;
-            this.emit('filter-click', {
+            this.emit('click', {
                 selected,
                 originalEvent
             });

@@ -24,4 +24,4 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`filter-click` | `{ originalEvent, selected }` | click or action key pressed (space and enter)
+`click` | `{ originalEvent, selected }` | click or action key pressed (space and enter)

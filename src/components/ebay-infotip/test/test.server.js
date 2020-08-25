@@ -1,7 +1,7 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const assign = require('core-js-pure/features/object/assign');
-const { runTransformer } = require('../../../common/test-utils/server');
+const { runTransformer, testEventsMigrator } = require('../../../common/test-utils/server');
 const migrator = require('../migrator');
 const template = require('..');
 const mock = require('./mock');
@@ -66,4 +66,7 @@ describe('migrator', () => {
         const { body: { array: [iconEl] } } = el;
         expect(iconEl).to.equal(undefined);
     });
+
+    testEventsMigrator(require('../migrator'), { event: 'tooltip', component: 'infotip' },
+        ['expand', 'collapse'], '../index.marko');
 });

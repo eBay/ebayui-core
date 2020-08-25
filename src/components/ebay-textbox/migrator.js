@@ -1,4 +1,4 @@
-const { createIconFromAttribute } = require('../../common/migrators');
+const { createIconFromAttribute, setAttributeIfPresent } = require('../../common/migrators');
 
 // Transforms old icon to prefix or postfix icon
 function migratorMarko4(el, context) {
@@ -16,6 +16,16 @@ function migratorMarko4(el, context) {
 
     createIconFromAttribute(el, context, 'prefix-icon');
     createIconFromAttribute(el, context, 'postfix-icon');
+
+    setAttributeIfPresent(el, context, 'on-textbox-change', 'on-change');
+    setAttributeIfPresent(el, context, 'on-textbox-input', 'on-input-change');
+    setAttributeIfPresent(el, context, 'on-textbox-focus', 'on-focus');
+    setAttributeIfPresent(el, context, 'on-textbox-blur', 'on-blur');
+    setAttributeIfPresent(el, context, 'on-textbox-keydown', 'on-keydown');
+    setAttributeIfPresent(el, context, 'on-textbox-keypress', 'on-keypress');
+    setAttributeIfPresent(el, context, 'on-textbox-keyup', 'on-keyup');
+    setAttributeIfPresent(el, context, 'on-textbox-floating-label-init', 'on-floating-label-init');
+    setAttributeIfPresent(el, context, 'on-textbox-button-click', 'on-button-click');
 }
 
 function migratorMarko5() {

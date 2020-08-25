@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
+const { testEventsMigrator } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -23,6 +24,8 @@ describe('tooltip', () => {
                 .with.class(`tooltip__pointer--${input.pointer}`);
         });
     });
+    testEventsMigrator(require('../migrator'), 'tooltip',
+        ['expand', 'collapse'], '../index.marko');
 
     // TODO: looks like class and style are not passed through to the tooltip.
     // testPassThroughAttributes(template);

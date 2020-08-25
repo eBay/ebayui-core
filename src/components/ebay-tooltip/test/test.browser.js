@@ -22,8 +22,8 @@ describe('given the default tooltip', () => {
             await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
         });
 
-        it('then it emits the tooltip-expand event', () => {
-            expect(component.emitted('tooltip-expand')).has.length(1);
+        it('then it emits the expand event', () => {
+            expect(component.emitted('expand')).has.length(1);
         });
 
         describe('when the host element loses hover', () => {
@@ -31,8 +31,8 @@ describe('given the default tooltip', () => {
                 await fireEvent.mouseLeave(component.getByText(input.host.renderBody.text).parentElement);
             });
 
-            it('then it emits the tooltip-collapse event', async() => {
-                await wait(() => expect(component.emitted('tooltip-collapse')).has.length(1));
+            it('then it emits the collapse event', async() => {
+                await wait(() => expect(component.emitted('collapse')).has.length(1));
             });
         });
     });

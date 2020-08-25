@@ -6,7 +6,7 @@ module.exports = {
 
 function forwardEvent(eventName) {
     return function(originalEvent) {
-        this.emit(`checkbox-${eventName}`, {
+        this.emit(`${eventName}`, {
             originalEvent,
             value: this.getEl('input').value,
             checked: this.getEl('input').checked

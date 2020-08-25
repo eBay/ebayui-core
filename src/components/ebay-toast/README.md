@@ -18,8 +18,8 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`toast-show` |  | toast opened
-`toast-close` |  | toast closed
+`open` |  | toast opened
+`close` |  | toast closed
 
 ## @header
 

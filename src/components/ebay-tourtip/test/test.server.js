@@ -1,5 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
+const { testEventsMigrator } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -14,6 +15,9 @@ describe('tourtip', () => {
         expect(getByText(input.content.renderBody.text)).has.class('tourtip__content');
         expect(getByText(input.heading.renderBody.text)).has.class('tourtip__heading');
     });
+    testEventsMigrator(require('../migrator'),
+        { event: 'tooltip', component: 'tourtip' },
+        ['collapse'], '../index.marko');
 
     // TODO: looks like class and style are not passed through to the tourtip.
     // testPassThroughAttributes(template);

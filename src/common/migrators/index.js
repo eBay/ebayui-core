@@ -1,3 +1,13 @@
+function convertToCamel(attribute) {
+    const newAttr = attribute.split('-');
+    newAttr.forEach((attr, index) => {
+        if (index > 0) {
+            newAttr[index] = attr.charAt(0).toUpperCase() + attr.slice(1);
+        }
+    });
+    return newAttr.join('');
+}
+
 /**
  * @description
  * Changes @heading content if wrapped with <h[1-6]> to be unrapped
@@ -9,6 +19,10 @@ function setAttributeIfPresent(el, context, oldAttribute, newAttribute) {
         el.removeAttribute(oldAttribute);
         attr.name = newAttribute;
         el.addAttribute(attr);
+    }
+    if (oldAttribute.indexOf('-') > -1) {
+        // Convert on-something to onSomething
+        setAttributeIfPresent(el, context, convertToCamel(oldAttribute), convertToCamel(newAttribute));
     }
 }
 

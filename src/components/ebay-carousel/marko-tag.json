@@ -3,6 +3,7 @@
     "targetProperty": null,
     "type": "expression"
   },
+  "migrator": "./migrator",
   "@html-attributes": "expression",
   "@class": "string",
   "@style": "string",

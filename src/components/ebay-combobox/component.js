@@ -20,7 +20,7 @@ module.exports = {
 
     handleButtonClick(originalEvent) {
         this.buttonClicked = true;
-        this.emit('combobox-button-click', { originalEvent });
+        this.emit('button-click', { originalEvent });
     },
 
     handleExpand() {
@@ -32,12 +32,12 @@ module.exports = {
             elementScroll.scroll(selectedEl);
         }
 
-        this.emit('combobox-expand');
+        this.emit('expand');
     },
 
     handleCollapse() {
         this.activeDescendant.reset();
-        this.emit('combobox-collapse');
+        this.emit('collapse');
     },
 
     handleComboboxKeyDown(originalEvent) {
@@ -79,7 +79,7 @@ module.exports = {
                 }
             });
 
-            this._emitComboboxEvent('input');
+            this._emitComboboxEvent('input-change');
         });
     },
 
@@ -203,7 +203,7 @@ module.exports = {
     },
 
     _emitComboboxEvent(eventName) {
-        this.emit(`combobox-${eventName}`, {
+        this.emit(`${eventName}`, {
             currentInputValue: this.state.currentValue,
             selectedOption: this._getSelectedOption(),
             options: this.input.options

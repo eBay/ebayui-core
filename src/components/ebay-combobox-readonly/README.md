@@ -42,9 +42,9 @@ Note: For this component, `class` is applied to the root tag, while all other HT
 
 Event | Data |  Description
 --- | --- | ---
-`combobox-collapse` | | collapse content
-`combobox-expand` | | expand content
-`combobox-change` | `{ el, index, selected }` | option selected
+`collapse` | | collapse content
+`expand` | | expand content
+`change` | `{ el, index, selected }` | option selected
 ---
 
 ## @option Tag

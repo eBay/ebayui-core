@@ -195,4 +195,7 @@ describe('migrator', () => {
         const { body: { array: [iconEl] } } = el;
         expect(iconEl).to.equal(undefined);
     });
+
+    testUtils.testEventsMigrator(migrator, 'menu-button',
+        ['keydown', 'change', 'select', 'expand', 'collapse'], '../index.marko');
 });

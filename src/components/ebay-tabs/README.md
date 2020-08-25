@@ -27,7 +27,7 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`tabs-select` | `{ index }` |
+`select` | `{ index }` |
 
 ## @heading Tag
 

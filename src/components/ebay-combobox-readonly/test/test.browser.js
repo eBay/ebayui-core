@@ -44,8 +44,8 @@ describe('given the readonly combobox with 3 items', () => {
             expect(getVisibleCombobox()).has.attr('aria-expanded', 'false');
         });
 
-        it('then it emits the combobox-change event with the correct data', () => {
-            const changeEvents = component.emitted('combobox-change');
+        it('then it emits the change event with the correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(1);
 
             const [[changeEvent]] = changeEvents;
@@ -61,15 +61,15 @@ describe('given the readonly combobox with 3 items', () => {
 
         describe('when the up arrow key is pressed', () => {
             beforeEach(async() => {
-                expect(component.emitted('combobox-change')).has.length(1);
+                expect(component.emitted('change')).has.length(1);
                 await pressKey(getVisibleCombobox(), {
                     key: 'ArrowUp',
                     keyCode: 38
                 });
             });
 
-            it('then it emits the combobox-change event with the correct data', () => {
-                const changeEvents = component.emitted('combobox-change');
+            it('then it emits the change event with the correct data', () => {
+                const changeEvents = component.emitted('change');
                 expect(changeEvents).has.length(1);
 
                 const [[changeEvent]] = changeEvents;
@@ -92,7 +92,7 @@ describe('given the readonly combobox with 3 items', () => {
         });
 
         it('then it does not change the selection', () => {
-            const changeEvents = component.emitted('combobox-change');
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(0);
         });
     });
@@ -103,7 +103,7 @@ describe('given the readonly combobox with 3 items', () => {
         });
 
         it('then it emits the event from expander-expand', () => {
-            expect(component.emitted('combobox-expand')).has.length(1);
+            expect(component.emitted('expand')).has.length(1);
         });
 
         it('then it has expanded the combobox', () => {
@@ -121,8 +121,8 @@ describe('given the readonly combobox with 3 items', () => {
                     .with.property('value', input.options[1].value);
             });
 
-            it('then it emits the combobox-change event with correct data', () => {
-                const changeEvents = component.emitted('combobox-change');
+            it('then it emits the change event with correct data', () => {
+                const changeEvents = component.emitted('change');
                 expect(changeEvents).has.length(1);
 
                 const [[changeEvent]] = changeEvents;
@@ -144,8 +144,8 @@ describe('given the readonly combobox with 3 items', () => {
                     .with.property('value', input.options[1].value);
             });
 
-            it('then it emits the combobox-change event with correct data', () => {
-                const changeEvents = component.emitted('combobox-change');
+            it('then it emits the change event with correct data', () => {
+                const changeEvents = component.emitted('change');
                 expect(changeEvents).has.length(1);
 
                 const [[changeEvent]] = changeEvents;
@@ -177,7 +177,7 @@ describe('given the readonly combobox with 3 items', () => {
 
         function thenItHasCollapsed() {
             it('then it emits the event from expander-collapse', () => {
-                expect(component.emitted('combobox-collapse')).has.length(1);
+                expect(component.emitted('collapse')).has.length(1);
             });
 
             it('then it has collapsed the combobox', () => {
@@ -204,7 +204,7 @@ describe('given the readonly combobox with 3 items that is disabled', () => {
         });
 
         it('then it does not emit the event from expander-expand', () => {
-            expect(component.emitted('combobox-expand')).has.length(0);
+            expect(component.emitted('expand')).has.length(0);
         });
 
         it('then it has not expanded the combobox', () => {

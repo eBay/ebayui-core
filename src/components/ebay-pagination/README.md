@@ -28,9 +28,9 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`pagination-previous` | `{ originalEvent, el }`| clicked previous arrow button
-`pagination-next` | `{ originalEvent, el }` | clicked next arrow button
-`pagination-select` | `{ originalEvent, el, value }` | page selected clicked
+`previous` | `{ originalEvent, el }`| clicked previous arrow button
+`next` | `{ originalEvent, el }` | clicked next arrow button
+`select` | `{ originalEvent, el, value }` | page selected clicked
 
 ## @item Tag
 

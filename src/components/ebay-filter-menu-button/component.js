@@ -58,14 +58,14 @@ module.exports = assign({}, menuUtils, {
     _emitComponentEvent(eventType, el, originalEvent) {
         switch (eventType) {
             case 'expand':
-                this.emit(`filter-menu-button-${eventType}`);
+                this.emit(eventType);
                 break;
             case 'change':
             case 'collapse':
             case 'form-submit':
             case 'footer-click': {
                 const checked = this.getCheckedValues();
-                this.emit(`filter-menu-button-${eventType}`, {
+                this.emit(eventType, {
                     el,
                     checked,
                     originalEvent

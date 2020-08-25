@@ -28,8 +28,8 @@ describe('given the menu is in the default state', () => {
             await fireEvent.click(component.getByText(firstItemText));
         });
 
-        it('then it emits the filter-menu-change event with correct data', () => {
-            const selectEvents = component.emitted('filter-menu-change');
+        it('then it emits the change event with correct data', () => {
+            const selectEvents = component.emitted('change');
             expect(selectEvents).to.length(1);
 
             const [[eventArg]] = selectEvents;
@@ -45,7 +45,7 @@ describe('given the menu is in the default state', () => {
         });
 
         it('then it emits two menu-change events with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-change');
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
             const [firstEventData, secondEventData] = flat(changeEvents);
@@ -65,8 +65,8 @@ describe('given the menu is in the default state', () => {
             await fireEvent.click(firstItem);
         });
 
-        it('then it emits the filter-menu-change events with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-change');
+        it('then it emits the change events with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
             const [firstEventData, secondEventData] = flat(changeEvents);
@@ -87,8 +87,8 @@ describe('given the menu is in the default state', () => {
             });
         });
 
-        it('then it emits the filter-menu-change events with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-change');
+        it('then it emits the change events with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(1);
 
             const [firstEventData] = flat(changeEvents);
@@ -102,8 +102,8 @@ describe('given the menu is in the default state', () => {
             await fireEvent.click(footerButton);
         });
 
-        it('then it emits the filter-menu-footer-click event', () => {
-            const changeEvents = component.emitted('filter-menu-footer-click');
+        it('then it emits the footer-click event', () => {
+            const changeEvents = component.emitted('footer-click');
             expect(changeEvents).to.have.length(1);
         });
     });
@@ -117,7 +117,7 @@ describe('given the menu is in the default state', () => {
         });
 
         it('then it uses the new input in event data', () => {
-            const selectEvents = component.emitted('filter-menu-change');
+            const selectEvents = component.emitted('change');
             expect(selectEvents).has.length(1);
 
             const [[eventArg]] = selectEvents;
@@ -143,8 +143,8 @@ describe('given the menu is in the radio state', () => {
             await fireEvent.click(component.getByText(firstItemText));
         });
 
-        it('then it emits the filter-menu-change event with correct data', () => {
-            const selectEvents = component.emitted('filter-menu-change');
+        it('then it emits the change event with correct data', () => {
+            const selectEvents = component.emitted('change');
             expect(selectEvents).to.length(1);
 
             const [[eventArg]] = selectEvents;
@@ -160,7 +160,7 @@ describe('given the menu is in the radio state', () => {
         });
 
         it('then it emits two menu-change events with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-change');
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
             const [firstEventData, secondEventData] = flat(changeEvents);
@@ -180,8 +180,8 @@ describe('given the menu is in the radio state', () => {
             await fireEvent.click(firstItem);
         });
 
-        it('then it emits the filter-menu-change events with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-change');
+        it('then it emits the change events with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
             const [firstEventData, secondEventData] = flat(changeEvents);
@@ -202,8 +202,8 @@ describe('given the menu is in the radio state', () => {
             });
         });
 
-        it('then it emits the filter-menu-change events with correct data', () => {
-            const changeEvents = component.emitted('filter-menu-change');
+        it('then it emits the change events with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(1);
 
             const [firstEventData] = flat(changeEvents);
@@ -217,8 +217,8 @@ describe('given the menu is in the radio state', () => {
             await fireEvent.click(footerButton);
         });
 
-        it('then it emits the filter-menu-footer-click event', () => {
-            const changeEvents = component.emitted('filter-menu-footer-click');
+        it('then it emits the footer-click event', () => {
+            const changeEvents = component.emitted('footer-click');
             expect(changeEvents).to.have.length(1);
         });
     });
@@ -232,7 +232,7 @@ describe('given the menu is in the radio state', () => {
         });
 
         it('then it uses the new input in event data', () => {
-            const selectEvents = component.emitted('filter-menu-change');
+            const selectEvents = component.emitted('change');
             expect(selectEvents).has.length(1);
 
             const [[eventArg]] = selectEvents;

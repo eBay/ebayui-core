@@ -16,9 +16,9 @@ class {
 }
 
 <ebay-pagination
-    on-pagination-previous("handlePrev")
-    on-pagination-next("handleNext")
-    on-pagination-select("handleSelect")>
+    on-next("handleNext")
+    on-previous("handlePrev")
+    on-select("handleSelect")>
     <@item type="previous" disabled=(state.current === 0)/>
     <for|i| from=0 to=SIZE>
         <@item current=(i === state.current)>${i}</@item>

@@ -56,7 +56,7 @@ describe('given a closed drawer', () => {
         });
 
         it('then it is visible in the DOM', async() => {
-            await wait(() => expect(component.emitted('drawer-show')).has.length(1));
+            await wait(() => expect(component.emitted('open')).has.length(1));
         });
         describe('then it is expanded', () => {
             beforeEach(async() => {
@@ -64,7 +64,7 @@ describe('given a closed drawer', () => {
             });
 
             it('then it is expanded in DOM', async() => {
-                await wait(() => expect(component.emitted('drawer-expanded')).has.length(1));
+                await wait(() => expect(component.emitted('expanded')).has.length(1));
             });
         });
         describe('then it is expanded on scroll', () => {
@@ -76,7 +76,7 @@ describe('given a closed drawer', () => {
             });
 
             it('then it is expanded in DOM', async() => {
-                await wait(() => expect(component.emitted('drawer-expanded')).has.length(1));
+                await wait(() => expect(component.emitted('expanded')).has.length(1));
             });
         });
     });
@@ -99,7 +99,7 @@ describe('given an open and expanded drawer', () => {
         });
 
         it('then it is expanded in DOM', async() => {
-            await wait(() => expect(component.emitted('drawer-collapsed')).has.length(1));
+            await wait(() => expect(component.emitted('collapsed')).has.length(1));
         });
     });
 
@@ -109,7 +109,7 @@ describe('given an open and expanded drawer', () => {
         });
 
         it('then it is expanded in DOM', async() => {
-            await wait(() => expect(component.emitted('drawer-expanded')).has.length(0));
+            await wait(() => expect(component.emitted('expanded')).has.length(0));
         });
     });
 });
@@ -131,7 +131,7 @@ describe('given an open and non expanded drawer for touch events', () => {
         });
 
         it('then it is expanded in DOM', async() => {
-            await wait(() => expect(component.emitted('drawer-expanded')).has.length(1));
+            await wait(() => expect(component.emitted('expanded')).has.length(1));
         });
     });
 
@@ -141,9 +141,9 @@ describe('given an open and non expanded drawer for touch events', () => {
         });
 
         it('then it did not trigger', async() => {
-            await wait(() => expect(component.emitted('drawer-expanded')).has.length(0));
-            await wait(() => expect(component.emitted('drawer-close')).has.length(0));
-            await wait(() => expect(component.emitted('drawer-collapsed')).has.length(0));
+            await wait(() => expect(component.emitted('expanded')).has.length(0));
+            await wait(() => expect(component.emitted('close')).has.length(0));
+            await wait(() => expect(component.emitted('collapsed')).has.length(0));
         });
     });
 
@@ -163,7 +163,7 @@ describe('given an open and non expanded drawer for touch events', () => {
         });
 
         it('then it is closed', async() => {
-            await wait(() => expect(component.emitted('drawer-close')).has.length(1));
+            await wait(() => expect(component.emitted('close')).has.length(1));
         });
 
         it('then it is hidden in the DOM when dragged down', async() => {
@@ -189,7 +189,7 @@ describe('given an open and expanded drawer for touch events', () => {
         });
 
         it('then it is expanded in DOM', async() => {
-            await wait(() => expect(component.emitted('drawer-expanded')).has.length(0));
+            await wait(() => expect(component.emitted('expanded')).has.length(0));
         });
     });
 
@@ -199,7 +199,7 @@ describe('given an open and expanded drawer for touch events', () => {
         });
 
         it('then it is closed', async() => {
-            await wait(() => expect(component.emitted('drawer-collapsed')).has.length(1));
+            await wait(() => expect(component.emitted('collapsed')).has.length(1));
         });
     });
 
@@ -225,7 +225,7 @@ describe('given an open and expanded drawer for touch events', () => {
 });
 
 async function checkNoEvenets(triggerComponent) {
-    await wait(() => expect(triggerComponent.emitted('drawer-expanded')).has.length(0));
-    await wait(() => expect(triggerComponent.emitted('drawer-close')).has.length(0));
-    await wait(() => expect(triggerComponent.emitted('drawer-collapsed')).has.length(0));
+    await wait(() => expect(triggerComponent.emitted('expanded')).has.length(0));
+    await wait(() => expect(triggerComponent.emitted('close')).has.length(0));
+    await wait(() => expect(triggerComponent.emitted('collapsed')).has.length(0));
 }

@@ -30,7 +30,7 @@ describe('given a closed toast', () => {
         });
 
         it('then it is visible in the DOM', async() => {
-            await wait(() => expect(component.emitted('toast-show')).has.length(1));
+            await wait(() => expect(component.emitted('open')).has.length(1));
         });
     });
 });
@@ -48,7 +48,7 @@ describe('given an open toast', () => {
         });
 
         it('then it is closed in dom', async() => {
-            await wait(() => expect(component.emitted('toast-close')).has.length(1));
+            await wait(() => expect(component.emitted('close')).has.length(1));
         });
     });
 });
