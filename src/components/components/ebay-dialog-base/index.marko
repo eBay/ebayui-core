@@ -17,6 +17,7 @@ static var ignoredAttributes = [
     "closeEl",
     "ignoreEscape",
     "windowType",
+    "mainId",
     "ariaLabelledby"
 ];
 
@@ -48,7 +49,7 @@ $ var header = input.header;
     ...processHtmlAttributes(input, ignoredAttributes)
     aria-labelledby=(input.ariaLabelledby || component.getElId("dialog-title"))
     aria-modal="true"
-    role="dialog"
+    role=(input.role || "dialog")
     class=[input.classPrefix, input.class]
     hidden:no-update=!state.open
     aria-live=(!input.isModal && "polite")
@@ -82,7 +83,7 @@ $ var header = input.header;
                 <header-content/>
             </if>
         </>
-        <div class=`${input.classPrefix}__main` key="body" onScroll("handleScroll")>
+        <div id=input.mainId class=`${input.classPrefix}__main`  key="body" onScroll("handleScroll")>
             <${input.renderBody}/>
         </div>
         <if(input.footer || buttonPosition === "bottom")>

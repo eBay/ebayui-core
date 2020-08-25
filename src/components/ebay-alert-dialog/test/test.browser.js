@@ -21,7 +21,7 @@ describe('given a closed dialog', () => {
     });
 
     it('then it is hidden in the DOM', () => {
-        expect(component.getByRole('dialog')).has.attr('hidden');
+        expect(component.getByRole('alertdialog')).has.attr('hidden');
     });
 
     describe('then it is opened', () => {
@@ -50,17 +50,17 @@ describe('given an open dialog', () => {
     });
 
     it('then it is visible in the DOM', () => {
-        expect(component.getByRole('dialog')).does.not.have.attr('hidden');
+        expect(component.getByRole('alertdialog')).does.not.have.attr('hidden');
     });
 
     describe('when the mask is clicked', () => {
         beforeEach(async() => {
             // simulate clicking outside the dialog.
-            await fireEvent.click(component.getByRole('dialog'));
+            await fireEvent.click(component.getByRole('alertdialog'));
         });
 
         it('then it is still open in the DOM', async() => {
-            await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+            await wait(() => expect(component.getByRole('alertdialog')).does.not.have.attr('hidden'));
         });
     });
 });

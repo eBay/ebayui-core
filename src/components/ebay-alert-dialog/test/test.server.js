@@ -11,8 +11,8 @@ describe('dialog', () => {
         const input = mock.Dialog;
         const { getByRole, getByText } = await render(template, input);
 
-        expect(getByRole('dialog')).has.attr('hidden');
-        expect(getByRole('dialog')).has.class('lightbox-dialog');
+        expect(getByRole('alertdialog')).has.attr('hidden');
+        expect(getByRole('alertdialog')).has.class('lightbox-dialog');
         expect(getByText(input.confirmText)).has.class('lightbox-dialog__confirm');
         expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');
     });
@@ -20,7 +20,7 @@ describe('dialog', () => {
     it('renders in open state', async() => {
         const input = mock.Dialog_Open;
         const { getByRole } = await render(template, input);
-        expect(getByRole('dialog')).does.not.have.attr('hidden');
+        expect(getByRole('alertdialog')).does.not.have.attr('hidden');
     });
 
     testPassThroughAttributes(template);
