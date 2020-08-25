@@ -43,8 +43,8 @@ describe('given the pagination is rendered', () => {
             });
 
             function thenItEmittedThePaginationPreviousEvent() {
-                it('then it emits the pagination-previous event', () => {
-                    const previousEvents = component.emitted('pagination-previous');
+                it('then it emits the previous event', () => {
+                    const previousEvents = component.emitted('previous');
                     expect(previousEvents).has.length(1);
 
                     const [[eventArg]] = previousEvents;
@@ -66,8 +66,8 @@ describe('given the pagination is rendered', () => {
             });
 
             function thenItEmittedThePaginationNextEvent() {
-                it('then it emits the pagination-next event', () => {
-                    const nextEvents = component.emitted('pagination-next');
+                it('then it emits the next event', () => {
+                    const nextEvents = component.emitted('next');
                     expect(nextEvents).has.length(1);
 
                     const [[eventArg]] = nextEvents;
@@ -89,8 +89,8 @@ describe('given the pagination is rendered', () => {
             });
 
             function thenItEmittedThePaginationSelectEvent() {
-                it('then it emits the pagination-select event', () => {
-                    const selectEvents = component.emitted('pagination-select');
+                it('then it emits the select event', () => {
+                    const selectEvents = component.emitted('select');
                     expect(selectEvents).has.length(1);
 
                     const [[eventArg]] = selectEvents;
@@ -122,8 +122,8 @@ describe('given the pagination is rendered with disabled controls', () => {
         });
 
         function thenItDidNotEmitThePaginationPreviousEvent() {
-            it('then it does not emit the pagination-previous event', () => {
-                expect(component.emitted('pagination-previous')).has.length(0);
+            it('then it does not emit the previous event', () => {
+                expect(component.emitted('previous')).has.length(0);
             });
         }
     });
@@ -140,8 +140,8 @@ describe('given the pagination is rendered with disabled controls', () => {
         });
 
         function thenItDidNotEmitThePaginationNextEvent() {
-            it('then it does not emit the pagination-next event', () => {
-                expect(component.emitted('pagination-next')).has.length(0);
+            it('then it does not emit the next event', () => {
+                expect(component.emitted('next')).has.length(0);
             });
         }
     });
