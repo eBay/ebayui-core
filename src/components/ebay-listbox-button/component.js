@@ -5,11 +5,11 @@ const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 module.exports = {
     handleExpand() {
         this.getComponent('options').elementScroll();
-        this.emit('listbox-expand');
+        this.emit('expand');
     },
 
     handleCollapse() {
-        this.emit('listbox-collapse');
+        this.emit('collapse');
     },
 
     handleListboxChange(event) {
@@ -18,7 +18,7 @@ module.exports = {
         }
         const selectedIndex = event.index;
         this.state.selectedIndex = selectedIndex;
-        this.emit('listbox-change', event);
+        this.emit('change', event);
     },
 
     onCreate() {

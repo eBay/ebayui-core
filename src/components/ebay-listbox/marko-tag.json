@@ -1,4 +1,5 @@
 {
+  "migrator": "./migrator",
   "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,

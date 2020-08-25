@@ -27,7 +27,7 @@ module.exports = {
         if (this.state.selectedIndex !== selectedIndex) {
             this.state.selectedIndex = selectedIndex;
             this.once('update', () => {
-                this.emit('listbox-change', {
+                this.emit('change', {
                     index: selectedIndex,
                     selected: [option.value],
                     el,
