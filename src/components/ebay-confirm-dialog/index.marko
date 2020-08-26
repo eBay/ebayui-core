@@ -18,8 +18,6 @@ $ var mainId = component.getElId("confirm-dialog-main");
     button-position="hidden"
     ...input
     >
-
-    <${input.renderBody}/>
     <@footer>
         <ebay-button on-click("emit", "reject") class="lightbox-dialog__reject">
             ${input.rejectText}
