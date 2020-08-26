@@ -1,6 +1,6 @@
 # ebay-confirm-dialog
 
-Used to force the user to make a choice to either confirm or reject. Cannot be closed unless one of the two options are
+Used to force the user to make a choice to either confirm or reject. Cannot be closed unless one of the two options are pressed. Pressing escape will trigger reject.
 
 ```marko
 <ebay-confirm-dialog open confirm-text="Confirm" reject-text="Reject">

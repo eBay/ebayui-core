@@ -1,6 +1,6 @@
 # ebay-alert-dialog
 
-Used to force the user to read an import message. The dialog will only be dismissed when the user presses the confirm button
+Used to force the user to read an import message. The dialog will only be dismissed when the user presses the confirm button. This is the only way to close the dialog.
 
 ```marko
 <ebay-alert-dialog open alert-text="Confirm">
