@@ -31,40 +31,16 @@ describe('menu-button', () => {
         });
     });
 
-    it('renders fake version', async() => {
-        const input = mock.Fake_2Items;
-        const { getByText } = await render(template, input);
-
-        input.items.forEach(item => {
-            expect(getByText(item.renderBody.text).closest('.fake-menu-button__item'))
-                .has.attr('href', item.href);
-        });
-    });
-
     it('renders with reverse=true', async() => {
         const input = assign({ reverse: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu-button__menu')).with.class('menu-button__menu--reverse');
     });
 
-    it('renders with type=fake, reverse=true', async() => {
-        const input = assign({ type: 'fake', reverse: true }, mock.Basic_2Items);
-        const { getByText } = await render(template, input);
-        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--reverse'))
-            .does.not.equal(null);
-    });
-
     it('renders with fix-width=true', async() => {
         const input = assign({ fixWidth: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu-button__menu')).with.class('menu-button__menu--fix-width');
-    });
-
-    it('renders with type=fake, fix-width=true', async() => {
-        const input = assign({ type: 'fake', fixWidth: true }, mock.Basic_2Items);
-        const { getByText } = await render(template, input);
-        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--fix-width'))
-            .does.not.equal(null);
     });
 
     it('renders with borderless=true', async() => {
