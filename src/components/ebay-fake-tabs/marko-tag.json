@@ -1,5 +1,4 @@
 {
-  "migrator": "./migrator",
   "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,
@@ -7,16 +6,14 @@
   },
   "@html-attributes": "expression",
   "@index": "number",
-  "@activation": {
-    "enum": ["auto", "manual"]
-  },
   "@headings <heading>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
-    "@html-attributes": "expression"
+    "@html-attributes": "expression",
+    "@href": "#html-href"
   },
   "@panels <panel>[]": {
     "attribute-groups": ["html-attributes"],

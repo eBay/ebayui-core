@@ -1,0 +1,39 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = ["index", "headings", "panels"];
+
+static var itemAnchorIgnoredAttributes = ["href"];
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=["fake-tabs", input.class]>
+    $ var selectedPanel = input.panels && input.panels[0] || {};
+    $ var index = input.index || 0;
+    <ul class="fake-tabs__items">
+        <for|heading, i| of=input.headings>
+            $ var isSelected = index === i;
+            <li
+                ...processHtmlAttributes(heading, itemAnchorIgnoredAttributes)
+                class=[
+                    heading.class,
+                    "fake-tabs__item",
+                    isSelected && "fake-tabs__item--current"
+                ]>
+                <a aria-current=(isSelected && "page") href=heading.href>
+                    <${heading.renderBody}/>
+                </a>
+            </li>
+        </for>
+    </ul>
+    <div class="fake-tabs__content">
+        <div
+            ...processHtmlAttributes(selectedPanel)
+            class=[selectedPanel.class, "fake-tabs__panel"]>
+            <div class="fake-tabs__cell">
+                <div>
+                    <${selectedPanel.renderBody}/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

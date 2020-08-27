@@ -2,7 +2,6 @@ import processHtmlAttributes from "../../common/html-attributes";
 
 static var ignoredAttributes = [
     "index",
-    "fake",
     "activation",
     "headings",
     "panels"
@@ -12,44 +11,10 @@ static var itemAnchorIgnoredAttributes = ["href"];
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
-        input.fake ? "fake-tabs" : "tabs",
+        "tabs",
         input.class
     ]>
-    <if(input.fake)>
-        $ var selectedPanel = input.panels[0];
-        <ul class="fake-tabs__items">
-            <for|heading, i| of=input.headings>
-                $ var isSelected = state.index === i;
-                <li
-                    ...processHtmlAttributes(
-                        heading,
-                        itemAnchorIgnoredAttributes
-                    )
-                    class=[
-                        heading.class,
-                        "fake-tabs__item",
-                        isSelected && "fake-tabs__item--current"
-                    ]>
-                    <a aria-current=(isSelected && "page") href=heading.href>
-                        <${heading.renderBody}/>
-                    </a>
-                </li>
-            </for>
-        </ul>
-        <div class="fake-tabs__content">
-            <div
-                ...processHtmlAttributes(selectedPanel)
-                class=[selectedPanel.class, "fake-tabs__panel"]>
-                <div class="fake-tabs__cell">
-                    <div>
-                        <${selectedPanel.renderBody}/>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </if>
-    <else>
-        <div class="tabs__items" role="tablist" key="headings">
+       <div class="tabs__items" role="tablist" key="headings">
             <for|heading, i| of=input.headings>
                 $ var isSelected = state.index === i;
                 <div
@@ -89,5 +54,4 @@ static var itemAnchorIgnoredAttributes = ["href"];
                 </div>
             </for>
         </div>
-    </else>
 </div>
