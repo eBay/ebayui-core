@@ -1,0 +1,33 @@
+import processHtmlAttributes from "../../common/html-attributes";
+
+$ var confirmId = component.getElId("confirm-dialog-confirm");
+$ var mainId = component.getElId("confirm-dialog-main");
+
+<ebay-dialog-base
+    variant="_confirm"
+    open=input.open
+    on-open("emit", "open")
+    on-close("emit", "reject")
+    main-id=mainId
+    focus=confirmId
+    class-prefix="lightbox-dialog"
+    class=[input.class, "lightbox-dialog--mask-fade"]
+    window-class=["lightbox-dialog__compact-window--fade"]
+    window-type="compact"
+    button-position="hidden"
+    ...input
+    >
+    <@footer>
+        <ebay-button on-click("emit", "reject") class="lightbox-dialog__reject">
+            ${input.rejectText}
+        </ebay-button>
+        <ebay-button
+            priority="primary"
+            on-click("emit", "confirm")
+            id=confirmId
+            aria-describedby=mainId
+            class="lightbox-dialog__confirm">
+            ${input.confirmText}
+        </ebay-button>
+    </@footer>
+</ebay-dialog-base>

@@ -14,6 +14,10 @@ static var ignoredAttributes = [
     "footer",
     "transitionEl",
     "isModal",
+    "closeEl",
+    "ignoreEscape",
+    "windowType",
+    "mainId",
     "ariaLabelledby"
 ];
 
@@ -30,29 +34,38 @@ $ var header = input.header;
     </>
 </macro>
 <macro name="button-content">
-    <button
-        key="close"
-        class=`${input.classPrefix}__close`
-        type="button"
-        aria-label=input.a11yCloseText
-        onClick("handleCloseButtonClick")>
-        <ebay-close-icon/>
-    </button>
+    <if(buttonPosition !== "hidden")>
+        <button
+            key="close"
+            class=`${input.classPrefix}__close`
+            type="button"
+            aria-label=input.a11yCloseText
+            onClick("handleCloseButtonClick")>
+            <ebay-close-icon/>
+        </button>
+    </if>
 </macro>
 <${baseEl}
     ...processHtmlAttributes(input, ignoredAttributes)
     aria-labelledby=(input.ariaLabelledby || component.getElId("dialog-title"))
     aria-modal="true"
-    role="dialog"
+    role=(input.role || "dialog")
     class=[input.classPrefix, input.class]
     hidden:no-update=!state.open
     aria-live=(!input.isModal && "polite")
     onClick("handleDialogClick")
     onMousedown("handleStartClick")>
-    <if(state.open && isBrowser)>
+    <if(state.open && isBrowser && !input.ignoreEscape)>
         <subscribe to=document on-keydown("handleKeydown")/>
     </if>
-    <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>
+    <div
+        key="window"
+        class=[
+            input.windowType
+                ? `${input.classPrefix}__${input.windowType}-window`
+                : `${input.classPrefix}__window`,
+            input.windowClass
+        ]>
         <if(input.top)>
             <${input.top.renderBody}/>
         </if>
@@ -63,11 +76,14 @@ $ var header = input.header;
             <if(buttonPosition !== "bottom")>
                 <button-content/>
             </if>
-            <if(header && buttonPosition === "left")>
+            <if(
+                header &&
+                (buttonPosition === "left" || buttonPosition === "hidden")
+            )>
                 <header-content/>
             </if>
         </>
-        <div class=`${input.classPrefix}__main` key="body" onScroll("handleScroll")>
+        <div id=input.mainId class=`${input.classPrefix}__main`  key="body" onScroll("handleScroll")>
             <${input.renderBody}/>
         </div>
         <if(input.footer || buttonPosition === "bottom")>

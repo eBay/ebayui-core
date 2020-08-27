@@ -242,3 +242,61 @@ describe('given an open dialog with no trap', () => {
         });
     });
 });
+
+describe('given an open with no close button', () => {
+    const input = mock.Dialog_Open;
+    let sibling;
+
+    beforeEach(async() => {
+        sibling = document.body.appendChild(document.createElement('button'));
+        sibling.focus();
+        component = await render(template, assign({}, input, { buttonPosition: 'hidden', skipEscape: true }));
+    });
+
+    afterEach(() => {
+        document.body.removeChild(sibling);
+    });
+
+    thenItIsOpen();
+
+    describe('when the escape is pressed', () => {
+        beforeEach(async() => {
+            await pressKey(component.getByText(input.renderBody.text), {
+                key: 'Escape',
+                keyCode: 27
+            });
+        });
+
+        thenItIsOpen();
+    });
+
+    describe('when the escape is outside modal', () => {
+        beforeEach(async() => {
+            await pressKey(document, {
+                key: 'Escape',
+                keyCode: 27
+            });
+        });
+
+        thenItIsOpen(true);
+    });
+
+    describe('when the mask is clicked', () => {
+        beforeEach(async() => {
+            // simulate clicking outside the dialog.
+            await fireEvent.click(component.getByRole('dialog'));
+        });
+
+        thenItIsOpen(true);
+    });
+
+    function thenItIsOpen() {
+        it('then it is visible in the DOM', async() => {
+            await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+        });
+
+        it('then <body> is not scrollable', () => {
+            expect(document.body).has.attr('style').contains('overflow:hidden');
+        });
+    }
+});
