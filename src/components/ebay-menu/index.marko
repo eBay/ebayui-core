@@ -49,7 +49,7 @@ $ var baseClass = input.classPrefix || "menu";
                                 : "menuitem";
                 var checked = component.isChecked(index);
             }
-            <if (item.isSeparator)>
+            <if (item._isSeparator)>
                 <hr class=`${baseClass}__separator` role="separator" />
             </if>
             <else>

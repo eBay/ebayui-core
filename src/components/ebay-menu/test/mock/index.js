@@ -18,7 +18,7 @@ exports.Basic_3Items = assign({}, exports.Basic_2Items, {
 exports.Separator_4Items = assign({}, exports.Basic_2Items, {
     items: getNItems(4, i => ({
         value: `item ${i}`,
-        isSeparator: i === 2,
+        _isSeparator: i === 2,
         renderBody: createRenderBody(`Item text ${i}`)
     }))
 });

@@ -7,7 +7,7 @@ function transformMarko4(el, context) {
         enter(node) {
             if (node.tagName === '@separator') {
                 node.setTagName('@item');
-                node.setAttributeValue('isSeparator', context.builder.literalTrue());
+                node.setAttributeValue('_isSeparator', context.builder.literalTrue());
             }
         }
     });
@@ -17,9 +17,9 @@ function transformMarko4(el, context) {
 function transformMarko5(path, t) {
     path.traverse({
         MarkoTag(tag) {
-            if (tag.get('name').isStringLiteral({ name: '@separator' })) {
+            if (tag.get('name').isStringLiteral({ value: '@separator' })) {
                 tag.set('name.value', '@item');
-                tag.pushContainer('attributes', t.markoAttribute('isSeparator', t.booleanLiteral(true)));
+                tag.pushContainer('attributes', t.markoAttribute('_isSeparator', t.booleanLiteral(true)));
             }
         }
     });

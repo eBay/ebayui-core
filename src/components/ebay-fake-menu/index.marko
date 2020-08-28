@@ -41,7 +41,7 @@ $ var baseClass = input.classPrefix || "fake-menu";
         id:scoped="menu">
         <for|item, index| of=input.items>
             $ var isDisabled = !item.href || item.disabled;
-            <if (item.isSeparator)>
+            <if (item._isSeparator)>
                 <hr class=`${baseClass}__separator` role="separator" />
             </if>
             <else>
