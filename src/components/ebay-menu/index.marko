@@ -15,7 +15,6 @@ static {
         "style",
         "value",
         "checked",
-        "current",
         "badgeNumber",
         "badgeAriaLabel"
     ];
@@ -59,7 +58,6 @@ $ var baseClass = input.classPrefix || "menu";
                 class=[`${baseClass}__item`, item.class]
                 style=item.style
                 aria-checked=(!isNotCheckable && (checked ? "true" : "false"))
-                aria-current=(isNotCheckable && item.current ? "page" : false)
                 aria-disabled=(item.disabled && "true")
                 href=(item.disabled ? null : item.href)
                 role=itemRole

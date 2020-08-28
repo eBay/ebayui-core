@@ -22,7 +22,6 @@
     "@style": "string",
     "@value": "string",
     "@checked": "boolean",
-    "@current": "boolean",
     "@badge-number": "expression",
     "@badge-aria-label": "string"
   }
