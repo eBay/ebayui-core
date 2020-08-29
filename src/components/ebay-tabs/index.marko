@@ -1,9 +1,9 @@
 import processHtmlAttributes from "../../common/html-attributes";
 
 static var ignoredAttributes = [
-    "index",
+    "current",
     "activation",
-    "headings",
+    "tabs",
     "panels"
 ];
 static var itemAnchorIgnoredAttributes = ["href"];
@@ -14,12 +14,12 @@ static var itemAnchorIgnoredAttributes = ["href"];
         "tabs",
         input.class
     ]>
-       <div class="tabs__items" role="tablist" key="headings">
-            <for|heading, i| of=input.headings>
-                $ var isSelected = state.index === i;
+       <div class="tabs__items" role="tablist" key="tabs">
+            <for|tab, i| of=input.tabs>
+                $ var isSelected = state.current === i;
                 <div
                     ...processHtmlAttributes(
-                        heading,
+                        tab,
                         itemAnchorIgnoredAttributes
                     )
                     key=`tabs-${i}`
@@ -27,18 +27,18 @@ static var itemAnchorIgnoredAttributes = ["href"];
                     aria-controls:scoped=`tabpanel-${i}`
                     role="tab"
                     aria-selected=(isSelected && "true")
-                    class=[heading.class, "tabs__item"]
+                    class=[tab.class, "tabs__item"]
                     onClick("handleHeadingClick", i)
                     onKeydown("handleHeadingKeydown", i)>
                     <span>
-                        <${heading.renderBody}/>
+                        <${tab.renderBody}/>
                     </span>
                 </div>
             </for>
         </div>
         <div class="tabs__content">
             <for|panel, i| of=input.panels>
-                $ var isSelected = state.index === i;
+                $ var isSelected = state.current === i;
                 <div
                     ...processHtmlAttributes(panel)
                     id:scoped=`tabpanel-${i}`

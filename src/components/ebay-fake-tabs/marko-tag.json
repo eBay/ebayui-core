@@ -5,8 +5,8 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@index": "number",
-  "@headings <heading>[]": {
+  "@current": "number",
+  "@tabs <tab>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
@@ -14,17 +14,5 @@
     },
     "@html-attributes": "expression",
     "@href": "#html-href"
-  },
-  "@panels <panel>[]": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
-    },
-    "@html-attributes": "expression",
-    "@id": "never",
-    "@aria-labelledby": "never",
-    "@role": "never",
-    "@hidden": "never"
   }
 }

@@ -2,7 +2,7 @@ const assign = require('core-js-pure/features/object/assign');
 const { getNItems, createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Basic_3Headings_3Panels_No_Index = {
-    headings: getNItems(3, i => ({
+    tabs: getNItems(3, i => ({
         renderBody: createRenderBody(`Heading ${i}`)
     })),
     panels: getNItems(3, i => ({
@@ -11,11 +11,11 @@ exports.Basic_3Headings_3Panels_No_Index = {
 };
 
 exports.Basic_3Headings_3Panels_1Index = assign({}, exports.Basic_3Headings_3Panels_No_Index, {
-    index: 1
+    current: 1
 });
 
 exports.Basic_3Headings_3Panels_2Index = assign({}, exports.Basic_3Headings_3Panels_No_Index, {
-    index: 2
+    current: 2
 });
 
 exports.Basic_3Headings_3Panels_ActivationManual = assign({}, exports.Basic_3Headings_3Panels_No_Index, {
@@ -24,7 +24,7 @@ exports.Basic_3Headings_3Panels_ActivationManual = assign({}, exports.Basic_3Hea
 
 exports.Fake_3Headings_No_Index = {
     fake: true,
-    headings: getNItems(3, i => ({
+    tabs: getNItems(3, i => ({
         href: `#tab-${i}`,
         renderBody: createRenderBody(`Heading ${i}`)
     })),
@@ -34,5 +34,5 @@ exports.Fake_3Headings_No_Index = {
 };
 
 exports.Fake_3Headings_1Index = assign({}, exports.Fake_3Headings_No_Index, {
-    index: 1
+    current: 1
 });

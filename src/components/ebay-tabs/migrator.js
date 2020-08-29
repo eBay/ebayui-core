@@ -8,6 +8,16 @@ function migratorMarko4(el, context) {
         context.deprecate('"fake" attribute has been removed from ebay-tabs. Use ebay-fake-tabs instead.');
     }
     setAttributeIfPresent(el, context, 'on-tabs-select', 'on-select');
+    setAttributeIfPresent(el, context, 'index', 'current');
+
+    const walker = context.createWalker({
+        enter(node) {
+            if (node.tagName === '@heading') {
+                node.setTagName('@tab');
+            }
+        }
+    });
+    walker.walk(el);
 }
 
 function migratorMarko5() {

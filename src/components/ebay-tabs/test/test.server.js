@@ -8,7 +8,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('tabs', () => {
-    it('renders basic version with 3 headings and 3 panels', async() => {
+    it('renders basic version with 3 tabs and 3 panels', async() => {
         const input = mock.Basic_3Headings_3Panels_No_Index;
         const { getByRole, getAllByRole } = await render(template, input);
 
@@ -20,7 +20,7 @@ describe('tabs', () => {
         expect(headingEls).has.length(3);
         expect(panelEls).has.length(3);
 
-        input.headings.forEach((heading, i) => {
+        input.tabs.forEach((heading, i) => {
             const headingEl = headingEls[i];
             const panelEl = panelEls[i];
             expect(tablistEl).contains(headingEl);
@@ -50,7 +50,7 @@ describe('tabs', () => {
         });
     });
 
-    it('renders basic version with 3 headings and 3 panels on the second panel', async() => {
+    it('renders basic version with 3 tabs and 3 panels on the second panel', async() => {
         const input = mock.Basic_3Headings_3Panels_1Index;
         const { getAllByRole } = await render(template, input);
 
@@ -88,7 +88,7 @@ describe('migrator', () => {
 describe('tabs-heading', () => {
     testPassThroughAttributes(template, {
         child: {
-            name: 'headings',
+            name: 'tabs',
             multiple: true
         }
     });

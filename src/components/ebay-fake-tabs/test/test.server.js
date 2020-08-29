@@ -7,11 +7,11 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('fake tabs', () => {
-    it('renders fake version with 3 headings', async() => {
+    it('renders fake version with 3 tabs', async() => {
         const input = mock.Fake_3Headings_No_Index;
         const { getByText } = await render(template, input);
 
-        input.headings.forEach((heading, i) => {
+        input.tabs.forEach((heading, i) => {
             const headingEl = getByText(heading.renderBody.text);
             expect(headingEl).has.property('parentElement').with.class('fake-tabs__item');
             expect(headingEl).has.attr('href', heading.href);
@@ -23,15 +23,14 @@ describe('fake tabs', () => {
             }
         });
 
-        const [panel] = input.panels;
-        const panelEl = getByText(panel.renderBody.text);
+        const panelEl = getByText(input.renderBody.text);
         expect(panelEl).has.property('parentElement').with.class('fake-tabs__cell');
     });
 
-    it('renders fake version with 3 headings on the second panel', async() => {
+    it('renders fake version with 3 tabs on the second panel', async() => {
         const input = mock.Fake_3Headings_1Index;
         const { getByText } = await render(template, input);
-        input.headings.forEach((heading, i) => {
+        input.tabs.forEach((heading, i) => {
             const headingEl = getByText(heading.renderBody.text);
 
             if (i === 1) {
@@ -49,18 +48,7 @@ describe('tabs-heading', () => {
     describe('when fake', () => {
         testPassThroughAttributes(template, {
             child: {
-                name: 'headings',
-                multiple: true
-            }
-        });
-    });
-});
-
-describe('tabs-panel', () => {
-    describe('when fake', () => {
-        testPassThroughAttributes(template, {
-            child: {
-                name: 'panels',
+                name: 'tabs',
                 multiple: true
             }
         });

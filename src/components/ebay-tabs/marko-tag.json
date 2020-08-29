@@ -6,11 +6,11 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@index": "number",
+  "@current": "number",
   "@activation": {
     "enum": ["auto", "manual"]
   },
-  "@headings <heading>[]": {
+  "@tabs <tab>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
