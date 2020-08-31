@@ -18,33 +18,33 @@ module.exports = {
             event.preventDefault();
 
             const { input, state } = this;
-            const len = input.headings.length;
+            const len = input.tabs.length;
             const keyCode = event.charCode || event.keyCode;
             const direction = keyCode === 37 || keyCode === 38 ? -1 : 1;
-            const index = (state.index + len + direction) % len;
-            this.getEl(`tabs-${index}`).focus();
+            const selectedIndex = (state.selectedIndex + len + direction) % len;
+            this.getEl(`tabs-${selectedIndex}`).focus();
 
             if (!input.activation || input.activation === 'auto') {
-                this._setIndex(index);
+                this._setIndex(selectedIndex);
             }
         });
     },
 
-    handleHeadingClick(index) {
-        this._setIndex(index);
+    handleHeadingClick(selectedIndex) {
+        this._setIndex(selectedIndex);
     },
 
     onCreate() {
-        this.state = { index: 0 };
+        this.state = { selectedIndex: 0 };
     },
 
     onInput(input) {
         const { state } = this;
-        input.headings = input.headings || [];
+        input.tabs = input.tabs || [];
         input.panels = input.panels || [];
 
-        if (!isNaN(input.index)) {
-            state.index = parseInt(input.index, 10) % (input.headings.length || 1);
+        if (!isNaN(input.selectedIndex)) {
+            state.selectedIndex = parseInt(input.selectedIndex, 10) % (input.tabs.length || 1);
         }
     },
 
@@ -66,12 +66,12 @@ module.exports = {
         this._cleanupMakeup();
     },
 
-    _setIndex(index) {
+    _setIndex(selectedIndex) {
         const { state } = this;
 
-        if (index !== state.index) {
-            state.index = index;
-            this.emit('select', { index });
+        if (selectedIndex !== state.selectedIndex) {
+            state.selectedIndex = selectedIndex;
+            this.emit('select', { selectedIndex });
         }
     },
 
@@ -80,10 +80,10 @@ module.exports = {
 
         if (!input.fake) {
             this._linearRovingTabindex = rovingTabindex.createLinear(
-                this.getEl('headings'),
+                this.getEl('tabs'),
                 '.tabs__item',
                 {
-                    index: state.index,
+                    index: state.selectedIndex,
                     wrap: true
                 }
             );
