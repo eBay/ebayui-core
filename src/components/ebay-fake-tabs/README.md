@@ -1,15 +1,13 @@
-# ebay-fake-tabs
+œ∑œ# ebay-fake-tabs
 
 ## ebay-fake-tabs Usage
 
 ```marko
 <ebay-fake-tabs>
-    <@heading>Tab 1</@heading>
-    <@heading>Tab 2</@heading>
-    <@heading>Tab 3</@heading>
-    <@panel>Panel 1</@panel>
-    <@panel>Panel 2</@panel>
-    <@panel>Panel 3</@panel>
+    <@tab>Tab 1</@tab>
+    <@tab>Tab 2</@tab>
+    <@tab>Tab 3</@tab>
+    Body Content
 </ebay-fake-tabs>
 ```
 
@@ -17,28 +15,24 @@
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`index` | String | Yes | No | 0-based index of selected tab heading and panel
+`index` | String | Yes | No | 0-based index of selected tab tab and panel
 
-> *Note:* When using fake tabs there is no `preventDefault` applied, and therefore the link in the tab heading will work as a normal and navigate to the URL provided in the `href`.
+> *Note:* When using fake tabs there is no `preventDefault` applied, and therefore the link in the tab tab will work as a normal and navigate to the URL provided in the `href`.
 
-## @heading Tag
+## @tab Tag
 
-### @heading Usage
+### @tab Usage
 
 ```marko
-<@heading href="www.ebay.com">Tab 1</@heading>
+<@tab href="www.ebay.com">Tab 1</@tab>
 ```
 
-## @heading Attributes
+## @tab Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | ---
 `href` | String | No | Yes | The link to take the user to for each tab
 
-## @panel Tag
+## Body
 
-### @panel Usage
-
-```marko
-<@panel>Panel 1</@panel>
-```
+The body content will be the visible panel of the current "selected" fake tab

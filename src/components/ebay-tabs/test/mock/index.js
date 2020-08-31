@@ -11,11 +11,11 @@ exports.Basic_3Headings_3Panels_No_Index = {
 };
 
 exports.Basic_3Headings_3Panels_1Index = assign({}, exports.Basic_3Headings_3Panels_No_Index, {
-    current: 1
+    selectedIndex: 1
 });
 
 exports.Basic_3Headings_3Panels_2Index = assign({}, exports.Basic_3Headings_3Panels_No_Index, {
-    current: 2
+    selectedIndex: 2
 });
 
 exports.Basic_3Headings_3Panels_ActivationManual = assign({}, exports.Basic_3Headings_3Panels_No_Index, {
@@ -34,5 +34,5 @@ exports.Fake_3Headings_No_Index = {
 };
 
 exports.Fake_3Headings_1Index = assign({}, exports.Fake_3Headings_No_Index, {
-    current: 1
+    selectedIndex: 1
 });

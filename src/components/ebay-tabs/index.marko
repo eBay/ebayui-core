@@ -1,7 +1,7 @@
 import processHtmlAttributes from "../../common/html-attributes";
 
 static var ignoredAttributes = [
-    "current",
+    "selectedIndex",
     "activation",
     "tabs",
     "panels"
@@ -16,7 +16,7 @@ static var itemAnchorIgnoredAttributes = ["href"];
     ]>
        <div class="tabs__items" role="tablist" key="tabs">
             <for|tab, i| of=input.tabs>
-                $ var isSelected = state.current === i;
+                $ var isSelected = state.selectedIndex === i;
                 <div
                     ...processHtmlAttributes(
                         tab,
@@ -38,7 +38,7 @@ static var itemAnchorIgnoredAttributes = ["href"];
         </div>
         <div class="tabs__content">
             <for|panel, i| of=input.panels>
-                $ var isSelected = state.current === i;
+                $ var isSelected = state.selectedIndex === i;
                 <div
                     ...processHtmlAttributes(panel)
                     id:scoped=`tabpanel-${i}`

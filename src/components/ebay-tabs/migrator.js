@@ -8,7 +8,7 @@ function migratorMarko4(el, context) {
         context.deprecate('"fake" attribute has been removed from ebay-tabs. Use ebay-fake-tabs instead.');
     }
     setAttributeIfPresent(el, context, 'on-tabs-select', 'on-select');
-    setAttributeIfPresent(el, context, 'index', 'current');
+    setAttributeIfPresent(el, context, 'index', 'selected-index');
 
     const walker = context.createWalker({
         enter(node) {

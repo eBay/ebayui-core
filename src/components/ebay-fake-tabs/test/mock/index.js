@@ -10,5 +10,5 @@ exports.Fake_3Headings_No_Index = {
 };
 
 exports.Fake_3Headings_1Index = assign({}, exports.Fake_3Headings_No_Index, {
-    current: 1
+    selectedIndex: 1
 });

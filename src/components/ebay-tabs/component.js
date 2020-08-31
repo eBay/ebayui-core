@@ -21,21 +21,21 @@ module.exports = {
             const len = input.tabs.length;
             const keyCode = event.charCode || event.keyCode;
             const direction = keyCode === 37 || keyCode === 38 ? -1 : 1;
-            const current = (state.current + len + direction) % len;
-            this.getEl(`tabs-${current}`).focus();
+            const selectedIndex = (state.selectedIndex + len + direction) % len;
+            this.getEl(`tabs-${selectedIndex}`).focus();
 
             if (!input.activation || input.activation === 'auto') {
-                this._setIndex(current);
+                this._setIndex(selectedIndex);
             }
         });
     },
 
-    handleHeadingClick(current) {
-        this._setIndex(current);
+    handleHeadingClick(selectedIndex) {
+        this._setIndex(selectedIndex);
     },
 
     onCreate() {
-        this.state = { current: 0 };
+        this.state = { selectedIndex: 0 };
     },
 
     onInput(input) {
@@ -43,8 +43,8 @@ module.exports = {
         input.tabs = input.tabs || [];
         input.panels = input.panels || [];
 
-        if (!isNaN(input.current)) {
-            state.current = parseInt(input.current, 10) % (input.tabs.length || 1);
+        if (!isNaN(input.selectedIndex)) {
+            state.selectedIndex = parseInt(input.selectedIndex, 10) % (input.tabs.length || 1);
         }
     },
 
@@ -66,12 +66,12 @@ module.exports = {
         this._cleanupMakeup();
     },
 
-    _setIndex(current) {
+    _setIndex(selectedIndex) {
         const { state } = this;
 
-        if (current !== state.current) {
-            state.current = current;
-            this.emit('select', { current });
+        if (selectedIndex !== state.selectedIndex) {
+            state.selectedIndex = selectedIndex;
+            this.emit('select', { selectedIndex });
         }
     },
 
@@ -83,7 +83,7 @@ module.exports = {
                 this.getEl('tabs'),
                 '.tabs__item',
                 {
-                    index: state.current,
+                    index: state.selectedIndex,
                     wrap: true
                 }
             );

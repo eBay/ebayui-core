@@ -6,7 +6,7 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@current": "number",
+  "@selected-index": "number",
   "@activation": {
     "enum": ["auto", "manual"]
   },

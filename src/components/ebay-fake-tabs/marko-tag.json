@@ -5,7 +5,7 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@current": "number",
+  "@selected-index": "number",
   "@tabs <tab>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {

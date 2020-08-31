@@ -1,16 +1,16 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = ["current", "tabs", "panels"];
+static var ignoredAttributes = ["selectedIndex", "tabs", "panels"];
 
 static var itemAnchorIgnoredAttributes = ["href"];
 
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
     class=["fake-tabs", input.class]>
-    $ var current = input.current || 0;
+    $ var selectedIndex = input.selectedIndex || 0;
     <ul class="fake-tabs__items">
         <for|tab, i| of=input.tabs>
-            $ var isSelected = current === i;
+            $ var isSelected = selectedIndex === i;
             <li
                 ...processHtmlAttributes(tab, itemAnchorIgnoredAttributes)
                 class=[
