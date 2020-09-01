@@ -22,27 +22,10 @@ describe('menu', () => {
         });
     });
 
-    it('renders fake version', async() => {
-        const input = mock.Fake_2Items;
-        const { getByText } = await render(template, input);
-
-        input.items.forEach(item => {
-            expect(getByText(item.renderBody.text).closest('.fake-menu__item'))
-                .has.attr('href', item.href);
-        });
-    });
-
     it('renders with reverse=true', async() => {
         const input = assign({ reverse: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu')).with.class('menu__menu--reverse');
-    });
-
-    it('renders with type=fake, reverse=true', async() => {
-        const input = assign({ type: 'fake', reverse: true }, mock.Basic_2Items);
-        const { getByText } = await render(template, input);
-        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu__menu--reverse'))
-            .does.not.equal(null);
     });
 
     it('renders with fix-width=true', async() => {
@@ -51,20 +34,13 @@ describe('menu', () => {
         expect(getByRole('menu').closest('.menu')).with.class('menu__menu--fix-width');
     });
 
-    it('renders with type=fake, fix-width=true', async() => {
-        const input = assign({ type: 'fake', fixWidth: true }, mock.Basic_2Items);
-        const { getByText } = await render(template, input);
-        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu__menu--fix-width'))
-            .does.not.equal(null);
-    });
-
     it('renders with separators', async() => {
         const input = mock.Separator_4Items;
         const { queryByText, getAllByRole, getByText } = await render(template, input);
         const menuItemEls = getAllByRole('menuitem');
         const separators = getAllByRole('separator');
         input.items.forEach((item) => {
-            if (item.isSeparator) {
+            if (item._isSeparator) {
                 const menuItemEl = separators.shift();
                 const textEl = queryByText(item.renderBody.text);
                 expect(textEl).to.equal(null);

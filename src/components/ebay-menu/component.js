@@ -24,7 +24,7 @@ module.exports = assign({}, menuUtils, {
         } else if (this.type !== 'radio') {
             this.emitComponentEvent({
                 index,
-                eventType: this.type === 'fake' || !this.type ? 'select' : 'change',
+                eventType: !this.type ? 'select' : 'change',
                 el: itemEl,
                 originalEvent
             });
@@ -113,17 +113,15 @@ module.exports = assign({}, menuUtils, {
     _setupMakeup() {
         this.contentEl = this.getEl('menu');
 
-        if (this.type !== 'fake') {
-            this.rovingTabindex = rovingTabindex.createLinear(this.contentEl, 'div', {
-                index: this.tabindexPosition, autoReset: null
-            });
+        this.rovingTabindex = rovingTabindex.createLinear(this.contentEl, 'div', {
+            index: this.tabindexPosition, autoReset: null
+        });
 
-            scrollKeyPreventer.add(this.contentEl);
-        }
+        scrollKeyPreventer.add(this.contentEl);
     },
 
     _cleanupMakeup() {
-        if (this.type !== 'fake' && this.rovingTabindex) {
+        if (this.rovingTabindex) {
             this.rovingTabindex.destroy();
             scrollKeyPreventer.remove(this.contentEl);
         }

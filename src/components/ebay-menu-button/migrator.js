@@ -8,6 +8,12 @@ function migratorMarko4(el, context) {
     setAttributeIfPresent(el, context, 'on-menu-button-select', 'on-select');
     setAttributeIfPresent(el, context, 'on-menu-button-expand', 'on-expand');
     setAttributeIfPresent(el, context, 'on-menu-button-collapse', 'on-collapse');
+    if (el.hasAttribute('type') && el.getAttributeValue('type') === 'fake') {
+        el.removeAttribute('type');
+        el.setTagName('ebay-fake-menu-button');
+        context.deprecate(
+            '"type=fake" attribute has been removed from ebay-menu-button. Use ebay-fake-menu-button instead.');
+    }
 }
 
 function migratorMarko5() {

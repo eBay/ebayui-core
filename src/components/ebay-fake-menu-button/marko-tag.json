@@ -1,7 +1,6 @@
 {
   "template": "./index.marko",
   "transformer": "../../common/transformers/menu-separator",
-  "migrator": "./migrator.js",
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -9,7 +8,6 @@
   "@html-attributes": "expression",
   "@class": "string",
   "@style": "string",
-  "@type": "string",
   "@text": "string",
   "@icon": "string",
   "@a11y-text": "string",
@@ -39,8 +37,9 @@
     "@html-attributes": "expression",
     "@class": "string",
     "@style": "string",
-    "@value": "string",
-    "@checked": "boolean",
+    "@href": "string",
+    "@type": "string",
+    "@current": "boolean",
     "@badge-number": "expression",
     "@badge-aria-label": "string",
     "@_isSeparator": "boolean"

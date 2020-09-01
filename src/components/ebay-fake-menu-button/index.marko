@@ -25,14 +25,14 @@ static var ignoredAttributes = [
 $ var isOverflowVariant = input.variant === "overflow";
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
-    class=["menu-button", input.class]
+    class=["fake-menu-button", input.class]
     style=input.style
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")
     onMousedown("handleMousedown")>
     <ebay-button
         class=[
-            `menu-button__button`,
+            `fake-menu-button__button`,
             input.borderless && !isOverflowVariant && "expand-btn--borderless"
         ]
         variant=(isOverflowVariant ? "icon" : "expand")
@@ -74,18 +74,17 @@ $ var isOverflowVariant = input.variant === "overflow";
             </span>
         </else>
     </ebay-button>
-    <ebay-menu
-        class-prefix="menu-button"
+    <ebay-fake-menu
+        class-prefix="fake-menu-button"
         type=input.type
         reverse=(isOverflowVariant ? !input.reverse : input.reverse)
         fix-width=input.fixWidth
         tabindex=-1
         on-keydown("handleMenuKeydown")
-        on-change("handleMenuChange")
         on-select("handleMenuSelect")
         key="content">
         <for|item,index| of=input.items>
-            <@item  ...item checked=component.isChecked(index) />
+            <@item  ...item/>
         </for>
-    </ebay-menu>
+    </ebay-fake-menu>
 </span>
