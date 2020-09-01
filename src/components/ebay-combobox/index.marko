@@ -70,7 +70,7 @@ $ var hasButton = !!input.button;
     <if(component._hasVisibleOptions())>
         <div key="listbox" role="listbox" class="combobox__listbox">
             <for|option| of=component._getVisibleOptions()>
-                $ var isSelected = option.value === state.currentValue;
+                $ var isSelected = (option.value || option.text) === state.currentValue;
                 <div
                     ...processHtmlAttributes(option, itemIgnoredAttributes)
                     key="options[]"
