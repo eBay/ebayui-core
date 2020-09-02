@@ -10,6 +10,7 @@
   "@html-attributes": "expression",
   "@name": "string",
   "@a11y-text": "string",
+  "@a11y-variant": "string",
   "@no-skin-classes": "boolean",
   "@_themes": "expression",
   "@role": "never",
