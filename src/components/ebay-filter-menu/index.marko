@@ -9,11 +9,14 @@ static var ignoredAttributes = [
     "formName",
     "formAction",
     "formMethod",
-    "items"
+    "items",
+    "type"
 ];
 
 static var itemIgnoredAttributes = ["checked", "value"];
 
+$ var isRadio = input.type === "radio";
+$ var prefixName = isRadio ? 'radio' : 'checkbox';
 $ var baseClass = input.classPrefix || "filter-menu";
 $ var isForm = input.variant === "form";
 <span
@@ -28,27 +31,44 @@ $ var isForm = input.variant === "form";
         onSubmit("handleFormSubmit")>
         <div key="menu" class=`${baseClass}__items` role=(!isForm && "menu")>
             <for|item, i| of=input.items>
-                $ var isChecked = state.isChecked[i];
+                $ var isChecked = component.isChecked(i);
                 <${isForm ? "label" : "div"}
                     ...processHtmlAttributes(item, itemIgnoredAttributes)
                     class=[`${baseClass}__item`, item.class]
-                    role="menuitemcheckbox"
+                    role=(isRadio ? "menuitemradio" : "menuitemcheckbox")
                     aria-checked=String(isChecked)
-                    for=(isForm && component.elId(`checkbox-${i}`))
+                    for=(isForm && component.elId(`${prefixName}-${i}`))
                     onClick("handleItemClick", i)
                     onKeydown("handleItemKeydown", i)>
                     <if(isForm)>
-                        <ebay-checkbox id:scoped=`checkbox-${i}` checked=isChecked/>
+                        <if (isRadio)>
+                            <ebay-radio id:scoped=`${prefixName}-${i}` checked=isChecked on-radio-change("handleRadioClick", i)/>
+                        </if>
+                        <else>
+                            <ebay-checkbox id:scoped=`${prefixName}-${i}` checked=isChecked/>
+                        </else>
                     </if>
                     <else>
-                        <span class=`${baseClass}__status`>
-                            <if(isChecked)>
-                                <ebay-icon name="checkbox-checked"/>
-                            </if>
-                            <else>
-                                <ebay-icon name="checkbox-unchecked"/>
-                            </else>
-                        </span>
+                        <if (isRadio)>
+                            <span class=`${baseClass}__radio`>
+                                <if(isChecked)>
+                                    <ebay-icon name="radio-checked"/>
+                                </if>
+                                <else>
+                                    <ebay-icon name="radio-unchecked"/>
+                                </else>
+                            </span>
+                        </if>
+                        <else>
+                            <span class=`${baseClass}__status`>
+                                <if(isChecked)>
+                                    <ebay-icon name="checkbox-checked"/>
+                                </if>
+                                <else>
+                                    <ebay-icon name="checkbox-unchecked"/>
+                                </else>
+                            </span>
+                        </else>
                     </else>
                     <span class=`${baseClass}__text`>
                         <${item.renderBody}/>

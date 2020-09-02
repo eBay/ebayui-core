@@ -25,8 +25,8 @@ $ var pointer = input.pointer || "bottom";
         type=classPrefix
         pointer=pointer
         overlay-id:scoped="overlay"
-        onBase-expand("handleExpand")
-        onBase-collapse("handleCollapse")>
+        onBase-expand(!input.modal && "handleExpand")
+        onBase-collapse(!input.modal && "handleCollapse")>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class:no-update=[
@@ -38,6 +38,7 @@ $ var pointer = input.pointer || "bottom";
                 key="host"
                 class=[`${classPrefix}__host`, "icon-btn"]
                 type="button"
+                on-click(input.modal && "handleExpand")
                 disabled=input.disabled
                 aria-label=input.ariaLabel>
                 <if(input.iconTag)>
@@ -69,8 +70,9 @@ $ var pointer = input.pointer || "bottom";
                     class=[`${classPrefix}__overlay`]
                     windowClass=["dialog__window--mini", "dialog__window--fade"]
                     a11y-close-text=input.a11yCloseText
+                    aria-label=input.ariaLabel
                     on-modal-show("handleExpand")
-                    on-modal-close("handleOverlayClose")>
+                    on-modal-close("handleCollapse")>
                     <${input.content}/>
                 </ebay-dialog-base>
             </else>

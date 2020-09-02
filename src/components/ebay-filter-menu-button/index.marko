@@ -9,7 +9,8 @@ static var ignoredAttributes = [
     "formName",
     "formAction",
     "formMethod",
-    "items"
+    "items",
+    "type"
 ];
 
 <span
@@ -25,7 +26,7 @@ static var ignoredAttributes = [
         aria-expanded:no-update="false"
         aria-haspopup="true"
         aria-label=input.a11yText
-        aria-pressed=(state.isChecked.some(Boolean) && "true")>
+        aria-pressed=(component.getCheckedValues().some(Boolean) && "true")>
         <span class="filter-menu-button__button-cell">
             <span class="filter-menu-button__button-text">${input.text}</span>
             <ebay-icon name="chevron-down"/>
@@ -34,6 +35,7 @@ static var ignoredAttributes = [
     <ebay-filter-menu
         class-prefix="filter-menu-button"
         variant=input.variant
+        type=input.type
         form-name=input.formName
         form-action=input.formAction
         form-method=input.formMethod
@@ -43,7 +45,7 @@ static var ignoredAttributes = [
         onFilter-menu-form-submit("handleFormSubmit")
         onFilter-menu-footer-click("handleFooterButtonClick")>
         <for|item, i| of=input.items>
-            <@item ...item checked=state.isChecked[i]/>
+            <@item ...item checked=component.isChecked(i)/>
         </for>
     </ebay-filter-menu>
 </span>

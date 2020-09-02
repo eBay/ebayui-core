@@ -36,7 +36,7 @@ describe('listbox', () => {
         const input = mock.Basic_0Options;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('button')).has.length(1);
-        expect(getAllByRole('listbox').filter(isVisible)).has.length(0);
+        expect(getAllByRole('listbox').filter(isVisible)[0].childNodes).has.length(0);
     });
 
     it('renders fluid layout', async() => {

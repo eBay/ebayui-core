@@ -1,0 +1,29 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@grow": "boolean",
+  "@borderless": "boolean",
+  "@fluid": "boolean",
+  "@invalid": "boolean",
+  "@name": "#html-name",
+  "@button-name": "#html-name",
+  "@disabled": "#html-disabled",
+  "@options <option>[]": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@text": "string",
+    "@selected": "#html-selected",
+    "@value": "#html-value",
+    "@role": "never",
+    "@tabindex": "never",
+    "@aria-selected": "never"
+  }
+}

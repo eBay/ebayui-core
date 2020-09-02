@@ -48,15 +48,6 @@ describe('given the listbox with 3 items', () => {
             expect(component.getByRole('button')).has.attr('aria-expanded', 'false');
         });
 
-        it('then it emits the listbox-change event with the correct data', () => {
-            const changeEvents = component.emitted('listbox-change');
-            expect(changeEvents).has.length(1);
-
-            const [[changeEvent]] = changeEvents;
-            expect(changeEvent).has.property('index', 1);
-            expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
-        });
-
         describe('when the up arrow key is pressed', () => {
             beforeEach(async() => {
                 component.emitted('listbox-change');
@@ -68,15 +59,6 @@ describe('given the listbox with 3 items', () => {
 
             it('then it should not expand the listbox', () => {
                 expect(component.getByRole('button')).has.attr('aria-expanded', 'false');
-            });
-
-            it('then it emits the listbox-change event with the correct data', () => {
-                const changeEvents = component.emitted('listbox-change');
-                expect(changeEvents).has.length(1);
-
-                const [[changeEvent]] = changeEvents;
-                expect(changeEvent).has.property('index', 0);
-                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);
             });
         });
     });
@@ -123,7 +105,7 @@ describe('given the listbox is in an expanded state', () => {
             await fireEvent.click(component.getByText(input.options[1].text));
         });
 
-        it('then it emits the listbox-change event with correct data', () => {
+        it('Should trigger listbox change change', () => {
             const changeEvents = component.emitted('listbox-change');
             expect(changeEvents).has.length(1);
 
@@ -135,7 +117,7 @@ describe('given the listbox is in an expanded state', () => {
 
     describe('when the down arrow key is pressed', () => {
         beforeEach(async() => {
-            await pressKey(component.getByRole('button'), {
+            await pressKey(component.getAllByRole('listbox').find(isVisible), {
                 key: 'ArrowDown',
                 keyCode: 40
             });
@@ -149,24 +131,9 @@ describe('given the listbox is in an expanded state', () => {
             expect(changeEvent).has.property('index', 1);
             expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
         });
-
-        describe('when the up arrow key is pressed', () => {
-            beforeEach(async() => {
-                component.emitted('listbox-change');
-                await pressKey(component.getByRole('button'), {
-                    key: 'ArrowUp',
-                    keyCode: 38
-                });
-            });
-
-            it('then it emits the listbox-change event with the correct data', () => {
-                const changeEvents = component.emitted('listbox-change');
-                expect(changeEvents).has.length(1);
-
-                const [[changeEvent]] = changeEvents;
-                expect(changeEvent).has.property('index', 0);
-                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);
-            });
-        });
     });
 });
+
+function isVisible(el) {
+    return !el.hasAttribute('hidden') && !el.closest('[hidden]');
+}

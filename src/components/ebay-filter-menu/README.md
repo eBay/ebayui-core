@@ -18,6 +18,7 @@ The `ebay-filter-menu` component is used as a checkbox menu specificially styled
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
+`type` | String | No | No | Can be "radio" / "checkbox"
 `footer-text` | String | Yes | No | footer button text
 `variant` | String | No | No | "" (default) / "form"
 `form-name` | String | No | No | form's `name` attribute (used with `variant="form"`)

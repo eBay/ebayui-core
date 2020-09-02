@@ -11,11 +11,15 @@ module.exports = {
     },
 
     onMount() {
-        this._setupMakeup();
+        if (this.input.type !== 'dialog--mini') {
+            this._setupMakeup();
+        }
     },
 
     onUpdate() {
-        this._setupMakeup();
+        if (this.input.type !== 'dialog--mini') {
+            this._setupMakeup();
+        }
     },
 
     onRender() {
@@ -41,7 +45,7 @@ module.exports = {
         const { type } = input;
         const container = this.getEl('container');
         const isTooltip = type === 'tooltip';
-        const isInfotip = type === 'infotip' || type === 'dialog--mini';
+        const isInfotip = type === 'infotip';
         const expanderEl = container.getElementsByClassName(type)[0];
 
         if (host) {
