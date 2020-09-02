@@ -67,7 +67,7 @@
     "@babel/preset-react": "^7.10.1",
     "@babel/runtime-corejs3": "^7.10.3",
     "@ebay/browserslist-config": "^1.0.0",
-    "@ebay/skin": "10.7.0-0",
+    "@ebay/skin": "10.7.0",
     "@lasso/marko-taglib": "^1.0.15",
     "@marko/testing-library": "^2.1.0",
     "@storybook/addon-knobs": "~5.3.19",
@@ -119,7 +119,7 @@
     "webpack-plugin-browser-json": "^1.1.3"
   },
   "peerDependencies": {
-    "@ebay/skin": "10.7.0-0",
+    "@ebay/skin": "10.7.0",
     "marko": "^4"
   },
   "dependencies": {
