@@ -1,7 +1,12 @@
-import { configure, storiesOf } from "@storybook/marko";
+import { configure, storiesOf, addParameters } from "@storybook/marko";
 import { withReadme } from "storybook-readme";
 
 configure(() => {
+  addParameters({
+    options: {
+      theme: {}// this is just a workaround for addon-readme
+    },
+  });
   const hiddenStories = ['ebay-combobox-readonly', 'ebay-pill'];
   const requireReadme = require.context("../src", true, /\/README\.md$/);
   const docsByTag = requireReadme.keys().reduce((result, file) => {
