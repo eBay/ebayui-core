@@ -19,10 +19,7 @@ function getTemplateData(state) {
     const prevControlDisabled = isSingleSlide || !autoplayInterval && offset === 0;
     const nextControlDisabled = isSingleSlide || !autoplayInterval && offset === getMaxOffset(state);
     const bothControlsDisabled = prevControlDisabled && nextControlDisabled;
-    let slide,
-        itemWidth,
-        totalSlides,
-        a11yStatusText;
+    let slide, itemWidth, totalSlides, a11yStatusText;
 
     if (itemsPerSlide) {
         const itemsInSlide = itemsPerSlide + state.peek;
@@ -444,7 +441,6 @@ module.exports = {
 
     onInput(input) {
         const gap = parseInt(input.gap, 10);
-
         const state = {
             htmlAttributes: processHtmlAttributes(input, [
                 'class',
