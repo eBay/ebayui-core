@@ -31,7 +31,7 @@ describe('given the default infotip', () => {
     function thenItCanBeOpenAndClosed() {
         describe('when the host element is clicked', () => {
             beforeEach(async() => {
-                await fireEvent.click(component.getByLabelText(input.ariaLabel));
+                await fireEvent.click(component.getAllByLabelText(input.ariaLabel)[0]);
             });
 
             it('then it emits the expand event', () => {
@@ -68,7 +68,7 @@ describe('given the modal infotip', () => {
 
     describe('when the host element is clicked', () => {
         beforeEach(async() => {
-            await fireEvent.click(component.getByLabelText(input.ariaLabel));
+            await fireEvent.click(component.getAllByLabelText(input.ariaLabel)[0]);
         });
 
         it('then it emits the expand event', async() => {
@@ -77,7 +77,6 @@ describe('given the modal infotip', () => {
 
         it('then it is expanded', async() => {
             await wait(() => {
-                expect(component.getByLabelText(input.ariaLabel)).has.attr('aria-expanded', 'true');
                 expect(component.getByRole('dialog')).does.not.have.attr('hidden');
             });
         });
@@ -93,7 +92,7 @@ describe('given the modal infotip opened', () => {
 
     describe('when the host element is opened and then closed', () => {
         beforeEach(async() => {
-            await fireEvent.click(component.getByLabelText(input.ariaLabel));
+            await fireEvent.click(component.getByLabelText(input.a11yCloseText));
         });
 
         it('then it emits the collapse event', async() => {
@@ -102,7 +101,6 @@ describe('given the modal infotip opened', () => {
 
         it('then it is collapsed', async() => {
             await wait(() => {
-                expect(component.getByLabelText(input.ariaLabel)).does.not.have.attr('aria-expanded', 'true');
                 expect(component.getByRole('dialog')).has.attr('hidden');
             });
         });

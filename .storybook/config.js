@@ -6,7 +6,7 @@ configure(() => {
     options: {
       theme: {}// this is just a workaround for addon-readme
     },
-  })
+  });
   const hiddenStories = ['ebay-combobox-readonly', 'ebay-pill'];
   const requireReadme = require.context("../src", true, /\/README\.md$/);
   const docsByTag = requireReadme.keys().reduce((result, file) => {

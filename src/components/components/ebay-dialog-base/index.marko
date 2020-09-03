@@ -18,7 +18,8 @@ static var ignoredAttributes = [
     "ignoreEscape",
     "windowType",
     "mainId",
-    "ariaLabelledby"
+    "ariaLabelledby",
+    "buttonPosition"
 ];
 
 static var ignoredHeaderAttributes = ["id", "as"];
@@ -47,7 +48,7 @@ $ var header = input.header;
 </macro>
 <${baseEl}
     ...processHtmlAttributes(input, ignoredAttributes)
-    aria-labelledby=(input.ariaLabelledby || component.getElId("dialog-title"))
+    aria-labelledby=(input.ariaLabelledby || (input.header && component.getElId("dialog-title")))
     aria-modal="true"
     role=(input.role || "dialog")
     class=[input.classPrefix, input.class]

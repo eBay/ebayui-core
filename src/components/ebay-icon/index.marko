@@ -11,6 +11,7 @@ static var ignoredAttributes = [
     "toJSON"
 ];
 
+$ var noTitle = input.a11yVariant === 'label';
 $ input.toJSON = noop;
 $ var lookup = isBrowser ? browserLookup : out.global;
 $ var a11yAttributes = input.a11yText ? { role: "img" } : { "aria-hidden": "true" }
@@ -20,7 +21,8 @@ $ var a11yAttributes = input.a11yText ? { role: "img" } : { "aria-hidden": "true
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[input.class, !input.noSkinClasses && `icon icon--${input._name}`]
     focusable="false"
-    aria-labelledby=(input.a11yText && component.elId("text"))>
+    aria-labelledby=(input.a11yText && !noTitle && component.elId("text"))
+    aria-label=(noTitle && input.a11yText)>
     <!-- Here we check if we should render the inline svg symbol. -->
     <!-- Server side we store a flag in `out.global` to check if the symbol was rendered. -->
     <!-- Client side we check the `browserLookup` object to see if the symbol is already present in root svg. -->
@@ -52,7 +54,7 @@ $ var a11yAttributes = input.a11yText ? { role: "img" } : { "aria-hidden": "true
         </defs>
     </if>
 
-    <if(input.a11yText)>
+    <if(input.a11yText && !noTitle)>
         <title id:scoped="text">${input.a11yText}</title>
     </if>
 

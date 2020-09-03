@@ -24,8 +24,8 @@ $ var pointer = input.pointer || "bottom";
         type=classPrefix
         pointer=pointer
         overlay-id:scoped="overlay"
-        onBase-expand("handleExpand")
-        onBase-collapse("handleCollapse")>
+        onBase-expand(!input.modal && "handleExpand")
+        onBase-collapse(!input.modal && "handleCollapse")>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class:no-update=[
@@ -37,6 +37,7 @@ $ var pointer = input.pointer || "bottom";
                 key="host"
                 class=[`${classPrefix}__host`, "icon-btn"]
                 type="button"
+                on-click(input.modal && "handleExpand")
                 disabled=input.disabled
                 aria-label=input.ariaLabel>
                 <if(input.icon)>
@@ -67,7 +68,8 @@ $ var pointer = input.pointer || "bottom";
                     variant="_mini"
                     a11y-close-text=input.a11yCloseText
                     on-open("handleExpand")
-                    on-close("handleOverlayClose")>
+                    on-close("handleCollapse")
+                    aria-label=input.ariaLabel>
                     <${input.content}/>
                 </ebay-lightbox-dialog>
             </else>
