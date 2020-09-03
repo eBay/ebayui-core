@@ -1,9 +1,16 @@
 $ var data = component.getTemplateData(state, input);
-<div ...data.htmlAttributes class=data.classes style=data.style>
-    $ var config = data.config;
-    $ var discrete = data.totalSlides >= 1;
-    $ var statusId = discrete && "carousel-status-" + component.id;
-    <div
+$ var config = data.config;
+$ var discrete = data.totalSlides >= 1;
+$ var statusId = (discrete && "carousel-status-" + component.id) || (
+   data.a11yStatusText || data.a11yHeadingText && component.getElId("carousel"));
+
+<div ...data.htmlAttributes
+    class=data.classes
+    style=data.style
+    aria-labelledby=statusId
+    role=(statusId && "group")
+    aria-roledescription=(statusId && "carousel")>
+   <div
         class=[
             "carousel__container",
             data.bothControlsDisabled &&
