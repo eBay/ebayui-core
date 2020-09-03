@@ -22,21 +22,13 @@ function getTemplateData(state) {
     let slide,
         itemWidth,
         totalSlides,
-        a11yStatusText,
-        a11yPreviousText = state.a11yPreviousText,
-        a11yNextText = state.a11yNextText;
+        a11yStatusText;
 
     if (itemsPerSlide) {
         const itemsInSlide = itemsPerSlide + state.peek;
         slide = getSlide(state);
         itemWidth = `calc(${100 / itemsInSlide}% - ${(itemsInSlide - 1) * gap / itemsInSlide}px)`;
         totalSlides = getSlide(state, items.length);
-        a11yPreviousText = a11yPreviousText
-            .replace('{currentSlide}', slide + 1)
-            .replace('{totalSlides}', totalSlides);
-        a11yNextText = a11yNextText
-            .replace('{currentSlide}', slide + 1)
-            .replace('{totalSlides}', totalSlides);
         a11yStatusText = state.a11yStatusText
             .replace('{currentSlide}', slide + 1)
             .replace('{totalSlides}', totalSlides);
@@ -70,8 +62,6 @@ function getTemplateData(state) {
         slide,
         offset: hasOverride ? config.offsetOverride : offset,
         disableTransition: hasOverride,
-        a11yNextText,
-        a11yPreviousText,
         totalSlides,
         a11yStatusText,
         prevControlDisabled,
@@ -453,10 +443,6 @@ module.exports = {
     togglePlay,
 
     onInput(input) {
-        let titleText = input.a11yHeadingText || input.a11yStatusText;
-        if (titleText) {
-            titleText = ` - ${titleText}`;
-        }
         const gap = parseInt(input.gap, 10);
 
         const state = {
@@ -486,8 +472,8 @@ module.exports = {
             gap: isNaN(gap) ? 16 : gap,
             index: parseInt(input.index, 10) || 0,
             itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
-            a11yPreviousText: input.a11yPreviousText || `'Previous Slide${titleText}`,
-            a11yNextText: input.a11yNextText || `Next Slide${titleText}`,
+            a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
+            a11yNextText: input.a11yNextText || 'Next Slide',
             a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
             a11yStatusTag: input.a11yStatusTag || 'span',
             a11yHeadingText: input.a11yHeadingText,
