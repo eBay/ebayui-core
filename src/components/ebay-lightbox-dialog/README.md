@@ -2,7 +2,8 @@
 
 ```marko
 <ebay-lightbox-dialog open a11y-close-text="Close Dialog">
-  <h1>Hello World</h1>
+  <@header>Hello World</@header>
+  Body content
 </ebay-lightbox-dialog>
 ```
 
@@ -20,3 +21,11 @@ Event | Data | Description
 --- | --- | ---
 `open` |  | dialog opened
 `close` |  | dialog closed
+
+## <@header>
+
+Will render a header content for lightbox. Will always render the header element even if this is not present
+
+## <@footer>
+
+Will render the footer content for lightbox. If not present then will not have any footer.
