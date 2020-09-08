@@ -470,12 +470,12 @@ module.exports = {
             itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
             a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
             a11yNextText: input.a11yNextText || 'Next Slide',
-            a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
+            a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides}',
             a11yStatusTag: input.a11yStatusTag || 'span',
             a11yHeadingText: input.a11yHeadingText,
             a11yHeadingTag: input.a11yHeadingTag || 'h2',
-            a11yPauseText: input.a11yPauseText || 'Pause - Carousel',
-            a11yPlayText: input.a11yPlayText || 'Play - Carousel'
+            a11yPauseText: input.a11yPauseText || 'Pause',
+            a11yPlayText: input.a11yPlayText || 'Play'
         };
 
         const itemSkippedAttributes = ['class', 'style'];

@@ -28,7 +28,7 @@ Name | Type | Stateful | Required | Description
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`a11y-status-text` | String | No | Yes | status text (default: "Showing Slide {currentSlide} of {totalSlides} - Carousel")
+`a11y-status-text` | String | No | Yes | status text (default: "Showing Slide {currentSlide} of {totalSlides}")
 `a11y-status-tag` | String | No | Yes | use h1-h6 when there isn't a visible heading before the carousel (default: "span")
 `autoplay` | Boolean or Number | No | No | automatically slides the carousel on an interval. If a number is supplied that is used as the interval in ms, defaults to 4000ms.
 
@@ -36,8 +36,8 @@ Name | Type | Stateful | Required | Description
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`a11y-play-text` | String | No | Yes | autoplay play button text (default: "Play - Carousel")
-`a11y-pause-text` | String | No | Yes | autoplay pause button text (default: "Pause - Carousel")
+`a11y-play-text` | String | No | Yes | autoplay play button text (default: "Play")
+`a11y-pause-text` | String | No | Yes | autoplay pause button text (default: "Pause")
 `paused` | Boolean | Yes | No | pauses the autoplay carousel
 
 ## ebay-carousel Events
