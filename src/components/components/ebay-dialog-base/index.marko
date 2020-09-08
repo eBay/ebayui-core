@@ -42,7 +42,12 @@ $ var header = input.header;
             type="button"
             aria-label=input.a11yCloseText
             onClick("handleCloseButtonClick")>
-            <ebay-close-icon/>
+            <if (input.closeEl)>
+                <${input.closeEl}/>
+            </if>
+            <else>
+                <ebay-close-icon/>
+            </else>
         </button>
     </if>
 </macro>
