@@ -1,4 +1,4 @@
 require('@ebay/skin/icon');
-require('@ebay/skin/label');
+require('@ebay/skin/floating-label');
 require('@ebay/skin/textbox');
 require('@ebay/skin/actionable');
