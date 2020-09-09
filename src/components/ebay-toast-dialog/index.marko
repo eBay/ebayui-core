@@ -1,0 +1,17 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+$ var header = input.header || {};
+<ebay-dialog-base
+    ...input
+    open=input.open
+    baseEl="aside"
+    transitionEl="root"
+    isModal=false
+    classPrefix="toast-dialog"
+    buttonPosition="right"
+    on-open("emit", "open")
+    on-close("emit", "close")
+    class=[input.class, "toast-dialog--transition"]>
+    <@header ...header class=[header.class, "toast-dialog__title"] />
+    <${input.renderBody}/>
+</ebay-dialog-base>

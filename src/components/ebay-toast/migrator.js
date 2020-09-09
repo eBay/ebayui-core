@@ -3,6 +3,7 @@ const dialogBaseMigrator = require('../components/ebay-dialog-base/migrator');
 
 // Transforms an `icon` attribute into an `<ebay-menu:_icon>` tag
 function migratorMarko4(el, context) {
+    el.setTagName('ebay-toast-dialog');
     setAttributeIfPresent(el, context, 'on-toast-show', 'on-open');
     setAttributeIfPresent(el, context, 'on-toast-close', 'on-close');
     dialogBaseMigrator(el, context);
