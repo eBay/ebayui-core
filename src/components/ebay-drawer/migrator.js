@@ -2,6 +2,7 @@ const { setAttributeIfPresent } = require('../../common/migrators');
 const dialogBaseMigrator = require('../components/ebay-dialog-base/migrator');
 
 function migratorMarko4(el, context) {
+    el.setTagName('ebay-drawer-dialog');
     setAttributeIfPresent(el, context, 'on-drawer-show', `on-open`);
     setAttributeIfPresent(el, context, 'on-drawer-close', `on-close`);
     setAttributeIfPresent(el, context, 'on-drawer-expanded', `on-expanded`);
