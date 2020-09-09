@@ -23,7 +23,7 @@
     },
     "@html-attributes": "expression"
   },
-  "@close-el <closeEl>": {
+  "@closeButton <close-button>": {
     "attribute-groups": [
       "html-attributes"
     ],
