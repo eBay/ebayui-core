@@ -1,0 +1,36 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+<ebay-dialog-base
+    ...input
+    open=input.open
+    classPrefix="drawer-dialog"
+    buttonPosition="right"
+    key="dialog"
+    on-scroll('handleScroll')
+    on-open("emit", "open")
+    on-close("emit", "close")
+    class=[
+        input.class,
+        "drawer-dialog--mask-fade-slow"
+    ]
+    window-class=[
+            `drawer-dialog__window`,
+            "drawer-dialog__window--slide",
+            state.expanded && "drawer-dialog__window--expanded"
+        ]>
+        <if (!input.noHandle)>
+            <@top>
+                <button
+                    aria-label=input.a11yHandleText
+                    class=`drawer-dialog__handle`
+                    onClick("handleExpand")
+                    onTouchStart("handleTouchStart")
+                    onTouchMove("handleTouchMove")
+                    onTouchEnd("handleTouchEnd")
+                    onTouchCancel("handleTouchEnd")
+                ></button>
+            </@top>
+        </if>
+
+    <${input.renderBody}/>
+</ebay-dialog-base>
