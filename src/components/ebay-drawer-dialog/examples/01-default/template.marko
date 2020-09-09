@@ -1,4 +1,4 @@
-<ebay-drawer
+<ebay-drawer-dialog
     a11y-close-text="Close drawer"
     aria-labelledby="drawer-title"
     open=state.open
@@ -13,8 +13,8 @@
     <@footer>
         <ebay-button>Close</ebay-button>
     </@footer>
-</ebay-drawer>
-<ebay-button on-click("openDrawer")>Opendrawer</ebay-button>
+</ebay-drawer-dialog>
+<ebay-button on-click("openDrawer")>Open drawer</ebay-button>
 class {
     onCreate() {
         this.state = { open: false };
