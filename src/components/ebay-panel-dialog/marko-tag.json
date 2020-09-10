@@ -23,6 +23,16 @@
     },
     "@html-attributes": "expression"
   },
+  "@closeButton <close-button>": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
   "@footer <footer>": {
     "attribute-groups": [
       "html-attributes"

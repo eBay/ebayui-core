@@ -14,7 +14,7 @@ static var ignoredAttributes = [
     "footer",
     "transitionEl",
     "isModal",
-    "closeEl",
+    "closeButton",
     "ignoreEscape",
     "windowType",
     "mainId",
@@ -42,7 +42,12 @@ $ var header = input.header;
             type="button"
             aria-label=input.a11yCloseText
             onClick("handleCloseButtonClick")>
-            <ebay-close-icon/>
+            <if (input.closeButton)>
+                <${input.closeButton}/>
+            </if>
+            <else>
+                <ebay-close-icon/>
+            </else>
         </button>
     </if>
 </macro>

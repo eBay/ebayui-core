@@ -2,7 +2,8 @@
 
 ```marko
 <ebay-panel-dialog open a11y-close-text="Close Dialog">
-  <h1>Hello World</h1>
+  <@header>Hello World</@header>
+  Body content
 </ebay-panel-dialog>
 ```
 
@@ -22,3 +23,12 @@ Event | Data | Description
 --- | --- | ---
 `open` |  | dialog opened
 `close` |  | dialog closed
+
+## <@header>
+
+Adds header content for the panel
+
+## <@close-button>
+
+If present will render this as the close button content. Otherwise will render a close icon (X).
+This content will be rendered inside a button tag
