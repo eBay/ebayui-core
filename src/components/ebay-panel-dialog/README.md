@@ -28,7 +28,7 @@ Event | Data | Description
 
 Adds header content for the panel
 
-## <@close-el>
+## <@close-button>
 
 If present will render this as the close button content. Otherwise will render a close icon (X).
 This content will be rendered inside a button tag
