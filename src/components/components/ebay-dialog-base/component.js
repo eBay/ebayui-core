@@ -115,9 +115,10 @@ module.exports = {
         const isFirstRender = (opts && opts.firstRender);
         const wasToggled = isTrapped !== wasTrapped;
         const focusEl = (this.input.focus && document.getElementById(this.input.focus)) || this.closeEl;
+        const useHiddenProperty = this.input.useHiddenProperty || false;
 
         if (this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped))) {
-            screenReaderTrap.trap(this.windowEl);
+            screenReaderTrap.trap(this.windowEl, { useHiddenProperty });
             keyboardTrap.trap(this.windowEl);
         }
 
