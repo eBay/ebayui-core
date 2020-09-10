@@ -35,8 +35,8 @@ describe('given a closed dialog', () => {
         expect(document.body).does.not.have.attr('style');
     });
 
-    it('then it\'s siblings are visible', () => {
-        expect(sibling).does.not.have.attr('aria-hidden');
+    it('then it\'s siblings are visible', async() => {
+        await wait(() => expect(sibling).does.not.have.attr('aria-hidden'));
     });
 
     it('then it does not trap focus', () => {
@@ -60,8 +60,8 @@ describe('given a closed dialog', () => {
             expect(document.body).has.attr('style').contains('overflow:hidden');
         });
 
-        it('then it\'s siblings are hidden', () => {
-            expect(sibling).has.attr('aria-hidden', 'true');
+        it('then it\'s siblings are hidden', async() => {
+            await wait(() => expect(sibling).has.attr('aria-hidden', 'true'));
         });
 
         if (wasToggled) {
@@ -162,8 +162,8 @@ describe('given an open dialog', () => {
             expect(document.body).has.attr('style').contains('overflow:hidden');
         });
 
-        it('then it\'s siblings are hidden', () => {
-            expect(sibling).has.attr('aria-hidden', 'true');
+        it('then it\'s siblings are hidden', async() => {
+            await wait(() => expect(sibling).has.attr('aria-hidden', 'true'));
         });
 
         it('then it traps focus', async() => {
@@ -185,8 +185,8 @@ describe('given an open dialog', () => {
             });
         });
 
-        it('then it\'s siblings are visible', () => {
-            expect(sibling).does.not.have.attr('aria-hidden');
+        it('then it\'s siblings are visible', async() => {
+            await wait(() => expect(sibling).does.not.have.attr('aria-hidden'));
         });
 
         it('then it restores the previous focus', async() => {
@@ -229,8 +229,8 @@ describe('given an open dialog with no trap', () => {
         expect(document.body).does.not.have.attr('style');
     });
 
-    it('then it\'s siblings are not hidden', () => {
-        expect(sibling).does.not.have.attr('aria-hidden', 'true');
+    it('then it\'s siblings are not hidden', async() => {
+        await wait(() => expect(sibling).does.not.have.attr('aria-hidden'));
     });
 
     it('then it does not traps focus', async() => {
@@ -262,8 +262,8 @@ describe('given a closed dialog with useHiddenProperty', () => {
         expect(document.body).does.not.have.attr('style');
     });
 
-    it('then it\'s siblings are visible', () => {
-        expect(sibling).does.not.have.attr('hidden');
+    it('then it\'s siblings are visible', async() => {
+        await wait(() => expect(sibling).does.not.have.attr('hidden'));
     });
 
     it('then it does not trap focus', () => {
@@ -287,8 +287,8 @@ describe('given a closed dialog with useHiddenProperty', () => {
             expect(document.body).has.attr('style').contains('overflow:hidden');
         });
 
-        it('then it\'s siblings are hidden', () => {
-            expect(sibling).has.attr('hidden');
+        it('then it\'s siblings are hidden', async() => {
+            await wait(() => expect(sibling).has.attr('hidden'));
         });
 
         if (wasToggled) {
