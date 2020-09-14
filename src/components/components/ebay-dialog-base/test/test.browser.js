@@ -70,7 +70,8 @@ describe('given a closed dialog', () => {
             it('then it traps focus', async() => {
                 await wait(() => {
                     expect(component.getByRole('dialog').children[1]).has.class('keyboard-trap--active');
-                    expect(document.activeElement).has.class(component.getByLabelText(input.a11yCloseText).className);
+                    component.getByLabelText(input.a11yCloseText).classList.forEach((cls) =>
+                        expect(document.activeElement).has.class(cls));
                 });
             });
 
@@ -171,7 +172,8 @@ describe('given an open dialog', () => {
         it('then it traps focus', async() => {
             await wait(() => {
                 expect(component.getByRole('dialog').children[1]).has.class('keyboard-trap--active');
-                expect(document.activeElement).has.class(component.getByLabelText(input.a11yCloseText).className);
+                component.getByLabelText(input.a11yCloseText).classList.forEach((cls) =>
+                    expect(document.activeElement).has.class(cls));
             });
         });
     }
@@ -238,7 +240,8 @@ describe('given an open dialog with no trap', () => {
     it('then it does not traps focus', async() => {
         await wait(() => {
             expect(component.getByRole('dialog').children[1]).to.equal(undefined);
-            expect(document.activeElement).does.not.have.class(component.getByLabelText(input.a11yCloseText).className);
+            component.getByLabelText(input.a11yCloseText).classList.forEach((cls) =>
+                expect(document.activeElement).does.not.have.class(cls));
         });
     });
 });

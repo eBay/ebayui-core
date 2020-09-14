@@ -1,2 +1,2 @@
-require('@ebay/skin/actionable');
+require('@ebay/skin/icon-button');
 require('@ebay/skin/button');
