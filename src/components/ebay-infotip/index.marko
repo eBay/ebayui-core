@@ -13,10 +13,11 @@ static var ignoredAttributes = [
     "host",
     "heading",
     "content",
-    "modal"
+    "variant"
 ];
 
-$ var classPrefix = input.modal !== true ? "infotip" : "dialog--mini";
+$ var isModal = input.variant === 'modal'
+$ var classPrefix = !isModal ? "infotip" : "dialog--mini";
 $ var pointer = input.pointer || "bottom";
 <span>
     <ebay-tooltip-base
@@ -24,20 +25,20 @@ $ var pointer = input.pointer || "bottom";
         type=classPrefix
         pointer=pointer
         overlay-id:scoped="overlay"
-        onBase-expand(!input.modal && "handleExpand")
-        onBase-collapse(!input.modal && "handleCollapse")>
+        onBase-expand(!isModal && "handleExpand")
+        onBase-collapse(!isModal && "handleCollapse")>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class:no-update=[
                 "infotip",
-                input.modal === true && "dialog--mini",
+                isModal === true && "dialog--mini",
                 input.class
             ]>
             <button
                 key="host"
                 class=[`${classPrefix}__host`, "icon-btn"]
                 type="button"
-                on-click(input.modal && "handleExpand")
+                on-click(isModal && "handleExpand")
                 disabled=input.disabled
                 aria-label=input.ariaLabel>
                 <if(input.icon)>
@@ -47,7 +48,7 @@ $ var pointer = input.pointer || "bottom";
                     <ebay-information-icon/>
                 </else>
             </button>
-            <if(input.modal !== true)>
+            <if(isModal !== true)>
                 <ebay-tooltip-overlay
                     type="infotip"
                     id:scoped="overlay"

@@ -32,6 +32,7 @@
   "@style-right": "string",
   "@style-bottom": "string",
   "@aria-label": "string",
+  "@variant": "string",
   "@a11y-close-text": "string",
   "@icon <icon>": {
     "attribute-groups": [
