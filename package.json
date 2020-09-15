@@ -138,6 +138,9 @@
     "makeup-screenreader-trap": "~0.2.0",
     "nodelist-foreach-polyfill": "^1.2.0"
   },
+  "resolutions": {
+    "gh-highlight/highlights": "^3"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   }
