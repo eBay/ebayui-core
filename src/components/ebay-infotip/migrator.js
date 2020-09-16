@@ -5,6 +5,11 @@ function migratorMarko4(el, context) {
     createIconFromAttribute(el, context, 'icon');
     setAttributeIfPresent(el, context, 'on-tooltip-expand', 'on-expand');
     setAttributeIfPresent(el, context, 'on-tooltip-collapse', 'on-collapse');
+    if (el.hasAttribute('modal')) {
+        context.deprecate('modal is no longer used. Use variant="modal" instead.');
+        el.removeAttribute('modal');
+        el.setAttributeValue('variant', context.builder.literal('modal'));
+    }
 }
 
 function migratorMarko5() {

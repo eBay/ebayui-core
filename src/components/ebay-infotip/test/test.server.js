@@ -42,7 +42,7 @@ describe('infotip modal', () => {
     });
 
     it('renders modal infotip without header', async() => {
-        const input = assign({}, mock.WithContentAndHeader, { modal: true });
+        const input = assign({}, mock.WithContentAndHeader, { variant: 'modal' });
         const { queryByText } = await render(template, input);
         expect(queryByText(input.heading.renderBody.text)).equals(null);
     });
@@ -65,6 +65,12 @@ describe('migrator', () => {
         const { el } = runTransformer(migrator, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
         expect(iconEl).to.equal(undefined);
+    });
+
+    it('transforms old modal to be variant', () => {
+        const tagString = '<ebay-infotip modal/>';
+        const { el } = runTransformer(migrator, tagString, componentPath);
+        expect(el.hasAttribute('variant')).to.equal(true);
     });
 
     testEventsMigrator(require('../migrator'), { event: 'tooltip', component: 'infotip' },

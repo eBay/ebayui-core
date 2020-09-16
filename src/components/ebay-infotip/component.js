@@ -7,7 +7,7 @@ module.exports = {
     },
 
     setOpen(isOpen) {
-        if (this.input.modal) {
+        if (this.input.variant === 'modal') {
             this.state.open = isOpen;
         }
     },
