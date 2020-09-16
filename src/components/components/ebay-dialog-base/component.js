@@ -112,6 +112,18 @@ module.exports = {
         }
     },
 
+    _getTrapCallback(restoreTrap, isTrapped, wasTrapped) {
+        const useHiddenProperty = this.input.useHiddenProperty || false;
+        const willTrap = this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped));
+
+        return () => {
+            if (willTrap) {
+                screenReaderTrap.trap(this.windowEl, { useHiddenProperty });
+                keyboardTrap.trap(this.windowEl);
+            }
+        };
+    },
+
     /**
      * Ensures that if a component is supposed to be trapped that this is
      * trapped after rendering.
@@ -122,11 +134,7 @@ module.exports = {
         const isFirstRender = (opts && opts.firstRender);
         const wasToggled = isTrapped !== wasTrapped;
         const focusEl = (this.input.focus && document.getElementById(this.input.focus)) || this.closeEl;
-
-        if (this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped))) {
-            screenReaderTrap.trap(this.windowEl);
-            keyboardTrap.trap(this.windowEl);
-        }
+        const runTraps = this._getTrapCallback(restoreTrap, isTrapped, wasTrapped);
 
         // Ensure focus is set and body scroll prevented on initial render.
         if (isFirstRender && this.input.isModal && isTrapped) {
@@ -139,6 +147,7 @@ module.exports = {
             this._cancelAsync();
             const onFinishTransition = () => {
                 this.cancelTransition = undefined;
+                runTraps();
 
                 if (isTrapped) {
                     this.rootEl.removeAttribute('hidden');
@@ -179,6 +188,7 @@ module.exports = {
                     }, onFinishTransition);
                 } else {
                     this.rootEl.removeAttribute('hidden');
+                    runTraps();
                 }
             } else {
                 if (!isFirstRender) {

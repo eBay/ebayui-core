@@ -62,8 +62,8 @@ describe('given a closed dialog', () => {
             expect(document.body).has.attr('style').contains('overflow:hidden');
         });
 
-        it('then it\'s siblings are hidden', () => {
-            expect(sibling).has.attr('aria-hidden', 'true');
+        it('then it\'s siblings are hidden', async() => {
+            await wait(() => expect(sibling).has.attr('aria-hidden', 'true'));
         });
 
         if (wasToggled) {
@@ -165,8 +165,8 @@ describe('given an open dialog', () => {
             expect(document.body).has.attr('style').contains('overflow:hidden');
         });
 
-        it('then it\'s siblings are hidden', () => {
-            expect(sibling).has.attr('aria-hidden', 'true');
+        it('then it\'s siblings are hidden', async() => {
+            await wait(() => expect(sibling).has.attr('aria-hidden', 'true'));
         });
 
         it('then it traps focus', async() => {
@@ -301,5 +301,76 @@ describe('given an open with no close button', () => {
         it('then <body> is not scrollable', () => {
             expect(document.body).has.attr('style').contains('overflow:hidden');
         });
+    }
+});
+
+describe('given a closed dialog with useHiddenProperty', () => {
+    const input = assign({}, mock.Dialog, { useHiddenProperty: true });
+    let sibling;
+
+    beforeEach(async() => {
+        sibling = document.body.appendChild(document.createElement('div'));
+        component = await render(template, input);
+    });
+
+    afterEach(() => {
+        document.body.removeChild(sibling);
+    });
+
+    it('then it is hidden in the DOM', async() => {
+        await wait(() => expect(component.getByRole('dialog')).has.attr('hidden'));
+    });
+
+    it('then <body> is scrollable', () => {
+        expect(document.body).does.not.have.attr('style');
+    });
+
+    it('then it\'s siblings are visible', async() => {
+        await wait(() => expect(sibling).does.not.have.attr('hidden'));
+    });
+
+    it('then it does not trap focus', () => {
+        expect(component.getByRole('dialog').children[0]).does.not.have.class('keyboard-trap--active');
+    });
+
+    describe('when it is rerendered to be open', () => {
+        beforeEach(async() => {
+            await component.rerender(assign({}, input, { open: true }));
+        });
+
+        thenItIsOpen(true);
+    });
+
+    function thenItIsOpen(wasToggled) {
+        it('then it is visible in the DOM', async() => {
+            await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+        });
+
+        it('then <body> is not scrollable', () => {
+            expect(document.body).has.attr('style').contains('overflow:hidden');
+        });
+
+        it('then it\'s siblings are hidden', async() => {
+            await wait(() => expect(sibling).has.attr('hidden'));
+        });
+
+        if (wasToggled) {
+            it('then it traps focus', async() => {
+                await wait(() => {
+                    expect(component.getByRole('dialog').children[1]).has.class('keyboard-trap--active');
+                    component.getByLabelText(input.a11yCloseText).classList.forEach((cls) =>
+                        expect(document.activeElement).has.class(cls));
+                });
+            });
+
+            it('then it emits the show event', async() => {
+                await wait(() => expect(component.emitted('open')).has.length(1));
+            });
+
+            describe('when it is rerendered with the same input', () => {
+                beforeEach(async() => await component.rerender());
+                thenItIsOpen();
+            });
+        }
     }
 });
