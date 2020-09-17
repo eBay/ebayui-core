@@ -1,7 +1,11 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const assign = require('core-js-pure/features/object/assign');
-const { runTransformer, testEventsMigrator } = require('../../../common/test-utils/server');
+const {
+    runTransformer,
+    testEventsMigrator,
+    testAttributeRenameMigrator
+} = require('../../../common/test-utils/server');
 const migrator = require('../migrator');
 const template = require('..');
 const mock = require('./mock');
@@ -67,12 +71,7 @@ describe('migrator', () => {
         expect(iconEl).to.equal(undefined);
     });
 
-    it('transforms old modal to be variant', () => {
-        const tagString = '<ebay-infotip modal/>';
-        const { el } = runTransformer(migrator, tagString, componentPath);
-        expect(el.hasAttribute('variant')).to.equal(true);
-    });
-
     testEventsMigrator(require('../migrator'), { event: 'tooltip', component: 'infotip' },
         ['expand', 'collapse'], '../index.marko');
+    testAttributeRenameMigrator(require('../migrator'), 'infotip', 'modal', 'variant', '../index.marko');
 });

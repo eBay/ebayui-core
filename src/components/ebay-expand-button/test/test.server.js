@@ -1,6 +1,9 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const {
+    testPassThroughAttributes,
+    testAttributeRenameMigrator
+} = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -18,8 +21,10 @@ describe('expand-button', () => {
     it('renders expand button with no text', async() => {
         const input = mock.No_Text;
         const { getByRole } = await render(template, input);
-        expect(getByRole('button')).has.class('expand-btn--no-text');
+        expect(getByRole('button')).has.class('expand-btn--icon-only');
     });
 
     testPassThroughAttributes(template);
 });
+
+testAttributeRenameMigrator(require('../migrator'), 'expand-button', 'no-text', 'icon-only', '../index.marko');

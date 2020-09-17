@@ -5,5 +5,5 @@ exports.Basic = {
 };
 
 exports.No_Text = {
-    noText: true
+    iconOnly: true
 };
