@@ -1,12 +1,13 @@
 {
   "attribute-groups": ["html-attributes"],
+  "migrator": "./migrator.js",
   "@*": {
     "targetProperty": null,
     "type": "expression"
   },
   "@html-attributes": "expression",
   "@size": "size",
-  "@no-text": "boolean",
+  "@icon-only": "boolean",
   "@fluid": "boolean",
   "@truncate": "boolean",
   "@fixed-height": "boolean",

@@ -53,14 +53,14 @@ describe('fake-menu-button', () => {
     it('renders without text', async() => {
         const input = assign({}, mock.Basic_2Items, { text: '' });
         const { getByRole } = await render(template, input);
-        expect(getByRole('button')).has.class('expand-btn--no-text');
+        expect(getByRole('button')).has.class('expand-btn--icon-only');
     });
 
     it('renders with icon', async() => {
         const input = mock.Settings_Icon;
         const { getByRole, getByText } = await render(template, input);
         const btnEl = getByRole('button');
-        expect(btnEl).does.not.have.class('expand-btn--no-text');
+        expect(btnEl).does.not.have.class('expand-btn--icon-only');
         expect(btnEl).contains(getByText(input.icon.renderBody.text));
     });
 

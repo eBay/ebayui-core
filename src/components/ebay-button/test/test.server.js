@@ -1,6 +1,10 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
+const {
+    testPassThroughAttributes,
+    testEventsMigrator,
+    testAttributeRenameMigrator
+} = require('../../../common/test-utils/server');
 const template = require('..');
 
 use(require('chai-dom'));
@@ -85,11 +89,11 @@ it('renders expand variant', async() => {
 it('renders expand variant with no text', async() => {
     const { getByRole } = await render(template, {
         variant: 'expand',
-        noText: true
+        iconOnly: true
     });
     expect(getByRole('button'))
         .has.class('expand-btn')
-        .and.class('expand-btn--no-text');
+        .and.class('expand-btn--icon-only');
 });
 
 it('renders icon variant', async() => {
@@ -149,3 +153,4 @@ it('renders large fixed-height button', async() => {
 
 testPassThroughAttributes(template);
 testEventsMigrator(require('../migrator'), 'button', ['click', 'escape'], '../index.marko');
+testAttributeRenameMigrator(require('../migrator'), 'button', 'no-text', 'icon-only', '../index.marko');

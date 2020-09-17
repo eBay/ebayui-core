@@ -6,8 +6,6 @@ const { setAttributeIfPresent } = require('../../common/migrators');
  */
 
 function migratorMarko4(el, context) {
-    setAttributeIfPresent(el, context, 'on-button-click', 'on-click');
-    setAttributeIfPresent(el, context, 'on-button-escape', 'on-escape');
     setAttributeIfPresent(el, context, 'no-text', 'icon-only');
     return el;
 }

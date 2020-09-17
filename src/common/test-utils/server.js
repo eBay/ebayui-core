@@ -77,6 +77,20 @@ module.exports = {
             });
         });
     },
+    testAttributeRenameMigrator(migrator, component, oldAttribute, newAttribute, componentPath) {
+        it(`checks all events ${
+            component.component || component
+        } attributes are migrated ${oldAttribute} to ${newAttribute}`, () => {
+            const srcString = `<ebay-${component.component || component} ${oldAttribute}/>`;
+
+            const { context, templateAST } = getTransformerData(srcString, componentPath);
+            migrator(templateAST.body.array[0], context);
+            const el = templateAST.body.array[0];
+
+            expect(el.hasAttribute(newAttribute)).to.equal(true, `should have ${newAttribute}`);
+            expect(el.hasAttribute(oldAttribute)).to.equal(false, `should no longer have ${oldAttribute}`);
+        });
+    },
     getTransformedTemplate(transformer, srcString, componentPath) {
         const { prettyPrintAST } = require('marko-prettyprint');
         const { context, templateAST } = getTransformerData(srcString, componentPath);
