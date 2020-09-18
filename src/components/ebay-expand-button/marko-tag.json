@@ -7,7 +7,6 @@
   },
   "@html-attributes": "expression",
   "@size": "size",
-  "@icon-only": "boolean",
   "@fluid": "boolean",
   "@truncate": "boolean",
   "@fixed-height": "boolean",

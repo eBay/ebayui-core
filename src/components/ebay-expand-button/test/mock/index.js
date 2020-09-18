@@ -4,6 +4,4 @@ exports.Basic = {
     renderBody: createRenderBody('Expand Button Text')
 };
 
-exports.No_Text = {
-    iconOnly: true
-};
+exports.No_Text = {};

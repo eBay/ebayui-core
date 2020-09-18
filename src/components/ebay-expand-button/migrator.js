@@ -1,4 +1,3 @@
-const { setAttributeIfPresent } = require('../../common/migrators');
 
 /**
  * @description
@@ -6,7 +5,11 @@ const { setAttributeIfPresent } = require('../../common/migrators');
  */
 
 function migratorMarko4(el, context) {
-    setAttributeIfPresent(el, context, 'no-text', 'icon-only');
+    if (el.hasAttribute('no-text')) {
+        context.deprecate('no-text has been deprecated from expand-button. Instead just dont include any body content');
+        el.removeAttribute('no-text');
+    }
+
     return el;
 }
 

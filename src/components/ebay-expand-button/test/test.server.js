@@ -1,9 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const {
-    testPassThroughAttributes,
-    testAttributeRenameMigrator
-} = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -26,5 +23,3 @@ describe('expand-button', () => {
 
     testPassThroughAttributes(template);
 });
-
-testAttributeRenameMigrator(require('../migrator'), 'expand-button', 'no-text', 'icon-only', '../index.marko');
