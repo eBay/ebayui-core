@@ -14,7 +14,7 @@ describe('dialog-base', () => {
         const input = mock.Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
 
-        expect(getByRole('dialog')).has.attr('hidden');
+        expect(getByRole('dialog', { hidden: true })).has.attr('hidden');
         expect(getByLabelText(input.a11yCloseText)).has.class('lightbox-dialog__close');
         expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');
     });
@@ -23,7 +23,7 @@ describe('dialog-base', () => {
         const input = mock.Header_Footer_Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
 
-        expect(getByRole('dialog')).has.attr('hidden');
+        expect(getByRole('dialog', { hidden: true })).has.attr('hidden');
         expect(getByLabelText(input.a11yCloseText)).has.class('lightbox-dialog__close');
         expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');
         expect(getByText(input.header.renderBody.text)).has.tagName('H2');
@@ -40,7 +40,7 @@ describe('dialog-base', () => {
     it('renders non modal', async() => {
         const input = mock.Dialog;
         const { getByRole } = await render(template, assign({}, input, { isModal: false }));
-        expect(getByRole('dialog')).has.attribute('aria-live', 'polite');
+        expect(getByRole('dialog', { hidden: true })).has.attribute('aria-live', 'polite');
     });
 
     testPassThroughAttributes(template);

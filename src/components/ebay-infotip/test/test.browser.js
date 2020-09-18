@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup, wait } = require('@marko/testing-library');
+const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
@@ -72,11 +72,11 @@ describe('given the modal infotip', () => {
         });
 
         it('then it emits the expand event', async() => {
-            await wait(() => expect(component.emitted('expand')).has.length(1));
+            await waitFor(() => expect(component.emitted('expand')).has.length(1));
         });
 
         it('then it is expanded', async() => {
-            await wait(() => {
+            await waitFor(() => {
                 expect(component.getByRole('dialog')).does.not.have.attr('hidden');
             });
         });
@@ -96,12 +96,12 @@ describe('given the modal infotip opened', () => {
         });
 
         it('then it emits the collapse event', async() => {
-            await wait(() => expect(component.emitted('collapse')).has.length(1));
+            await waitFor(() => expect(component.emitted('collapse')).has.length(1));
         });
 
         it('then it is collapsed', async() => {
-            await wait(() => {
-                expect(component.getByRole('dialog')).has.attr('hidden');
+            await waitFor(() => {
+                expect(component.getByRole('dialog', { hidden: true })).has.attr('hidden');
             });
         });
     });

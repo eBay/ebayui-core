@@ -1,21 +1,22 @@
 import processHtmlAttributes from "../../common/html-attributes"
-import dsUtil from '../../common/ds-util';
+import dsUtil from '../../common/ds-util'
 
 static function noop() {}
-static var isBrowser = typeof window !== "undefined";
-static var browserLookup = {};
-static var ignoredAttributes = [
-    "_name",
-    "noSkinClasses",
-    "_themes",
-    "toJSON"
-];
 
-$ var noTitle = input.a11yVariant === 'label';
+static var isBrowser = typeof window !== "undefined";
+
+static var browserLookup = {};
+
+static var ignoredAttributes = ["_name", "noSkinClasses", "_themes", "toJSON"];
+
+$ var noTitle = input.a11yVariant === "label";
 $ input.toJSON = noop;
 $ var lookup = isBrowser ? browserLookup : out.global;
-$ var a11yAttributes = input.a11yText ? { role: "img" } : { "aria-hidden": "true" }
-
+$ {
+    var a11yAttributes = input.a11yText
+        ? { role: "img" }
+        : { "aria-hidden": "true" };
+}
 <svg
     ...a11yAttributes
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -31,32 +32,22 @@ $ var a11yAttributes = input.a11yText ? { role: "img" } : { "aria-hidden": "true
     $ var renderDefs = !lookup[lookupName];
     $ lookup[lookupName] = true;
     <if(renderDefs && themes)>
-        <defs key="defs" id:scoped="defs">
-            $ {
-                var theme;
+        <defs key="defs">
+            <if(!isBrowser)>
+                $ var lassoContext = out.global["lasso/LassoRenderContext"];
 
-                if (isBrowser) {
-                    // All icons should be remapped to the right one in the browser, just use the first.
-                    theme = themes.filter(Boolean)[0];
-                } else {
-                    // Actual magic, please do not try to replicate.
-                    var lassoContext = out.global["lasso/LassoRenderContext"];
-
-                    var flags = lassoContext &&
-                        lassoContext.data &&
-                        lassoContext.data.config &&
-                        lassoContext.data.config.flags;
-                    theme = themes[dsUtil.getDSFromFlag(flags)];
-                }
-            }
-
-            <${theme}/>
+                $ var flags = (
+                    lassoContext &&
+                    lassoContext.data &&
+                    lassoContext.data.config &&
+                    lassoContext.data.config.flags
+                );
+                $!{themes[dsUtil.getDSFromFlag(flags)]()}
+            </if>
         </defs>
     </if>
-
     <if(input.a11yText && !noTitle)>
         <title id:scoped="text">${input.a11yText}</title>
     </if>
-
     <use xlink:href=`#icon-${input._name}`/>
-</>
+</svg>

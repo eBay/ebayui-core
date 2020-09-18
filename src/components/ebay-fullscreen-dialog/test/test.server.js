@@ -10,9 +10,10 @@ describe('dialog', () => {
     it('renders basic version', async() => {
         const input = mock.Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
+        const dialog = getByRole('dialog', { hidden: true });
 
-        expect(getByRole('dialog')).has.attr('hidden');
-        expect(getByRole('dialog')).has.class('fullscreen-dialog');
+        expect(dialog).has.attr('hidden');
+        expect(dialog).has.class('fullscreen-dialog');
         expect(getByLabelText(input.a11yCloseText)).has.class('fullscreen-dialog__close');
         expect(getByText(input.renderBody.text)).has.class('fullscreen-dialog__main');
     });
@@ -20,9 +21,10 @@ describe('dialog', () => {
     it('renders with header and footer', async() => {
         const input = mock.Header_Footer_Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
+        const dialog = getByRole('dialog', { hidden: true });
 
-        expect(getByRole('dialog')).has.attr('hidden');
-        expect(getByRole('dialog')).has.class('fullscreen-dialog');
+        expect(dialog).has.attr('hidden');
+        expect(dialog).has.class('fullscreen-dialog');
         expect(getByLabelText(input.a11yCloseText)).has.class('fullscreen-dialog__close');
         expect(getByText(input.renderBody.text)).has.class('fullscreen-dialog__main');
         expect(getByText(input.header.renderBody.text).parentElement).has.class('fullscreen-dialog__header');

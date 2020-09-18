@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, waitFor, cleanup } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
@@ -57,7 +57,7 @@ describe('given a continuous carousel', () => {
             component = await render(template, input);
             // The carousel is not fully initialized until
             // the next button is no longer disabled.
-            await wait(() =>
+            await waitFor(() =>
                 expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
             );
         });
@@ -176,7 +176,7 @@ describe('given a continuous carousel', () => {
 
             // The carousel is not fully initialized until
             // the next button is no longer disabled.
-            await wait(() =>
+            await waitFor(() =>
                 expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
             );
         });
@@ -267,7 +267,7 @@ describe('given a discrete carousel', () => {
             component = await render(template, input);
             // The carousel is not fully initialized until
             // the next button is no longer disabled.
-            await wait(() =>
+            await waitFor(() =>
                 expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
             );
         });
@@ -429,7 +429,7 @@ describe('given a discrete carousel', () => {
             component = await render(template, input);
             // The carousel is not fully initialized until
             // the next button is no longer disabled.
-            await wait(() =>
+            await waitFor(() =>
                 expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
             );
         });
@@ -474,7 +474,7 @@ describe('given a discrete carousel', () => {
             component = await render(template, input);
             // The carousel is not fully initialized until
             // the next button is no longer disabled.
-            await wait(() =>
+            await waitFor(() =>
                 expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
             );
         });
@@ -524,7 +524,7 @@ describe('given a discrete carousel', () => {
             component = await render(template, input);
             // The carousel is not fully initialized until
             // the next button is no longer disabled.
-            await wait(() =>
+            await waitFor(() =>
                 expect(component.getByLabelText(input.a11yNextText)).to.not.have.attr('aria-disabled')
             );
         });
@@ -623,7 +623,7 @@ describe('given a discrete carousel', () => {
 });
 
 function waitForCarouselUpdate() {
-    return wait(() => expect(component.emitted('move')).has.length(1));
+    return waitFor(() => expect(component.emitted('move')).has.length(1));
 }
 
 function doesNotEventuallyScroll() {

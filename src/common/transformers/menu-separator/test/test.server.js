@@ -6,7 +6,7 @@ describe('when the ebay-menu-separator tag is transformed', () => {
     let outputTemplate;
 
     beforeEach(() => {
-        const templatePath = `../../../components/ebay-menu/index.marko`;
+        const templatePath = `src/components/ebay-menu/index.marko`;
         outputTemplate = testUtils.getTransformedTemplate(transformer, '@separator', templatePath);
     });
 

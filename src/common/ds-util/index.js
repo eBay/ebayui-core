@@ -28,7 +28,7 @@ DSData.forEach((data) => {
         text = `[${flag}]`;
     }
 
-    dsFilenames[key] = `./symbol${text}.marko`;
+    dsFilenames[key] = `./symbol${text}.js`;
     flagToDS.push(flag);
 });
 

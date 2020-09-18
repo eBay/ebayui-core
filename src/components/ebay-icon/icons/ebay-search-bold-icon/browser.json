@@ -1,8 +1,8 @@
 {
   "requireRemap": [
     {
-      "from": "./symbol.marko",
-      "to": "./symbol[ds-4].marko",
+      "from": "./symbol.js",
+      "to": "./symbol[ds-4].js",
       "if-flag": "ds-4"
     }
   ]

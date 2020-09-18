@@ -11,10 +11,11 @@ describe('drawer-dialog', () => {
     it('renders basic version', async() => {
         const input = mock.Drawer;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
+        const dialog = getByRole('dialog', { hidden: true });
 
-        expect(getByRole('dialog')).has.attr('hidden');
-        expect(getByRole('dialog')).has.class('drawer-dialog');
-        expect(getByRole('dialog')).has.class('drawer-dialog--mask-fade-slow');
+        expect(dialog).has.attr('hidden');
+        expect(dialog).has.class('drawer-dialog');
+        expect(dialog).has.class('drawer-dialog--mask-fade-slow');
         expect(getByLabelText(input.a11yCloseText)).has.class('drawer-dialog__close');
         expect(getByLabelText(input.a11yHandleText)).has.class('drawer-dialog__handle');
         expect(getByText(input.renderBody.text)).has.class('drawer-dialog__main');

@@ -10,9 +10,10 @@ describe('dialog', () => {
     it('renders basic version', async() => {
         const input = mock.Dialog;
         const { getByRole, getByText } = await render(template, input);
+        const dialog = getByRole('dialog', { hidden: true });
 
-        expect(getByRole('dialog')).has.attr('hidden');
-        expect(getByRole('dialog')).has.class('lightbox-dialog');
+        expect(dialog).has.attr('hidden');
+        expect(dialog).has.class('lightbox-dialog');
         expect(getByText(input.confirmText)).has.class('lightbox-dialog__confirm');
         expect(getByText(input.rejectText)).has.class('lightbox-dialog__reject');
         expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');

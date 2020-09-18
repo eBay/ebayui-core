@@ -38,10 +38,6 @@ module.exports = {
         this.state = { maxItems: 0 };
     },
 
-    onInput(input) {
-        input.items = input.items || [];
-    },
-
     onMount() {
         this._calculateMaxItems();
         this.subscribeTo(eventUtils.resizeUtil)
@@ -81,8 +77,9 @@ module.exports = {
 
     _calculateMaxItems() {
         const { input, state } = this;
+        const items = input.items || [];
 
-        if (!input.items.some(item => !item.type)) {
+        if (!items.some(item => !item.type)) {
             return;
         }
 

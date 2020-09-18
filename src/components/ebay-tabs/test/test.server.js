@@ -14,7 +14,7 @@ describe('tabs', () => {
 
         const tablistEl = getByRole('tablist');
         const headingEls = getAllByRole('tab');
-        const panelEls = getAllByRole('tabpanel');
+        const panelEls = getAllByRole('tabpanel', { hidden: true });
 
         expect(tablistEl).has.class('tabs__items');
         expect(headingEls).has.length(3);
@@ -62,7 +62,7 @@ describe('tabs', () => {
             }
         });
 
-        getAllByRole('tabpanel').forEach((panelEl, i) => {
+        getAllByRole('tabpanel', { hidden: true }).forEach((panelEl, i) => {
             if (i === 1) {
                 expect(panelEl).does.not.have.attr('hidden');
             } else {
