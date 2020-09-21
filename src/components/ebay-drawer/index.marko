@@ -21,7 +21,8 @@ import processHtmlAttributes from "../../common/html-attributes"
         <if (!input.noHandle)>
             <@top>
                 <button
-                    aria-label=input.a11yHandleText
+                    aria-label=(input.a11yHandleText || "Expand Drawer")
+                    aria-expanded=(state.expanded ? "true" : "false")
                     class=`drawer__handle`
                     onClick("handleExpand")
                     onTouchStart("handleTouchStart")
