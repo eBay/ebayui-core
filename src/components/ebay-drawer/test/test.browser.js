@@ -60,11 +60,12 @@ describe('given a closed drawer', () => {
         });
         describe('then it is expanded', () => {
             beforeEach(async() => {
-                await fireEvent.click(component.getByLabelText(input.a11yHandleText));
+                await fireEvent.click(component.getByLabelText(input.a11yMaximizeText));
             });
 
             it('then it is expanded in DOM', async() => {
                 await wait(() => expect(component.emitted('drawer-expanded')).has.length(1));
+                expect(component.getAllByLabelText(input.a11yMinimizeText)).has.length(1);
             });
         });
         describe('then it is expanded on scroll', () => {
@@ -95,11 +96,12 @@ describe('given an open and expanded drawer', () => {
 
     describe('then it is collapsed', () => {
         beforeEach(async() => {
-            await fireEvent.click(component.getByLabelText(input.a11yHandleText));
+            await fireEvent.click(component.getByLabelText(input.a11yMinimizeText));
         });
 
         it('then it is expanded in DOM', async() => {
             await wait(() => expect(component.emitted('drawer-collapsed')).has.length(1));
+            expect(component.getAllByLabelText(input.a11yMaximizeText)).has.length(1);
         });
     });
 
@@ -127,7 +129,7 @@ describe('given an open and non expanded drawer for touch events', () => {
 
     (hasTouch ? describe : describe.skip)('then it is expanded on touch drag up', () => {
         beforeEach(async() => { // eslint-disable-line mocha/no-sibling-hooks
-            await triggerTouch(component.getByLabelText(input.a11yHandleText), -50);
+            await triggerTouch(component.getByLabelText(input.a11yMaximizeText), -50);
         });
 
         it('then it is expanded in DOM', async() => {
@@ -137,7 +139,7 @@ describe('given an open and non expanded drawer for touch events', () => {
 
     (hasTouch ? describe : describe.skip)('then does not trigger when threshold is not met for drag up', () => {
         beforeEach(async() => { // eslint-disable-line mocha/no-sibling-hooks
-            await triggerTouch(component.getByLabelText(input.a11yHandleText), -10);
+            await triggerTouch(component.getByLabelText(input.a11yMaximizeText), -10);
         });
 
         it('then it did not trigger', async() => {
@@ -149,7 +151,7 @@ describe('given an open and non expanded drawer for touch events', () => {
 
     (hasTouch ? describe : describe.skip)('then does not trigger when threshold is not met for drag down', () => {
         beforeEach(async() => { // eslint-disable-line mocha/no-sibling-hooks
-            await triggerTouch(component.getByLabelText(input.a11yHandleText), 10);
+            await triggerTouch(component.getByLabelText(input.a11yMaximizeText), 10);
         });
 
         it('then it did not trigger threshold when dragged down', async() => {
@@ -159,7 +161,7 @@ describe('given an open and non expanded drawer for touch events', () => {
 
     (hasTouch ? describe : describe.skip)('then it is closed on touch drag down', () => {
         beforeEach(async() => { // eslint-disable-line mocha/no-sibling-hooks
-            await triggerTouch(component.getByLabelText(input.a11yHandleText), 50);
+            await triggerTouch(component.getByLabelText(input.a11yMaximizeText), 50);
         });
 
         it('then it is closed', async() => {
@@ -185,7 +187,7 @@ describe('given an open and expanded drawer for touch events', () => {
 
     (hasTouch ? describe : describe.skip)('nothing happens on touch drag up', () => {
         beforeEach(async() => { // eslint-disable-line mocha/no-sibling-hooks
-            await triggerTouch(component.getByLabelText(input.a11yHandleText), -50);
+            await triggerTouch(component.getByLabelText(input.a11yMinimizeText), -50);
         });
 
         it('then it is expanded in DOM', async() => {
@@ -195,7 +197,7 @@ describe('given an open and expanded drawer for touch events', () => {
 
     (hasTouch ? describe : describe.skip)('then it is collapsed on touch drag down', () => {
         beforeEach(async() => { // eslint-disable-line mocha/no-sibling-hooks
-            await triggerTouch(component.getByLabelText(input.a11yHandleText), 50);
+            await triggerTouch(component.getByLabelText(input.a11yMinimizeText), 50);
         });
 
         it('then it is closed', async() => {
@@ -205,7 +207,7 @@ describe('given an open and expanded drawer for touch events', () => {
 
     (hasTouch ? describe : describe.skip)('then does not trigger when threshold is not met for drag up', () => {
         beforeEach(async() => { // eslint-disable-line mocha/no-sibling-hooks
-            await triggerTouch(component.getByLabelText(input.a11yHandleText), -10);
+            await triggerTouch(component.getByLabelText(input.a11yMinimizeText), -10);
         });
 
         it('then it did not trigger', async() => {
@@ -215,7 +217,7 @@ describe('given an open and expanded drawer for touch events', () => {
 
     (hasTouch ? describe : describe.skip)('then does not trigger when threshold is not met for drag down', () => {
         beforeEach(async() => { // eslint-disable-line mocha/no-sibling-hooks
-            await triggerTouch(component.getByLabelText(input.a11yHandleText), 10);
+            await triggerTouch(component.getByLabelText(input.a11yMinimizeText), 10);
         });
 
         it('then it did not trigger on drag down', async() => {
