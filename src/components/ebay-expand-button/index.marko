@@ -7,7 +7,6 @@ static function toJSON() {
 }
 static var ignoredAttributes = [
     "size",
-    "iconOnly",
     "fluid",
     "truncate",
     "fixedHeight",
@@ -21,7 +20,7 @@ $ var size = input.size || "default";
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
         "expand-btn",
-        input.iconOnly && "expand-btn--icon-only",
+        !input.renderBody && "expand-btn--icon-only",
         input.fluid && "expand-btn--fluid",
         input.truncate && `expand-btn--${size}-truncated`,
         input.fixedHeight && `expand-btn--${size}-fixed-height`,
