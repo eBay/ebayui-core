@@ -1,6 +1,7 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-$ var handleLabel = (!state.expanded ? input.a11yMaximizeText || "Maximize Drawer" : input.a11yMinimizeText || "Minimize Drawer");
+$ var defaultText = input.a11yHandleText || (!state.expanded ? "Maximize Drawer" : "Minimize Drawer")
+$ var handleLabel = (!state.expanded ? input.a11yMaximizeText : input.a11yMinimizeText) || defaultText;
 
 <ebay-dialog-base
     ...input

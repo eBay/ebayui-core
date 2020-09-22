@@ -12,6 +12,7 @@
   "@expanded": "boolean",
   "@focus": "string",
   "@a11y-close-text": "string",
+  "@a11y-handle-text": "string",
   "@a11y-minimize-text": "string",
   "@a11y-maximize-text": "string",
   "@role": "never",
