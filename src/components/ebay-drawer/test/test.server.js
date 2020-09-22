@@ -16,7 +16,7 @@ describe('drawer', () => {
         expect(getByRole('dialog')).has.class('drawer');
         expect(getByRole('dialog')).has.class('drawer--mask-fade-slow');
         expect(getByLabelText(input.a11yCloseText)).has.class('drawer__close');
-        expect(getByLabelText(input.a11yHandleText)).has.class('drawer__handle');
+        expect(getByLabelText(input.a11yMaximizeText)).has.class('drawer__handle');
         expect(getByText(input.renderBody.text)).has.class('drawer__main');
         expect(getByText(input.header.renderBody.text).parentElement).has.class('drawer__header');
         expect(getByText(input.footer.renderBody.text)).has.class('drawer__footer');
@@ -25,7 +25,7 @@ describe('drawer', () => {
     it('renders without handle ', async() => {
         const input = mock.Drawer;
         const { queryByLabelText } = await render(template, assign({}, input, { noHandle: true }));
-        expect(queryByLabelText(input.a11yHandleText)).to.equal(null);
+        expect(queryByLabelText(input.a11yMaximizeText)).to.equal(null);
     });
 
     it('renders in open state', async() => {

@@ -3,7 +3,8 @@ const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Drawer = {
     a11yCloseText: 'close',
-    a11yHandleText: 'handle',
+    a11yMinimizeText: 'minimize',
+    a11yMaximizeText: 'maximize',
     header: {
         renderBody: createRenderBody('head content')
     },
