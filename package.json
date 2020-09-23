@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "4.5.21",
+  "version": "4.5.22",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "installMarkoV3": "node scripts/install-no-save marko@^3 marko-widgets@^6 -D",
