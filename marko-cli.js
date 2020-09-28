@@ -22,10 +22,10 @@ module.exports = ({ config }) => {
             browser: 'Chrome',
             os: 'Windows',
             os_version: '10'
-        }, {
-            browser: 'Firefox',
-            os: 'Windows',
-            os_version: '10'
+        // }, {
+        //     browser: 'Firefox',
+        //     os: 'Windows',
+        //     os_version: '10'
         }, {
         //     browser: 'Firefox',
         //     browser_version: '48.0',
