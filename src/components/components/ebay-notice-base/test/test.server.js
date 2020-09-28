@@ -9,9 +9,9 @@ use(require('chai-dom'));
 describe('notice-icon', () => {
     it('renders basic version', async() => {
         const input = mock.Default_Notice;
-        const { getByLabelText, getByText } = await render(template, input);
+        const { getAllByLabelText, getByText } = await render(template, input);
 
-        const status = getByLabelText(input.a11yText).parentElement;
+        const status = getAllByLabelText(input.a11yText)[1].parentElement;
         expect(status).has.class(`${input.prefixClass}__header`);
 
         const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
@@ -20,27 +20,27 @@ describe('notice-icon', () => {
         const content = getByText(input.renderBody.text);
         expect(content).has.class(`${input.prefixClass}__main`);
 
-        expect(getByLabelText(input.a11yText)).has.class('icon--attention-filled');
+        expect(getAllByLabelText(input.a11yText)[1]).has.class('icon--attention-filled');
     });
 
     it('renders inline version', async() => {
         const input = mock.Inline_Notice;
-        const { getByLabelText } = await render(template, input);
+        const { getAllByLabelText } = await render(template, input);
 
-        const status = getByLabelText(input.a11yText).parentElement;
+        const status = getAllByLabelText(input.a11yText)[1].parentElement;
         const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
         expect(containerUsingLabel).has.class(input.class);
         expect(containerUsingLabel).has.tagName('DIV');
 
-        expect(getByLabelText(input.a11yText)).has.class('icon--information-filled');
-        expect(getByLabelText(input.a11yText)).has.class('notice-class');
+        expect(getAllByLabelText(input.a11yText)[1]).has.class('icon--information-filled');
+        expect(getAllByLabelText(input.a11yText)[1]).has.class('notice-class');
     });
 
     it('renders title and footer version', async() => {
         const input = mock.Title_Footer_Notice;
-        const { getByLabelText, getByText } = await render(template, input);
+        const { getAllByLabelText, getByText } = await render(template, input);
 
-        const status = getByLabelText(input.a11yText).parentElement;
+        const status = getAllByLabelText(input.a11yText)[1].parentElement;
         const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
         expect(containerUsingLabel).has.class(input.class);
 

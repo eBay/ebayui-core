@@ -9,6 +9,7 @@
   },
   "@html-attributes": "expression",
   "@a11y-text": "string",
+  "@a11y-variant": "string",
   "@no-skin-classes": "boolean",
   "@role": "never",
   "@aria-labelledby": "never"

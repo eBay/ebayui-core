@@ -8,7 +8,7 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-describe('given checkbox button is enabled', () => {
+describe('given tooltip button is enabled', () => {
     const input = {
         type: 'infotip',
         overlayId: 'fakeID-1',

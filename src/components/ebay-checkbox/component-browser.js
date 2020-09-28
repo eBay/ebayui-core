@@ -5,11 +5,11 @@ module.exports = {
 };
 
 function forwardEvent(eventName) {
-    return function(originalEvent) {
+    return function(originalEvent, el) {
         this.emit(`${eventName}`, {
             originalEvent,
-            value: this.getEl('input').value,
-            checked: this.getEl('input').checked
+            value: (el || this.el.querySelector('input')).value,
+            checked: (el || this.el.querySelector('input')).checked
         });
     };
 }

@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup, wait } = require('@marko/testing-library');
+const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
 const template = require('..');
 const mock = require('./mock');
 const pointerStyles = require('./location-styles.json');
@@ -32,7 +32,7 @@ describe('given the default tooltip', () => {
             });
 
             it('then it emits the collapse event', async() => {
-                await wait(() => expect(component.emitted('collapse')).has.length(1));
+                await waitFor(() => expect(component.emitted('collapse')).has.length(1));
             });
         });
     });

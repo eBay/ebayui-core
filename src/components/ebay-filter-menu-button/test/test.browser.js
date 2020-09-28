@@ -87,9 +87,9 @@ describe('given the menu is in the expanded state', () => {
     beforeEach(async() => {
         component = await render(template, input);
         filterButton = component.getAllByRole('button')[0];
-        footerButton = component.getAllByRole('button')[1];
-        firstItem = component.getAllByRole('menuitemcheckbox')[0];
-        secondItem = component.getAllByRole('menuitemcheckbox')[1];
+        footerButton = component.getAllByRole('button', { hidden: true })[1];
+        firstItem = component.getAllByRole('menuitemcheckbox', { hidden: true })[0];
+        secondItem = component.getAllByRole('menuitemcheckbox', { hidden: true })[1];
         await fireEvent.click(filterButton);
         expect(component.emitted('expand')).has.length(1);
     });

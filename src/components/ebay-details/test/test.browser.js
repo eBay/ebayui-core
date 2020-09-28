@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup, wait } = require('@marko/testing-library');
+const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
@@ -50,8 +50,8 @@ describe('given the details is in the default state and click is triggered', () 
         });
 
         it('then it emits the toggle and click', async() => {
-            wait(() => verifyToggleEvent());
-            wait(() => verifyClickEvent());
+            waitFor(() => verifyToggleEvent());
+            waitFor(() => verifyClickEvent());
         });
     });
 
@@ -69,8 +69,8 @@ describe('given the details is in the default state and click is triggered', () 
             });
 
             it('then it should be closed', async() => {
-                wait(() => verifyToggleEvent());
-                wait(() => verifyClickEvent());
+                waitFor(() => verifyToggleEvent());
+                waitFor(() => verifyClickEvent());
             });
         });
     });
@@ -90,8 +90,8 @@ describe('given the details is in the open state and click is triggered', () => 
         });
 
         it('then it emits the toggle and click', async() => {
-            wait(() => verifyToggleEvent());
-            wait(() => verifyClickEvent());
+            waitFor(() => verifyToggleEvent());
+            waitFor(() => verifyClickEvent());
         });
     });
 
@@ -108,8 +108,8 @@ describe('given the details is in the open state and click is triggered', () => 
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
             it('then it should be open', async() => {
-                wait(() => verifyToggleEvent());
-                wait(() => verifyClickEvent());
+                waitFor(() => verifyToggleEvent());
+                waitFor(() => verifyClickEvent());
             });
         });
     });

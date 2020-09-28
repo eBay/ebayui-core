@@ -205,8 +205,8 @@ describe('given the menu is in the expanded state with radio items', () => {
     let firstItem, secondItem;
     beforeEach(async() => {
         component = await render(template, input);
-        firstItem = component.getAllByRole('menuitemradio')[0];
-        secondItem = component.getAllByRole('menuitemradio')[1];
+        firstItem = component.getAllByRole('menuitemradio', { hidden: true })[0];
+        secondItem = component.getAllByRole('menuitemradio', { hidden: true })[1];
     });
 
     describe('when an item is clicked', () => {
@@ -295,8 +295,8 @@ describe('given the menu is in the expanded state with checkbox items', () => {
     let firstItem, secondItem;
     beforeEach(async() => {
         component = await render(template, input);
-        firstItem = component.getAllByRole('menuitemcheckbox')[0];
-        secondItem = component.getAllByRole('menuitemcheckbox')[1];
+        firstItem = component.getAllByRole('menuitemcheckbox', { hidden: true })[0];
+        secondItem = component.getAllByRole('menuitemcheckbox', { hidden: true })[1];
     });
 
     describe('when two items are clicked', () => {

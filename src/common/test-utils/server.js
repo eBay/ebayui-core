@@ -92,11 +92,11 @@ module.exports = {
         });
     },
     getTransformedTemplate(transformer, srcString, componentPath) {
-        const { prettyPrintAST } = require('marko-prettyprint');
+        const { prettyPrintAST } = require('@marko/prettyprint');
         const { context, templateAST } = getTransformerData(srcString, componentPath);
         context.root = templateAST;
         transformer(templateAST.body.array[0], context);
-        return prettyPrintAST(templateAST).replace(/\n/g, '').replace(/\s{4}/g, '');
+        return prettyPrintAST(templateAST, { filename: componentPath }).replace(/\n/g, '').replace(/\s{4}/g, '');
     },
     runTransformer(transformer, srcString, componentPath) {
         const { context, templateAST } = getTransformerData(srcString, componentPath);

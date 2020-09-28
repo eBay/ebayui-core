@@ -8,10 +8,9 @@ $ input.toJSON = noop;
 <span class=["checkbox", input.class] style=input.style>
     <input
         ...processHtmlAttributes(input, ignoredAttributes)
-        key="input"
         class="checkbox__control"
         type="checkbox"
-        onChange("handleChange")
+        onClick("handleChange")
         onFocus("handleFocus")/>
     <span class="checkbox__icon" hidden>
         <if (input.size === 'large')>

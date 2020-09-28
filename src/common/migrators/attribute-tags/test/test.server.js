@@ -16,7 +16,7 @@ describe('when the ebay-combobox-option tag is transformed', () => {
     beforeEach(() => {
         const rootTag = 'ebay-combobox';
         const nestedTag = 'option';
-        const templatePath = `../../../components/${rootTag}/template.marko`;
+        const templatePath = `src/components/${rootTag}/template.marko`;
         tagString = getTagString(rootTag, nestedTag);
         outputTemplate = testUtils.getTransformedTemplate(transformer, tagString.before, templatePath);
     });
@@ -33,7 +33,7 @@ describe('when the ebay-menu:item tag is transformed', () => {
     beforeEach(() => {
         const rootTag = 'ebay-menu';
         const nestedTag = 'item';
-        const templatePath = `../../../components/${rootTag}/template.marko`;
+        const templatePath = `src/components/${rootTag}/template.marko`;
         tagString = getTagString(rootTag, nestedTag);
         outputTemplate = testUtils.getTransformedTemplate(transformer, tagString.after, templatePath);
     });

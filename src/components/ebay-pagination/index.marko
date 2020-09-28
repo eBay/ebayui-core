@@ -10,18 +10,19 @@ static var ignoredItemAttributes = [
     'disabled'
 ];
 
-$ var lastItemIndex = input.items.length - 1;
+$ var baseItems = input.items || [];
+$ var lastItemIndex = baseItems.length - 1;
 $ var prevItem = (
-    input.items[0] &&
-    input.items[0].type === "previous" &&
-    input.items[0]
+    baseItems[0] &&
+    baseItems[0].type === "previous" &&
+    baseItems[0]
 ) || disabledItem;
 $ var nextItem = (
-    input.items[lastItemIndex] &&
-    input.items[lastItemIndex].type === "next" &&
-    input.items[lastItemIndex]
+    baseItems[lastItemIndex] &&
+    baseItems[lastItemIndex].type === "next" &&
+    baseItems[lastItemIndex]
 ) || disabledItem;
-$ var items = input.items.slice(
+$ var items = baseItems.slice(
     prevItem === disabledItem ? 0 : 1,
     nextItem === disabledItem ? undefined : lastItemIndex
 );

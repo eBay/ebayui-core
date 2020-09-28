@@ -18,7 +18,7 @@ describe('given the combobox with 3 items', () => {
     });
 
     it('has no options selected by default', () => {
-        expect(component.getAllByRole('option').filter(isAriaSelected)).has.length(0);
+        expect(component.getAllByRole('option', { hidden: true }).filter(isAriaSelected)).has.length(0);
     });
 
     it('then it should not be expanded', () => {

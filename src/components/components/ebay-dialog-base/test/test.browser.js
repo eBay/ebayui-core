@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, waitFor, cleanup } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../../common/test-utils/browser');
 const { pressKey } = require('../../../../common/test-utils/browser');
 const template = require('..');
@@ -30,7 +30,7 @@ describe('given a closed dialog', () => {
     });
 
     it('then it is hidden in the DOM', async() => {
-        await wait(() => expect(component.getByRole('dialog')).has.attr('hidden'));
+        await waitFor(() => expect(component.getByRole('dialog', { hidden: true })).has.attr('hidden'));
     });
 
     it('then <body> is scrollable', () => {
@@ -42,7 +42,8 @@ describe('given a closed dialog', () => {
     });
 
     it('then it does not trap focus', () => {
-        expect(component.getByRole('dialog').children[0]).does.not.have.class('keyboard-trap--active');
+        expect(component.getByRole('dialog', { hidden: true })
+            .children[0]).does.not.have.class('keyboard-trap--active');
     });
 
     describe('when it is rerendered to be open', () => {
@@ -55,7 +56,7 @@ describe('given a closed dialog', () => {
 
     function thenItIsOpen(wasToggled) {
         it('then it is visible in the DOM', async() => {
-            await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+            await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
         });
 
         it('then <body> is not scrollable', () => {
@@ -63,12 +64,12 @@ describe('given a closed dialog', () => {
         });
 
         it('then it\'s siblings are hidden', async() => {
-            await wait(() => expect(sibling).has.attr('aria-hidden', 'true'));
+            await waitFor(() => expect(sibling).has.attr('aria-hidden', 'true'));
         });
 
         if (wasToggled) {
             it('then it traps focus', async() => {
-                await wait(() => {
+                await waitFor(() => {
                     expect(component.getByRole('dialog').children[1]).has.class('keyboard-trap--active');
                     component.getByLabelText(input.a11yCloseText).classList.forEach((cls) =>
                         expect(document.activeElement).has.class(cls));
@@ -76,7 +77,7 @@ describe('given a closed dialog', () => {
             });
 
             it('then it emits the open event', async() => {
-                await wait(() => expect(component.emitted('open')).has.length(1));
+                await waitFor(() => expect(component.emitted('open')).has.length(1));
             });
 
             describe('when it is rerendered with the same input', () => {
@@ -158,7 +159,7 @@ describe('given an open dialog', () => {
 
     function thenItIsOpen() {
         it('then it is visible in the DOM', async() => {
-            await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+            await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
         });
 
         it('then <body> is not scrollable', () => {
@@ -166,11 +167,11 @@ describe('given an open dialog', () => {
         });
 
         it('then it\'s siblings are hidden', async() => {
-            await wait(() => expect(sibling).has.attr('aria-hidden', 'true'));
+            await waitFor(() => expect(sibling).has.attr('aria-hidden', 'true'));
         });
 
         it('then it traps focus', async() => {
-            await wait(() => {
+            await waitFor(() => {
                 expect(component.getByRole('dialog').children[1]).has.class('keyboard-trap--active');
                 component.getByLabelText(input.a11yCloseText).classList.forEach((cls) =>
                     expect(document.activeElement).has.class(cls));
@@ -180,11 +181,11 @@ describe('given an open dialog', () => {
 
     function thenItIsClosed(wasToggled) {
         it('then it is hidden in the DOM', async() => {
-            await wait(() => expect(component.getByRole('dialog')).has.attr('hidden'));
+            await waitFor(() => expect(component.getByRole('dialog', { hidden: true })).has.attr('hidden'));
         });
 
         it('then <body> is scrollable', async() => {
-            await wait(() => {
+            await waitFor(() => {
                 expect(document.body).does.not.have.attr('style');
             });
         });
@@ -195,12 +196,12 @@ describe('given an open dialog', () => {
 
         it('then it restores the previous focus', async() => {
             expect(component.getByRole('dialog').children[0]).does.not.have.class('keyboard-trap--active');
-            await wait(() => expect(document.activeElement).to.equal(sibling));
+            await waitFor(() => expect(document.activeElement).to.equal(sibling));
         });
 
         if (wasToggled) {
             it('then it emits the close event', async() => {
-                await wait(() => expect(component.emitted('close')).has.length(1));
+                await waitFor(() => expect(component.emitted('close')).has.length(1));
             });
 
             describe('when it is rerendered with the same input', () => {
@@ -226,7 +227,7 @@ describe('given an open dialog with no trap', () => {
     });
 
     it('then it is visible in the DOM', async() => {
-        await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+        await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
     });
 
     it('then <body> is scrollable', () => {
@@ -238,8 +239,8 @@ describe('given an open dialog with no trap', () => {
     });
 
     it('then it does not traps focus', async() => {
-        await wait(() => {
-            expect(component.getByRole('dialog').children[1]).to.equal(undefined);
+        await waitFor(() => {
+            expect(component.getByRole('dialog', { hidden: true }).children[1]).to.equal(undefined);
             component.getByLabelText(input.a11yCloseText).classList.forEach((cls) =>
                 expect(document.activeElement).does.not.have.class(cls));
         });
@@ -295,7 +296,7 @@ describe('given an open with no close button', () => {
 
     function thenItIsOpen() {
         it('then it is visible in the DOM', async() => {
-            await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+            await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
         });
 
         it('then <body> is not scrollable', () => {
@@ -318,7 +319,7 @@ describe('given a closed dialog with useHiddenProperty', () => {
     });
 
     it('then it is hidden in the DOM', async() => {
-        await wait(() => expect(component.getByRole('dialog')).has.attr('hidden'));
+        await waitFor(() => expect(component.getByRole('dialog', { hidden: true })).has.attr('hidden'));
     });
 
     it('then <body> is scrollable', () => {
@@ -326,11 +327,12 @@ describe('given a closed dialog with useHiddenProperty', () => {
     });
 
     it('then it\'s siblings are visible', async() => {
-        await wait(() => expect(sibling).does.not.have.attr('hidden'));
+        await waitFor(() => expect(sibling).does.not.have.attr('hidden'));
     });
 
     it('then it does not trap focus', () => {
-        expect(component.getByRole('dialog').children[0]).does.not.have.class('keyboard-trap--active');
+        expect(component.getByRole('dialog', { hidden: true }).children[0]).
+            does.not.have.class('keyboard-trap--active');
     });
 
     describe('when it is rerendered to be open', () => {
@@ -343,7 +345,7 @@ describe('given a closed dialog with useHiddenProperty', () => {
 
     function thenItIsOpen(wasToggled) {
         it('then it is visible in the DOM', async() => {
-            await wait(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+            await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
         });
 
         it('then <body> is not scrollable', () => {
@@ -351,12 +353,12 @@ describe('given a closed dialog with useHiddenProperty', () => {
         });
 
         it('then it\'s siblings are hidden', async() => {
-            await wait(() => expect(sibling).has.attr('hidden'));
+            await waitFor(() => expect(sibling).has.attr('hidden'));
         });
 
         if (wasToggled) {
             it('then it traps focus', async() => {
-                await wait(() => {
+                await waitFor(() => {
                     expect(component.getByRole('dialog').children[1]).has.class('keyboard-trap--active');
                     component.getByLabelText(input.a11yCloseText).classList.forEach((cls) =>
                         expect(document.activeElement).has.class(cls));
@@ -364,7 +366,7 @@ describe('given a closed dialog with useHiddenProperty', () => {
             });
 
             it('then it emits the show event', async() => {
-                await wait(() => expect(component.emitted('open')).has.length(1));
+                await waitFor(() => expect(component.emitted('open')).has.length(1));
             });
 
             describe('when it is rerendered with the same input', () => {

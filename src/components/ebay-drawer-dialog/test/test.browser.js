@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, wait, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, waitFor, cleanup } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
@@ -47,7 +47,7 @@ describe('given a closed drawer', () => {
     });
 
     it('then it is hidden in the DOM', () => {
-        expect(component.getByRole('dialog')).has.attr('hidden');
+        expect(component.getByRole('dialog', { hidden: true })).has.attr('hidden');
     });
 
     describe('then it is opened', () => {
@@ -56,7 +56,7 @@ describe('given a closed drawer', () => {
         });
 
         it('then it is visible in the DOM', async() => {
-            await wait(() => expect(component.emitted('open')).has.length(1));
+            await waitFor(() => expect(component.emitted('open')).has.length(1));
         });
         describe('then it is expanded', () => {
             beforeEach(async() => {
@@ -64,7 +64,7 @@ describe('given a closed drawer', () => {
             });
 
             it('then it is expanded in DOM', async() => {
-                await wait(() => expect(component.emitted('expanded')).has.length(1));
+                await waitFor(() => expect(component.emitted('expanded')).has.length(1));
             });
         });
         describe('then it is expanded on scroll', () => {
@@ -76,7 +76,7 @@ describe('given a closed drawer', () => {
             });
 
             it('then it is expanded in DOM', async() => {
-                await wait(() => expect(component.emitted('expanded')).has.length(1));
+                await waitFor(() => expect(component.emitted('expanded')).has.length(1));
             });
         });
     });
@@ -90,7 +90,7 @@ describe('given an open and expanded drawer', () => {
     });
 
     it('then it is not hidden in the DOM', () => {
-        expect(component.getByRole('dialog')).does.not.have.attr('hidden');
+        expect(component.getByRole('dialog', { hidden: true })).does.not.have.attr('hidden');
     });
 
     describe('then it is collapsed', () => {
@@ -99,7 +99,7 @@ describe('given an open and expanded drawer', () => {
         });
 
         it('then it is expanded in DOM', async() => {
-            await wait(() => expect(component.emitted('collapsed')).has.length(1));
+            await waitFor(() => expect(component.emitted('collapsed')).has.length(1));
         });
     });
 
@@ -109,7 +109,7 @@ describe('given an open and expanded drawer', () => {
         });
 
         it('then it is expanded in DOM', async() => {
-            await wait(() => expect(component.emitted('expanded')).has.length(0));
+            await waitFor(() => expect(component.emitted('expanded')).has.length(0));
         });
     });
 });
@@ -122,7 +122,7 @@ describe('given an open and non expanded drawer for touch events', () => {
     });
 
     it('then it is hidden in the DOM', () => {
-        expect(component.getByRole('dialog')).does.not.have.attr('hidden');
+        expect(component.getByRole('dialog', { hidden: true })).does.not.have.attr('hidden');
     });
 
     (hasTouch ? describe : describe.skip)('then it is expanded on touch drag up', () => {
@@ -131,7 +131,7 @@ describe('given an open and non expanded drawer for touch events', () => {
         });
 
         it('then it is expanded in DOM', async() => {
-            await wait(() => expect(component.emitted('expanded')).has.length(1));
+            await waitFor(() => expect(component.emitted('expanded')).has.length(1));
         });
     });
 
@@ -141,9 +141,9 @@ describe('given an open and non expanded drawer for touch events', () => {
         });
 
         it('then it did not trigger', async() => {
-            await wait(() => expect(component.emitted('expanded')).has.length(0));
-            await wait(() => expect(component.emitted('close')).has.length(0));
-            await wait(() => expect(component.emitted('collapsed')).has.length(0));
+            await waitFor(() => expect(component.emitted('expanded')).has.length(0));
+            await waitFor(() => expect(component.emitted('close')).has.length(0));
+            await waitFor(() => expect(component.emitted('collapsed')).has.length(0));
         });
     });
 
@@ -163,11 +163,11 @@ describe('given an open and non expanded drawer for touch events', () => {
         });
 
         it('then it is closed', async() => {
-            await wait(() => expect(component.emitted('close')).has.length(1));
+            await waitFor(() => expect(component.emitted('close')).has.length(1));
         });
 
         it('then it is hidden in the DOM when dragged down', async() => {
-            await wait(() => expect(component.getByRole('dialog')).has.attr('hidden'));
+            await waitFor(() => expect(component.getByRole('dialog', { hidden: true })).has.attr('hidden'));
         });
     });
 });
@@ -189,7 +189,7 @@ describe('given an open and expanded drawer for touch events', () => {
         });
 
         it('then it is expanded in DOM', async() => {
-            await wait(() => expect(component.emitted('expanded')).has.length(0));
+            await waitFor(() => expect(component.emitted('expanded')).has.length(0));
         });
     });
 
@@ -199,7 +199,7 @@ describe('given an open and expanded drawer for touch events', () => {
         });
 
         it('then it is closed', async() => {
-            await wait(() => expect(component.emitted('collapsed')).has.length(1));
+            await waitFor(() => expect(component.emitted('collapsed')).has.length(1));
         });
     });
 
@@ -225,7 +225,7 @@ describe('given an open and expanded drawer for touch events', () => {
 });
 
 async function checkNoEvenets(triggerComponent) {
-    await wait(() => expect(triggerComponent.emitted('expanded')).has.length(0));
-    await wait(() => expect(triggerComponent.emitted('close')).has.length(0));
-    await wait(() => expect(triggerComponent.emitted('collapsed')).has.length(0));
+    await waitFor(() => expect(triggerComponent.emitted('expanded')).has.length(0));
+    await waitFor(() => expect(triggerComponent.emitted('close')).has.length(0));
+    await waitFor(() => expect(triggerComponent.emitted('collapsed')).has.length(0));
 }

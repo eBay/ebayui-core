@@ -23,9 +23,9 @@ describe('combobox-readonly', () => {
 
     it('renders empty', async() => {
         const input = mock.Combobox_0Options;
-        const { getAllByRole } = await render(template, input);
-        expect(getAllByRole('combobox')).has.length(2);
-        expect(getAllByRole('listbox')).has.length(1);
+        const { getAllByRole, queryAllByLabelText } = await render(template, input);
+        expect(getAllByRole('combobox', { hidden: true })).has.length(2);
+        expect(queryAllByLabelText('listbox')).has.length(0);
     });
 
     it('renders with second item selected', async() => {

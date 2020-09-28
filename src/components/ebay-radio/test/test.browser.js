@@ -47,7 +47,7 @@ describe('given radio button is disabled', () => {
     });
 });
 
-describe('when native focus event is fired', () => {
+describe('when native focus event is fired on radio', () => {
     beforeEach(async() => {
         component = await render(template, { value: 'food' });
         await fireEvent.focus(component.getByRole('radio'));
