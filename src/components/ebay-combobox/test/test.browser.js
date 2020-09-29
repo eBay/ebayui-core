@@ -145,6 +145,49 @@ describe('given the combobox with 3 items', () => {
     }
 });
 
+describe('given the combobox with 3 items and 2 selected', () => {
+    const input = mock.Combobox_3Options_2Selected;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+
+    it('has no options selected by default', () => {
+        expect(component.getAllByRole('option', { hidden: true }).filter(isAriaSelected)).has.length(0);
+    });
+
+    it('then it should not be expanded', () => {
+        expect(component.getByRole('combobox')).has.attr('aria-expanded', 'false');
+    });
+    describe('after it is rerendered', () => {
+        beforeEach(async() => {
+            await component.rerender();
+        });
+
+        thenItIsReadyForInteraction();
+    });
+
+    thenItIsReadyForInteraction();
+
+    function thenItIsReadyForInteraction() {
+        describe('when the input receives focus', () => {
+            beforeEach(async() => {
+                await fireEvent.focus(component.getByRole('combobox'));
+            });
+
+            it('then it should expand the combobox', () => {
+                expect(component.getByRole('combobox')).has.attr('aria-expanded', 'true');
+            });
+
+            it('then should show all items by default', () => {
+                const options = component.getAllByRole('option');
+                expect(options.length).to.equal(3);
+                expect(options).has.property(1).with.class('combobox__option--active');
+            });
+        });
+    }
+});
+
 describe('given the combobox starts with zero options', () => {
     const input = mock.Combobox_0Options;
 

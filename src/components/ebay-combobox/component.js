@@ -23,15 +23,24 @@ module.exports = {
         this.emit('button-click', { originalEvent });
     },
 
-    handleExpand() {
-        const selectedEl = this.getEls('options')[
-            this._getVisibleOptions().indexOf(this._getSelectedOption())
-        ];
-
+    setSelectedView() {
+        const current = this._getVisibleOptions().indexOf(this._getSelectedOption());
+        this.activeDescendant.index = current;
+        const selectedEl = this.getEls('options')[current];
         if (selectedEl) {
             elementScroll.scroll(selectedEl);
         }
+    },
 
+    handleExpand() {
+        if (this.state.viewAllOptions) {
+            this.setSelectedView();
+        } else {
+            this.state.viewAllOptions = true;
+            this.once('update', () => {
+                this.setSelectedView();
+            });
+        }
         this.emit('expand');
     },
 
@@ -78,6 +87,7 @@ module.exports = {
                     this.expander.expand();
                 }
             });
+            this.state.viewAllOptions = false;
 
             this._emitComboboxEvent('input-change');
         });
@@ -110,7 +120,7 @@ module.exports = {
         input.autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
         input.options = input.options || [];
         this.lastValue = input.value;
-        this.state = { currentValue: this.lastValue };
+        this.state = { currentValue: this.lastValue, viewAllOptions: (this.state && this.state.viewAllOptions) || true };
     },
 
     onMount() {
@@ -138,12 +148,12 @@ module.exports = {
                 this.getEl('combobox'),
                 this.getEl('listbox'),
                 '[role="option"]', {
-                    activeDescendantClassName: 'combobox__option--active',
-                    autoInit: -1,
-                    autoReset: -1,
-                    axis: 'y',
-                    autoScroll: true
-                }
+                activeDescendantClassName: 'combobox__option--active',
+                autoInit: -1,
+                autoReset: -1,
+                axis: 'y',
+                autoScroll: true
+            }
             );
 
             this.expander = new Expander(this.el, {
@@ -190,7 +200,7 @@ module.exports = {
     },
 
     _getVisibleOptions() {
-        if (this.input.autocomplete === 'none') {
+        if (this.input.autocomplete === 'none' || this.state.viewAllOptions) {
             return this.input.options;
         }
 
