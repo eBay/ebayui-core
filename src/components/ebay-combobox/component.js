@@ -49,6 +49,12 @@ module.exports = {
         this.emit('collapse');
     },
 
+    handleComboboxClick(e) {
+        if (e.target === document.activeElement && !this.isExpanded()) {
+            this.expander.expand();
+        }
+    },
+
     handleComboboxKeyDown(originalEvent) {
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             originalEvent.preventDefault();
@@ -120,7 +126,10 @@ module.exports = {
         input.autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
         input.options = input.options || [];
         this.lastValue = input.value;
-        this.state = { currentValue: this.lastValue, viewAllOptions: (this.state && this.state.viewAllOptions) || true };
+        this.state = {
+            currentValue: this.lastValue,
+            viewAllOptions: (this.state && this.state.viewAllOptions) || true
+        };
     },
 
     onMount() {
@@ -148,12 +157,12 @@ module.exports = {
                 this.getEl('combobox'),
                 this.getEl('listbox'),
                 '[role="option"]', {
-                activeDescendantClassName: 'combobox__option--active',
-                autoInit: -1,
-                autoReset: -1,
-                axis: 'y',
-                autoScroll: true
-            }
+                    activeDescendantClassName: 'combobox__option--active',
+                    autoInit: -1,
+                    autoReset: -1,
+                    axis: 'y',
+                    autoScroll: true
+                }
             );
 
             this.expander = new Expander(this.el, {

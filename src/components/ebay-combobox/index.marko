@@ -52,6 +52,7 @@ $ var hasButton = !!input.button;
             aria-haspopup="listbox"
             autocomplete="new-password"
             onBlur("handleComboboxBlur")
+            onClick("handleComboboxClick")
             onKeydown("handleComboboxKeyDown")
             onKeyup("handleComboboxKeyUp")/>
         <${hasButton ? "button" : null}

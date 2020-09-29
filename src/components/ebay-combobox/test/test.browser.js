@@ -127,6 +127,15 @@ describe('given the combobox with 3 items', () => {
                 it('then it should update the input', () => {
                     expect(component.getByRole('combobox')).has.value(input.options[1].text);
                 });
+
+                describe('Should allow combobox to reopen on click', () => {
+                    beforeEach(async() => {
+                        await fireEvent.click(component.getByRole('combobox'));
+                    });
+                    it('then it should collapse the combobox', () => {
+                        expect(component.getByRole('combobox')).has.attr('aria-expanded', 'true');
+                    });
+                });
             });
 
             describe('when the escape key is pressed', () => {
