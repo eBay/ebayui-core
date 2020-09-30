@@ -195,7 +195,8 @@ describe('given an open dialog', () => {
         });
 
         it('then it restores the previous focus', async() => {
-            expect(component.getByRole('dialog').children[0]).does.not.have.class('keyboard-trap--active');
+            expect(component.getByRole('dialog', { hidden: true })
+                .children[0]).does.not.have.class('keyboard-trap--active');
             await waitFor(() => expect(document.activeElement).to.equal(sibling));
         });
 
