@@ -17,7 +17,7 @@ $ var selectedText = selectedOption && selectedOption.text;
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     key="container"
-    class:no-update=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
+    class=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
     on-expander-expand("handleExpand")
     on-expander-collapse("handleCollapse")>
     <button
