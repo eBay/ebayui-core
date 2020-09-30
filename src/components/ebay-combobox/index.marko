@@ -25,6 +25,7 @@ $ var hasButton = !!input.button;
 <span
     class:no-update=["combobox", input.class]
     style=input.style
+    on-activeDescendantChange("handleActiveDescendantChange")
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")>
     <span class=[

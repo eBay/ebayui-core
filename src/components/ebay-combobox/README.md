@@ -44,10 +44,14 @@ Name | Type | Stateful | Required | Description
 `borderless` | Boolean | No | No | whether the input has borders
 `disabled` | Boolean | Yes | No | sets the disabled attribute of the input
 `expanded` | Boolean | Yes | No | sets whether the listbox is expanded
-`autocomplete` | String | Yes | No | default is `none`; available values are `none` and `list`
+`autocomplete` | String | Yes | No | default is `none`; available values are `none`,  `list`, and `automatic`. See below for more info.
 `roledescription` | String | No | No | The role description for accessibility. Default text is set and will be in english. Pass this to override for different locales
 
 Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
+
+### ebay-combobox autocomplete
+When combobox is set to `list` or `automatic`, as the user types the list gets filtered to match the current combobox input. When it is set to `none` it does not filter or do anything.
+The difference between `list` and `automatic` is that when the user presses up and down to select an item in the list, `list` preserves the input value, while `automatic` replaces the current input value with the currently highlighted option
 
 ### ebay-combobox Events
 

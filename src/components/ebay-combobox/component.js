@@ -23,6 +23,15 @@ module.exports = {
         this.emit('button-click', { originalEvent });
     },
 
+    handleActiveDescendantChange(ev) {
+        if (this.input.autocomplete === 'automatic') {
+            const selected = this._getVisibleOptions()[ev.detail.toIndex];
+            // Set textbox value to selected
+            this.getEl('combobox').value = selected.text;
+        }
+        // console.log(ev);
+    },
+
     setSelectedView() {
         const current = this._getVisibleOptions().indexOf(this._getSelectedOption());
         this.activeDescendant.index = current;
@@ -59,7 +68,7 @@ module.exports = {
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             originalEvent.preventDefault();
 
-            if (!this.expander.isExpanded()) {
+            if (this.expander && !this.expander.isExpanded()) {
                 this.activeDescendant.reset();
                 this.expander.expand();
             }
@@ -112,6 +121,11 @@ module.exports = {
 
         this.buttonClicked = false;
 
+        if (this.input.autocomplete === 'automatic' &&
+            this.getEl('combobox').value !== this.state.currentValue) {
+            this.state.currentValue = this.getEl('combobox').value;
+        }
+
         if (this.lastValue !== this.state.currentValue) {
             this.lastValue = this.state.currentValue;
             this._emitComboboxEvent('change');
@@ -123,7 +137,7 @@ module.exports = {
     },
 
     onInput(input) {
-        input.autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
+        input.autocomplete = input.autocomplete || 'none';
         input.options = input.options || [];
         this.lastValue = input.value;
         this.state = {
@@ -180,6 +194,7 @@ module.exports = {
 
     _cleanupMakeup() {
         if (this.activeDescendant) {
+            this.activeDescendant.reset();
             this.activeDescendant.destroy();
             this.activeDescendant = null;
         }
