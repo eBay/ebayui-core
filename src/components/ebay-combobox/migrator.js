@@ -13,6 +13,7 @@ function migratorMarko4(el, context) {
     setAttributeIfPresent(el, context, 'on-combobox-expand', 'on-expand');
     setAttributeIfPresent(el, context, 'on-combobox-focus', 'on-focus');
     setAttributeIfPresent(el, context, 'on-combobox-button-click', 'on-button-click');
+    return el;
 }
 
 function migratorMarko5() {

@@ -17,9 +17,10 @@ exports.Combobox_3Options = {
     }))
 };
 
-exports.Combobox_3Options_Automatic = {
+exports.Combobox_3Options_Manual = {
     name: 'test-combobox',
     autocomplete: 'list',
+    listSelection: 'manual',
     options: getNItems(3, i => ({
         value: i,
         text: `option ${i}`

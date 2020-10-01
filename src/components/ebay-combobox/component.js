@@ -26,10 +26,9 @@ module.exports = {
     handleActiveDescendantChange(ev) {
         if (this.listSelection === 'automatic') {
             const selected = this._getVisibleOptions()[ev.detail.toIndex];
-            // Set textbox value to selected
+            // Set textbox value to selected, don't update state since it messes up active descendant
             this.getEl('combobox').value = selected.text;
         }
-        // console.log(ev);
     },
 
     setSelectedView() {

@@ -80,6 +80,7 @@ describe('given the combobox with 3 items', () => {
                     const options = component.getAllByRole('option');
                     expect(options).has.property(0).with.class('combobox__option--active');
                     expect(options).has.property(1).not.with.class('combobox__option--active');
+                    expect(component.getByRole('combobox')).has.value(input.options[0].text);
                 });
 
                 describe('when the enter key is pressed', () => {
@@ -111,6 +112,7 @@ describe('given the combobox with 3 items', () => {
                         const options = component.getAllByRole('option');
                         expect(options).has.property(0).not.with.class('combobox__option--active');
                         expect(options).has.property(1).with.class('combobox__option--active');
+                        expect(component.getByRole('combobox')).has.value(input.options[1].text);
                     });
                 });
             });
@@ -197,8 +199,8 @@ describe('given the combobox with 3 items and 2 selected', () => {
     }
 });
 
-describe('given the combobox with 3 items set to automatic selection', () => {
-    const input = mock.Combobox_3Options_Automatic;
+describe('given the combobox with 3 items set to manual selection', () => {
+    const input = mock.Combobox_3Options_Manual;
 
     beforeEach(async() => {
         component = await render(template, input);
@@ -267,7 +269,7 @@ describe('given the combobox with 3 items set to automatic selection', () => {
                     const options = component.getAllByRole('option');
                     expect(options).has.property(0).with.class('combobox__option--active');
                     expect(options).has.property(1).not.with.class('combobox__option--active');
-                    expect(component.getByRole('combobox')).has.value(input.options[0].text);
+                    expect(component.getByRole('combobox')).has.value('');
                 });
 
                 describe('when the enter key is pressed', () => {
@@ -299,7 +301,7 @@ describe('given the combobox with 3 items set to automatic selection', () => {
                         const options = component.getAllByRole('option');
                         expect(options).has.property(0).not.with.class('combobox__option--active');
                         expect(options).has.property(1).with.class('combobox__option--active');
-                        expect(component.getByRole('combobox')).has.value(input.options[1].text);
+                        expect(component.getByRole('combobox')).has.value('');
                     });
                 });
             });
