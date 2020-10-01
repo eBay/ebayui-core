@@ -14,11 +14,11 @@ static var ignoredButtonAttributes = [
 ];
 
 static var itemIgnoredAttributes = ["text"];
-$ var ariaAutocomplete = input.autocomplete && input.autocomplete.startsWith('list-') ? "list" : "none"
+$ var ariaAutocomplete = component.autocomplete.startsWith('list-') ? "list" : "none"
 $ {
     var roledescription = input.roledescription ||
         (`Use up and down arrow keys to navigate options.${
-            input.autocomplete === 'none' ? '': ' Options change based on text input'
+            component.autocomplete === 'none' ? '': ' Options change based on text input'
         }`);
 }
 

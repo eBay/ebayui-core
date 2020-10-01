@@ -1,7 +1,12 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
+const {
+    testPassThroughAttributes,
+    testEventsMigrator,
+    runTransformer
+} = require('../../../common/test-utils/server');
 const template = require('..');
+const migrator = require('../migrator');
 const mock = require('./mock');
 
 use(require('chai-dom'));
@@ -67,10 +72,21 @@ describe('combobox-option', () => {
     });
 });
 
+describe('combobox-migrator', () => {
+    const componentPath = '../index.marko';
+
+    it('migrates autocomplete', () => {
+        // eslint-disable-next-line max-len
+        const tagString = '<ebay-combobox autocomplete="list"></ebay-combobox>';
+        const { el } = runTransformer(migrator, tagString, componentPath);
+        expect(el.getAttributeValue('autocomplete').value).to.equal('list-manual');
+    });
+});
+
 function isAriaSelected(el) {
     return el.getAttribute('aria-selected') === 'true';
 }
 
-testEventsMigrator(require('../migrator'), 'combobox',
+testEventsMigrator(migrator, 'combobox',
     [{ from: 'input', to: 'input-change' },
         'collapse', 'change', 'select', 'expand'], '../index.marko');
