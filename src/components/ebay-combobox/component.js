@@ -6,10 +6,6 @@ const eventUtils = require('../../common/event-utils');
 const safeRegex = require('../../common/build-safe-regex');
 
 module.exports = {
-    get autocomplete() {
-        return this.input.autocomplete || 'none';
-    },
-
     focus() {
         this.getEl('combobox').focus();
     },
@@ -28,7 +24,7 @@ module.exports = {
     },
 
     handleActiveDescendantChange(ev) {
-        if (this.autocomplete === 'list-automatic') {
+        if (this.listSelection === 'automatic') {
             const selected = this._getVisibleOptions()[ev.detail.toIndex];
             // Set textbox value to selected
             this.getEl('combobox').value = selected.text;
@@ -63,7 +59,7 @@ module.exports = {
     },
 
     handleComboboxClick(e) {
-        if (e.target === document.activeElement && !this.isExpanded()) {
+        if (e.target === document.activeElement && this.expander && !this.isExpanded()) {
             this.expander.expand();
         }
     },
@@ -125,7 +121,7 @@ module.exports = {
 
         this.buttonClicked = false;
 
-        if (this.autocomplete === 'list-automatic' &&
+        if (this.listSelection === 'automatic' &&
             this.getEl('combobox').value !== this.state.currentValue) {
             this.state.currentValue = this.getEl('combobox').value;
         }
@@ -141,6 +137,8 @@ module.exports = {
     },
 
     onInput(input) {
+        this.autcomplete = input.autocomplete === 'list' ? 'list' : 'none';
+        this.listSelection = input.listSelection === 'manual' ? 'manual' : 'automatic';
         input.options = input.options || [];
         this.lastValue = input.value;
         this.state = {
@@ -227,7 +225,7 @@ module.exports = {
     },
 
     _getVisibleOptions() {
-        if (this.autocomplete === 'none' || this.state.viewAllOptions) {
+        if (this.input.autocomplete === 'none' || this.state.viewAllOptions) {
             return this.input.options;
         }
 

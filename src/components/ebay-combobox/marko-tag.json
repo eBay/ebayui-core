@@ -7,11 +7,11 @@
   },
   "@html-attributes": "expression",
   "@borderless": "boolean",
-  "@autocomplete": {
+  "@autocomplete": "string",
+  "@list-selection": {
     "enum": [
-      "none",
-      "list-manual",
-      "list-automatic"
+      "automatic",
+      "manual"
     ]
   },
   "@disabled": "#html-disabled",

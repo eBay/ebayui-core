@@ -6,7 +6,8 @@ static var ignoredAttributes = [
     "borderless",
     "autocomplete",
     "options",
-    "roledescription"
+    "roledescription",
+    "listSelection"
 ];
 
 static var ignoredButtonAttributes = [
@@ -14,7 +15,6 @@ static var ignoredButtonAttributes = [
 ];
 
 static var itemIgnoredAttributes = ["text"];
-$ var ariaAutocomplete = component.autocomplete.startsWith('list-') ? "list" : "none"
 $ {
     var roledescription = input.roledescription ||
         (`Use up and down arrow keys to navigate options.${
@@ -49,7 +49,7 @@ $ var hasButton = !!input.button;
             type="text"
             role="combobox"
             value=state.currentValue
-            aria-autocomplete=ariaAutocomplete
+            aria-autocomplete=component.autocomplete
             aria-roledescription=roledescription
             aria-haspopup="listbox"
             autocomplete="new-password"

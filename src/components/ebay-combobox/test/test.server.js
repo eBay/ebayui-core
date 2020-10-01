@@ -1,10 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-    runTransformer
-} = require('../../../common/test-utils/server');
+const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
 const template = require('..');
 const migrator = require('../migrator');
 const mock = require('./mock');
@@ -69,17 +65,6 @@ describe('combobox-option', () => {
             input: mock.Combobox_3Options.options[0],
             multiple: true
         }
-    });
-});
-
-describe('combobox-migrator', () => {
-    const componentPath = '../index.marko';
-
-    it('migrates autocomplete', () => {
-        // eslint-disable-next-line max-len
-        const tagString = '<ebay-combobox autocomplete="list"></ebay-combobox>';
-        const { el } = runTransformer(migrator, tagString, componentPath);
-        expect(el.getAttributeValue('autocomplete').value).to.equal('list-manual');
     });
 });
 

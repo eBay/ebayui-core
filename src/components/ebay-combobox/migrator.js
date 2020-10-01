@@ -13,12 +13,6 @@ function migratorMarko4(el, context) {
     setAttributeIfPresent(el, context, 'on-combobox-expand', 'on-expand');
     setAttributeIfPresent(el, context, 'on-combobox-focus', 'on-focus');
     setAttributeIfPresent(el, context, 'on-combobox-button-click', 'on-button-click');
-
-    if (el.hasAttribute('autocomplete') && el.getAttributeValue('autocomplete').value === 'list') {
-        context.deprecate(`autocomplete="list" is no longer supported. Use autocomplete="list-manual" instead.`);
-        el.getAttributeValue('autocomplete').value = 'list-manual';
-    }
-    return el;
 }
 
 function migratorMarko5() {
