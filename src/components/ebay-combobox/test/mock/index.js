@@ -4,13 +4,13 @@ const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Combobox_0Options = {
     name: 'test-combobox',
-    autocomplete: 'list',
+    autocomplete: 'list-manual',
     options: []
 };
 
 exports.Combobox_3Options = {
     name: 'test-combobox',
-    autocomplete: 'list',
+    autocomplete: 'list-manual',
     options: getNItems(3, i => ({
         value: i,
         text: `option ${i}`
@@ -19,7 +19,7 @@ exports.Combobox_3Options = {
 
 exports.Combobox_3Options_Automatic = {
     name: 'test-combobox',
-    autocomplete: 'automatic',
+    autocomplete: 'list-automatic',
     options: getNItems(3, i => ({
         value: i,
         text: `option ${i}`

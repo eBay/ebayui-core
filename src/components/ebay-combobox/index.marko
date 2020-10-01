@@ -14,6 +14,7 @@ static var ignoredButtonAttributes = [
 ];
 
 static var itemIgnoredAttributes = ["text"];
+$ var ariaAutocomplete = input.autocomplete && input.autocomplete.startsWith('list-') ? "list" : "none"
 $ {
     var roledescription = input.roledescription ||
         (`Use up and down arrow keys to navigate options.${
@@ -48,7 +49,7 @@ $ var hasButton = !!input.button;
             type="text"
             role="combobox"
             value=state.currentValue
-            aria-autocomplete=input.autocomplete
+            aria-autocomplete=ariaAutocomplete
             aria-roledescription=roledescription
             aria-haspopup="listbox"
             autocomplete="new-password"

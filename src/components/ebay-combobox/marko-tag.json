@@ -7,7 +7,13 @@
   },
   "@html-attributes": "expression",
   "@borderless": "boolean",
-  "@autocomplete": "string",
+  "@autocomplete": {
+    "enum": [
+      "none",
+      "list-manual",
+      "list-automatic"
+    ]
+  },
   "@disabled": "#html-disabled",
   "@form": "#html-form",
   "@name": "#html-name",
