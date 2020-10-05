@@ -136,7 +136,7 @@ module.exports = {
     },
 
     onInput(input) {
-        this.autcomplete = input.autocomplete === 'list' ? 'list' : 'none';
+        this.autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
         this.listSelection = input.listSelection === 'manual' ? 'manual' : 'automatic';
         input.options = input.options || [];
         this.lastValue = input.value;
@@ -224,7 +224,7 @@ module.exports = {
     },
 
     _getVisibleOptions() {
-        if (this.input.autocomplete === 'none' || this.state.viewAllOptions) {
+        if (this.autocomplete === 'none' || this.state.viewAllOptions) {
             return this.input.options;
         }
 
