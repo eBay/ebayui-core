@@ -24,10 +24,12 @@ module.exports = ({ config }) => {
             os_version: '10'
         }, {
             browser: 'Firefox',
-            os: 'OS X'
+            os: 'OS X',
+            os_version: 'Catalina'
         }, {
             browser: 'Safari',
-            os: 'OS X'
+            os: 'OS X',
+            os_version: 'Catalina'
         // }, {
         //     // Doesn't seem to be supporting timeouts?
         //     browser: 'Safari',
