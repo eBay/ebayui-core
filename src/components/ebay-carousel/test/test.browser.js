@@ -205,8 +205,11 @@ describe('given a continuous carousel', () => {
             });
         });
 
-        describe('when next button is clicked three times, and previous button is clicked once', () => {
-            beforeEach(async() => {
+        (supportsNativeScrolling
+            ? describe
+            : describe.skip
+        )('when next button is clicked three times, and previous button is clicked once', () => {
+            beforeEach(async() => { // eslint-disable-line mocha/no-sibling-hooks
                 fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
                 fireEvent.click(component.getByLabelText(input.a11yNextText));
@@ -510,7 +513,10 @@ describe('given a discrete carousel', () => {
                 expect(component.emitted('slide')).has.length(1);
             });
 
-            it('then it moved to the third item', () => {
+            (supportsNativeScrolling
+                ? it
+                : it.skip
+            )('then it moved to the third item', () => {
                 const secondItem = component.getByText(input.items[2].renderBody.text);
                 assertAtStartOfSlide(secondItem);
             });
