@@ -19,7 +19,7 @@ $ var selectedText = selectedOption && selectedOption.text;
     ...processHtmlAttributes(input, ignoredAttributes)
     key="options"
     role="listbox"
-    class:no-update=["listbox__options", input.class]
+    class=["listbox__options", input.class]
     tabindex:no-update=(input.tabindex || 0)
     on-activeDescendantChange("handleListboxChange")>
     <for|option| of=input.options>

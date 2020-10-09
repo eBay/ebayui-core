@@ -1,5 +1,9 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
+$ var handleLabel = (!state.expanded ?
+    (input.a11yMaximizeText || "Maximize Drawer") :
+    (input.a11yMinimizeText || "Minimize Drawer"));
+
 <ebay-dialog-base
     ...input
     open=input.open
@@ -21,7 +25,7 @@ import processHtmlAttributes from "../../common/html-attributes"
         <if (!input.noHandle)>
             <@top>
                 <button
-                    aria-label=input.a11yHandleText
+                    aria-label=handleLabel
                     class=`drawer-dialog__handle`
                     onClick("handleExpand")
                     onTouchStart("handleTouchStart")
