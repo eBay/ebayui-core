@@ -44,7 +44,8 @@ Name | Type | Stateful | Required | Description
 `borderless` | Boolean | No | No | whether the input has borders
 `disabled` | Boolean | Yes | No | sets the disabled attribute of the input
 `expanded` | Boolean | Yes | No | sets whether the listbox is expanded
-`autocomplete` | String | Yes | No | default is `none`; available values are `none` and `list`
+`autocomplete` | String | Yes | No | default is `none`; available values are `none` or `list`. For list, will automatically filter results while typing.
+`list-selection` | String | Yes | No | default is `automatic`; available values are `automatic`, `manual`. If set to automatic will automatically fill in the input with the currently highlighted item when using the up/down keys.
 `roledescription` | String | No | No | The role description for accessibility. Default text is set and will be in english. Pass this to override for different locales
 
 Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.

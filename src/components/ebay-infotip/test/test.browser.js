@@ -47,8 +47,8 @@ describe('given the default infotip', () => {
                     await fireEvent.click(component.getByLabelText(input.ariaLabel));
                 });
 
-                it('then it emits the collapse event', () => {
-                    expect(component.emitted('collapse')).has.length(1);
+                it('then it emits the collapse event', async() => {
+                    await waitFor(() => expect(component.emitted('collapse')).has.length(1));
                 });
 
                 it('then it is collapsed', () => {
