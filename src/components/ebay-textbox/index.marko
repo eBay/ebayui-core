@@ -53,7 +53,7 @@ $ var defaultTag = input.fluid ? "div" : "span";
                 input.fluid && "textbox__control--fluid",
                 input.floatingLabel && "textbox__control--underline"
             ]
-            type=(!input.multiline && (input.type === "password" ? "password" : "text"))
+            type=(!input.multiline && (input.type || "text"))
             value=(!input.multiline && input.value)
             aria-invalid=(input.invalid && "true")
             onKeydown("handleKeydown")
