@@ -41,7 +41,7 @@ $ var range = component._getVisibleRange(items);
 
     <${prevItem.href ? "a" : "button"}
         ...processHtmlAttributes(prevItem, ignoredItemAttributes)
-        class=["pagination__previous", prevItem.class]
+        class=["pagination__previous", prevItem.href ? "icon-link" : 'icon-btn', prevItem.class]
         aria-disabled=(prevItem.disabled && "true")
         aria-label=(input.a11yPreviousText || 'Previous page')
         style=[prevItem.style, { minWidth: 48 }]
@@ -67,7 +67,7 @@ $ var range = component._getVisibleRange(items);
 
     <${nextItem.href ? "a" : "button"}
         ...processHtmlAttributes(nextItem, ignoredItemAttributes)
-        class=["pagination__next", nextItem.class]
+        class=["pagination__next", nextItem.href ? "icon-link" : 'icon-btn', nextItem.class]
         aria-disabled=(nextItem.disabled && "true")
         aria-label=(input.a11yNextText || 'Next page')
         style=[nextItem.style, { minWidth: 48 }]
