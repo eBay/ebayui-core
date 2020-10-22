@@ -8,7 +8,6 @@ $ var isDocked = input.type === "left" || input.type === "right";
     open=input.open
     classPrefix="dialog"
     button-position=(isCenter && "right")
-    use-hidden-property=isFull
     on-modal-show("emit", "dialog-show")
     on-modal-close("emit", "dialog-close")
     class=[

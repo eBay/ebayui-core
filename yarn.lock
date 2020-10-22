@@ -12151,7 +12151,7 @@ makeup-key-emitter@~0.1.2, makeup-key-emitter@~0.1.3:
   dependencies:
     custom-event "^1"
 
-makeup-keyboard-trap@~0.2.4:
+makeup-keyboard-trap@~0.2.5:
   version "0.2.5"
   resolved "https://registry.npmjs.org/makeup-keyboard-trap/-/makeup-keyboard-trap-0.2.5.tgz#ccd466c73cc3d130410dea2476e172e4583dcd28"
   integrity sha512-J2ISxp+tE/KfHAjr1FXoL+5DBhme7TBuQ7U3PYoA4yD2ZD/3iWGh/1VyY6Wd67H/7VrzWXyMaspR09RmBKMfgg==
@@ -12343,7 +12343,39 @@ marko@4.14.21:
     try-require "^1.2.1"
     warp10 "^2.0.1"
 
-marko@^4.10.0, marko@^4.22.0:
+marko@4.23.9:
+  version "4.23.9"
+  resolved "https://registry.npmjs.org/marko/-/marko-4.23.9.tgz#c237e7e774d57c4df3f95f408d9b1ba9e838b833"
+  integrity sha512-hVdmJWijTYbkB7tnzV9t4H4suyRqVPC9bq9K7F87XOkHliKkdd79TpXfXgqZl4jL2u6ytriRBhJ4507m6+dpZQ==
+  dependencies:
+    app-module-path "^2.2.0"
+    argly "^1.0.0"
+    browser-refresh-client "^1.0.0"
+    camelcase "^5.0.0"
+    char-props "~0.1.5"
+    complain "^1.6.0"
+    deresolve "^1.1.2"
+    escodegen "^1.8.1"
+    espree "^7.3.0"
+    estraverse "^4.3.0"
+    events-light "^1.0.0"
+    he "^1.1.0"
+    htmljs-parser "^2.7.1"
+    lasso-caching-fs "^1.0.1"
+    lasso-modules-client "^2.0.4"
+    lasso-package-root "^1.0.1"
+    listener-tracker "^2.0.0"
+    minimatch "^3.0.2"
+    property-handlers "^1.0.0"
+    raptor-regexp "^1.0.0"
+    raptor-util "^3.2.0"
+    resolve-from "^2.0.0"
+    self-closing-tags "^1.0.1"
+    simple-sha1 "^2.1.0"
+    strip-json-comments "^2.0.1"
+    warp10 "^2.0.1"
+
+marko@^4.10.0:
   version "4.23.2"
   resolved "https://registry.npmjs.org/marko/-/marko-4.23.2.tgz#d3d124af3dc4dd2a81a0991adf2bb17cc12c9434"
   integrity sha512-sOaTZE5sgymzLJGJJscR/R4O3p+mlLU9kO9WH2v2XoukY5gNJPAa7zRkecN5GsujU8atwEqcHDep+Ie4M8/grQ==
