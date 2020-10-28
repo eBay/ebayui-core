@@ -12,7 +12,7 @@ exports.Links_6Items_No_Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
             type: 'previous',
-            href: '#previous'
+            href: '#next'
         },
         getNItems(6, i => ({
             href: `#${i}`,
@@ -83,7 +83,7 @@ exports.Links_1Items_Navigation_Disabled = assign({}, exports.Base_0Items, {
     items: [
         {
             type: 'previous',
-            href: '#previous',
+            variant: 'link',
             disabled: true
         },
         {
@@ -110,7 +110,8 @@ exports.Links_1Items_No_Navigation = assign({}, exports.Base_0Items, {
 exports.Buttons_0Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {
-            type: 'previous'
+            type: 'previous',
+            variant: 'button'
         },
         getNItems(6, i => ({
             current: i === 0,
