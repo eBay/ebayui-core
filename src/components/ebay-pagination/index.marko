@@ -38,7 +38,7 @@ $ var range = component._getVisibleRange(items);
         </h2>
     </span>
 
-    <${prevItem.href ? "a" : "button"}
+    <${component.getItemTag(prevItem)}
         ...processHtmlAttributes(prevItem, ignoredItemAttributes)
         class=["pagination__previous", prevItem.class]
         aria-disabled=(prevItem.disabled && "true")
@@ -53,7 +53,7 @@ $ var range = component._getVisibleRange(items);
         class="pagination__items">
         <for|item, i| of=items>
             <li hidden=(i < range.start || i > range.end)>
-                <${item.href ? "a" : "button"}
+                <${component.getItemTag(item)}
                     ...processHtmlAttributes(item, ignoredItemAttributes)
                     class=["pagination__item", item.class]
                     aria-current=(item.current && "page")
@@ -64,7 +64,7 @@ $ var range = component._getVisibleRange(items);
         </for>
     </ol>
 
-    <${nextItem.href ? "a" : "button"}
+    <${component.getItemTag(nextItem)}
         ...processHtmlAttributes(nextItem, ignoredItemAttributes)
         class=["pagination__next", nextItem.class]
         aria-disabled=(nextItem.disabled && "true")
