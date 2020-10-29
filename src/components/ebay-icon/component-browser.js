@@ -15,7 +15,7 @@ module.exports = {
         const defs = this.getEl('defs');
 
         if (defs) {
-            if (this.input._themes) {
+            if (this.input && this.input._themes) {
                 defs.innerHTML = this.input._themes[0]();
             }
             const symbol = defs.querySelector('symbol');
