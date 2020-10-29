@@ -53,7 +53,9 @@ describe('pagination', () => {
         it('renders with aria-disabled when navigation is disabled', async() => {
             const input = mock.Links_1Items_Navigation_Disabled;
             const { getByLabelText } = await render(template, input);
+            expect(getByLabelText(input.a11yPreviousText)).has.property('tagName', 'A');
             expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
+            expect(getByLabelText(input.a11yNextText)).has.property('tagName', 'A');
             expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
 

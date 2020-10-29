@@ -46,6 +46,8 @@ Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `disabled` | Boolean | No | No | Previous/next button is disabled or not
 `href` | String | No | No | for link that looks like a menu-item; omitting the href will switch to a button
+`href` | String | No | No | for link that looks like a menu-item; omitting the href will switch to a button
+`variant` | String | No | No | "button" or "link". Will force an item to be a link if href is omitted. Defaults to button. If not specified, tag type will still be controlled by `href`
 `current` | Boolean | No | No | the current page
 `type` | String | No | No | "previous", "next" or "page"(default). To specify if the information entered is for the previous or next arrrow button or a page. If the `type='previous|next'` isn't provided the previous/next arrow buttons will be taken as `disabled`
 

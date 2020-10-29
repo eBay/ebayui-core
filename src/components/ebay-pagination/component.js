@@ -44,6 +44,13 @@ module.exports = {
             .on('resize', this._calculateMaxItems.bind(this));
     },
 
+    getItemTag(item) {
+        if (item.variant) {
+            return item.variant === 'link' ? 'a' : 'button';
+        }
+        return !!item.href ? 'a' : 'button';
+    },
+
     /**
      * Calculates the start and end offsets given the current maximum items
      * that can be displayed.

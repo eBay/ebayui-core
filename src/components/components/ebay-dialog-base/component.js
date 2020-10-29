@@ -118,7 +118,7 @@ module.exports = {
 
         return () => {
             if (willTrap) {
-                screenReaderTrap.trap(this.windowEl, { useHiddenProperty });
+                screenReaderTrap.trap(this.el, { useHiddenProperty });
                 keyboardTrap.trap(this.windowEl);
             }
         };
@@ -201,6 +201,9 @@ module.exports = {
                     this.rootEl.setAttribute('hidden', '');
                 }
             }
+        } else if (restoreTrap) {
+            // In the case where the page rerendered, attach all traps again
+            runTraps();
         }
     },
 
@@ -211,7 +214,7 @@ module.exports = {
     _release() {
         if (this.isTrapped) {
             this.restoreTrap = this.state.open;
-            screenReaderTrap.untrap(this.windowEl);
+            screenReaderTrap.untrap(this.el);
             keyboardTrap.untrap(this.windowEl);
         } else {
             this.restoreTrap = false;
