@@ -10,9 +10,9 @@ When no selected option is specified:
 
 ```marko
 <ebay-listbox name="formFieldName">
-    <ebay-listbox-option value="1" text="Option 1"/>
-    <ebay-listbox-option value="2" text="Option 2"/>
-    <ebay-listbox-option value="3" text="Option 3"/>
+    <@option value="1" text="Option 1"/>
+    <@option value="2" text="Option 2"/>
+    <@option value="3" text="Option 3"/>
 </ebay-listbox>
 ```
 
@@ -20,9 +20,9 @@ When a selected option is specified:
 
 ```marko
 <ebay-listbox name="formFieldName">
-    <ebay-listbox-option value="1" text="Option 1"/>
-    <ebay-listbox-option value="2" text="Option 2" selected/>
-    <ebay-listbox-option value="3" text="Option 3"/>
+    <@option value="1" text="Option 1"/>
+    <@option value="2" text="Option 2" selected/>
+    <@option value="3" text="Option 3"/>
 </ebay-listbox>
 ```
 
@@ -37,18 +37,18 @@ Name | Type | Stateful | Required | Description
 
 Event | Data |  Description
 --- | --- | ---
-`listbox-change` | `{ el, index, selected, wasClicked }` | option selected
+`change` | `{ el, index, selected, wasClicked }` | option selected
 ---
 
-## ebay-listbox-option Tag
+## @option Tag
 
-### ebay-listbox-option Usage
+### @option Usage
 
 ```marko
-<ebay-listbox-option value="1" text="Option 1"/>
+<@option value="1" text="Option 1"/>
 ```
 
-### ebay-listbox-option Attributes
+### @option Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

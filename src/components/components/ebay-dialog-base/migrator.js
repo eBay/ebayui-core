@@ -5,7 +5,17 @@ const headerRegExp = /^h[1-6]$/;
  * Changes @heading content if wrapped with <h[1-6]> to be unrapped
  */
 
-function migrator(el, context) {
+function migratorMarko4(el, context) {
+    el.forEachChild((child) => {
+        let found = false;
+        if (!found && child && child.tagName === 'h2') {
+            found = true;
+            child.setTagName('@header');
+            context.deprecate(
+                '<h2> on dialog is not longer supported as the title tag. Use <@header> instead');
+        }
+    });
+
     const walker = context.createWalker({
         enter(node) {
             if (node.tagName === '@header') {
@@ -40,4 +50,14 @@ function migrator(el, context) {
     walker.walk(el);
 }
 
-module.exports = migrator;
+function migratorMarko5() {
+    return;
+}
+
+module.exports = function migrator(a, b) {
+    if (a.hub) {
+        return migratorMarko5(a, b);
+    }
+
+    return migratorMarko4(a, b);
+};

@@ -10,7 +10,7 @@ module.exports = {
     },
 
     handleScroll() {
-        this.emit('modal-scroll');
+        this.emit('scroll');
     },
 
     handleKeydown(event) {
@@ -23,6 +23,11 @@ module.exports = {
         const { closeEl, windowEl, startEl } = this;
 
         this.startEl = null;
+
+        if (this.input.buttonPosition === 'hidden') {
+            return;
+        }
+
         if (windowEl.contains(startEl)) {
             // Started on dialog window and user dragged out, don't close
             return;
@@ -63,6 +68,8 @@ module.exports = {
         this.bodyEl = this.getEl('body');
         if (this.input.transitionEl === 'root') {
             this.transitionEls = [this.rootEl];
+        } else if (this.input.transitionEl === 'window') {
+            this.transitionEls = [this.windowEl];
         } else {
             this.transitionEls = [this.windowEl, this.rootEl];
         }
@@ -81,7 +88,7 @@ module.exports = {
     },
 
     _triggerFocus(focusEl) {
-        if (this.input.isModal) {
+        if (this.input.isModal && focusEl) {
             focusEl.focus();
         }
     },
@@ -145,12 +152,12 @@ module.exports = {
                 if (isTrapped) {
                     this.rootEl.removeAttribute('hidden');
                     this._triggerFocus(focusEl);
-                    this.emit('modal-show');
+                    this.emit('open');
                 } else {
                     this._triggerBodyScroll(false);
                     const activeElement = document.activeElement;
                     this.rootEl.setAttribute('hidden', '');
-                    this.emit('modal-close');
+                    this.emit('close');
 
                     if (
                         // Skip restoring focus if the focused element was changed via the dialog-close event

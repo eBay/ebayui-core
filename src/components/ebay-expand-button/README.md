@@ -11,5 +11,4 @@
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `size` | String | No | No | Can be "large". If not set, defaults to default
-`no-text` | Boolean | No | No | used to adjust padding for "expand" variant without text
 `disabled` | Boolean | Yes | No |

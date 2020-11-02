@@ -8,9 +8,9 @@
 
 ```marko
 <ebay-filter-menu-button text="text">
-    <ebay-filter-menu-button-item value="item 1">item 1</ebay-filter-menu-button-item>
-    <ebay-filter-menu-button-item value="item 2">item 2</ebay-filter-menu-button-item>
-    <ebay-filter-menu-button-item value="item 3">item 3</ebay-filter-menu-button-item>
+    <@item value="item 1">item 1</@item>
+    <@item value="item 2">item 2</@item>
+    <@item value="item 3">item 3</@item>
 </ebay-filter-menu-button>
 ```
 
@@ -43,21 +43,21 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`filter-menu-button-expand` | | expand content
-`filter-menu-button-collapse` | `{ checked, originalEvent }` | collapse content (emits current checked state)
-`filter-menu-button-change` | `{ el, checked, originalEvent }` | items changed/checked
-`filter-menu-button-footer-click` | `{ checked, originalEvent }` | footer button clicked
-`filter-menu-button-form-submit` |  | `{ checked, originalEvent }` | when using `variant="form"`, and form is submitted (emits current checked state)
+`expand` | | expand content
+`collapse` | `{ checked, originalEvent }` | collapse content (emits current checked state)
+`change` | `{ el, checked, originalEvent }` | items changed/checked
+`footer-click` | `{ checked, originalEvent }` | footer button clicked
+`form-submit` |  | `{ checked, originalEvent }` | when using `variant="form"`, and form is submitted (emits current checked state)
 
-## ebay-filter-menu-button-item Tag
+## @item Tag
 
-### ebay-filter-menu-button-item Usage
+### @item Usage
 
 ```marko
-<ebay-filter-menu-button-item>item 1</ebay-filter-menu-button-item>
+<@item>item 1</@item>
 ```
 
-### ebay-filter-menu-button-item Attributes
+### @item Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

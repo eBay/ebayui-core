@@ -6,7 +6,8 @@ static var ignoredAttributes = [
     "borderless",
     "autocomplete",
     "options",
-    "roledescription"
+    "roledescription",
+    "listSelection"
 ];
 
 static var ignoredButtonAttributes = [
@@ -17,7 +18,7 @@ static var itemIgnoredAttributes = ["text"];
 $ {
     var roledescription = input.roledescription ||
         (`Use up and down arrow keys to navigate options.${
-            input.autocomplete === 'none' ? '': ' Options change based on text input'
+            component.autocomplete === 'none' ? '': ' Options change based on text input'
         }`);
 }
 
@@ -25,6 +26,7 @@ $ var hasButton = !!input.button;
 <span
     class:no-update=["combobox", input.class]
     style=input.style
+    on-activeDescendantChange("handleActiveDescendantChange")
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")>
     <span class=[
@@ -47,11 +49,12 @@ $ var hasButton = !!input.button;
             type="text"
             role="combobox"
             value=state.currentValue
-            aria-autocomplete=input.autocomplete
+            aria-autocomplete=component.autocomplete
             aria-roledescription=roledescription
             aria-haspopup="listbox"
             autocomplete="new-password"
             onBlur("handleComboboxBlur")
+            onClick("handleComboboxClick")
             onKeydown("handleComboboxKeyDown")
             onKeyup("handleComboboxKeyUp")/>
         <${hasButton ? "button" : null}
@@ -63,7 +66,7 @@ $ var hasButton = !!input.button;
                 <${input.button.renderBody}/>
             </if>
             <else>
-                <ebay-icon name="dropdown"/>
+                <ebay-dropdown-icon/>
             </else>
         </>
     </span>

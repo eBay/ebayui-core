@@ -19,7 +19,7 @@ exports.Disabled = assign({}, exports.WithContent, {
 });
 
 exports.ModalWithContent = assign({}, exports.WithContent, {
-    modal: true,
+    variant: 'modal',
     a11yCloseText: 'Close mini dialog'
 });
 

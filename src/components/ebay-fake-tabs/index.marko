@@ -1,0 +1,37 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = ["selectedIndex", "tabs", "panels"];
+
+static var itemAnchorIgnoredAttributes = ["href"];
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=["fake-tabs", input.class]>
+    $ var selectedIndex = input.selectedIndex || 0;
+    <ul class="fake-tabs__items">
+        <for|tab, i| of=input.tabs>
+            $ var isSelected = selectedIndex === i;
+            <li
+                ...processHtmlAttributes(tab, itemAnchorIgnoredAttributes)
+                class=[
+                    tab.class,
+                    "fake-tabs__item",
+                    isSelected && "fake-tabs__item--current"
+                ]>
+                <a aria-current=(isSelected && "page") href=tab.href>
+                    <${tab.renderBody}/>
+                </a>
+            </li>
+        </for>
+    </ul>
+    <div class="fake-tabs__content">
+        <div
+            class="fake-tabs__panel">
+            <div class="fake-tabs__cell">
+                <div>
+                    <${input.renderBody}/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

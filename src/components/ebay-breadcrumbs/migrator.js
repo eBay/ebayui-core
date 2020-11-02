@@ -1,23 +1,23 @@
-module.exports = function migrator(el, context) {
-    const oldAttribute = 'on-breadcrumb-select';
-    const newAttribute = 'on-breadcrumbs-select';
+const { setAttributeIfPresent } = require('../../common/migrators');
 
-    if (el.tagName === 'ebay-breadcrumb') {
-        context.deprecate('<ebay-breadcrumb> has been renamed to <ebay-breadcrumbs>');
-        el.setTagName('ebay-breadcrumbs');
+/**
+ * @description
+ * Changes attribute of button events
+ */
+
+function migratorMarko4(el, context) {
+    setAttributeIfPresent(el, context, 'on-breadcrumbs-select', 'on-select');
+    return el;
+}
+
+function migratorMarko5() {
+    return;
+}
+
+module.exports = function migrator(a, b) {
+    if (a.hub) {
+        return migratorMarko5(a, b);
     }
-    if (el.hasAttribute(oldAttribute)) {
-        const attribute = el.getAttribute(oldAttribute);
-        attribute.name = newAttribute;
-    }
 
-    const walker = context.createWalker({
-        enter(node) {
-            if (node.tagName === 'ebay-breadcrumb-item') {
-                node.setTagName('ebay-breadcrumbs-item');
-            }
-        }
-    });
-
-    walker.walk(el);
+    return migratorMarko4(a, b);
 };

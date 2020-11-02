@@ -36,7 +36,7 @@ $ var selectedText = selectedOption && selectedOption.text;
         aria-invalid=(input.invalid && "true")>
         <span class="expand-btn__cell">
             <span>${selectedText}</span>
-            <ebay-icon name="dropdown"/>
+            <ebay-dropdown-icon/>
         </span>
     </button>
     <ebay-listbox
@@ -44,7 +44,7 @@ $ var selectedText = selectedOption && selectedOption.text;
         class="listbox-button__listbox"
         name=input.name
         tabindex=-1
-        on-listbox-change("handleListboxChange")>
+        on-change("handleListboxChange")>
         <for|option| of=input.options>
             <@option ...option selected=(selectedOption === option) />
         </for>

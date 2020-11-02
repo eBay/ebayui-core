@@ -39,4 +39,6 @@ describe('filter-menu', () => {
             multiple: true
         }
     });
+    testUtils.testEventsMigrator(require('../migrator'), 'filter-menu',
+        ['change', 'footer-click', 'form-submit'], '../index.marko');
 });

@@ -17,6 +17,16 @@ exports.Combobox_3Options = {
     }))
 };
 
+exports.Combobox_3Options_Manual = {
+    name: 'test-combobox',
+    autocomplete: 'list',
+    listSelection: 'manual',
+    options: getNItems(3, i => ({
+        value: i,
+        text: `option ${i}`
+    }))
+};
+
 exports.Combobox_3Options_2Selected = assign({}, exports.Combobox_3Options, {
     value: exports.Combobox_3Options.options[1].text
 });

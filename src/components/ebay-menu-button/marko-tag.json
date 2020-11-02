@@ -1,6 +1,7 @@
 {
   "template": "./index.marko",
-  "transformer": "./transformer.js",
+  "transformer": "../../common/transformers/menu-separator",
+  "migrator": "./migrator.js",
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -20,7 +21,13 @@
   "@borderless": "boolean",
   "@size": "string",
   "@priority": "string",
-  "@iconTag <_icon>": {},
+  "@icon <icon>": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
   "@disabled": "boolean",
   "@collapseOnSelect": "boolean",
   "@variant": "string",
@@ -32,13 +39,21 @@
     "@html-attributes": "expression",
     "@class": "string",
     "@style": "string",
-    "@href": "string",
-    "@type": "string",
     "@value": "string",
     "@checked": "boolean",
-    "@current": "boolean",
     "@badge-number": "expression",
-    "@badge-aria-label": "string"
+    "@badge-aria-label": "string",
+    "@_isSeparator": "boolean"
   },
-  "@label <label>": {}
+  "@label <label>": {
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string"
+  },
+  "@separator <separator>[]": {
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@_isSeparator": "boolean"
+  }
 }

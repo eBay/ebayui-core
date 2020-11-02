@@ -29,7 +29,7 @@ static var ignoredAttributes = [
         aria-pressed=(component.getCheckedValues().some(Boolean) && "true")>
         <span class="filter-menu-button__button-cell">
             <span class="filter-menu-button__button-text">${input.text}</span>
-            <ebay-icon name="chevron-down"/>
+            <ebay-chevron-down-icon/>
         </span>
     </button>
     <ebay-filter-menu
@@ -40,10 +40,10 @@ static var ignoredAttributes = [
         form-action=input.formAction
         form-method=input.formMethod
         footer-text=input.footerText
-        onFilter-menu-keydown("handleMenuKeydown")
-        onFilter-menu-change("handleMenuChange")
-        onFilter-menu-form-submit("handleFormSubmit")
-        onFilter-menu-footer-click("handleFooterButtonClick")>
+        on-keydown("handleMenuKeydown")
+        on-change("handleMenuChange")
+        on-form-submit("handleFormSubmit")
+        on-footer-click("handleFooterButtonClick")>
         <for|item, i| of=input.items>
             <@item ...item checked=component.isChecked(i)/>
         </for>

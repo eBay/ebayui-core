@@ -1,7 +1,9 @@
 {
   "template": "./index.marko",
-  "transformer": "./transformer.js",
-  "attribute-groups": ["html-attributes"],
+  "migrator": "./migrator.js",
+  "attribute-groups": [
+    "html-attributes"
+  ],
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -30,10 +32,22 @@
   "@style-right": "string",
   "@style-bottom": "string",
   "@aria-label": "string",
+  "@variant": "string",
   "@a11y-close-text": "string",
-  "@iconTag <_icon>": {},
+  "@icon <icon>": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
   "@heading <heading>": {
-    "attribute-groups": ["html-attributes"],
+    "attribute-groups": [
+      "html-attributes"
+    ],
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -41,7 +55,9 @@
     "@html-attributes": "expression"
   },
   "@content <content>": {
-    "attribute-groups": ["html-attributes"],
+    "attribute-groups": [
+      "html-attributes"
+    ],
     "@*": {
       "targetProperty": null,
       "type": "expression"

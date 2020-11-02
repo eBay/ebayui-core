@@ -9,7 +9,7 @@ static var ignoredAttributes = [
     "partiallyDisabled",
     "priority",
     "size",
-    "noText",
+    "iconOnly",
     "fluid",
     "variant",
     "fixedHeight",
@@ -28,7 +28,7 @@ $ {
     var isIconVariant = variant === "icon";
     var isExpandVariant = variant === "expand";
     var isBadged = Boolean(input.badgeNumber && isIconVariant);
-    var noText = isIconVariant || isBadged || (isExpandVariant && input.noText);
+    var iconOnly = isIconVariant || isBadged || (isExpandVariant && input.iconOnly);
     var baseClass = variant
         ? variant === "fake-link"
             ? variant
@@ -53,7 +53,7 @@ $ {
     class=[
         input.class,
         baseClass,
-        noText && `${baseClass}--no-text`,
+        iconOnly && `${baseClass}--icon-only`,
         isBadged && `${baseClass}--badged`,
         input.fluid && `${baseClass}--fluid`,
         truncateClass,

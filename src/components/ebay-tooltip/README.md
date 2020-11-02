@@ -4,14 +4,14 @@
 
 ```marko
 <ebay-tooltip>
-    <ebay-tooltip-host>
+    <@host>
         <a href="https://www.ebay.com">My custom link.</a>
-    </ebay-tooltip-host>
-    <ebay-tooltip-content><p>Use Access Key 'S' to display settings.</p></ebay-tooltip-content>
+    </@host>
+    <@content><p>Use Access Key 'S' to display settings.</p></@content>
 </ebay-tooltip>
 ```
 
-**Note:** You must supply the `.tooltip__host` class to the element in the `<ebay-tooltip-host>` to
+**Note:** You must supply the `.tooltip__host` class to the element in the `<@host>` to
 which you would like to have the tooltip hover and focus event bindings. In the case that your element
 is not focusable, the first focusable element will trigger the tooltip's focus events.
 
@@ -19,8 +19,8 @@ is not focusable, the first focusable element will trigger the tooltip's focus e
 
 Tag | Required | Description
 --- | --- | ---
-`<ebay-tooltip-host>` | Yes | The body which will be wrapped as the tooltip's host
-`<ebay-tooltip-content>` | Yes | The content to be displayed in the tooltip
+`<@host>` | Yes | The body which will be wrapped as the tooltip's host
+`<@content>` | Yes | The content to be displayed in the tooltip
 
 ## ebay-tooltip Attributes
 
@@ -37,5 +37,5 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`tooltip-expand` | | overlay has been expanded
-`tooltip-collapse` | | overlay has been collapsed
+`expand` | | overlay has been expanded
+`collapse` | | overlay has been collapsed

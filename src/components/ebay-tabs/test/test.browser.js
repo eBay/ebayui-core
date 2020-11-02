@@ -10,17 +10,17 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-function thenItHasMovedToTab(index) {
+function thenItHasMovedToTab(selectedIndex) {
     it('then it emits the select event with correct data', () => {
-        const selectEvents = component.emitted('tabs-select');
+        const selectEvents = component.emitted('select');
         expect(selectEvents).has.length(1);
 
         const [[eventArg]] = selectEvents;
-        expect(eventArg).has.property('index', index);
+        expect(eventArg).has.property('selectedIndex', selectedIndex);
     });
 
-    it(`then heading ${index + 1} is selected`, () => {
-        expect(component.getAllByRole('tab')[index]).has.attr('aria-selected', 'true');
+    it(`then heading ${selectedIndex + 1} is selected`, () => {
+        expect(component.getAllByRole('tab')[selectedIndex]).has.attr('aria-selected', 'true');
     });
 }
 
@@ -37,7 +37,7 @@ describe('given tabs with first heading selected', () => {
         });
 
         it('then it does not emit the select event', () => {
-            expect(component.emitted('tabs-select')).has.length(0);
+            expect(component.emitted('select')).has.length(0);
         });
     });
 
@@ -88,7 +88,7 @@ describe('given tabs with manual activation', () => {
         });
 
         it('then it does not emit the select event', () => {
-            expect(component.emitted('tabs-select')).has.length(0);
+            expect(component.emitted('select')).has.length(0);
         });
     });
 

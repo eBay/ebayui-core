@@ -1,6 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -23,9 +23,9 @@ describe('combobox-readonly', () => {
 
     it('renders empty', async() => {
         const input = mock.Combobox_0Options;
-        const { getAllByRole } = await render(template, input);
-        expect(getAllByRole('combobox')).has.length(2);
-        expect(getAllByRole('listbox')).has.length(1);
+        const { getAllByRole, queryAllByLabelText } = await render(template, input);
+        expect(getAllByRole('combobox', { hidden: true })).has.length(2);
+        expect(queryAllByLabelText('listbox')).has.length(0);
     });
 
     it('renders with second item selected', async() => {
@@ -66,3 +66,6 @@ function isAriaSelected(el) {
 function isVisible(el) {
     return !el.hasAttribute('hidden') && !el.closest('[hidden]');
 }
+
+testEventsMigrator(require('../migrator'), { event: 'combobox', component: 'combobox-readonly' },
+    ['collapse', 'change', 'expand'], '../index.marko');

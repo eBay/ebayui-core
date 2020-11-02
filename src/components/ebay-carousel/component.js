@@ -122,7 +122,7 @@ function onRender() {
             const moveRight = this.move.bind(this, RIGHT);
             this.autoplayTimeout = setTimeout(() => {
                 if (this.isMoving) {
-                    return this.once('carousel-update', moveRight);
+                    return this.once('move', moveRight);
                 }
                 moveRight();
             }, autoplayInterval);
@@ -167,7 +167,7 @@ function cleanupAsync() {
 function emitUpdate() {
     const { state: { config, items } } = this;
     config.scrollTransitioning = false;
-    this.emit('carousel-update', {
+    this.emit('move', {
         visibleIndexes: items
             .filter(({ fullyVisible }) => fullyVisible)
             .map(item => items.indexOf(item))
@@ -187,8 +187,8 @@ function handleMove(direction, originalEvent) {
     const { state } = this;
     const nextIndex = this.move(direction);
     const slide = getSlide(state, nextIndex);
-    this.emit('carousel-slide', { slide: slide + 1, originalEvent });
-    this.emit(`carousel-${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
+    this.emit('slide', { slide: slide + 1, originalEvent });
+    this.emit(`${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
 }
 
 /**
@@ -203,7 +203,7 @@ function togglePlay(originalEvent) {
     if (paused && !this.isMoving) {
         this.move(RIGHT);
     }
-    this.emit(`carousel-${paused ? 'play' : 'pause'}`, { originalEvent });
+    this.emit(`${paused ? 'play' : 'pause'}`, { originalEvent });
 }
 
 /**
@@ -243,7 +243,7 @@ function handleScroll(scrollLeft) {
         config.skipScrolling = true;
         config.preserveItems = true;
         this.setState('index', closest);
-        this.emit('carousel-scroll', { index: closest });
+        this.emit('scroll', { index: closest });
     }
 }
 
@@ -297,7 +297,7 @@ function move(delta) {
     }
 
     this.setState('index', nextIndex);
-    this.once('carousel-update', () => {
+    this.once('move', () => {
         this.isMoving = false;
 
         if (offsetOverride !== undefined) {
@@ -470,12 +470,12 @@ module.exports = {
             itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
             a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
             a11yNextText: input.a11yNextText || 'Next Slide',
-            a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides} - Carousel',
+            a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides}',
             a11yStatusTag: input.a11yStatusTag || 'span',
             a11yHeadingText: input.a11yHeadingText,
             a11yHeadingTag: input.a11yHeadingTag || 'h2',
-            a11yPauseText: input.a11yPauseText || 'Pause - Carousel',
-            a11yPlayText: input.a11yPlayText || 'Play - Carousel'
+            a11yPauseText: input.a11yPauseText || 'Pause',
+            a11yPlayText: input.a11yPlayText || 'Play'
         };
 
         const itemSkippedAttributes = ['class', 'style'];

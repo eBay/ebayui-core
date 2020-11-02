@@ -1,7 +1,10 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, runTransformer } = require('../../../common/test-utils/server');
-const transformer = require('../transformer');
+const {
+    runTransformer,
+    testPassThroughAttributes,
+    testEventsMigrator
+} = require('../../../common/test-utils/server');
 const migrator = require('../migrator');
 const template = require('..');
 const mock = require('./mock');
@@ -59,7 +62,7 @@ describe('ebay-textbox', () => {
         const { getByRole } = await render(template, input);
         expect(getByRole('textbox'))
             .has.property('previousElementSibling')
-            .with.class('textbox__icon');
+            .with.class('icon');
     });
 
     it('renders a textarea element with postfix icon', async() => {
@@ -67,7 +70,7 @@ describe('ebay-textbox', () => {
         const { getByRole } = await render(template, input);
         expect(getByRole('textbox'))
             .has.property('nextElementSibling')
-            .with.class('textbox__icon');
+            .with.class('icon');
     });
 
     it('renders a textarea element with postfix icon button', async() => {
@@ -76,7 +79,7 @@ describe('ebay-textbox', () => {
         expect(getByLabelText('search button'))
             .has.class('icon-btn');
         expect(getByLabelText('search button').firstElementChild)
-            .has.class('textbox__icon');
+            .has.class('icon');
     });
 
     it('renders an input textbox with inline floating label', async() => {
@@ -105,39 +108,36 @@ describe('ebay-textbox', () => {
     });
 });
 
-describe('transformer', () => {
+describe('migrator', () => {
     const componentPath = '../index.marko';
 
     it('transforms an prefix-icon attribute into a tag', () => {
         const tagString = '<ebay-textbox prefix-icon="settings"/>';
-        const { el } = runTransformer(transformer, tagString, componentPath);
+        const { el } = runTransformer(migrator, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
-        expect(iconEl.tagName).to.equal('ebay-textbox:_prefixIcon');
+        expect(iconEl.tagName).to.equal('@prefix-icon');
     });
 
     it('transforms an postfix-icon attribute into a tag', () => {
         const tagString = '<ebay-textbox postfix-icon="settings"/>';
-        const { el } = runTransformer(transformer, tagString, componentPath);
+        const { el } = runTransformer(migrator, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
-        expect(iconEl.tagName).to.equal('ebay-textbox:_postfixIcon');
+        expect(iconEl.tagName).to.equal('@postfix-icon');
     });
 
     it('does not transform when icon attribute is missing', () => {
         const tagString = '<ebay-textbox/>';
-        const { el } = runTransformer(transformer, tagString, componentPath);
+        const { el } = runTransformer(migrator, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
         expect(iconEl).to.equal(undefined);
     });
-});
-
-describe('migrator', () => {
-    const componentPath = '../index.marko';
 
     it('migrates icon without position to prefix-icon', () => {
         const tagString = '<ebay-textbox icon="close"/>';
         const { el } = runTransformer(migrator, tagString, componentPath);
-        expect(el.hasAttribute('prefix-icon')).to.equal(true);
-        expect(el.getAttributeValue('prefix-icon').value).to.equal('close');
+        const { body: { array: [iconEl] } } = el;
+        expect(iconEl.tagName).to.equal('@prefix-icon');
+        expect(el.hasAttribute('prefix-icon')).to.equal(false);
         expect(el.hasAttribute('postfix-icon')).to.equal(false);
         expect(el.hasAttribute('icon')).to.equal(false);
         expect(el.hasAttribute('icon-position')).to.equal(false);
@@ -146,10 +146,16 @@ describe('migrator', () => {
     it('migrates icon with postfix position to postfix-icon', () => {
         const tagString = '<ebay-textbox icon="close" icon-position="postfix"/>';
         const { el } = runTransformer(migrator, tagString, componentPath);
-        expect(el.hasAttribute('postfix-icon')).to.equal(true);
-        expect(el.getAttributeValue('postfix-icon').value).to.equal('close');
+        const { body: { array: [iconEl] } } = el;
+        expect(iconEl.tagName).to.equal('@postfix-icon');
+
+        expect(el.hasAttribute('postfix-icon')).to.equal(false);
         expect(el.hasAttribute('prefix-icon')).to.equal(false);
         expect(el.hasAttribute('icon')).to.equal(false);
         expect(el.hasAttribute('icon-position')).to.equal(false);
     });
+
+    testEventsMigrator(require('../migrator'), 'textbox',
+        ['change', { from: 'input', to: 'input-change' }, 'focus', 'blur', 'keydown', 'keypress',
+            'keyup', 'floating-label-init', 'button-click'], '../index.marko');
 });

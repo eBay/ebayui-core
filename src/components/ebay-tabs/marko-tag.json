@@ -1,23 +1,22 @@
 {
+  "migrator": "./migrator",
   "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@index": "string",
-  "@fake": "boolean",
+  "@selected-index": "number",
   "@activation": {
     "enum": ["auto", "manual"]
   },
-  "@headings <heading>[]": {
+  "@tabs <tab>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
-    "@html-attributes": "expression",
-    "@href": "#html-href"
+    "@html-attributes": "expression"
   },
   "@panels <panel>[]": {
     "attribute-groups": ["html-attributes"],
@@ -30,6 +29,5 @@
     "@aria-labelledby": "never",
     "@role": "never",
     "@hidden": "never"
-  },
-  "migrator": "./migrator.js"
+  }
 }

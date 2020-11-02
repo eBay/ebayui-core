@@ -8,11 +8,11 @@ The `<ebay-pagination>` is a tag used to create a pagination navigation. It will
 
 ```marko
 <ebay-pagination aria-label-prev="Previous page" aria-label-next="Next page" curr-text="Results Pagination - Page 2">
-    <ebay-pagination-item href="#" type="previous" disabled/>
-    <ebay-pagination-item href="#">item 1</ebay-pagination-item>
-    <ebay-pagination-item href="#" current>item 2</ebay-pagination-item>
-    <ebay-pagination-item href="#">item 3</ebay-pagination-item>
-    <ebay-pagination-item href="#" type="next"/>
+    <@item href="#" type="previous" disabled/>
+    <@item href="#">item 1</@item>
+    <@item href="#" current>item 2</@item>
+    <@item href="#">item 3</@item>
+    <@item href="#" type="next"/>
 </ebay-pagination>
 ```
 
@@ -28,19 +28,19 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`pagination-previous` | `{ originalEvent, el }`| clicked previous arrow button
-`pagination-next` | `{ originalEvent, el }` | clicked next arrow button
-`pagination-select` | `{ originalEvent, el, value }` | page selected clicked
+`previous` | `{ originalEvent, el }`| clicked previous arrow button
+`next` | `{ originalEvent, el }` | clicked next arrow button
+`select` | `{ originalEvent, el, value }` | page selected clicked
 
-## ebay-pagination-item Tag
+## @item Tag
 
-### ebay-pagination-item Usage
+### @item Usage
 
 ```marko
-<ebay-pagination-item>1</ebay-pagination-item>
+<@item>1</@item>
 ```
 
-### ebay-pagination-item Attributes
+### @item Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

@@ -43,34 +43,42 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 ## Components
 
 * [`ebay-badge`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-badge)
-* [`ebay-breadcrumb`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumb)
+* [`ebay-breadcrumbs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumbs)
 * [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
 * [`ebay-carousel`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel)
 * [`ebay-checkbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-checkbox)
 * [`ebay-combobox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox)
 * [`ebay-cta-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-cta-button)
 * [`ebay-details`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-details)
-* [`ebay-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-dialog)
-* [`ebay-drawer`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-drawer)
+* [`ebay-drawer-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-drawer-dialog)
 * [`ebay-expand-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-expand-button)
+* [`ebay-fake-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-menu-button)
+* [`ebay-fake-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-menu-button)
+* [`ebay-fake-tabs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-tabs)
 * [`ebay-filter`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter)
 * [`ebay-filter-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter-menu)
 * [`ebay-filter-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter-menu-button)
+* [`ebay-fullscreen-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fullscreen-dialog)
 * [`ebay-icon`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-icon)
 * [`ebay-infotip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-infotip)
+* [`ebay-inline-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-inline-notice)
+* [`ebay-lightbox-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-lightbox-dialog)
 * [`ebay-listbox-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-listbox-button)
 * [`ebay-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu-button)
-* [`ebay-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-notice)
+* [`ebay-page-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-page-notice)
 * [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
+* [`ebay-panel-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-panel-dialog)
 * [`ebay-radio`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-radio)
+* [`ebay-section-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-notice)
 * [`ebay-section-title`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-title)
 * [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
 * [`ebay-switch`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-switch)
-* [`ebay-tab`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tab)
+* [`ebay-tabs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tabs)
 * [`ebay-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-textbox)
 * [`ebay-toast`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toast)
 * [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
 * [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
+* [`ebay-window-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-window-notice)
 
 ## Getting Started
 
@@ -90,9 +98,9 @@ Once the package dependency is added, the eBay [customs tags](https://markojs.co
 
 ```marko
 <ebay-menu text="Sort" type="radio">
-    <ebay-menu-item>Price</ebay-menu-item>
-    <ebay-menu-item>Time</ebay-menu-item>
-    <ebay-menu-item>Distance</ebay-menu-item>
+    <@item>Price</@item>
+    <@item>Time</@item>
+    <@item>Distance</@item>
 </ebay-menu>
 ```
 
@@ -116,9 +124,9 @@ Attributes provide initial state for a component. We can see that the menu has `
 
 ```marko
 <ebay-menu text="Sort" type="radio">
-    <ebay-menu-item>Price</ebay-menu-item>
-    <ebay-menu-item>Time</ebay-menu-item>
-    <ebay-menu-item>Distance</ebay-menu-item>
+    <@item>Price</@item>
+    <@item>Time</@item>
+    <@item>Distance</@item>
 </ebay-menu>
 ```
 
@@ -141,12 +149,12 @@ class {
     }
 }
 
-<ebay-dialog
+<ebay-lightbox-dialog
     open=state.dialogIsOpen
-    on-dialog-open('handleDialogOpen')
-    on-dialog-close('handleDialogClose')>
+    on-open('handleDialogOpen')
+    on-close('handleDialogClose')>
     ...
-</ebay-dialog>
+</ebay-lightbox-dialog>
 ```
 
 #### Pass-Through Attributes
@@ -181,9 +189,9 @@ Events can also be handled using [Marko syntax](https://markojs.com/docs/events/
 
 ```marko
 <ebay-menu text="Sort" type="radio" on-change("onMenuChange")>
-    <ebay-menu-item>Price</ebay-menu-item>
-    <ebay-menu-item>Time</ebay-menu-item>
-    <ebay-menu-item>Distance</ebay-menu-item>
+    <@item>Price</@item>
+    <@item>Time</@item>
+    <@item>Distance</@item>
 </ebay-menu>
 ```
 

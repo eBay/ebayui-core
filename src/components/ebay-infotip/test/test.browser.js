@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup, wait } = require('@marko/testing-library');
+const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
@@ -34,8 +34,8 @@ describe('given the default infotip', () => {
                 await fireEvent.click(component.getAllByLabelText(input.ariaLabel)[0]);
             });
 
-            it('then it emits the tooltip-expand event', () => {
-                expect(component.emitted('tooltip-expand')).has.length(1);
+            it('then it emits the expand event', () => {
+                expect(component.emitted('expand')).has.length(1);
             });
 
             it('then it is expanded', () => {
@@ -47,8 +47,8 @@ describe('given the default infotip', () => {
                     await fireEvent.click(component.getByLabelText(input.ariaLabel));
                 });
 
-                it('then it emits the tooltip-collapse event', () => {
-                    expect(component.emitted('tooltip-collapse')).has.length(1);
+                it('then it emits the collapse event', async() => {
+                    await waitFor(() => expect(component.emitted('collapse')).has.length(1));
                 });
 
                 it('then it is collapsed', () => {
@@ -71,12 +71,12 @@ describe('given the modal infotip', () => {
             await fireEvent.click(component.getAllByLabelText(input.ariaLabel)[0]);
         });
 
-        it('then it emits the tooltip-expand event', async() => {
-            await wait(() => expect(component.emitted('tooltip-expand')).has.length(1));
+        it('then it emits the expand event', async() => {
+            await waitFor(() => expect(component.emitted('expand')).has.length(1));
         });
 
         it('then it is expanded', async() => {
-            await wait(() => {
+            await waitFor(() => {
                 expect(component.getByRole('dialog')).does.not.have.attr('hidden');
             });
         });
@@ -95,13 +95,13 @@ describe('given the modal infotip opened', () => {
             await fireEvent.click(component.getByLabelText(input.a11yCloseText));
         });
 
-        it('then it emits the tooltip-collapse event', async() => {
-            await wait(() => expect(component.emitted('tooltip-collapse')).has.length(1));
+        it('then it emits the collapse event', async() => {
+            await waitFor(() => expect(component.emitted('collapse')).has.length(1));
         });
 
         it('then it is collapsed', async() => {
-            await wait(() => {
-                expect(component.getByRole('dialog')).has.attr('hidden');
+            await waitFor(() => {
+                expect(component.getByRole('dialog', { hidden: true })).has.attr('hidden');
             });
         });
     });

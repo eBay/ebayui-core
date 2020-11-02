@@ -1,6 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -27,8 +27,8 @@ describe('combobox', () => {
 
     it('renders with second item selected', async() => {
         const input = mock.Combobox_3Options_2Selected;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('option').textContent).is.equal(input.value);
+        const { getAllByRole } = await render(template, input);
+        expect(getAllByRole('option')[1].textContent).is.equal(input.value);
     });
 
     it('renders with borderless enabled', async() => {
@@ -70,3 +70,7 @@ describe('combobox-option', () => {
 function isAriaSelected(el) {
     return el.getAttribute('aria-selected') === 'true';
 }
+
+testEventsMigrator(require('../migrator'), 'combobox',
+    [{ from: 'input', to: 'input-change' },
+        'collapse', 'change', 'select', 'expand'], '../index.marko');

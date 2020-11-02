@@ -1,0 +1,70 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static {
+    var ignoredAttributes = [
+        "class",
+        "style",
+        "classPrefix",
+        "type",
+        "reverse",
+        "fixWidth",
+        "items"
+    ];
+    var itemIgnoredAttributes = [
+        "class",
+        "style",
+        "type",
+        "value",
+        "checked",
+        "current",
+        "badgeNumber",
+        "badgeAriaLabel"
+    ];
+}
+
+$ var baseClass = input.classPrefix || "fake-menu";
+<span
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[
+        input.classPrefix
+            ? `${baseClass}__menu`
+            : "fake-menu",
+        input.reverse && `${baseClass}__menu--reverse`,
+        input.fixWidth && `${baseClass}__menu--fix-width`,
+        input.class
+    ]
+    style=input.style>
+    <div
+        class=`${baseClass}__items`
+        key="menu"
+        tabindex="-1"
+        id:scoped="menu">
+        <for|item, index| of=input.items>
+            $ var isDisabled = !item.href || item.disabled;
+            <if (item._isSeparator)>
+                <hr class=`${baseClass}__separator` role="separator" />
+            </if>
+            <else>
+            <${item.type === "button" ? "button" : "a"}
+                ...processHtmlAttributes(item, itemIgnoredAttributes)
+                class=[`${baseClass}__item`, item.class]
+                style=item.style
+                aria-current=(item.current ? "page" : false)
+                aria-disabled=(item.disabled && "true")
+                href=(item.disabled ? null : item.href)
+                onKeydown("handleItemKeydown", index)
+                onClick("handleItemClick", index)
+                key="item[]">
+                <span>
+                    <${item.renderBody}/>
+                </span>
+                <if(item.badgeNumber)>
+                    <ebay-badge type="menu" number=item.badgeNumber/>
+                </if>
+
+                <ebay-tick-small-icon />
+            </>
+            </else>
+        </for>
+    </div>
+</span>

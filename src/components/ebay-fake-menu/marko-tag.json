@@ -1,0 +1,35 @@
+{
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "template": "./index.marko",
+  "transformer": "../../common/transformers/menu-separator",
+  "@html-attributes": "expression",
+  "@class": "string",
+  "@style": "string",
+  "@class-prefix": "string",
+  "@reverse": "boolean",
+  "@fix-width": "boolean",
+  "@items <item>[]": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@href": "string",
+    "@type": "string",
+    "@current": "boolean",
+    "@badge-number": "expression",
+    "@badge-aria-label": "string",
+    "@_isSeparator": "boolean"
+  },
+  "@separator <separator>[]": {
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@_isSeparator": "boolean"
+  }
+}

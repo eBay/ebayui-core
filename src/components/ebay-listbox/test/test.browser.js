@@ -36,8 +36,8 @@ describe('given the listbox with 3 items', () => {
             });
         });
 
-        it('then it emits the listbox-change event with the correct data', () => {
-            const changeEvents = component.emitted('listbox-change');
+        it('then it emits the change event with the correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(1);
 
             const [[changeEvent]] = changeEvents;
@@ -47,15 +47,15 @@ describe('given the listbox with 3 items', () => {
 
         describe('when the up arrow key is pressed', () => {
             beforeEach(async() => {
-                component.emitted('listbox-change');
+                component.emitted('change');
                 await pressKey(component.getAllByRole('listbox').find(isVisible), {
                     key: 'ArrowUp',
                     keyCode: 38
                 });
             });
 
-            it('then it emits the listbox-change event with the correct data', () => {
-                const changeEvents = component.emitted('listbox-change');
+            it('then it emits the change event with the correct data', () => {
+                const changeEvents = component.emitted('change');
                 expect(changeEvents).has.length(1);
 
                 const [[changeEvent]] = changeEvents;
@@ -78,8 +78,8 @@ describe('given the listbox is in an expanded state', () => {
             await fireEvent.click(component.getByText(input.options[1].text));
         });
 
-        it('then it emits the listbox-change event with correct data', () => {
-            const changeEvents = component.emitted('listbox-change');
+        it('then it emits the change event with correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(1);
 
             const [[changeEvent]] = changeEvents;
@@ -96,8 +96,8 @@ describe('given the listbox is in an expanded state', () => {
             });
         });
 
-        it('then it emits the listbox-change event with the correct data', () => {
-            const changeEvents = component.emitted('listbox-change');
+        it('then it emits the change event with the correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(1);
 
             const [[changeEvent]] = changeEvents;
@@ -107,15 +107,15 @@ describe('given the listbox is in an expanded state', () => {
 
         describe('when the up arrow key is pressed', () => {
             beforeEach(async() => {
-                component.emitted('listbox-change');
+                component.emitted('change');
                 await pressKey(component.getAllByRole('listbox').find(isVisible), {
                     key: 'ArrowUp',
                     keyCode: 38
                 });
             });
 
-            it('then it emits the listbox-change event with the correct data', () => {
-                const changeEvents = component.emitted('listbox-change');
+            it('then it emits the change event with the correct data', () => {
+                const changeEvents = component.emitted('change');
                 expect(changeEvents).has.length(1);
 
                 const [[changeEvent]] = changeEvents;

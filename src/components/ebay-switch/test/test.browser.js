@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, wait, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const template = require('..');
 
 use(require('chai-dom'));
@@ -15,12 +15,11 @@ describe('given switch button is enabled', () => {
 
     describe('when switch button is clicked', () => {
         beforeEach(async() => {
-            component.getByRole('switch').click();
-            await wait();
+            await fireEvent.click(component.getByRole('switch', { hidden: true }));
         });
 
         it('then it emits the event', () => {
-            const changeEvents = component.emitted('switch-change');
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(1);
 
             const [[eventArg]] = changeEvents;
@@ -37,12 +36,11 @@ describe('given switch button is disabled', () => {
 
     describe('when switch button is clicked', () => {
         beforeEach(async() => {
-            component.getByRole('switch').click();
-            await wait();
+            await fireEvent.click(component.getByRole('switch', { hidden: true }));
         });
 
         it('then it doesn\'t emit the event', () => {
-            expect(component.emitted('switch-change')).has.length(0);
+            expect(component.emitted('change')).has.length(0);
         });
     });
 });

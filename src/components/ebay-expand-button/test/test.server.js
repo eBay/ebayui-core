@@ -18,7 +18,7 @@ describe('expand-button', () => {
     it('renders expand button with no text', async() => {
         const input = mock.No_Text;
         const { getByRole } = await render(template, input);
-        expect(getByRole('button')).has.class('expand-btn--no-text');
+        expect(getByRole('button')).has.class('expand-btn--icon-only');
     });
 
     testPassThroughAttributes(template);

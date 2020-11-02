@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup, wait } = require('@marko/testing-library');
+const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
@@ -49,9 +49,9 @@ describe('given the details is in the default state and click is triggered', () 
             await fireEvent.click(component.getByText(detailsText));
         });
 
-        it('then it emits the details-toggle and click', async() => {
-            wait(() => verifyToggleEvent());
-            wait(() => verifyClickEvent());
+        it('then it emits the toggle and click', async() => {
+            waitFor(() => verifyToggleEvent());
+            waitFor(() => verifyClickEvent());
         });
     });
 
@@ -69,8 +69,8 @@ describe('given the details is in the default state and click is triggered', () 
             });
 
             it('then it should be closed', async() => {
-                wait(() => verifyToggleEvent());
-                wait(() => verifyClickEvent());
+                waitFor(() => verifyToggleEvent());
+                waitFor(() => verifyClickEvent());
             });
         });
     });
@@ -89,9 +89,9 @@ describe('given the details is in the open state and click is triggered', () => 
             await fireEvent.click(component.getByText(detailsText));
         });
 
-        it('then it emits the details-toggle and click', async() => {
-            wait(() => verifyToggleEvent());
-            wait(() => verifyClickEvent());
+        it('then it emits the toggle and click', async() => {
+            waitFor(() => verifyToggleEvent());
+            waitFor(() => verifyClickEvent());
         });
     });
 
@@ -108,15 +108,15 @@ describe('given the details is in the open state and click is triggered', () => 
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
             it('then it should be open', async() => {
-                wait(() => verifyToggleEvent());
-                wait(() => verifyClickEvent());
+                waitFor(() => verifyToggleEvent());
+                waitFor(() => verifyClickEvent());
             });
         });
     });
 });
 
 function verifyToggleEvent() {
-    const toggleEvent = component.emitted('details-toggle');
+    const toggleEvent = component.emitted('toggle');
     expect(toggleEvent.length).to.be.greaterThan(0);
 
     const [eventArg] = toggleEvent.pop();
@@ -125,7 +125,7 @@ function verifyToggleEvent() {
 }
 
 function verifyClickEvent() {
-    const toggleEvent = component.emitted('details-click');
+    const toggleEvent = component.emitted('click');
     expect(toggleEvent).to.length(1);
     const [[eventArg]] = toggleEvent;
     expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);

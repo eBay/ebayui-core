@@ -9,7 +9,7 @@ module.exports = {
         this.state.selectedIndex = selectedIndex;
 
         // TODO: we should not cast the selected value to a string here, but this is a breaking change.
-        this.emit('select-change', {
+        this.emit('change', {
             index: selectedIndex,
             selected: [String(option.value)],
             el

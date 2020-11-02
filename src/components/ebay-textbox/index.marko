@@ -14,8 +14,6 @@ static var ignoredAttributes = [
     "floatingLabel",
     "prefixIcon",
     "postfixIcon",
-    "prefixIconTag",
-    "postfixIconTag",
     "toJSON"
 ];
 
@@ -44,7 +42,7 @@ $ var defaultTag = input.fluid ? "div" : "span";
             displayIcon && isPostfix && "textbox--icon-end"
         ]>
         <if(displayIcon && input.prefixIcon)>
-            <${input.prefixIconTag}/>
+            <${input.prefixIcon} />
         </if>
         <${input.multiline ? "textarea" : "input"}
             ...processHtmlAttributes(input, ignoredAttributes)
@@ -55,7 +53,7 @@ $ var defaultTag = input.fluid ? "div" : "span";
                 input.fluid && "textbox__control--fluid",
                 input.floatingLabel && "textbox__control--underline"
             ]
-            type=(!input.multiline && (input.type === "password" ? "password" : "text"))
+            type=(!input.multiline && (input.type || "text"))
             value=(!input.multiline && input.value)
             aria-invalid=(input.invalid && "true")
             onKeydown("handleKeydown")
@@ -69,7 +67,7 @@ $ var defaultTag = input.fluid ? "div" : "span";
         </>
         <if(displayIcon && input.postfixIcon)>
             <${input.buttonAriaLabel && "button"} class="icon-btn" aria-label=input.buttonAriaLabel on-click("handleButtonClick") >
-                <${input.postfixIconTag} />
+                <${input.postfixIcon} />
             </>
         </if>
     </>

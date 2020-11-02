@@ -1,5 +1,6 @@
 {
   "attribute-groups": ["html-attributes"],
+  "migrator": "./migrator.js",
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -36,6 +37,5 @@
     "@rel": "#html-rel",
     "@target": "#html-target",
     "@aria-current": "never"
-  },
-  "migrator": "./migrator.js"
+  }
 }

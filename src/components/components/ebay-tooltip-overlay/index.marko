@@ -52,10 +52,10 @@ $ var overlayStyles = hasUserStyles ? {
             <if(input.type !== "tooltip")>
                 <button
                     aria-label=input.a11yCloseText
-                    class=`${input.type}__close`
+                    class=['icon-btn', `${input.type}__close`]
                     type="button"
                     onClick("handleCloseButton")>
-                    <ebay-icon name="close"/>
+                    <ebay-close-icon/>
                 </button>
             </if>
         </span>

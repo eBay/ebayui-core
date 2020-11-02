@@ -1,9 +1,16 @@
 $ var data = component.getTemplateData(state, input);
-<div ...data.htmlAttributes class=data.classes style=data.style>
-    $ var config = data.config;
-    $ var discrete = data.totalSlides >= 1;
-    $ var statusId = discrete && "carousel-status-" + component.id;
-    <div
+$ var config = data.config;
+$ var discrete = data.totalSlides >= 1;
+$ var statusId = (discrete && "carousel-status-" + component.id) || (
+   data.a11yStatusText || data.a11yHeadingText && component.getElId("carousel"));
+
+<div ...data.htmlAttributes
+    class=data.classes
+    style=data.style
+    aria-labelledby=statusId
+    role="group"
+    aria-roledescription="carousel">
+   <div
         class=[
             "carousel__container",
             data.bothControlsDisabled &&
@@ -46,7 +53,7 @@ $ var data = component.getTemplateData(state, input);
             aria-describedby=statusId
             aria-label=data.a11yPreviousText
             aria-disabled=(data.prevControlDisabled && "true")>
-            <ebay-icon name="carousel-prev"/>
+            <ebay-carousel-prev-icon/>
         </button>
         <div class=[
             "carousel__viewport",
@@ -89,7 +96,7 @@ $ var data = component.getTemplateData(state, input);
             aria-disabled=(data.nextControlDisabled && "true")
             key="next"
             id:scoped="next">
-            <ebay-icon name="carousel-next"/>
+            <ebay-carousel-next-icon/>
         </button>
         <if(data.autoplayInterval && !data.bothControlsDisabled)>
             <button
@@ -98,10 +105,10 @@ $ var data = component.getTemplateData(state, input);
                 aria-label=(data.paused ? data.a11yPlayText : data.a11yPauseText)
                 onClick("togglePlay")>
                 <if (data.paused)>
-                    <ebay-icon type="inline" name="play" />
+                    <ebay-play-icon />
                 </if>
                 <else>
-                    <ebay-icon type="inline" name="pause" />
+                    <ebay-pause-icon />
                 </else>
             </button>
         </if>

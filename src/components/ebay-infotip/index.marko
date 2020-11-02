@@ -10,14 +10,14 @@ static var ignoredAttributes = [
     "styleBottom",
     "ariaLabel",
     "a11yCloseText",
-    "iconTag",
     "host",
     "heading",
     "content",
-    "modal"
+    "variant"
 ];
 
-$ var classPrefix = input.modal !== true ? "infotip" : "dialog--mini";
+$ var isModal = input.variant === 'modal'
+$ var classPrefix = !isModal ? "infotip" : "dialog--mini";
 $ var pointer = input.pointer || "bottom";
 <span>
     <ebay-tooltip-base
@@ -25,30 +25,30 @@ $ var pointer = input.pointer || "bottom";
         type=classPrefix
         pointer=pointer
         overlay-id:scoped="overlay"
-        onBase-expand(!input.modal && "handleExpand")
-        onBase-collapse(!input.modal && "handleCollapse")>
+        onBase-expand(!isModal && "handleExpand")
+        onBase-collapse(!isModal && "handleCollapse")>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class:no-update=[
                 "infotip",
-                input.modal === true && "dialog--mini",
+                isModal === true && "dialog--mini",
                 input.class
             ]>
             <button
                 key="host"
                 class=[`${classPrefix}__host`, "icon-btn"]
                 type="button"
-                on-click(input.modal && "handleExpand")
+                on-click(isModal && "handleExpand")
                 disabled=input.disabled
                 aria-label=input.ariaLabel>
-                <if(input.iconTag)>
-                    <${input.iconTag}/>
+                <if(input.icon)>
+                    <${input.icon}/>
                 </if>
                 <else>
-                    <ebay-icon name="information"/>
+                    <ebay-information-icon/>
                 </else>
             </button>
-            <if(input.modal !== true)>
+            <if(isModal !== true)>
                 <ebay-tooltip-overlay
                     type="infotip"
                     id:scoped="overlay"
@@ -63,18 +63,16 @@ $ var pointer = input.pointer || "bottom";
                     onOverlay-close("handleOverlayClose")/>
             </if>
             <else>
-                <ebay-dialog-base
+                <ebay-lightbox-dialog
                     open=state.open
-                    buttonPosition="right"
-                    classPrefix="dialog"
                     class=[`${classPrefix}__overlay`]
-                    windowClass=["dialog__window--mini", "dialog__window--fade"]
+                    variant="_mini"
                     a11y-close-text=input.a11yCloseText
-                    aria-label=input.ariaLabel
-                    on-modal-show("handleExpand")
-                    on-modal-close("handleCollapse")>
+                    on-open("handleExpand")
+                    on-close("handleCollapse")
+                    aria-label=input.ariaLabel>
                     <${input.content}/>
-                </ebay-dialog-base>
+                </ebay-lightbox-dialog>
             </else>
         </span>
     </ebay-tooltip-base>

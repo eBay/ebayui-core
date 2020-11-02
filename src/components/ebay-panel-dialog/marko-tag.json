@@ -1,0 +1,46 @@
+{
+  "migrator": "../components/ebay-dialog-base/migrator.js",
+  "attribute-groups": [
+    "html-attributes"
+  ],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@open": "boolean",
+  "@focus": "string",
+  "@a11y-close-text": "string",
+  "@role": "never",
+  "@hidden": "never",
+  "@header <header>": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
+  "@closeButton <close-button>": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
+  "@footer <footer>": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  }
+}

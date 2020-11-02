@@ -1,0 +1,90 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "class",
+    "style",
+    "type",
+    "text",
+    "icon",
+    "a11yText",
+    "noToggleIcon",
+    "expanded",
+    "reverse",
+    "fixWidth",
+    "borderless",
+    "size",
+    "priority",
+    "iconTag",
+    "disabled",
+    "variant",
+    "items",
+    "label",
+    "textAlign"
+];
+
+$ var isOverflowVariant = input.variant === "overflow";
+<span
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=["fake-menu-button", input.class]
+    style=input.style
+    onExpander-expand("handleExpand")
+    onExpander-collapse("handleCollapse")
+    onMousedown("handleMousedown")>
+    <ebay-button
+        class=[
+            `fake-menu-button__button`,
+            input.borderless && !isOverflowVariant && "expand-btn--borderless"
+        ]
+        variant=(isOverflowVariant ? "icon" : "expand")
+        size=input.size
+        priority=input.priority
+        icon-only=(!input.text && !input.icon && !isOverflowVariant)
+        aria-expanded="false"
+        aria-haspopup="true"
+        aria-label=input.a11yText
+        disabled=input.disabled
+        on-escape("handleButtonEscape")
+        key="button">
+        <if(isOverflowVariant)>
+            <ebay-overflow-icon/>
+        </if>
+        <else>
+            <span class=[
+                "expand-btn__cell",
+                input.label && "menu-button__control--custom-label",
+                input.textAlign === 'center' && "expand-btn__cell--center"
+            ]>
+                <if(input.label)>
+                    <${input.label.renderBody}/>
+                </if>
+                <else>
+                    <!-- Convoluted markup to satisfy both Skin and Marko -->
+                    <if(input.icon)>
+                        <div no-update-body class="btn__icon">
+                            <${input.icon}/>
+                        </div>
+                    </if>
+                    <if(input.text)>
+                        <span>${input.text}</span>
+                    </if>
+                </else>
+                <if(!input.noToggleIcon)>
+                    <ebay-dropdown-icon/>
+                </if>
+            </span>
+        </else>
+    </ebay-button>
+    <ebay-fake-menu
+        class-prefix="fake-menu-button"
+        type=input.type
+        reverse=(isOverflowVariant ? !input.reverse : input.reverse)
+        fix-width=input.fixWidth
+        tabindex=-1
+        on-keydown("handleMenuKeydown")
+        on-select("handleMenuSelect")
+        key="content">
+        <for|item,index| of=input.items>
+            <@item  ...item/>
+        </for>
+    </ebay-fake-menu>
+</span>

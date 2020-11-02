@@ -5,7 +5,7 @@ class {
         };
     }
     change({ value }) {
-        this.state.value = value
+        this.state.value = value;
     }
     clear() {
         this.state.value = "";
@@ -15,9 +15,14 @@ class {
 <ebay-textbox
     key="textbox"
     value=state.value
-    prefix-icon="user-profile"
-    postfix-icon="close"
     button-aria-label="Clear"
     placeholder="name"
-    on-textbox-change("change")
-    on-textbox-button-click("clear")/>
+    on-change("change")
+    on-button-click("clear")>
+    <@postfix-icon>
+        <ebay-close-icon/>
+    </@postfix-icon>
+    <@prefix-icon>
+        <ebay-user-profile-icon/>
+    </@prefix-icon>
+</ebay-textbox>

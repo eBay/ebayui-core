@@ -45,4 +45,6 @@ describe('filter-menu-button', () => {
     });
 
     testUtils.testPassThroughAttributes(template);
+    testUtils.testEventsMigrator(require('../migrator'), 'filter-menu-button',
+        ['form-submit', 'change', 'footer-click', 'expand', 'collapse'], '../index.marko');
 });

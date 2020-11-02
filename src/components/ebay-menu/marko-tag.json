@@ -3,6 +3,8 @@
     "targetProperty": null,
     "type": "expression"
   },
+  "template": "./index.marko",
+  "transformer": "../../common/transformers/menu-separator",
   "@html-attributes": "expression",
   "@class": "string",
   "@style": "string",
@@ -18,12 +20,16 @@
     "@html-attributes": "expression",
     "@class": "string",
     "@style": "string",
-    "@href": "string",
-    "@type": "string",
     "@value": "string",
     "@checked": "boolean",
-    "@current": "boolean",
     "@badge-number": "expression",
-    "@badge-aria-label": "string"
+    "@badge-aria-label": "string",
+    "@_isSeparator": "boolean"
+  },
+  "@separator <separator>[]": {
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@_isSeparator": "boolean"
   }
 }

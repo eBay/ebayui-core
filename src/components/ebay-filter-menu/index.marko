@@ -42,7 +42,7 @@ $ var isForm = input.variant === "form";
                     onKeydown("handleItemKeydown", i)>
                     <if(isForm)>
                         <if (isRadio)>
-                            <ebay-radio id:scoped=`${prefixName}-${i}` checked=isChecked on-radio-change("handleRadioClick", i)/>
+                            <ebay-radio id:scoped=`${prefixName}-${i}` checked=isChecked on-change("handleRadioClick", i)/>
                         </if>
                         <else>
                             <ebay-checkbox id:scoped=`${prefixName}-${i}` checked=isChecked/>
@@ -52,20 +52,20 @@ $ var isForm = input.variant === "form";
                         <if (isRadio)>
                             <span class=`${baseClass}__radio`>
                                 <if(isChecked)>
-                                    <ebay-icon name="radio-checked"/>
+                                    <ebay-radio-checked-icon/>
                                 </if>
                                 <else>
-                                    <ebay-icon name="radio-unchecked"/>
+                                    <ebay-radio-unchecked-icon/>
                                 </else>
                             </span>
                         </if>
                         <else>
-                            <span class=`${baseClass}__status`>
+                            <span class=`${baseClass}__checkbox`>
                                 <if(isChecked)>
-                                    <ebay-icon name="checkbox-checked"/>
+                                    <ebay-checkbox-checked-icon/>
                                 </if>
                                 <else>
-                                    <ebay-icon name="checkbox-unchecked"/>
+                                    <ebay-checkbox-unchecked-icon/>
                                 </else>
                             </span>
                         </else>

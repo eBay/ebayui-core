@@ -1,0 +1,13 @@
+<ebay-dialog-base
+    ...input
+    open=input.open
+    classPrefix="panel-dialog"
+    on-open("emit", "open")
+    on-close("emit", "close")
+    class=[input.class, "panel-dialog--mask-fade-slow"]
+    window-class=[
+        "panel-dialog__window--slide",
+        input.position === "end" && "panel-dialog__window--end"
+    ]>
+    <${input.renderBody}/>
+</ebay-dialog-base>

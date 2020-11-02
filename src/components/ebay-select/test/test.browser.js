@@ -28,8 +28,8 @@ describe('given the select with 3 options', () => {
             await fireEvent.change(combobox);
         });
 
-        it('then it emits the select-change event with the correct data', () => {
-            const changeEvents = component.emitted('select-change');
+        it('then it emits the change event with the correct data', () => {
+            const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(1);
 
             const [[eventArg]] = changeEvents;

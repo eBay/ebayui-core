@@ -43,8 +43,8 @@ describe('given the default tourtip', () => {
                 await fireEvent.click(component.getByLabelText(input.a11yCloseText));
             });
 
-            it('then it emits the tooltip-collapse event', () => {
-                expect(component.emitted('tooltip-collapse')).has.length(1);
+            it('then it emits the collapse event', () => {
+                expect(component.emitted('collapse')).has.length(1);
             });
 
             it('then it is closed', () => {

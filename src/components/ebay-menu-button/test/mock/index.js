@@ -20,15 +20,7 @@ exports.Basic_3Items = assign({}, exports.Basic_2Items, {
 exports.Separator_4Items = assign({}, exports.Basic_2Items, {
     items: getNItems(4, i => ({
         value: `item ${i}`,
-        isSeparator: i === 2,
-        renderBody: createRenderBody(`Item text ${i}`)
-    }))
-});
-
-exports.Fake_2Items = assign({}, exports.Basic_2Items, {
-    type: 'fake',
-    items: getNItems(2, i => ({
-        href: `#${i}`,
+        _isSeparator: i === 2,
         renderBody: createRenderBody(`Item text ${i}`)
     }))
 });
@@ -43,8 +35,7 @@ exports.Disabled = assign({}, exports.Basic_3Items, {
 
 exports.Settings_Icon = assign({}, exports.Basic_2Items, {
     text: '',
-    icon: 'settings',
-    iconTag: {
+    icon: {
         renderBody: createRenderBody('icon content')
     }
 });

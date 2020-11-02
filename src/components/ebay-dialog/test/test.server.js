@@ -1,71 +1,80 @@
 const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+const { runTransformer } = require('../../../common/test-utils/server');
+const migrator = require('../migrator');
 
 use(require('chai-dom'));
 
-describe('dialog', () => {
-    it('renders basic version', async() => {
-        const input = mock.Fill_Dialog;
-        const { getByRole, getByLabelText, getByText } = await render(template, input);
+describe('ebay-dialog', () => {
+    describe('migrator', () => {
+        const componentPath = '../index.marko';
 
-        expect(getByRole('dialog')).has.attr('hidden');
-        expect(getByRole('dialog')).has.class('dialog');
-        expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
-        expect(getByText(input.renderBody.text)).has.class('dialog__main');
-    });
+        it('migrates dialog to default', () => {
+            // eslint-disable-next-line max-len
+            const tagString = '<ebay-dialog>Test</ebay-dialog>';
+            const { el } = runTransformer(migrator, tagString, componentPath);
+            expect(el.tagName).to.equal('ebay-lightbox-dialog');
+            expect(el.hasAttribute('type')).equals(false);
+        });
 
-    it('renders with header and footer', async() => {
-        const input = mock.Header_Footer_Dialog;
-        const { getByRole, getByLabelText, getByText } = await render(template, input);
+        it('migrates dialog type=full to fullscreen-dialog', () => {
+            // eslint-disable-next-line max-len
+            const tagString = '<ebay-dialog type="full">Test</ebay-dialog>';
+            const { el } = runTransformer(migrator, tagString, componentPath);
+            expect(el.tagName).to.equal('ebay-fullscreen-dialog');
+            expect(el.hasAttribute('type')).equals(false);
+        });
 
-        expect(getByRole('dialog')).has.attr('hidden');
-        expect(getByRole('dialog')).has.class('dialog');
-        expect(getByLabelText(input.a11yCloseText)).has.class('dialog__close');
-        expect(getByText(input.renderBody.text)).has.class('dialog__main');
-        expect(getByText(input.header.renderBody.text).parentElement).has.class('dialog__header');
-        expect(getByText(input.footer.renderBody.text)).has.class('dialog__footer');
-    });
+        it('migrates dialog type=left to panel-dialog', () => {
+            // eslint-disable-next-line max-len
+            const tagString = '<ebay-dialog type="left">Test</ebay-dialog>';
+            const { el } = runTransformer(migrator, tagString, componentPath);
+            expect(el.tagName).to.equal('ebay-panel-dialog');
+            expect(el.hasAttribute('type')).equals(false);
+        });
 
-    it('renders in open state', async() => {
-        const input = mock.Fill_Dialog_Open;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('dialog')).does.not.have.attr('hidden');
-    });
+        it('migrates dialog type=right to panel-dialog', () => {
+            // eslint-disable-next-line max-len
+            const tagString = '<ebay-dialog type="right">Test</ebay-dialog>';
+            const { el } = runTransformer(migrator, tagString, componentPath);
+            expect(el.hasAttribute('position')).equals(true);
+            expect(el.hasAttribute('type')).equals(false);
+        });
 
-    [undefined, 'fill', 'full'].forEach(type => {
-        it(`renders with ${type || 'default'} type`, async() => {
-            const { getByRole } = await render(template, { type });
-            const $dialog = getByRole('dialog');
-            const $window = $dialog.children[0];
+        it('migrates dialog with events to default', () => {
+            // eslint-disable-next-line max-len
+            const tagString = '<ebay-dialog on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
+            const { el } = runTransformer(migrator, tagString, componentPath);
+            expect(el.tagName).to.equal('ebay-lightbox-dialog');
+            expect(el.hasAttribute('on-open')).equals(true);
+            expect(el.hasAttribute('on-close')).equals(true);
+        });
 
-            if (type) {
-                expect($window).has.class(`dialog__window--${type}`);
-            }
+        it('migrates dialog type=full with events to fullscreen-dialog', () => {
+            // eslint-disable-next-line max-len
+            const tagString = '<ebay-dialog type="full" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
+            const { el } = runTransformer(migrator, tagString, componentPath);
+            expect(el.tagName).to.equal('ebay-fullscreen-dialog');
+            expect(el.hasAttribute('on-open')).equals(true);
+            expect(el.hasAttribute('on-close')).equals(true);
+        });
 
-            if (type === 'full') {
-                expect($dialog).has.class('dialog--no-mask');
-                expect($window).has.class('dialog__window--slide');
-            } else {
-                expect($dialog).has.class('dialog--mask-fade');
-                expect($window).has.class('dialog__window--fade');
-            }
+        it('migrates dialog type=left with events to panel-dialog', () => {
+            // eslint-disable-next-line max-len
+            const tagString = '<ebay-dialog type="left" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
+            const { el } = runTransformer(migrator, tagString, componentPath);
+            expect(el.tagName).to.equal('ebay-panel-dialog');
+            expect(el.hasAttribute('on-open')).equals(true);
+            expect(el.hasAttribute('on-close')).equals(true);
+        });
+
+        it('migrates dialog type=right with events to panel-dialog', () => {
+            // eslint-disable-next-line max-len
+            const tagString = '<ebay-dialog type="right" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
+            const { el } = runTransformer(migrator, tagString, componentPath);
+            expect(el.tagName).to.equal('ebay-panel-dialog');
+            expect(el.hasAttribute('on-open')).equals(true);
+            expect(el.hasAttribute('on-close')).equals(true);
+            expect(el.hasAttribute('position')).equals(true);
         });
     });
-
-    ['left', 'right'].forEach(type => {
-        it(`renders with ${type} type`, async() => {
-            const { getByRole } = await render(template, { type });
-            const $dialog = getByRole('dialog');
-            const $window = $dialog.children[0];
-
-            expect($dialog).has.class('dialog--mask-fade-slow');
-            expect($window).has.class(`dialog__window--${type}`);
-            expect($window).has.class('dialog__window--slide');
-        });
-    });
-
-    testPassThroughAttributes(template);
 });

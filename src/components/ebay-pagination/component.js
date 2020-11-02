@@ -9,7 +9,7 @@ module.exports = {
      * @param {MouseEvent} originalEvent
      */
     handlePageNumberClick(originalEvent, el) {
-        this.emit('pagination-select', {
+        this.emit('select', {
             el,
             originalEvent,
             value: el.innerText
@@ -18,7 +18,7 @@ module.exports = {
 
     handleNextPageClick(originalEvent, el) {
         if (!el.hasAttribute('aria-disabled')) {
-            this.emit('pagination-next', {
+            this.emit('next', {
                 el,
                 originalEvent
             });
@@ -27,7 +27,7 @@ module.exports = {
 
     handlePreviousPageClick(originalEvent, el) {
         if (!el.hasAttribute('aria-disabled')) {
-            this.emit('pagination-previous', {
+            this.emit('previous', {
                 el,
                 originalEvent
             });
@@ -36,10 +36,6 @@ module.exports = {
 
     onCreate() {
         this.state = { maxItems: 0 };
-    },
-
-    onInput(input) {
-        input.items = input.items || [];
     },
 
     onMount() {
@@ -88,8 +84,9 @@ module.exports = {
 
     _calculateMaxItems() {
         const { input, state } = this;
+        const items = input.items || [];
 
-        if (!input.items.some(item => !item.type)) {
+        if (!items.some(item => !item.type)) {
             return;
         }
 

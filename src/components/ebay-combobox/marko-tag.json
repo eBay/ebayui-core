@@ -1,5 +1,6 @@
 {
   "attribute-groups": ["html-attributes"],
+  "migrator": "./migrator",
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -7,6 +8,12 @@
   "@html-attributes": "expression",
   "@borderless": "boolean",
   "@autocomplete": "string",
+  "@list-selection": {
+    "enum": [
+      "automatic",
+      "manual"
+    ]
+  },
   "@disabled": "#html-disabled",
   "@form": "#html-form",
   "@name": "#html-name",

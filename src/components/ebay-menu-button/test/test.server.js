@@ -2,7 +2,7 @@ const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const testUtils = require('../../../common/test-utils/server');
-const transformer = require('../transformer');
+const migrator = require('../migrator');
 const template = require('..');
 const mock = require('./mock');
 
@@ -31,40 +31,16 @@ describe('menu-button', () => {
         });
     });
 
-    it('renders fake version', async() => {
-        const input = mock.Fake_2Items;
-        const { getByText } = await render(template, input);
-
-        input.items.forEach(item => {
-            expect(getByText(item.renderBody.text).closest('.fake-menu-button__item'))
-                .has.attr('href', item.href);
-        });
-    });
-
     it('renders with reverse=true', async() => {
         const input = assign({ reverse: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu-button__menu')).with.class('menu-button__menu--reverse');
     });
 
-    it('renders with type=fake, reverse=true', async() => {
-        const input = assign({ type: 'fake', reverse: true }, mock.Basic_2Items);
-        const { getByText } = await render(template, input);
-        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--reverse'))
-            .does.not.equal(null);
-    });
-
     it('renders with fix-width=true', async() => {
         const input = assign({ fixWidth: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu-button__menu')).with.class('menu-button__menu--fix-width');
-    });
-
-    it('renders with type=fake, fix-width=true', async() => {
-        const input = assign({ type: 'fake', fixWidth: true }, mock.Basic_2Items);
-        const { getByText } = await render(template, input);
-        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--fix-width'))
-            .does.not.equal(null);
     });
 
     it('renders with borderless=true', async() => {
@@ -88,15 +64,15 @@ describe('menu-button', () => {
     it('renders without text', async() => {
         const input = assign({}, mock.Basic_2Items, { text: '' });
         const { getByRole } = await render(template, input);
-        expect(getByRole('button')).has.class('expand-btn--no-text');
+        expect(getByRole('button')).has.class('expand-btn--icon-only');
     });
 
     it('renders with icon', async() => {
         const input = mock.Settings_Icon;
         const { getByRole, getByText } = await render(template, input);
         const btnEl = getByRole('button');
-        expect(btnEl).does.not.have.class('expand-btn--no-text');
-        expect(btnEl).contains(getByText(input.iconTag.renderBody.text));
+        expect(btnEl).does.not.have.class('expand-btn--icon-only');
+        expect(btnEl).contains(getByText(input.icon.renderBody.text));
     });
 
     it('renders without toggle icon', async() => {
@@ -140,7 +116,7 @@ describe('menu-button', () => {
         const menuItemEls = getAllByRole('menuitem');
         const separators = getAllByRole('separator');
         input.items.forEach((item) => {
-            if (item.isSeparator) {
+            if (item._isSeparator) {
                 const menuItemEl = separators.shift();
                 const textEl = queryByText(item.renderBody.text);
                 expect(textEl).to.equal(null);
@@ -177,20 +153,25 @@ describe('menu-button', () => {
     });
 });
 
-describe('transformer', () => {
+describe('migrator', () => {
     const componentPath = '../index.marko';
 
     it('transforms an icon attribute into a tag', async() => {
         const tagString = '<ebay-menu-button icon="settings"/>';
-        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { el } = testUtils.runTransformer(migrator, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
-        expect(iconEl.tagName).to.equal('ebay-menu-button:_icon');
+        const { body: { array: [tag] } } = iconEl;
+        expect(iconEl.tagName).to.equal('@icon');
+        expect(tag.tagName).to.equal('ebay-settings-icon');
     });
 
     it('does not transform when icon attribute is missing', () => {
         const tagString = '<ebay-menu/>';
-        const { el } = testUtils.runTransformer(transformer, tagString, componentPath);
+        const { el } = testUtils.runTransformer(migrator, tagString, componentPath);
         const { body: { array: [iconEl] } } = el;
         expect(iconEl).to.equal(undefined);
     });
+
+    testUtils.testEventsMigrator(migrator, 'menu-button',
+        ['keydown', 'change', 'select', 'expand', 'collapse'], '../index.marko');
 });

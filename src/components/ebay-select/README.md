@@ -12,9 +12,9 @@ When no selected option is specified:
 
 ```marko
 <ebay-select name="formFieldName">
-    <ebay-select-option value="1" text="Option 1"/>
-    <ebay-select-option value="2" text="Option 2"/>
-    <ebay-select-option value="3" text="Option 3"/>
+    <@option value="1" text="Option 1"/>
+    <@option value="2" text="Option 2"/>
+    <@option value="3" text="Option 3"/>
 </ebay-select>
 ```
 
@@ -22,9 +22,9 @@ When a selected option is specified:
 
 ```marko
 <ebay-select name="formFieldName">
-    <ebay-select-option value="1" text="Option 1"/>
-    <ebay-select-option value="2" text="Option 2" selected/>
-    <ebay-select-option value="3" text="Option 3"/>
+    <@option value="1" text="Option 1"/>
+    <@option value="2" text="Option 2" selected/>
+    <@option value="3" text="Option 3"/>
 </ebay-select>
 ```
 
@@ -41,18 +41,18 @@ Note: For this component, `class`/`style` are applied to the root tag, while all
 
 Event | Data |  Description
 --- | --- | ---
-`select-change` | `{ el, index, selected }` | option selected
+`change` | `{ el, index, selected }` | option selected
 ---
 
-## ebay-select-option Tag
+## @option Tag
 
-### ebay-select-option Usage
+### @option Usage
 
 ```marko
-<ebay-select-option value="1" text="Option 1"/>
+<@option value="1" text="Option 1"/>
 ```
 
-### ebay-select-option Attributes
+### @option Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---

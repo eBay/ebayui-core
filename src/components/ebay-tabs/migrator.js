@@ -1,23 +1,33 @@
-module.exports = function migrator(el, context) {
-    const oldAttribute = 'on-tab-select';
-    const newAttribute = 'on-tabs-select';
-    if (el.tagName === 'ebay-tab') {
-        context.deprecate('<ebay-tab> has been renamed to <ebay-tabs>');
-        el.setTagName('ebay-tabs');
+const { setAttributeIfPresent } = require('../../common/migrators');
+
+// Transforms an `icon` attribute into an `<ebay-menu:_icon>` tag
+function migratorMarko4(el, context) {
+    if (el.hasAttribute('fake')) {
+        el.removeAttribute('fake');
+        el.setTagName('ebay-fake-tabs');
+        context.deprecate('"fake" attribute has been removed from ebay-tabs. Use ebay-fake-tabs instead.');
     }
-    if (el.hasAttribute(oldAttribute)) {
-        const attribute = el.getAttribute(oldAttribute);
-        attribute.name = newAttribute;
-    }
+    setAttributeIfPresent(el, context, 'on-tabs-select', 'on-select');
+    setAttributeIfPresent(el, context, 'index', 'selected-index');
+
     const walker = context.createWalker({
         enter(node) {
-            if (node.tagName === 'ebay-tab-heading') {
-                node.setTagName('ebay-tabs-heading');
-            } else if (node.tagName === 'ebay-tab-panel') {
-                node.setTagName('ebay-tabs-panel');
+            if (node.tagName === '@heading') {
+                node.setTagName('@tab');
             }
         }
     });
-
     walker.walk(el);
+}
+
+function migratorMarko5() {
+    return;
+}
+
+module.exports = function migrator(a, b) {
+    if (a.hub) {
+        return migratorMarko5(a, b);
+    }
+
+    return migratorMarko4(a, b);
 };

@@ -1,0 +1,18 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@selected-index": "number",
+  "@tabs <tab>[]": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@href": "#html-href"
+  }
+}

@@ -16,10 +16,7 @@ $ var options = [
 <ebay-listbox-button name="formFieldName">
     <if(true)>
         <for|option| of=options>
-            <ebay-listbox-button-option
-                value=option.value
-                text=option.text
-                selected=option.selected/>
+            <@option value=option.value text=option.text selected=option.selected/>
         </for>
     </if>
 </ebay-listbox-button>

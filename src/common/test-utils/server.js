@@ -57,12 +57,46 @@ module.exports = {
             }
         );
     },
+    testEventsMigrator(migrator, component, events, componentPath) {
+        it(`checks all events ${component.component || component} events are migrated ${events.join(',')}`, () => {
+            const str = events.map((event) =>
+                `on-${component.event || component}-${event.from || event}(() => {})`)
+                .join(' ');
+            const srcString = `<ebay-${component.component || component} ${str}/>`;
+
+            const { context, templateAST } = getTransformerData(srcString, componentPath);
+            migrator(templateAST.body.array[0], context);
+            const el = templateAST.body.array[0];
+
+            events.forEach((event) => {
+                const fromEvent = event.from || event;
+                const toEvent = event.to || event;
+
+                expect(el.hasAttribute(`on-${toEvent}`)).to.equal(true, `should have on-${toEvent}`);
+                expect(el.hasAttribute(`on-${component.event || component}-${fromEvent}`)).to.equal(false);
+            });
+        });
+    },
+    testAttributeRenameMigrator(migrator, component, oldAttribute, newAttribute, componentPath) {
+        it(`checks all events ${
+            component.component || component
+        } attributes are migrated ${oldAttribute} to ${newAttribute}`, () => {
+            const srcString = `<ebay-${component.component || component} ${oldAttribute}/>`;
+
+            const { context, templateAST } = getTransformerData(srcString, componentPath);
+            migrator(templateAST.body.array[0], context);
+            const el = templateAST.body.array[0];
+
+            expect(el.hasAttribute(newAttribute)).to.equal(true, `should have ${newAttribute}`);
+            expect(el.hasAttribute(oldAttribute)).to.equal(false, `should no longer have ${oldAttribute}`);
+        });
+    },
     getTransformedTemplate(transformer, srcString, componentPath) {
-        const { prettyPrintAST } = require('marko-prettyprint');
+        const { prettyPrintAST } = require('@marko/prettyprint');
         const { context, templateAST } = getTransformerData(srcString, componentPath);
         context.root = templateAST;
         transformer(templateAST.body.array[0], context);
-        return prettyPrintAST(templateAST).replace(/\n/g, '').replace(/\s{4}/g, '');
+        return prettyPrintAST(templateAST, { filename: componentPath }).replace(/\n/g, '').replace(/\s{4}/g, '');
     },
     runTransformer(transformer, srcString, componentPath) {
         const { context, templateAST } = getTransformerData(srcString, componentPath);

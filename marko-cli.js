@@ -7,12 +7,7 @@ module.exports = ({ config }) => {
     config.mochaOptions = { timeout: 60000 };
     config.lassoOptions = {
         flags: [],
-        plugins: ['lasso-less'],
-        require: isTravis && {
-            transforms: [{
-                transform: 'lasso-babel-transform'
-            }]
-        }
+        plugins: ['lasso-less']
     };
 
     config.wdioOptions = {
@@ -27,11 +22,6 @@ module.exports = ({ config }) => {
             browser: 'Chrome',
             os: 'Windows',
             os_version: '10'
-        }, {
-            browser: 'Chrome',
-            browser_version: '55.0',
-            os: 'Windows',
-            os_version: '7'
         // }, {
         //     browser: 'Firefox',
         //     os: 'Windows',
@@ -52,7 +42,6 @@ module.exports = ({ config }) => {
         //     os: 'OS X',
         //     os_version: 'Lion'
         // }, {
-        //     // Doesn't seem to be supporting timeouts?
         //     browser: 'Edge',
         //     os: 'Windows',
         //     os_version: '10'

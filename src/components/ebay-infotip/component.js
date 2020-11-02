@@ -7,14 +7,14 @@ module.exports = {
     },
 
     setOpen(isOpen) {
-        if (this.input.modal) {
+        if (this.input.variant === 'modal') {
             this.state.open = isOpen;
         }
     },
 
     handleExpand() {
         this.setOpen(true);
-        this.emit('tooltip-expand');
+        this.emit('expand');
     },
 
     handleOverlayClose() {
@@ -25,6 +25,6 @@ module.exports = {
         this.setOpen(false);
 
         this.getEl('host').focus();
-        this.emit('tooltip-collapse');
+        this.emit('collapse');
     }
 };

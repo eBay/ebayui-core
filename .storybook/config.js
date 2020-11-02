@@ -28,7 +28,8 @@ configure(() => {
   );
   requireExample.keys().reduce((storiesByTag, file) => {
     const [, tag, title] = /([^\/]+)\/examples\/\d+-([^\/]+)/.exec(file);
-    const component = requireExample(file);
+    const mod = requireExample(file);
+    const component = mod.default || mod;
 
     if (!hiddenStories.includes(tag)) {
       (storiesByTag[tag] =

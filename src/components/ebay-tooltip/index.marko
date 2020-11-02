@@ -7,7 +7,9 @@ static var ignoredAttributes = [
     "styleRight",
     "styleBottom",
     "noHover",
-    "host"
+    "host",
+    "content",
+    "heading"
 ];
 
 $ var pointer = input.pointer || "bottom";
@@ -22,8 +24,8 @@ $ var pointer = input.pointer || "bottom";
         style-right=input.styleRight
         style-bottom=input.styleBottom
         no-hover=input.noHover
-        onBase-expand("emit", "tooltip-expand")
-        onBase-collapse("emit", "tooltip-collapse")>
+        onBase-expand("emit", "expand")
+        onBase-collapse("emit", "collapse")>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class:no-update="tooltip">

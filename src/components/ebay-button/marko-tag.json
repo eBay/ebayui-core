@@ -1,4 +1,5 @@
 {
+  "migrator": "./migrator.js",
   "attribute-groups": ["html-attributes"],
   "@*": {
     "type": "expression",
@@ -8,7 +9,7 @@
   "@partially-disabled": "boolean",
   "@priority": "string",
   "@size": "size",
-  "@no-text": "boolean",
+  "@icon-only": "boolean",
   "@fluid": "boolean",
   "@variant": "string",
   "@fixed-height": "boolean",

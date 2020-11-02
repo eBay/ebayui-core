@@ -18,4 +18,4 @@ Name | Type | Stateful | Required | Description
 
 Event | Data | Description
 --- | --- | ---
-`switch-change` | `{ originalEvent, value, checked }` | selected value and checked status
+`change` | `{ originalEvent, value, checked }` | selected value and checked status
