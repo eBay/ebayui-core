@@ -2,9 +2,11 @@ const assign = require('core-js-pure/features/object/assign');
 const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
+const typeahead = require('makeup-typeahead');
 const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
-const NodeListUtils = require('../../common/nodelist-utils');
+
+const TIMEOUT_LENGTH = 1300;
 
 module.exports = assign({}, menuUtils, {
 
@@ -48,7 +50,7 @@ module.exports = assign({}, menuUtils, {
     },
 
     handleItemKeypress({ key }) {
-        const itemIndex = NodeListUtils.findNodeWithFirstChar(this.getEl('menu').children, key);
+        const itemIndex = typeahead(this.getEl('menu').children, key, TIMEOUT_LENGTH);
 
         if (itemIndex !== -1) {
             this.tabindexPosition = this.rovingTabindex.index = itemIndex;

@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup, getByText } = require('@marko/testing-library');
 const { pressKey } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
@@ -10,6 +10,28 @@ afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
+
+describe('typeahead functionality', () => {
+    const input = mock.Countries;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+
+    it('shows the correct item in focus when the user types', async () => {
+        await fireEvent.click(component.getByRole('menu'));
+        await fireEvent.keyDown(component.getByRole('menu'), { key: 'a', code: '65' });
+        await fireEvent.keyDown(component.getByRole('menu'), { key: 'l', code: '76' });
+        await fireEvent.keyDown(component.getByRole('menu'), { key: 'c', code: '67' });
+
+        expect(component.getByText('Item text 1 Alcania')).to.equal(getByText(document.activeElement, 'Item text 1 Alcania'));
+
+        await fireEvent.keyDown(component.getByText(input.items[0].renderBody.text), { key: 'd', code: '68' })
+
+        expect(component.getByText('Item text 2 Alcdnia')).to.equal(getByText(document.activeElement, 'Item text 2 Alcdnia'));
+
+    })
+})
 
 describe('given the menu is in the default state', () => {
     const input = mock.Basic_2Items;
