@@ -1,7 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody, getNItems } = require('../../../../common/test-utils/shared');
 
-
 exports.Basic_2Items = {
     items: getNItems(2, i => ({
         value: `item ${i}`,
@@ -32,14 +31,13 @@ exports.Fake_2Items = assign({}, exports.Basic_2Items, {
     }))
 });
 
-function getCountry(num){
+function getCountry(num) {
     if (num === 0) {
-        return "Albania"
+        return 'Albania';
     } else if (num === 1) {
-        return "Alcania"
-    } else {
-        return "Alcdnia"
+        return 'Alcania';
     }
+    return 'Alcdnia';
 }
 
 exports.Countries = assign({}, exports.Basic_2Items, {

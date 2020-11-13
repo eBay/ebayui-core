@@ -18,20 +18,21 @@ describe('typeahead functionality', () => {
         component = await render(template, input);
     });
 
-    it('shows the correct item in focus when the user types', async () => {
+    it('shows the correct item in focus when the user types', async() => {
         await fireEvent.click(component.getByRole('menu'));
         await fireEvent.keyDown(component.getByRole('menu'), { key: 'a', code: '65' });
         await fireEvent.keyDown(component.getByRole('menu'), { key: 'l', code: '76' });
         await fireEvent.keyDown(component.getByRole('menu'), { key: 'c', code: '67' });
 
-        expect(component.getByText('Item text 1 Alcania')).to.equal(getByText(document.activeElement, 'Item text 1 Alcania'));
+        expect(component.getByText('Item text 1 Alcania')).to.equal(getByText(document.activeElement,
+            'Item text 1 Alcania'));
 
-        await fireEvent.keyDown(component.getByText(input.items[0].renderBody.text), { key: 'd', code: '68' })
+        await fireEvent.keyDown(component.getByText(input.items[0].renderBody.text), { key: 'd', code: '68' });
 
-        expect(component.getByText('Item text 2 Alcdnia')).to.equal(getByText(document.activeElement, 'Item text 2 Alcdnia'));
-
-    })
-})
+        expect(component.getByText('Item text 2 Alcdnia')).to.equal(getByText(document.activeElement,
+            'Item text 2 Alcdnia'));
+    });
+});
 
 describe('given the menu is in the default state', () => {
     const input = mock.Basic_2Items;
