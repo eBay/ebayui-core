@@ -3,13 +3,14 @@ const fs = require('fs');
 const path = require('path');
 const lasso = require('lasso');
 const express = require('express');
-const highlight = require('gh-highlight');
+const Highlights = require('highlights');
 const dsUtils = require('../src/common/ds-util');
 const demoUtils = require('./utils.js');
 const template = require('./template.marko');
 
 const app = express();
 const defaultComponentRoute = 'ebay-button';
+const highlighter = new Highlights();
 
 let transforms;
 if (process.env.NODE_ENV === 'production') {
@@ -48,7 +49,10 @@ app.get('/:designSystem/:component?', (req, res) => {
             return {
                 num: parseInt(example.split('-')[0]),
                 name: example.split('-').slice(1, example.length).join(' '),
-                code: highlight.sync(fs.readFileSync(exampleTemplatePath, 'utf8'), 'marko'),
+                code: highlighter.highlightSync({
+                    fileContents: fs.readFileSync(exampleTemplatePath, 'utf8'),
+                    sync: 'text.marko'
+                }),
                 sources: [componentPath, examplePath],
                 templatePath: exampleTemplatePath,
                 template: require(exampleTemplatePath)

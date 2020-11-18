@@ -2,8 +2,8 @@ sudo: required
 
 language: node_js
 node_js:
-  - "10"
-script: "yarn build:ci"
+  - "12"
+script: "npm run build:ci"
 cache: false
 
 # Send coverage data to Coveralls

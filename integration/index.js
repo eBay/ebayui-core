@@ -8,7 +8,7 @@ const port = 9999;
 const request = require('supertest')(`http://localhost:${port}`);
 const demoUtils = require('../demo/utils');
 
-execSync('yarn prepublishOnly');
+execSync('npm run prepublishOnly');
 async.forEachSeries([4], (markoVersion, callback) => {
     // need to manually call install() in v3
     if (markoNodeHook.install) {
@@ -61,5 +61,5 @@ async.forEachSeries([4], (markoVersion, callback) => {
         });
     });
 }, () => {
-    execSync('yarn postpublish');
+    execSync('npm run postpublish');
 });
