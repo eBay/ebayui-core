@@ -18,21 +18,20 @@ This section includes information on system requirements, running the local serv
 ### System Requirements
 
 * [Node.js](https://nodejs.org/en/)
-* [Yarn](https://yarnpkg.com/en/)
 
-Clone this repo to your local environment then run `yarn` to install all dependencies.
+Clone this repo to your local environment then run `npm i` to install all dependencies.
 
 ### Local Server
 
-Execute `yarn start` to start the local web server at [http://localhost:3000](http://localhost:3000). This is a quick method to run and debug code, but it will only work in modern browsers since it does not include transpilation.
+Execute `npm start` to start the local web server at [http://localhost:3000](http://localhost:3000). This is a quick method to run and debug code, but it will only work in modern browsers since it does not include transpilation.
 
-For debugging older browsers, the demo can be run against transpiled source code via `yarn start:prod`.
+For debugging older browsers, the demo can be run against transpiled source code via `npm run start:prod`.
 
 The demo page will render the `examples/` for each component. To selectively include certain examples for debugging, add `.only` to their folder names.
 
 ### Tests
 
-Execute `yarn test` to run all tests and generate coverage reports at `./coverage/index.html`.
+Execute `npm test` to run all tests and generate coverage reports at `./coverage/index.html`.
 
 ### Marko Lifecycle Functions
 
@@ -40,7 +39,7 @@ Because eBayUI components are written in Marko, the component files may contain 
 
 ### Package Scripts
 
-Execute `yarn run`, or check the "scripts" section of `package.json` to view all available utility scripts.
+Execute `npm run`, or check the "scripts" section of `package.json` to view all available utility scripts.
 
 Please ensure all scripts in `package.json` are Unix *and* Windows friendly.
 
@@ -57,7 +56,7 @@ BROWSERSTACK_USER="YOUR BROWSERSTACK USERNAME"
 BROWSERSTACK_ACCESS_KEY="YOUR BROWSERSTACK ACCESS KEY"
 ```
 
-Finally run `yarn test:browserstack` to begin the tests.
+Finally run `npm run test:browserstack` to begin the tests.
 
 ## Pull Requests
 
@@ -230,4 +229,4 @@ A final release is always made from the `master` branch.
 3. Push the git tag to origin, e.g. run `git push origin v1.0.0` using the new version tag you just created.
 4. Run `npm publish` to publish the package to NPM.
 
-After every major and minor release, please take the opportunity to upgrade any outdated dependencies and devDependencies (*hint*: run `yarn outdated` to see outdated dependencies). Except for major version upgrades, the version in `package.json` should always reflect the last known working version, not the version you are upgrading to.
+After every major and minor release, please take the opportunity to upgrade any outdated dependencies and devDependencies (*hint*: run `npm outdated` to see outdated dependencies). Except for major version upgrades, the version in `package.json` should always reflect the last known working version, not the version you are upgrading to.
