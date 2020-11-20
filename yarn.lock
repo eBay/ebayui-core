@@ -6028,6 +6028,11 @@ core-js-pure@^3.0.0, core-js-pure@^3.0.1, core-js-pure@^3.4.1:
   resolved "https://registry.npmjs.org/core-js-pure/-/core-js-pure-3.6.5.tgz#c79e75f5e38dbc85a662d91eea52b8256d53b813"
   integrity sha512-lacdXOimsiD0QyNf9BC/mxivNJ/ybBGJXQFKzRekp1WTHoVUWsUHEn+2T8GJAzzIhyOuXA+gOxCVN3l+5PLPUA==
 
+core-js-pure@~3.7.0:
+  version "3.7.0"
+  resolved "https://registry.npmjs.org/core-js-pure/-/core-js-pure-3.7.0.tgz#28a57c861d5698e053f0ff36905f7a3301b4191e"
+  integrity sha512-EZD2ckZysv8MMt4J6HSvS9K2GdtlZtdBncKAmF9lr2n0c9dJUaUN88PSTjvgwCgQPWKTkERXITgS6JJRAnljtg==
+
 core-js@^2.4.0, core-js@^2.5.0:
   version "2.6.11"
   resolved "https://registry.npmjs.org/core-js/-/core-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
@@ -11712,6 +11717,13 @@ makeup-screenreader-trap@~0.2.1:
   integrity sha512-RP++n1xxFzj/0clfqs4GIs+DtJHeusBreHlD3bfLSk6d23TH704IIn02Th1BS5N9aUfEq9fGdyKtSWpxHwGpsQ==
   dependencies:
     custom-event "^1"
+
+makeup-typeahead@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/makeup-typeahead/-/makeup-typeahead-0.0.1.tgz#fecc915bc38e37690f75b33cb07ab410b315547e"
+  integrity sha512-rsOMu7p8//af0kfHFqmVUnCOHqSVAbuGvfgpkqAXp4u595CDB1vpqLKE7QE3nPvK9uRrqbCd/mTkjikEYMRy9A==
+  dependencies:
+    core-js-pure "~3.7.0"
 
 map-cache@^0.2.2:
   version "0.2.2"

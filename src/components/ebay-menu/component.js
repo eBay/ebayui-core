@@ -6,7 +6,9 @@ const typeahead = require('makeup-typeahead');
 const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 
-const TIMEOUT_LENGTH = 1300;
+const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
+
+const getIndex = typeahead();
 
 module.exports = assign({}, menuUtils, {
 
@@ -50,7 +52,7 @@ module.exports = assign({}, menuUtils, {
     },
 
     handleItemKeypress({ key }) {
-        const itemIndex = typeahead(this.getEl('menu').children, key, TIMEOUT_LENGTH);
+        const itemIndex = getIndex(this.getEl('menu').children, key, TYPEAHEAD_TIMEOUT_LENGTH);
 
         if (itemIndex !== -1) {
             this.tabindexPosition = this.rovingTabindex.index = itemIndex;
