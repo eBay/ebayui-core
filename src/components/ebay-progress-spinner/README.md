@@ -1,6 +1,14 @@
 # ebay-progress-spinner
 
 ```marko
-<span class=[ "spinner", input.large && "spinner--large"] aria-label="Busy" role="img"></span>
-
+<ebay-progress-spinner large />
 ```
+
+## Attributes 
+
+Name | Type | Stateful | Required | Description
+--- | --- | ---- | --- | ---
+`large` | Boolean | No | No | If true, large spinner is displayed; else, normal size spinner is displayed. 
+
+
+
