@@ -1,12 +1,11 @@
 # ebay-progress-spinner
 
 ```marko
-<ebay-progress-spinner large />
+<ebay-progress-spinner size="large" />
 ```
 
 ## Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | ---- | --- | ---
-`large` | Boolean | No | No | If true, large spinner is displayed; else, normal
-size spinner is displayed.
+`size` | String | No | No | size of spinner - can be "regular", "large". default is regular
