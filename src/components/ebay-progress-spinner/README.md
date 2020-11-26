@@ -8,4 +8,4 @@
 
 Name | Type | Stateful | Required | Description
 --- | --- | ---- | --- | ---
-`size` | String | No | No | size of spinner - can be "regular", "large". default is regular
+`size` | String | No | No | size of spinner - can be "small", "large". default is small
