@@ -8,8 +8,6 @@ const menuUtils = require('../../common/menu-utils');
 
 const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 
-const getIndex = typeahead();
-
 module.exports = assign({}, menuUtils, {
 
     toggleItemChecked(index, originalEvent, itemEl) {
@@ -52,7 +50,7 @@ module.exports = assign({}, menuUtils, {
     },
 
     handleItemKeypress({ key }) {
-        const itemIndex = getIndex(this.getEl('menu').children, key, TYPEAHEAD_TIMEOUT_LENGTH);
+        const itemIndex = this.getIndex(this.getEl('menu').children, key, TYPEAHEAD_TIMEOUT_LENGTH);
 
         if (itemIndex !== -1) {
             this.tabindexPosition = this.rovingTabindex.index = itemIndex;
@@ -122,6 +120,10 @@ module.exports = assign({}, menuUtils, {
         });
 
         scrollKeyPreventer.add(this.contentEl);
+
+        const { getIndex, destroy } = typeahead();
+        this.getIndex = getIndex;
+        this.destroyTypeahead = destroy;
     },
 
     _cleanupMakeup() {
@@ -129,5 +131,6 @@ module.exports = assign({}, menuUtils, {
             this.rovingTabindex.destroy();
             scrollKeyPreventer.remove(this.contentEl);
         }
+        this.destroyTypeahead();
     }
 });
