@@ -1,6 +1,7 @@
 {
     "@size": {
       "enum": ["small", "large"]
-    }
+    },
+    "@a11y-text": "string"
 }
   
