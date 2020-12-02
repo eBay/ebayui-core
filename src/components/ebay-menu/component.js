@@ -131,6 +131,8 @@ module.exports = assign({}, menuUtils, {
             this.rovingTabindex.destroy();
             scrollKeyPreventer.remove(this.contentEl);
         }
-        this.destroyTypeahead();
+        if (this.destroyTypeahead) {
+            this.destroyTypeahead();
+        }
     }
 });
