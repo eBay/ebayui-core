@@ -14,11 +14,11 @@
 
 * [Node.js](https://nodejs.org/en/)
 * [Marko](https://markojs.com) (v4+)
-* [eBay Skin](https://ebay.github.io/skin/) (v10+)
+* [eBay Skin](https://ebay.github.io/skin/) (v11+)
 
 *Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components.*
 
-*Note: `@ebay/skin/global` is required to be loaded by your app for all modules to load correctly. Also for DS6 `@ebay/skin/marketsans` is also required.*
+*Note: `@ebay/skin/global` and `@ebay/skin/marketsans` are required to be loaded by your app for all modules to load correctly.*
 
 *Note: In order for spread attributes to work properly, `marko@4.18.22` at least is required*
 
@@ -64,6 +64,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 * [`ebay-inline-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-inline-notice)
 * [`ebay-lightbox-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-lightbox-dialog)
 * [`ebay-listbox-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-listbox-button)
+* [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
 * [`ebay-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu-button)
 * [`ebay-page-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-page-notice)
 * [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
@@ -102,18 +103,6 @@ Once the package dependency is added, the eBay [customs tags](https://markojs.co
     <@item>Time</@item>
     <@item>Distance</@item>
 </ebay-menu>
-```
-
-On Marko v3, remember to include the component's resources in your `browser.json` file.
-
-#### _browser.json_
-
-```js
-{
-    "dependencies": [
-        "@ebay/ebayui-core/ebay-menu"
-    ]
-}
 ```
 
 ### Attributes
