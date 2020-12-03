@@ -4,6 +4,5 @@ static var ignoredAttributes = [
     "a11yText",
 ];
 
-
-$ var label = input.a11yText ? input.a11yText : "Busy"
+$ var label = input.a11yText ? input.a11yText : "Busy";
 <span ...processHtmlAttributes(input, ignoredAttributes) class=[ "spinner", input.size === "large" && "spinner--large"] aria-label=label role="img"></span>
