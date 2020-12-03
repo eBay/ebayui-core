@@ -2,6 +2,13 @@
     "@size": {
       "enum": ["small", "large"]
     },
-    "@a11y-text": "string"
+    "@a11y-text": "string",
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@role": "never"
 }
   
