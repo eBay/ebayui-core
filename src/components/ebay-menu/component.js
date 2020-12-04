@@ -50,7 +50,8 @@ module.exports = assign({}, menuUtils, {
     },
 
     handleItemKeypress({ key }) {
-        const itemIndex = this.getIndex(this.getEl('menu').children, key, TYPEAHEAD_TIMEOUT_LENGTH);
+        const itemIndex = this.getTypeaheadIndex(this.getEl('menu').children, key,
+            this.input.typeaheadTimeoutLength || TYPEAHEAD_TIMEOUT_LENGTH);
 
         if (itemIndex !== -1) {
             this.tabindexPosition = this.rovingTabindex.index = itemIndex;
@@ -121,9 +122,9 @@ module.exports = assign({}, menuUtils, {
 
         scrollKeyPreventer.add(this.contentEl);
 
-        const { getIndex, destroy } = typeahead();
-        this.getIndex = getIndex;
-        this.destroyTypeahead = destroy;
+        const { getIndex: getTypeaheadIndex, destroy: destroyTypeahead } = typeahead();
+        this.getTypeaheadIndex = getTypeaheadIndex;
+        this.destroyTypeahead = destroyTypeahead;
     },
 
     _cleanupMakeup() {
