@@ -10,4 +10,3 @@ Name | Type | Stateful | Required | Description
 --- | --- | ---- | --- | ---
 `size` | String | No | No | size of spinner - can be "small", "large". default is small
 `aria-label` | String | No | Yes | Description for accessibility
-
