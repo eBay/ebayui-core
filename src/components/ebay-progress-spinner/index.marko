@@ -1,10 +1,8 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
-    "a11yText",
     "class",
     "size"
 ];
 
-$ var label = input.a11yText ? input.a11yText : "Busy";
-<span ...processHtmlAttributes(input, ignoredAttributes) class=[ "spinner", input.size === "large" && "spinner--large", input.class] aria-label=label role="img"></span>
+<span ...processHtmlAttributes(input, ignoredAttributes) class=[ "spinner", input.size === "large" && "spinner--large", input.class] role="img"></span>
