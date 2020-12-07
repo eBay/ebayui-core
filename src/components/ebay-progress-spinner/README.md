@@ -1,7 +1,7 @@
 # ebay-progress-spinner
 
 ```marko
-<ebay-progress-spinner size="large" />
+<ebay-progress-spinner size="large" aria-label="busy" />
 ```
 
 ## Attributes
