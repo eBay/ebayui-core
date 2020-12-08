@@ -3,6 +3,7 @@ $ var config = data.config;
 $ var discrete = data.totalSlides >= 1;
 $ var statusId = (discrete && "carousel-status-" + component.id) || (
    data.a11yStatusText || data.a11yHeadingText && component.getElId("carousel"));
+$ console.log(input);
 
 <div ...data.htmlAttributes
     class=data.classes
@@ -62,7 +63,7 @@ $ var statusId = (discrete && "carousel-status-" + component.id) || (
             !data.autoplayInterval &&
                 "carousel__viewport--mask"]>
             <ul
-                class="carousel__list"
+                class=["carousel__list", input.imageTreatment && "carousel__list--image-treatment"]
                 style=(
                     !config.nativeScrolling &&
                         data.offset && {
