@@ -1,72 +1,16 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup, getByText, waitFor } = require('@marko/testing-library');
+const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const { getComponentForEl } = require('marko/components');
 const { pressKey } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
-
 
 use(require('chai-dom'));
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
-
-describe('typeahead functionality', () => {
-    const input = mock.Countries;
-
-    beforeEach(async() => {
-        component = await render(template, input);
-        await fireEvent.click(component.getByRole('button'));
-    });
-    describe('first', () => {
-
-        beforeEach(async() => {
-            component.getByRole('menu').focus();
-            await pressKey(component.getByRole('menu'), { key: 'a', code: 65 });
-            await pressKey(component.getByRole('menu'), { key: 'l', code: 76 });
-            await pressKey(component.getByRole('menu'), { key: 'c', code: 67 });
-        })
-
-        it('shows the correct item in focus when the user types', async() => {
-            
-            // expect(component.getByText('Item text 1 Alcania').hasFocus()).to.equal(true);
-            expect(component.getByText('Item text 1 Alcania')).to.equal(document.activeElement);
-            // await fireEvent.keyDown(component.getByText(input.items[0].renderBody.text), { key: 'd', code: '68' });
-            // await waitFor(async() => {
-            //     expect(component.getByText('Item text 2 Alcdnia')).to.equal(document.activeElement);
-            // })
-        });
-    })
-
-
-    it.skip('shows first element in focus when there is no match', async() => {
-        await fireEvent.click(component.getByRole('button'));
-        await fireEvent.keyDown(component.getByRole('button'), { key: 'z', code: '90' });
-
-        expect(component.getByText('Item text 0 Albania')).to.equal(getByText(document.activeElement,
-            'Item text 0 Albania'));
-    });
-
-    it.skip('restarts the search from the beginning after it waits', async() => {
-        await fireEvent.click(component.getByRole('button'));
-        await fireEvent.keyDown(component.getByRole('button'), { key: 'a', code: '65' });
-        await fireEvent.keyDown(component.getByRole('button'), { key: 'l', code: '76' });
-        await fireEvent.keyDown(component.getByRole('button'), { key: 'b', code: '66' });
-        // wait here
-        // setTimeout(() => {}, 100);
-        await waitFor(async() => {
-            await fireEvent.keyDown(component.getByRole('button'), { key: 'a', code: '65' });
-            await fireEvent.keyDown(component.getByRole('button'), { key: 'l', code: '76' });
-            await fireEvent.keyDown(component.getByRole('button'), { key: 'c', code: '67' });
-            // press next keys
-            // expect to be equal to these set of keys
-            expect(component.getByText('Item text 2 Alcdnia')).to.equal(document.activeElement);
-         }, { timeout: 1500 });
-        // console.log(document.activeElement.innerHTML);
-    });
-});
 
 describe('given the menu is in the default state', () => {
     const input = mock.Basic_2Items;

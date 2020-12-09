@@ -31,18 +31,11 @@ exports.Fake_2Items = assign({}, exports.Basic_2Items, {
     }))
 });
 
-function getCountry(num) {
-    if (num === 0) {
-        return 'Albania';
-    } else if (num === 1) {
-        return 'Alcania';
-    }
-    return 'Alcdnia';
-}
+const countries = ['Albania', 'Alcania', 'Alcdnia'];
 
 exports.Countries = assign({}, exports.Basic_2Items, {
     items: getNItems(3, i => ({
-        value: `item ${i} ${getCountry(i)}`,
-        renderBody: createRenderBody(`Item text ${i} ${getCountry(i)}`)
+        value: `item ${i} ${countries[i]}`,
+        renderBody: createRenderBody(`Item text ${i} ${countries[i]}`)
     }))
 });
