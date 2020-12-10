@@ -7,6 +7,7 @@ static var ignoredAttributes = [
     "autocomplete",
     "options",
     "roledescription",
+    "floatingLabel",
     "listSelection"
 ];
 
@@ -23,12 +24,23 @@ $ {
 }
 
 $ var hasButton = !!input.button;
+$ var id = input.id || component.getElId("input")
 <span
-    class:no-update=["combobox", input.class]
+    class:no-update=["combobox", input.floatingLabel && "floating-label", input.class]
     style=input.style
     on-activeDescendantChange("handleActiveDescendantChange")
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")>
+    <if(input.floatingLabel)>
+        <label
+            for=id
+            class=[
+                "floating-label__label",
+                input.disabled && "floating-label__label--disabled"
+            ]>
+            ${input.floatingLabel}
+        </label>
+    </if>
     <span class=[
         "combobox__control",
         hasButton && "combobox__control--actionable",
@@ -41,7 +53,7 @@ $ var hasButton = !!input.button;
         <input
             ...processHtmlAttributes(
                 Object.assign(input, {
-                    id: input.id || component.getElId("input")
+                    id: id
                 }),
                 ignoredAttributes
             )
