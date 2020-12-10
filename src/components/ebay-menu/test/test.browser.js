@@ -29,20 +29,15 @@ describe('typeahead functionality', () => {
         });
 
         it('shows the correct item in focus when the user types', async() => {
-            await waitFor(() => {
-                expect(component.getByText(secondItemText).parentElement.getAttribute('tabindex')).to.equal('0');
-            });
+            expect(component.getByText(secondItemText).parentElement.getAttribute('tabindex')).to.equal('0');
             await fireEvent.keyPress(component.getByText(secondItemText), { key: 'd', code: 68 });
-            await waitFor(async() => {
-                expect(component.getByText(thirdItemText).parentElement.getAttribute('tabindex')).to.equal('0');
-            });
+            expect(component.getByText(thirdItemText).parentElement.getAttribute('tabindex')).to.equal('0');
         });
     });
 
     it('shows first element in focus when there is no match', async() => {
         await fireEvent.click(component.getByText(firstItemText));
         await fireEvent.keyPress(component.getByText(firstItemText), { key: 'z', code: 90 });
-
         expect(component.getByText(firstItemText).parentElement.getAttribute('tabindex')).to.equal('0');
     });
 
@@ -51,7 +46,7 @@ describe('typeahead functionality', () => {
         await fireEvent.keyPress(component.getByText(firstItemText), { key: 'a', code: 65 });
         await fireEvent.keyPress(component.getByText(firstItemText), { key: 'l', code: 76 });
         await fireEvent.keyPress(component.getByText(firstItemText), { key: 'b', code: 66 });
-        setTimeout(() => {}, 100);
+        await new Promise(resolve => setTimeout(resolve, 100));
         await waitFor(async() => {
             await fireEvent.keyPress(component.getByText(firstItemText), { key: 'a', code: 65 });
             await fireEvent.keyPress(component.getByText(firstItemText), { key: 'l', code: 76 });
