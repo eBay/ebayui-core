@@ -1,14 +1,15 @@
-# ebay-textbox
+# ebay-legacy-floating-textbox
 
-## ebay-textbox Usage
+## ebay-legacy-floating-textbox Usage
 
-Default input textbox:
+This is used to show the legacy version of the `ebay-textbox` with underline and floating label.
+This component **deprecated** and will be removed in the near future.
 
 ```marko
 <ebay-legacy-floating-textbox />
 ```
 
-## ebay-textbox Attributes
+## ebay-legacy-floating-textbox Attributes
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
@@ -16,7 +17,7 @@ Name | Type | Stateful | Required | Description
 `fluid` | Boolean | No | No |
 `invalid` | Boolean | No | No | indicates a field-level error with red border if true
 
-## ebay-textbox Events
+## ebay-legacy-floating-textbox Events
 
 Event | Data | Description
 --- | --- | ---
