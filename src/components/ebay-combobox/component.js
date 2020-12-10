@@ -1,5 +1,6 @@
 const find = require('core-js-pure/features/array/find');
 const ActiveDescendant = require('makeup-active-descendant');
+const FloatingLabel = require('makeup-floating-label');
 const Expander = require('makeup-expander');
 const elementScroll = require('../../common/element-scroll');
 const eventUtils = require('../../common/event-utils');
@@ -135,6 +136,10 @@ module.exports = {
         this._setSelectedText(text);
     },
 
+    handleFloatingLabelInit() {
+        this._emitComboboxEvent('floating-label-init');
+    },
+
     onInput(input) {
         this.autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
         this.listSelection = input.listSelection === 'manual' ? 'manual' : 'automatic';
@@ -189,6 +194,23 @@ module.exports = {
                 expandedClass: 'combobox--expanded',
                 simulateSpacebarClick: true
             });
+        }
+        // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
+        // It probably makes more sense to just move this functionality into Marko though.
+        if (this.input.floatingLabel) {
+            if (this._floatingLabel) {
+                this._floatingLabel.refresh();
+                this.handleFloatingLabelInit();
+            } else if (document.readyState === 'complete') {
+                if (this.el) {
+                    this._floatingLabel = new FloatingLabel(this.el);
+                    this.handleFloatingLabelInit();
+                }
+            } else {
+                this
+                    .subscribeTo(window)
+                    .once('load', this._setupMakeup.bind(this));
+            }
         }
     },
 

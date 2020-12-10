@@ -6,6 +6,7 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
+  "@floating-label": "string",
   "@borderless": "boolean",
   "@autocomplete": "string",
   "@list-selection": {
