@@ -23,13 +23,13 @@ $ var hasIcon = (input.prefixIcon || isPostfix);
 $ var displayIcon = Boolean(!input.multiline && hasIcon);
 $ var id = input.id || component.getElId("textbox");
 $ var defaultTag = input.fluid ? "div" : "span";
-<${input.floatingLabel && defaultTag} class="floating-label">
+<${input.floatingLabel && defaultTag} class="legacy-floating-label">
     <if(input.floatingLabel)>
         <label
             for=id
             class=[
-                "floating-label__label",
-                input.disabled && "floating-label__label--disabled"
+                "legacy-floating-label__label",
+                input.disabled && "legacy-floating-label__label--disabled"
             ]>
             ${input.floatingLabel}
         </label>
@@ -51,6 +51,7 @@ $ var defaultTag = input.fluid ? "div" : "span";
             class=[
                 "textbox__control",
                 input.fluid && "textbox__control--fluid",
+                input.floatingLabel && "legacy-textbox-underline"
             ]
             type=(!input.multiline && (input.type || "text"))
             value=(!input.multiline && input.value)
