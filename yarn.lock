@@ -5571,10 +5571,10 @@ chrome-trace-event@^1.0.2:
   dependencies:
     tslib "^1.9.0"
 
-chromedriver@^85.0.0:
-  version "85.0.0"
-  resolved "https://registry.npmjs.org/chromedriver/-/chromedriver-85.0.0.tgz#5b9b6a184569f5e2b22b45a928bbc66d1c4bb36f"
-  integrity sha512-Noinnkl9gRsfC1EYA5trcOVf9r/P6JJnWf+mU6KZS3xLjV9x/o71VZ+gqRl3oSI4PnTGnqYRISZFQk/teYVTRg==
+chromedriver@^87.0.0:
+  version "87.0.2"
+  resolved "https://registry.npmjs.org/chromedriver/-/chromedriver-87.0.2.tgz#df6040db07aad180707f2442211dbd2ad1575f36"
+  integrity sha512-76JYSx9jt7byVYE+zQf25ISU0Cvla6YY8/0yKR7QtwBqGUkIxyupDIA0juGWDaXu/zis7H7EqzEExQjTnAZ7fQ==
   dependencies:
     "@testim/chrome-version" "^1.0.7"
     axios "^0.19.2"
@@ -5582,6 +5582,7 @@ chromedriver@^85.0.0:
     extract-zip "^2.0.1"
     https-proxy-agent "^5.0.0"
     mkdirp "^1.0.4"
+    proxy-from-env "^1.1.0"
     tcp-port-used "^1.0.1"
 
 ci-info@^1.5.0:
@@ -15074,6 +15075,11 @@ proxy-addr@~2.0.5:
   dependencies:
     forwarded "~0.1.2"
     ipaddr.js "1.9.1"
+
+proxy-from-env@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
+  integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
 
 prr@~1.0.1:
   version "1.0.1"
