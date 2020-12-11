@@ -84,7 +84,7 @@
     "browser-refresh": "^1.7.2",
     "chai": "^4.2.0",
     "chai-dom": "^1.8.1",
-    "chromedriver": "^86.0.0",
+    "chromedriver": "^87.0.0",
     "core-js": "^3.4.8",
     "coveralls": "^3.1.0",
     "css-loader": "^5.0.0",
