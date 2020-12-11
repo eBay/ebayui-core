@@ -1,6 +1,6 @@
 
 module.exports = {
-    handleCollapse(originalEvent) {
+    handleCollapse({ originalEvent }) {
         if (this._expander.isExpanded()) {
             this._expander.collapse();
             this.emit('tooltip-collapse', { originalEvent });
