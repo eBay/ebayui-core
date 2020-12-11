@@ -2,9 +2,11 @@ const assign = require('core-js-pure/features/object/assign');
 const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
+const typeahead = require('makeup-typeahead');
 const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
-const NodeListUtils = require('../../common/nodelist-utils');
+
+const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 
 module.exports = assign({}, menuUtils, {
 
@@ -48,7 +50,8 @@ module.exports = assign({}, menuUtils, {
     },
 
     handleItemKeypress({ key }) {
-        const itemIndex = NodeListUtils.findNodeWithFirstChar(this.getEl('menu').children, key);
+        const itemIndex = this.getTypeaheadIndex(this.getEl('menu').children, key,
+            this.input.typeaheadTimeoutLength || TYPEAHEAD_TIMEOUT_LENGTH);
 
         if (itemIndex !== -1) {
             this.tabindexPosition = this.rovingTabindex.index = itemIndex;
@@ -118,12 +121,19 @@ module.exports = assign({}, menuUtils, {
         });
 
         scrollKeyPreventer.add(this.contentEl);
+
+        const { getIndex: getTypeaheadIndex, destroy: destroyTypeahead } = typeahead();
+        this.getTypeaheadIndex = getTypeaheadIndex;
+        this.destroyTypeahead = destroyTypeahead;
     },
 
     _cleanupMakeup() {
         if (this.rovingTabindex) {
             this.rovingTabindex.destroy();
             scrollKeyPreventer.remove(this.contentEl);
+        }
+        if (this.destroyTypeahead) {
+            this.destroyTypeahead();
         }
     }
 });

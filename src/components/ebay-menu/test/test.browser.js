@@ -1,6 +1,6 @@
 const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
+const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
 const { pressKey } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
@@ -10,6 +10,51 @@ afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
+
+describe('typeahead functionality', () => {
+    const input = mock.Countries;
+    const firstItemText = input.items[0].renderBody.text;
+    const secondItemText = input.items[1].renderBody.text;
+    const thirdItemText = input.items[2].renderBody.text;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+    describe('first', () => {
+        beforeEach(async() => {
+            await fireEvent.click(component.getByText(firstItemText));
+            await fireEvent.keyPress(component.getByText(firstItemText), { key: 'a', code: 65 });
+            await fireEvent.keyPress(component.getByText(firstItemText), { key: 'l', code: 76 });
+            await fireEvent.keyPress(component.getByText(firstItemText), { key: 'c', code: 67 });
+        });
+
+        it('shows the correct item in focus when the user types', async() => {
+            expect(component.getByText(secondItemText).parentElement.getAttribute('tabindex')).to.equal('0');
+            await fireEvent.keyPress(component.getByText(secondItemText), { key: 'd', code: 68 });
+            expect(component.getByText(thirdItemText).parentElement.getAttribute('tabindex')).to.equal('0');
+        });
+    });
+
+    it('shows first element in focus when there is no match', async() => {
+        await fireEvent.click(component.getByText(firstItemText));
+        await fireEvent.keyPress(component.getByText(firstItemText), { key: 'z', code: 90 });
+        expect(component.getByText(firstItemText).parentElement.getAttribute('tabindex')).to.equal('0');
+    });
+
+    it('restarts the search from the beginning after it waits', async() => {
+        await fireEvent.click(component.getByText(firstItemText));
+        await fireEvent.keyPress(component.getByText(firstItemText), { key: 'a', code: 65 });
+        await fireEvent.keyPress(component.getByText(firstItemText), { key: 'l', code: 76 });
+        await fireEvent.keyPress(component.getByText(firstItemText), { key: 'b', code: 66 });
+        await new Promise(resolve => setTimeout(resolve, 100));
+        await waitFor(async() => {
+            await fireEvent.keyPress(component.getByText(firstItemText), { key: 'a', code: 65 });
+            await fireEvent.keyPress(component.getByText(firstItemText), { key: 'l', code: 76 });
+            await fireEvent.keyPress(component.getByText(firstItemText), { key: 'c', code: 67 });
+            expect(component.getByText(secondItemText).parentElement.getAttribute('tabindex')).to.equal('0');
+        }, { timeout: 1500 });
+    });
+});
 
 describe('given the menu is in the default state', () => {
     const input = mock.Basic_2Items;

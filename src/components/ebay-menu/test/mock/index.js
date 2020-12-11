@@ -30,3 +30,12 @@ exports.Fake_2Items = assign({}, exports.Basic_2Items, {
         renderBody: createRenderBody(`Item text ${i}`)
     }))
 });
+
+const countries = ['Albania', 'Alcania', 'Alcdnia'];
+
+exports.Countries = assign({}, exports.Basic_2Items, {
+    items: getNItems(3, i => ({
+        value: `item ${i} ${countries[i]}`,
+        renderBody: createRenderBody(`Item text ${i} ${countries[i]}`)
+    }))
+});

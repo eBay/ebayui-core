@@ -138,6 +138,7 @@
     "makeup-prevent-scroll-keys": "~0.0.4",
     "makeup-roving-tabindex": "~0.3.7",
     "makeup-screenreader-trap": "~0.2.1",
+    "makeup-typeahead": "^0.0.2",
     "nodelist-foreach-polyfill": "^1.2.0"
   },
   "publishConfig": {
