@@ -10,11 +10,14 @@ static var ignoredAttributes = [
     "a11yRoleDescription",
     "prefixClass",
     "title",
-    "footer"
+    "footer",
+    "type",
+    "mainRoot"
 ];
 
 $ var status = input.status;
 $ var prefixClass = input.prefixClass;
+$ debugger;
 <${input.root || "section"}
     aria-labelledby:scoped="status"
     class=[prefixClass, input.class]
