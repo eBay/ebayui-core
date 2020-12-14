@@ -12,6 +12,7 @@ static var ignoredAttributes = ["_name", "noSkinClasses", "_themes", "toJSON"];
 $ var noTitle = input.a11yVariant === "label";
 $ input.toJSON = noop;
 $ var lookup = isBrowser ? browserLookup : out.global;
+$ debugger;
 $ {
     var a11yAttributes = input.a11yText
         ? { role: "img" }

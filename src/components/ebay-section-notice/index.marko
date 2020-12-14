@@ -1,3 +1,5 @@
+$ debugger;
+
 <ebay-notice-base
     ...input
     role="region"
@@ -5,4 +7,5 @@
     main-root="span"
     a11yRoleDescription=(input.a11yRoleDescription || "Notice")
     class=[input.status && `section-notice--${input.status}`, input.class]
+    a11y-text=input.a11yText
     />
