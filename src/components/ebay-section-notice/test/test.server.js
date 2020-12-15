@@ -9,7 +9,7 @@ describe('section-notice', () => {
     it('renders with status', async() => {
         const input = mock.Section_Info;
         const { getAllByLabelText, getByText } = await render(template, input);
-        const status = getAllByLabelText(input.a11yText)[1].parentElement;
+        const status = getAllByLabelText(input.a11yText)[0].parentElement;
         expect(status).has.class('section-notice__header');
 
         const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);

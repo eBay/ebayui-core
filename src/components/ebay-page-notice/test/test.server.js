@@ -10,7 +10,7 @@ describe('page-notice', () => {
     it('renders with defaults', async() => {
         const input = mock.Page;
         const { getAllByLabelText, getByText } = await render(template, input);
-        const status = getAllByLabelText(input.a11yText)[1].parentElement;
+        const status = getAllByLabelText(input.a11yText)[0].parentElement;
         expect(status).has.class('page-notice__header');
 
         const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
@@ -31,7 +31,7 @@ describe('page-notice', () => {
     it('renders with custom status type', async() => {
         const input = mock.Page_Custom_Status;
         const { getAllByLabelText } = await render(template, input);
-        const status = getAllByLabelText(input.a11yText)[1].parentElement;
+        const status = getAllByLabelText(input.a11yText)[0].parentElement;
         const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
         expect(containerUsingLabel).has.class(`page-notice--${input.status}`);
     });
@@ -59,7 +59,7 @@ describe('page-notice', () => {
         const content = getByText(input.renderBody.text);
         expect(content).has.class('page-notice__main');
         expect(content.parentElement).has.class('page-notice');
-        const status = getAllByLabelText(input.a11yText)[1].parentElement;
+        const status = getAllByLabelText(input.a11yText)[0].parentElement;
 
         const containerUsingLabel = status.closest(`[aria-labelledBy="${status.id}"]`);
         expect(containerUsingLabel).has.class('page-notice--celebration');
