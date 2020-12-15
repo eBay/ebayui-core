@@ -15,7 +15,7 @@
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`index` | String | Yes | No | 0-based index of selected tab tab and panel
+`selectedIndex` | String | Yes | No | 0-based index of selected tab tab and panel
 
 > *Note:* When using fake tabs there is no `preventDefault` applied, and therefore the link in the tab tab will work as a normal and navigate to the URL provided in the `href`.
 
@@ -30,7 +30,7 @@ Name | Type | Stateful | Required | Description
 ## @tab Attributes
 
 Name | Type | Stateful | Required | Description
---- | --- | --- | ---
+--- | --- | --- | --- | ---
 `href` | String | No | Yes | The link to take the user to for each tab
 
 ## Body
