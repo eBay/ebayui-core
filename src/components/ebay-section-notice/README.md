@@ -30,5 +30,6 @@ Tag | Required | Description
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `status`  | String | No | No | "attention"  "confirmation" "information".  The default will render with grey background and no icon
-`a11y-text` | String | No | Yes | adding description for the notice for a11y users
+`a11y-text` | String | No | Yes | the description for the notice icon for a11y users.
+`a11y-role-description` | String | No | Yes | The roledescription to announce the component type for a11y users. Defaults to "Notice".
 `icon` | String | Yes | No | "default" (matches whatever is specified by the "status") or "none"
