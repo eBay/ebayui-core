@@ -1,3 +1,4 @@
+const path = require('path');
 const { BrowserJSONPlugin } = require('webpack-plugin-browser-json');
 const markoCompiler = require("marko/compiler")
 const { getDSFlags } = require('../src/common/ds-util');

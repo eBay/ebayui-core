@@ -1,8 +1,10 @@
+import path from 'path';
 import { configure, storiesOf, addParameters } from "@storybook/marko";
 import { withReadme } from "storybook-readme";
 
 configure(() => {
   addParameters({
+    layout: 'padding',
     options: {
       theme: {}// this is just a workaround for addon-readme
     },
@@ -27,18 +29,28 @@ configure(() => {
     /\/examples\/.*\/template\.marko$/
   );
   requireExample.keys().reduce((storiesByTag, file) => {
-    const [, tag, title] = /([^\/]+)\/examples\/\d+-([^\/]+)/.exec(file);
+    const [, tag, group, title] = /([^\/]+)\/examples\/(?:(?:\d+-)?([^\/]+)\/)?\d+-([^\/]+)/.exec(file);
     const mod = requireExample(file);
     const component = mod.default || mod;
+    const fulltag = group ? `${tag}/${group}` : tag
+    console.log(mod.Component, mod.meta)
 
-    if (!hiddenStories.includes(tag)) {
-      (storiesByTag[tag] =
-        storiesByTag[tag] ||
-        storiesOf(tag, module).addDecorator(withReadme(docsByTag[tag]))).add(
-          title,
-          () => ({ component })
+    if (!hiddenStories.includes(fulltag)) {
+      (storiesByTag[fulltag] =
+        storiesByTag[fulltag] ||
+        storiesOf(fulltag, module)
+          .addDecorator(withReadme(docsByTag[tag]))
+          .addParameters({ source: file })
+          )
+          .add(
+            title,
+            () => ({ component })
         );
     }
     return storiesByTag;
   }, {});
 }, module);
+
+export const parameters = {
+  layout: 'centered',
+};
