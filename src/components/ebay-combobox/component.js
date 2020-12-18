@@ -58,9 +58,11 @@ module.exports = {
     },
 
     handleComboboxClick(e) {
-        if (e.target === document.activeElement && this.expander && !this.isExpanded()) {
-            this.expander.expand();
-        }
+        // if (!this.input.readonly) {
+            if (e.target === document.activeElement && this.expander && !this.isExpanded()) {
+                this.expander.expand();
+            }
+        // }
     },
 
     handleComboboxKeyDown(originalEvent) {
@@ -182,7 +184,6 @@ module.exports = {
             this.expander = new Expander(this.el, {
                 autoCollapse: true,
                 expandOnFocus: true,
-                expandOnClick: this.input.readonly && !this.input.disabled,
                 collapseOnFocusOut: !this.input.readonly && !this.input.button,
                 contentSelector: '[role="listbox"]',
                 hostSelector: '[role="combobox"]',
