@@ -58,11 +58,9 @@ module.exports = {
     },
 
     handleComboboxClick(e) {
-        // if (!this.input.readonly) {
-            if (e.target === document.activeElement && this.expander && !this.isExpanded()) {
-                this.expander.expand();
-            }
-        // }
+        if (e.target === document.activeElement && this.expander && !this.isExpanded()) {
+            this.expander.expand();
+        }
     },
 
     handleComboboxKeyDown(originalEvent) {
