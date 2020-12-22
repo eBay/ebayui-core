@@ -1,29 +1,22 @@
 const fs = require('fs');
 const path = require('path');
-// const myFilePath = '../src/components/ebay-badge/README.md';
 const parentDir = '../src/components/';
 const versionsPath = '../ds-versions.json';
 
 async function walkDirs() {
     fs.promises.readdir(path.resolve(__dirname, parentDir)).then(async(items) => {
-        // eslint-disable-next-line compat/compat
         const versionsRaw = await fs.promises.readFile(path.resolve(__dirname, versionsPath), 'utf-8');
-        // console.log(typeof versionsRaw);
         const versions = JSON.parse(versionsRaw);
-        // console.log(versions);
-        // console.log(typeof versions);
+        // eslint-disable-next-line compat/compat
         await Promise.all(items.map(async(item) => {
             const itemPath = path.resolve(__dirname, path.join(parentDir, item));
             const stats = await fs.promises.stat(itemPath);
             if (stats.isDirectory() && !itemPath.includes('components/components')) {
                 const key = itemPath.split('/')[itemPath.split('/').length - 1];
-                // console.log(key)
                 const value = versions[key.split('-').slice(1).join('-')];
-                // console.log(value);
                 // get value from json
                 if (value !== undefined) {
                     const readmePath = path.resolve(__dirname, path.join(itemPath, '/README.md'));
-                    // console.log(readmePath);
                     await addVersionAndWrite(readmePath, value);
                 } else {
                     // eslint-disable-next-line no-console
@@ -41,10 +34,9 @@ async function readFile(readmePath) {
 async function addVersionAndWrite(myFilePath, newVersion) {
     const regex = /\b v*/;
     const preContent = await readFile(myFilePath);
-    debugger;
     const lines = preContent.split('\n');
-    // eslint-disable-next-line eqeqeq
     let finalFirstLine;
+    // eslint-disable-next-line eqeqeq
     if (lines[0].match(regex) == null) {
         finalFirstLine = lines[0].concat(` v${newVersion}`);
     } else {
