@@ -1,4 +1,4 @@
-# ebay-switch
+# ebay-switch v1.2.0
 
 ## ebay-switch Usage
 

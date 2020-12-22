@@ -1,4 +1,4 @@
-# ebay-checkbox
+# ebay-checkbox v1.2.0
 
 ## ebay-checkbox Usage
 

@@ -1,4 +1,4 @@
-# ebay-listbox-button
+# ebay-listbox-button v1.1.0
 
 **Note:** In previous versions of eBayUI-core this component was named `ebay-listbox`. The old naming will continue to work and an automated migration will be made available in the Marko 4 version of eBayUI-core.
 

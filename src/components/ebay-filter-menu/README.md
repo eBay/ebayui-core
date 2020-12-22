@@ -1,4 +1,4 @@
-# ebay-filter-menu
+# ebay-filter-menu v1.1.0
 
 The `ebay-filter-menu` component is used as a checkbox menu specificially styled for filtering actions. Generally it is coupled with the `ebay-filter-menu-button` to create a selectable set of items by which to filter.
 

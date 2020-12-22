@@ -1,4 +1,4 @@
-# ebay-tabs
+# ebay-tabs v2.1.0
 
 ## ebay-tabs Usage
 

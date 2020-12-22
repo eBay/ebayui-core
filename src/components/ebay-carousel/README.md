@@ -1,4 +1,4 @@
-# ebay-carousel
+# ebay-carousel v1.1.0
 
 ## ebay-carousel Usage
 

@@ -1,4 +1,4 @@
-# ebay-panel-dialog
+# ebay-panel-dialog v2.0.0
 
 ```marko
 <ebay-panel-dialog open a11y-close-text="Close Dialog">

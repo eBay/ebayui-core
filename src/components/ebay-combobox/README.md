@@ -1,4 +1,4 @@
-# ebay-combobox
+# ebay-combobox v2.0.0
 
 The `<ebay-combobox>` is a combination of a text `<input>`, and a listbox (`aria-role="listbox"`). It supports both written text by the user, as well as text selected from the listbox options.
 

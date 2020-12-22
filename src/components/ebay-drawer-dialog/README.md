@@ -1,4 +1,4 @@
-# ebay-drawer-dialog
+# ebay-drawer-dialog v1.2.0
 
 ```marko
 <ebay-drawer-dialog open a11y-close-text="Close Drawer">

@@ -1,4 +1,4 @@
-# ebay-{name}-icon
+# ebay-{name}-icon v1.3.0
 
 ## ebay-{name}-icon Usage
 

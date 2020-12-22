@@ -1,4 +1,4 @@
-# ebay-toast-dialog
+# ebay-toast-dialog v2.1.0
 
 ```marko
 <ebay-toast-dialog open a11y-close-text="Close Toast">

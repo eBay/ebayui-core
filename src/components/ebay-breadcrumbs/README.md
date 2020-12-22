@@ -1,4 +1,4 @@
-# ebay-breadcrumbs
+# ebay-breadcrumbs v1.2.0
 
 ## ebay-breadcrumbs Usage
 

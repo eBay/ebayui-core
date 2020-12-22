@@ -1,4 +1,4 @@
-# ebay-stepper
+# ebay-stepper v2.1.0
 
 ## ebay-stepper Example
 

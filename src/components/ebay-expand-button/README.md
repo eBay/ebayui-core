@@ -1,4 +1,4 @@
-# ebay-expand-button
+# ebay-expand-button v1.1.0
 
 ## ebay-expand-button Usage
 

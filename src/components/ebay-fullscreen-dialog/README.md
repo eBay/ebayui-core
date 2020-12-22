@@ -1,4 +1,4 @@
-# ebay-fullscreen-dialog
+# ebay-fullscreen-dialog v2.0.0
 
 ```marko
 <ebay-fullscreen-dialog open a11y-close-text="Close Dialog">

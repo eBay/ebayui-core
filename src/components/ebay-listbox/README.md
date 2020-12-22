@@ -1,4 +1,4 @@
-# ebay-listbox
+# ebay-listbox v1.1.0
 
 ## ebay-listbox Tag
 

@@ -1,4 +1,4 @@
-# ebay-button
+# ebay-button v1.1.0
 
 ## ebay-button Usage
 

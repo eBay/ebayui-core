@@ -1,4 +1,4 @@
-# ebay-details
+# ebay-details v1.2.0
 
 ```marko
 <ebay-details open text="Show me the details">

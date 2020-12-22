@@ -1,4 +1,4 @@
-# ebay-section-title
+# ebay-section-title v1.1.0
 
 ## ebay-section-title Usage
 

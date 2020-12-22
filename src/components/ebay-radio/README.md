@@ -1,4 +1,4 @@
-# ebay-radio
+# ebay-radio v1.2.0
 
 ## ebay-radio Usage
 

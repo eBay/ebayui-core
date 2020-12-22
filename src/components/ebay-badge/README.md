@@ -1,4 +1,4 @@
-# ebay-badge
+# ebay-badge v1.2.0
 
 ## ebay-badge Usage
 

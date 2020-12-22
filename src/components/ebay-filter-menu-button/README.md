@@ -1,4 +1,4 @@
-# ebay-filter-menu-button
+# ebay-filter-menu-button v1.1.0
 
 **Note:** In previous versions of eBayUI-core this component was named `ebay-menu`. The old naming will continue to work and an automated migration will be made available in the Marko 4 version of eBayUI-core.
 

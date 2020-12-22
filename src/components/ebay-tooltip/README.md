@@ -1,4 +1,4 @@
-# ebay-tooltip
+# ebay-tooltip v1.0.0
 
 ## ebay-tooltip Example
 

@@ -1,4 +1,4 @@
-# ebay-window-notice
+# ebay-window-notice v1.0.0
 
 The `<ebay-window-notice>` is a tag used to create a custom-designed notice element. The notice can be single or multi-line but each line should be wrapped inside a `<p>` tag.
 

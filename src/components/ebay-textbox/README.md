@@ -1,4 +1,4 @@
-# ebay-textbox
+# ebay-textbox v1.1.0
 
 ## ebay-textbox Usage
 

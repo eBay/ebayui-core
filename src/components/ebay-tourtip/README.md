@@ -1,4 +1,4 @@
-# ebay-tourtip
+# ebay-tourtip v1.0.0
 
 ## ebay-tourtip Example
 

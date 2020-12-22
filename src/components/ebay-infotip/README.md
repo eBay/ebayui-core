@@ -1,4 +1,4 @@
-# ebay-infotip
+# ebay-infotip v1.0.0
 
 ## ebay-infotip Example
 

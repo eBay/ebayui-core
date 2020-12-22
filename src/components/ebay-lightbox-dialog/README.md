@@ -1,4 +1,4 @@
-# ebay-lightbox-dialog
+# ebay-lightbox-dialog v2.0.0
 
 ```marko
 <ebay-lightbox-dialog open a11y-close-text="Close Dialog">

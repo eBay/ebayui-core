@@ -1,4 +1,4 @@
-# ebay-cta-button
+# ebay-cta-button v1.1.0
 
 ## ebay-cta-button Usage
 

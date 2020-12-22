@@ -1,4 +1,4 @@
-# ebay-select
+# ebay-select v1.1.0
 
 _**For Mobile only**_
 
