@@ -1,11 +1,4 @@
-<h1 style="display: flex; justify-content: space-between; align-items: center;">
-    <span>
-        ebay-combobox-readonly
-    </span>
-    <span style="font-weight: normal; font-size: medium; margin-bottom: -15px;">
-        
-    </span>
-</h1>
+# ebay-combobox-readonly
 
 _**For Desktop only**_
 
