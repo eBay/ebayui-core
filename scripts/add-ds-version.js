@@ -32,18 +32,32 @@ async function readFile(readmePath) {
 }
 
 async function addVersionAndWrite(myFilePath, newVersion) {
-    const regex = /\b v*/;
+    const h1Regex = /\<h1/;
     const preContent = await readFile(myFilePath);
     const lines = preContent.split('\n');
-    let finalFirstLine;
-    // eslint-disable-next-line eqeqeq
-    if (lines[0].match(regex) == null) {
-        finalFirstLine = lines[0].concat(` v${newVersion}`);
+    let finalAdditions = '';
+    if (lines[0].match(h1Regex)) {
+        lines[5] = `        DS v${newVersion}`;
     } else {
-        finalFirstLine = lines[0].slice(0, lines[0].match(regex).index).concat(` v${newVersion}`);
+        const componentTitle = lines[0].split(' ')[1];
+        finalAdditions =
+`<h1 style='display: flex; justify-content: space-between; align-items: center;'>
+    <span>
+        ${componentTitle}
+    </span>
+    <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
+        DS v${newVersion}
+    </span>
+</h1>\n`;
     }
-    lines[0] = finalFirstLine;
-    await fs.promises.writeFile(path.resolve(__dirname, myFilePath), lines.join('\n'), 'utf-8');
+
+    let finalFile;
+    if (finalAdditions !== '') {
+        finalFile = finalAdditions.concat(lines.slice(1).join('\n'));
+    } else {
+        finalFile = lines.join('\n');
+    }
+    await fs.promises.writeFile(path.resolve(__dirname, myFilePath), finalFile, 'utf-8');
 }
 
 async function run() {
