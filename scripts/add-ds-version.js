@@ -8,7 +8,7 @@ async function walkDirs() {
         const versionsRaw = await fs.promises.readFile(path.resolve(__dirname, versionsPath), 'utf-8');
         const versions = JSON.parse(versionsRaw);
         // eslint-disable-next-line compat/compat
-        await Promise.all(items.map(async(item) => {
+        items.forEach(async(item) => {
             const itemPath = path.resolve(__dirname, path.join(parentDir, item));
             const stats = await fs.promises.stat(itemPath);
             if (stats.isDirectory() && !itemPath.includes('components/components')) {
@@ -23,7 +23,7 @@ async function walkDirs() {
                     console.log('not in ds-versions.json: ', key);
                 }
             }
-        }));
+        });
     });
 }
 
