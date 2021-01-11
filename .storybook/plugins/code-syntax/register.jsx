@@ -5,10 +5,10 @@ import { useParameter } from "@storybook/api";
 
 const Content = () => {
   const results = useParameter("source", ''); // story's parameter being retrieved here
-  console.log(results);
+  const str = results.renderToString ? results.renderToString() : '';
   return (
     <div>
-        {results}
+        {str}
     </div>
   );
 };

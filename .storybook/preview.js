@@ -1,4 +1,3 @@
-import path from 'path';
 import { configure, storiesOf, addParameters } from "@storybook/marko";
 import { withReadme } from "storybook-readme";
 
@@ -33,14 +32,13 @@ configure(() => {
     const mod = requireExample(file);
     const component = mod.default || mod;
     const fulltag = group ? `${tag}/${group}` : tag
-    console.log(mod.Component, mod.meta)
 
     if (!hiddenStories.includes(fulltag)) {
       (storiesByTag[fulltag] =
         storiesByTag[fulltag] ||
         storiesOf(fulltag, module)
+          // .addParameters({ source:  })
           .addDecorator(withReadme(docsByTag[tag]))
-          .addParameters({ source: file })
           )
           .add(
             title,

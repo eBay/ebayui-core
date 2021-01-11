@@ -6,7 +6,7 @@ module.exports = {
     ],
     addons: [
         'storybook-readme',
-        './plugins/code-syntax/register.jsx',
+        // './plugins/code-syntax/register.jsx', Reenable once code-syntax works
         './plugins/theme-switcher/register.jsx'
     ],
 };
