@@ -182,7 +182,6 @@ module.exports = {
             this.expander = new Expander(this.el, {
                 autoCollapse: true,
                 expandOnFocus: true,
-                expandOnClick: this.input.readonly && !this.input.disabled,
                 collapseOnFocusOut: !this.input.readonly && !this.input.button,
                 contentSelector: '[role="listbox"]',
                 hostSelector: '[role="combobox"]',
