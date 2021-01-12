@@ -1,9 +1,9 @@
 
 module.exports = {
-    handleCollapse() {
+    handleCollapse({ originalEvent }) {
         if (this._expander.isExpanded()) {
             this._expander.collapse();
-            this.emit('collapse');
+            this.emit('collapse', { originalEvent });
         }
     },
 

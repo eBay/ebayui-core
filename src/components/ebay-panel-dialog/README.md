@@ -22,6 +22,7 @@ Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `open` | Boolean | Yes | No | Whether dialog is open.
 `focus` | String | No | No | An id for an element which will receive focus when the dialog opens (defaults to close button).
+`position` | String | No | No | "end" or "start", defaults to "start", the position of the panel, either at the start (left side) of the page, or end (right side) of the page.
 `a11y-close-text` | String | No | Yes | A11y text for close button and mask.
 
 ## Events

@@ -35,7 +35,7 @@ function migratorMarko4(el, context) {
         el.setTagName('ebay-page-notice');
     }
 
-    setAttributeIfPresent(el, context, 'a11y-heading-text', 'attyText');
+    setAttributeIfPresent(el, context, 'a11y-heading-text', 'a11yText');
     const walker = context.createWalker({
         enter(node) {
             if (node.tagName === '@content') {

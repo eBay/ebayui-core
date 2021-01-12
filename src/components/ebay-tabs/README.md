@@ -24,14 +24,14 @@
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`index` | String | Yes | No | 0-based index of selected tab tab and panel
+`selectedIndex` | String | Yes | No | 0-based index of selected tab tab and panel
 `activation` | String | Yes | No | whether to use automatic or manual activation when navigating by keyboard, "auto" (default) / "manual"
 
 ## ebay-tabs Events
 
 Event | Data | Description
 --- | --- | ---
-`select` | `{ index }` |
+`select` | `{ selectedIndex }` |
 
 ## @tab Tag
 
