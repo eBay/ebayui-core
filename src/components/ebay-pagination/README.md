@@ -29,7 +29,7 @@ Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `a11y-previous-text` | String | No | Yes | a11y text for previous arrow button
 `a11y-next-text` | String | No | Yes | a11y text for next arrow button
-`a11y-current-text` | String | No | Yes | Description for the current page (e.g. Results of Page 1)
+`a11y-current-text` | String | Yes | Yes | Description for the current page (e.g. Results of Page 1)
 
 ### ebay-pagination Events
 
