@@ -1,5 +1,7 @@
 import processHtmlAttributes from "../../../common/html-attributes"
 
+static const isBrowser = typeof window !== "undefined";
+
 static var ignoredAttributes = [
     "open",
     "type",
@@ -13,6 +15,7 @@ static var ignoredAttributes = [
     "transitionEl",
     "isModal",
     "ariaLabelledby",
+    "ignoreEscape",
     "buttonPosition",
     "useHiddenProperty"
 ];
@@ -39,7 +42,7 @@ $ var header = input.header;
     aria-live=(!input.isModal && "polite")
     onClick("handleDialogClick")
     onMousedown("handleStartClick")>
-    <if(state.open)>
+    <if(state.open && isBrowser && !input.ignoreEscape)>
         <subscribe to=document on-keydown("handleKeydown")/>
     </if>
     <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>
