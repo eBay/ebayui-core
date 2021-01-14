@@ -1,4 +1,11 @@
-# ebay-menu
+<h1 style='display: flex; justify-content: space-between; align-items: center;'>
+    <span>
+        ebay-menu
+    </span>
+    <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
+        DS v1.1.0
+    </span>
+</h1>
 
 ## ebay-menu Tag
 
@@ -45,6 +52,11 @@ Name | Type | Stateful | Required | Description
 `checked` (radio or checkbox) | Boolean | No | No | whether or not the item is checked
 `badge-number` | Number | No | No | used as the number to be placed in the badge
 `badge-aria-label` | String | No | Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge
+
+### Typeahead functionality
+The menu now has a typeahead feature, so after the focus goes to the menu the user can start typing,
+and focus will move to the item that matches the typed string. The typed string resets to an emtpy string
+after a short time (currently 1300ms but could change in the future).
 
 ## ebay-menu-separator
 

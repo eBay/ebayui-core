@@ -88,7 +88,7 @@ The eBayUI core components are available as the `@ebay/ebayui-core` package on [
 Use npm or yarn to add the package dependency to your project:
 
 ```sh
-yarn add @ebay/ebayui-core
+npm add @ebay/ebayui-core
 ```
 
 ### Custom Tags

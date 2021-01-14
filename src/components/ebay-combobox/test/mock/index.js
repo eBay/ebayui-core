@@ -27,6 +27,16 @@ exports.Combobox_3Options_Manual = {
     }))
 };
 
+exports.Combobox_3OptionsFloatingLabel = {
+    name: 'test-combobox',
+    autocomplete: 'list',
+    floatingLabel: 'Test',
+    options: getNItems(3, i => ({
+        value: i,
+        text: `option ${i}`
+    }))
+};
+
 exports.Combobox_3Options_2Selected = assign({}, exports.Combobox_3Options, {
     value: exports.Combobox_3Options.options[1].text
 });

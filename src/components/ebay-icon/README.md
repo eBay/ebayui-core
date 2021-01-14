@@ -1,4 +1,11 @@
-# ebay-{name}-icon
+<h1 style='display: flex; justify-content: space-between; align-items: center;'>
+    <span>
+        ebay-{name}-icon
+    </span>
+    <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
+        DS v1.3.0
+    </span>
+</h1>
 
 ## ebay-{name}-icon Usage
 

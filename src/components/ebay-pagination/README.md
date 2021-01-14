@@ -1,4 +1,11 @@
-# ebay-pagination
+<h1 style='display: flex; justify-content: space-between; align-items: center;'>
+    <span>
+        ebay-pagination
+    </span>
+    <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
+        DS v1.1.0
+    </span>
+</h1>
 
 The `<ebay-pagination>` is a tag used to create a pagination navigation. It will display up to 9 page links.
 
@@ -7,7 +14,7 @@ The `<ebay-pagination>` is a tag used to create a pagination navigation. It will
 ### ebay-pagination Usage
 
 ```marko
-<ebay-pagination aria-label-prev="Previous page" aria-label-next="Next page" curr-text="Results Pagination - Page 2">
+<ebay-pagination a11y-previous-text="Previous page" a11y-next-text="Next page" a11y-current-text="Results Pagination - Page 2">
     <@item href="#" type="previous" disabled/>
     <@item href="#">item 1</@item>
     <@item href="#" current>item 2</@item>
@@ -22,7 +29,7 @@ Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `a11y-previous-text` | String | No | Yes | a11y text for previous arrow button
 `a11y-next-text` | String | No | Yes | a11y text for next arrow button
-`a11y-current-text` | String | No | Yes | Description for the current page (e.g. Results of Page 1)
+`a11y-current-text` | String | Yes | Yes | Description for the current page (e.g. Results of Page 1)
 
 ### ebay-pagination Events
 
@@ -45,7 +52,6 @@ Event | Data | Description
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `disabled` | Boolean | No | No | Previous/next button is disabled or not
-`href` | String | No | No | for link that looks like a menu-item; omitting the href will switch to a button
 `href` | String | No | No | for link that looks like a menu-item; omitting the href will switch to a button
 `variant` | String | No | No | "button" or "link". Will force an item to be a link if href is omitted. Defaults to button. If not specified, tag type will still be controlled by `href`
 `current` | Boolean | No | No | the current page

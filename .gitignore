@@ -14,4 +14,5 @@ integration/template.marko
 .idea
 /.vscode
 .yarnclean
+yarn.lock
 .env

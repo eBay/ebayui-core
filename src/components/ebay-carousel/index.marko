@@ -62,7 +62,7 @@ $ var statusId = (discrete && "carousel-status-" + component.id) || (
             !data.autoplayInterval &&
                 "carousel__viewport--mask"]>
             <ul
-                class="carousel__list"
+                class=["carousel__list", input.imageTreatment === "matte" && "carousel__list--image-treatment"]
                 style=(
                     !config.nativeScrolling &&
                         data.offset && {

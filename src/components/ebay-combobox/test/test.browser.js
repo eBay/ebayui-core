@@ -534,6 +534,52 @@ describe('when it is rerendered with actionable', () => {
     });
 });
 
+describe('given an input textbox with floating label and no value', () => {
+    const input = mock.Combobox_3OptionsFloatingLabel;
+
+    beforeEach(async() => {
+        component = await render(template, input);
+    });
+
+    it('then component is wrapped into floating label element', () => {
+        expect(component.container.firstElementChild).has.class('floating-label');
+    });
+
+    it('then is showing the label inline', () => {
+        expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
+    });
+
+    describe('when the input is focused', () => {
+        beforeEach(async() => {
+            await fireEvent.focus(component.getByRole('combobox'));
+        });
+
+        it('then it is not showing the label inline', () => {
+            expect(component.getByText(input.floatingLabel)).does.not.have.class('floating-label__label--inline');
+        });
+
+        describe('when the input is blurred', () => {
+            beforeEach(async() => {
+                await fireEvent.blur(component.getByRole('combobox'));
+            });
+
+            it('then is showing the label inline', () => {
+                expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
+            });
+        });
+    });
+
+    describe('when the component is updated/re-rendered', () => {
+        beforeEach(async() => {
+            await component.rerender();
+        });
+
+        it('it should send a textbox floating label init event', () => {
+            expect(component.emitted('floating-label-init')).has.length(1);
+        });
+    });
+});
+
 function isAriaSelected(el) {
     return el.getAttribute('aria-selected') === 'true';
 }

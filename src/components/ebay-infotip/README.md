@@ -1,4 +1,11 @@
-# ebay-infotip
+<h1 style='display: flex; justify-content: space-between; align-items: center;'>
+    <span>
+        ebay-infotip
+    </span>
+    <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
+        DS v1.0.0
+    </span>
+</h1>
 
 ## ebay-infotip Example
 

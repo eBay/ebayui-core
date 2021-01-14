@@ -1,4 +1,11 @@
-# ebay-menu-button
+<h1 style='display: flex; justify-content: space-between; align-items: center;'>
+    <span>
+        ebay-menu-button
+    </span>
+    <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
+        DS v1.1.0
+    </span>
+</h1>
 
 **Note:** In previous versions of eBayUI-core this component was named `ebay-menu`. The old naming will continue to work and an automated migration will be made available in the Marko 4 version of eBayUI-core.
 

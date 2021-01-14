@@ -10,11 +10,11 @@ async function readMarkoJSON() {
 async function run() {
     const preContent = await readMarkoJSON();
 
-    execSync('yarn postpublish');
+    execSync('npm run postpublish');
 
     const postContent = await readMarkoJSON();
     if (preContent !== postContent) {
-        console.error('marko.json file changed, publish files are checked in. Run "yarn postpublish" to fix.');
+        console.error('marko.json file changed, publish files are checked in. Run "npm run postpublish" to fix.');
         process.exit(1);
     }
 }

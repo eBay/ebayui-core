@@ -1,4 +1,11 @@
-# ebay-alert-dialog
+<h1 style='display: flex; justify-content: space-between; align-items: center;'>
+    <span>
+        ebay-alert-dialog
+    </span>
+    <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
+        DS vBETA
+    </span>
+</h1>
 
 Used to force the user to read an import message. The dialog will only be dismissed when the user presses the confirm button. This is the only way to close the dialog.
 

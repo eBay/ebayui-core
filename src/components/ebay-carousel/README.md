@@ -1,4 +1,11 @@
-# ebay-carousel
+<h1 style="display: flex; justify-content: space-between; align-items: center;">
+    <span>
+        ebay-carousel
+    </span>
+    <span style="font-weight: normal; font-size: medium; margin-bottom: -15px;">
+        DS v1.1.0
+    </span>
+</h1>
 
 ## ebay-carousel Usage
 
@@ -23,6 +30,7 @@ Name | Type | Stateful | Required | Description
 `index` | String | Yes | No | 0-based index position
 `items-per-slide` | String | No | No | automatically fit a number of items for each carousel slide and enable slide controls. If set to a whole number, will default to x.1 where x is the whole number set.
 `gap` | String | No | No | override the margin between carousel items in pixels (default: "16")
+`image-treatment` | String | No | No | `none` (default), or `matte`. If "matte", image treatment styles are applied. Default is false.
 
 ### Additional Attributes for when items-per-slide is set
 
