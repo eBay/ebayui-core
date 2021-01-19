@@ -1,0 +1,9 @@
+{
+  "requireRemap": [
+    {
+      "from": "./symbol.js",
+      "to": "./symbol[ds-4].js",
+      "if-flag": "ds-4"
+    }
+  ]
+}

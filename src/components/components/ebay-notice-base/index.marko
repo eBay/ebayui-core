@@ -10,7 +10,9 @@ static var ignoredAttributes = [
     "a11yRoleDescription",
     "prefixClass",
     "title",
-    "footer"
+    "footer",
+    "type",
+    "mainRoot"
 ];
 
 $ var status = input.status;
@@ -27,18 +29,18 @@ $ var prefixClass = input.prefixClass;
             <if(status === "confirmation" || status === "celebration")>
                 <ebay-confirmation-filled-icon
                     a11y-text=input.a11yText
-                    variant="label"
+                    a11y-variant="label"
                     class=input.iconClass/>
             </if>
             <else-if(status === "attention")>
                 <ebay-attention-filled-icon
-                    variant="label"
+                    a11y-variant="label"
                     a11y-text=input.a11yText
                     class=input.iconClass/>
             </else-if>
             <else-if(status === "information")>
                 <ebay-information-filled-icon
-                    variant="label"
+                    a11y-variant="label"
                     a11y-text=input.a11yText
                     class=input.iconClass/>
             </else-if>

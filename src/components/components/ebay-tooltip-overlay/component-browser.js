@@ -1,5 +1,5 @@
 module.exports = {
-    handleCloseButton() {
-        this.emit('overlay-close');
+    handleCloseButton(originalEvent) {
+        this.emit('overlay-close', { originalEvent });
     }
 };
