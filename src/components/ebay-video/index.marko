@@ -1,0 +1,14 @@
+import processHtmlAttributes from "../../common/html-attributes";
+
+
+static var ignoredAttributes = [
+    "url",
+];
+
+$ var isIos = component.isIos();
+
+<video key="video" controls autoplay muted ...processHtmlAttributes(input, ignoredAttributes)>
+    <if (isIos)>
+        <source src=input.url>
+    </if>
+</video>

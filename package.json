@@ -136,6 +136,7 @@
   "dependencies": {
     "@marko-tags/subscribe": "^0.3.2",
     "core-js-pure": "^3.4.1",
+    "dashjs": "^3.2.0",
     "makeup-active-descendant": "0.3.9",
     "makeup-expander": "~0.8.6",
     "makeup-floating-label": "~0.1.2",
