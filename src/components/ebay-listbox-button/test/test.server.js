@@ -46,6 +46,14 @@ describe('listbox', () => {
         expect(getAllByRole('listbox')[0].parentNode).has.class('listbox-button--fluid');
     });
 
+    it('renders truncated layout', async() => {
+        const input = mock.Basic_3Options_truncated;
+        const { getAllByRole, getByRole } = await render(template, input);
+        expect(getAllByRole('button')).has.length(1);
+        expect(getByRole('button')).has.class('expand-btn--truncated');
+        expect(getAllByRole('listbox')[0].parentNode).has.tagName('DIV');
+    });
+
     it('renders with second item selected', async() => {
         const input = mock.Basic_3Options_1Selected;
         const { getAllByRole } = await render(template, input);
