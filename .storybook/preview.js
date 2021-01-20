@@ -1,5 +1,6 @@
 import { configure, storiesOf, addParameters } from "@storybook/marko";
 import { withReadme } from "storybook-readme";
+import { parseFile } from './utils';
 
 configure(() => {
   addParameters({
@@ -28,21 +29,22 @@ configure(() => {
     /\/examples\/.*\/template\.marko$/
   );
   requireExample.keys().reduce((storiesByTag, file) => {
-    const [, tag, group, title] = /([^\/]+)\/examples\/(?:(?:\d+-)?([^\/]+)\/)?\d+-([^\/]+)/.exec(file);
+    const {tag, title, fulltag} = parseFile(file);
+    if (tag.startsWith('ebay-button')) {
+      console.log(tag, title, fulltag)
+    }
     const mod = requireExample(file);
     const component = mod.default || mod;
-    const fulltag = group ? `${tag}/${group}` : tag
 
     if (!hiddenStories.includes(fulltag)) {
       (storiesByTag[fulltag] =
         storiesByTag[fulltag] ||
         storiesOf(fulltag, module)
-          // .addParameters({ source:  })
           .addDecorator(withReadme(docsByTag[tag]))
-          )
-          .add(
-            title,
-            () => ({ component })
+      )
+        .add(
+          title,
+          () => ({ component })
         );
     }
     return storiesByTag;
