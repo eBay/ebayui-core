@@ -3,11 +3,13 @@
         ebay-stepper
     </span>
     <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
-        DS v2.1.0
+        DEPRECATED
     </span>
 </h1>
 
 ## ebay-stepper Example
+
+DEPRECATED: Use `ebay-progress-stepper` instead.
 
 ```marko
 <ebay-stepper>
