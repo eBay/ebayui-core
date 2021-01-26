@@ -15,7 +15,7 @@ static var ignoredAttributes = [
 $ var selectedOption = input.options[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
 
-<${input.truncate ? "div" : "span"}
+<${input.truncate && !input.fluid ? "div" : "span"}
     ...processHtmlAttributes(input, ignoredAttributes)
     key="container"
     class=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
