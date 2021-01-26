@@ -42,6 +42,7 @@ Name | Type | Stateful | Required | Description
 `borderless` | Boolean | No | No | whether button has borders
 `fluid` | Boolean | No | No | whether listbox width is 100%
 `buttonName` | String | No | Yes | used for the `name` attribute of the native `<button>`
+`truncate` | Boolean | No | No | will truncate the text of the button onto a single line, and adds an ellipsis, when the button's text overflows
 
 **Note:** For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 

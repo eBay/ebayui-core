@@ -8,13 +8,14 @@ static var ignoredAttributes = [
     "fluid",
     "invalid",
     "buttonName",
-    "options"
+    "options",
+    "truncate"
 ];
 
 $ var selectedOption = input.options[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
 
-<span
+<${input.truncate && !input.fluid ? "div" : "span"}
     ...processHtmlAttributes(input, ignoredAttributes)
     key="container"
     class=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
@@ -26,7 +27,8 @@ $ var selectedText = selectedOption && selectedOption.text;
             "listbox-button__control",
             "expand-btn",
             "expand-btn--regular",
-            input.borderless && "expand-btn--borderless"
+            input.borderless && "expand-btn--borderless",
+            input.truncate && "expand-btn--truncated"
         ]
         value=selectedText
         type="button"
@@ -49,4 +51,4 @@ $ var selectedText = selectedOption && selectedOption.text;
             <@option ...option selected=(selectedOption === option) />
         </for>
     </ebay-listbox>
-</span>
+</>

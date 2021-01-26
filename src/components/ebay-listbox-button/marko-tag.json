@@ -10,6 +10,7 @@
   "@borderless": "boolean",
   "@fluid": "boolean",
   "@invalid": "boolean",
+  "@truncate": "boolean",
   "@name": "#html-name",
   "@button-name": "#html-name",
   "@disabled": "#html-disabled",
