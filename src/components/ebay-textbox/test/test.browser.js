@@ -18,7 +18,7 @@ describe('given an input textbox', () => {
         component = await render(template, input);
     });
 
-    ['change', 'input', 'focus', 'blur', 'keyDown', 'keyPress', 'keyUp'].forEach(eventName => {
+    ['change', 'input', 'focus', 'blur', 'keyDown', 'keyPress', 'keyUp', 'invalid'].forEach(eventName => {
         describe(`when native event is fired: ${eventName}`, () => {
             beforeEach(async() => {
                 await fireEvent[eventName](component.getByRole('textbox'));
