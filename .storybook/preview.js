@@ -1,6 +1,7 @@
 import { configure, storiesOf, addParameters } from "@storybook/marko";
 import { withReadme } from "storybook-readme";
 import { parseFile } from './utils';
+import './custom-styles.less';
 
 configure(() => {
   addParameters({
