@@ -1,0 +1,80 @@
+import findIndex from 'core-js-pure/features/array/find-index'
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = ["step", "direction", "defaultState", "class"];
+
+static var ignoredStepAttributes = [
+    "badge",
+    "current",
+    "information",
+    "attention",
+    "class"
+];
+
+static var ignoredStepTitleAttributes = ["as"];
+
+$ var direction = input.direction || "row";
+$ var current = findIndex(input.step || [], item => item.current);
+<div
+    class=[
+        "progress-stepper",
+        direction === "column" && "progress-stepper--vertical",
+        input.class
+    ]
+    ...processHtmlAttributes(input, ignoredAttributes)>
+    <div
+        class=[
+            "progress-stepper__items",
+            input.defaultState === "upcoming" &&
+                "progress-stepper__items--upcoming"
+        ]
+        role="list">
+        <for|item, index, list| of=input.step>
+            <if(index > 0)>
+                <hr class="progress-stepper__separator" role="presentation"/>
+            </if>
+            <div
+                class=[
+                    "progress-stepper__item",
+                    item.type === "attention" &&
+                        "progress-stepper__item--attention",
+                    item.type === "information" &&
+                        "progress-stepper__item--information",
+                    item.class
+                ]
+                aria-current=(current === index && "step")
+                role="listitem"
+                ...processHtmlAttributes(item, ignoredStepAttributes)>
+                <span class="progress-stepper__icon">
+                    <if(item.type === "attention")>
+                        <ebay-stepper-attention-icon width="24" height="24"/>
+                    </if>
+                    <else-if(item.type === "information")>
+                        <ebay-stepper-information-icon width="24" height="24"/>
+                    </else-if>
+                    <else-if(
+                        index < current ||
+                        item.type === "complete" ||
+                        input.defaultState === "complete"
+                    )>
+                        <ebay-stepper-confirmation-icon width="24" height="24"/>
+                    </else-if>
+                    <else>
+                        <span role="img">${item.number || index + 1}</span>
+                    </else>
+                </span>
+                <span class="progress-stepper__text">
+                    <if(item.title)>
+                        <${(item.title && item.title.as) || "h4"}
+                        ...processHtmlAttributes(item, ignoredStepTitleAttributes)>
+                            <${item.title}/>
+                        </>
+                    </if>
+                    <p>
+                        <${item.renderBody}/>
+                    </p>
+                </span>
+            </div>
+        </for>
+    </div>
+</div>
