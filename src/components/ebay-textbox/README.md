@@ -41,5 +41,6 @@ Event | Data | Description
 `keydown` | `{ originalEvent, value }` |
 `keypress` | `{ originalEvent, value }` |
 `keyup` | `{ originalEvent, value }` |
+`invalid` | `{ originalEvent, value }` |
 `floating-label-init` | `{ originalEvent: null, value: null }` |
 `button-click` | `{ originalEvent, value }` | Triggers when clicking on postfix-icon-button. Requires button-aria-label to be present in order to attach correctly

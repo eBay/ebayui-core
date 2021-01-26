@@ -1,8 +1,10 @@
 import { configure, storiesOf, addParameters } from "@storybook/marko";
 import { withReadme } from "storybook-readme";
+import { parseFile } from './utils';
 
 configure(() => {
   addParameters({
+    layout: 'padding',
     options: {
       theme: {}// this is just a workaround for addon-readme
     },
@@ -27,14 +29,20 @@ configure(() => {
     /\/examples\/.*\/template\.marko$/
   );
   requireExample.keys().reduce((storiesByTag, file) => {
-    const [, tag, title] = /([^\/]+)\/examples\/\d+-([^\/]+)/.exec(file);
+    const {tag, title, fulltag} = parseFile(file);
+    if (tag.startsWith('ebay-button')) {
+      console.log(tag, title, fulltag)
+    }
     const mod = requireExample(file);
     const component = mod.default || mod;
 
-    if (!hiddenStories.includes(tag)) {
-      (storiesByTag[tag] =
-        storiesByTag[tag] ||
-        storiesOf(tag, module).addDecorator(withReadme(docsByTag[tag]))).add(
+    if (!hiddenStories.includes(fulltag)) {
+      (storiesByTag[fulltag] =
+        storiesByTag[fulltag] ||
+        storiesOf(fulltag, module)
+          .addDecorator(withReadme(docsByTag[tag]))
+      )
+        .add(
           title,
           () => ({ component })
         );
@@ -42,3 +50,7 @@ configure(() => {
     return storiesByTag;
   }, {});
 }, module);
+
+export const parameters = {
+  layout: 'centered',
+};
