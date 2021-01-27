@@ -3,7 +3,7 @@
         ebay-stepper
     </span>
     <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
-        DEPRECATED
+        DS v2.1.0
     </span>
 </h1>
 
