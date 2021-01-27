@@ -66,7 +66,7 @@ $ {
             `${baseClass}--${priority}`
     ]
     data-ebayui=true
-    type=((tag === "button" && input.type) || "button")
+    type=(tag === "button" && (input.type || "button"))
     aria-disabled=(input.partiallyDisabled && "true")>
     $ var hasAriaLabel = Boolean(htmlAttributes["aria-label"]);
     <${!hasAriaLabel ? null : "span"} aria-hidden="true">
