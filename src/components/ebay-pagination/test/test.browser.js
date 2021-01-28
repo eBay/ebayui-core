@@ -30,6 +30,30 @@ describe('given the pagination is rendered', () => {
         thenItCanBeInteractedWith();
     });
 
+    describe('with dots', () => {
+        beforeEach(async() => {
+            input = mock.Links_6Items_No_Selected_Dots;
+            component = await render(template, input);
+        });
+
+        describe('when the dots button is activated', () => {
+            describe('via click', () => {
+                beforeEach(async() => {
+                    await fireEvent.click(component.getByLabelText(input.a11yDotsText));
+                });
+
+                it('then it emits the dots-click event', () => {
+                    const previousEvents = component.emitted('dots-click');
+                    expect(previousEvents).has.length(1);
+
+                    const [[eventArg]] = previousEvents;
+                    expect(eventArg).has.property('originalEvent').instanceOf(Event);
+                    expect(eventArg).has.property('el').instanceOf(HTMLElement);
+                });
+            });
+        });
+    });
+
     function thenItCanBeInteractedWith() {
         describe('when the previous button is activated', () => {
             describe('via click', () => {
@@ -191,14 +215,73 @@ describe('given the pagination is rendered at various sizes', () => {
                 width: 640,
                 expect: [0, 9]
             }]
+        }, {
+            name: 'first item and dots',
+            input: mock.Links_16ItemsDots_1Selected,
+            cases: [{
+                width: 400,
+                expect: [0, 3, 15]
+            }, {
+                width: 540,
+                expect: [0, 5, 15]
+            }, {
+                width: 640,
+                expect: [0, 7, 15]
+            }],
+            dots: true
+        }, {
+            name: 'with the seventh item selected and dots',
+            input: mock.Links_16ItemsDots_7Selected,
+            cases: [{
+                width: 400,
+                expect: [5, 8, 15]
+            }, {
+                width: 440,
+                expect: [5, 9, 15]
+            }, {
+                width: 540,
+                expect: [4, 9, 15]
+            }, {
+                width: 640,
+                expect: [3, 10, 15]
+            }],
+            dots: true
+        }, {
+            name: 'with the 3rd to last item selected and hidden dots',
+            input: mock.Links_16ItemsDots_13Selected,
+            cases: [{
+                width: 400,
+                expect: [11, 16]
+            }, {
+                width: 540,
+                expect: [9, 16]
+            }, {
+                width: 640,
+                expect: [7, 16]
+            }],
+            dots: false
+        }, {
+            name: 'with the last item selected and hidden dots',
+            input: mock.Links_16ItemsDots_15Selected,
+            cases: [{
+                width: 400,
+                expect: [11, 16]
+            }, {
+                width: 540,
+                expect: [9, 16]
+            }, {
+                width: 640,
+                expect: [7, 16]
+            }],
+            dots: false
         }
-    ].forEach(({ name, input, cases }) => {
+    ].forEach(({ name, input, cases, dots }) => {
         describe(name, () => {
             beforeEach(async() => {
                 component = await render(template, input);
             });
 
-            cases.forEach(({ width, expect: [from, to] }) => {
+            cases.forEach(({ width, expect: [from, to, last] }) => {
                 describe(`when it is ${width} wide`, () => {
                     beforeEach(async() => {
                         component.container.style.width = `${width}px`;
@@ -214,11 +297,20 @@ describe('given the pagination is rendered at various sizes', () => {
                             const itemEl = component.getByText(itemData.renderBody.text);
                             const isHidden = Boolean(itemEl.closest('[hidden]'));
                             expect(isHidden).to.equal(
-                                i < from || i >= to,
+                                (i < from || i >= to) && last !== i,
                                 `item ${i} should be ${isHidden ? 'visible' : 'hidden'}`
                             );
                         });
                     });
+                    if (typeof dots === 'boolean') {
+                        it(`should ${dots ? 'show' : 'hide'} the dots`, () => {
+                            const dotsEl = component.getByLabelText(input.a11yDotsText);
+                            const isHidden = Boolean(dotsEl.closest('[hidden]'));
+                            expect(isHidden).to.equal(
+                                !dots,
+                                `dots should be ${isHidden ? 'visible' : 'hidden'}`);
+                        });
+                    }
                 });
             });
         });

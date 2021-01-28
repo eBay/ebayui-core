@@ -30,6 +30,8 @@ Name | Type | Stateful | Required | Description
 `a11y-previous-text` | String | No | Yes | a11y text for previous arrow button
 `a11y-next-text` | String | No | Yes | a11y text for next arrow button
 `a11y-current-text` | String | Yes | Yes | Description for the current page (e.g. Results of Page 1)
+`variant` | String | No | Yes | Either `show-last`, or `show-range`. If `show-last` then will show the last page always and will put `…` between the last visible range and the last page. `…` and the last page will take up two items in the range. `…` will be hidden when the range to the last item is fully visible.
+`a11y-dots-text` | String | No | Yes | a11y text for dots. Only required when `variant` is `show-last`
 
 ### ebay-pagination Events
 
@@ -38,6 +40,7 @@ Event | Data | Description
 `previous` | `{ originalEvent, el }`| clicked previous arrow button
 `next` | `{ originalEvent, el }` | clicked next arrow button
 `select` | `{ originalEvent, el, value }` | page selected clicked
+`dots-click` | `{ originalEvent, el }` | when dots are clicked in `variant="show-last"`
 
 ## @item Tag
 

@@ -8,7 +8,33 @@ exports.Base_0Items = {
     items: []
 };
 
+exports.Base_0Items_Dots = {
+    a11yPreviousText: 'Previous page',
+    a11yNextText: 'Next page',
+    a11yCurrentText: 'Results Pagination - Page 2',
+    a11yDotsText: 'dot dot dot',
+    items: [],
+    variant: 'show-last'
+};
+
 exports.Links_6Items_No_Selected = assign({}, exports.Base_0Items, {
+    items: [].concat(
+        {
+            type: 'previous',
+            href: '#next'
+        },
+        getNItems(6, i => ({
+            href: `#${i}`,
+            renderBody: createRenderBody(`P${i}`)
+        })),
+        {
+            type: 'next',
+            href: '#next'
+        }
+    )
+});
+
+exports.Links_6Items_No_Selected_Dots = assign({}, exports.Base_0Items_Dots, {
     items: [].concat(
         {
             type: 'previous',
@@ -70,6 +96,78 @@ exports.Links_9Items_7Selected = assign({}, exports.Base_0Items, {
         getNItems(9, i => ({
             href: `#${i}`,
             current: i === 7,
+            renderBody: createRenderBody(`P${i}`)
+        })),
+        {
+            type: 'next',
+            href: '#next'
+        }
+    )
+});
+
+exports.Links_16ItemsDots_1Selected = assign({}, exports.Base_0Items_Dots, {
+    items: [].concat(
+        {
+            type: 'previous',
+            href: '#previous'
+        },
+        getNItems(16, i => ({
+            href: `#${i}`,
+            current: i === 1,
+            renderBody: createRenderBody(`P${i}`)
+        })),
+        {
+            type: 'next',
+            href: '#next'
+        }
+    )
+});
+
+exports.Links_16ItemsDots_7Selected = assign({}, exports.Base_0Items_Dots, {
+    items: [].concat(
+        {
+            type: 'previous',
+            href: '#previous'
+        },
+        getNItems(16, i => ({
+            href: `#${i}`,
+            current: i === 7,
+            renderBody: createRenderBody(`P${i}`)
+        })),
+        {
+            type: 'next',
+            href: '#next'
+        }
+    )
+});
+
+exports.Links_16ItemsDots_13Selected = assign({}, exports.Base_0Items_Dots, {
+    items: [].concat(
+        {
+            type: 'previous',
+            href: '#previous'
+        },
+        getNItems(16, i => ({
+            href: `#${i}`,
+            current: i === 13,
+            renderBody: createRenderBody(`P${i}`)
+        })),
+        {
+            type: 'next',
+            href: '#next'
+        }
+    )
+});
+
+exports.Links_16ItemsDots_15Selected = assign({}, exports.Base_0Items_Dots, {
+    items: [].concat(
+        {
+            type: 'previous',
+            href: '#previous'
+        },
+        getNItems(16, i => ({
+            href: `#${i}`,
+            current: i === 15,
             renderBody: createRenderBody(`P${i}`)
         })),
         {
