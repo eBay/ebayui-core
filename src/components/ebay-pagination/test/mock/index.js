@@ -34,23 +34,6 @@ exports.Links_6Items_No_Selected = assign({}, exports.Base_0Items, {
     )
 });
 
-exports.Links_6Items_No_Selected_Dots = assign({}, exports.Base_0Items_Dots, {
-    items: [].concat(
-        {
-            type: 'previous',
-            href: '#next'
-        },
-        getNItems(6, i => ({
-            href: `#${i}`,
-            renderBody: createRenderBody(`P${i}`)
-        })),
-        {
-            type: 'next',
-            href: '#next'
-        }
-    )
-});
-
 exports.Links_9Items_1Selected = assign({}, exports.Base_0Items, {
     items: [].concat(
         {

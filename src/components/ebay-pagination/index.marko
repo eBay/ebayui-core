@@ -55,13 +55,12 @@ $ var range = component._getVisibleRange(items);
         <for|item, i| of=items>
             <if(range.dotsIndex === i)>
                 <li hidden=(range.hideDots)>
-                    <button
+                    <span
                         aria-label=input.a11yDotsText
-                        onClick("handleDotsClick")
                         class=["pagination__item", item.class]
                         >
                         …
-                    </>
+                    </span>
                 </li>
             </if>
             <li hidden=((i < range.start || i > range.end) && range.dotsIndex !== i)>

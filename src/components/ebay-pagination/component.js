@@ -34,13 +34,6 @@ module.exports = {
         }
     },
 
-    handleDotsClick(originalEvent, el) {
-        this.emit('dots-click', {
-            el,
-            originalEvent
-        });
-    },
-
     onCreate() {
         this.state = { maxItems: 0 };
     },

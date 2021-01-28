@@ -40,7 +40,6 @@ Event | Data | Description
 `previous` | `{ originalEvent, el }`| clicked previous arrow button
 `next` | `{ originalEvent, el }` | clicked next arrow button
 `select` | `{ originalEvent, el, value }` | page selected clicked
-`dots-click` | `{ originalEvent, el }` | when dots are clicked in `variant="show-last"`
 
 ## @item Tag
 

@@ -30,30 +30,6 @@ describe('given the pagination is rendered', () => {
         thenItCanBeInteractedWith();
     });
 
-    describe('with dots', () => {
-        beforeEach(async() => {
-            input = mock.Links_6Items_No_Selected_Dots;
-            component = await render(template, input);
-        });
-
-        describe('when the dots button is activated', () => {
-            describe('via click', () => {
-                beforeEach(async() => {
-                    await fireEvent.click(component.getByLabelText(input.a11yDotsText));
-                });
-
-                it('then it emits the dots-click event', () => {
-                    const previousEvents = component.emitted('dots-click');
-                    expect(previousEvents).has.length(1);
-
-                    const [[eventArg]] = previousEvents;
-                    expect(eventArg).has.property('originalEvent').instanceOf(Event);
-                    expect(eventArg).has.property('el').instanceOf(HTMLElement);
-                });
-            });
-        });
-    });
-
     function thenItCanBeInteractedWith() {
         describe('when the previous button is activated', () => {
             describe('via click', () => {
