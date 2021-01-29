@@ -8,14 +8,9 @@ exports.Base_0Items = {
     items: []
 };
 
-exports.Base_0Items_Dots = {
-    a11yPreviousText: 'Previous page',
-    a11yNextText: 'Next page',
-    a11yCurrentText: 'Results Pagination - Page 2',
-    a11yDotsText: 'dot dot dot',
-    items: [],
+exports.Base_0Items_Dots = assign({}, exports.Base_0Items, {
     variant: 'show-last'
-};
+});
 
 exports.Links_6Items_No_Selected = assign({}, exports.Base_0Items, {
     items: [].concat(

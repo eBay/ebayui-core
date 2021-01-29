@@ -14,7 +14,6 @@
   "@variant": {
     "enum": ["show-last", "show-range"]
   },
-  "@a11y-dots-text": "string",
   "@items <item>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {

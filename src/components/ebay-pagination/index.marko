@@ -55,10 +55,7 @@ $ var range = component._getVisibleRange(items);
         <for|item, i| of=items>
             <if(range.dotsIndex === i)>
                 <li hidden=(range.hideDots)>
-                    <span
-                        aria-label=input.a11yDotsText
-                        class=["pagination__item", item.class]
-                        >
+                    <span class=["pagination__item", item.class]>
                         …
                     </span>
                 </li>
