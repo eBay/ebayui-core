@@ -2,13 +2,22 @@ import processHtmlAttributes from "../../common/html-attributes";
 
 
 static var ignoredAttributes = [
-    "url",
+    "src",
+    "cdnPath",
+    "version",
+    "player"
 ];
 
+
+<if (!state.isLoading)>
 $ var isIos = component.isIos();
 
 <video key="video" controls autoplay muted ...processHtmlAttributes(input, ignoredAttributes)>
     <if (isIos)>
-        <source src=input.url>
+        <source src=input.src>
     </if>
 </video>
+</if>
+<else>
+    <ebay-progress-spinner/>
+</else>
