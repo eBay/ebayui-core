@@ -61,7 +61,8 @@ $ var defaultTag = input.fluid ? "div" : "span";
             onChange("handleChange")
             onInput("handleInput")
             onFocus("handleFocus")
-            onBlur("handleBlur")>
+            onBlur("handleBlur")
+            onInvalid("handleInvalid")>
             <if(input.multiline && input.value)>${input.value}</if>
         </>
         <if(displayIcon && input.postfixIcon)>

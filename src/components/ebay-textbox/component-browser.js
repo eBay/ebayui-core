@@ -10,6 +10,7 @@ module.exports = {
     handleFocus: forwardEvent('focus'),
     handleBlur: forwardEvent('blur'),
     handleButtonClick: forwardEvent('button-click'),
+    handleInvalid: forwardEvent('invalid'),
 
     onMount() {
         this._setupMakeup();

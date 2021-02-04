@@ -15,6 +15,15 @@ exports.Basic_3Options_fluid = {
     }))
 };
 
+exports.Basic_3Options_truncated = {
+    name: 'listbox-name',
+    truncate: true,
+    options: getNItems(3, i => ({
+        value: String(i),
+        text: `option ${i}`
+    }))
+};
+
 exports.Basic_3Options = {
     name: 'listbox-name',
     buttonName: 'listbox-button-name',
