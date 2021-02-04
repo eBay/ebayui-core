@@ -1,5 +1,6 @@
 const loader = require('./loader');
 const versions = require('./versions.json');
+const MAX_RETIRES = 3;
 
 module.exports = {
     handleResize() {
@@ -33,28 +34,29 @@ module.exports = {
     loadCDN() {
         this.retryTimes = 0;
         this.state.failed = false;
+        this.state.isLoaded = false;
 
         this._loadCDN();
     },
 
-    async _loadCDN() {
+    _loadCDN() {
         const version = this.input.cdnVersion || versions.dashjs;
-        const cdnUrl = this.input.cdnUrl || `http://cdn.dashjs.org/v${version}/dash.all.min.js`;
-
-        try {
-            await loader(cdnUrl);
+        const cdnUrl = this.input.cdnURL || `http://cdn.dashjs.org/v${version}/dash.all.min.js`;
+        loader(cdnUrl).then(() => {
+            // eslint-disable-next-line no-undef,new-cap
             this.player = dashjs.MediaPlayer().create();
             this.player.initialize(this.getEl('video'), this.input.src, !!this.input.autoplay);
             this.state.isLoaded = true;
-        } catch (e) {
-            clearTimeout(this.retry);
+        }).catch(() => {
+            clearTimeout(this.retryTimeout);
             this.retryTimes += 1;
-            if (this.retryTimes < 3) {
-                this.retry = setTimeout(() => this._loadCDN(cdnUrl), 1000);
+            if (this.retryTimes < MAX_RETIRES) {
+                this.retryTimeout = setTimeout(() => this._loadCDN(cdnUrl), 1000);
             } else {
                 this.state.failed = true;
+                this.state.isLoaded = true;
             }
-        }
+        });
     },
 
     onMount() {

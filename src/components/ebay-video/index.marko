@@ -1,12 +1,14 @@
-style {
-}
-
 import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player"];
 
-<div key="container" class="ebay-video-container"
-    style=({ width:`${input.width}px`, height:`${input.height}px` })>
+<div
+    key="container"
+    class="ebay-video-container"
+    style={
+        width: `${input.width}px`,
+        height: `${input.height}px`
+    }>
     <if(!input.width)>
         <subscribe to=window on-resize("handleResize")/>
     </if>
@@ -20,15 +22,29 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
             <source src=input.src/>
         </if>
     </video>
-
-    <if(state.failed)>
-        <div class="ebay-video-container__overlay" on-click('loadCDN')>
-            Click to retry <ebay-refresh-icon/>
-        </div>
-    </if>
-    <else-if(!state.isLoaded)>
-        <div class="ebay-video-container__overlay">
+    <div
+        class=[
+            "ebay-video-container__overlay",
+            !state.failed && "ebay-video-container__overlay--hidden"
+        ]
+        on-click("loadCDN")>
+        <if(input.retry)>
+            <${input.retry}/>
+        </if>
+        <else>
+            Click to retry
+            <ebay-refresh-icon/>
+        </else>
+    </div>
+    <div class=[
+        "ebay-video-container__overlay",
+        state.isLoaded && "ebay-video-container__overlay--hidden"
+    ]>
+        <if(input.loading)>
+            <${input.loading.renderBody}/>
+        </if>
+        <else>
             <ebay-progress-spinner/>
-        </div>
-    </else-if>
+        </else>
+    </div>
 </div>
