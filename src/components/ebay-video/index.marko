@@ -1,23 +1,34 @@
-import processHtmlAttributes from "../../common/html-attributes";
+style {
+}
 
+import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = [
-    "src",
-    "cdnPath",
-    "version",
-    "player"
-];
+static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player"];
 
-
-<if (!state.isLoading)>
-$ var isIos = component.isIos();
-
-<video key="video" controls autoplay muted ...processHtmlAttributes(input, ignoredAttributes)>
-    <if (isIos)>
-        <source src=input.src>
+<div key="container" class="ebay-video-container"
+    style=({ width:`${input.width}px`, height:`${input.height}px` })>
+    <if(!input.width)>
+        <subscribe to=window on-resize("handleResize")/>
     </if>
-</video>
-</if>
-<else>
-    <ebay-progress-spinner/>
-</else>
+    $ var isIosFormat = component.checkFormat();
+    <video
+        key="video"
+        width=state.width
+        controls
+        ...processHtmlAttributes(input, ignoredAttributes)>
+        <if(isIosFormat)>
+            <source src=input.src/>
+        </if>
+    </video>
+
+    <if(state.failed)>
+        <div class="ebay-video-container__overlay" on-click('loadCDN')>
+            Click to retry <ebay-refresh-icon/>
+        </div>
+    </if>
+    <else-if(!state.isLoaded)>
+        <div class="ebay-video-container__overlay">
+            <ebay-progress-spinner/>
+        </div>
+    </else-if>
+</div>

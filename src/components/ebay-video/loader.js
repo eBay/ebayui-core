@@ -12,6 +12,7 @@ function load(src) {
             };
             script.onerror = () => {
                 reject();
+                delete videoPromise[src];
             };
             head.appendChild(script);
         });
