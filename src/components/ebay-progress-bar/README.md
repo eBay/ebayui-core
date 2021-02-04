@@ -13,9 +13,8 @@
 
 ## Attributes
 
-Name | Type | Stateful | Required | Description 
---- | --- | ---- | --- | --- 
+Name | Type | Stateful | Required | Description
+--- | --- | ---- | --- | ---
 `value` | Integer | No | No | HTML value of progress bar
 `min` | Integer | No | No | HTML min
 `max` | Integer | No | No | HTML max
-
