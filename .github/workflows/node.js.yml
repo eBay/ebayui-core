@@ -13,3 +13,6 @@ jobs:
         node-version: '12.20.0'
     - run: npm install
     - run: npm run build:ci
+    - name: Get coverage after build success
+        if: ${{ success() }}
+        - run: "cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
