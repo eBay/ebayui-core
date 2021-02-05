@@ -13,14 +13,15 @@ jobs:
         node-version: '12.20.0'
     - run: npm install
     - run: npm run build:ci
-    - if: ${{ success() }}
+      if: ${{ success() }}
       # run: cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-    - run: make test-coverage
-    - name: Coveralls
-      uses: coverallsapp/github-action@v1.1.0
-      env:
+      steps: 
+      - run: make test-coverage
+      - name: Coveralls
+        uses: coverallsapp/github-action@v1.1.0
+        env:
           NODE_COVERALLS_DEBUG: 1
-      with:
+        with:
           github-token: ${{ secrets.github_token }}
           parallel: true
           flag-name: run-1
