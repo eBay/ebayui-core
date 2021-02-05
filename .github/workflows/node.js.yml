@@ -14,4 +14,4 @@ jobs:
     - run: npm install
     - run: npm run build:ci
     - if: ${{ success() }}
-      run: "cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+      run: cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
