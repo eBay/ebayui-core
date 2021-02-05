@@ -41,7 +41,7 @@ module.exports = {
 
     _loadCDN() {
         const version = this.input.cdnVersion || versions.dashjs;
-        const cdnUrl = this.input.cdnURL || `http://cdn.dashjs.org/v${version}/dash.all.min.js`;
+        const cdnUrl = this.input.cdnUrl || `http://cdn.dashjs.org/v${version}/dash.all.min.js`;
         loader(cdnUrl).then(() => {
             // eslint-disable-next-line no-undef,new-cap
             this.player = dashjs.MediaPlayer().create();
@@ -64,7 +64,11 @@ module.exports = {
         this.containerEl = this.getEl('container');
 
         if (!this.checkFormat()) {
-            this.loadCDN();
+            if (document.readyState === 'complete') {
+                this.loadCDN();
+            } else {
+                this.subscribeTo(window).once('load', this.loadCDN.bind(this));
+            }
         } else {
             this.state.isLoaded = true;
         }

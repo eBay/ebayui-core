@@ -9,8 +9,8 @@
   "@html-attributes": "expression",
   "@src": "string",
   "@format": "string",
-  "@cdnURL": "string",
-  "@cdnVersion": "string",
+  "@cdn-url": "string",
+  "@cdn-version": "string",
   "@retry <retry>": {
     "attribute-groups": [
       "html-attributes"
