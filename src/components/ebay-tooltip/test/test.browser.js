@@ -26,7 +26,7 @@ describe('given the default tooltip', () => {
             expect(component.emitted('expand')).has.length(1);
         });
 
-        describe('when the host element loses hover', () => {
+        describe.skip('when the host element loses hover', () => {
             beforeEach(async() => {
                 await fireEvent.mouseLeave(component.getByText(input.host.renderBody.text).parentElement);
             });
