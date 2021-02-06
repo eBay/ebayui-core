@@ -7,21 +7,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
       with:
-        node-version: '12.20.0'
+        node-version: '12.x'
     - run: npm install
     - run: npm run build:ci
     - name: Coveralls
       if: ${{ success() }}
       # run: cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
       run: make test-coverage
-    - uses: coverallsapp/github-action@v1.1.0
+    - uses: coverallsapp/github-action@master
       if: ${{ success() }}
-      env:
-        NODE_COVERALLS_DEBUG: 1
       with:
-        github-token: ${{ secrets.github_token }}
-        parallel: true
-        flag-name: run-1
+        github-token: ${{ secrets.COVERALLS_SECRET }}
