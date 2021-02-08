@@ -4,7 +4,7 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
 
 <div
     key="container"
-    class="ebay-video-container"
+    class="video-player"
     style={
         width: `${input.width}px`,
         height: `${input.height}px`
@@ -24,21 +24,23 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
     </video>
     <div
         class=[
-            "ebay-video-container__overlay",
-            !state.failed && "ebay-video-container__overlay--hidden"
+            "video-player__overlay",
+            !state.failed && "video-player__overlay--hidden"
         ]
         on-click("loadCDN")>
-        <if(input.retry)>
-            <${input.retry}/>
-        </if>
-        <else>
-            Click to retry
-            <ebay-refresh-icon/>
-        </else>
+        <div>
+            <if(input.retry)>
+                <${input.retry}/>
+            </if>
+            <else>
+                Click to retry
+            </else>
+        </div>
+        <ebay-refresh-icon/>
     </div>
     <div class=[
-        "ebay-video-container__overlay",
-        state.isLoaded && "ebay-video-container__overlay--hidden"
+        "video-player__overlay",
+        state.isLoaded && "video-player__overlay--hidden"
     ]>
         <if(input.loading)>
             <${input.loading.renderBody}/>

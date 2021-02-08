@@ -37,7 +37,8 @@
     "ti": "npm run test:integration",
     "tr": "npm run coverage && npm run report && open .coverage/index.html",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "generateCDN": "node scripts/generate-cdn"
   },
   "pre-push": [
     "lint",

@@ -41,7 +41,7 @@ module.exports = {
 
     _loadCDN() {
         const version = this.input.cdnVersion || versions.dashjs;
-        const cdnUrl = this.input.cdnUrl || `http://cdn.dashjs.org/v${version}/dash.all.min.js`;
+        const cdnUrl = this.input.cdnUrl || `https://ir.ebaystatic.com/cr/v/c1/ebayui/dashjs/v${version}/dashjs.min.js`;
         loader(cdnUrl).then(() => {
             // eslint-disable-next-line no-undef,new-cap
             this.player = dashjs.MediaPlayer().create();

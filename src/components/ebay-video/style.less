@@ -1,7 +1,7 @@
-.ebay-video-container {
+.video-player {
     position: relative;
 }
-.ebay-video-container__overlay {
+.video-player__overlay {
     position: absolute;
     left: 0;
     display: flex;
@@ -10,10 +10,11 @@
     bottom: 0;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     color: white;
     cursor: pointer;
 }
 
-.ebay-video-container__overlay--hidden {
+.video-player__overlay--hidden {
     display: none;
 }
