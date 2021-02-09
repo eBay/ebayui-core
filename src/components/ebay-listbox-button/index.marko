@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes";
+import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "name",
@@ -9,13 +9,17 @@ static var ignoredAttributes = [
     "invalid",
     "buttonName",
     "options",
-    "truncate"
+    "truncate",
+    "prefixLabel",
+    "prefixId"
 ];
 
 $ var selectedOption = input.options[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
+$ var labelId = input.prefixId && component.getElId("label");
 
 <${input.truncate && !input.fluid ? "div" : "span"}
+<span
     ...processHtmlAttributes(input, ignoredAttributes)
     key="container"
     class=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
@@ -35,9 +39,15 @@ $ var selectedText = selectedOption && selectedOption.text;
         disabled=input.disabled
         name=input.buttonName
         aria-haspopup="listbox"
+        aria-labelledby=(labelId && `${input.prefixId} ${labelId}`)
         aria-invalid=(input.invalid && "true")>
         <span class="expand-btn__cell">
-            <span>${selectedText}</span>
+            <if (input.prefixLabel)>
+                <span>${input.prefixLabel} ${selectedText}</span>
+            </if>
+            <else>
+                <span id=labelId>${selectedText}</span>
+            </else>
             <ebay-dropdown-icon/>
         </span>
     </button>
@@ -48,7 +58,7 @@ $ var selectedText = selectedOption && selectedOption.text;
         tabindex=-1
         on-change("handleListboxChange")>
         <for|option| of=input.options>
-            <@option ...option selected=(selectedOption === option) />
+            <@option ...option selected=(selectedOption === option)/>
         </for>
     </ebay-listbox>
 </>
