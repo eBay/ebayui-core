@@ -19,7 +19,6 @@ $ var selectedText = selectedOption && selectedOption.text;
 $ var labelId = input.prefixId && component.getElId("label");
 
 <${input.truncate && !input.fluid ? "div" : "span"}
-<span
     ...processHtmlAttributes(input, ignoredAttributes)
     key="container"
     class=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
