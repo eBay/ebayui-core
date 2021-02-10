@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: cat ${{ secrets.COVERALLS_SECRET }}
+      - run: echo ${{ secrets.COVERALLS_SECRET }}
     # - uses: actions/checkout@master
     # - uses: actions/setup-node@master
     #   with:
