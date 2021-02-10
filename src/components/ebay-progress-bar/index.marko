@@ -4,7 +4,7 @@ static var ignoredAttributes = ["class", "min", "max", "value"];
 
 $ var min = input.min || 0;
 $ var max = input.max || 100;
-$ var value = component.getValue(input.value, min, max);
+$ var value = component.getValue(input.value, min);
 <progress
     ...processHtmlAttributes(input, ignoredAttributes)
     class=["progress-bar", input.class]

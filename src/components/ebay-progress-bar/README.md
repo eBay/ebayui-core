@@ -13,8 +13,7 @@
 
 ## Description
 The progress bar gives an immediate, real-time visualisation of the current task completion status.
-The progress bar's value does not include its min and max, so giving a value <= min will set the value to min + 1,
-and a value >= max will display a value of max - 1.
+The progress bar's value does not include its min, so giving a value <= min will set the value to min + 1
 
 ## Attributes
 

@@ -1,10 +1,8 @@
 module.exports = {
-    getValue(value, min, max) {
-        const parsedValue = parseInt(value);
+    getValue(value, min) {
+        const parsedValue = parseInt(value, 10);
         if (parsedValue <= min) {
             return min + 1;
-        } else if (parsedValue >= max) {
-            return max - 1;
         }
         return parsedValue;
     }
