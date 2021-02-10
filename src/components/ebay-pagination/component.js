@@ -56,12 +56,16 @@ module.exports = {
      * that can be displayed.
      */
     _getVisibleRange(items) {
-        const { state } = this;
+        const { state, input } = this;
         const { maxItems } = state;
+        const { variant } = input;
+        const hasDots = variant === 'show-last';
         const lastIndex = items.length - 1;
+        const dotsIndex = hasDots ? lastIndex : -1;
+        let hideDots = false;
 
         if (!maxItems) {
-            return { start: 0, end: lastIndex };
+            return { start: 0, end: lastIndex, hideDots: true, dotsIndex };
         }
 
         const i = findIndex(items, item => item.current);
@@ -79,7 +83,18 @@ module.exports = {
             start++;
         }
 
-        return { start, end };
+        if (hasDots) {
+            if (i + range >= lastIndex) {
+                hideDots = true;
+            } else if (i <= end - 2) {
+                end -= 2;
+            } else {
+                start += 1;
+                end -= 1;
+            }
+        }
+
+        return { start, end, hideDots, dotsIndex };
     },
 
     _calculateMaxItems() {

@@ -1,0 +1,15 @@
+
+#root {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/*
+A couple of modules need to have a fixed with otherwise they will not work well
+*/
+#root > .breadcrumbs,
+#root > .carousel,
+#root > .stepper {
+    width: 100%;
+}

@@ -46,10 +46,33 @@ describe('listbox', () => {
         expect(getAllByRole('listbox')[0].parentNode).has.class('listbox-button--fluid');
     });
 
+    it('renders truncated layout', async() => {
+        const input = mock.Basic_3Options_truncated;
+        const { getAllByRole, getByRole } = await render(template, input);
+        expect(getAllByRole('button')).has.length(1);
+        expect(getByRole('button')).has.class('expand-btn--truncated');
+        expect(getAllByRole('listbox')[0].parentNode).has.tagName('DIV');
+    });
+
     it('renders with second item selected', async() => {
         const input = mock.Basic_3Options_1Selected;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('option').filter(isVisible).findIndex(isAriaSelected)).is.equal(1);
+    });
+
+    it('renders with prefix label', async() => {
+        const input = mock.Basic_3Options_1Selected;
+        const { getAllByText } = await render(template, Object.assign({}, input, { prefixLabel: 'prefix:' }));
+        expect(getAllByText('prefix: option 1')).has.length(1);
+    });
+
+    it('renders with prefix id', async() => {
+        const input = mock.Basic_3Options_1Selected;
+        const { getByRole, getAllByText } = await render(template, Object.assign({}, input, { prefixId: 'prefixId' }));
+        const btnEl = getByRole('button');
+        const label = getAllByText('option 1')[0];
+        expect(btnEl).has.attribute('aria-labelledby');
+        expect(btnEl.getAttribute('aria-labelledby')).to.equal(`prefixId ${label.getAttribute('id')}`);
     });
 
     testPassThroughAttributes(template);

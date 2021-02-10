@@ -35,6 +35,9 @@ async.forEachSeries([4], (markoVersion, callback) => {
         demoUtils.getComponentsWithExamples('dist').forEach((componentName) => {
             describe(componentName, () => {
                 const examplesPath = `${__dirname}/../dist/components/${componentName}/examples`;
+                // TODO need to fix this for nested examples
+                // Use glob pattern to get nested examples
+                // This is broken for marko 4 because of classes, and is not needed until we use marko 5
                 fs.readdirSync(examplesPath).map(example => ({
                     example,
                     markup: fs.readFileSync(`${examplesPath}/${example}/template.marko`, 'utf8')
@@ -47,7 +50,7 @@ async.forEachSeries([4], (markoVersion, callback) => {
                     delete require.cache[require.resolve('./template.marko')];
                     template = require('./template.marko');
 
-                    it(`loads page with ${exampleData.example}`, (done) => {
+                    it(`loads page with ${exampleData}`, (done) => {
                         request.get('/').expect(200, done);
                     });
                 });

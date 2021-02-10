@@ -9,6 +9,8 @@
 
 ## ebay-stepper Example
 
+DEPRECATED: Use `ebay-progress-stepper` instead.
+
 ```marko
 <ebay-stepper>
     <@step>Started</@step>

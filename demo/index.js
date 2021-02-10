@@ -25,6 +25,7 @@ lasso.configure({
 
 app.use(require('lasso/middleware').serveStatic());
 app.use(express.static(__dirname));
+app.use(express.static(`${__dirname}/assets`));
 
 app.get('/', (req, res) => {
     res.redirect(301, '/ds6');
@@ -40,24 +41,42 @@ app.get('/:designSystem/:component?', (req, res) => {
     const name = req.params.component;
     const componentsPath = path.join(__dirname, '/../src/components');
     const componentPath = path.join(componentsPath, name);
-    const examplesPath = path.join(componentPath, 'examples');
+    const rootPath = path.join(componentPath, 'examples');
+    let templateList = [];
+
+    const insert = (example, examplesPath) => {
+        const examplePath = path.join(examplesPath, example);
+        const exampleTemplatePath = path.join(examplePath, 'template.marko');
+
+        // In case of nested examples
+        if (!fs.existsSync(exampleTemplatePath)) {
+            // Iterate through each one
+            fs.readdirSync(examplePath).forEach(nestedExample => {
+                insert(nestedExample, examplePath);
+            });
+            return;
+        }
+
+        templateList.push({
+            num: parseInt(example.split('-')[0]),
+            name: example.split('-').slice(1, example.length).join(' '),
+            code: highlighter.highlightSync({
+                fileContents: fs.readFileSync(exampleTemplatePath, 'utf8'),
+                sync: 'text.marko'
+            }),
+            sources: [componentPath, examplePath],
+            templatePath: exampleTemplatePath,
+            template: require(exampleTemplatePath)
+        });
+    };
+
+    fs.readdirSync(rootPath).forEach(example => {
+        insert(example, rootPath);
+    });
+    templateList = templateList.filter(demoUtils.isDirectory);
     const model = {
         name: req.params.component,
-        examples: fs.readdirSync(examplesPath).map(example => {
-            const examplePath = path.join(examplesPath, example);
-            const exampleTemplatePath = path.join(examplePath, 'template.marko');
-            return {
-                num: parseInt(example.split('-')[0]),
-                name: example.split('-').slice(1, example.length).join(' '),
-                code: highlighter.highlightSync({
-                    fileContents: fs.readFileSync(exampleTemplatePath, 'utf8'),
-                    sync: 'text.marko'
-                }),
-                sources: [componentPath, examplePath],
-                templatePath: exampleTemplatePath,
-                template: require(exampleTemplatePath)
-            };
-        }).filter(demoUtils.isDirectory),
+        examples: templateList,
         components: demoUtils.getComponentsWithExamples('src')
     };
 

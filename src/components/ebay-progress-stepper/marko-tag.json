@@ -1,0 +1,43 @@
+{
+  "attribute-groups": [
+    "html-attributes"
+  ],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@default-state": {
+    "enum": [
+      "upcoming",
+      "complete",
+      "active"
+    ]
+  },
+
+  "@direction": {
+    "enum": [
+      "row",
+      "column"
+    ]
+  },
+  "@step <step>[]": {
+    "attribute-groups": [
+      "html-attributes"
+    ],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@current": "boolean",
+    "@type": {
+      "enum": [
+        "attention",
+        "default",
+        "complete"
+      ]
+    },
+    "@number": "number"
+  }
+}
