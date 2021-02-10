@@ -16,7 +16,7 @@ jobs:
     - name: Coveralls
       if: ${{ success() }}
       # run: cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-      run: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js || true
+      run: cat .coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js || true
     - uses: coverallsapp/github-action@master
       if: ${{ success() }}
       with:
