@@ -12,23 +12,22 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
     <if(!input.width)>
         <subscribe to=window on-resize("handleResize")/>
     </if>
-    $ var isIosFormat = component.checkFormat();
     <video
         key="video"
         width=state.width
         controls
+        on-error('handleError')
+        poster=input.thumbnail
         ...processHtmlAttributes(input, ignoredAttributes)>
-        <if(isIosFormat)>
-            <source src=input.src/>
-        </if>
     </video>
     <div
         class=[
             "video-player__overlay",
             !state.failed && "video-player__overlay--hidden"
         ]
-        on-click("loadCDN")>
-        <div>
+        on-click("loadCDN", true)>
+        <ebay-refresh-icon/>
+        <div class="video-player__overlay-text">
             <if(input.retry)>
                 <${input.retry}/>
             </if>
@@ -36,17 +35,16 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
                 Click to retry
             </else>
         </div>
-        <ebay-refresh-icon/>
     </div>
     <div class=[
         "video-player__overlay",
         state.isLoaded && "video-player__overlay--hidden"
-    ]>
-        <if(input.loading)>
-            <${input.loading.renderBody}/>
+    ] on-click('loadCDN', true)>
+        <if (!state.showLoading)>
+            <ebay-play-large-icon a11y-text=(input.a11yPlayText || "Click to play") />
         </if>
         <else>
-            <ebay-progress-spinner/>
+            <ebay-progress-spinner a11y-text=(input.a11yLoadText || "Loading") />
         </else>
     </div>
 </div>

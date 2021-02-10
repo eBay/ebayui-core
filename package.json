@@ -124,6 +124,7 @@
     "open-cli": "^6.0.1",
     "pre-push": "^0.1.1",
     "rimraf": "^3.0.2",
+    "shaka-player": "^3.0.8",
     "sinon": "^9.2.4",
     "storybook-readme": "^5.0.8",
     "style-loader": "^2.0.0",
