@@ -16,6 +16,7 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
         key="video"
         width=state.width
         controls
+        on-error('handleError')
         poster=input.thumbnail
         ...processHtmlAttributes(input, ignoredAttributes)>
     </video>

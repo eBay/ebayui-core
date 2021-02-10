@@ -24,7 +24,12 @@ Name | Type | Stateful | Required | Description
 `a11y-load-text` | String | No | Yes | The accessibility text for the loading spinner. Default is "Loading"
 `a11y-play-text` | String | No | Yes | The accessibility text for the play button.  Default is "Click to play"
 
+## ebay-video events
+Event | Data |  Description
+--- | --- | ---
+`error` | `{ originalEvent }` | error occurred
+
 ## ebay-video attribute-tags
 Tag | Required | Description
 --- | --- | ---
-`<@retry>` | No | The content for retry. Default is "Click to retry"
+`<@retry>` | No | The content for retry when an either the library or video cannot load. Default is "Click to retry"

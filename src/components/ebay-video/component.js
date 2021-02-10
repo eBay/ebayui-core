@@ -23,6 +23,12 @@ module.exports = {
         };
     },
 
+    handleError(originalEvent) {
+        this.emit('error', { originalEvent });
+        this.state.failed = true;
+        this.state.isLoaded = true;
+    },
+
     loadCDN(immediate) {
         const _timeout = window.requestIdleCallback || function(handler) {
             const startTime = Date.now();
