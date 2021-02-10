@@ -7,16 +7,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo ${{ secrets.COVERALLS_SECRET }}
-    # - uses: actions/checkout@master
-    # - uses: actions/setup-node@master
-    #   with:
-    #     node-version: '12.x'
-    # - run: npm install
-    # - run: npm run build:ci
-    #   # run: cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-    # - uses: coverallsapp/github-action@master
-    #   if: ${{ success() }}
-    #   with:
-    #     github-token: ${{ secrets.COVERALLS_SECRET }}
-    #     path-to-lcov: .coverage/lcov.info
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm run build:ci
+      # run: cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+    - uses: coverallsapp/github-action@master
+      if: ${{ success() }}
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: .coverage/lcov.info
