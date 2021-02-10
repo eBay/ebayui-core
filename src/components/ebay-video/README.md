@@ -18,12 +18,13 @@ For resizing, `ebay-video` supports fixed width or variable width. If no width i
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
 `src` | String | No | Yes | The url path for the playlist MPD or M3U8 to use. If format is set to auto, will detect format based on file extension
-`format` | String | No | No | Either `auto`, `mpd` or `m3u8`. Default is auto. The format to use. If auto, will try to detect based on file name. If mpd will trigger downloading dashjs from given CDN.
+`thumbnail` | String | No | No | The url path for the video thumbnail
 `cdn-url` | String | No | No | The full url to point to where to download dashjs. This is only used to override the default CDN path.
 `cdn-version` | String | No | No | If using the default CDN path, you can override what version of dashjs to use.
+`a11y-load-text` | String | No | Yes | The accessibility text for the loading spinner. Default is "Loading"
+`a11y-play-text` | String | No | Yes | The accessibility text for the play button.  Default is "Click to play"
 
 ## ebay-video attribute-tags
 Tag | Required | Description
 --- | --- | ---
-`<@retry>` | No | The content for retry. Default is "Click to retry" and `<ebay-retry-icon/>`
-`<@loading>` | No | The content for loading, default shows `<ebay-progress-spinner/>`
+`<@retry>` | No | The content for retry. Default is "Click to retry"

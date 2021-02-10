@@ -12,16 +12,12 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
     <if(!input.width)>
         <subscribe to=window on-resize("handleResize")/>
     </if>
-    $ var isIosFormat = component.checkFormat();
     <video
         key="video"
         width=state.width
         controls
         poster=input.thumbnail
         ...processHtmlAttributes(input, ignoredAttributes)>
-        <if(isIosFormat)>
-            <source src=input.src/>
-        </if>
     </video>
     <div
         class=[
@@ -29,8 +25,8 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
             !state.failed && "video-player__overlay--hidden"
         ]
         on-click("loadCDN", true)>
-        <div>
-            <ebay-refresh-icon/>
+        <ebay-refresh-icon/>
+        <div class="video-player__overlay-text">
             <if(input.retry)>
                 <${input.retry}/>
             </if>
@@ -44,10 +40,10 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
         state.isLoaded && "video-player__overlay--hidden"
     ] on-click('loadCDN', true)>
         <if (!state.showLoading)>
-            <ebay-play-large-icon/>
+            <ebay-play-large-icon a11y-text=(input.a11yPlayText || "Click to play") />
         </if>
         <else>
-            <ebay-progress-spinner/>
+            <ebay-progress-spinner a11y-text=(input.a11yLoadText || "Loading") />
         </else>
     </div>
 </div>
