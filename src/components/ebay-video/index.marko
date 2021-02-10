@@ -1,0 +1,52 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player"];
+
+<div
+    key="container"
+    class="video-player"
+    style={
+        width: `${input.width}px`,
+        height: `${input.height}px`
+    }>
+    <if(!input.width)>
+        <subscribe to=window on-resize("handleResize")/>
+    </if>
+    $ var isIosFormat = component.checkFormat();
+    <video
+        key="video"
+        width=state.width
+        controls
+        ...processHtmlAttributes(input, ignoredAttributes)>
+        <if(isIosFormat)>
+            <source src=input.src/>
+        </if>
+    </video>
+    <div
+        class=[
+            "video-player__overlay",
+            !state.failed && "video-player__overlay--hidden"
+        ]
+        on-click("loadCDN")>
+        <div>
+            <if(input.retry)>
+                <${input.retry}/>
+            </if>
+            <else>
+                Click to retry
+            </else>
+        </div>
+        <ebay-refresh-icon/>
+    </div>
+    <div class=[
+        "video-player__overlay",
+        state.isLoaded && "video-player__overlay--hidden"
+    ]>
+        <if(input.loading)>
+            <${input.loading.renderBody}/>
+        </if>
+        <else>
+            <ebay-progress-spinner/>
+        </else>
+    </div>
+</div>

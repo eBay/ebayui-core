@@ -16,3 +16,4 @@ integration/template.marko
 .yarnclean
 yarn.lock
 .env
+_cdn

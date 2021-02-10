@@ -28,8 +28,8 @@
     "build": "npm run lint && node scripts/check-postpublish && npm test",
     "build:ci": "npm run lint && node scripts/check-postpublish && npm test && npm run build",
     "build:readme": "node scripts/add-ds-version",
-    "storybook:build": "DS=6 build-storybook -o ./docs && DS=4 build-storybook -o ./docs/ds4",
-    "storybook:start": "start-storybook -p 6006",
+    "storybook:build": "DS=6 build-storybook -s demo/assets -o ./docs && DS=4 build-storybook -s demo/assets  -o ./docs/ds4",
+    "storybook:start": "start-storybook -s demo/assets -p 6006",
     "importSVG": "node scripts/import-svg",
     "ts": "npm run test:server",
     "tb": "npm run test:browser",
@@ -37,7 +37,8 @@
     "ti": "npm run test:integration",
     "tr": "npm run coverage && npm run report && open .coverage/index.html",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "generateCDN": "node scripts/generate-cdn"
   },
   "pre-push": [
     "lint",
@@ -136,6 +137,7 @@
   "dependencies": {
     "@marko-tags/subscribe": "^0.3.2",
     "core-js-pure": "^3.4.1",
+    "dashjs": "^3.2.0",
     "makeup-active-descendant": "0.3.9",
     "makeup-expander": "~0.8.6",
     "makeup-floating-label": "~0.1.2",
