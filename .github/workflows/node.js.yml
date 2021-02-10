@@ -18,3 +18,4 @@ jobs:
       if: ${{ success() }}
       with:
         github-token: ${{ secrets.COVERALLS_SECRET }}
+        path-to-lcov: .coverage/lcov.info
