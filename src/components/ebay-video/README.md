@@ -17,10 +17,10 @@ For resizing, `ebay-video` supports fixed width or variable width. If no width i
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`src` | String | No | Yes | The url path for the playlist MPD or M3U8 to use. If format is set to auto, will detect format based on file extension
+`src` | String | No | Yes | The url path for the playlist MPD or M3U8 to use.
 `thumbnail` | String | No | No | The url path for the video thumbnail
-`cdn-url` | String | No | No | The full url to point to where to download dashjs. This is only used to override the default CDN path.
-`cdn-version` | String | No | No | If using the default CDN path, you can override what version of dashjs to use.
+`cdn-url` | String | No | No | The full url to point to where to download shaka. This is only used to override the default CDN path.
+`cdn-version` | String | No | No | If using the default CDN path, you can override what version of shaka to use.
 `a11y-load-text` | String | No | Yes | The accessibility text for the loading spinner. Default is "Loading"
 `a11y-play-text` | String | No | Yes | The accessibility text for the play button.  Default is "Click to play"
 
