@@ -17,6 +17,7 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
         key="video"
         width=state.width
         controls
+        poster=input.thumbnail
         ...processHtmlAttributes(input, ignoredAttributes)>
         <if(isIosFormat)>
             <source src=input.src/>
@@ -27,8 +28,9 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
             "video-player__overlay",
             !state.failed && "video-player__overlay--hidden"
         ]
-        on-click("loadCDN")>
+        on-click("loadCDN", true)>
         <div>
+            <ebay-refresh-icon/>
             <if(input.retry)>
                 <${input.retry}/>
             </if>
@@ -36,14 +38,13 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
                 Click to retry
             </else>
         </div>
-        <ebay-refresh-icon/>
     </div>
     <div class=[
         "video-player__overlay",
         state.isLoaded && "video-player__overlay--hidden"
-    ]>
-        <if(input.loading)>
-            <${input.loading.renderBody}/>
+    ] on-click('loadCDN', true)>
+        <if (!state.showLoading)>
+            <ebay-play-large-icon/>
         </if>
         <else>
             <ebay-progress-spinner/>

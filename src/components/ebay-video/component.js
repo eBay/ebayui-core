@@ -25,17 +25,43 @@ module.exports = {
 
     onCreate() {
         this.state = {
+            showLoading: false,
             isLoaded: false,
             failed: false,
             width: 'auto'
         };
     },
 
-    loadCDN() {
+    loadCDN(immediate) {
+        const _timeout = window.requestIdleCallback || function(handler) {
+            const startTime = Date.now();
+
+            return setTimeout(() => {
+                handler({
+                    didTimeout: false,
+                    timeRemaining: function() {
+                        return Math.max(0, 50.0 - (Date.now() - startTime));
+                    }
+                });
+            }, 1);
+        };
+
+        const _cancel = window.cancelIdleCallback || function(id) {
+            clearTimeout(id);
+        };
+
         this.retryTimes = 0;
         this.state.failed = false;
         this.state.isLoaded = false;
 
+        _cancel(this.loadDelay);
+        if (!immediate) {
+            this.state.showLoading = false;
+            this.loadDelay = _timeout(() => this._loadCDN(), { timeout: 100 });
+        } else {
+            this.state.showLoading = true;
+            this._loadCDN();
+        }
         this._loadCDN();
     },
 
