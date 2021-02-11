@@ -1,5 +1,5 @@
 {
-    "extends": "ebay",
+    "extends": ["ebay", "prettier"],
     "env": {
         "browser": true
     },
