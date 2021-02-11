@@ -1,5 +1,5 @@
 {
-    "extends: "stylelint-prettier/recommended",
+    "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
     "rules": {
         "block-closing-brace-empty-line-before": "never",
         "block-closing-brace-newline-before": "always",
