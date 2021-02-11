@@ -106,7 +106,7 @@
     "express": "^4.17.1",
     "highlights": "^3.1.4",
     "html-minifier": "^4.0.0",
-    "husky": "^5.0.9",
+    "husky": "^4.2.3",
     "is-travis": "^2.0.0",
     "karma": "^6.0.2",
     "karma-chai": "^0.1.0",
