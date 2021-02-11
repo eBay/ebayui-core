@@ -169,6 +169,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,css,md,less,json}": "prettier --write"
+    "*.{js,css,md,less,json}": "prettier --write",
   }
 }
