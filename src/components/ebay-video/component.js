@@ -10,6 +10,10 @@ module.exports = {
         }
     },
 
+    handleFullscreen() {
+        this.video.requestFullscreen();
+    },
+
     onInput(input) {
         this.state.width = input.width;
     },
@@ -74,7 +78,8 @@ module.exports = {
         }
         this.player.load(src).then(() => {
             this.state.isLoaded = true;
-        }).catch(() => {
+       }).catch((e) => {
+            console.log(arguments);
             if (nextIndex) {
                 this._loadSrc(nextIndex);
             } else {
@@ -88,10 +93,12 @@ module.exports = {
         const version = this.input.cdnVersion || versions.shaka;
         const cdnUrl = this.input.cdnUrl || `https://ir.ebaystatic.com/cr/v/c1/ebayui/shaka/v${version}/shaka-player.compiled.js`;
         loader(cdnUrl).then(async() => {
+            this.video = this.getEl('video');
             // eslint-disable-next-line no-undef,new-cap
-            this.player = new shaka.Player(this.getEl('video'));
+            this.player = new shaka.Player(this.video);
             this._loadSrc();
-        }).catch(() => {
+        }).catch((e) => {
+            console.log(arguments);
             clearTimeout(this.retryTimeout);
             this.retryTimes += 1;
             if (this.retryTimes < MAX_RETIRES) {

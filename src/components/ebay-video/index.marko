@@ -19,6 +19,7 @@ $ var src = Array.isArray(input.src) ? input.src : [input.src];
         width=state.width
         controls
         on-error('handleError')
+        on-playing(input.playView === "fullscreen" && 'handleFullscreen')
         poster=input.thumbnail
         ...processHtmlAttributes(input, ignoredAttributes)>
         <for|src|of=src>
