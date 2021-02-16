@@ -62,18 +62,35 @@ module.exports = {
         this._loadCDN();
     },
 
+    _loadSrc(index) {
+        const currentIndex = index || 0;
+        let src = this.input.src;
+        let nextIndex;
+        if (Array.isArray(this.input.src)) {
+            src = this.input.src[currentIndex];
+            if (src && this.input.src.length > currentIndex + 1) {
+                nextIndex = currentIndex + 1;
+            }
+        }
+        this.player.load(src).then(() => {
+            this.state.isLoaded = true;
+        }).catch(() => {
+            if (nextIndex) {
+                this._loadSrc(nextIndex);
+            } else {
+                this.state.failed = true;
+                this.state.isLoaded = true;
+            }
+        });
+    },
+
     _loadCDN() {
         const version = this.input.cdnVersion || versions.shaka;
         const cdnUrl = this.input.cdnUrl || `https://ir.ebaystatic.com/cr/v/c1/ebayui/shaka/v${version}/shaka-player.compiled.js`;
         loader(cdnUrl).then(async() => {
             // eslint-disable-next-line no-undef,new-cap
             this.player = new shaka.Player(this.getEl('video'));
-            this.player.load(this.input.src).then(() => {
-                this.state.isLoaded = true;
-            }).catch(() => {
-                this.state.failed = true;
-                this.state.isLoaded = true;
-            });
+            this._loadSrc();
         }).catch(() => {
             clearTimeout(this.retryTimeout);
             this.retryTimes += 1;
