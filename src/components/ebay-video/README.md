@@ -17,7 +17,7 @@ For resizing, `ebay-video` supports fixed width or variable width. If no width i
 
 Name | Type | Stateful | Required | Description
 --- | --- | --- | --- | ---
-`src` | String | No | Yes | The url path for the playlist MPD or M3U8 to use.
+`src` | Array\[String\] | No | Yes | A list of all urls to use. It will try to load `src` in order. If any fails it will try the next one. Supports `mpd` `m3u8` and `mp4`.
 `thumbnail` | String | No | No | The url path for the video thumbnail
 `cdn-url` | String | No | No | The full url to point to where to download shaka. This is only used to override the default CDN path.
 `cdn-version` | String | No | No | If using the default CDN path, you can override what version of shaka to use.

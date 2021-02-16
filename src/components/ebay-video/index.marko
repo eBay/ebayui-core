@@ -2,6 +2,8 @@ import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player"];
 
+$ var src = Array.isArray(input.src) ? input.src : [input.src];
+
 <div
     key="container"
     class="video-player"
@@ -19,6 +21,12 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
         on-error('handleError')
         poster=input.thumbnail
         ...processHtmlAttributes(input, ignoredAttributes)>
+        <for|src|of=src>
+            $ var isMp4 = src && src.indexOf('.mp4')  === src.length - 5;
+            <if (isMp4)>
+                <source src=src type="video/mp4">
+            </if>
+        </for>
     </video>
     <div
         class=[

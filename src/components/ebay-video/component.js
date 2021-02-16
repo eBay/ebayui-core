@@ -17,7 +17,7 @@ module.exports = {
     onCreate() {
         this.state = {
             showLoading: false,
-            isLoaded: false,
+            isLoaded: true,
             failed: false,
             width: 'auto'
         };
@@ -104,6 +104,7 @@ module.exports = {
     },
 
     onMount() {
+        this.state.isLoaded = false;
         this.videoEl = this.getEl('video');
         this.containerEl = this.getEl('container');
 
