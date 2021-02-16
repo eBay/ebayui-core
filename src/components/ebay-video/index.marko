@@ -33,15 +33,14 @@ $ var src = Array.isArray(input.src) ? input.src : [input.src];
         class=[
             "video-player__overlay",
             !state.failed && "video-player__overlay--hidden"
-        ]
-        on-click("loadCDN", true)>
-        <ebay-refresh-icon/>
+        ]>
+        <ebay-attention-icon/>
         <div class="video-player__overlay-text">
-            <if(input.retry)>
-                <${input.retry}/>
+            <if(input.errorText)>
+                ${input.errorText}
             </if>
             <else>
-                Click to retry
+                An error has occurred
             </else>
         </div>
     </div>

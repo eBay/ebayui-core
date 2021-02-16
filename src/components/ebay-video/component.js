@@ -78,8 +78,7 @@ module.exports = {
         }
         this.player.load(src).then(() => {
             this.state.isLoaded = true;
-       }).catch((e) => {
-            console.log(arguments);
+        }).catch(() => {
             if (nextIndex) {
                 this._loadSrc(nextIndex);
             } else {
@@ -97,8 +96,7 @@ module.exports = {
             // eslint-disable-next-line no-undef,new-cap
             this.player = new shaka.Player(this.video);
             this._loadSrc();
-        }).catch((e) => {
-            console.log(arguments);
+        }).catch(() => {
             clearTimeout(this.retryTimeout);
             this.retryTimes += 1;
             if (this.retryTimes < MAX_RETIRES) {
