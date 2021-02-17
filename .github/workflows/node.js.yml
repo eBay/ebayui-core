@@ -1,0 +1,21 @@
+name: eBay UI CI
+
+on: [pull_request, push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm run build:ci
+      # run: cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+    - uses: coverallsapp/github-action@master
+      if: ${{ success() }}
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: .coverage/lcov.info
