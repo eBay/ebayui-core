@@ -40,10 +40,6 @@
     "build-storybook": "build-storybook",
     "generateCDN": "node scripts/generate-cdn"
   },
-  "pre-push": [
-    "lint",
-    "test"
-  ],
   "browserslist": [
     "extends @ebay/browserslist-config"
   ],
