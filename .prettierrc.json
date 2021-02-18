@@ -1,13 +1,19 @@
 {
-    "printWidth": 100,
-    "singleQuote": true,
-    "tabWidth": 4,
-    "overrides": [
-        {
-            "files": ["**/*.css", "**/*.html", "**/*.less", "**/*.json", "**/*.yml", "**/*.md"],
-            "options": {
-                "singleQuote": false
-            }
-        }
-    ]
+  "printWidth": 100,
+  "singleQuote": true,
+  "tabWidth": 4,
+  "overrides": [
+    {
+      "files": ["**/*.css", "**/*.html", "**/*.less", "**/*.json", "**/*.yml", "**/*.md"],
+      "options": {
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["**/*.json"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
 }
