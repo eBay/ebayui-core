@@ -5,5 +5,5 @@ module.exports = {
             return min + 1;
         }
         return parsedValue;
-    }
+    },
 };

@@ -3,7 +3,8 @@ html {
 }
 
 body {
-    font-family: 'Market Sans', Arial;
+    /* stylelint-disable font-family-no-missing-generic-family-keyword */
+    font-family: "Market Sans", Arial;
     margin: 15px;
 
     .ds4 & {
@@ -31,7 +32,8 @@ h2 {
     margin: 5px 0;
 }
 
-.demo-nav, main {
+.demo-nav,
+main {
     padding: 10px;
 }
 
@@ -48,7 +50,8 @@ h2 {
 }
 
 .demo-nav a {
-    &, &:visited {
+    &,
+    &:visited {
         color: #3665f3; // @ds6-color-b4
     }
 }
@@ -69,6 +72,7 @@ h2 {
     background: #fff;
     display: inline-block;
     margin: 1em 0;
+    /* stylelint-disable function-calc-no-invalid */
     max-width: calc(100% ~"-" 2em);
     padding: 0 1em;
     overflow: scroll;
