@@ -34,37 +34,41 @@ $ var baseClass = input.classPrefix || "fake-menu";
         input.class
     ]
     style=input.style>
-    <div
-        class=`${baseClass}__items`
+    <ul
+        class=`fake-menu__items`
         key="menu"
         tabindex="-1"
         id:scoped="menu">
         <for|item, index| of=input.items>
             $ var isDisabled = !item.href || item.disabled;
             <if (item._isSeparator)>
-                <hr class=`${baseClass}__separator` role="separator" />
+                <li>
+                    <hr class=`${baseClass}__separator` role="separator" />
+                </li>
             </if>
             <else>
-            <${item.type === "button" ? "button" : "a"}
-                ...processHtmlAttributes(item, itemIgnoredAttributes)
-                class=[`${baseClass}__item`, item.class]
-                style=item.style
-                aria-current=(item.current ? "page" : false)
-                aria-disabled=(item.disabled && "true")
-                href=(item.disabled ? null : item.href)
-                onKeydown("handleItemKeydown", index)
-                onClick("handleItemClick", index)
-                key="item[]">
-                <span>
-                    <${item.renderBody}/>
-                </span>
-                <if(item.badgeNumber)>
-                    <ebay-badge type="menu" number=item.badgeNumber/>
-                </if>
+                <li>
+                    <${item.type === "button" ? "button" : "a"}
+                        ...processHtmlAttributes(item, itemIgnoredAttributes)
+                        class=[`${baseClass}__item`, item.class]
+                        style=item.style
+                        aria-current=(item.current ? "page" : false)
+                        aria-disabled=(item.disabled && "true")
+                        href=(item.disabled ? null : item.href)
+                        onKeydown("handleItemKeydown", index)
+                        onClick("handleItemClick", index)
+                        key="item[]">
+                        <span>
+                            <${item.renderBody}/>
+                        </span>
+                        <if(item.badgeNumber)>
+                            <ebay-badge type="menu" number=item.badgeNumber/>
+                        </if>
 
-                <ebay-tick-small-icon />
-            </>
+                        <ebay-tick-small-icon />
+                    </>
+                </li>
             </else>
         </for>
-    </div>
+    </ul>
 </span>
