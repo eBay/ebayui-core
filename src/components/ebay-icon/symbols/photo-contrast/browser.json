@@ -1,0 +1,9 @@
+{
+  "requireRemap": [
+    {
+      "from": "./index.marko",
+      "to": "./index[ds-4].marko",
+      "if-flag": "ds-4"
+    }
+  ]
+}
