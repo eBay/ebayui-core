@@ -1,0 +1,20 @@
+<ebay-snackbar-dialog type="action" open=state.open on-close('closeSnackbar')>
+    This is the action snackbar
+</ebay-snackbar-dialog>
+<ebay-button on-click("openSnackbar")>
+    Open Action Snackbar
+</ebay-button>
+
+class {
+    onCreate() {
+        this.state = {open: false};
+    }
+
+    openSnackbar() {
+        this.state.open = true;
+    }
+
+    closeSnackbar() {
+        this.state.open = false;
+    }
+}
