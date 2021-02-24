@@ -1,76 +1,41 @@
 'use strict';
 
-const isTravis = require('is-travis');
-const buildID = `${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBER}`;
-
 module.exports = ({ config }) => {
     config.mochaOptions = { timeout: 60000 };
+
     config.lassoOptions = {
         flags: [],
-        plugins: ['lasso-less']
+        plugins: ['lasso-less'],
     };
 
     config.wdioOptions = {
-        idleTimeout: 60000, // Automatically disconnect after 1min of inactivity by default.
+        idleTimeout: 60000,
         timeout: 60000,
-        browserstackOpts: {
-            force: true,
-            onlyAutomate: isTravis,
-            localIdentifier: buildID
-        },
-        capabilities: [{
-            browser: 'Chrome',
-            os: 'Windows',
-            os_version: '10'
-        // }, {
-        //     browser: 'Firefox',
-        //     os: 'Windows',
-        //     os_version: '10'
-        // }, {
-        //     browser: 'Firefox',
-        //     browser_version: '48.0',
-        //     os: 'Windows',
-        //     os_version: '7'
-        }, {
-            browser: 'Safari',
-            os: 'OS X',
-            os_version: 'Catalina'
-        // }, {
-        //     // Doesn't seem to be supporting timeouts?
-        //     browser: 'Safari',
-        //     browser_version: '6.0',
-        //     os: 'OS X',
-        //     os_version: 'Lion'
-        // }, {
-        //     browser: 'Edge',
-        //     os: 'Windows',
-        //     os_version: '10'
-        // }, {
-        //     // Various issues.
-        //     browser: 'Edge',
-        //     browser_version: '14.0',
-        //     os: 'Windows',
-        //     os_version: '10'
-        // }, {
-        //     // Not compiling properly.
-        //     browser: 'IE',
-        //     os: 'Windows',
-        //     os_version: '10'
-        // }, {
-        //     // Does not support custom viewport sizing.
-        //     browser: 'Opera',
-        //     browser_version: '12.16',
-        //     os: 'Windows',
-        //     os_version: '7'
-        }].map(capability => {
-            capability.build = buildID;
-            capability.project = 'ebayui-core';
+        capabilities: [
+            {
+                browser: 'Chrome',
+                os: 'Windows',
+                os_version: '10',
+            },
+            {
+                browser: 'Chrome',
+                os: 'OS X',
+                os_version: 'Big Sur',
+            },
+            {
+                browser: 'Safari',
+                os: 'OS X',
+                os_version: 'Big Sur',
+            },
+            {
+                browser: 'Safari',
+                os: 'OS X',
+                os_version: 'Catalina',
+            },
+        ].map((capability) => {
             capability['browserstack.local'] = true;
-            capability['browserstack.debug'] = true;
-            capability['browserstack.localIdentifier'] = buildID;
-            capability['browserstack.console'] = 'verbose';
-            capability['browserstack.networkLogs'] = true;
+
             return capability;
-        })
+        }),
     };
 };
