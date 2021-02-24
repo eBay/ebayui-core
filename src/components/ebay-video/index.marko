@@ -1,8 +1,16 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player"];
-
-$ var src = Array.isArray(input.src) ? input.src : [input.src];
+static var ignoredAttributes = [
+    "sources",
+    "cdnUrl",
+    "cdnVersion",
+    "format",
+    "thumbnail",
+    "playView",
+    "a11yPlayText",
+    "a11yLoadText",
+    "errorText"
+];
 
 <div
     key="container"
@@ -18,41 +26,37 @@ $ var src = Array.isArray(input.src) ? input.src : [input.src];
         key="video"
         width=state.width
         controls
-        on-error('handleError')
-        on-playing(input.playView === "fullscreen" && 'handleFullscreen')
+        on-error("handleError")
+        on-playing(input.playView === "fullscreen" && "handleFullscreen")
         poster=input.thumbnail
         ...processHtmlAttributes(input, ignoredAttributes)>
-        <for|src|of=src>
-            $ var isMp4 = src && src.indexOf('.mp4')  === src.length - 5;
-            <if (isMp4)>
-                <source src=src type="video/mp4">
+        <for|src| of=input.sources>
+            <if(!component.isPlaylist(src))>
+                <source ...src/>
             </if>
         </for>
     </video>
+    <div class=[
+        "video-player__overlay",
+        !state.failed && "video-player__overlay--hidden"
+    ]>
+        <ebay-attention-icon/>
+        <div class="video-player__overlay-text">
+            <if(input.errorText)>${input.errorText}</if>
+            <else>An error has occurred</else>
+        </div>
+    </div>
     <div
         class=[
             "video-player__overlay",
-            !state.failed && "video-player__overlay--hidden"
-        ]>
-        <ebay-attention-icon/>
-        <div class="video-player__overlay-text">
-            <if(input.errorText)>
-                ${input.errorText}
-            </if>
-            <else>
-                An error has occurred
-            </else>
-        </div>
-    </div>
-    <div class=[
-        "video-player__overlay",
-        state.isLoaded && "video-player__overlay--hidden"
-    ] on-click('loadCDN', true)>
-        <if (!state.showLoading)>
-            <ebay-play-large-icon a11y-text=(input.a11yPlayText || "Click to play") />
+            state.isLoaded && "video-player__overlay--hidden"
+        ]
+        on-click("loadCDN", true)>
+        <if(!state.showLoading)>
+            <ebay-play-large-icon a11y-text=(input.a11yPlayText || "Click to play")/>
         </if>
         <else>
-            <ebay-progress-spinner a11y-text=(input.a11yLoadText || "Loading") />
+            <ebay-progress-spinner a11y-text=(input.a11yLoadText || "Loading")/>
         </else>
     </div>
 </div>
