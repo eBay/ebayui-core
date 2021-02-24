@@ -1,6 +1,6 @@
 name: eBay UI CI
 
-on: [pull_request, push]
+on: [pull_request]
 
 jobs:
   build:
@@ -13,7 +13,11 @@ jobs:
         node-version: '12.x'
     - run: npm install
     - run: npm run build:ci
-      # run: cat ./.coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+      env:
+        BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        BUILD_NUMBER: CI
+        REPO_SLUG: ebay/ebayui-core
     - uses: coverallsapp/github-action@master
       if: ${{ success() }}
       with:
