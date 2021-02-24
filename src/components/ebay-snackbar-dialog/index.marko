@@ -1,0 +1,18 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+<ebay-dialog-base
+    ...input
+    isModal=false
+    classPrefix="snackbar-dialog"
+    open=state.open
+    class=[input.class, "snackbar-dialog--transition"]
+    buttonPosition="hidden">
+    <${input.renderBody}/>
+    <if(input.type === 'action')>
+    <@actions>
+        <span class="snackbar-dialog__actions">
+            <button on-click('emit', 'close') accesskey="u" class="fake-link snackbar-dialog__cta">Undo<span class="clipped"> - Access Key: U</span></button>
+        </span>
+    </@actions>
+    </if>
+</ebay-dialog-base>

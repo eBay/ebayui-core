@@ -12,15 +12,15 @@
 
 ## Requirements
 
-* [Node.js](https://nodejs.org/en/)
-* [Marko](https://markojs.com) (v4+)
-* [eBay Skin](https://ebay.github.io/skin/) (v11+)
+-   [Node.js](https://nodejs.org/en/)
+-   [Marko](https://markojs.com) (v4+)
+-   [eBay Skin](https://ebay.github.io/skin/) (v11+)
 
-*Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components.*
+_Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components._
 
-*Note: `@ebay/skin/global` and `@ebay/skin/marketsans` are required to be loaded by your app for all modules to load correctly.*
+_Note: `@ebay/skin/global` and `@ebay/skin/marketsans` are required to be loaded by your app for all modules to load correctly._
 
-*Note: In order for spread attributes to work properly, `marko@4.18.22` at least is required*
+_Note: In order for spread attributes to work properly, `marko@4.18.22` at least is required_
 
 ### Browser Policy
 
@@ -34,54 +34,55 @@ We take accessibility very seriously. Very seriously indeed. Therefore, all comp
 
 Components are built in a layered, progressively enhanced fashion, utilizing the following resources:
 
-* <a href="https://github.com/ianmcburnie/bones">Bones (HTML)</a>
-* <a href="https://github.com/eBay/skin">eBay Skin (CSS)</a>
-* <a href="https://github.com/makeup-js">MakeupJS (JavaScript)</a>
+-   <a href="https://github.com/ianmcburnie/bones">Bones (HTML)</a>
+-   <a href="https://github.com/eBay/skin">eBay Skin (CSS)</a>
+-   <a href="https://github.com/makeup-js">MakeupJS (JavaScript)</a>
 
 Each layer does its bit to enforce and enhance accessibility. We consider this level of support to be one of our chief selling points, and we hope you do too!
 
 ## Components
 
-* [`ebay-badge`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-badge)
-* [`ebay-breadcrumbs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumbs)
-* [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
-* [`ebay-carousel`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel)
-* [`ebay-checkbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-checkbox)
-* [`ebay-combobox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox)
-* [`ebay-cta-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-cta-button)
-* [`ebay-details`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-details)
-* [`ebay-drawer-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-drawer-dialog)
-* [`ebay-expand-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-expand-button)
-* [`ebay-fake-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-menu-button)
-* [`ebay-fake-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-menu-button)
-* [`ebay-fake-tabs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-tabs)
-* [`ebay-filter`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter)
-* [`ebay-filter-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter-menu)
-* [`ebay-filter-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter-menu-button)
-* [`ebay-fullscreen-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fullscreen-dialog)
-* [`ebay-icon`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-icon)
-* [`ebay-infotip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-infotip)
-* [`ebay-inline-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-inline-notice)
-* [`ebay-lightbox-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-lightbox-dialog)
-* [`ebay-listbox-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-listbox-button)
-* [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
-* [`ebay-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu-button)
-* [`ebay-page-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-page-notice)
-* [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
-* [`ebay-panel-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-panel-dialog)
-* [`ebay-progress-bar`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-bar)
-* [`ebay-progress-stepper`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-stepper)
-* [`ebay-radio`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-radio)
-* [`ebay-section-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-notice)
-* [`ebay-section-title`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-title)
-* [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
-* [`ebay-switch`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-switch)
-* [`ebay-tabs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tabs)
-* [`ebay-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-textbox)
-* [`ebay-toast`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toast)
-* [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
-* [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
-* [`ebay-window-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-window-notice)
+-   [`ebay-badge`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-badge)
+-   [`ebay-breadcrumbs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumbs)
+-   [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
+-   [`ebay-carousel`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel)
+-   [`ebay-checkbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-checkbox)
+-   [`ebay-combobox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox)
+-   [`ebay-cta-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-cta-button)
+-   [`ebay-details`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-details)
+-   [`ebay-drawer-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-drawer-dialog)
+-   [`ebay-expand-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-expand-button)
+-   [`ebay-fake-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-menu-button)
+-   [`ebay-fake-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-menu-button)
+-   [`ebay-fake-tabs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-tabs)
+-   [`ebay-filter`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter)
+-   [`ebay-filter-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter-menu)
+-   [`ebay-filter-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter-menu-button)
+-   [`ebay-fullscreen-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fullscreen-dialog)
+-   [`ebay-icon`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-icon)
+-   [`ebay-infotip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-infotip)
+-   [`ebay-inline-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-inline-notice)
+-   [`ebay-lightbox-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-lightbox-dialog)
+-   [`ebay-listbox-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-listbox-button)
+-   [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
+-   [`ebay-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu-button)
+-   [`ebay-page-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-page-notice)
+-   [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
+-   [`ebay-panel-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-panel-dialog)
+-   [`ebay-progress-bar`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-bar)
+-   [`ebay-progress-stepper`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-stepper)
+-   [`ebay-radio`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-radio)
+-   [`ebay-section-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-notice)
+-   [`ebay-section-title`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-title)
+-   [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
+-   [`ebay-snackbar-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-snackbar-dialog)
+-   [`ebay-switch`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-switch)
+-   [`ebay-tabs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tabs)
+-   [`ebay-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-textbox)
+-   [`ebay-toast`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toast)
+-   [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
+-   [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
+-   [`ebay-window-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-window-notice)
 
 ## Getting Started
 
@@ -196,9 +197,9 @@ The ebayui-core package follows strict [Semantic Versioning](http://semver.org).
 
 Given a version number MAJOR.MINOR.PATCH:
 
-* MAJOR version is incremented when we make incompatible API changes
-* MINOR version is incremented when we add functionality in a backwards-compatible manner
-* PATCH version is incremented when we make backwards-compatible bug fixes.
+-   MAJOR version is incremented when we make incompatible API changes
+-   MINOR version is incremented when we add functionality in a backwards-compatible manner
+-   PATCH version is incremented when we make backwards-compatible bug fixes.
 
 ### Deprecations
 
@@ -210,14 +211,14 @@ Please use our [issues page](https://github.com/eBay/ebayui-core/issues) to ask 
 
 To help track your issue, our admins will assign it with one or more coloured labels:
 
-* Black: Issue Type (e.g. bug, question, test case)
-* White: Resolution (e.g. wont fix, invalid, duplicate)
-* Gray: Status (e.g. backlog, in progress, help wanted)
-* Red: Blocker (e.g. dependency, discussion, design)
-* Green: Module (e.g. button, radio, dialog)
-* Blue: Aspect (e.g. build, documentation, website)
-* Yellow: Semver Guidance (e.g. breaking change, backwards compatible)
-* Purple: Sprint (e.g. sprint 1, sprint 2, etc)
+-   Black: Issue Type (e.g. bug, question, test case)
+-   White: Resolution (e.g. wont fix, invalid, duplicate)
+-   Gray: Status (e.g. backlog, in progress, help wanted)
+-   Red: Blocker (e.g. dependency, discussion, design)
+-   Green: Module (e.g. button, radio, dialog)
+-   Blue: Aspect (e.g. build, documentation, website)
+-   Yellow: Semver Guidance (e.g. breaking change, backwards compatible)
+-   Purple: Sprint (e.g. sprint 1, sprint 2, etc)
 
 ## Contributing
 

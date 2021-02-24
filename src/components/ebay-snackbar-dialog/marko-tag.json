@@ -1,0 +1,10 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@type": { "enum": ["default", "action"] },
+  "@open": "boolean"
+}
