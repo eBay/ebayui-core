@@ -7,20 +7,20 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@src": "string",
-  "@format": "string",
   "@cdn-url": "string",
+  "@play-view": {
+    "enum": ["inline", "fullscreen"]
+  },
   "@cdn-version": "string",
   "@a11y-play-text": "string",
   "@a11y-load-text": "string",
-  "@retry <retry>": {
-    "attribute-groups": [
-      "html-attributes"
-    ],
+  "@error-text": "string",
+  "@sources <source>[]": {
     "@*": {
       "targetProperty": null,
       "type": "expression"
     },
-    "@html-attributes": "expression"
+    "@src": "string",
+    "@type": "string"
   }
 }
