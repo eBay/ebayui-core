@@ -13,5 +13,6 @@
     "enum": ["regular", "small"]
   },
   "@text": "string",
+  "@as": "string",
   "@open": "boolean"
 }
