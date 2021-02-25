@@ -5,6 +5,6 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@type": { "enum": ["default", "action"] },
+  "@layout": { "enum": ["row", "column"] },
   "@open": "boolean"
 }
