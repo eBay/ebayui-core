@@ -1,10 +1,7 @@
 const DEFAULT_TIMEOUT_LENGTH = 6000;
 module.exports = {
     onInput(input) {
-        if (input.open === true || input.open === false) {
-            this.state.open = input.open;
-            clearTimeout(this.timeout);
-        }
+        clearTimeout(this.timeout);
         if (input.open !== false) {
             clearTimeout(this.timeout);
             const timeout = setTimeout(() => {
@@ -15,8 +12,5 @@ module.exports = {
     },
     onDestroy() {
         clearTimeout(this.timeout);
-    },
-    onCreate() {
-        this.state = { open: true };
     },
 };

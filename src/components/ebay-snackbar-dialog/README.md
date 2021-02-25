@@ -21,7 +21,7 @@ In the case of type="action", the user should provide the open state as a boolea
 
 ## Attributes
 
-| Name   | Type    | Stateful | Required | Description                                                                         |
-| ------ | ------- | -------- | -------- | ----------------------------------------------------------------------------------- |
-| `type` | String  | No       | No       | Options are default or action. Action types include a button to close the snackbar. |
-| `open` | Boolean | Yes      | No       | For the action type, the open state must be passed into the component.              |
+| Name     | Type    | Stateful | Required | Description                                                                                                      |
+| -------- | ------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
+| `open`   | Boolean | Yes      | No       | The open state must be passed into the component.                                                                |
+| `layout` | Enum    | No       | No       | Direction of row or column for the text and the action button. Default is 'row'. Options are 'row' and 'column'. |

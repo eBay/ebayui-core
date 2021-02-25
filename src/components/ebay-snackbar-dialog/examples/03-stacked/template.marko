@@ -1,5 +1,8 @@
-<ebay-snackbar-dialog open=state.open windowClass="snackbar-dialog__window--column" type="action" on-close("closeSnackbar")>
+<ebay-snackbar-dialog open=state.open layout="column" type="action" on-close("closeSnackbar")>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    <@actions>
+            <button on-click('closeSnackbar') accesskey="u" class="fake-link snackbar-dialog__cta">Undo<span class="clipped"> - Access Key: U</span></button>
+    </@actions>
 </ebay-snackbar-dialog>
 <ebay-button on-click('openSnackbar')>
     Open Stacked Snackbar
