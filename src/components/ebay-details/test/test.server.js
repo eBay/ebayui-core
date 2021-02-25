@@ -16,6 +16,13 @@ describe('details', () => {
         expect(getByText(input.renderBody.text).closest('details')).has.property('open', false);
     });
 
+    it('renders as div version', async() => {
+        const input = Object.assign({}, mock.Default_Details, { as: 'div' });
+        const { getByText } = await render(template, input);
+        expect(getByText(input.text)).has.class('details__label');
+        expect(getByText(input.renderBody.text)).has.property('tagName', 'DIV');
+    });
+
     it('renders in open state', async() => {
         const input = mock.Open_Details;
         const { getByText } = await render(template, input);
