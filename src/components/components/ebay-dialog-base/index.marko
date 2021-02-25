@@ -45,7 +45,17 @@ $ var header = input.header;
     <if(state.open && isBrowser && !input.ignoreEscape)>
         <subscribe to=document on-keydown("handleKeydown")/>
     </if>
-    <div key="window" class=[`${input.classPrefix}__window`, input.windowClass]>
+    <if(!state.open && isBrowser)>
+        <subscribe to=window on-click("trackLastClick") />
+    </if>
+    <div
+        key="window"
+        class=[
+            input.windowType
+                ? `${input.classPrefix}__${input.windowType}-window`
+                : `${input.classPrefix}__window`,
+            input.windowClass
+        ]>
         <if(input.top)>
             <${input.top.renderBody}/>
         </if>
