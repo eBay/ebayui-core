@@ -17,7 +17,7 @@
 
 A snackbar is a non-modal dialog that appears in response to a lightweight user action. It disappears automatically after a minimum of 6 seconds.
 
-In the case of type="action", the user should provide the open state as a boolean and a function that will be called with an on-close event to close the snackbar.
+The user manages the state of the snackbar, and so should provide the open state as a boolean as well as a function to close the snackbar when the on-close event occurs.
 
 ## Attributes
 
