@@ -5,6 +5,34 @@ const eventUtils = require('../../../common/event-utils');
 const transition = require('../../../common/transition');
 
 module.exports = {
+    trackLastClick(e) {
+        if (
+            e.defaultPrevented ||
+            e.metaKey ||
+            e.ctrlKey ||
+            e.shiftKey ||
+            e.button !== 0
+        ) {
+            return;
+        }
+
+        let el = e.target;
+        // Find an <button> element that may have been clicked.
+        while (el !== null && el.nodeName !== 'BUTTON') {
+            el = el.parentNode;
+        }
+        // Store the button that was clicked.
+        this.clickTarget = el;
+    },
+
+    getActiveElement() {
+        const el =
+            document.activeElement === document.body
+                ? this.clickTarget
+                : document.activeElement;
+        return el;
+    },
+
     handleStartClick({ target }) {
         this.startEl = target;
     },
@@ -74,7 +102,7 @@ module.exports = {
             this.transitionEls = [this.windowEl, this.rootEl];
         }
         // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
-        this.subscribeTo(this.rootEl).on('click', () => {});
+        this.subscribeTo(this.rootEl).on('click', () => { });
 
         this._trap({
             firstRender: true
@@ -138,7 +166,7 @@ module.exports = {
 
         // Ensure focus is set and body scroll prevented on initial render.
         if (isFirstRender && this.input.isModal && isTrapped) {
-            this._prevFocusEl = document.activeElement;
+            this._prevFocusEl = this.getActiveElement();
             this._triggerFocus(focusEl);
             this._triggerBodyScroll(true);
         }
@@ -155,13 +183,13 @@ module.exports = {
                     this.emit('open');
                 } else {
                     this._triggerBodyScroll(false);
-                    const activeElement = document.activeElement;
+                    const activeElement = this.getActiveElement();
                     this.rootEl.setAttribute('hidden', '');
                     this.emit('close');
 
                     if (
                         // Skip restoring focus if the focused element was changed via the dialog-close event
-                        activeElement === document.activeElement &&
+                        activeElement === this.getActiveElement() &&
                         // Skip restoring focus if the previously focused element was removed from the DOM.
                         document.documentElement.contains(this._prevFocusEl)
                     ) {
@@ -179,7 +207,7 @@ module.exports = {
 
             if (isTrapped) {
                 if (!isFirstRender) {
-                    this._prevFocusEl = document.activeElement;
+                    this._prevFocusEl = this.getActiveElement();
                     this._triggerBodyScroll(true);
                     this.cancelTransition = transition({
                         el: this.rootEl,
