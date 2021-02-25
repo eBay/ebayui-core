@@ -1,7 +1,7 @@
 <ebay-snackbar-dialog open=state.open on-close('closeSnackbar')>
     This is the action snackbar
     <@actions>
-            <button on-click('closeSnackbar') accesskey="u" class="fake-link snackbar-dialog__cta">Undo<span class="clipped"> - Access Key: U</span></button>
+            <ebay-button on-click('closeSnackbar') accesskey="u" class="fake-link snackbar-dialog__cta">Undo<span class="clipped"> - Access Key: U</span></ebay-button>
     </@actions>
 </ebay-snackbar-dialog>
 <ebay-button on-click("openSnackbar")>
