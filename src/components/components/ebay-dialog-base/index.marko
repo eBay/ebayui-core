@@ -53,6 +53,7 @@ $ var header = input.header;
         </button>
     </if>
 </macro>
+
 <${baseEl}
     ...processHtmlAttributes(input, ignoredAttributes)
     aria-labelledby=(input.ariaLabelledby || (input.header && component.getElId("dialog-title")))
@@ -65,6 +66,9 @@ $ var header = input.header;
     onMousedown("handleStartClick")>
     <if(state.open && isBrowser && !input.ignoreEscape)>
         <subscribe to=document on-keydown("handleKeydown")/>
+    </if>
+    <if(!state.open && isBrowser)>
+        <subscribe to=window on-click("trackLastClick") />
     </if>
     <div
         key="window"
