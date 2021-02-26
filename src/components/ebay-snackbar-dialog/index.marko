@@ -10,7 +10,7 @@ import processHtmlAttributes from "../../common/html-attributes"
     <${input.renderBody}/>
     <if(input.action)>
         <@action>
-            <ebay-button class="fake-link snackbar-dialog__cta" on-click('emit', 'action') >
+            <ebay-button variant="fake-link" on-click('emit', 'action') >
                 ${input.action.actionText}
                 <span class="clipped"> - Access Key: ${input.action.actionAccessKey}</span>
             </ebay-button>

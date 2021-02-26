@@ -1,3 +1,20 @@
-<ebay-snackbar-dialog open=true>
-    Basic Snackbar
+<ebay-snackbar-dialog open=state.open on-close('closeSnackbar')>
+    This is the basic snackbar
 </ebay-snackbar-dialog>
+<ebay-button on-click('openSnackbar')>
+    Open Default Snackbar
+</ebay-button>
+
+class {
+    onCreate() {
+        this.state = {open: false};
+    }
+
+    openSnackbar() {
+        this.state.open = true;
+    }
+
+    closeSnackbar() {
+        this.state.open = false;
+    }
+}
