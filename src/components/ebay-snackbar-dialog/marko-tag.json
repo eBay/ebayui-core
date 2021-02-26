@@ -7,7 +7,7 @@
   "@html-attributes": "expression",
   "@layout": { "enum": ["row", "column"] },
   "@open": "boolean",
-  "@action": {
+  "@action <action>": {
     "@*": {
       "targetProperty": null,
       "type": "expression"
