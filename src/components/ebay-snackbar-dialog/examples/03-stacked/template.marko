@@ -1,8 +1,6 @@
-<ebay-snackbar-dialog open=state.open layout="column" on-close("closeSnackbar")>
+<ebay-snackbar-dialog open=state.open layout="column" on-close("closeSnackbar") on-action('closeSnackbar')>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    <@actions>
-            <ebay-button on-click('closeSnackbar') accesskey="u" class="fake-link snackbar-dialog__cta">Undo<span class="clipped"> - Access Key: U</span></ebay-button>
-    </@actions>
+    <@action action-text="Undo" action-access-key="U" />
 </ebay-snackbar-dialog>
 <ebay-button on-click('openSnackbar')>
     Open Stacked Snackbar
@@ -19,5 +17,9 @@ class {
 
     closeSnackbar() {
         this.state.open = false;
+    }
+
+    printTwo() {
+        console.log("Two");
     }
 }

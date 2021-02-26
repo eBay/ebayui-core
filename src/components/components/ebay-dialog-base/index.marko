@@ -96,7 +96,7 @@ $ var actions = input.actions;
             <${input.renderBody}/>
         </div>
         <span class=`${input.classPrefix}__actions`>
-            <${input.actions && input.actions.renderBody}/>
+            <${input.action && input.action.renderBody}/>
         </span>
         <if(input.footer || buttonPosition === "bottom")>
             <div class=`${input.classPrefix}__footer`>

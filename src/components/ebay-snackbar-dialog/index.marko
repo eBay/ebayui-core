@@ -8,4 +8,12 @@ import processHtmlAttributes from "../../common/html-attributes"
     windowClass=[input.layout === "column" && "snackbar-dialog__window--column"]
     buttonPosition="hidden">
     <${input.renderBody}/>
+    <if(input.action)>
+        <@action>
+            <ebay-button class="fake-link snackbar-dialog__cta" on-click('emit', 'action') >
+                ${input.action.actionText}
+                <span class="clipped"> - Access Key: ${input.action.actionAccessKey}</span>
+            </ebay-button>
+        </@action>
+    </if>
 </ebay-dialog-base>
