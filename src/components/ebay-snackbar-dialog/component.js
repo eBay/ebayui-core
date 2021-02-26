@@ -8,24 +8,20 @@ module.exports = {
             const timeout = setTimeout(() => {
                 if (
                     document
-                        .querySelector('.fake-link.snackbar-dialog__cta.btn.btn--secondary')
+                        .querySelector('.fake-link.snackbar-dialog__cta')
                         .isEqualNode(document.activeElement) ||
                     Array.from(document.querySelectorAll(':hover')).includes(
-                        document.querySelector('.fake-link.snackbar-dialog__cta.btn.btn--secondary')
+                        document.querySelector('.fake-link.snackbar-dialog__cta')
                     )
                 ) {
                     this.interval = setInterval(() => {
                         if (
                             !(
                                 document
-                                    .querySelector(
-                                        '.fake-link.snackbar-dialog__cta.btn.btn--secondary'
-                                    )
+                                    .querySelector('.fake-link.snackbar-dialog__cta')
                                     .isEqualNode(document.activeElement) ||
                                 Array.from(document.querySelectorAll(':hover')).includes(
-                                    document.querySelector(
-                                        '.fake-link.snackbar-dialog__cta.btn.btn--secondary'
-                                    )
+                                    document.querySelector('.fake-link.snackbar-dialog__cta')
                                 )
                             )
                         ) {
