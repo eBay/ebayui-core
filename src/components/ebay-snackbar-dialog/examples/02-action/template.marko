@@ -1,6 +1,8 @@
-<ebay-snackbar-dialog open=state.open on-close('closeSnackbar') on-action('closeSnackbar')>
+<ebay-snackbar-dialog open=state.open on-close('closeSnackbar') on-action("closeSnackbar")>
     This is the action snackbar
-    <@action action-text="Undo" action-access-key="U"/>
+    <@action access-key="U">
+        Undo
+    </@action>
 </ebay-snackbar-dialog>
 <ebay-button on-click("openSnackbar")>
     Open Action Snackbar
