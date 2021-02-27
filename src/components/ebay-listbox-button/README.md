@@ -43,6 +43,8 @@ Name | Type | Stateful | Required | Description
 `fluid` | Boolean | No | No | whether listbox width is 100%
 `buttonName` | String | No | Yes | used for the `name` attribute of the native `<button>`
 `truncate` | Boolean | No | No | will truncate the text of the button onto a single line, and adds an ellipsis, when the button's text overflows
+`prefix-id` | String | No | No | The id of an external element to use as the prefix label for the listbox button. Cannot be used with `prefix-label`
+`prefix-label` | String | No | No | The label to add before each selected item on the button. Cannot be used with `prefix-id`
 
 **Note:** For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 

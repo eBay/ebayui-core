@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mpeg:DASH:schema:MPD:2011 http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd" profiles="urn:mpeg:dash:profile:isoff-live:2011" type="static" mediaPresentationDuration="PT38.038S" minBufferTime="PT6S">
+  <ProgramInformation />
+  
+    <Period id="0" start="PT0S">
+      
+        <AdaptationSet id="0" contentType="video" segmentAlignment="true" bitstreamSwitching="true" lang="und">
+          
+            <Representation id="0" mimeType="video/mp4" codecs="avc1.64001e" bandwidth="1259332" 
+              
+                width="1280" height="720" frameRate="24000/1001">
+              
+              <SegmentList timescale="1000000" duration="3000000" startNumber="1">
+                
+                  
+                    <Initialization sourceURL="5/video_720p-0.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="5/video_720p-1.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="5/video_720p-2.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="5/video_720p-3.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="5/video_720p-4.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="5/video_720p-5.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="5/video_720p-6.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="5/video_720p-7.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="5/video_720p-8.m4s"/>
+                  
+                
+              </SegmentList>
+            </Representation>
+          
+            <Representation id="1" mimeType="video/mp4" codecs="avc1.4d401e" bandwidth="1200000" 
+              
+                width="854" height="480" frameRate="24000/1001">
+              
+              <SegmentList timescale="1000000" duration="3000000" startNumber="1">
+                
+                  
+                    <Initialization sourceURL="4/video_480p-0.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="4/video_480p-1.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="4/video_480p-2.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="4/video_480p-3.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="4/video_480p-4.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="4/video_480p-5.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="4/video_480p-6.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="4/video_480p-7.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="4/video_480p-8.m4s"/>
+                  
+                
+              </SegmentList>
+            </Representation>
+          
+            <Representation id="2" mimeType="video/mp4" codecs="avc1.42c01e" bandwidth="800000" 
+              
+                width="640" height="360" frameRate="24000/1001">
+              
+              <SegmentList timescale="1000000" duration="3000000" startNumber="1">
+                
+                  
+                    <Initialization sourceURL="3/video_360p-0.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="3/video_360p-1.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="3/video_360p-2.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="3/video_360p-3.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="3/video_360p-4.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="3/video_360p-5.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="3/video_360p-6.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="3/video_360p-7.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="3/video_360p-8.m4s"/>
+                  
+                
+              </SegmentList>
+            </Representation>
+          
+            <Representation id="3" mimeType="video/mp4" codecs="avc1.42c01e" bandwidth="400000" 
+              
+                width="426" height="240" frameRate="24000/1001">
+              
+              <SegmentList timescale="1000000" duration="3000000" startNumber="1">
+                
+                  
+                    <Initialization sourceURL="2/video_240p-0.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="2/video_240p-1.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="2/video_240p-2.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="2/video_240p-3.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="2/video_240p-4.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="2/video_240p-5.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="2/video_240p-6.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="2/video_240p-7.m4s"/>
+                  
+                
+                  
+                    <SegmentURL media="2/video_240p-8.m4s"/>
+                  
+                
+              </SegmentList>
+            </Representation>
+          
+        </AdaptationSet>
+      
+    </Period>
+  
+</MPD>

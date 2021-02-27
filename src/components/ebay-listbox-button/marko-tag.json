@@ -11,6 +11,8 @@
   "@fluid": "boolean",
   "@invalid": "boolean",
   "@truncate": "boolean",
+  "@prefix-id": "string",
+  "@prefix-label": "string",
   "@name": "#html-name",
   "@button-name": "#html-name",
   "@disabled": "#html-disabled",

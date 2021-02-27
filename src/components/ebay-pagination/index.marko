@@ -53,7 +53,14 @@ $ var range = component._getVisibleRange(items);
         key="items"
         class="pagination__items">
         <for|item, i| of=items>
-            <li hidden=(i < range.start || i > range.end)>
+            <if(range.dotsIndex === i)>
+                <li hidden=(range.hideDots)>
+                    <span class=["pagination__item", item.class]>
+                        …
+                    </span>
+                </li>
+            </if>
+            <li hidden=((i < range.start || i > range.end) && range.dotsIndex !== i)>
                 <${component.getItemTag(item)}
                     ...processHtmlAttributes(item, ignoredItemAttributes)
                     class=["pagination__item", item.class]

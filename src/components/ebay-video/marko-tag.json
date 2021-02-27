@@ -1,0 +1,26 @@
+{
+  "attribute-groups": [
+    "html-attributes"
+  ],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@cdn-url": "string",
+  "@play-view": {
+    "enum": ["inline", "fullscreen"]
+  },
+  "@cdn-version": "string",
+  "@a11y-play-text": "string",
+  "@a11y-load-text": "string",
+  "@error-text": "string",
+  "@sources <source>[]": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@src": "string",
+    "@type": "string"
+  }
+}

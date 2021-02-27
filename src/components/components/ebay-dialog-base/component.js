@@ -6,13 +6,7 @@ const transition = require('../../../common/transition');
 
 module.exports = {
     trackLastClick(e) {
-        if (
-            e.defaultPrevented ||
-            e.metaKey ||
-            e.ctrlKey ||
-            e.shiftKey ||
-            e.button !== 0
-        ) {
+        if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) {
             return;
         }
 
@@ -27,9 +21,7 @@ module.exports = {
 
     getActiveElement() {
         const el =
-            document.activeElement === document.body
-                ? this.clickTarget
-                : document.activeElement;
+            document.activeElement === document.body ? this.clickTarget : document.activeElement;
         return el;
     },
 
@@ -102,16 +94,16 @@ module.exports = {
             this.transitionEls = [this.windowEl, this.rootEl];
         }
         // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
-        this.subscribeTo(this.rootEl).on('click', () => { });
+        this.subscribeTo(this.rootEl).on('click', () => {});
 
         this._trap({
-            firstRender: true
+            firstRender: true,
         });
     },
 
     onUpdate() {
         this._trap({
-            firstRender: false
+            firstRender: false,
         });
     },
 
@@ -158,10 +150,11 @@ module.exports = {
      */
     _trap(opts) {
         const { isTrapped: wasTrapped, restoreTrap } = this;
-        const isTrapped = this.isTrapped = this.state.open;
-        const isFirstRender = (opts && opts.firstRender);
+        const isTrapped = (this.isTrapped = this.state.open);
+        const isFirstRender = opts && opts.firstRender;
         const wasToggled = isTrapped !== wasTrapped;
-        const focusEl = (this.input.focus && document.getElementById(this.input.focus)) || this.closeEl;
+        const focusEl =
+            (this.input.focus && document.getElementById(this.input.focus)) || this.closeEl;
         const runTraps = this._getTrapCallback(restoreTrap, isTrapped, wasTrapped);
 
         // Ensure focus is set and body scroll prevented on initial render.
@@ -209,22 +202,28 @@ module.exports = {
                 if (!isFirstRender) {
                     this._prevFocusEl = this.getActiveElement();
                     this._triggerBodyScroll(true);
-                    this.cancelTransition = transition({
-                        el: this.rootEl,
-                        className: `${this.input.classPrefix}--show`,
-                        waitFor: this.transitionEls
-                    }, onFinishTransition);
+                    this.cancelTransition = transition(
+                        {
+                            el: this.rootEl,
+                            className: `${this.input.classPrefix}--show`,
+                            waitFor: this.transitionEls,
+                        },
+                        onFinishTransition
+                    );
                 } else {
                     this.rootEl.removeAttribute('hidden');
                     runTraps();
                 }
             } else {
                 if (!isFirstRender) {
-                    this.cancelTransition = transition({
-                        el: this.rootEl,
-                        className: `${this.input.classPrefix}--hide`,
-                        waitFor: this.transitionEls
-                    }, onFinishTransition);
+                    this.cancelTransition = transition(
+                        {
+                            el: this.rootEl,
+                            className: `${this.input.classPrefix}--hide`,
+                            waitFor: this.transitionEls,
+                        },
+                        onFinishTransition
+                    );
                 } else {
                     this.rootEl.setAttribute('hidden', '');
                 }
@@ -259,5 +258,5 @@ module.exports = {
             this.cancelTransition();
             this.cancelTransition = undefined;
         }
-    }
+    },
 };

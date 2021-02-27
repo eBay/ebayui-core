@@ -1,13 +1,16 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
+const {
+    testPassThroughAttributes,
+    testEventsMigrator,
+} = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
 use(require('chai-dom'));
 
 describe('details', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Default_Details;
         const { getByText } = await render(template, input);
         expect(getByText(input.text)).has.class('details__label');
@@ -16,14 +19,14 @@ describe('details', () => {
         expect(getByText(input.renderBody.text).closest('details')).has.property('open', false);
     });
 
-    it('renders as div version', async() => {
+    it('renders as div version', async () => {
         const input = Object.assign({}, mock.Default_Details, { as: 'div' });
         const { getByText } = await render(template, input);
         expect(getByText(input.text)).has.class('details__label');
         expect(getByText(input.renderBody.text)).has.property('tagName', 'DIV');
     });
 
-    it('renders in open state', async() => {
+    it('renders in open state', async () => {
         const input = mock.Open_Details;
         const { getByText } = await render(template, input);
         expect(getByText(input.text)).has.class('details__label');
@@ -32,13 +35,13 @@ describe('details', () => {
         expect(getByText(input.renderBody.text).closest('details')).has.property('open', true);
     });
 
-    it('renders small version', async() => {
+    it('renders small version', async () => {
         const input = Object.assign({}, mock.Default_Details, { size: 'small' });
         const { getByText } = await render(template, input);
         expect(getByText(input.text).closest('summary')).has.class('details__summary--small');
     });
 
-    it('renders center version', async() => {
+    it('renders center version', async () => {
         const input = Object.assign({}, mock.Default_Details, { type: 'center' });
         const { getByText } = await render(template, input);
         expect(getByText(input.text).closest('summary')).has.class('details__summary--center');

@@ -11,6 +11,9 @@
   "@a11y-current-text": "string",
   "@role": "never",
   "@aria-labelledby": "never",
+  "@variant": {
+    "enum": ["show-last", "show-range"]
+  },
   "@items <item>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {

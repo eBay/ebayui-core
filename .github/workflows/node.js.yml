@@ -1,0 +1,25 @@
+name: eBay UI CI
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm run build:ci
+      env:
+        BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        BUILD_NUMBER: CI
+        REPO_SLUG: ebay/ebayui-core
+    - uses: coverallsapp/github-action@master
+      if: ${{ success() }}
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: .coverage/lcov.info
