@@ -1,10 +1,9 @@
 <ebay-video
     width=460
     height=300
-    src="/video/playlist.mpd"
     cdn-url="Fake-url-to-fail"
     a11y-load-text="This video is loading now"
     a11y-play-text="Click to start this video"
-    >
-    <@retry>Oh man, something bad happened. Click to try again</@retry>
+    error-text="Oh man, something bad happened. Sorry!">
+    <@source src="/video/playlist.mpd"/>
 </ebay-video>

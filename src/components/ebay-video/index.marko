@@ -1,6 +1,16 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player"];
+static var ignoredAttributes = [
+    "sources",
+    "cdnUrl",
+    "cdnVersion",
+    "format",
+    "thumbnail",
+    "playView",
+    "a11yPlayText",
+    "a11yLoadText",
+    "errorText"
+];
 
 <div
     key="container"
@@ -16,35 +26,37 @@ static var ignoredAttributes = ["src", "cdnUrl", "cdnVersion", "format", "player
         key="video"
         width=state.width
         controls
-        on-error('handleError')
+        on-error("handleError")
+        on-playing(input.playView === "fullscreen" && "handleFullscreen")
         poster=input.thumbnail
         ...processHtmlAttributes(input, ignoredAttributes)>
+        <for|src| of=input.sources>
+            <if(!component.isPlaylist(src))>
+                <source ...src/>
+            </if>
+        </for>
     </video>
+    <div class=[
+        "video-player__overlay",
+        !state.failed && "video-player__overlay--hidden"
+    ]>
+        <ebay-attention-icon/>
+        <div class="video-player__overlay-text">
+            <if(input.errorText)>${input.errorText}</if>
+            <else>An error has occurred</else>
+        </div>
+    </div>
     <div
         class=[
             "video-player__overlay",
-            !state.failed && "video-player__overlay--hidden"
+            state.isLoaded && "video-player__overlay--hidden"
         ]
         on-click("loadCDN", true)>
-        <ebay-refresh-icon/>
-        <div class="video-player__overlay-text">
-            <if(input.retry)>
-                <${input.retry}/>
-            </if>
-            <else>
-                Click to retry
-            </else>
-        </div>
-    </div>
-    <div class=[
-        "video-player__overlay",
-        state.isLoaded && "video-player__overlay--hidden"
-    ] on-click('loadCDN', true)>
-        <if (!state.showLoading)>
-            <ebay-play-large-icon a11y-text=(input.a11yPlayText || "Click to play") />
+        <if(!state.showLoading)>
+            <ebay-play-large-icon a11y-text=(input.a11yPlayText || "Click to play")/>
         </if>
         <else>
-            <ebay-progress-spinner a11y-text=(input.a11yLoadText || "Loading") />
+            <ebay-progress-spinner a11y-text=(input.a11yLoadText || "Loading")/>
         </else>
     </div>
 </div>
