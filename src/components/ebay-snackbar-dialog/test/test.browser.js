@@ -1,5 +1,5 @@
 const { expect, use } = require('chai');
-const { render, fireEvent, waitFor, cleanup } = require('@marko/testing-library');
+const { render, fireEvent } = require('@marko/testing-library');
 const basicSnackbarTemplate = require('./mock/mock-basic.marko');
 const actionSnackbarTemplate = require('./mock/action-snackbar-template.marko');
 

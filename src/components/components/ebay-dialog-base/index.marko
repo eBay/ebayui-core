@@ -64,9 +64,7 @@ $ var actions = input.actions;
     hidden:no-update=!state.open
     aria-live=(!input.isModal && "polite")
     onClick("handleDialogClick")
-    onMousedown("handleStartClick")
-    
-    >
+    onMousedown("handleStartClick")>
     <if(state.open && isBrowser && !input.ignoreEscape)>
         <subscribe to=document on-keydown("handleKeydown")/>
     </if>
