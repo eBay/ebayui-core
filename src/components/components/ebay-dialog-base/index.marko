@@ -64,7 +64,9 @@ $ var actions = input.actions;
     hidden:no-update=!state.open
     aria-live=(!input.isModal && "polite")
     onClick("handleDialogClick")
-    onMousedown("handleStartClick")>
+    onMousedown("handleStartClick")
+    
+    >
     <if(state.open && isBrowser && !input.ignoreEscape)>
         <subscribe to=document on-keydown("handleKeydown")/>
     </if>
@@ -73,6 +75,8 @@ $ var actions = input.actions;
     </if>
     <div
         key="window"
+        onMouseEnter('emit', 'mouseEnter')
+    onMouseLeave('emit', 'mouseLeave')
         class=[
             input.windowType
                 ? `${input.classPrefix}__${input.windowType}-window`

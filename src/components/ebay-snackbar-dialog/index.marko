@@ -1,6 +1,63 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
+class {
+onInput(input) {
+
+    clearTimeout(this.timeout);
+    // clearInterval(this.interval);
+    if (input.open !== false) {
+
+        clearTimeout(this.timeout);
+        const timeout = setTimeout(() => {
+            this.emit('close');
+        }, input.timeout || this.DEFAULT_TIMEOUT_LENGTH);
+        this.timeout = timeout;
+    }
+}
+onDestroy() {
+    clearTimeout(this.timeout);
+}
+onCreate() {
+    this.DEFAULT_TIMEOUT_LENGTH = 6000
+    this.eventSet = new Set();
+}
+
+    setFocus() {
+        console.log("focus")
+        clearTimeout(this.timeout);
+        this.eventSet.add('focus');
+    }
+
+    setBlur() {
+        console.log("blur")
+        this.eventSet.delete('focus');
+        if(this.eventSet.size === 0) {
+            this.timeout = setTimeout(() => {
+                this.emit('close');
+            }, this.DEFAULT_TIMEOUT_LENGTH);
+        }
+    }
+
+    setMouseEnter() {
+        console.log("mouse over")
+        clearTimeout(this.timeout);
+        this.eventSet.add('mouseOver');
+    }
+
+    setMouseLeave() {
+        console.log("mouse out")
+        this.eventSet.delete('mouseOver');
+        if(this.eventSet.size === 0) {
+            this.timeout = setTimeout(() => {
+                this.emit('close');
+            }, this.DEFAULT_TIMEOUT_LENGTH);
+        }
+    }
+}
+
 <ebay-dialog-base
+    onMouseEnter('setMouseEnter')
+    onMouseLeave('setMouseLeave')
     ...input
     isModal=false
     classPrefix="snackbar-dialog"
@@ -10,7 +67,8 @@ import processHtmlAttributes from "../../common/html-attributes"
     <${input.renderBody}/>
     <if(input.action)>
         <@action>
-            <ebay-button ...input.action variant="fake-link" on-click('emit', 'action') >
+            <ebay-button ...input.action variant="fake-link" on-click('emit', 'action') on-focus('setFocus')
+            on-blur('setBlur') >
                 <${input.action.renderBody}/>
                 <span class="clipped"> - Access Key: ${input.action.accessKey}</span>
             </ebay-button>
