@@ -1,12 +1,12 @@
+<ebay-button on-click('openSnackbar')>
+    Open Stacked Snackbar
+</ebay-button>
 <ebay-snackbar-dialog open=state.open layout="column" on-close("closeSnackbar") on-action("closeSnackbar")>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     <@action action-access-key="U">
         Undo
     </@action>
 </ebay-snackbar-dialog>
-<ebay-button on-click('openSnackbar')>
-    Open Stacked Snackbar
-</ebay-button>
 
 class {
     onCreate() {

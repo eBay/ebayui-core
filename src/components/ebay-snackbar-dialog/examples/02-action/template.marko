@@ -1,12 +1,12 @@
+<ebay-button on-click("openSnackbar")>
+    Open Action Snackbar
+</ebay-button>
 <ebay-snackbar-dialog open=state.open on-close('closeSnackbar') on-action("closeSnackbar")>
     This is the action snackbar
     <@action access-key="U">
         Undo
     </@action>
 </ebay-snackbar-dialog>
-<ebay-button on-click("openSnackbar")>
-    Open Action Snackbar
-</ebay-button>
 
 class {
     onCreate() {
