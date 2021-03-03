@@ -1,106 +1,75 @@
 const { expect, use } = require('chai');
-const { render, fireEvent } = require('@marko/testing-library');
-const basicSnackbarTemplate = require('./mock/mock-basic.marko');
-const actionSnackbarTemplate = require('./mock/action-snackbar-template.marko');
+const sinon = require('sinon');
+const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
+const assign = require('core-js-pure/features/object/assign');
+const { fastAnimations } = require('../../../common/test-utils/browser');
+const template = require('..');
+const mock = require('./mock');
 
+let timer;
 use(require('chai-dom'));
+before(() => {
+    timer = sinon.useFakeTimers();
+    fastAnimations.start();
+});
+
+after(() => {
+    timer.restore();
+    fastAnimations.stop();
+});
+afterEach(() => {
+    cleanup();
+});
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-describe('given a closed action snackbar', () => {
+describe('given an open snackbar', () => {
+    const input = mock.Snackbar_Open;
+
     beforeEach(async () => {
-        component = await render(actionSnackbarTemplate);
+        component = await render(template, input);
     });
 
-    it('it is not visible in the DOM', () => {
-        expect(
-            component.getByText(/This is the action snackbar/i).parentElement.parentElement
-        ).to.have.attribute('hidden');
+    it('then it is not hidden in the DOM', () => {
+        expect(component.getByRole('dialog')).does.not.have.attr('hidden');
     });
 
-    it('once the button is clicked it becomes visible', async () => {
-        await fireEvent.click(component.getByText('Open Action Snackbar'));
-        const visibleSnackbar = await component.findByText(/This is the action snackbar/i);
-        setTimeout(() => {
-            expect(visibleSnackbar.parentElement.parentElement).does.not.have.attribute('hidden');
-        }, 1000);
+    describe('then it is closed after time', () => {
+        it('then it is not visible in the DOM', async () => {
+            timer.tick(7000);
+            expect(component.emitted('close')).has.length(1);
+        });
     });
 
-    it('then clicking the undo button makes the snackbar disappear', async () => {
-        await fireEvent.click(component.getByText('Open Action Snackbar'));
-        const snackbar = await component.findByText(/This is the action snackbar/i);
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).does.not.have.attribute('hidden');
-        }, 1000);
-        await fireEvent.click(component.getByText(/undo/i));
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).to.have.attribute('hidden');
-        }, 1000);
+    describe('clicking on action icon emits action', () => {
+        it('action emitted', async () => {
+            await fireEvent.click(component.getByText(/action/i));
+            expect(component.emitted('action')).has.length(1);
+        });
     });
 
-    it('mouseEnter prevents the snackbar from disappearing', async () => {
-        await fireEvent.click(component.getByText('Open Action Snackbar'));
-        const snackbar = await component.findByText(/This is the action snackbar/i);
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).does.not.have.attribute('hidden');
-        }, 1000);
-        await fireEvent.mouseEnter(snackbar.parentElement.parentElement);
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).does.not.have.attribute('hidden');
-        }, 7000);
-        await fireEvent.mouseLeave(snackbar.parentElement.parentElement);
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).to.have.attribute('hidden');
-        }, 7000);
-    });
-
-    it('button focus prevents the snackbar from disappearing', async () => {
-        await fireEvent.click(component.getByText('Open Action Snackbar'));
-        const snackbar = await component.findByText(/This is the action snackbar/i);
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).does.not.have.attribute('hidden');
-        }, 1000);
-        await fireEvent.focus(component.getByText(/undo/i));
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).does.not.have.attribute('hidden');
-        }, 7000);
-        await fireEvent.blur(component.getByText(/undo/i));
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).to.have.attribute('hidden');
-        }, 7000);
-    });
-
-    it('mouseEnter, focus, blur still has snackbar visible until after mouseLeave', async () => {
-        await fireEvent.click(component.getByText('Open Action Snackbar'));
-        const snackbar = await component.findByText(/This is the action snackbar/i);
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).does.not.have.attribute('hidden');
-        }, 1000);
-        await fireEvent.mouseEnter(snackbar.parentElement.parentElement);
-        await fireEvent.focus(component.getByText(/undo/i));
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).does.not.have.attribute('hidden');
-        }, 7000);
-        await fireEvent.blur(component.getByText(/undo/i));
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).does.not.have.attribute('hidden');
-        }, 7000);
-        await fireEvent.mouseLeave(snackbar.parentElement.parentElement);
-        setTimeout(() => {
-            expect(snackbar.parentElement.parentElement).to.have.attribute('hidden');
-        }, 7000);
+    describe('focus and mouseenter prevent closing it until all events', () => {
+        it('is not closed', async () => {
+            await fireEvent.mouseEnter(component.getByText(/action/i).parentElement);
+            await fireEvent.focus(component.getByText(/action/i).parentElement);
+            await fireEvent.blur(component.getByText(/action/i).parentElement);
+            timer.tick(7000);
+            expect(component.emitted('close')).has.length(0);
+        });
     });
 });
 
-describe('given an open snackbar', () => {
+describe('given a closed snackbar', () => {
+    const input = mock.Snackbar_Closed;
+
     beforeEach(async () => {
-        component = await render(basicSnackbarTemplate);
+        component = await render(template, input);
     });
 
-    it('then it is visible in the DOM', () => {
+    it('then it is hidden in the DOM', () => {
         expect(
-            component.getByText('This is the basic snackbar').parentElement.parentElement
-        ).does.not.have.attribute('hidden');
+            component.getByText('action content').parentElement.parentElement.parentElement
+        ).to.have.attr('hidden');
     });
 });
