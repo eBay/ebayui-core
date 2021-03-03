@@ -140,7 +140,7 @@
     "marko": "^4 || ^5"
   },
   "dependencies": {
-    "@marko-tags/subscribe": "^0.4.1",
+    "@marko-tags/subscribe": "^0.4.2",
     "core-js-pure": "^3.9.1",
     "makeup-active-descendant": "0.3.9",
     "makeup-expander": "~0.8.6",
