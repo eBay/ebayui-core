@@ -1,6 +1,5 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 

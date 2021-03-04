@@ -38,12 +38,12 @@ class {
         this.state.open = false;
     }
 
-    setFocus() {
+    handleFocus() {
         this.clearAllTimeouts();
         this.eventSet.add("focus");
     }
 
-    setBlur() {
+    handleBlur() {
         this.eventSet.delete("focus");
         if (this.eventSet.size === 0) {
             this.timeouts.push(setTimeout(() => {
@@ -53,12 +53,12 @@ class {
         }
     }
 
-    setMouseEnter() {
+    handleMouseEnter() {
         this.clearAllTimeouts();
         this.eventSet.add("mouseOver");
     }
 
-    setMouseLeave() {
+    handleMouseLeave() {
         this.eventSet.delete("mouseOver");
         if (this.eventSet.size === 0 && this.state.open === true) {
             this.timeouts.push(setTimeout(() => {
@@ -70,8 +70,8 @@ class {
 }
 
 <ebay-dialog-base
-    onMouseEnter("setMouseEnter")
-    onMouseLeave("setMouseLeave")
+    onMouseEnter("handleMouseEnter")
+    onMouseLeave("handleMouseLeave")
     ...processHtmlAttributes(input, ignoredAttributes)
     open=state.open
     isModal=false
@@ -86,8 +86,8 @@ class {
                 ...input.action
                 variant="fake-link"
                 on-click("handleAction")
-                on-focus("setFocus")
-                on-blur("setBlur")>
+                on-focus("handleFocus")
+                on-blur("handleBlur")>
                 <${input.action.renderBody}/>
                 <span class="clipped">- Access Key: ${input.action.accessKey}</span>
             </ebay-button>
