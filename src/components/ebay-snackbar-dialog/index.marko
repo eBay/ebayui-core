@@ -67,9 +67,17 @@ class {
             }, this.DEFAULT_TIMEOUT_LENGTH));
         }
     }
+
+    handleBaseClose() {
+        console.log("handlebaseclose in snackbar")
+        this.clearAllTimeouts();
+        this.state.open = false;
+        this.emit("close");
+    }
 }
 
 <ebay-dialog-base
+    onBaseClose("handleBaseClose")
     onMouseEnter("handleMouseEnter")
     onMouseLeave("handleMouseLeave")
     ...processHtmlAttributes(input, ignoredAttributes)

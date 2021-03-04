@@ -36,6 +36,7 @@ module.exports = {
     handleKeydown(event) {
         eventUtils.handleEscapeKeydown(event, () => {
             this.state.open = false;
+            this.emit('baseClose');
         });
     },
 
