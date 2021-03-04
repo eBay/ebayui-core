@@ -36,6 +36,7 @@ class {
         this.clearAllTimeouts();
         this.emit('action');
         this.state.open = false;
+        this.emit('close');
     }
 
     handleFocus() {
