@@ -17,7 +17,7 @@
 
 A snackbar is a non-modal dialog that appears in response to a lightweight user action. It disappears automatically after a minimum of 6 seconds.
 
-The user usually will want to manage the state of the snackbar, and so should provide the open state as a boolean as well as a function to close the snackbar when the on-close event occurs.
+The user usually will want to manage the state of the snackbar, and so should provide the open state as a boolean as well as a function to synchronize the app state with the snackbar state when the on-close event occurs.
 
 In the case where the application developer only wants to manage the initial state of the snackbar, the dev can choose to provide only the open state as a boolean. This is useful when a dev wants the snackbar to appear only once on initial render and then disappear.
 
