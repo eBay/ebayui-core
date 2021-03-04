@@ -1,7 +1,7 @@
 <ebay-button on-click("handleOpen")>
     Open Action Snackbar
 </ebay-button>
-<ebay-snackbar-dialog open=state.open on-close('handleClose') on-action("handleClose")>
+<ebay-snackbar-dialog open=state.open on-close('handleClose') on-action("handleAction")>
     This is the action snackbar
     <@action access-key="U">
         Undo
@@ -19,5 +19,10 @@ class {
 
     handleClose() {
         this.state.open = false;
+    }
+
+    handleAction() {
+        //do API call, other action here
+        this.handleClose();
     }
 }
