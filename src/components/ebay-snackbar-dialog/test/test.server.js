@@ -32,6 +32,4 @@ describe('snackbar-dialog', () => {
         const { getByRole } = await render(template, input);
         expect(getByRole('dialog')).does.not.have.attr('hidden');
     });
-
-    testPassThroughAttributes(template);
 });

@@ -1,50 +1,70 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
+static var ignoredAttributes = [
+    "open"
+];
+
 class {
+    clearAllTimeouts() {
+        while(this.timeouts.length) {
+            clearTimeout(this.timeouts.pop());
+        }   
+    }
+
     onInput(input) {
-        clearTimeout(this.timeout);
+        this.clearAllTimeouts();
+        this.state = {open: input.open || this.state.open || false}
         if (input.open !== false) {
-            clearTimeout(this.timeout);
-            const timeout = setTimeout(() => {
+            this.timeouts.push(setTimeout(() => {
                 this.emit("close");
-            }, input.timeout || this.DEFAULT_TIMEOUT_LENGTH);
-            this.timeout = timeout;
+                this.state.open = false;
+            }, input.timeout || this.DEFAULT_TIMEOUT_LENGTH));
         }
     }
     onDestroy() {
-        clearTimeout(this.timeout);
+        this.clearAllTimeouts();
     }
 
     onCreate() {
         this.DEFAULT_TIMEOUT_LENGTH = 6000;
         this.eventSet = new Set();
+        this.state = {open: false};
+        this.timeouts = [];
+    }
+
+    handleAction() {
+        this.clearAllTimeouts();
+        this.emit('action');
+        this.state.open = false;
     }
 
     setFocus() {
-        clearTimeout(this.timeout);
+        this.clearAllTimeouts();
         this.eventSet.add("focus");
     }
 
     setBlur() {
         this.eventSet.delete("focus");
         if (this.eventSet.size === 0) {
-            this.timeout = setTimeout(() => {
+            this.timeouts.push(setTimeout(() => {
                 this.emit("close");
-            }, this.DEFAULT_TIMEOUT_LENGTH);
+                this.state.open = false;
+            }, this.DEFAULT_TIMEOUT_LENGTH));
         }
     }
 
     setMouseEnter() {
-        clearTimeout(this.timeout);
+        this.clearAllTimeouts();
         this.eventSet.add("mouseOver");
     }
 
     setMouseLeave() {
         this.eventSet.delete("mouseOver");
-        if (this.eventSet.size === 0) {
-            this.timeout = setTimeout(() => {
+        if (this.eventSet.size === 0 && this.state.open === true) {
+            this.timeouts.push(setTimeout(() => {
                 this.emit("close");
-            }, this.DEFAULT_TIMEOUT_LENGTH);
+                this.state.open = false;
+            }, this.DEFAULT_TIMEOUT_LENGTH));
         }
     }
 }
@@ -52,7 +72,8 @@ class {
 <ebay-dialog-base
     onMouseEnter("setMouseEnter")
     onMouseLeave("setMouseLeave")
-    ...input
+    ...processHtmlAttributes(input, ignoredAttributes)
+    open=state.open
     isModal=false
     classPrefix="snackbar-dialog"
     class=[input.class, "snackbar-dialog--transition"]
@@ -64,7 +85,7 @@ class {
             <ebay-button
                 ...input.action
                 variant="fake-link"
-                on-click("emit", "action")
+                on-click("handleAction")
                 on-focus("setFocus")
                 on-blur("setBlur")>
                 <${input.action.renderBody}/>
