@@ -1,7 +1,7 @@
-<ebay-button on-click('openSnackbar')>
+<ebay-button on-click('handleOpen')>
     Open Default Snackbar
 </ebay-button>
-<ebay-snackbar-dialog open=state.open on-close('closeSnackbar')>
+<ebay-snackbar-dialog open=state.open on-close('handleClose')>
     This is the basic snackbar
 </ebay-snackbar-dialog>
 
@@ -10,11 +10,11 @@ class {
         this.state = {open: false};
     }
 
-    openSnackbar() {
+    handleOpen() {
         this.state.open = true;
     }
 
-    closeSnackbar() {
+    handleClose() {
         this.state.open = false;
     }
 }

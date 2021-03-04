@@ -1,7 +1,7 @@
-<ebay-button on-click('openSnackbar')>
+<ebay-button on-click('handleOpen')>
     Open Stacked Snackbar
 </ebay-button>
-<ebay-snackbar-dialog open=state.open layout="column" on-close("closeSnackbar") on-action("closeSnackbar")>
+<ebay-snackbar-dialog open=state.open layout="column" on-close("handleClose") on-action("handleClose")>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     <@action action-access-key="U">
         Undo
@@ -13,11 +13,11 @@ class {
         this.state = {open: false};
     }
 
-    openSnackbar() {
+    handleOpen() {
         this.state.open = true;
     }
 
-    closeSnackbar() {
+    handleClose() {
         this.state.open = false;
     }
 }
