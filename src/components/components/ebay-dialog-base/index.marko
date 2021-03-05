@@ -29,7 +29,6 @@ static var ignoredHeaderAttributes = ["id", "as"];
 $ var buttonPosition = input.buttonPosition || "left";
 $ var baseEl = input.baseEl || "div";
 $ var header = input.header;
-$ var actions = input.actions;
 <macro name="header-content">
     <${header.as || "h2"}
         ...processHtmlAttributes(header, ignoredHeaderAttributes)
@@ -100,10 +99,13 @@ $ var actions = input.actions;
         </>
         <div id=input.mainId class=`${input.classPrefix}__main`  key="body" onScroll("handleScroll")>
             <${input.renderBody}/>
+            
         </div>
-        <span class=`${input.classPrefix}__actions`>
-            <${input.action && input.action.renderBody}/>
-        </span>
+        <if(input.action)>
+                <span class=`${input.classPrefix}__actions`>
+                    <${input.action && input.action.renderBody}/>
+                </span>
+        </if>
         <if(input.footer || buttonPosition === "bottom")>
             <div class=`${input.classPrefix}__footer`>
                 <${input.footer && input.footer.renderBody}/>

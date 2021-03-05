@@ -1,84 +1,12 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
-    "open"
+    "open",
+    "layout"
 ];
 
-class {
-    clearAllTimeouts() {
-        while(this.timeouts.length) {
-            clearTimeout(this.timeouts.pop());
-        }
-    }
-
-    onInput(input) {
-        this.clearAllTimeouts();
-        this.state = {open: input.open || this.state.open || false}
-        if (input.open !== false) {
-            this.timeouts.push(setTimeout(() => {
-                this.emit("close");
-                this.state.open = false;
-            }, input.timeout || this.DEFAULT_TIMEOUT_LENGTH));
-        }
-    }
-    onDestroy() {
-        this.clearAllTimeouts();
-    }
-
-    onCreate() {
-        this.DEFAULT_TIMEOUT_LENGTH = 6000;
-        this.eventSet = new Set();
-        this.state = {open: false};
-        this.timeouts = [];
-    }
-
-    handleAction() {
-        this.clearAllTimeouts();
-        this.emit('action');
-        this.state.open = false;
-        this.emit('close');
-    }
-
-    handleFocus() {
-        this.clearAllTimeouts();
-        this.eventSet.add("focus");
-    }
-
-    handleBlur() {
-        this.eventSet.delete("focus");
-        if (this.eventSet.size === 0) {
-            this.timeouts.push(setTimeout(() => {
-                this.emit("close");
-                this.state.open = false;
-            }, this.DEFAULT_TIMEOUT_LENGTH));
-        }
-    }
-
-    handleMouseEnter() {
-        this.clearAllTimeouts();
-        this.eventSet.add("mouseOver");
-    }
-
-    handleMouseLeave() {
-        this.eventSet.delete("mouseOver");
-        if (this.eventSet.size === 0 && this.state.open === true) {
-            this.timeouts.push(setTimeout(() => {
-                this.emit("close");
-                this.state.open = false;
-            }, this.DEFAULT_TIMEOUT_LENGTH));
-        }
-    }
-
-    handleBaseClose() {
-        console.log("handlebaseclose in snackbar")
-        this.clearAllTimeouts();
-        this.state.open = false;
-        this.emit("close");
-    }
-}
-
 <ebay-dialog-base
-    onBaseClose("handleBaseClose")
+    on-close("handleClose")
     onMouseEnter("handleMouseEnter")
     onMouseLeave("handleMouseLeave")
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -87,7 +15,8 @@ class {
     classPrefix="snackbar-dialog"
     class=[input.class, "snackbar-dialog--transition"]
     windowClass=[input.layout === "column" && "snackbar-dialog__window--column"]
-    buttonPosition="hidden">
+    buttonPosition="hidden"
+    transitionEl="root">
     <${input.renderBody}/>
     <if(input.action)>
         <@action>
