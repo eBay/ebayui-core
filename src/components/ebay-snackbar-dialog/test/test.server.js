@@ -21,8 +21,8 @@ describe('snackbar-dialog', () => {
         expect(getByText(input.action.renderBody.text).parentElement).has.class(
             'snackbar-dialog__actions'
         );
-        // debug(getByText(input.action.renderBody.text));
-        // expect(getByText(input.action.renderBody.text)).has.class('fake-link fake-link--secondary');
+        expect(getByRole('button', { hidden: 'true' })).has.class('fake-link');
+        expect(getByRole('button', { hidden: 'true' })).has.class('fake-link--secondary');
         expect(dialog.childNodes[0]).has.class('snackbar-dialog__window');
     });
 
