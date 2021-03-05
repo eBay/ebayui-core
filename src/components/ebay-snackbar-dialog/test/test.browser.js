@@ -34,13 +34,6 @@ describe('given an open snackbar', () => {
         expect(component.getByRole('dialog')).does.not.have.attr('hidden');
     });
 
-    describe('then it is closed after time', () => {
-        it('then it is not visible in the DOM', async () => {
-            timer.tick(7000);
-            expect(component.emitted('close')).has.length(1);
-        });
-    });
-
     describe('clicking on action icon emits action', () => {
         it('action emitted', async () => {
             await fireEvent.click(component.getByText(/action/i));
