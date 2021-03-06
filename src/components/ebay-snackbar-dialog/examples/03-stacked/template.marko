@@ -13,6 +13,7 @@ class {
 
     handleAction() {
         //do API call, other action here
+        alert("action")
     }
 }
 
@@ -21,7 +22,7 @@ class {
 </ebay-button>
 <ebay-snackbar-dialog open=state.open layout="column" on-close("handleClose") on-action("handleAction")>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    <@action action-access-key="U">
+    <@action access-key="U">
         Undo
     </@action>
 </ebay-snackbar-dialog>

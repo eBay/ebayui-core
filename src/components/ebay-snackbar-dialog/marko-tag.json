@@ -15,6 +15,6 @@
     "@html-attributes": "expression",
     "attribute-groups": ["html-attributes"],
     "@action-text": "string",
-    "@action-access-key": "string"
+    "@access-key": "string"
   }
 }

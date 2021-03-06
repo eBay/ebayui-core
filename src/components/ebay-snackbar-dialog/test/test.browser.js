@@ -60,8 +60,6 @@ describe('given a closed snackbar', () => {
     });
 
     it('then it is hidden in the DOM', () => {
-        expect(
-            component.getByText('action content').parentElement.parentElement.parentElement
-        ).to.have.attr('hidden');
+        expect(component.getByRole('dialog', { hidden: true })).to.have.attr('hidden');
     });
 });

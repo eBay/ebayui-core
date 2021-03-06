@@ -5,16 +5,16 @@ module.exports = class {
         clearTimeout(this.timeout);
     }
 
-    onInput(input) {
-        this.state = { open: input.open || this.state.open || false };
-    }
-
     _setupTimeout() {
         if (this.state.open !== false) {
             this.timeout = setTimeout(() => {
                 this.state.open = false;
             }, DEFAULT_TIMEOUT_LENGTH);
         }
+    }
+
+    onInput(input) {
+        this.state = { open: input.open || this.state.open || false };
     }
 
     onMount() {
