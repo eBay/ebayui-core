@@ -16,7 +16,7 @@ let component;
 describe('given a closed toast', () => {
     const input = mock.Toast;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
@@ -25,11 +25,11 @@ describe('given a closed toast', () => {
     });
 
     describe('then it is opened', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(assign({}, input, { open: true }));
         });
 
-        it('then it is visible in the DOM', async() => {
+        it('then it is visible in the DOM', async () => {
             await waitFor(() => expect(component.emitted('open')).has.length(1));
         });
     });
@@ -38,16 +38,16 @@ describe('given a closed toast', () => {
 describe('given an open toast', () => {
     const input = mock.Toast_Open;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('then it is closed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(assign({}, input, { open: false }));
         });
 
-        it('then it is closed in dom', async() => {
+        it('then it is closed in dom', async () => {
             await waitFor(() => expect(component.emitted('close')).has.length(1));
         });
     });

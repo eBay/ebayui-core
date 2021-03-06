@@ -72,6 +72,8 @@ $ var header = input.header;
     </if>
     <div
         key="window"
+        onMouseEnter('emit', 'mouseEnter')
+        onMouseLeave('emit', 'mouseLeave')
         class=[
             input.windowType
                 ? `${input.classPrefix}__${input.windowType}-window`
@@ -98,6 +100,11 @@ $ var header = input.header;
         <div id=input.mainId class=`${input.classPrefix}__main`  key="body" onScroll("handleScroll")>
             <${input.renderBody}/>
         </div>
+        <if(input.action)>
+                <span class=`${input.classPrefix}__actions`>
+                    <${input.action && input.action.renderBody}/>
+                </span>
+        </if>
         <if(input.footer || buttonPosition === "bottom")>
             <div class=`${input.classPrefix}__footer`>
                 <${input.footer && input.footer.renderBody}/>

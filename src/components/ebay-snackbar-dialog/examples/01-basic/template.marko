@@ -1,0 +1,20 @@
+class {
+    onCreate() {
+        this.state = {open: false};
+    }
+
+    handleOpen() {
+        this.state.open = true;
+    }
+
+    handleClose() {
+        this.state.open = false;
+    }
+}
+
+<ebay-button on-click('handleOpen')>
+    Open Default Snackbar
+</ebay-button>
+<ebay-snackbar-dialog open=state.open on-close('handleClose')>
+    This is the basic snackbar
+</ebay-snackbar-dialog>
