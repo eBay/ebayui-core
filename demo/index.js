@@ -20,12 +20,13 @@ if (process.env.NODE_ENV === 'production') {
 lasso.configure({
     outputDir: `${__dirname}/static`,
     plugins: ['lasso-marko', 'lasso-less'],
-    require: { transforms }
+    require: { transforms },
 });
 
 app.use(require('lasso/middleware').serveStatic());
 app.use(express.static(__dirname));
-app.use(express.static(`${__dirname}/assets`));
+app.use('/ds6/ebay-video', express.static(`${__dirname}/assets`));
+app.use('/ds4/ebay-video', express.static(`${__dirname}/assets`));
 
 app.get('/', (req, res) => {
     res.redirect(301, '/ds6');
@@ -51,7 +52,7 @@ app.get('/:designSystem/:component?', (req, res) => {
         // In case of nested examples
         if (!fs.existsSync(exampleTemplatePath)) {
             // Iterate through each one
-            fs.readdirSync(examplePath).forEach(nestedExample => {
+            fs.readdirSync(examplePath).forEach((nestedExample) => {
                 insert(nestedExample, examplePath);
             });
             return;
@@ -62,22 +63,22 @@ app.get('/:designSystem/:component?', (req, res) => {
             name: example.split('-').slice(1, example.length).join(' '),
             code: highlighter.highlightSync({
                 fileContents: fs.readFileSync(exampleTemplatePath, 'utf8'),
-                sync: 'text.marko'
+                sync: 'text.marko',
             }),
             sources: [componentPath, examplePath],
             templatePath: exampleTemplatePath,
-            template: require(exampleTemplatePath)
+            template: require(exampleTemplatePath),
         });
     };
 
-    fs.readdirSync(rootPath).forEach(example => {
+    fs.readdirSync(rootPath).forEach((example) => {
         insert(example, rootPath);
     });
     templateList = templateList.filter(demoUtils.isDirectory);
     const model = {
         name: req.params.component,
         examples: templateList,
-        components: demoUtils.getComponentsWithExamples('src')
+        components: demoUtils.getComponentsWithExamples('src'),
     };
 
     const dsFlag = dsUtils.getDSFlags(req.params.designSystem);
@@ -86,12 +87,12 @@ app.get('/:designSystem/:component?', (req, res) => {
     // allow .only in example folder name
     model.examples.some((example) => {
         if (example.name.includes('.only')) {
-            model.examples = model.examples.filter(ex => ex.name.includes('.only'));
+            model.examples = model.examples.filter((ex) => ex.name.includes('.only'));
             return true;
         }
     });
 
-    model.dependencies = model.examples.map(example => `marko-hydrate: ${example.templatePath}`);
+    model.dependencies = model.examples.map((example) => `marko-hydrate: ${example.templatePath}`);
 
     req.model = model;
 
