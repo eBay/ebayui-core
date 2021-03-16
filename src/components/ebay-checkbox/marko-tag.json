@@ -19,6 +19,7 @@
       "rounded"
     ]
   },
+  "@mixed": "boolean",
   "@html-attributes": "expression",
   "@autofocus": "#html-autofocus",
   "@checked": "#html-checked",

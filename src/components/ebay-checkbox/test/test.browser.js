@@ -9,12 +9,12 @@ afterEach(cleanup);
 let component;
 
 describe('given checkbox button is enabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { htmlAttributes: { value: 'food' } });
     });
 
     describe('when checkbox button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.getByRole('checkbox').click();
         });
 
@@ -34,12 +34,12 @@ describe('given checkbox button is enabled', () => {
 });
 
 describe('given checkbox button is disabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { disabled: true });
     });
 
     describe('when checkbox button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.getByRole('checkbox').click();
         });
 
@@ -54,7 +54,7 @@ describe('given checkbox button is disabled', () => {
 });
 
 describe('when native focus event is fired', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { htmlAttributes: { value: 'food' } });
         await fireEvent.focus(component.getByRole('checkbox'));
     });
@@ -66,5 +66,26 @@ describe('when native focus event is fired', () => {
         const [[eventArg]] = events;
         expect(eventArg).has.property('value', 'food');
         expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+    });
+});
+
+describe('given checkbox button is mixed', () => {
+    beforeEach(async () => {
+        component = await render(template, { mixed: true });
+    });
+
+    describe('when checkbox button is clicked', () => {
+        beforeEach(async () => {
+            await component.getByRole('checkbox').click();
+        });
+
+        it('then it emitted the change event', () => {
+            const changeEvents = component.emitted('change');
+            expect(changeEvents).has.length(1);
+
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property('value', 'mixed');
+            expect(changeEvent).has.property('checked', 'mixed');
+        });
     });
 });
