@@ -1,3 +1,6 @@
+import ebayCheckbox from "<ebay-checkbox>"
+import ebayMultiCheckbox from "<ebay-tri-state-checkbox>"
+
 class {
     onCreate() {
         this.state = {
@@ -20,7 +23,7 @@ class {
     }
     handleParentChange({ checked }) {
         let count;
-        if (checked === "true") {
+        if (checked === "true" || checked === true) {
             this.state.checked.fill(true);
             count = this.state.checked.length;
         } else if (checked === "mixed") {
@@ -43,8 +46,8 @@ class {
 }
 
 <div class="field">
-    <ebay-mixed-checkbox
-        variant=(state.cacheCount === 0 || state.cacheCount === state.checked.length ? "two-state": "tri-state")
+    <ebay-tri-state-checkbox
+        skip-mixed=(state.cacheCount === 0 || state.cacheCount === state.checked.length)
         checked=component.checked
         id:scoped="checkbox-all"
         on-change("handleParentChange")/>

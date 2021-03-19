@@ -8,7 +8,7 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-describe('given mixed-checkbox button is enabled', () => {
+describe('given tri-state-checkbox button is enabled', () => {
     beforeEach(async () => {
         component = await render(template, { htmlAttributes: { value: 'food' } });
     });
@@ -34,7 +34,7 @@ describe('given mixed-checkbox button is enabled', () => {
     });
 });
 
-describe('given mixed-checkbox button is enabled in mixed state', () => {
+describe('given tri-state-checkbox button is enabled in mixed state', () => {
     beforeEach(async () => {
         component = await render(template, { htmlAttributes: { value: 'food' }, checked: 'mixed' });
     });
@@ -59,7 +59,7 @@ describe('given mixed-checkbox button is enabled in mixed state', () => {
         });
     });
 });
-describe('given mixed-checkbox button is disabled', () => {
+describe('given tri-state-checkbox button is disabled', () => {
     beforeEach(async () => {
         component = await render(template, { disabled: true });
     });
@@ -95,9 +95,9 @@ describe('when native focus event is fired', () => {
     });
 });
 
-describe('given mixed-checkbox button is two-state', () => {
+describe('given tri-state-checkbox button is two-state', () => {
     beforeEach(async () => {
-        component = await render(template, { variant: "two-state" });
+        component = await render(template, { skipMixed: true });
     });
 
     describe('when checkbox button is clicked', () => {

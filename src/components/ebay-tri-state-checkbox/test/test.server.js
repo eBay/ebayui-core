@@ -5,7 +5,7 @@ const template = require('..');
 
 use(require('chai-dom'));
 
-it('renders default mixed-checkbox', async() => {
+it('renders default tri-state-checkbox', async() => {
     const { getByRole } = await render(template);
     const checkbox = getByRole('checkbox');
 
@@ -13,12 +13,12 @@ it('renders default mixed-checkbox', async() => {
     expect(checkbox.parentElement).has.class('checkbox');
 });
 
-it('renders disabled mixed-checkbox', async() => {
+it('renders disabled tri-state-checkbox', async() => {
     const { getByRole } = await render(template, { disabled: true });
     expect(getByRole('checkbox')).has.attr('disabled');
 });
 
-it('renders mixed-checkbox with id', async() => {
+it('renders tri-state-checkbox with id', async() => {
     const { getByRole } = await render(template, { id: 'abc123' });
     expect(getByRole('checkbox')).attr('id').contains('abc123');
 });

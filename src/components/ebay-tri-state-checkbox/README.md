@@ -10,7 +10,7 @@
 ## ebay-mixed-checkbox Usage
 
 ```marko
-<ebay-mixed-checkbox/>
+<ebay-tri-state-checkbox/>
 ```
 
 ## ebay-checkbox Attributes
@@ -28,5 +28,5 @@ Note: For this component, `class`/`style` are applied to the root tag, while all
 
 Event | Data | Description
 --- | --- | --
-`change` | `{ originalEvent, value, checked }` | selected value and checked status. If mixed is true then will return "mixed" for checked, and the same as false for value
+`change` | `{ originalEvent, value, checked }` | selected value and checked status. Will return "true", "false" or "mixed" for checked depending on the state
 `focus` | `{ originalEvent, value }` |
