@@ -1,11 +1,11 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const template = require('..');
 
 use(require('chai-dom'));
 
-it('renders default checkbox', async() => {
+it('renders default mixed-checkbox', async() => {
     const { getByRole } = await render(template);
     const checkbox = getByRole('checkbox');
 
@@ -13,14 +13,20 @@ it('renders default checkbox', async() => {
     expect(checkbox.parentElement).has.class('checkbox');
 });
 
-it('renders disabled checkbox', async() => {
+it('renders disabled mixed-checkbox', async() => {
     const { getByRole } = await render(template, { disabled: true });
     expect(getByRole('checkbox')).has.attr('disabled');
 });
 
-it('renders checkbox with id', async() => {
+it('renders mixed-checkbox with id', async() => {
     const { getByRole } = await render(template, { id: 'abc123' });
     expect(getByRole('checkbox')).attr('id').contains('abc123');
+});
+
+it('renders mixed checkbox', async() => {
+    const { getByRole } = await render(template, { checked: "mixed" });
+    const checkbox = getByRole('checkbox');
+    expect(checkbox).has.attr('aria-checked', 'mixed');
 });
 
 testPassThroughAttributes(template, {
@@ -28,5 +34,3 @@ testPassThroughAttributes(template, {
         return component.getByRole('checkbox').parentElement;
     }
 });
-
-testEventsMigrator(require('../migrator'), 'checkbox', ['change', 'focus'], '../index.marko');

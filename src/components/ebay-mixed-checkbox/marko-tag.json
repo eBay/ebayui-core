@@ -2,7 +2,6 @@
   "attribute-groups": [
     "html-attributes"
   ],
-  "migrator": "./migrator",
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -19,9 +18,10 @@
       "rounded"
     ]
   },
+  "@skip-mixed": "boolean",
   "@html-attributes": "expression",
   "@autofocus": "#html-autofocus",
-  "@checked": "#html-checked",
+  "@checked": "string",
   "@disabled": "#html-disabled",
   "@form": "#html-form",
   "@name": "#html-name",

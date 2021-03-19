@@ -68,24 +68,3 @@ describe('when native focus event is fired', () => {
         expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
     });
 });
-
-describe('given checkbox button is mixed', () => {
-    beforeEach(async () => {
-        component = await render(template, { mixed: true });
-    });
-
-    describe('when checkbox button is clicked', () => {
-        beforeEach(async () => {
-            await component.getByRole('checkbox').click();
-        });
-
-        it('then it emitted the change event', () => {
-            const changeEvents = component.emitted('change');
-            expect(changeEvents).has.length(1);
-
-            const [[changeEvent]] = changeEvents;
-            expect(changeEvent).has.property('value', 'mixed');
-            expect(changeEvent).has.property('checked', 'mixed');
-        });
-    });
-});
