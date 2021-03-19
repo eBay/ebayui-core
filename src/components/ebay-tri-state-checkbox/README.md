@@ -1,13 +1,13 @@
 <h1 style="display: flex; justify-content: space-between; align-items: center;">
     <span>
-        ebay-mixed-checkbox
+        ebay-tri-state-checkbox
     </span>
     <span style="font-weight: normal; font-size: medium; margin-bottom: -15px;">
         DS v1.2.0
     </span>
 </h1>
 
-## ebay-mixed-checkbox Usage
+## ebay-tri-state-checkbox Usage
 
 ```marko
 <ebay-tri-state-checkbox/>
