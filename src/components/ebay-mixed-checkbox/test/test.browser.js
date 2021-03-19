@@ -95,9 +95,9 @@ describe('when native focus event is fired', () => {
     });
 });
 
-describe('given mixed-checkbox button is mixed-off', () => {
+describe('given mixed-checkbox button is two-state', () => {
     beforeEach(async () => {
-        component = await render(template, { skipMixed: true });
+        component = await render(template, { variant: "two-state" });
     });
 
     describe('when checkbox button is clicked', () => {

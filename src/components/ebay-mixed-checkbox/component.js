@@ -5,14 +5,17 @@ module.exports = {
     triggerChange() {
         if (this.state.checked === 'true') {
             this.state.checked = 'false'
-        } else if (this.state.checked === 'false' && !this.input.skipMixed) {
+        } else if (this.state.checked === 'false' && this.input.variant !== 'two-state') {
             this.state.checked = 'mixed';
         } else {
             this.state.checked = 'true';
         }
     },
     handleChange(ev, el) {
-        this.triggerChange();
+        ev.preventDefault();
+        if (this.input.variant !== 'no-update') {
+            this.triggerChange();
+        }
         this.forwardEvent('change', ev, el);
     },
     handleFocus(ev, el) {

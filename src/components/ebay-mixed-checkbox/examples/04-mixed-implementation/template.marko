@@ -44,7 +44,7 @@ class {
 
 <div class="field">
     <ebay-mixed-checkbox
-        skip-mixed=(state.cacheCount === 0 || state.cacheCount === state.checked.length)
+        variant=(state.cacheCount === 0 || state.cacheCount === state.checked.length ? "two-state": "tri-state")
         checked=component.checked
         id:scoped="checkbox-all"
         on-change("handleParentChange")/>
