@@ -2,7 +2,8 @@ import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "open",
-    "layout"
+    "layout",
+    "action"
 ];
 
 <ebay-dialog-base
@@ -17,11 +18,9 @@ static var ignoredAttributes = [
     windowClass=[input.layout === "column" && "snackbar-dialog__window--column"]
     buttonPosition="hidden"
     transitionEl="root">
-    <${input.renderBody}/>
     <if(input.action)>
         <@action>
             <ebay-button
-                ...input.action
                 variant="fake-link"
                 on-click("handleAction")
                 on-focus("handleFocus")
@@ -31,4 +30,6 @@ static var ignoredAttributes = [
             </ebay-button>
         </@action>
     </if>
+
+    <${input.renderBody}/>
 </ebay-dialog-base>
