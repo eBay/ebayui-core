@@ -9,12 +9,12 @@ afterEach(cleanup);
 let component;
 
 describe('given checkbox button is enabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { htmlAttributes: { value: 'food' } });
     });
 
     describe('when checkbox button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.getByRole('checkbox').click();
         });
 
@@ -34,12 +34,12 @@ describe('given checkbox button is enabled', () => {
 });
 
 describe('given checkbox button is disabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { disabled: true });
     });
 
     describe('when checkbox button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.getByRole('checkbox').click();
         });
 
@@ -54,7 +54,7 @@ describe('given checkbox button is disabled', () => {
 });
 
 describe('when native focus event is fired', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { htmlAttributes: { value: 'food' } });
         await fireEvent.focus(component.getByRole('checkbox'));
     });
