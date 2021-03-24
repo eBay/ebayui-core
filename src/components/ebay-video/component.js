@@ -1,5 +1,6 @@
 const loader = require('./loader');
 const versions = require('./versions.json');
+require('regenerator-runtime');
 const MAX_RETIRES = 3;
 
 module.exports = {

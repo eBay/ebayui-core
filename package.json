@@ -124,7 +124,7 @@
     "pre-push": "^0.1.1",
     "prettier": "^2.2.1",
     "rimraf": "^3.0.2",
-    "shaka-player": "^3.0.8",
+    "shaka-player": "^3.0.10",
     "sinon": "^9.2.4",
     "storybook-readme": "^5.0.8",
     "style-loader": "^2.0.0",
@@ -152,7 +152,8 @@
     "makeup-roving-tabindex": "~0.3.7",
     "makeup-screenreader-trap": "~0.2.1",
     "makeup-typeahead": "^0.0.2",
-    "nodelist-foreach-polyfill": "^1.2.0"
+    "nodelist-foreach-polyfill": "^1.2.0",
+    "regenerator-runtime": "^0.13.7"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
