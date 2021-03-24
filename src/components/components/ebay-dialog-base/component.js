@@ -163,7 +163,6 @@ module.exports = {
             this._triggerFocus(focusEl);
             this._triggerBodyScroll(true);
         }
-
         if (wasToggled) {
             this._cancelAsync();
             const onFinishTransition = () => {

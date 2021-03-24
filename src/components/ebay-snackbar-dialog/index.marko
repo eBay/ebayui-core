@@ -1,0 +1,35 @@
+import processHtmlAttributes from "../../common/html-attributes"
+
+static var ignoredAttributes = [
+    "open",
+    "layout",
+    "action"
+];
+
+<ebay-dialog-base
+    on-close("handleClose")
+    onMouseEnter("handleMouseEnter")
+    onMouseLeave("handleMouseLeave")
+    ...processHtmlAttributes(input, ignoredAttributes)
+    open=state.open
+    isModal=false
+    classPrefix="snackbar-dialog"
+    class=[input.class, "snackbar-dialog--transition"]
+    windowClass=[input.layout === "column" && "snackbar-dialog__window--column"]
+    buttonPosition="hidden"
+    transitionEl="root">
+    <if(input.action)>
+        <@action>
+            <ebay-button
+                variant="fake-link"
+                on-click("handleAction")
+                on-focus("handleFocus")
+                on-blur("handleBlur")>
+                <${input.action.renderBody}/>
+                <span class="clipped">- Access Key: ${input.action.accessKey}</span>
+            </ebay-button>
+        </@action>
+    </if>
+
+    <${input.renderBody}/>
+</ebay-dialog-base>

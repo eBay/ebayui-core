@@ -27,5 +27,5 @@ Note: For this component, `class`/`style` are applied to the root tag, while all
 
 Event | Data | Description
 --- | --- | --
-`change` | `{ originalEvent, value, checked }` | selected value and checked status
+`change` | `{ originalEvent, value, checked }` | selected value and checked status.
 `focus` | `{ originalEvent, value }` |

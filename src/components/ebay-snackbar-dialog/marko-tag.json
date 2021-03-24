@@ -1,0 +1,20 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@layout": { "enum": ["row", "column"] },
+  "@open": "boolean",
+  "@action <action>": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "attribute-groups": ["html-attributes"],
+    "@action-text": "string",
+    "@access-key": "string"
+  }
+}

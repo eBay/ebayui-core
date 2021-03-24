@@ -1,1 +1,1 @@
-require('@ebay/skin/spinner');
+require('@ebay/skin/progress-spinner');
