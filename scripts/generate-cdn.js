@@ -25,12 +25,16 @@ function download(url, dir) {
     return new Promise((resolve, reject) => {
         const file = fs.createWriteStream(`${dir}/shaka-player.compiled.js`);
         const req = https.get(url, (response) => {
+
             response.pipe(file);
-            resolve();
+
         });
         req.on('error', (err) => {
             reject({ statusCode: 0, error: err });
         });
+        req.on('close', () => {
+            resolve();
+        })
     });
 }
 
@@ -45,6 +49,8 @@ async function run() {
         updateJsonFile(version);
         await fs.promises.mkdir(playerPath, { recursive: true });
         await download(getShakaUrl(version), playerPath);
+        // Remove define
+        execSync(`sed -i '' -e 's/typeof define=="function"/typeof define=="w"/' ${playerPath}/shaka-player.compiled.js`)
     } catch (e) {
         console.error(e);
     }
