@@ -7,8 +7,6 @@ const path = require('path');
 const rimraf = require('rimraf');
 const rootDir = path.join(__dirname, '..');
 
-const amdCheck = /else if(typeof define=="function"&&define.amd)define(function(){return exportTo.shaka});/;
-
 function updateJsonFile(version) {
     const versionFile = path.join(rootDir, 'src/components/ebay-video/versions.json');
     const videoVersions = {
