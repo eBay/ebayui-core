@@ -1,6 +1,5 @@
 const loader = require('./loader');
 const versions = require('./versions.json');
-require('regenerator-runtime');
 const MAX_RETIRES = 3;
 
 module.exports = {
@@ -112,7 +111,7 @@ module.exports = {
             this.input.cdnUrl ||
             `https://ir.ebaystatic.com/cr/v/c1/ebayui/shaka/v${version}/shaka-player.compiled.js`;
         loader(cdnUrl)
-            .then(async () => {
+            .then(() => {
                 this.video = this.getEl('video');
                 // eslint-disable-next-line no-undef,new-cap
                 this.player = new shaka.Player(this.video);
