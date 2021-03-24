@@ -157,12 +157,6 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run build"
-    }
-  },
   "lint-staged": {
     "*.{js,css,md,less,json}": "prettier --write"
   }
