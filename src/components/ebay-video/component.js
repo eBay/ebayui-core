@@ -40,12 +40,6 @@ module.exports = {
         };
     },
 
-    handleError(originalEvent) {
-        this.emit('error', { originalEvent });
-        this.state.failed = true;
-        this.state.isLoaded = true;
-    },
-
     loadCDN(immediate) {
         const _timeout =
             window.requestIdleCallback ||
@@ -101,6 +95,7 @@ module.exports = {
                 } else {
                     this.state.failed = true;
                     this.state.isLoaded = true;
+                    this.emit('load-error');
                 }
             });
     },
@@ -112,6 +107,9 @@ module.exports = {
             `https://ir.ebaystatic.com/cr/v/c1/ebayui/shaka/v${version}/shaka-player.compiled.js`;
         loader(cdnUrl)
             .then(() => {
+                // eslint-disable-next-line no-undef,new-cap
+                shaka.polyfill.installAll();
+
                 this.video = this.getEl('video');
                 // eslint-disable-next-line no-undef,new-cap
                 this.player = new shaka.Player(this.video);
@@ -125,11 +123,22 @@ module.exports = {
                 } else {
                     this.state.failed = true;
                     this.state.isLoaded = true;
+                    this.emit('load-error');
                 }
             });
     },
 
     onMount() {
+        this._loadVideo();
+    },
+
+    onDestroy() {
+        if (this.player) {
+            this.player.destroy();
+        }
+    },
+
+    _loadVideo() {
         this.state.isLoaded = false;
         this.videoEl = this.getEl('video');
         this.containerEl = this.getEl('container');

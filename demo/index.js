@@ -25,8 +25,6 @@ lasso.configure({
 
 app.use(require('lasso/middleware').serveStatic());
 app.use(express.static(__dirname));
-app.use('/ds6/ebay-video', express.static(`${__dirname}/assets`));
-app.use('/ds4/ebay-video', express.static(`${__dirname}/assets`));
 
 app.get('/', (req, res) => {
     res.redirect(301, '/ds6');

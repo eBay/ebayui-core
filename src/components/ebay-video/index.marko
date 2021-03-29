@@ -26,10 +26,10 @@ static var ignoredAttributes = [
         key="video"
         width=state.width
         controls
-        on-error("handleError")
         on-playing(input.playView === "fullscreen" && "handleFullscreen")
         poster=input.thumbnail
-        ...processHtmlAttributes(input, ignoredAttributes)>
+        ...processHtmlAttributes(input, ignoredAttributes)
+        >
         <for|src| of=input.sources>
             <if(!component.isPlaylist(src))>
                 <source ...src/>
