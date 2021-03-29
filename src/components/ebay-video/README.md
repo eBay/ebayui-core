@@ -15,17 +15,18 @@ For resizing, `ebay-video` supports fixed width or variable width. If no width i
 
 ## ebay-video Attributes
 
-| Name             | Type            | Stateful | Required | Description                                                                                                                            |
-| ---------------- | --------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `thumbnail`      | String          | No       | No       | The url path for the video thumbnail                                                                                                   |
-| `play-view`      | String          | No       | No       | Either "inline", or "fullscreen". When player strats to play, will either play "inline" (default) or switch to "fullscreen"            |
-| `cdn-url`        | String          | No       | No       | The full url to point to where to download shaka. This is only used to override the default CDN path.                                  |
-| `cdn-version`    | String          | No       | No       | If using the default CDN path, you can override what version of shaka to use.                                                          |
-| `a11y-load-text` | String          | No       | Yes      | The accessibility text for the loading spinner. Default is "Loading"                                                                   |
-| `a11y-play-text` | String          | No       | Yes      | The accessibility text for the play button. Default is "Click to play"                                                                 |
-| `error-text`     | String          | No       | Yes      | The content for error when an either the library or video cannot load. Default is "An error has occurred"                              |
+| Name             | Type   | Stateful | Required | Description                                                                                                                 |
+| ---------------- | ------ | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `thumbnail`      | String | No       | No       | The url path for the video thumbnail                                                                                        |
+| `play-view`      | String | No       | No       | Either "inline", or "fullscreen". When player strats to play, will either play "inline" (default) or switch to "fullscreen" |
+| `cdn-url`        | String | No       | No       | The full url to point to where to download shaka. This is only used to override the default CDN path.                       |
+| `cdn-version`    | String | No       | No       | If using the default CDN path, you can override what version of shaka to use.                                               |
+| `a11y-load-text` | String | No       | Yes      | The accessibility text for the loading spinner. Default is "Loading"                                                        |
+| `a11y-play-text` | String | No       | Yes      | The accessibility text for the play button. Default is "Click to play"                                                      |
+| `error-text`     | String | No       | Yes      | The content for error when an either the library or video cannot load. Default is "An error has occurred"                   |
 
 ## @source Tag (required)
+
 The video source, similarly to how html source for video works. Multiple sources are supported, and at least 1 `<@source>` tag is required
 If multiple sources are supplied, it will go in the order they are supplied and try to load each one.
 
@@ -41,13 +42,13 @@ If multiple sources are supplied, it will go in the order they are supplied and 
 
 ### @source Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`src` | String | No | Yes | The source url to load for this
-`type` | String | Yes | No | The video type. Either `dash`, `hls`, or the browser supported mime-type like `video/mp4`. Only `dash` or `hls` will be loaded in the javascript player. All others will load in the native browser vide player.
+| Name   | Type   | Stateful | Required | Description                                                                                                                                                                                                      |
+| ------ | ------ | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `src`  | String | No       | Yes      | The source url to load for this                                                                                                                                                                                  |
+| `type` | String | Yes      | No       | The video type. Either `dash`, `hls`, or the browser supported mime-type like `video/mp4`. Only `dash` or `hls` will be loaded in the javascript player. All others will load in the native browser vide player. |
 
 ## ebay-video events
 
-| Event   | Data                | Description    |
-| ------- | ------------------- | -------------- |
-| `error` | `{ originalEvent }` | error occurred |
+| Event        | Data                | Description    |
+| ------------ | ------------------- | -------------- |
+| `load-error` | `{ originalEvent }` | error occurred |
