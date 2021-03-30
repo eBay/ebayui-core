@@ -21,6 +21,8 @@
   "@borderless": "boolean",
   "@size": "string",
   "@priority": "string",
+  "@prefix-id": "string",
+  "@prefix-label": "string",
   "@icon <icon>": {
     "@*": {
       "targetProperty": null,

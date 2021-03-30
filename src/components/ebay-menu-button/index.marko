@@ -19,10 +19,14 @@ static var ignoredAttributes = [
     "variant",
     "items",
     "label",
-    "textAlign"
+    "textAlign",
+    "prefixLabel",
+    "prefixId"
 ];
 
 $ var isOverflowVariant = input.variant === "overflow";
+$ var labelId = input.prefixId && component.getElId("label");
+
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     class=["menu-button", input.class]
@@ -30,7 +34,7 @@ $ var isOverflowVariant = input.variant === "overflow";
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")
     onMousedown("handleMousedown")>
-    <ebay-button
+        <ebay-button
         class=[
             `menu-button__button`,
             input.borderless && !isOverflowVariant && "expand-btn--borderless"
@@ -42,6 +46,7 @@ $ var isOverflowVariant = input.variant === "overflow";
         aria-expanded="false"
         aria-haspopup="true"
         aria-label=input.a11yText
+        aria-labelledby=(labelId && `${input.prefixId} ${labelId}`)
         disabled=input.disabled
         on-escape("handleButtonEscape")
         key="button">
@@ -55,7 +60,13 @@ $ var isOverflowVariant = input.variant === "overflow";
                 input.textAlign === 'center' && "expand-btn__cell--center"
             ]>
                 <if(input.label)>
-                    <${input.label.renderBody}/>
+                    <if(input.prefixLabel)>
+                        <span class="menu-button-prefix-label">${input.prefixLabel}</span>
+                        <${input.label.renderBody}/>
+                    </if>
+                    <else >
+                        <${input.label.renderBody}/>
+                    </else>
                 </if>
                 <else>
                     <!-- Convoluted markup to satisfy both Skin and Marko -->
