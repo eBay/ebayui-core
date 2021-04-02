@@ -1,8 +1,20 @@
-<ebay-menu-button type="radio" prefix-label="Select From Menu">
+class {
+    onCreate() {
+        this.state = { labelText: 'label text', index: -1 };
+    }
+
+    handleChange(e) {
+        console.log(e);
+        this.state.labelText = e.el.textContent;
+        this.state.index = e.index;
+    }
+}
+
+<ebay-menu-button type="radio" prefix-label="Sort By:" on-change('handleChange')>
     <@label>
-        label text
+        ${state.labelText}
     </@label>
-    <@item checked>item 1 that has very long text</@item>
-    <@item>item 2</@item>
-    <@item>item 3</@item>
+    <@item checked=state.index==0>Color</@item>
+    <@item checked=state.index==1>Year</@item>
+    <@item checked=state.index==2>Mileage</@item>
 </ebay-menu-button>
