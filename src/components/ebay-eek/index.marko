@@ -1,0 +1,28 @@
+import processHtmlAttributes from "../../common/html-attributes"
+import eekUtil from './eek-util'
+
+static function noop() {}
+
+static var ignoredAttributes = ["class", "style", "size", "toJSON", "iconStyle"];
+
+$ input.toJSON = noop;
+$ const rating = eekUtil(input);
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    role="figure"
+    style=input.style
+    aria-label=(
+        input.a11yText ||
+        `EEK Rating ${input.rating}. Top Range: ${input.top}. Bottom range: ${input.bottom}.`
+    )
+    class=["eek", rating && `eek--rating-${rating}`, input.class]>
+    <div class="eek__container" aria-hidden=true>
+        <span class="eek__rating-range">
+            <span aria-hidden=true>${input.top}</span>
+            <ebay-eek-range-arrow-icon/>
+            <span aria-hidden=true>${input.bottom}</span>
+        </span>
+        <span class="eek__rating" aria-hidden=true>${input.rating}</span>
+    </div>
+    <ebay-eek-arrow-icon/>
+</div>
