@@ -65,10 +65,13 @@ $ var labelId = input.prefixId && component.getElId("label");
                         <${input.label.renderBody}/>
                     </if>
                     <else >
-                        <${input.label.renderBody}/>
+                        <span id=labelId>
+                            <${input.label.renderBody}/>
+                        </span>
                     </else>
                 </if>
                 <else>
+                    <!-- TODO Cleanup -->
                     <!-- Convoluted markup to satisfy both Skin and Marko -->
                     <if(input.icon)>
                         <div no-update-body class="btn__icon">
@@ -76,7 +79,7 @@ $ var labelId = input.prefixId && component.getElId("label");
                         </div>
                     </if>
                     <if(input.text)>
-                        <span>${input.text}</span>
+                        <span id=labelId>${input.text}</span>
                     </if>
                 </else>
                 <if(!input.noToggleIcon)>
