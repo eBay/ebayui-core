@@ -20,6 +20,6 @@ There are four signal types, each corresponding to a specific color: trustworthy
 
 ## Attributes
 
-| Name   | Type | Stateful | Required | Description                      |
-| ------ | ---- | -------- | -------- | -------------------------------- |
-| `type` | Enum | No       | Yes      | Type of signal; determines color |
+| Name     | Type | Stateful | Required | Description                      |
+| -------- | ---- | -------- | -------- | -------------------------------- |
+| `status` | Enum | No       | Yes      | Type of signal; determines color |

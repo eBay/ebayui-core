@@ -6,7 +6,7 @@
   },
   "@html-attributes": "expression",
   "@role": "never",
-  "@type": {
+  "@status": {
     "enum": ["neutral", "time-sensitive", "recent", "trustworthy"]
   }
 }
