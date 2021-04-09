@@ -20,10 +20,10 @@
 
 ## ebay-fake-tabs Attributes
 
-| Name                   | Type    | Stateful | Required | Description                                                                                                                                                                                                                        |
-| ---------------------- | ------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `selectedIndex`        | String  | Yes      | No       | 0-based index of selected tab tab and panel                                                                                                                                                                                        |
-| `tabMatchesCurrentUrl` | Boolean | No       | No       | "Specify whether the href of the currently active fake tab matches the current window url. Default is true. This property is used to configure the underlying aria-current attribute (i.e. a value of "page" (default) or "true"). |
+| Name                   | Type    | Stateful | Required | Description                                                                                                                                                                                                                       |
+| ---------------------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `selectedIndex`        | String  | Yes      | No       | 0-based index of selected tab tab and panel                                                                                                                                                                                       |
+| `tabMatchesCurrentUrl` | Boolean | No       | No       | Specify whether the href of the currently active fake tab matches the current window url. Default is true. This property is used to configure the underlying aria-current attribute (i.e. a value of "page" (default) or "true"). |
 
 > _Note:_ When using fake tabs there is no `preventDefault` applied, and therefore the link in the tab tab will work as a normal and navigate to the URL provided in the `href`.
 
