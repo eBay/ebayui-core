@@ -6,6 +6,7 @@
   },
   "@html-attributes": "expression",
   "@selected-index": "number",
+  "@tab-matches-current-url": "boolean",
   "@tabs <tab>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {
