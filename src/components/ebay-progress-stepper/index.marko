@@ -70,9 +70,14 @@ $ var current = findIndex(input.step || [], item => item.current);
                             <${item.title}/>
                         </>
                     </if>
-                    <p>
+                    <if(input.noWrapParagraphTag)>
                         <${item.renderBody}/>
-                    </p>
+                    </if>
+                    <else>
+                        <p>
+                            <${item.renderBody}/>
+                        </p>
+                    </else>
                 </span>
             </div>
         </for>
