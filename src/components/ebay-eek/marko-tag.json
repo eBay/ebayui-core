@@ -1,0 +1,17 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@size": {
+    "enum": ["large", "regular"]
+  },
+  "@icon-style": {
+    "enum": ["square", "rounded"]
+  },
+  "@html-attributes": "expression",
+  "@top": "string",
+  "@bottom": "string",
+  "@range": "string"
+}
