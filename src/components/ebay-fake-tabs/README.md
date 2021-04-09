@@ -20,10 +20,11 @@
 
 ## ebay-fake-tabs Attributes
 
-| Name             | Type   | Stateful | Required | Description                                                             |
-| ---------------- | ------ | -------- | -------- | ----------------------------------------------------------------------- |
-| `selectedIndex`  | String | Yes      | No       | 0-based index of selected tab tab and panel                             |
-| `tabAriaCurrent` | Enum   | No       | No       | If provided, will set aria-current to provided value. Default is "page" |
+| Name                                                | Type    | Stateful | Required | Description                                                                                                       |
+| --------------------------------------------------- | ------- | -------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| `selectedIndex`                                     | String  | Yes      | No       | 0-based index of selected tab tab and panel                                                                       |
+| `tabMatchesCurrentUrl`                              | Boolean | No       | No       | If provided, will set aria-current to "page" if true, or will set aria-current "true" if value provided is false. |
+| default is true and will set aria-current to "page" |
 
 > _Note:_ When using fake tabs there is no `preventDefault` applied, and therefore the link in the tab tab will work as a normal and navigate to the URL provided in the `href`.
 

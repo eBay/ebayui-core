@@ -4,6 +4,8 @@ static var ignoredAttributes = ["selectedIndex", "tabs", "panels", "tabAriaCurre
 
 static var itemAnchorIgnoredAttributes = ["href"];
 
+$ var tabAriaCurrent = input.tabMatchesCurrentUrl === false ? "true" : "page";
+
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
     class=["fake-tabs", input.class]>
@@ -18,7 +20,7 @@ static var itemAnchorIgnoredAttributes = ["href"];
                     "fake-tabs__item",
                     isSelected && "fake-tabs__item--current"
                 ]>
-                <a aria-current=( isSelected && (input.tabAriaCurrent || "page")) href=tab.href>
+                <a aria-current=( isSelected && tabAriaCurrent) href=tab.href>
                     <${tab.renderBody}/>
                 </a>
             </li>
