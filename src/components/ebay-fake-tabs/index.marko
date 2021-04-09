@@ -1,6 +1,6 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
-static var ignoredAttributes = ["selectedIndex", "tabs", "panels"];
+static var ignoredAttributes = ["selectedIndex", "tabs", "panels", "tabAriaCurrent"];
 
 static var itemAnchorIgnoredAttributes = ["href"];
 
@@ -18,7 +18,7 @@ static var itemAnchorIgnoredAttributes = ["href"];
                     "fake-tabs__item",
                     isSelected && "fake-tabs__item--current"
                 ]>
-                <a aria-current=(isSelected && "page") href=tab.href>
+                <a aria-current=( isSelected && (input.tabAriaCurrent || "page")) href=tab.href>
                     <${tab.renderBody}/>
                 </a>
             </li>

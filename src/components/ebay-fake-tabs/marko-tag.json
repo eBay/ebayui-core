@@ -6,6 +6,9 @@
   },
   "@html-attributes": "expression",
   "@selected-index": "number",
+  "@tab-aria-current": {
+    "enum": ["page", true]
+  },
   "@tabs <tab>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {

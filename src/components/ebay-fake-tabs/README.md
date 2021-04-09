@@ -20,11 +20,12 @@
 
 ## ebay-fake-tabs Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`selectedIndex` | String | Yes | No | 0-based index of selected tab tab and panel
+| Name             | Type   | Stateful | Required | Description                                                             |
+| ---------------- | ------ | -------- | -------- | ----------------------------------------------------------------------- |
+| `selectedIndex`  | String | Yes      | No       | 0-based index of selected tab tab and panel                             |
+| `tabAriaCurrent` | Enum   | No       | No       | If provided, will set aria-current to provided value. Default is "page" |
 
-> *Note:* When using fake tabs there is no `preventDefault` applied, and therefore the link in the tab tab will work as a normal and navigate to the URL provided in the `href`.
+> _Note:_ When using fake tabs there is no `preventDefault` applied, and therefore the link in the tab tab will work as a normal and navigate to the URL provided in the `href`.
 
 ## @tab Tag
 
@@ -36,9 +37,9 @@ Name | Type | Stateful | Required | Description
 
 ## @tab Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`href` | String | No | Yes | The link to take the user to for each tab
+| Name   | Type   | Stateful | Required | Description                               |
+| ------ | ------ | -------- | -------- | ----------------------------------------- |
+| `href` | String | No       | Yes      | The link to take the user to for each tab |
 
 ## Body
 
