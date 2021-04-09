@@ -51,6 +51,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-cta-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-cta-button)
 -   [`ebay-details`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-details)
 -   [`ebay-drawer-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-drawer-dialog)
+-   [`ebay-eek`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-eek)
 -   [`ebay-expand-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-expand-button)
 -   [`ebay-fake-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-menu-button)
 -   [`ebay-fake-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-menu-button)
