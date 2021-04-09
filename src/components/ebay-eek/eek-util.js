@@ -6,17 +6,17 @@ const validRanges = {
 };
 
 module.exports = (input) => {
-    const { top, bottom, rating } = input;
-    const validTop = validRanges[top];
-    if (!(validTop && validTop.indexOf(bottom) > -1)) {
+    const { max, min, rating } = input;
+    const validMax = validRanges[max];
+    if (!(validMax && validMax.indexOf(min) > -1)) {
         return null;
     }
-    // Count from top until you reach rating
-    let current = top;
+    // Count from max until you reach rating
+    let current = max;
     let i = 1;
     while (current !== rating) {
         i++;
-        if (bottom === current) {
+        if (min === current) {
             // It's at end, didn't match rating
             return null;
         } else if (current.length > 1) {

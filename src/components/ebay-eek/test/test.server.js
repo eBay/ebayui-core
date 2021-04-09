@@ -6,16 +6,16 @@ const template = require('..');
 use(require('chai-dom'));
 
 describe('eek', () => {
-    async function ratingCheck(top, bottom, rating, number) {
+    async function ratingCheck(max, min, rating, number) {
         const eekClass = !!number ? `eek--rating-${number}` : 'eek';
-        const { getByRole } = await render(template, { top, bottom, rating });
+        const { getByRole } = await render(template, { max, min, rating });
         expect(getByRole('figure')).has.class(eekClass);
     }
 
     it('renders default eek', async () => {
         const { getByRole, getByText } = await render(template, {
-            top: 'A+++',
-            bottom: 'D',
+            max: 'A+++',
+            min: 'D',
             rating: 'B',
         });
         expect(getByText('A+++')).has.property('nextElementSibling');
@@ -26,8 +26,8 @@ describe('eek', () => {
 
     it('renders invalid eek', async () => {
         const { getByRole, getByText } = await render(template, {
-            top: 'A',
-            bottom: 'D',
+            max: 'A',
+            min: 'D',
             rating: 'B',
         });
         expect(getByText('A')).has.property('nextElementSibling');

@@ -13,16 +13,16 @@ $ const rating = eekUtil(input);
     style=input.style
     aria-label=(
         input.a11yText ||
-        `EEK Rating ${input.rating}. Top Range: ${input.top}. Bottom range: ${input.bottom}.`
+        `Energy Rating: ${input.rating}. Range: ${input.max} - ${input.min}.`
     )
     class=["eek", rating && `eek--rating-${rating}`, input.class]>
     <div class="eek__container" aria-hidden=true>
         <span class="eek__rating-range">
-            <span aria-hidden=true>${input.top}</span>
+            <span aria-hidden="true">${input.max}</span>
             <ebay-eek-range-arrow-icon/>
-            <span aria-hidden=true>${input.bottom}</span>
+            <span aria-hidden="true">${input.min}</span>
         </span>
-        <span class="eek__rating" aria-hidden=true>${input.rating}</span>
+        <span class="eek__rating" aria-hidden="true">${input.rating}</span>
     </div>
     <ebay-eek-arrow-icon/>
 </div>
