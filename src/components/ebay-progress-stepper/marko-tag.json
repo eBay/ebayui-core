@@ -8,7 +8,7 @@
   "@default-state": {
     "enum": ["upcoming", "complete", "active"]
   },
-  "@no-wrap-paragraph-tag": "boolean",
+  "@auto-paragraph": "boolean",
   "@direction": {
     "enum": ["row", "column"]
   },

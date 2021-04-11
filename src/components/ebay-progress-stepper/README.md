@@ -11,10 +11,22 @@
 
 ```marko
 <ebay-progress-stepper>
-    <@step>Started</@step>
-    <@step>Shipped</@step>
-    <@step current>Transit</@step>
-    <@step>Delivered</@step>
+    <@step>
+        <@title>Started</@title>
+        July 3rd
+    </@step>
+    <@step>
+        <@title>Shipped</@title>
+        July 4th
+    </@step>
+    <@step current>
+        <@title>Transit</@title>
+        July 5th
+    </@step>
+    <@step>
+        <@title>Delivered</@title>
+        July 6th
+    </@step>
 </ebay-progress-stepper>
 ```
 
@@ -26,11 +38,11 @@
 
 ## ebay-progress-stepper Attributes
 
-| Name                    | Type    | Stateful | Required | Description                                                                                                                                                                                                                                    |
-| ----------------------- | ------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `direction`             | Enum    | No       | No       | Either 'column' or 'row'. Will display stepper as a vertical column or horizontal row. Default is 'row'                                                                                                                                        |
-| `default-state`         | Enum    | Yes      | No       | Either 'complete', 'upcoming' or 'active'. If complete, then all items will be in complete state by default. If upcoming, all items will be in upcoming state. Otherwise, the default (active), will change items based on the `current` item. |
-| `no-wrap-paragraph-tag` | Boolean | No       | No       | If true, will not add <p> tag to render body. defaults to false.                                                                                                                                                                               |
+| Name             | Type    | Stateful | Required | Description                                                                                                                                                                                                                                    |
+| ---------------- | ------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `direction`      | Enum    | No       | No       | Either 'column' or 'row'. Will display stepper as a vertical column or horizontal row. Default is 'row'                                                                                                                                        |
+| `default-state`  | Enum    | Yes      | No       | Either 'complete', 'upcoming' or 'active'. If complete, then all items will be in complete state by default. If upcoming, all items will be in upcoming state. Otherwise, the default (active), will change items based on the `current` item. |
+| `auto-paragraph` | Boolean | No       | No       | Specify whether to auto wrap @step body text with a paragraph tag (default: true)                                                                                                                                                              |
 
 ## ebay-progress-stepper @step Sub-tags
 
