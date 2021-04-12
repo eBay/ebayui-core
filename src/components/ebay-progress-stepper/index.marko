@@ -70,9 +70,14 @@ $ var current = findIndex(input.step || [], item => item.current);
                             <${item.title}/>
                         </>
                     </if>
-                    <p>
+                    <if(input.autoParagraph !== false)>
+                        <p>
+                            <${item.renderBody}/>
+                        </p>
+                    </if>
+                    <else>
                         <${item.renderBody}/>
-                    </p>
+                    </else>
                 </span>
             </div>
         </for>
