@@ -41,7 +41,7 @@
 | `fix-width`        | Boolean | No       | No       | constrain items container width to button width                                                                  |
 | `borderless`       | Boolean | No       | No       | whether button has borders                                                                                       |
 | `size`             | String  | No       | No       | button size, "large" (default: "none")                                                                           |
-| `priority`         | String  | No       | No       | button priority, "primary" / "secondary" (default) / "none"                                                      |
+| `priority`         | String  | No       | No       | button priority, "primary" (deprecated) / "secondary" (deprecated) / "none" (default)                            |
 | `checked` (radio)  | Number  | Yes      | No       | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup          |
 | `disabled`         | Boolean | Yes      | No       | Will disable the entire dropdown (disables the ebay-button label) if set to true                                 |
 | `variant`          | String  | No       | No       | will change the button style, "overflow" / "default"                                                             |
