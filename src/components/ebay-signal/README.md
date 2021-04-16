@@ -8,7 +8,7 @@
 </h1>
 
 ```marko
-<ebay-signal type="trustworthy">
+<ebay-signal status="trustworthy">
     Trustworthy
 </ebay-signal>
 ```
@@ -16,10 +16,10 @@
 ## Description
 
 Signals are data-backed recommendations to help customers make more informed decisions.
-There are four signal types, each corresponding to a specific color: trustworthy, recent, time-sensitive & neutral.
+There are four signal statuses, each corresponding to a specific color: trustworthy, recent, time-sensitive & neutral.
 
 ## Attributes
 
 | Name     | Type | Stateful | Required | Description                      |
 | -------- | ---- | -------- | -------- | -------------------------------- |
-| `status` | Enum | No       | Yes      | Type of signal; determines color |
+| `status` | Enum | No       | Yes      | Status of signal; determines color |
