@@ -6,7 +6,7 @@
     "installMarkoV5": "node scripts/install-no-save marko@latest -D",
     "installMarkoV4": "npm run --frozen-lockfile # reinstall according to package.json/package-lock.json",
     "prepublishOnly": "node scripts/prepublish",
-    "version": "npm run storybook:build && npm run build:readme && git add -A src docs",
+    "version": "npm run build:readme && git add -A src docs",
     "postpublish": "node scripts/postpublish",
     "start": "npm run clean; browser-refresh demo/",
     "start:prod": "NODE_ENV=production npm start",
