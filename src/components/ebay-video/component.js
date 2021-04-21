@@ -1,6 +1,6 @@
 const loader = require('./loader');
 const versions = require('./versions.json');
-const MAX_RETIRES = 3;
+const MAX_RETRIES = 3;
 
 module.exports = {
     reattach(callback) {
@@ -135,7 +135,7 @@ module.exports = {
             .catch(() => {
                 clearTimeout(this.retryTimeout);
                 this.retryTimes += 1;
-                if (this.retryTimes < MAX_RETIRES) {
+                if (this.retryTimes < MAX_RETRIES) {
                     this.retryTimeout = setTimeout(() => this._loadCDN(cdnUrl), 2000);
                 } else {
                     this.state.failed = true;
