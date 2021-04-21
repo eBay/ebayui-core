@@ -1,8 +1,15 @@
 const loader = require('./loader');
 const versions = require('./versions.json');
-const MAX_RETIRES = 3;
+const MAX_RETRIES = 3;
 
 module.exports = {
+    reattach(callback) {
+        if (this.isDetaching) {
+            setTimeout(() => this.reattach(callback), 10);
+        } else {
+            callback();
+        }
+    },
     isPlaylist(source) {
         const type = source.type && source.type.toLowerCase();
         const src = source.src;
@@ -88,10 +95,18 @@ module.exports = {
             .load(src.src)
             .then(() => {
                 this.state.isLoaded = true;
+                this.state.failed = false;
             })
-            .catch(() => {
+            .catch((err) => {
+                if (err.code === 7000) {
+                    // Load interrupted by another load, just return
+                    return;
+                } else if (err.code === 11) {
+                    // Retry, player is not loaded yet
+                    setTimeout(() => this._loadSrc(currentIndex), 0);
+                }
                 if (nextIndex) {
-                    this._loadSrc(nextIndex);
+                    setTimeout(() => this._loadSrc(nextIndex), 0);
                 } else {
                     this.state.failed = true;
                     this.state.isLoaded = true;
@@ -111,14 +126,16 @@ module.exports = {
                 shaka.polyfill.installAll();
 
                 this.video = this.getEl('video');
-                // eslint-disable-next-line no-undef,new-cap
-                this.player = new shaka.Player(this.video);
-                this._loadSrc();
+                this.reattach(() => {
+                    // eslint-disable-next-line no-undef,new-cap
+                    this.player = new shaka.Player(this.video);
+                    this._loadSrc();
+                });
             })
             .catch(() => {
                 clearTimeout(this.retryTimeout);
                 this.retryTimes += 1;
-                if (this.retryTimes < MAX_RETIRES) {
+                if (this.retryTimes < MAX_RETRIES) {
                     this.retryTimeout = setTimeout(() => this._loadCDN(cdnUrl), 2000);
                 } else {
                     this.state.failed = true;
@@ -134,7 +151,10 @@ module.exports = {
 
     onDestroy() {
         if (this.player) {
-            this.player.destroy();
+            this.isDetaching = true;
+            this.player.destroy().then(() => {
+                this.isDetaching = false;
+            });
         }
     },
 

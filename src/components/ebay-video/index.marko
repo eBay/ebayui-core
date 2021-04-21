@@ -26,6 +26,7 @@ static var ignoredAttributes = [
         key="video"
         width=state.width
         controls
+        src:no-update
         on-playing(input.playView === "fullscreen" && "handleFullscreen")
         poster=input.thumbnail
         ...processHtmlAttributes(input, ignoredAttributes)
