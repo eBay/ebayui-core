@@ -21,3 +21,4 @@ Event | Data | Description
 --- | --- | --
 `radio-change` | `{ originalEvent, value }` | selected value
 `radio-focus` | `{ originalEvent, value }` |
+`radio-keydown` | `{originalEvent, value}` |
