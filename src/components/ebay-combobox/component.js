@@ -65,6 +65,7 @@ module.exports = {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.expander.collapse();
         });
+        this._emitComboboxEvent('keydown');
     },
 
     handleComboboxKeyUp(originalEvent) {

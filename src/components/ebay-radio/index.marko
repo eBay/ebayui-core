@@ -11,7 +11,8 @@ $ input.toJSON = noop;
         type="radio"
         class="radio__control"
         onClick("handleClick")
-        onFocus("handleFocus")/>
+        onFocus("handleFocus")
+        onkeydown("handleKeyDown")/>
     <span class="radio__icon" hidden>
         <if (input.size === "large")>
             <ebay-icon

@@ -1,7 +1,7 @@
-
 module.exports = {
     handleClick: forwardEvent('change'),
-    handleFocus: forwardEvent('focus')
+    handleFocus: forwardEvent('focus'),
+    handleKeyDown: forwardEvent('keydown')
 };
 
 function forwardEvent(eventName) {
