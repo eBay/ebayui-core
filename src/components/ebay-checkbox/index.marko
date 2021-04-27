@@ -12,7 +12,8 @@ $ input.toJSON = noop;
         class="checkbox__control"
         type="checkbox"
         onChange("handleChange")
-        onFocus("handleFocus")/>
+        onFocus("handleFocus")
+        onKeydown("handleKeydown")/>
     <span class="checkbox__icon" hidden>
         <if (input.size === 'large')>
             <ebay-icon
