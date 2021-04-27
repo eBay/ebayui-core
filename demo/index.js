@@ -47,12 +47,16 @@ app.get('/:designSystem/:component?', (req, res) => {
         const examplePath = path.join(examplesPath, example);
         const exampleTemplatePath = path.join(examplePath, 'template.marko');
 
+        const exampleStat = fs.statSync(examplePath);
+
         // In case of nested examples
         if (!fs.existsSync(exampleTemplatePath)) {
             // Iterate through each one
-            fs.readdirSync(examplePath).forEach((nestedExample) => {
-                insert(nestedExample, examplePath);
-            });
+            if (exampleStat.isDirectory()) {
+                fs.readdirSync(examplePath).forEach((nestedExample) => {
+                    insert(nestedExample, examplePath);
+                });
+            }
             return;
         }
 
