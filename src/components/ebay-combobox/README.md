@@ -58,6 +58,7 @@ Event | Data |  Description
 `combobox-change` | `{ el, index, selected }` | same as the `onChange` event, which fires on blur
 `combobox-input` | `{ el, index, selected }` | same as the `onInput` event, which fires with every keypress
 `combobox-select` | `{ el, index, selected }` | similar to a `<select>`, which fires when an option is clicked or selected
+`combobox-keydown` | `{el, index, selected}` | same as the `onKeydown` event, which fires with a browser keydown event
 
 ## ebay-combobox-option Tag
 
