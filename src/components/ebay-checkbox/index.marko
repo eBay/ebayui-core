@@ -13,7 +13,8 @@ $ var isSquare = input.iconStyle === 'square';
         class="checkbox__control"
         type="checkbox"
         onClick("handleChange")
-        onFocus("handleFocus")/>
+        onFocus("handleFocus")
+        onKeydown("handleKeydown")/>
     <span class="checkbox__icon" hidden>
         <if (isSquare)>
             <if (input.size === 'large')>
