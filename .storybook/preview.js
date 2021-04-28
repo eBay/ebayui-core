@@ -18,13 +18,6 @@ configure(() => {
         result[tag] = requireReadme(file).default;
         return result;
     }, {});
-    const requireKnobs = require.context('../src', true, /\/examples\/knobs.js$/);
-
-    const knobsByTag = requireKnobs.keys().reduce((result, file) => {
-        const [, tag] = /([^/]+)\/examples\/knobs\.js$/.exec(file);
-        result[tag] = requireKnobs(file);
-        return result;
-    }, {});
 
     if (process.env.DS !== '4') {
         require('@ebay/skin/marketsans');
@@ -35,12 +28,8 @@ configure(() => {
     const requireExample = require.context('../src', true, /\/examples\/.*\/template\.marko$/);
     requireExample.keys().reduce((storiesByTag, file) => {
         const { tag, title, fulltag } = parseFile(file);
-        if (tag.startsWith('ebay-button')) {
-            console.log(tag, title, fulltag);
-        }
         const mod = requireExample(file);
         const component = mod.default || mod;
-        console.log(knobsByTag);
 
         if (!hiddenStories.includes(fulltag)) {
             (storiesByTag[fulltag] =
