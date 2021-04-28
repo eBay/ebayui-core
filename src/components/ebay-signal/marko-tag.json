@@ -1,0 +1,12 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@role": "never",
+  "@status": {
+    "enum": ["neutral", "time-sensitive", "recent", "trustworthy"]
+  }
+}

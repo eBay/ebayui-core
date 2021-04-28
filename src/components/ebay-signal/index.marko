@@ -1,0 +1,11 @@
+import processHtmlAttributes from "../../common/html-attributes";
+
+static var ignoredAttributes = [
+    "status",
+];
+
+$ var defaultStatus = "neutral";
+
+<span ...processHtmlAttributes(input, ignoredAttributes) class=`signal signal--${input.status || defaultStatus}`>
+    <${input.renderBody}/>
+</span>
