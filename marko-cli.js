@@ -17,21 +17,6 @@ module.exports = ({ config }) => {
                 os: 'Windows',
                 os_version: '10',
             },
-            {
-                browser: 'Chrome',
-                os: 'OS X',
-                os_version: 'Big Sur',
-            },
-            {
-                browser: 'Safari',
-                os: 'OS X',
-                os_version: 'Big Sur',
-            },
-            {
-                browser: 'Safari',
-                os: 'OS X',
-                os_version: 'Catalina',
-            },
         ].map((capability) => {
             capability['browserstack.local'] = true;
 
