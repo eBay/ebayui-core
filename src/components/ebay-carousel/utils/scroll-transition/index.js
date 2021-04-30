@@ -1,5 +1,5 @@
 const onScrollEnd = require('../on-scroll-end');
-const supportsScrollBehavior = typeof window !== 'undefined' && 'scrollBehavior' in document.body.style;
+const supportsScrollBehavior = typeof window !== 'undefined' && 'scrollBehavior' in document.documentElement.style;
 
 /**
  * Utility to animate scroll position of an element using an `ease-out` curve over 250ms.
