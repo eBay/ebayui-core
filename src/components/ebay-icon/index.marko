@@ -9,6 +9,16 @@ static var browserLookup = {};
 
 static var ignoredAttributes = ["_name", "noSkinClasses", "_themes", "toJSON"];
 
+static function getIconClass(type, name) {
+    if (type === "icon") {
+        return `icon icon--${name}`;
+    } else {
+        var dashedName = name.replace(type, `${type}-`);
+        return `${type} ${dashedName}`
+    }
+
+}
+
 $ var noTitle = input.a11yVariant === "label";
 $ input.toJSON = noop;
 $ var lookup = isBrowser ? browserLookup : out.global;
@@ -16,11 +26,12 @@ $ {
     var a11yAttributes = input.a11yText
         ? { role: "img" }
         : { "aria-hidden": "true" };
+    var prefixSvg = input._type === "icon" ? "icon-" : "";
 }
 <svg
     ...a11yAttributes
     ...processHtmlAttributes(input, ignoredAttributes)
-    class=[input.class, !input.noSkinClasses && `icon icon--${input._name}`]
+    class=[input.class, !input.noSkinClasses && getIconClass(input._type, input._name)]
     focusable="false"
     aria-labelledby=(input.a11yText && !noTitle && component.elId("text"))
     aria-label=(noTitle && input.a11yText)>
@@ -35,13 +46,13 @@ $ {
         <defs key="defs">
             <if(!isBrowser)>
                 $ var lassoContext = out.global["lasso/LassoRenderContext"];
-
-                $ var flags = (
-                    lassoContext &&
-                    lassoContext.data &&
-                    lassoContext.data.config &&
-                    lassoContext.data.config.flags
-                );
+                $ {
+                    var flags =
+                                        lassoContext &&
+                                        lassoContext.data &&
+                                        lassoContext.data.config &&
+                                        lassoContext.data.config.flags;
+                }
                 $!{themes[dsUtil.getDSFromFlag(flags)]()}
             </if>
         </defs>
@@ -49,5 +60,5 @@ $ {
     <if(input.a11yText && !noTitle)>
         <title id:scoped="text">${input.a11yText}</title>
     </if>
-    <use xlink:href=`#icon-${input._name}`/>
+    <use xlink:href=`#${prefixSvg}${input._name}`/>
 </svg>
