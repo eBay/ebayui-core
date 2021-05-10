@@ -12,7 +12,7 @@ const minify = require('html-minifier').minify;
 const util = require('../../src/common/ds-util');
 const skinDir = path.dirname(require.resolve('@ebay/skin/package.json'));
 const svgDir = path.join(skinDir, 'src/svg');
-const outputDir = path.join(__dirname, '../../src/components/ebay-icon/icons');
+const outputBaseDir = path.join(__dirname, '../../src/components');
 const markoTagJson = require('../../src/components/ebay-icon/marko-tag.json');
 const icons = new Map();
 const programIcons = new Map();
@@ -28,8 +28,19 @@ const htmlMinifierOptions = {
 const missingSVG = JSON.stringify(
     minify(fs.readFileSync(path.join(__dirname, 'missing.svg'), 'utf-8'), htmlMinifierOptions)
 );
-cp.execSync(`rm -rf ${JSON.stringify(outputDir)}`);
-fs.mkdirSync(outputDir);
+
+function getOutputDir(fileName) {
+    return path.join(outputBaseDir, `ebay-${fileName}`, 'icons');
+}
+
+function setupDir(fileName) {
+    const outputDir = getOutputDir(fileName);
+    cp.execSync(`rm -rf ${JSON.stringify(outputDir)}`);
+    fs.mkdirSync(outputDir);
+}
+
+setupDir('icon');
+setupDir('program-badge');
 
 // Remove unused tags in markoTag
 delete markoTagJson.migrator;
@@ -69,7 +80,7 @@ Object.keys(map4To6).forEach((ds4Name) => {
 function generateFile(type, iconMap) {
     for (const [name, themes] of iconMap) {
         const postfixName = type === 'icon' ? '-icon' : '';
-        const iconFolder = path.join(outputDir, `ebay-${name}${postfixName}`);
+        const iconFolder = path.join(getOutputDir(type), `ebay-${name}${postfixName}`);
         const browserJSON = path.join(iconFolder, 'browser.json');
         const markoTag = path.join(iconFolder, 'marko-tag.json');
         const index = path.join(iconFolder, 'index.marko');
