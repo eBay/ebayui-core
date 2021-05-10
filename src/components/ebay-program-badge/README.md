@@ -1,34 +1,19 @@
 <h1 style='display: flex; justify-content: space-between; align-items: center;'>
     <span>
-        ebay-{name}-icon
+        ebay-program-badge-{name}
     </span>
     <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
-        DS v1.3.0
+        DS v1.0.0
     </span>
 </h1>
 
-## ebay-{name}-icon Usage
+## ebay-program-badge-{name} Usage
 
 ```marko
-<ebay-arrow-left-icon/>
+<ebay-program-badge-authencitity-guaranteed/>
 ```
 
-The icon will include the actual SVG markup in the HTML and then reference the chosen icon. This is useful for applying customizations (like color). Behind the scenes, we determine all foreground icons that could be used at compile-time, and then include each icon stamp a single time at the top of the `<body>`. This is done by including the markup in mark tags in conjunction with inspecting the Node.js `require` cache. With this methodology, icons must be included statically in order to work with the stamper.
-
-```marko
-<ebay-arrow-left-icon/>
-```
-
-As import
-
-```marko
-import arrowUp from '<ebay-arrow-up>'
-import arrowDown from '<ebay-arrow-down>'
-
-<dropdown-component icon=(isOpen ? arrowUp : arrowDown)>
-```
-
-## ebay-{name}-icon Attributes
+## ebay-program-badge-{name} Attributes
 
 | Name              | Type    | Stateful | Required | Description                                                                                 |
 | ----------------- | ------- | -------- | -------- | ------------------------------------------------------------------------------------------- |
