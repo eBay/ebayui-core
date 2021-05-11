@@ -1,15 +1,32 @@
+import knobs from '../knobs'
+
+$ const { icon, hasTitle, hasFooter, a11yText, window } = knobs();
 <style>
     .demo1-container {
         background: #fff;
         border: 1px solid #eee;
     }
+    .demo2-container {
+        max-width: 320px;
+        height: 500px;
+        padding: 8px;
+        background: #fff;
+        border: 1px solid #eee;
+    }
 </style>
 
-<div class="demo1-container">
-    <ebay-window-notice
-        a11y-text="Success!">
-        <@title>Your first order has been placed!</@title>
-        <p>You'll get a confirmation email soon. The rest of your items are now ready to checkout.</p>
-        <@footer><ebay-button priority="none" size="large">Continue</ebay-button></@footer>
+<div class=(window !== "fullscreen" ? "demo1-container" : "demo2-container")>
+    <ebay-window-notice window=window a11y-text=a11yText icon=icon>
+        <p>
+            You'll get a confirmation email soon. The rest of your items are now ready to checkout.
+        </p>
+        <if(hasTitle)>
+            <@title>Your first order has been placed!</@title>
+        </if>
+        <if(hasFooter)>
+            <@footer>
+                <ebay-button priority="none" size="large">Continue</ebay-button>
+            </@footer>
+        </if>
     </ebay-window-notice>
 </div>
