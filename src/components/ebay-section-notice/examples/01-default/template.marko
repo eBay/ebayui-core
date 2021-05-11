@@ -1,5 +1,25 @@
+import knobs from '../knobs'
+
+$ const { status, icon, hasFooter, a11yText, a11yRoleDescription } = knobs();
 <ebay-section-notice
-    a11y-text="Attention">
-    <p><strong>Error:</strong> Please take another look at the following:</p>
-    <p><a href="#">Card number</a>, <a href="#">Expiration date</a> &amp; <a href="#">Security code</a></p>
+    a11y-text=a11yText
+    status=status
+    icon=icon
+    a11y-role-description=a11yRoleDescription>
+    <p>
+        <strong>Error:</strong> Please take another look at the following:
+    </p>
+    <p>
+        <a href="#">Card number</a>,
+        <a href="#">Expiration date</a>
+        &amp;
+        <a href="#">Security code</a>
+    </p>
+    <if(hasFooter)>
+        <@footer>
+            <ebay-button priority="secondary" transparent on-click("trigger")>
+                Button
+            </ebay-button>
+        </@footer>
+    </if>
 </ebay-section-notice>
