@@ -1,7 +1,10 @@
 {
   "taglib-id": "ebayui-core",
   "tags-dir": "./src/components",
-  "taglib-imports": ["./src/components/ebay-icon/marko.json"],
+  "taglib-imports": [
+    "./src/components/ebay-icon/marko.json",
+    "./src/components/ebay-program-badge/marko.json"
+  ],
   "<ebay-breadcrumbs-item>": {
     "migrator": "./src/common/migrators/attribute-tags/index.js"
   },
