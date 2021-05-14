@@ -75,6 +75,10 @@ module.exports = assign({}, menuUtils, {
     },
 
     handleMenuSelect({ el, originalEvent, index }) {
+        if (this.input.collapseOnSelect) {
+            this.expander.collapse();
+        }
+
         this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
     },
     handleMousedown({ el, originalEvent }) {
