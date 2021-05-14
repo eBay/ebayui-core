@@ -14,15 +14,15 @@ describe('given tooltip button is enabled', () => {
         overlayId: 'fakeID-1',
         a11yCloseText: 'Close',
         heading: {},
-        content: {}
+        content: {},
     };
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('when the close button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByLabelText(input.a11yCloseText));
         });
 

@@ -1,7 +1,5 @@
 {
-  "attribute-groups": [
-    "html-attributes"
-  ],
+  "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -16,9 +14,7 @@
   "@role": "never",
   "@hidden": "never",
   "@header <header>": {
-    "attribute-groups": [
-      "html-attributes"
-    ],
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -26,9 +22,7 @@
     "@html-attributes": "expression"
   },
   "@footer <footer>": {
-    "attribute-groups": [
-      "html-attributes"
-    ],
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"

@@ -15,17 +15,17 @@
 
 ## Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`open` | Boolean | Yes | No | Whether toast is open.
-`a11y-close-text` | String | No | Yes | A11y text for close button.
+| Name              | Type    | Stateful | Required | Description                 |
+| ----------------- | ------- | -------- | -------- | --------------------------- |
+| `open`            | Boolean | Yes      | No       | Whether toast is open.      |
+| `a11y-close-text` | String  | No       | Yes      | A11y text for close button. |
 
 ## Events
 
-Event | Data | Description
---- | --- | ---
-`open` |  | toast opened
-`close` |  | toast closed
+| Event   | Data | Description  |
+| ------- | ---- | ------------ |
+| `open`  |      | toast opened |
+| `close` |      | toast closed |
 
 ## @header
 
@@ -43,6 +43,6 @@ Creates a header for the toast
 
 ### @header attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`as` | String | No | No | The tag to render which wraps the rest of the header content. Default is "h2"
+| Name | Type   | Stateful | Required | Description                                                                   |
+| ---- | ------ | -------- | -------- | ----------------------------------------------------------------------------- |
+| `as` | String | No       | No       | The tag to render which wraps the rest of the header content. Default is "h2" |

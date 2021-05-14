@@ -18,7 +18,7 @@ after(() => document.body.removeChild(form));
 describe('given the listbox with 3 items', () => {
     const input = mock.Basic_3Options;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input, { container: form });
     });
 
@@ -29,10 +29,10 @@ describe('given the listbox with 3 items', () => {
     });
 
     describe('when the down arrow key is pressed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(component.getAllByRole('listbox').find(isVisible), {
                 key: 'ArrowDown',
-                keyCode: 40
+                keyCode: 40,
             });
         });
 
@@ -42,15 +42,17 @@ describe('given the listbox with 3 items', () => {
 
             const [[changeEvent]] = changeEvents;
             expect(changeEvent).has.property('index', 1);
-            expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
+            expect(changeEvent)
+                .has.property('selected')
+                .and.is.deep.equal([input.options[1].value]);
         });
 
         describe('when the up arrow key is pressed', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 component.emitted('change');
                 await pressKey(component.getAllByRole('listbox').find(isVisible), {
                     key: 'ArrowUp',
-                    keyCode: 38
+                    keyCode: 38,
                 });
             });
 
@@ -60,7 +62,9 @@ describe('given the listbox with 3 items', () => {
 
                 const [[changeEvent]] = changeEvents;
                 expect(changeEvent).has.property('index', 0);
-                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);
+                expect(changeEvent)
+                    .has.property('selected')
+                    .and.is.deep.equal([input.options[0].value]);
             });
         });
     });
@@ -69,12 +73,12 @@ describe('given the listbox with 3 items', () => {
 describe('given the listbox is in an expanded state', () => {
     const input = mock.Basic_3Options;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input, { container: form });
     });
 
     describe('when an option is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByText(input.options[1].text));
         });
 
@@ -84,15 +88,17 @@ describe('given the listbox is in an expanded state', () => {
 
             const [[changeEvent]] = changeEvents;
             expect(changeEvent).has.property('index', 1);
-            expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
+            expect(changeEvent)
+                .has.property('selected')
+                .and.is.deep.equal([input.options[1].value]);
         });
     });
 
     describe('when the down arrow key is pressed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(component.getAllByRole('listbox').find(isVisible), {
                 key: 'ArrowDown',
-                keyCode: 40
+                keyCode: 40,
             });
         });
 
@@ -102,15 +108,17 @@ describe('given the listbox is in an expanded state', () => {
 
             const [[changeEvent]] = changeEvents;
             expect(changeEvent).has.property('index', 1);
-            expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
+            expect(changeEvent)
+                .has.property('selected')
+                .and.is.deep.equal([input.options[1].value]);
         });
 
         describe('when the up arrow key is pressed', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 component.emitted('change');
                 await pressKey(component.getAllByRole('listbox').find(isVisible), {
                     key: 'ArrowUp',
-                    keyCode: 38
+                    keyCode: 38,
                 });
             });
 
@@ -120,7 +128,9 @@ describe('given the listbox is in an expanded state', () => {
 
                 const [[changeEvent]] = changeEvents;
                 expect(changeEvent).has.property('index', 0);
-                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);
+                expect(changeEvent)
+                    .has.property('selected')
+                    .and.is.deep.equal([input.options[0].value]);
             });
         });
     });

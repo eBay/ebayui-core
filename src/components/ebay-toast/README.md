@@ -7,4 +7,4 @@
     </span>
 </h1>
 
-*Deprecated* use `ebay-toast-dialog` instead
+_Deprecated_ use `ebay-toast-dialog` instead

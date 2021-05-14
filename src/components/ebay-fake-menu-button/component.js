@@ -39,7 +39,7 @@ module.exports = {
         const eventObj = {
             el,
             originalEvent,
-            index
+            index,
         };
         this.emit(`${eventType}`, eventObj);
     },
@@ -75,7 +75,7 @@ module.exports = {
             focusManagement: 'interactive',
             expandOnClick: true,
             autoCollapse: true,
-            alwaysDoFocusManagement: true
+            alwaysDoFocusManagement: true,
         });
     },
 
@@ -83,5 +83,5 @@ module.exports = {
         if (this.expander) {
             this.expander.cancelAsync();
         }
-    }
+    },
 };

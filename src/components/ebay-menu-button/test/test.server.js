@@ -9,9 +9,12 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('menu-button', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Basic_2Items;
-        const { getByRole, getAllByRole, getByText, getByLabelText } = await render(template, input);
+        const { getByRole, getAllByRole, getByText, getByLabelText } = await render(
+            template,
+            input
+        );
         const btnEl = getByRole('button');
         expect(btnEl).is.equal(getByLabelText(input.a11yText));
         expect(btnEl).has.class('expand-btn');
@@ -31,43 +34,47 @@ describe('menu-button', () => {
         });
     });
 
-    it('renders with reverse=true', async() => {
+    it('renders with reverse=true', async () => {
         const input = assign({ reverse: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
-        expect(getByRole('menu').closest('.menu-button__menu')).with.class('menu-button__menu--reverse');
+        expect(getByRole('menu').closest('.menu-button__menu')).with.class(
+            'menu-button__menu--reverse'
+        );
     });
 
-    it('renders with fix-width=true', async() => {
+    it('renders with fix-width=true', async () => {
         const input = assign({ fixWidth: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
-        expect(getByRole('menu').closest('.menu-button__menu')).with.class('menu-button__menu--fix-width');
+        expect(getByRole('menu').closest('.menu-button__menu')).with.class(
+            'menu-button__menu--fix-width'
+        );
     });
 
-    it('renders with borderless=true', async() => {
+    it('renders with borderless=true', async () => {
         const input = assign({ borderless: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--borderless');
     });
 
-    it('renders with size=small', async() => {
+    it('renders with size=small', async () => {
         const input = assign({ size: 'small' }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--small');
     });
 
-    it('renders with priority=primary', async() => {
+    it('renders with priority=primary', async () => {
         const input = assign({ priority: 'primary' }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--primary');
     });
 
-    it('renders without text', async() => {
+    it('renders without text', async () => {
         const input = assign({}, mock.Basic_2Items, { text: '' });
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--icon-only');
     });
 
-    it('renders with icon', async() => {
+    it('renders with icon', async () => {
         const input = mock.Settings_Icon;
         const { getByRole, getByText } = await render(template, input);
         const btnEl = getByRole('button');
@@ -75,19 +82,19 @@ describe('menu-button', () => {
         expect(btnEl).contains(getByText(input.icon.renderBody.text));
     });
 
-    it('renders without toggle icon', async() => {
+    it('renders without toggle icon', async () => {
         const input = mock.No_Toggle_Icon;
         const { getByRole } = await render(template, input);
         expect(getByRole('button').querySelector('icon--dropdown')).equals(null);
     });
 
-    it('renders with disabled state', async() => {
+    it('renders with disabled state', async () => {
         const input = mock.Disabled;
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.attr('disabled');
     });
 
-    it('renders with a custom label', async() => {
+    it('renders with a custom label', async () => {
         const input = mock.Custom_Label;
         const { getByRole, getByText } = await render(template, input);
         const customLabelEl = getByText(input.label.renderBody.text);
@@ -95,7 +102,7 @@ describe('menu-button', () => {
         expect(getByRole('button')).contains(customLabelEl);
     });
 
-    it('renders with overflow variant', async() => {
+    it('renders with overflow variant', async () => {
         const input = mock.Overflow_Variant;
         const { getByRole, getByLabelText } = await render(template, input);
         const btnEl = getByRole('button');
@@ -110,7 +117,7 @@ describe('menu-button', () => {
         expect(menuEl).has.property('parentElement').with.class('menu-button__menu--reverse');
     });
 
-    it('renders with separators', async() => {
+    it('renders with separators', async () => {
         const input = mock.Separator_4Items;
         const { queryByText, getAllByRole, getByText } = await render(template, input);
         const menuItemEls = getAllByRole('menuitem');
@@ -130,9 +137,9 @@ describe('menu-button', () => {
         });
     });
 
-    ['radio', 'checkbox'].forEach(type => {
-        [true, false].forEach(checked => {
-            it(`renders with type=${type} and checked=${checked}`, async() => {
+    ['radio', 'checkbox'].forEach((type) => {
+        [true, false].forEach((checked) => {
+            it(`renders with type=${type} and checked=${checked}`, async () => {
                 const input = { type, items: [{ checked }] };
                 const { getByRole, getAllByRole } = await render(template, input);
                 const optionEls = getAllByRole(`menuitem${type}`);
@@ -148,19 +155,27 @@ describe('menu-button', () => {
     testUtils.testPassThroughAttributes(template, {
         child: {
             name: 'items',
-            multiple: true
-        }
+            multiple: true,
+        },
     });
 });
 
 describe('migrator', () => {
     const componentPath = '../index.marko';
 
-    it('transforms an icon attribute into a tag', async() => {
+    it('transforms an icon attribute into a tag', async () => {
         const tagString = '<ebay-menu-button icon="settings"/>';
         const { el } = testUtils.runTransformer(migrator, tagString, componentPath);
-        const { body: { array: [iconEl] } } = el;
-        const { body: { array: [tag] } } = iconEl;
+        const {
+            body: {
+                array: [iconEl],
+            },
+        } = el;
+        const {
+            body: {
+                array: [tag],
+            },
+        } = iconEl;
         expect(iconEl.tagName).to.equal('@icon');
         expect(tag.tagName).to.equal('ebay-settings-icon');
     });
@@ -168,10 +183,18 @@ describe('migrator', () => {
     it('does not transform when icon attribute is missing', () => {
         const tagString = '<ebay-menu/>';
         const { el } = testUtils.runTransformer(migrator, tagString, componentPath);
-        const { body: { array: [iconEl] } } = el;
+        const {
+            body: {
+                array: [iconEl],
+            },
+        } = el;
         expect(iconEl).to.equal(undefined);
     });
 
-    testUtils.testEventsMigrator(migrator, 'menu-button',
-        ['keydown', 'change', 'select', 'expand', 'collapse'], '../index.marko');
+    testUtils.testEventsMigrator(
+        migrator,
+        'menu-button',
+        ['keydown', 'change', 'select', 'expand', 'collapse'],
+        '../index.marko'
+    );
 });

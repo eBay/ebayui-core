@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('cta-button', () => {
-    it('renders basic cta button', async() => {
+    it('renders basic cta button', async () => {
         const input = mock.Basic;
         const { getByText } = await render(template, input);
         const textEl = getByText(input.renderBody.text);
@@ -16,13 +16,13 @@ describe('cta-button', () => {
         expect(textEl.closest('.cta-btn__cell')).does.not.equal(null);
     });
 
-    it('renders small cta button', async() => {
+    it('renders small cta button', async () => {
         const input = mock.Small;
         const { getByText } = await render(template, input);
         expect(getByText(input.renderBody.text).closest('.cta-btn')).has.class('cta-btn--small');
     });
 
-    it('renders large cta button', async() => {
+    it('renders large cta button', async () => {
         const input = mock.Large;
         const { getByText } = await render(template, input);
         expect(getByText(input.renderBody.text).closest('.cta-btn')).has.class('cta-btn--large');

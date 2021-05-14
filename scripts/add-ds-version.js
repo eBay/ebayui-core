@@ -4,11 +4,14 @@ const parentDir = '../src/components/';
 const versionsPath = '../ds-versions.json';
 
 async function walkDirs() {
-    fs.promises.readdir(path.resolve(__dirname, parentDir)).then(async(items) => {
-        const versionsRaw = await fs.promises.readFile(path.resolve(__dirname, versionsPath), 'utf-8');
+    fs.promises.readdir(path.resolve(__dirname, parentDir)).then(async (items) => {
+        const versionsRaw = await fs.promises.readFile(
+            path.resolve(__dirname, versionsPath),
+            'utf-8'
+        );
         const versions = JSON.parse(versionsRaw);
         // eslint-disable-next-line compat/compat
-        items.forEach(async(item) => {
+        items.forEach(async (item) => {
             const itemPath = path.resolve(__dirname, path.join(parentDir, item));
             const stats = await fs.promises.stat(itemPath);
             if (stats.isDirectory() && !itemPath.includes('components/components')) {
@@ -40,8 +43,7 @@ async function addVersionAndWrite(myFilePath, newVersion) {
         lines[5] = `        DS v${newVersion}`;
     } else {
         const componentTitle = lines[0].split(' ')[1];
-        finalAdditions =
-`<h1 style='display: flex; justify-content: space-between; align-items: center;'>
+        finalAdditions = `<h1 style='display: flex; justify-content: space-between; align-items: center;'>
     <span>
         ${componentTitle}
     </span>

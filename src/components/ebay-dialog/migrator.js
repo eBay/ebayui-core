@@ -5,13 +5,17 @@ function migratorMarko4(el, context) {
     let dialogType;
     const type = el.hasAttribute('type') && el.getAttributeValue('type').value;
     if (type === 'full') {
-        context.deprecate('<ebay-dialog type="full"/> has been renamed to <ebay-fullscreen-dialog/>');
+        context.deprecate(
+            '<ebay-dialog type="full"/> has been renamed to <ebay-fullscreen-dialog/>'
+        );
         dialogType = 'fullscreen';
     } else if (type === 'left') {
         context.deprecate('<ebay-dialog type="left"/> has been renamed to <ebay-panel-dialog/>');
         dialogType = 'panel';
     } else if (type === 'right') {
-        context.deprecate('<ebay-dialog type="right"/> has been renamed to <ebay-panel-dialog position="end"/>');
+        context.deprecate(
+            '<ebay-dialog type="right"/> has been renamed to <ebay-panel-dialog position="end"/>'
+        );
         el.setAttributeValue('position', context.builder.literal('end'));
         dialogType = 'panel';
     } else {

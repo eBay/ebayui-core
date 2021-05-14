@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('notice-icon', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Default_Notice;
         const { getByLabelText, getByText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
@@ -22,7 +22,7 @@ describe('notice-icon', () => {
         expect(getByLabelText(input.a11yText)).has.class('icon--attention-filled');
     });
 
-    it('renders inline version', async() => {
+    it('renders inline version', async () => {
         const input = mock.Inline_Notice;
         const { getByLabelText } = await render(template, input);
 
@@ -35,7 +35,7 @@ describe('notice-icon', () => {
         expect(getByLabelText(input.a11yText)).has.class('notice-class');
     });
 
-    it('renders title and footer version', async() => {
+    it('renders title and footer version', async () => {
         const input = mock.Title_Footer_Notice;
         const { getByLabelText, getByText } = await render(template, input);
 
@@ -54,6 +54,6 @@ describe('notice-icon', () => {
     });
 
     testPassThroughAttributes(template, {
-        input: mock.Default_Notice
+        input: mock.Default_Notice,
     });
 });

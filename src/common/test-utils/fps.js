@@ -46,5 +46,5 @@ module.exports = {
     loop,
     start,
     end,
-    getAverage
+    getAverage,
 };

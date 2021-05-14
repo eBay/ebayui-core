@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('window-notice', () => {
-    it('renders normal window', async() => {
+    it('renders normal window', async () => {
         const input = mock.Window_Notice;
         const { getByText } = await render(template, input);
         const content = getByText(input.renderBody.text);
@@ -23,7 +23,7 @@ describe('window-notice', () => {
         expect(title.parentElement).has.class('window-notice__main');
     });
 
-    it('renders fullscreen window', async() => {
+    it('renders fullscreen window', async () => {
         const input = assign({}, mock.Window_Notice, { window: 'fullscreen' });
         const { getByText } = await render(template, input);
         const container = getByText(input.renderBody.text).parentElement;

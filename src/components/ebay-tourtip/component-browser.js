@@ -1,4 +1,3 @@
-
 module.exports = {
     handleCollapse({ originalEvent }) {
         if (this._expander.isExpanded()) {
@@ -10,5 +9,5 @@ module.exports = {
     onMount() {
         this._expander = this.getComponent('base')._expander;
         this._expander.expand();
-    }
+    },
 };

@@ -22,7 +22,7 @@ module.exports = function onScrollEnd(el, fn) {
         }
 
         fn(lastPos);
-    }());
+    })();
 
     return () => {
         clearTimeout(timeout);

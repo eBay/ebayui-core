@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('filter-menu-button', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Basic_2Items;
         const { getByRole, getAllByRole, getByText } = await render(template, input);
         const btnEl = getAllByRole('button')[0];
@@ -18,7 +18,9 @@ describe('filter-menu-button', () => {
         expect(btnEl).has.attr('aria-expanded', 'false');
         expect(btnEl).has.property('parentElement').with.class('filter-menu-button');
         expect(btnEl.querySelector('.icon--chevron-down')).has.property('tagName', 'svg');
-        expect(getByRole('menu')).has.property('parentElement').with.class('filter-menu-button__menu');
+        expect(getByRole('menu'))
+            .has.property('parentElement')
+            .with.class('filter-menu-button__menu');
 
         const menuItemEls = getAllByRole('menuitemcheckbox');
         input.items.forEach((item, i) => {
@@ -29,13 +31,13 @@ describe('filter-menu-button', () => {
         });
     });
 
-    it('renders with disabled state', async() => {
+    it('renders with disabled state', async () => {
         const input = mock.Disabled;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('button')[0]).has.attr('disabled');
     });
 
-    it(`renders checked item`, async() => {
+    it(`renders checked item`, async () => {
         const input = { items: [{ checked: true }] };
         const { getAllByRole } = await render(template, input);
         const optionEls = getAllByRole(`menuitemcheckbox`);
@@ -45,6 +47,10 @@ describe('filter-menu-button', () => {
     });
 
     testUtils.testPassThroughAttributes(template);
-    testUtils.testEventsMigrator(require('../migrator'), 'filter-menu-button',
-        ['form-submit', 'change', 'footer-click', 'expand', 'collapse'], '../index.marko');
+    testUtils.testEventsMigrator(
+        require('../migrator'),
+        'filter-menu-button',
+        ['form-submit', 'change', 'footer-click', 'expand', 'collapse'],
+        '../index.marko'
+    );
 });

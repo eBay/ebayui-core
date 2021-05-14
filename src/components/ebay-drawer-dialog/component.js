@@ -31,7 +31,10 @@ module.exports = {
     handleTouchMove(event) {
         if (this.touches.length) {
             forEach(event.changedTouches, (current) => {
-                const compare = findIndex(this.touches, (item) => item.identifier === current.identifier);
+                const compare = findIndex(
+                    this.touches,
+                    (item) => item.identifier === current.identifier
+                );
                 const diff = current.pageY - this.touches[compare].pageY;
 
                 if (diff > 30) {
@@ -65,5 +68,5 @@ module.exports = {
 
     onInput(input) {
         this.state = { expanded: input.expanded || false };
-    }
+    },
 };

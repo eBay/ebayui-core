@@ -8,5 +8,5 @@ module.exports = {
     },
     getNItems(n, getAttrs) {
         return Array.from({ length: n }).map((_, i) => getAttrs(i));
-    }
+    },
 };

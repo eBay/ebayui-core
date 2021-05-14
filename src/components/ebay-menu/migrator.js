@@ -12,7 +12,9 @@ function migratorMarko4(el, context) {
     if (el.hasAttribute('type') && el.getAttributeValue('type') === 'fake') {
         el.removeAttribute('type');
         el.setTagName('ebay-fake-menu');
-        context.deprecate('"type=fake" attribute has been removed from ebay-menu. Use ebay-fake-menu instead.');
+        context.deprecate(
+            '"type=fake" attribute has been removed from ebay-menu. Use ebay-fake-menu instead.'
+        );
     }
 
     return el;

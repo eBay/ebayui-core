@@ -35,26 +35,27 @@ When a selected option is specified:
 
 ### ebay-listbox-button Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`name` | String | No | Yes | used for the `name` attribute of the native `<select>`
-`selected` | Number | Yes | n/a | allows you to set the selected index option to `selected`
-`borderless` | Boolean | No | No | whether button has borders
-`fluid` | Boolean | No | No | whether listbox width is 100%
-`buttonName` | String | No | Yes | used for the `name` attribute of the native `<button>`
-`truncate` | Boolean | No | No | will truncate the text of the button onto a single line, and adds an ellipsis, when the button's text overflows
-`prefix-id` | String | No | No | The id of an external element to use as the prefix label for the listbox button. Cannot be used with `prefix-label`
-`prefix-label` | String | No | No | The label to add before each selected item on the button. Cannot be used with `prefix-id`
+| Name           | Type    | Stateful | Required | Description                                                                                                         |
+| -------------- | ------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| `name`         | String  | No       | Yes      | used for the `name` attribute of the native `<select>`                                                              |
+| `selected`     | Number  | Yes      | n/a      | allows you to set the selected index option to `selected`                                                           |
+| `borderless`   | Boolean | No       | No       | whether button has borders                                                                                          |
+| `fluid`        | Boolean | No       | No       | whether listbox width is 100%                                                                                       |
+| `buttonName`   | String  | No       | Yes      | used for the `name` attribute of the native `<button>`                                                              |
+| `truncate`     | Boolean | No       | No       | will truncate the text of the button onto a single line, and adds an ellipsis, when the button's text overflows     |
+| `prefix-id`    | String  | No       | No       | The id of an external element to use as the prefix label for the listbox button. Cannot be used with `prefix-label` |
+| `prefix-label` | String  | No       | No       | The label to add before each selected item on the button. Cannot be used with `prefix-id`                           |
 
 **Note:** For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 
 ### ebay-listbox-button Events
 
-Event | Data |  Description
---- | --- | ---
-`collapse` | | collapse content
-`expand` | | expand content
-`change` | `{ el, index, selected }` | option selected
+| Event      | Data                      | Description      |
+| ---------- | ------------------------- | ---------------- |
+| `collapse` |                           | collapse content |
+| `expand`   |                           | expand content   |
+| `change`   | `{ el, index, selected }` | option selected  |
+
 ---
 
 ## @option Tag
@@ -67,8 +68,8 @@ Event | Data |  Description
 
 ### @option Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`text` | String | No | No | string to use in the option
-`selected` | Boolean | Yes | No | whether or not the option is selected (**Note:** use the root `ebay-listbox-button` element's `selected` property to set this property)
-`value` | String | Yes | Yes | used for the `value` attribute of the native `<option>`
+| Name       | Type    | Stateful | Required | Description                                                                                                                             |
+| ---------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `text`     | String  | No       | No       | string to use in the option                                                                                                             |
+| `selected` | Boolean | Yes      | No       | whether or not the option is selected (**Note:** use the root `ebay-listbox-button` element's `selected` property to set this property) |
+| `value`    | String  | Yes      | Yes      | used for the `value` attribute of the native `<option>`                                                                                 |

@@ -6,7 +6,7 @@ exports.Dialog = {
     class: 'lightbox-dialog--mask-fade',
     windowClass: 'lightbox-dialog__window--fade',
     a11yCloseText: 'close',
-    renderBody: createRenderBody('body content')
+    renderBody: createRenderBody('body content'),
 };
 
 exports.Header_Footer_Dialog = {
@@ -15,14 +15,14 @@ exports.Header_Footer_Dialog = {
     windowClass: 'lightbox-dialog__window--fade',
     a11yCloseText: 'close',
     footer: {
-        renderBody: createRenderBody('footer content')
+        renderBody: createRenderBody('footer content'),
     },
     header: {
-        renderBody: createRenderBody('title content')
+        renderBody: createRenderBody('title content'),
     },
-    renderBody: createRenderBody('body content')
+    renderBody: createRenderBody('body content'),
 };
 
 exports.Dialog_Open = assign({}, exports.Dialog, {
-    open: true
+    open: true,
 });

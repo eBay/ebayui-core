@@ -9,12 +9,12 @@ afterEach(cleanup);
 let component;
 
 describe('given switch button is enabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { value: 'food' });
     });
 
     describe('when switch button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByRole('switch', { hidden: true }));
         });
 
@@ -30,16 +30,16 @@ describe('given switch button is enabled', () => {
 });
 
 describe('given switch button is disabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { disabled: true });
     });
 
     describe('when switch button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByRole('switch', { hidden: true }));
         });
 
-        it('then it doesn\'t emit the event', () => {
+        it("then it doesn't emit the event", () => {
             expect(component.emitted('change')).has.length(0);
         });
     });

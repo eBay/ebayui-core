@@ -14,18 +14,20 @@ let component;
 describe('given an input textbox', () => {
     const input = mock.Basic;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
-    ['change', 'input', 'focus', 'blur', 'keyDown', 'keyPress', 'keyUp'].forEach(eventName => {
+    ['change', 'input', 'focus', 'blur', 'keyDown', 'keyPress', 'keyUp'].forEach((eventName) => {
         describe(`when native event is fired: ${eventName}`, () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent[eventName](component.getByRole('textbox'));
             });
 
             it('then it emits the event', () => {
-                const events = component.emitted(eventName === 'input' ? 'input-change' : eventName.toLowerCase());
+                const events = component.emitted(
+                    eventName === 'input' ? 'input-change' : eventName.toLowerCase()
+                );
                 expect(events).has.length(1);
 
                 const [[eventArg]] = events;
@@ -44,7 +46,7 @@ describe('given an input textbox', () => {
 describe('given an input textbox with floating label and no value', () => {
     const input = mock.Floating_Label_No_Value;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
@@ -53,32 +55,37 @@ describe('given an input textbox with floating label and no value', () => {
     });
 
     it('then is showing the label inline', () => {
-        expect(component.getByText(input.floatingLabel)).has.class('legacy-floating-label__label--inline');
+        expect(component.getByText(input.floatingLabel)).has.class(
+            'legacy-floating-label__label--inline'
+        );
     });
 
     describe('when the input is focused', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.focus(component.getByRole('textbox'));
         });
 
         it('then it is not showing the label inline', () => {
-            expect(component.getByText(input.floatingLabel))
-                .does.not.have.class('legacy-floating-label__label--inline');
+            expect(component.getByText(input.floatingLabel)).does.not.have.class(
+                'legacy-floating-label__label--inline'
+            );
         });
 
         describe('when the input is blurred', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.blur(component.getByRole('textbox'));
             });
 
             it('then is showing the label inline', () => {
-                expect(component.getByText(input.floatingLabel)).has.class('legacy-floating-label__label--inline');
+                expect(component.getByText(input.floatingLabel)).has.class(
+                    'legacy-floating-label__label--inline'
+                );
             });
         });
     });
 
     describe('when the component is updated/re-rendered', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender();
         });
 
@@ -91,7 +98,7 @@ describe('given an input textbox with floating label and no value', () => {
 describe('when the component has a postfix button', () => {
     const input = mock.Postfix_Icon_Button;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
         await fireEvent.click(component.getByLabelText(input.buttonAriaLabel));
     });

@@ -5,27 +5,27 @@ exports.Basic_2Items = {
     text: 'Basic Filter Menu Button',
     footerText: 'Apply',
     a11yText: 'Filter Menu Button A11y Text',
-    items: getNItems(2, i => ({
+    items: getNItems(2, (i) => ({
         value: `item ${i}`,
-        renderBody: createRenderBody(`Item text ${i}`)
-    }))
+        renderBody: createRenderBody(`Item text ${i}`),
+    })),
 };
 
 exports.Basic_2ItemsChecked = assign({}, exports.Basic_2Items, {
-    items: getNItems(2, i => ({
+    items: getNItems(2, (i) => ({
         checked: i === 1,
         value: `item ${i}`,
-        renderBody: createRenderBody(`Item text ${i}`)
-    }))
+        renderBody: createRenderBody(`Item text ${i}`),
+    })),
 });
 
 exports.Basic_3Items = assign({}, exports.Basic_2Items, {
-    items: getNItems(3, i => ({
+    items: getNItems(3, (i) => ({
         value: `item ${i}`,
-        renderBody: createRenderBody(`Item text ${i}`)
-    }))
+        renderBody: createRenderBody(`Item text ${i}`),
+    })),
 });
 
 exports.Disabled = assign({}, exports.Basic_3Items, {
-    disabled: true
+    disabled: true,
 });

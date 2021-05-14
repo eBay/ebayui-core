@@ -9,7 +9,7 @@ function transformMarko4(el, context) {
                 node.setTagName('@item');
                 node.setAttributeValue('_isSeparator', context.builder.literalTrue());
             }
-        }
+        },
     });
     walker.walk(el);
     return el;
@@ -19,9 +19,12 @@ function transformMarko5(path, t) {
         MarkoTag(tag) {
             if (tag.get('name').isStringLiteral({ value: '@separator' })) {
                 tag.set('name.value', '@item');
-                tag.pushContainer('attributes', t.markoAttribute('_isSeparator', t.booleanLiteral(true)));
+                tag.pushContainer(
+                    'attributes',
+                    t.markoAttribute('_isSeparator', t.booleanLiteral(true))
+                );
             }
-        }
+        },
     });
 }
 

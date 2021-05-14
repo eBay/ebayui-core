@@ -13,7 +13,9 @@ function migratorMarko4(el, context) {
 function migratorMarko5(path) {
     const name = path.get('name');
     const tagNameString = name.node.value;
-    throw path.buildCodeFrameError(`${tagNameString} is not supported on marko 5. Run migrations on marko 4 first.`);
+    throw path.buildCodeFrameError(
+        `${tagNameString} is not supported on marko 5. Run migrations on marko 4 first.`
+    );
 }
 
 module.exports = function migrator(a, b) {

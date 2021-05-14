@@ -21,19 +21,19 @@
 
 ### ebay-menu Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`type` | String | No | No | Can be "fake" / "radio" / "checkbox"
-`priority` | String | No | No | button priority, "primary" / "secondary" (default) / "none"
+| Name       | Type   | Stateful | Required | Description                                                 |
+| ---------- | ------ | -------- | -------- | ----------------------------------------------------------- |
+| `type`     | String | No       | No       | Can be "fake" / "radio" / "checkbox"                        |
+| `priority` | String | No       | No       | button priority, "primary" / "secondary" (default) / "none" |
 
 ### ebay-menu Events
 
-Event | Data | Description
---- | --- | ---
-`keydown` | `{ el, index, checked }` |
-`change` (radio) | `{ el, index, checked }` | item changed/checked
-`change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
-`select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
+| Event                            | Data                           | Description           |
+| -------------------------------- | ------------------------------ | --------------------- |
+| `keydown`                        | `{ el, index, checked }`       |
+| `change` (radio)                 | `{ el, index, checked }`       | item changed/checked  |
+| `change` (checkbox)              | `{ el, [indexes], [checked] }` | items changed/checked |
+| `select` (not radio or checkbox) | `{ el, index, checked }`       | item clicked          |
 
 ## @item Tag
 
@@ -45,15 +45,15 @@ Event | Data | Description
 
 ### @item Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`href` (fake menu) | String | No | No | for link that looks like a menu-item. If set to null then will disable item
-`type` (fake menu) | String | No | No | Set to "button" for fake menu-item `<button>`
-`value` (radio or checkbox) | String | No | No | the value to use with event responses for for the `checked` array
-`checked` (radio or checkbox) | Boolean | No | No | whether or not the item is checked
-`current` (fake menu) | Boolean | No | No | whether or not the href is the current href of the page
-`badge-number` | Number | No | No | used as the number to be placed in the badge
-`badge-aria-label` | String | No | Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge
+| Name                          | Type    | Stateful | Required                               | Description                                                                 |
+| ----------------------------- | ------- | -------- | -------------------------------------- | --------------------------------------------------------------------------- |
+| `href` (fake menu)            | String  | No       | No                                     | for link that looks like a menu-item. If set to null then will disable item |
+| `type` (fake menu)            | String  | No       | No                                     | Set to "button" for fake menu-item `<button>`                               |
+| `value` (radio or checkbox)   | String  | No       | No                                     | the value to use with event responses for for the `checked` array           |
+| `checked` (radio or checkbox) | Boolean | No       | No                                     | whether or not the item is checked                                          |
+| `current` (fake menu)         | Boolean | No       | No                                     | whether or not the href is the current href of the page                     |
+| `badge-number`                | Number  | No       | No                                     | used as the number to be placed in the badge                                |
+| `badge-aria-label`            | String  | No       | Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge                            |
 
 ## ebay-menu-separator
 

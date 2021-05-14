@@ -1,23 +1,15 @@
 {
-  "attribute-groups": [
-    "html-attributes"
-  ],
+  "attribute-groups": ["html-attributes"],
   "migrator": "./migrator",
   "@*": {
     "targetProperty": null,
     "type": "expression"
   },
   "@size": {
-    "enum": [
-      "large",
-      "regular"
-    ]
+    "enum": ["large", "regular"]
   },
   "@icon-style": {
-    "enum": [
-      "square",
-      "rounded"
-    ]
+    "enum": ["square", "rounded"]
   },
   "@html-attributes": "expression",
   "@autofocus": "#html-autofocus",

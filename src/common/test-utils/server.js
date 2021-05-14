@@ -23,44 +23,49 @@ module.exports = {
      * Adds a test to assert that a template passes through additional attributes.
      */
     testPassThroughAttributes(template, { input, child, getClassAndStyleEl } = {}) {
-        it(
-            `passes through additional html attributes${child ? ` from child ${child.name}` : ''}`,
-            async() => {
-                const testId = 'AttributePassthrough';
-                const clonedInput = Object.assign({}, input);
-                let targetInput = clonedInput;
+        it(`passes through additional html attributes${
+            child ? ` from child ${child.name}` : ''
+        }`, async () => {
+            const testId = 'AttributePassthrough';
+            const clonedInput = Object.assign({}, input);
+            let targetInput = clonedInput;
 
-                if (child) {
-                    targetInput = Object.assign({}, child.input);
-                    clonedInput[child.name] = child.multiple ? [targetInput] : child;
-                }
-                Object.assign(targetInput, {
-                    htmlAttributes: {
-                        type: 'number'
-                    },
-                    'data-testid': testId,
-                    'data-passed-through': 'true',
-                    // class and style are special attributes
-                    class: { class1: true, class2: false },
-                    style: { color: 'red' }
-                });
-
-                const component = await render(template, clonedInput);
-                const passThroughEl = component.getByTestId(testId);
-                expect(passThroughEl).has.attr('data-passed-through');
-                expect(passThroughEl).has.attr('type');
-
-                const classAndStyleEl = getClassAndStyleEl ? getClassAndStyleEl(component) : passThroughEl;
-                expect(classAndStyleEl).has.class('class1');
-                expect(classAndStyleEl).not.has.class('class2');
-                expect(classAndStyleEl).attr('style').contains('color:red');
+            if (child) {
+                targetInput = Object.assign({}, child.input);
+                clonedInput[child.name] = child.multiple ? [targetInput] : child;
             }
-        );
+            Object.assign(targetInput, {
+                htmlAttributes: {
+                    type: 'number',
+                },
+                'data-testid': testId,
+                'data-passed-through': 'true',
+                // class and style are special attributes
+                class: { class1: true, class2: false },
+                style: { color: 'red' },
+            });
+
+            const component = await render(template, clonedInput);
+            const passThroughEl = component.getByTestId(testId);
+            expect(passThroughEl).has.attr('data-passed-through');
+            expect(passThroughEl).has.attr('type');
+
+            const classAndStyleEl = getClassAndStyleEl
+                ? getClassAndStyleEl(component)
+                : passThroughEl;
+            expect(classAndStyleEl).has.class('class1');
+            expect(classAndStyleEl).not.has.class('class2');
+            expect(classAndStyleEl).attr('style').contains('color:red');
+        });
     },
     testEventsMigrator(migrator, component, events, componentPath) {
-        it(`checks all events ${component.component || component} events are migrated ${events.join(',')}`, () => {
-            const str = events.map((event) =>
-                `on-${component.event || component}-${event.from || event}(() => {})`)
+        it(`checks all events ${component.component || component} events are migrated ${events.join(
+            ','
+        )}`, () => {
+            const str = events
+                .map(
+                    (event) => `on-${component.event || component}-${event.from || event}(() => {})`
+                )
                 .join(' ');
             const srcString = `<ebay-${component.component || component} ${str}/>`;
 
@@ -72,8 +77,13 @@ module.exports = {
                 const fromEvent = event.from || event;
                 const toEvent = event.to || event;
 
-                expect(el.hasAttribute(`on-${toEvent}`)).to.equal(true, `should have on-${toEvent}`);
-                expect(el.hasAttribute(`on-${component.event || component}-${fromEvent}`)).to.equal(false);
+                expect(el.hasAttribute(`on-${toEvent}`)).to.equal(
+                    true,
+                    `should have on-${toEvent}`
+                );
+                expect(el.hasAttribute(`on-${component.event || component}-${fromEvent}`)).to.equal(
+                    false
+                );
             });
         });
     },
@@ -88,7 +98,10 @@ module.exports = {
             const el = templateAST.body.array[0];
 
             expect(el.hasAttribute(newAttribute)).to.equal(true, `should have ${newAttribute}`);
-            expect(el.hasAttribute(oldAttribute)).to.equal(false, `should no longer have ${oldAttribute}`);
+            expect(el.hasAttribute(oldAttribute)).to.equal(
+                false,
+                `should no longer have ${oldAttribute}`
+            );
         });
     },
     getTransformedTemplate(transformer, srcString, componentPath) {
@@ -96,28 +109,23 @@ module.exports = {
         const { context, templateAST } = getTransformerData(srcString, componentPath);
         context.root = templateAST;
         transformer(templateAST.body.array[0], context);
-        return prettyPrintAST(templateAST, { filename: componentPath }).replace(/\n/g, '').replace(/\s{4}/g, '');
+        return prettyPrintAST(templateAST, { filename: componentPath })
+            .replace(/\n/g, '')
+            .replace(/\s{4}/g, '');
     },
     runTransformer(transformer, srcString, componentPath) {
         const { context, templateAST } = getTransformerData(srcString, componentPath);
         transformer(templateAST.body.array[0], context);
         return {
             context,
-            el: templateAST.body.array[0]
+            el: templateAST.body.array[0],
         };
-    }
+    },
 };
 
 function getTransformerData(srcString, componentPath) {
-    const templateAST = markoCompiler.parseRaw(
-        srcString,
-        componentPath
-    );
-    const context = new CompileContext(
-        srcString,
-        componentPath,
-        Builder.DEFAULT_BUILDER
-    );
+    const templateAST = markoCompiler.parseRaw(srcString, componentPath);
+    const context = new CompileContext(srcString, componentPath, Builder.DEFAULT_BUILDER);
 
     return { context, templateAST };
 }

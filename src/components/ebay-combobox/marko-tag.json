@@ -10,10 +10,7 @@
   "@borderless": "boolean",
   "@autocomplete": "string",
   "@list-selection": {
-    "enum": [
-      "automatic",
-      "manual"
-    ]
+    "enum": ["automatic", "manual"]
   },
   "@disabled": "#html-disabled",
   "@form": "#html-form",

@@ -14,7 +14,7 @@ let component;
 describe('given the default tourtip', () => {
     const input = mock.Basic;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
@@ -22,7 +22,7 @@ describe('given the default tourtip', () => {
     thenItCanBeClosed();
 
     describe('after it is rerendered', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(assign({}, input, { disabled: false }));
         });
 
@@ -32,14 +32,16 @@ describe('given the default tourtip', () => {
 
     function thenItIsOpen() {
         it('then it is open', () => {
-            expect(component.getByText(input.host.renderBody.text).parentElement)
-                .has.attr('aria-expanded', 'true');
+            expect(component.getByText(input.host.renderBody.text).parentElement).has.attr(
+                'aria-expanded',
+                'true'
+            );
         });
     }
 
     function thenItCanBeClosed() {
         describe('when the close button is clicked', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.click(component.getByLabelText(input.a11yCloseText));
             });
 
@@ -48,8 +50,10 @@ describe('given the default tourtip', () => {
             });
 
             it('then it is closed', () => {
-                expect(component.getByText(input.host.renderBody.text).parentElement)
-                    .has.attr('aria-expanded', 'false');
+                expect(component.getByText(input.host.renderBody.text).parentElement).has.attr(
+                    'aria-expanded',
+                    'false'
+                );
             });
         });
     }

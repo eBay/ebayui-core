@@ -11,7 +11,7 @@ let component;
 
 describe('given filter is enabled', () => {
     const input = mock.Basic;
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
@@ -20,7 +20,7 @@ describe('given filter is enabled', () => {
     });
 
     describe('when filter is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByRole('button'));
         });
 
@@ -37,7 +37,7 @@ describe('given filter is enabled', () => {
         });
 
         describe('when it is clicked again', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.click(component.getByRole('button'));
             });
 
@@ -49,12 +49,12 @@ describe('given filter is enabled', () => {
 });
 
 describe('given filter is disabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { disabled: true });
     });
 
     describe('when filter is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByRole('button'));
         });
 

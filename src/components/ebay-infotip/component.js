@@ -1,8 +1,7 @@
-
 module.exports = {
     onInput(input) {
         this.state = {
-            open: input.open || false
+            open: input.open || false,
         };
     },
 
@@ -26,5 +25,5 @@ module.exports = {
 
         this.getEl('host').focus();
         this.emit('collapse');
-    }
+    },
 };

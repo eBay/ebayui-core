@@ -1,28 +1,21 @@
 {
   "template": "./index.marko",
   "migrator": "./migrator.js",
-  "attribute-groups": [
-    "html-attributes"
-  ],
+  "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,
     "type": "expression"
   },
   "@html-attributes": "expression",
   "@type": {
-    "enum": [
-      "text",
-      "password"
-    ]
+    "enum": ["text", "password"]
   },
   "@invalid": "boolean",
   "@fluid": "boolean",
   "@multiline": "boolean",
   "@floating-label": "string",
   "@postfix-icon <postfix-icon>": {
-    "attribute-groups": [
-      "html-attributes"
-    ],
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -30,9 +23,7 @@
     "@html-attributes": "expression"
   },
   "@prefix-icon <prefix-icon>": {
-    "attribute-groups": [
-      "html-attributes"
-    ],
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"

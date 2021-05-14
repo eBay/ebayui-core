@@ -14,7 +14,9 @@ async function run() {
 
     const postContent = await readMarkoJSON();
     if (preContent !== postContent) {
-        console.error('marko.json file changed, publish files are checked in. Run "npm run postpublish" to fix.');
+        console.error(
+            'marko.json file changed, publish files are checked in. Run "npm run postpublish" to fix.'
+        );
         process.exit(1);
     }
 }

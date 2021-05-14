@@ -7,17 +7,17 @@ const { getNItems } = require('../../test-utils/shared');
 describe('non radio component', () => {
     const input = {
         type: 'checkbox',
-        items: getNItems(3, i => ({
+        items: getNItems(3, (i) => ({
             value: `item ${i}`,
-            checked: i === 2
-        }))
+            checked: i === 2,
+        })),
     };
     let menu;
 
     beforeEach(() => {
         menu = assign({}, menuUtils, {
             input,
-            setStateDirty: sinon.spy()
+            setStateDirty: sinon.spy(),
         });
         menu.state = menu.getInputState(input);
     });
@@ -64,17 +64,17 @@ describe('non radio component', () => {
 describe('radio component', () => {
     const input = {
         type: 'radio',
-        items: getNItems(3, i => ({
+        items: getNItems(3, (i) => ({
             value: `item ${i}`,
-            checked: i === 2
-        }))
+            checked: i === 2,
+        })),
     };
     let menu;
 
     beforeEach(() => {
         menu = assign({}, menuUtils, {
             input,
-            setStateDirty: sinon.spy()
+            setStateDirty: sinon.spy(),
         });
         menu.state = menu.getInputState(input);
     });

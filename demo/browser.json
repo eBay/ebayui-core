@@ -1,14 +1,12 @@
 {
-    "dependencies": [
-        "@ebay/skin/core",
-        "@ebay/skin/less",
-        "./atom-light-syntax.css",
-        "./style.less",
-        {
-            "if-not-flag": "ds-4",
-            "dependencies": [
-                "@ebay/skin/marketsans"
-            ]
-        }
-    ]
+  "dependencies": [
+    "@ebay/skin/core",
+    "@ebay/skin/less",
+    "./atom-light-syntax.css",
+    "./style.less",
+    {
+      "if-not-flag": "ds-4",
+      "dependencies": ["@ebay/skin/marketsans"]
+    }
+  ]
 }

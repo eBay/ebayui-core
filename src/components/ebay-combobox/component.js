@@ -115,14 +115,21 @@ module.exports = {
             this.focus();
         }
 
-        if (this.expander && this.expander.isExpanded() && !wasClickedOption && !this.buttonClicked) {
+        if (
+            this.expander &&
+            this.expander.isExpanded() &&
+            !wasClickedOption &&
+            !this.buttonClicked
+        ) {
             this.expander.collapse();
         }
 
         this.buttonClicked = false;
 
-        if (this.listSelection === 'automatic' &&
-            this.getEl('combobox').value !== this.state.currentValue) {
+        if (
+            this.listSelection === 'automatic' &&
+            this.getEl('combobox').value !== this.state.currentValue
+        ) {
             this.state.currentValue = this.getEl('combobox').value;
         }
 
@@ -147,7 +154,7 @@ module.exports = {
         this.lastValue = input.value;
         this.state = {
             currentValue: this.lastValue,
-            viewAllOptions: (this.state && this.state.viewAllOptions) || true
+            viewAllOptions: (this.state && this.state.viewAllOptions) || true,
         };
     },
 
@@ -175,12 +182,13 @@ module.exports = {
                 this.el,
                 this.getEl('combobox'),
                 this.getEl('listbox'),
-                '[role="option"]', {
+                '[role="option"]',
+                {
                     activeDescendantClassName: 'combobox__option--active',
                     autoInit: -1,
                     autoReset: -1,
                     axis: 'y',
-                    autoScroll: true
+                    autoScroll: true,
                 }
             );
 
@@ -191,7 +199,7 @@ module.exports = {
                 contentSelector: '[role="listbox"]',
                 hostSelector: '[role="combobox"]',
                 expandedClass: 'combobox--expanded',
-                simulateSpacebarClick: true
+                simulateSpacebarClick: true,
             });
         }
         // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
@@ -206,9 +214,7 @@ module.exports = {
                     this.handleFloatingLabelInit();
                 }
             } else {
-                this
-                    .subscribeTo(window)
-                    .once('load', this._setupMakeup.bind(this));
+                this.subscribeTo(window).once('load', this._setupMakeup.bind(this));
             }
         }
     },
@@ -238,10 +244,7 @@ module.exports = {
     },
 
     _getSelectedOption() {
-        return find(
-            this.input.options,
-            option => option.text === this.state.currentValue
-        );
+        return find(this.input.options, (option) => option.text === this.state.currentValue);
     },
 
     _getVisibleOptions() {
@@ -250,7 +253,9 @@ module.exports = {
         }
 
         const currentValueReg = safeRegex(this.state.currentValue);
-        return this.input.options.filter(option => currentValueReg.test(option.text || '') || option.sticky);
+        return this.input.options.filter(
+            (option) => currentValueReg.test(option.text || '') || option.sticky
+        );
     },
 
     _hasVisibleOptions() {
@@ -261,7 +266,7 @@ module.exports = {
         this.emit(`${eventName}`, {
             currentInputValue: this.state.currentValue,
             selectedOption: this._getSelectedOption(),
-            options: this.input.options
+            options: this.input.options,
         });
-    }
+    },
 };

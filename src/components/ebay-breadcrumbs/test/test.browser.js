@@ -14,12 +14,12 @@ describe('given a basic breadcrumb', () => {
     const firstItem = input.items[0];
     const lastItem = input.items[input.items.length - 1];
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('when an <a> item is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByText(firstItem.renderBody.text));
         });
 
@@ -29,7 +29,7 @@ describe('given a basic breadcrumb', () => {
     });
 
     describe('when a <button> is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByText(lastItem.renderBody.text));
         });
 

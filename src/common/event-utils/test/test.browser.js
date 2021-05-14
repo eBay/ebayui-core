@@ -12,10 +12,7 @@ const handleLeftRightArrowsKeydown = eventUtils.handleLeftRightArrowsKeydown;
 const preventDefaultIfHijax = eventUtils.preventDefaultIfHijax;
 
 describe('handleActionKeydown()', () => {
-    [
-        { keyCode: 13 },
-        { keyCode: 32 }
-    ].forEach(event => {
+    [{ keyCode: 13 }, { keyCode: 32 }].forEach((event) => {
         it(`calls callback for keyCode=${event.keyCode}`, () => {
             const callback = sinon.spy();
             handleActionKeydown(event, callback);
@@ -23,7 +20,7 @@ describe('handleActionKeydown()', () => {
         });
     });
 
-    it('doesn\'t call callback for other keyCode', () => {
+    it("doesn't call callback for other keyCode", () => {
         const callback = sinon.spy();
         handleActionKeydown({ keyCode: 1 }, callback);
         expect(callback.called).to.equal(false);
@@ -40,10 +37,7 @@ describe('handleEscapeKeydown()', () => {
 });
 
 describe('handleUpDownArrowsKeydown()', () => {
-    [
-        { keyCode: 38 },
-        { keyCode: 40 }
-    ].forEach(event => {
+    [{ keyCode: 38 }, { keyCode: 40 }].forEach((event) => {
         it(`calls callback for keyCode=${event.keyCode}`, () => {
             const callback = sinon.spy();
             handleUpDownArrowsKeydown(event, callback);
@@ -51,7 +45,7 @@ describe('handleUpDownArrowsKeydown()', () => {
         });
     });
 
-    it('doesn\'t call callback for other keyCode', () => {
+    it("doesn't call callback for other keyCode", () => {
         const callback = sinon.spy();
         handleUpDownArrowsKeydown({ keyCode: 1 }, callback);
         expect(callback.called).to.equal(false);
@@ -59,10 +53,7 @@ describe('handleUpDownArrowsKeydown()', () => {
 });
 
 describe('handleLeftRightArrowsKeydown()', () => {
-    [
-        { keyCode: 37 },
-        { keyCode: 39 }
-    ].forEach(event => {
+    [{ keyCode: 37 }, { keyCode: 39 }].forEach((event) => {
         it(`calls callback for keyCode=${event.keyCode}`, () => {
             const callback = sinon.spy();
             handleLeftRightArrowsKeydown(event, callback);
@@ -70,7 +61,7 @@ describe('handleLeftRightArrowsKeydown()', () => {
         });
     });
 
-    it('doesn\'t call callback for other keyCode', () => {
+    it("doesn't call callback for other keyCode", () => {
         const callback = sinon.spy();
         handleLeftRightArrowsKeydown({ keyCode: 1 }, callback);
         expect(callback.called).to.equal(false);

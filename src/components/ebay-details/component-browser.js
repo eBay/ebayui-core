@@ -4,5 +4,5 @@ module.exports = {
     },
     clickDetails(ev) {
         this.emit('click', { originalEvent: ev });
-    }
+    },
 };

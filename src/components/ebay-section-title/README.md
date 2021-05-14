@@ -22,11 +22,11 @@
 
 ## ebay-section-title Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`cta-text` | String | No | No | URL text. Optional content to be displayed next to title. `href` is required when using this attribute.
-`href` | String | No | No | URL. Title content and optional CTA content will link to this. Populating `cta-text` is optional.
-`size` | String | No | No | "small", "large", or "giant" (default: medium)
+| Name       | Type   | Stateful | Required | Description                                                                                             |
+| ---------- | ------ | -------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| `cta-text` | String | No       | No       | URL text. Optional content to be displayed next to title. `href` is required when using this attribute. |
+| `href`     | String | No       | No       | URL. Title content and optional CTA content will link to this. Populating `cta-text` is optional.       |
+| `size`     | String | No       | No       | "small", "large", or "giant" (default: medium)                                                          |
 
 ## ebay-section-title Events
 
@@ -36,12 +36,12 @@ None.
 
 ## ebay-section-title Sub-tags
 
-Tag | Required | Description
---- | --- | ---
-`<@title>` | No | The main title content to be displayed. Title tag is required when using other sub-tags.
-`<@subtitle>` | No | The subtitle content to be displayed
-`<@info>` | No | Placeholder for `<ebay-infotip>` component
-`<@overflow>` | No | Placeholder for `<ebay-menu-button>` component
+| Tag           | Required | Description                                                                              |
+| ------------- | -------- | ---------------------------------------------------------------------------------------- |
+| `<@title>`    | No       | The main title content to be displayed. Title tag is required when using other sub-tags. |
+| `<@subtitle>` | No       | The subtitle content to be displayed                                                     |
+| `<@info>`     | No       | Placeholder for `<ebay-infotip>` component                                               |
+| `<@overflow>` | No       | Placeholder for `<ebay-menu-button>` component                                           |
 
 ## @title
 

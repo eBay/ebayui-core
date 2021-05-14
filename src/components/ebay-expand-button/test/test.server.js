@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('expand-button', () => {
-    it('renders expand button', async() => {
+    it('renders expand button', async () => {
         const input = mock.Basic;
         const { getByRole } = await render(template, input);
         const btnEl = getByRole('button');
@@ -15,7 +15,7 @@ describe('expand-button', () => {
         expect(btnEl).has.class('expand-btn');
     });
 
-    it('renders expand button with no text', async() => {
+    it('renders expand button with no text', async () => {
         const input = mock.No_Text;
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--icon-only');

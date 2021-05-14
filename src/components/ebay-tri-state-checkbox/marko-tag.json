@@ -1,22 +1,14 @@
 {
-  "attribute-groups": [
-    "html-attributes"
-  ],
+  "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,
     "type": "expression"
   },
   "@size": {
-    "enum": [
-      "large",
-      "regular"
-    ]
+    "enum": ["large", "regular"]
   },
   "@icon-style": {
-    "enum": [
-      "square",
-      "rounded"
-    ]
+    "enum": ["square", "rounded"]
   },
   "@skip-mixed": "boolean",
   "@html-attributes": "expression",

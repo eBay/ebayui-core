@@ -27,12 +27,12 @@ function thenItHasMovedToTab(selectedIndex) {
 describe('given tabs with first heading selected', () => {
     const input = mock.Basic_3Headings_3Panels_No_Index;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('when the first heading is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getAllByRole('tab')[0]);
         });
 
@@ -42,7 +42,7 @@ describe('given tabs with first heading selected', () => {
     });
 
     describe('when the second tab is activated via click', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getAllByRole('tab')[1]);
         });
 
@@ -50,10 +50,10 @@ describe('given tabs with first heading selected', () => {
     });
 
     describe('when the right arrow key is pressed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(component.getAllByRole('tab')[1], {
                 key: 'ArrowRight',
-                keyCode: 39
+                keyCode: 39,
             });
         });
 
@@ -61,10 +61,10 @@ describe('given tabs with first heading selected', () => {
     });
 
     describe('when the left arrow key is pressed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(component.getAllByRole('tab')[1], {
                 key: 'ArrowLeft',
-                keyCode: 37
+                keyCode: 37,
             });
         });
 
@@ -75,15 +75,15 @@ describe('given tabs with first heading selected', () => {
 describe('given tabs with manual activation', () => {
     const input = mock.Basic_3Headings_3Panels_ActivationManual;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('when the first heading is activated via keybaord action button', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(component.getAllByRole('tab')[0], {
                 key: '(Space character)',
-                keyCode: 32
+                keyCode: 32,
             });
         });
 
@@ -93,10 +93,10 @@ describe('given tabs with manual activation', () => {
     });
 
     describe('when the second tab is activated via keyboard action button', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(component.getAllByRole('tab')[1], {
                 key: '(Space character)',
-                keyCode: 32
+                keyCode: 32,
             });
         });
 
@@ -107,15 +107,15 @@ describe('given tabs with manual activation', () => {
 describe('given tabs with third heading selected', () => {
     const input = mock.Basic_3Headings_3Panels_2Index;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('when the right arrow key is pressed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(component.getAllByRole('tab')[1], {
                 key: 'ArrowRight',
-                keyCode: 39
+                keyCode: 39,
             });
         });
 
@@ -123,10 +123,10 @@ describe('given tabs with third heading selected', () => {
     });
 
     describe('when the left arrow key is pressed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(component.getAllByRole('tab')[1], {
                 key: 'ArrowLeft',
-                keyCode: 37
+                keyCode: 37,
             });
         });
 

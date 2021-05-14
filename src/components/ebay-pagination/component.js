@@ -12,7 +12,7 @@ module.exports = {
         this.emit('select', {
             el,
             originalEvent,
-            value: el.innerText
+            value: el.innerText,
         });
     },
 
@@ -20,7 +20,7 @@ module.exports = {
         if (!el.hasAttribute('aria-disabled')) {
             this.emit('next', {
                 el,
-                originalEvent
+                originalEvent,
             });
         }
     },
@@ -29,7 +29,7 @@ module.exports = {
         if (!el.hasAttribute('aria-disabled')) {
             this.emit('previous', {
                 el,
-                originalEvent
+                originalEvent,
             });
         }
     },
@@ -40,8 +40,7 @@ module.exports = {
 
     onMount() {
         this._calculateMaxItems();
-        this.subscribeTo(eventUtils.resizeUtil)
-            .on('resize', this._calculateMaxItems.bind(this));
+        this.subscribeTo(eventUtils.resizeUtil).on('resize', this._calculateMaxItems.bind(this));
     },
 
     getItemTag(item) {
@@ -68,7 +67,7 @@ module.exports = {
             return { start: 0, end: lastIndex, hideDots: true, dotsIndex };
         }
 
-        const i = findIndex(items, item => item.current);
+        const i = findIndex(items, (item) => item.current);
         const range = Math.floor(maxItems / 2);
         let start = i - range;
         let end = i + range;
@@ -101,27 +100,20 @@ module.exports = {
         const { input, state } = this;
         const items = input.items || [];
 
-        if (!items.some(item => !item.type)) {
+        if (!items.some((item) => !item.type)) {
             return;
         }
 
         const itemContainer = this.getEl('items');
-        const itemWidth = (
+        const itemWidth =
             this._itemWidth || // Cache the item width since it should be static.
-            (this._itemWidth = itemContainer.firstElementChild.offsetWidth)
-        );
+            (this._itemWidth = itemContainer.firstElementChild.offsetWidth);
 
         state.maxItems = Math.max(
             MIN_PAGES,
-            Math.min(
-                MAX_PAGES,
-                Math.floor(
-                    getMaxWidth(itemContainer) /
-                    itemWidth
-                )
-            )
+            Math.min(MAX_PAGES, Math.floor(getMaxWidth(itemContainer) / itemWidth))
         );
-    }
+    },
 };
 
 /**

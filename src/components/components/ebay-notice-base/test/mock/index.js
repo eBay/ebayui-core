@@ -5,7 +5,7 @@ exports.Default_Notice = {
     status: 'attention',
     a11yText: 'default label',
     class: 'page-notice--attention',
-    renderBody: createRenderBody('body')
+    renderBody: createRenderBody('body'),
 };
 
 exports.Inline_Notice = {
@@ -15,7 +15,7 @@ exports.Inline_Notice = {
     class: 'extra-class',
     a11yText: 'default label',
     iconClass: 'notice-class',
-    renderBody: createRenderBody('body')
+    renderBody: createRenderBody('body'),
 };
 
 exports.Title_Footer_Notice = {
@@ -25,10 +25,9 @@ exports.Title_Footer_Notice = {
     class: 'page-notice--attention',
     renderBody: createRenderBody('body'),
     title: {
-        renderBody: createRenderBody('title')
+        renderBody: createRenderBody('title'),
     },
     footer: {
-        renderBody: createRenderBody('footer')
-    }
-
+        renderBody: createRenderBody('footer'),
+    },
 };

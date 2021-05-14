@@ -16,17 +16,17 @@ describe('given the filter menu is in the default state', () => {
     const input = mock.Basic_2Items;
     let filterButton;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
         filterButton = component.getAllByRole('button')[0];
     });
 
     describe('when the button is clicked once', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(filterButton);
         });
 
-        it('then it expands', async() => {
+        it('then it expands', async () => {
             expect(filterButton).to.have.attr('aria-expanded', 'true');
         });
 
@@ -35,11 +35,11 @@ describe('given the filter menu is in the default state', () => {
         });
 
         describe('when it is clicked again', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.click(filterButton);
             });
 
-            it('then it collapses', async() => {
+            it('then it collapses', async () => {
                 expect(filterButton).to.have.attr('aria-expanded', 'false');
             });
 
@@ -50,7 +50,7 @@ describe('given the filter menu is in the default state', () => {
     });
 
     describe('when re-rendered with expanded set to false', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(assign({}, input, { expanded: false }));
         });
 
@@ -58,14 +58,14 @@ describe('given the filter menu is in the default state', () => {
             expect(filterButton).to.have.attr('aria-expanded', 'false');
         });
 
-        it('then it doesn\'t emit the marko collapse event', () => {
+        it("then it doesn't emit the marko collapse event", () => {
             expect(component.emitted('collapse')).has.length(0);
         });
     });
 
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to true', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(assign({}, input, { expanded: true }));
         });
 
@@ -84,7 +84,7 @@ describe('given the menu is in the expanded state', () => {
     const firstItemText = input.items[0].renderBody.text;
     let filterButton, footerButton, firstItem, secondItem;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
         filterButton = component.getAllByRole('button')[0];
         footerButton = component.getAllByRole('button', { hidden: true })[1];
@@ -96,7 +96,7 @@ describe('given the menu is in the expanded state', () => {
 
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to true', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(assign({}, input, { expanded: true }));
         });
 
@@ -104,14 +104,14 @@ describe('given the menu is in the expanded state', () => {
             expect(filterButton).to.have.attr('aria-expanded', 'true');
         });
 
-        it('then it doesn\'t emit the marko expand event', () => {
+        it("then it doesn't emit the marko expand event", () => {
             expect(component.emitted('expand')).has.length(0);
         });
     });
 
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to false', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(assign({}, input, { expanded: false }));
         });
 
@@ -125,7 +125,7 @@ describe('given the menu is in the expanded state', () => {
     });
 
     describe('when an item is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByText(firstItemText));
         });
 
@@ -140,7 +140,7 @@ describe('given the menu is in the expanded state', () => {
     });
 
     describe('when two items are clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
             await fireEvent.click(secondItem);
         });
@@ -161,7 +161,7 @@ describe('given the menu is in the expanded state', () => {
     });
 
     describe('when an item is checked and then unchecked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
             await fireEvent.click(firstItem);
         });
@@ -181,10 +181,10 @@ describe('given the menu is in the expanded state', () => {
     });
 
     describe('when an item is checked via the keyboard', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(firstItem, {
                 key: '(Space character)',
-                keyCode: 32
+                keyCode: 32,
             });
         });
 
@@ -199,7 +199,7 @@ describe('given the menu is in the expanded state', () => {
     });
 
     describe('when the footer button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(footerButton);
         });
 
@@ -213,7 +213,7 @@ describe('given the menu is in the expanded state', () => {
     describe('when an item is added via input from its parent and the new item is clicked', () => {
         const newInput = mock.Basic_3Items;
         const thirdItemText = newInput.items[2].renderBody.text;
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(newInput);
             await fireEvent.click(component.getByText(thirdItemText));
         });
@@ -225,9 +225,7 @@ describe('given the menu is in the expanded state', () => {
             expect(selectEvents).has.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg)
-                .has.property('el')
-                .with.text(thirdItemText);
+            expect(eventArg).has.property('el').with.text(thirdItemText);
         });
     });
 });

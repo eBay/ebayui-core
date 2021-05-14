@@ -21,8 +21,8 @@ This notice should be rendered inline in the page and should not be used at the 
 
 ## ebay-inline-notice Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`status`  | String | No | No | "attention" (default), "confirmation", or "information"
-`a11y-text` | String | No | Yes | adding description for the notice for a11y users
-`icon` | String | Yes | No | "default" (matches whatever is specified by the "status") or "none"
+| Name        | Type   | Stateful | Required | Description                                                         |
+| ----------- | ------ | -------- | -------- | ------------------------------------------------------------------- |
+| `status`    | String | No       | No       | "attention" (default), "confirmation", or "information"             |
+| `a11y-text` | String | No       | Yes      | adding description for the notice for a11y users                    |
+| `icon`      | String | Yes      | No       | "default" (matches whatever is specified by the "status") or "none" |

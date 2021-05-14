@@ -18,16 +18,16 @@ Used to force the user to make a choice to either confirm or reject. Cannot be c
 
 ## Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`open` | Boolean | Yes | No | Whether dialog is open.
-`confirm-text` | String | No | Yes | Text for confirm button
-`reject-text` | String | No | Yes | Text for reject button
+| Name           | Type    | Stateful | Required | Description             |
+| -------------- | ------- | -------- | -------- | ----------------------- |
+| `open`         | Boolean | Yes      | No       | Whether dialog is open. |
+| `confirm-text` | String  | No       | Yes      | Text for confirm button |
+| `reject-text`  | String  | No       | Yes      | Text for reject button  |
 
 ## Events
 
-Event | Data | Description
---- | --- | ---
-`open` |  | dialog opened
-`confirm` |  | dialog confirm button pressed
-`reject` |  | dialog reject button pressed
+| Event     | Data | Description                   |
+| --------- | ---- | ----------------------------- |
+| `open`    |      | dialog opened                 |
+| `confirm` |      | dialog confirm button pressed |
+| `reject`  |      | dialog reject button pressed  |

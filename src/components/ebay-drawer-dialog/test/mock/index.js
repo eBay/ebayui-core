@@ -6,18 +6,18 @@ exports.Drawer = {
     a11yMinimizeText: 'minimize',
     a11yMaximizeText: 'maximize',
     header: {
-        renderBody: createRenderBody('head content')
+        renderBody: createRenderBody('head content'),
     },
     footer: {
-        renderBody: createRenderBody('foter content')
+        renderBody: createRenderBody('foter content'),
     },
-    renderBody: createRenderBody('body content')
+    renderBody: createRenderBody('body content'),
 };
 
 exports.Drawer_Open = assign({}, exports.Drawer, {
-    open: true
+    open: true,
 });
 
 exports.Drawer_Expanded = assign({}, exports.Drawer_Open, {
-    expanded: true
+    expanded: true,
 });

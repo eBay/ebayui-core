@@ -57,7 +57,7 @@ module.exports = {
                 expandOnFocus: isTooltip,
                 expandOnHover: isTooltip && !input.noHover,
                 expandOnClick: isInfotip,
-                autoCollapse: isTooltip
+                autoCollapse: isTooltip,
             });
 
             if (isTooltip && !host.hasAttribute('aria-describedby')) {
@@ -104,5 +104,5 @@ module.exports = {
             this._expander.cancelAsync();
             this._expander = undefined;
         }
-    }
+    },
 };

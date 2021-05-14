@@ -25,5 +25,5 @@ module.exports = {
                 rootSvg.appendChild(symbol);
             }
         }
-    }
+    },
 };

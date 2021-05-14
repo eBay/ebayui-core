@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('tooltip', () => {
-    it('renders default tooltip', async() => {
+    it('renders default tooltip', async () => {
         const input = mock.Basic;
         const { getByText, getByRole } = await render(template, input);
         expect(getByRole('tooltip')).has.class('tooltip__overlay');
@@ -16,16 +16,15 @@ describe('tooltip', () => {
         expect(getByText(input.heading.renderBody.text)).has.class('tooltip__heading');
     });
 
-    mock.Pointers.forEach(input => {
-        it(`renders tooltip pointer: ${input.pointer}`, async() => {
+    mock.Pointers.forEach((input) => {
+        it(`renders tooltip pointer: ${input.pointer}`, async () => {
             const { getByRole } = await render(template, input);
             expect(getByRole('tooltip'))
                 .has.property('firstElementChild')
                 .with.class(`tooltip__pointer--${input.pointer}`);
         });
     });
-    testEventsMigrator(require('../migrator'), 'tooltip',
-        ['expand', 'collapse'], '../index.marko');
+    testEventsMigrator(require('../migrator'), 'tooltip', ['expand', 'collapse'], '../index.marko');
 
     // TODO: looks like class and style are not passed through to the tooltip.
     // testPassThroughAttributes(template);

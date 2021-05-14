@@ -23,38 +23,38 @@
 
 ### ebay-filter-menu-button Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`text` | String | Yes | Yes | button text
-`a11y-text` | String | No | No | a11y text for the button
-`footer-text` | String | Yes | No | footer button text
-`pressed` | Boolean | Yes | No | whether button is pressed (default is `false`)
-`expanded` | Boolean | Yes | No | whether content is expanded (Note: not supported as initial attribute)
-`disabled` | Boolean | Yes | No | Will disable the entire dropdown (disables the ebay-button label) if set to true
-`variant` | String | No | No | "" (default) / "form"
+| Name          | Type    | Stateful | Required | Description                                                                      |
+| ------------- | ------- | -------- | -------- | -------------------------------------------------------------------------------- |
+| `text`        | String  | Yes      | Yes      | button text                                                                      |
+| `a11y-text`   | String  | No       | No       | a11y text for the button                                                         |
+| `footer-text` | String  | Yes      | No       | footer button text                                                               |
+| `pressed`     | Boolean | Yes      | No       | whether button is pressed (default is `false`)                                   |
+| `expanded`    | Boolean | Yes      | No       | whether content is expanded (Note: not supported as initial attribute)           |
+| `disabled`    | Boolean | Yes      | No       | Will disable the entire dropdown (disables the ebay-button label) if set to true |
+| `variant`     | String  | No       | No       | "" (default) / "form"                                                            |
 
 #### Additional attributes when footer-text is set
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`a11y-footer-text` | String | No | No | a11y text for the footer button
+| Name               | Type   | Stateful | Required | Description                     |
+| ------------------ | ------ | -------- | -------- | ------------------------------- |
+| `a11y-footer-text` | String | No       | No       | a11y text for the footer button |
 
 #### Additional attributes when variant="form"
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`form-name` | String | No | Yes | form's `name` attribute
-`form-action` | String | No | No | form's `action` attribute
+| Name          | Type   | Stateful | Required | Description               |
+| ------------- | ------ | -------- | -------- | ------------------------- |
+| `form-name`   | String | No       | Yes      | form's `name` attribute   |
+| `form-action` | String | No       | No       | form's `action` attribute |
 
 ### ebay-filter-menu-button Events
 
-Event | Data | Description
---- | --- | ---
-`expand` | | expand content
-`collapse` | `{ checked, originalEvent }` | collapse content (emits current checked state)
-`change` | `{ el, checked, originalEvent }` | items changed/checked
-`footer-click` | `{ checked, originalEvent }` | footer button clicked
-`form-submit` |  | `{ checked, originalEvent }` | when using `variant="form"`, and form is submitted (emits current checked state)
+| Event          | Data                             | Description                                    |
+| -------------- | -------------------------------- | ---------------------------------------------- | -------------------------------------------------------------------------------- |
+| `expand`       |                                  | expand content                                 |
+| `collapse`     | `{ checked, originalEvent }`     | collapse content (emits current checked state) |
+| `change`       | `{ el, checked, originalEvent }` | items changed/checked                          |
+| `footer-click` | `{ checked, originalEvent }`     | footer button clicked                          |
+| `form-submit`  |                                  | `{ checked, originalEvent }`                   | when using `variant="form"`, and form is submitted (emits current checked state) |
 
 ## @item Tag
 
@@ -66,7 +66,7 @@ Event | Data | Description
 
 ### @item Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`checked` | Boolean | Yes | No | whether or not the item is checked
-`value` | Boolean | Yes | No | the item's value (returned in emitted events when checked)
+| Name      | Type    | Stateful | Required | Description                                                |
+| --------- | ------- | -------- | -------- | ---------------------------------------------------------- |
+| `checked` | Boolean | Yes      | No       | whether or not the item is checked                         |
+| `value`   | Boolean | Yes      | No       | the item's value (returned in emitted events when checked) |

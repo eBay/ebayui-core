@@ -13,7 +13,7 @@ describe('given the pagination is rendered', () => {
     let input;
 
     describe('with links', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             input = mock.Links_6Items_No_Selected;
             component = await render(template, input);
         });
@@ -22,7 +22,7 @@ describe('given the pagination is rendered', () => {
     });
 
     describe('with buttons', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             input = mock.Buttons_0Selected;
             component = await render(template, input);
         });
@@ -33,9 +33,9 @@ describe('given the pagination is rendered', () => {
     function thenItCanBeInteractedWith() {
         describe('when the previous button is activated', () => {
             describe('via click', () => {
-                beforeEach(async() => {
+                beforeEach(async () => {
                     await fireEvent.click(component.getByLabelText(input.a11yPreviousText), {
-                        detail: 1
+                        detail: 1,
                     });
                 });
 
@@ -56,9 +56,9 @@ describe('given the pagination is rendered', () => {
 
         describe('when the next button is activated', () => {
             describe('via click', () => {
-                beforeEach(async() => {
+                beforeEach(async () => {
                     await fireEvent.click(component.getByLabelText(input.a11yNextText), {
-                        detail: 1
+                        detail: 1,
                     });
                 });
 
@@ -79,9 +79,9 @@ describe('given the pagination is rendered', () => {
 
         describe('when the item number is activated', () => {
             describe('via click', () => {
-                beforeEach(async() => {
+                beforeEach(async () => {
                     await fireEvent.click(component.getByText(input.items[1].renderBody.text), {
-                        detail: 1
+                        detail: 1,
                     });
                 });
 
@@ -106,15 +106,15 @@ describe('given the pagination is rendered', () => {
 describe('given the pagination is rendered with disabled controls', () => {
     const input = mock.Links_1Items_Navigation_Disabled;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('when the previous button is activated', () => {
         describe('via click', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.click(component.getByLabelText(input.a11yPreviousText), {
-                    detail: 1
+                    detail: 1,
                 });
             });
 
@@ -130,9 +130,9 @@ describe('given the pagination is rendered with disabled controls', () => {
 
     describe('when the next button is activated', () => {
         describe('via click', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.click(component.getByLabelText(input.a11yNextText), {
-                    detail: 1
+                    detail: 1,
                 });
             });
 
@@ -152,120 +152,156 @@ describe('given the pagination is rendered at various sizes', () => {
         {
             name: 'with the second item selected',
             input: mock.Links_9Items_1Selected,
-            cases: [{
-                width: 400,
-                expect: [0, 5]
-            }, {
-                width: 540,
-                expect: [0, 7]
-            }, {
-                width: 640,
-                expect: [0, 9]
-            }]
-        }, {
+            cases: [
+                {
+                    width: 400,
+                    expect: [0, 5],
+                },
+                {
+                    width: 540,
+                    expect: [0, 7],
+                },
+                {
+                    width: 640,
+                    expect: [0, 9],
+                },
+            ],
+        },
+        {
             name: 'with the fifth item selected',
             input: mock.Links_9Items_4Selected,
-            cases: [{
-                width: 400,
-                expect: [2, 7]
-            }, {
-                width: 440,
-                expect: [2, 8]
-            }, {
-                width: 540,
-                expect: [1, 8]
-            }, {
-                width: 640,
-                expect: [0, 9]
-            }]
-        }, {
+            cases: [
+                {
+                    width: 400,
+                    expect: [2, 7],
+                },
+                {
+                    width: 440,
+                    expect: [2, 8],
+                },
+                {
+                    width: 540,
+                    expect: [1, 8],
+                },
+                {
+                    width: 640,
+                    expect: [0, 9],
+                },
+            ],
+        },
+        {
             name: 'with the eighth item selected',
             input: mock.Links_9Items_7Selected,
-            cases: [{
-                width: 400,
-                expect: [4, 9]
-            }, {
-                width: 540,
-                expect: [2, 9]
-            }, {
-                width: 640,
-                expect: [0, 9]
-            }]
-        }, {
+            cases: [
+                {
+                    width: 400,
+                    expect: [4, 9],
+                },
+                {
+                    width: 540,
+                    expect: [2, 9],
+                },
+                {
+                    width: 640,
+                    expect: [0, 9],
+                },
+            ],
+        },
+        {
             name: 'first item and dots',
             input: mock.Links_16ItemsDots_1Selected,
-            cases: [{
-                width: 400,
-                expect: [0, 3, 15]
-            }, {
-                width: 540,
-                expect: [0, 5, 15]
-            }, {
-                width: 640,
-                expect: [0, 7, 15]
-            }],
-            dots: true
-        }, {
+            cases: [
+                {
+                    width: 400,
+                    expect: [0, 3, 15],
+                },
+                {
+                    width: 540,
+                    expect: [0, 5, 15],
+                },
+                {
+                    width: 640,
+                    expect: [0, 7, 15],
+                },
+            ],
+            dots: true,
+        },
+        {
             name: 'with the seventh item selected and dots',
             input: mock.Links_16ItemsDots_7Selected,
-            cases: [{
-                width: 400,
-                expect: [5, 8, 15]
-            }, {
-                width: 440,
-                expect: [5, 9, 15]
-            }, {
-                width: 540,
-                expect: [4, 9, 15]
-            }, {
-                width: 640,
-                expect: [3, 10, 15]
-            }],
-            dots: true
-        }, {
+            cases: [
+                {
+                    width: 400,
+                    expect: [5, 8, 15],
+                },
+                {
+                    width: 440,
+                    expect: [5, 9, 15],
+                },
+                {
+                    width: 540,
+                    expect: [4, 9, 15],
+                },
+                {
+                    width: 640,
+                    expect: [3, 10, 15],
+                },
+            ],
+            dots: true,
+        },
+        {
             name: 'with the 3rd to last item selected and hidden dots',
             input: mock.Links_16ItemsDots_13Selected,
-            cases: [{
-                width: 400,
-                expect: [11, 16]
-            }, {
-                width: 540,
-                expect: [9, 16]
-            }, {
-                width: 640,
-                expect: [7, 16]
-            }],
-            dots: false
-        }, {
+            cases: [
+                {
+                    width: 400,
+                    expect: [11, 16],
+                },
+                {
+                    width: 540,
+                    expect: [9, 16],
+                },
+                {
+                    width: 640,
+                    expect: [7, 16],
+                },
+            ],
+            dots: false,
+        },
+        {
             name: 'with the last item selected and hidden dots',
             input: mock.Links_16ItemsDots_15Selected,
-            cases: [{
-                width: 400,
-                expect: [11, 16]
-            }, {
-                width: 540,
-                expect: [9, 16]
-            }, {
-                width: 640,
-                expect: [7, 16]
-            }],
-            dots: false
-        }
+            cases: [
+                {
+                    width: 400,
+                    expect: [11, 16],
+                },
+                {
+                    width: 540,
+                    expect: [9, 16],
+                },
+                {
+                    width: 640,
+                    expect: [7, 16],
+                },
+            ],
+            dots: false,
+        },
     ].forEach(({ name, input, cases, dots }) => {
         describe(name, () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 component = await render(template, input);
             });
 
             cases.forEach(({ width, expect: [from, to, last] }) => {
                 describe(`when it is ${width} wide`, () => {
-                    beforeEach(async() => {
+                    beforeEach(async () => {
                         component.container.style.width = `${width}px`;
                         await fireEvent(window, new Event('resize'));
                         // Wait one frame for the resize util to emit.
-                        await new Promise(resolve => requestAnimationFrame(resolve));
+                        await new Promise((resolve) => requestAnimationFrame(resolve));
                         // Wait a setTimeout for Marko to finish rendering.
-                        await new Promise(resolve => setTimeout(resolve));
+                        await new Promise((resolve) => setTimeout(resolve));
                     });
 
                     it(`then it shows items ${from} through ${to}`, () => {
@@ -284,7 +320,8 @@ describe('given the pagination is rendered at various sizes', () => {
                             const isHidden = Boolean(dotsEl.closest('[hidden]'));
                             expect(isHidden).to.equal(
                                 !dots,
-                                `dots should be ${isHidden ? 'visible' : 'hidden'}`);
+                                `dots should be ${isHidden ? 'visible' : 'hidden'}`
+                            );
                         });
                     }
                 });

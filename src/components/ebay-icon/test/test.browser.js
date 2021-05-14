@@ -31,7 +31,7 @@ function checkIcon(iconId) {
 }
 
 describe('rendering an icon in the browser', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { a11yText: 'icon' });
     });
 
@@ -50,7 +50,7 @@ describe('rendering an icon in the browser', () => {
 });
 
 describe('rendering multiple icons in the browser', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         await render(template, { a11yText: 'icon' });
         await render(template2, { a11yText: 'icon2' });
         await render(template3, { a11yText: 'icon3' });

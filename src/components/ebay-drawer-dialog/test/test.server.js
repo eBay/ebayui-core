@@ -8,7 +8,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('drawer-dialog', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Drawer;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
         const dialog = getByRole('dialog', { hidden: true });
@@ -19,23 +19,25 @@ describe('drawer-dialog', () => {
         expect(getByLabelText(input.a11yCloseText)).has.class('drawer-dialog__close');
         expect(getByLabelText(input.a11yMaximizeText)).has.class('drawer-dialog__handle');
         expect(getByText(input.renderBody.text)).has.class('drawer-dialog__main');
-        expect(getByText(input.header.renderBody.text).parentElement).has.class('drawer-dialog__header');
+        expect(getByText(input.header.renderBody.text).parentElement).has.class(
+            'drawer-dialog__header'
+        );
         expect(getByText(input.footer.renderBody.text)).has.class('drawer-dialog__footer');
     });
 
-    it('renders without handle ', async() => {
+    it('renders without handle ', async () => {
         const input = mock.Drawer;
         const { queryByLabelText } = await render(template, assign({}, input, { noHandle: true }));
         expect(queryByLabelText(input.a11yMaximizeText)).to.equal(null);
     });
 
-    it('renders in open state', async() => {
+    it('renders in open state', async () => {
         const input = mock.Drawer_Open;
         const { getByRole } = await render(template, input);
         expect(getByRole('dialog')).does.not.have.attr('hidden');
     });
 
-    it('renders in expanded state', async() => {
+    it('renders in expanded state', async () => {
         const { getByRole } = await render(template, mock.Drawer_Expanded);
         const $drawer = getByRole('dialog');
         const $window = $drawer.children[0];

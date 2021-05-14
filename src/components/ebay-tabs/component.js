@@ -84,7 +84,7 @@ module.exports = {
                 '.tabs__item',
                 {
                     index: state.selectedIndex,
-                    wrap: true
+                    wrap: true,
                 }
             );
         }
@@ -95,5 +95,5 @@ module.exports = {
             this._rovingTabIndex.destroy();
             this._rovingTabIndex = undefined;
         }
-    }
+    },
 };

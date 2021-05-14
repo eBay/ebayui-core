@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('stepper', () => {
-    it('renders basic stepper', async() => {
+    it('renders basic stepper', async () => {
         const input = mock.ProgressStepper;
         const { getByRole, getAllByRole, getByText } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(3);
@@ -24,7 +24,7 @@ describe('stepper', () => {
         checkItem(list[3], 4);
     });
 
-    it('renders vertical stepper', async() => {
+    it('renders vertical stepper', async () => {
         const input = mock.ProgressStepper_Vertical;
         const { getByText, getByRole, getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(3);
@@ -40,7 +40,7 @@ describe('stepper', () => {
         checkItem(list[3], 4);
     });
 
-    it('renders stepper with states', async() => {
+    it('renders stepper with states', async () => {
         const input = mock.ProgressStepper_States;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(4);
@@ -69,7 +69,7 @@ describe('stepper', () => {
         child: {
             name: 'step',
             input: mock.ProgressStepper.step[2],
-            multiple: true
-        }
+            multiple: true,
+        },
     });
 });

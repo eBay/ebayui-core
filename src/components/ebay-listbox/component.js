@@ -31,7 +31,7 @@ module.exports = {
                     index: selectedIndex,
                     selected: [option.value],
                     el,
-                    wasClicked
+                    wasClicked,
                 });
             });
         }
@@ -39,14 +39,17 @@ module.exports = {
 
     onCreate() {
         this.state = {
-            selectedIndex: 0
+            selectedIndex: 0,
         };
     },
 
     onInput(input) {
         const { state } = this;
         input.options = input.options || [];
-        state.selectedIndex = Math.max(0, findIndex(input.options, option => option.selected));
+        state.selectedIndex = Math.max(
+            0,
+            findIndex(input.options, (option) => option.selected)
+        );
     },
 
     onMount() {
@@ -81,7 +84,7 @@ module.exports = {
                 {
                     activeDescendantClassName: 'listbox__option--active',
                     autoInit: state.selectedIndex,
-                    autoReset: null
+                    autoReset: null,
                 }
             );
 
@@ -94,5 +97,5 @@ module.exports = {
             this._activeDescendant.destroy();
             this._activeDescendant = undefined;
         }
-    }
+    },
 };

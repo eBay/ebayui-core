@@ -20,6 +20,7 @@ The icon will include the actual SVG markup in the HTML and then reference the c
 ```
 
 As import
+
 ```marko
 import arrowUp from '<ebay-arrow-up>'
 import arrowDown from '<ebay-arrow-down>'
@@ -29,7 +30,7 @@ import arrowDown from '<ebay-arrow-down>'
 
 ## ebay-{name}-icon Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`no-skin-classes` | Boolean | No | No | Used for special cases where `icon` classes from Skin should not be applied
-`a11y-text` | String | No | Yes | text for non-decorative inline icon; icon is assumed to be decorative if this is not passed
+| Name              | Type    | Stateful | Required | Description                                                                                 |
+| ----------------- | ------- | -------- | -------- | ------------------------------------------------------------------------------------------- |
+| `no-skin-classes` | Boolean | No       | No       | Used for special cases where `icon` classes from Skin should not be applied                 |
+| `a11y-text`       | String  | No       | Yes      | text for non-decorative inline icon; icon is assumed to be decorative if this is not passed |

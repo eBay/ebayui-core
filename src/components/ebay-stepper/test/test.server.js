@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('stepper', () => {
-    it('renders basic stepper', async() => {
+    it('renders basic stepper', async () => {
         const input = mock.WizardStepper;
         const { getByRole, getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(3);
@@ -22,7 +22,7 @@ describe('stepper', () => {
         checkItem(list[3], 'upcoming', 'circle');
     });
 
-    it('renders vertical stepper', async() => {
+    it('renders vertical stepper', async () => {
         const input = mock.WizardStepper_Vertical;
         const { getByRole, getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(3);
@@ -37,7 +37,7 @@ describe('stepper', () => {
         checkItem(list[3], 'upcoming', 'circle');
     });
 
-    it('renders stepper with states', async() => {
+    it('renders stepper with states', async () => {
         const input = mock.WizardStepper_States;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(5);
@@ -68,7 +68,7 @@ describe('stepper', () => {
         child: {
             name: 'step',
             input: mock.WizardStepper.step[2],
-            multiple: true
-        }
+            multiple: true,
+        },
     });
 });
