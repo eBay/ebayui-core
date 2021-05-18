@@ -23,8 +23,9 @@ describe('element-scroll', () => {
 
     it('scrolls the parent so the child element below the view is visible', () => {
         elementScroll.scroll(fifthItemEl);
-        expect(contentDiv.scrollTop)
-            .to.equal((fifthItemEl.offsetTop + fifthItemEl.offsetHeight) - contentDiv.offsetHeight);
+        expect(contentDiv.scrollTop).to.equal(
+            fifthItemEl.offsetTop + fifthItemEl.offsetHeight - contentDiv.offsetHeight
+        );
     });
 
     it('scrolls the parent so the child element above the view is visible', () => {

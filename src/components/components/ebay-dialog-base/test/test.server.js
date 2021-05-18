@@ -10,7 +10,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('dialog-base', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
 
@@ -19,7 +19,7 @@ describe('dialog-base', () => {
         expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');
     });
 
-    it('renders with header and footer', async() => {
+    it('renders with header and footer', async () => {
         const input = mock.Header_Footer_Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
 
@@ -27,17 +27,19 @@ describe('dialog-base', () => {
         expect(getByLabelText(input.a11yCloseText)).has.class('lightbox-dialog__close');
         expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');
         expect(getByText(input.header.renderBody.text)).has.tagName('H2');
-        expect(getByText(input.header.renderBody.text).parentElement).has.class('lightbox-dialog__header');
+        expect(getByText(input.header.renderBody.text).parentElement).has.class(
+            'lightbox-dialog__header'
+        );
         expect(getByText(input.footer.renderBody.text)).has.class('lightbox-dialog__footer');
     });
 
-    it('renders in open state', async() => {
+    it('renders in open state', async () => {
         const input = mock.Dialog_Open;
         const { getByRole } = await render(template, input);
         expect(getByRole('dialog')).does.not.have.attr('hidden');
     });
 
-    it('renders non modal', async() => {
+    it('renders non modal', async () => {
         const input = mock.Dialog;
         const { getByRole } = await render(template, assign({}, input, { isModal: false }));
         expect(getByRole('dialog', { hidden: true })).has.attribute('aria-live', 'polite');
@@ -70,7 +72,11 @@ describe('migrator', () => {
         const tagString = getTagString();
         const { el } = runTransformer(migrator, tagString, componentPath);
 
-        const { body: { array: [, newContainer] } } = el;
+        const {
+            body: {
+                array: [, newContainer],
+            },
+        } = el;
         expect(newContainer.bodyText).to.contain('Text');
         expect(newContainer.getAttributeValue('class').value).to.equal('test');
         expect(newContainer.hasAttribute('as')).to.equal(false);
@@ -79,7 +85,11 @@ describe('migrator', () => {
     it('removes h3', () => {
         const tagString = getTagStringH3();
         const { el } = runTransformer(migrator, tagString, componentPath);
-        const { body: { array: [newContainer] } } = el;
+        const {
+            body: {
+                array: [newContainer],
+            },
+        } = el;
 
         expect(newContainer.bodyText).to.equal('Text');
         expect(newContainer.getAttributeValue('class').value).to.equal('test');
@@ -89,7 +99,11 @@ describe('migrator', () => {
     it('does not remove span', () => {
         const tagString = getTagStringSpan();
         const { el } = runTransformer(migrator, tagString, componentPath);
-        const { body: { array: [newContainer] } } = el;
+        const {
+            body: {
+                array: [newContainer],
+            },
+        } = el;
 
         expect(newContainer.firstChild.tagName).to.equal('span');
         expect(newContainer.hasAttribute('class')).to.equal(false);
@@ -99,7 +113,11 @@ describe('migrator', () => {
     it('does not remove change if it has only text', () => {
         const tagString = getTagStringNoTransform();
         const { el } = runTransformer(migrator, tagString, componentPath);
-        const { body: { array: [newContainer] } } = el;
+        const {
+            body: {
+                array: [newContainer],
+            },
+        } = el;
 
         expect(newContainer.bodyText).to.equal('Text');
         expect(newContainer.hasAttribute('class')).to.equal(false);

@@ -1,13 +1,16 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
+const {
+    testPassThroughAttributes,
+    testEventsMigrator,
+} = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
 use(require('chai-dom'));
 
 describe('select', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Basic_3Options;
         const { getByRole, getAllByRole } = await render(template, input);
         const rootElement = getByRole('combobox').parentElement;
@@ -25,14 +28,14 @@ describe('select', () => {
         });
     });
 
-    it('renders empty', async() => {
+    it('renders empty', async () => {
         const input = mock.Basic_0Options;
         const { queryAllByRole } = await render(template, input);
         expect(queryAllByRole('combobox')).has.length(1);
         expect(queryAllByRole('option')).has.length(0);
     });
 
-    it('renders with second item selected', async() => {
+    it('renders with second item selected', async () => {
         const input = mock.Basic_3Options_1Selected;
         const { getAllByRole } = await render(template, input);
         getAllByRole('option').forEach((optionEl, i) => {
@@ -40,7 +43,7 @@ describe('select', () => {
         });
     });
 
-    it('renders with borderless=true', async() => {
+    it('renders with borderless=true', async () => {
         const input = mock.Borderless_3Options;
         const { getByRole } = await render(template, input);
         expect(getByRole('combobox'))
@@ -51,7 +54,7 @@ describe('select', () => {
     testPassThroughAttributes(template, {
         getClassAndStyleEl(component) {
             return component.getByRole('combobox').parentElement;
-        }
+        },
     });
     testEventsMigrator(require('../migrator'), 'select', ['change'], '../index.marko');
 });

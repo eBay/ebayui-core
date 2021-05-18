@@ -73,17 +73,15 @@ module.exports = assign({}, menuUtils, {
             el,
             checked,
             checkedIndex,
-            originalEvent
+            originalEvent,
         });
     },
 
     _setupMakeup() {
         if (this.input.variant !== 'form') {
-            this._rovingTabIndex = rovingTabIndex.createLinear(
-                this.getEl('menu'),
-                'div',
-                { index: this.lastTabIndexPosition || 0 }
-            );
+            this._rovingTabIndex = rovingTabIndex.createLinear(this.getEl('menu'), 'div', {
+                index: this.lastTabIndexPosition || 0,
+            });
 
             scrollKeyPreventer.add(this.getEl('container'));
         }
@@ -96,5 +94,5 @@ module.exports = assign({}, menuUtils, {
             this._rovingTabIndex = undefined;
             scrollKeyPreventer.remove(this.getEl('container'));
         }
-    }
+    },
 });

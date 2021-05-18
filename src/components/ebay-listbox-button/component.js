@@ -23,14 +23,17 @@ module.exports = {
 
     onCreate() {
         this.state = {
-            selectedIndex: 0
+            selectedIndex: 0,
         };
     },
 
     onInput(input) {
         const { state } = this;
         input.options = input.options || [];
-        state.selectedIndex = Math.max(0, findIndex(input.options, option => option.selected));
+        state.selectedIndex = Math.max(
+            0,
+            findIndex(input.options, (option) => option.selected)
+        );
     },
 
     onMount() {
@@ -64,7 +67,7 @@ module.exports = {
                 contentSelector: '.listbox-button__listbox',
                 hostSelector: '.listbox-button__control',
                 expandedClass: 'listbox-button--expanded',
-                focusManagement: 'content'
+                focusManagement: 'content',
             });
 
             scrollKeyPreventer.add(this.getEl('button'));
@@ -76,5 +79,5 @@ module.exports = {
             this._expander.cancelAsync();
             this._expander = undefined;
         }
-    }
+    },
 };

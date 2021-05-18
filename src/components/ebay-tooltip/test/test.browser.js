@@ -13,12 +13,12 @@ let component;
 describe('given the default tooltip', () => {
     const input = mock.Basic;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('when the host element is hovered', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
         });
 
@@ -27,11 +27,13 @@ describe('given the default tooltip', () => {
         });
 
         describe('when the host element loses hover', () => {
-            beforeEach(async() => {
-                await fireEvent.mouseLeave(component.getByText(input.host.renderBody.text).parentElement);
+            beforeEach(async () => {
+                await fireEvent.mouseLeave(
+                    component.getByText(input.host.renderBody.text).parentElement
+                );
             });
 
-            it('then it emits the collapse event', async() => {
+            it('then it emits the collapse event', async () => {
                 await waitFor(() => expect(component.emitted('collapse')).has.length(1));
             });
         });
@@ -41,12 +43,12 @@ describe('given the default tooltip', () => {
 describe('given the a custom aligned tooltip', () => {
     const input = mock.Custom_Pointer;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('when the host element is hovered', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
         });
 
@@ -61,16 +63,16 @@ describe('given the a custom aligned tooltip', () => {
     });
 });
 
-mock.Pointers.forEach(input => {
+mock.Pointers.forEach((input) => {
     const { pointer } = input;
 
     describe(`given the tooltip with pointer ${pointer}`, () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             component = await render(template, input);
         });
 
         describe('when the host element is hovered', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
             });
 

@@ -1,3 +1,3 @@
-module.exports = function(query = '') {
+module.exports = function (query = '') {
     return new RegExp(query.trim().replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'i');
 };

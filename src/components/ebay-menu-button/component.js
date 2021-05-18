@@ -18,7 +18,7 @@ module.exports = assign({}, menuUtils, {
             this.emitComponentEvent({
                 index,
                 eventType: 'change',
-                el: itemEl
+                el: itemEl,
             });
         } else if (this.type !== 'radio') {
             if (this.input.collapseOnSelect) {
@@ -27,12 +27,15 @@ module.exports = assign({}, menuUtils, {
             this.emitComponentEvent({
                 index,
                 eventType: !this.type ? 'select' : 'change',
-                el: itemEl
+                el: itemEl,
             });
         }
 
         if (this.rovingTabindex) {
-            this.tabindexPosition = findIndex(this.rovingTabindex.filteredItems, el => el.tabIndex === 0);
+            this.tabindexPosition = findIndex(
+                this.rovingTabindex.filteredItems,
+                (el) => el.tabIndex === 0
+            );
         }
     },
 
@@ -72,6 +75,10 @@ module.exports = assign({}, menuUtils, {
     },
 
     handleMenuSelect({ el, originalEvent, index }) {
+        if (this.input.collapseOnSelect) {
+            this.expander.collapse();
+        }
+
         this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
     },
     handleMousedown({ el, originalEvent }) {
@@ -83,25 +90,25 @@ module.exports = assign({}, menuUtils, {
 
         const eventObj = {
             el,
-            originalEvent
+            originalEvent,
         };
 
         if (isCheckbox && checkedIndexes.length > 1) {
             assign(eventObj, {
                 indexes: this.getCheckedIndexes(), // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
-                checkedValues: this.getCheckedValues() // DEPRECATED in v5
+                checkedValues: this.getCheckedValues(), // DEPRECATED in v5
             });
         } else if (isCheckbox || this.isRadio()) {
             assign(eventObj, {
                 index, // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
-                checkedValues: this.getCheckedValues() // DEPRECATED in v5
+                checkedValues: this.getCheckedValues(), // DEPRECATED in v5
             });
         } else if (eventType !== 'expand' && eventType !== 'collapse') {
             assign(eventObj, {
                 index, // DEPRECATED in v5
-                checked: [index] // DEPRECATED in v5 (keep but change from indexes to values)
+                checked: [index], // DEPRECATED in v5 (keep but change from indexes to values)
             });
         }
 
@@ -137,7 +144,7 @@ module.exports = assign({}, menuUtils, {
             focusManagement: 'focusable',
             expandOnClick: true,
             autoCollapse: true,
-            alwaysDoFocusManagement: true
+            alwaysDoFocusManagement: true,
         });
     },
 
@@ -145,5 +152,5 @@ module.exports = assign({}, menuUtils, {
         if (this.expander) {
             this.expander.cancelAsync();
         }
-    }
+    },
 });

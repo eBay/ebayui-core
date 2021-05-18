@@ -3,9 +3,9 @@ const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Inline = {
     a11yText: 'Heading Text',
-    renderBody: createRenderBody('Content')
+    renderBody: createRenderBody('Content'),
 };
 
 exports.Inline_Custom_Status = assign({}, exports.Inline, {
-    status: 'confirmation'
+    status: 'confirmation',
 });

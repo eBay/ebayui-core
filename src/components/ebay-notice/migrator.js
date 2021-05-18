@@ -14,7 +14,10 @@ function migratorMarko4(el, context) {
         const typeAttribute = el.getAttributeValue('type');
         if (typeAttribute.type !== 'Literal') {
             // eslint-disable-next-line max-len
-            context.addError(el, 'Dynamic "type" attribute is no longer supported on <ebay-notice>. Please migrate manually.');
+            context.addError(
+                el,
+                'Dynamic "type" attribute is no longer supported on <ebay-notice>. Please migrate manually.'
+            );
             return;
         }
         type = typeAttribute.value;
@@ -24,7 +27,9 @@ function migratorMarko4(el, context) {
         context.deprecate('<ebay-notice type="inline"/> has been renamed to <ebay-inline-notice>');
         el.setTagName('ebay-inline-notice');
     } else if (type === 'section') {
-        context.deprecate('<ebay-notice type="section"/> has been renamed to <ebay-section-notice>');
+        context.deprecate(
+            '<ebay-notice type="section"/> has been renamed to <ebay-section-notice>'
+        );
         el.setTagName('ebay-section-notice');
     } else if (type === 'window') {
         context.deprecate('<ebay-notice type="window"/> has been renamed to <ebay-window-notice>');
@@ -39,9 +44,7 @@ function migratorMarko4(el, context) {
     const walker = context.createWalker({
         enter(node) {
             if (node.tagName === '@content') {
-                context.deprecate(
-                    '@content is no longer supported. Add content in render body'
-                );
+                context.deprecate('@content is no longer supported. Add content in render body');
 
                 node.forEachChild((child) => {
                     node.insertSiblingBefore(child);
@@ -55,7 +58,7 @@ function migratorMarko4(el, context) {
                 footerTag.appendChild(node);
                 el.appendChild(footerTag);
             }
-        }
+        },
     });
     walker.walk(el);
 }

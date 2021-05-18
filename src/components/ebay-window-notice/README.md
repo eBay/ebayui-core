@@ -23,15 +23,15 @@ Window notices always show confirmation icons
 
 ## ebay-window-notice Sub-tags
 
-Tag | Required | Description
---- | --- | ---
-`<@title>` | No | The title content to be displayed.
-`<@footer>` | No | The footer content to be displayed. Used for buttons or actions
+| Tag         | Required | Description                                                     |
+| ----------- | -------- | --------------------------------------------------------------- |
+| `<@title>`  | No       | The title content to be displayed.                              |
+| `<@footer>` | No       | The footer content to be displayed. Used for buttons or actions |
 
 ## ebay-window-notice Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`a11y-text` | String | No | Yes | adding description for the notice for a11y users
-`icon` | String | Yes | No | "default" (matches whatever is specified by the "status") or "none"
-`window` | String | No | No | either "fullscreen" or "lightbox" (default). If set to full screen the notice will fill the full height of it's window/container
+| Name        | Type   | Stateful | Required | Description                                                                                                                      |
+| ----------- | ------ | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `a11y-text` | String | No       | Yes      | adding description for the notice for a11y users                                                                                 |
+| `icon`      | String | Yes      | No       | "default" (matches whatever is specified by the "status") or "none"                                                              |
+| `window`    | String | No       | No       | either "fullscreen" or "lightbox" (default). If set to full screen the notice will fill the full height of it's window/container |

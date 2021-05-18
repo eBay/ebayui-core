@@ -14,7 +14,9 @@ function convertToCamel(attribute) {
  */
 function setAttributeIfPresent(el, context, oldAttribute, newAttribute) {
     if (el.hasAttribute(oldAttribute)) {
-        context.deprecate(`${oldAttribute} is no longer supported on ${el.tagName}. Use ${newAttribute} instead.`);
+        context.deprecate(
+            `${oldAttribute} is no longer supported on ${el.tagName}. Use ${newAttribute} instead.`
+        );
         const attr = el.getAttribute(oldAttribute);
         el.removeAttribute(oldAttribute);
         attr.name = newAttribute;
@@ -22,13 +24,20 @@ function setAttributeIfPresent(el, context, oldAttribute, newAttribute) {
     }
     if (oldAttribute.indexOf('-') > -1) {
         // Convert on-something to onSomething
-        setAttributeIfPresent(el, context, convertToCamel(oldAttribute), convertToCamel(newAttribute));
+        setAttributeIfPresent(
+            el,
+            context,
+            convertToCamel(oldAttribute),
+            convertToCamel(newAttribute)
+        );
     }
 }
 
 function createIconFromAttribute(el, context, attribute) {
     if (el.hasAttribute(attribute) && typeof el.getAttributeValue(attribute).value === 'string') {
-        context.deprecate(`${attribute} is no longer supported on ${el.tagName}. Use <@${attribute}> tag instead.`);
+        context.deprecate(
+            `${attribute} is no longer supported on ${el.tagName}. Use <@${attribute}> tag instead.`
+        );
         const value = el.getAttributeValue(attribute).value;
         const iconTag = context.createNodeForEl(`ebay-${value}-icon`);
         const iconContainer = context.createNodeForEl(`@${attribute}`);
@@ -40,5 +49,5 @@ function createIconFromAttribute(el, context, attribute) {
 
 module.exports = {
     setAttributeIfPresent,
-    createIconFromAttribute
+    createIconFromAttribute,
 };

@@ -4,14 +4,14 @@ const { createRenderBody } = require('../../../../common/test-utils/shared');
 exports.Toast = {
     a11yCloseText: 'close',
     header: {
-        renderBody: createRenderBody('head content')
+        renderBody: createRenderBody('head content'),
     },
     footer: {
-        renderBody: createRenderBody('foter content')
+        renderBody: createRenderBody('foter content'),
     },
-    renderBody: createRenderBody('body content')
+    renderBody: createRenderBody('body content'),
 };
 
 exports.Toast_Open = assign({}, exports.Toast, {
-    open: true
+    open: true,
 });

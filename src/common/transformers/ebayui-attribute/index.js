@@ -3,7 +3,7 @@ const path = require('path');
 const COMPONENT_DIR = path.join(__dirname, '../../../components');
 const COMPONENT_FILES = fs
     .readdirSync(COMPONENT_DIR)
-    .map(entry => path.join(COMPONENT_DIR, entry, 'index.marko'));
+    .map((entry) => path.join(COMPONENT_DIR, entry, 'index.marko'));
 
 /**
  * Transform to add the `data-ebayui` attribute to top level elements for all components.
@@ -17,7 +17,7 @@ function transform(el, context) {
     const isEbayUIComponentFile = COMPONENT_FILES.indexOf(context.filename) !== -1;
 
     if (isEbayUIComponentFile) {
-        context.root.forEachChild(child => {
+        context.root.forEachChild((child) => {
             if (child.type === 'HtmlElement' && child.hasAttribute('w-bind')) {
                 child.setAttributeValue('data-ebayui', context.builder.literal(true));
             }

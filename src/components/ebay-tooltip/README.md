@@ -24,25 +24,25 @@ is not focusable, the first focusable element will trigger the tooltip's focus e
 
 ## ebay-tooltip Sub-tags
 
-Tag | Required | Description
---- | --- | ---
-`<@host>` | Yes | The body which will be wrapped as the tooltip's host
-`<@content>` | Yes | The content to be displayed in the tooltip
+| Tag          | Required | Description                                          |
+| ------------ | -------- | ---------------------------------------------------- |
+| `<@host>`    | Yes      | The body which will be wrapped as the tooltip's host |
+| `<@content>` | Yes      | The content to be displayed in the tooltip           |
 
 ## ebay-tooltip Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`pointer` | String | No | No | options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`
-`style-top` | String | No | No | a style property for the CSS `top` rule
-`style-left` | String | No | No | a style property for the CSS `left` rule
-`style-right` | String | No | No | a style property for the CSS `right` rule
-`style-bottom` | String | No | No | a style property for the CSS `bottom` rule
-`no-hover` | Boolean | No | No | disable hover (and only use focus) to open the tooltip
+| Name           | Type    | Stateful | Required | Description                                                                                                                                                  |
+| -------------- | ------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `pointer`      | String  | No       | No       | options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top` |
+| `style-top`    | String  | No       | No       | a style property for the CSS `top` rule                                                                                                                      |
+| `style-left`   | String  | No       | No       | a style property for the CSS `left` rule                                                                                                                     |
+| `style-right`  | String  | No       | No       | a style property for the CSS `right` rule                                                                                                                    |
+| `style-bottom` | String  | No       | No       | a style property for the CSS `bottom` rule                                                                                                                   |
+| `no-hover`     | Boolean | No       | No       | disable hover (and only use focus) to open the tooltip                                                                                                       |
 
 ## ebay-tooltip Events
 
-Event | Data | Description
---- | --- | ---
-`expand` | | overlay has been expanded
-`collapse` | | overlay has been collapsed
+| Event      | Data | Description                |
+| ---------- | ---- | -------------------------- |
+| `expand`   |      | overlay has been expanded  |
+| `collapse` |      | overlay has been collapsed |

@@ -16,15 +16,16 @@ function getTemplateData(state) {
     state.index = normalizeIndex(state, state.index);
 
     const offset = getOffset(state);
-    const prevControlDisabled = isSingleSlide || !autoplayInterval && offset === 0;
-    const nextControlDisabled = isSingleSlide || !autoplayInterval && offset === getMaxOffset(state);
+    const prevControlDisabled = isSingleSlide || (!autoplayInterval && offset === 0);
+    const nextControlDisabled =
+        isSingleSlide || (!autoplayInterval && offset === getMaxOffset(state));
     const bothControlsDisabled = prevControlDisabled && nextControlDisabled;
     let slide, itemWidth, totalSlides, a11yStatusText;
 
     if (itemsPerSlide) {
         const itemsInSlide = itemsPerSlide + state.peek;
         slide = getSlide(state);
-        itemWidth = `calc(${100 / itemsInSlide}% - ${(itemsInSlide - 1) * gap / itemsInSlide}px)`;
+        itemWidth = `calc(${100 / itemsInSlide}% - ${((itemsInSlide - 1) * gap) / itemsInSlide}px)`;
         totalSlides = getSlide(state, items.length);
         a11yStatusText = state.a11yStatusText
             .replace('{currentSlide}', slide + 1)
@@ -33,7 +34,7 @@ function getTemplateData(state) {
 
     items.forEach((item, i) => {
         const { style, transform } = item;
-        const marginRight = i !== (items.length - 1) && `${gap}px`;
+        const marginRight = i !== items.length - 1 && `${gap}px`;
 
         // Account for users providing a style string or object for each item.
         if (typeof style === 'string') {
@@ -41,17 +42,15 @@ function getTemplateData(state) {
             if (transform) item.style += `transform:${transform}`;
         } else {
             item.style = assign({}, style, {
-                'width': itemWidth,
+                width: itemWidth,
                 'margin-right': marginRight,
-                transform
+                transform,
             });
         }
 
-        item.fullyVisible = (
+        item.fullyVisible =
             item.left === undefined ||
-            item.left - offset >= -0.01 &&
-            item.right - offset <= slideWidth + 0.01
-        );
+            (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
     });
 
     const data = assign({}, state, {
@@ -63,7 +62,7 @@ function getTemplateData(state) {
         a11yStatusText,
         prevControlDisabled,
         nextControlDisabled,
-        bothControlsDisabled
+        bothControlsDisabled,
     });
 
     return data;
@@ -92,10 +91,11 @@ function onRender() {
         // Ensure only visible items within the carousel are focusable.
         // We don't have access to these items in the template so me must update manually.
         this.focusFrame = requestAnimationFrame(() => {
-            forEls(listEl, itemEl => {
-                focusables(itemEl).forEach(itemEl.getAttribute('aria-hidden') !== 'true'
-                    ? child => child.removeAttribute('tabindex')
-                    : child => child.setAttribute('tabindex', '-1')
+            forEls(listEl, (itemEl) => {
+                focusables(itemEl).forEach(
+                    itemEl.getAttribute('aria-hidden') !== 'true'
+                        ? (child) => child.removeAttribute('tabindex')
+                        : (child) => child.setAttribute('tabindex', '-1')
                 );
             });
         });
@@ -113,7 +113,11 @@ function onRender() {
                 } else if (this.isMoving) {
                     // Animate to the new scrolling position and emit update events afterward.
                     config.scrollTransitioning = true;
-                    this.cancelScrollTransition = scrollTransition(listEl, getOffset(state), this.emitUpdate);
+                    this.cancelScrollTransition = scrollTransition(
+                        listEl,
+                        getOffset(state),
+                        this.emitUpdate
+                    );
                 }
             }
         }
@@ -165,12 +169,14 @@ function cleanupAsync() {
 }
 
 function emitUpdate() {
-    const { state: { config, items } } = this;
+    const {
+        state: { config, items },
+    } = this;
     config.scrollTransitioning = false;
     this.emit('move', {
         visibleIndexes: items
             .filter(({ fullyVisible }) => fullyVisible)
-            .map(item => items.indexOf(item))
+            .map((item) => items.indexOf(item)),
     });
 }
 
@@ -197,7 +203,9 @@ function handleMove(direction, originalEvent) {
  * @param {MouseEvent} originalEvent
  */
 function togglePlay(originalEvent) {
-    const { state: { config, paused } } = this;
+    const {
+        state: { config, paused },
+    } = this;
     config.preserveItems = true;
     this.setState('paused', !paused);
     if (paused && !this.isMoving) {
@@ -278,7 +286,7 @@ function move(delta) {
             offsetOverride = -slideWidth - gap;
 
             // Move the items in the last slide to be before the first slide.
-            for (let i = Math.ceil(itemsPerSlide + peek); i--;) {
+            for (let i = Math.ceil(itemsPerSlide + peek); i--; ) {
                 const item = items[items.length - i - 1];
                 item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap) * -1}px)`;
             }
@@ -287,9 +295,9 @@ function move(delta) {
             offsetOverride = getMaxOffset(state) + slideWidth + gap;
 
             // Moves the items in the first slide to be after the last slide.
-            for (let i = Math.ceil(itemsPerSlide + peek); i--;) {
+            for (let i = Math.ceil(itemsPerSlide + peek); i--; ) {
                 const item = items[i];
-                item.transform = `translateX(${(getMaxOffset(state) + slideWidth + gap)}px)`;
+                item.transform = `translateX(${getMaxOffset(state) + slideWidth + gap}px)`;
             }
         }
 
@@ -303,7 +311,9 @@ function move(delta) {
         if (offsetOverride !== undefined) {
             // If we are in autoplay mode and went outside of the normal offset
             // We make sure to restore all of the items that got moved around.
-            items.forEach(item => { item.transform = undefined; });
+            items.forEach((item) => {
+                item.transform = undefined;
+            });
         }
     });
 
@@ -390,7 +400,7 @@ function getNextIndex(state, delta) {
     } else {
         // Find the index of the next item that is not fully in view.
         do {
-            item = items[i += delta];
+            item = items[(i += delta)];
         } while (item && item.fullyVisible);
 
         if (delta === LEFT && !itemsPerSlide) {
@@ -460,9 +470,14 @@ module.exports = {
                 'a11yHeadingTag',
                 'a11yPlayText',
                 'a11yPauseText',
-                'items'
+                'items',
+                'hiddenScrollbar',
             ]),
-            classes: ['carousel', input.class],
+            classes: [
+                'carousel',
+                input.hiddenScrollbar && 'carousel--hidden-scrollbar',
+                input.class,
+            ],
             style: input.style,
             config: {}, // A place to store values that should not trigger an update by themselves.
             gap: isNaN(gap) ? 16 : gap,
@@ -475,7 +490,7 @@ module.exports = {
             a11yHeadingText: input.a11yHeadingText,
             a11yHeadingTag: input.a11yHeadingTag || 'h2',
             a11yPauseText: input.a11yPauseText || 'Pause',
-            a11yPlayText: input.a11yPlayText || 'Play'
+            a11yPlayText: input.a11yPlayText || 'Play',
         };
 
         const itemSkippedAttributes = ['class', 'style'];
@@ -509,7 +524,7 @@ module.exports = {
                 htmlAttributes: processHtmlAttributes(item, itemSkippedAttributes),
                 class: isStartOfSlide ? ['carousel__snap-point', item.class] : item.class,
                 style: item.style,
-                renderBody: item.renderBody
+                renderBody: item.renderBody,
             };
         });
 
@@ -523,7 +538,9 @@ module.exports = {
     },
 
     onMount() {
-        const { state: { config } } = this;
+        const {
+            state: { config },
+        } = this;
         this.listEl = this.getEl('list');
         this.nextEl = this.getEl('next');
         this.containerEl = this.getEl('container');
@@ -535,11 +552,14 @@ module.exports = {
 
         if (isNativeScrolling(this.listEl)) {
             config.nativeScrolling = true;
-            this.once('destroy', onScroll(this.listEl, () => {
-                if (!config.scrollTransitioning) {
-                    handleScroll.call(this, this.listEl.scrollLeft);
-                }
-            }));
+            this.once(
+                'destroy',
+                onScroll(this.listEl, () => {
+                    if (!config.scrollTransitioning) {
+                        handleScroll.call(this, this.listEl.scrollLeft);
+                    }
+                })
+            );
         } else {
             this.subscribeTo(this.listEl).on('transitionend', ({ target }) => {
                 if (target === this.listEl) {
@@ -549,13 +569,13 @@ module.exports = {
         }
 
         this.onRenderLegacy({
-            firstRender: true
+            firstRender: true,
         });
     },
 
     onUpdate() {
         this.onRenderLegacy({
-            firstRender: false
+            firstRender: false,
         });
     },
 
@@ -565,5 +585,5 @@ module.exports = {
 
     onRenderLegacy() {
         onRender.call(this);
-    }
+    },
 };

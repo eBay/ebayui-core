@@ -15,7 +15,7 @@ let component;
 describe('given the details is in the default state', () => {
     const input = mock.Default_Details;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
@@ -27,7 +27,7 @@ describe('given the details is in the default state', () => {
 describe('given the details is in the open state', () => {
     const input = mock.Open_Details;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
@@ -40,23 +40,23 @@ describe('given the details is in the default state and click is triggered', () 
     const input = mock.Default_Details;
     const detailsText = input.text;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('click on details', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByText(detailsText));
         });
 
-        it('then it emits the toggle and click', async() => {
+        it('then it emits the toggle and click', async () => {
             waitFor(() => verifyToggleEvent());
             waitFor(() => verifyClickEvent());
         });
     });
 
     describe('details should properly toggle open property', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(assign({}, input, { open: true }));
         });
 
@@ -64,11 +64,11 @@ describe('given the details is in the default state and click is triggered', () 
             expect(component.getByText(detailsText).closest('details').open).to.equal(true);
         });
         describe('click after rerender', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
 
-            it('then it should be closed', async() => {
+            it('then it should be closed', async () => {
                 waitFor(() => verifyToggleEvent());
                 waitFor(() => verifyClickEvent());
             });
@@ -80,23 +80,23 @@ describe('given the details is in the open state and click is triggered', () => 
     const input = mock.Open_Details;
     const detailsText = input.text;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('click on details', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByText(detailsText));
         });
 
-        it('then it emits the toggle and click', async() => {
+        it('then it emits the toggle and click', async () => {
             waitFor(() => verifyToggleEvent());
             waitFor(() => verifyClickEvent());
         });
     });
 
     describe('details should properly toggle open property', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(assign({}, input, { open: false }));
         });
 
@@ -104,10 +104,10 @@ describe('given the details is in the open state and click is triggered', () => 
             expect(component.getByText(detailsText).closest('details').open).to.equal(false);
         });
         describe('click after rerender', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.click(component.getByText(detailsText).parentNode);
             });
-            it('then it should be open', async() => {
+            it('then it should be open', async () => {
                 waitFor(() => verifyToggleEvent());
                 waitFor(() => verifyClickEvent());
             });

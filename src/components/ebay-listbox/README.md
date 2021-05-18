@@ -35,16 +35,17 @@ When a selected option is specified:
 
 ### ebay-listbox Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`name` | String | No | Yes | used for the `name` attribute of the native `<select>`
-`selected` | Number | Yes | n/a | allows you to set the selected index option to `selected`
+| Name       | Type   | Stateful | Required | Description                                               |
+| ---------- | ------ | -------- | -------- | --------------------------------------------------------- |
+| `name`     | String | No       | Yes      | used for the `name` attribute of the native `<select>`    |
+| `selected` | Number | Yes      | n/a      | allows you to set the selected index option to `selected` |
 
 ### ebay-listbox Events
 
-Event | Data |  Description
---- | --- | ---
-`change` | `{ el, index, selected, wasClicked }` | option selected
+| Event    | Data                                  | Description     |
+| -------- | ------------------------------------- | --------------- |
+| `change` | `{ el, index, selected, wasClicked }` | option selected |
+
 ---
 
 ## @option Tag
@@ -57,8 +58,8 @@ Event | Data |  Description
 
 ### @option Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`text` | String | No | No | string to use in the option
-`selected` | Boolean | Yes | No | whether or not the option is selected (**Note:** use the root `ebay-listbox` element's `selected` property to set this property)
-`value` | String | Yes | Yes | used for the `value` attribute of the native `<option>`
+| Name       | Type    | Stateful | Required | Description                                                                                                                      |
+| ---------- | ------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `text`     | String  | No       | No       | string to use in the option                                                                                                      |
+| `selected` | Boolean | Yes      | No       | whether or not the option is selected (**Note:** use the root `ebay-listbox` element's `selected` property to set this property) |
+| `value`    | String  | Yes      | Yes      | used for the `value` attribute of the native `<option>`                                                                          |

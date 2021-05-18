@@ -9,7 +9,6 @@ const menuUtils = require('../../common/menu-utils');
 const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 
 module.exports = assign({}, menuUtils, {
-
     toggleItemChecked(index, originalEvent, itemEl) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
@@ -21,19 +20,22 @@ module.exports = assign({}, menuUtils, {
                 index,
                 eventType: 'change',
                 el: itemEl,
-                originalEvent
+                originalEvent,
             });
         } else if (this.type !== 'radio') {
             this.emitComponentEvent({
                 index,
                 eventType: !this.type ? 'select' : 'change',
                 el: itemEl,
-                originalEvent
+                originalEvent,
             });
         }
 
         if (this.rovingTabindex) {
-            this.tabindexPosition = findIndex(this.rovingTabindex.filteredItems, el => el.tabIndex === 0);
+            this.tabindexPosition = findIndex(
+                this.rovingTabindex.filteredItems,
+                (el) => el.tabIndex === 0
+            );
         }
     },
 
@@ -46,12 +48,17 @@ module.exports = assign({}, menuUtils, {
             this.emitComponentEvent({ eventType: 'keydown', originalEvent, index });
         });
 
-        eventUtils.handleActionKeydown(originalEvent, () => this.toggleItemChecked(index, originalEvent, itemEl));
+        eventUtils.handleActionKeydown(originalEvent, () =>
+            this.toggleItemChecked(index, originalEvent, itemEl)
+        );
     },
 
     handleItemKeypress({ key }) {
-        const itemIndex = this.getTypeaheadIndex(this.getEl('menu').children, key,
-            this.input.typeaheadTimeoutLength || TYPEAHEAD_TIMEOUT_LENGTH);
+        const itemIndex = this.getTypeaheadIndex(
+            this.getEl('menu').children,
+            key,
+            this.input.typeaheadTimeoutLength || TYPEAHEAD_TIMEOUT_LENGTH
+        );
 
         if (itemIndex !== -1) {
             this.tabindexPosition = this.rovingTabindex.index = itemIndex;
@@ -64,7 +71,7 @@ module.exports = assign({}, menuUtils, {
 
         const eventObj = {
             el,
-            originalEvent
+            originalEvent,
         };
 
         if (isCheckbox && checkedIndexes.length > 1) {
@@ -72,18 +79,18 @@ module.exports = assign({}, menuUtils, {
                 index,
                 indexes: this.getCheckedIndexes(), // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
-                checkedValues: this.getCheckedValues() // DEPRECATED in v5
+                checkedValues: this.getCheckedValues(), // DEPRECATED in v5
             });
         } else if (isCheckbox || this.isRadio()) {
             assign(eventObj, {
                 index, // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
-                checkedValues: this.getCheckedValues() // DEPRECATED in v5
+                checkedValues: this.getCheckedValues(), // DEPRECATED in v5
             });
         } else {
             assign(eventObj, {
                 index, // DEPRECATED in v5
-                checked: [index] // DEPRECATED in v5 (keep but change from indexes to values)
+                checked: [index], // DEPRECATED in v5 (keep but change from indexes to values)
             });
         }
 
@@ -117,7 +124,8 @@ module.exports = assign({}, menuUtils, {
         this.contentEl = this.getEl('menu');
 
         this.rovingTabindex = rovingTabindex.createLinear(this.contentEl, 'div', {
-            index: this.tabindexPosition, autoReset: null
+            index: this.tabindexPosition,
+            autoReset: null,
         });
 
         scrollKeyPreventer.add(this.contentEl);
@@ -135,5 +143,5 @@ module.exports = assign({}, menuUtils, {
         if (this.destroyTypeahead) {
             this.destroyTypeahead();
         }
-    }
+    },
 });

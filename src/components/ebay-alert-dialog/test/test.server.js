@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('dialog', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Dialog;
         const { getByRole, getByText } = await render(template, input);
         const dialog = getByRole('alertdialog', { hidden: true });
@@ -18,7 +18,7 @@ describe('dialog', () => {
         expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');
     });
 
-    it('renders in open state', async() => {
+    it('renders in open state', async () => {
         const input = mock.Dialog_Open;
         const { getByRole } = await render(template, input);
         expect(getByRole('alertdialog')).does.not.have.attr('hidden');

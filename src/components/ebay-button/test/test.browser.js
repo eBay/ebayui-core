@@ -10,12 +10,12 @@ afterEach(cleanup);
 let component;
 
 describe('given button is enabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template);
     });
 
     describe('when button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByRole('button'));
         });
 
@@ -25,10 +25,10 @@ describe('given button is enabled', () => {
     });
 
     describe('when escape key is pressed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(component.getByRole('button'), {
                 key: 'Escape',
-                keyCode: 27
+                keyCode: 27,
             });
         });
 
@@ -39,12 +39,12 @@ describe('given button is enabled', () => {
 });
 
 describe('given button is disabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { disabled: true });
     });
 
     describe('when button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByRole('button'));
         });
 
@@ -54,10 +54,10 @@ describe('given button is disabled', () => {
     });
 
     describe('when escape key is pressed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(component.getByRole('button'), {
                 key: 'Escape',
-                keyCode: 27
+                keyCode: 27,
             });
         });
 

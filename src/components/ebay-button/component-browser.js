@@ -13,5 +13,5 @@ module.exports = {
                 this.emit('escape', { originalEvent });
             }
         });
-    }
+    },
 };

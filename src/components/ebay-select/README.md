@@ -37,18 +37,19 @@ When a selected option is specified:
 
 ### ebay-select Attributes
 
-Name | Required | Type | Stateful | Description
---- | --- | --- | --- | ---
-`selected` | n/a | Number | Yes | allows you to set the selected index option to `selected`
-`borderless` | No | Boolean | No | whether button has borders
+| Name         | Required | Type    | Stateful | Description                                               |
+| ------------ | -------- | ------- | -------- | --------------------------------------------------------- |
+| `selected`   | n/a      | Number  | Yes      | allows you to set the selected index option to `selected` |
+| `borderless` | No       | Boolean | No       | whether button has borders                                |
 
 Note: For this component, `class`/`style` are applied to the root tag, while all other HTML attributes are applied to the `select` tag. Be sure to include typical HTML attributes for the `select` tag, like `name`.
 
 ### ebay-select Events
 
-Event | Data |  Description
---- | --- | ---
-`change` | `{ el, index, selected }` | option selected
+| Event    | Data                      | Description     |
+| -------- | ------------------------- | --------------- |
+| `change` | `{ el, index, selected }` | option selected |
+
 ---
 
 ## @option Tag
@@ -61,8 +62,8 @@ Event | Data |  Description
 
 ### @option Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`text` | String | No | No | text to use in the option
-`selected` | Boolean | Yes | No | whether or not the option is selected (**Note:** use the root `ebay-select` element's `selected` property to set this property)
-`value` | String | Yes | Yes | used for the `value` attribute of the native `<option>`
+| Name       | Type    | Stateful | Required | Description                                                                                                                     |
+| ---------- | ------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `text`     | String  | No       | No       | text to use in the option                                                                                                       |
+| `selected` | Boolean | Yes      | No       | whether or not the option is selected (**Note:** use the root `ebay-select` element's `selected` property to set this property) |
+| `value`    | String  | Yes      | Yes      | used for the `value` attribute of the native `<option>`                                                                         |

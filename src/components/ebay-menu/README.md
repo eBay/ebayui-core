@@ -21,20 +21,20 @@
 
 ### ebay-menu Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`type` | String | No | No | Can be "radio" / "checkbox"
-`priority` | String | No | No | button priority, "primary" / "secondary" (default) / "none"
-`checked` (radio) | Number | Yes | No | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup
+| Name              | Type   | Stateful | Required | Description                                                                                             |
+| ----------------- | ------ | -------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| `type`            | String | No       | No       | Can be "radio" / "checkbox"                                                                             |
+| `priority`        | String | No       | No       | button priority, "primary" / "secondary" (default) / "none"                                             |
+| `checked` (radio) | Number | Yes      | No       | will set the corresponding index item to `checked` state and use the `aria-checked` attribute in markup |
 
 ### ebay-menu Events
 
-Event | Data | Description
---- | --- | ---
-`keydown` | `{ el, index, checked }` |
-`change` (radio) | `{ el, index, checked }` | item changed/checked
-`change` (checkbox) | `{ el, [indexes], [checked] }` | items changed/checked
-`select` (not radio or checkbox) | `{ el, index, checked }` | item clicked
+| Event                            | Data                           | Description           |
+| -------------------------------- | ------------------------------ | --------------------- |
+| `keydown`                        | `{ el, index, checked }`       |
+| `change` (radio)                 | `{ el, index, checked }`       | item changed/checked  |
+| `change` (checkbox)              | `{ el, [indexes], [checked] }` | items changed/checked |
+| `select` (not radio or checkbox) | `{ el, index, checked }`       | item clicked          |
 
 ## @item Tag
 
@@ -46,14 +46,15 @@ Event | Data | Description
 
 ### @item Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`value` (radio or checkbox) | String | No | No | the value to use with event responses for for the `checked` array
-`checked` (radio or checkbox) | Boolean | No | No | whether or not the item is checked
-`badge-number` | Number | No | No | used as the number to be placed in the badge
-`badge-aria-label` | String | No | Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge
+| Name                          | Type    | Stateful | Required                               | Description                                                       |
+| ----------------------------- | ------- | -------- | -------------------------------------- | ----------------------------------------------------------------- |
+| `value` (radio or checkbox)   | String  | No       | No                                     | the value to use with event responses for for the `checked` array |
+| `checked` (radio or checkbox) | Boolean | No       | No                                     | whether or not the item is checked                                |
+| `badge-number`                | Number  | No       | No                                     | used as the number to be placed in the badge                      |
+| `badge-aria-label`            | String  | No       | Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge                  |
 
 ### Typeahead functionality
+
 The menu now has a typeahead feature, so after the focus goes to the menu the user can start typing,
 and focus will move to the item that matches the typed string. The typed string resets to an emtpy string
 after a short time (currently 1300ms but could change in the future).

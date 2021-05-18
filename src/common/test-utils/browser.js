@@ -21,12 +21,9 @@ module.exports = {
         cb();
     },
     async pressKey(el, info) {
-        for (const event of [
-            createEvent.keyDown(el, info),
-            createEvent.keyUp(el, info)
-        ]) {
+        for (const event of [createEvent.keyDown(el, info), createEvent.keyUp(el, info)]) {
             // we assign properties to them for older browsers (chrome 49)
-            Object.keys(info).forEach(key => {
+            Object.keys(info).forEach((key) => {
                 if (event[key] !== info[key]) {
                     Object.defineProperty(event, key, { value: info[key] });
                 }
@@ -56,6 +53,6 @@ module.exports = {
 
             document.head.removeChild(this.fastAnimationStyle);
             this.fastAnimationStyle = undefined;
-        }
-    }
+        },
+    },
 };

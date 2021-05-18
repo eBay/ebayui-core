@@ -11,7 +11,7 @@ let component;
 
 describe('given the select with 3 options', () => {
     const input = mock.Basic_3Options;
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
@@ -22,7 +22,7 @@ describe('given the select with 3 options', () => {
     });
 
     describe('when the index is set through dom change event', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             const combobox = component.getByRole('combobox');
             combobox.selectedIndex = 1;
             await fireEvent.change(combobox);

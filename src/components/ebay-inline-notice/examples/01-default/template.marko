@@ -1,0 +1,14 @@
+import knobs from '../knobs'
+
+$ const { status, icon, a11yText } = knobs();
+<ebay-inline-notice status=status icon=icon a11y-text=a11yText>
+    <p>
+        <strong>Error:</strong> Please take another look at the following:
+    </p>
+    <p>
+        <a href="#">Card number</a>,
+        <a href="#">Expiration date</a>
+        &amp;
+        <a href="#">Security code</a>
+    </p>
+</ebay-inline-notice>

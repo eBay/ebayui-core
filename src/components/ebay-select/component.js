@@ -12,7 +12,7 @@ module.exports = {
         this.emit('change', {
             index: selectedIndex,
             selected: [String(option.value)],
-            el
+            el,
         });
     },
 
@@ -25,7 +25,7 @@ module.exports = {
         input.options = input.options || [];
         state.selectedIndex = Math.max(
             0,
-            findIndex(input.options, option => option.selected)
+            findIndex(input.options, (option) => option.selected)
         );
-    }
+    },
 };

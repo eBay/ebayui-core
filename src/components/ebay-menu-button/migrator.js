@@ -12,7 +12,8 @@ function migratorMarko4(el, context) {
         el.removeAttribute('type');
         el.setTagName('ebay-fake-menu-button');
         context.deprecate(
-            '"type=fake" attribute has been removed from ebay-menu-button. Use ebay-fake-menu-button instead.');
+            '"type=fake" attribute has been removed from ebay-menu-button. Use ebay-fake-menu-button instead.'
+        );
     }
 }
 

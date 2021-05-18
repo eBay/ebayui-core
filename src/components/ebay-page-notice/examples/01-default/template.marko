@@ -1,0 +1,22 @@
+import knobs from '../knobs'
+
+$ const { status, icon, hasTitle, hasFooter, a11yText } = knobs();
+<ebay-page-notice status=status a11y-text=a11yText icon=icon>
+    <p>
+        <strong>Error:</strong> Please take another look at the following:
+    </p>
+    <p>
+        <a href="#">Card number</a>,
+        <a href="#">Expiration date</a>
+        &amp;
+        <a href="#">Security code</a>
+    </p>
+    <if(hasTitle)>
+        <@title>Congrats</@title>
+    </if>
+    <if(hasFooter)>
+        <@footer>
+            <ebay-button priority="secondary" transparent>Action</ebay-button>
+        </@footer>
+    </if>
+</ebay-page-notice>

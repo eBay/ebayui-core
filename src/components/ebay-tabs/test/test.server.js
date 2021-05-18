@@ -1,6 +1,10 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, testEventsMigrator, runTransformer } = require('../../../common/test-utils/server');
+const {
+    testPassThroughAttributes,
+    testEventsMigrator,
+    runTransformer,
+} = require('../../../common/test-utils/server');
 const template = require('..');
 const migrator = require('../migrator');
 const mock = require('./mock');
@@ -8,7 +12,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('tabs', () => {
-    it('renders basic version with 3 tabs and 3 panels', async() => {
+    it('renders basic version with 3 tabs and 3 panels', async () => {
         const input = mock.Basic_3Headings_3Panels_No_Index;
         const { getByRole, getAllByRole } = await render(template, input);
 
@@ -50,7 +54,7 @@ describe('tabs', () => {
         });
     });
 
-    it('renders basic version with 3 tabs and 3 panels on the second panel', async() => {
+    it('renders basic version with 3 tabs and 3 panels on the second panel', async () => {
         const input = mock.Basic_3Headings_3Panels_1Index;
         const { getAllByRole } = await render(template, input);
 
@@ -72,8 +76,7 @@ describe('tabs', () => {
     });
 
     testPassThroughAttributes(template);
-    testEventsMigrator(migrator, 'tabs',
-        ['select'], '../index.marko');
+    testEventsMigrator(migrator, 'tabs', ['select'], '../index.marko');
 });
 
 describe('migrator', () => {
@@ -89,8 +92,8 @@ describe('tabs-heading', () => {
     testPassThroughAttributes(template, {
         child: {
             name: 'tabs',
-            multiple: true
-        }
+            multiple: true,
+        },
     });
 });
 
@@ -98,7 +101,7 @@ describe('tabs-panel', () => {
     testPassThroughAttributes(template, {
         child: {
             name: 'panels',
-            multiple: true
-        }
+            multiple: true,
+        },
     });
 });

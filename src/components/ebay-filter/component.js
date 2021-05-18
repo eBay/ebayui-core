@@ -5,14 +5,14 @@ module.exports = {
             this.state.selected = selected;
             this.emit('click', {
                 selected,
-                originalEvent
+                originalEvent,
             });
         }
     },
 
     onInput(input) {
         this.state = {
-            selected: input.selected || false
+            selected: input.selected || false,
         };
-    }
+    },
 };

@@ -8,31 +8,35 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('fake-menu', () => {
-    it('renders base version', async() => {
+    it('renders base version', async () => {
         const input = mock.Basic_2Items;
         const { getByText } = await render(template, input);
 
-        input.items.forEach(item => {
-            expect(getByText(item.renderBody.text).closest('.fake-menu__item'))
-                .has.attr('href', item.href);
+        input.items.forEach((item) => {
+            expect(getByText(item.renderBody.text).closest('.fake-menu__item')).has.attr(
+                'href',
+                item.href
+            );
         });
     });
 
-    it('renders with reverse=true', async() => {
+    it('renders with reverse=true', async () => {
         const input = assign({ reverse: true }, mock.Basic_2Items);
         const { getByText } = await render(template, input);
-        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu__menu--reverse'))
-            .does.not.equal(null);
+        expect(
+            getByText(input.items[0].renderBody.text).closest('.fake-menu__menu--reverse')
+        ).does.not.equal(null);
     });
 
-    it('renders with fix-width=true', async() => {
+    it('renders with fix-width=true', async () => {
         const input = assign({ fixWidth: true }, mock.Basic_2Items);
         const { getByText } = await render(template, input);
-        expect(getByText(input.items[0].renderBody.text).closest('.fake-menu__menu--fix-width'))
-            .does.not.equal(null);
+        expect(
+            getByText(input.items[0].renderBody.text).closest('.fake-menu__menu--fix-width')
+        ).does.not.equal(null);
     });
 
-    it('renders with separators', async() => {
+    it('renders with separators', async () => {
         const input = mock.Separator_4Items;
         const { queryByText, getAllByRole } = await render(template, input);
         const separators = getAllByRole('separator');
@@ -50,7 +54,7 @@ describe('fake-menu', () => {
     testUtils.testPassThroughAttributes(template, {
         child: {
             name: 'items',
-            multiple: true
-        }
+            multiple: true,
+        },
     });
 });

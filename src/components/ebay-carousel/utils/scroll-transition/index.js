@@ -1,5 +1,6 @@
 const onScrollEnd = require('../on-scroll-end');
-const supportsScrollBehavior = typeof window !== 'undefined' && 'scrollBehavior' in document.body.style;
+const supportsScrollBehavior =
+    typeof window !== 'undefined' && 'scrollBehavior' in document.documentElement.style;
 
 /**
  * Utility to animate scroll position of an element using an `ease-out` curve over 250ms.
@@ -17,7 +18,7 @@ module.exports = function scrollTransition(el, to, fn) {
     }
 
     let lastPosition, cancelInterruptTransition;
-    let frame = requestAnimationFrame(startTime => {
+    let frame = requestAnimationFrame((startTime) => {
         const { scrollLeft } = el;
         const distance = to - scrollLeft;
         const duration = 450;
@@ -31,7 +32,7 @@ module.exports = function scrollTransition(el, to, fn) {
 
             el.scrollLeft = easeInOut(delta / duration) * distance + scrollLeft;
             frame = requestAnimationFrame(animate);
-        }(startTime));
+        })(startTime);
     });
 
     // The animation can be interrupted by new touch events.

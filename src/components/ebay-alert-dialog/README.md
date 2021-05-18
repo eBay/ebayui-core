@@ -18,14 +18,14 @@ Used to force the user to read an import message. The dialog will only be dismis
 
 ## Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`open` | Boolean | Yes | No | Whether dialog is open.
-`confirm-text` | String | No | Yes | Text for confirm button
+| Name           | Type    | Stateful | Required | Description             |
+| -------------- | ------- | -------- | -------- | ----------------------- |
+| `open`         | Boolean | Yes      | No       | Whether dialog is open. |
+| `confirm-text` | String  | No       | Yes      | Text for confirm button |
 
 ## Events
 
-Event | Data | Description
---- | --- | ---
-`open` |  | dialog opened
-`confirm` |  | dialog confirm button pressed
+| Event     | Data | Description                   |
+| --------- | ---- | ----------------------------- |
+| `open`    |      | dialog opened                 |
+| `confirm` |      | dialog confirm button pressed |

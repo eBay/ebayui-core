@@ -16,7 +16,7 @@ let component;
 describe('given a closed dialog', () => {
     const input = mock.Dialog;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
@@ -25,11 +25,11 @@ describe('given a closed dialog', () => {
     });
 
     describe('then it is opened', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(assign({}, input, { open: true }));
         });
 
-        it('then it is visible in the DOM', async() => {
+        it('then it is visible in the DOM', async () => {
             await waitFor(() => expect(component.emitted('open')).has.length(1));
         });
     });
@@ -39,7 +39,7 @@ describe('given an open dialog', () => {
     const input = mock.Dialog_Open;
     let sibling;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         sibling = document.body.appendChild(document.createElement('button'));
         sibling.focus();
         component = await render(template, input);
@@ -54,13 +54,15 @@ describe('given an open dialog', () => {
     });
 
     describe('when the mask is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             // simulate clicking outside the dialog.
             await fireEvent.click(component.getByRole('alertdialog'));
         });
 
-        it('then it is still open in the DOM', async() => {
-            await waitFor(() => expect(component.getByRole('alertdialog')).does.not.have.attr('hidden'));
+        it('then it is still open in the DOM', async () => {
+            await waitFor(() =>
+                expect(component.getByRole('alertdialog')).does.not.have.attr('hidden')
+            );
         });
     });
 });

@@ -3,12 +3,12 @@ const defaultDS = '6';
 
 const DSData = [
     {
-        name: '6'
+        name: '6',
     },
     {
         name: '4',
-        flags: 'ds-4'
-    }
+        flags: 'ds-4',
+    },
 ];
 
 const dsList = DSData.map((ds) => ds.name);
@@ -34,10 +34,15 @@ DSData.forEach((data) => {
 
 const requireRemap = dsList
     .filter((key) => key !== defaultDS)
-    .map((key) => assign({
-        from: dsFilenames[defaultDS],
-        to: dsFilenames[key]
-    }, { 'if-flag': dsFlags[key].join('') }));
+    .map((key) =>
+        assign(
+            {
+                from: dsFilenames[defaultDS],
+                to: dsFilenames[key],
+            },
+            { 'if-flag': dsFlags[key].join('') }
+        )
+    );
 
 requireRemap.reverse();
 
@@ -57,5 +62,14 @@ function getIndexFromFlag(flags) {
     return obj === -1 ? 0 : obj;
 }
 
-module.exports = { getDSFlags, getDSVersion, getDSFromFlag: getIndexFromFlag,
-    dsFlags, dsList, dsFilenames, requireRemap, dsIconThemes, defaultDS };
+module.exports = {
+    getDSFlags,
+    getDSVersion,
+    getDSFromFlag: getIndexFromFlag,
+    dsFlags,
+    dsList,
+    dsFilenames,
+    requireRemap,
+    dsIconThemes,
+    defaultDS,
+};

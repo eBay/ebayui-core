@@ -6,7 +6,7 @@ const mock = require('./mock');
 
 afterEach(cleanup);
 
-it('runs at 60fps with changing index', async() => {
+it('runs at 60fps with changing index', async () => {
     const input = mock.Discrete_2PerSlide_6Items;
     const { getByLabelText } = await render(template, input);
     const nextButton = getByLabelText(input.a11yNextText);
@@ -22,7 +22,7 @@ it('runs at 60fps with changing index', async() => {
         i++;
     }, 50);
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     fps.end();
     expect(fps.getAverage()).to.be.above(58);

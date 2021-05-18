@@ -59,7 +59,7 @@ function handleTextInput(e, callback) {
         38, // up arrow
         39, // right arrow
         40, // down arrow
-        91 // "meta" key (Mac "command" key)
+        91, // "meta" key (Mac "command" key)
     ];
     handleNotKeydown(keys, e, callback);
 }
@@ -87,7 +87,7 @@ function handleResize(ev) {
     window.removeEventListener('resize', handleResize);
     (window.requestAnimationFrame || window.setTimeout)(() => {
         if (handlers.length) {
-            handlers.forEach(handler => handler(ev));
+            handlers.forEach((handler) => handler(ev));
             window.addEventListener('resize', handleResize);
         }
     }, 16);
@@ -104,6 +104,6 @@ module.exports = {
     preventDefaultIfHijax,
     resizeUtil: {
         addEventListener,
-        removeEventListener
-    }
+        removeEventListener,
+    },
 };

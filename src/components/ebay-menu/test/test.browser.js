@@ -17,42 +17,62 @@ describe('typeahead functionality', () => {
     const secondItemText = input.items[1].renderBody.text;
     const thirdItemText = input.items[2].renderBody.text;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
     describe('first', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByText(firstItemText));
             await fireEvent.keyPress(component.getByText(firstItemText), { key: 'a', code: 65 });
             await fireEvent.keyPress(component.getByText(firstItemText), { key: 'l', code: 76 });
             await fireEvent.keyPress(component.getByText(firstItemText), { key: 'c', code: 67 });
         });
 
-        it('shows the correct item in focus when the user types', async() => {
-            expect(component.getByText(secondItemText).parentElement.getAttribute('tabindex')).to.equal('0');
+        it('shows the correct item in focus when the user types', async () => {
+            expect(
+                component.getByText(secondItemText).parentElement.getAttribute('tabindex')
+            ).to.equal('0');
             await fireEvent.keyPress(component.getByText(secondItemText), { key: 'd', code: 68 });
-            expect(component.getByText(thirdItemText).parentElement.getAttribute('tabindex')).to.equal('0');
+            expect(
+                component.getByText(thirdItemText).parentElement.getAttribute('tabindex')
+            ).to.equal('0');
         });
     });
 
-    it('shows first element in focus when there is no match', async() => {
+    it('shows first element in focus when there is no match', async () => {
         await fireEvent.click(component.getByText(firstItemText));
         await fireEvent.keyPress(component.getByText(firstItemText), { key: 'z', code: 90 });
-        expect(component.getByText(firstItemText).parentElement.getAttribute('tabindex')).to.equal('0');
+        expect(component.getByText(firstItemText).parentElement.getAttribute('tabindex')).to.equal(
+            '0'
+        );
     });
 
-    it('restarts the search from the beginning after it waits', async() => {
+    it('restarts the search from the beginning after it waits', async () => {
         await fireEvent.click(component.getByText(firstItemText));
         await fireEvent.keyPress(component.getByText(firstItemText), { key: 'a', code: 65 });
         await fireEvent.keyPress(component.getByText(firstItemText), { key: 'l', code: 76 });
         await fireEvent.keyPress(component.getByText(firstItemText), { key: 'b', code: 66 });
-        await new Promise(resolve => setTimeout(resolve, 100));
-        await waitFor(async() => {
-            await fireEvent.keyPress(component.getByText(firstItemText), { key: 'a', code: 65 });
-            await fireEvent.keyPress(component.getByText(firstItemText), { key: 'l', code: 76 });
-            await fireEvent.keyPress(component.getByText(firstItemText), { key: 'c', code: 67 });
-            expect(component.getByText(secondItemText).parentElement.getAttribute('tabindex')).to.equal('0');
-        }, { timeout: 1500 });
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        await waitFor(
+            async () => {
+                await fireEvent.keyPress(component.getByText(firstItemText), {
+                    key: 'a',
+                    code: 65,
+                });
+                await fireEvent.keyPress(component.getByText(firstItemText), {
+                    key: 'l',
+                    code: 76,
+                });
+                await fireEvent.keyPress(component.getByText(firstItemText), {
+                    key: 'c',
+                    code: 67,
+                });
+                expect(
+                    component.getByText(secondItemText).parentElement.getAttribute('tabindex')
+                ).to.equal('0');
+            },
+            { timeout: 1500 }
+        );
     });
 });
 
@@ -60,12 +80,12 @@ describe('given the menu is in the default state', () => {
     const input = mock.Basic_2Items;
     const firstItemText = input.items[0].renderBody.text;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
     });
 
     describe('when an item is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByText(firstItemText));
         });
 
@@ -79,14 +99,11 @@ describe('given the menu is in the default state', () => {
     });
 
     describe('when the escape key is pressed from an item', () => {
-        beforeEach(async() => {
-            await pressKey(
-                component.getByText(firstItemText),
-                {
-                    key: 'Escape',
-                    keyCode: 27
-                }
-            );
+        beforeEach(async () => {
+            await pressKey(component.getByText(firstItemText), {
+                key: 'Escape',
+                keyCode: 27,
+            });
         });
 
         it('then it emits the marko keydown event', () => {
@@ -99,14 +116,14 @@ describe('given the menu has radio items', () => {
     const input = assign({ type: 'radio' }, mock.Basic_2Items);
     let firstItem, secondItem;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
         firstItem = component.getAllByRole('menuitemradio')[0];
         secondItem = component.getAllByRole('menuitemradio')[1];
     });
 
     describe('when an item is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
         });
 
@@ -124,10 +141,10 @@ describe('given the menu has radio items', () => {
     });
 
     describe('when an action button is pressed on an item', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(firstItem, {
                 key: '(Space character)',
-                keyCode: 32
+                keyCode: 32,
             });
         });
 
@@ -145,7 +162,7 @@ describe('given the menu has radio items', () => {
     });
 
     describe('when two items are clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
             await fireEvent.click(secondItem);
         });
@@ -167,7 +184,7 @@ describe('given the menu has radio items', () => {
     });
 
     describe('when an item is clicked multiple times', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
             expect(firstItem).to.have.attr('aria-checked', 'true');
             await fireEvent.click(firstItem);
@@ -191,14 +208,14 @@ describe('given the menu has checkbox items', () => {
     const input = assign({ type: 'checkbox' }, mock.Basic_2Items);
     let firstItem, secondItem;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
         firstItem = component.getAllByRole('menuitemcheckbox')[0];
         secondItem = component.getAllByRole('menuitemcheckbox')[1];
     });
 
     describe('when two items are clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
             await fireEvent.click(secondItem);
         });
@@ -220,7 +237,7 @@ describe('given the menu has checkbox items', () => {
     });
 
     describe('when an item is checked and then unchecked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
             await fireEvent.click(firstItem);
         });

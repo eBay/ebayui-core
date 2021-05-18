@@ -1,11 +1,14 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
+const {
+    testPassThroughAttributes,
+    testEventsMigrator,
+} = require('../../../common/test-utils/server');
 const template = require('..');
 
 use(require('chai-dom'));
 
-it('renders default switch', async() => {
+it('renders default switch', async () => {
     const { getByRole } = await render(template);
     const switchControl = getByRole('switch');
     expect(switchControl).to.have.class('switch__control');
@@ -14,7 +17,7 @@ it('renders default switch', async() => {
     expect(switchControl).to.have.property('disabled', false);
 });
 
-it('renders disabled switch', async() => {
+it('renders disabled switch', async () => {
     const { getByRole } = await render(template, { disabled: true });
     const switchControl = getByRole('switch');
     expect(switchControl).to.have.property('disabled', true);
@@ -23,7 +26,7 @@ it('renders disabled switch', async() => {
 testPassThroughAttributes(template, {
     getClassAndStyleEl(component) {
         return component.getByRole('switch').parentElement;
-    }
+    },
 });
 
 testEventsMigrator(require('../migrator'), 'switch', ['change'], '../index.marko');

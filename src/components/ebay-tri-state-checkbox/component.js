@@ -1,10 +1,10 @@
 module.exports = {
     onInput(input) {
-        this.state = { checked: input.checked || "false" }
+        this.state = { checked: input.checked || 'false' };
     },
     triggerChange() {
         if (this.state.checked === 'true') {
-            this.state.checked = 'false'
+            this.state.checked = 'false';
         } else if (this.state.checked === 'false' && !this.input.skipMixed) {
             this.state.checked = 'mixed';
         } else {
@@ -25,8 +25,7 @@ module.exports = {
         this.emit(`${eventName}`, {
             originalEvent,
             value,
-            checked
+            checked,
         });
-    }
-
+    },
 };

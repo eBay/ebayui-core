@@ -68,7 +68,7 @@ module.exports = assign({}, menuUtils, {
                 this.emit(eventType, {
                     el,
                     checked,
-                    originalEvent
+                    originalEvent,
                 });
                 break;
             }
@@ -84,7 +84,7 @@ module.exports = assign({}, menuUtils, {
             focusManagement: 'focusable',
             expandOnClick: true,
             autoCollapse: true,
-            alwaysDoFocusManagement: true
+            alwaysDoFocusManagement: true,
         });
     },
 
@@ -93,5 +93,5 @@ module.exports = assign({}, menuUtils, {
             this._expander.cancelAsync();
             this._expander = undefined;
         }
-    }
+    },
 });

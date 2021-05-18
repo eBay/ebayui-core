@@ -8,17 +8,18 @@ const componentInputDir = path.join(rootDir, 'src/components');
 execSync('babel src --out-dir dist --copy-files');
 
 // create top level browser.json files to map to nested ones
-fs
-    .readdirSync(componentInputDir)
-    .filter(folder => folder.startsWith('ebay-'))
-    .forEach(component => {
+fs.readdirSync(componentInputDir)
+    .filter((folder) => folder.startsWith('ebay-'))
+    .forEach((component) => {
         fs.writeFileSync(
             path.join(rootDir, `${component}.browser.json`),
-            JSON.stringify({
-                dependencies: [
-                    `./dist/components/${component}`
-                ]
-            }, null, 4)
+            JSON.stringify(
+                {
+                    dependencies: [`./dist/components/${component}`],
+                },
+                null,
+                4
+            )
         );
     });
 

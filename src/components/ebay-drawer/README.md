@@ -7,4 +7,4 @@
     </span>
 </h1>
 
-*Deprecated* use `ebay-drawer-dialog` instead
+_Deprecated_ use `ebay-drawer-dialog` instead

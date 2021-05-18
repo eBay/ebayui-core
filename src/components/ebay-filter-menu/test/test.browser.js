@@ -16,7 +16,7 @@ describe('given the menu is in the default state', () => {
     const firstItemText = input.items[0].renderBody.text;
     let footerButton, firstItem, secondItem;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
         footerButton = component.getAllByRole('button')[0];
         firstItem = component.getAllByRole('menuitemcheckbox')[0];
@@ -24,7 +24,7 @@ describe('given the menu is in the default state', () => {
     });
 
     describe('when an item is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByText(firstItemText));
         });
 
@@ -39,7 +39,7 @@ describe('given the menu is in the default state', () => {
     });
 
     describe('when two items are clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
             await fireEvent.click(secondItem);
         });
@@ -60,7 +60,7 @@ describe('given the menu is in the default state', () => {
     });
 
     describe('when an item is checked and then unchecked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
             await fireEvent.click(firstItem);
         });
@@ -80,10 +80,10 @@ describe('given the menu is in the default state', () => {
     });
 
     describe('when an item is checked via the keyboard', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(firstItem, {
                 key: '(Space character)',
-                keyCode: 32
+                keyCode: 32,
             });
         });
 
@@ -98,7 +98,7 @@ describe('given the menu is in the default state', () => {
     });
 
     describe('when the footer button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(footerButton);
         });
 
@@ -111,7 +111,7 @@ describe('given the menu is in the default state', () => {
     describe('when an item is added via input from its parent and the new item is clicked', () => {
         const newInput = mock.Basic_3Items;
         const thirdItemText = newInput.items[2].renderBody.text;
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(newInput);
             await fireEvent.click(component.getByText(thirdItemText));
         });
@@ -131,7 +131,7 @@ describe('given the menu is in the radio state', () => {
     const firstItemText = input.items[0].renderBody.text;
     let footerButton, firstItem, secondItem;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input);
         footerButton = component.getAllByRole('button')[0];
         firstItem = component.getAllByRole('menuitemradio')[0];
@@ -139,7 +139,7 @@ describe('given the menu is in the radio state', () => {
     });
 
     describe('when an item is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByText(firstItemText));
         });
 
@@ -154,7 +154,7 @@ describe('given the menu is in the radio state', () => {
     });
 
     describe('when two items are clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
             await fireEvent.click(secondItem);
         });
@@ -175,7 +175,7 @@ describe('given the menu is in the radio state', () => {
     });
 
     describe('when an item is clicked twice', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(firstItem);
             await fireEvent.click(firstItem);
         });
@@ -195,10 +195,10 @@ describe('given the menu is in the radio state', () => {
     });
 
     describe('when an item is checked via the keyboard', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(firstItem, {
                 key: '(Space character)',
-                keyCode: 32
+                keyCode: 32,
             });
         });
 
@@ -213,7 +213,7 @@ describe('given the menu is in the radio state', () => {
     });
 
     describe('when the footer button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(footerButton);
         });
 
@@ -226,7 +226,7 @@ describe('given the menu is in the radio state', () => {
     describe('when an item is added via input from its parent and the new item is clicked', () => {
         const newInput = mock.Radio_3Items;
         const thirdItemText = newInput.items[2].renderBody.text;
-        beforeEach(async() => {
+        beforeEach(async () => {
             await component.rerender(newInput);
             await fireEvent.click(component.getByText(thirdItemText));
         });

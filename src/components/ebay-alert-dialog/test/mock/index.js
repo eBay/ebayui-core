@@ -4,11 +4,11 @@ const { createRenderBody } = require('../../../../common/test-utils/shared');
 exports.Dialog = {
     confirmText: 'confirm',
     header: {
-        renderBody: createRenderBody('title content')
+        renderBody: createRenderBody('title content'),
     },
-    renderBody: createRenderBody('body content')
+    renderBody: createRenderBody('body content'),
 };
 
 exports.Dialog_Open = assign({}, exports.Dialog, {
-    open: true
+    open: true,
 });

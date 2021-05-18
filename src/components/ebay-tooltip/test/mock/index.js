@@ -3,14 +3,14 @@ const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Basic = {
     host: {
-        renderBody: createRenderBody('<span class="tooltip__host">Host Text</span>', 'Host Text')
+        renderBody: createRenderBody('<span class="tooltip__host">Host Text</span>', 'Host Text'),
     },
     heading: {
-        renderBody: createRenderBody('Heading Text')
+        renderBody: createRenderBody('Heading Text'),
     },
     content: {
-        renderBody: createRenderBody('Content Text')
-    }
+        renderBody: createRenderBody('Content Text'),
+    },
 };
 
 exports.Pointers = [
@@ -25,10 +25,10 @@ exports.Pointers = [
     'bottom',
     'left',
     'left-bottom',
-    'left-top'
-].map(pointer => assign({}, exports.Basic, { pointer }));
+    'left-top',
+].map((pointer) => assign({}, exports.Basic, { pointer }));
 
 exports.Custom_Pointer = assign({}, exports.Basic, {
     styleTop: '20px',
-    styleLeft: '20px'
+    styleLeft: '20px',
 });

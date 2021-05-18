@@ -28,15 +28,15 @@ This notice should be used at the top of various sections to display information
 
 ## ebay-section-notice Sub-tags
 
-Tag | Required | Description
---- | --- | ---
-`<@footer>` | No | The footer content (for cta button)
+| Tag         | Required | Description                         |
+| ----------- | -------- | ----------------------------------- |
+| `<@footer>` | No       | The footer content (for cta button) |
 
 ## ebay-section-notice Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`status`  | String | No | No | "attention"  "confirmation" "information".  The default will render with grey background and no icon
-`a11y-text` | String | No | Yes | the description for the notice icon for a11y users.
-`a11y-role-description` | String | No | Yes | The roledescription to announce the component type for a11y users. Defaults to "Notice".
-`icon` | String | Yes | No | "default" (matches whatever is specified by the "status") or "none"
+| Name                    | Type   | Stateful | Required | Description                                                                                        |
+| ----------------------- | ------ | -------- | -------- | -------------------------------------------------------------------------------------------------- |
+| `status`                | String | No       | No       | "attention" "confirmation" "information". The default will render with grey background and no icon |
+| `a11y-text`             | String | No       | Yes      | the description for the notice icon for a11y users.                                                |
+| `a11y-role-description` | String | No       | Yes      | The roledescription to announce the component type for a11y users. Defaults to "Notice".           |
+| `icon`                  | String | Yes      | No       | "default" (matches whatever is specified by the "status") or "none"                                |

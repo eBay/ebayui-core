@@ -1,6 +1,9 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
+const {
+    testPassThroughAttributes,
+    testEventsMigrator,
+} = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -8,7 +11,7 @@ use(require('chai-dom'));
 
 describe('pagination', () => {
     describe('with links', () => {
-        it('renders basic version', async() => {
+        it('renders basic version', async () => {
             const input = mock.Links_6Items_No_Selected;
             const { getByRole, getByText, getByLabelText } = await render(template, input);
             const navigationEl = getByRole('navigation');
@@ -29,7 +32,7 @@ describe('pagination', () => {
             expect(nextEl).has.attr('href', input.items[input.items.length - 1].href);
             expect(nextEl).does.not.have.attr('aria-disabled');
 
-            input.items.slice(1, -1).forEach(itemData => {
+            input.items.slice(1, -1).forEach((itemData) => {
                 const itemEl = getByText(itemData.renderBody.text);
                 expect(itemEl).has.class('pagination__item');
                 expect(itemEl).has.attr('href', itemData.href);
@@ -37,7 +40,7 @@ describe('pagination', () => {
             });
         });
 
-        it('renders with a selected item', async() => {
+        it('renders with a selected item', async () => {
             const input = mock.Links_9Items_1Selected;
             const { getByText } = await render(template, input);
             input.items.slice(1, -1).forEach((itemData, i) => {
@@ -50,7 +53,7 @@ describe('pagination', () => {
             });
         });
 
-        it('renders with aria-disabled when navigation is disabled', async() => {
+        it('renders with aria-disabled when navigation is disabled', async () => {
             const input = mock.Links_1Items_Navigation_Disabled;
             const { getByLabelText } = await render(template, input);
             expect(getByLabelText(input.a11yPreviousText)).has.property('tagName', 'A');
@@ -59,7 +62,7 @@ describe('pagination', () => {
             expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
 
-        it('renders with aria-disabled when navigation items missing', async() => {
+        it('renders with aria-disabled when navigation items missing', async () => {
             const input = mock.Links_1Items_No_Navigation;
             const { getByLabelText } = await render(template, input);
             expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
@@ -68,7 +71,7 @@ describe('pagination', () => {
     });
 
     describe('with buttons', () => {
-        it('renders button version', async() => {
+        it('renders button version', async () => {
             const input = mock.Buttons_0Selected;
             const { getByText, getByLabelText } = await render(template, input);
 
@@ -79,15 +82,19 @@ describe('pagination', () => {
     });
 
     testPassThroughAttributes(template);
-    testEventsMigrator(require('../migrator'), 'pagination',
-        ['next', 'previous', 'select'], '../index.marko');
+    testEventsMigrator(
+        require('../migrator'),
+        'pagination',
+        ['next', 'previous', 'select'],
+        '../index.marko'
+    );
 });
 
 describe('pagination-item', () => {
     testPassThroughAttributes(template, {
         child: {
             name: 'items',
-            multiple: true
-        }
+            multiple: true,
+        },
     });
 });

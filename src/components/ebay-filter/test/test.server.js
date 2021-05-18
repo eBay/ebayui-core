@@ -1,13 +1,16 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes, testEventsMigrator } = require('../../../common/test-utils/server');
+const {
+    testPassThroughAttributes,
+    testEventsMigrator,
+} = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
 use(require('chai-dom'));
 
 describe('filter', () => {
-    it('renders defaults', async() => {
+    it('renders defaults', async () => {
         const input = mock.Basic;
         const { getByRole, getByText } = await render(template, input);
         const filterEl = getByRole('button');
@@ -16,19 +19,19 @@ describe('filter', () => {
         expect(filterEl).contains(getByText(input.renderBody.text));
     });
 
-    it('renders with pressed attribute', async() => {
+    it('renders with pressed attribute', async () => {
         const input = mock.Selected;
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.attr('aria-pressed', 'true');
     });
 
-    it('renders with disabled attribute', async() => {
+    it('renders with disabled attribute', async () => {
         const input = mock.Disabled;
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.attr('disabled');
     });
 
-    it('renders fake version', async() => {
+    it('renders fake version', async () => {
         const input = mock.Fake;
         const { getByText } = await render(template, input);
         const filterTextEl = getByText(input.renderBody.text);
@@ -38,23 +41,24 @@ describe('filter', () => {
         expect(filterEl).does.not.have.attr('aria-pressed');
     });
 
-    it('renders fake version with disabled attribute', async() => {
+    it('renders fake version with disabled attribute', async () => {
         const input = mock.Fake_Disabled;
         const { getByText } = await render(template, input);
         expect(getByText(input.renderBody.text).closest('a')).has.attr('disabled');
     });
 
-    it('renders fake version with pressed attribute', async() => {
+    it('renders fake version with pressed attribute', async () => {
         const input = mock.Fake_Selected;
         const { getByText } = await render(template, input);
-        expect(getByText(input.renderBody.text).closest('a'))
-            .contains(getByText(input.a11ySelectedText, { exact: false }));
+        expect(getByText(input.renderBody.text).closest('a')).contains(
+            getByText(input.a11ySelectedText, { exact: false })
+        );
     });
 
     testPassThroughAttributes(template, {
         getClassAndStyleEl(component) {
             return component.getByRole('button');
-        }
+        },
     });
     testEventsMigrator(require('../migrator'), 'filter', ['click'], '../index.marko');
 });

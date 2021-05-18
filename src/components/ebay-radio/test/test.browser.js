@@ -9,12 +9,12 @@ afterEach(cleanup);
 let component;
 
 describe('given radio button is enabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { value: 'food' });
     });
 
     describe('when radio button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByRole('radio'));
         });
 
@@ -31,16 +31,16 @@ describe('given radio button is enabled', () => {
 });
 
 describe('given radio button is disabled', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { disabled: true });
     });
 
     describe('when radio button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(component.getByRole('radio'));
         });
 
-        it('then it doesn\'t emit the event', () => {
+        it("then it doesn't emit the event", () => {
             const changeEvents = component.emitted('change');
             expect(changeEvents).has.length(0);
         });
@@ -48,7 +48,7 @@ describe('given radio button is disabled', () => {
 });
 
 describe('when native focus event is fired on radio', () => {
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, { value: 'food' });
         await fireEvent.focus(component.getByRole('radio'));
     });

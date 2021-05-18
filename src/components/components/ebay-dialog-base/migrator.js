@@ -12,7 +12,8 @@ function migratorMarko4(el, context) {
             found = true;
             child.setTagName('@header');
             context.deprecate(
-                '<h2> on dialog is not longer supported as the title tag. Use <@header> instead');
+                '<h2> on dialog is not longer supported as the title tag. Use <@header> instead'
+            );
         }
     });
 
@@ -29,7 +30,8 @@ function migratorMarko4(el, context) {
                         const message = isDefault ? `<@header>` : `<@header as="${tag}">`;
 
                         context.deprecate(
-                            `${tag} is no longer needed in dialog @header. Use ${message}Title</@header> instead`);
+                            `${tag} is no longer needed in dialog @header. Use ${message}Title</@header> instead`
+                        );
 
                         node.argument = child.argument;
                         node.params = child.params;
@@ -40,12 +42,12 @@ function migratorMarko4(el, context) {
                         if (!isDefault) {
                             node.setAttributeValue('as', context.builder.literal(tag));
                         }
-                        child.forEachChild(currentNode => child.insertSiblingBefore(currentNode));
+                        child.forEachChild((currentNode) => child.insertSiblingBefore(currentNode));
                         child.detach();
                     }
                 });
             }
-        }
+        },
     });
     walker.walk(el);
 }

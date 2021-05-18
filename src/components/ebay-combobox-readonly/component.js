@@ -35,10 +35,7 @@ module.exports = {
             this._setSelectedIndex(
                 Math.max(
                     0,
-                    Math.min(
-                        this.input.options.length - 1,
-                        this.state.selectedIndex + direction
-                    )
+                    Math.min(this.input.options.length - 1, this.state.selectedIndex + direction)
                 )
             );
         });
@@ -54,8 +51,8 @@ module.exports = {
         this.state = {
             selectedIndex: Math.max(
                 0,
-                findIndex(input.options, option => option.selected)
-            )
+                findIndex(input.options, (option) => option.selected)
+            ),
         };
     },
 
@@ -85,7 +82,7 @@ module.exports = {
             this.emit('change', {
                 index,
                 selected: [this.input.options[index].value],
-                el
+                el,
             });
         }
     },
@@ -98,7 +95,7 @@ module.exports = {
                 contentSelector: '[role="listbox"]',
                 hostSelector: '[role="combobox"]',
                 expandedClass: 'combobox--expanded',
-                simulateSpacebarClick: true
+                simulateSpacebarClick: true,
             });
 
             scrollKeyPreventer.add(this.getEl('combobox'));
@@ -114,5 +111,5 @@ module.exports = {
             scrollKeyPreventer.remove(this.getEl('combobox'));
             scrollKeyPreventer.remove(this.getEl('listbox'));
         }
-    }
+    },
 };

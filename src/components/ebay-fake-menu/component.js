@@ -15,9 +15,9 @@ module.exports = {
         const eventObj = {
             el,
             originalEvent,
-            index
+            index,
         };
 
         this.emit(`${eventType}`, eventObj);
-    }
+    },
 };

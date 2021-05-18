@@ -6,7 +6,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('section-notice', () => {
-    it('renders with status', async() => {
+    it('renders with status', async () => {
         const input = mock.Section_Info;
         const { getByLabelText, getByText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
@@ -24,7 +24,7 @@ describe('section-notice', () => {
         expect(container).has.class('section-notice--information');
     });
 
-    it('renders with light', async() => {
+    it('renders with light', async () => {
         const input = mock.Section_Light;
         const { getByText } = await render(template, input);
         const container = getByText(input.renderBody.text).parentElement;

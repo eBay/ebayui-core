@@ -35,24 +35,22 @@ module.exports = {
                     this._floatingLabel = new FloatingLabel(this.el, {
                         labelElementInlineModifier: 'legacy-floating-label__label--inline',
                         labelElementDisabledModifier: 'legacy-floating-label__label--disabled',
-                        labelElementAnimateModifier: 'legacy-floating-label__label--animate'
+                        labelElementAnimateModifier: 'legacy-floating-label__label--animate',
                     });
                     this.handleFloatingLabelInit();
                 }
             } else {
-                this
-                    .subscribeTo(window)
-                    .once('load', this._setupMakeup.bind(this));
+                this.subscribeTo(window).once('load', this._setupMakeup.bind(this));
             }
         }
-    }
+    },
 };
 
 function forwardEvent(eventName) {
-    return function(originalEvent, el) {
+    return function (originalEvent, el) {
         this.emit(eventName, {
             originalEvent,
-            value: (el || this.el.querySelector('input, textarea')).value
+            value: (el || this.el.querySelector('input, textarea')).value,
         });
     };
 }

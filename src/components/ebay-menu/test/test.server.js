@@ -8,7 +8,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('menu', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Basic_2Items;
         const { getByRole, getAllByRole, getByText } = await render(template, input);
         expect(getByRole('menu')).with.class('menu__items');
@@ -22,19 +22,19 @@ describe('menu', () => {
         });
     });
 
-    it('renders with reverse=true', async() => {
+    it('renders with reverse=true', async () => {
         const input = assign({ reverse: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu')).with.class('menu__menu--reverse');
     });
 
-    it('renders with fix-width=true', async() => {
+    it('renders with fix-width=true', async () => {
         const input = assign({ fixWidth: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu')).with.class('menu__menu--fix-width');
     });
 
-    it('renders with separators', async() => {
+    it('renders with separators', async () => {
         const input = mock.Separator_4Items;
         const { queryByText, getAllByRole, getByText } = await render(template, input);
         const menuItemEls = getAllByRole('menuitem');
@@ -54,9 +54,9 @@ describe('menu', () => {
         });
     });
 
-    ['radio', 'checkbox'].forEach(type => {
-        [true, false].forEach(checked => {
-            it(`renders with type=${type} and checked=${checked}`, async() => {
+    ['radio', 'checkbox'].forEach((type) => {
+        [true, false].forEach((checked) => {
+            it(`renders with type=${type} and checked=${checked}`, async () => {
                 const input = { type, items: [{ checked }] };
                 const { getByRole, getAllByRole } = await render(template, input);
                 const optionEls = getAllByRole(`menuitem${type}`);
@@ -73,9 +73,13 @@ describe('menu', () => {
     testUtils.testPassThroughAttributes(template, {
         child: {
             name: 'items',
-            multiple: true
-        }
+            multiple: true,
+        },
     });
-    testUtils.testEventsMigrator(require('../migrator'), 'menu',
-        ['change', 'select', 'keydown'], '../index.marko');
+    testUtils.testEventsMigrator(
+        require('../migrator'),
+        'menu',
+        ['change', 'select', 'keydown'],
+        '../index.marko'
+    );
 });

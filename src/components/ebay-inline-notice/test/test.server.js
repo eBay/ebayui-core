@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('inline-notice', () => {
-    it('renders with defaults', async() => {
+    it('renders with defaults', async () => {
         const input = mock.Inline;
         const { getByLabelText, getByText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
@@ -20,7 +20,7 @@ describe('inline-notice', () => {
         expect(content).has.class('inline-notice__main');
     });
 
-    it('renders with custom status type', async() => {
+    it('renders with custom status type', async () => {
         const input = mock.Inline_Custom_Status;
         const { getByLabelText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
@@ -28,6 +28,6 @@ describe('inline-notice', () => {
     });
 
     testPassThroughAttributes(template, {
-        input: mock.Inline
+        input: mock.Inline,
     });
 });

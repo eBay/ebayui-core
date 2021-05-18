@@ -18,7 +18,7 @@ after(() => document.body.removeChild(form));
 describe('given the readonly combobox with 3 items', () => {
     const input = mock.Combobox_3Options;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input, { container: form });
     });
 
@@ -33,10 +33,10 @@ describe('given the readonly combobox with 3 items', () => {
     });
 
     describe('when the down arrow key is pressed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(getVisibleCombobox(), {
                 key: 'ArrowDown',
-                keyCode: 40
+                keyCode: 40,
             });
         });
 
@@ -50,7 +50,9 @@ describe('given the readonly combobox with 3 items', () => {
 
             const [[changeEvent]] = changeEvents;
             expect(changeEvent).has.property('index', 1);
-            expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
+            expect(changeEvent)
+                .has.property('selected')
+                .and.is.deep.equal([input.options[1].value]);
         });
 
         it('then the native select should be set to the second option value', () => {
@@ -60,11 +62,11 @@ describe('given the readonly combobox with 3 items', () => {
         });
 
         describe('when the up arrow key is pressed', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 expect(component.emitted('change')).has.length(1);
                 await pressKey(getVisibleCombobox(), {
                     key: 'ArrowUp',
-                    keyCode: 38
+                    keyCode: 38,
                 });
             });
 
@@ -74,16 +76,18 @@ describe('given the readonly combobox with 3 items', () => {
 
                 const [[changeEvent]] = changeEvents;
                 expect(changeEvent).has.property('index', 0);
-                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[0].value]);
+                expect(changeEvent)
+                    .has.property('selected')
+                    .and.is.deep.equal([input.options[0].value]);
             });
         });
     });
 
     describe('when the up arrow key is pressed', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await pressKey(getVisibleCombobox(), {
                 key: 'ArrowUp',
-                keyCode: 38
+                keyCode: 38,
             });
         });
 
@@ -98,7 +102,7 @@ describe('given the readonly combobox with 3 items', () => {
     });
 
     describe('when the button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(getVisibleCombobox());
         });
 
@@ -111,7 +115,7 @@ describe('given the readonly combobox with 3 items', () => {
         });
 
         describe('when an option is clicked', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.click(getVisibleOptions()[1]);
             });
 
@@ -127,14 +131,16 @@ describe('given the readonly combobox with 3 items', () => {
 
                 const [[changeEvent]] = changeEvents;
                 expect(changeEvent).has.property('index', 1);
-                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
+                expect(changeEvent)
+                    .has.property('selected')
+                    .and.is.deep.equal([input.options[1].value]);
             });
 
             thenItHasCollapsed();
         });
 
         describe('when the text of an option is clicked', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.click(getVisibleOptions()[1].firstElementChild);
             });
 
@@ -150,14 +156,16 @@ describe('given the readonly combobox with 3 items', () => {
 
                 const [[changeEvent]] = changeEvents;
                 expect(changeEvent).has.property('index', 1);
-                expect(changeEvent).has.property('selected').and.is.deep.equal([input.options[1].value]);
+                expect(changeEvent)
+                    .has.property('selected')
+                    .and.is.deep.equal([input.options[1].value]);
             });
 
             thenItHasCollapsed();
         });
 
         describe('when the button is clicked again', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await fireEvent.click(getVisibleCombobox());
             });
 
@@ -165,10 +173,10 @@ describe('given the readonly combobox with 3 items', () => {
         });
 
         describe('when the escape key is pressed', () => {
-            beforeEach(async() => {
+            beforeEach(async () => {
                 await pressKey(getVisibleCombobox(), {
                     key: 'Escape',
-                    keyCode: 27
+                    keyCode: 27,
                 });
             });
 
@@ -190,7 +198,7 @@ describe('given the readonly combobox with 3 items', () => {
 describe('given the readonly combobox with 3 items that is disabled', () => {
     const input = mock.Combobox_3Options_Disabled;
 
-    beforeEach(async() => {
+    beforeEach(async () => {
         component = await render(template, input, { container: form });
     });
 
@@ -199,7 +207,7 @@ describe('given the readonly combobox with 3 items that is disabled', () => {
     });
 
     describe('when the button is clicked', () => {
-        beforeEach(async() => {
+        beforeEach(async () => {
             await fireEvent.click(getVisibleCombobox());
         });
 

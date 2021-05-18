@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('filter-menu', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Basic_2Items;
         const { getByRole, getAllByRole, getByText } = await render(template, input);
         const menuEl = getByRole('menu');
@@ -23,7 +23,7 @@ describe('filter-menu', () => {
         });
     });
 
-    it(`renders checked item`, async() => {
+    it(`renders checked item`, async () => {
         const input = { items: [{ checked: true }] };
         const { getAllByRole } = await render(template, input);
         const optionEls = getAllByRole(`menuitemcheckbox`);
@@ -36,9 +36,13 @@ describe('filter-menu', () => {
     testUtils.testPassThroughAttributes(template, {
         child: {
             name: 'items',
-            multiple: true
-        }
+            multiple: true,
+        },
     });
-    testUtils.testEventsMigrator(require('../migrator'), 'filter-menu',
-        ['change', 'footer-click', 'form-submit'], '../index.marko');
+    testUtils.testEventsMigrator(
+        require('../migrator'),
+        'filter-menu',
+        ['change', 'footer-click', 'form-submit'],
+        '../index.marko'
+    );
 });

@@ -59,9 +59,11 @@ describe('transition', () => {
         const spy = sinon.spy();
         transition({ el: transitionEl, className: 'show', waitFor: [transitionEl] }, spy);
         transitionEl.removeAttribute('hidden');
-        transitionEl.addEventListener('transitionend', () => setTimeout(() => {
-            expect(spy.callCount).to.equal(1);
-            done();
-        }));
+        transitionEl.addEventListener('transitionend', () =>
+            setTimeout(() => {
+                expect(spy.callCount).to.equal(1);
+                done();
+            })
+        );
     });
 });

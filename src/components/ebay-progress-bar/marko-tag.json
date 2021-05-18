@@ -1,12 +1,12 @@
 {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-        "targetProperty": null,
-        "type": "expression"
-    },
-    "@html-attributes": "expression",
-    "@role": "never",
-    "@value": "#html-value",
-    "@min": "#html-min",
-    "@max": "#html-max"
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@role": "never",
+  "@value": "#html-value",
+  "@min": "#html-min",
+  "@max": "#html-max"
 }

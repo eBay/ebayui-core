@@ -45,29 +45,29 @@ When the combobox should not filter the listbox options list:
 
 ### ebay-combobox Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`name` | String | No | Yes | used for the `name` attribute of the `<input>` element
-`borderless` | Boolean | No | No | whether the input has borders
-`disabled` | Boolean | Yes | No | sets the disabled attribute of the input
-`expanded` | Boolean | Yes | No | sets whether the listbox is expanded
-`autocomplete` | String | Yes | No | default is `none`; available values are `none` or `list`. For list, will automatically filter results while typing.
-`list-selection` | String | Yes | No | default is `automatic`; available values are `automatic`, `manual`. If set to automatic will automatically fill in the input with the currently highlighted item when using the up/down keys.
-`roledescription` | String | No | No | The role description for accessibility. Default text is set and will be in english. Pass this to override for different locales
-`floating-label` | String | No | No | The label to show on the combobox which moves up when focused
+| Name              | Type    | Stateful | Required | Description                                                                                                                                                                                   |
+| ----------------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`            | String  | No       | Yes      | used for the `name` attribute of the `<input>` element                                                                                                                                        |
+| `borderless`      | Boolean | No       | No       | whether the input has borders                                                                                                                                                                 |
+| `disabled`        | Boolean | Yes      | No       | sets the disabled attribute of the input                                                                                                                                                      |
+| `expanded`        | Boolean | Yes      | No       | sets whether the listbox is expanded                                                                                                                                                          |
+| `autocomplete`    | String  | Yes      | No       | default is `none`; available values are `none` or `list`. For list, will automatically filter results while typing.                                                                           |
+| `list-selection`  | String  | Yes      | No       | default is `automatic`; available values are `automatic`, `manual`. If set to automatic will automatically fill in the input with the currently highlighted item when using the up/down keys. |
+| `roledescription` | String  | No       | No       | The role description for accessibility. Default text is set and will be in english. Pass this to override for different locales                                                               |
+| `floating-label`  | String  | No       | No       | The label to show on the combobox which moves up when focused                                                                                                                                 |
 
 Note: For this component, `class` is applied to the root tag, while all other HTML attributes are applied to the `input` tag.
 
 ### ebay-combobox Events
 
-Event | Data |  Description
---- | --- | ---
-`collapse` | | collapsed content
-`expand` | | expanded content
-`change` | `{ el, index, selected }` | same as the `onChange` event, which fires on blur
-`input-change` | `{ el, index, selected }` | same as the `onInput` event, which fires with every keypress
-`select` | `{ el, index, selected }` | similar to a `<select>`, which fires when an option is clicked or selected
-`floating-label-init` | `{ el, index, selected }` | when floating label finishes initializing
+| Event                 | Data                      | Description                                                                |
+| --------------------- | ------------------------- | -------------------------------------------------------------------------- |
+| `collapse`            |                           | collapsed content                                                          |
+| `expand`              |                           | expanded content                                                           |
+| `change`              | `{ el, index, selected }` | same as the `onChange` event, which fires on blur                          |
+| `input-change`        | `{ el, index, selected }` | same as the `onInput` event, which fires with every keypress               |
+| `select`              | `{ el, index, selected }` | similar to a `<select>`, which fires when an option is clicked or selected |
+| `floating-label-init` | `{ el, index, selected }` | when floating label finishes initializing                                  |
 
 ## @option Tag
 
@@ -79,7 +79,7 @@ Event | Data |  Description
 
 ### @option Attributes
 
-Name | Type | Stateful | Required | Description
---- | --- | --- | --- | ---
-`text` | String | No | No | string to use in the option
-`sticky` | Boolean | No | No | If true, the option will always be shown even if it doesn't match the filter
+| Name     | Type    | Stateful | Required | Description                                                                  |
+| -------- | ------- | -------- | -------- | ---------------------------------------------------------------------------- |
+| `text`   | String  | No       | No       | string to use in the option                                                  |
+| `sticky` | Boolean | No       | No       | If true, the option will always be shown even if it doesn't match the filter |

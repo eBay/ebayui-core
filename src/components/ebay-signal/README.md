@@ -20,6 +20,6 @@ There are four signal statuses, each corresponding to a specific color: trustwor
 
 ## Attributes
 
-| Name     | Type | Stateful | Required | Description                      |
-| -------- | ---- | -------- | -------- | -------------------------------- |
+| Name     | Type | Stateful | Required | Description                        |
+| -------- | ---- | -------- | -------- | ---------------------------------- |
 | `status` | Enum | No       | Yes      | Status of signal; determines color |

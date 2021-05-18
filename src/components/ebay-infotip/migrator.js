@@ -1,4 +1,3 @@
-
 const { createIconFromAttribute, setAttributeIfPresent } = require('../../common/migrators');
 
 function migratorMarko4(el, context) {

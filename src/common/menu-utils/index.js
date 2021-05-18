@@ -11,7 +11,7 @@ function getCheckedValues() {
     }
     return this.input.items
         .filter((item, index) => this.state.checkedItems[index])
-        .map(item => item.value);
+        .map((item) => item.value);
 }
 
 function getCheckedIndexes() {
@@ -20,18 +20,18 @@ function getCheckedIndexes() {
     }
     return this.input.items
         .map((item, i) => this.state.checkedItems[i] && i)
-        .filter(item => item !== false && typeof item !== 'undefined');
+        .filter((item) => item !== false && typeof item !== 'undefined');
 }
 
 function getInputState(input) {
     this.type = input.type;
     if (this.isRadio()) {
         return {
-            checkedIndex: findIndex(input.items || [], item => item.checked || false)
+            checkedIndex: findIndex(input.items || [], (item) => item.checked || false),
         };
     }
     return {
-        checkedItems: (input.items || []).map(item => item.checked || false)
+        checkedItems: (input.items || []).map((item) => item.checked || false),
     };
 }
 
@@ -47,7 +47,9 @@ function toggleChecked(index) {
         if (this.isRadio()) {
             this.state.checkedIndex = index[0];
         } else {
-            this.state.checkedItems = this.state.checkedItems.map((item, i) => index.indexOf(i) !== -1);
+            this.state.checkedItems = this.state.checkedItems.map(
+                (item, i) => index.indexOf(i) !== -1
+            );
         }
         return;
     }
@@ -66,5 +68,5 @@ module.exports = {
     isChecked,
     getCheckedIndexes,
     getCheckedValues,
-    toggleChecked
+    toggleChecked,
 };

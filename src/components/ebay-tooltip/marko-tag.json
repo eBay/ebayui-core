@@ -1,8 +1,6 @@
 {
   "migrator": "./migrator",
-  "attribute-groups": [
-    "html-attributes"
-  ],
+  "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -30,9 +28,7 @@
   "@style-bottom": "string",
   "@no-hover": "boolean",
   "@heading <heading>": {
-    "attribute-groups": [
-      "html-attributes"
-    ],
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -40,9 +36,7 @@
     "@html-attributes": "expression"
   },
   "@host <host>": {
-    "attribute-groups": [
-      "html-attributes"
-    ],
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -50,9 +44,7 @@
     "@html-attributes": "expression"
   },
   "@content <content>": {
-    "attribute-groups": [
-      "html-attributes"
-    ],
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"

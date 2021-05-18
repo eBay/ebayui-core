@@ -1,7 +1,5 @@
 {
-  "attribute-groups": [
-    "html-attributes"
-  ],
+  "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,
     "type": "expression"
@@ -13,9 +11,7 @@
   "@hidden": "never",
   "@footer": "never",
   "@header <header>": {
-    "attribute-groups": [
-      "html-attributes"
-    ],
+    "attribute-groups": ["html-attributes"],
     "@*": {
       "targetProperty": null,
       "type": "expression"

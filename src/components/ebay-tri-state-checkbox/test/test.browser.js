@@ -28,8 +28,12 @@ describe('given tri-state-checkbox button is enabled', () => {
         });
 
         it('then it is mixed', async () => {
-            await waitFor(() => expect(component.getByRole('checkbox')).has.attribute('aria-checked', 'mixed'));
-            await waitFor(() => expect(component.getByRole('checkbox')).has.property('checked', false));
+            await waitFor(() =>
+                expect(component.getByRole('checkbox')).has.attribute('aria-checked', 'mixed')
+            );
+            await waitFor(() =>
+                expect(component.getByRole('checkbox')).has.property('checked', false)
+            );
         });
     });
 });
@@ -54,8 +58,12 @@ describe('given tri-state-checkbox button is enabled in mixed state', () => {
         });
 
         it('then it is mixed', async () => {
-            await waitFor(() => expect(component.getByRole('checkbox')).has.attribute('aria-checked', 'true'));
-            await waitFor(() => expect(component.getByRole('checkbox')).has.property('checked', true));
+            await waitFor(() =>
+                expect(component.getByRole('checkbox')).has.attribute('aria-checked', 'true')
+            );
+            await waitFor(() =>
+                expect(component.getByRole('checkbox')).has.property('checked', true)
+            );
         });
     });
 });

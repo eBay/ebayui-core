@@ -29,7 +29,7 @@ module.exports = ({ el, className, waitFor }, cb) => {
         classList.remove(initClass);
 
         if (pending) {
-            waitFor.forEach(child => child.addEventListener(TRANSITION_END, listener));
+            waitFor.forEach((child) => child.addEventListener(TRANSITION_END, listener));
         } else {
             cancel();
 

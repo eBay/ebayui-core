@@ -42,7 +42,8 @@ describe('ebay-dialog', () => {
 
         it('migrates dialog with events to default', () => {
             // eslint-disable-next-line max-len
-            const tagString = '<ebay-dialog on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
+            const tagString =
+                '<ebay-dialog on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
             const { el } = runTransformer(migrator, tagString, componentPath);
             expect(el.tagName).to.equal('ebay-lightbox-dialog');
             expect(el.hasAttribute('on-open')).equals(true);
@@ -51,7 +52,8 @@ describe('ebay-dialog', () => {
 
         it('migrates dialog type=full with events to fullscreen-dialog', () => {
             // eslint-disable-next-line max-len
-            const tagString = '<ebay-dialog type="full" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
+            const tagString =
+                '<ebay-dialog type="full" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
             const { el } = runTransformer(migrator, tagString, componentPath);
             expect(el.tagName).to.equal('ebay-fullscreen-dialog');
             expect(el.hasAttribute('on-open')).equals(true);
@@ -60,7 +62,8 @@ describe('ebay-dialog', () => {
 
         it('migrates dialog type=left with events to panel-dialog', () => {
             // eslint-disable-next-line max-len
-            const tagString = '<ebay-dialog type="left" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
+            const tagString =
+                '<ebay-dialog type="left" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
             const { el } = runTransformer(migrator, tagString, componentPath);
             expect(el.tagName).to.equal('ebay-panel-dialog');
             expect(el.hasAttribute('on-open')).equals(true);
@@ -69,7 +72,8 @@ describe('ebay-dialog', () => {
 
         it('migrates dialog type=right with events to panel-dialog', () => {
             // eslint-disable-next-line max-len
-            const tagString = '<ebay-dialog type="right" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
+            const tagString =
+                '<ebay-dialog type="right" on-dialog-show(() => {}) on-dialog-close(() => {})>Test</ebay-dialog>';
             const { el } = runTransformer(migrator, tagString, componentPath);
             expect(el.tagName).to.equal('ebay-panel-dialog');
             expect(el.hasAttribute('on-open')).equals(true);

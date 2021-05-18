@@ -7,7 +7,7 @@ const mock = require('./mock');
 use(require('chai-dom'));
 
 describe('dialog', () => {
-    it('renders basic version', async() => {
+    it('renders basic version', async () => {
         const input = mock.Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
         const dialog = getByRole('dialog', { hidden: true });
@@ -18,7 +18,7 @@ describe('dialog', () => {
         expect(getByText(input.renderBody.text)).has.class('panel-dialog__main');
     });
 
-    it('renders with header and footer', async() => {
+    it('renders with header and footer', async () => {
         const input = mock.Header_Footer_Dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
         const dialog = getByRole('dialog', { hidden: true });
@@ -27,17 +27,19 @@ describe('dialog', () => {
         expect(dialog).has.class('panel-dialog');
         expect(getByLabelText(input.a11yCloseText)).has.class('panel-dialog__close');
         expect(getByText(input.renderBody.text)).has.class('panel-dialog__main');
-        expect(getByText(input.header.renderBody.text).parentElement).has.class('panel-dialog__header');
+        expect(getByText(input.header.renderBody.text).parentElement).has.class(
+            'panel-dialog__header'
+        );
         expect(getByText(input.footer.renderBody.text)).has.class('panel-dialog__footer');
     });
 
-    it('renders in open state', async() => {
+    it('renders in open state', async () => {
         const input = mock.Dialog_Open;
         const { getByRole } = await render(template, input);
         expect(getByRole('dialog')).does.not.have.attr('hidden');
     });
 
-    it(`renders with end type`, async() => {
+    it(`renders with end type`, async () => {
         const { getByRole } = await render(template, { position: 'end', open: true });
         const $dialog = getByRole('dialog');
         const $window = $dialog.children[0];
