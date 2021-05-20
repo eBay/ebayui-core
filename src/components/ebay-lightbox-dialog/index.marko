@@ -2,6 +2,7 @@ $ var isMini = input.variant === "_mini";
 $ var buttonPosition = (isMini && "bottom") || input.buttonPosition || 'right';
 
 <ebay-dialog-base
+    ...input
     open=input.open
     class-prefix="lightbox-dialog"
     on-open("emit", "open")
@@ -11,6 +12,5 @@ $ var buttonPosition = (isMini && "bottom") || input.buttonPosition || 'right';
     window-class=[
         "lightbox-dialog__window--fade",
         isMini && "lightbox-dialog__window--mini"
-    ]
-    ...input>
+    ]>
 </ebay-dialog-base>
