@@ -236,9 +236,10 @@ module.exports = {
     /**
      * Releases the trap before each render and on destroy so
      * that Marko can update normally without the inserted dom nodes.
+     * Only releases on isModal dialogs
      */
     _release() {
-        if (this.isTrapped) {
+        if (this.isTrapped && this.input.isModal) {
             this.restoreTrap = this.state.open;
             screenReaderTrap.untrap(this.el);
             keyboardTrap.untrap(this.windowEl);
