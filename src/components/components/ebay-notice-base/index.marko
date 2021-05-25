@@ -12,13 +12,14 @@ static var ignoredAttributes = [
     "title",
     "footer",
     "type",
-    "mainRoot"
+    "mainRoot",
+    "noA11yLabel"
 ];
 
 $ var status = input.status;
 $ var prefixClass = input.prefixClass;
 <${input.root || "section"}
-    aria-labelledby:scoped="status"
+    aria-labelledby=(!input.noA11yLabel && component.elId('status'))
     class=[prefixClass, input.class]
     ...processHtmlAttributes(input, ignoredAttributes)>
     <${input.headerRoot || "div"} class=`${prefixClass}__header` id:scoped="status"
