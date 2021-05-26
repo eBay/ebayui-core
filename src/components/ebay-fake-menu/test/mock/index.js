@@ -15,6 +15,23 @@ exports.Basic_3Items = assign({}, exports.Basic_2Items, {
     })),
 });
 
+exports.A11y_Current_True = assign({}, exports.Basic_2Items, {
+    items: getNItems(3, (i) => {
+        if (i === 0) {
+            return {
+                current: 'true',
+                itemMatchesUrl: false,
+                value: `item ${i}`,
+                renderBody: createRenderBody(`Item text ${i}`),
+            };
+        }
+        return {
+            value: `item ${i}`,
+            renderBody: createRenderBody(`Item text ${i}`),
+        };
+    }),
+});
+
 exports.Separator_4Items = assign({}, exports.Basic_2Items, {
     items: getNItems(4, (i) => ({
         value: `item ${i}`,
