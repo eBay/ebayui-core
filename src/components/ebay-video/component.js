@@ -34,12 +34,30 @@ module.exports = {
         this.video.requestFullscreen();
     },
 
+    takeAction() {
+        switch (this.state.action) {
+            case 'play':
+                this.video.play();
+                break;
+            case 'pause':
+                this.video.pause();
+                break;
+            default:
+        }
+    },
+
     onInput(input) {
         this.state.width = input.width;
+        // Check if action is changed
+        if (this.state.action !== input.action) {
+            this.state.action = input.action;
+            this.takeAction();
+        }
     },
 
     onCreate() {
         this.state = {
+            action: '',
             showLoading: false,
             isLoaded: true,
             failed: false,
