@@ -1,0 +1,21 @@
+class {
+    onCreate() {
+        this.state = {
+            action: ''
+        }
+    }
+    togglePlay() {
+        this.state.action = 'play';
+    }
+    togglePause() {
+        this.state.action = 'pause';
+    }
+}
+
+<div>
+    <ebay-button on-click('togglePlay')>Play</ebay-button>
+    <ebay-button on-click('togglePause')>Pause</ebay-button>
+</div>
+<ebay-video width="600" height="400" action=state.action>
+    <@source src="https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/playlist.mpd"/>
+</ebay-video>
