@@ -27,9 +27,9 @@ describe('notice-icon', () => {
         const { getByLabelText } = await render(template, input);
 
         const status = getByLabelText(input.a11yText).parentElement;
-        const containerUsingLabel = status.closest(`[aria-labelledby="${status.id}"]`);
-        expect(containerUsingLabel).has.class(input.class);
-        expect(containerUsingLabel).has.tagName('DIV');
+        expect(status.parentElement).not.to.have.property('aria-labelledby');
+        expect(status.parentElement).has.class(input.class);
+        expect(status.parentElement).has.tagName('DIV');
 
         expect(getByLabelText(input.a11yText)).has.class('icon--information-filled');
         expect(getByLabelText(input.a11yText)).has.class('notice-class');
