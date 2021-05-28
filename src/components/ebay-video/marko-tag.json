@@ -20,5 +20,13 @@
     },
     "@src": "string",
     "@type": "string"
+  },
+  "@tracks <track>[]": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@src": "string",
+    "@type": "string"
   }
 }
