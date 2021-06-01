@@ -1,9 +1,7 @@
-import processHtmlAttributes from "../../common/html-attributes";
-
 $ var confirmId = component.getElId("confirm-dialog-confirm");
 $ var mainId = component.getElId("confirm-dialog-main");
-
 <ebay-dialog-base
+    ...input
     variant="_confirm"
     open=input.open
     on-open("emit", "open")
@@ -14,9 +12,7 @@ $ var mainId = component.getElId("confirm-dialog-main");
     class=[input.class, "lightbox-dialog--mask-fade"]
     window-class=["lightbox-dialog__compact-window--fade"]
     window-type="compact"
-    button-position="hidden"
-    ...input
-    >
+    button-position="hidden">
     <@footer>
         <ebay-button on-click("emit", "reject") class="lightbox-dialog__reject">
             ${input.rejectText}
