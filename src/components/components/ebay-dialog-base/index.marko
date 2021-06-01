@@ -21,7 +21,12 @@ static var ignoredAttributes = [
     "ariaLabelledby",
     "buttonPosition",
     "useHiddenProperty",
-    "position"
+    "position",
+    "variant",
+    "confirmText",
+    "rejectText",
+    "noHandle",
+    "top"
 ];
 
 static var ignoredHeaderAttributes = ["id", "as"];
@@ -40,11 +45,11 @@ $ var header = input.header;
     <if(buttonPosition !== "hidden")>
         <button
             key="close"
-            class=['icon-btn', `${input.classPrefix}__close`]
+            class=["icon-btn", `${input.classPrefix}__close`]
             type="button"
             aria-label=input.a11yCloseText
             onClick("handleCloseButtonClick")>
-            <if (input.closeButton)>
+            <if(input.closeButton)>
                 <${input.closeButton}/>
             </if>
             <else>
@@ -53,10 +58,12 @@ $ var header = input.header;
         </button>
     </if>
 </macro>
-
 <${baseEl}
     ...processHtmlAttributes(input, ignoredAttributes)
-    aria-labelledby=(input.ariaLabelledby || (input.header && component.getElId("dialog-title")))
+    aria-labelledby=(
+        input.ariaLabelledby ||
+        (input.header && component.getElId("dialog-title"))
+    )
     aria-modal="true"
     role=(input.role || "dialog")
     class=[input.classPrefix, input.class]
@@ -68,12 +75,12 @@ $ var header = input.header;
         <subscribe to=document on-keydown("handleKeydown")/>
     </if>
     <if(!state.open && isBrowser)>
-        <subscribe to=window on-click("trackLastClick") />
+        <subscribe to=window on-click("trackLastClick")/>
     </if>
     <div
         key="window"
-        onMouseEnter('emit', 'mouseEnter')
-        onMouseLeave('emit', 'mouseLeave')
+        onMouseEnter("emit", "mouseEnter")
+        onMouseLeave("emit", "mouseLeave")
         class=[
             input.windowType
                 ? `${input.classPrefix}__${input.windowType}-window`
@@ -96,14 +103,18 @@ $ var header = input.header;
             )>
                 <header-content/>
             </if>
-        </>
-        <div id=input.mainId class=`${input.classPrefix}__main`  key="body" onScroll("handleScroll")>
+        </div>
+        <div
+            id=input.mainId
+            class=`${input.classPrefix}__main`
+            key="body"
+            onScroll("handleScroll")>
             <${input.renderBody}/>
         </div>
         <if(input.action)>
-                <span class=`${input.classPrefix}__actions`>
-                    <${input.action && input.action.renderBody}/>
-                </span>
+            <span class=`${input.classPrefix}__actions`>
+                <${input.action && input.action.renderBody}/>
+            </span>
         </if>
         <if(input.footer || buttonPosition === "bottom")>
             <div class=`${input.classPrefix}__footer`>

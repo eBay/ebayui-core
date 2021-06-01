@@ -1,8 +1,7 @@
-import processHtmlAttributes from "../../common/html-attributes"
-
 $ var confirmId = component.getElId("alert-dialog-confirm");
 $ var mainId = component.getElId("alert-dialog-main");
 <ebay-dialog-base
+    ...input
     role="alertdialog"
     open=input.open
     classPrefix="lightbox-dialog"
@@ -14,8 +13,7 @@ $ var mainId = component.getElId("alert-dialog-main");
     buttonPosition="hidden"
     focus=confirmId
     class=[input.class, "lightbox-dialog--mask-fade"]
-    window-class=["lightbox-dialog__compact-window--fade"]
-    ...input>
+    window-class=["lightbox-dialog__compact-window--fade"]>
     <@footer>
         <ebay-button
             priority="primary"
