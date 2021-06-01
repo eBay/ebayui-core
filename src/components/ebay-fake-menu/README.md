@@ -45,15 +45,16 @@
 
 ### @item Attributes
 
-| Name                          | Type    | Stateful | Required                               | Description                                                                 |
-| ----------------------------- | ------- | -------- | -------------------------------------- | --------------------------------------------------------------------------- |
-| `href` (fake menu)            | String  | No       | No                                     | for link that looks like a menu-item. If set to null then will disable item |
-| `type` (fake menu)            | String  | No       | No                                     | Set to "button" for fake menu-item `<button>`                               |
-| `value` (radio or checkbox)   | String  | No       | No                                     | the value to use with event responses for for the `checked` array           |
-| `checked` (radio or checkbox) | Boolean | No       | No                                     | whether or not the item is checked                                          |
-| `current` (fake menu)         | Boolean | No       | No                                     | whether or not the href is the current href of the page                     |
-| `badge-number`                | Number  | No       | No                                     | used as the number to be placed in the badge                                |
-| `badge-aria-label`            | String  | No       | Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge                            |
+| Name                          | Type    | Stateful | Required                               | Description                                                                                                                                                                |
+| ----------------------------- | ------- | -------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `href`                        | String  | No       | No                                     | for link that looks like a menu-item. If set to null then will disable item                                                                                                |
+| `type`                        | String  | No       | No                                     | Set to "button" for fake menu-item `<button>`                                                                                                                              |
+| `value` (radio or checkbox)   | String  | No       | No                                     | the value to use with event responses for for the `checked` array                                                                                                          |
+| `checked` (radio or checkbox) | Boolean | No       | No                                     | whether or not the item is checked                                                                                                                                         |
+| `current`                     | Boolean | No       | No                                     | whether or not the href is the current href of the page                                                                                                                    |
+| `itemMatchesUrl`              | Boolean | No       | No                                     | used in conjunction with `current` -- This determines whether aria-current will be `'page'` or `'true'` -- Defaults to `true` which gives aria-current a value of `'page'` |
+| `badge-number`                | Number  | No       | No                                     | used as the number to be placed in the badge                                                                                                                               |
+| `badge-aria-label`            | String  | No       | Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge                                                                                                                           |
 
 ## ebay-menu-separator
 

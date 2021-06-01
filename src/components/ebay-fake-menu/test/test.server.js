@@ -50,6 +50,15 @@ describe('fake-menu', () => {
         });
     });
 
+    it('renders with aria-current=true', async () => {
+        const input = mock.A11y_Current_True;
+        const { getByText } = await render(template, input);
+        const item = input.items[0];
+        const container = getByText(item.renderBody.text);
+        expect(container.parentElement).to.have.attribute('aria-current');
+        expect(container.parentElement).attr('aria-current', 'true');
+    });
+
     testUtils.testPassThroughAttributes(template);
     testUtils.testPassThroughAttributes(template, {
         child: {

@@ -41,6 +41,7 @@ $ var baseClass = input.classPrefix || "fake-menu";
         id:scoped="menu">
         <for|item, index| of=input.items>
             $ var isDisabled = !item.href || item.disabled;
+            $ var defaultAriaCurrent = item.itemMatchesUrl === false ? 'true' : 'page';
             <if (item._isSeparator)>
                 <li>
                     <hr class=`${baseClass}__separator` role="separator" />
@@ -52,7 +53,7 @@ $ var baseClass = input.classPrefix || "fake-menu";
                         ...processHtmlAttributes(item, itemIgnoredAttributes)
                         class=[`${baseClass}__item`, item.class]
                         style=item.style
-                        aria-current=(item.current ? "page" : false)
+                        aria-current=(item.current ? defaultAriaCurrent : false)
                         aria-disabled=(item.disabled && "true")
                         href=(item.disabled ? null : item.href)
                         onKeydown("handleItemKeydown", index)
