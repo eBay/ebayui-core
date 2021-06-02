@@ -26,6 +26,7 @@ For resizing, `ebay-video` supports fixed width or variable width. If no width i
 | `a11y-load-text` | String | No       | Yes      | The accessibility text for the loading spinner. Default is "Loading"                                                        |
 | `a11y-play-text` | String | No       | Yes      | The accessibility text for the play button. Default is "Click to play"                                                      |
 | `error-text`     | String | No       | Yes      | The content for error when an either the library or video cannot load. Default is "An error has occurred"                   |
+| `report-text`    | String | No       | Yes      | The text for report button. Default is "Report"                                                                             |
 
 ## @source Tag (required)
 

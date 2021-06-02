@@ -143,7 +143,12 @@ module.exports = {
         if (typeof shaka !== 'undefined' && this.player) {
             const { Report } = getElements(this);
             // eslint-disable-next-line no-undef,new-cap
-            this.ui = new shaka.ui.Overlay(this.player, this.getEl('container'), this.video);
+            this.ui = new shaka.ui.Overlay(
+                this.player,
+                this.getEl('container'),
+                this.video,
+                this.input.reportText
+            );
 
             // eslint-disable-next-line no-undef,new-cap
             shaka.ui.OverflowMenu.registerElement('report', new Report.Factory());
