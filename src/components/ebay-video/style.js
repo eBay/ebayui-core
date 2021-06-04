@@ -1,1 +1,1 @@
-require('./style.less');
+require('@ebay/skin/video');
