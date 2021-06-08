@@ -29,11 +29,11 @@ static var ignoredAttributes = [
         on-playing(input.playView === "fullscreen" && "handleFullscreen")
         poster=input.thumbnail
         ...processHtmlAttributes(input, ignoredAttributes)>
-        <for|src| of=input.sources>
+        <for|src| of=(input.sources || [])>
             <source ...src/>
         </for>
-        <for|track| of=input.tack>
-            <track ...src/>
+        <for|track| of=(input.tack || [])>
+            <track ...track/>
         </for>
     </video>
     <div class=[
