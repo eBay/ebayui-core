@@ -1,0 +1,25 @@
+<style>
+    .demo1-container {
+        background: #fff;
+        border: 1px solid #eee;
+    }
+    .demo2-container {
+        max-width: 320px;
+        height: 500px;
+        padding: 8px;
+        background: #fff;
+        border: 1px solid #eee;
+    }
+</style>
+
+<div class=(input.window !== "fullscreen" ? "demo1-container" : "demo2-container")>
+    <ebay-window-notice window=input.window a11y-text=input.a11yText icon=input.icon>
+        <p>
+            You'll get a confirmation email soon. The rest of your items are now ready to checkout.
+        </p>
+        <@title>Your first order has been placed!</@title>
+        <@footer>
+            <ebay-button priority="none" size="large">Continue</ebay-button>
+        </@footer>
+    </ebay-window-notice>
+</div>

@@ -51,7 +51,7 @@ $ var prefixClass = input.prefixClass;
             <${input.title.as || "h2"}
                 ...input.title
                 class=[`${prefixClass}__title`, input.title.class]>
-                <${input.title.renderBody}/>
+                <${input.title}/>
             </>
         </if>
         <${input.renderBody}/>
