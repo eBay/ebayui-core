@@ -500,7 +500,7 @@ module.exports = {
             state.itemsPerSlide = itemsPerSlide - state.peek;
             state.classes.push('carousel--slides');
 
-            if (!state.peek && !input.autoplay) {
+            if (!state.peek && !input.autoplay && !input.noPeek) {
                 state.peek = 0.1;
             }
 
