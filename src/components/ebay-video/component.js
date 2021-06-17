@@ -1,6 +1,11 @@
 const loader = require('./loader');
+const { getElements } = require('./elements');
 const versions = require('./versions.json');
 const MAX_RETRIES = 3;
+
+const videoConfig = {
+    overflowMenuButtons: ['captions', 'report'],
+};
 
 module.exports = {
     reattach(callback) {
@@ -34,12 +39,30 @@ module.exports = {
         this.video.requestFullscreen();
     },
 
+    takeAction() {
+        switch (this.state.action) {
+            case 'play':
+                this.video.play();
+                break;
+            case 'pause':
+                this.video.pause();
+                break;
+            default:
+        }
+    },
+
     onInput(input) {
         this.state.width = input.width;
+        // Check if action is changed
+        if (this.state.action !== input.action) {
+            this.state.action = input.action;
+            this.takeAction();
+        }
     },
 
     onCreate() {
         this.state = {
+            action: '',
             showLoading: false,
             isLoaded: true,
             failed: false,
@@ -115,20 +138,43 @@ module.exports = {
             });
     },
 
+    _attach() {
+        // eslint-disable-next-line no-undef,new-cap
+        if (typeof shaka !== 'undefined' && this.player) {
+            const { Report } = getElements(this);
+            // eslint-disable-next-line no-undef,new-cap
+            this.ui = new shaka.ui.Overlay(
+                this.player,
+                this.getEl('container'),
+                this.video,
+                this.input.reportText
+            );
+
+            // eslint-disable-next-line no-undef,new-cap
+            shaka.ui.OverflowMenu.registerElement('report', new Report.Factory());
+
+            this.ui.configure(videoConfig);
+        }
+    },
+
     _loadCDN() {
         const version = this.input.cdnVersion || versions.shaka;
-        const cdnUrl =
-            this.input.cdnUrl ||
-            `https://ir.ebaystatic.com/cr/v/c1/ebayui/shaka/v${version}/shaka-player.compiled.js`;
-        loader(cdnUrl)
+        const cdnBaseUrl = `https://ir.ebaystatic.com/cr/v/c1/ebayui/shaka/v${version}/`;
+        const cdnUrl = this.input.cdnUrl || `${cdnBaseUrl}/shaka-player.ui.js`;
+        const cssUrl = this.input.cssUrl || `${cdnBaseUrl}/controls.css`;
+
+        loader(cdnUrl, cssUrl)
             .then(() => {
                 // eslint-disable-next-line no-undef,new-cap
                 shaka.polyfill.installAll();
 
                 this.video = this.getEl('video');
+
                 this.reattach(() => {
                     // eslint-disable-next-line no-undef,new-cap
                     this.player = new shaka.Player(this.video);
+                    this._attach();
+
                     this._loadSrc();
                 });
             })
@@ -146,7 +192,13 @@ module.exports = {
     },
 
     onMount() {
+        this.video = this.getEl('video');
+
         this._loadVideo();
+    },
+
+    onUpdate() {
+        this._attach();
     },
 
     onDestroy() {

@@ -16,6 +16,7 @@
       "targetProperty": null,
       "type": "expression"
     },
+    "@item-matches-url": "boolean",
     "@html-attributes": "expression",
     "@class": "string",
     "@style": "string",

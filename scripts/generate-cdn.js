@@ -18,12 +18,15 @@ function updateJsonFile(version) {
 }
 
 function getShakaUrl(version) {
-    return `https://ajax.googleapis.com/ajax/libs/shaka-player/${version}/shaka-player.compiled.js`;
+    return `https://ajax.googleapis.com/ajax/libs/shaka-player/${version}/shaka-player.ui.js`;
+}
+function getShakaCSSUrl(version) {
+    return `https://ajax.googleapis.com/ajax/libs/shaka-player/${version}/controls.css`;
 }
 
-function download(url, dir) {
+function download(url, dir, fileName) {
     return new Promise((resolve, reject) => {
-        const file = fs.createWriteStream(`${dir}/shaka-player.compiled.js`);
+        const file = fs.createWriteStream(`${dir}/${fileName}`);
         const req = https.get(url, (response) => {
             response.pipe(file);
         });
@@ -48,10 +51,11 @@ async function run() {
         rimraf.sync(cdnDir);
         updateJsonFile(version);
         await fs.promises.mkdir(playerPath, { recursive: true });
-        await download(getShakaUrl(version), playerPath);
+        await download(getShakaUrl(version), playerPath, 'shaka-player.ui.js');
+        await download(getShakaCSSUrl(version), playerPath, 'controls.css');
         // Remove define
         execSync(
-            `sed -i '' -e 's/typeof define=="function"/typeof define=="w"/' ${playerPath}/shaka-player.compiled.js`
+            `sed -i '' -e 's/typeof define=="function"/typeof define=="w"/' ${playerPath}/shaka-player.ui.js`
         );
     } catch (e) {
         console.error(e);

@@ -7,7 +7,7 @@ static var isBrowser = typeof window !== "undefined";
 
 static var browserLookup = {};
 
-static var ignoredAttributes = ["_name", "noSkinClasses", "_themes", "toJSON"];
+static var ignoredAttributes = ["_name", "_type", "noSkinClasses", "_themes", "toJSON"];
 
 static function getIconClass(type, name) {
     if (type === "icon") {
