@@ -10,8 +10,8 @@ class {
     handleNext() {
         this.state.current = Math.min(this.state.current + 1, SIZE);
     }
-    handleSelect({ value }) {
-        this.state.current = parseInt(value, 10);
+    handleSelect({ index }) {
+        this.state.current = index;
     }
 }
 
