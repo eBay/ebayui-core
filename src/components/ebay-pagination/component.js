@@ -8,11 +8,12 @@ module.exports = {
      * Handle normal mouse click for item, next page and previous page respectively.
      * @param {MouseEvent} originalEvent
      */
-    handlePageNumberClick(originalEvent, el) {
+    handlePageNumberClick(index, originalEvent, el) {
         this.emit('select', {
             el,
             originalEvent,
             value: el.innerText,
+            index,
         });
     },
 
