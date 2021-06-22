@@ -31,7 +31,7 @@ module.exports = {
     handleResize() {
         if (!this.input.width) {
             const { width: containerWidth } = this.containerEl.getBoundingClientRect();
-            this.state.width = containerWidth;
+            this.video.setAttribute('width', containerWidth);
         }
     },
 
@@ -52,7 +52,10 @@ module.exports = {
     },
 
     onInput(input) {
-        this.state.width = input.width;
+        if (this.video) {
+            this.video.setAttribute('width', input.width);
+        }
+
         // Check if action is changed
         if (this.state.action !== input.action) {
             this.state.action = input.action;
@@ -66,7 +69,6 @@ module.exports = {
             showLoading: false,
             isLoaded: true,
             failed: false,
-            width: 'auto',
         };
     },
 
@@ -114,6 +116,7 @@ module.exports = {
         if (src && this.input.sources.length > currentIndex + 1) {
             nextIndex = currentIndex + 1;
         }
+
         this.player
             .load(src.src)
             .then(() => {
@@ -145,9 +148,9 @@ module.exports = {
             // eslint-disable-next-line no-undef,new-cap
             this.ui = new shaka.ui.Overlay(
                 this.player,
-                this.getEl('container'),
+                this.containerEl,
                 this.video,
-                this.input.reportText
+                this.input.reportText || ''
             );
 
             // eslint-disable-next-line no-undef,new-cap
@@ -167,8 +170,6 @@ module.exports = {
             .then(() => {
                 // eslint-disable-next-line no-undef,new-cap
                 shaka.polyfill.installAll();
-
-                this.video = this.getEl('video');
 
                 this.reattach(() => {
                     // eslint-disable-next-line no-undef,new-cap
@@ -193,27 +194,13 @@ module.exports = {
 
     onMount() {
         this.video = this.getEl('video');
+        this.containerEl = this.getEl('container');
 
         this._loadVideo();
     },
 
-    onUpdate() {
-        this._attach();
-    },
-
-    onDestroy() {
-        if (this.player) {
-            this.isDetaching = true;
-            this.player.destroy().then(() => {
-                this.isDetaching = false;
-            });
-        }
-    },
-
     _loadVideo() {
         this.state.isLoaded = false;
-        this.videoEl = this.getEl('video');
-        this.containerEl = this.getEl('container');
 
         if (document.readyState === 'complete') {
             this.loadCDN();
