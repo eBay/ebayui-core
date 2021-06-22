@@ -1,5 +1,3 @@
-const findIndex = require('core-js-pure/features/array/find-index');
-
 module.exports = {
     handleChange(event) {
         const { selectedIndex } = event.target;
@@ -25,7 +23,7 @@ module.exports = {
         input.options = input.options || [];
         state.selectedIndex = Math.max(
             0,
-            findIndex(input.options, (option) => option.selected)
+            input.options.findIndex((option) => option.selected)
         );
     },
 };

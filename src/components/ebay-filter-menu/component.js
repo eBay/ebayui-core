@@ -1,10 +1,9 @@
-const assign = require('core-js-pure/features/object/assign');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabIndex = require('makeup-roving-tabindex');
 const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 
-module.exports = assign({}, menuUtils, {
+module.exports = Object.assign({}, menuUtils, {
     handleRadioClick(index, ev, itemEl) {
         this._toggleItemChecked(index, itemEl);
     },

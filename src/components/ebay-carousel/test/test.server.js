@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const {
@@ -28,7 +27,9 @@ describe('carousel', () => {
 
         describe('with hidden scrollbar', () => {
             it('renders', async () => {
-                const input = assign({}, mock.Discrete_1PerSlide_3Items, { hiddenScrollbar: true });
+                const input = Object.assign({}, mock.Discrete_1PerSlide_3Items, {
+                    hiddenScrollbar: true,
+                });
                 const { getByRole } = await render(template, input);
 
                 expect(getByRole('group')).to.have.class('carousel--hidden-scrollbar');
@@ -52,7 +53,9 @@ describe('carousel', () => {
             });
 
             it('renders paused version', async () => {
-                const input = assign({}, mock.Discrete_1PerSlide_3Items_AutoPlay, { paused: true });
+                const input = Object.assign({}, mock.Discrete_1PerSlide_3Items_AutoPlay, {
+                    paused: true,
+                });
                 const { queryByLabelText } = await render(template, input);
 
                 expect(queryByLabelText(input.a11yPlayText)).to.not.equal(null);

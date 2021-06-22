@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.WithContent = {
@@ -8,21 +7,21 @@ exports.WithContent = {
     },
 };
 
-exports.WithContentAndHeader = assign({}, exports.WithContent, {
+exports.WithContentAndHeader = Object.assign({}, exports.WithContent, {
     heading: {
         renderBody: createRenderBody('Infotip heading'),
     },
 });
 
-exports.Disabled = assign({}, exports.WithContent, {
+exports.Disabled = Object.assign({}, exports.WithContent, {
     disabled: true,
 });
 
-exports.ModalWithContent = assign({}, exports.WithContent, {
+exports.ModalWithContent = Object.assign({}, exports.WithContent, {
     variant: 'modal',
     a11yCloseText: 'Close mini dialog',
 });
 
-exports.ModalDisabled = assign({}, exports.ModalWithContent, {
+exports.ModalDisabled = Object.assign({}, exports.ModalWithContent, {
     disabled: true,
 });

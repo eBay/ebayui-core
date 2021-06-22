@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody, getNItems } = require('../../../../common/test-utils/shared');
 
 function getType(i) {
@@ -19,7 +18,7 @@ exports.WizardStepper = {
     })),
 };
 
-exports.WizardStepper_Vertical = assign({}, exports.WizardStepper, {
+exports.WizardStepper_Vertical = Object.assign({}, exports.WizardStepper, {
     direction: 'column',
 });
 

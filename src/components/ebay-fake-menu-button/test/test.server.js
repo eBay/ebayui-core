@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const testUtils = require('../../../common/test-utils/server');
@@ -21,7 +20,7 @@ describe('fake-menu-button', () => {
     });
 
     it('renders with type=fake, reverse=true', async () => {
-        const input = assign({ type: 'fake', reverse: true }, mock.Basic_2Items);
+        const input = Object.assign({ type: 'fake', reverse: true }, mock.Basic_2Items);
         const { getByText } = await render(template, input);
         expect(
             getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--reverse')
@@ -29,7 +28,7 @@ describe('fake-menu-button', () => {
     });
 
     it('renders with type=fake, fix-width=true', async () => {
-        const input = assign({ type: 'fake', fixWidth: true }, mock.Basic_2Items);
+        const input = Object.assign({ type: 'fake', fixWidth: true }, mock.Basic_2Items);
         const { getByText } = await render(template, input);
         expect(
             getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--fix-width')
@@ -37,25 +36,25 @@ describe('fake-menu-button', () => {
     });
 
     it('renders with borderless=true', async () => {
-        const input = assign({ borderless: true }, mock.Basic_2Items);
+        const input = Object.assign({ borderless: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--borderless');
     });
 
     it('renders with size=small', async () => {
-        const input = assign({ size: 'small' }, mock.Basic_2Items);
+        const input = Object.assign({ size: 'small' }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--small');
     });
 
     it('renders with priority=primary', async () => {
-        const input = assign({ priority: 'primary' }, mock.Basic_2Items);
+        const input = Object.assign({ priority: 'primary' }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--primary');
     });
 
     it('renders without text', async () => {
-        const input = assign({}, mock.Basic_2Items, { text: '' });
+        const input = Object.assign({}, mock.Basic_2Items, { text: '' });
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--icon-only');
     });

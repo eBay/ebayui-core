@@ -1,6 +1,5 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const assign = require('core-js-pure/features/object/assign');
 const { testPassThroughAttributes } = require('../../../../common/test-utils/server');
 const { runTransformer } = require('../../../../common/test-utils/server');
 const migrator = require('../migrator');
@@ -41,7 +40,7 @@ describe('dialog-base', () => {
 
     it('renders non modal', async () => {
         const input = mock.Dialog;
-        const { getByRole } = await render(template, assign({}, input, { isModal: false }));
+        const { getByRole } = await render(template, Object.assign({}, input, { isModal: false }));
         expect(getByRole('dialog', { hidden: true })).has.attribute('aria-live', 'polite');
     });
 

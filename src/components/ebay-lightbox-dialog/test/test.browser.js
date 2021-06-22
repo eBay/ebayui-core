@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, waitFor, cleanup } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
@@ -26,7 +25,7 @@ describe('given a closed dialog', () => {
 
     describe('then it is opened', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { open: true }));
+            await component.rerender(Object.assign({}, input, { open: true }));
         });
 
         it('then it is visible in the DOM', async () => {

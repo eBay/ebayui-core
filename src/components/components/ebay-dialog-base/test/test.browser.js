@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, waitFor, cleanup } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../../common/test-utils/browser');
@@ -51,7 +50,7 @@ describe('given a closed dialog', () => {
 
     describe('when it is rerendered to be open', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { open: true }));
+            await component.rerender(Object.assign({}, input, { open: true }));
         });
 
         thenItIsOpen(true);
@@ -232,7 +231,7 @@ describe('given an open dialog with no trap', () => {
     beforeEach(async () => {
         sibling = document.body.appendChild(document.createElement('button'));
         sibling.focus();
-        component = await render(template, assign({}, input, { isModal: false }));
+        component = await render(template, Object.assign({}, input, { isModal: false }));
     });
 
     afterEach(() => {
@@ -272,7 +271,7 @@ describe('given an open with no close button', () => {
         sibling.focus();
         component = await render(
             template,
-            assign({}, input, { buttonPosition: 'hidden', skipEscape: true })
+            Object.assign({}, input, { buttonPosition: 'hidden', skipEscape: true })
         );
     });
 
@@ -325,7 +324,7 @@ describe('given an open with no close button', () => {
 });
 
 describe('given a closed dialog with useHiddenProperty', () => {
-    const input = assign({}, mock.Dialog, { useHiddenProperty: true });
+    const input = Object.assign({}, mock.Dialog, { useHiddenProperty: true });
     let sibling;
 
     beforeEach(async () => {
@@ -359,7 +358,7 @@ describe('given a closed dialog with useHiddenProperty', () => {
 
     describe('when it is rerendered to be open', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { open: true }));
+            await component.rerender(Object.assign({}, input, { open: true }));
         });
 
         thenItIsOpen(true);

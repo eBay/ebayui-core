@@ -1,6 +1,5 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const assign = require('core-js-pure/features/object/assign');
 const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
@@ -27,7 +26,10 @@ describe('drawer-dialog', () => {
 
     it('renders without handle ', async () => {
         const input = mock.Drawer;
-        const { queryByLabelText } = await render(template, assign({}, input, { noHandle: true }));
+        const { queryByLabelText } = await render(
+            template,
+            Object.assign({}, input, { noHandle: true })
+        );
         expect(queryByLabelText(input.a11yMaximizeText)).to.equal(null);
     });
 

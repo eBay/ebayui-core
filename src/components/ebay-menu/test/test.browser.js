@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
 const { pressKey } = require('../../../common/test-utils/browser');
@@ -113,7 +112,7 @@ describe('given the menu is in the default state', () => {
 });
 
 describe('given the menu has radio items', () => {
-    const input = assign({ type: 'radio' }, mock.Basic_2Items);
+    const input = Object.assign({ type: 'radio' }, mock.Basic_2Items);
     let firstItem, secondItem;
 
     beforeEach(async () => {
@@ -205,7 +204,7 @@ describe('given the menu has radio items', () => {
 });
 
 describe('given the menu has checkbox items', () => {
-    const input = assign({ type: 'checkbox' }, mock.Basic_2Items);
+    const input = Object.assign({ type: 'checkbox' }, mock.Basic_2Items);
     let firstItem, secondItem;
 
     beforeEach(async () => {

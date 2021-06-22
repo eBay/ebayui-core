@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Drawer = {
@@ -14,10 +13,10 @@ exports.Drawer = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Drawer_Open = assign({}, exports.Drawer, {
+exports.Drawer_Open = Object.assign({}, exports.Drawer, {
     open: true,
 });
 
-exports.Drawer_Expanded = assign({}, exports.Drawer_Open, {
+exports.Drawer_Expanded = Object.assign({}, exports.Drawer_Open, {
     expanded: true,
 });

@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
 const testUtils = require('../../../common/test-utils/server');
@@ -23,13 +22,13 @@ describe('menu', () => {
     });
 
     it('renders with reverse=true', async () => {
-        const input = assign({ reverse: true }, mock.Basic_2Items);
+        const input = Object.assign({ reverse: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu')).with.class('menu__menu--reverse');
     });
 
     it('renders with fix-width=true', async () => {
-        const input = assign({ fixWidth: true }, mock.Basic_2Items);
+        const input = Object.assign({ fixWidth: true }, mock.Basic_2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu')).with.class('menu__menu--fix-width');
     });

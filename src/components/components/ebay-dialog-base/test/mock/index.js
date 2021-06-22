@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../../common/test-utils/shared');
 
 exports.Dialog = {
@@ -23,6 +22,6 @@ exports.Header_Footer_Dialog = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Dialog_Open = assign({}, exports.Dialog, {
+exports.Dialog_Open = Object.assign({}, exports.Dialog, {
     open: true,
 });

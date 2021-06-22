@@ -1,4 +1,3 @@
-const findIndex = require('core-js-pure/features/array/find-index');
 const ActiveDescendant = require('makeup-active-descendant');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
@@ -48,7 +47,7 @@ module.exports = {
         input.options = input.options || [];
         state.selectedIndex = Math.max(
             0,
-            findIndex(input.options, (option) => option.selected)
+            input.options.findIndex((option) => option.selected)
         );
     },
 

@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Toast = {
@@ -12,6 +11,6 @@ exports.Toast = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Toast_Open = assign({}, exports.Toast, {
+exports.Toast_Open = Object.assign({}, exports.Toast, {
     open: true,
 });

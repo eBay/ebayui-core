@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody, getNItems } = require('../../../../common/test-utils/shared');
 
 exports.Basic_2Items = {
@@ -11,7 +10,7 @@ exports.Basic_2Items = {
     })),
 };
 
-exports.Basic_3Items = assign({}, exports.Basic_2Items, {
+exports.Basic_3Items = Object.assign({}, exports.Basic_2Items, {
     items: getNItems(3, (i) => ({
         value: `item ${i}`,
         renderBody: createRenderBody(`Item text ${i}`),
@@ -29,7 +28,7 @@ exports.Radio_2Items = {
     })),
 };
 
-exports.Radio_3Items = assign({}, exports.Radio_2Items, {
+exports.Radio_3Items = Object.assign({}, exports.Radio_2Items, {
     type: 'radio',
     items: getNItems(3, (i) => ({
         value: `item ${i}`,

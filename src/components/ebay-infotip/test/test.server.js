@@ -1,6 +1,5 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const assign = require('core-js-pure/features/object/assign');
 const {
     runTransformer,
     testEventsMigrator,
@@ -46,7 +45,7 @@ describe('infotip modal', () => {
     });
 
     it('renders modal infotip without header', async () => {
-        const input = assign({}, mock.WithContentAndHeader, { variant: 'modal' });
+        const input = Object.assign({}, mock.WithContentAndHeader, { variant: 'modal' });
         const { queryByText } = await render(template, input);
         expect(queryByText(input.heading.renderBody.text)).equals(null);
     });

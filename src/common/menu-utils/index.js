@@ -1,5 +1,3 @@
-const findIndex = require('core-js-pure/features/array/find-index');
-
 function isRadio() {
     return this.type === 'radio';
 }
@@ -27,7 +25,7 @@ function getInputState(input) {
     this.type = input.type;
     if (this.isRadio()) {
         return {
-            checkedIndex: findIndex(input.items || [], (item) => item.checked || false),
+            checkedIndex: (input.items || []).findIndex((item) => item.checked || false),
         };
     }
     return {

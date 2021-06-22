@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
 const { getComponentForEl } = require('marko/components');
@@ -65,7 +64,7 @@ describe('given the menu is in the default state', () => {
 
     describe('when re-rendered with expanded set to false', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { expanded: false }));
+            await component.rerender(Object.assign({}, input, { expanded: false }));
         });
 
         it('then it remains collapsed', () => {
@@ -80,7 +79,7 @@ describe('given the menu is in the default state', () => {
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to true', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { expanded: true }));
+            await component.rerender(Object.assign({}, input, { expanded: true }));
         });
 
         it('then it expands', () => {
@@ -111,7 +110,7 @@ describe('given the menu is in the expanded state', () => {
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to true', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { expanded: true }));
+            await component.rerender(Object.assign({}, input, { expanded: true }));
         });
 
         it('then it remains expanded', () => {
@@ -126,7 +125,7 @@ describe('given the menu is in the expanded state', () => {
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to false', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { expanded: false }));
+            await component.rerender(Object.assign({}, input, { expanded: false }));
         });
 
         it('then it expands', () => {

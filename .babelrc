@@ -4,23 +4,5 @@
         ["@babel/preset-env", {
             "loose": true
         }]
-    ],
-    "overrides": [{
-        "test": [
-            "./src/**/test",
-            "./src/common/test-utils"
-        ],
-        "presets": [
-            ["@babel/preset-env", {
-                "corejs": 3,
-                "loose": true,
-                "useBuiltIns": "usage"
-            }]
-        ],
-        "plugins": [
-            ["@babel/plugin-transform-runtime", {
-                "corejs": 3
-            }]
-        ]
-    }]
+    ]
 }
