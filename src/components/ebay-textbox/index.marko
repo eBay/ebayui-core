@@ -25,7 +25,7 @@ $ var isLarge = input.inputSize === "large";
 $ var displayIcon = Boolean(!input.multiline && hasIcon);
 $ var id = input.id || component.getElId("textbox");
 $ var defaultTag = input.fluid ? "div" : "span";
-<${input.floatingLabel && defaultTag} class="floating-label">
+<${input.floatingLabel && defaultTag} class=["floating-label", isLarge && "floating-label--large"]>
     <if(input.floatingLabel)>
         <label
             for=id
