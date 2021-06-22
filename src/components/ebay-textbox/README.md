@@ -27,6 +27,7 @@ Default input textbox:
 | Name                | Type    | Stateful | Required | Description                                                                                                            |
 | ------------------- | ------- | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `fluid`             | Boolean | No       | No       |
+| `input-size`        | String  | No       | No       | either "regular" or "large". If large, then renders larger sized textbox                                               |
 | `multiline`         | Boolean | No       | No       | renders a multi-line texbox if true                                                                                    |
 | `invalid`           | Boolean | No       | No       | indicates a field-level error with red border if true                                                                  |
 | `button-aria-label` | String  | No       | No       | aria-label for postfix. Required to be set in order to render postfix button and attach a `textbox-button-click event` |
