@@ -13,6 +13,12 @@
 <ebay-button>text</ebay-button>
 ```
 
+## ebay-button (Icon variant) Usage
+
+```marko
+<ebay-button variant="icon" aria-label"Settings"><ebay-settings-icon/></ebay-button>
+```
+
 ## ebay-button Attributes
 
 | Name                 | Type    | Stateful | Required                               | Description                                                                                                     |
