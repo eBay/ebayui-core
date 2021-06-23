@@ -34,11 +34,11 @@ The `<ebay-pagination>` is a tag used to create a pagination navigation. It will
 
 ### ebay-pagination Events
 
-| Event      | Data                           | Description                   |
-| ---------- | ------------------------------ | ----------------------------- |
-| `previous` | `{ originalEvent, el }`        | clicked previous arrow button |
-| `next`     | `{ originalEvent, el }`        | clicked next arrow button     |
-| `select`   | `{ originalEvent, el, value }` | page selected clicked         |
+| Event      | Data                                  | Description                   |
+| ---------- | ------------------------------------- | ----------------------------- |
+| `previous` | `{ originalEvent, el }`               | clicked previous arrow button |
+| `next`     | `{ originalEvent, el }`               | clicked next arrow button     |
+| `select`   | `{ originalEvent, el, value, index }` | page selected clicked         |
 
 ## @item Tag
 

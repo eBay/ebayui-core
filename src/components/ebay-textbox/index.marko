@@ -3,8 +3,9 @@ import processHtmlAttributes from "../../common/html-attributes"
 static function toJSON() {
     return {
         floatingLabel: this.floatingLabel
-    }
+    };
 }
+
 static var ignoredAttributes = [
     "class",
     "style",
@@ -19,11 +20,12 @@ static var ignoredAttributes = [
 
 $ input.toJSON = toJSON;
 $ var isPostfix = !!input.postfixIcon;
-$ var hasIcon = (input.prefixIcon || isPostfix);
+$ var hasIcon = input.prefixIcon || isPostfix;
+$ var isLarge = input.inputSize === "large";
 $ var displayIcon = Boolean(!input.multiline && hasIcon);
 $ var id = input.id || component.getElId("textbox");
 $ var defaultTag = input.fluid ? "div" : "span";
-<${input.floatingLabel && defaultTag} class="floating-label">
+<${input.floatingLabel && defaultTag} class=["floating-label", isLarge && "floating-label--large"]>
     <if(input.floatingLabel)>
         <label
             for=id
@@ -42,7 +44,7 @@ $ var defaultTag = input.fluid ? "div" : "span";
             displayIcon && isPostfix && "textbox--icon-end"
         ]>
         <if(displayIcon && input.prefixIcon)>
-            <${input.prefixIcon} />
+            <${input.prefixIcon}/>
         </if>
         <${input.multiline ? "textarea" : "input"}
             ...processHtmlAttributes(input, ignoredAttributes)
@@ -51,6 +53,7 @@ $ var defaultTag = input.fluid ? "div" : "span";
             class=[
                 "textbox__control",
                 input.fluid && "textbox__control--fluid",
+                isLarge && "textbox__control--large"
             ]
             type=(!input.multiline && (input.type || "text"))
             value=(!input.multiline && input.value)
@@ -66,8 +69,11 @@ $ var defaultTag = input.fluid ? "div" : "span";
             <if(input.multiline && input.value)>${input.value}</if>
         </>
         <if(displayIcon && input.postfixIcon)>
-            <${input.buttonAriaLabel && "button"} class="icon-btn" aria-label=input.buttonAriaLabel on-click("handleButtonClick") >
-                <${input.postfixIcon} />
+            <${input.buttonAriaLabel && "button"}
+                class="icon-btn"
+                aria-label=input.buttonAriaLabel
+                on-click("handleButtonClick")>
+                <${input.postfixIcon}/>
             </>
         </if>
     </>

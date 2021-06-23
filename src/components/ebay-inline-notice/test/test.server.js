@@ -14,6 +14,7 @@ describe('inline-notice', () => {
         expect(status).has.class('inline-notice__header');
         expect(status).has.property('tagName', 'SPAN');
         expect(status.parentElement).has.class('inline-notice--attention');
+        expect(status.parentElement).not.to.have.attribute('aria-labelledby');
 
         const content = getByText(input.renderBody.text);
         expect(content).has.property('tagName', 'SPAN');

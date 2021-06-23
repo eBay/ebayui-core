@@ -30,6 +30,7 @@
     },
     "@html-attributes": "expression"
   },
+  "@input-size": "string",
   "@button-aria-label": "string",
   "@autocomplete": "#html-autocomplete",
   "@autofocus": "#html-autofocus",

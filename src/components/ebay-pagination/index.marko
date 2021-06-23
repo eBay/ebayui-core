@@ -65,7 +65,7 @@ $ var range = component._getVisibleRange(items);
                     ...processHtmlAttributes(item, ignoredItemAttributes)
                     class=["pagination__item", item.class]
                     aria-current=(item.current && "page")
-                    onClick("handlePageNumberClick")>
+                    onClick("handlePageNumberClick", i)>
                     <${item.renderBody}/>
                 </>
             </li>
