@@ -38,12 +38,13 @@ module.exports = {
         }
     },
 
-    handlePlaying() {
+    handlePlaying(originalEvent) {
         this.showControls();
 
         if (this.input.fullscreen) {
             this.video.requestFullscreen();
         }
+        this.emit('play', { originalEvent, player: this.player });
     },
 
     showControls() {
@@ -169,8 +170,6 @@ module.exports = {
 
         // eslint-disable-next-line no-undef,new-cap
         shaka.ui.OverflowMenu.registerElement('report', new Report.Factory());
-        // eslint-disable-next-line no-undef,new-cap
-        // shaka.ui.Controls.registerElement('report_menu', new ReportMenu.Factory());
 
         this.ui.configure({
             addBigPlayButton: true,
@@ -178,15 +177,10 @@ module.exports = {
             addSeekBar: false,
         });
 
+        // Replace play icon
         const playButton = this.el.querySelector('.shaka-play-button');
         playButton.removeAttribute('icon');
         playIcon.renderSync().appendTo(playButton);
-
-        // // Clear overflow button to make it look like a report button
-        // const moreVertButton = this.el.querySelector('.shaka-overflow-menu-button');
-        // moreVertButton.classList.remove('material-icons-round');
-        // moreVertButton.removeChild(moreVertButton.firstChild);
-        // flagIcon.renderSync().appendTo(moreVertButton);
     },
 
     _loadCDN() {
