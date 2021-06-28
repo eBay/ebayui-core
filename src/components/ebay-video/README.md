@@ -52,7 +52,8 @@ If multiple sources are supplied, it will go in the order they are supplied and 
 
 ## ebay-video events
 
-| Event        | Data                | Description           |
-| ------------ | ------------------- | --------------------- |
-| `load-error` | `{ originalEvent }` | error occurred        |
-| `report`     | `{ }`               | report button clicked |
+| Event        | Data                        | Description           |
+| ------------ | --------------------------- | --------------------- |
+| `load-error` | `{ originalEvent }`         | error occurred        |
+| `play`       | `{ originalEvent, player }` | play start            |
+| `report`     | `{ }`                       | report button clicked |
