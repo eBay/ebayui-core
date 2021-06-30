@@ -71,9 +71,7 @@ $ {
     type=(tag === "button" && (input.type || "button"))
     aria-disabled=(input.partiallyDisabled && "true")>
     $ var hasAriaLabel = Boolean(htmlAttributes["aria-label"]);
-    <${!hasAriaLabel ? null : "span"} aria-hidden="true">
-        <${input.renderBody}/>
-    </>
+    <${input.renderBody}/>
     <if(isBadged)>
         <ebay-badge
             number=input.badgeNumber

@@ -1,10 +1,13 @@
 const loader = require('./loader');
-const { getElements } = require('./elements');
+const { getElements, flagSmallIcon, playIcon } = require('./elements');
 const versions = require('./versions.json');
 const MAX_RETRIES = 3;
 
 const videoConfig = {
-    overflowMenuButtons: ['captions', 'report'],
+    addBigPlayButton: false,
+    addSeekBar: true,
+    controlPanelElements: ['play_pause', 'spacer', 'mute', 'volume', 'overflow_menu', 'fullscreen'],
+    overflowMenuButtons: ['report'],
 };
 
 module.exports = {
@@ -35,10 +38,24 @@ module.exports = {
         }
     },
 
-    handleFullscreen() {
-        this.video.requestFullscreen();
+    handlePlaying(originalEvent) {
+        this.showControls();
+
+        if (this.input.fullscreen) {
+            this.video.requestFullscreen();
+        }
+        this.emit('play', { originalEvent, player: this.player });
     },
 
+    showControls() {
+        this.ui.configure(videoConfig);
+
+        // Clear overflow button to make it look like a report button
+        const moreVertButton = this.el.querySelector('.shaka-overflow-menu-button');
+        moreVertButton.classList.remove('material-icons-round');
+        moreVertButton.removeChild(moreVertButton.firstChild);
+        flagSmallIcon.renderSync().appendTo(moreVertButton);
+    },
     takeAction() {
         switch (this.state.action) {
             case 'play':
@@ -106,7 +123,6 @@ module.exports = {
             this.state.showLoading = true;
             this._loadCDN();
         }
-        this._loadCDN();
     },
 
     _loadSrc(index) {
@@ -136,28 +152,35 @@ module.exports = {
                 } else {
                     this.state.failed = true;
                     this.state.isLoaded = true;
-                    this.emit('load-error');
+                    this.emit('load-error', err);
                 }
             });
     },
 
     _attach() {
         // eslint-disable-next-line no-undef,new-cap
-        if (typeof shaka !== 'undefined' && this.player) {
-            const { Report } = getElements(this);
-            // eslint-disable-next-line no-undef,new-cap
-            this.ui = new shaka.ui.Overlay(
-                this.player,
-                this.containerEl,
-                this.video,
-                this.input.reportText || ''
-            );
+        const { Report } = getElements(this);
+        // eslint-disable-next-line no-undef,new-cap
+        this.ui = new shaka.ui.Overlay(
+            this.player,
+            this.containerEl,
+            this.video,
+            this.input.reportText || ''
+        );
 
-            // eslint-disable-next-line no-undef,new-cap
-            shaka.ui.OverflowMenu.registerElement('report', new Report.Factory());
+        // eslint-disable-next-line no-undef,new-cap
+        shaka.ui.OverflowMenu.registerElement('report', new Report.Factory());
 
-            this.ui.configure(videoConfig);
-        }
+        this.ui.configure({
+            addBigPlayButton: true,
+            controlPanelElements: [],
+            addSeekBar: false,
+        });
+
+        // Replace play icon
+        const playButton = this.el.querySelector('.shaka-play-button');
+        playButton.removeAttribute('icon');
+        playIcon.renderSync().appendTo(playButton);
     },
 
     _loadCDN() {
@@ -179,7 +202,7 @@ module.exports = {
                     this._loadSrc();
                 });
             })
-            .catch(() => {
+            .catch((err) => {
                 clearTimeout(this.retryTimeout);
                 this.retryTimes += 1;
                 if (this.retryTimes < MAX_RETRIES) {
@@ -187,7 +210,7 @@ module.exports = {
                 } else {
                     this.state.failed = true;
                     this.state.isLoaded = true;
-                    this.emit('load-error');
+                    this.emit('load-error', err);
                 }
             });
     },
@@ -197,6 +220,12 @@ module.exports = {
         this.containerEl = this.getEl('container');
 
         this._loadVideo();
+    },
+
+    onDestroy() {
+        if (this.ui) {
+            this.ui.destroy();
+        }
     },
 
     _loadVideo() {
