@@ -16,11 +16,12 @@ static var ignoredAttributes = [
 
 $ input.toJSON = toJSON;
 $ var size = input.size || "default";
+$ var isIconOnly = input.iconOnly || !input.renderBody
 <button
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
         "expand-btn",
-        !input.renderBody && "expand-btn--icon-only",
+        isIconOnly && "expand-btn--icon-only",
         input.fluid && "expand-btn--fluid",
         input.truncate && `expand-btn--${size}-truncated`,
         input.fixedHeight && `expand-btn--${size}-fixed-height`,
@@ -32,7 +33,7 @@ $ var size = input.size || "default";
     onClick("handleClick")
     onKeydown("handleKeydown")>
     <span class="expand-btn__cell">
-        <if(input.renderBody)>
+        <if(!isIconOnly)>
             <span>
                 <${input.renderBody}/>
             </span>

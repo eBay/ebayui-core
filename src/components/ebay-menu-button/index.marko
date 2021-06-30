@@ -1,4 +1,6 @@
 import processHtmlAttributes from "../../common/html-attributes"
+import ExpandButton from '<ebay-expand-button>'
+import IconButton from '<ebay-icon-button>'
 
 static var ignoredAttributes = [
     "class",
@@ -35,7 +37,7 @@ $ var labelId = input.prefixId && component.getElId("label");
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")
     onMousedown("handleMousedown")>
-        <ebay-button
+    <${isOverflowVariant ? IconButton : ExpandButton}
         class=[
             `menu-button__button`,
             input.borderless && !isOverflowVariant && "expand-btn--borderless"
@@ -88,7 +90,7 @@ $ var labelId = input.prefixId && component.getElId("label");
                 </if>
             </span>
         </else>
-    </ebay-button>
+    </>
     <ebay-menu
         class-prefix="menu-button"
         type=input.type

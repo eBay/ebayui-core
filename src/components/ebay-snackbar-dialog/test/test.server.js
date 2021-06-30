@@ -22,7 +22,6 @@ describe('snackbar-dialog', () => {
             'snackbar-dialog__actions'
         );
         expect(getByRole('button', { hidden: 'true' })).has.class('fake-link');
-        expect(getByRole('button', { hidden: 'true' })).has.class('fake-link--secondary');
         expect(dialog.childNodes[0]).has.class('snackbar-dialog__window');
     });
 

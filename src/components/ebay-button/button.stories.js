@@ -27,7 +27,7 @@ export default {
             description: 'for link that looks like a button',
         },
         size: {
-            options: ['large', null],
+            options: ['large', 'regular'],
 
             description: '',
             table: {
@@ -47,16 +47,6 @@ export default {
                 },
             },
             type: { category: 'Options' },
-        },
-        variant: {
-            options: [null, 'expand', 'fake-link', 'icon'],
-            description:
-                'optional, to alter Skin classes: "expand" / "fake-link" / "icon" (for icon button)',
-            table: {
-                defaultValue: {
-                    summary: 'none',
-                },
-            },
         },
         fluid: {
             description: 'stretches button to be 100% width and cover container',
@@ -113,26 +103,6 @@ export default {
                 category: 'Toggles',
             },
         },
-        'badge-number': {
-            description: 'used as the number to be placed in the badge',
-            table: {
-                category: 'Badge (only with variant=icon)',
-            },
-            type: 'number',
-        },
-        'badge-aira-label': {
-            description: 'passed as the `aria-label` directly to the badge',
-            table: {
-                category: 'Badge (only with variant=icon)',
-            },
-        },
-
-        //     text(
-        //     'badge-aria-label',
-        //     'number of notifications',
-        //     'Badge (only with variant=icon)'
-        //     )
-        // },
         onClick: {
             action: 'on-click',
             description: 'Triggered on click',
@@ -153,6 +123,26 @@ export default {
                 },
             },
         },
+        onFocus: {
+            action: 'on-focus',
+            description: 'Triggered on focus',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
+        onBlur: {
+            action: 'on-blur',
+            description: 'Triggered on blur',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
     },
 };
 
@@ -162,13 +152,10 @@ Standard.args = {
     href: '',
     fluid: false,
     size: null,
-    variant: '',
     disabled: false,
-    priority: 'secondary',
+    priority: null,
     'partially-disabled': false,
     transparent: false,
     'fixed-height': false,
     truncate: false,
-    'badge-number': 0,
-    'badge-aria-label': '',
 };

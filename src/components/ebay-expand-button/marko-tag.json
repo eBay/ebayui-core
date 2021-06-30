@@ -8,6 +8,7 @@
   "@html-attributes": "expression",
   "@size": "size",
   "@fluid": "boolean",
+  "@icon-only": "boolean",
   "@truncate": "boolean",
   "@fixed-height": "boolean",
   "@partially-disabled": "boolean",

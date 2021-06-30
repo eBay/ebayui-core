@@ -14,4 +14,10 @@ module.exports = {
             }
         });
     },
+    handleFocus(originalEvent) {
+        this.emit('focus', { originalEvent });
+    },
+    handleBlur(originalEvent) {
+        this.emit('blur', { originalEvent });
+    },
 };

@@ -61,12 +61,6 @@ describe('menu-button', () => {
         expect(getByRole('button')).has.class('expand-btn--small');
     });
 
-    it('renders with priority=primary', async () => {
-        const input = Object.assign({ priority: 'primary' }, mock.Basic_2Items);
-        const { getByRole } = await render(template, input);
-        expect(getByRole('button')).has.class('expand-btn--primary');
-    });
-
     it('renders without text', async () => {
         const input = Object.assign({}, mock.Basic_2Items, { text: '' });
         const { getByRole } = await render(template, input);
