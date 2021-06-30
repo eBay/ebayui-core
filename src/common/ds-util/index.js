@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const defaultDS = '6';
 
 const DSData = [
@@ -35,7 +34,7 @@ DSData.forEach((data) => {
 const requireRemap = dsList
     .filter((key) => key !== defaultDS)
     .map((key) =>
-        assign(
+        Object.assign(
             {
                 from: dsFilenames[defaultDS],
                 to: dsFilenames[key],

@@ -1,10 +1,8 @@
 const Expander = require('makeup-expander');
-const assign = require('core-js-pure/features/object/assign');
-const findIndex = require('core-js-pure/features/array/find-index');
 const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 
-module.exports = assign({}, menuUtils, {
+module.exports = Object.assign({}, menuUtils, {
     toggleItemChecked(index, itemEl) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
@@ -32,8 +30,7 @@ module.exports = assign({}, menuUtils, {
         }
 
         if (this.rovingTabindex) {
-            this.tabindexPosition = findIndex(
-                this.rovingTabindex.filteredItems,
+            this.tabindexPosition = this.rovingTabindex.filteredItems.findIndex(
                 (el) => el.tabIndex === 0
             );
         }
@@ -94,19 +91,19 @@ module.exports = assign({}, menuUtils, {
         };
 
         if (isCheckbox && checkedIndexes.length > 1) {
-            assign(eventObj, {
+            Object.assign(eventObj, {
                 indexes: this.getCheckedIndexes(), // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues(), // DEPRECATED in v5
             });
         } else if (isCheckbox || this.isRadio()) {
-            assign(eventObj, {
+            Object.assign(eventObj, {
                 index, // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues(), // DEPRECATED in v5
             });
         } else if (eventType !== 'expand' && eventType !== 'collapse') {
-            assign(eventObj, {
+            Object.assign(eventObj, {
                 index, // DEPRECATED in v5
                 checked: [index], // DEPRECATED in v5 (keep but change from indexes to values)
             });

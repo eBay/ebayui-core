@@ -1,5 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
-const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
 const typeahead = require('makeup-typeahead');
@@ -8,7 +6,7 @@ const menuUtils = require('../../common/menu-utils');
 
 const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 
-module.exports = assign({}, menuUtils, {
+module.exports = Object.assign({}, menuUtils, {
     toggleItemChecked(index, originalEvent, itemEl) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
@@ -32,8 +30,7 @@ module.exports = assign({}, menuUtils, {
         }
 
         if (this.rovingTabindex) {
-            this.tabindexPosition = findIndex(
-                this.rovingTabindex.filteredItems,
+            this.tabindexPosition = this.rovingTabindex.filteredItems.findIndex(
                 (el) => el.tabIndex === 0
             );
         }
@@ -75,20 +72,20 @@ module.exports = assign({}, menuUtils, {
         };
 
         if (isCheckbox && checkedIndexes.length > 1) {
-            assign(eventObj, {
+            Object.assign(eventObj, {
                 index,
                 indexes: this.getCheckedIndexes(), // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues(), // DEPRECATED in v5
             });
         } else if (isCheckbox || this.isRadio()) {
-            assign(eventObj, {
+            Object.assign(eventObj, {
                 index, // DEPRECATED in v5
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues(), // DEPRECATED in v5
             });
         } else {
-            assign(eventObj, {
+            Object.assign(eventObj, {
                 index, // DEPRECATED in v5
                 checked: [index], // DEPRECATED in v5 (keep but change from indexes to values)
             });

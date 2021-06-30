@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
@@ -24,7 +23,9 @@ describe('given the default infotip', () => {
 
     describe('when it is rerendered', () => {
         // Needed to change input for rerender to work correctly
-        beforeEach(async () => await component.rerender(assign({}, input, { disabled: false })));
+        beforeEach(
+            async () => await component.rerender(Object.assign({}, input, { disabled: false }))
+        );
         thenItCanBeOpenAndClosed();
     });
 
@@ -87,7 +88,7 @@ describe('given the modal infotip', () => {
 });
 
 describe('given the modal infotip opened', () => {
-    const input = assign({}, mock.ModalWithContent, { open: true });
+    const input = Object.assign({}, mock.ModalWithContent, { open: true });
 
     beforeEach(async () => {
         component = await render(template, input);

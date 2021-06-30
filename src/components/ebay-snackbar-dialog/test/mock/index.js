@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Snackbar = {
@@ -15,10 +14,10 @@ exports.Snackbar = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Snackbar_Open = assign({}, exports.Snackbar, {
+exports.Snackbar_Open = Object.assign({}, exports.Snackbar, {
     open: true,
 });
 
-exports.Snackbar_Closed = assign({}, exports.Snackbar, {
+exports.Snackbar_Closed = Object.assign({}, exports.Snackbar, {
     open: false,
 });

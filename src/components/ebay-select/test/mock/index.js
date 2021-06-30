@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { getNItems } = require('../../../../common/test-utils/shared');
 
 exports.Basic_0Options = {
@@ -12,7 +11,7 @@ exports.Basic_3Options = {
     })),
 };
 
-exports.Borderless_3Options = assign({}, exports.Basic_3Options, {
+exports.Borderless_3Options = Object.assign({}, exports.Basic_3Options, {
     borderless: true,
 });
 

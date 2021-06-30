@@ -1,4 +1,3 @@
-const find = require('core-js-pure/features/array/find');
 const ActiveDescendant = require('makeup-active-descendant');
 const FloatingLabel = require('makeup-floating-label');
 const Expander = require('makeup-expander');
@@ -244,7 +243,7 @@ module.exports = {
     },
 
     _getSelectedOption() {
-        return find(this.input.options, (option) => option.text === this.state.currentValue);
+        return this.input.options.find((option) => option.text === this.state.currentValue);
     },
 
     _getVisibleOptions() {

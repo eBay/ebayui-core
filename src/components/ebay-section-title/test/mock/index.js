@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.TitleBasic = {
@@ -11,33 +10,33 @@ exports.Title = {
     },
 };
 
-exports.Subtitle = assign({}, exports.Title, {
+exports.Subtitle = Object.assign({}, exports.Title, {
     subtitle: {
         renderBody: createRenderBody('Subtitle content'),
     },
 });
 
-exports.CTA_SeeAll = assign({}, exports.Title, {
+exports.CTA_SeeAll = Object.assign({}, exports.Title, {
     ctaText: 'See All',
     href: 'https://www.ebay.com/',
 });
 
-exports.CTA_NoText = assign({}, exports.Title, {
+exports.CTA_NoText = Object.assign({}, exports.Title, {
     href: 'https://www.ebay.com/',
 });
 
-exports.Info = assign({}, exports.Title, {
+exports.Info = Object.assign({}, exports.Title, {
     info: {
         renderBody: createRenderBody('Info content'),
     },
 });
 
-exports.Overflow = assign({}, exports.Title, {
+exports.Overflow = Object.assign({}, exports.Title, {
     overflow: {
         renderBody: createRenderBody('Overflow content'),
     },
 });
 
-exports.Size = assign({}, exports.Title, {
+exports.Size = Object.assign({}, exports.Title, {
     size: 'large',
 });

@@ -1,5 +1,4 @@
 const Expander = require('makeup-expander');
-const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 
 module.exports = {
@@ -32,7 +31,7 @@ module.exports = {
         input.options = input.options || [];
         state.selectedIndex = Math.max(
             0,
-            findIndex(input.options, (option) => option.selected)
+            input.options.findIndex((option) => option.selected)
         );
     },
 

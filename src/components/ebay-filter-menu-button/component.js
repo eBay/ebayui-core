@@ -1,9 +1,8 @@
-const assign = require('core-js-pure/features/object/assign');
 const Expander = require('makeup-expander');
 const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 
-module.exports = assign({}, menuUtils, {
+module.exports = Object.assign({}, menuUtils, {
     handleMenuKeydown({ originalEvent }) {
         eventUtils.handleEscapeKeydown(originalEvent, () => this._expander.collapse());
     },

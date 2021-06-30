@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { getNItems, createRenderBody } = require('../../../common/test-utils/shared');
 
 exports.Links = {
@@ -20,6 +19,6 @@ exports.Links_First_Without_HREF = {
         renderBody: createRenderBody(`Item Text ${i}`),
     })),
 };
-exports.Links_Heading_Tag = assign({}, exports.Links, {
+exports.Links_Heading_Tag = Object.assign({}, exports.Links, {
     a11yHeadingTag: 'h3',
 });

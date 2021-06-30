@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { getNItems } = require('../../../../common/test-utils/shared');
 
 exports.Combobox_0Options = {
@@ -16,7 +15,7 @@ exports.Combobox_3Options = {
     })),
 };
 
-exports.Combobox_3Options_2Selected = assign({}, exports.Combobox_3Options, {
+exports.Combobox_3Options_2Selected = Object.assign({}, exports.Combobox_3Options, {
     options: getNItems(3, (i) => ({
         value: String(i),
         text: `option ${i}`,
@@ -24,10 +23,10 @@ exports.Combobox_3Options_2Selected = assign({}, exports.Combobox_3Options, {
     })),
 });
 
-exports.Combobox_3Options_Borderless = assign({}, exports.Combobox_3Options, {
+exports.Combobox_3Options_Borderless = Object.assign({}, exports.Combobox_3Options, {
     borderless: true,
 });
 
-exports.Combobox_3Options_Disabled = assign({}, exports.Combobox_3Options, {
+exports.Combobox_3Options_Disabled = Object.assign({}, exports.Combobox_3Options, {
     disabled: true,
 });

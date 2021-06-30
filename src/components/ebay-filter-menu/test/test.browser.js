@@ -1,6 +1,5 @@
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const flat = require('core-js-pure/features/array/flat');
 const { pressKey } = require('../../../common/test-utils/browser');
 const template = require('..');
 const mock = require('./mock');
@@ -48,7 +47,7 @@ describe('given the menu is in the default state', () => {
             const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
-            const [firstEventData, secondEventData] = flat(changeEvents);
+            const [firstEventData, secondEventData] = changeEvents.flat();
             expect(firstEventData).has.property('el', firstItem);
             expect(secondEventData).has.property('el', secondItem);
         });
@@ -69,7 +68,7 @@ describe('given the menu is in the default state', () => {
             const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
-            const [firstEventData, secondEventData] = flat(changeEvents);
+            const [firstEventData, secondEventData] = changeEvents.flat();
             expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
             expect(secondEventData).has.property('checked').to.deep.equal([]);
         });
@@ -91,7 +90,7 @@ describe('given the menu is in the default state', () => {
             const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(1);
 
-            const [firstEventData] = flat(changeEvents);
+            const [firstEventData] = changeEvents.flat();
             expect(firstEventData).has.property('el').with.text(firstItemText);
             expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
         });
@@ -163,7 +162,7 @@ describe('given the menu is in the radio state', () => {
             const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
-            const [firstEventData, secondEventData] = flat(changeEvents);
+            const [firstEventData, secondEventData] = changeEvents.flat();
             expect(firstEventData).has.property('el', firstItem);
             expect(secondEventData).has.property('el', secondItem);
         });
@@ -184,7 +183,7 @@ describe('given the menu is in the radio state', () => {
             const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(2);
 
-            const [firstEventData, secondEventData] = flat(changeEvents);
+            const [firstEventData, secondEventData] = changeEvents.flat();
             expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
             expect(secondEventData).has.property('checked').to.deep.equal(['item 0']);
         });
@@ -206,7 +205,7 @@ describe('given the menu is in the radio state', () => {
             const changeEvents = component.emitted('change');
             expect(changeEvents).to.have.length(1);
 
-            const [firstEventData] = flat(changeEvents);
+            const [firstEventData] = changeEvents.flat();
             expect(firstEventData).has.property('el').with.text(firstItemText);
             expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
         });

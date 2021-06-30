@@ -1,6 +1,5 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const assign = require('core-js-pure/features/object/assign');
 const template = require('..');
 const mock = require('./mock');
 
@@ -24,7 +23,7 @@ describe('window-notice', () => {
     });
 
     it('renders fullscreen window', async () => {
-        const input = assign({}, mock.Window_Notice, { window: 'fullscreen' });
+        const input = Object.assign({}, mock.Window_Notice, { window: 'fullscreen' });
         const { getByText } = await render(template, input);
         const container = getByText(input.renderBody.text).parentElement;
         expect(container).has.class('window-notice');

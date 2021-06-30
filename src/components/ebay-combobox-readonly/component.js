@@ -1,5 +1,4 @@
 const Expander = require('makeup-expander');
-const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
 const eventUtils = require('../../common/event-utils');
@@ -51,7 +50,7 @@ module.exports = {
         this.state = {
             selectedIndex: Math.max(
                 0,
-                findIndex(input.options, (option) => option.selected)
+                input.options.findIndex((option) => option.selected)
             ),
         };
     },

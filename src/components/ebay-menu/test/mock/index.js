@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody, getNItems } = require('../../../../common/test-utils/shared');
 
 exports.Basic_2Items = {
@@ -8,14 +7,14 @@ exports.Basic_2Items = {
     })),
 };
 
-exports.Basic_3Items = assign({}, exports.Basic_2Items, {
+exports.Basic_3Items = Object.assign({}, exports.Basic_2Items, {
     items: getNItems(3, (i) => ({
         value: `item ${i}`,
         renderBody: createRenderBody(`Item text ${i}`),
     })),
 });
 
-exports.Separator_4Items = assign({}, exports.Basic_2Items, {
+exports.Separator_4Items = Object.assign({}, exports.Basic_2Items, {
     items: getNItems(4, (i) => ({
         value: `item ${i}`,
         _isSeparator: i === 2,
@@ -23,7 +22,7 @@ exports.Separator_4Items = assign({}, exports.Basic_2Items, {
     })),
 });
 
-exports.Fake_2Items = assign({}, exports.Basic_2Items, {
+exports.Fake_2Items = Object.assign({}, exports.Basic_2Items, {
     type: 'fake',
     items: getNItems(2, (i) => ({
         href: `#${i}`,
@@ -33,7 +32,7 @@ exports.Fake_2Items = assign({}, exports.Basic_2Items, {
 
 const countries = ['Albania', 'Alcania', 'Alcdnia'];
 
-exports.Countries = assign({}, exports.Basic_2Items, {
+exports.Countries = Object.assign({}, exports.Basic_2Items, {
     items: getNItems(3, (i) => ({
         value: `item ${i} ${countries[i]}`,
         renderBody: createRenderBody(`Item text ${i} ${countries[i]}`),
