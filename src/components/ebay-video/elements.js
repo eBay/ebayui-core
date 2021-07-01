@@ -1,7 +1,12 @@
 /* eslint-disable no-undef,new-cap */
-const flagIcon = require('../ebay-icon/icons/ebay-report-flag-icon/index.marko');
-const flagSmallIcon = require('../ebay-icon/icons/ebay-report-flag-small-icon/index.marko');
-const playIcon = require('../ebay-icon/icons/ebay-video-play-icon/index.marko');
+const flagIconTemplate = require('../ebay-icon/icons/ebay-report-flag-icon/index.marko');
+const flagSmallIconTemplate = require('../ebay-icon/icons/ebay-report-flag-small-icon/index.marko');
+const playIconTemplate = require('../ebay-icon/icons/ebay-video-play-icon/index.marko');
+
+// Marko 4 workaround
+const flagIcon = flagIconTemplate.default || flagIconTemplate;
+const flagSmallIcon = flagSmallIconTemplate.default || flagSmallIconTemplate;
+const playIcon = playIconTemplate.default || playIconTemplate;
 
 // Have to contain in order to not execute until shaka is downloaded
 function getElements(self) {
