@@ -15,18 +15,19 @@ For resizing, `ebay-video` supports fixed width or variable width. If no width i
 
 ## ebay-video Attributes
 
-| Name             | Type   | Stateful | Required | Description                                                                                                                 |
-| ---------------- | ------ | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `thumbnail`      | String | No       | No       | The url path for the video thumbnail                                                                                        |
-| `action`         | String | Yes      | No       | Either "play" or "pause". Will programatically perform the given action                                                     |
-| `play-view`      | String | No       | No       | Either "inline", or "fullscreen". When player strats to play, will either play "inline" (default) or switch to "fullscreen" |
-| `cdn-url`        | String | No       | No       | The full url to point to where to download shaka. This is only used to override the default CDN path.                       |
-| `css-url`        | String | No       | No       | The full url to point to where to download shaka css. This is only used to override the default CDN path.                   |
-| `cdn-version`    | String | No       | No       | If using the default CDN path, you can override what version of shaka to use.                                               |
-| `a11y-load-text` | String | No       | Yes      | The accessibility text for the loading spinner. Default is "Loading"                                                        |
-| `a11y-play-text` | String | No       | Yes      | The accessibility text for the play button. Default is "Click to play"                                                      |
-| `error-text`     | String | No       | Yes      | The content for error when an either the library or video cannot load. Default is "An error has occurred"                   |
-| `report-text`    | String | No       | Yes      | The text for report button. Default is "Report"                                                                             |
+| Name               | Type   | Stateful | Required | Description                                                                                                                 |
+| ------------------ | ------ | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `thumbnail`        | String | No       | No       | The url path for the video thumbnail                                                                                        |
+| `action`           | String | Yes      | No       | Either "play" or "pause". Will programatically perform the given action                                                     |
+| `play-view`        | String | No       | No       | Either "inline", or "fullscreen". When player strats to play, will either play "inline" (default) or switch to "fullscreen" |
+| `cdn-url`          | String | No       | No       | The full url to point to where to download shaka. This is only used to override the default CDN path.                       |
+| `css-url`          | String | No       | No       | The full url to point to where to download shaka css. This is only used to override the default CDN path.                   |
+| `cdn-version`      | String | No       | No       | If using the default CDN path, you can override what version of shaka to use.                                               |
+| `a11y-load-text`   | String | No       | Yes      | The accessibility text for the loading spinner. Default is "Loading"                                                        |
+| `a11y-play-text`   | String | No       | Yes      | The accessibility text for the play button. Default is "Click to play"                                                      |
+| `error-text`       | String | No       | Yes      | The content for error when an either the library or video cannot load. Default is "An error has occurred"                   |
+| `a11y-report-menu` | String | No       | Yes      | The text for screen readers for the report menu popup. Default is "Report"                                                  |
+| `report-text`      | String | No       | Yes      | The text for report button. Default is "Report"                                                                             |
 
 ## @source Tag (required)
 

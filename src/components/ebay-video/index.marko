@@ -9,7 +9,10 @@ static var ignoredAttributes = [
     "playView",
     "a11yPlayText",
     "a11yLoadText",
-    "errorText"
+    "a11yReportMenu",
+    "errorText",
+    "volume",
+    "muted"
 ];
 
 <div
@@ -28,6 +31,7 @@ static var ignoredAttributes = [
             no-controls
             src:no-update
             on-playing('handlePlaying')
+            on-volumechange('handleVolumeChange')
             poster=input.thumbnail
             ...processHtmlAttributes(input, ignoredAttributes)>
             <for|src| of=(input.sources || [])>
