@@ -49,7 +49,7 @@ module.exports = {
     },
 
     handleVolumeChange(originalEvent) {
-        this.emit('volumechange', {
+        this.emit('volume-change', {
             originalEvent,
             volume: this.video.volume,
             muted: this.video.muted,
@@ -63,7 +63,7 @@ module.exports = {
         const moreVertButton = this.el.querySelector('.shaka-overflow-menu-button');
         moreVertButton.classList.remove('material-icons-round');
         moreVertButton.removeChild(moreVertButton.firstChild);
-        moreVertButton.setAttribute('aria-label', this.input.a11yReportMenu || 'Report this video');
+        moreVertButton.setAttribute('aria-label', this.input.a11yReportText || 'Report this video');
         flagSmallIcon.renderSync().appendTo(moreVertButton);
     },
     takeAction() {
