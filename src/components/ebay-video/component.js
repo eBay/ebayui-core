@@ -56,6 +56,18 @@ module.exports = {
         });
     },
 
+    handleError(err) {
+        this.state.failed = true;
+        this.state.isLoaded = true;
+
+        if (this.ui) {
+            this.ui.configure({
+                addBigPlayButton: false,
+            });
+        }
+        this.emit('load-error', err);
+    },
+
     showControls() {
         this.ui.configure(videoConfig);
 
@@ -174,9 +186,7 @@ module.exports = {
                 if (nextIndex) {
                     setTimeout(() => this._loadSrc(nextIndex), 0);
                 } else {
-                    this.state.failed = true;
-                    this.state.isLoaded = true;
-                    this.emit('load-error', err);
+                    this.handleError(err);
                 }
             });
     },
@@ -234,9 +244,7 @@ module.exports = {
                 if (this.retryTimes < MAX_RETRIES) {
                     this.retryTimeout = setTimeout(() => this._loadCDN(cdnUrl), 2000);
                 } else {
-                    this.state.failed = true;
-                    this.state.isLoaded = true;
-                    this.emit('load-error', err);
+                    this.handleError(err);
                 }
             });
     },
