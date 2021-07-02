@@ -59,7 +59,7 @@ static var ignoredAttributes = [
         ]
         on-click("loadCDN", true)>
         <if(!state.showLoading)>
-            <ebay-play-large-icon a11y-text=(input.a11yPlayText || "Click to play")/>
+            <ebay-video-play-icon a11y-text=(input.a11yPlayText || "Click to play")/>
         </if>
         <else>
             <ebay-progress-spinner a11y-text=(input.a11yLoadText || "Loading")/>
