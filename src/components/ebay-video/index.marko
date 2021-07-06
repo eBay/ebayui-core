@@ -9,7 +9,10 @@ static var ignoredAttributes = [
     "playView",
     "a11yPlayText",
     "a11yLoadText",
-    "errorText"
+    "a11yReportText",
+    "errorText",
+    "volume",
+    "muted"
 ];
 
 <div
@@ -28,6 +31,7 @@ static var ignoredAttributes = [
             no-controls
             src:no-update
             on-playing('handlePlaying')
+            on-volumechange('handleVolumeChange')
             poster=input.thumbnail
             ...processHtmlAttributes(input, ignoredAttributes)>
             <for|src| of=(input.sources || [])>
@@ -55,7 +59,7 @@ static var ignoredAttributes = [
         ]
         on-click("loadCDN", true)>
         <if(!state.showLoading)>
-            <ebay-play-large-icon a11y-text=(input.a11yPlayText || "Click to play")/>
+            <ebay-video-play-icon a11y-text=(input.a11yPlayText || "Click to play")/>
         </if>
         <else>
             <ebay-progress-spinner a11y-text=(input.a11yLoadText || "Loading")/>
