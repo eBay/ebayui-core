@@ -6,18 +6,19 @@ const MAX_RETRIES = 3;
 const videoConfig = {
     addBigPlayButton: false,
     addSeekBar: true,
-    controlPanelElements: ['play_pause', 'spacer', 'mute', 'volume', 'overflow_menu', 'fullscreen'],
+    controlPanelElements: [
+        'play_pause',
+        'time_and_duration',
+        'spacer',
+        'mute',
+        'volume',
+        'overflow_menu',
+        'fullscreen',
+    ],
     overflowMenuButtons: ['report'],
 };
 
 module.exports = {
-    reattach(callback) {
-        if (this.isDetaching) {
-            setTimeout(() => this.reattach(callback), 10);
-        } else {
-            callback();
-        }
-    },
     isPlaylist(source) {
         const type = source.type && source.type.toLowerCase();
         const src = source.src;
@@ -32,7 +33,7 @@ module.exports = {
     },
 
     handleResize() {
-        if (!this.input.width) {
+        if (!this.input.width && this.video) {
             const { width: containerWidth } = this.containerEl.getBoundingClientRect();
             this.video.setAttribute('width', containerWidth);
         }
@@ -41,10 +42,30 @@ module.exports = {
     handlePlaying(originalEvent) {
         this.showControls();
 
-        if (this.input.fullscreen) {
+        if (this.input.playView === 'fullscreen') {
             this.video.requestFullscreen();
         }
         this.emit('play', { originalEvent, player: this.player });
+    },
+
+    handleVolumeChange(originalEvent) {
+        this.emit('volume-change', {
+            originalEvent,
+            volume: this.video.volume,
+            muted: this.video.muted,
+        });
+    },
+
+    handleError(err) {
+        this.state.failed = true;
+        this.state.isLoaded = true;
+
+        if (this.ui) {
+            this.ui.configure({
+                addBigPlayButton: false,
+            });
+        }
+        this.emit('load-error', err);
     },
 
     showControls() {
@@ -54,6 +75,7 @@ module.exports = {
         const moreVertButton = this.el.querySelector('.shaka-overflow-menu-button');
         moreVertButton.classList.remove('material-icons-round');
         moreVertButton.removeChild(moreVertButton.firstChild);
+        moreVertButton.setAttribute('aria-label', this.input.a11yReportText || 'Report this video');
         flagSmallIcon.renderSync().appendTo(moreVertButton);
     },
     takeAction() {
@@ -71,6 +93,8 @@ module.exports = {
     onInput(input) {
         if (this.video) {
             this.video.setAttribute('width', input.width);
+            this.video.volume = input.volume;
+            this.video.muted = input.muted;
         }
 
         // Check if action is changed
@@ -125,6 +149,17 @@ module.exports = {
         }
     },
 
+    _addTextTracks() {
+        (this.input.tracks || []).forEach((track) => {
+            this.player.addTextTrack(track.src, track.srclang, track.kind);
+        });
+
+        const [track] = this.player.getTextTracks();
+        if (track) {
+            this.player.selectTextTrack(track.id); // => this finds the id and everythings fine but it does nothing
+        }
+    },
+
     _loadSrc(index) {
         const currentIndex = index || 0;
         const src = this.input.sources[currentIndex];
@@ -136,6 +171,7 @@ module.exports = {
         this.player
             .load(src.src)
             .then(() => {
+                this._addTextTracks();
                 this.state.isLoaded = true;
                 this.state.failed = false;
             })
@@ -150,16 +186,13 @@ module.exports = {
                 if (nextIndex) {
                     setTimeout(() => this._loadSrc(nextIndex), 0);
                 } else {
-                    this.state.failed = true;
-                    this.state.isLoaded = true;
-                    this.emit('load-error', err);
+                    this.handleError(err);
                 }
             });
     },
 
     _attach() {
-        // eslint-disable-next-line no-undef,new-cap
-        const { Report } = getElements(this);
+        const { Report, TextSelection } = getElements(this);
         // eslint-disable-next-line no-undef,new-cap
         this.ui = new shaka.ui.Overlay(
             this.player,
@@ -171,6 +204,9 @@ module.exports = {
         // eslint-disable-next-line no-undef,new-cap
         shaka.ui.OverflowMenu.registerElement('report', new Report.Factory());
 
+        // eslint-disable-next-line no-undef,new-cap
+        shaka.ui.Controls.registerElement('captions', new TextSelection.Factory());
+
         this.ui.configure({
             addBigPlayButton: true,
             controlPanelElements: [],
@@ -178,9 +214,11 @@ module.exports = {
         });
 
         // Replace play icon
-        const playButton = this.el.querySelector('.shaka-play-button');
-        playButton.removeAttribute('icon');
-        playIcon.renderSync().appendTo(playButton);
+        if (this.el) {
+            const playButton = this.el.querySelector('.shaka-play-button');
+            playButton.removeAttribute('icon');
+            playIcon.renderSync().appendTo(playButton);
+        }
     },
 
     _loadCDN() {
@@ -194,13 +232,11 @@ module.exports = {
                 // eslint-disable-next-line no-undef,new-cap
                 shaka.polyfill.installAll();
 
-                this.reattach(() => {
-                    // eslint-disable-next-line no-undef,new-cap
-                    this.player = new shaka.Player(this.video);
-                    this._attach();
+                // eslint-disable-next-line no-undef,new-cap
+                this.player = new shaka.Player(this.video);
+                this._attach();
 
-                    this._loadSrc();
-                });
+                this._loadSrc();
             })
             .catch((err) => {
                 clearTimeout(this.retryTimeout);
@@ -208,9 +244,7 @@ module.exports = {
                 if (this.retryTimes < MAX_RETRIES) {
                     this.retryTimeout = setTimeout(() => this._loadCDN(cdnUrl), 2000);
                 } else {
-                    this.state.failed = true;
-                    this.state.isLoaded = true;
-                    this.emit('load-error', err);
+                    this.handleError(err);
                 }
             });
     },
@@ -218,6 +252,9 @@ module.exports = {
     onMount() {
         this.video = this.getEl('video');
         this.containerEl = this.getEl('container');
+
+        this.video.volume = this.input.volume || 1;
+        this.video.muted = this.input.muted || false;
 
         this._loadVideo();
     },
