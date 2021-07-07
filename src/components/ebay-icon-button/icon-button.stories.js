@@ -35,7 +35,7 @@ export default {
             },
         },
         'partially-disabled': {
-            description: 'disables events, but does not show button as disabled',
+            description: 'programmatically disabled, but remains keyboard focusable',
             table: {
                 defaultValue: {
                     summary: 'false',
