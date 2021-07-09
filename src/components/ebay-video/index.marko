@@ -18,11 +18,10 @@ static var ignoredAttributes = [
 ];
 
 <div key="root" class="video-player">
-    <if(isBrowser)>
+    <if(isBrowser && !input.width)>
         <subscribe
             to=window
-            on-click("trackLastClick")
-            on-resize(!input.width && "handleResize")/>
+            on-resize("handleResize")/>
     </if>
     <div
         class="video-player__container"
