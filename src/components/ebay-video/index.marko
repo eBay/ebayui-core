@@ -1,5 +1,7 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
+static const isBrowser = typeof window !== "undefined";
+
 static var ignoredAttributes = [
     "sources",
     "cdnUrl",
@@ -15,23 +17,26 @@ static var ignoredAttributes = [
     "muted"
 ];
 
-<div
-    class="video-player"
-    style={
-        width: `${input.width}px`,
-        height: `${input.height}px`
-    }>
-    <if(!input.width)>
-        <subscribe to=window on-resize("handleResize")/>
+<div key="root" class="video-player">
+    <if(isBrowser)>
+        <subscribe
+            to=window
+            on-click("trackLastClick")
+            on-resize(!input.width && "handleResize")/>
     </if>
-    <div key="container" no-update>
+    <div
+        class="video-player__container"
+        no-update
+        style={
+            width: `${input.width}px`,
+            height: `${input.height}px`
+        }>
         <video
-            key="video"
-            width=input.width
             no-controls
             src:no-update
-            on-playing('handlePlaying')
-            on-volumechange('handleVolumeChange')
+            on-playing("handlePlaying")
+            on-pause("handlePause")
+            on-volumechange("handleVolumeChange")
             poster=input.thumbnail
             ...processHtmlAttributes(input, ignoredAttributes)>
             <for|src| of=(input.sources || [])>

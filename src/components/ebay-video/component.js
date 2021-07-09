@@ -34,9 +34,17 @@ module.exports = {
 
     handleResize() {
         if (!this.input.width && this.video) {
-            const { width: containerWidth } = this.containerEl.getBoundingClientRect();
-            this.video.setAttribute('width', containerWidth);
+            const { width: containerWidth } = this.root.getBoundingClientRect();
+            this.containerEl.setAttribute('width', containerWidth);
         }
+    },
+
+    handlePause(originalEvent) {
+        // On IOS, the controls force showing up if the video exist fullscreen while playing.
+        // This forces the controls to always hide
+        this.video.controls = false;
+
+        this.emit('pause', { originalEvent, player: this.player });
     },
 
     handlePlaying(originalEvent) {
@@ -77,6 +85,7 @@ module.exports = {
         moreVertButton.removeChild(moreVertButton.firstChild);
         moreVertButton.setAttribute('aria-label', this.input.a11yReportText || 'Report this video');
         flagSmallIcon.renderSync().appendTo(moreVertButton);
+        this.video.controls = false;
     },
     takeAction() {
         switch (this.state.action) {
@@ -92,7 +101,11 @@ module.exports = {
 
     onInput(input) {
         if (this.video) {
-            this.video.setAttribute('width', input.width);
+            if (input.width || input.height) {
+                this.containerEl.setAttribute('style', {
+                    width: `${input.width}px`,
+                });
+            }
             this.video.volume = input.volume;
             this.video.muted = input.muted;
         }
@@ -250,8 +263,9 @@ module.exports = {
     },
 
     onMount() {
-        this.video = this.getEl('video');
-        this.containerEl = this.getEl('container');
+        this.root = this.getEl('root');
+        this.video = this.root.querySelector('video');
+        this.containerEl = this.root.querySelector('.video-player__container');
 
         this.video.volume = this.input.volume || 1;
         this.video.muted = this.input.muted || false;
