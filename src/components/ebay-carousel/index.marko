@@ -75,6 +75,7 @@ $ var statusId = (discrete && "carousel-status-" + component.id) || (
                 <for|item| of=data.items>
                     <li
                         ...item.htmlAttributes
+                        key=item.key
                         class=item.class
                         style=item.style
                         aria-hidden=(!item.fullyVisible && "true")
