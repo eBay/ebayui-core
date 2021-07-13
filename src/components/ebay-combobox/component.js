@@ -11,6 +11,10 @@ module.exports = {
         this.getEl('combobox').focus();
     },
 
+    handleFocus() {
+        this._emitComboboxEvent('focus');
+    },
+
     isExpanded() {
         return this.expander.isExpanded();
     },
