@@ -32,10 +32,6 @@ static var ignoredAttributes = [
         }>
         <video
             no-controls
-            src:no-update
-            on-playing("handlePlaying")
-            on-pause("handlePause")
-            on-volumechange("handleVolumeChange")
             poster=input.thumbnail
             ...processHtmlAttributes(input, ignoredAttributes)>
             <for|src| of=(input.sources || [])>
