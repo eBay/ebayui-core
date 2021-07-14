@@ -68,6 +68,7 @@ Note: For this component, `class` is applied to the root tag, while all other HT
 | `input-change`        | `{ el, index, selected }` | same as the `onInput` event, which fires with every keypress               |
 | `select`              | `{ el, index, selected }` | similar to a `<select>`, which fires when an option is clicked or selected |
 | `floating-label-init` | `{ el, index, selected }` | when floating label finishes initializing                                  |
+| `focus`               | `{ el, index, selected }` | same as the `onFocus` event, which fires on focus                          |
 
 ## @option Tag
 
