@@ -270,6 +270,11 @@ module.exports = {
         this.video.volume = this.input.volume || 1;
         this.video.muted = this.input.muted || false;
 
+        this.subscribeTo(this.video)
+            .on('playing', this.handlePlaying.bind(this))
+            .on('pause', this.handlePause.bind(this))
+            .on('volumechange', this.handleVolumeChange.bind(this));
+
         this._loadVideo();
     },
 
