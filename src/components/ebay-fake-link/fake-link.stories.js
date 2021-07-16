@@ -22,9 +22,6 @@ export default {
     },
     argTypes: {
         renderBody: {},
-        href: {
-            description: 'for link',
-        },
         disabled: {
             description: '',
             table: {
@@ -32,15 +29,6 @@ export default {
                 defaultValue: {
                     summary: 'false',
                 },
-            },
-        },
-        'partially-disabled': {
-            description: 'disables events, but does not show button as disabled',
-            table: {
-                defaultValue: {
-                    summary: 'false',
-                },
-                category: 'Toggles',
             },
         },
         onClick: {
@@ -55,7 +43,7 @@ export default {
         },
         onEscape: {
             action: 'on-escape',
-            description: 'Triggered when user presses escape',
+            description: 'Triggered on escape key',
             table: {
                 category: 'Events',
                 defaultValue: {
@@ -88,8 +76,6 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    renderBody: 'Link',
-    href: '',
+    renderBody: 'Fake-Link',
     disabled: false,
-    'partially-disabled': false,
 };

@@ -24,7 +24,7 @@ export default {
     argTypes: {
         renderBody: {},
         href: {
-            description: 'for link that looks like a button',
+            description: 'url for link behaviour (switches to anchor tag)',
         },
         size: {
             options: ['large', 'regular'],
@@ -49,7 +49,7 @@ export default {
             type: { category: 'Options' },
         },
         fluid: {
-            description: 'stretches button to be 100% width and cover container',
+            description: 'button fills 100% width of container',
             table: {
                 category: 'Toggles',
                 defaultValue: {
@@ -67,7 +67,7 @@ export default {
             },
         },
         'partially-disabled': {
-            description: 'disables events, but does not show button as disabled',
+            description: 'programmatically disabled, but remains keyboard focusable',
             table: {
                 defaultValue: {
                     summary: 'false',
@@ -76,7 +76,7 @@ export default {
             },
         },
         transparent: {
-            description: '',
+            description: 'transparent background color (overrides `priority` setting)',
             table: {
                 defaultValue: {
                     summary: 'false',
@@ -95,7 +95,7 @@ export default {
         },
         truncate: {
             description:
-                "will truncate the text of the button onto a single line, and adds an ellipsis, when the button's text overflows",
+                'used in conjunction with `fixed-height`; truncates text to single line with ellipsis when text overflows',
             table: {
                 defaultValue: {
                     summary: 'false',
@@ -115,7 +115,7 @@ export default {
         },
         onEscape: {
             action: 'on-escape',
-            description: 'Triggered when user presses escape',
+            description: 'Triggered on escape key',
             table: {
                 category: 'Events',
                 defaultValue: {

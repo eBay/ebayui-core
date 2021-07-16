@@ -5,7 +5,6 @@
     "targetProperty": null
   },
   "@html-attributes": "expression",
-  "@partially-disabled": "boolean",
   "@autofocus": "#html-autofocus",
   "@disabled": "#html-disabled",
   "@form": "#html-form",
@@ -18,7 +17,6 @@
   "@type": "#html-type",
   "@value": "#html-value",
   "@download": "#html-download",
-  "@href": "#html-href",
   "@media": "#html-media",
   "@ping": "#html-ping",
   "@referrerpolicy": "#html-referrerpolicy",

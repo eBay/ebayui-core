@@ -1,39 +1,11 @@
 import knobs from '../knobs'
 
 $ const {
-    fluid,
-    priority,
-    variant,
-    size,
     disabled,
-    partiallyDisabled,
-    truncate,
-    fixedHeight,
-    transparent,
-    text,
-    href,
-    badgeNumber,
-    badgeAriaLabel
+    text
 } = knobs();
 $ var isIcon = variant === "icon";
 <ebay-button
-    href=(!!href && href)
-    fluid=fluid
-    size=size
-    variant=variant
     disabled=disabled
-    priority=priority
-    partially-disabled=partiallyDisabled
-    transparent=transparent
-    fixed-height=fixedHeight
-    truncate=truncate
-    badge-number=(isIcon && badgeNumber)
-    badge-aria-label=(isIcon && badgeAriaLabel)
-    style={
-        "max-width": truncate && "200px"
-    }>
-    <if(isIcon)>
-        <ebay-menu-icon/>
-    </if>
-    <else>${text}</else>
+    ${text}
 </ebay-button>

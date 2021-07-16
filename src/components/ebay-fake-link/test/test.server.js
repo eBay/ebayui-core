@@ -16,9 +16,4 @@ it('renders disabled version', async () => {
     expect(getByRole('button')).has.attr('disabled');
 });
 
-it('renders partially disabled version', async () => {
-    const { getByRole } = await render(template, { partiallyDisabled: true });
-    expect(getByRole('button')).has.attr('aria-disabled', 'true');
-});
-
 testPassThroughAttributes(template);

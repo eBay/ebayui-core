@@ -6,11 +6,11 @@ static function toJSON() {
     };
 }
 
-static var ignoredAttributes = ["partiallyDisabled", "toJSON"];
+static var ignoredAttributes = ["toJSON"];
 
 $ {
     input.toJSON = toJSON;
-    var tag = input.href ? "a" : "button";
+    var tag = "button";
     var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
 }
 <${tag}
@@ -21,7 +21,6 @@ $ {
     onBlur("handleBlur")
     class=[input.class, "fake-link"]
     data-ebayui=true
-    type=(tag === "button" && (input.type || "button"))
-    aria-disabled=(input.partiallyDisabled && "true")>
+    type=(tag === "button" && (input.type || "button"))>
     <${input.renderBody}/>
 </>

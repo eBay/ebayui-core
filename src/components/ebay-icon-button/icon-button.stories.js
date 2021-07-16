@@ -23,7 +23,7 @@ export default {
     argTypes: {
         renderBody: {},
         href: {
-            description: 'for link that looks like a button',
+            description: 'url for link behaviour (switches to anchor tag)',
         },
         disabled: {
             description: '',
@@ -44,16 +44,16 @@ export default {
             },
         },
         'badge-number': {
-            description: 'used as the number to be placed in the badge',
+            description: 'number to show in badge',
             table: {
                 category: 'Badge (only with variant=icon)',
             },
             type: 'number',
         },
-        'badge-aira-label': {
-            description: 'passed as the `aria-label` directly to the badge',
+        'badge-aria-label': {
+            description: '`aria-label` for badge',
             table: {
-                category: 'Badge (only with variant=icon)',
+                category: 'Badge',
             },
         },
 
@@ -75,7 +75,7 @@ export default {
         },
         onEscape: {
             action: 'on-escape',
-            description: 'Triggered when user presses escape',
+            description: 'Triggered on escape key',
             table: {
                 category: 'Events',
                 defaultValue: {
@@ -109,8 +109,6 @@ export default {
 export const Standard = Template.bind({});
 Standard.args = {
     href: '',
-    fluid: false,
-    size: null,
     disabled: false,
     'partially-disabled': false,
     'badge-number': 0,
