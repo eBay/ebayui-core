@@ -1,18 +1,17 @@
 import button from './index.marko';
+import renderBody from './examples/body.marko';
 import readme from './README.md';
 
 const Template = (args) => ({
     input: {
         ...args,
-        renderBody(out) {
-            out.html(args.renderBody);
-        },
+        renderBody,
     },
 });
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
-    title: 'ebay-button',
+    title: 'ebay-icon-button',
     component: button,
     parameters: {
         docs: {
@@ -25,37 +24,6 @@ export default {
         renderBody: {},
         href: {
             description: 'url for link behaviour (switches to anchor tag)',
-        },
-        size: {
-            options: ['large', 'regular'],
-
-            description: '',
-            table: {
-                defaultValue: {
-                    summary: 'none',
-                },
-            },
-            type: { category: 'Options' },
-        },
-        priority: {
-            options: ['primary', 'secondary', 'delete', 'none'],
-            description: '',
-
-            table: {
-                defaultValue: {
-                    summary: 'secondary',
-                },
-            },
-            type: { category: 'Options' },
-        },
-        fluid: {
-            description: 'button fills 100% width of container',
-            table: {
-                category: 'Toggles',
-                defaultValue: {
-                    summary: 'false',
-                },
-            },
         },
         disabled: {
             description: '',
@@ -75,34 +43,26 @@ export default {
                 category: 'Toggles',
             },
         },
-        transparent: {
-            description: 'transparent background color (overrides `priority` setting)',
+        'badge-number': {
+            description: 'number to show in badge',
             table: {
-                defaultValue: {
-                    summary: 'false',
-                },
-                category: 'Toggles',
+                category: 'Badge (only with variant=icon)',
+            },
+            type: 'number',
+        },
+        'badge-aria-label': {
+            description: '`aria-label` for badge',
+            table: {
+                category: 'Badge',
             },
         },
-        'fixed-height': {
-            description: 'fixes the height based on `size`',
-            table: {
-                defaultValue: {
-                    summary: 'false',
-                },
-                category: 'Toggles',
-            },
-        },
-        truncate: {
-            description:
-                'used in conjunction with `fixed-height`; truncates text to single line with ellipsis when text overflows',
-            table: {
-                defaultValue: {
-                    summary: 'false',
-                },
-                category: 'Toggles',
-            },
-        },
+
+        //     text(
+        //     'badge-aria-label',
+        //     'number of notifications',
+        //     'Badge (only with variant=icon)'
+        //     )
+        // },
         onClick: {
             action: 'on-click',
             description: 'Triggered on click',
@@ -148,14 +108,9 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    renderBody: 'Button',
     href: '',
-    fluid: false,
-    size: null,
     disabled: false,
-    priority: null,
     'partially-disabled': false,
-    transparent: false,
-    'fixed-height': false,
-    truncate: false,
+    'badge-number': 0,
+    'badge-aria-label': '',
 };

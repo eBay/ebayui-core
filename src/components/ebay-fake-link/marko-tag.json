@@ -1,18 +1,10 @@
 {
-  "migrator": "./migrator.js",
   "attribute-groups": ["html-attributes"],
   "@*": {
     "type": "expression",
     "targetProperty": null
   },
   "@html-attributes": "expression",
-  "@partially-disabled": "boolean",
-  "@priority": "string",
-  "@size": "size",
-  "@fluid": "boolean",
-  "@fixed-height": "boolean",
-  "@truncate": "boolean",
-  "@transparent": "boolean",
   "@autofocus": "#html-autofocus",
   "@disabled": "#html-disabled",
   "@form": "#html-form",
@@ -25,7 +17,6 @@
   "@type": "#html-type",
   "@value": "#html-value",
   "@download": "#html-download",
-  "@href": "#html-href",
   "@media": "#html-media",
   "@ping": "#html-ping",
   "@referrerpolicy": "#html-referrerpolicy",

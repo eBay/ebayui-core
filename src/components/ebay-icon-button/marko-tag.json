@@ -1,5 +1,4 @@
 {
-  "migrator": "./migrator.js",
   "attribute-groups": ["html-attributes"],
   "@*": {
     "type": "expression",
@@ -7,12 +6,8 @@
   },
   "@html-attributes": "expression",
   "@partially-disabled": "boolean",
-  "@priority": "string",
-  "@size": "size",
-  "@fluid": "boolean",
-  "@fixed-height": "boolean",
-  "@truncate": "boolean",
-  "@transparent": "boolean",
+  "@badge-number": "expression",
+  "@badge-aria-label": "string",
   "@autofocus": "#html-autofocus",
   "@disabled": "#html-disabled",
   "@form": "#html-form",

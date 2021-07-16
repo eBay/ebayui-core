@@ -20,14 +20,13 @@ static var ignoredAttributes = [
     transitionEl="root">
     <if(input.action)>
         <@action>
-            <ebay-button
-                variant="fake-link"
+            <ebay-fake-link
                 on-click("handleAction")
                 on-focus("handleFocus")
                 on-blur("handleBlur")>
                 <${input.action.renderBody}/>
                 <span class="clipped">- Access Key: ${input.action.accessKey}</span>
-            </ebay-button>
+            </ebay-fake-link>
         </@action>
     </if>
 
