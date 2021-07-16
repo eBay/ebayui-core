@@ -10,5 +10,5 @@ module.exports = () => ({
     icon: select('icon', ['default', 'none'], 'default', 'Options'),
     hasFooter: boolean('has footer?', false, 'Options'),
     hasTitle: boolean('has title?', false, 'Options'),
-    a11yText: text('a11y-text', 'See this notice', 'Accessibility'),
+    a11yText: text('a11y-text', 'Attention', 'Accessibility'),
 });
