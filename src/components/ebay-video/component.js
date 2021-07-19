@@ -78,7 +78,13 @@ module.exports = {
     },
 
     showControls() {
-        this.ui.configure(videoConfig);
+        const copyConfig = Object.assign({}, videoConfig);
+        if (this.state.volumeSlider === false) {
+            copyConfig.controlPanelElements = videoConfig.controlPanelElements.filter(
+                (item) => item !== 'volume'
+            );
+        }
+        this.ui.configure(copyConfig);
 
         // Clear overflow button to make it look like a report button
         const moreVertButton = this.el.querySelector('.shaka-overflow-menu-button');
@@ -116,10 +122,14 @@ module.exports = {
             this.state.action = input.action;
             this.takeAction();
         }
+        if (input.volumeSlider === false) {
+            this.state.volumeSlider = false;
+        }
     },
 
     onCreate() {
         this.state = {
+            volumeSlider: true,
             action: '',
             showLoading: false,
             isLoaded: true,

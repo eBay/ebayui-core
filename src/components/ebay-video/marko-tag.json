@@ -32,5 +32,6 @@
     },
     "@src": "string",
     "@type": "string"
-  }
+  },
+  "@volume-slider": "boolean"
 }
