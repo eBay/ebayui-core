@@ -7,6 +7,5 @@
   "@html-attributes": "expression",
   "@role": "never",
   "@value": "#html-value",
-  "@min": "#html-min",
   "@max": "#html-max"
 }
