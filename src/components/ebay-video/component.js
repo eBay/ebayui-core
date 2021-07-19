@@ -53,6 +53,7 @@ module.exports = {
         if (this.input.playView === 'fullscreen') {
             this.video.requestFullscreen();
         }
+        this.state.played = true;
         this.emit('play', { originalEvent, player: this.player });
     },
 
@@ -123,6 +124,7 @@ module.exports = {
             showLoading: false,
             isLoaded: true,
             failed: false,
+            played: false,
         };
     },
 

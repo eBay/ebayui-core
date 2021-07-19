@@ -17,7 +17,7 @@ static var ignoredAttributes = [
     "muted"
 ];
 
-<div key="root" class="video-player">
+<div key="root" class=["video-player", !state.played && input.thumbnail !== "" && "video-player--poster"]>
     <if(isBrowser && !input.width)>
         <subscribe
             to=window
