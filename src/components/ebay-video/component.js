@@ -1,5 +1,5 @@
 const loader = require('./loader');
-const { getElements, flagSmallIcon, playIcon } = require('./elements');
+const { getElements, playIcon } = require('./elements');
 const versions = require('./versions.json');
 const MAX_RETRIES = 3;
 
@@ -12,10 +12,9 @@ const videoConfig = {
         'spacer',
         'mute',
         'volume',
-        'overflow_menu',
+        'report',
         'fullscreen',
     ],
-    overflowMenuButtons: ['report'],
 };
 
 module.exports = {
@@ -85,13 +84,6 @@ module.exports = {
             );
         }
         this.ui.configure(copyConfig);
-
-        // Clear overflow button to make it look like a report button
-        const moreVertButton = this.el.querySelector('.shaka-overflow-menu-button');
-        moreVertButton.classList.remove('material-icons-round');
-        moreVertButton.removeChild(moreVertButton.firstChild);
-        moreVertButton.setAttribute('aria-label', this.input.a11yReportText || 'Report this video');
-        flagSmallIcon.renderSync().appendTo(moreVertButton);
         this.video.controls = false;
     },
     takeAction() {
@@ -227,7 +219,7 @@ module.exports = {
         );
 
         // eslint-disable-next-line no-undef,new-cap
-        shaka.ui.OverflowMenu.registerElement('report', new Report.Factory());
+        shaka.ui.Controls.registerElement('report', new Report.Factory());
 
         // eslint-disable-next-line no-undef,new-cap
         shaka.ui.Controls.registerElement('captions', new TextSelection.Factory());
