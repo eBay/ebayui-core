@@ -11,7 +11,6 @@ const videoConfig = {
         'time_and_duration',
         'spacer',
         'mute',
-        'volume',
         'report',
         'fullscreen',
     ],
@@ -78,10 +77,13 @@ module.exports = {
 
     showControls() {
         const copyConfig = Object.assign({}, videoConfig);
-        if (this.state.volumeSlider === false) {
-            copyConfig.controlPanelElements = videoConfig.controlPanelElements.filter(
-                (item) => item !== 'volume'
-            );
+        copyConfig.controlPanelElements = [...videoConfig.controlPanelElements];
+        if (this.state.volumeSlider === true) {
+            const insertAt =
+                copyConfig.controlPanelElements.length - 2 > 0
+                    ? copyConfig.controlPanelElements.length - 2
+                    : copyConfig.controlPanelElements.length;
+            copyConfig.controlPanelElements.splice(insertAt, 0, 'volume');
         }
         this.ui.configure(copyConfig);
         this.video.controls = false;
@@ -114,14 +116,14 @@ module.exports = {
             this.state.action = input.action;
             this.takeAction();
         }
-        if (input.volumeSlider === false) {
-            this.state.volumeSlider = false;
+        if (input.volumeSlider === true) {
+            this.state.volumeSlider = input.volumeSlider;
         }
     },
 
     onCreate() {
         this.state = {
-            volumeSlider: true,
+            volumeSlider: false,
             action: '',
             showLoading: false,
             isLoaded: true,
