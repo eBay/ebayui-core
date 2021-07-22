@@ -1,5 +1,5 @@
 const loader = require('./loader');
-const { getElements, flagSmallIcon, playIcon } = require('./elements');
+const { getElements, playIcon } = require('./elements');
 const versions = require('./versions.json');
 const MAX_RETRIES = 3;
 
@@ -11,11 +11,9 @@ const videoConfig = {
         'time_and_duration',
         'spacer',
         'mute',
-        'volume',
-        'overflow_menu',
+        'report',
         'fullscreen',
     ],
-    overflowMenuButtons: ['report'],
 };
 
 module.exports = {
@@ -79,19 +77,15 @@ module.exports = {
 
     showControls() {
         const copyConfig = Object.assign({}, videoConfig);
-        if (this.state.volumeSlider === false) {
-            copyConfig.controlPanelElements = videoConfig.controlPanelElements.filter(
-                (item) => item !== 'volume'
-            );
+        copyConfig.controlPanelElements = [...videoConfig.controlPanelElements];
+        if (this.state.volumeSlider === true) {
+            const insertAt =
+                copyConfig.controlPanelElements.length - 2 > 0
+                    ? copyConfig.controlPanelElements.length - 2
+                    : copyConfig.controlPanelElements.length;
+            copyConfig.controlPanelElements.splice(insertAt, 0, 'volume');
         }
         this.ui.configure(copyConfig);
-
-        // Clear overflow button to make it look like a report button
-        const moreVertButton = this.el.querySelector('.shaka-overflow-menu-button');
-        moreVertButton.classList.remove('material-icons-round');
-        moreVertButton.removeChild(moreVertButton.firstChild);
-        moreVertButton.setAttribute('aria-label', this.input.a11yReportText || 'Report this video');
-        flagSmallIcon.renderSync().appendTo(moreVertButton);
         this.video.controls = false;
     },
     takeAction() {
@@ -122,14 +116,14 @@ module.exports = {
             this.state.action = input.action;
             this.takeAction();
         }
-        if (input.volumeSlider === false) {
-            this.state.volumeSlider = false;
+        if (input.volumeSlider === true) {
+            this.state.volumeSlider = input.volumeSlider;
         }
     },
 
     onCreate() {
         this.state = {
-            volumeSlider: true,
+            volumeSlider: false,
             action: '',
             showLoading: false,
             isLoaded: true,
@@ -227,7 +221,7 @@ module.exports = {
         );
 
         // eslint-disable-next-line no-undef,new-cap
-        shaka.ui.OverflowMenu.registerElement('report', new Report.Factory());
+        shaka.ui.Controls.registerElement('report', new Report.Factory());
 
         // eslint-disable-next-line no-undef,new-cap
         shaka.ui.Controls.registerElement('captions', new TextSelection.Factory());
