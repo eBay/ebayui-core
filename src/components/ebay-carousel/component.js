@@ -492,7 +492,7 @@ module.exports = {
             a11yPlayText: input.a11yPlayText || 'Play',
         };
 
-        const itemSkippedAttributes = ['class', 'style'];
+        const itemSkippedAttributes = ['class', 'style', 'key'];
         const { itemsPerSlide } = state;
         if (itemsPerSlide) {
             state.peek = itemsPerSlide % 1;
@@ -522,6 +522,7 @@ module.exports = {
             return {
                 htmlAttributes: processHtmlAttributes(item, itemSkippedAttributes),
                 class: isStartOfSlide ? ['carousel__snap-point', item.class] : item.class,
+                key: item.key || i,
                 style: item.style,
                 renderBody: item.renderBody,
             };
