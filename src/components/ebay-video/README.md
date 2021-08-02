@@ -31,6 +31,7 @@ For resizing, `ebay-video` supports fixed width or variable width. If no width i
 | `a11y-report-text` | String  | No       | Yes      | The text for screen readers for the report menu popup. Default is "Report"                                                  |
 | `report-text`      | String  | No       | Yes      | The text for report button. Default is "Report"                                                                             |
 | `volume-slider`    | Boolean | Yes      | No       | True/False to keep or remove volume slider. Default is False                                                                |
+| `spinner-timeout`  | Number  | Yes      | No       | Timeout provided to timeout the spinner on iOS. The default is 2000ms.                                                      |
 
 ## @source Tag (required)
 
