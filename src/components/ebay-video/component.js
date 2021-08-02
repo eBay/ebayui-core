@@ -2,6 +2,7 @@ const loader = require('./loader');
 const { getElements, playIcon } = require('./elements');
 const versions = require('./versions.json');
 const MAX_RETRIES = 3;
+const DEFAULT_SPINNER_TIMEOUT = 2000;
 
 const videoConfig = {
     addBigPlayButton: false,
@@ -237,6 +238,13 @@ module.exports = {
             const playButton = this.el.querySelector('.shaka-play-button');
             playButton.removeAttribute('icon');
             playIcon.renderSync().appendTo(playButton);
+
+            const shakaSpinner = this.el.querySelector('.shaka-spinner');
+            if (shakaSpinner) {
+                setTimeout(() => {
+                    shakaSpinner.hidden = true;
+                }, this.input.spinnerTimeout || DEFAULT_SPINNER_TIMEOUT);
+            }
         }
     },
 
@@ -272,7 +280,6 @@ module.exports = {
         this.root = this.getEl('root');
         this.video = this.root.querySelector('video');
         this.containerEl = this.root.querySelector('.video-player__container');
-
         this.video.volume = this.input.volume || 1;
         this.video.muted = this.input.muted || false;
 
