@@ -21,10 +21,27 @@ describe('scroll-transition', () => {
     });
 
     it('scrolls an element to an offset and calls a function once done', (done) => {
-        scrollTransition(scrollEl, 100, () => {
-            expect(scrollEl.scrollLeft).to.equal(100);
-            done();
-        });
+        scrollTransition(
+            scrollEl,
+            100,
+            () => {
+                expect(scrollEl.scrollLeft).to.equal(100);
+                done();
+            },
+            true
+        );
+    });
+
+    it('does not scroll the element and calls a function once done', (done) => {
+        scrollTransition(
+            scrollEl,
+            100,
+            () => {
+                expect(scrollEl.scrollLeft).to.equal(0);
+                done();
+            },
+            false
+        );
     });
 
     it('does not call finish function if scroll is canceled', (done) => {

@@ -109,17 +109,24 @@ function onRender() {
                 if (offset !== listEl.scrollLeft) {
                     // Animate to the new scrolling position and emit update events afterward.
                     config.scrollTransitioning = true;
-                    this.cancelScrollTransition = scrollTransition(listEl, offset, this.emitUpdate);
+                    this.cancelScrollTransition = scrollTransition(
+                        listEl,
+                        offset,
+                        this.emitUpdate,
+                        this.state.paddleClicked
+                    );
                 } else if (this.isMoving) {
                     // Animate to the new scrolling position and emit update events afterward.
                     config.scrollTransitioning = true;
                     this.cancelScrollTransition = scrollTransition(
                         listEl,
                         getOffset(state),
-                        this.emitUpdate
+                        this.emitUpdate,
+                        this.state.paddleClicked
                     );
                 }
             }
+            this.state.paddleClicked = false;
         }
 
         if (autoplayInterval && !paused && !interacting) {
@@ -193,6 +200,7 @@ function handleMove(direction, originalEvent) {
     const { state } = this;
     const nextIndex = this.move(direction);
     const slide = getSlide(state, nextIndex);
+    this.state.paddleClicked = true;
     this.emit('slide', { slide: slide + 1, originalEvent });
     this.emit(`${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
 }
@@ -491,6 +499,7 @@ module.exports = {
             a11yHeadingTag: input.a11yHeadingTag || 'h2',
             a11yPauseText: input.a11yPauseText || 'Pause',
             a11yPlayText: input.a11yPlayText || 'Play',
+            paddleClicked: false,
         };
 
         const itemSkippedAttributes = ['class', 'style', 'key'];

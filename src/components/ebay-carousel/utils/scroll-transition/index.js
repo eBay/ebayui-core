@@ -11,9 +11,11 @@ const supportsScrollBehavior =
  * @param {function} fn A function that will be called after the transition completes.
  * @return {function} A function that cancels the transition.
  */
-module.exports = function scrollTransition(el, to, fn) {
+module.exports = function scrollTransition(el, to, fn, paddleClicked) {
     if (supportsScrollBehavior) {
-        el.scrollTo({ left: to });
+        if (paddleClicked) {
+            el.scrollTo({ left: to });
+        }
         return onScrollEnd(el, fn);
     }
 
