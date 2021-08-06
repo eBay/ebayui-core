@@ -101,32 +101,24 @@ function onRender() {
         });
 
         if (config.nativeScrolling) {
-            if (config.skipScrolling) {
+            if (this.skipScrolling) {
                 this.emitUpdate();
-                config.skipScrolling = false;
             } else {
                 const offset = getOffset(state);
                 if (offset !== listEl.scrollLeft) {
                     // Animate to the new scrolling position and emit update events afterward.
                     config.scrollTransitioning = true;
-                    this.cancelScrollTransition = scrollTransition(
-                        listEl,
-                        offset,
-                        this.emitUpdate,
-                        this.state.paddleClicked
-                    );
+                    this.cancelScrollTransition = scrollTransition(listEl, offset, this.emitUpdate);
                 } else if (this.isMoving) {
                     // Animate to the new scrolling position and emit update events afterward.
                     config.scrollTransitioning = true;
                     this.cancelScrollTransition = scrollTransition(
                         listEl,
                         getOffset(state),
-                        this.emitUpdate,
-                        this.state.paddleClicked
+                        this.emitUpdate
                     );
                 }
             }
-            this.state.paddleClicked = false;
         }
 
         if (autoplayInterval && !paused && !interacting) {
@@ -200,7 +192,6 @@ function handleMove(direction, originalEvent) {
     const { state } = this;
     const nextIndex = this.move(direction);
     const slide = getSlide(state, nextIndex);
-    this.state.paddleClicked = true;
     this.emit('slide', { slide: slide + 1, originalEvent });
     this.emit(`${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
 }
@@ -256,7 +247,7 @@ function handleScroll(scrollLeft) {
     }
 
     if (state.index !== closest) {
-        config.skipScrolling = true;
+        this.skipScrolling = true;
         config.preserveItems = true;
         this.setState('index', closest);
         this.emit('scroll', { index: closest });
@@ -285,6 +276,7 @@ function move(delta) {
 
     config.preserveItems = true;
     this.isMoving = true;
+    this.skipScrolling = false;
 
     // When we are in autoplay mode we overshoot the desired index to land on a clone
     // of one of the ends. Then after the transition is over we update to the proper position.
@@ -499,7 +491,6 @@ module.exports = {
             a11yHeadingTag: input.a11yHeadingTag || 'h2',
             a11yPauseText: input.a11yPauseText || 'Pause',
             a11yPlayText: input.a11yPlayText || 'Play',
-            paddleClicked: false,
         };
 
         const itemSkippedAttributes = ['class', 'style', 'key'];
@@ -559,6 +550,7 @@ module.exports = {
             cleanupAsync.call(this);
             onRender.call(this);
         });
+        this.skipScrolling = false;
 
         if (isNativeScrolling(this.listEl)) {
             config.nativeScrolling = true;
