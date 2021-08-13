@@ -29,6 +29,7 @@ static var ignoredAttributes = [
 
 $ var isOverflowVariant = input.variant === "overflow";
 $ var labelId = input.prefixId && component.getElId("label");
+$ debugger;
 
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -76,11 +77,11 @@ $ var labelId = input.prefixId && component.getElId("label");
                 <else>
                     <!-- TODO Cleanup -->
                     <!-- Convoluted markup to satisfy both Skin and Marko -->
-                    <if(input.icon)>
+                    <!-- <if(input.icon)>
                         <div no-update-body class="btn__icon">
                             <${input.icon}/>
                         </div>
-                    </if>
+                    </if> -->
                     <if(input.text)>
                         <span id=labelId>${input.text}</span>
                     </if>

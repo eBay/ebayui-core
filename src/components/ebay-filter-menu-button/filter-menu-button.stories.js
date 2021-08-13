@@ -1,15 +1,10 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
+import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
-import Component from './examples/01-basic/template.marko';
+import Component from './index.marko';
 
 const Template = (args) => ({
-    input: {
-        ...args,
-        renderBody: args.renderBody
-            ? (out) => {
-                  out.html(args.renderBody);
-              }
-            : null,
-    },
+    input: addRenderBodies(args),
 });
 
 export default {
@@ -23,8 +18,107 @@ export default {
         },
     },
 
-    argTypes: {},
+    argTypes: {
+        text: {
+            control: { type: 'text' },
+            description: 'button text',
+        },
+        a11yText: {
+            control: { type: 'text' },
+            description: 'a11y text for the button',
+        },
+        footerText: {
+            control: { type: 'text' },
+            description: 'footer text for the button',
+        },
+        pressed: {
+            control: { type: 'boolean' },
+            description: 'whether button is pressed (default is `false`)',
+            table: {
+                disable: true,
+            },
+        },
+        expanded: {
+            control: { type: 'boolean' },
+            description: 'whether content is expanded (Note: not supported as initial attribute) ',
+            table: {
+                disable: true,
+            },
+        },
+        disabled: {
+            control: { type: 'boolean' },
+            description:
+                'Will disable the entire dropdown (disables the ebay-button label) if set to true',
+        },
+        variant: {
+            control: { type: 'text' },
+            description: '"" (default) / "form"',
+        },
+        item: {
+            table: {
+                category: '@attribute tags',
+            },
+        },
+        a11yFooterText: {
+            control: { type: 'text' },
+            description: 'a11y text for the footer button',
+            table: {
+                category: 'when footer-text is set',
+            },
+        },
+        formName: {
+            control: { type: 'text' },
+            description: 'forms `name` attribute',
+            table: {
+                category: 'when variant="form"',
+            },
+        },
+        formAction: {
+            control: { type: 'text' },
+            description: 'forms `action` attribute',
+            table: {
+                category: 'when variant="form"',
+            },
+        },
+        checked: {
+            control: { type: 'boolean' },
+            description: 'whether or not the item is checked',
+            table: {
+                category: '@item attributes',
+            },
+        },
+        value: {
+            table: {
+                category: '@item attributes',
+            },
+            control: { type: 'text' },
+            description: 'the items value (returned in emitted events when checked)',
+        },
+    },
 };
 
 export const Standard = Template.bind({});
-Standard.args = {};
+Standard.args = {
+    text: 'text',
+    items: [
+        {
+            value: 'item 1',
+            renderBody: `item 1`,
+        },
+        {
+            value: 'item 2',
+            renderBody: `item 2`,
+        },
+        {
+            value: 'item 3',
+            renderBody: `item 3`,
+        },
+    ],
+};
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-filter-menu-button', Standard.args),
+        },
+    },
+};

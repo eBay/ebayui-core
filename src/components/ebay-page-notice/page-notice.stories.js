@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 import footer from './examples/button.marko';
@@ -45,7 +46,7 @@ export default {
             type: 'select',
             description: 'matches whatever is specified by the "status", or if none hides icon',
         },
-        'a11y-text': {
+        a11yText: {
             description: 'adding description for the notice for a11y users',
         },
 
@@ -68,9 +69,16 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    'a11y-text': 'see this notice',
+    a11yText: 'see this notice',
     status: null,
     icon: null,
+};
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-page-notice', Standard.args),
+        },
+    },
 };
 
 export const WithAction = (args) => ({
@@ -81,7 +89,7 @@ export const WithAction = (args) => ({
     },
 });
 WithAction.args = {
-    'a11y-text': 'see this notice',
+    a11yText: 'see this notice',
     status: null,
     icon: null,
 };

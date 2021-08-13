@@ -222,8 +222,8 @@ export default {
     },
 };
 
-export const continious = Template.bind({});
-continious.args = {
+export const continuous = Template.bind({});
+continuous.args = {
     numberOfItems: 5,
     index: 0,
     gap: 16,
@@ -234,7 +234,7 @@ continious.args = {
     'a11y-next-text': '',
 };
 
-continious.parameters = { controls: { exclude: ['itemsPerSlide'] } };
+continuous.parameters = { controls: { exclude: ['itemsPerSlide'] } };
 
 export const itemsPerSlide = Template.bind({});
 itemsPerSlide.args = {

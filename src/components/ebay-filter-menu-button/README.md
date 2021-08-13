@@ -69,4 +69,4 @@
 | Name      | Type    | Stateful | Required | Description                                                |
 | --------- | ------- | -------- | -------- | ---------------------------------------------------------- |
 | `checked` | Boolean | Yes      | No       | whether or not the item is checked                         |
-| `value`   | Boolean | Yes      | No       | the item's value (returned in emitted events when checked) |
+| `value`   | String  | Yes      | No       | the item's value (returned in emitted events when checked) |

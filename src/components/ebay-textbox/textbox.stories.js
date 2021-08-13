@@ -1,5 +1,5 @@
 import Readme from './README.md';
-import Component from './examples/01-default/template.marko';
+import Component from './index.marko';
 
 const Template = (args) => ({
     input: {
@@ -23,7 +23,45 @@ export default {
         },
     },
 
-    argTypes: {},
+    argTypes: {
+        fluid: {
+            type: 'boolean',
+            control: { type: 'boolean' },
+        },
+        inputSize: {
+            control: { type: 'text' },
+            description: 'either "regular" or "large". If large, then renders larger sized textbox',
+        },
+        multiline: {
+            type: 'boolean',
+            control: { type: 'boolean' },
+            description: 'renders a multi-line texbox if true',
+        },
+        invalid: {
+            type: 'boolean',
+            control: { type: 'boolean' },
+            description: 'indicates a field-level error with red border if true',
+        },
+        buttonAriaLabel: {
+            control: { type: 'text' },
+            description:
+                'aria-label for postfix. Required to be set in order to render postfix button and attach a `textbox-button-click event`',
+        },
+        prefixIcon: {
+            name: '@prefix-icon',
+            description: 'An `<ebay-{name}-icon>` to show as the prefix icon.',
+            table: {
+                category: '@attribute tags',
+            },
+        },
+        postfixIcon: {
+            name: '@postfix-icon',
+            description: 'An `<ebay-{name}-icon>` to show as the postfix icon.',
+            table: {
+                category: '@attribute tags',
+            },
+        },
+    },
 };
 
 export const Standard = Template.bind({});

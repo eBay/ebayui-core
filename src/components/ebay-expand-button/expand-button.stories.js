@@ -35,7 +35,7 @@ export default {
             },
             options: ['default', 'large'],
         },
-        'aria-expanded': {
+        ariaExpanded: {
             description: 'if the expand button is expanded or not',
             options: ['false', 'true'],
             type: 'false',

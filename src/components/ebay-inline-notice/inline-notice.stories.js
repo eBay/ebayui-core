@@ -45,7 +45,7 @@ export default {
             type: 'select',
             description: 'matches whatever is specified by the "status", or if none hides icon',
         },
-        'a11y-text': {
+        a11yText: {
             description: 'adding description for the notice for a11y users',
         },
     },
@@ -62,7 +62,7 @@ Standard.args = {
     &amp;
     <a href="#">Security code</a>
 </p>`,
-    'a11y-text': 'see this notice',
+    a11yText: 'see this notice',
     status: null,
     icon: null,
 };

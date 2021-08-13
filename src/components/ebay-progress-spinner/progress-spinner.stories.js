@@ -1,5 +1,5 @@
 import Readme from './README.md';
-import Component from './examples/01-basic/template.marko';
+import Component from './index.marko';
 
 const Template = (args) => ({
     input: {
@@ -23,8 +23,24 @@ export default {
         },
     },
 
-    argTypes: {},
+    argTypes: {
+        size: {
+            control: { type: 'text' },
+            description: 'size of spinner - can be "small", "large". default is small ',
+        },
+        ariaLabel: {
+            control: { type: 'text' },
+            description: 'Description for accessibility',
+        },
+    },
 };
 
 export const Standard = Template.bind({});
 Standard.args = {};
+Standard.parameters = {
+    docs: {
+        source: {
+            code: `<ebay-progress-spinner aria-label="Busy"/>`,
+        },
+    },
+};
