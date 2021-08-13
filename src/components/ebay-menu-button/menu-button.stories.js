@@ -1,5 +1,6 @@
 import Readme from './README.md';
 import Component from './examples/01-basic/template.marko';
+import badgedExample from './examples/22-badged-items/template.marko';
 
 const Template = (args) => ({
     input: {
@@ -28,3 +29,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {};
+
+export const BadgedItems = () => ({
+    component: badgedExample,
+});
