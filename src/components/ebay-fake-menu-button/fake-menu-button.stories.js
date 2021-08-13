@@ -1,5 +1,6 @@
 import Readme from './README.md';
 import FakeMenu from './examples/01-basic/template.marko';
+import iconExample from './examples/09-icon-with-text/template.marko';
 
 const Template = (args) => ({
     input: {
@@ -28,3 +29,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {};
+
+export const iconText = () => ({
+    component: iconExample,
+});

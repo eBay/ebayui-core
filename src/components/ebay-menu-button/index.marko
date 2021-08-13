@@ -74,12 +74,8 @@ $ var labelId = input.prefixId && component.getElId("label");
                     </else>
                 </if>
                 <else>
-                    <!-- TODO Cleanup -->
-                    <!-- Convoluted markup to satisfy both Skin and Marko -->
                     <if(input.icon)>
-                        <div no-update-body class="btn__icon">
-                            <${input.icon}/>
-                        </div>
+                        <${input.icon}/>
                     </if>
                     <if(input.text)>
                         <span id=labelId>${input.text}</span>
