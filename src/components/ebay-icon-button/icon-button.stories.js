@@ -1,6 +1,7 @@
 import button from './index.marko';
 import renderBody from './examples/body.marko';
 import readme from './README.md';
+import { tagToString } from '../../../.storybook/storybook-code-source';
 
 const Template = (args) => ({
     input: {
@@ -34,7 +35,7 @@ export default {
                 },
             },
         },
-        'partially-disabled': {
+        partiallyDisabled: {
             description: 'programmatically disabled, but remains keyboard focusable',
             table: {
                 defaultValue: {
@@ -43,26 +44,19 @@ export default {
                 category: 'Toggles',
             },
         },
-        'badge-number': {
+        badgeNumber: {
             description: 'number to show in badge',
             table: {
                 category: 'Badge (only with variant=icon)',
             },
             type: 'number',
         },
-        'badge-aria-label': {
+        badgeAriaLabel: {
             description: '`aria-label` for badge',
             table: {
                 category: 'Badge',
             },
         },
-
-        //     text(
-        //     'badge-aria-label',
-        //     'number of notifications',
-        //     'Badge (only with variant=icon)'
-        //     )
-        // },
         onClick: {
             action: 'on-click',
             description: 'Triggered on click',
@@ -110,7 +104,14 @@ export const Standard = Template.bind({});
 Standard.args = {
     href: '',
     disabled: false,
-    'partially-disabled': false,
-    'badge-number': 0,
-    'badge-aria-label': '',
+    partiallyDisabled: false,
+    badgeNumber: 0,
+    badgeAriaLabel: '',
+};
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-icon-button', Standard.args),
+        },
+    },
 };

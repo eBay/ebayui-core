@@ -20,14 +20,27 @@ export default {
 export const heading = () => ({
     component: breadcrumb1,
 });
+heading.parameters = {
+    controls: { hideNoControlsWarning: true },
+};
 
 export const lastPageCurrent = () => ({
     component: breadcrumb2,
 });
+lastPageCurrent.parameters = {
+    controls: { hideNoControlsWarning: true },
+};
 
 export const lastPageParent = () => ({
     component: breadcrumb3,
 });
+lastPageParent.parameters = {
+    controls: { hideNoControlsWarning: true },
+};
+
 export const pageCustomAttribute = () => ({
     component: breadcrumb4,
 });
+pageCustomAttribute.parameters = {
+    controls: { hideNoControlsWarning: true },
+};

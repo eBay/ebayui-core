@@ -24,6 +24,11 @@ module.exports = async ({ config }) => {
         ],
     });
 
+    config.module.rules.push({
+        test: /\.txt$/i,
+        use: 'raw-loader',
+    });
+
     config.plugins.push(
         new BrowserJSONPlugin({
             flags: getDSFlags(),

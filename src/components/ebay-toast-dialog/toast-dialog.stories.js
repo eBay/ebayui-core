@@ -1,5 +1,6 @@
 import Readme from './README.md';
 import Component from './examples/01-default/template.marko';
+import exampleOne from './examples/01-default/example.txt';
 
 const Template = (args) => ({
     input: {
@@ -23,8 +24,35 @@ export default {
         },
     },
 
-    argTypes: {},
+    argTypes: {
+        open: {
+            type: 'boolean',
+            control: { type: 'boolean' },
+            description: 'Whether toast is open.',
+            table: {
+                disable: true,
+            },
+        },
+        a11yCloseText: {
+            control: { type: 'text' },
+            description: ' A11y text for close button.',
+        },
+        header: {
+            name: '@header',
+            description: 'The header to be displayed in the toast dialog',
+            table: {
+                category: '@attribute tags',
+            },
+        },
+    },
 };
 
 export const Standard = Template.bind({});
 Standard.args = {};
+Standard.parameters = {
+    docs: {
+        source: {
+            code: exampleOne,
+        },
+    },
+};

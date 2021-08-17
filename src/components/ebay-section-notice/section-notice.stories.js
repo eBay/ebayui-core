@@ -45,10 +45,10 @@ export default {
             type: 'select',
             description: 'matches whatever is specified by the "status", or if none hides icon',
         },
-        'a11y-text': {
+        a11yText: {
             description: 'adding description for the notice for a11y users',
         },
-        'a11y-role-description': {
+        a11yRoleDescription: {
             table: {
                 defaultValue: {
                     summary: 'Notice',
@@ -69,8 +69,8 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    'a11y-text': 'see this notice',
-    'a11y-role-description': 'Notice',
+    a11yText: 'see this notice',
+    a11yRoleDescription: 'Notice',
     status: null,
     icon: null,
 };
@@ -83,7 +83,7 @@ export const WithAction = (args) => ({
     },
 });
 WithAction.args = {
-    'a11y-text': 'see this notice',
+    a11yText: 'see this notice',
     status: null,
     icon: null,
 };

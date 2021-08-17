@@ -29,7 +29,7 @@ export default {
             type: 'select',
             description: 'matches whatever is specified by the "status", or if none hides icon',
         },
-        'a11y-text': {
+        a11yText: {
             description: 'adding description for the notice for a11y users',
         },
         window: {
@@ -43,7 +43,6 @@ export default {
             description:
                 "If set to full screen the notice will fill the full height of it's window/container",
         },
-
         title: {
             name: '@title',
             description: 'The title content to be displayed',
@@ -63,7 +62,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    'a11y-text': 'see this notice',
+    a11yText: 'see this notice',
     icon: null,
     window: null,
 };
