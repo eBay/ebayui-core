@@ -1,6 +1,5 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
-import Component from './index.marko';
+import Component from './examples/01-basic/template.marko';
 
 const Template = (args) => ({
     input: {
@@ -14,7 +13,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-switch',
+    title: 'ebay-snackbar-dialog',
     component: Component,
     parameters: {
         docs: {
@@ -25,19 +24,26 @@ export default {
     },
 
     argTypes: {
-        disabled: {
+        open: {
             type: 'boolean',
             control: { type: 'boolean' },
+            table: {
+                disable: true,
+            },
+        },
+        layout: {
+            type: 'enum',
+            control: { type: 'radio' },
+            options: ['row', 'column'],
+        },
+        snacktext: {
+            control: { type: 'text' },
+            description: 'for demo only',
         },
     },
 };
 
 export const Standard = Template.bind({});
-Standard.args = {};
-Standard.parameters = {
-    docs: {
-        source: {
-            code: tagToString('ebay-switch', Standard.args),
-        },
-    },
+Standard.args = {
+    snacktext: 'This is the snackbar',
 };
