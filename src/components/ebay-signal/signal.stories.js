@@ -1,5 +1,5 @@
 import Readme from './README.md';
-import Component from './examples/01-trustworthy/template.marko';
+import Component from './index.marko';
 
 const Template = (args) => ({
     input: {
@@ -23,8 +23,22 @@ export default {
         },
     },
 
-    argTypes: {},
+    argTypes: {
+        status: {
+            type: 'enum',
+            control: { type: 'select' },
+            options: ['trustworthy', 'recent', 'time-sensitive', 'neutral'],
+        },
+    },
 };
-
 export const Standard = Template.bind({});
-Standard.args = {};
+Standard.args = {
+    renderBody: `Signal Text`,
+};
+Standard.parameters = {
+    docs: {
+        source: {
+            code: `<ebay-signal status="trustworthy">Trustworthy</ebay-signal>`,
+        },
+    },
+};
