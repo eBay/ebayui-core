@@ -1,6 +1,7 @@
 import { addRenderBodies } from '../../../.storybook/utils';
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
+import badgedExample from './examples/09-badged-items/template.marko';
 import Component from './index.marko';
 
 const Template = (args) => ({
@@ -84,3 +85,7 @@ Standard.parameters = {
         },
     },
 };
+
+export const Badged = () => ({
+    component: badgedExample,
+});
