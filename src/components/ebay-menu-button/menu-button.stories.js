@@ -1,6 +1,7 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
+import iconExample from './examples/09-icon-with-text/template.marko';
 import Component from './index.marko';
 
 const Template = (args) => ({
@@ -144,3 +145,6 @@ Standard.parameters = {
         },
     },
 };
+export const iconText = () => ({
+    component: iconExample,
+});

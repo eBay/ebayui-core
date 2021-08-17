@@ -1,8 +1,8 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
+import iconExample from './examples/09-icon-with-text/template.marko';
 import Component from './index.marko';
-// import example1 from './examples/01-basic/template.marko';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -128,6 +128,11 @@ export default {
 };
 
 export const Standard = Template.bind({});
+Standard.args = {};
+
+export const iconText = () => ({
+    component: iconExample,
+});
 Standard.args = {
     items: [
         {
