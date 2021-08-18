@@ -1,6 +1,5 @@
 const Expander = require('makeup-expander');
 const focusables = require('makeup-focusables');
-const eventUtils = require('../../../common/event-utils');
 
 module.exports = {
     handleExpand() {
@@ -11,29 +10,10 @@ module.exports = {
         this.emit('base-collapse');
     },
 
-    handleKeydown(e) {
-        eventUtils.handleEscapeKeydown(e, () => {
-            const {
-                input: { type },
-            } = this;
-            const container = this.getEl('container');
-            const hostClass = `${type}__host`;
-            const hostSelector = `.${hostClass}`;
-            const host = container.querySelector(hostSelector);
-            if (host) {
-                this.collapse();
-            }
-        });
-    },
-
     onMount() {
         if (this.input.type !== 'dialog--mini') {
             this._setupMakeup();
         }
-
-        this.subscribeTo(window).on('keydown', (e) => {
-            this.handleKeydown(e);
-        });
     },
 
     onUpdate() {
