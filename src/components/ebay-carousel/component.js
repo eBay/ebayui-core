@@ -101,9 +101,8 @@ function onRender() {
         });
 
         if (config.nativeScrolling) {
-            if (config.skipScrolling) {
+            if (this.skipScrolling) {
                 this.emitUpdate();
-                config.skipScrolling = false;
             } else {
                 const offset = getOffset(state);
                 if (offset !== listEl.scrollLeft) {
@@ -248,7 +247,7 @@ function handleScroll(scrollLeft) {
     }
 
     if (state.index !== closest) {
-        config.skipScrolling = true;
+        this.skipScrolling = true;
         config.preserveItems = true;
         this.setState('index', closest);
         this.emit('scroll', { index: closest });
@@ -277,6 +276,7 @@ function move(delta) {
 
     config.preserveItems = true;
     this.isMoving = true;
+    this.skipScrolling = false;
 
     // When we are in autoplay mode we overshoot the desired index to land on a clone
     // of one of the ends. Then after the transition is over we update to the proper position.
@@ -550,6 +550,7 @@ module.exports = {
             cleanupAsync.call(this);
             onRender.call(this);
         });
+        this.skipScrolling = false;
 
         if (isNativeScrolling(this.listEl)) {
             config.nativeScrolling = true;

@@ -33,5 +33,6 @@
     "@src": "string",
     "@type": "string"
   },
-  "@volume-slider": "boolean"
+  "@volume-slider": "boolean",
+  "@spinner-timeout": "number"
 }
