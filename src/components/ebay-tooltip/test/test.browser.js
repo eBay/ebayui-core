@@ -40,7 +40,10 @@ describe('given the default tooltip', () => {
 
         describe('when the escape key is pressed', () => {
             beforeEach(async () => {
-                await fireEvent.keyDown(window, { code: 'Escape', key: 'Escape' });
+                await fireEvent.keyDown(
+                    component.getByText(input.host.renderBody.text).parentElement,
+                    { key: 'Escape', keyCode: 27 }
+                );
             });
 
             it('then it emits the collapse event', async () => {
