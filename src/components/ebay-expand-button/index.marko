@@ -11,6 +11,7 @@ static var ignoredAttributes = [
     "truncate",
     "fixedHeight",
     "partiallyDisabled",
+    "noToggleIcon",
     "toJSON"
 ];
 
@@ -38,6 +39,6 @@ $ var isIconOnly = input.iconOnly || !input.renderBody
                 <${input.renderBody}/>
             </span>
         </if>
-        <ebay-dropdown-icon/>
+        <if(!input.noToggleIcon)><ebay-dropdown-icon/></if>
     </span>
 </button>
