@@ -52,6 +52,7 @@ $ debugger;
         aria-label=input.a11yText
         aria-labelledby=(labelId && `${input.prefixId} ${labelId}`)
         disabled=input.disabled
+        no-toggle-icon=input.noToggleIcon
         on-escape("handleButtonEscape")
         key="button">
         <if(isOverflowVariant)>
@@ -82,9 +83,6 @@ $ debugger;
                         <span id=labelId>${input.text}</span>
                     </if>
                 </else>
-                <if(!input.noToggleIcon)>
-                    <ebay-dropdown-icon/>
-                </if>
             </span>
         </else>
     </>
