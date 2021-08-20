@@ -37,6 +37,19 @@ describe('given the default tooltip', () => {
                 await waitFor(() => expect(component.emitted('collapse')).has.length(1));
             });
         });
+
+        describe('when the escape key is pressed', () => {
+            beforeEach(async () => {
+                await fireEvent.keyDown(
+                    component.getByText(input.host.renderBody.text).parentElement,
+                    { key: 'Escape', keyCode: 27 }
+                );
+            });
+
+            it('then it emits the collapse event', async () => {
+                await waitFor(() => expect(component.emitted('collapse')).has.length(1));
+            });
+        });
     });
 });
 

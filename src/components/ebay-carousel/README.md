@@ -50,11 +50,11 @@ This component will bundle different resources depending on Lasso flags provided
 
 ## ebay-carousel Events
 
-| Event             | Data                 | Description                                                       |
-| ----------------- | -------------------- | ----------------------------------------------------------------- |
-| `carousel-update` | { [visibleIndexes] } | called whenever item visibility changes, including initialization |
-| `next`            | { originalEvent }    | click next control                                                |
-| `previous`        | { originalEvent }    | click previous control                                            |
+| Event      | Data                 | Description                                                       |
+| ---------- | -------------------- | ----------------------------------------------------------------- |
+| `move`     | { [visibleIndexes] } | called whenever item visibility changes, including initialization |
+| `next`     | { originalEvent }    | click next control                                                |
+| `previous` | { originalEvent }    | click previous control                                            |
 
 ### Additional Events for when items-per-slide is set
 
