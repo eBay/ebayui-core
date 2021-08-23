@@ -16,6 +16,8 @@
   "@report-text": "string",
   "@error-text": "string",
   "@volume": "number",
+  "@volume-slider": "boolean",
+  "@spinner-timeout": "number",
   "@muted": "boolean",
   "@sources <source>[]": {
     "@*": {
@@ -32,7 +34,5 @@
     },
     "@src": "string",
     "@type": "string"
-  },
-  "@volume-slider": "boolean",
-  "@spinner-timeout": "number"
+  }
 }
