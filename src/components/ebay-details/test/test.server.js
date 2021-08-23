@@ -1,9 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -42,12 +39,10 @@ describe('details', () => {
     });
 
     it('renders center version', async () => {
-        const input = Object.assign({}, mock.Default_Details, { type: 'center' });
+        const input = Object.assign({}, mock.Default_Details, { alignment: 'center' });
         const { getByText } = await render(template, input);
         expect(getByText(input.text).closest('summary')).has.class('details__summary--center');
     });
 
     testPassThroughAttributes(template);
 });
-
-testEventsMigrator(require('../migrator'), 'details', ['toggle', 'click'], '../index.marko');
