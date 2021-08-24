@@ -6,13 +6,15 @@ const { setAttributeIfPresent } = require('../../common/migrators');
  */
 
 function migratorMarko4(el, context) {
-    setAttributeIfPresent(el, context, 'on-details-toggle', 'on-toggle');
-    setAttributeIfPresent(el, context, 'on-details-click', 'on-click');
+    setAttributeIfPresent(el, context, 'type', 'alignment');
     return el;
 }
 
-function migratorMarko5() {
-    return;
+function migratorMarko5(path) {
+    const index = path.node.attributes.findIndex((a) => a.name === 'type');
+    if (index !== -1) {
+        path.node.attributes[index].name = 'alignment';
+    }
 }
 
 module.exports = function migrator(a, b) {
