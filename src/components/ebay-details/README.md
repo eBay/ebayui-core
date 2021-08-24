@@ -15,13 +15,13 @@
 
 ## Attributes
 
-| Name   | Type    | Stateful | Required | Description                                    |
-| ------ | ------- | -------- | -------- | ---------------------------------------------- |
-| `text` | String  | No       | No       | The text to display in the details toggle      |
-| `type` | String  | No       | No       | Can be "regular" / "center". Default "regular" |
-| `size` | String  | No       | No       | Can be "regular" / "small". Default "regular"  |
-| `open` | Boolean | No       | No       | Whether details is open.                       |
-| `as`   | String  | No       | No       | The root element. Defaults to `<p>`            |
+| Name        | Type    | Stateful | Required | Description                                    |
+| ----------- | ------- | -------- | -------- | ---------------------------------------------- |
+| `text`      | String  | No       | No       | The text to display in the details toggle      |
+| `alignment` | String  | No       | No       | Can be "regular" / "center". Default "regular" |
+| `size`      | String  | No       | No       | Can be "regular" / "small". Default "regular"  |
+| `open`      | Boolean | No       | No       | Whether details is open.                       |
+| `as`        | String  | No       | No       | The root element. Defaults to `<p>`            |
 
 ## Events
 

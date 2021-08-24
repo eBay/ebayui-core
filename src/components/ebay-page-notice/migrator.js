@@ -1,11 +1,11 @@
 const { setAttributeIfPresent, setAttributeIfPresentV5 } = require('../../common/migrators');
 
 function migratorMarko4(el, context) {
-    setAttributeIfPresent(el, context, 'a11y-close-text', 'a11y-close-button-text');
+    setAttributeIfPresent(el, context, 'a11y-text', 'a11y-icon-text');
 }
 
 function migratorMarko5(path) {
-    setAttributeIfPresentV5(path, 'a11y-close-text', 'a11y-close-button-text');
+    setAttributeIfPresentV5(path, 'a11y-text', 'a11y-icon-text');
 }
 
 module.exports = function migrator(a, b) {

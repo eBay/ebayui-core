@@ -33,6 +33,19 @@ function setAttributeIfPresent(el, context, oldAttribute, newAttribute) {
     }
 }
 
+function setAttributeIfPresentV5(path, oldAttribute, newAttribute) {
+    const { node } = path;
+    const index = node.attributes.findIndex((a) => a.name === oldAttribute);
+
+    if (index !== -1) {
+        path.node.attributes[index].name = newAttribute;
+    }
+    if (oldAttribute.indexOf('-') > -1) {
+        // Convert on-something to onSomething
+        setAttributeIfPresentV5(path, convertToCamel(oldAttribute), convertToCamel(newAttribute));
+    }
+}
+
 function createIconFromAttribute(el, context, attribute) {
     if (el.hasAttribute(attribute) && typeof el.getAttributeValue(attribute).value === 'string') {
         context.deprecate(
@@ -49,5 +62,6 @@ function createIconFromAttribute(el, context, attribute) {
 
 module.exports = {
     setAttributeIfPresent,
+    setAttributeIfPresentV5,
     createIconFromAttribute,
 };

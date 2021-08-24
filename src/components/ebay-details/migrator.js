@@ -1,4 +1,4 @@
-const { setAttributeIfPresent } = require('../../common/migrators');
+const { setAttributeIfPresent, setAttributeIfPresentV5 } = require('../../common/migrators');
 
 /**
  * @description
@@ -11,10 +11,7 @@ function migratorMarko4(el, context) {
 }
 
 function migratorMarko5(path) {
-    const index = path.node.attributes.findIndex((a) => a.name === 'type');
-    if (index !== -1) {
-        path.node.attributes[index].name = 'alignment';
-    }
+    setAttributeIfPresentV5(path, 'type', 'alignment');
 }
 
 module.exports = function migrator(a, b) {
