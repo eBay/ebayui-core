@@ -1,11 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const {
-    runTransformer,
-    testEventsMigrator,
-    testAttributeRenameMigrator,
-} = require('../../../common/test-utils/server');
-const migrator = require('../migrator');
+const { testAttributeRenameMigrator } = require('../../../common/test-utils/server');
 const template = require('..');
 const mock = require('./mock');
 
@@ -41,7 +36,7 @@ describe('infotip modal', () => {
         const { getByLabelText, getAllByLabelText, getByText } = await render(template, input);
         expect(getAllByLabelText(input.ariaLabel)[0]).has.class('dialog--mini__host');
         expect(getByText(input.content.renderBody.text)).has.class('lightbox-dialog__main');
-        expect(getByLabelText(input.a11yCloseText)).has.class('lightbox-dialog__close');
+        expect(getByLabelText(input.a11yCloseButtonText)).has.class('lightbox-dialog__close');
     });
 
     it('renders modal infotip without header', async () => {
@@ -52,47 +47,11 @@ describe('infotip modal', () => {
 });
 
 describe('migrator', () => {
-    const componentPath = '../index.marko';
-
-    it('transforms an icon attribute into a tag', () => {
-        const tagString = '<ebay-infotip icon="settings"/>';
-        const { el } = runTransformer(migrator, tagString, componentPath);
-        const {
-            body: {
-                array: [iconEl],
-            },
-        } = el;
-        const {
-            body: {
-                array: [tag],
-            },
-        } = iconEl;
-        expect(iconEl.tagName).to.equal('@icon');
-        expect(tag.tagName).to.equal('ebay-settings-icon');
-    });
-
-    it('does not transform when icon attribute is missing', () => {
-        const tagString = '<ebay-infotip/>';
-        const { el } = runTransformer(migrator, tagString, componentPath);
-        const {
-            body: {
-                array: [iconEl],
-            },
-        } = el;
-        expect(iconEl).to.equal(undefined);
-    });
-
-    testEventsMigrator(
-        require('../migrator'),
-        { event: 'tooltip', component: 'infotip' },
-        ['expand', 'collapse'],
-        '../index.marko'
-    );
     testAttributeRenameMigrator(
         require('../migrator'),
         'infotip',
-        'modal',
-        'variant',
+        'a11yCloseText',
+        'a11yCloseButtonText',
         '../index.marko'
     );
 });

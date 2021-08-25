@@ -17,8 +17,7 @@ $ var tabAriaCurrent = input.tabMatchesCurrentUrl === false ? "true" : "page";
                 ...processHtmlAttributes(tab, itemAnchorIgnoredAttributes)
                 class=[
                     tab.class,
-                    "fake-tabs__item",
-                    isSelected && "fake-tabs__item--current"
+                    "fake-tabs__item"
                 ]>
                 <a aria-current=( isSelected && tabAriaCurrent) href=tab.href>
                     <${tab.renderBody}/>

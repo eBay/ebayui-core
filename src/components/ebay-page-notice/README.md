@@ -36,8 +36,8 @@ The `<ebay-page-notice>` is a tag used to create a custom-designed notice elemen
 
 ## ebay-page-notice Attributes
 
-| Name        | Type   | Stateful | Required | Description                                                                                    |
-| ----------- | ------ | -------- | -------- | ---------------------------------------------------------------------------------------------- |
-| `status`    | String | No       | No       | "attention" (default for "page" and "inline"), "confirmation" "information", or "celebration". |
-| `a11y-text` | String | No       | Yes      | adding description for the notice for a11y users                                               |
-| `icon`      | String | Yes      | No       | "default" (matches whatever is specified by the "status") or "none"                            |
+| Name             | Type   | Stateful | Required | Description                                                                                    |
+| ---------------- | ------ | -------- | -------- | ---------------------------------------------------------------------------------------------- |
+| `status`         | String | No       | No       | "attention" (default for "page" and "inline"), "confirmation" "information", or "celebration". |
+| `a11y-icon-text` | String | No       | Yes      | adding description for the notice for a11y users                                               |
+| `icon`           | String | Yes      | No       | "default" (matches whatever is specified by the "status") or "none"                            |
