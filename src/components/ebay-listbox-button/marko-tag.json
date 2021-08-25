@@ -13,6 +13,9 @@
   "@truncate": "boolean",
   "@prefix-id": "string",
   "@prefix-label": "string",
+  "@list-selection": {
+    "enum": ["manual", "auto"]
+  },
   "@name": "#html-name",
   "@button-name": "#html-name",
   "@disabled": "#html-disabled",

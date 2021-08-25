@@ -19,7 +19,9 @@ describe('given the listbox with 3 items', () => {
     const input = mock.Basic_3Options;
 
     beforeEach(async () => {
-        component = await render(template, input, { container: form });
+        component = await render(template, Object.assign({}, input, { listSelection: 'auto' }), {
+            container: form,
+        });
     });
 
     it('then the native select should be initialized to the first option value', () => {
@@ -74,7 +76,9 @@ describe('given the listbox is in an expanded state', () => {
     const input = mock.Basic_3Options;
 
     beforeEach(async () => {
-        component = await render(template, input, { container: form });
+        component = await render(template, Object.assign({}, input, { listSelection: 'auto' }), {
+            container: form,
+        });
     });
 
     describe('when an option is clicked', () => {
@@ -132,6 +136,69 @@ describe('given the listbox is in an expanded state', () => {
                     .has.property('selected')
                     .and.is.deep.equal([input.options[0].value]);
             });
+        });
+    });
+});
+
+describe('given the listbox is in an expanded state with manual selection', () => {
+    const input = mock.Basic_3Options;
+
+    beforeEach(async () => {
+        component = await render(template, input, { container: form });
+    });
+
+    describe('when an option is clicked', () => {
+        beforeEach(async () => {
+            await fireEvent.click(component.getByText(input.options[1].text));
+        });
+
+        it('then it emits the change event with correct data', () => {
+            const changeEvents = component.emitted('change');
+            expect(changeEvents).has.length(1);
+
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property('index', 1);
+            expect(changeEvent)
+                .has.property('selected')
+                .and.is.deep.equal([input.options[1].value]);
+        });
+    });
+
+    describe('when the down arrow key is pressed', () => {
+        beforeEach(async () => {
+            await pressKey(component.getAllByRole('listbox').find(isVisible), {
+                key: 'ArrowDown',
+                keyCode: 40,
+            });
+        });
+
+        it('then it does not emit the change event', () => {
+            const changeEvents = component.emitted('change');
+            expect(changeEvents).has.length(0);
+        });
+    });
+
+    describe('when the down arrow key is pressed with space', () => {
+        beforeEach(async () => {
+            await pressKey(component.getAllByRole('listbox').find(isVisible), {
+                key: 'ArrowDown',
+                keyCode: 40,
+            });
+            await pressKey(component.getAllByRole('listbox').find(isVisible), {
+                key: '(Space character)',
+                keyCode: 32,
+            });
+        });
+
+        it('then it emits the change event with the correct data', () => {
+            const changeEvents = component.emitted('change');
+            expect(changeEvents).has.length(1);
+
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property('index', 1);
+            expect(changeEvent)
+                .has.property('selected')
+                .and.is.deep.equal([input.options[1].value]);
         });
     });
 });

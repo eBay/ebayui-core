@@ -23,6 +23,17 @@ export default {
             control: { type: 'text' },
             description: 'used for the `name` attribute of the native `<select>`',
         },
+        listSelection: {
+            table: {
+                defaultValue: {
+                    summary: 'manual',
+                },
+            },
+            description:
+                'If manual then user will need to press enter to select an item using keyboard. Otherwise auto will automatically select as the user presses up/down',
+            options: ['manual', 'auto'],
+            type: 'select',
+        },
         selected: {
             description: 'allows you to set the selected index option to `selected`',
         },

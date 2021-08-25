@@ -1,20 +1,49 @@
 const ActiveDescendant = require('makeup-active-descendant');
-const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
+const eventUtils = require('../../common/event-utils');
 
 module.exports = {
+    get isAutoSelection() {
+        return this.input.listSelection === 'auto';
+    },
+
     elementScroll() {
         elementScroll.scroll(this.getEls('option')[this.state.selectedIndex]);
+    },
+
+    handleChange(index, wasClicked) {
+        if (this.state.selectedIndex !== index) {
+            const option = this.input.options[index];
+            const el = this.getEls('option')[index];
+            this.state.selectedIndex = index;
+            this.once('update', () => {
+                this.emit('change', {
+                    index,
+                    selected: [option.value],
+                    el,
+                    wasClicked,
+                });
+            });
+        }
+    },
+
+    handleClick(index) {
+        this.handleChange(index, true);
     },
 
     handleMouseDown() {
         this.wasClicked = true;
     },
 
+    handleKeyDown(originalEvent) {
+        eventUtils.handleActionKeydown(originalEvent, () =>
+            this.handleChange(this._activeDescendant.index, false)
+        );
+    },
+
     handleListboxChange(event) {
         const selectedIndex = parseInt(event.detail.toIndex, 10);
         const el = this.getEls('option')[selectedIndex];
-        const option = this.input.options[selectedIndex];
         const wasClicked = this.wasClicked;
 
         elementScroll.scroll(el);
@@ -22,18 +51,7 @@ module.exports = {
         if (this.wasClicked) {
             this.wasClicked = false;
         }
-
-        if (this.state.selectedIndex !== selectedIndex) {
-            this.state.selectedIndex = selectedIndex;
-            this.once('update', () => {
-                this.emit('change', {
-                    index: selectedIndex,
-                    selected: [option.value],
-                    el,
-                    wasClicked,
-                });
-            });
-        }
+        this.handleChange(selectedIndex, wasClicked);
     },
 
     onCreate() {
@@ -84,10 +102,9 @@ module.exports = {
                     activeDescendantClassName: 'listbox__option--active',
                     autoInit: state.selectedIndex,
                     autoReset: null,
+                    autoScroll: !this.isAutoSelection,
                 }
             );
-
-            scrollKeyPreventer.add(optionsContainer);
         }
     },
 
