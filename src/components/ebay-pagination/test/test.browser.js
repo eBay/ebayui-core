@@ -316,7 +316,7 @@ describe('given the pagination is rendered at various sizes', () => {
                     });
                     if (typeof dots === 'boolean') {
                         it(`should ${dots ? 'show' : 'hide'} the dots`, () => {
-                            const dotsEl = component.getByText('…');
+                            const dotsEl = component.getByRole('separator', { hidden: true });
                             const isHidden = Boolean(dotsEl.closest('[hidden]'));
                             expect(isHidden).to.equal(
                                 !dots,

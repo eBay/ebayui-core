@@ -1,7 +1,4 @@
 module.exports = function () {
-    if (typeof window !== 'undefined') {
-        console.error('ds4 icon not found: security-key');
-    }
     // eslint-disable-next-line max-len,quotes
-    return '<symbol id=icon-security-key viewbox="0 0 16 16"><g fill=#111820 fill-rule=nonzero><g transform="translate(5.5 4.5)"><circle cx=2.3 cy=6.1 r=1 /><path d="M1.8 4.7c0-.6 0-1.1.3-1.4.4-.4.9-.5 1.1-.6.3-.2.6-.5.6-.8 0-.3-.2-.8-1.3-.8-1 0-1.4.6-1.4 1.2H.3c0-1.3.8-2 2.2-2C4.6.4 4.7 1.7 4.7 2c0 .4-.2.8-.7 1.1-.5.4-.9.4-1.1.7-.2.2-.2.5-.2 1h-.9z"/></g><g transform="translate(1 1)"><circle cx=7 cy=.7 r=1 /><circle cx=10.2 cy=.7 r=1 /><circle cx=13.3 cy=.7 r=1 /><circle cx=.7 cy=.7 r=1 /><circle cx=3.8 cy=.7 r=1 transform="rotate(90 3.8 .7)"/><circle cx=7 cy=13.3 r=1 transform="rotate(180 7 13.3)"/><circle cx=3.8 cy=13.3 r=1 transform="rotate(180 3.8 13.3)"/><circle cx=.7 cy=13.3 r=1 transform="rotate(180 .7 13.3)"/><circle cx=13.3 cy=13.3 r=1 transform="rotate(180 13.4 13.3)"/><circle cx=10.2 cy=13.3 r=1 transform="rotate(-90 10.2 13.3)"/><circle cx=13.3 cy=7 r=1 transform="rotate(90 13.3 7)"/><circle cx=13.3 cy=10.2 r=1 transform="rotate(90 13.3 10.2)"/><circle cx=13.3 cy=3.8 r=1 transform="rotate(180 13.3 3.8)"/><circle cx=.7 cy=7 r=1 transform="rotate(-90 .7 7)"/><circle cx=.7 cy=3.8 r=1 transform="rotate(-90 .7 3.8)"/><circle cx=.7 cy=10.2 r=1 /></g></g></symbol>';
+    return '<symbol id=icon-security-key viewbox="0 0 24 24"><path d="M8 5V1.2A1.2 1.2 0 019.2 0h5.6A1.2 1.2 0 0116 1.2V5h.8A1.2 1.2 0 0118 6.2V19a5 5 0 01-5 5h-2a5 5 0 01-5-5V6.2A1.2 1.2 0 017.2 5H8zm2 0h4V2h-4v3zM8 7v12a3 3 0 003 3h2a3 3 0 003-3V7H8z"></path><path d="M12 12a1 1 0 100 2 1 1 0 000-2zm-3 1a3 3 0 116 0 3 3 0 01-6 0z"></path></symbol>';
 };

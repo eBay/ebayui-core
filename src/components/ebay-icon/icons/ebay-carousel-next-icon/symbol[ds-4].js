@@ -1,4 +1,4 @@
 module.exports = function () {
     // eslint-disable-next-line max-len,quotes
-    return '<symbol id=icon-carousel-next viewbox="0 0 14 23"><path d="M0 20.502L11.469 9.036l2.433 2.432L2.433 22.936 0 20.502zm11.469-6.601L0 2.433 2.433 0l11.469 11.469-2.433 2.433v-.001z"></path></symbol>';
+    return '<symbol viewbox="0 0 8 14" id=icon-carousel-next><path d="M1.005 14a1 1 0 01-.71-1.71l5.296-5.288L.296 1.714A1.004 1.004 0 011.714.294L7.71 6.292a1 1 0 010 1.41L1.714 13.7a.999.999 0 01-.709.3z"></path></symbol>';
 };
