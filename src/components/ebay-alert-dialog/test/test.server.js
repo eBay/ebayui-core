@@ -13,9 +13,9 @@ describe('dialog', () => {
         const dialog = getByRole('alertdialog', { hidden: true });
 
         expect(dialog).has.attr('hidden');
-        expect(dialog).has.class('lightbox-dialog');
-        expect(getByText(input.confirmText)).has.class('lightbox-dialog__confirm');
-        expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');
+        expect(dialog).has.class('alert-dialog');
+        expect(getByText(input.confirmText)).has.class('alert-dialog__acknowledge');
+        expect(getByText(input.renderBody.text)).has.class('alert-dialog__main');
     });
 
     it('renders in open state', async () => {

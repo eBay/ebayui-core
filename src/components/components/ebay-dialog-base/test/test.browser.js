@@ -58,7 +58,9 @@ describe('given a closed dialog', () => {
 
     function thenItIsOpen(wasToggled) {
         it('then it is visible in the DOM', async () => {
-            await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+            await waitFor(() =>
+                expect(component.getByRole('dialog', { hidden: true })).does.not.have.attr('hidden')
+            );
         });
 
         it('then <body> is not scrollable', () => {
@@ -72,7 +74,7 @@ describe('given a closed dialog', () => {
         if (wasToggled) {
             it('then it traps focus', async () => {
                 await waitFor(() => {
-                    expect(component.getByRole('dialog').children[1]).has.class(
+                    expect(component.getByRole('dialog', { hidden: true }).children[1]).has.class(
                         'keyboard-trap--active'
                     );
                     component
@@ -143,7 +145,7 @@ describe('given an open dialog', () => {
         beforeEach(async () => {
             const inputEl = document.createElement('input');
             inputEl.setAttribute('placeholder', 'sample input');
-            component.getByRole('dialog').appendChild(inputEl);
+            component.getByRole('dialog', { hidden: true }).appendChild(inputEl);
             await pressKey(component.getByPlaceholderText('sample input'), {
                 key: 'Escape',
                 keyCode: 27,
@@ -156,7 +158,7 @@ describe('given an open dialog', () => {
     describe('when the mask is clicked', () => {
         beforeEach(async () => {
             // simulate clicking outside the dialog.
-            await fireEvent.click(component.getByRole('dialog'));
+            await fireEvent.click(component.getByRole('dialog', { hidden: true }));
         });
 
         thenItIsClosed(true);
@@ -164,7 +166,9 @@ describe('given an open dialog', () => {
 
     function thenItIsOpen() {
         it('then it is visible in the DOM', async () => {
-            await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+            await waitFor(() =>
+                expect(component.getByRole('dialog', { hidden: true })).does.not.have.attr('hidden')
+            );
         });
 
         it('then <body> is not scrollable', () => {
@@ -177,7 +181,7 @@ describe('given an open dialog', () => {
 
         it('then it traps focus', async () => {
             await waitFor(() => {
-                expect(component.getByRole('dialog').children[1]).has.class(
+                expect(component.getByRole('dialog', { hidden: true }).children[1]).has.class(
                     'keyboard-trap--active'
                 );
                 component
