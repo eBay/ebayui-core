@@ -12,10 +12,10 @@ exports.Buttons = {
         renderBody: createRenderBody(`Item Text ${i}`),
     })),
 };
-exports.Links_First_Without_HREF = {
+exports.Links_Last_Without_HREF = {
     a11yHeadingText: 'Page navigation',
     items: getNItems(3, (i) => ({
-        href: i === 0 || i === 2 ? undefined : '#',
+        href: i === 2 ? undefined : '#',
         renderBody: createRenderBody(`Item Text ${i}`),
     })),
 };
