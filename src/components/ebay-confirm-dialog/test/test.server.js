@@ -13,10 +13,10 @@ describe('dialog', () => {
         const dialog = getByRole('dialog', { hidden: true });
 
         expect(dialog).has.attr('hidden');
-        expect(dialog).has.class('lightbox-dialog');
-        expect(getByText(input.confirmText)).has.class('lightbox-dialog__confirm');
-        expect(getByText(input.rejectText)).has.class('lightbox-dialog__reject');
-        expect(getByText(input.renderBody.text)).has.class('lightbox-dialog__main');
+        expect(dialog).has.class('confirm-dialog');
+        expect(getByText(input.confirmText)).has.class('confirm-dialog__confirm');
+        expect(getByText(input.rejectText)).has.class('confirm-dialog__reject');
+        expect(getByText(input.renderBody.text)).has.class('confirm-dialog__main');
     });
 
     it('renders in open state', async () => {
