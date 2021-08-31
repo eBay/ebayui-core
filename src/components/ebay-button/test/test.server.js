@@ -58,9 +58,7 @@ it('renders fake version', async () => {
         href: '#',
         size: 'large',
         priority: 'primary',
-        htmlAttributes: {
-            ariaLabel: 'fake button',
-        },
+        ariaLabel: 'fake button',
     });
 
     const btn = getByLabelText('fake button');
@@ -107,6 +105,15 @@ it('renders large fixed-height button', async () => {
         size: 'large',
     });
     expect(getByRole('button')).has.class('btn--large-fixed-height');
+});
+
+it('renders a11yText when bodyState === loading', async () => {
+    const { getByRole } = await render(template, {
+        priority: 'primary',
+        a11yText: 'loading text',
+        bodyState: 'loading',
+    });
+    expect(getByRole('button')).has.attr('aria-label', 'loading text');
 });
 
 testPassThroughAttributes(template);

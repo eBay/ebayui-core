@@ -92,7 +92,7 @@
     "browser-refresh": "^1.7.2",
     "chai": "^4.2.0",
     "chai-dom": "^1.8.1",
-    "chromedriver": "^90.0.0",
+    "chromedriver": "^92.0.1",
     "coveralls": "^3.1.0",
     "css-loader": "^5.2.6",
     "dashjs": "^3.2.2",

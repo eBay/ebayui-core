@@ -38,7 +38,7 @@ export default {
             type: { category: 'Options' },
         },
         priority: {
-            options: ['primary', 'secondary', 'delete', 'none'],
+            options: ['primary', 'secondary', 'delete', 'tertiary', 'none'],
             description: '',
 
             table: {
@@ -56,6 +56,25 @@ export default {
                     summary: 'false',
                 },
             },
+        },
+        bodyState: {
+            description: 'when state is loading, adds progress spinner. default is none',
+            options: ['none', 'loading'],
+            control: { type: 'select' },
+            table: {
+                defaultValue: {
+                    summary: 'none',
+                },
+            },
+            type: { category: 'Options' },
+        },
+        a11yText: {
+            description: 'aria label for button when bodyState === loading',
+            table: {
+                defaultValue: '',
+            },
+            control: { type: 'text' },
+            type: { category: 'Options' },
         },
         disabled: {
             description: '',

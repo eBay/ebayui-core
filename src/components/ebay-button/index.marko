@@ -7,6 +7,7 @@ static function toJSON() {
 }
 
 static var ignoredAttributes = [
+    "a11yText",
     "partiallyDisabled",
     "priority",
     "size",
@@ -14,9 +15,18 @@ static var ignoredAttributes = [
     "fixedHeight",
     "truncate",
     "transparent",
+    "bodyState",
     "toJSON"
 ];
 
+static var validPriorities = [
+    'primary',
+    'secondary',
+    'tertiary',
+    'delete'
+];
+
+static var hasLoaded;
 $ {
     input.toJSON = toJSON;
     var size = input.size === "large" ? "large" : null;
@@ -32,6 +42,7 @@ $ {
         (sizeClass ? sizeClass + "-fixed-height" : baseClass + "--fixed-height");
     var tag = input.href ? "a" : "button";
     var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
+    if(input.bodyState === "loading") hasLoaded = true;
 }
 <${tag}
     ...htmlAttributes
@@ -47,13 +58,21 @@ $ {
         fixedHeightClass,
         transparentClass,
         !truncateClass && !fixedHeightClass && sizeClass,
-        (priority === "secondary" ||
-            priority === "primary" ||
-            priority === "delete") &&
-            `${baseClass}--${priority}`
+        (validPriorities.includes(priority) &&
+        `${baseClass}--${priority}`)
     ]
     data-ebayui=true
     type=(tag === "button" && (input.type || "button"))
-    aria-disabled=(input.partiallyDisabled && "true")>
-    <${input.renderBody}/>
+    aria-disabled=((input.partiallyDisabled || input.loading) && "true")
+    aria-label=(input.bodyState === "loading" ? (input.a11yText || "Loading...") : input.ariaLabel)
+    aria-live=((input.bodyState === "loading" || hasLoaded) && "polite")
+    >
+    <if(input.bodyState === "loading")>
+        <span class="btn__cell">
+            <ebay-progress-spinner/>
+        </span>
+    </if>
+    <else>
+        <${input.renderBody}/>
+    </else>
 </>

@@ -1,4 +1,3 @@
-import { createRenderBody } from '../../common/test-utils/shared';
 import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
