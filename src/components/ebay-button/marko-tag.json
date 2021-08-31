@@ -30,6 +30,10 @@
   "@ping": "#html-ping",
   "@referrerpolicy": "#html-referrerpolicy",
   "@rel": "#html-rel",
+  "@a11y-text": "string",
+  "@body-state": {
+    "enum": ["none", "loading"]
+  },
   "@target": "#html-target",
   "@aria-disabled": "never"
 }
