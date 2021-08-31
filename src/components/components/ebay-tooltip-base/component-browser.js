@@ -36,6 +36,10 @@ module.exports = {
         this._expander.expand();
     },
 
+    isExpanded() {
+        return this._expander.isExpanded();
+    },
+
     onDestroy() {
         this._cleanupMakeup();
     },
