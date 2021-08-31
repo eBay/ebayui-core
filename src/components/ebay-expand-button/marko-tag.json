@@ -15,5 +15,6 @@
   "@autofocus": "#html-autofocus",
   "@disabled": "#html-disabled",
   "@type": "never",
-  "@aria-disabled": "never"
+  "@aria-disabled": "never",
+  "@no-toggle-icon": "boolean"
 }

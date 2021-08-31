@@ -23,7 +23,7 @@ export default {
 
     argTypes: {
         renderBody: {},
-        type: {
+        alignment: {
             type: 'options',
             description: 'The position of the details',
             table: {

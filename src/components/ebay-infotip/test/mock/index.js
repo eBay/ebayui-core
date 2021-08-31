@@ -19,7 +19,7 @@ exports.Disabled = Object.assign({}, exports.WithContent, {
 
 exports.ModalWithContent = Object.assign({}, exports.WithContent, {
     variant: 'modal',
-    a11yCloseText: 'Close mini dialog',
+    a11yCloseButtonText: 'Close mini dialog',
 });
 
 exports.ModalDisabled = Object.assign({}, exports.ModalWithContent, {

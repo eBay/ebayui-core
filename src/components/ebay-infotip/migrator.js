@@ -1,18 +1,11 @@
-const { createIconFromAttribute, setAttributeIfPresent } = require('../../common/migrators');
+const { setAttributeIfPresent, setAttributeIfPresentV5 } = require('../../common/migrators');
 
 function migratorMarko4(el, context) {
-    createIconFromAttribute(el, context, 'icon');
-    setAttributeIfPresent(el, context, 'on-tooltip-expand', 'on-expand');
-    setAttributeIfPresent(el, context, 'on-tooltip-collapse', 'on-collapse');
-    if (el.hasAttribute('modal')) {
-        context.deprecate('modal is no longer used. Use variant="modal" instead.');
-        el.removeAttribute('modal');
-        el.setAttributeValue('variant', context.builder.literal('modal'));
-    }
+    setAttributeIfPresent(el, context, 'a11y-close-text', 'a11y-close-button-text');
 }
 
-function migratorMarko5() {
-    return;
+function migratorMarko5(path) {
+    setAttributeIfPresentV5(path, 'a11y-close-text', 'a11y-close-button-text');
 }
 
 module.exports = function migrator(a, b) {

@@ -96,7 +96,7 @@ describe('given the modal infotip opened', () => {
 
     describe('when the host element is opened and then closed', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByLabelText(input.a11yCloseText));
+            await fireEvent.click(component.getByLabelText(input.a11yCloseButtonText));
         });
 
         it('then it emits the collapse event', async () => {

@@ -3,6 +3,7 @@ import processHtmlAttributes from "../../../common/html-attributes"
 static var ignoredAttributes = [
     "status",
     "a11yText",
+    "a11yIconText",
     "icon",
     "iconClass",
     "class",
@@ -30,20 +31,20 @@ $ var prefixClass = input.prefixClass;
         <if(input.icon !== "none")>
             <if(status === "confirmation" || status === "celebration")>
                 <ebay-confirmation-filled-icon
-                    a11y-text=input.a11yText
+                    a11y-text=(input.a11yIconText || input.a11yText)
                     a11y-variant="label"
                     class=input.iconClass/>
             </if>
             <else-if(status === "attention")>
                 <ebay-attention-filled-icon
                     a11y-variant="label"
-                    a11y-text=input.a11yText
+                    a11y-text=(input.a11yIconText || input.a11yText)
                     class=input.iconClass/>
             </else-if>
             <else-if(status === "information")>
                 <ebay-information-filled-icon
                     a11y-variant="label"
-                    a11y-text=input.a11yText
+                    a11y-text=(input.a11yIconText || input.a11yText)
                     class=input.iconClass/>
             </else-if>
         </if>

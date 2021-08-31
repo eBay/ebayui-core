@@ -46,8 +46,8 @@ export default {
             type: 'select',
             description: 'matches whatever is specified by the "status", or if none hides icon',
         },
-        a11yText: {
-            description: 'adding description for the notice for a11y users',
+        a11yIconText: {
+            description: 'adding description for the icon in the notice for a11y users',
         },
 
         title: {

@@ -31,7 +31,7 @@
   "@style-bottom": "string",
   "@aria-label": "string",
   "@variant": "string",
-  "@a11y-close-text": "string",
+  "@a11y-close-button-text": "string",
   "@icon <icon>": {
     "attribute-groups": ["html-attributes"],
     "@*": {
