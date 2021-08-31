@@ -12,7 +12,6 @@ let component;
 describe('given a basic breadcrumb', () => {
     const input = mock.Links;
     const firstItem = input.items[0];
-    const lastItem = input.items[input.items.length - 1];
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -26,6 +25,15 @@ describe('given a basic breadcrumb', () => {
         it('then it emits the select event with correct data', () => {
             expect(component.emitted('select')).has.length(1);
         });
+    });
+});
+
+describe('button', () => {
+    const input = mock.Buttons;
+    const lastItem = input.items[input.items.length - 1];
+
+    beforeEach(async () => {
+        component = await render(template, input);
     });
 
     describe('when a <button> is clicked', () => {
