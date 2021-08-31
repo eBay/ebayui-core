@@ -50,7 +50,7 @@ delete markoTagJson['@_themes'];
 
 function addIcons(fileName, iconMap) {
     for (const theme of THEME_NAMES) {
-        const svgFile = path.join(svgDir, theme, `${fileName}.svg`);
+        const svgFile = path.join(svgDir, `${fileName}.svg`);
         const svgContent = fs.readFileSync(svgFile, 'utf-8');
         const $ = cheerio.load(svgContent);
 
@@ -69,13 +69,6 @@ function addIcons(fileName, iconMap) {
 }
 addIcons('icons', icons);
 addIcons('program-badges', programIcons);
-
-// map DS4 icons that should use the markup of a DS6 icon
-const map4To6 = { 'arrow-down': 'chevron-down-bold' };
-Object.keys(map4To6).forEach((ds4Name) => {
-    const ds6Name = map4To6[ds4Name];
-    icons.get(ds6Name).ds4 = icons.get(ds4Name).ds4.replace(ds4Name, ds6Name);
-});
 
 function generateFile(type, iconMap) {
     for (const [name, themes] of iconMap) {

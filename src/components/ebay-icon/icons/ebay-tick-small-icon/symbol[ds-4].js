@@ -1,4 +1,4 @@
 module.exports = function () {
     // eslint-disable-next-line max-len,quotes
-    return '<symbol id=icon-tick-small viewbox="0 0 24 18"><path fill=#0654ba d="M20.429.001L7.673 12.87 2.481 7.677 0 10.386l7.674 7.45L23.14 2.486 20.43 0z"></path></symbol>';
+    return '<symbol id=icon-tick-small viewbox="0 0 12 9"><path fill-rule=evenodd d="M11.714.29a1 1 0 00-1.41 0l-6.3 6.3-2.29-2.3a1.004 1.004 0 00-1.42 1.42l3 3a1 1 0 001.41 0l7-7a1 1 0 00.01-1.42z"></path></symbol>';
 };
