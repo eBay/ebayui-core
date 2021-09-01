@@ -51,15 +51,15 @@ $ {
     onFocus('handleFocus')
     onBlur('handleBlur')
     class=[
-        input.class,
         baseClass,
+        (validPriorities.includes(priority) &&
+        `${baseClass}--${priority}`),
+        input.class,
         input.fluid && `${baseClass}--fluid`,
         truncateClass,
         fixedHeightClass,
         transparentClass,
         !truncateClass && !fixedHeightClass && sizeClass,
-        (validPriorities.includes(priority) &&
-        `${baseClass}--${priority}`)
     ]
     data-ebayui=true
     type=(tag === "button" && (input.type || "button"))

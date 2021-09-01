@@ -4,16 +4,15 @@ $ var mainId = component.getElId("alert-dialog-main");
     ...input
     role="alertdialog"
     open=input.open
-    classPrefix="lightbox-dialog"
+    classPrefix="alert-dialog"
     ignore-escape=true
-    window-type="compact"
     main-id=mainId
     on-open("emit", "open")
     on-close("emit", "close")
     buttonPosition="hidden"
     focus=confirmId
-    class=[input.class, "lightbox-dialog--mask-fade"]
-    window-class=["lightbox-dialog__compact-window--fade"]>
+    class=[input.class, "alert-dialog--mask-fade"]
+    window-class=["alert-dialog__window--fade"]>
     <@footer>
         <ebay-button
             priority="primary"
@@ -21,7 +20,7 @@ $ var mainId = component.getElId("alert-dialog-main");
             on-click("emit", "confirm")
             key="confirm"
             id=confirmId
-            class="lightbox-dialog__confirm">
+            class="alert-dialog__acknowledge">
             ${input.confirmText}
         </ebay-button>
     </@footer>

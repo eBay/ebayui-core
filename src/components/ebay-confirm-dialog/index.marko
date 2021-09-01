@@ -8,13 +8,12 @@ $ var mainId = component.getElId("confirm-dialog-main");
     on-close("emit", "reject")
     main-id=mainId
     focus=confirmId
-    class-prefix="lightbox-dialog"
-    class=[input.class, "lightbox-dialog--mask-fade"]
-    window-class=["lightbox-dialog__compact-window--fade"]
-    window-type="compact"
+    class-prefix="confirm-dialog"
+    class=[input.class, "confirm-dialog--mask-fade"]
+    window-class=["confirm-dialog__window--fade"]
     button-position="hidden">
     <@footer>
-        <ebay-button on-click("emit", "reject") class="lightbox-dialog__reject">
+        <ebay-button priority="none" on-click("emit", "reject") class="confirm-dialog__reject">
             ${input.rejectText}
         </ebay-button>
         <ebay-button
@@ -22,7 +21,7 @@ $ var mainId = component.getElId("confirm-dialog-main");
             on-click("emit", "confirm")
             id=confirmId
             aria-describedby=mainId
-            class="lightbox-dialog__confirm">
+            class="confirm-dialog__confirm">
             ${input.confirmText}
         </ebay-button>
     </@footer>

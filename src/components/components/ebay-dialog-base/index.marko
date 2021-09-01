@@ -37,6 +37,7 @@ $ var header = input.header;
 <macro name="header-content">
     <${header.as || "h2"}
         ...processHtmlAttributes(header, ignoredHeaderAttributes)
+        class=[header.class, `${input.classPrefix}__title`]
         id=(header.id || component.getElId("dialog-title"))>
         <${header.renderBody}/>
     </>
