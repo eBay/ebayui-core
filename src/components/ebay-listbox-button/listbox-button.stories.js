@@ -42,6 +42,17 @@ export default {
             description:
                 'will truncate the text of the button onto a single line, and adds an ellipsis, when the buttons text overflows',
         },
+        listSelection: {
+            table: {
+                defaultValue: {
+                    summary: 'manual',
+                },
+            },
+            description:
+                'If manual then user will need to press enter to select an item using keyboard. Otherwise auto will automatically select as the user presses up/down',
+            options: ['manual', 'auto'],
+            type: 'select',
+        },
         prefixId: {
             control: { type: 'text' },
             description:
