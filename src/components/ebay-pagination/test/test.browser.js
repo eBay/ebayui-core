@@ -154,11 +154,11 @@ describe('given the pagination is rendered at various sizes', () => {
             input: mock.Links_9Items_1Selected,
             cases: [
                 {
-                    width: 400,
+                    width: 330,
                     expect: [0, 5],
                 },
                 {
-                    width: 540,
+                    width: 430,
                     expect: [0, 7],
                 },
                 {
@@ -172,15 +172,15 @@ describe('given the pagination is rendered at various sizes', () => {
             input: mock.Links_9Items_4Selected,
             cases: [
                 {
-                    width: 400,
+                    width: 330,
                     expect: [2, 7],
                 },
                 {
-                    width: 440,
+                    width: 380,
                     expect: [2, 8],
                 },
                 {
-                    width: 540,
+                    width: 430,
                     expect: [1, 8],
                 },
                 {
@@ -194,11 +194,11 @@ describe('given the pagination is rendered at various sizes', () => {
             input: mock.Links_9Items_7Selected,
             cases: [
                 {
-                    width: 400,
+                    width: 330,
                     expect: [4, 9],
                 },
                 {
-                    width: 540,
+                    width: 430,
                     expect: [2, 9],
                 },
                 {
@@ -212,11 +212,11 @@ describe('given the pagination is rendered at various sizes', () => {
             input: mock.Links_16ItemsDots_1Selected,
             cases: [
                 {
-                    width: 400,
+                    width: 330,
                     expect: [0, 3, 15],
                 },
                 {
-                    width: 540,
+                    width: 430,
                     expect: [0, 5, 15],
                 },
                 {
@@ -231,15 +231,15 @@ describe('given the pagination is rendered at various sizes', () => {
             input: mock.Links_16ItemsDots_7Selected,
             cases: [
                 {
-                    width: 400,
+                    width: 330,
                     expect: [5, 8, 15],
                 },
                 {
-                    width: 440,
+                    width: 380,
                     expect: [5, 9, 15],
                 },
                 {
-                    width: 540,
+                    width: 430,
                     expect: [4, 9, 15],
                 },
                 {
@@ -254,11 +254,11 @@ describe('given the pagination is rendered at various sizes', () => {
             input: mock.Links_16ItemsDots_13Selected,
             cases: [
                 {
-                    width: 400,
+                    width: 330,
                     expect: [11, 16],
                 },
                 {
-                    width: 540,
+                    width: 430,
                     expect: [9, 16],
                 },
                 {
@@ -273,11 +273,11 @@ describe('given the pagination is rendered at various sizes', () => {
             input: mock.Links_16ItemsDots_15Selected,
             cases: [
                 {
-                    width: 400,
+                    width: 330,
                     expect: [11, 16],
                 },
                 {
-                    width: 540,
+                    width: 430,
                     expect: [9, 16],
                 },
                 {
