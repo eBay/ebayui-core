@@ -54,7 +54,6 @@ $ var baseClass = input.classPrefix || "fake-menu";
                         class=[`${baseClass}__item`, item.class]
                         style=item.style
                         aria-current=(item.current ? defaultAriaCurrent : false)
-                        aria-disabled=(item.disabled && "true")
                         href=(item.disabled ? null : item.href)
                         onKeydown("handleItemKeydown", index)
                         onClick("handleItemClick", index)
