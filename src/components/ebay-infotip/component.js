@@ -20,6 +20,18 @@ module.exports = {
         this.getComponent('base').collapse();
     },
 
+    isExpanded() {
+        return this.getComponent('base').isExpanded();
+    },
+
+    expand() {
+        this.getComponent('base').expand();
+    },
+
+    collapse() {
+        this.getComponent('base').collapse();
+    },
+
     handleCollapse() {
         this.setOpen(false);
 
