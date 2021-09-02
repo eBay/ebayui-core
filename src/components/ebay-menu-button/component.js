@@ -11,7 +11,7 @@ module.exports = Object.assign({}, menuUtils, {
 
         if (shouldEmitRadio) {
             if (this.input.collapseOnSelect) {
-                this.expander.collapse();
+                this.expander.expanded = false;
             }
             this.emitComponentEvent({
                 index,
@@ -20,7 +20,7 @@ module.exports = Object.assign({}, menuUtils, {
             });
         } else if (this.type !== 'radio') {
             if (this.input.collapseOnSelect) {
-                this.expander.collapse();
+                this.expander.expanded = false;
             }
             this.emitComponentEvent({
                 index,
@@ -46,7 +46,7 @@ module.exports = Object.assign({}, menuUtils, {
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.expander.collapse();
+            this.expander.expanded = false;
             this.focus();
         });
     },
@@ -56,7 +56,7 @@ module.exports = Object.assign({}, menuUtils, {
     },
 
     handleButtonEscape() {
-        this.expander.collapse();
+        this.expander.expanded = false;
     },
 
     handleExpand() {
@@ -73,7 +73,7 @@ module.exports = Object.assign({}, menuUtils, {
 
     handleMenuSelect({ el, originalEvent, index }) {
         if (this.input.collapseOnSelect) {
-            this.expander.collapse();
+            this.expander.expanded = false;
         }
 
         this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
@@ -147,7 +147,7 @@ module.exports = Object.assign({}, menuUtils, {
 
     _cleanupMakeup() {
         if (this.expander) {
-            this.expander.cancelAsync();
+            this.expander.destroy();
         }
     },
 });

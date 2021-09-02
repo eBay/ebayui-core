@@ -19,7 +19,7 @@ module.exports = {
      */
     handleOptionClick(index) {
         this._setSelectedIndex(index);
-        this.expander.collapse();
+        this.expander.expanded = false;
         this.getEl('combobox').focus();
     },
     /**
@@ -40,7 +40,7 @@ module.exports = {
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.expander.collapse();
+            this.expander.expanded = false;
             this.getEl('combobox').focus();
         });
     },
@@ -104,7 +104,7 @@ module.exports = {
 
     _cleanupMakeup() {
         if (this.expander) {
-            this.expander.cancelAsync();
+            this.expander.destroy();
             this.expander = null;
 
             scrollKeyPreventer.remove(this.getEl('combobox'));

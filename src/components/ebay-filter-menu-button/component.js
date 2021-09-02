@@ -4,7 +4,7 @@ const menuUtils = require('../../common/menu-utils');
 
 module.exports = Object.assign({}, menuUtils, {
     handleMenuKeydown({ originalEvent }) {
-        eventUtils.handleEscapeKeydown(originalEvent, () => this._expander.collapse());
+        eventUtils.handleEscapeKeydown(originalEvent, () => (this._expander.expanded = false));
     },
 
     handleMenuChange({ checkedIndex, el, originalEvent }) {
@@ -16,7 +16,7 @@ module.exports = Object.assign({}, menuUtils, {
 
     handleFooterButtonClick() {
         this._emitComponentEvent('footer-click');
-        this._expander.collapse();
+        this._expander.expanded = false;
     },
 
     handleFormSubmit({ originalEvent }) {
@@ -89,7 +89,7 @@ module.exports = Object.assign({}, menuUtils, {
 
     _cleanupMakeup() {
         if (this._expander) {
-            this._expander.cancelAsync();
+            this._expander.destroy();
             this._expander = undefined;
         }
     },

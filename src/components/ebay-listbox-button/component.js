@@ -13,7 +13,7 @@ module.exports = {
 
     handleListboxChange(event) {
         if (event.wasClicked) {
-            this._expander.collapse();
+            this._expander.expanded = false;
         }
         const selectedIndex = event.index;
         this.state.selectedIndex = selectedIndex;
@@ -75,7 +75,7 @@ module.exports = {
 
     _cleanupMakeup() {
         if (this._expander) {
-            this._expander.cancelAsync();
+            this._expander.destroy();
             this._expander = undefined;
         }
     },

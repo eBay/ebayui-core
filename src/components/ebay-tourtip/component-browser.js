@@ -1,13 +1,13 @@
 module.exports = {
     handleCollapse({ originalEvent }) {
-        if (this._expander.isExpanded()) {
-            this._expander.collapse();
+        if (this._expander.expanded) {
+            this._expander.expanded = false;
             this.emit('collapse', { originalEvent });
         }
     },
 
     onMount() {
         this._expander = this.getComponent('base')._expander;
-        this._expander.expand();
+        this._expander.expanded = true;
     },
 };

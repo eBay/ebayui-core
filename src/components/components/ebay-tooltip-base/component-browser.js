@@ -29,15 +29,15 @@ module.exports = {
     },
 
     collapse() {
-        this._expander.collapse();
+        this._expander.expanded = false;
     },
 
     expand() {
-        this._expander.expand();
+        this._expander.expanded = true;
     },
 
     isExpanded() {
-        return this._expander.isExpanded();
+        return this._expander.expanded;
     },
 
     onDestroy() {
@@ -105,7 +105,7 @@ module.exports = {
         }
 
         if (this._expander) {
-            this._expander.cancelAsync();
+            this._expander.destroy();
             this._expander = undefined;
         }
     },
