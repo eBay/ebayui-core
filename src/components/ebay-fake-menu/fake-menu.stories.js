@@ -91,6 +91,26 @@ export default {
             description:
                 'Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge',
         },
+        onKeydown: {
+            action: 'on-keydown',
+            description: 'Triggered on keydown',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, index, checked }',
+                },
+            },
+        },
+        onSelect: {
+            action: 'on-select',
+            description: 'Triggered on item clicked (non radio/checkbox)',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, index, checked }',
+                },
+            },
+        },
     },
 };
 

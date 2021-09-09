@@ -61,6 +61,38 @@ export default {
             description:
                 'Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge',
         },
+        onKeydown: {
+            action: 'on-keydown',
+            description: 'Triggered on keydown',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, index, checked }',
+                },
+            },
+        },
+        onChange: {
+            action: 'on-change',
+            description: 'Triggered on item checked change, (checkbox/radio type only)',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary:
+                        'radio: { el, index, checked } | checkbox: { el, [indexes], [checked] }',
+                },
+            },
+        },
+
+        onSelect: {
+            action: 'on-select',
+            description: 'Triggered on item clicked (non radio/checkbox)',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, index, checked }',
+                },
+            },
+        },
     },
 };
 

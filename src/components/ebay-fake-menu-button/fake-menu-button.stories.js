@@ -124,6 +124,57 @@ export default {
                 category: '@item attribute tags',
             },
         },
+        onKeydown: {
+            action: 'on-keydown',
+            description: 'Triggered on keydown',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, index, checked }',
+                },
+            },
+        },
+        onCollapse: {
+            action: 'on-collapse',
+            description: 'Triggered on menu collapse',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onExpand: {
+            action: 'on-expand',
+            description: 'Triggered on menu expand',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+
+        onMousedown: {
+            action: 'on-mousedown',
+            description: 'Triggered on mouse down on menu item',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onSelect: {
+            action: 'on-select',
+            description: 'Triggered on item clicked (non radio/checkbox)',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, index, checked }',
+                },
+            },
+        },
     },
 };
 
