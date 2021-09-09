@@ -36,6 +36,16 @@ export default {
                 category: 'when using fake filters',
             },
         },
+        onClick: {
+            action: 'on-click',
+            description: 'Triggered on item clicked',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, checked, originalEvent }',
+                },
+            },
+        },
     },
 };
 

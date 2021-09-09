@@ -74,6 +74,37 @@ export default {
             control: { type: 'text' },
             description: 'the items value (returned in emitted events when checked)',
         },
+        onChange: {
+            action: 'on-change',
+            description: 'Triggered on item clicked',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, checked, originalEvent }',
+                },
+            },
+        },
+        footerClick: {
+            action: 'on-footer-click',
+            description: 'Triggered on footer clicked',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ checked, originalEvent }',
+                },
+            },
+        },
+        formSubmit: {
+            action: 'on-form-submit',
+            description:
+                'when using `variant="form"`, and form is submitted (emits current checked state)',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ checked, originalEvent }',
+                },
+            },
+        },
     },
 };
 
