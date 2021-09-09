@@ -35,6 +35,36 @@ export default {
             control: { type: 'text' },
             description: 'Text for reject button',
         },
+        onOpen: {
+            action: 'on-open',
+            description: 'Triggered on dialog open',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
+        onConfirm: {
+            action: 'on-confirm',
+            description: 'Triggered on dialog confirm button click',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
+        onReject: {
+            action: 'on-reject',
+            description: 'Triggered when dialog is closed',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
     },
 };
 

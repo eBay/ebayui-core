@@ -3,6 +3,9 @@
     aria-labelledby="drawer-title"
     open=state.open
     on-close("closeDrawer")
+    on-expanded("emit", "expanded")
+    on-collapsed("emit", "collapsed")
+    on-open("emit", "open")
     ...input>
     <@header id="drawer-title"><${input.header.renderBody}/></@header>
     <${input.renderBody}/>
@@ -28,5 +31,6 @@ class {
     }
     closeDrawer() {
         this.state.open = false;
+        this.emit('close', arguments);
     }
 }

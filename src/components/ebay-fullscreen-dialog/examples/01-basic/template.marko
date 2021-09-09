@@ -1,4 +1,4 @@
-<ebay-fullscreen-dialog a11y-close-text="Close Dialog" open=state.open on-close('closeDialog')>
+<ebay-fullscreen-dialog a11y-close-text="Close Dialog" open=state.open on-close('closeDialog') on-open('emit', 'open')>
     <@header><${input.header.renderBody}/></@header>
     <${input.renderBody}/>
     <@footer>
@@ -19,5 +19,6 @@ class {
   }
   closeDialog() {
     this.state.open = false;
+    this.emit('close');
   }
 }

@@ -40,6 +40,36 @@ export default {
             control: { type: 'text' },
             description: 'for demo only',
         },
+        onOpen: {
+            action: 'on-open',
+            description: 'Triggered on dialog opened',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onClose: {
+            action: 'on-close',
+            description: 'Triggered on dialog closed.',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onAction: {
+            action: 'on-action',
+            description: 'Triggered on action pressed',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
     },
 };
 

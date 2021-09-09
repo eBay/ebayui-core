@@ -69,6 +69,49 @@ export default {
                 category: '@attribute tags',
             },
         },
+        onOpen: {
+            action: 'on-open',
+            description: 'Triggered on drawer opened',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
+        onClose: {
+            action: 'on-close',
+            description:
+                'Triggered on drawer closed. Triggered also when user drags down on handle (touch only) when drawer is not expanded',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
+        onExpanded: {
+            action: 'on-expanded',
+            description:
+                'drawer expanded to full page height. Event is triggerd on drag up of handle (touch only), clicks, or when user scrolls in content when dialog is not expanded',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
+        onCollapsed: {
+            action: 'on-collapsed',
+            description:
+                'drawer collapsed back to max 50%. Event is triggerd on drags down of handle (touch only) or clicks when dialog is expanded',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
     },
 };
 

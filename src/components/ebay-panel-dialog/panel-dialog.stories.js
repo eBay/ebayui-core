@@ -47,6 +47,26 @@ export default {
             control: { type: 'text' },
             description: 'A11y text for close button and mask.',
         },
+        onOpen: {
+            action: 'on-open',
+            description: 'Triggered on dialog opened',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onClose: {
+            action: 'on-close',
+            description: 'Triggered on dialog closed.',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
     },
 };
 

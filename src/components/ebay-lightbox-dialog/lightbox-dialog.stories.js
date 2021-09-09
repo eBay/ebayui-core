@@ -45,6 +45,26 @@ export default {
                 category: '@attribute tags',
             },
         },
+        onOpen: {
+            action: 'on-open',
+            description: 'Triggered on dialog opened',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onClose: {
+            action: 'on-close',
+            description: 'Triggered on dialog closed.',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
     },
 };
 
