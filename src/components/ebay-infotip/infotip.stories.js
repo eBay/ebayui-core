@@ -90,6 +90,10 @@ export default {
             description:
                 'A descriptive label of what the infotip button represents (e.g. "Important information")',
         },
+        open: {
+            control: { type: 'boolean' },
+            description: 'allows dev to specify whether infotip is open or closed',
+        },
     },
 };
 

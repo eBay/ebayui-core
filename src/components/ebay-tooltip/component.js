@@ -1,10 +1,18 @@
 const eventUtils = require('../../common/event-utils');
 
 module.exports = {
-    onInput() {
+    onCreate() {
         this.state = {
             open: false,
         };
+    },
+    onInput(input) {
+        if (input.open === true) {
+            this.getComponent('base').expand();
+        }
+        if (input.open === false) {
+            this.getComponent('base').collapse();
+        }
     },
     handleExpand() {
         this.state.open = true;

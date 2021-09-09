@@ -69,6 +69,10 @@ export default {
                 category: '@attribute tags',
             },
         },
+        open: {
+            control: { type: 'boolean' },
+            description: 'allows dev to specify whether tooltip is open or closed',
+        },
     },
 };
 
