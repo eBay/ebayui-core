@@ -121,6 +121,48 @@ export default {
                 category: '@item attribute tags',
             },
         },
+        onCollapse: {
+            action: 'on-collapse',
+            description: 'Triggered on menu collapse',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onExpand: {
+            action: 'on-expand',
+            description: 'Triggered on menu expand',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onChange: {
+            action: 'on-change',
+            description: 'Triggered on item checked change, (checkbox/radio type only)',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary:
+                        'radio: { el, index, checked } | checkbox: { el, [indexes], [checked] }',
+                },
+            },
+        },
+
+        onSelect: {
+            action: 'on-select',
+            description: 'Triggered on item clicked (non radio/checkbox)',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, index, checked }',
+                },
+            },
+        },
     },
 };
 

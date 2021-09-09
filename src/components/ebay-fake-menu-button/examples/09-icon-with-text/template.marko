@@ -5,7 +5,11 @@
 -->
 class {}
 
-<ebay-fake-menu-button text="Settings">
+<ebay-fake-menu-button text="Settings"
+    on-keydown("emit", "keydown")
+    on-select("emit", "select")
+    on-collapse("emit", "collapse")
+    on-expand("emit", "expand")>
     <@icon>
         <ebay-settings-icon/>
     </@icon>

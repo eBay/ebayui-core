@@ -81,6 +81,37 @@ export default {
                 category: '@option attributes',
             },
         },
+
+        onChange: {
+            action: 'on-change',
+            description: 'Triggered on item clicked',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, index, selected, wasClicked }',
+                },
+            },
+        },
+        onCollapse: {
+            action: 'on-collapse',
+            description: 'Triggered on menu collapse',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onExpand: {
+            action: 'on-expand',
+            description: 'Triggered on menu expand',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
     },
 };
 
