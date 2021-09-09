@@ -8,6 +8,7 @@ static var ignoredAttributes = [
 
 <ebay-dialog-base
     on-close("handleClose")
+    on-open("emit", "open")
     onMouseEnter("handleMouseEnter")
     onMouseLeave("handleMouseLeave")
     ...processHtmlAttributes(input, ignoredAttributes)

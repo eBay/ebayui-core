@@ -1,4 +1,4 @@
-<ebay-toast-dialog a11y-close-text="Close Toast" open=state.open on-close("closeToast")>
+<ebay-toast-dialog a11y-close-text="Close Toast" open=state.open on-open('emit', 'open') on-close("closeToast")>
     <@header>Heading</@header>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
     <p>
@@ -18,5 +18,6 @@ class {
     }
     closeToast() {
         this.state.open = false;
+        this.emit('close');
     }
 }

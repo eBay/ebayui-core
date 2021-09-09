@@ -13,12 +13,14 @@ class {
   }
   openDialog() {
     this.state.open = true;
+    this.emit('open');
   }
   closeDialog() {
     this.state.open = false;
+    this.emit('reject');
   }
   success() {
     this.state.open = false;
-    console.log('success')
+    this.emit('confirm');
   }
 }

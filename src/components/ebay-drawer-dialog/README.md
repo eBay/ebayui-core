@@ -36,12 +36,12 @@
 
 ## Events
 
-| Event              | Data | Description                                                                                                                                                   |
-| ------------------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `drawer-show`      |      | drawer opened                                                                                                                                                 |
-| `drawer-close`     |      | drawer closed. Triggered also when user drags down on handle (touch only) when dialog is not expanded                                                         |
-| `drawer-expanded`  |      | drawer expanded to full page height. Event is triggerd on drag up of handle (touch only), clicks, or when user scrolls in content when dialog is not expanded |
-| `drawer-collapsed` |      | drawer collapsed back to max 50%. Event is triggerd on drags down of handle (touch only) or clicks when dialog is expanded                                    |
+| Event       | Data | Description                                                                                                                                                   |
+| ----------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `open`      |      | drawer opened                                                                                                                                                 |
+| `close`     |      | drawer closed. Triggered also when user drags down on handle (touch only) when dialog is not expanded                                                         |
+| `expanded`  |      | drawer expanded to full page height. Event is triggerd on drag up of handle (touch only), clicks, or when user scrolls in content when dialog is not expanded |
+| `collapsed` |      | drawer collapsed back to max 50%. Event is triggerd on drags down of handle (touch only) or clicks when dialog is expanded                                    |
 
 ## <@header>
 
