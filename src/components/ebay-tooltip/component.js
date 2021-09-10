@@ -7,11 +7,8 @@ module.exports = {
         };
     },
     onInput(input) {
-        if (input.open === true) {
-            this.getComponent('base').expand();
-        }
-        if (input.open === false) {
-            this.getComponent('base').collapse();
+        if (input.open === true || input.open === false) {
+            this.state.open = input.open;
         }
     },
     handleExpand() {
@@ -24,7 +21,7 @@ module.exports = {
     },
     handleKeydown(e) {
         eventUtils.handleEscapeKeydown(e, () => {
-            this.getComponent('base').collapse();
+            this.handleCollapse();
         });
     },
 };

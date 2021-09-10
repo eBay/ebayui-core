@@ -23,15 +23,13 @@ module.exports = {
     },
 
     onInput(input) {
-        if (input.type !== 'tooltip') {
-            if (this._expander) {
-                if (input.open === true) {
-                    this.expand();
-                    this.handleExpand();
-                } else if (input.open === false) {
-                    this.collapse();
-                    this.handleCollapse();
-                }
+        if (this._expander) {
+            if (input.open === true) {
+                this.handleExpand();
+                this.expand();
+            } else if (input.open === false) {
+                this.handleCollapse();
+                this.collapse();
             }
         }
     },
