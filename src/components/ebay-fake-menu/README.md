@@ -1,25 +1,25 @@
 <h1 style='display: flex; justify-content: space-between; align-items: center;'>
     <span>
-        ebay-menu
+        ebay-fake-menu
     </span>
     <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
         DS v1.1.0
     </span>
 </h1>
 
-## ebay-menu Tag
+## ebay-fake-menu Tag
 
-### ebay-menu Usage
+### ebay-fake-menu Usage
 
 ```marko
-<ebay-menu text="text">
+<ebay-fake-menu text="text">
     <@item>item 1</@item>
     <@item>item 2</@item>
     <@item>item 3</@item>
-</ebay-menu>
+</ebay-fake-menu>
 ```
 
-### ebay-menu Attributes
+### ebay-fake-menu Attributes
 
 | Name       | Type   | Stateful | Required | Description                                                 |
 | ---------- | ------ | -------- | -------- | ----------------------------------------------------------- |
@@ -48,6 +48,7 @@
 | Name                          | Type    | Stateful | Required                               | Description                                                                                                                                                                |
 | ----------------------------- | ------- | -------- | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `href`                        | String  | No       | No                                     | for link that looks like a menu-item. If set to null then will disable item                                                                                                |
+| `disabled`                    | String  | No       | No                                     | HTML disabled on button, but will add `aria-disabled` to <a> tags.                                                                                                         |
 | `type`                        | String  | No       | No                                     | Set to "button" for fake menu-item `<button>`                                                                                                                              |
 | `value` (radio or checkbox)   | String  | No       | No                                     | the value to use with event responses for for the `checked` array                                                                                                          |
 | `checked` (radio or checkbox) | Boolean | No       | No                                     | whether or not the item is checked                                                                                                                                         |
