@@ -20,6 +20,22 @@ module.exports = {
         if (this.input.type !== 'dialog--mini') {
             this._setupMakeup();
         }
+        if (this.action && this._expander) {
+            if (this.action === 'expand') {
+                this.expand();
+            } else if (this.action === 'collapse') {
+                this.collapse();
+            }
+            this.action = null;
+        }
+    },
+
+    onInput(input) {
+        if (input.open === true) {
+            this.action = 'expand';
+        } else if (input.open === false) {
+            this.action = 'collapse';
+        }
     },
 
     onRender() {

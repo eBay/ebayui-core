@@ -66,6 +66,10 @@ export default {
                 category: '@attribute tags',
             },
         },
+        open: {
+            control: { type: 'boolean' },
+            description: 'allows dev to specify whether tourtip is open or closed',
+        },
     },
 };
 

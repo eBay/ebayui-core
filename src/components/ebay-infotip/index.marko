@@ -13,14 +13,17 @@ static var ignoredAttributes = [
     "host",
     "heading",
     "content",
-    "variant"
+    "variant",
+    "open"
 ];
 
 $ var isModal = input.variant === 'modal'
 $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
 $ var pointer = input.pointer || "bottom";
+
 <span>
     <ebay-tooltip-base
+        open=input.open
         key="base"
         type=classPrefix
         pointer=pointer

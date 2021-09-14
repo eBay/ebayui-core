@@ -6,6 +6,13 @@ module.exports = {
         }
     },
 
+    handleExpand({ originalEvent }) {
+        if (this._expander) {
+            this._expander.expanded = true;
+            this.emit('expand', { originalEvent });
+        }
+    },
+
     onMount() {
         this._expander = this.getComponent('base')._expander;
         this._expander.expanded = true;
