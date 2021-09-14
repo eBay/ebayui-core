@@ -21,7 +21,7 @@ module.exports = {
     },
     handleKeydown(e) {
         eventUtils.handleEscapeKeydown(e, () => {
-            this.handleCollapse();
+            this.state.open = false;
         });
     },
 };

@@ -23,7 +23,7 @@ describe('given the default tooltip', () => {
         });
 
         it('then it emits the expand event', () => {
-            expect(component.emitted('expand')).has.length(2);
+            expect(component.emitted('expand')).has.length(1);
         });
 
         describe('when the host element loses hover', () => {
