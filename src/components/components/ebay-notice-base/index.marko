@@ -24,10 +24,9 @@ $ var prefixClass = input.prefixClass;
     aria-roledescription=input.a11yRoleDescription
     class=[prefixClass, input.class]
     ...processHtmlAttributes(input, ignoredAttributes)>
-    <${input.headerRoot || "div"} class=`${prefixClass}__header` id:scoped="status"
-    >
-
-        <if(input.icon !== "none")>
+    <if(input.icon !== "none")>
+        <${input.headerRoot || "div"} class=`${prefixClass}__header` id:scoped="status"
+        >
             <if(status === "confirmation" || status === "celebration")>
                 <ebay-confirmation-filled-icon
                     a11y-text=input.a11yText
@@ -46,8 +45,8 @@ $ var prefixClass = input.prefixClass;
                     a11y-text=input.a11yText
                     class=input.iconClass/>
             </else-if>
-        </if>
-    </>
+        </>
+    </if>
     <${input.mainRoot || "div"} class=`${prefixClass}__main`>
         <if(input.title)>
             <${input.title.as || "h2"}
