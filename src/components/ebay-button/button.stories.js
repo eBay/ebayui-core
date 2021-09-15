@@ -1,9 +1,12 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import button from './index.marko';
 import readme from './README.md';
 
 const Template = (args) => ({
     input: {
         ...args,
+        spread: null,
+        ...args.spread,
         renderBody(out) {
             out.html(args.renderBody);
         },
@@ -162,6 +165,15 @@ export default {
                 },
             },
         },
+        spread: {
+            control: {
+                type: 'object',
+            },
+            description: 'Additional attributes being passed to component',
+            table: {
+                category: 'Other',
+            },
+        },
     },
 };
 
@@ -177,4 +189,12 @@ Standard.args = {
     transparent: false,
     'fixed-height': false,
     truncate: false,
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-button', Standard.args),
+        },
+    },
 };
