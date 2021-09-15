@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Combobox from './index.marko';
@@ -60,4 +61,12 @@ Standard.args = {
         { text: 'Basic Offer 3' },
         { text: 'Basic Offer 4' },
     ],
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-combobox-readonly', Standard.args),
+        },
+    },
 };

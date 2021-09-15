@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import breadcrumb1 from './examples/01-breadcrumb-heading-level/template.marko';
 import breadcrumb2 from './examples/02-last-page-as-current/template.marko';
 import breadcrumb3 from './examples/03-last-page-as-parent/template.marko';
@@ -23,6 +24,14 @@ export const heading = () => ({
 });
 heading.parameters = {
     controls: { hideNoControlsWarning: true },
+};
+
+heading.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-alert-dialog', heading.args),
+        },
+    },
 };
 
 export const lastPageCurrent = () => ({

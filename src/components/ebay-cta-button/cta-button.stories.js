@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Cta from './index.marko';
 
@@ -49,4 +50,12 @@ Standard.args = {
     renderBody: 'CTA button',
     href: 'http://www.ebay.com',
     size: 'regular',
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-cta-button', Standard.args),
+        },
+    },
 };

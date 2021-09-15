@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import badge from './index.marko';
 import Readme from './README.md';
 
@@ -29,4 +30,12 @@ export const Standard = Template.bind({});
 Standard.args = {
     number: 5,
     'aria-label': '5 unread items',
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-badge', Standard.args),
+        },
+    },
 };
