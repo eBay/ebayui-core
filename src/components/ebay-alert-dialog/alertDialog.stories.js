@@ -50,7 +50,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-fullscreen-dialog', Standard.args),
+            code: tagToString('ebay-alert-dialog', Standard.args),
         },
     },
 };

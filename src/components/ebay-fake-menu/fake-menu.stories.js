@@ -134,7 +134,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-fake-menu', Standard.args),
+            code: tagToString('ebay-fake-menu', Standard.args, { items: 'item' }),
         },
     },
 };

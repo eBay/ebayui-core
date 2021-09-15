@@ -35,6 +35,36 @@ export default {
             description:
                 'Either "large" or "regular". Sets the radio icon. Default is regular. For mweb this should be set to large. (Note: The dimensions of the radio will not change, but only the icon)',
         },
+        onChange: {
+            action: 'on-change',
+            description: 'Triggered on change',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent, value }',
+                },
+            },
+        },
+        onFocus: {
+            action: 'on-focus',
+            description: 'Triggered on focus',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent, value }',
+                },
+            },
+        },
+        onKeydown: {
+            action: 'on-keydown',
+            description: 'Triggered on keydown',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent, value }',
+                },
+            },
+        },
     },
 };
 

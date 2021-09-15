@@ -101,7 +101,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-combobox', Standard.args),
+            code: tagToString('ebay-combobox', Standard.args, { options: 'option' }),
         },
     },
     expanded: {

@@ -40,6 +40,16 @@ export default {
                 category: '@attribute tags',
             },
         },
+        onSelect: {
+            action: 'on-select',
+            description: 'Triggered on tab selected',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ selectedIndex }',
+                },
+            },
+        },
     },
 };
 
@@ -71,7 +81,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-tabs', Standard.args),
+            code: tagToString('ebay-tabs', Standard.args, { tabs: 'tab' }),
         },
     },
 };

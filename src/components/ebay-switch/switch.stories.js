@@ -29,6 +29,16 @@ export default {
             type: 'boolean',
             control: { type: 'boolean' },
         },
+        onChange: {
+            action: 'on-change',
+            description: 'Triggered on change',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent, value, checked }',
+                },
+            },
+        },
     },
 };
 

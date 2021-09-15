@@ -95,6 +95,47 @@ export default {
                 category: '@attribute tags',
             },
         },
+        onLoadError: {
+            action: 'on-load-error',
+            description: 'Triggered when there is a load error with video player or source',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
+        onPlay: {
+            action: 'on-play',
+            description: 'Triggered when play begins',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent, player }',
+                },
+            },
+        },
+        onVolumeChange: {
+            action: 'on-volume-change',
+            description:
+                'Triggered when volume is changed. Will return the values of the volume decimal and muted true/false',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent, volume, muted }',
+                },
+            },
+        },
+        onReport: {
+            action: 'on-report',
+            description: 'Triggered when report button is clicked',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ }',
+                },
+            },
+        },
     },
 };
 

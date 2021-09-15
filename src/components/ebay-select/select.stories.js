@@ -54,6 +54,16 @@ export default {
                 category: '@attribute tags',
             },
         },
+        onChange: {
+            action: 'on-change',
+            description: 'Triggered on option selected',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, index, selected }',
+                },
+            },
+        },
     },
 };
 
