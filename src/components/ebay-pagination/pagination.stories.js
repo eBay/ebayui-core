@@ -79,6 +79,36 @@ export default {
             },
             description: `"previous", "next" or "page"(default). To specify if the information entered is for the previous or next arrrow button or a page. If the type='previous  | next' isn't provided the previous/next arrow buttons will be taken as'disabled'`,
         },
+        onPrevious: {
+            action: 'on-previous',
+            description: 'Triggered on previous arrow button',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent, el }',
+                },
+            },
+        },
+        onNext: {
+            action: 'on-next',
+            description: 'Triggered on next arrow button',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent, el }',
+                },
+            },
+        },
+        onSelect: {
+            action: 'on-select',
+            description: 'Triggered on page selected clicked',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent, el, value, index }',
+                },
+            },
+        },
     },
 };
 

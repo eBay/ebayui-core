@@ -7,7 +7,7 @@ module.exports = {
     },
 
     handleExpand({ originalEvent }) {
-        if (this._expander) {
+        if (!this._expander.expanded) {
             this._expander.expanded = true;
             this.emit('expand', { originalEvent });
         }

@@ -135,7 +135,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-listbox-button', Standard.args),
+            code: tagToString('ebay-listbox-button', Standard.args, { items: 'item' }),
         },
     },
 };

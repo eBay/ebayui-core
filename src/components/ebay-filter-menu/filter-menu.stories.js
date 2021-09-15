@@ -128,7 +128,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-filter-menu', Standard.args),
+            code: tagToString('ebay-filter-menu', Standard.args, { items: 'item' }),
         },
     },
 };

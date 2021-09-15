@@ -70,6 +70,26 @@ export default {
             control: { type: 'boolean' },
             description: 'allows dev to specify whether tourtip is open or closed',
         },
+        onCollapse: {
+            action: 'on-collapse',
+            description: 'Triggered on menu collapse',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onExpand: {
+            action: 'on-expand',
+            description: 'Triggered on menu expand',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
     },
 };
 

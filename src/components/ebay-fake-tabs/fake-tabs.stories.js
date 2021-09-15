@@ -65,7 +65,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-fake-tabs', Standard.args),
+            code: tagToString('ebay-fake-tabs', Standard.args, { tabs: 'tab' }),
         },
     },
 };
