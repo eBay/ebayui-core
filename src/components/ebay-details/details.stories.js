@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Details from './index.marko';
 
@@ -91,4 +92,12 @@ Standard.args = {
     type: 'regular',
     open: false,
     as: 'p',
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-details', Standard.args),
+        },
+    },
 };

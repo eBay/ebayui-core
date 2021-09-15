@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Checkbox from './index.marko';
 import GroupTemplate from './examples/group.marko';
@@ -93,11 +94,17 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    input: {
-        checked: false,
-        disabled: false,
-        size: 'regular',
-        'icon-style': 'rounded',
+    checked: false,
+    disabled: false,
+    size: 'regular',
+    'icon-style': 'rounded',
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-checkbox', Standard.args),
+        },
     },
 };
 
@@ -105,4 +112,12 @@ export const Group = (args) => ({
     input: args,
     component: GroupTemplate,
 });
+
 Group.args = {};
+Group.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-checkbox', Group.args),
+        },
+    },
+};

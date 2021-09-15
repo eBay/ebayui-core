@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import carousel from './index.marko';
 import readme from './README.md';
 import './examples/example-styles.less';
@@ -234,7 +235,14 @@ continuous.args = {
     'a11y-next-text': '',
 };
 
-continuous.parameters = { controls: { exclude: ['itemsPerSlide'] } };
+continuous.parameters = {
+    controls: { exclude: ['itemsPerSlide'] },
+    docs: {
+        source: {
+            code: tagToString('ebay-carousel', continuous.args),
+        },
+    },
+};
 
 export const itemsPerSlide = Template.bind({});
 itemsPerSlide.args = {
@@ -245,7 +253,14 @@ itemsPerSlide.args = {
     'a11y-next-text': null,
     itemsPerSlide: '2',
 };
-itemsPerSlide.parameters = { controls: { exclude: ['autoplay'] } };
+itemsPerSlide.parameters = {
+    controls: { exclude: ['autoplay'] },
+    docs: {
+        source: {
+            code: tagToString('ebay-carousel', continuous.args, { items: 'item' }),
+        },
+    },
+};
 
 export const autoplay = Template.bind({});
 autoplay.args = {
@@ -256,4 +271,12 @@ autoplay.args = {
     'a11y-next-text': null,
     itemsPerSlide: '1',
     autoplay: true,
+};
+
+autoplay.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-carousel', autoplay.args, { items: 'item' }),
+        },
+    },
 };

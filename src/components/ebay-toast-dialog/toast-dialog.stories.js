@@ -1,10 +1,12 @@
 import Readme from './README.md';
 import Component from './examples/01-default/template.marko';
-import exampleOne from './examples/01-default/example.txt';
+import code from '!raw-loader!./examples/01-default/template.marko';
 
 const Template = (args) => ({
     input: {
         ...args,
+        spread: null,
+        ...args.spread,
         renderBody: args.renderBody
             ? (out) => {
                   out.html(args.renderBody);
@@ -72,7 +74,7 @@ Standard.args = {};
 Standard.parameters = {
     docs: {
         source: {
-            code: exampleOne,
+            code,
         },
     },
 };
