@@ -14,7 +14,9 @@ const videoConfig = {
         'mute',
         'report',
         'fullscreen',
+        'overflow_menu',
     ],
+    overflowMenuButtons: ['captions'],
 };
 
 module.exports = {
