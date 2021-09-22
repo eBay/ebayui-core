@@ -1,7 +1,7 @@
 import { addRenderBodies } from '../../../.storybook/utils';
-import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Confirm from './examples/01-default/template.marko';
+import code from '!raw-loader!./examples/01-default/template.marko';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -76,7 +76,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-confirm-dialog', Standard.args),
+            code,
         },
     },
 };

@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 import footer from './examples/button.marko';
@@ -71,19 +72,30 @@ export const Standard = Template.bind({});
 Standard.args = {
     a11yText: 'see this notice',
     a11yRoleDescription: 'Notice',
-    status: null,
-    icon: null,
+};
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-section-notice', Standard.args),
+        },
+    },
 };
 
 export const WithAction = (args) => ({
     input: {
         ...args,
         renderBody,
-        footer,
     },
 });
 WithAction.args = {
     a11yText: 'see this notice',
-    status: null,
-    icon: null,
+    footer,
+};
+
+WithAction.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-section-notice', WithAction.args),
+        },
+    },
 };

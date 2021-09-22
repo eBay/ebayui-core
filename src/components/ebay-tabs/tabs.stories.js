@@ -81,7 +81,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-tabs', Standard.args, { tabs: 'tab' }),
+            code: tagToString('ebay-tabs', Standard.args, { tabs: 'tab', panels: 'panel' }),
         },
     },
 };

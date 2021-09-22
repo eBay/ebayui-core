@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 
@@ -41,6 +42,14 @@ Standard.parameters = {
     docs: {
         source: {
             code: `<ebay-progress-spinner aria-label="Busy"/>`,
+        },
+    },
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-progress-spinner', Standard.args),
         },
     },
 };

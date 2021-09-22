@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 
@@ -39,10 +40,11 @@ export const Standard = Template.bind({});
 Standard.args = {
     value: 50,
 };
+
 Standard.parameters = {
     docs: {
         source: {
-            code: `<div style="background-color: white; padding: 8px;"><ebay-progress-bar value=50/></div>`,
+            code: tagToString('ebay-progress-bar', Standard.args),
         },
     },
 };

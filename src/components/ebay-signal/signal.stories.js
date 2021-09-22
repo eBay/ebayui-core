@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 
@@ -35,10 +36,11 @@ export const Standard = Template.bind({});
 Standard.args = {
     renderBody: `Signal Text`,
 };
+
 Standard.parameters = {
     docs: {
         source: {
-            code: `<ebay-signal status="trustworthy">Trustworthy</ebay-signal>`,
+            code: tagToString('ebay-signal', Standard.args),
         },
     },
 };

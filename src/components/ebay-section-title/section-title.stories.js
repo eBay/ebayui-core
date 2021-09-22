@@ -1,7 +1,9 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
 import exampleComponent from './examples/09-medium-with-info-overflow/template.marko';
+import code from '!raw-loader!./examples/09-medium-with-info-overflow/template.marko';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -73,6 +75,22 @@ Standard.args = {
     subtitle: { renderBody: `with free shipping!` },
 };
 
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-section-title', Standard.args),
+        },
+    },
+};
+
 export const example = () => ({
     component: exampleComponent,
 });
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code,
+        },
+    },
+};

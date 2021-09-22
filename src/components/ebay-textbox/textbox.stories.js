@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 
@@ -168,3 +169,10 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {};
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-textbox', Standard.args),
+        },
+    },
+};

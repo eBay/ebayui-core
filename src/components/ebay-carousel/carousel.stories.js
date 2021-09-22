@@ -13,26 +13,24 @@ const images = [
 ];
 
 function getItemWidth(itemWidth, index) {
-    if (itemWidth === 'random') {
-        return `${Math.floor(Math.random() * 250) + 70}px`;
-    } else if (itemWidth === 'variable') {
+    if (itemWidth === 'variable') {
         const width = [100, 75, 120, 200, 130, 150, 100, 200, 60];
         return `${width[index % width.length]}px`;
     }
 }
 
-function getItems(args) {
+function getItems(numberOfItems, imageTreatment, autoplay, itemWidth) {
     const items = [];
-    for (let i = 0; i < args.numberOfItems; i++) {
-        if (args.imageTreatment === 'matte' && images[i]) {
+    for (let i = 0; i < numberOfItems; i++) {
+        if (imageTreatment === 'matte' && images[i]) {
             items.push({
                 renderBody(out) {
                     out.html(`<img src="${images[i]}"/>`);
                 },
             });
         } else {
-            const width = getItemWidth(args.itemWidth, i);
-            const className = args.autoplay ? 'demo2-card' : 'demo-card';
+            const width = getItemWidth(itemWidth, i);
+            const className = autoplay ? 'demo2-card' : 'demo-card';
             items.push({
                 class: className,
                 style: width && `width: ${width}`,
@@ -45,7 +43,7 @@ function getItems(args) {
     return items;
 }
 
-const Template = (args) => ({ input: { ...args, items: getItems(args) } });
+const Template = (args) => ({ input: { ...args } });
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
@@ -66,15 +64,7 @@ export default {
             },
         },
 
-        itemWidth: {
-            description: 'Make item widths fixed or random',
-            options: ['fixed', 'random', 'variable'],
-            type: 'select',
-            table: {
-                category: 'Demo configuration',
-            },
-        },
-        items: {
+        item: {
             name: '@item',
             description: 'The contents for each item',
             table: {
@@ -225,18 +215,15 @@ export default {
 
 export const continuous = Template.bind({});
 continuous.args = {
-    numberOfItems: 5,
     index: 0,
     gap: 16,
-    imageTreatment: 'none',
-    itemWidth: 'fixed',
+    items: getItems(10),
     'a11y-heading-tag': '',
     'a11y-previous-text': '',
     'a11y-next-text': '',
 };
 
 continuous.parameters = {
-    controls: { exclude: ['itemsPerSlide'] },
     docs: {
         source: {
             code: tagToString('ebay-carousel', continuous.args),
@@ -244,9 +231,47 @@ continuous.parameters = {
     },
 };
 
+export const continuousVariedWidth = Template.bind({});
+continuousVariedWidth.args = {
+    index: 0,
+    gap: 16,
+    items: getItems(10, 'none', false, 'variable'),
+    'a11y-heading-tag': '',
+    'a11y-previous-text': '',
+    'a11y-next-text': '',
+};
+
+continuousVariedWidth.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-carousel', continuousVariedWidth.args),
+        },
+    },
+};
+
+export const imageTreatment = Template.bind({});
+imageTreatment.args = {
+    index: 0,
+    gap: 16,
+    imageTreatment: 'matte',
+    items: getItems(10, 'matte'),
+    itemWidth: 'fixed',
+    'a11y-heading-tag': '',
+    'a11y-previous-text': '',
+    'a11y-next-text': '',
+};
+
+imageTreatment.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-carousel', imageTreatment.args),
+        },
+    },
+};
+
 export const itemsPerSlide = Template.bind({});
 itemsPerSlide.args = {
-    numberOfItems: 5,
+    items: getItems(5),
     index: 0,
     gap: null,
     'a11y-previous-text': null,
@@ -264,9 +289,9 @@ itemsPerSlide.parameters = {
 
 export const autoplay = Template.bind({});
 autoplay.args = {
-    numberOfItems: 5,
     index: 0,
     gap: null,
+    items: getItems(10, 'none', true),
     'a11y-previous-text': null,
     'a11y-next-text': null,
     itemsPerSlide: '1',

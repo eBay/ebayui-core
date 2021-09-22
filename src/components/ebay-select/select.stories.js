@@ -87,7 +87,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-select', Standard.args),
+            code: tagToString('ebay-select', Standard.args, { options: 'option' }),
         },
     },
 };
