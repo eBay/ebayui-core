@@ -1,7 +1,7 @@
 import { addRenderBodies } from '../../../.storybook/utils';
-import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './examples/01-basic/template.marko';
+import code from '!raw-loader!./examples/01-basic/template.marko';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -82,10 +82,11 @@ Standard.args = {
         renderBody: `Footer Text`,
     },
 };
+
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-fullscreen-dialog', Standard.args),
+            code,
         },
     },
 };

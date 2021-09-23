@@ -1,5 +1,6 @@
 import Readme from './README.md';
 import Component from './examples/01-program-badges/template.marko';
+import code from '!raw-loader!./examples/01-program-badges/template.marko';
 
 const Template = (args) => ({
     input: {
@@ -28,3 +29,10 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {};
+Standard.parameters = {
+    docs: {
+        source: {
+            code,
+        },
+    },
+};

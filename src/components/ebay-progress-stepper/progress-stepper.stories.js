@@ -95,7 +95,7 @@ Standard.args = {};
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-progress-stepper', Component),
+            code: tagToString('ebay-progress-stepper', Standard.args),
         },
     },
 };

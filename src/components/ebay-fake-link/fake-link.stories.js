@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import component from './index.marko';
 import readme from './README.md';
 
@@ -78,4 +79,12 @@ export const Standard = Template.bind({});
 Standard.args = {
     renderBody: 'Fake-Link',
     disabled: false,
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-fake-link', Standard.args),
+        },
+    },
 };

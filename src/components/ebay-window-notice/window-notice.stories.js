@@ -1,5 +1,6 @@
 import Readme from './README.md';
 import Component from './examples/standard.marko';
+import code from '!raw-loader!./examples/standard.marko';
 
 const Template = (args) => ({
     input: {
@@ -65,4 +66,12 @@ Standard.args = {
     a11yText: 'see this notice',
     icon: null,
     window: null,
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code,
+        },
+    },
 };

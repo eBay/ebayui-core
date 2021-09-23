@@ -1,7 +1,9 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
 import buttonComponent from './examples/01-icon-button-host/template.marko';
+import code from '!raw-loader!./examples/01-icon-button-host/template.marko';
 
 // const Template = (args) => ({
 //     input: {
@@ -106,9 +108,25 @@ Standard.args = {
     },
 };
 
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-tooltip', Standard.args),
+        },
+    },
+};
+
 export const buttonHost = (args) => ({
     // eslint-disable-next-line new-cap
     input: Template(args).input,
     component: buttonComponent,
 });
 buttonHost.parameters = { controls: { exclude: /./ } };
+
+buttonHost.parameters = {
+    docs: {
+        source: {
+            code,
+        },
+    },
+};

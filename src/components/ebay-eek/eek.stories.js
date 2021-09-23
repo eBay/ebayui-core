@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import eek from './index.marko';
 import example1 from './examples/01-A+++/template.marko';
@@ -89,4 +90,12 @@ export const invalidCombinations = () => ({
 });
 invalidCombinations.parameters = {
     controls: { hideNoControlsWarning: true },
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-eek', Standard.args),
+        },
+    },
 };

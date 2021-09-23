@@ -1,3 +1,4 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Expand from './index.marko';
 
@@ -82,4 +83,12 @@ Standard.args = {
     disabled: false,
     'aria-expanded': 'false',
     size: 'default',
+};
+
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-expand-button', Standard.args),
+        },
+    },
 };
