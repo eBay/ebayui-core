@@ -365,10 +365,10 @@ describe('given a closed dialog with useHiddenProperty', () => {
             await component.rerender(Object.assign({}, input, { open: true }));
         });
 
-        thenItIsOpen(true);
+        useHiddenPropertyIsOpened(true);
     });
 
-    function thenItIsOpen(wasToggled) {
+    function useHiddenPropertyIsOpened(wasToggled) {
         it('then it is visible in the DOM', async () => {
             await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
         });
@@ -382,15 +382,10 @@ describe('given a closed dialog with useHiddenProperty', () => {
         });
 
         if (wasToggled) {
-            it('then it traps focus', async () => {
-                await waitFor(() => {
-                    expect(component.getByRole('dialog').children[1]).has.class(
-                        'keyboard-trap--active'
-                    );
-                    component
-                        .getByLabelText(input.a11yCloseText)
-                        .classList.forEach((cls) => expect(document.activeElement).has.class(cls));
-                });
+            it('then it still does not trap focus', () => {
+                expect(
+                    component.getByRole('dialog', { hidden: true }).children[0]
+                ).does.not.have.class('keyboard-trap--active');
             });
 
             it('then it emits the show event', async () => {
@@ -399,7 +394,7 @@ describe('given a closed dialog with useHiddenProperty', () => {
 
             describe('when it is rerendered with the same input', () => {
                 beforeEach(async () => await component.rerender());
-                thenItIsOpen();
+                useHiddenPropertyIsOpened();
             });
         }
     }
