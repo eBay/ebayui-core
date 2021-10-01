@@ -51,13 +51,13 @@
 
 ### ebay-menu-button Events
 
-| Event                            | Data                           | Description           |
-| -------------------------------- | ------------------------------ | --------------------- |
-| `expand`                         |                                | expand content        |
-| `collapse`                       |                                | collapse content      |
-| `change` (radio)                 | `{ el, index, checked }`       | item changed/checked  |
-| `change` (checkbox)              | `{ el, [indexes], [checked] }` | items changed/checked |
-| `select` (not radio or checkbox) | `{ el, index, checked }`       | item clicked          |
+| Event                            | Data                                          | Description           |
+| -------------------------------- | --------------------------------------------- | --------------------- |
+| `expand`                         |                                               | expand content        |
+| `collapse`                       |                                               | collapse content      |
+| `change` (radio)                 | `{ el, index, checked, originalEvent }`       | item changed/checked  |
+| `change` (checkbox)              | `{ el, [indexes], [checked], originalEvent }` | items changed/checked |
+| `select` (not radio or checkbox) | `{ el, index, checked, originalEvent }`       | item clicked          |
 
 ## @label Tag
 
