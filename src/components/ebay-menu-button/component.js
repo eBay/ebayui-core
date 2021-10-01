@@ -3,7 +3,7 @@ const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 
 module.exports = Object.assign({}, menuUtils, {
-    toggleItemChecked(index, itemEl) {
+    toggleItemChecked(index, itemEl, originalEvent) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
         const shouldEmitRadio = this.isRadio() && index !== this.state.checkedIndex;
@@ -17,6 +17,7 @@ module.exports = Object.assign({}, menuUtils, {
                 index,
                 eventType: 'change',
                 el: itemEl,
+                originalEvent,
             });
         } else if (this.type !== 'radio') {
             if (this.input.collapseOnSelect) {
@@ -26,6 +27,7 @@ module.exports = Object.assign({}, menuUtils, {
                 index,
                 eventType: !this.type ? 'select' : 'change',
                 el: itemEl,
+                originalEvent,
             });
         }
 
@@ -37,7 +39,7 @@ module.exports = Object.assign({}, menuUtils, {
     },
 
     handleItemClick(index, e, itemEl) {
-        this.toggleItemChecked(index, itemEl);
+        this.toggleItemChecked(index, itemEl, e);
     },
 
     handleMenuKeydown({ el, originalEvent, index }) {
@@ -67,8 +69,8 @@ module.exports = Object.assign({}, menuUtils, {
         this.emitComponentEvent({ eventType: 'collapse' });
     },
 
-    handleMenuChange({ el, index }) {
-        this.toggleItemChecked(index, el);
+    handleMenuChange({ el, originalEvent, index }) {
+        this.toggleItemChecked(index, el, originalEvent);
     },
 
     handleMenuSelect({ el, originalEvent, index }) {
