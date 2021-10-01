@@ -51,6 +51,25 @@ describe('select', () => {
             .with.class('select--borderless');
     });
 
+    it('renders an input select with inline floating label', async () => {
+        const input = mock.Floating_Label;
+        const { getByRole, getByLabelText, getByText } = await render(template, input);
+        expect(getByRole('combobox')).to.equal(getByLabelText(input.floatingLabel));
+        expect(getByText(input.floatingLabel)).has.class('floating-label__label');
+    });
+
+    it('renders an input select with inline floating label and an id', async () => {
+        const input = mock.Floating_Label_With_ID;
+        const { getByLabelText } = await render(template, input);
+        expect(getByLabelText(input.floatingLabel)).has.id(input.id);
+    });
+
+    it('renders a disabled input select with disabled floating label', async () => {
+        const input = mock.Floating_Label_Disabled;
+        const { getByText } = await render(template, input);
+        expect(getByText(input.floatingLabel)).has.class('floating-label__label--disabled');
+    });
+
     testPassThroughAttributes(template, {
         getClassAndStyleEl(component) {
             return component.getByRole('combobox').parentElement;

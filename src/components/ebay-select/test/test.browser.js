@@ -38,3 +38,71 @@ describe('given the select with 3 options', () => {
         });
     });
 });
+
+describe('given an input select with floating label and no value', () => {
+    const input = mock.Floating_Label_No_Value;
+
+    beforeEach(async () => {
+        component = await render(template, input);
+    });
+
+    it('then component is wrapped into floating label element', () => {
+        expect(component.container.firstElementChild).has.class('floating-label');
+    });
+
+    it('then is showing the label inline', () => {
+        expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
+    });
+
+    describe('when the input is focused', () => {
+        beforeEach(async () => {
+            await fireEvent.focus(component.getByRole('combobox'));
+        });
+
+        it('then it is not showing the label inline', () => {
+            expect(component.getByText(input.floatingLabel)).does.not.have.class(
+                'floating-label__label--inline'
+            );
+        });
+
+        describe('when the input is blurred', () => {
+            beforeEach(async () => {
+                await fireEvent.blur(component.getByRole('combobox'));
+            });
+
+            it('then is showing the label inline', () => {
+                expect(component.getByText(input.floatingLabel)).has.class(
+                    'floating-label__label--inline'
+                );
+            });
+        });
+    });
+
+    describe('when the component is updated/re-rendered', () => {
+        beforeEach(async () => {
+            await component.rerender();
+        });
+
+        it('it should send a select floating label init event', () => {
+            expect(component.emitted('floating-label-init')).has.length(1);
+        });
+    });
+});
+
+describe('given an input select with floating label and no value with all options filled', () => {
+    const input = mock.Floating_Label_Always;
+
+    beforeEach(async () => {
+        component = await render(template, input);
+    });
+
+    it('then component is wrapped into floating label element', () => {
+        expect(component.container.firstElementChild).has.class('floating-label');
+    });
+
+    it('then is showing the label not inline', () => {
+        expect(component.getByText(input.floatingLabel)).does.not.have.class(
+            'floating-label__label--inline'
+        );
+    });
+});

@@ -1,68 +1,91 @@
-import processHtmlAttributes from "../../common/html-attributes";
+import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "class",
     "style",
     "borderless",
-    "options"
+    "options",
+    "floatingLabel",
+    "isLarge"
 ];
-static var itemIgnoredAttributes = [
-    "selected",
-    "optgroup"
-];
+
+static var itemIgnoredAttributes = ["selected", "optgroup"];
 
 $ var selectedOption = input.options[state.selectedIndex];
 $ var list = [];
+$ var isLarge = input.isLarge;
 $ var optgroups = {};
-$ input.options.forEach(function (option) {
+$ var id = input.id || component.getElId("select");
+$ input.options.forEach(function(option) {
     var optgroup = option.optgroup;
 
     if (optgroup) {
         if (optgroups[optgroup]) {
             optgroups[optgroup].options.push(option);
         } else {
-            list.push(optgroups[optgroup] = {
-                optgroup: optgroup,
-                options: [option]
-            });
+            list.push(
+                (optgroups[optgroup] = {
+                    optgroup: optgroup,
+                    options: [option]
+                })
+            );
         }
     } else {
         list.push(option);
     }
 });
-
-<span
-    class=[
-        "select",
-        input.borderless && "select--borderless",
-        input.class
-    ]
-    style=input.style>
-    <select
-        ...processHtmlAttributes(input, ignoredAttributes)
-        onChange("handleChange")>
-        <for|optionOrGroup| of=list>
-            <if(optionOrGroup.optgroup)>
-                <optgroup label=optionOrGroup.optgroup>
-                    <for|option| of=optionOrGroup.options>
-                        <option
-                            ...processHtmlAttributes(option, itemIgnoredAttributes)
-                            key="option[]"
-                            selected=(option === selectedOption)>
-                            ${option.text}
-                        </option>
-                    </for>
-                </optgroup>
-            </if>
-            <else>
-                <option
-                    ...processHtmlAttributes(optionOrGroup, itemIgnoredAttributes)
-                    key="option[]"
-                    selected=(optionOrGroup === selectedOption)>
-                    ${optionOrGroup.text}
-                </option>
-            </else>
-        </for>
-    </select>
-    <ebay-dropdown-icon/>
-</span>
+<${input.floatingLabel && "span"} class=["floating-label", isLarge && "floating-label--large"]>
+    <if(input.floatingLabel)>
+        <label
+            for=id
+            class=[
+                "floating-label__label",
+                input.disabled && "floating-label__label--disabled"
+            ]>
+            ${input.floatingLabel}
+        </label>
+    </if>
+    <span
+        class=[
+            "select",
+            isLarge && "select--large",
+            input.borderless && "select--borderless",
+            input.class
+        ]
+        style=input.style>
+        <select
+            ...processHtmlAttributes(input, ignoredAttributes)
+            id=id
+            onChange("handleChange")>
+            <for|optionOrGroup| of=list>
+                <if(optionOrGroup.optgroup)>
+                    <optgroup label=optionOrGroup.optgroup>
+                        <for|option| of=optionOrGroup.options>
+                            <option
+                                ...processHtmlAttributes(
+                                    option,
+                                    itemIgnoredAttributes
+                                )
+                                key="option[]"
+                                selected=(option === selectedOption)>
+                                ${option.text}
+                            </option>
+                        </for>
+                    </optgroup>
+                </if>
+                <else>
+                    <option
+                        ...processHtmlAttributes(
+                            optionOrGroup,
+                            itemIgnoredAttributes
+                        )
+                        key="option[]"
+                        selected=(optionOrGroup === selectedOption)>
+                        ${optionOrGroup.text}
+                    </option>
+                </else>
+            </for>
+        </select>
+        <ebay-dropdown-icon/>
+    </span>
+</>
