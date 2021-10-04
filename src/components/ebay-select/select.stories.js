@@ -29,11 +29,23 @@ export default {
             control: { type: 'number' },
             description: 'allows you to set the selected index option to `selected`',
         },
+        floatingLabel: {
+            type: 'string',
+            control: { type: 'string' },
+            description:
+                'if set, then label will move up and down. Need to have first option to have a nullable value.',
+        },
         borderless: {
             type: 'boolean',
             control: { type: 'boolean' },
             description: 'whether button has borders',
         },
+        isLarge: {
+            type: 'boolean',
+            control: { type: 'boolean' },
+            description: 'to show large version',
+        },
+
         text: {
             control: { type: 'text' },
             description: 'text to use in the option',
@@ -88,6 +100,37 @@ Standard.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-select', Standard.args, { options: 'option' }),
+        },
+    },
+};
+
+export const Floating = Template.bind({});
+Floating.args = {
+    floatingLabel: 'Option',
+    options: [
+        {
+            text: 'Select an option',
+            value: '',
+        },
+
+        {
+            text: 'option 1',
+            value: 'option 1',
+        },
+        {
+            text: 'option 2',
+            value: 'option 2',
+        },
+        {
+            text: 'option 3',
+            value: 'option 3',
+        },
+    ],
+};
+Floating.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-select', Floating.args, { options: 'option' }),
         },
     },
 };
