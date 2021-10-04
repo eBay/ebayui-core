@@ -3,6 +3,7 @@ import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import badgedExample from './examples/22-badged-items/template.marko';
 import iconExample from './examples/09-icon-with-text/template.marko';
+import typeaheadExample from './examples/18-typeahead/template.marko';
 import Component from './index.marko';
 
 const Template = (args) => ({
@@ -193,4 +194,7 @@ export const iconText = () => ({
 });
 export const BadgedItems = () => ({
     component: badgedExample,
+});
+export const Typeahead = () => ({
+    component: typeaheadExample,
 });
