@@ -1,1 +1,1 @@
-require('@ebay/skin/lightbox-dialog');
+require('@ebay/skin/confirm-dialog');

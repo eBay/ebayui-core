@@ -1,39 +1,37 @@
-import processHtmlAttributes from "../../common/html-attributes";
+import processHtmlAttributes from "../../common/html-attributes"
 
 static function toJSON() {
     return {
         disabled: this.disabled
-    }
+    };
 }
+
 static var ignoredAttributes = [
+    "a11yText",
     "partiallyDisabled",
     "priority",
     "size",
-    "iconOnly",
     "fluid",
-    "variant",
     "fixedHeight",
     "truncate",
     "transparent",
-    "badgeNumber",
-    "badgeAriaLabel",
+    "bodyState",
     "toJSON"
 ];
 
+static var validPriorities = [
+    'primary',
+    'secondary',
+    'tertiary',
+    'delete'
+];
+
+static var hasLoaded;
 $ {
     input.toJSON = toJSON;
-    var size = input.size;
+    var size = input.size === "large" ? "large" : null;
     var priority = input.priority || "secondary";
-    var variant = !input.variant && input.href ? "fake" : input.variant;
-    var isIconVariant = variant === "icon";
-    var isExpandVariant = variant === "expand";
-    var isBadged = Boolean(input.badgeNumber && isIconVariant);
-    var iconOnly = isIconVariant || isBadged || (isExpandVariant && input.iconOnly);
-    var baseClass = variant
-        ? variant === "fake-link"
-            ? variant
-            : variant + "-btn"
-        : "btn";
+    var baseClass = input.href ? "fake-btn" : "btn";
     var sizeClass = size && baseClass + "--" + size;
     var truncateClass =
         input.truncate &&
@@ -44,39 +42,37 @@ $ {
         (sizeClass ? sizeClass + "-fixed-height" : baseClass + "--fixed-height");
     var tag = input.href ? "a" : "button";
     var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
+    if(input.bodyState === "loading") hasLoaded = true;
 }
-
 <${tag}
     ...htmlAttributes
     onClick("handleClick")
     onKeydown("handleKeydown")
-    onFocus('emit', 'focus')
-    onBlur('emit', 'blur')
+    onFocus('handleFocus')
+    onBlur('handleBlur')
     class=[
         input.class,
         baseClass,
-        iconOnly && `${baseClass}--icon-only`,
-        isBadged && `${baseClass}--badged`,
         input.fluid && `${baseClass}--fluid`,
         truncateClass,
         fixedHeightClass,
         transparentClass,
         !truncateClass && !fixedHeightClass && sizeClass,
-        (priority === "secondary" ||
-            priority === "primary" ||
-            priority === "delete") &&
-            `${baseClass}--${priority}`
+        (validPriorities.includes(priority) &&
+        `${baseClass}--${priority}`)
     ]
     data-ebayui=true
     type=(tag === "button" && (input.type || "button"))
-    aria-disabled=(input.partiallyDisabled && "true")>
-    $ var hasAriaLabel = Boolean(htmlAttributes["aria-label"]);
-    <${input.renderBody}/>
-    <if(isBadged)>
-        <ebay-badge
-            number=input.badgeNumber
-            type="icon"
-            aria-label=(hasAriaLabel && input.badgeAriaLabel)
-            aria-hidden=(hasAriaLabel && "true")/>
+    aria-disabled=((input.partiallyDisabled || input.loading) && "true")
+    aria-label=(input.bodyState === "loading" ? (input.a11yText || "Loading...") : input.ariaLabel)
+    aria-live=((input.bodyState === "loading" || hasLoaded) && "polite")
+    >
+    <if(input.bodyState === "loading")>
+        <span class="btn__cell">
+            <ebay-progress-spinner/>
+        </span>
     </if>
+    <else>
+        <${input.renderBody}/>
+    </else>
 </>

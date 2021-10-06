@@ -8,7 +8,7 @@ module.exports = {
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.expander.collapse();
+            this.expander.expanded = false;
             this.focus();
         });
     },
@@ -18,7 +18,7 @@ module.exports = {
     },
 
     handleButtonEscape() {
-        this.expander.collapse();
+        this.expander.expanded = false;
     },
 
     handleExpand() {
@@ -81,7 +81,7 @@ module.exports = {
 
     _cleanupMakeup() {
         if (this.expander) {
-            this.expander.cancelAsync();
+            this.expander.destroy();
         }
     },
 };

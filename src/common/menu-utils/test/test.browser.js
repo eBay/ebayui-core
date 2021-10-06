@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const sinon = require('sinon');
 const { expect } = require('chai');
 const menuUtils = require('../');
@@ -15,7 +14,7 @@ describe('non radio component', () => {
     let menu;
 
     beforeEach(() => {
-        menu = assign({}, menuUtils, {
+        menu = Object.assign({}, menuUtils, {
             input,
             setStateDirty: sinon.spy(),
         });
@@ -72,7 +71,7 @@ describe('radio component', () => {
     let menu;
 
     beforeEach(() => {
-        menu = assign({}, menuUtils, {
+        menu = Object.assign({}, menuUtils, {
             input,
             setStateDirty: sinon.spy(),
         });

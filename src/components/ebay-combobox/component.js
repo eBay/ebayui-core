@@ -1,4 +1,3 @@
-const find = require('core-js-pure/features/array/find');
 const ActiveDescendant = require('makeup-active-descendant');
 const FloatingLabel = require('makeup-floating-label');
 const Expander = require('makeup-expander');
@@ -16,11 +15,11 @@ module.exports = {
     },
 
     isExpanded() {
-        return this.expander.isExpanded();
+        return this.expander.expanded;
     },
 
     collapse() {
-        return this.expander.collapse();
+        return (this.expander.expanded = false);
     },
 
     handleButtonClick(originalEvent) {
@@ -64,7 +63,7 @@ module.exports = {
 
     handleComboboxClick(e) {
         if (e.target === document.activeElement && this.expander && !this.isExpanded()) {
-            this.expander.expand();
+            this.expander.expanded = true;
         }
     },
 
@@ -72,26 +71,26 @@ module.exports = {
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             originalEvent.preventDefault();
 
-            if (this.expander && !this.expander.isExpanded()) {
+            if (this.expander && !this.expander.expanded) {
                 this.activeDescendant.reset();
-                this.expander.expand();
+                this.expander.expanded = true;
             }
         });
 
         eventUtils.handleEnterKeydown(originalEvent, () => {
-            if (this.expander.isExpanded()) {
+            if (this.expander.expanded) {
                 const selectedIndex = this.activeDescendant.index;
 
                 if (selectedIndex !== -1) {
                     this._setSelectedText(this._getVisibleOptions()[selectedIndex].text);
                 }
 
-                this.expander.collapse();
+                this.expander.expanded = false;
             }
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.expander.collapse();
+            this.expander.expanded = false;
         });
     },
 
@@ -103,7 +102,7 @@ module.exports = {
                 // that could mean that new content was made visible.
                 // We force the expander open just in case.
                 if (this.expander) {
-                    this.expander.expand();
+                    this.expander.expanded = true;
                 }
             });
             this.state.viewAllOptions = false;
@@ -119,13 +118,8 @@ module.exports = {
             this.focus();
         }
 
-        if (
-            this.expander &&
-            this.expander.isExpanded() &&
-            !wasClickedOption &&
-            !this.buttonClicked
-        ) {
-            this.expander.collapse();
+        if (this.expander && this.expander.expanded && !wasClickedOption && !this.buttonClicked) {
+            this.expander.expanded = false;
         }
 
         this.buttonClicked = false;
@@ -231,7 +225,7 @@ module.exports = {
         }
 
         if (this.expander) {
-            this.expander.cancelAsync();
+            this.expander.destroy();
             this.expander = null;
         }
     },
@@ -248,7 +242,7 @@ module.exports = {
     },
 
     _getSelectedOption() {
-        return find(this.input.options, (option) => option.text === this.state.currentValue);
+        return this.input.options.find((option) => option.text === this.state.currentValue);
     },
 
     _getVisibleOptions() {

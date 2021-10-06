@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody, getNItems } = require('../../../../common/test-utils/shared');
 
 function getType(i) {
@@ -25,7 +24,7 @@ exports.ProgressStepper_NoCurrent = {
     })),
 };
 
-exports.ProgressStepper_Vertical = assign({}, exports.ProgressStepper, {
+exports.ProgressStepper_Vertical = Object.assign({}, exports.ProgressStepper, {
     direction: 'column',
 });
 

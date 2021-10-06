@@ -18,7 +18,8 @@ static {
         "checked",
         "current",
         "badgeNumber",
-        "badgeAriaLabel"
+        "badgeAriaLabel",
+        "disabled"
     ];
 }
 
@@ -53,8 +54,9 @@ $ var baseClass = input.classPrefix || "fake-menu";
                         ...processHtmlAttributes(item, itemIgnoredAttributes)
                         class=[`${baseClass}__item`, item.class]
                         style=item.style
+                        disabled=(item.type === "button" && item.disabled)
+                        aria-disabled=(item.type !== "button" && item.disabled && 'true')
                         aria-current=(item.current ? defaultAriaCurrent : false)
-                        aria-disabled=(item.disabled && "true")
                         href=(item.disabled ? null : item.href)
                         onKeydown("handleItemKeydown", index)
                         onClick("handleItemClick", index)

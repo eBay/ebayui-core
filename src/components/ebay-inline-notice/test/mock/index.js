@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Inline = {
@@ -6,6 +5,6 @@ exports.Inline = {
     renderBody: createRenderBody('Content'),
 };
 
-exports.Inline_Custom_Status = assign({}, exports.Inline, {
+exports.Inline_Custom_Status = Object.assign({}, exports.Inline, {
     status: 'confirmation',
 });

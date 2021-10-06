@@ -9,7 +9,8 @@ static var ignoredAttributes = [
     "styleBottom",
     "a11yCloseText",
     "host",
-    "toJSON"
+    "toJSON",
+    "open"
 ];
 
 $ input.toJSON = noop;
@@ -17,6 +18,7 @@ $ var pointer = input.pointer || "bottom";
 
 <span>
     <ebay-tooltip-base
+        open=input.open
         key="base"
         type="tourtip"
         pointer=pointer
@@ -25,7 +27,8 @@ $ var pointer = input.pointer || "bottom";
         style-top=input.styleTop
         style-right=input.styleRight
         style-bottom=input.styleBottom
-        onBase-collapse("handleCollapse")>
+        onBase-collapse("handleCollapse")
+        onBase-expand("handleExpand")>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class:no-update="tourtip">

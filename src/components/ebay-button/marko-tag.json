@@ -9,14 +9,10 @@
   "@partially-disabled": "boolean",
   "@priority": "string",
   "@size": "size",
-  "@icon-only": "boolean",
   "@fluid": "boolean",
-  "@variant": "string",
   "@fixed-height": "boolean",
   "@truncate": "boolean",
   "@transparent": "boolean",
-  "@badge-number": "expression",
-  "@badge-aria-label": "string",
   "@autofocus": "#html-autofocus",
   "@disabled": "#html-disabled",
   "@form": "#html-form",
@@ -34,6 +30,10 @@
   "@ping": "#html-ping",
   "@referrerpolicy": "#html-referrerpolicy",
   "@rel": "#html-rel",
+  "@a11y-text": "string",
+  "@body-state": {
+    "enum": ["none", "loading"]
+  },
   "@target": "#html-target",
   "@aria-disabled": "never"
 }

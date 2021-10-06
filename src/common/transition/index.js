@@ -23,6 +23,12 @@ module.exports = ({ el, className, waitFor }, cb) => {
     const pending = waitFor ? waitFor.length : 0;
     const classList = el.classList;
     const initClass = `${className}-init`;
+
+    if (!('ontransitionend' in el)) {
+        const id = setTimeout(cb, 0);
+        return () => clearTimeout(id);
+    }
+
     let cancelFrame = nextFrame(() => {
         cancelFrame = undefined;
         classList.add(className);

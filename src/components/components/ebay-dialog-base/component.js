@@ -5,6 +5,10 @@ const eventUtils = require('../../../common/event-utils');
 const transition = require('../../../common/transition');
 
 module.exports = {
+    get useHiddenProperty() {
+        return this.input.useHiddenProperty || false;
+    },
+
     trackLastClick(e) {
         if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) {
             return;
@@ -133,13 +137,15 @@ module.exports = {
     },
 
     _getTrapCallback(restoreTrap, isTrapped, wasTrapped) {
-        const useHiddenProperty = this.input.useHiddenProperty || false;
         const willTrap = this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped));
+        const useHiddenProperty = this.useHiddenProperty;
 
         return () => {
             if (willTrap) {
                 screenReaderTrap.trap(this.el, { useHiddenProperty });
-                keyboardTrap.trap(this.windowEl);
+                if (!useHiddenProperty) {
+                    keyboardTrap.trap(this.windowEl);
+                }
             }
         };
     },
@@ -242,7 +248,9 @@ module.exports = {
         if (this.isTrapped && this.input.isModal) {
             this.restoreTrap = this.state.open;
             screenReaderTrap.untrap(this.el);
-            keyboardTrap.untrap(this.windowEl);
+            if (!this.useHiddenProperty) {
+                keyboardTrap.untrap(this.windowEl);
+            }
         } else {
             this.restoreTrap = false;
         }

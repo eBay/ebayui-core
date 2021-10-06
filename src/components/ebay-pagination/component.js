@@ -1,4 +1,3 @@
-const findIndex = require('core-js-pure/features/array/find-index');
 const eventUtils = require('../../common/event-utils');
 const MAX_PAGES = 9;
 const MIN_PAGES = 3;
@@ -68,7 +67,7 @@ module.exports = {
             return { start: 0, end: lastIndex, hideDots: true, dotsIndex };
         }
 
-        const i = findIndex(items, (item) => item.current);
+        const i = items.findIndex((item) => item.current);
         const range = Math.floor(maxItems / 2);
         let start = i - range;
         let end = i + range;

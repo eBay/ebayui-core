@@ -20,6 +20,22 @@ module.exports = {
         if (this.input.type !== 'dialog--mini') {
             this._setupMakeup();
         }
+        if (this.action && this._expander) {
+            if (this.action === 'expand') {
+                this.expand();
+            } else if (this.action === 'collapse') {
+                this.collapse();
+            }
+            this.action = null;
+        }
+    },
+
+    onInput(input) {
+        if (input.open === true) {
+            this.action = 'expand';
+        } else if (input.open === false) {
+            this.action = 'collapse';
+        }
     },
 
     onRender() {
@@ -29,15 +45,15 @@ module.exports = {
     },
 
     collapse() {
-        this._expander.collapse();
+        this._expander.expanded = false;
     },
 
     expand() {
-        this._expander.expand();
+        this._expander.expanded = true;
     },
 
     isExpanded() {
-        return this._expander.isExpanded();
+        return this._expander.expanded;
     },
 
     onDestroy() {
@@ -105,7 +121,7 @@ module.exports = {
         }
 
         if (this._expander) {
-            this._expander.cancelAsync();
+            this._expander.destroy();
             this._expander = undefined;
         }
     },

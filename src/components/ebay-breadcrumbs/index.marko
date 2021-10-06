@@ -10,6 +10,7 @@ static var ignoredAttributes = [
 ];
 
 $ input.toJSON = noop;
+$ var anyHref = (input.items || []).some(element => element.href != null);
 <nav
     ...processHtmlAttributes(input, ignoredAttributes)
     aria-labelledby:scoped="breadcrumbs-heading"
@@ -23,7 +24,7 @@ $ input.toJSON = noop;
             <li>
                 $ var isLast = i === input.items.length - 1;
                 $ var current = !item.href && isLast;
-                <${item.href ? "a" : "button"}
+                <${anyHref ? "a" : "button"}
                     ...processHtmlAttributes(item)
                     aria-current=(current && "location")
                     onClick(!current && "handleClick")>

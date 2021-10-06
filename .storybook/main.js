@@ -1,9 +1,5 @@
 module.exports = {
-    stories: ['../src/**/examples/**/template.marko'],
-    addons: [
-        'storybook-readme',
-        '@storybook/addon-knobs',
-        './plugins/code-syntax/register.jsx',
-        './plugins/theme-switcher/register.jsx',
-    ],
+    stories: ['../src/**/*.stories.js'],
+
+    addons: ['./plugins/theme-switcher/register.jsx', '@storybook/addon-essentials'],
 };

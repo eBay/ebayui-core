@@ -11,6 +11,9 @@
   "@fluid": "boolean",
   "@invalid": "boolean",
   "@name": "#html-name",
+  "@list-selection": {
+    "enum": ["manual", "auto"]
+  },
   "@button-name": "#html-name",
   "@disabled": "#html-disabled",
   "@options <option>[]": {

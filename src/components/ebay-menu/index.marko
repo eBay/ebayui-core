@@ -55,7 +55,7 @@ $ var baseClass = input.classPrefix || "menu";
             <else>
             <div
                 ...processHtmlAttributes(item, itemIgnoredAttributes)
-                class=[`${baseClass}__item`, item.class]
+                class=[`${baseClass}__item`, item.class, item.badgeNumber && `${baseClass}__item--badged`]
                 style=item.style
                 aria-checked=(!isNotCheckable && (checked ? "true" : "false"))
                 aria-disabled=(item.disabled && "true")
@@ -67,11 +67,10 @@ $ var baseClass = input.classPrefix || "menu";
                 key="item[]">
                 <span>
                     <${item.renderBody}/>
+                    <if(item.badgeNumber)>
+                        <ebay-badge type="menu" number=item.badgeNumber/>
+                    </if>
                 </span>
-                <if(item.badgeNumber)>
-                    <ebay-badge type="menu" number=item.badgeNumber/>
-                </if>
-
                 <ebay-tick-small-icon />
             </div>
             </else>

@@ -1,4 +1,3 @@
-import findIndex from 'core-js-pure/features/array/find-index'
 import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = ["step", "direction", "defaultState", "class"];
@@ -14,7 +13,7 @@ static var ignoredStepAttributes = [
 static var ignoredStepTitleAttributes = ["as"];
 
 $ var direction = input.direction || "row";
-$ var current = findIndex(input.step || [], item => item.current);
+$ var current = (input.step || []).findIndex(item => item.current);
 <div
     class=[
         "progress-stepper",

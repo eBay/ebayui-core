@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const skipAttributes = /^htmlAttributes|renderBody|a11y.*$/;
 const EMPTY_ARR = [];
 
@@ -23,7 +22,7 @@ function processHtmlAttributes(input, ignore = EMPTY_ARR) {
 
     let obj = htmlAttributes || {};
     if (htmlAttributes) {
-        obj = assign({}, htmlAttributes);
+        obj = Object.assign({}, htmlAttributes);
     }
     Object.keys(input).forEach((key) => {
         if (ignore.indexOf(key) === -1 && !skipAttributes.test(key) && !obj[key]) {

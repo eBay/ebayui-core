@@ -1,7 +1,3 @@
-const findIndex = require('core-js-pure/features/array/find-index');
-const map = require('core-js-pure/features/array/map');
-const forEach = require('core-js-pure/features/array/for-each');
-
 module.exports = {
     setExpandedState(isExpanded) {
         if (isExpanded !== this.state.expanded) {
@@ -24,15 +20,16 @@ module.exports = {
 
     handleTouchStart(event) {
         const touches = event.changedTouches;
-
-        this.touches = map(touches, ({ identifier, pageY }) => ({ identifier, pageY }));
+        this.touches = Array.prototype.map.call(touches, ({ identifier, pageY }) => ({
+            identifier,
+            pageY,
+        }));
     },
 
     handleTouchMove(event) {
         if (this.touches.length) {
-            forEach(event.changedTouches, (current) => {
-                const compare = findIndex(
-                    this.touches,
+            event.changedTouches.forEach((current) => {
+                const compare = this.touches.findIndex(
                     (item) => item.identifier === current.identifier
                 );
                 const diff = current.pageY - this.touches[compare].pageY;
@@ -54,8 +51,8 @@ module.exports = {
     },
 
     handleTouchEnd(event) {
-        forEach(event.changedTouches, (current) => {
-            const idx = findIndex(this.touches, (item) => item.identifier === current.identifier);
+        event.changedTouches.forEach((current) => {
+            const idx = this.touches.findIndex((item) => item.identifier === current.identifier);
             if (idx > -1) {
                 this.touches.splice(idx, 1);
             }

@@ -9,18 +9,21 @@ static var ignoredAttributes = [
     "styleRight",
     "styleBottom",
     "ariaLabel",
-    "a11yCloseText",
+    "a11yCloseButtonText",
     "host",
     "heading",
     "content",
-    "variant"
+    "variant",
+    "open"
 ];
 
 $ var isModal = input.variant === 'modal'
 $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
 $ var pointer = input.pointer || "bottom";
+
 <span>
     <ebay-tooltip-base
+        open=input.open
         key="base"
         type=classPrefix
         pointer=pointer
@@ -45,7 +48,7 @@ $ var pointer = input.pointer || "bottom";
                     <${input.icon}/>
                 </if>
                 <else>
-                    <ebay-information-icon/>
+                    <ebay-information-small-icon/>
                 </else>
             </button>
             <if(isModal !== true)>
@@ -59,7 +62,7 @@ $ var pointer = input.pointer || "bottom";
                     pointer=pointer
                     heading=input.heading
                     content=input.content
-                    a11y-close-text=input.a11yCloseText
+                    a11y-close-text=input.a11yCloseButtonText
                     onOverlay-close("handleOverlayClose")/>
             </if>
             <else>
@@ -67,7 +70,7 @@ $ var pointer = input.pointer || "bottom";
                     open=state.open
                     class=[`${classPrefix}__overlay`]
                     variant="_mini"
-                    a11y-close-text=input.a11yCloseText
+                    a11y-close-text=input.a11yCloseButtonText
                     on-open("handleExpand")
                     on-close("handleCollapse")
                     aria-label=input.ariaLabel>

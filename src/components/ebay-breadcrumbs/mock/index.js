@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { getNItems, createRenderBody } = require('../../../common/test-utils/shared');
 
 exports.Links = {
@@ -13,13 +12,13 @@ exports.Buttons = {
         renderBody: createRenderBody(`Item Text ${i}`),
     })),
 };
-exports.Links_First_Without_HREF = {
+exports.Links_Last_Without_HREF = {
     a11yHeadingText: 'Page navigation',
     items: getNItems(3, (i) => ({
-        href: i === 0 || i === 2 ? undefined : '#',
+        href: i === 2 ? undefined : '#',
         renderBody: createRenderBody(`Item Text ${i}`),
     })),
 };
-exports.Links_Heading_Tag = assign({}, exports.Links, {
+exports.Links_Heading_Tag = Object.assign({}, exports.Links, {
     a11yHeadingTag: 'h3',
 });

@@ -1,11 +1,10 @@
-const assign = require('core-js-pure/features/object/assign');
 const Expander = require('makeup-expander');
 const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 
-module.exports = assign({}, menuUtils, {
+module.exports = Object.assign({}, menuUtils, {
     handleMenuKeydown({ originalEvent }) {
-        eventUtils.handleEscapeKeydown(originalEvent, () => this._expander.collapse());
+        eventUtils.handleEscapeKeydown(originalEvent, () => (this._expander.expanded = false));
     },
 
     handleMenuChange({ checkedIndex, el, originalEvent }) {
@@ -17,7 +16,7 @@ module.exports = assign({}, menuUtils, {
 
     handleFooterButtonClick() {
         this._emitComponentEvent('footer-click');
-        this._expander.collapse();
+        this._expander.expanded = false;
     },
 
     handleFormSubmit({ originalEvent }) {
@@ -90,7 +89,7 @@ module.exports = assign({}, menuUtils, {
 
     _cleanupMakeup() {
         if (this._expander) {
-            this._expander.cancelAsync();
+            this._expander.destroy();
             this._expander = undefined;
         }
     },

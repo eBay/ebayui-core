@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, waitFor, cleanup } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../../common/test-utils/browser');
@@ -51,7 +50,7 @@ describe('given a closed dialog', () => {
 
     describe('when it is rerendered to be open', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { open: true }));
+            await component.rerender(Object.assign({}, input, { open: true }));
         });
 
         thenItIsOpen(true);
@@ -59,7 +58,9 @@ describe('given a closed dialog', () => {
 
     function thenItIsOpen(wasToggled) {
         it('then it is visible in the DOM', async () => {
-            await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+            await waitFor(() =>
+                expect(component.getByRole('dialog', { hidden: true })).does.not.have.attr('hidden')
+            );
         });
 
         it('then <body> is not scrollable', () => {
@@ -73,7 +74,7 @@ describe('given a closed dialog', () => {
         if (wasToggled) {
             it('then it traps focus', async () => {
                 await waitFor(() => {
-                    expect(component.getByRole('dialog').children[1]).has.class(
+                    expect(component.getByRole('dialog', { hidden: true }).children[1]).has.class(
                         'keyboard-trap--active'
                     );
                     component
@@ -144,7 +145,7 @@ describe('given an open dialog', () => {
         beforeEach(async () => {
             const inputEl = document.createElement('input');
             inputEl.setAttribute('placeholder', 'sample input');
-            component.getByRole('dialog').appendChild(inputEl);
+            component.getByRole('dialog', { hidden: true }).appendChild(inputEl);
             await pressKey(component.getByPlaceholderText('sample input'), {
                 key: 'Escape',
                 keyCode: 27,
@@ -157,7 +158,7 @@ describe('given an open dialog', () => {
     describe('when the mask is clicked', () => {
         beforeEach(async () => {
             // simulate clicking outside the dialog.
-            await fireEvent.click(component.getByRole('dialog'));
+            await fireEvent.click(component.getByRole('dialog', { hidden: true }));
         });
 
         thenItIsClosed(true);
@@ -165,7 +166,9 @@ describe('given an open dialog', () => {
 
     function thenItIsOpen() {
         it('then it is visible in the DOM', async () => {
-            await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
+            await waitFor(() =>
+                expect(component.getByRole('dialog', { hidden: true })).does.not.have.attr('hidden')
+            );
         });
 
         it('then <body> is not scrollable', () => {
@@ -178,7 +181,7 @@ describe('given an open dialog', () => {
 
         it('then it traps focus', async () => {
             await waitFor(() => {
-                expect(component.getByRole('dialog').children[1]).has.class(
+                expect(component.getByRole('dialog', { hidden: true }).children[1]).has.class(
                     'keyboard-trap--active'
                 );
                 component
@@ -232,7 +235,7 @@ describe('given an open dialog with no trap', () => {
     beforeEach(async () => {
         sibling = document.body.appendChild(document.createElement('button'));
         sibling.focus();
-        component = await render(template, assign({}, input, { isModal: false }));
+        component = await render(template, Object.assign({}, input, { isModal: false }));
     });
 
     afterEach(() => {
@@ -272,7 +275,7 @@ describe('given an open with no close button', () => {
         sibling.focus();
         component = await render(
             template,
-            assign({}, input, { buttonPosition: 'hidden', skipEscape: true })
+            Object.assign({}, input, { buttonPosition: 'hidden', skipEscape: true })
         );
     });
 
@@ -325,7 +328,7 @@ describe('given an open with no close button', () => {
 });
 
 describe('given a closed dialog with useHiddenProperty', () => {
-    const input = assign({}, mock.Dialog, { useHiddenProperty: true });
+    const input = Object.assign({}, mock.Dialog, { useHiddenProperty: true });
     let sibling;
 
     beforeEach(async () => {
@@ -359,13 +362,13 @@ describe('given a closed dialog with useHiddenProperty', () => {
 
     describe('when it is rerendered to be open', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { open: true }));
+            await component.rerender(Object.assign({}, input, { open: true }));
         });
 
-        thenItIsOpen(true);
+        useHiddenPropertyIsOpened(true);
     });
 
-    function thenItIsOpen(wasToggled) {
+    function useHiddenPropertyIsOpened(wasToggled) {
         it('then it is visible in the DOM', async () => {
             await waitFor(() => expect(component.getByRole('dialog')).does.not.have.attr('hidden'));
         });
@@ -379,15 +382,10 @@ describe('given a closed dialog with useHiddenProperty', () => {
         });
 
         if (wasToggled) {
-            it('then it traps focus', async () => {
-                await waitFor(() => {
-                    expect(component.getByRole('dialog').children[1]).has.class(
-                        'keyboard-trap--active'
-                    );
-                    component
-                        .getByLabelText(input.a11yCloseText)
-                        .classList.forEach((cls) => expect(document.activeElement).has.class(cls));
-                });
+            it('then it still does not trap focus', () => {
+                expect(
+                    component.getByRole('dialog', { hidden: true }).children[0]
+                ).does.not.have.class('keyboard-trap--active');
             });
 
             it('then it emits the show event', async () => {
@@ -396,7 +394,7 @@ describe('given a closed dialog with useHiddenProperty', () => {
 
             describe('when it is rerendered with the same input', () => {
                 beforeEach(async () => await component.rerender());
-                thenItIsOpen();
+                useHiddenPropertyIsOpened();
             });
         }
     }

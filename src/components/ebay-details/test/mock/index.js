@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Default_Details = {
@@ -6,6 +5,6 @@ exports.Default_Details = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Open_Details = assign({}, exports.Default_Details, {
+exports.Open_Details = Object.assign({}, exports.Default_Details, {
     open: true,
 });

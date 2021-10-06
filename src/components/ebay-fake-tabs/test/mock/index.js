@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { getNItems, createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Fake_3Headings_No_Index = {
@@ -9,6 +8,6 @@ exports.Fake_3Headings_No_Index = {
     renderBody: createRenderBody('Panel 0'),
 };
 
-exports.Fake_3Headings_1Index = assign({}, exports.Fake_3Headings_No_Index, {
+exports.Fake_3Headings_1Index = Object.assign({}, exports.Fake_3Headings_No_Index, {
     selectedIndex: 1,
 });

@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 const iconBody = {
     renderBody: createRenderBody(
@@ -13,50 +12,50 @@ exports.Basic = {
     value: 'textbox value',
 };
 
-exports.Basic_With_ID = assign({}, exports.Basic, {
+exports.Basic_With_ID = Object.assign({}, exports.Basic, {
     id: 'textbox-id',
 });
 
-exports.Fluid = assign({}, exports.Basic, {
+exports.Fluid = Object.assign({}, exports.Basic, {
     fluid: true,
 });
 
-exports.Disabled = assign({}, exports.Basic, {
+exports.Disabled = Object.assign({}, exports.Basic, {
     disabled: true,
 });
 
-exports.Invalid = assign({}, exports.Basic, {
+exports.Invalid = Object.assign({}, exports.Basic, {
     invalid: true,
 });
 
-exports.Multiline = assign({}, exports.Basic, {
+exports.Multiline = Object.assign({}, exports.Basic, {
     multiline: true,
 });
 
-exports.Prefix_Icon = assign({}, exports.Basic, {
+exports.Prefix_Icon = Object.assign({}, exports.Basic, {
     prefixIcon: iconBody,
 });
 
-exports.Postfix_Icon = assign({}, exports.Basic, {
+exports.Postfix_Icon = Object.assign({}, exports.Basic, {
     postfixIcon: iconBody,
 });
 
-exports.Postfix_Icon_Button = assign({}, exports.Postfix_Icon, {
+exports.Postfix_Icon_Button = Object.assign({}, exports.Postfix_Icon, {
     buttonAriaLabel: 'search button',
 });
 
-exports.Floating_Label = assign({}, exports.Basic, {
+exports.Floating_Label = Object.assign({}, exports.Basic, {
     floatingLabel: 'Email address',
 });
 
-exports.Floating_Label_No_Value = assign({}, exports.Floating_Label, {
+exports.Floating_Label_No_Value = Object.assign({}, exports.Floating_Label, {
     value: undefined,
 });
 
-exports.Floating_Label_With_ID = assign({}, exports.Floating_Label, {
+exports.Floating_Label_With_ID = Object.assign({}, exports.Floating_Label, {
     id: 'textbox-id',
 });
 
-exports.Floating_Label_Disabled = assign({}, exports.Floating_Label, {
+exports.Floating_Label_Disabled = Object.assign({}, exports.Floating_Label, {
     disabled: true,
 });

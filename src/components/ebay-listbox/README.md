@@ -35,10 +35,11 @@ When a selected option is specified:
 
 ### ebay-listbox Attributes
 
-| Name       | Type   | Stateful | Required | Description                                               |
-| ---------- | ------ | -------- | -------- | --------------------------------------------------------- |
-| `name`     | String | No       | Yes      | used for the `name` attribute of the native `<select>`    |
-| `selected` | Number | Yes      | n/a      | allows you to set the selected index option to `selected` |
+| Name             | Type   | Stateful | Required | Description                                                                                                                                                             |
+| ---------------- | ------ | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`           | String | No       | Yes      | used for the `name` attribute of the native `<select>`                                                                                                                  |
+| `selected`       | Number | Yes      | n/a      | allows you to set the selected index option to `selected`                                                                                                               |
+| `list-selection` | String | Yes      | n/a      | either "auto" or "manual" (default). If auto when using up/down key automatically selects the item. If manual then you have to press enter/space key to select an item. |
 
 ### ebay-listbox Events
 

@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { getNItems, createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Basic_3Headings_3Panels_No_Index = {
@@ -10,15 +9,23 @@ exports.Basic_3Headings_3Panels_No_Index = {
     })),
 };
 
-exports.Basic_3Headings_3Panels_1Index = assign({}, exports.Basic_3Headings_3Panels_No_Index, {
-    selectedIndex: 1,
-});
+exports.Basic_3Headings_3Panels_1Index = Object.assign(
+    {},
+    exports.Basic_3Headings_3Panels_No_Index,
+    {
+        selectedIndex: 1,
+    }
+);
 
-exports.Basic_3Headings_3Panels_2Index = assign({}, exports.Basic_3Headings_3Panels_No_Index, {
-    selectedIndex: 2,
-});
+exports.Basic_3Headings_3Panels_2Index = Object.assign(
+    {},
+    exports.Basic_3Headings_3Panels_No_Index,
+    {
+        selectedIndex: 2,
+    }
+);
 
-exports.Basic_3Headings_3Panels_ActivationManual = assign(
+exports.Basic_3Headings_3Panels_ActivationManual = Object.assign(
     {},
     exports.Basic_3Headings_3Panels_No_Index,
     {
@@ -39,6 +46,6 @@ exports.Fake_3Headings_No_Index = {
     ],
 };
 
-exports.Fake_3Headings_1Index = assign({}, exports.Fake_3Headings_No_Index, {
+exports.Fake_3Headings_1Index = Object.assign({}, exports.Fake_3Headings_No_Index, {
     selectedIndex: 1,
 });

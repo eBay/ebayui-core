@@ -11,7 +11,7 @@ static var ignoredAttributes = [
     "playView",
     "a11yPlayText",
     "a11yLoadText",
-    "a11yReportText",
+    "reportText",
     "errorText",
     "volume",
     "muted",
@@ -39,7 +39,7 @@ static var ignoredAttributes = [
                 <source ...src/>
             </for>
             <for|track| of=(input.track || [])>
-                <track ...src/>
+                <track ...track/>
             </for>
         </video>
     </div>

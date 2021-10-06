@@ -8,11 +8,13 @@
   "@html-attributes": "expression",
   "@size": "size",
   "@fluid": "boolean",
+  "@icon-only": "boolean",
   "@truncate": "boolean",
   "@fixed-height": "boolean",
   "@partially-disabled": "boolean",
   "@autofocus": "#html-autofocus",
   "@disabled": "#html-disabled",
   "@type": "never",
-  "@aria-disabled": "never"
+  "@aria-disabled": "never",
+  "@no-toggle-icon": "boolean"
 }

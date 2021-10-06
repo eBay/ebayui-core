@@ -1,5 +1,4 @@
 const Expander = require('makeup-expander');
-const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 
 module.exports = {
@@ -14,7 +13,7 @@ module.exports = {
 
     handleListboxChange(event) {
         if (event.wasClicked) {
-            this._expander.collapse();
+            this._expander.expanded = false;
         }
         const selectedIndex = event.index;
         this.state.selectedIndex = selectedIndex;
@@ -32,7 +31,7 @@ module.exports = {
         input.options = input.options || [];
         state.selectedIndex = Math.max(
             0,
-            findIndex(input.options, (option) => option.selected)
+            input.options.findIndex((option) => option.selected)
         );
     },
 
@@ -76,7 +75,7 @@ module.exports = {
 
     _cleanupMakeup() {
         if (this._expander) {
-            this._expander.cancelAsync();
+            this._expander.destroy();
             this._expander = undefined;
         }
     },

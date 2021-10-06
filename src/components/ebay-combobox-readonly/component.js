@@ -1,5 +1,4 @@
 const Expander = require('makeup-expander');
-const findIndex = require('core-js-pure/features/array/find-index');
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const elementScroll = require('../../common/element-scroll');
 const eventUtils = require('../../common/event-utils');
@@ -20,7 +19,7 @@ module.exports = {
      */
     handleOptionClick(index) {
         this._setSelectedIndex(index);
-        this.expander.collapse();
+        this.expander.expanded = false;
         this.getEl('combobox').focus();
     },
     /**
@@ -41,7 +40,7 @@ module.exports = {
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.expander.collapse();
+            this.expander.expanded = false;
             this.getEl('combobox').focus();
         });
     },
@@ -51,7 +50,7 @@ module.exports = {
         this.state = {
             selectedIndex: Math.max(
                 0,
-                findIndex(input.options, (option) => option.selected)
+                input.options.findIndex((option) => option.selected)
             ),
         };
     },
@@ -105,7 +104,7 @@ module.exports = {
 
     _cleanupMakeup() {
         if (this.expander) {
-            this.expander.cancelAsync();
+            this.expander.destroy();
             this.expander = null;
 
             scrollKeyPreventer.remove(this.getEl('combobox'));

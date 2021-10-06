@@ -58,9 +58,7 @@ it('renders fake version', async () => {
         href: '#',
         size: 'large',
         priority: 'primary',
-        htmlAttributes: {
-            ariaLabel: 'fake button',
-        },
+        ariaLabel: 'fake button',
     });
 
     const btn = getByLabelText('fake button');
@@ -77,44 +75,6 @@ it('renders disabled version', async () => {
 it('renders partially disabled version', async () => {
     const { getByRole } = await render(template, { partiallyDisabled: true });
     expect(getByRole('button')).has.attr('aria-disabled', 'true');
-});
-
-it('renders expand variant', async () => {
-    const { getByRole } = await render(template, { variant: 'expand' });
-    expect(getByRole('button')).has.class('expand-btn');
-});
-
-it('renders expand variant with no text', async () => {
-    const { getByRole } = await render(template, {
-        variant: 'expand',
-        iconOnly: true,
-    });
-    expect(getByRole('button')).has.class('expand-btn').and.class('expand-btn--icon-only');
-});
-
-it('renders icon variant', async () => {
-    const { getByLabelText } = await render(template, {
-        variant: 'icon',
-        htmlAttributes: {
-            ariaLabel: 'icon button',
-        },
-    });
-
-    expect(getByLabelText('icon button')).has.class('icon-btn');
-});
-
-it('renders badged icon variant', async () => {
-    const { getByLabelText } = await render(template, {
-        variant: 'icon',
-        badgeNumber: 5,
-        badgeAriaLabel: '5 Items',
-        htmlAttributes: {
-            ariaLabel: 'Badged button',
-        },
-    });
-
-    expect(getByLabelText('Badged button')).has.class('icon-btn--badged');
-    expect(getByLabelText('5 Items')).has.text('5');
 });
 
 it('renders truncated button', async () => {
@@ -145,6 +105,15 @@ it('renders large fixed-height button', async () => {
         size: 'large',
     });
     expect(getByRole('button')).has.class('btn--large-fixed-height');
+});
+
+it('renders a11yText when bodyState === loading', async () => {
+    const { getByRole } = await render(template, {
+        priority: 'primary',
+        a11yText: 'loading text',
+        bodyState: 'loading',
+    });
+    expect(getByRole('button')).has.attr('aria-label', 'loading text');
 });
 
 testPassThroughAttributes(template);

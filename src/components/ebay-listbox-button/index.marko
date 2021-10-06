@@ -55,6 +55,7 @@ $ var labelId = input.prefixId && component.getElId("label");
         class="listbox-button__listbox"
         name=input.name
         tabindex=-1
+        list-selection=input.listSelection
         on-change("handleListboxChange")>
         <for|option| of=input.options>
             <@option ...option selected=(selectedOption === option)/>

@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody, getNItems } = require('../../../../common/test-utils/shared');
 
 exports.Basic_2Items = {
@@ -11,7 +10,7 @@ exports.Basic_2Items = {
     })),
 };
 
-exports.Basic_2ItemsChecked = assign({}, exports.Basic_2Items, {
+exports.Basic_2ItemsChecked = Object.assign({}, exports.Basic_2Items, {
     items: getNItems(2, (i) => ({
         checked: i === 1,
         value: `item ${i}`,
@@ -19,13 +18,13 @@ exports.Basic_2ItemsChecked = assign({}, exports.Basic_2Items, {
     })),
 });
 
-exports.Basic_3Items = assign({}, exports.Basic_2Items, {
+exports.Basic_3Items = Object.assign({}, exports.Basic_2Items, {
     items: getNItems(3, (i) => ({
         value: `item ${i}`,
         renderBody: createRenderBody(`Item text ${i}`),
     })),
 });
 
-exports.Disabled = assign({}, exports.Basic_3Items, {
+exports.Disabled = Object.assign({}, exports.Basic_3Items, {
     disabled: true,
 });

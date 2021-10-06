@@ -113,6 +113,7 @@ module.exports = {
             .replace(/\n/g, '')
             .replace(/\s{4}/g, '');
     },
+
     runTransformer(transformer, srcString, componentPath) {
         const { context, templateAST } = getTransformerData(srcString, componentPath);
         transformer(templateAST.body.array[0], context);

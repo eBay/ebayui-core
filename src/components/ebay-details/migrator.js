@@ -1,4 +1,4 @@
-const { setAttributeIfPresent } = require('../../common/migrators');
+const { setAttributeIfPresent, setAttributeIfPresentV5 } = require('../../common/migrators');
 
 /**
  * @description
@@ -6,13 +6,12 @@ const { setAttributeIfPresent } = require('../../common/migrators');
  */
 
 function migratorMarko4(el, context) {
-    setAttributeIfPresent(el, context, 'on-details-toggle', 'on-toggle');
-    setAttributeIfPresent(el, context, 'on-details-click', 'on-click');
+    setAttributeIfPresent(el, context, 'type', 'alignment');
     return el;
 }
 
-function migratorMarko5() {
-    return;
+function migratorMarko5(path) {
+    setAttributeIfPresentV5(path, 'type', 'alignment');
 }
 
 module.exports = function migrator(a, b) {

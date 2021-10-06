@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { createRenderBody } = require('../../../../common/test-utils/shared');
 
 exports.Basic = {
@@ -26,9 +25,9 @@ exports.Pointers = [
     'left',
     'left-bottom',
     'left-top',
-].map((pointer) => assign({}, exports.Basic, { pointer }));
+].map((pointer) => Object.assign({}, exports.Basic, { pointer }));
 
-exports.Custom_Pointer = assign({}, exports.Basic, {
+exports.Custom_Pointer = Object.assign({}, exports.Basic, {
     styleTop: '20px',
     styleLeft: '20px',
 });

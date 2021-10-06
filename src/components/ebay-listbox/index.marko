@@ -21,8 +21,9 @@ $ var selectedText = selectedOption && selectedOption.text;
     role="listbox"
     class=["listbox__options", input.class]
     tabindex:no-update=(input.tabindex || 0)
-    on-activeDescendantChange("handleListboxChange")>
-    <for|option| of=input.options>
+    on-activeDescendantChange(component.isAutoSelection && "handleListboxChange")
+    onKeydown(!component.isAutoSelection && "handleKeyDown")>
+    <for|option,index| of=input.options>
         <div
             ...processHtmlAttributes(option, itemIgnoredAttributes)
             key="option[]"
@@ -30,7 +31,8 @@ $ var selectedText = selectedOption && selectedOption.text;
             role="option"
             tabindex=(option.disabled ? -1 : option.tabindex)
             aria-selected=(selectedOption === option && "true")
-            onMousedown("handleMouseDown")>
+            onClick(!component.isAutoSelection && "handleClick", index)
+            onMousedown(component.isAutoSelection && "handleMouseDown")>
             <span class="listbox__value">${option.text}</span>
             <ebay-tick-small-icon/>
         </div>

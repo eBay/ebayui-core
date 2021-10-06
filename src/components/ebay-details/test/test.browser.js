@@ -1,4 +1,3 @@
-const assign = require('core-js-pure/features/object/assign');
 const { expect, use } = require('chai');
 const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
 const { fastAnimations } = require('../../../common/test-utils/browser');
@@ -57,7 +56,7 @@ describe('given the details is in the default state and click is triggered', () 
 
     describe('details should properly toggle open property', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { open: true }));
+            await component.rerender(Object.assign({}, input, { open: true }));
         });
 
         it('then it should have open true', () => {
@@ -97,7 +96,7 @@ describe('given the details is in the open state and click is triggered', () => 
 
     describe('details should properly toggle open property', () => {
         beforeEach(async () => {
-            await component.rerender(assign({}, input, { open: false }));
+            await component.rerender(Object.assign({}, input, { open: false }));
         });
 
         it('then it should have open true', () => {
