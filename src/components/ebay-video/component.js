@@ -224,7 +224,7 @@ module.exports = {
         );
 
         // eslint-disable-next-line no-undef,new-cap
-        shaka.ui.Controls.registerElement('report', new Report.Factory());
+        shaka.ui.Controls.registerElement('report', new Report.Factory(this.input.reportText));
 
         // eslint-disable-next-line no-undef,new-cap
         shaka.ui.Controls.registerElement('captions', new TextSelection.Factory());

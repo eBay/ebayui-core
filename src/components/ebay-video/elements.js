@@ -26,8 +26,12 @@ function getElements(self) {
         }
     };
     Report.Factory = class {
-        create(rootElement, controls, text) {
-            return new Report(rootElement, controls, text);
+        constructor(reportText) {
+            this.reportText = reportText;
+        }
+
+        create(rootElement, controls) {
+            return new Report(rootElement, controls, this.reportText);
         }
     };
 
