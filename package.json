@@ -79,6 +79,7 @@
     "@marko/prettyprint": "^3.0.1",
     "@marko/test": "^8.1.0",
     "@marko/testing-library": "^5.1.0",
+    "@storybook/addon-a11y": "^6.3.10",
     "@storybook/addon-actions": "^6.3.9",
     "@storybook/addon-essentials": "^6.3.9",
     "@storybook/addon-knobs": "^6.3.1",
