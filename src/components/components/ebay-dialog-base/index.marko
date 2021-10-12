@@ -45,7 +45,7 @@ $ var header = input.header;
     <if(buttonPosition !== "hidden")>
         <button
             key="close"
-            class=["icon-btn", `${input.classPrefix}__close`]
+            class=["icon-btn", input.classPrefix == "toast-dialog" && "icon-btn--transparent", `${input.classPrefix}__close` ]
             type="button"
             aria-label=input.a11yCloseText
             onClick("handleCloseButtonClick")>
