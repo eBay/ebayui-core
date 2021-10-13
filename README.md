@@ -96,6 +96,9 @@ Use npm or yarn to add the package dependency to your project:
 npm add @ebay/ebayui-core
 ```
 
+## Upgrading to the latest versions
+See the [upgrade guide](https://github.com/eBay/ebayui-core/tree/master/UPGRADE.md) for more information
+
 ### Custom Tags
 
 Once the package dependency is added, the eBay [customs tags](https://markojs.com/docs/custom-tags/) are now available for use in your Marko templates. For example, to use an `ebay-menu` component:
