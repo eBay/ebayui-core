@@ -8,7 +8,7 @@ The best way to follow this is to jump to the secion in which version you are on
 
 ## Starting at `eBayUI-core@v4.x.x` and `skin@v9.x.x`
 
-From `v4.x.x` you should start to upgrade to the latest `v5.x.x` version and to skin `v10.x.x`. After upgrading run [@marko/migrate](https://github.com/marko-js/marko-migrate) in order to convert your components to the latest versions. (**Note** migrators on this version only work on `marko@4` not on 5+.)
+From `v4.x.x` you should start to upgrade to the latest `v5.x.x` version and to skin `v10.x.x`. After upgrading run [@marko/migrate](https://github.com/marko-js/cli/tree/main/packages/migrate) in order to convert your components to the latest versions. (**Note** migrators on this version only work on `marko@4` not on 5+.)
 If you upgrade to a later major version, some migrators have been removed.
 Make sure your app starts before moving to the next step (it does not have to look correct, since most of those issues should be looked at in the later versions)
 
