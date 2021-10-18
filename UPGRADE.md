@@ -35,14 +35,15 @@ Make sure your app starts before moving to the next step (it does not have to lo
 
 -   `ebayui-core@v6` has a lot of syntax and event changes. Many events have been simplified and made shorter (like instead of `on-button-click` it does `on-click`). These should be auto migrated but need to be migrated on version 7, otherwise they break.
 -   Icons now are individual components. Before it was `<ebay-icon name="chevron-down"/>` and now it will be `<ebay-chevron-down-icon/>`
--   Components like notice and dialog were split up based on their `type` element. **Note** Most can be auto migrated but if `type` is a variable `(like <ebay-notice type=input.dialogType/>`) then it cannot be auto migrated. You can rework your component like this:  
-``` 
+-   Components like notice and dialog were split up based on their `type` element. **Note** Most can be auto migrated but if `type` is a variable `(like <ebay-notice type=input.dialogType/>`) then it cannot be auto migrated. You can rework your component like this:
+
+```
 import pageNotice from '<ebay-page-notice>'
 import inlineNotice from '<ebay-inline-notice>'
 
-<${input.noticeType === 'page' ? pageNotice : inlineNotice}> 
+<${input.noticeType === 'page' ? pageNotice : inlineNotice}>
    Notice body
-</> 
+</>
 ```
 
 ### Things to watch out for on `ebayui-core@v7` and `skin@v12`
