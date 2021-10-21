@@ -1,10 +1,6 @@
 const { expect, use } = require('chai');
 const { render } = require('@marko/testing-library');
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-    testAttributeRenameMigrator,
-} = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 const template = require('..');
 
 use(require('chai-dom'));
@@ -117,11 +113,3 @@ it('renders a11yText when bodyState === loading', async () => {
 });
 
 testPassThroughAttributes(template);
-testEventsMigrator(require('../migrator'), 'button', ['click', 'escape'], '../index.marko');
-testAttributeRenameMigrator(
-    require('../migrator'),
-    'button',
-    'no-text',
-    'icon-only',
-    '../index.marko'
-);
