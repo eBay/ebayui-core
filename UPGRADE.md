@@ -27,7 +27,7 @@ Make sure your app starts before moving to the next step (it does not have to lo
 
 ## Starting at `eBayUI-core@v5.x.x` and `skin@v10.x.x` OR `eBayUI-core@v6.x.x` and `skin@v11.x.x`
 
-From `v5.x.x` or `v6.x.x` you should start to upgrade to the latest `v7.x.x` version and to skin `v12.x.x` (difference between `v6 & v11` and `v7 & v12` is mostly rounded components). After upgrading run [@marko/migrate](https://github.com/marko-js/marko-migrate) in order to convert your components to the latest versions. (**Note** migrators on this version only work on `marko@4` not on 5+.)
+From `v5.x.x` or `v6.x.x` you should start to upgrade to the latest `v7.x.x` version and to skin `v12.x.x` (difference between `v6 & v11` and `v7 & v12` is mostly rounded components). After upgrading run [@marko/migrate](https://github.com/marko-js/cli/tree/main/packages/migrate) in order to convert your components to the latest versions. (**Note** migrators on this version only work on `marko@4` not on 5+.)
 If you upgrade to a later major version, some migrators have been removed.
 Make sure your app starts before moving to the next step (it does not have to look correct, since most of those issues should be looked at in the later versions)
 
@@ -59,7 +59,7 @@ import inlineNotice from '<ebay-inline-notice>'
 
 ## Starting at `eBayUI-core@v7.x.x` and `skin@v12.x.x`
 
-From `v7.x.x` you should start to upgrade to the latest `v8.x.x` version and to skin `v13.x.x`. After upgrading run [@marko/migrate](https://github.com/marko-js/marko-migrate) in order to convert your components to the latest versions. (**Note** migrators on this verson work with both marko 5 and 4)
+From `v7.x.x` you should start to upgrade to the latest `v8.x.x` version and to skin `v13.x.x`. After upgrading run [@marko/migrate](https://github.com/marko-js/cli/tree/main/packages/migrate) in order to convert your components to the latest versions. (**Note** migrators on this verson work with both marko 5 and 4)
 From this point, you should start to make sure your component are working properly and look correctly.
 
 ### Things to watch out for on `ebayui-core@v8` and `skin@v13`
