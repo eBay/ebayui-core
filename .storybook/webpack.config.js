@@ -31,7 +31,7 @@ module.exports = async ({ config }) => {
 
     config.plugins.push(
         new BrowserJSONPlugin({
-            flags: getDSFlags(),
+            flags: getDSFlags(process.env.DS),
         })
     );
 
