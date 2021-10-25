@@ -3,8 +3,8 @@
   "version": "8.1.0",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
-    "installMarkoV5": "node scripts/install-no-save marko@5 -D -f",
-    "installMarkoV4": "node scripts/install-no-save marko@4 -D -f",
+    "installMarkoV5": "npm i marko@5 --force --no-save",
+    "installMarkoV4": "npm i marko@4 --force --no-save",
     "prepublishOnly": "node scripts/prepublish",
     "version": "npm run storybook:build && npm run build:readme && git add -A src docs",
     "postpublish": "node scripts/postpublish",
