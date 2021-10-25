@@ -47,7 +47,7 @@ const requireRemap = dsList
 requireRemap.reverse();
 
 function getDSVersion(dsV) {
-    const dsVFull = dsV || process.env.DS || defaultDS;
+    const dsVFull = dsV || defaultDS;
     const dsVCheck = dsVFull.startsWith('ds') ? dsVFull.substring(2) : dsVFull;
     return dsVCheck;
 }
