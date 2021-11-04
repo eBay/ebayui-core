@@ -23,6 +23,7 @@
       "targetProperty": null,
       "type": "expression"
     },
+    "@mime-type": "string",
     "@src": "string",
     "@type": "string"
   },

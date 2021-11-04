@@ -191,7 +191,7 @@ module.exports = {
         }
 
         this.player
-            .load(src.src)
+            .load(src.src, null, src.mimeType || null)
             .then(() => {
                 this._addTextTracks();
                 this.state.isLoaded = true;

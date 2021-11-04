@@ -198,3 +198,25 @@ mp4.parameters = {
         },
     },
 };
+
+export const mimeType = Template.bind({});
+mimeType.storyName = 'Mime Type';
+mimeType.args = {
+    width: '460',
+    height: '300',
+    'a11y-load-text': 'This video is loading now',
+    'a11y-play-text': 'Click to start this video',
+    sources: [
+        {
+            src: 'http://videoservices.vip.qa.ebay.com/internal/videos/v1/133fce4917c0a4e0a291625dfffffb2b/mezzanine',
+            mimeType: 'video/mp4',
+        },
+    ],
+};
+mimeType.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-video', mimeType.args),
+        },
+    },
+};
