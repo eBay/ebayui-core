@@ -25,7 +25,11 @@ function argsToString(args, plurarls, indent) {
                     body += tagToString(dashCaseKey, item, plurarls, indent, true);
                 }
             } else if (val && typeof val === 'object') {
-                body += tagToString(dashCaseKey, val, plurarls, indent, true);
+                if (key === 'spread') {
+                    Object.keys(val).forEach((spreadKey) => {
+                        attrs += ` ${spreadKey}=${JSON.stringify(val[spreadKey])}`;
+                    });
+                } else body += tagToString(dashCaseKey, val, plurarls, indent, true);
             } else {
                 attrs += ` ${dashCaseKey}=${JSON.stringify(val)}`;
             }
