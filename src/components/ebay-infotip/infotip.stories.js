@@ -1,10 +1,20 @@
-import { addRenderBodies } from '../../../.storybook/utils';
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 
 const Template = (args) => ({
-    input: addRenderBodies(args),
+    input: {
+        ...args,
+        spread: null,
+        ...args.spread,
+        content: {
+            renderBody: args.renderBody
+                ? (out) => {
+                      out.html(args.renderBody);
+                  }
+                : null,
+        },
+    },
 });
 
 export default {
@@ -114,6 +124,15 @@ export default {
                 },
             },
         },
+        spread: {
+            control: {
+                type: 'object',
+            },
+            description: 'Additional attributes being passed to component',
+            table: {
+                category: 'Other',
+            },
+        },
     },
 };
 
@@ -124,6 +143,9 @@ Standard.args = {
     },
     content: {
         renderBody: `<p>This is some important info</p>`,
+    },
+    spread: {
+        ariaLabel: 'Important information',
     },
 };
 Standard.parameters = {

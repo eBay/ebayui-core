@@ -6,6 +6,8 @@ import readme from './README.md';
 const Template = (args) => ({
     input: {
         ...args,
+        spread: null,
+        ...args.spread,
         renderBody,
     },
 });
@@ -97,6 +99,15 @@ export default {
                 },
             },
         },
+        spread: {
+            control: {
+                type: 'object',
+            },
+            description: 'Additional attributes being passed to component',
+            table: {
+                category: 'Other',
+            },
+        },
     },
 };
 
@@ -106,7 +117,9 @@ Standard.args = {
     disabled: false,
     partiallyDisabled: false,
     badgeNumber: 0,
-    badgeAriaLabel: '',
+    spread: {
+        'aria-label': 'menu',
+    },
 };
 Standard.parameters = {
     docs: {
