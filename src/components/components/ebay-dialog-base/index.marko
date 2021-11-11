@@ -29,13 +29,14 @@ static var ignoredAttributes = [
     "top"
 ];
 
-static var ignoredHeaderAttributes = ["id", "as"];
+static var ignoredHeaderAttributes = ["id", "as", "class"];
 
 $ var buttonPosition = input.buttonPosition || "left";
 $ var baseEl = input.baseEl || "div";
 $ var header = input.header;
 <macro name="header-content">
     <${header.as || "h2"}
+        class=[header.class, `${input.classPrefix}__title`]
         ...processHtmlAttributes(header, ignoredHeaderAttributes)
         id=(header.id || component.getElId("dialog-title"))>
         <${header.renderBody}/>
