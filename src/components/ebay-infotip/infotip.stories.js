@@ -133,3 +133,21 @@ Standard.parameters = {
         },
     },
 };
+
+export const OpenOnRender = Template.bind({});
+OpenOnRender.args = {
+    heading: {
+        renderBody: `Important`,
+    },
+    content: {
+        renderBody: `<p>This is some important info</p>`,
+    },
+    open: true,
+};
+OpenOnRender.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-infotip', OpenOnRender.args),
+        },
+    },
+};
