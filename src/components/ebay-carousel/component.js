@@ -18,7 +18,10 @@ function getTemplateData(state) {
     const prevControlDisabled = isSingleSlide || (!autoplayInterval && offset === 0);
     const nextControlDisabled =
         isSingleSlide || (!autoplayInterval && offset === getMaxOffset(state));
-    const bothControlsDisabled = prevControlDisabled && nextControlDisabled;
+    // If left/right is undefined, the carousel is moving at that moment. We should keep the old disabled state
+    const bothControlsDisabled = isAnimating
+        ? state.bothControlsDisabled
+        : prevControlDisabled && nextControlDisabled;
     let slide, itemWidth, totalSlides, a11yStatusText;
 
     if (itemsPerSlide) {
@@ -428,6 +431,21 @@ function forEls(parent, fn) {
         fn(child, i++);
         child = child.nextElementSibling;
     }
+}
+
+/**
+ * Checks if the left/right offset is undefined
+ *
+ * @param {*} state  The widget state
+ * @returns
+ */
+function isAnimating(state) {
+    const { items, index } = state;
+    if (!items.length) {
+        return false;
+    }
+    const currentItem = items[index];
+    return currentItem.left === undefined || currentItem.right === undefined;
 }
 
 /**
