@@ -61,12 +61,6 @@ describe('menu-button', () => {
         expect(getByRole('button')).has.class('expand-btn--small');
     });
 
-    it('renders without text', async () => {
-        const input = Object.assign({}, mock.Basic_2Items, { text: '' });
-        const { getByRole } = await render(template, input);
-        expect(getByRole('button')).has.class('expand-btn--icon-only');
-    });
-
     it('renders with icon', async () => {
         const input = mock.Settings_Icon;
         const { getByRole, getByText } = await render(template, input);
