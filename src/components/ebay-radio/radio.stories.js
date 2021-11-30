@@ -1,8 +1,10 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
-import formExample from './examples/03-grouped-radio/template.marko';
-import textFormExample from './example.txt';
+import groupTemplate from './examples/03-grouped-radio/template.marko';
+import WithLabelTemplate from './examples/05-with-label/template.marko';
+import groupCode from '!raw-loader!./examples/03-grouped-radio/template.marko';
+import WithLabelCode from '!raw-loader!./examples/05-with-label/template.marko';
 
 const Template = (args) => ({
     input: {
@@ -68,18 +70,23 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {};
-Standard.component = Component;
-Standard.parameters = {
+export const WithLabel = (args) => ({
+    input: args,
+    component: WithLabelTemplate,
+});
+WithLabel.args = {
+    disabled: false,
+};
+
+WithLabel.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-radio', Standard.args),
+            code: WithLabelCode,
         },
     },
 };
 
-export const RadioForm = (args) => ({
+export const Group = (args) => ({
     input: {
         ...args,
         renderBody: args.renderBody
@@ -88,15 +95,26 @@ export const RadioForm = (args) => ({
               }
             : null,
     },
-    component: formExample,
+    component: groupTemplate,
 });
-RadioForm.parameters = {
+Group.parameters = {
     docs: {
         source: {
-            code: textFormExample,
+            code: groupCode,
         },
     },
     controls: {
         disabled: true,
+    },
+};
+
+export const Isolated = Template.bind({});
+Isolated.args = {};
+Isolated.component = Component;
+Isolated.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-radio', Isolated.args),
+        },
     },
 };
