@@ -14,7 +14,7 @@
 
 -   [Node.js](https://nodejs.org/en/)
 -   [Marko](https://markojs.com) (v4+)
--   [eBay Skin](https://ebay.github.io/skin/) (v11+)
+-   [eBay Skin](https://ebay.github.io/skin/) (v13+)
 
 _Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components._
 
