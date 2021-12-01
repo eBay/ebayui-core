@@ -63,8 +63,9 @@ export default {
             },
         },
         bodyState: {
-            description: 'when state is loading, adds progress spinner. default is none',
-            options: ['none', 'loading'],
+            description:
+                'when state is loading, adds progress spinner. when user interacts with button, reset should be called to reset aria-live state. default is none',
+            options: ['none', 'loading', 'reset'],
             control: { type: 'select' },
             table: {
                 defaultValue: {
