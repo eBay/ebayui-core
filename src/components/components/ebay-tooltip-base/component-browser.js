@@ -11,23 +11,11 @@ module.exports = {
     },
 
     onMount() {
-        if (this.input.type !== 'dialog--mini') {
-            this._setupMakeup();
-        }
+        this._setupBaseTooltip();
     },
 
     onUpdate() {
-        if (this.input.type !== 'dialog--mini') {
-            this._setupMakeup();
-        }
-        if (this.action && this._expander) {
-            if (this.action === 'expand') {
-                this.expand();
-            } else if (this.action === 'collapse') {
-                this.collapse();
-            }
-            this.action = null;
-        }
+        this._setupBaseTooltip();
     },
 
     onInput(input) {
@@ -83,6 +71,20 @@ module.exports = {
             if (isTooltip && !host.hasAttribute('aria-describedby')) {
                 host.setAttribute('aria-describedby', input.overlayId);
             }
+        }
+    },
+
+    _setupBaseTooltip() {
+        if (this.input.type !== 'dialog--mini') {
+            this._setupMakeup();
+        }
+        if (this.action && this._expander) {
+            if (this.action === 'expand') {
+                this.expand();
+            } else if (this.action === 'collapse') {
+                this.collapse();
+            }
+            this.action = null;
         }
     },
 
