@@ -188,12 +188,15 @@ Standard.args = {
     items: [
         {
             renderBody: `item 1 that has very long text`,
+            href: 'https://www.ebay.com',
         },
         {
             renderBody: `item 2`,
+            href: 'https://www.ebay.com',
         },
         {
             renderBody: `item 3`,
+            href: 'https://www.ebay.com',
         },
     ],
     text: `eBay Menu`,
