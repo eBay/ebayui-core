@@ -62,7 +62,7 @@ Standard.args = {
     &amp;
     <a href="#">Security code</a>
 </p>`,
-    a11yText: 'see this notice',
+    a11yText: 'attention',
     status: null,
     icon: null,
 };

@@ -69,7 +69,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    a11yText: 'see this notice',
+    a11yText: 'attention',
     status: null,
     icon: null,
 };
@@ -89,7 +89,7 @@ export const WithAction = (args) => ({
     },
 });
 WithAction.args = {
-    a11yText: 'see this notice',
+    a11yText: 'attention',
     status: null,
     icon: null,
 };
