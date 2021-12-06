@@ -58,6 +58,12 @@ export default {
             description:
                 'id of an external element to use as the prefix label for the listbox button. Cannot be used with `prefix-label`',
         },
+        floatingLabel: {
+            control: { type: 'text' },
+            description:
+                'The label to add that floats to the top when item is selected. Cannot be used with `prefix-label`',
+        },
+
         prefixLabel: {
             control: { type: 'text' },
             description:

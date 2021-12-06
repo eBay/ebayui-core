@@ -86,6 +86,20 @@ describe('listbox', () => {
         );
     });
 
+    it('renders with floating label', async () => {
+        const input = mock.Basic_3Options_1Selected;
+        const { getAllByText, getByRole } = await render(
+            template,
+            Object.assign({}, input, { floatingLabel: 'floating label' })
+        );
+
+        const label = getAllByText('floating label');
+        expect(label).has.length(1);
+        expect(label[0]).has.class('expand-btn__floating-label');
+        const btnEl = getByRole('button');
+        expect(btnEl).has.class('expand-btn--floating-label');
+    });
+
     testPassThroughAttributes(template);
     testPassThroughAttributes(template, {
         child: {
