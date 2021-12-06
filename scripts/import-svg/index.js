@@ -16,6 +16,7 @@ const outputBaseDir = path.join(__dirname, '../../src/components');
 const markoTagJson = require('../../src/components/ebay-icon/marko-tag.json');
 const icons = new Map();
 const programIcons = new Map();
+const starIcons = new Map();
 
 const THEME_NAMES = util.dsIconThemes;
 const htmlMinifierOptions = {
@@ -69,6 +70,7 @@ function addIcons(fileName, iconMap) {
 }
 addIcons('icons', icons);
 addIcons('program-badges', programIcons);
+addIcons('star-rating', starIcons);
 
 function generateFile(type, iconMap) {
     for (const [name, themes] of iconMap) {
@@ -121,3 +123,4 @@ function generateFile(type, iconMap) {
 
 generateFile('icon', icons);
 generateFile('program-badge', programIcons);
+generateFile('star-rating', starIcons);
