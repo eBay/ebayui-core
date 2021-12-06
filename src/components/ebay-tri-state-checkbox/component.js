@@ -16,6 +16,9 @@ module.exports = {
         this.triggerChange();
         this.forwardEvent('change', ev, el);
     },
+    handleKeydown(ev, el) {
+        this.forwardEvent('keydown', ev, el);
+    },
     handleFocus(ev, el) {
         this.forwardEvent('focus', ev, el);
     },

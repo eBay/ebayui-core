@@ -18,6 +18,7 @@ static var ignoredAttributes = [
         aria-checked=state.checked
         onClick("handleChange")
         onFocus("handleFocus")
+        onKeydown("handleKeydown")
         type="checkbox"/>
     <span class="checkbox__icon" hidden>
         <if(state.checked === "mixed")>
