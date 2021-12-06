@@ -1,6 +1,8 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
+import WithLabelTemplate from './examples/07-external-label/template.marko';
+import WithLabelCode from '!raw-loader!./examples/07-external-label/template.marko';
 
 const Template = (args) => ({
     input: {
@@ -79,31 +81,6 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
-    options: [
-        {
-            text: 'option 1',
-            value: 'option 1',
-        },
-        {
-            text: 'option 2',
-            value: 'option 2',
-        },
-        {
-            text: 'option 3',
-            value: 'option 3',
-        },
-    ],
-};
-Standard.parameters = {
-    docs: {
-        source: {
-            code: tagToString('ebay-select', Standard.args, { options: 'option' }),
-        },
-    },
-};
-
 export const Floating = Template.bind({});
 Floating.args = {
     floatingLabel: 'Option',
@@ -112,7 +89,6 @@ Floating.args = {
             text: 'Select an option',
             value: '',
         },
-
         {
             text: 'option 1',
             value: 'option 1',
@@ -131,6 +107,35 @@ Floating.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-select', Floating.args, { options: 'option' }),
+        },
+    },
+};
+
+export const ExternalLabel = (args) => ({
+    input: args,
+    component: WithLabelTemplate,
+});
+
+ExternalLabel.args = {
+    options: [
+        {
+            text: 'option 1',
+            value: 'option 1',
+        },
+        {
+            text: 'option 2',
+            value: 'option 2',
+        },
+        {
+            text: 'option 3',
+            value: 'option 3',
+        },
+    ],
+};
+ExternalLabel.parameters = {
+    docs: {
+        source: {
+            code: WithLabelCode,
         },
     },
 };

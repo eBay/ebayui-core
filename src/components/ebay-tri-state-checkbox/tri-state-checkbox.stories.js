@@ -2,6 +2,8 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 import mixedImplementationComponent from './examples/04-mixed-implementation/template.marko';
+import WithLabelTemplate from './examples/05-with-label/template.marko';
+import WithLabelCode from '!raw-loader!./examples/05-with-label/template.marko';
 
 const Template = (args) => ({
     input: {
@@ -69,12 +71,15 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {};
-Standard.parameters = {
+export const WithLabel = (args) => ({
+    input: args,
+    component: WithLabelTemplate,
+});
+WithLabel.args = {};
+WithLabel.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-tri-state-checkbox', Standard.args),
+            code: WithLabelCode,
         },
     },
 };
@@ -84,5 +89,15 @@ mixedImplementation.component = mixedImplementationComponent;
 mixedImplementation.parameters = {
     controls: {
         disabled: true,
+    },
+};
+
+export const Isolated = Template.bind({});
+Isolated.args = {};
+Isolated.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-tri-state-checkbox', Isolated.args),
+        },
     },
 };

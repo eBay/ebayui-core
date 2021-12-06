@@ -1,6 +1,10 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
+import WithLabelTemplate from './examples/22-with-external-label/template.marko';
+import FloatingLabelTemplate from './examples/15-floating-label-with-value/template.marko';
+import WithLabelCode from '!raw-loader!./examples/22-with-external-label/template.marko';
+import FloatingLabelCode from '!raw-loader!./examples/15-floating-label-with-value/template.marko';
 
 const Template = (args) => ({
     input: {
@@ -167,12 +171,38 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {};
-Standard.parameters = {
+export const WithLabel = (args) => ({
+    input: args,
+    component: WithLabelTemplate,
+});
+WithLabel.args = {};
+WithLabel.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-textbox', Standard.args),
+            code: WithLabelCode,
+        },
+    },
+};
+
+export const FloatingLabel = (args) => ({
+    input: args,
+    component: FloatingLabelTemplate,
+});
+FloatingLabel.args = {};
+FloatingLabel.parameters = {
+    docs: {
+        source: {
+            code: FloatingLabelCode,
+        },
+    },
+};
+
+export const Isolated = Template.bind({});
+Isolated.args = {};
+Isolated.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-textbox', Isolated.args),
         },
     },
 };

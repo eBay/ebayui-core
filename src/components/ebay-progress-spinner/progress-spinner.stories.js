@@ -36,9 +36,11 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {};
-Standard.parameters = {
+export const Loading = Template.bind({});
+Loading.args = {
+    ariaLabel: 'loading',
+};
+Loading.parameters = {
     docs: {
         source: {
             code: `<ebay-progress-spinner aria-label="Busy"/>`,
@@ -46,10 +48,10 @@ Standard.parameters = {
     },
 };
 
-Standard.parameters = {
+Loading.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-progress-spinner', Standard.args),
+            code: tagToString('ebay-progress-spinner', Loading.args),
         },
     },
 };
