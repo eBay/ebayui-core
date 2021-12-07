@@ -71,7 +71,7 @@
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
     "@ebay/browserslist-config": "^2.0.2",
-    "@ebay/skin": "13.1.1",
+    "@ebay/skin": "13.2.0",
     "@lasso/marko-taglib": "^2.0.1",
     "@marko/build": "^4.2.3",
     "@marko/compile": "^4.1.2",
@@ -142,7 +142,7 @@
     "webpack-plugin-browser-json": "^1.1.3"
   },
   "peerDependencies": {
-    "@ebay/skin": "13.1.1",
+    "@ebay/skin": "13.2.0",
     "marko": "^4 || ^5"
   },
   "dependencies": {
