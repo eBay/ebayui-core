@@ -31,6 +31,10 @@ static var ignoredAttributes = [
             <${input.href && "a"} href=input.href>
                 <${input.title || input.renderBody}/>
             </>
+            <!-- CTA -->
+            <if(input.href)>
+                <ebay-arrow-right-extra-small-icon/>
+            </if>
         </h2>
         <!-- Subtitle-->
         <if(input.subtitle)>
@@ -41,19 +45,12 @@ static var ignoredAttributes = [
             </span>
         </if>
     </div>
-    <!-- CTA -->
-    <if(input.href)>
-        <div class=[
-            "section-title__cta",
-            !input.ctaText && "section-title__cta--no-text"
-        ]>
+     <!-- CTA -->
+     <if(input.ctaText && input.href)>
+        <div class="section-title__cta">
             <a href=input.href tabindex="-1" aria-hidden="true">
-                <if(input.ctaText)>
-                    <span class="section-title__cta-text">${input.ctaText}</span>
-                </if>
-                <ebay-arrow-right-bold-icon
-                    class="section-title__cta-icon"
-                    no-skin-classes/>
+                <span class="section-title__cta-text">${input.ctaText}</span>
+                <ebay-cta-icon />
             </a>
         </div>
     </if>

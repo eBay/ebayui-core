@@ -21,7 +21,7 @@ exports.CTA_SeeAll = Object.assign({}, exports.Title, {
     href: 'https://www.ebay.com/',
 });
 
-exports.CTA_NoText = Object.assign({}, exports.Title, {
+exports.CTA = Object.assign({}, exports.Title, {
     href: 'https://www.ebay.com/',
 });
 
