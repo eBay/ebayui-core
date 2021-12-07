@@ -109,6 +109,7 @@ Standard.args = {
     content: {
         renderBody: `<p>This new feature was added.</p>`,
     },
+    a11yCloseText: 'close',
 };
 Standard.parameters = {
     docs: {

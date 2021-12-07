@@ -85,8 +85,35 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const FloatingLabel = Template.bind({});
+FloatingLabel.args = {
+    name: 'example1text',
+    autocomplete: 'list',
+    options: [
+        { text: 'August Campaign' },
+        { text: '4th of July Sale (paused)' },
+        { text: 'Basic Offer' },
+        { text: 'Basic Offer 2' },
+        { text: 'Basic Offer 3' },
+        { text: 'Basic Offer 4' },
+    ],
+    'floating-label': 'Default Label',
+};
+FloatingLabel.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-combobox', FloatingLabel.args, { options: 'option' }),
+        },
+    },
+    expanded: {
+        table: {
+            category: 'disabled',
+        },
+    },
+};
+
+export const Isolated = Template.bind({});
+Isolated.args = {
     name: 'example1text',
     autocomplete: 'list',
     options: [
@@ -98,10 +125,10 @@ Standard.args = {
         { text: 'Basic Offer 4' },
     ],
 };
-Standard.parameters = {
+Isolated.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-combobox', Standard.args, { options: 'option' }),
+            code: tagToString('ebay-combobox', Isolated.args, { options: 'option' }),
         },
     },
     expanded: {

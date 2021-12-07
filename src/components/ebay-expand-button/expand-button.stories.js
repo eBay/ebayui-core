@@ -77,18 +77,34 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const WithText = Template.bind({});
+WithText.args = {
+    renderBody: 'Default Text',
+    disabled: false,
+    'aria-expanded': 'false',
+    size: 'default',
+};
+
+WithText.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-expand-button', WithText.args),
+        },
+    },
+};
+
+export const WithoutText = Template.bind({});
+WithoutText.args = {
     renderBody: '',
     disabled: false,
     'aria-expanded': 'false',
     size: 'default',
 };
 
-Standard.parameters = {
+WithoutText.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-expand-button', Standard.args),
+            code: tagToString('ebay-expand-button', WithoutText.args),
         },
     },
 };

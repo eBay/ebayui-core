@@ -103,6 +103,22 @@ describe('when native focus event is fired', () => {
     });
 });
 
+describe('when native keydown event is fired', () => {
+    beforeEach(async () => {
+        component = await render(template, { htmlAttributes: { value: 'food' } });
+        await fireEvent.keyDown(component.getByRole('checkbox'));
+    });
+
+    it('then it emits the event', () => {
+        const events = component.emitted('keydown');
+        expect(events).has.length(1);
+
+        const [[eventArg]] = events;
+        expect(eventArg).has.property('value', 'food');
+        expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+    });
+});
+
 describe('given tri-state-checkbox button is two-state', () => {
     beforeEach(async () => {
         component = await render(template, { skipMixed: true });

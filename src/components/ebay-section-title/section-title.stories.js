@@ -21,15 +21,9 @@ export default {
     },
 
     argTypes: {
-        ctaText: {
-            control: { type: 'text' },
-            description:
-                'URL text. Optional content to be displayed next to title. `href` is required when using this attribute.',
-        },
         href: {
             control: { type: 'text' },
-            description:
-                'RL. Title content and optional CTA content will link to this. Populating `cta-text` is optional.',
+            description: 'RL. Title content and optional CTA content will link to this',
         },
         size: {
             control: { type: 'text' },

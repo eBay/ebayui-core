@@ -13,6 +13,7 @@
   "@truncate": "boolean",
   "@prefix-id": "string",
   "@prefix-label": "string",
+  "@floating-label": "string",
   "@list-selection": {
     "enum": ["manual", "auto"]
   },

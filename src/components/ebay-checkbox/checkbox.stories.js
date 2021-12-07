@@ -2,6 +2,9 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Checkbox from './index.marko';
 import GroupTemplate from './examples/group.marko';
+import WithLabelTemplate from './examples/WithLabel.marko';
+import GroupCode from '!raw-loader!./examples/group.marko';
+import WithLabelCode from '!raw-loader!./examples/WithLabel.marko';
 
 const Template = (args) => ({ input: args });
 
@@ -92,18 +95,21 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const WithLabel = (args) => ({
+    input: args,
+    component: WithLabelTemplate,
+});
+WithLabel.args = {
     checked: false,
     disabled: false,
     size: 'regular',
     'icon-style': 'rounded',
 };
 
-Standard.parameters = {
+WithLabel.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-checkbox', Standard.args),
+            code: WithLabelCode,
         },
     },
 };
@@ -117,7 +123,23 @@ Group.args = {};
 Group.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-checkbox', Group.args),
+            code: GroupCode,
+        },
+    },
+};
+
+export const Isolated = Template.bind({});
+Isolated.args = {
+    checked: false,
+    disabled: false,
+    size: 'regular',
+    'icon-style': 'rounded',
+};
+
+Isolated.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-checkbox', Isolated.args),
         },
     },
 };

@@ -31,7 +31,8 @@ $ var labelId = input.prefixId && component.getElId("label");
             "expand-btn",
             "expand-btn--regular",
             input.borderless && "expand-btn--borderless",
-            input.truncate && "expand-btn--truncated"
+            input.truncate && "expand-btn--truncated",
+            input.floatingLabel && "expand-btn--floating-label"
         ]
         value=selectedText
         type="button"
@@ -41,11 +42,19 @@ $ var labelId = input.prefixId && component.getElId("label");
         aria-labelledby=(labelId && `${input.prefixId} ${labelId}`)
         aria-invalid=(input.invalid && "true")>
         <span class="expand-btn__cell">
-            <if (input.prefixLabel)>
-                <span>${input.prefixLabel} ${selectedText}</span>
+            <if (input.floatingLabel)>
+                <span class=[
+                    "expand-btn__floating-label",
+                    "expand-btn__floating-label--animate",
+                    !selectedText && "expand-btn__floating-label--inline",
+                    ]>${input.floatingLabel}</span>
+                <span class="expand-btn__text">${selectedText}</span>
             </if>
+            <else-if (input.prefixLabel)>
+                <span class="expand-btn__text">${input.prefixLabel} ${selectedText}</span>
+            </else-if>
             <else>
-                <span id=labelId>${selectedText}</span>
+                <span id=labelId class="expand-btn__text">${selectedText}</span>
             </else>
             <ebay-dropdown-icon/>
         </span>

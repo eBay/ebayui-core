@@ -63,7 +63,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    a11yText: 'see this notice',
+    a11yText: 'success',
     icon: null,
     window: null,
 };

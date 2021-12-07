@@ -72,6 +72,7 @@ $ var defaultTag = input.fluid ? "div" : "span";
             <${input.buttonAriaLabel && "button"}
                 class="icon-btn"
                 aria-label=input.buttonAriaLabel
+                type=(input.buttonAriaLabel && "button")
                 on-click("handleButtonClick")>
                 <${input.postfixIcon}/>
             </>

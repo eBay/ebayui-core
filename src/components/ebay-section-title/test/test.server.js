@@ -49,13 +49,10 @@ describe('section-title', () => {
         expect(cta).has.property('tagName', 'SPAN');
         expect(cta.parentElement).has.attr('href', input.href);
         expect(cta.parentElement.parentElement).has.class('section-title__cta');
-        expect(cta.parentElement.parentElement.querySelector('svg')).has.class(
-            'section-title__cta-icon'
-        );
     });
 
     it('renders with no-text cta', async () => {
-        const input = mock.CTA_NoText;
+        const input = mock.CTA;
         const { container, getByText } = await render(template, input);
 
         const title = getByText(input.title.renderBody.text);
@@ -64,10 +61,7 @@ describe('section-title', () => {
         expect(title).has.attr('href', input.href);
 
         const cta = container.querySelector('svg');
-        expect(cta).has.class('section-title__cta-icon');
-        expect(cta.parentElement).has.attr('href', input.href);
-        expect(cta.parentElement.parentElement).has.class('section-title__cta');
-        expect(cta.parentElement.parentElement).has.class('section-title__cta--no-text');
+        expect(cta.parentElement).has.class('section-title__title');
     });
 
     it('renders with info', async () => {

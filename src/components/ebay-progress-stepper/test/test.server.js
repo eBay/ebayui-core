@@ -16,12 +16,12 @@ describe('stepper', () => {
         const list = getAllByRole('listitem');
         expect(list).has.length(4);
 
-        expect(getByText('3').parentElement.parentElement).has.attr('aria-current');
+        expect(getByText('status 2').parentElement.parentElement).has.attr('aria-current');
 
         checkItem(list[0], 'confirmation');
         checkItem(list[1], 'confirmation');
-        checkItem(list[2], 3);
-        checkItem(list[3], 4);
+        checkItem(list[2], 'status 2', true);
+        checkItem(list[3], 'status 3', true);
     });
 
     it('renders vertical stepper', async () => {
@@ -32,12 +32,12 @@ describe('stepper', () => {
 
         const list = getAllByRole('listitem');
         expect(list).has.length(4);
-        expect(getByText('3').parentElement.parentElement).has.attr('aria-current');
+        expect(getByText('status 2').parentElement.parentElement).has.attr('aria-current');
 
         checkItem(list[0], 'confirmation');
         checkItem(list[1], 'confirmation');
-        checkItem(list[2], 3);
-        checkItem(list[3], 4);
+        checkItem(list[2], 'status 2', true);
+        checkItem(list[3], 'status 3', true);
     });
 
     it('renders stepper with states', async () => {
@@ -49,16 +49,16 @@ describe('stepper', () => {
         expect(list).has.length(5);
 
         checkItem(list[0], 'confirmation');
-        checkItem(list[1], 2);
-        checkItem(list[2], 3);
+        checkItem(list[1], 'status 1', true);
+        checkItem(list[2], 'status 2', true);
         checkItem(list[3], 'attention');
         checkItem(list[4], 'information');
     });
 
-    function checkItem(list, icon) {
+    function checkItem(list, icon, text) {
         const firstChild = list.children[0].children[0];
-        if (typeof icon === 'number') {
-            expect(within(firstChild).getAllByText(icon)).has.length(1);
+        if (text) {
+            expect(within(list).getAllByText(icon)).has.length(1);
         } else {
             expect(firstChild).has.class(`icon--stepper-${icon}`);
         }
