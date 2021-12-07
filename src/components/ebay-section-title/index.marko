@@ -1,6 +1,7 @@
 import processHtmlAttributes from "../../common/html-attributes"
 
 static var ignoredAttributes = [
+    "ctaText",
     "href",
     "size",
     "title",
@@ -44,6 +45,15 @@ static var ignoredAttributes = [
             </span>
         </if>
     </div>
+     <!-- CTA -->
+     <if(input.ctaText && input.href)>
+        <div class="section-title__cta">
+            <a href=input.href tabindex="-1" aria-hidden="true">
+                <span class="section-title__cta-text">${input.ctaText}</span>
+                <ebay-cta-icon />
+            </a>
+        </div>
+    </if>
     <!-- Info-->
     <if(input.info)>
         <div

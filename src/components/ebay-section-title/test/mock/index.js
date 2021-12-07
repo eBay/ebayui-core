@@ -16,6 +16,11 @@ exports.Subtitle = Object.assign({}, exports.Title, {
     },
 });
 
+exports.CTA_SeeAll = Object.assign({}, exports.Title, {
+    ctaText: 'See All',
+    href: 'https://www.ebay.com/',
+});
+
 exports.CTA = Object.assign({}, exports.Title, {
     href: 'https://www.ebay.com/',
 });

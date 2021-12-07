@@ -36,6 +36,21 @@ describe('section-title', () => {
         expect(subtitle).has.property('tagName', 'SPAN');
     });
 
+    it('renders with see-all cta', async () => {
+        const input = mock.CTA_SeeAll;
+        const { getByText } = await render(template, input);
+
+        const title = getByText(input.title.renderBody.text);
+        expect(title.parentElement).has.property('tagName', 'H2');
+        expect(title).has.property('tagName', 'A');
+        expect(title).has.attr('href', input.href);
+
+        const cta = getByText(input.ctaText);
+        expect(cta).has.property('tagName', 'SPAN');
+        expect(cta.parentElement).has.attr('href', input.href);
+        expect(cta.parentElement.parentElement).has.class('section-title__cta');
+    });
+
     it('renders with no-text cta', async () => {
         const input = mock.CTA;
         const { container, getByText } = await render(template, input);
