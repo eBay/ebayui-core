@@ -3,7 +3,7 @@ import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
 import buttonComponent from './examples/01-icon-button-host/template.marko';
-import code from '!raw-loader!./examples/01-icon-button-host/template.marko';
+import code from './examples/01-icon-button-host/template.marko?raw';
 
 // const Template = (args) => ({
 //     input: {

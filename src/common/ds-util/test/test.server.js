@@ -12,9 +12,9 @@ describe('ds-utils', () => {
     });
 
     it('should get the right flag', () => {
-        expect(util.getDSFlags('6')).to.deep.equal([]);
-        expect(util.getDSFlags('ds6')).to.deep.equal([]);
-        expect(util.getDSFlags('ds4')).to.deep.equal(['ds-4']);
+        expect(util.getDSFlags('6')).to.deep.equal({});
+        expect(util.getDSFlags('ds6')).to.deep.equal({});
+        expect(util.getDSFlags('ds4')).to.deep.equal({ 'ds-4': true });
     });
     it('should get the right index', () => {
         expect(util.getDSFromFlag('ds-6')).to.deep.equal(0);

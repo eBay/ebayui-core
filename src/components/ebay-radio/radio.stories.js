@@ -3,8 +3,8 @@ import Readme from './README.md';
 import Component from './index.marko';
 import groupTemplate from './examples/03-grouped-radio/template.marko';
 import WithLabelTemplate from './examples/05-with-label/template.marko';
-import groupCode from '!raw-loader!./examples/03-grouped-radio/template.marko';
-import WithLabelCode from '!raw-loader!./examples/05-with-label/template.marko';
+import groupCode from './examples/03-grouped-radio/template.marko?raw';
+import WithLabelCode from './examples/05-with-label/template.marko?raw';
 
 const Template = (args) => ({
     input: {

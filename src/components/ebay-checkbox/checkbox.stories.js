@@ -3,8 +3,8 @@ import Readme from './README.md';
 import Checkbox from './index.marko';
 import GroupTemplate from './examples/group.marko';
 import WithLabelTemplate from './examples/WithLabel.marko';
-import GroupCode from '!raw-loader!./examples/group.marko';
-import WithLabelCode from '!raw-loader!./examples/WithLabel.marko';
+import GroupCode from './examples/group.marko?raw';
+import WithLabelCode from './examples/WithLabel.marko?raw';
 
 const Template = (args) => ({ input: args });
 

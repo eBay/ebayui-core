@@ -7,14 +7,14 @@ import example3 from './examples/03-A+/template.marko';
 import example4 from './examples/04-A/template.marko';
 import example5 from './examples/05-invalid-combinations/template.marko';
 
-const Template = (args) => ({
-    input: {
-        ...args,
-        renderBody(out) {
-            out.html(args.renderBody);
-        },
-    },
-});
+// const Template = (args) => ({
+//     input: {
+//         ...args,
+//         renderBody(out) {
+//             out.html(args.renderBody);
+//         },
+//     },
+// });
 
 export default {
     title: 'ebay-eek',
@@ -43,7 +43,7 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
+export const Standard = (args) => ({ input: args });
 Standard.args = {
     max: 'A+++',
     min: 'E',

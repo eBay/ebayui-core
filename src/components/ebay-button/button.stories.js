@@ -2,7 +2,7 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import button from './index.marko';
 import readme from './README.md';
 import migratorTemplate from './examples/migrator.marko';
-import migratorCode from '!raw-loader!./examples/migrator.marko';
+import migratorCode from './examples/migrator.marko?raw';
 
 const Template = (args) => ({
     input: {

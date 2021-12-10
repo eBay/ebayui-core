@@ -1,5 +1,6 @@
 {
     "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
+    "customSyntax": "postcss-less",
     "rules": {
         "block-closing-brace-empty-line-before": "never",
         "block-closing-brace-newline-before": "always",
@@ -20,6 +21,13 @@
         "max-empty-lines": 1,
         "no-empty-source": true,
         "no-eol-whitespace": true,
-        "no-extra-semicolons": true
+        "no-extra-semicolons": true,
+        "number-max-precision": null,
+        "shorthand-property-no-redundant-values": null,
+        "property-no-vendor-prefix": null,
+        "selector-no-vendor-prefix": null,
+        "selector-class-pattern": null,
+        "alpha-value-notation": null,
+        "value-no-vendor-prefix": null
     }
 }

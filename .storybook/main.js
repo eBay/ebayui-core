@@ -1,3 +1,7 @@
+const { getDSFlags } = require('../src/common/ds-util');
+const AdaptivePlugin = require('arc-webpack');
+const dsVersion = getDSFlags(process.env.DS);
+
 module.exports = {
     stories: ['../src/**/*.stories.js'],
 
@@ -6,4 +10,21 @@ module.exports = {
         '@storybook/addon-essentials',
         '@storybook/addon-a11y',
     ],
+    core: {
+        builder: 'webpack5',
+    },
+    webpackFinal: async (config, { configType }) => {
+        config.module.rules.push({
+            test: /\.less$/,
+            use: ['style-loader', 'css-loader', 'less-loader'],
+        });
+
+        config.module.rules.push({
+            resourceQuery: /raw/,
+            type: 'asset/source',
+        });
+
+        // config.plugins.push(new AdaptivePlugin({ flags: dsVersion }));
+        return config;
+    },
 };

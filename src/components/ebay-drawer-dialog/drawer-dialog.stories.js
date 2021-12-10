@@ -1,11 +1,6 @@
-import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './examples/01-default/template.marko';
-import code from '!raw-loader!./examples/01-default/template.marko';
-
-const Template = (args) => ({
-    input: addRenderBodies(args),
-});
+import code from './examples/01-default/template.marko?raw';
 
 export default {
     title: 'ebay-drawer-dialog',
@@ -115,7 +110,7 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
+export const Standard = (args) => ({ input: args });
 Standard.args = {
     header: {
         renderBody: `Heading Text`,
