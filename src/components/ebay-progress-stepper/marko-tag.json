@@ -8,6 +8,8 @@
   "@default-state": {
     "enum": ["upcoming", "complete", "active"]
   },
+  "@a11y-heading-text": "string",
+  "@a11y-heading-tag": "string",
   "@auto-paragraph": "boolean",
   "@direction": {
     "enum": ["row", "column"]
@@ -20,6 +22,7 @@
     },
     "@html-attributes": "expression",
     "@current": "boolean",
+    "@a11y-text": "string",
     "@type": {
       "enum": ["attention", "default", "complete"]
     },
