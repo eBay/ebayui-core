@@ -12,8 +12,10 @@ function getType(i) {
 }
 
 exports.ProgressStepper = {
+    a11yHeadingText: 'shipment',
     step: getNItems(4, (i) => ({
         current: i === 2,
+        a11yText: i === 3 && 'a11yIconLabel',
         renderBody: createRenderBody(`status ${i}`),
     })),
 };

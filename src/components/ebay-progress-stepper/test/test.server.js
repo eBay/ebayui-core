@@ -9,7 +9,13 @@ use(require('chai-dom'));
 describe('stepper', () => {
     it('renders basic stepper', async () => {
         const input = mock.ProgressStepper;
-        const { getByRole, getAllByRole, getByText } = await render(template, input);
+        const { getByLabelText, getByRole, getAllByRole, getByText } = await render(
+            template,
+            input
+        );
+
+        expect(getByLabelText(input.a11yHeadingText)).has.class('progress-stepper');
+
         expect(getAllByRole('presentation')).has.length(3);
         expect(getByRole('list').parentElement).does.not.have.class('progress-stepper--vertical');
 
@@ -22,6 +28,8 @@ describe('stepper', () => {
         checkItem(list[1], 'confirmation');
         checkItem(list[2], 'status 2', true);
         checkItem(list[3], 'status 3', true);
+
+        expect(getByLabelText('a11yIconLabel')).has.attr('role', 'img');
     });
 
     it('renders vertical stepper', async () => {
