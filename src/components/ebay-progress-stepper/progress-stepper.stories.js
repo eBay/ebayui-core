@@ -40,16 +40,15 @@ export default {
                 'Specify whether to auto wrap @step body text with a paragraph tag (default: true)',
         },
         a11yHeadingTag: {
-            type: 'string',
             defaultValue: {
                 summary: 'h2',
             },
-            control: { type: 'string' },
+            control: { type: 'text' },
             description: 'heading tag for progress stepper',
         },
         a11yHeadingText: {
             type: 'string',
-            control: { type: 'string' },
+            control: { type: 'text' },
             description: 'heading text for progress stepper which will be clipped',
         },
         step: {
@@ -123,6 +122,7 @@ InProgress.args = {
             renderBody: 'July 6th',
         },
     ],
+    a11yHeadingTag: '',
     a11yHeadingText: 'Shipment progress',
 };
 InProgress.parameters = {
@@ -156,6 +156,7 @@ Blocked.args = {
             renderBody: 'July 6th',
         },
     ],
+    a11yHeadingTag: '',
     a11yHeadingText: 'Shipment progress, shipment is blocked',
 };
 Blocked.parameters = {
@@ -189,6 +190,7 @@ Information.args = {
             renderBody: 'July 6th',
         },
     ],
+    a11yHeadingTag: '',
     a11yHeadingText: 'Shipment progress, waiting for more info.',
 };
 Information.parameters = {
