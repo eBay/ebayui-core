@@ -50,14 +50,16 @@ $ var baseClass = input.classPrefix || "fake-menu";
             </if>
             <else>
                 <li>
-                    <${item.type === "button" ? "button" : "a"}
+                    $ var isButton = item.type === "button" || item.type ==="submit";
+                    <${isButton ? "button" : "a"}
                         ...processHtmlAttributes(item, itemIgnoredAttributes)
                         class=[`${baseClass}__item`, item.class]
                         style=item.style
-                        disabled=(item.type === "button" && item.disabled)
-                        aria-disabled=(item.type !== "button" && item.disabled && 'true')
+                        disabled=(isButton && item.disabled)
+                        aria-disabled=(!isButton && item.disabled && 'true')
                         aria-current=(item.current ? defaultAriaCurrent : false)
                         href=(item.disabled ? null : item.href)
+                        type=(isButton && item.type)
                         onKeydown(!item.disabled && "handleItemKeydown", index)
                         onClick(!item.disabled && "handleItemClick", index)
                         key="item[]">

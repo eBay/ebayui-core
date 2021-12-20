@@ -109,6 +109,9 @@ describe('fake-menu-button', () => {
     testUtils.testPassThroughAttributes(template);
     testUtils.testPassThroughAttributes(template, {
         child: {
+            input: {
+                type: 'button',
+            },
             name: 'items',
             multiple: true,
         },
