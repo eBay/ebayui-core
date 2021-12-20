@@ -39,6 +39,19 @@ export default {
             description:
                 'Specify whether to auto wrap @step body text with a paragraph tag (default: true)',
         },
+        a11yHeadingTag: {
+            type: 'string',
+            defaultValue: {
+                summary: 'h2',
+            },
+            control: { type: 'string' },
+            description: 'heading tag for progress stepper',
+        },
+        a11yHeadingText: {
+            type: 'string',
+            control: { type: 'string' },
+            description: 'heading text for progress stepper which will be clipped',
+        },
         step: {
             name: '@step',
             description: '',
@@ -64,6 +77,15 @@ export default {
             },
             description:
                 'The current step. Only first step that has this attribute will be considered current. All steps before will be rendered as complete, and all after will render as upcoming. If not present on any item, then will render based on `default-state` attribute',
+        },
+        a11yText: {
+            table: {
+                category: '@step attributes',
+                control: false,
+            },
+            type: 'string',
+            description:
+                'The accessibility text for the icon. Defaults to either complete, upcoming, current, issue, or blocked depending on type or current',
         },
         type: {
             table: {
@@ -101,6 +123,7 @@ InProgress.args = {
             renderBody: 'July 6th',
         },
     ],
+    a11yHeadingText: 'Shipment progress',
 };
 InProgress.parameters = {
     docs: {
@@ -133,6 +156,7 @@ Blocked.args = {
             renderBody: 'July 6th',
         },
     ],
+    a11yHeadingText: 'Shipment progress, shipment is blocked',
 };
 Blocked.parameters = {
     docs: {
@@ -165,6 +189,7 @@ Information.args = {
             renderBody: 'July 6th',
         },
     ],
+    a11yHeadingText: 'Shipment progress, waiting for more info.',
 };
 Information.parameters = {
     docs: {

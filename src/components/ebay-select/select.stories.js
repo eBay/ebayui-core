@@ -2,7 +2,7 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 import WithLabelTemplate from './examples/07-external-label/template.marko';
-import WithLabelCode from '!raw-loader!./examples/07-external-label/template.marko';
+import WithLabelCode from './examples/07-external-label/template.marko?raw';
 
 const Template = (args) => ({
     input: {

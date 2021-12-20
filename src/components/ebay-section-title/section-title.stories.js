@@ -3,7 +3,7 @@ import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
 import exampleComponent from './examples/09-medium-with-info-overflow/template.marko';
-import code from '!raw-loader!./examples/09-medium-with-info-overflow/template.marko';
+import code from './examples/09-medium-with-info-overflow/template.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),

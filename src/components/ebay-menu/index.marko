@@ -61,9 +61,9 @@ $ var baseClass = input.classPrefix || "menu";
                 aria-disabled=(item.disabled && "true")
                 href=(item.disabled ? null : item.href)
                 role=itemRole
-                onClick("handleItemClick", index)
-                onKeydown("handleItemKeydown", index)
-                onKeypress("handleItemKeypress")
+                onClick(!item.disabled && "handleItemClick", index)
+                onKeydown(!item.disabled && "handleItemKeydown", index)
+                onKeypress(!item.disabled && "handleItemKeypress")
                 key="item[]">
                 <span>
                     <${item.renderBody}/>

@@ -53,7 +53,13 @@ function getDSVersion(dsV) {
 
 function getDSFlags(dsV) {
     const dsVCheck = getDSVersion(dsV);
-    return dsFlags[dsVCheck] || dsFlags[defaultDS];
+    const currentA = dsFlags[dsVCheck] || dsFlags[defaultDS];
+    const selectedDS = currentA.join('');
+    const ret = {};
+    if (selectedDS) {
+        ret[selectedDS] = true;
+    }
+    return ret;
 }
 
 function getIndexFromFlag(flags) {

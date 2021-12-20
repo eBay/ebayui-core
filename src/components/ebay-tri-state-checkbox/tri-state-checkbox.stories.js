@@ -3,7 +3,7 @@ import Readme from './README.md';
 import Component from './index.marko';
 import mixedImplementationComponent from './examples/04-mixed-implementation/template.marko';
 import WithLabelTemplate from './examples/05-with-label/template.marko';
-import WithLabelCode from '!raw-loader!./examples/05-with-label/template.marko';
+import WithLabelCode from './examples/05-with-label/template.marko?raw';
 
 const Template = (args) => ({
     input: {

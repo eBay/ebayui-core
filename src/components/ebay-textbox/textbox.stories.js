@@ -3,8 +3,8 @@ import Readme from './README.md';
 import Component from './index.marko';
 import WithLabelTemplate from './examples/22-with-external-label/template.marko';
 import FloatingLabelTemplate from './examples/15-floating-label-with-value/template.marko';
-import WithLabelCode from '!raw-loader!./examples/22-with-external-label/template.marko';
-import FloatingLabelCode from '!raw-loader!./examples/15-floating-label-with-value/template.marko';
+import WithLabelCode from './examples/22-with-external-label/template.marko?raw';
+import FloatingLabelCode from './examples/15-floating-label-with-value/template.marko?raw';
 
 const Template = (args) => ({
     input: {

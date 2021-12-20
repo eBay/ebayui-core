@@ -1,7 +1,7 @@
 import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
-import example1 from './example-1.txt';
+import example1 from './examples/01-tourtip/template.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
