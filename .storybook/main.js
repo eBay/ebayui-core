@@ -20,11 +20,21 @@ module.exports = {
         });
 
         config.module.rules.push({
-            resourceQuery: /raw/,
+            test: /\.txt$/,
             type: 'asset/source',
         });
 
-        // config.plugins.push(new AdaptivePlugin({ flags: dsVersion }));
+        config.module.rules = [
+            {
+                oneOf: [
+                    {
+                        resourceQuery: /raw/,
+                        type: 'asset/source',
+                    },
+                    ...config.module.rules,
+                ],
+            },
+        ];
         return config;
     },
 };

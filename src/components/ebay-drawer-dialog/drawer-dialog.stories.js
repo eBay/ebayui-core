@@ -113,7 +113,7 @@ export default {
 export const Standard = (args) => ({ input: args });
 Standard.args = {
     header: {
-        renderBody: `Heading Text`,
+        renderBody: 'Heading Text',
     },
     renderBody: `Body Content`,
     footer: {
