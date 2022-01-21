@@ -22,7 +22,7 @@ module.exports = {
 
     onCreate() {
         this.state = {
-            selectedIndex: 0,
+            selectedIndex: -1,
         };
     },
 
@@ -30,7 +30,7 @@ module.exports = {
         const { state } = this;
         input.options = input.options || [];
         state.selectedIndex = Math.max(
-            0,
+            -1,
             input.options.findIndex((option) => option.selected)
         );
     },

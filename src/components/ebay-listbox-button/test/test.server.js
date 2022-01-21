@@ -20,18 +20,14 @@ describe('listbox', () => {
 
         expect(btnEl).has.attr('aria-haspopup', 'listbox');
         expect(btnEl).has.attr('name', input.buttonName);
-        expect(btnEl).has.text(input.options[0].text);
+        expect(btnEl).has.text('-');
         expect(btnEl).has.class('listbox-button__control');
 
         expect(listboxEl).has.class('listbox-button__listbox');
 
         expect(visibleOptionEls).has.length(3);
-        visibleOptionEls.forEach((optionEl, i) => {
-            if (i === 0) {
-                expect(optionEl).has.attr('aria-selected', 'true');
-            } else {
-                expect(optionEl).does.not.have.attr('aria-selected');
-            }
+        visibleOptionEls.forEach((optionEl) => {
+            expect(optionEl).does.not.have.attr('aria-selected');
         });
     });
 

@@ -11,12 +11,15 @@ static var ignoredAttributes = [
     "options",
     "truncate",
     "prefixLabel",
-    "prefixId"
+    "prefixId",
+    "unselectedText"
 ];
 
 $ var selectedOption = input.options[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
 $ var labelId = input.prefixId && component.getElId("label");
+$ var unselectedText = input.unselectedText || '-';
+$ var displayText = selectedText || unselectedText;
 
 <${input.truncate && !input.fluid ? "div" : "span"}
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -48,13 +51,13 @@ $ var labelId = input.prefixId && component.getElId("label");
                     "expand-btn__floating-label--animate",
                     !selectedText && "expand-btn__floating-label--inline",
                     ]>${input.floatingLabel}</span>
-                <span class="expand-btn__text">${selectedText}</span>
+                <span class="expand-btn__text">${displayText}</span>
             </if>
             <else-if (input.prefixLabel)>
-                <span class="expand-btn__text">${input.prefixLabel} ${selectedText}</span>
+                <span class="expand-btn__text">${input.prefixLabel} ${displayText}</span>
             </else-if>
             <else>
-                <span id=labelId class="expand-btn__text">${selectedText}</span>
+                <span id=labelId class="expand-btn__text">${displayText}</span>
             </else>
             <ebay-dropdown-icon/>
         </span>

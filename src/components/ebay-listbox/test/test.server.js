@@ -20,12 +20,8 @@ describe('listbox', () => {
         expect(listboxEl).has.class('listbox__options');
 
         expect(visibleOptionEls).has.length(3);
-        visibleOptionEls.forEach((optionEl, i) => {
-            if (i === 0) {
-                expect(optionEl).has.attr('aria-selected', 'true');
-            } else {
-                expect(optionEl).does.not.have.attr('aria-selected');
-            }
+        visibleOptionEls.forEach((optionEl) => {
+            expect(optionEl).does.not.have.attr('aria-selected');
         });
     });
 

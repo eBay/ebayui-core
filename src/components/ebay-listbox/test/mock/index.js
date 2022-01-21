@@ -12,6 +12,15 @@ exports.Basic_3Options = {
     })),
 };
 
+exports.Basic_3Options_FirstSelected = {
+    name: 'listbox-name',
+    options: getNItems(3, (i) => ({
+        selected: i === 0,
+        value: String(i),
+        text: `option ${i}`,
+    })),
+};
+
 exports.Basic_3Options_1Selected = {
     name: 'listbox-name',
     options: getNItems(3, (i) => ({

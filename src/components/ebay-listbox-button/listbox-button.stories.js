@@ -63,7 +63,10 @@ export default {
             description:
                 'The label to add that floats to the top when item is selected. Cannot be used with `prefix-label`',
         },
-
+        unselectedText: {
+            control: { type: 'text' },
+            description: 'The text to be shown when no options are selected. Default is "-"',
+        },
         prefixLabel: {
             control: { type: 'text' },
             description:
@@ -123,6 +126,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
+    prefixLabel: 'Selected:',
     options: [
         {
             value: '1',
