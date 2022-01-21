@@ -52,3 +52,8 @@ exports.Overflow_Variant = Object.assign({}, exports.Basic_2Items, {
     text: '',
     variant: 'overflow',
 });
+
+exports.Button_Variant = Object.assign({}, exports.Basic_2Items, {
+    text: 'Button',
+    variant: 'button',
+});

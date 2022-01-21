@@ -1,6 +1,7 @@
 import processHtmlAttributes from "../../common/html-attributes"
 import ExpandButton from '<ebay-expand-button>'
 import IconButton from '<ebay-icon-button>'
+import Button from '<ebay-button>'
 
 static var ignoredAttributes = [
     "class",
@@ -24,7 +25,22 @@ static var ignoredAttributes = [
     "textAlign"
 ];
 
-$ var isOverflowVariant = input.variant === "overflow";
+$ {
+    var labelId = input.prefixId && component.getElId("label");
+    var isOverflowVariant = input.variant === "overflow";
+    var isButtonVariant = input.variant === "button";
+    var priority = null;
+    var prefix = 'expand-btn'
+
+    var tagName = ExpandButton;
+    if (isOverflowVariant) {
+        tagName = IconButton;
+    } else if (isButtonVariant) {
+        tagName = Button;
+        priority = input.priority
+        prefix = 'btn';
+    }
+}
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     class=["fake-menu-button", input.class]
@@ -32,13 +48,13 @@ $ var isOverflowVariant = input.variant === "overflow";
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")
     onMousedown("handleMousedown")>
-    <${isOverflowVariant ? IconButton : ExpandButton}
+    <${tagName}
         class=[
             `fake-menu-button__button`,
             input.borderless && !isOverflowVariant && "expand-btn--borderless"
         ]
         size=input.size
-        priority=(input.priority || "none")
+        priority=priority
         icon-only=(!input.text && !input.icon && !isOverflowVariant)
         aria-expanded="false"
         aria-label=input.a11yText
@@ -51,7 +67,7 @@ $ var isOverflowVariant = input.variant === "overflow";
         </if>
         <else>
             <span class=[
-                "expand-btn__cell",
+                `${prefix}__cell`,
                 input.label && "menu-button__control--custom-label",
                 input.textAlign === "center" && "expand-btn__cell--center"
             ]>
@@ -66,6 +82,9 @@ $ var isOverflowVariant = input.variant === "overflow";
                         <span>${input.text}</span>
                     </if>
                 </else>
+                <if(isButtonVariant && !input.noToggleIcon)>
+                    <ebay-dropdown-icon/>
+                </if>
             </span>
         </else>
     </>
