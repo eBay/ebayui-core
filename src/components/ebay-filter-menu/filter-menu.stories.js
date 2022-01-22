@@ -20,7 +20,8 @@ export default {
 
     argTypes: {
         type: {
-            control: { type: 'text' },
+            options: ['radio', 'checkbox'],
+            control: { type: 'select' },
             description: 'Can be "radio" / "checkbox"',
         },
         variant: {

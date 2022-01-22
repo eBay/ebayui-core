@@ -23,6 +23,11 @@ export default {
             control: { type: 'text' },
             description: 'button text',
         },
+        type: {
+            options: ['radio', 'checkbox'],
+            control: { type: 'select' },
+            description: 'Can be "radio" / "checkbox"',
+        },
         a11yText: {
             control: { type: 'text' },
             description: 'a11y text for the button',
