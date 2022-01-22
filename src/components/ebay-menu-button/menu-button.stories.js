@@ -64,9 +64,9 @@ export default {
             description: 'button size, "large" (default: "none")',
         },
         priority: {
-            control: { type: 'text' },
-            description:
-                'button priority, "primary" (deprecated) / "secondary" (deprecated) / "none" (default)',
+            control: { type: 'select' },
+            options: ['primary', 'secondary', 'delete', 'tertiary', 'none'],
+            description: 'button priority, only used when variant="button"',
         },
         checked: {
             description:
@@ -79,8 +79,10 @@ export default {
                 'Will disable the entire dropdown (disables the ebay-button label) if set to true',
         },
         variant: {
-            control: { type: 'text' },
-            description: 'will change the button style, "overflow" / "default"',
+            control: { type: 'select' },
+            options: ['overflow', 'form', 'button'],
+            description:
+                'will change the button style, "overflow", "form" or "button. Default is form"',
         },
         collapseOnSelect: {
             type: 'boolean',
