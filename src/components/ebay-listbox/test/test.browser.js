@@ -16,7 +16,7 @@ before(() => document.body.appendChild(form));
 after(() => document.body.removeChild(form));
 
 describe('given the listbox with 3 items', () => {
-    const input = mock.Basic_3Options;
+    const input = mock.Basic_3Options_FirstSelected;
 
     beforeEach(async () => {
         component = await render(template, Object.assign({}, input, { listSelection: 'auto' }), {
@@ -73,7 +73,7 @@ describe('given the listbox with 3 items', () => {
 });
 
 describe('given the listbox is in an expanded state', () => {
-    const input = mock.Basic_3Options;
+    const input = mock.Basic_3Options_FirstSelected;
 
     beforeEach(async () => {
         component = await render(template, Object.assign({}, input, { listSelection: 'auto' }), {
@@ -141,7 +141,7 @@ describe('given the listbox is in an expanded state', () => {
 });
 
 describe('given the listbox is in an expanded state with manual selection', () => {
-    const input = mock.Basic_3Options;
+    const input = mock.Basic_3Options_FirstSelected;
 
     beforeEach(async () => {
         component = await render(template, input, { container: form });
