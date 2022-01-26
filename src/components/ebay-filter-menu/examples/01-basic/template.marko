@@ -1,4 +1,11 @@
-<ebay-filter-menu>
+class {
+    handleChange({el}) {
+        console.log(el.getAttribute('aria-checked'));
+    }
+
+}
+
+<ebay-filter-menu on-change('handleChange')>
     <@item value="item 1">item 1</@item>
     <@item value="item 2">item 2</@item>
     <@item value="item 3">item 3</@item>
