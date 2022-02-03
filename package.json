@@ -151,14 +151,14 @@
   },
   "dependencies": {
     "@marko-tags/subscribe": "^0.4.2",
-    "makeup-active-descendant": "0.4.0",
-    "makeup-expander": "~0.9.0",
+    "makeup-active-descendant": "0.4.1",
+    "makeup-expander": "~0.9.1",
     "makeup-floating-label": "~0.2.1",
     "makeup-focusables": "~0.2.0",
     "makeup-key-emitter": "~0.2.0",
     "makeup-keyboard-trap": "~0.3.0",
     "makeup-prevent-scroll-keys": "~0.1.0",
-    "makeup-roving-tabindex": "~0.4.0",
+    "makeup-roving-tabindex": "~0.4.1",
     "makeup-screenreader-trap": "~0.3.0",
     "makeup-typeahead": "^0.1.0"
   },
