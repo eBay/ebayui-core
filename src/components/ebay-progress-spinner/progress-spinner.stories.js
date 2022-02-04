@@ -26,7 +26,8 @@ export default {
 
     argTypes: {
         size: {
-            control: { type: 'text' },
+            options: ['small', 'large'],
+            control: { type: 'select' },
             description: 'size of spinner - can be "small", "large". default is small ',
         },
         ariaLabel: {

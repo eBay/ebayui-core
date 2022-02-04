@@ -22,6 +22,8 @@ export default {
 export const heading = () => ({
     component: breadcrumb1,
 });
+
+heading.args = {};
 heading.parameters = {
     controls: { hideNoControlsWarning: true },
 };
@@ -29,7 +31,7 @@ heading.parameters = {
 heading.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-alert-dialog', heading.args),
+            code: tagToString('ebay-breadcrumbs', heading.args),
         },
     },
 };

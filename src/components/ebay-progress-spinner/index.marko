@@ -5,4 +5,11 @@ static var ignoredAttributes = ["class", "size"];
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     class=["progress-spinner", input.size === "large" && "progress-spinner--large", input.class]
-    role="img"/>
+    role="img">
+    <if(input.size === "large")>
+        <ebay-spinner-large-icon/>
+    </if>
+    <else>
+        <ebay-spinner-icon/>
+    </else>
+</span>

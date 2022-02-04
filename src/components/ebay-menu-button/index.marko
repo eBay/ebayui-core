@@ -1,6 +1,7 @@
 import processHtmlAttributes from "../../common/html-attributes"
 import ExpandButton from '<ebay-expand-button>'
 import IconButton from '<ebay-icon-button>'
+import Button from '<ebay-button>'
 
 static var ignoredAttributes = [
     "class",
@@ -27,8 +28,22 @@ static var ignoredAttributes = [
     "collapseOnSelect"
 ];
 
-$ var isOverflowVariant = input.variant === "overflow";
-$ var labelId = input.prefixId && component.getElId("label");
+$ {
+    var labelId = input.prefixId && component.getElId("label");
+    var isOverflowVariant = input.variant === "overflow";
+    var isButtonVariant = input.variant === "button";
+    var priority = null;
+    var prefix = 'expand-btn'
+
+    var tagName = ExpandButton;
+    if (isOverflowVariant) {
+        tagName = IconButton;
+    } else if (isButtonVariant) {
+        tagName = Button;
+        priority = input.priority
+        prefix = 'btn';
+    }
+}
 
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -37,13 +52,13 @@ $ var labelId = input.prefixId && component.getElId("label");
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")
     onMousedown("handleMousedown")>
-    <${isOverflowVariant ? IconButton : ExpandButton}
+    <${tagName}
         class=[
             `menu-button__button`,
             input.borderless && !isOverflowVariant && "expand-btn--borderless"
         ]
         size=input.size
-        priority=(input.priority || "none")
+        priority=priority
         aria-expanded="false"
         aria-haspopup="true"
         aria-label=input.a11yText
@@ -57,7 +72,7 @@ $ var labelId = input.prefixId && component.getElId("label");
         </if>
         <else>
             <span class=[
-                "expand-btn__cell",
+                `${prefix}__cell`,
                 input.label && "menu-button__control--custom-label",
                 input.textAlign === 'center' && "expand-btn__cell--center"
             ]>
@@ -80,6 +95,9 @@ $ var labelId = input.prefixId && component.getElId("label");
                         <span id=labelId>${input.text}</span>
                     </if>
                 </else>
+                <if(isButtonVariant && !input.noToggleIcon)>
+                    <ebay-dropdown-icon/>
+                </if>
             </span>
         </else>
     </>

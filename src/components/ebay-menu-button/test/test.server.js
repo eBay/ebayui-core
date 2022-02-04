@@ -104,6 +104,18 @@ describe('menu-button', () => {
         expect(menuEl).has.property('parentElement').with.class('menu-button__menu--reverse');
     });
 
+    it('renders with button variant', async () => {
+        const input = mock.Button_Variant;
+        const { getByRole, getByLabelText } = await render(template, input);
+        const btnEl = getByRole('button');
+        expect(btnEl).is.equal(getByLabelText(input.a11yText));
+        expect(btnEl).has.class('btn');
+        expect(btnEl).has.attr('aria-haspopup', 'true');
+        expect(btnEl).has.attr('aria-expanded', 'false');
+        expect(btnEl).has.property('parentElement').with.class('menu-button');
+        expect(btnEl.querySelector('.icon')).has.property('tagName', 'svg');
+    });
+
     it('renders with separators', async () => {
         const input = mock.Separator_4Items;
         const { queryByText, getAllByRole, getByText } = await render(template, input);
