@@ -7,6 +7,7 @@ static var ignoredAttributes = [
     "type",
     "classPrefix",
     "focus",
+    "closeFocus",
     "a11yCloseText",
     "windowClass",
     "baseEl",
@@ -15,6 +16,7 @@ static var ignoredAttributes = [
     "transitionEl",
     "isModal",
     "closeButton",
+    "closeButtonClass",
     "ignoreEscape",
     "windowType",
     "mainId",
@@ -46,7 +48,7 @@ $ var header = input.header;
     <if(buttonPosition !== "hidden")>
         <button
             key="close"
-            class=["icon-btn", input.classPrefix == "toast-dialog" && "icon-btn--transparent", `${input.classPrefix}__close` ]
+            class=["icon-btn", input.closeButtonClass, `${input.classPrefix}__close` ]
             type="button"
             aria-label=input.a11yCloseText
             onClick("handleCloseButtonClick")>
