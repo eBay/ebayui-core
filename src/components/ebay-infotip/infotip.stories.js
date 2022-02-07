@@ -8,11 +8,12 @@ const Template = (args) => ({
         spread: null,
         ...args.spread,
         content: {
-            renderBody: args.renderBody
-                ? (out) => {
-                      out.html(args.renderBody);
-                  }
-                : null,
+            renderBody:
+                args.content && args.content.renderBody
+                    ? (out) => {
+                          out.html(args.content.renderBody);
+                      }
+                    : null,
         },
     },
 });
