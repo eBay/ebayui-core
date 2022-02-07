@@ -19,7 +19,7 @@ function getTemplateData(state) {
     const nextControlDisabled =
         isSingleSlide || (!autoplayInterval && offset === getMaxOffset(state));
     // If left/right is undefined, the carousel is moving at that moment. We should keep the old disabled state
-    const bothControlsDisabled = isAnimating
+    const bothControlsDisabled = isAnimating(state)
         ? state.bothControlsDisabled
         : prevControlDisabled && nextControlDisabled;
     let slide, itemWidth, totalSlides, a11yStatusText;
