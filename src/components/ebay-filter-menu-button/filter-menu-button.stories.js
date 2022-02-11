@@ -125,7 +125,7 @@ export default {
             table: {
                 category: 'Events',
                 defaultValue: {
-                    summary: '{ el, selected }',
+                    summary: '{ el, selected, index, currentChecked, checked }',
                 },
             },
         },

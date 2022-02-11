@@ -19,7 +19,7 @@ module.exports = Object.assign({}, menuUtils, {
         eventUtils.handleEscapeKeydown(ev, () => {
             // TODO: this event is not documented.
             // Do we need it? (it is only used by the filter-menu-button)
-            this._emitComponentEvent('keydown', null, ev);
+            this._emitComponentEvent('keydown', null, ev, index);
         });
 
         if (this.input.variant !== 'form') {
@@ -61,18 +61,21 @@ module.exports = Object.assign({}, menuUtils, {
 
     _toggleItemChecked(index, itemEl) {
         this.toggleChecked(index);
-        this._emitComponentEvent('change', itemEl);
+        this._emitComponentEvent('change', itemEl, null, index);
     },
 
-    _emitComponentEvent(eventType, el, originalEvent) {
+    _emitComponentEvent(eventType, el, originalEvent, index) {
         const checked = this.getCheckedValues();
         const checkedIndex = this.getCheckedIndexes();
+        const currentChecked = this.isChecked(index);
 
         this.emit(`${eventType}`, {
             el,
             checked,
             checkedIndex,
             originalEvent,
+            index,
+            currentChecked,
         });
     },
 

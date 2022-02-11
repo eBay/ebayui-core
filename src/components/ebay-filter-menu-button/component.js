@@ -7,11 +7,11 @@ module.exports = Object.assign({}, menuUtils, {
         eventUtils.handleEscapeKeydown(originalEvent, () => (this._expander.expanded = false));
     },
 
-    handleMenuChange({ checkedIndex, el, originalEvent }) {
+    handleMenuChange({ checkedIndex, el, originalEvent, index, currentChecked }) {
         // TODO: the event data from the filter-menu should probably
         // change to include which items are checked not just the values.
         this.toggleChecked(checkedIndex);
-        this._emitComponentEvent('change', el, originalEvent);
+        this._emitComponentEvent('change', el, originalEvent, index, currentChecked);
     },
 
     handleFooterButtonClick() {
@@ -54,7 +54,7 @@ module.exports = Object.assign({}, menuUtils, {
         this._cleanupMakeup();
     },
 
-    _emitComponentEvent(eventType, el, originalEvent) {
+    _emitComponentEvent(eventType, el, originalEvent, index, currentChecked) {
         switch (eventType) {
             case 'expand':
                 this.emit(eventType);
@@ -68,6 +68,8 @@ module.exports = Object.assign({}, menuUtils, {
                     el,
                     checked,
                     originalEvent,
+                    index,
+                    currentChecked,
                 });
                 break;
             }

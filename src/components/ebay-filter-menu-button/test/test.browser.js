@@ -134,6 +134,8 @@ describe('given the menu is in the expanded state', () => {
             const [[eventArg]] = selectEvents;
             expect(eventArg).has.property('el').with.text(firstItemText);
             expect(eventArg).has.property('checked').to.deep.equal(['item 0']);
+            expect(eventArg).has.property('currentChecked').to.equal(true);
+            expect(eventArg).has.property('index').to.equal(0);
         });
     });
 
@@ -150,6 +152,10 @@ describe('given the menu is in the expanded state', () => {
             const [firstEventData, secondEventData] = changeEvents.flat();
             expect(firstEventData).has.property('el', firstItem);
             expect(secondEventData).has.property('el', secondItem);
+            expect(firstEventData).has.property('currentChecked').to.equal(true);
+            expect(secondEventData).has.property('currentChecked').to.equal(true);
+            expect(firstEventData).has.property('index').to.equal(0);
+            expect(secondEventData).has.property('index').to.equal(1);
         });
 
         it('then both items are selected', () => {
@@ -171,6 +177,10 @@ describe('given the menu is in the expanded state', () => {
             const [firstEventData, secondEventData] = changeEvents.flat();
             expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
             expect(secondEventData).has.property('checked').to.deep.equal([]);
+            expect(firstEventData).has.property('currentChecked').to.equal(true);
+            expect(secondEventData).has.property('currentChecked').to.equal(false);
+            expect(firstEventData).has.property('index').to.equal(0);
+            expect(secondEventData).has.property('index').to.equal(0);
         });
 
         it('then the item is unchecked', () => {
@@ -193,6 +203,8 @@ describe('given the menu is in the expanded state', () => {
             const [firstEventData] = changeEvents.flat();
             expect(firstEventData).has.property('el').with.text(firstItemText);
             expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
+            expect(firstEventData).has.property('currentChecked').to.equal(true);
+            expect(firstEventData).has.property('index').to.equal(0);
         });
     });
 
@@ -224,6 +236,8 @@ describe('given the menu is in the expanded state', () => {
 
             const [[eventArg]] = selectEvents;
             expect(eventArg).has.property('el').with.text(thirdItemText);
+            expect(eventArg).has.property('currentChecked').to.equal(true);
+            expect(eventArg).has.property('index').to.equal(2);
         });
     });
 });
