@@ -10,10 +10,9 @@ static var ignoredAttributes = ["toJSON"];
 
 $ {
     input.toJSON = toJSON;
-    var tag = "button";
     var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
 }
-<${tag}
+<button
     ...htmlAttributes
     onClick("handleClick")
     onKeydown("handleKeydown")
@@ -21,6 +20,6 @@ $ {
     onBlur("handleBlur")
     class=[input.class, "fake-link"]
     data-ebayui=true
-    type=(tag === "button" && (input.type || "button"))>
+    type=(input.type || "button")>
     <${input.renderBody}/>
-</>
+</button>
