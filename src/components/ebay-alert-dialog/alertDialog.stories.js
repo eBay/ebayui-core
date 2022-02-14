@@ -27,6 +27,11 @@ export default {
                 disable: true,
             },
         },
+        closeFocus: {
+            control: { type: 'text' },
+            description:
+                'An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened',
+        },
         'confirm-text': {
             control: { type: 'text' },
             description: 'Text for confirm button',

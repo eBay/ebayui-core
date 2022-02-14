@@ -23,10 +23,14 @@ module.exports = {
         this.clickTarget = el;
     },
 
-    getActiveElement() {
+    getActiveElement(input) {
+        let closeFocusEl;
+        if (input && input.closeFocus) {
+            closeFocusEl = document.getElementById(input.closeFocus);
+        }
         const el =
             document.activeElement === document.body ? this.clickTarget : document.activeElement;
-        return el;
+        return closeFocusEl || el;
     },
 
     handleStartClick({ target }) {
@@ -165,7 +169,7 @@ module.exports = {
 
         // Ensure focus is set and body scroll prevented on initial render.
         if (isFirstRender && this.input.isModal && isTrapped) {
-            this._prevFocusEl = this.getActiveElement();
+            this._prevFocusEl = this.getActiveElement(this.input);
             this._triggerFocus(focusEl);
             this._triggerBodyScroll(true);
         }
@@ -205,7 +209,7 @@ module.exports = {
 
             if (isTrapped) {
                 if (!isFirstRender) {
-                    this._prevFocusEl = this.getActiveElement();
+                    this._prevFocusEl = this.getActiveElement(this.input);
                     this._triggerBodyScroll(true);
                     this.cancelTransition = transition(
                         {

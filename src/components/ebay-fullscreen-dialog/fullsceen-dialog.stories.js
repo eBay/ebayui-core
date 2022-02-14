@@ -32,6 +32,11 @@ export default {
             description:
                 'An id for an element which will receive focus when the dialog opens (defaults to close button).',
         },
+        closeFocus: {
+            control: { type: 'text' },
+            description:
+                'An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened',
+        },
         a11yCloseText: {
             control: { type: 'text' },
             description: 'A11y text for close button and mask.',
