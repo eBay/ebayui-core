@@ -11,6 +11,9 @@ jobs:
     - uses: actions/setup-node@master
       with:
         node-version: '14.x'
+    - uses: webfactory/ssh-agent@v0.4.1
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
     - run: npm ci
     - run: npm run build:ci
       env:
