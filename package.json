@@ -94,7 +94,7 @@
     "async": "^3.2.1",
     "babel-loader": "^8.0.6",
     "browser-refresh": "^1.7.2",
-    "chai": "^4.2.0",
+    "chai": "4.3.4",
     "chai-dom": "^1.10.0",
     "chromedriver": "^98",
     "coveralls": "^3.1.1",
@@ -159,7 +159,7 @@
     "makeup-keyboard-trap": "~0.4.0",
     "makeup-prevent-scroll-keys": "~0.2.0",
     "makeup-roving-tabindex": "~0.5.0",
-    "makeup-screenreader-trap": "~0.4.0",
+    "makeup-screenreader-trap": "~0.4.1",
     "makeup-typeahead": "^0.2.0"
   },
   "publishConfig": {

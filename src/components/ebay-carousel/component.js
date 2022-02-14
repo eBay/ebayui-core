@@ -1,4 +1,4 @@
-const focusables = require('makeup-focusables');
+const focusables = require('makeup-focusables').default;
 const resizeUtil = require('../../common/event-utils').resizeUtil;
 const processHtmlAttributes = require('../../common/html-attributes');
 const onScroll = require('./utils/on-scroll-debounced');

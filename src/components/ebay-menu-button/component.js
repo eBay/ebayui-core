@@ -1,4 +1,4 @@
-const Expander = require('makeup-expander');
+const Expander = require('makeup-expander').default;
 const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 

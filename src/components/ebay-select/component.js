@@ -1,4 +1,4 @@
-const FloatingLabel = require('makeup-floating-label');
+const FloatingLabel = require('makeup-floating-label').default;
 
 module.exports = {
     handleChange(event) {
