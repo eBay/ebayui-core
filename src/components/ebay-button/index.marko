@@ -40,6 +40,7 @@ $ {
     var fixedHeightClass =
         input.fixedHeight &&
         (sizeClass ? sizeClass + "-fixed-height" : baseClass + "--fixed-height");
+    var variantClass = input.variant ? baseClass + "--" + input.variant : "";
     var tag = input.href ? "a" : "button";
     var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
     if(input.bodyState === "loading") hasLoaded = true;
@@ -58,6 +59,7 @@ $ {
         truncateClass,
         fixedHeightClass,
         transparentClass,
+        variantClass,
         !truncateClass && !fixedHeightClass && sizeClass,
         (validPriorities.includes(priority) &&
         `${baseClass}--${priority}`)
