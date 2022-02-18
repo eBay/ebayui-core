@@ -91,6 +91,16 @@ export default {
                 },
             },
         },
+        destructive: {
+            description:
+                'transforms to a destructive variant that styles in conjunction with priority',
+            table: {
+                category: 'Toggles',
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
+        },
         'partially-disabled': {
             description: 'programmatically disabled, but remains keyboard focusable',
             table: {
@@ -192,6 +202,7 @@ Standard.args = {
     transparent: false,
     'fixed-height': false,
     truncate: false,
+    destructive: false,
 };
 
 Standard.parameters = {
