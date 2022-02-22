@@ -5,13 +5,13 @@ const menuUtils = require('../../common/menu-utils');
 
 module.exports = Object.assign({}, menuUtils, {
     handleRadioClick(index, ev, itemEl) {
-        this._toggleItemChecked(index, itemEl);
+        this._toggleItemChecked(index, ev, itemEl);
     },
 
     handleItemClick(index, ev, itemEl) {
         const targetEv = ev.originalEvent || ev;
         if (this.input.variant !== 'form' || targetEv.target.tagName !== 'INPUT') {
-            this._toggleItemChecked(index, itemEl);
+            this._toggleItemChecked(index, ev, itemEl);
         }
     },
 
@@ -19,22 +19,22 @@ module.exports = Object.assign({}, menuUtils, {
         eventUtils.handleEscapeKeydown(ev, () => {
             // TODO: this event is not documented.
             // Do we need it? (it is only used by the filter-menu-button)
-            this._emitComponentEvent('keydown', null, ev, index);
+            this._emitComponentEvent('keydown', ev, { index });
         });
 
         if (this.input.variant !== 'form') {
             eventUtils.handleActionKeydown(ev, () => {
-                this._toggleItemChecked(index, itemEl);
+                this._toggleItemChecked(index, ev, itemEl);
             });
         }
     },
 
     handleFooterButtonClick(originalEvent) {
-        this._emitComponentEvent('footer-click', null, originalEvent);
+        this._emitComponentEvent('footer-click', originalEvent);
     },
 
     handleFormSubmit(originalEvent) {
-        this._emitComponentEvent('form-submit', null, originalEvent);
+        this._emitComponentEvent('form-submit', originalEvent);
     },
 
     onInput(input) {
@@ -59,12 +59,13 @@ module.exports = Object.assign({}, menuUtils, {
         this._cleanupMakeup();
     },
 
-    _toggleItemChecked(index, itemEl) {
+    _toggleItemChecked(index, originalEvent, el) {
         this.toggleChecked(index);
-        this._emitComponentEvent('change', itemEl, null, index);
+        this._emitComponentEvent('change', originalEvent, { el, index });
     },
 
-    _emitComponentEvent(eventType, el, originalEvent, index) {
+    _emitComponentEvent(eventType, originalEvent, args) {
+        const { el, index } = args || {};
         const checked = this.getCheckedValues();
         const checkedIndex = this.getCheckedIndexes();
         const currentChecked = this.isChecked(index);
