@@ -16,7 +16,8 @@ static var ignoredAttributes = [
     "truncate",
     "transparent",
     "bodyState",
-    "toJSON"
+    "toJSON",
+    "variant"
 ];
 
 static var validPriorities = [
@@ -40,6 +41,8 @@ $ {
     var fixedHeightClass =
         input.fixedHeight &&
         (sizeClass ? sizeClass + "-fixed-height" : baseClass + "--fixed-height");
+    var variant = input.variant || 'standard';
+    var variantClass = variant !== 'standard' && `${baseClass}--${input.variant}`;
     var tag = input.href ? "a" : "button";
     var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
     if(input.bodyState === "loading") hasLoaded = true;
@@ -58,6 +61,7 @@ $ {
         truncateClass,
         fixedHeightClass,
         transparentClass,
+        variantClass,
         !truncateClass && !fixedHeightClass && sizeClass,
         (validPriorities.includes(priority) &&
         `${baseClass}--${priority}`)

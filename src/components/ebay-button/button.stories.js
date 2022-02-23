@@ -91,6 +91,17 @@ export default {
                 },
             },
         },
+        variant: {
+            options: ['standard', 'destructive'],
+            description:
+                'transforms to a specific variant that styles in conjunction with priority',
+            table: {
+                defaultValue: {
+                    summary: 'standard',
+                },
+            },
+            type: { category: 'Options' },
+        },
         'partially-disabled': {
             description: 'programmatically disabled, but remains keyboard focusable',
             table: {
