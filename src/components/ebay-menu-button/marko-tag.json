@@ -45,7 +45,7 @@
     "@checked": "boolean",
     "@badge-number": "expression",
     "@badge-aria-label": "string",
-    "@_isSeparator": "boolean"
+    "@separator": "boolean"
   },
   "@label <label>": {
     "@html-attributes": "expression",
@@ -56,6 +56,6 @@
     "@html-attributes": "expression",
     "@class": "string",
     "@style": "string",
-    "@_isSeparator": "boolean"
+    "@separator": "boolean"
   }
 }

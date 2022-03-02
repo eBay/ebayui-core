@@ -11,6 +11,6 @@ describe('when the ebay-menu-separator tag is transformed', () => {
     });
 
     it('transforms the ebay-menu-separator', () => {
-        expect(outputTemplate).to.deep.equal('<@item _isSeparator=true/>');
+        expect(outputTemplate).to.deep.equal('<@item separator=true/>');
     });
 });

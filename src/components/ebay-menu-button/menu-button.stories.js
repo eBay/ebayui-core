@@ -4,6 +4,7 @@ import Readme from './README.md';
 import badgedExample from './examples/22-badged-items/template.marko';
 import iconExample from './examples/09-icon-with-text/template.marko';
 import typeaheadExample from './examples/18-typeahead/template.marko';
+import separatorExample from './examples/02-separator/template.marko';
 import Component from './index.marko';
 
 const Template = (args) => ({
@@ -199,4 +200,8 @@ export const BadgedItems = () => ({
 });
 export const Typeahead = () => ({
     component: typeaheadExample,
+});
+
+export const Separator = () => ({
+    component: separatorExample,
 });
