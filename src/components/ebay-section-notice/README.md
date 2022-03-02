@@ -22,15 +22,15 @@ This notice should be used at the top of various sections to display information
 ```marko
 <ebay-section-notice a11y-text="Attention" status="attention">
     <p>Couldn't load all the items, please try again later.</p>
-    <@footer><ebay-button priority="secondary" transparent>Try again</ebay-button></@footer>
+    <@footer><ebay-fake-link>Try again</ebay-fake-link></@footer>
 </ebay-section-notice>
 ```
 
 ## ebay-section-notice Sub-tags
 
-| Tag         | Required | Description                         |
-| ----------- | -------- | ----------------------------------- |
-| `<@footer>` | No       | The footer content (for cta button) |
+| Tag         | Required | Description                             |
+| ----------- | -------- | --------------------------------------- |
+| `<@footer>` | No       | The footer content (for ebay-fake-link) |
 
 ## ebay-section-notice Attributes
 
