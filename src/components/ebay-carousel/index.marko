@@ -50,7 +50,6 @@ $ var statusId = (discrete && "carousel-status-" + component.id) || (
             ]
             type="button"
             on-click(!data.prevControlDisabled && "handleMove", -1)
-            aria-describedby=statusId
             aria-label=data.a11yPreviousText
             aria-disabled=(data.prevControlDisabled && "true")>
             <ebay-carousel-prev-icon/>
@@ -92,7 +91,6 @@ $ var statusId = (discrete && "carousel-status-" + component.id) || (
             ]
             type="button"
             on-click(!data.nextControlDisabled && "handleMove", 1)
-            aria-describedby=statusId
             aria-label=data.a11yNextText
             aria-disabled=(data.nextControlDisabled && "true")
             key="next"
