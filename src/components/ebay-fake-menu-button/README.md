@@ -86,7 +86,7 @@ Adds a line separator between each menu button items
 ```marko
 <ebay-menu>
     <@item>Item1</@item>
-    <ebay-fake-menu-button-separator/>
+    <@separator/>
     <@item>Item2</@item>
 </ebay-menu>
 ```

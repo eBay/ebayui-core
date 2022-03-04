@@ -39,7 +39,7 @@ describe('menu', () => {
         const menuItemEls = getAllByRole('menuitem');
         const separators = getAllByRole('separator');
         input.items.forEach((item) => {
-            if (item._isSeparator) {
+            if (item.separator) {
                 const menuItemEl = separators.shift();
                 const textEl = queryByText(item.renderBody.text);
                 expect(textEl).to.equal(null);

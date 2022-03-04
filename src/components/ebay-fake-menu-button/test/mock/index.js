@@ -19,7 +19,7 @@ exports.Basic_3Items = Object.assign({}, exports.Basic_2Items, {
 exports.Separator_4Items = Object.assign({}, exports.Basic_2Items, {
     items: getNItems(4, (i) => ({
         href: `#${i}`,
-        _isSeparator: i === 2,
+        separator: i === 2,
         renderBody: createRenderBody(`Item text ${i}`),
     })),
 });

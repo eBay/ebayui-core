@@ -40,7 +40,7 @@ describe('fake-menu', () => {
         const { queryByText, getAllByRole } = await render(template, input);
         const separators = getAllByRole('separator');
         input.items.forEach((item) => {
-            if (item._isSeparator) {
+            if (item.separator) {
                 const menuItemEl = separators.shift();
                 const textEl = queryByText(item.renderBody.text);
                 expect(textEl).to.equal(null);
