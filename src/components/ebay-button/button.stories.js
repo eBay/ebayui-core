@@ -43,7 +43,7 @@ export default {
             type: { category: 'Options' },
         },
         priority: {
-            options: ['primary', 'secondary', 'delete', 'tertiary', 'none'],
+            options: ['primary', 'secondary', 'tertiary', 'none'],
             description: '',
 
             table: {
