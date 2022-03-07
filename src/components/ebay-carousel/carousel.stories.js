@@ -98,6 +98,17 @@ export default {
                 },
             },
         },
+        'a11y-heading-text': {
+            description:
+                'Text to announce as heading. Used when there is no external heading for carousel',
+            table: {
+                defaultValue: {
+                    summary: '',
+                },
+
+                category: 'accessibility attributes',
+            },
+        },
         'a11y-heading-tag': {
             description:
                 "h1-h6 when there isn't a visible heading before the carousel (continuous only)",
@@ -218,6 +229,7 @@ continuous.args = {
     index: 0,
     gap: 16,
     items: getItems(10),
+    'a11y-heading-text': '',
     'a11y-heading-tag': '',
     'a11y-previous-text': '',
     'a11y-next-text': '',
@@ -236,6 +248,7 @@ continuousVariedWidth.args = {
     index: 0,
     gap: 16,
     items: getItems(10, 'none', false, 'variable'),
+    'a11y-heading-text': '',
     'a11y-heading-tag': '',
     'a11y-previous-text': '',
     'a11y-next-text': '',
@@ -256,6 +269,7 @@ imageTreatment.args = {
     imageTreatment: 'matte',
     items: getItems(10, 'matte'),
     itemWidth: 'fixed',
+    'a11y-heading-text': '',
     'a11y-heading-tag': '',
     'a11y-previous-text': '',
     'a11y-next-text': '',

@@ -81,7 +81,7 @@ export default {
             table: {
                 category: 'Events',
                 defaultValue: {
-                    summary: '{ el, checked, originalEvent }',
+                    summary: '{ el, checked, itemChecked, index, originalEvent }',
                 },
             },
         },

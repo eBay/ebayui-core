@@ -11,6 +11,7 @@ $ var header = input.header || {};
     buttonPosition="right"
     on-open("emit", "open")
     on-close("emit", "close")
+    closeButtonClass = ["icon-btn--transparent"]
     class=[input.class, "toast-dialog--transition"]>
     <@header ...header class=[header.class, "toast-dialog__title"] />
     <${input.renderBody}/>

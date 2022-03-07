@@ -1,6 +1,6 @@
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 const rovingTabindex = require('makeup-roving-tabindex');
-const typeahead = require('makeup-typeahead');
+const typeahead = require('makeup-typeahead').default;
 const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 

@@ -43,7 +43,7 @@ export default {
             type: { category: 'Options' },
         },
         priority: {
-            options: ['primary', 'secondary', 'delete', 'tertiary', 'none'],
+            options: ['primary', 'secondary', 'tertiary', 'none'],
             description: '',
 
             table: {
@@ -90,6 +90,17 @@ export default {
                     summary: 'false',
                 },
             },
+        },
+        variant: {
+            options: ['standard', 'destructive'],
+            description:
+                'transforms to a specific variant that styles in conjunction with priority',
+            table: {
+                defaultValue: {
+                    summary: 'standard',
+                },
+            },
+            type: { category: 'Options' },
         },
         'partially-disabled': {
             description: 'programmatically disabled, but remains keyboard focusable',

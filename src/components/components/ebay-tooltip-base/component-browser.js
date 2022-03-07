@@ -1,5 +1,5 @@
-const Expander = require('makeup-expander');
-const focusables = require('makeup-focusables');
+const Expander = require('makeup-expander').default;
+const focusables = require('makeup-focusables').default;
 
 module.exports = {
     handleExpand() {

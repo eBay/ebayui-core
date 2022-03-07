@@ -6,6 +6,7 @@
   },
   "@html-attributes": "expression",
   "@open": "boolean",
+  "@close-focus": "string",
   "@confirm-text": "string",
   "@reject-text": "string",
   "@role": "never",

@@ -7,25 +7,30 @@ function transformMarko4(el, context) {
         enter(node) {
             if (node.tagName === '@separator') {
                 node.setTagName('@item');
-                node.setAttributeValue('_isSeparator', context.builder.literalTrue());
+                node.setAttributeValue('separator', context.builder.literalTrue());
             }
         },
     });
     walker.walk(el);
     return el;
 }
+
+const replaceSeparatorVisitor = {
+    MarkoTag(tag, { t }) {
+        if (tag.get('name').isStringLiteral({ value: '@separator' })) {
+            tag.replaceWith(
+                t.markoTag(
+                    t.stringLiteral('@item'),
+                    [t.markoAttribute('separator', t.booleanLiteral(true))],
+                    t.markoTagBody()
+                )
+            );
+        }
+    },
+};
+
 function transformMarko5(path, t) {
-    path.traverse({
-        MarkoTag(tag) {
-            if (tag.get('name').isStringLiteral({ value: '@separator' })) {
-                tag.set('name.value', '@item');
-                tag.pushContainer(
-                    'attributes',
-                    t.markoAttribute('_isSeparator', t.booleanLiteral(true))
-                );
-            }
-        },
-    });
+    path.traverse(replaceSeparatorVisitor, { t });
 }
 
 module.exports = function transform(a, b) {

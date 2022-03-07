@@ -1,4 +1,4 @@
-const Expander = require('makeup-expander');
+const Expander = require('makeup-expander').default;
 const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
 
 module.exports = {

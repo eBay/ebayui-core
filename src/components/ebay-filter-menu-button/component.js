@@ -1,4 +1,4 @@
-const Expander = require('makeup-expander');
+const Expander = require('makeup-expander').default;
 const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 
@@ -7,11 +7,11 @@ module.exports = Object.assign({}, menuUtils, {
         eventUtils.handleEscapeKeydown(originalEvent, () => (this._expander.expanded = false));
     },
 
-    handleMenuChange({ checkedIndex, el, originalEvent }) {
+    handleMenuChange({ checkedIndex, el, originalEvent, index, currentChecked }) {
         // TODO: the event data from the filter-menu should probably
         // change to include which items are checked not just the values.
         this.toggleChecked(checkedIndex);
-        this._emitComponentEvent('change', el, originalEvent);
+        this._emitComponentEvent('change', originalEvent, { el, index, currentChecked });
     },
 
     handleFooterButtonClick() {
@@ -24,11 +24,11 @@ module.exports = Object.assign({}, menuUtils, {
     },
 
     handleExpand({ originalEvent }) {
-        this._emitComponentEvent('expand', null, originalEvent);
+        this._emitComponentEvent('expand', originalEvent);
     },
 
     handleCollapse({ originalEvent }) {
-        this._emitComponentEvent('collapse', null, originalEvent);
+        this._emitComponentEvent('collapse', originalEvent);
     },
 
     onInput(input) {
@@ -54,7 +54,8 @@ module.exports = Object.assign({}, menuUtils, {
         this._cleanupMakeup();
     },
 
-    _emitComponentEvent(eventType, el, originalEvent) {
+    _emitComponentEvent(eventType, originalEvent, args) {
+        const { el, index, currentChecked } = args || {};
         switch (eventType) {
             case 'expand':
                 this.emit(eventType);
@@ -68,6 +69,8 @@ module.exports = Object.assign({}, menuUtils, {
                     el,
                     checked,
                     originalEvent,
+                    index,
+                    currentChecked,
                 });
                 break;
             }
