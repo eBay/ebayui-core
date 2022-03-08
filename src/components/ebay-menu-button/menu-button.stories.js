@@ -42,7 +42,8 @@ export default {
             description: 'whether content is expanded (Note: not supported as initial attribute)',
         },
         type: {
-            control: { type: 'text' },
+            control: { type: 'select' },
+            options: ['none', 'radio', 'checkbox'],
             description: 'Can be "radio" / "checkbox"',
         },
         reverse: {
@@ -84,6 +85,16 @@ export default {
             options: ['overflow', 'form', 'button'],
             description:
                 'will change the button style, "overflow", "form" or "button. Default is form"',
+        },
+        split: {
+            description: 'Creates a split button with flat border on start or end',
+            table: {
+                defaultValue: {
+                    summary: 'none',
+                },
+            },
+            control: { type: 'select' },
+            options: ['none', 'end', 'start'],
         },
         collapseOnSelect: {
             type: 'boolean',

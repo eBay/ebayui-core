@@ -25,6 +25,7 @@ static var ignoredAttributes = [
     "textAlign",
     "prefixLabel",
     "prefixId",
+    "split",
     "collapseOnSelect"
 ];
 
@@ -63,6 +64,7 @@ $ {
         aria-haspopup="true"
         aria-label=input.a11yText
         aria-labelledby=(labelId && `${input.prefixId} ${labelId}`)
+        split=(isButtonVariant && input.split)
         disabled=input.disabled
         no-toggle-icon=input.noToggleIcon
         on-escape("handleButtonEscape")
@@ -71,11 +73,6 @@ $ {
             <ebay-overflow-icon/>
         </if>
         <else>
-            <span class=[
-                `${prefix}__cell`,
-                input.label && "menu-button__control--custom-label",
-                input.textAlign === 'center' && "expand-btn__cell--center"
-            ]>
                 <if(input.label)>
                     <if(input.prefixLabel)>
                         <span class="menu-button-prefix-label">${input.prefixLabel}</span>
@@ -98,7 +95,6 @@ $ {
                 <if(isButtonVariant && !input.noToggleIcon)>
                     <ebay-dropdown-icon/>
                 </if>
-            </span>
         </else>
     </>
     <ebay-menu
@@ -111,7 +107,7 @@ $ {
         on-change("handleMenuChange")
         on-select("handleMenuSelect")
         key="content">
-        <for|item,index| of=input.items>
+        <for|item,index| of=(input.items || [])>
             <@item  ...item checked=component.isChecked(index) />
         </for>
     </ebay-menu>

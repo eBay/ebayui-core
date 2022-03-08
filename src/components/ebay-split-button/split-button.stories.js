@@ -1,23 +1,23 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
+import { addRenderBodies } from '../../../.storybook/utils';
 import button from './index.marko';
 import readme from './README.md';
-import migratorTemplate from './examples/migrator.marko';
-import migratorCode from './examples/migrator.marko?raw';
 
 const Template = (args) => ({
-    input: {
-        ...args,
-        spread: null,
-        ...args.spread,
-        renderBody(out) {
-            out.html(args.renderBody);
-        },
-    },
+    input: addRenderBodies(args),
+    // input: {
+    //     ...args,
+    //     spread: null,
+    //     ...args.spread,
+    //     renderBody(out) {
+    //         out.html(args.renderBody);
+    //     },
+    // },
 });
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
-    title: 'ebay-button',
+    title: 'ebay-split-button',
     component: button,
     parameters: {
         docs: {
@@ -27,7 +27,7 @@ export default {
         },
     },
     argTypes: {
-        renderBody: {},
+        renderBody: 'Button',
         href: {
             description: 'url for link behaviour (switches to anchor tag)',
         },
@@ -53,15 +53,6 @@ export default {
             },
             type: { category: 'Options' },
         },
-        fluid: {
-            description: 'button fills 100% width of container',
-            table: {
-                category: 'Toggles',
-                defaultValue: {
-                    summary: 'false',
-                },
-            },
-        },
         bodyState: {
             description:
                 'when state is loading, adds progress spinner. when user interacts with button, reset should be called to reset aria-live state. default is none',
@@ -74,17 +65,7 @@ export default {
             },
             type: { category: 'Options' },
         },
-        split: {
-            description: 'Creates a split button with flat border on start or end',
-            table: {
-                defaultValue: {
-                    summary: 'none',
-                },
-            },
-            control: { type: 'select' },
-            options: ['none', 'end', 'start'],
-        },
-        a11yText: {
+        a11yButtonText: {
             description: 'aria label for button when bodyState === loading',
             table: {
                 defaultValue: '',
@@ -92,56 +73,33 @@ export default {
             control: { type: 'text' },
             type: { category: 'Options' },
         },
+
+        a11yMenuText: {
+            description: 'aria label for menu button part',
+            table: {
+                defaultValue: '',
+            },
+            control: { type: 'text' },
+            type: { category: 'Options' },
+        },
+        type: {
+            control: { type: 'select' },
+            options: ['none', 'radio', 'checkbox'],
+            description: 'Can be "radio" / "checkbox"',
+        },
         disabled: {
             description: '',
+            control: { type: 'boolean' },
             table: {
                 category: 'Toggles',
                 defaultValue: {
                     summary: 'false',
                 },
             },
-        },
-        variant: {
-            options: ['standard', 'destructive'],
-            description:
-                'transforms to a specific variant that styles in conjunction with priority',
-            table: {
-                defaultValue: {
-                    summary: 'standard',
-                },
-            },
-            type: { category: 'Options' },
         },
         'partially-disabled': {
             description: 'programmatically disabled, but remains keyboard focusable',
-            table: {
-                defaultValue: {
-                    summary: 'false',
-                },
-                category: 'Toggles',
-            },
-        },
-        transparent: {
-            description: 'transparent background color (overrides `priority` setting)',
-            table: {
-                defaultValue: {
-                    summary: 'false',
-                },
-                category: 'Toggles',
-            },
-        },
-        'fixed-height': {
-            description: 'fixes the height based on `size`',
-            table: {
-                defaultValue: {
-                    summary: 'false',
-                },
-                category: 'Toggles',
-            },
-        },
-        truncate: {
-            description:
-                'used in conjunction with `fixed-height`; truncates text to single line with ellipsis when text overflows',
+            control: { type: 'boolean' },
             table: {
                 defaultValue: {
                     summary: 'false',
@@ -189,6 +147,49 @@ export default {
                 },
             },
         },
+        onCollapse: {
+            action: 'on-collapse',
+            description: 'Triggered on menu collapse',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onExpand: {
+            action: 'on-expand',
+            description: 'Triggered on menu expand',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        onChange: {
+            action: 'on-change',
+            description: 'Triggered on item checked change, (checkbox/radio type only)',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary:
+                        'radio: { el, index, checked } | checkbox: { el, [indexes], [checked] }',
+                },
+            },
+        },
+
+        onSelect: {
+            action: 'on-select',
+            description: 'Triggered on item clicked (non radio/checkbox)',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ el, index, checked }',
+                },
+            },
+        },
+
         spread: {
             control: {
                 type: 'object',
@@ -204,35 +205,23 @@ export default {
 export const Standard = Template.bind({});
 Standard.args = {
     renderBody: 'Button',
-    href: '',
-    fluid: false,
-    size: null,
-    disabled: false,
-    priority: null,
-    'partially-disabled': false,
-    transparent: false,
-    'fixed-height': false,
-    truncate: false,
+    items: [
+        {
+            renderBody: `item 1 that has very long text`,
+        },
+        {
+            renderBody: `item 2`,
+        },
+        {
+            renderBody: `item 3`,
+        },
+    ],
 };
 
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-button', Standard.args),
-        },
-    },
-};
-
-export const migrators = (args) => ({
-    input: args,
-    component: migratorTemplate,
-});
-
-migrators.args = {};
-migrators.parameters = {
-    docs: {
-        source: {
-            code: migratorCode,
+            code: tagToString('ebay-split-button', Standard.args, { items: 'item' }),
         },
     },
 };

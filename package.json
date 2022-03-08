@@ -127,6 +127,7 @@
     "lintspaces-cli": "^0.7.1",
     "marko": "^5",
     "mocha": "^9.1.2",
+    "mocha-snap": "^4.3.0",
     "nyc": "^15.1.0",
     "open-cli": "^7.0.1",
     "postcss-less": "^6.0.0",
