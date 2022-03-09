@@ -1,6 +1,5 @@
 class {
     move({ visibleIndexes }) {
-        console.log(arguments);
         if (visibleIndexes[visibleIndexes.length - 1] > this.state.count - 10) {
             this.state.count += 10;
         }

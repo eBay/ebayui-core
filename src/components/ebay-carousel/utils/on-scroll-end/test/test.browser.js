@@ -1,7 +1,7 @@
-const sinon = require('sinon');
-const { expect } = require('chai');
-const { simulateScroll, waitFrames } = require('../../../../../common/test-utils/browser');
-const onScrollEnd = require('../');
+import sinon from 'sinon';
+import { expect } from 'chai';
+import { simulateScroll, waitFrames } from '../../../../../common/test-utils/browser';
+import { onScrollEnd } from '..';
 
 describe('scroll-end', () => {
     let scrollEl;

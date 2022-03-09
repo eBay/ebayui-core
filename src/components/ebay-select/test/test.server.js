@@ -1,17 +1,17 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 const {
     testPassThroughAttributes,
     testEventsMigrator,
 } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
 
 use(require('chai-dom'));
 
 describe('select', () => {
     it('renders basic version', async () => {
-        const input = mock.Basic_3Options;
+        const input = mock.basic3Options;
         const { getByRole, getAllByRole } = await render(template, input);
         const rootElement = getByRole('combobox').parentElement;
         const optionEls = getAllByRole('option');
@@ -29,14 +29,14 @@ describe('select', () => {
     });
 
     it('renders empty', async () => {
-        const input = mock.Basic_0Options;
+        const input = mock.basic0Options;
         const { queryAllByRole } = await render(template, input);
         expect(queryAllByRole('combobox')).has.length(1);
         expect(queryAllByRole('option')).has.length(0);
     });
 
     it('renders with second item selected', async () => {
-        const input = mock.Basic_3Options_1Selected;
+        const input = mock.basic3Options1Selected;
         const { getAllByRole } = await render(template, input);
         getAllByRole('option').forEach((optionEl, i) => {
             expect(optionEl).has.property('selected', i === 1);
@@ -52,20 +52,20 @@ describe('select', () => {
     });
 
     it('renders an input select with inline floating label', async () => {
-        const input = mock.Floating_Label;
+        const input = mock.floatingLabel;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
         expect(getByRole('combobox')).to.equal(getByLabelText(input.floatingLabel));
         expect(getByText(input.floatingLabel)).has.class('floating-label__label');
     });
 
     it('renders an input select with inline floating label and an id', async () => {
-        const input = mock.Floating_Label_With_ID;
+        const input = mock.floatingLabelWithId;
         const { getByLabelText } = await render(template, input);
         expect(getByLabelText(input.floatingLabel)).has.id(input.id);
     });
 
     it('renders a disabled input select with disabled floating label', async () => {
-        const input = mock.Floating_Label_Disabled;
+        const input = mock.floatingLabelDisabled;
         const { getByText } = await render(template, input);
         expect(getByText(input.floatingLabel)).has.class('floating-label__label--disabled');
     });

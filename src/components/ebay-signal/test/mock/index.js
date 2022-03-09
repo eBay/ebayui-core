@@ -1,25 +1,25 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Basic = {
+export const Basic = {
     renderBody: createRenderBody('neutral'),
 };
 
-exports.Basic_Neutral = {
+export const basicNeutral = {
     status: 'neutral',
     renderBody: createRenderBody('neutral'),
 };
 
-exports.Basic_Trustworthy = {
+export const basicTrustworthy = {
     status: 'trustworthy',
     renderBody: createRenderBody('trustworthy'),
 };
 
-exports.Basic_Recent = {
+export const basicRecent = {
     status: 'recent',
     renderBody: createRenderBody('recent'),
 };
 
-exports.Basic_Time_Sensitive = {
+export const basicTimeSensitive = {
     status: 'time-sensitive',
     renderBody: createRenderBody('time sensitive'),
 };

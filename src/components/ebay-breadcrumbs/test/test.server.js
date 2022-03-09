@@ -1,11 +1,8 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
-const mock = require('../mock');
-const template = require('..');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import { testPassThroughAttributes, testEventsMigrator } from '../../../common/test-utils/server';
+import * as mock from '../mock';
+import template from '..';
 
 use(require('chai-dom'));
 
@@ -22,7 +19,7 @@ describe('breadcrumbs', () => {
     });
 
     it('renders aria-current as location for last item without href', async () => {
-        const input = mock.Links_Last_Without_HREF;
+        const input = mock.linkLastWithoutHREF;
         const { getByText } = await render(template, input);
 
         input.items.forEach((item, i) => {
@@ -40,7 +37,7 @@ describe('breadcrumbs', () => {
     });
 
     it('renders different heading tag when specified', async () => {
-        const input = mock.Links_Heading_Tag;
+        const input = mock.linkHeadingTag;
         const { getByText } = await render(template, input);
         expect(getByText(input.a11yHeadingText)).has.property(
             'tagName',

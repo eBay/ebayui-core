@@ -1,26 +1,26 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Basic = {
+export const Basic = {
     renderBody: createRenderBody('text'),
 };
 
-exports.Selected = Object.assign({}, exports.Basic, {
+export const Selected = Object.assign({}, Basic, {
     selected: true,
 });
 
-exports.Disabled = Object.assign({}, exports.Basic, {
+export const Disabled = Object.assign({}, Basic, {
     disabled: true,
 });
 
-exports.Fake = Object.assign({}, exports.Basic, {
+export const Fake = Object.assign({}, Basic, {
     href: '#fake',
 });
 
-exports.Fake_Selected = Object.assign({}, exports.Fake, {
+export const fakeSelected = Object.assign({}, Fake, {
     selected: true,
     a11ySelectedText: 'Selected Filter',
 });
 
-exports.Fake_Disabled = Object.assign({}, exports.Fake, {
+export const fakeDisabled = Object.assign({}, Fake, {
     disabled: true,
 });

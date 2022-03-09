@@ -1,4 +1,4 @@
-const { use } = require('chai');
+import { use } from 'chai';
 const { testEventsMigrator } = require('../../../common/test-utils/server');
 
 use(require('chai-dom'));

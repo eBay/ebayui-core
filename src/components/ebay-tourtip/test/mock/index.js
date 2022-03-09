@@ -1,6 +1,6 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Basic = {
+export const Basic = {
     a11yCloseText: 'Close Tourtip',
     host: {
         renderBody: createRenderBody('<span class="tooltip__host">Host Text</span>', 'Host Text'),

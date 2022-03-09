@@ -1,10 +1,10 @@
-const keyboardTrap = require('makeup-keyboard-trap');
-const screenReaderTrap = require('makeup-screenreader-trap');
-const bodyScroll = require('../../../common/body-scroll');
-const eventUtils = require('../../../common/event-utils');
-const transition = require('../../../common/transition');
+import * as keyboardTrap from 'makeup-keyboard-trap';
+import * as screenReaderTrap from 'makeup-screenreader-trap';
+import * as bodyScroll from '../../../common/body-scroll';
+import * as eventUtils from '../../../common/event-utils';
+import transition from '../../../common/transition';
 
-module.exports = {
+export default {
     get useHiddenProperty() {
         return this.input.useHiddenProperty || false;
     },

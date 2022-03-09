@@ -1,16 +1,17 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
 describe('given the select with 3 options', () => {
-    const input = mock.Basic_3Options;
+    const input = mock.basic3Options;
     beforeEach(async () => {
         component = await render(template, input);
     });
@@ -40,7 +41,7 @@ describe('given the select with 3 options', () => {
 });
 
 describe('given an input select with floating label and no value', () => {
-    const input = mock.Floating_Label_No_Value;
+    const input = mock.floatingLabelNoValue;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -90,7 +91,7 @@ describe('given an input select with floating label and no value', () => {
 });
 
 describe('given an input select with floating label and no value with all options filled', () => {
-    const input = mock.Floating_Label_Always;
+    const input = mock.floatingLabel_Always;
 
     beforeEach(async () => {
         component = await render(template, input);

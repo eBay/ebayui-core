@@ -1,11 +1,11 @@
-const Expander = require('makeup-expander').default;
-const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
-const elementScroll = require('../../common/element-scroll');
-const eventUtils = require('../../common/event-utils');
+import Expander from 'makeup-expander';
+import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
+import { scroll } from '../../common/element-scroll';
+import * as eventUtils from '../../common/event-utils';
 
-module.exports = {
+export default {
     handleExpand() {
-        elementScroll.scroll(this.getEls('options')[this.state.selectedIndex]);
+        scroll(this.getEls('options')[this.state.selectedIndex]);
         this.emit('expand');
     },
     handleCollapse() {
@@ -77,7 +77,7 @@ module.exports = {
         if (index !== this.state.selectedIndex) {
             const el = this.getEls('options')[index];
             this.state.selectedIndex = index;
-            elementScroll.scroll(el);
+            scroll(el);
             this.emit('change', {
                 index,
                 selected: [this.input.options[index].value],

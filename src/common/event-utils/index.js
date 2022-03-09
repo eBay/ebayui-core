@@ -93,7 +93,12 @@ function handleResize(ev) {
     }, 16);
 }
 
-module.exports = {
+const resizeUtil = {
+    addEventListener,
+    removeEventListener,
+};
+
+export {
     handleEnterKeydown,
     handleActionKeydown,
     handleEscapeKeydown,
@@ -102,8 +107,5 @@ module.exports = {
     handleArrowsKeydown,
     handleTextInput,
     preventDefaultIfHijax,
-    resizeUtil: {
-        addEventListener,
-        removeEventListener,
-    },
+    resizeUtil,
 };

@@ -1,8 +1,8 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 const { testEventsMigrator } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
 
 use(require('chai-dom'));
 
@@ -21,7 +21,7 @@ describe('tourtip', () => {
         require('../migrator'),
         { event: 'tooltip', component: 'tourtip' },
         ['collapse'],
-        '../index.marko'
+        'src/components/ebay-tourtip/index.marko'
     );
 
     // TODO: looks like class and style are not passed through to the tourtip.

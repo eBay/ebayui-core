@@ -1,11 +1,11 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 const {
     testPassThroughAttributes,
     testEventsMigrator,
 } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
 
 use(require('chai-dom'));
 
@@ -42,13 +42,13 @@ describe('filter', () => {
     });
 
     it('renders fake version with disabled attribute', async () => {
-        const input = mock.Fake_Disabled;
+        const input = mock.fakeDisabled;
         const { getByText } = await render(template, input);
         expect(getByText(input.renderBody.text).closest('a')).has.attr('disabled');
     });
 
     it('renders fake version with pressed attribute', async () => {
-        const input = mock.Fake_Selected;
+        const input = mock.fakeSelected;
         const { getByText } = await render(template, input);
         expect(getByText(input.renderBody.text).closest('a')).contains(
             getByText(input.a11ySelectedText, { exact: false })

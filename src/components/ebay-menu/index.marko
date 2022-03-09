@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 
 static {
     var ignoredAttributes = [
@@ -40,7 +40,7 @@ $ var baseClass = input.classPrefix || "menu";
         class=`${baseClass}__items`
         key="menu"
         id:scoped="menu">
-        <for|item, index| of=input.items>
+        <for|item, index| of=(input.items || [])>
             $ {
                 var itemRole = isRadio
                                 ? "menuitemradio"

@@ -1,13 +1,13 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
 describe('section-notice', () => {
     it('renders with status', async () => {
-        const input = mock.Section_Info;
+        const input = mock.SectionInfo;
         const { getByLabelText, getByText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
         expect(status).has.class('section-notice__header');
@@ -25,7 +25,7 @@ describe('section-notice', () => {
     });
 
     it('renders with light', async () => {
-        const input = mock.Section_Light;
+        const input = mock.SectionLight;
         const { getByText } = await render(template, input);
         const container = getByText(input.renderBody.text).parentElement;
         expect(container).has.class('section-notice');

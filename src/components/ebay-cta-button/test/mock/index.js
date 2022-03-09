@@ -1,13 +1,13 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Basic = {
+export const Basic = {
     renderBody: createRenderBody('CTA Text'),
 };
 
-exports.Small = Object.assign({}, exports.Basic, {
+export const Small = Object.assign({}, Basic, {
     size: 'small',
 });
 
-exports.Large = Object.assign({}, exports.Basic, {
+export const Large = Object.assign({}, Basic, {
     size: 'large',
 });

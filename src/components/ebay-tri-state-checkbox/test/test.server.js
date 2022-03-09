@@ -1,7 +1,7 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
-const template = require('..');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
+import template from '..';
 
 use(require('chai-dom'));
 

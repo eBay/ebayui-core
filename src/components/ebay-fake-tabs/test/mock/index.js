@@ -1,6 +1,6 @@
-const { getNItems, createRenderBody } = require('../../../../common/test-utils/shared');
+import { getNItems, createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Fake_3Headings_No_Index = {
+export const fake3HeadingsNoIndex = {
     tabs: getNItems(3, (i) => ({
         href: `#tab-${i}`,
         renderBody: createRenderBody(`Heading ${i}`),
@@ -8,6 +8,6 @@ exports.Fake_3Headings_No_Index = {
     renderBody: createRenderBody('Panel 0'),
 };
 
-exports.Fake_3Headings_1Index = Object.assign({}, exports.Fake_3Headings_No_Index, {
+export const fake3Headings1Index = Object.assign({}, fake3HeadingsNoIndex, {
     selectedIndex: 1,
 });

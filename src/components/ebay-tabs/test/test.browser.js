@@ -1,10 +1,11 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { pressKey } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import { pressKey } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -25,7 +26,7 @@ function thenItHasMovedToTab(selectedIndex) {
 }
 
 describe('given tabs with first heading selected', () => {
-    const input = mock.Basic_3Headings_3Panels_No_Index;
+    const input = mock.basic3Headings_3Panels_No_Index;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -73,7 +74,7 @@ describe('given tabs with first heading selected', () => {
 });
 
 describe('given tabs with manual activation', () => {
-    const input = mock.Basic_3Headings_3Panels_ActivationManual;
+    const input = mock.basic3Headings_3Panels_ActivationManual;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -105,7 +106,7 @@ describe('given tabs with manual activation', () => {
 });
 
 describe('given tabs with third heading selected', () => {
-    const input = mock.Basic_3Headings_3Panels_2Index;
+    const input = mock.basic3Headings_3Panels_2Index;
 
     beforeEach(async () => {
         component = await render(template, input);

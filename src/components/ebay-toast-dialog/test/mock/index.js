@@ -1,6 +1,6 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Toast = {
+export const Toast = {
     a11yCloseText: 'close',
     header: {
         renderBody: createRenderBody('head content'),
@@ -11,6 +11,6 @@ exports.Toast = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Toast_Open = Object.assign({}, exports.Toast, {
+export const toastOpen = Object.assign({}, Toast, {
     open: true,
 });

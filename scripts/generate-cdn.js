@@ -1,10 +1,14 @@
 /* eslint-disable compat/compat */
 
-const execSync = require('child_process').execSync;
-const https = require('https'); // or 'https' for https:// URLs
-const fs = require('fs');
-const path = require('path');
-const rimraf = require('rimraf');
+import { execSync } from 'child_process';
+import * as https from 'https'; // or 'https' for https:// URLs
+import { fileURLToPath } from 'url';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as rimraf from 'rimraf';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
 
 function updateJsonFile(version) {
