@@ -30,6 +30,7 @@ export default {
         renderBody: 'Button',
         href: {
             description: 'url for link behaviour (switches to anchor tag)',
+            control: { type: 'text' },
         },
         size: {
             options: ['large', 'regular'],
@@ -65,7 +66,7 @@ export default {
             },
             type: { category: 'Options' },
         },
-        a11yButtonText: {
+        a11yButtonLoadingText: {
             description: 'aria label for button when bodyState === loading',
             table: {
                 defaultValue: '',
