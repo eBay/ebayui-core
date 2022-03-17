@@ -1,8 +1,0 @@
-{
-    "retainLines": true,
-    "presets": [
-        ["@babel/preset-env", {
-            "loose": true
-        }]
-    ]
-}
