@@ -1,0 +1,25 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@class": "string",
+  "@asset-id": "string",
+  "@cdn-version": "string",
+  "@default-distance": "number",
+  "@max-distance": "number",
+  "@min-distance": "number",
+  "@fov": "number",
+  "@min-polar-angle": "number",
+  "@max-polar-angle": "number",
+  "@damping-factor": "number",
+  "@no-allow-view-bottom": "boolean",
+  "@no-auto-rotate": "boolean",
+  "@no-mouse-move-follow": "boolean",
+  "@no-animated-placement": "boolean",
+  "@a11y-start-text": "string",
+  "@a11y-load-text": "string",
+  "@a11y-error-text": "string"
+}

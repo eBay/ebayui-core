@@ -1,4 +1,4 @@
-const loader = require('./loader');
+const loader = require('../../common/loader');
 const { getElements, playIcon } = require('./elements');
 const versions = require('./versions.json');
 const MAX_RETRIES = 3;
@@ -256,7 +256,7 @@ module.exports = {
         const cdnUrl = this.input.cdnUrl || `${cdnBaseUrl}/shaka-player.ui.js`;
         const cssUrl = this.input.cssUrl || `${cdnBaseUrl}/controls.css`;
 
-        loader(cdnUrl, cssUrl)
+        loader([cdnUrl, cssUrl], ['src', 'css'])
             .then(() => {
                 // eslint-disable-next-line no-undef,new-cap
                 shaka.polyfill.installAll();
