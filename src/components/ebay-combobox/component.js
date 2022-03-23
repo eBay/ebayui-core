@@ -6,6 +6,10 @@ const eventUtils = require('../../common/event-utils');
 const safeRegex = require('../../common/build-safe-regex');
 
 module.exports = {
+    get expanded() {
+        return this.input.expanded === true;
+    },
+
     focus() {
         this.getEl('combobox').focus();
     },
@@ -85,12 +89,12 @@ module.exports = {
                     this._setSelectedText(this._getVisibleOptions()[selectedIndex].text);
                 }
 
-                this.expander.expanded = false;
+                this.expander.expanded = this.expanded;
             }
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.expander.expanded = false;
+            this.expander.expanded = this.expanded;
         });
     },
 
@@ -119,7 +123,7 @@ module.exports = {
         }
 
         if (this.expander && this.expander.expanded && !wasClickedOption && !this.buttonClicked) {
-            this.expander.expanded = false;
+            this.expander.expanded = this.expanded;
         }
 
         this.buttonClicked = false;
@@ -154,6 +158,9 @@ module.exports = {
             currentValue: this.lastValue,
             viewAllOptions: (this.state && this.state.viewAllOptions) || true,
         };
+        if (this.expander) {
+            this.expander.expanded = input.expanded === true;
+        }
     },
 
     onMount() {
@@ -191,14 +198,15 @@ module.exports = {
             );
 
             this.expander = new Expander(this.el, {
-                autoCollapse: true,
+                autoCollapse: !this.expanded,
                 expandOnFocus: true,
-                collapseOnFocusOut: !this.input.readonly && !this.input.button,
+                collapseOnFocusOut: !this.expanded && !this.input.button,
                 contentSelector: '[role="listbox"]',
                 hostSelector: '[role="combobox"]',
                 expandedClass: 'combobox--expanded',
                 simulateSpacebarClick: true,
             });
+            this.expander.expanded = this.expanded;
         }
         // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
         // It probably makes more sense to just move this functionality into Marko though.

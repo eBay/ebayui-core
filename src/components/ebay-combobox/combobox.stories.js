@@ -34,12 +34,8 @@ export default {
             description: 'sets the disabled attribute of the input',
         },
         expanded: {
-            type: 'boolean',
             control: { type: 'boolean' },
             description: 'sets whether the listbox is expanded',
-            table: {
-                disable: true,
-            },
         },
         autocomplete: {
             control: { type: 'text' },
@@ -89,6 +85,7 @@ export const FloatingLabel = Template.bind({});
 FloatingLabel.args = {
     name: 'example1text',
     autocomplete: 'list',
+    expanded: false,
     options: [
         { text: 'August Campaign' },
         { text: '4th of July Sale (paused)' },
@@ -116,6 +113,7 @@ export const Isolated = Template.bind({});
 Isolated.args = {
     name: 'example1text',
     autocomplete: 'list',
+    expanded: false,
     options: [
         { text: 'August Campaign' },
         { text: '4th of July Sale (paused)' },
