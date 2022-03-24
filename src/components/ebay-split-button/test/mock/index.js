@@ -12,7 +12,7 @@ exports.Basic_3Items = {
 exports.Loading_3Items = {
     renderBody: createRenderBody('button'),
     a11yMenuText: 'menu',
-    a11yLoadingButtonText: 'button loading',
+    a11yButtonLoadingText: 'button loading',
     bodyState: 'loading',
     items: getNItems(3, (i) => ({
         value: `item ${i}`,
