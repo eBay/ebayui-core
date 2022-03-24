@@ -86,16 +86,6 @@ export default {
             description:
                 'will change the button style, "overflow", "form" or "button. Default is form"',
         },
-        split: {
-            description: 'Creates a split button with flat border on start or end',
-            table: {
-                defaultValue: {
-                    summary: 'none',
-                },
-            },
-            control: { type: 'select' },
-            options: ['none', 'end', 'start'],
-        },
         collapseOnSelect: {
             type: 'boolean',
             control: { type: 'boolean' },

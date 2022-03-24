@@ -74,16 +74,6 @@ export default {
             },
             type: { category: 'Options' },
         },
-        split: {
-            description: 'Creates a split button with flat border on start or end',
-            table: {
-                defaultValue: {
-                    summary: 'none',
-                },
-            },
-            control: { type: 'select' },
-            options: ['none', 'end', 'start'],
-        },
         a11yText: {
             description: 'aria label for button when bodyState === loading',
             table: {
