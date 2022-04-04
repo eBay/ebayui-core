@@ -68,7 +68,7 @@ $ {
     ]
     data-ebayui=true
     type=(tag === "button" && (input.type || "button"))
-    aria-disabled=((input.partiallyDisabled || input.loading) && "true")
+    aria-disabled=((input.partiallyDisabled) && "true")
     aria-label=(input.bodyState === "loading" ? (input.a11yText || "Loading...") : input.ariaLabel)
     >
     <if(input.bodyState === "loading")>
