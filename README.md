@@ -42,6 +42,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 
 ## Components
 
+-   [`ebay-3d-viewer`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-3d-viewer)
 -   [`ebay-badge`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-badge)
 -   [`ebay-breadcrumbs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumbs)
 -   [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
@@ -78,6 +79,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
 -   [`ebay-signal`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-signal)
 -   [`ebay-snackbar-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-snackbar-dialog)
+-   [`ebay-split-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-split-button)
 -   [`ebay-switch`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-switch)
 -   [`ebay-tabs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tabs)
 -   [`ebay-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-textbox)
@@ -97,6 +99,7 @@ npm add @ebay/ebayui-core
 ```
 
 ## Upgrading to the latest versions
+
 See the [upgrade guide](https://github.com/eBay/ebayui-core/tree/master/UPGRADE.md) for more information
 
 ### Custom Tags
