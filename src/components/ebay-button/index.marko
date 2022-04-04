@@ -28,7 +28,6 @@ static var validPriorities = [
     'delete'
 ];
 
-static var hasLoaded;
 $ {
     input.toJSON = toJSON;
     var size = input.size === "large" ? "large" : null;
@@ -47,9 +46,6 @@ $ {
     var tag = input.href ? "a" : "button";
     var split = input.split || 'none';
     var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
-    if(input.bodyState === "loading") hasLoaded = true;
-    else if (input.bodyState === "reset") hasLoaded = false;
-
 }
 <${tag}
     ...htmlAttributes
@@ -72,9 +68,8 @@ $ {
     ]
     data-ebayui=true
     type=(tag === "button" && (input.type || "button"))
-    aria-disabled=((input.partiallyDisabled || input.loading) && "true")
+    aria-disabled=((input.partiallyDisabled) && "true")
     aria-label=(input.bodyState === "loading" ? (input.a11yText || "Loading...") : input.ariaLabel)
-    aria-live=((input.bodyState === "loading" || hasLoaded) && "polite")
     >
     <if(input.bodyState === "loading")>
         <span class="btn__cell">
