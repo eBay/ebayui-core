@@ -1,7 +1,7 @@
-const loader = require('../../common/loader');
+import { loader } from '../../common/loader';
 const MAX_RETRIES = 3;
 
-module.exports = {
+export default {
     get cdnBaseUrl() {
         const version = this.input.cdnVersion || '1.1.4';
         return `https://ir.ebaystatic.com/cr/v/c1/ebay-dist-${version}/`;

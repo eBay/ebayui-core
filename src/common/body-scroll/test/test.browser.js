@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const bodyScroll = require('../');
+import { expect } from 'chai';
+import * as bodyScroll from '../';
 const { body } = document;
 
 describe('body-scroll', () => {

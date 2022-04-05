@@ -1,8 +1,11 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { runTransformer } = require('../../../common/test-utils/server');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import snap from 'mocha-snap';
+import { runMigrateTransformer } from '../../../common/test-utils/server';
+import template from '..';
 const migrator = require('../migrator');
-const template = require('..');
+
+const snapDOM = (node) => snap(node, '.html', __dirname);
 
 const iconName = 'mic';
 const progrmaBadgeIcon = 'program-badge-authenticity-guaranteed';
@@ -111,16 +114,26 @@ describe('migrator', () => {
         return `<ebay-icon type="inline" name="${iconName}" />`;
     }
 
-    it('removes type attribute', () => {
+    it('removes type attribute', async () => {
         const tagString = getTagString();
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         const attr = el.hasAttribute('type');
         expect(attr).to.equal(false);
     });
 
-    it('changes name attribute', () => {
+    it('changes name attribute', async () => {
         const tagString = getTagString();
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         expect(el.tagName).to.equal('ebay-mic-icon');
         const attr = el.hasAttribute('name');
         expect(attr).to.equal(false);

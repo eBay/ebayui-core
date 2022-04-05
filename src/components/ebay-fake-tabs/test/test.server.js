@@ -1,14 +1,14 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
+import template from '..';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
 describe('fake tabs', () => {
     it('renders fake version with 3 tabs', async () => {
-        const input = mock.Fake_3Headings_No_Index;
+        const input = mock.fake3HeadingsNoIndex;
         const { getByText } = await render(template, input);
 
         input.tabs.forEach((heading, i) => {
@@ -28,7 +28,7 @@ describe('fake tabs', () => {
     });
 
     it('renders fake version with 3 tabs on the second panel', async () => {
-        const input = mock.Fake_3Headings_1Index;
+        const input = mock.fake3Headings1Index;
         const { getByText } = await render(template, input);
         input.tabs.forEach((heading, i) => {
             const headingEl = getByText(heading.renderBody.text);

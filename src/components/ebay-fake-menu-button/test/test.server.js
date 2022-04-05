@@ -1,14 +1,14 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const testUtils = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as testUtils from '../../../common/test-utils/server';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
 describe('fake-menu-button', () => {
     it('renders fake version', async () => {
-        const input = mock.Basic_2Items;
+        const input = mock.basic2Items;
         const { getByText } = await render(template, input);
 
         input.items.forEach((item) => {
@@ -20,7 +20,7 @@ describe('fake-menu-button', () => {
     });
 
     it('renders with type=fake, reverse=true', async () => {
-        const input = Object.assign({ type: 'fake', reverse: true }, mock.Basic_2Items);
+        const input = Object.assign({ type: 'fake', reverse: true }, mock.basic2Items);
         const { getByText } = await render(template, input);
         expect(
             getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--reverse')
@@ -28,7 +28,7 @@ describe('fake-menu-button', () => {
     });
 
     it('renders with type=fake, fix-width=true', async () => {
-        const input = Object.assign({ type: 'fake', fixWidth: true }, mock.Basic_2Items);
+        const input = Object.assign({ type: 'fake', fixWidth: true }, mock.basic2Items);
         const { getByText } = await render(template, input);
         expect(
             getByText(input.items[0].renderBody.text).closest('.fake-menu-button__menu--fix-width')
@@ -36,19 +36,19 @@ describe('fake-menu-button', () => {
     });
 
     it('renders with borderless=true', async () => {
-        const input = Object.assign({ borderless: true }, mock.Basic_2Items);
+        const input = Object.assign({ borderless: true }, mock.basic2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--borderless');
     });
 
     it('renders with size=small', async () => {
-        const input = Object.assign({ size: 'small' }, mock.Basic_2Items);
+        const input = Object.assign({ size: 'small' }, mock.basic2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--small');
     });
 
     it('renders without text', async () => {
-        const input = Object.assign({}, mock.Basic_2Items, { text: '' });
+        const input = Object.assign({}, mock.basic2Items, { text: '' });
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--icon-only');
     });
@@ -93,7 +93,7 @@ describe('fake-menu-button', () => {
     });
 
     it('renders with separators', async () => {
-        const input = mock.Separator_4Items;
+        const input = mock.separator4Items;
         const { queryByText, getAllByRole } = await render(template, input);
         const separators = getAllByRole('separator');
         input.items.forEach((item) => {

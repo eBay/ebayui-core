@@ -1,10 +1,12 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import template from '..';
+import componentB from '../component-browser';
+import * as mock from './mock';
 
-require('../component-browser').renderer = template._; // Allow re-rendering the split component for testing.
-use(require('chai-dom'));
+componentB.renderer = template._; // Allow re-rendering the split component for testing.
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */

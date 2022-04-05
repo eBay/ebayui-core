@@ -1,14 +1,14 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 const { testPassThroughAttributes } = require('../../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
 
 use(require('chai-dom'));
 
 describe('notice-icon', () => {
     it('renders basic version', async () => {
-        const input = mock.Default_Notice;
+        const input = mock.defaultNotice;
         const { getByLabelText, getByText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
         expect(status).has.class(`${input.prefixClass}__header`);
@@ -23,7 +23,7 @@ describe('notice-icon', () => {
     });
 
     it('renders inline version', async () => {
-        const input = mock.Inline_Notice;
+        const input = mock.inlineNotice;
         const { getByLabelText } = await render(template, input);
 
         const status = getByLabelText(input.a11yText).parentElement;
@@ -36,7 +36,7 @@ describe('notice-icon', () => {
     });
 
     it('renders title and footer version', async () => {
-        const input = mock.Title_Footer_Notice;
+        const input = mock.titleFooterNotice;
         const { getByLabelText, getByText } = await render(template, input);
 
         const status = getByLabelText(input.a11yText).parentElement;
@@ -54,6 +54,6 @@ describe('notice-icon', () => {
     });
 
     testPassThroughAttributes(template, {
-        input: mock.Default_Notice,
+        input: mock.defaultNotice,
     });
 });

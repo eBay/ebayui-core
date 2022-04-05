@@ -1,10 +1,11 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, waitFor, cleanup } = require('@marko/testing-library');
-const { fastAnimations } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, waitFor, cleanup } from '@marko/testing-library';
+import { fastAnimations } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 before(fastAnimations.start);
 after(fastAnimations.stop);
 afterEach(cleanup);
@@ -35,7 +36,7 @@ describe('given a closed dialog', () => {
 });
 
 describe('given an open dialog', () => {
-    const input = mock.Dialog_Open;
+    const input = mock.dialogOpen;
     let sibling;
 
     beforeEach(async () => {

@@ -1,28 +1,29 @@
-const { getNItems } = require('../../../../common/test-utils/shared');
+/* eslint camelcase: "off" */
+import { getNItems } from '../../../../common/test-utils/shared';
 
-exports.Basic_0Options = {
+export const basic0Options = {
     options: [],
 };
 
-exports.Basic_3Options = {
+export const basic3Options = {
     options: getNItems(3, (i) => ({
         value: String(i),
         text: `option ${i}`,
     })),
 };
 
-exports.Basic_3OptionsWithBlank = {
+export const basic3OptionsWithBlank = {
     options: getNItems(4, (i) => ({
         value: i === 0 ? '' : String(i),
         text: `option ${i}`,
     })),
 };
 
-exports.Borderless_3Options = Object.assign({}, exports.Basic_3Options, {
+export const Borderless_3Options = Object.assign({}, basic3Options, {
     borderless: true,
 });
 
-exports.Basic_3Options_1Selected = {
+export const basic3Options1Selected = {
     options: getNItems(3, (i) => ({
         value: String(i),
         text: `option ${i}`,
@@ -30,22 +31,22 @@ exports.Basic_3Options_1Selected = {
     })),
 };
 
-exports.Floating_Label_Always = Object.assign({}, exports.Basic_3Options, {
+export const floatingLabel_Always = Object.assign({}, basic3Options, {
     floatingLabel: 'Email address',
 });
 
-exports.Floating_Label = Object.assign({}, exports.Basic_3OptionsWithBlank, {
+export const floatingLabel = Object.assign({}, basic3OptionsWithBlank, {
     floatingLabel: 'Email address',
 });
 
-exports.Floating_Label_No_Value = Object.assign({}, exports.Floating_Label, {
+export const floatingLabelNoValue = Object.assign({}, floatingLabel, {
     value: undefined,
 });
 
-exports.Floating_Label_With_ID = Object.assign({}, exports.Floating_Label, {
+export const floatingLabelWithId = Object.assign({}, floatingLabel, {
     id: 'select-id',
 });
 
-exports.Floating_Label_Disabled = Object.assign({}, exports.Floating_Label, {
+export const floatingLabelDisabled = Object.assign({}, floatingLabel, {
     disabled: true,
 });

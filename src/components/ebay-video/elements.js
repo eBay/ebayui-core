@@ -47,4 +47,4 @@ function getElements(self) {
     return { Report, TextSelection };
 }
 
-module.exports = { getElements, playIcon };
+export { getElements, playIcon };

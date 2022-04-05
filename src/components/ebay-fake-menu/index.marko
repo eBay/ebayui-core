@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 
 static {
     var ignoredAttributes = [
@@ -40,7 +40,7 @@ $ var baseClass = input.classPrefix || "fake-menu";
         key="menu"
         tabindex="-1"
         id:scoped="menu">
-        <for|item, index| of=input.items>
+        <for|item, index| of=(input.items || [])>
             $ var isDisabled = !item.href || item.disabled;
             $ var defaultAriaCurrent = item.itemMatchesUrl === false ? 'true' : 'page';
             <if (item.separator)>

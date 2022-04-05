@@ -1,8 +1,8 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
+import template from '..';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
@@ -25,7 +25,7 @@ describe('toast-dialog', () => {
     });
 
     it('renders in open state', async () => {
-        const input = mock.Toast_Open;
+        const input = mock.toastOpen;
         const { getByRole } = await render(template, input);
         expect(getByRole('dialog')).does.not.have.attr('hidden');
     });

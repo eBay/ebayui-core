@@ -1,7 +1,7 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Basic = {
+export const Basic = {
     renderBody: createRenderBody('Expand Button Text'),
 };
 
-exports.No_Text = {};
+export const noText = {};

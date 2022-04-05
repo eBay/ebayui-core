@@ -1,6 +1,6 @@
-const FloatingLabel = require('makeup-floating-label').default;
+import FloatingLabel from 'makeup-floating-label';
 
-module.exports = {
+export default {
     handleChange(event) {
         const { selectedIndex } = event.target;
         const el = this.getEls('option')[selectedIndex];

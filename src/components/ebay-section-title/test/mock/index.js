@@ -1,42 +1,42 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.TitleBasic = {
+export const TitleBasic = {
     renderBody: createRenderBody('Title content'),
 };
 
-exports.Title = {
+export const Title = {
     title: {
         renderBody: createRenderBody('Title content'),
     },
 };
 
-exports.Subtitle = Object.assign({}, exports.Title, {
+export const Subtitle = Object.assign({}, Title, {
     subtitle: {
         renderBody: createRenderBody('Subtitle content'),
     },
 });
 
-exports.CTA_SeeAll = Object.assign({}, exports.Title, {
+export const CTASeeAll = Object.assign({}, Title, {
     ctaText: 'See All',
     href: 'https://www.ebay.com/',
 });
 
-exports.CTA = Object.assign({}, exports.Title, {
+export const CTA = Object.assign({}, Title, {
     href: 'https://www.ebay.com/',
 });
 
-exports.Info = Object.assign({}, exports.Title, {
+export const Info = Object.assign({}, Title, {
     info: {
         renderBody: createRenderBody('Info content'),
     },
 });
 
-exports.Overflow = Object.assign({}, exports.Title, {
+export const Overflow = Object.assign({}, Title, {
     overflow: {
         renderBody: createRenderBody('Overflow content'),
     },
 });
 
-exports.Size = Object.assign({}, exports.Title, {
+export const Size = Object.assign({}, Title, {
     size: 'large',
 });

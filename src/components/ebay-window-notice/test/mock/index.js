@@ -1,6 +1,6 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Window_Notice = {
+export const windowNotice = {
     type: 'window',
     title: {
         renderBody: createRenderBody('Title'),

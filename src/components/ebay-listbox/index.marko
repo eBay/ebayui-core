@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "name",
@@ -23,7 +23,7 @@ $ var selectedText = selectedOption && selectedOption.text;
     tabindex:no-update=(input.tabindex || 0)
     on-activeDescendantChange(component.isAutoSelection && "handleListboxChange")
     onKeydown(!component.isAutoSelection && "handleKeyDown")>
-    <for|option,index| of=input.options>
+    <for|option,index| of=(input.options || [])>
         <div
             ...processHtmlAttributes(option, itemIgnoredAttributes)
             key="option[]"
@@ -39,7 +39,7 @@ $ var selectedText = selectedOption && selectedOption.text;
     </for>
 </div>
 <select hidden class="listbox__native" name=input.name>
-    <for|option| of=input.options>
+    <for|option| of=(input.options || [])>
         <option
             value=option.value
             selected=(option === selectedOption)

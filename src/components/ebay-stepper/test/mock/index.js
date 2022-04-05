@@ -1,4 +1,4 @@
-const { createRenderBody, getNItems } = require('../../../../common/test-utils/shared');
+import { createRenderBody, getNItems } from '../../../../common/test-utils/shared';
 
 function getType(i) {
     switch (i) {
@@ -11,18 +11,18 @@ function getType(i) {
     }
 }
 
-exports.WizardStepper = {
+export const WizardStepper = {
     step: getNItems(4, (i) => ({
         current: i === 2,
         renderBody: createRenderBody(`status ${i}`),
     })),
 };
 
-exports.WizardStepper_Vertical = Object.assign({}, exports.WizardStepper, {
+export const stepperVertical = Object.assign({}, WizardStepper, {
     direction: 'column',
 });
 
-exports.WizardStepper_States = {
+export const stepperStates = {
     step: getNItems(6, (i) => ({
         current: i === 1,
         type: getType(i),

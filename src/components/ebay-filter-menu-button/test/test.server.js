@@ -1,14 +1,14 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const testUtils = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as testUtils from '../../../common/test-utils/server';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
 describe('filter-menu-button', () => {
     it('renders basic version', async () => {
-        const input = mock.Basic_2Items;
+        const input = mock.basic2Items;
         const { getByRole, getAllByRole, getByText } = await render(template, input);
         const btnEl = getAllByRole('button')[0];
         expect(btnEl).contains(getByText(input.text));

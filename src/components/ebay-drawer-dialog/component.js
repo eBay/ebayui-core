@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     setExpandedState(isExpanded) {
         if (isExpanded !== this.state.expanded) {
             this.state.expanded = isExpanded;

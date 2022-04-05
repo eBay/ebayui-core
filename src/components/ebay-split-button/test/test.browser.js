@@ -1,10 +1,11 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { pressKey } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import { pressKey } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -12,7 +13,7 @@ let component;
 
 describe('given button is enabled', () => {
     beforeEach(async () => {
-        component = await render(template, mock.Basic_3Items);
+        component = await render(template, mock.basic3Items);
     });
 
     describe('when button is clicked', () => {
@@ -60,10 +61,7 @@ describe('given button is enabled', () => {
 
 describe('given button is disabled', () => {
     beforeEach(async () => {
-        component = await render(
-            template,
-            Object.assign({}, mock.Basic_3Items, { disabled: true })
-        );
+        component = await render(template, Object.assign({}, mock.basic3Items, { disabled: true }));
     });
 
     describe('when button is clicked', () => {

@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "variant",
@@ -30,7 +30,7 @@ $ var isForm = input.variant === "form";
         method=input.formMethod
         onSubmit("handleFormSubmit")>
         <div key="menu" class=`${baseClass}__items` role=(!isForm && "menu")>
-            <for|item, i| of=input.items>
+            <for|item, i| of=(input.items || [])>
                 $ var isChecked = component.isChecked(i);
                 <${isForm ? "label" : "div"}
                     ...processHtmlAttributes(item, itemIgnoredAttributes)

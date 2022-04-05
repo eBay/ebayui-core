@@ -1,6 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const del = require('del');
+import * as fs from 'fs';
+import { fileURLToPath } from 'url';
+import * as path from 'path';
+import * as del from 'del';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
 
 // remove files created by prepublish

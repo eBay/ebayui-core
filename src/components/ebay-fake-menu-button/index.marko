@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 import ExpandButton from '<ebay-expand-button>'
 import IconButton from '<ebay-icon-button>'
 import Button from '<ebay-button>'
@@ -97,7 +97,7 @@ $ {
         on-keydown("handleMenuKeydown")
         on-select("handleMenuSelect")
         key="content">
-        <for|item, index| of=input.items>
+        <for|item, index| of=(input.items || [])>
             <@item ...item/>
         </for>
     </ebay-fake-menu>
