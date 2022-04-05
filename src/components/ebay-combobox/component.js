@@ -6,10 +6,6 @@ const eventUtils = require('../../common/event-utils');
 const safeRegex = require('../../common/build-safe-regex');
 
 module.exports = {
-    get expanded() {
-        return this.input.expanded === true;
-    },
-
     focus() {
         this.getEl('combobox').focus();
     },
@@ -89,12 +85,14 @@ module.exports = {
                     this._setSelectedText(this._getVisibleOptions()[selectedIndex].text);
                 }
 
-                this.expander.expanded = this.expanded;
+                if (this.input.expanded !== true) {
+                    this.expander.expanded = false;
+                }
             }
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.expander.expanded = this.expanded;
+            this.expander.expanded = false;
         });
     },
 
@@ -122,8 +120,14 @@ module.exports = {
             this.focus();
         }
 
-        if (this.expander && this.expander.expanded && !wasClickedOption && !this.buttonClicked) {
-            this.expander.expanded = this.expanded;
+        if (
+            this.expander &&
+            this.expander.expanded &&
+            !wasClickedOption &&
+            !this.buttonClicked &&
+            this.input.expanded !== true
+        ) {
+            this.expander.expanded = false;
         }
 
         this.buttonClicked = false;
@@ -159,8 +163,12 @@ module.exports = {
             viewAllOptions: (this.state && this.state.viewAllOptions) || true,
         };
         if (this.expander) {
-            this.expander.expanded = input.expanded === true;
+            this.expandedChange = input.expanded !== this.expanded;
+            if (this.expandedChange) {
+                this.expander.expanded = input.expanded;
+            }
         }
+        this.expanded = input.expanded;
     },
 
     onMount() {
@@ -206,7 +214,11 @@ module.exports = {
                 expandedClass: 'combobox--expanded',
                 simulateSpacebarClick: true,
             });
-            this.expander.expanded = this.expanded;
+
+            if (this.expandedChange) {
+                this.expander.expanded = this.expanded;
+                this.expandedChange = false;
+            }
         }
         // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
         // It probably makes more sense to just move this functionality into Marko though.

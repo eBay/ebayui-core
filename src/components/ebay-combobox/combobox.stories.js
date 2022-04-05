@@ -85,7 +85,6 @@ export const FloatingLabel = Template.bind({});
 FloatingLabel.args = {
     name: 'example1text',
     autocomplete: 'list',
-    expanded: false,
     options: [
         { text: 'August Campaign' },
         { text: '4th of July Sale (paused)' },
@@ -113,7 +112,6 @@ export const Isolated = Template.bind({});
 Isolated.args = {
     name: 'example1text',
     autocomplete: 'list',
-    expanded: false,
     options: [
         { text: 'August Campaign' },
         { text: '4th of July Sale (paused)' },
