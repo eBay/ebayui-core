@@ -5,7 +5,7 @@ import * as https from 'https'; // or 'https' for https:// URLs
 import { fileURLToPath } from 'url';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as rimraf from 'rimraf';
+import rimraf from 'rimraf';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
