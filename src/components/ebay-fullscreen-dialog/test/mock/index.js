@@ -1,11 +1,11 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Dialog = {
+export const Dialog = {
     a11yCloseText: 'close',
     renderBody: createRenderBody('body content'),
 };
 
-exports.Header_Footer_Dialog = {
+export const headerFooterDialog = {
     a11yCloseText: 'close',
     footer: {
         renderBody: createRenderBody('footer content'),
@@ -16,6 +16,6 @@ exports.Header_Footer_Dialog = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Fill_Dialog_Open = Object.assign({}, exports.Dialog, {
+export const fillDialogOpen = Object.assign({}, Dialog, {
     open: true,
 });

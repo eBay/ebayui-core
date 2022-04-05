@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     onInput(input) {
         this.state = {
             open: input.open || false,

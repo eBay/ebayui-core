@@ -17,7 +17,7 @@ const TRANSITION_END = 'transitionend';
  * @param {Element[]} options.waitFor Elements that will transition and should be waited for.
  * @param {Function} cb A callback called after the transition as ended.
  */
-module.exports = ({ el, className, waitFor }, cb) => {
+export default ({ el, className, waitFor }, cb) => {
     let ended;
     let ran = 0;
     const pending = waitFor ? waitFor.length : 0;

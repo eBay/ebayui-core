@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const elementScroll = require('../');
+import { expect } from 'chai';
+import elementScroll from '..';
 
 describe('element-scroll', () => {
     const contentDiv = document.createElement('div');

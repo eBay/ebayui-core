@@ -1,6 +1,6 @@
-const loader = require('../../common/loader');
-const { getElements, playIcon } = require('./elements');
-const versions = require('./versions.json');
+import { loader } from '../../common/loader';
+import { getElements, playIcon } from './elements';
+import versions from './versions.json';
 const MAX_RETRIES = 3;
 const DEFAULT_SPINNER_TIMEOUT = 2000;
 
@@ -19,7 +19,7 @@ const videoConfig = {
     overflowMenuButtons: ['captions'],
 };
 
-module.exports = {
+export default {
     isPlaylist(source) {
         const type = source.type && source.type.toLowerCase();
         const src = source.src;

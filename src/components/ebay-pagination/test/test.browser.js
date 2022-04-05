@@ -1,9 +1,10 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -14,7 +15,7 @@ describe('given the pagination is rendered', () => {
 
     describe('with links', () => {
         beforeEach(async () => {
-            input = mock.Links_6Items_No_Selected;
+            input = mock.link6ItemsNoSelected;
             component = await render(template, input);
         });
 
@@ -23,7 +24,7 @@ describe('given the pagination is rendered', () => {
 
     describe('with buttons', () => {
         beforeEach(async () => {
-            input = mock.Buttons_0Selected;
+            input = mock.Buttons0Selected;
             component = await render(template, input);
         });
 
@@ -104,7 +105,7 @@ describe('given the pagination is rendered', () => {
 });
 
 describe('given the pagination is rendered with disabled controls', () => {
-    const input = mock.Links_1Items_Navigation_Disabled;
+    const input = mock.link1ItemsNavigationDisabled;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -151,7 +152,7 @@ describe('given the pagination is rendered at various sizes', () => {
     [
         {
             name: 'with the second item selected',
-            input: mock.Links_9Items_1Selected,
+            input: mock.link9Items1Selected,
             cases: [
                 {
                     width: 330,
@@ -169,7 +170,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'with the fifth item selected',
-            input: mock.Links_9Items_4Selected,
+            input: mock.link9Items4Selected,
             cases: [
                 {
                     width: 330,
@@ -191,7 +192,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'with the eighth item selected',
-            input: mock.Links_9Items_7Selected,
+            input: mock.link9Items7Selected,
             cases: [
                 {
                     width: 330,
@@ -209,7 +210,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'first item and dots',
-            input: mock.Links_16ItemsDots_1Selected,
+            input: mock.link16ItemsDots1Selected,
             cases: [
                 {
                     width: 330,
@@ -228,7 +229,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'with the seventh item selected and dots',
-            input: mock.Links_16ItemsDots_7Selected,
+            input: mock.link16ItemsDots7Selected,
             cases: [
                 {
                     width: 330,
@@ -251,7 +252,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'with the 3rd to last item selected and hidden dots',
-            input: mock.Links_16ItemsDots_13Selected,
+            input: mock.link16ItemsDots13Selected,
             cases: [
                 {
                     width: 330,
@@ -270,7 +271,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'with the last item selected and hidden dots',
-            input: mock.Links_16ItemsDots_15Selected,
+            input: mock.link16ItemsDots15Selected,
             cases: [
                 {
                     width: 330,

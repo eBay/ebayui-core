@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     handleChange(originalEvent) {
         if (!this.input.disabled) {
             this.emit('change', {

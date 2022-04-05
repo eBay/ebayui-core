@@ -1,6 +1,7 @@
-const { createRenderBody, getNItems } = require('../../../../common/test-utils/shared');
+/* eslint camelcase: "off" */
+import { createRenderBody, getNItems } from '../../../../common/test-utils/shared';
 
-exports.Basic_2Items = {
+export const basic2Items = {
     text: 'Basic Menu',
     a11yText: 'Menu A11y Text',
     items: getNItems(2, (i) => ({
@@ -9,14 +10,14 @@ exports.Basic_2Items = {
     })),
 };
 
-exports.Basic_3Items = Object.assign({}, exports.Basic_2Items, {
+export const basic3Items = Object.assign({}, basic2Items, {
     items: getNItems(3, (i) => ({
         href: `#${i}`,
         renderBody: createRenderBody(`Item text ${i}`),
     })),
 });
 
-exports.Separator_4Items = Object.assign({}, exports.Basic_2Items, {
+export const separator4Items = Object.assign({}, basic2Items, {
     items: getNItems(4, (i) => ({
         href: `#${i}`,
         separator: i === 2,
@@ -24,22 +25,22 @@ exports.Separator_4Items = Object.assign({}, exports.Basic_2Items, {
     })),
 });
 
-exports.No_Toggle_Icon = Object.assign({}, exports.Basic_2Items, {
+export const No_Toggle_Icon = Object.assign({}, basic2Items, {
     noToggleIcon: true,
 });
 
-exports.Disabled = Object.assign({}, exports.Basic_3Items, {
+export const Disabled = Object.assign({}, basic3Items, {
     disabled: true,
 });
 
-exports.Settings_Icon = Object.assign({}, exports.Basic_2Items, {
+export const Settings_Icon = Object.assign({}, basic2Items, {
     text: '',
     icon: {
         renderBody: createRenderBody('icon content'),
     },
 });
 
-exports.Custom_Label = Object.assign({}, exports.Basic_2Items, {
+export const Custom_Label = Object.assign({}, basic2Items, {
     label: {
         renderBody: createRenderBody(
             '<span class="custom_label">custom label text</span>',
@@ -48,7 +49,7 @@ exports.Custom_Label = Object.assign({}, exports.Basic_2Items, {
     },
 });
 
-exports.Overflow_Variant = Object.assign({}, exports.Basic_2Items, {
+export const Overflow_Variant = Object.assign({}, basic2Items, {
     text: '',
     variant: 'overflow',
 });

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     onInput(input) {
         this.state = { checked: input.checked || 'false' };
     },

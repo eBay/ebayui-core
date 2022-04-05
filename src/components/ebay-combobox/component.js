@@ -1,11 +1,11 @@
-const ActiveDescendant = require('makeup-active-descendant');
-const FloatingLabel = require('makeup-floating-label').default;
-const Expander = require('makeup-expander').default;
-const elementScroll = require('../../common/element-scroll');
-const eventUtils = require('../../common/event-utils');
-const safeRegex = require('../../common/build-safe-regex');
+import { createLinear } from 'makeup-active-descendant';
+import FloatingLabel from 'makeup-floating-label';
+import Expander from 'makeup-expander';
+import { scroll } from '../../common/element-scroll';
+import * as eventUtils from '../../common/event-utils';
+import safeRegex from '../../common/build-safe-regex';
 
-module.exports = {
+export default {
     focus() {
         this.getEl('combobox').focus();
     },
@@ -40,7 +40,7 @@ module.exports = {
         this.activeDescendant.index = current;
         const selectedEl = this.getEls('options')[current];
         if (selectedEl) {
-            elementScroll.scroll(selectedEl);
+            scroll(selectedEl);
         }
     },
 
@@ -191,13 +191,13 @@ module.exports = {
 
     _setupMakeup() {
         if (this._hasVisibleOptions()) {
-            this.activeDescendant = ActiveDescendant.createLinear(
+            this.activeDescendant = createLinear(
                 this.el,
                 this.getEl('combobox'),
                 this.getEl('listbox'),
                 '[role="option"]',
                 {
-                    activeDescendantClassName: 'combobox__option--active',
+                    activeDescendantClassName: 'combobox_option--active',
                     autoInit: -1,
                     autoReset: -1,
                     axis: 'y',

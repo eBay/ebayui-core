@@ -1,6 +1,6 @@
 let rootSvg;
 
-module.exports = {
+export default {
     onMount() {
         // Create a hidden svg to store all symbols on startup.
         if (!rootSvg) {

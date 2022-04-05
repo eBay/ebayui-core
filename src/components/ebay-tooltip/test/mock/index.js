@@ -1,6 +1,6 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Basic = {
+export const Basic = {
     host: {
         renderBody: createRenderBody('<span class="tooltip__host">Host Text</span>', 'Host Text'),
     },
@@ -12,7 +12,7 @@ exports.Basic = {
     },
 };
 
-exports.Pointers = [
+export const Pointers = [
     'top-left',
     'top',
     'top-right',
@@ -25,9 +25,9 @@ exports.Pointers = [
     'left',
     'left-bottom',
     'left-top',
-].map((pointer) => Object.assign({}, exports.Basic, { pointer }));
+].map((pointer) => Object.assign({}, Basic, { pointer }));
 
-exports.Custom_Pointer = Object.assign({}, exports.Basic, {
+export const customPointer = Object.assign({}, Basic, {
     styleTop: '20px',
     styleLeft: '20px',
 });

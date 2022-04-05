@@ -1,10 +1,10 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
 const {
     testPassThroughAttributes,
     testEventsMigrator,
 } = require('../../../common/test-utils/server');
-const template = require('..');
 
 use(require('chai-dom'));
 

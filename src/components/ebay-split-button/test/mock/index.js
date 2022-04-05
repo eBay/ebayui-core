@@ -1,6 +1,7 @@
-const { createRenderBody, getNItems } = require('../../../../common/test-utils/shared');
+/* eslint camelcase: "off" */
+import { createRenderBody, getNItems } from '../../../../common/test-utils/shared';
 
-exports.Basic_3Items = {
+export const basic3Items = {
     renderBody: createRenderBody('button'),
     a11yMenuText: 'menu',
     items: getNItems(3, (i) => ({
@@ -9,7 +10,7 @@ exports.Basic_3Items = {
     })),
 };
 
-exports.Loading_3Items = {
+export const Loading_3Items = {
     renderBody: createRenderBody('button'),
     a11yMenuText: 'menu',
     a11yButtonLoadingText: 'button loading',
@@ -20,7 +21,7 @@ exports.Loading_3Items = {
     })),
 };
 
-exports.Options_3Items = {
+export const Options_3Items = {
     renderBody: createRenderBody('button'),
     a11yMenuText: 'menu',
     disabled: true,

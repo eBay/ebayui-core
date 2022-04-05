@@ -1,10 +1,11 @@
-const { expect, use } = require('chai');
-const { render, waitFor, cleanup } = require('@marko/testing-library');
-const { fastAnimations } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, waitFor, cleanup } from '@marko/testing-library';
+import { fastAnimations } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 before(fastAnimations.start);
 after(fastAnimations.stop);
 afterEach(cleanup);
@@ -35,7 +36,7 @@ describe('given a closed toast', () => {
 });
 
 describe('given an open toast', () => {
-    const input = mock.Toast_Open;
+    const input = mock.toastOpen;
 
     beforeEach(async () => {
         component = await render(template, input);

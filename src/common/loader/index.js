@@ -54,7 +54,7 @@ function restArWorker(src) {
     });
 }
 
-function load(srcList, typeList) {
+function loader(srcList, typeList) {
     const promiseKey = srcList.join(',');
     if (!cachePromises[promiseKey]) {
         cachePromises[promiseKey] = Promise.all(
@@ -73,4 +73,4 @@ function load(srcList, typeList) {
     return cachePromises[promiseKey];
 }
 
-module.exports = load;
+export { loader };

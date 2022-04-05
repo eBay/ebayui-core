@@ -1,4 +1,9 @@
-const fs = require('fs');
+import * as fs from 'fs';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // strip out template.marko entries per https://github.com/marko-js/marko-cli/issues/70
 const nycOutputPath = `${__dirname}/../.nyc_output`;

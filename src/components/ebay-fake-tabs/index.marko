@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = ["selectedIndex", "tabs", "panels", "tabAriaCurrent"];
 
@@ -11,7 +11,7 @@ $ var tabAriaCurrent = input.tabMatchesCurrentUrl === false ? "true" : "page";
     class=["fake-tabs", input.class]>
     $ var selectedIndex = input.selectedIndex || 0;
     <ul class="fake-tabs__items">
-        <for|tab, i| of=input.tabs>
+        <for|tab, i| of=(input.tabs || [])>
             $ var isSelected = selectedIndex === i;
             <li
                 ...processHtmlAttributes(tab, itemAnchorIgnoredAttributes)

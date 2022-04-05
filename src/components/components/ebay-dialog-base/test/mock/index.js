@@ -1,6 +1,6 @@
-const { createRenderBody } = require('../../../../../common/test-utils/shared');
-
-exports.Dialog = {
+/* eslint camelcase: "off" */
+import { createRenderBody } from '../../../../../common/test-utils/shared';
+export const dialog = {
     classPrefix: 'lightbox-dialog',
     class: 'lightbox-dialog--mask-fade',
     windowClass: 'lightbox-dialog__window--fade',
@@ -8,7 +8,7 @@ exports.Dialog = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Header_Footer_Dialog = {
+export const headerFooterDialog = {
     classPrefix: 'lightbox-dialog',
     class: 'lightboxc-dialog--mask-fade',
     windowClass: 'lightbox-dialog__window--fade',
@@ -22,6 +22,6 @@ exports.Header_Footer_Dialog = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Dialog_Open = Object.assign({}, exports.Dialog, {
+export const dialogOpen = Object.assign({}, dialog, {
     open: true,
 });

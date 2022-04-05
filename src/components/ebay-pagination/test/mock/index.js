@@ -1,17 +1,17 @@
-const { getNItems, createRenderBody } = require('../../../../common/test-utils/shared');
+import { getNItems, createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Base_0Items = {
+export const base0Items = {
     a11yPreviousText: 'Previous page',
     a11yNextText: 'Next page',
     a11yCurrentText: 'Results Pagination - Page 2',
     items: [],
 };
 
-exports.Base_0Items_Dots = Object.assign({}, exports.Base_0Items, {
+export const base0ItemsDots = Object.assign({}, base0Items, {
     variant: 'show-last',
 });
 
-exports.Links_6Items_No_Selected = Object.assign({}, exports.Base_0Items, {
+export const link6ItemsNoSelected = Object.assign({}, base0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -28,7 +28,7 @@ exports.Links_6Items_No_Selected = Object.assign({}, exports.Base_0Items, {
     ),
 });
 
-exports.Links_9Items_1Selected = Object.assign({}, exports.Base_0Items, {
+export const link9Items1Selected = Object.assign({}, base0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -46,7 +46,7 @@ exports.Links_9Items_1Selected = Object.assign({}, exports.Base_0Items, {
     ),
 });
 
-exports.Links_9Items_4Selected = Object.assign({}, exports.Base_0Items, {
+export const link9Items4Selected = Object.assign({}, base0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -64,7 +64,7 @@ exports.Links_9Items_4Selected = Object.assign({}, exports.Base_0Items, {
     ),
 });
 
-exports.Links_9Items_7Selected = Object.assign({}, exports.Base_0Items, {
+export const link9Items7Selected = Object.assign({}, base0Items, {
     items: [].concat(
         {
             type: 'previous',
@@ -82,7 +82,7 @@ exports.Links_9Items_7Selected = Object.assign({}, exports.Base_0Items, {
     ),
 });
 
-exports.Links_16ItemsDots_1Selected = Object.assign({}, exports.Base_0Items_Dots, {
+export const link16ItemsDots1Selected = Object.assign({}, base0ItemsDots, {
     items: [].concat(
         {
             type: 'previous',
@@ -100,7 +100,7 @@ exports.Links_16ItemsDots_1Selected = Object.assign({}, exports.Base_0Items_Dots
     ),
 });
 
-exports.Links_16ItemsDots_7Selected = Object.assign({}, exports.Base_0Items_Dots, {
+export const link16ItemsDots7Selected = Object.assign({}, base0ItemsDots, {
     items: [].concat(
         {
             type: 'previous',
@@ -118,7 +118,7 @@ exports.Links_16ItemsDots_7Selected = Object.assign({}, exports.Base_0Items_Dots
     ),
 });
 
-exports.Links_16ItemsDots_13Selected = Object.assign({}, exports.Base_0Items_Dots, {
+export const link16ItemsDots13Selected = Object.assign({}, base0ItemsDots, {
     items: [].concat(
         {
             type: 'previous',
@@ -136,7 +136,7 @@ exports.Links_16ItemsDots_13Selected = Object.assign({}, exports.Base_0Items_Dot
     ),
 });
 
-exports.Links_16ItemsDots_15Selected = Object.assign({}, exports.Base_0Items_Dots, {
+export const link16ItemsDots15Selected = Object.assign({}, base0ItemsDots, {
     items: [].concat(
         {
             type: 'previous',
@@ -154,7 +154,7 @@ exports.Links_16ItemsDots_15Selected = Object.assign({}, exports.Base_0Items_Dot
     ),
 });
 
-exports.Links_1Items_Navigation_Disabled = Object.assign({}, exports.Base_0Items, {
+export const link1ItemsNavigationDisabled = Object.assign({}, base0Items, {
     items: [
         {
             type: 'previous',
@@ -173,7 +173,7 @@ exports.Links_1Items_Navigation_Disabled = Object.assign({}, exports.Base_0Items
     ],
 });
 
-exports.Links_1Items_No_Navigation = Object.assign({}, exports.Base_0Items, {
+export const link1ItemsNoNavigation = Object.assign({}, base0Items, {
     items: [
         {
             href: `#1`,
@@ -182,7 +182,7 @@ exports.Links_1Items_No_Navigation = Object.assign({}, exports.Base_0Items, {
     ],
 });
 
-exports.Buttons_0Selected = Object.assign({}, exports.Base_0Items, {
+export const Buttons0Selected = Object.assign({}, base0Items, {
     items: [].concat(
         {
             type: 'previous',

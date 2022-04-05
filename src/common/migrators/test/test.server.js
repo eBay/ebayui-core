@@ -1,8 +1,11 @@
-const { expect, use } = require('chai');
-const { runTransformer } = require('../../../common/test-utils/server');
-const migrator = require('../');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import snap from 'mocha-snap';
+import { runMigrateTransformer } from '../../../common/test-utils/server';
+import migrator from '../';
 
-use(require('chai-dom'));
+use(chaiDom);
+const snapDOM = (node) => snap(node, '.html', __dirname);
 
 describe('migrators', () => {
     const componentPath = '../index.marko';
@@ -15,7 +18,11 @@ describe('migrators', () => {
 
     it('transforms an icon attribute into a tag', async () => {
         const tagString = '<ebay-menu-button icon="settings"/>';
-        const { el } = runTransformer(migratorFn, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migratorFn, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
 
         const {
             body: {
@@ -31,9 +38,13 @@ describe('migrators', () => {
         expect(tag.tagName).to.equal('ebay-settings-icon');
     });
 
-    it('does not transform when icon attribute is missing', () => {
+    it('does not transform when icon attribute is missing', async () => {
         const tagString = '<ebay-textbox prefix-icon="settings"/>';
-        const { el } = runTransformer(migratorFn, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migratorFn, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
 
         const {
             body: {
@@ -45,7 +56,11 @@ describe('migrators', () => {
 
     it('changes attributes if they exist', async () => {
         const tagString = '<ebay-menu-button on-menu-button-click(() => {})/>';
-        const { el } = runTransformer(migratorFn, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migratorFn, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
 
         expect(el.hasAttribute('on-click')).to.equal(true);
         expect(el.hasAttribute('on-menu-button-click')).to.equal(false);
@@ -53,7 +68,11 @@ describe('migrators', () => {
 
     it('does not changes attributes if they do not exist', async () => {
         const tagString = '<ebay-menu-button on-button-click(() => {})/>';
-        const { el } = runTransformer(migratorFn, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migratorFn, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
 
         expect(el.hasAttribute('on-click')).to.equal(false);
         expect(el.hasAttribute('on-button-click')).to.equal(true);
@@ -62,7 +81,11 @@ describe('migrators', () => {
     it('does multiple changes', async () => {
         const tagString =
             '<ebay-menu-button on-button-click(() => {}) icon="settings" oldAttribute="val"/>';
-        const { el } = runTransformer(migratorFn, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migratorFn, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
 
         const {
             body: {

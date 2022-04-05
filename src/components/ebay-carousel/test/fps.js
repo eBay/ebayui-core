@@ -1,5 +1,5 @@
-const { expect } = require('chai');
-const { render, cleanup } = require('@marko/testing-library');
+import { expect } from 'chai';
+import { render, cleanup } from '@marko/testing-library';
 const fps = require('../../../common/test-utils/fps');
 const template = require('../');
 const mock = require('./mock');
@@ -7,7 +7,7 @@ const mock = require('./mock');
 afterEach(cleanup);
 
 it('runs at 60fps with changing index', async () => {
-    const input = mock.Discrete_2PerSlide_6Items;
+    const input = mock.discrete2PerSlide6Items;
     const { getByLabelText } = await render(template, input);
     const nextButton = getByLabelText(input.a11yNextText);
     const prevButton = getByLabelText(input.a11yPreviousText);

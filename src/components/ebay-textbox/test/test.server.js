@@ -1,13 +1,16 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const {
-    runTransformer,
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import snap from 'mocha-snap';
+import {
+    runMigrateTransformer,
     testPassThroughAttributes,
     testEventsMigrator,
-} = require('../../../common/test-utils/server');
+} from '../../../common/test-utils/server';
+import template from '..';
+import * as mock from './mock';
 const migrator = require('../migrator');
-const template = require('..');
-const mock = require('./mock');
+
+const snapDOM = (node) => snap(node, '.html', __dirname);
 
 use(require('chai-dom'));
 
@@ -23,7 +26,7 @@ describe('ebay-textbox', () => {
     });
 
     it('renders default input textbox with an id', async () => {
-        const input = mock.Basic_With_ID;
+        const input = mock.basicWithId;
         const { getByRole } = await render(template, input);
         expect(getByRole('textbox')).contains.id(input.id);
     });
@@ -56,39 +59,39 @@ describe('ebay-textbox', () => {
     });
 
     it('renders a textarea element with prefix icon', async () => {
-        const input = mock.Prefix_Icon;
+        const input = mock.prefixIcon;
         const { getByRole } = await render(template, input);
         expect(getByRole('textbox')).has.property('previousElementSibling').with.class('icon');
     });
 
     it('renders a textarea element with postfix icon', async () => {
-        const input = mock.Postfix_Icon;
+        const input = mock.postfixIcon;
         const { getByRole } = await render(template, input);
         expect(getByRole('textbox')).has.property('nextElementSibling').with.class('icon');
     });
 
     it('renders a textarea element with postfix icon button', async () => {
-        const input = mock.Postfix_Icon_Button;
+        const input = mock.postfixIconButton;
         const { getByLabelText } = await render(template, input);
         expect(getByLabelText('search button')).has.class('icon-btn');
         expect(getByLabelText('search button').firstElementChild).has.class('icon');
     });
 
     it('renders an input textbox with inline floating label', async () => {
-        const input = mock.Floating_Label;
+        const input = mock.floatingLabel;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
         expect(getByRole('textbox')).to.equal(getByLabelText(input.floatingLabel));
         expect(getByText(input.floatingLabel)).has.class('floating-label__label');
     });
 
     it('renders an input textbox with inline floating label and an id', async () => {
-        const input = mock.Floating_Label_With_ID;
+        const input = mock.floatingLabelWithId;
         const { getByLabelText } = await render(template, input);
         expect(getByLabelText(input.floatingLabel)).has.id(input.id);
     });
 
     it('renders a disabled input textbox with disabled floating label', async () => {
-        const input = mock.Floating_Label_Disabled;
+        const input = mock.floatingLabelDisabled;
         const { getByText } = await render(template, input);
         expect(getByText(input.floatingLabel)).has.class('floating-label__label--disabled');
     });
@@ -103,9 +106,13 @@ describe('ebay-textbox', () => {
 describe('migrator', () => {
     const componentPath = '../index.marko';
 
-    it('transforms an prefix-icon attribute into a tag', () => {
+    it('transforms an prefix-icon attribute into a tag', async () => {
         const tagString = '<ebay-textbox prefix-icon="settings"/>';
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
         const {
             body: {
                 array: [iconEl],
@@ -114,9 +121,14 @@ describe('migrator', () => {
         expect(iconEl.tagName).to.equal('@prefix-icon');
     });
 
-    it('transforms an postfix-icon attribute into a tag', () => {
+    it('transforms an postfix-icon attribute into a tag', async () => {
         const tagString = '<ebay-textbox postfix-icon="settings"/>';
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         const {
             body: {
                 array: [iconEl],
@@ -125,9 +137,14 @@ describe('migrator', () => {
         expect(iconEl.tagName).to.equal('@postfix-icon');
     });
 
-    it('does not transform when icon attribute is missing', () => {
+    it('does not transform when icon attribute is missing', async () => {
         const tagString = '<ebay-textbox/>';
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         const {
             body: {
                 array: [iconEl],
@@ -136,9 +153,14 @@ describe('migrator', () => {
         expect(iconEl).to.equal(undefined);
     });
 
-    it('migrates icon without position to prefix-icon', () => {
+    it('migrates icon without position to prefix-icon', async () => {
         const tagString = '<ebay-textbox icon="close"/>';
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         const {
             body: {
                 array: [iconEl],
@@ -151,9 +173,14 @@ describe('migrator', () => {
         expect(el.hasAttribute('icon-position')).to.equal(false);
     });
 
-    it('migrates icon with postfix position to postfix-icon', () => {
+    it('migrates icon with postfix position to postfix-icon', async () => {
         const tagString = '<ebay-textbox icon="close" icon-position="postfix"/>';
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         const {
             body: {
                 array: [iconEl],

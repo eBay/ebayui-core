@@ -20,6 +20,4 @@ function addRenderBodies(input) {
     return input;
 }
 
-module.exports = {
-    addRenderBodies,
-};
+module.exports = { addRenderBodies };

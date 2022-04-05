@@ -1,7 +1,7 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
@@ -16,7 +16,7 @@ describe('signal', () => {
     });
 
     it('renders recent version', async () => {
-        const input = mock.Basic_Recent;
+        const input = mock.basicRecent;
         const { getByText } = await render(template, input);
         const el = getByText(/recent/i);
 
@@ -25,7 +25,7 @@ describe('signal', () => {
     });
 
     it('renders time sensitive version', async () => {
-        const input = mock.Basic_Time_Sensitive;
+        const input = mock.basicTimeSensitive;
         const { getByText } = await render(template, input);
         const el = getByText(/time sensitive/i);
 
@@ -34,7 +34,7 @@ describe('signal', () => {
     });
 
     it('renders trustworthy version', async () => {
-        const input = mock.Basic_Trustworthy;
+        const input = mock.basicTrustworthy;
         const { getByText } = await render(template, input);
         const el = getByText(/trustworthy/i);
 
@@ -43,7 +43,7 @@ describe('signal', () => {
     });
 
     it('renders neutral version', async () => {
-        const input = mock.Basic_Neutral;
+        const input = mock.basicNeutral;
         const { getByText } = await render(template, input);
         const el = getByText(/neutral/i);
 

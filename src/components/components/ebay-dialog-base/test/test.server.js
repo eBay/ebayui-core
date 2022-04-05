@@ -1,16 +1,21 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../../common/test-utils/server');
-const { runTransformer } = require('../../../../common/test-utils/server');
-const migrator = require('../migrator');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render } from '@marko/testing-library';
+import snap from 'mocha-snap';
+import {
+    runMigrateTransformer,
+    testPassThroughAttributes,
+} from '../../../../common/test-utils/server';
+import migrator from '../migrator';
+import template from '..';
+import * as mock from './mock';
+const snapDOM = (node) => snap(node, '.html', __dirname);
 
-use(require('chai-dom'));
+use(chaiDom);
 
 describe('dialog-base', () => {
     it('renders basic version', async () => {
-        const input = mock.Dialog;
+        const input = mock.dialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
 
         expect(getByRole('dialog', { hidden: true })).has.attr('hidden');
@@ -19,7 +24,7 @@ describe('dialog-base', () => {
     });
 
     it('renders with header and footer', async () => {
-        const input = mock.Header_Footer_Dialog;
+        const input = mock.headerFooterDialog;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
 
         expect(getByRole('dialog', { hidden: true })).has.attr('hidden');
@@ -33,13 +38,13 @@ describe('dialog-base', () => {
     });
 
     it('renders in open state', async () => {
-        const input = mock.Dialog_Open;
+        const input = mock.dialogOpen;
         const { getByRole } = await render(template, input);
         expect(getByRole('dialog')).does.not.have.attr('hidden');
     });
 
     it('renders non modal', async () => {
-        const input = mock.Dialog;
+        const input = mock.dialog;
         const { getByRole } = await render(template, Object.assign({}, input, { isModal: false }));
         expect(getByRole('dialog', { hidden: true })).has.attribute('aria-live', 'polite');
     });
@@ -67,9 +72,13 @@ describe('migrator', () => {
         return `<ebay-dialog-base><@header>Text</@header></ebay-dialog-base>`;
     }
 
-    it('removes h2 and adds props to other tag', () => {
+    it('removes h2 and adds props to other tag', async () => {
         const tagString = getTagString();
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
 
         const {
             body: {
@@ -81,9 +90,14 @@ describe('migrator', () => {
         expect(newContainer.hasAttribute('as')).to.equal(false);
     });
 
-    it('removes h3', () => {
+    it('removes h3', async () => {
         const tagString = getTagStringH3();
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         const {
             body: {
                 array: [newContainer],
@@ -95,9 +109,14 @@ describe('migrator', () => {
         expect(newContainer.getAttributeValue('as').value).to.equal('h3');
     });
 
-    it('does not remove span', () => {
+    it('does not remove span', async () => {
         const tagString = getTagStringSpan();
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         const {
             body: {
                 array: [newContainer],
@@ -109,9 +128,14 @@ describe('migrator', () => {
         expect(newContainer.hasAttribute('as')).to.equal(false);
     });
 
-    it('does not remove change if it has only text', () => {
+    it('does not remove change if it has only text', async () => {
         const tagString = getTagStringNoTransform();
-        const { el } = runTransformer(migrator, tagString, componentPath);
+        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         const {
             body: {
                 array: [newContainer],
