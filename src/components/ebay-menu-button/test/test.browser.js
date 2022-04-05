@@ -1,18 +1,18 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { getComponentForEl } = require('marko/components');
-const { pressKey } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import { pressKey } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
 describe('given the menu is in the default state', () => {
-    const input = mock.Basic_2Items;
+    const input = mock.basic2Items;
     beforeEach(async () => {
         component = await render(template, input);
     });
@@ -46,7 +46,7 @@ describe('given the menu is in the default state', () => {
     });
 
     describe('when an item is added via input from its parent and the new item is clicked', () => {
-        const newInput = mock.Basic_3Items;
+        const newInput = mock.basic3Items;
         const thirdItemText = newInput.items[2].renderBody.text;
         beforeEach(async () => {
             await component.rerender(newInput);
@@ -92,15 +92,10 @@ describe('given the menu is in the default state', () => {
             expect(component.emitted('expand')).has.length(1);
         });
     });
-
-    it('focuses element on focus call', () => {
-        getComponentForEl(component.container.firstElementChild).focus();
-        expect(document.activeElement).to.equal(component.getByRole('button'));
-    });
 });
 
 describe('given the menu is in the expanded state', () => {
-    const input = mock.Basic_2Items;
+    const input = mock.basic2Items;
     const firstItemText = input.items[0].renderBody.text;
 
     beforeEach(async () => {
@@ -195,7 +190,7 @@ describe('given the menu is in the expanded state', () => {
 });
 
 describe('given the menu is in the expanded state with radio items', () => {
-    const input = Object.assign({ type: 'radio' }, mock.Basic_2Items);
+    const input = Object.assign({ type: 'radio' }, mock.basic2Items);
     let firstItem, secondItem;
     beforeEach(async () => {
         component = await render(template, input);
@@ -285,7 +280,7 @@ describe('given the menu is in the expanded state with radio items', () => {
 });
 
 describe('given the menu is in the expanded state with checkbox items', () => {
-    const input = Object.assign({ type: 'checkbox' }, mock.Basic_2Items);
+    const input = Object.assign({ type: 'checkbox' }, mock.basic2Items);
     let firstItem, secondItem;
     beforeEach(async () => {
         component = await render(template, input);

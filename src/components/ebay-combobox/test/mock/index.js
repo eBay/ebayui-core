@@ -1,13 +1,13 @@
-const { getNItems } = require('../../../../common/test-utils/shared');
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+/* eslint camelcase: "off" */
+import { createRenderBody, getNItems } from '../../../../common/test-utils/shared';
 
-exports.Combobox_0Options = {
+export const combobox0Options = {
     name: 'test-combobox',
     autocomplete: 'list',
     options: [],
 };
 
-exports.Combobox_3Options = {
+export const combobox3Options = {
     name: 'test-combobox',
     autocomplete: 'list',
     options: getNItems(3, (i) => ({
@@ -16,7 +16,7 @@ exports.Combobox_3Options = {
     })),
 };
 
-exports.Combobox_3Options_Manual = {
+export const combobox3OptionsManual = {
     name: 'test-combobox',
     autocomplete: 'list',
     listSelection: 'manual',
@@ -26,7 +26,7 @@ exports.Combobox_3Options_Manual = {
     })),
 };
 
-exports.Combobox_3OptionsFloatingLabel = {
+export const combobox3OptionsFloatingLabel = {
     name: 'test-combobox',
     autocomplete: 'list',
     floatingLabel: 'Test',
@@ -36,21 +36,21 @@ exports.Combobox_3OptionsFloatingLabel = {
     })),
 };
 
-exports.Combobox_3Options_2Selected = Object.assign({}, exports.Combobox_3Options, {
-    value: exports.Combobox_3Options.options[1].text,
+export const combobox3Options2Selected = Object.assign({}, combobox3Options, {
+    value: combobox3Options.options[1].text,
 });
 
-exports.Combobox_3Options_Borderless = Object.assign({}, exports.Combobox_3Options, {
+export const combobox3OptionsBorderless = Object.assign({}, combobox3Options, {
     borderless: true,
 });
 
-exports.Combobox_3Options_Actionable = Object.assign({}, exports.Combobox_3Options, {
+export const combobox3OptionsActionable = Object.assign({}, combobox3Options, {
     button: {
         renderBody: createRenderBody('actionable'),
     },
 });
 
-exports.Combobox_3Options_Actionable_No_Body = Object.assign({}, exports.Combobox_3Options, {
+export const combobox3OptionsActionable_No_Body = Object.assign({}, combobox3Options, {
     button: {
         ariaLabel: 'actionable label',
     },

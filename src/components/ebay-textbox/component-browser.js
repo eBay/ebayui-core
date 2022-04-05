@@ -1,6 +1,6 @@
-const FloatingLabel = require('makeup-floating-label').default;
+import FloatingLabel from 'makeup-floating-label';
 
-module.exports = {
+export default {
     handleFloatingLabelInit: forwardEvent('floating-label-init'),
     handleKeydown: forwardEvent('keydown'),
     handleKeypress: forwardEvent('keypress'),

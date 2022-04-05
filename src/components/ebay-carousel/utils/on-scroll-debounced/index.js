@@ -1,6 +1,6 @@
 const eventOptions = { passive: true };
 
-module.exports = function onScrollDebounced(el, cb) {
+export function onScrollDebounced(el, cb) {
     let timeout;
     waitForScroll();
     return cancel;
@@ -27,4 +27,4 @@ module.exports = function onScrollDebounced(el, cb) {
         cancelWaitForScroll();
         clearTimeout(timeout);
     }
-};
+}

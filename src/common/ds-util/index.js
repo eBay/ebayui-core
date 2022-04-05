@@ -67,13 +67,15 @@ function getIndexFromFlag(flags) {
     return obj === -1 ? 0 : obj;
 }
 
-module.exports = {
+const getDSFromFlag = getIndexFromFlag;
+
+export {
     getDSFlags,
     getDSVersion,
-    getDSFromFlag: getIndexFromFlag,
     dsFlags,
     dsList,
     dsFilenames,
+    getDSFromFlag,
     requireRemap,
     dsIconThemes,
     defaultDS,

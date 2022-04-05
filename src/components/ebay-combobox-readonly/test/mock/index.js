@@ -1,12 +1,12 @@
-const { getNItems } = require('../../../../common/test-utils/shared');
+import { getNItems } from '../../../../common/test-utils/shared';
 
-exports.Combobox_0Options = {
+export const combobox0Options = {
     name: 'test-combobox',
     autocomplete: 'list',
     options: [],
 };
 
-exports.Combobox_3Options = {
+export const combobox3Options = {
     name: 'test-combobox',
     autocomplete: 'list',
     options: getNItems(3, (i) => ({
@@ -15,7 +15,7 @@ exports.Combobox_3Options = {
     })),
 };
 
-exports.Combobox_3Options_2Selected = Object.assign({}, exports.Combobox_3Options, {
+export const combobox3Options2Selected = Object.assign({}, combobox3Options, {
     options: getNItems(3, (i) => ({
         value: String(i),
         text: `option ${i}`,
@@ -23,10 +23,10 @@ exports.Combobox_3Options_2Selected = Object.assign({}, exports.Combobox_3Option
     })),
 });
 
-exports.Combobox_3Options_Borderless = Object.assign({}, exports.Combobox_3Options, {
+export const combobox3OptionsBorderless = Object.assign({}, combobox3Options, {
     borderless: true,
 });
 
-exports.Combobox_3Options_Disabled = Object.assign({}, exports.Combobox_3Options, {
+export const combobox3OptionsDisabled = Object.assign({}, combobox3Options, {
     disabled: true,
 });

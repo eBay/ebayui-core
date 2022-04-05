@@ -1,8 +1,8 @@
-const eventUtils = require('../../common/event-utils');
+import * as eventUtils from '../../common/event-utils';
 const MAX_PAGES = 9;
 const MIN_PAGES = 3;
 
-module.exports = {
+export default {
     /**
      * Handle normal mouse click for item, next page and previous page respectively.
      * @param {MouseEvent} originalEvent

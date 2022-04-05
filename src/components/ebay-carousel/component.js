@@ -1,8 +1,9 @@
-const focusables = require('makeup-focusables').default;
-const resizeUtil = require('../../common/event-utils').resizeUtil;
-const processHtmlAttributes = require('../../common/html-attributes');
-const onScroll = require('./utils/on-scroll-debounced');
-const scrollTransition = require('./utils/scroll-transition');
+import focusables from 'makeup-focusables';
+// TODO check carousel
+import { resizeUtil } from '../../common/event-utils';
+import { processHtmlAttributes } from '../../common/html-attributes';
+import { onScrollDebounced as onScroll } from './utils/on-scroll-debounced';
+import { scrollTransition } from './utils/scroll-transition';
 
 // Used for carousel slide direction.
 const LEFT = -1;
@@ -458,7 +459,7 @@ function isNativeScrolling(el) {
     return getComputedStyle(el).overflowX !== 'visible';
 }
 
-module.exports = {
+export default {
     getTemplateData,
     move,
     handleMove,

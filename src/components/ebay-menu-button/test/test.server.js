@@ -1,15 +1,18 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const testUtils = require('../../../common/test-utils/server');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import snap from 'mocha-snap';
+import * as testUtils from '../../../common/test-utils/server';
+import template from '..';
+import * as mock from './mock';
 const migrator = require('../migrator');
-const template = require('..');
-const mock = require('./mock');
+
+const snapDOM = (node) => snap(node, '.html', __dirname);
 
 use(require('chai-dom'));
 
 describe('menu-button', () => {
     it('renders basic version', async () => {
-        const input = mock.Basic_2Items;
+        const input = mock.basic2Items;
         const { getByRole, getAllByRole, getByText, getByLabelText } = await render(
             template,
             input
@@ -34,7 +37,7 @@ describe('menu-button', () => {
     });
 
     it('renders with reverse=true', async () => {
-        const input = Object.assign({ reverse: true }, mock.Basic_2Items);
+        const input = Object.assign({ reverse: true }, mock.basic2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu-button__menu')).with.class(
             'menu-button__menu--reverse'
@@ -42,7 +45,7 @@ describe('menu-button', () => {
     });
 
     it('renders with fix-width=true', async () => {
-        const input = Object.assign({ fixWidth: true }, mock.Basic_2Items);
+        const input = Object.assign({ fixWidth: true }, mock.basic2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu-button__menu')).with.class(
             'menu-button__menu--fix-width'
@@ -50,13 +53,13 @@ describe('menu-button', () => {
     });
 
     it('renders with borderless=true', async () => {
-        const input = Object.assign({ borderless: true }, mock.Basic_2Items);
+        const input = Object.assign({ borderless: true }, mock.basic2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--borderless');
     });
 
     it('renders with size=small', async () => {
-        const input = Object.assign({ size: 'small' }, mock.Basic_2Items);
+        const input = Object.assign({ size: 'small' }, mock.basic2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('button')).has.class('expand-btn--small');
     });
@@ -117,7 +120,7 @@ describe('menu-button', () => {
     });
 
     it('renders with separators', async () => {
-        const input = mock.Separator_4Items;
+        const input = mock.separator4Items;
         const { queryByText, getAllByRole, getByText } = await render(template, input);
         const menuItemEls = getAllByRole('menuitem');
         const separators = getAllByRole('separator');
@@ -164,7 +167,12 @@ describe('migrator', () => {
 
     it('transforms an icon attribute into a tag', async () => {
         const tagString = '<ebay-menu-button icon="settings"/>';
-        const { el } = testUtils.runTransformer(migrator, tagString, componentPath);
+        const { el, code } = testUtils.runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         const {
             body: {
                 array: [iconEl],
@@ -179,9 +187,14 @@ describe('migrator', () => {
         expect(tag.tagName).to.equal('ebay-settings-icon');
     });
 
-    it('does not transform when icon attribute is missing', () => {
+    it('does not transform when icon attribute is missing', async () => {
         const tagString = '<ebay-menu/>';
-        const { el } = testUtils.runTransformer(migrator, tagString, componentPath);
+        const { el, code } = testUtils.runMigrateTransformer(migrator, tagString, componentPath);
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
+
         const {
             body: {
                 array: [iconEl],

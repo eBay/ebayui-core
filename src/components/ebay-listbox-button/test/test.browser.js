@@ -1,10 +1,11 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { pressKey } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import { pressKey } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -16,7 +17,7 @@ before(() => document.body.appendChild(form));
 after(() => document.body.removeChild(form));
 
 describe('given the listbox with 3 items', () => {
-    const input = mock.Basic_3Options;
+    const input = mock.basic3Options;
 
     beforeEach(async () => {
         component = await render(template, Object.assign({}, input, { listSelection: 'auto' }), {
@@ -95,7 +96,7 @@ describe('given the listbox with 3 items', () => {
 });
 
 describe('given the listbox is in an expanded state', () => {
-    const input = mock.Basic_3Options_FirstSelected;
+    const input = mock.basic3OptionsFirstSelected;
 
     beforeEach(async () => {
         component = await render(template, Object.assign({}, input, { listSelection: 'auto' }), {
@@ -143,7 +144,7 @@ describe('given the listbox is in an expanded state', () => {
 });
 
 describe('given the listbox is in an expanded state with manual list-selection', () => {
-    const input = mock.Basic_3Options_FirstSelected;
+    const input = mock.basic3OptionsFirstSelected;
 
     beforeEach(async () => {
         component = await render(template, input, { container: form });

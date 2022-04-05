@@ -1,4 +1,4 @@
-const onScrollEnd = require('../on-scroll-end');
+import { onScrollEnd } from '../on-scroll-end';
 const supportsScrollBehavior =
     typeof window !== 'undefined' && 'scrollBehavior' in document.documentElement.style;
 
@@ -11,7 +11,7 @@ const supportsScrollBehavior =
  * @param {function} fn A function that will be called after the transition completes.
  * @return {function} A function that cancels the transition.
  */
-module.exports = function scrollTransition(el, to, fn) {
+export function scrollTransition(el, to, fn) {
     if (supportsScrollBehavior) {
         el.scrollTo({ left: to });
         return onScrollEnd(el, fn);
@@ -73,7 +73,7 @@ module.exports = function scrollTransition(el, to, fn) {
     function cancelTouchEnd() {
         el.removeEventListener('touchend', handleTouchEnd);
     }
-};
+}
 
 /**
  * Ease out timing function.

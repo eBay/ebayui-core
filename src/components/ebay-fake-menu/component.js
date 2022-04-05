@@ -1,6 +1,6 @@
-const eventUtils = require('../../common/event-utils');
+import * as eventUtils from '../../common/event-utils';
 
-module.exports = {
+export default {
     handleItemClick(index, originalEvent, el) {
         this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
     },

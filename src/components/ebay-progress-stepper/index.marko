@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = ["step", "direction", "defaultState", "class"];
 
@@ -35,7 +35,7 @@ $ var current = (input.step || []).findIndex(item => item.current);
                 "progress-stepper__items--upcoming"
         ]
         role="list">
-        <for|item, index, list| of=input.step>
+        <for|item, index, list| of=(input.step || [])>
             <if(index > 0)>
                 <hr class="progress-stepper__separator" role="presentation"/>
             </if>

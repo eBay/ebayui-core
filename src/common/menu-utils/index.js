@@ -60,11 +60,4 @@ function toggleChecked(index) {
     }
 }
 
-module.exports = {
-    isRadio,
-    getInputState,
-    isChecked,
-    getCheckedIndexes,
-    getCheckedValues,
-    toggleChecked,
-};
+export { isRadio, getInputState, isChecked, getCheckedIndexes, getCheckedValues, toggleChecked };

@@ -1,10 +1,10 @@
-const { use } = require('chai');
-const { render, prettyDOM } = require('@marko/testing-library');
-const snap = require('mocha-snap').default;
-const template = require('..');
-const mock = require('./mock');
+import { use } from 'chai';
+import { render, prettyDOM } from '@marko/testing-library';
+import snap from 'mocha-snap';
+import template from '..';
+import * as mock from './mock';
 
-// const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+// import { testPassThroughAttributes } from '../../../common/test-utils/server';
 
 const snapDOM = (node) => snap(prettyDOM(node), '.html', __dirname);
 
@@ -31,7 +31,7 @@ it('renders defaults', async () => {
 });
 
 it('renders with menu items', async () => {
-    const { container } = await render(template, mock.Basic_3Items);
+    const { container } = await render(template, mock.basic3Items);
     await snapDOM(container);
 });
 

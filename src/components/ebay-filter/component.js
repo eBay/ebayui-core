@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     handleButtonClick(originalEvent) {
         if (!this.input.disabled) {
             const selected = !this.state.selected;

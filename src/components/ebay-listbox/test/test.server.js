@@ -1,17 +1,17 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 const {
     testPassThroughAttributes,
     testEventsMigrator,
 } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
 
 use(require('chai-dom'));
 
 describe('listbox', () => {
     it('renders basic version', async () => {
-        const input = mock.Basic_3Options;
+        const input = mock.basic3Options;
         const { getAllByRole } = await render(template, input);
 
         const listboxEl = getAllByRole('listbox').find(isVisible);
@@ -26,13 +26,13 @@ describe('listbox', () => {
     });
 
     it('renders empty', async () => {
-        const input = mock.Basic_0Options;
+        const input = mock.basic0Options;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('listbox').filter(isVisible)[0].childNodes).has.length(0);
     });
 
     it('renders with second item selected', async () => {
-        const input = mock.Basic_3Options_1Selected;
+        const input = mock.basic3Options1Selected;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('option').filter(isVisible).findIndex(isAriaSelected)).is.equal(1);
     });

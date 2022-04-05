@@ -1,17 +1,18 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 const {
     testPassThroughAttributes,
     testEventsMigrator,
 } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
 
-use(require('chai-dom'));
+use(chaiDom);
 
 describe('listbox', () => {
     it('renders basic version', async () => {
-        const input = mock.Basic_3Options;
+        const input = mock.basic3Options;
         const { getByRole, getAllByRole } = await render(template, input);
 
         const btnEl = getByRole('button');
@@ -32,21 +33,21 @@ describe('listbox', () => {
     });
 
     it('renders empty', async () => {
-        const input = mock.Basic_0Options;
+        const input = mock.basic0Options;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('button')).has.length(1);
         expect(getAllByRole('listbox').filter(isVisible)[0].childNodes).has.length(0);
     });
 
     it('renders fluid layout', async () => {
-        const input = mock.Basic_3Options_fluid;
+        const input = mock.basic3Optionsfluid;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('button')).has.length(1);
         expect(getAllByRole('listbox')[0].parentNode).has.class('listbox-button--fluid');
     });
 
     it('renders truncated layout', async () => {
-        const input = mock.Basic_3Options_truncated;
+        const input = mock.basic3Optionstruncated;
         const { getAllByRole, getByRole } = await render(template, input);
         expect(getAllByRole('button')).has.length(1);
         expect(getByRole('button')).has.class('expand-btn--truncated');
@@ -54,13 +55,13 @@ describe('listbox', () => {
     });
 
     it('renders with second item selected', async () => {
-        const input = mock.Basic_3Options_1Selected;
+        const input = mock.basic3Options1Selected;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('option').filter(isVisible).findIndex(isAriaSelected)).is.equal(1);
     });
 
     it('renders with prefix label', async () => {
-        const input = mock.Basic_3Options_1Selected;
+        const input = mock.basic3Options1Selected;
         const { getAllByText } = await render(
             template,
             Object.assign({}, input, { prefixLabel: 'prefix:' })
@@ -69,7 +70,7 @@ describe('listbox', () => {
     });
 
     it('renders with prefix id', async () => {
-        const input = mock.Basic_3Options_1Selected;
+        const input = mock.basic3Options1Selected;
         const { getByRole, getAllByText } = await render(
             template,
             Object.assign({}, input, { prefixId: 'prefixId' })
@@ -83,7 +84,7 @@ describe('listbox', () => {
     });
 
     it('renders with floating label', async () => {
-        const input = mock.Basic_3Options_1Selected;
+        const input = mock.basic3Options1Selected;
         const { getAllByText, getByRole } = await render(
             template,
             Object.assign({}, input, { floatingLabel: 'floating label' })

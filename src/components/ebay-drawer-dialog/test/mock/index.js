@@ -1,6 +1,7 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+/* eslint camelcase: "off" */
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Drawer = {
+export const Drawer = {
     a11yCloseText: 'close',
     a11yMinimizeText: 'minimize',
     a11yMaximizeText: 'maximize',
@@ -13,10 +14,10 @@ exports.Drawer = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Drawer_Open = Object.assign({}, exports.Drawer, {
+export const Drawer_Open = Object.assign({}, Drawer, {
     open: true,
 });
 
-exports.Drawer_Expanded = Object.assign({}, exports.Drawer_Open, {
+export const Drawer_Expanded = Object.assign({}, Drawer_Open, {
     expanded: true,
 });

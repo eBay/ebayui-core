@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     handleCollapse({ originalEvent }) {
         if (this._expander.expanded) {
             this._expander.expanded = false;

@@ -1,7 +1,7 @@
-const sinon = require('sinon');
-const { expect } = require('chai');
-const menuUtils = require('../');
-const { getNItems } = require('../../test-utils/shared');
+import sinon from 'sinon';
+import { expect } from 'chai';
+import * as menuUtils from '../';
+import { getNItems } from '../../test-utils/shared';
 
 describe('non radio component', () => {
     const input = {

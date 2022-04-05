@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const util = require('..');
+import { expect } from 'chai';
+import * as util from '../index';
 
 describe('ds-utils', () => {
     it('fetches the correct DS version flags', () => {

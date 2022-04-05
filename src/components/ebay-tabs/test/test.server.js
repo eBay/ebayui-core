@@ -1,19 +1,23 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import snap from 'mocha-snap';
+
+import template from '..';
+import * as mock from './mock';
 const {
     testPassThroughAttributes,
     testEventsMigrator,
-    runTransformer,
+    runMigrateTransformer,
 } = require('../../../common/test-utils/server');
-const template = require('..');
 const migrator = require('../migrator');
-const mock = require('./mock');
+
+const snapDOM = (node) => snap(node, '.html', __dirname);
 
 use(require('chai-dom'));
 
 describe('tabs', () => {
     it('renders basic version with 3 tabs and 3 panels', async () => {
-        const input = mock.Basic_3Headings_3Panels_No_Index;
+        const input = mock.basic3Headings_3Panels_No_Index;
         const { getByRole, getAllByRole } = await render(template, input);
 
         const tablistEl = getByRole('tablist');
@@ -55,7 +59,7 @@ describe('tabs', () => {
     });
 
     it('renders basic version with 3 tabs and 3 panels on the second panel', async () => {
-        const input = mock.Basic_3Headings_3Panels_1Index;
+        const input = mock.basic3Headings_3Panels_1Index;
         const { getAllByRole } = await render(template, input);
 
         getAllByRole('tab').forEach((headingEl, i) => {
@@ -80,9 +84,12 @@ describe('tabs', () => {
 });
 
 describe('migrator', () => {
-    it('should migrate to fake tabs', () => {
-        const { el } = runTransformer(migrator, '<ebay-tabs fake/>', '../index.marko');
-
+    it('should migrate to fake tabs', async () => {
+        const { el, code } = runMigrateTransformer(migrator, '<ebay-tabs fake/>', '../index.marko');
+        if (code) {
+            await snapDOM(code);
+            return;
+        }
         expect(el.tagName).to.equal('ebay-fake-tabs');
         expect(el.hasAttribute('fake')).to.equal(false);
     });
