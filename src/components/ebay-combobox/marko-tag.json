@@ -9,6 +9,7 @@
   "@floating-label": "string",
   "@borderless": "boolean",
   "@autocomplete": "string",
+  "@expanded": "boolean",
   "@list-selection": {
     "enum": ["automatic", "manual"]
   },

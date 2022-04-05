@@ -1,7 +1,10 @@
 'use strict';
 
 module.exports = ({ config }) => {
-    config.mochaOptions = { timeout: 60000 };
+    config.mochaOptions = {
+        timeout: 60000,
+        require: ['mocha-snap'],
+    };
 
     config.lassoOptions = {
         flags: [],

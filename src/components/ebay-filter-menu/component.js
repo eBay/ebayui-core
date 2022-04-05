@@ -4,6 +4,11 @@ const eventUtils = require('../../common/event-utils');
 const menuUtils = require('../../common/menu-utils');
 
 module.exports = Object.assign({}, menuUtils, {
+    resetIndex() {
+        this._rovingTabIndex.index = 0;
+        this.lastTabIndexPosition = 0;
+    },
+
     handleRadioClick(index, ev, itemEl) {
         this._toggleItemChecked(index, ev, itemEl);
     },

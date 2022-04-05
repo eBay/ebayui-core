@@ -1,0 +1,36 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "type": "expression",
+    "targetProperty": null
+  },
+  "@html-attributes": "expression",
+  "@partially-disabled": "boolean",
+  "@priority": "string",
+  "@size": "size",
+  "@disabled": "#html-disabled",
+  "@a11y-menu-text": "string",
+  "@a11y-button-text": "string",
+  "@body-state": {
+    "enum": ["none", "loading"]
+  },
+  "@type": {
+    "enum": ["none", "radio", "checkbox"]
+  },
+  "@items <item>[]": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@class": "string",
+    "@style": "string",
+    "@value": "string",
+    "@checked": "boolean",
+    "@badge-number": "expression",
+    "@badge-aria-label": "string",
+    "@separator": "boolean"
+  },
+  "@target": "#html-target",
+  "@aria-disabled": "never"
+}

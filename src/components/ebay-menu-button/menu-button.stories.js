@@ -42,7 +42,8 @@ export default {
             description: 'whether content is expanded (Note: not supported as initial attribute)',
         },
         type: {
-            control: { type: 'text' },
+            control: { type: 'select' },
+            options: ['none', 'radio', 'checkbox'],
             description: 'Can be "radio" / "checkbox"',
         },
         reverse: {

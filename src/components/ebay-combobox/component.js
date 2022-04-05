@@ -85,7 +85,9 @@ module.exports = {
                     this._setSelectedText(this._getVisibleOptions()[selectedIndex].text);
                 }
 
-                this.expander.expanded = false;
+                if (this.input.expanded !== true) {
+                    this.expander.expanded = false;
+                }
             }
         });
 
@@ -118,7 +120,13 @@ module.exports = {
             this.focus();
         }
 
-        if (this.expander && this.expander.expanded && !wasClickedOption && !this.buttonClicked) {
+        if (
+            this.expander &&
+            this.expander.expanded &&
+            !wasClickedOption &&
+            !this.buttonClicked &&
+            this.input.expanded !== true
+        ) {
             this.expander.expanded = false;
         }
 
@@ -154,6 +162,13 @@ module.exports = {
             currentValue: this.lastValue,
             viewAllOptions: (this.state && this.state.viewAllOptions) || true,
         };
+        if (this.expander) {
+            this.expandedChange = input.expanded !== this.expanded;
+            if (this.expandedChange) {
+                this.expander.expanded = input.expanded;
+            }
+        }
+        this.expanded = input.expanded;
     },
 
     onMount() {
@@ -191,14 +206,19 @@ module.exports = {
             );
 
             this.expander = new Expander(this.el, {
-                autoCollapse: true,
+                autoCollapse: !this.expanded,
                 expandOnFocus: true,
-                collapseOnFocusOut: !this.input.readonly && !this.input.button,
+                collapseOnFocusOut: !this.expanded && !this.input.button,
                 contentSelector: '[role="listbox"]',
                 hostSelector: '[role="combobox"]',
                 expandedClass: 'combobox--expanded',
                 simulateSpacebarClick: true,
             });
+
+            if (this.expandedChange) {
+                this.expander.expanded = this.expanded;
+                this.expandedChange = false;
+            }
         }
         // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
         // It probably makes more sense to just move this functionality into Marko though.
