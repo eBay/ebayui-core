@@ -27,7 +27,7 @@ $ {
 $ var hasButton = !!input.button;
 $ var id = input.id || component.getElId("input")
 <span
-    class:no-update=["combobox", input.floatingLabel && "floating-label", input.class]
+    class=["combobox", input.floatingLabel && "floating-label", input.class]
     style=input.style
     on-activeDescendantChange("handleActiveDescendantChange")
     onExpander-expand("handleExpand")
