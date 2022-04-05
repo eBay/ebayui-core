@@ -138,17 +138,10 @@ module.exports = {
     loadCDN(immediate) {
         const _timeout =
             window.requestIdleCallback ||
-            function (handler) {
-                const startTime = Date.now();
-
+            function (handler, arg) {
                 return setTimeout(() => {
-                    handler({
-                        didTimeout: false,
-                        timeRemaining: function () {
-                            return Math.max(0, 50.0 - (Date.now() - startTime));
-                        },
-                    });
-                }, 1);
+                    handler();
+                }, arg.timeout);
             };
 
         const _cancel =
