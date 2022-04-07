@@ -1,10 +1,8 @@
 import { render } from '@marko/testing-library';
 import chaiDom from 'chai-dom';
 import { expect, use } from 'chai';
-import snap from 'mocha-snap';
 
 use(chaiDom);
-const snapDOM = (node) => snap(node, '.html', __dirname);
 
 let markoCompiler;
 let CompileContext;
@@ -59,69 +57,7 @@ function testPassThroughAttributes(template, { input, child, getClassAndStyleEl 
         expect(classAndStyleEl).attr('style').contains('color:red');
     });
 }
-function testEventsMigrator(migrator, component, events, componentPath) {
-    it(`checks all events ${component.component || component} events are migrated ${events.join(
-        ','
-    )}`, async () => {
-        const str = events
-            .map((event) => `on-${component.event || component}-${event.from || event}(() => {})`)
-            .join(' ');
-        const srcString = `<ebay-${component.component || component} ${str}/>`;
 
-        const { context, templateAST, code } = getTransformerData(srcString, componentPath, {
-            output: 'migrate',
-        });
-        if (templateAST && context) {
-            migrator(templateAST.body.array[0], context);
-            const el = templateAST.body.array[0];
-
-            events.forEach((event) => {
-                const fromEvent = event.from || event;
-                const toEvent = event.to || event;
-
-                expect(el.hasAttribute(`on-${toEvent}`)).to.equal(
-                    true,
-                    `should have on-${toEvent}`
-                );
-                expect(el.hasAttribute(`on-${component.event || component}-${fromEvent}`)).to.equal(
-                    false
-                );
-            });
-        } else {
-            await snapDOM(code);
-        }
-    });
-}
-function testAttributeRenameMigrator(
-    migrator,
-    component,
-    oldAttribute,
-    newAttribute,
-    componentPath
-) {
-    it(`checks all events ${
-        component.component || component
-    } attributes are migrated ${oldAttribute} to ${newAttribute}`, async () => {
-        const srcString = `<ebay-${component.component || component} ${oldAttribute}/>`;
-
-        const { context, templateAST, code } = getTransformerData(srcString, componentPath, {
-            output: 'migrate',
-        });
-        if (code) {
-            await snapDOM(code);
-            return;
-        }
-
-        migrator(templateAST.body.array[0], context);
-        const el = templateAST.body.array[0];
-
-        expect(el.hasAttribute(newAttribute)).to.equal(true, `should have ${newAttribute}`);
-        expect(el.hasAttribute(oldAttribute)).to.equal(
-            false,
-            `should no longer have ${oldAttribute}`
-        );
-    });
-}
 function getTransformedTemplate(transformer, srcString, componentPath) {
     const { context, templateAST, code } = getTransformerData(srcString, componentPath, {
         output: 'html',
@@ -179,7 +115,5 @@ export {
     runMigrateTransformer,
     runTransformer,
     getTransformedTemplate,
-    testAttributeRenameMigrator,
-    testEventsMigrator,
     testPassThroughAttributes,
 };

@@ -1,11 +1,8 @@
 import { expect, use } from 'chai';
 import { render } from '@marko/testing-library';
 import template from '..';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
 import * as mock from './mock';
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
 
 use(require('chai-dom'));
 
@@ -60,5 +57,4 @@ describe('filter', () => {
             return component.getByRole('button');
         },
     });
-    testEventsMigrator(require('../migrator'), 'filter', ['click'], '../index.marko');
 });

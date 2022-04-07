@@ -2,10 +2,7 @@ import { expect, use } from 'chai';
 import { render } from '@marko/testing-library';
 import template from '..';
 import * as mock from './mock';
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 
 use(require('chai-dom'));
 
@@ -100,10 +97,3 @@ describe('carousel', () => {
         },
     });
 });
-
-testEventsMigrator(
-    require('../migrator'),
-    'carousel',
-    [{ from: 'update', to: 'move' }, 'next', 'previous', 'slide', 'play', 'pause', 'scroll'],
-    '../index.marko'
-);

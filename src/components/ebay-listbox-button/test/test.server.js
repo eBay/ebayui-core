@@ -3,10 +3,7 @@ import chaiDom from 'chai-dom';
 import { render } from '@marko/testing-library';
 import template from '..';
 import * as mock from './mock';
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 
 use(chaiDom);
 
@@ -104,12 +101,6 @@ describe('listbox', () => {
             multiple: true,
         },
     });
-    testEventsMigrator(
-        require('../migrator'),
-        { event: 'listbox', component: 'listbox-button' },
-        ['change', 'expand', 'collapse'],
-        '../index.marko'
-    );
 });
 
 function isAriaSelected(el) {
