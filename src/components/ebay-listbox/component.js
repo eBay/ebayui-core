@@ -1,15 +1,15 @@
-const ActiveDescendant = require('makeup-active-descendant');
-const elementScroll = require('../../common/element-scroll');
-const eventUtils = require('../../common/event-utils');
+import { createLinear } from 'makeup-active-descendant';
+import { scroll } from '../../common/element-scroll';
+import * as eventUtils from '../../common/event-utils';
 
-module.exports = {
+export default class {
     get isAutoSelection() {
         return this.input.listSelection === 'auto';
-    },
+    }
 
     elementScroll() {
-        elementScroll.scroll(this.getEls('option')[this.state.selectedIndex]);
-    },
+        scroll(this.getEls('option')[this.state.selectedIndex]);
+    }
 
     handleChange(index, wasClicked) {
         if (this.state.selectedIndex !== index) {
@@ -25,40 +25,40 @@ module.exports = {
                 });
             });
         }
-    },
+    }
 
     handleClick(index) {
         this.handleChange(index, true);
-    },
+    }
 
     handleMouseDown() {
         this.wasClicked = true;
-    },
+    }
 
     handleKeyDown(originalEvent) {
         eventUtils.handleActionKeydown(originalEvent, () =>
             this.handleChange(this._activeDescendant.index, false)
         );
-    },
+    }
 
     handleListboxChange(event) {
         const selectedIndex = parseInt(event.detail.toIndex, 10);
         const el = this.getEls('option')[selectedIndex];
         const wasClicked = this.wasClicked;
 
-        elementScroll.scroll(el);
+        scroll(el);
 
         if (this.wasClicked) {
             this.wasClicked = false;
         }
         this.handleChange(selectedIndex, wasClicked);
-    },
+    }
 
     onCreate() {
         this.state = {
             selectedIndex: -1,
         };
-    },
+    }
 
     onInput(input) {
         const { state } = this;
@@ -67,25 +67,25 @@ module.exports = {
             -1,
             input.options.findIndex((option) => option.selected)
         );
-    },
+    }
 
     onMount() {
         this._setupMakeup();
-    },
+    }
 
     onUpdate() {
         this._setupMakeup();
-    },
+    }
 
     onRender() {
         if (typeof window !== 'undefined') {
             this._cleanupMakeup();
         }
-    },
+    }
 
     onDestroy() {
         this._cleanupMakeup();
-    },
+    }
 
     _setupMakeup() {
         const { input, state } = this;
@@ -93,7 +93,7 @@ module.exports = {
         if (input.options.length && !input.disabled) {
             const container = this.getEl('options');
             const optionsContainer = this.getEl('options');
-            this._activeDescendant = ActiveDescendant.createLinear(
+            this._activeDescendant = createLinear(
                 container,
                 optionsContainer,
                 optionsContainer,
@@ -106,12 +106,12 @@ module.exports = {
                 }
             );
         }
-    },
+    }
 
     _cleanupMakeup() {
         if (this._activeDescendant) {
             this._activeDescendant.destroy();
             this._activeDescendant = undefined;
         }
-    },
-};
+    }
+}

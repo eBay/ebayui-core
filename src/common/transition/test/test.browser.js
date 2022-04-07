@@ -1,7 +1,7 @@
-const sinon = require('sinon');
-const expect = require('chai').expect;
-const testUtils = require('../../test-utils/browser');
-const transition = require('../');
+import sinon from 'sinon';
+import { expect } from 'chai';
+import * as testUtils from '../../test-utils/browser';
+import transition from '../';
 
 describe('transition', () => {
     let styleSheet;

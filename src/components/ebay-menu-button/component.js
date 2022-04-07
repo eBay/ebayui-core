@@ -1,8 +1,8 @@
-const Expander = require('makeup-expander').default;
-const eventUtils = require('../../common/event-utils');
-const menuUtils = require('../../common/menu-utils');
+import Expander from 'makeup-expander';
+import * as eventUtils from '../../common/event-utils';
+import * as menuUtils from '../../common/menu-utils';
 
-module.exports = Object.assign({}, menuUtils, {
+export default Object.assign({}, menuUtils, {
     toggleItemChecked(index, itemEl, originalEvent) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
@@ -54,7 +54,7 @@ module.exports = Object.assign({}, menuUtils, {
     },
 
     focus() {
-        this.getEl('button').focus();
+        this.getComponent('button').el.focus();
     },
 
     handleButtonEscape() {

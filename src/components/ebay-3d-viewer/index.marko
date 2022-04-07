@@ -1,0 +1,43 @@
+import { processHtmlAttributes } from '../../common/html-attributes';
+static const isBrowser = typeof window !== 'undefined';
+static {
+    var ignoredAttributes = [
+        'class',
+        'assetId',
+        'cdnVersion',
+        'defaultDistance',
+        'maxDistance',
+        'minDistance',
+        'fov',
+        'minPolarAngle',
+        'maxPolarAngle',
+        'dampingFactor',
+        'allowViewBottom',
+        'autoRotate',
+        'mouseMoveFollow',
+        'animatedPlacement',
+    ];
+}
+
+<div
+    key='3d-viewer'
+    class=['three-d-player', input.class]
+    ...processHtmlAttributes(input, ignoredAttributes)
+>
+    <div class=['three-d-player__overlay', !state.failed && 'three-d-player__overlay--hidden']>
+        <ebay-attention-icon/>
+        <div.three-d-player__overlay-text>
+            <if(input.errorText)>${input.errorText}</if>
+            <else>An error has occurred</else>
+        </div>
+    </div>
+    <div
+        class=['three-d-player__overlay', state.isLoaded && 'three-d-player__overlay--hidden']
+        on-click('loadCDN', true)
+    >
+        <if(!state.showLoading)>
+            <ebay-video-play-icon a11y-text=input.a11yStartText || 'Click to start'/>
+        </if>
+        <else><ebay-progress-spinner a11y-text=input.a11yLoadText || 'Loading'/></else>
+    </div>
+</div>

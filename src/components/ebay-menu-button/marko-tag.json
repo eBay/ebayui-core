@@ -9,7 +9,9 @@
   "@html-attributes": "expression",
   "@class": "string",
   "@style": "string",
-  "@type": "string",
+  "@type": {
+    "enum": ["none", "radio", "checkbox"]
+  },
   "@text": "string",
   "@icon": "string",
   "@a11y-text": "string",

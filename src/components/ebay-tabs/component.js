@@ -1,7 +1,7 @@
-const rovingTabindex = require('makeup-roving-tabindex');
-const eventUtils = require('../../common/event-utils');
+import { createLinear } from 'makeup-roving-tabindex';
+import * as eventUtils from '../../common/event-utils';
 
-module.exports = {
+export default {
     /**
      * Handle a11y for heading
      * https://ebay.gitbooks.io/mindpatterns/content/disclosure/tabs.html
@@ -79,14 +79,10 @@ module.exports = {
         const { input, state } = this;
 
         if (!input.fake) {
-            this._linearRovingTabindex = rovingTabindex.createLinear(
-                this.getEl('tabs'),
-                '.tabs__item',
-                {
-                    index: state.selectedIndex,
-                    wrap: true,
-                }
-            );
+            this._linearRovingTabindex = createLinear(this.getEl('tabs'), '.tabs__item', {
+                index: state.selectedIndex,
+                wrap: true,
+            });
         }
     },
 

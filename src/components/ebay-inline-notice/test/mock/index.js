@@ -1,10 +1,10 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Inline = {
+export const Inline = {
     a11yText: 'Heading Text',
     renderBody: createRenderBody('Content'),
 };
 
-exports.Inline_Custom_Status = Object.assign({}, exports.Inline, {
+export const inlineCustomStatus = Object.assign({}, Inline, {
     status: 'confirmation',
 });

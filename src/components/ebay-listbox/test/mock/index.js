@@ -1,10 +1,10 @@
-const { getNItems } = require('../../../../common/test-utils/shared');
+import { getNItems } from '../../../../common/test-utils/shared';
 
-exports.Basic_0Options = {
+export const basic0Options = {
     options: [],
 };
 
-exports.Basic_3Options = {
+export const basic3Options = {
     name: 'listbox-name',
     options: getNItems(3, (i) => ({
         value: String(i),
@@ -12,7 +12,7 @@ exports.Basic_3Options = {
     })),
 };
 
-exports.Basic_3Options_FirstSelected = {
+export const basic3OptionsFirstSelected = {
     name: 'listbox-name',
     options: getNItems(3, (i) => ({
         selected: i === 0,
@@ -21,7 +21,7 @@ exports.Basic_3Options_FirstSelected = {
     })),
 };
 
-exports.Basic_3Options_1Selected = {
+export const basic3Options1Selected = {
     name: 'listbox-name',
     options: getNItems(3, (i) => ({
         value: String(i),

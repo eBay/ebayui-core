@@ -1,5 +1,5 @@
-const fs = require('fs');
-const { execSync } = require('child_process');
+import * as fs from 'fs';
+import { execSync } from 'child_process';
 const files = ['package.json', 'package-lock.json'];
 const contents = files.map((file) => fs.readFileSync(file));
 const args = process.argv.slice(2).join(' ');

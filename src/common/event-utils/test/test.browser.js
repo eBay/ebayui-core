@@ -1,8 +1,8 @@
-const sinon = require('sinon');
-const { expect } = require('chai');
-const { fireEvent } = require('@marko/testing-library');
-const { waitFrames } = require('../../test-utils/browser');
-const eventUtils = require('../');
+import sinon from 'sinon';
+import { expect } from 'chai';
+import { fireEvent } from '@marko/testing-library';
+import { waitFrames } from '../../test-utils/browser';
+import * as eventUtils from '../';
 
 const resizeUtil = eventUtils.resizeUtil;
 const handleActionKeydown = eventUtils.handleActionKeydown;
@@ -93,10 +93,12 @@ describe('resizeEventUtil', () => {
         resizeUtil.addEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
         fireEvent(window, new Event('resize'));
-        waitFrames(2, () => {
+        const fn = () => {
             expect(mockCallback.callCount).to.equal(1);
             done();
-        });
+        };
+
+        waitFrames(2, fn);
     });
 
     it('the root element does not listen for a window resize, after eventListener is removed', (done) => {
@@ -105,9 +107,10 @@ describe('resizeEventUtil', () => {
         resizeUtil.removeEventListener('resize', mockCallback.bind(this));
         expect(mockCallback.callCount).to.equal(0);
         fireEvent(window, new Event('resize'));
-        waitFrames(2, () => {
+        const fn = () => {
             expect(mockCallback.callCount).to.equal(0);
             done();
-        });
+        };
+        waitFrames(2, fn);
     });
 });

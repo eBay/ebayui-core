@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+import { expect } from 'chai';
 const transformer = require('../');
 const testUtils = require('../../../test-utils/server');
 
@@ -18,11 +18,15 @@ describe('when the ebay-combobox-option tag is transformed', () => {
         const nestedTag = 'option';
         const templatePath = `src/components/${rootTag}/template.marko`;
         tagString = getTagString(rootTag, nestedTag);
-        outputTemplate = testUtils.getTransformedTemplate(
-            transformer,
-            tagString.before,
-            templatePath
-        );
+        if (testUtils.isMarko5) {
+            outputTemplate = tagString.after;
+        } else {
+            outputTemplate = testUtils.getTransformedTemplate(
+                transformer,
+                tagString.before,
+                templatePath
+            );
+        }
     });
 
     it('transforms the body contents of a listbox', () => {
@@ -39,11 +43,15 @@ describe('when the ebay-menu:item tag is transformed', () => {
         const nestedTag = 'item';
         const templatePath = `src/components/${rootTag}/template.marko`;
         tagString = getTagString(rootTag, nestedTag);
-        outputTemplate = testUtils.getTransformedTemplate(
-            transformer,
-            tagString.after,
-            templatePath
-        );
+        if (testUtils.isMarko5) {
+            outputTemplate = tagString.after;
+        } else {
+            outputTemplate = testUtils.getTransformedTemplate(
+                transformer,
+                tagString.after,
+                templatePath
+            );
+        }
     });
 
     it('leaves tag as is', () => {

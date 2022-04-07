@@ -1,6 +1,6 @@
-const loader = require('./loader');
-const { getElements, playIcon } = require('./elements');
-const versions = require('./versions.json');
+import { loader } from '../../common/loader';
+import { getElements, playIcon } from './elements';
+import versions from './versions.json';
 const MAX_RETRIES = 3;
 const DEFAULT_SPINNER_TIMEOUT = 2000;
 
@@ -19,7 +19,7 @@ const videoConfig = {
     overflowMenuButtons: ['captions'],
 };
 
-module.exports = {
+export default {
     isPlaylist(source) {
         const type = source.type && source.type.toLowerCase();
         const src = source.src;
@@ -138,17 +138,10 @@ module.exports = {
     loadCDN(immediate) {
         const _timeout =
             window.requestIdleCallback ||
-            function (handler) {
-                const startTime = Date.now();
-
+            function (handler, arg) {
                 return setTimeout(() => {
-                    handler({
-                        didTimeout: false,
-                        timeRemaining: function () {
-                            return Math.max(0, 50.0 - (Date.now() - startTime));
-                        },
-                    });
-                }, 1);
+                    handler();
+                }, arg.timeout);
             };
 
         const _cancel =
@@ -256,7 +249,7 @@ module.exports = {
         const cdnUrl = this.input.cdnUrl || `${cdnBaseUrl}/shaka-player.ui.js`;
         const cssUrl = this.input.cssUrl || `${cdnBaseUrl}/controls.css`;
 
-        loader(cdnUrl, cssUrl)
+        loader([cdnUrl, cssUrl], ['src', 'css'])
             .then(() => {
                 // eslint-disable-next-line no-undef,new-cap
                 shaka.polyfill.installAll();

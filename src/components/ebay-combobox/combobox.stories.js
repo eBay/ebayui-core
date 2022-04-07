@@ -34,12 +34,8 @@ export default {
             description: 'sets the disabled attribute of the input',
         },
         expanded: {
-            type: 'boolean',
             control: { type: 'boolean' },
             description: 'sets whether the listbox is expanded',
-            table: {
-                disable: true,
-            },
         },
         autocomplete: {
             control: { type: 'text' },

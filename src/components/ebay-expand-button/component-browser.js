@@ -1,6 +1,6 @@
-const eventUtils = require('../../common/event-utils');
+import * as eventUtils from '../../common/event-utils';
 
-module.exports = {
+export default {
     handleClick(originalEvent) {
         if (!this.input.disabled) {
             this.emit('click', { originalEvent });

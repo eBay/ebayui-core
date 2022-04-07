@@ -1,8 +1,8 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
+import template from '..';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
@@ -18,7 +18,7 @@ describe('ebay-textbox', () => {
     });
 
     it('renders default input textbox with an id', async () => {
-        const input = mock.Basic_With_ID;
+        const input = mock.basicWithId;
         const { getByRole } = await render(template, input);
         expect(getByRole('textbox')).contains.id(input.id);
     });
@@ -51,39 +51,39 @@ describe('ebay-textbox', () => {
     });
 
     it('renders a textarea element with prefix icon', async () => {
-        const input = mock.Prefix_Icon;
+        const input = mock.prefixIcon;
         const { getByRole } = await render(template, input);
         expect(getByRole('textbox')).has.property('previousElementSibling').with.class('icon');
     });
 
     it('renders a textarea element with postfix icon', async () => {
-        const input = mock.Postfix_Icon;
+        const input = mock.postfixIcon;
         const { getByRole } = await render(template, input);
         expect(getByRole('textbox')).has.property('nextElementSibling').with.class('icon');
     });
 
     it('renders a textarea element with postfix icon button', async () => {
-        const input = mock.Postfix_Icon_Button;
+        const input = mock.postfixIconButton;
         const { getByLabelText } = await render(template, input);
         expect(getByLabelText('search button')).has.class('icon-btn');
         expect(getByLabelText('search button').firstElementChild).has.class('icon');
     });
 
     it('renders an input textbox with inline floating label', async () => {
-        const input = mock.Floating_Label;
+        const input = mock.floatingLabel;
         const { getByRole, getByLabelText, getByText } = await render(template, input);
         expect(getByRole('textbox')).to.equal(getByLabelText(input.floatingLabel));
         expect(getByText(input.floatingLabel)).has.class('legacy-floating-label__label');
     });
 
     it('renders an input textbox with inline floating label and an id', async () => {
-        const input = mock.Floating_Label_With_ID;
+        const input = mock.floatingLabelWithId;
         const { getByLabelText } = await render(template, input);
         expect(getByLabelText(input.floatingLabel)).has.id(input.id);
     });
 
     it('renders a disabled input textbox with disabled floating label', async () => {
-        const input = mock.Floating_Label_Disabled;
+        const input = mock.floatingLabelDisabled;
         const { getByText } = await render(template, input);
         expect(getByText(input.floatingLabel)).has.class('legacy-floating-label__label--disabled');
     });

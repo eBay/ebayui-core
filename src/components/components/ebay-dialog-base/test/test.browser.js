@@ -1,12 +1,13 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, waitFor, cleanup } = require('@marko/testing-library');
-const { fastAnimations } = require('../../../../common/test-utils/browser');
-const { pressKey } = require('../../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
-require('@ebay/skin/lightbox-dialog');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, waitFor, cleanup } from '@marko/testing-library';
+import { fastAnimations } from '../../../../common/test-utils/browser';
+import { pressKey } from '../../../../common/test-utils/browser';
+import template from '../';
+import * as mock from './mock';
+import '@ebay/skin/lightbox-dialog';
 
-use(require('chai-dom'));
+use(chaiDom);
 before(fastAnimations.start);
 after(fastAnimations.stop);
 afterEach(cleanup);
@@ -16,7 +17,7 @@ afterEach(cleanup);
 let component;
 
 describe('given a closed dialog', () => {
-    const input = mock.Dialog;
+    const input = mock.dialog;
     let sibling;
 
     beforeEach(async () => {
@@ -96,7 +97,7 @@ describe('given a closed dialog', () => {
 });
 
 describe('given an open dialog', () => {
-    const input = mock.Dialog_Open;
+    const input = mock.dialogOpen;
     let sibling;
 
     beforeEach(async () => {
@@ -229,7 +230,7 @@ describe('given an open dialog', () => {
 });
 
 describe('given an open dialog with no trap', () => {
-    const input = mock.Dialog_Open;
+    const input = mock.dialogOpen;
     let sibling;
 
     beforeEach(async () => {
@@ -267,7 +268,7 @@ describe('given an open dialog with no trap', () => {
 });
 
 describe('given an open with no close button', () => {
-    const input = mock.Dialog_Open;
+    const input = mock.dialogOpen;
     let sibling;
 
     beforeEach(async () => {
@@ -328,7 +329,7 @@ describe('given an open with no close button', () => {
 });
 
 describe('given a closed dialog with useHiddenProperty', () => {
-    const input = Object.assign({}, mock.Dialog, { useHiddenProperty: true });
+    const input = Object.assign({}, mock.dialog, { useHiddenProperty: true });
     let sibling;
 
     beforeEach(async () => {

@@ -1,14 +1,14 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const testUtils = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as testUtils from '../../../common/test-utils/server';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
 describe('fake-menu', () => {
     it('renders base version', async () => {
-        const input = mock.Basic_2Items;
+        const input = mock.basic2Items;
         const { getByText } = await render(template, input);
 
         input.items.forEach((item) => {
@@ -20,7 +20,7 @@ describe('fake-menu', () => {
     });
 
     it('renders with reverse=true', async () => {
-        const input = Object.assign({ reverse: true }, mock.Basic_2Items);
+        const input = Object.assign({ reverse: true }, mock.basic2Items);
         const { getByText } = await render(template, input);
         expect(
             getByText(input.items[0].renderBody.text).closest('.fake-menu__menu--reverse')
@@ -28,7 +28,7 @@ describe('fake-menu', () => {
     });
 
     it('renders with fix-width=true', async () => {
-        const input = Object.assign({ fixWidth: true }, mock.Basic_2Items);
+        const input = Object.assign({ fixWidth: true }, mock.basic2Items);
         const { getByText } = await render(template, input);
         expect(
             getByText(input.items[0].renderBody.text).closest('.fake-menu__menu--fix-width')
@@ -36,7 +36,7 @@ describe('fake-menu', () => {
     });
 
     it('renders with separators', async () => {
-        const input = mock.Separator_4Items;
+        const input = mock.separator4Items;
         const { queryByText, getAllByRole } = await render(template, input);
         const separators = getAllByRole('separator');
         input.items.forEach((item) => {
@@ -50,7 +50,7 @@ describe('fake-menu', () => {
     });
 
     it('renders with aria-current=true', async () => {
-        const input = mock.A11y_Current_True;
+        const input = mock.a11yCurrentTrue;
         const { getByText } = await render(template, input);
         const item = input.items[0];
         const container = getByText(item.renderBody.text);

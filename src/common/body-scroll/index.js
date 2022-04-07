@@ -1,9 +1,9 @@
-const { resizeUtil } = require('../event-utils');
+import { resizeUtil } from '../event-utils';
 let previousPosition;
 let previousStyles;
 let isPrevented = false;
 
-module.exports = { prevent, restore };
+export { prevent, restore };
 
 /**
  * Prevents the `<body>` element from scrolling.

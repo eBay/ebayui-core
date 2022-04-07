@@ -1,4 +1,4 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 const iconBody = {
     renderBody: createRenderBody(
         '<svg class="icon" focusable="false" id="w11-w0" ' +
@@ -8,54 +8,54 @@ const iconBody = {
     ),
 };
 
-exports.Basic = {
+export const Basic = {
     value: 'textbox value',
 };
 
-exports.Basic_With_ID = Object.assign({}, exports.Basic, {
+export const basicWithId = Object.assign({}, Basic, {
     id: 'textbox-id',
 });
 
-exports.Fluid = Object.assign({}, exports.Basic, {
+export const Fluid = Object.assign({}, Basic, {
     fluid: true,
 });
 
-exports.Disabled = Object.assign({}, exports.Basic, {
+export const Disabled = Object.assign({}, Basic, {
     disabled: true,
 });
 
-exports.Invalid = Object.assign({}, exports.Basic, {
+export const Invalid = Object.assign({}, Basic, {
     invalid: true,
 });
 
-exports.Multiline = Object.assign({}, exports.Basic, {
+export const Multiline = Object.assign({}, Basic, {
     multiline: true,
 });
 
-exports.Prefix_Icon = Object.assign({}, exports.Basic, {
+export const prefixIcon = Object.assign({}, Basic, {
     prefixIcon: iconBody,
 });
 
-exports.Postfix_Icon = Object.assign({}, exports.Basic, {
+export const postfixIcon = Object.assign({}, Basic, {
     postfixIcon: iconBody,
 });
 
-exports.Postfix_Icon_Button = Object.assign({}, exports.Postfix_Icon, {
+export const postfixIconButton = Object.assign({}, postfixIcon, {
     buttonAriaLabel: 'search button',
 });
 
-exports.Floating_Label = Object.assign({}, exports.Basic, {
+export const floatingLabel = Object.assign({}, Basic, {
     floatingLabel: 'Email address',
 });
 
-exports.Floating_Label_No_Value = Object.assign({}, exports.Floating_Label, {
+export const floatingLabelNoValue = Object.assign({}, floatingLabel, {
     value: undefined,
 });
 
-exports.Floating_Label_With_ID = Object.assign({}, exports.Floating_Label, {
+export const floatingLabelWithId = Object.assign({}, floatingLabel, {
     id: 'textbox-id',
 });
 
-exports.Floating_Label_Disabled = Object.assign({}, exports.Floating_Label, {
+export const floatingLabelDisabled = Object.assign({}, floatingLabel, {
     disabled: true,
 });

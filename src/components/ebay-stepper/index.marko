@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes";
+import { processHtmlAttributes } from "../../common/html-attributes";
 import helper from './helper';
 
 static var ignoredAttributes = [
@@ -20,7 +20,7 @@ $ var current = helper.getCurrent(input.step);
 
 <div class=["stepper", direction === 'column' && "stepper--vertical", input.class] ...processHtmlAttributes(input, ignoredAttributes)>
     <div class="stepper__items" role="list" >
-        <for|item, index, list| of=input.step>
+        <for|item, index, list| of=(input.step || [])>
             $ var itemData = helper.getStepClass(index, current, list);
             <if(index > 0)>
                 <hr class="stepper__separator" role="presentation"/>

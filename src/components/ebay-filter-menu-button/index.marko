@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "variant",
@@ -44,7 +44,7 @@ static var ignoredAttributes = [
         on-change("handleMenuChange")
         on-form-submit("handleFormSubmit")
         on-footer-click("handleFooterButtonClick")>
-        <for|item, i| of=input.items>
+        <for|item, i| of=(input.items || [])>
             <@item ...item checked=component.isChecked(i)/>
         </for>
     </ebay-filter-menu>

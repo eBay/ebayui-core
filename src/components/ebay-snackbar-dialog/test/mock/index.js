@@ -1,6 +1,7 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+/* eslint camelcase: "off" */
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Snackbar = {
+export const Snackbar = {
     a11yCloseText: 'close',
     header: {
         renderBody: createRenderBody('head content'),
@@ -14,10 +15,10 @@ exports.Snackbar = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Snackbar_Open = Object.assign({}, exports.Snackbar, {
+export const Snackbar_Open = Object.assign({}, Snackbar, {
     open: true,
 });
 
-exports.Snackbar_Closed = Object.assign({}, exports.Snackbar, {
+export const Snackbar_Closed = Object.assign({}, Snackbar, {
     open: false,
 });

@@ -1,8 +1,8 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
+import template from '..';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
@@ -37,7 +37,7 @@ describe('section-title', () => {
     });
 
     it('renders with see-all cta', async () => {
-        const input = mock.CTA_SeeAll;
+        const input = mock.CTASeeAll;
         const { getByText } = await render(template, input);
 
         const title = getByText(input.title.renderBody.text);

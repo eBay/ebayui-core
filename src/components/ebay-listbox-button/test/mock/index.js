@@ -1,12 +1,13 @@
-const { getNItems } = require('../../../../common/test-utils/shared');
+/* eslint camelcase: "off" */
+import { getNItems } from '../../../../common/test-utils/shared';
 
-exports.Basic_0Options = {
+export const basic0Options = {
     name: 'listbox-name',
     buttonName: 'listbox-button-name',
     options: [],
 };
 
-exports.Basic_3Options_fluid = {
+export const basic3Optionsfluid = {
     name: 'listbox-name',
     fluid: true,
     options: getNItems(3, (i) => ({
@@ -15,7 +16,7 @@ exports.Basic_3Options_fluid = {
     })),
 };
 
-exports.Basic_3Options_truncated = {
+export const basic3Optionstruncated = {
     name: 'listbox-name',
     truncate: true,
     options: getNItems(3, (i) => ({
@@ -24,7 +25,7 @@ exports.Basic_3Options_truncated = {
     })),
 };
 
-exports.Basic_3Options = {
+export const basic3Options = {
     name: 'listbox-name',
     buttonName: 'listbox-button-name',
     options: getNItems(3, (i) => ({
@@ -33,7 +34,7 @@ exports.Basic_3Options = {
     })),
 };
 
-exports.Basic_3Options_FirstSelected = {
+export const basic3OptionsFirstSelected = {
     name: 'listbox-name',
     buttonName: 'listbox-button-name',
     options: getNItems(3, (i) => ({
@@ -43,7 +44,7 @@ exports.Basic_3Options_FirstSelected = {
     })),
 };
 
-exports.Basic_3Options_1Selected = {
+export const basic3Options1Selected = {
     name: 'listbox-name',
     options: getNItems(3, (i) => ({
         value: String(i),

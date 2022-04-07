@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const processHtmlAttributes = require('../');
+import { expect } from 'chai';
+import { processHtmlAttributes } from '../';
 
 it('creates attributes object based on html-attributes', () => {
     const input = { htmlAttributes: { b: 2, ariaRole: 'link' }, other: 'other' };

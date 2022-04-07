@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = ["step", "direction", "defaultState", "class"];
 
@@ -35,7 +35,7 @@ $ var current = (input.step || []).findIndex(item => item.current);
                 "progress-stepper__items--upcoming"
         ]
         role="list">
-        <for|item, index, list| of=input.step>
+        <for|item, index, list| of=(input.step || [])>
             <if(index > 0)>
                 <hr class="progress-stepper__separator" role="presentation"/>
             </if>
@@ -53,17 +53,17 @@ $ var current = (input.step || []).findIndex(item => item.current);
                 ...processHtmlAttributes(item, ignoredStepAttributes)>
                 <span class="progress-stepper__icon">
                     <if(item.type === "attention")>
-                        <ebay-stepper-attention-icon width="24" height="24" aria-label=(item.a11yText || 'blocked')/>
+                        <ebay-stepper-attention-icon width="24" height="24" a11y-text=(item.a11yText || 'blocked')/>
                     </if>
                     <else-if(item.type === "information")>
-                        <ebay-stepper-information-icon width="24" height="24" aria-label=(item.a11yText || 'issue')/>
+                        <ebay-stepper-information-icon width="24" height="24" a11y-text=(item.a11yText || 'issue')/>
                     </else-if>
                     <else-if(
                         index < current ||
                         item.type === "complete" ||
                         input.defaultState === "complete"
                     )>
-                        <ebay-stepper-confirmation-icon width="24" height="24" aria-label=(item.a11yText || 'complete')/>
+                        <ebay-stepper-confirmation-icon width="24" height="24" a11y-text=(item.a11yText || 'complete')/>
                     </else-if>
                     <else>
                         <span role="img" aria-label=(item.a11yText || (current === index ? 'current' : 'upcoming'))></span>

@@ -1,8 +1,8 @@
-const { expect, use } = require('chai');
-const { render, within } = require('@marko/testing-library');
-const testUtils = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render, within } from '@marko/testing-library';
+import template from '..';
+import * as testUtils from '../../../common/test-utils/server';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
@@ -33,7 +33,7 @@ describe('stepper', () => {
     });
 
     it('renders vertical stepper', async () => {
-        const input = mock.ProgressStepper_Vertical;
+        const input = mock.progressStepperVertical;
         const { getByText, getByRole, getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(3);
         expect(getByRole('list').parentElement).has.class('progress-stepper--vertical');
@@ -49,7 +49,7 @@ describe('stepper', () => {
     });
 
     it('renders stepper with states', async () => {
-        const input = mock.ProgressStepper_States;
+        const input = mock.progressStepperStates;
         const { getAllByRole } = await render(template, input);
         expect(getAllByRole('presentation')).has.length(4);
 

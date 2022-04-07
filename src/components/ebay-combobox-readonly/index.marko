@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes";
+import { processHtmlAttributes } from "../../common/html-attributes";
 
 static var ignoreAttributes = ["class", "style", "name", "options", "borderless"];
 static var ignoreOptionAttributes = ["text", "selected", "value"];
@@ -10,7 +10,7 @@ $ var selectedOption = input.options && input.options[state.selectedIndex];
     style=input.style
     onExpander-expand("handleExpand")
     onExpander-collapse("handleCollapse")>
-    <span class:no-update=["combobox__control", input.borderless && "combobox__control--borderless"]>
+    <span class:no-update=["combobox_control", input.borderless && "combobox_control--borderless"]>
         <input
             ...processHtmlAttributes(input, ignoreAttributes)
             key="combobox"
@@ -19,7 +19,7 @@ $ var selectedOption = input.options && input.options[state.selectedIndex];
             readonly
             value=(selectedOption && selectedOption.text)
             aria-haspopup="listbox"
-            aria-owns:scoped="combobox__listbox"
+            aria-owns:scoped="combobox_listbox"
             aria-expanded:no-update="false"
             onKeydown("handleComboboxKeyDown")/>
         <ebay-dropdown-icon/>
@@ -28,8 +28,8 @@ $ var selectedOption = input.options && input.options[state.selectedIndex];
         <div
             key="listbox"
             role="listbox"
-            class="combobox__listbox"
-            id:scoped="combobox__listbox">
+            class="combobox_listbox"
+            id:scoped="combobox_listbox">
             <for|option, i| of=input.options>
                 $ var isSelected = option === selectedOption;
                 <div
@@ -37,9 +37,9 @@ $ var selectedOption = input.options && input.options[state.selectedIndex];
                     key="options[]"
                     role="option"
                     class=[
-                        "combobox__option",
+                        "combobox_option",
                         option.class,
-                        isSelected && "combobox__option--active"
+                        isSelected && "combobox_option--active"
                     ]
                     tabindex:no-update="-1"
                     aria-selected=(isSelected && "true")
@@ -52,7 +52,7 @@ $ var selectedOption = input.options && input.options[state.selectedIndex];
             </for>
         </div>
     </if>
-    <select hidden class="combobox__native" name=input.name>
+    <select hidden class="combobox_native" name=input.name>
         <for|option| of=input.options>
             <option value=option.value selected=(option === selectedOption)/>
         </for>

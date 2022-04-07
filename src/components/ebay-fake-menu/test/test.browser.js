@@ -1,17 +1,18 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { pressKey } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import { pressKey } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
 describe('given the menu is in the default state', () => {
-    const input = mock.Basic_2Items;
+    const input = mock.basic2Items;
     const firstItemText = input.items[0].renderBody.text;
 
     beforeEach(async () => {

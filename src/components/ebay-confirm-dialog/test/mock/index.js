@@ -1,6 +1,7 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+/* eslint camelcase: "off" */
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Dialog = {
+export const Dialog = {
     confirmText: 'confirm',
     rejectText: 'close',
     header: {
@@ -9,6 +10,6 @@ exports.Dialog = {
     renderBody: createRenderBody('body content'),
 };
 
-exports.Dialog_Open = Object.assign({}, exports.Dialog, {
+export const dialogOpen = Object.assign({}, Dialog, {
     open: true,
 });

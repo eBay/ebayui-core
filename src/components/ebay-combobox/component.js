@@ -1,11 +1,11 @@
-const ActiveDescendant = require('makeup-active-descendant');
-const FloatingLabel = require('makeup-floating-label').default;
-const Expander = require('makeup-expander').default;
-const elementScroll = require('../../common/element-scroll');
-const eventUtils = require('../../common/event-utils');
-const safeRegex = require('../../common/build-safe-regex');
+import { createLinear } from 'makeup-active-descendant';
+import FloatingLabel from 'makeup-floating-label';
+import Expander from 'makeup-expander';
+import { scroll } from '../../common/element-scroll';
+import * as eventUtils from '../../common/event-utils';
+import safeRegex from '../../common/build-safe-regex';
 
-module.exports = {
+export default {
     focus() {
         this.getEl('combobox').focus();
     },
@@ -40,7 +40,7 @@ module.exports = {
         this.activeDescendant.index = current;
         const selectedEl = this.getEls('options')[current];
         if (selectedEl) {
-            elementScroll.scroll(selectedEl);
+            scroll(selectedEl);
         }
     },
 
@@ -85,7 +85,9 @@ module.exports = {
                     this._setSelectedText(this._getVisibleOptions()[selectedIndex].text);
                 }
 
-                this.expander.expanded = false;
+                if (this.input.expanded !== true) {
+                    this.expander.expanded = false;
+                }
             }
         });
 
@@ -118,7 +120,13 @@ module.exports = {
             this.focus();
         }
 
-        if (this.expander && this.expander.expanded && !wasClickedOption && !this.buttonClicked) {
+        if (
+            this.expander &&
+            this.expander.expanded &&
+            !wasClickedOption &&
+            !this.buttonClicked &&
+            this.input.expanded !== true
+        ) {
             this.expander.expanded = false;
         }
 
@@ -154,6 +162,13 @@ module.exports = {
             currentValue: this.lastValue,
             viewAllOptions: (this.state && this.state.viewAllOptions) || true,
         };
+        if (this.expander) {
+            this.expandedChange = input.expanded !== this.expanded;
+            if (this.expandedChange) {
+                this.expander.expanded = input.expanded;
+            }
+        }
+        this.expanded = input.expanded;
     },
 
     onMount() {
@@ -176,13 +191,13 @@ module.exports = {
 
     _setupMakeup() {
         if (this._hasVisibleOptions()) {
-            this.activeDescendant = ActiveDescendant.createLinear(
+            this.activeDescendant = createLinear(
                 this.el,
                 this.getEl('combobox'),
                 this.getEl('listbox'),
                 '[role="option"]',
                 {
-                    activeDescendantClassName: 'combobox__option--active',
+                    activeDescendantClassName: 'combobox_option--active',
                     autoInit: -1,
                     autoReset: -1,
                     axis: 'y',
@@ -191,14 +206,19 @@ module.exports = {
             );
 
             this.expander = new Expander(this.el, {
-                autoCollapse: true,
+                autoCollapse: !this.expanded,
                 expandOnFocus: true,
-                collapseOnFocusOut: !this.input.readonly && !this.input.button,
+                collapseOnFocusOut: !this.expanded && !this.input.button,
                 contentSelector: '[role="listbox"]',
                 hostSelector: '[role="combobox"]',
                 expandedClass: 'combobox--expanded',
                 simulateSpacebarClick: true,
             });
+
+            if (this.expandedChange) {
+                this.expander.expanded = this.expanded;
+                this.expandedChange = false;
+            }
         }
         // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
         // It probably makes more sense to just move this functionality into Marko though.

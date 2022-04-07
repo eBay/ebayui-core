@@ -1,12 +1,12 @@
-const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
-const rovingTabindex = require('makeup-roving-tabindex');
-const typeahead = require('makeup-typeahead').default;
-const eventUtils = require('../../common/event-utils');
-const menuUtils = require('../../common/menu-utils');
+import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
+import { createLinear } from 'makeup-roving-tabindex';
+import typeahead from 'makeup-typeahead';
+import * as eventUtils from '../../common/event-utils';
+import * as menuUtils from '../../common/menu-utils';
 
 const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 
-module.exports = Object.assign({}, menuUtils, {
+export default Object.assign({}, menuUtils, {
     toggleItemChecked(index, originalEvent, itemEl) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
@@ -120,7 +120,7 @@ module.exports = Object.assign({}, menuUtils, {
     _setupMakeup() {
         this.contentEl = this.getEl('menu');
 
-        this.rovingTabindex = rovingTabindex.createLinear(this.contentEl, 'div', {
+        this.rovingTabindex = createLinear(this.contentEl, 'div', {
             index: this.tabindexPosition,
             autoReset: null,
         });

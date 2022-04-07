@@ -1,6 +1,6 @@
-const { getNItems, createRenderBody } = require('../../../../common/test-utils/shared');
+import { getNItems, createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Discrete_1PerSlide_0Items = {
+export const discrete1PerSlide0Items = {
     itemsPerSlide: 1,
     a11yPreviousText: 'prev',
     a11yNextText: 'next',
@@ -9,7 +9,7 @@ exports.Discrete_1PerSlide_0Items = {
     items: [],
 };
 
-exports.Discrete_1PerSlide_1Items = Object.assign({}, exports.Discrete_1PerSlide_0Items, {
+export const discrete1PerSlide1Items = Object.assign({}, discrete1PerSlide0Items, {
     items: [
         {
             renderBody: createRenderBody('carousel item content 1'),
@@ -17,39 +17,39 @@ exports.Discrete_1PerSlide_1Items = Object.assign({}, exports.Discrete_1PerSlide
     ],
 });
 
-exports.Discrete_1PerSlide_3Items = Object.assign({}, exports.Discrete_1PerSlide_0Items, {
+export const discrete1PerSlide3Items = Object.assign({}, discrete1PerSlide0Items, {
     items: getNItems(3, (i) => ({
         renderBody: createRenderBody(`carousel item content ${i}`),
     })),
 });
 
-exports.Discrete_2_1PerSlide_3Items = Object.assign({}, exports.Discrete_1PerSlide_3Items, {
+export const discrete21PerSlide3Items = Object.assign({}, discrete1PerSlide3Items, {
     itemsPerSlide: 2.1,
 });
 
-exports.Discrete_2PerSlide_6Items = Object.assign({}, exports.Discrete_1PerSlide_0Items, {
+export const discrete2PerSlide6Items = Object.assign({}, discrete1PerSlide0Items, {
     itemsPerSlide: 2,
     items: getNItems(6, (i) => ({
         renderBody: createRenderBody(`carousel item content ${i}`),
     })),
 });
 
-exports.Discrete_1PerSlide_3Items_AutoPlay = Object.assign(
+export const discrete1PerSlide3ItemsAutoPlay = Object.assign(
     {
         a11yPlayText: 'play',
         a11yPauseText: 'pause',
         autoplay: 400,
     },
-    exports.Discrete_1PerSlide_3Items
+    discrete1PerSlide3Items
 );
 
-exports.Continuous_0Items = {
+export const continuous0Items = {
     a11yPreviousText: 'prev',
     a11yNextText: 'next',
     items: [],
 };
 
-exports.Continuous_1Item = Object.assign({}, exports.Continuous_0Items, {
+export const continuous1Item = Object.assign({}, continuous0Items, {
     items: [
         {
             style: 'width:200px',
@@ -58,14 +58,14 @@ exports.Continuous_1Item = Object.assign({}, exports.Continuous_0Items, {
     ],
 });
 
-exports.Continuous_6Items = Object.assign({}, exports.Continuous_0Items, {
+export const continuous6Items = Object.assign({}, continuous0Items, {
     items: getNItems(6, (i) => ({
         style: 'width:200px',
         renderBody: createRenderBody(`carousel item content ${i}`),
     })),
 });
 
-exports.Continuous_12Items = Object.assign({}, exports.Continuous_0Items, {
+export const continuous12Items = Object.assign({}, continuous0Items, {
     items: getNItems(12, (i) => ({
         style: 'width:200px',
         renderBody: createRenderBody(`carousel item content ${i}`),

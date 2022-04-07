@@ -1,8 +1,8 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
+import template from '..';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
@@ -22,7 +22,7 @@ describe('inline-notice', () => {
     });
 
     it('renders with custom status type', async () => {
-        const input = mock.Inline_Custom_Status;
+        const input = mock.inlineCustomStatus;
         const { getByLabelText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
         expect(status.parentElement).has.class(`inline-notice--${input.status}`);

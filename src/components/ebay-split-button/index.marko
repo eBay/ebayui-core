@@ -1,0 +1,47 @@
+import { processHtmlAttributes } from '../../common/html-attributes';
+static {
+    var ignoredAttributes = [
+        'a11yText',
+        'partiallyDisabled',
+        'fluid',
+        'fixedHeight',
+        'truncate',
+        'transparent',
+        'bodyState',
+        'variant',
+        'a11yButtonLoadingText',
+        'a11yMenuText',
+        'button',
+        'href'
+    ];
+}
+
+<span.split-button>
+    <ebay-button
+        onClick('emit', 'click')
+        onEscape('emit', 'escape')
+        onFocus('emit', 'focus')
+        onBlur('emit', 'blur')
+        split='start'
+        type='button'
+        size=input.size
+        disabled=input.disabled
+        priority=input.priority
+        bodyState=input.bodyState
+        href=input.href
+        a11y-text=input.a11yButtonLoadingText
+    >
+        <span.btn__cell><span.btn__text><${input.renderBody}/></span></span>
+    </ebay-button>
+    <ebay-menu-button
+        onCollapse('emit', 'collapse')
+        onExpand('emit', 'expand')
+        onChange('emit', 'change')
+        onSelect('emit', 'select')
+        a11y-text=input.a11yMenuText
+        ...processHtmlAttributes(input, ignoredAttributes)
+        split='end'
+        reverse
+        variant='button'
+    />
+</span>

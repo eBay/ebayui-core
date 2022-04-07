@@ -1,11 +1,13 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
-const { fastAnimations } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup, waitFor } from '@marko/testing-library';
+import { fastAnimations } from '../../../common/test-utils/browser';
+import componentB from '../component-browser';
+import template from '..';
+import * as mock from './mock';
 
-require('../component-browser').renderer = template._; // Allow re-rendering the split component for testing.
-use(require('chai-dom'));
+use(chaiDom);
+componentB.renderer = template._; // Allow re-rendering the split component for testing.
 before(fastAnimations.start);
 after(fastAnimations.stop);
 afterEach(cleanup);

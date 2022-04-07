@@ -1,10 +1,11 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup, waitFor } = require('@marko/testing-library');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup, waitFor } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 const pointerStyles = require('./location-styles.json');
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -54,7 +55,7 @@ describe('given the default tooltip', () => {
 });
 
 describe('given the a custom aligned tooltip', () => {
-    const input = mock.Custom_Pointer;
+    const input = mock.customPointer;
 
     beforeEach(async () => {
         component = await render(template, input);

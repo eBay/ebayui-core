@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "class",
@@ -8,7 +8,8 @@ static var ignoredAttributes = [
     "options",
     "roledescription",
     "floatingLabel",
-    "listSelection"
+    "listSelection",
+    "expanded"
 ];
 
 static var ignoredButtonAttributes = [
@@ -26,7 +27,7 @@ $ {
 $ var hasButton = !!input.button;
 $ var id = input.id || component.getElId("input")
 <span
-    class:no-update=["combobox", input.floatingLabel && "floating-label", input.class]
+    class=["combobox", input.floatingLabel && "floating-label", input.class]
     style=input.style
     on-activeDescendantChange("handleActiveDescendantChange")
     onExpander-expand("handleExpand")
@@ -42,9 +43,9 @@ $ var id = input.id || component.getElId("input")
         </label>
     </if>
     <span class=[
-        "combobox__control",
-        hasButton && "combobox__control--actionable",
-        input.borderless && "combobox__control--borderless"
+        "combobox_control",
+        hasButton && "combobox_control--actionable",
+        input.borderless && "combobox_control--borderless"
     ]>
         <!--
         NOTE: Uses autocomplete="new-password" because of a problem with Chrome where the autfill does not
@@ -84,14 +85,14 @@ $ var id = input.id || component.getElId("input")
         </>
     </span>
     <if(component._hasVisibleOptions())>
-        <div key="listbox" role="listbox" class="combobox__listbox">
+        <div key="listbox" role="listbox" class="combobox_listbox">
             <for|option| of=component._getVisibleOptions()>
                 $ var isSelected = (option.value || option.text) === state.currentValue;
                 <div
                     ...processHtmlAttributes(option, itemIgnoredAttributes)
                     key="options[]"
                     role="option"
-                    class:no-update=["combobox__option", option.class]
+                    class:no-update=["combobox_option", option.class]
                     tabindex:no-update="-1"
                     aria-selected=(isSelected && "true")
                     onClick("handleSelectOption", option.text)

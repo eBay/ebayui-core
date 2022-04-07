@@ -1,27 +1,27 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.WithContent = {
+export const WithContent = {
     ariaLabel: 'Infotip label',
     content: {
         renderBody: createRenderBody('Infotip content'),
     },
 };
 
-exports.WithContentAndHeader = Object.assign({}, exports.WithContent, {
+export const WithContentAndHeader = Object.assign({}, WithContent, {
     heading: {
         renderBody: createRenderBody('Infotip heading'),
     },
 });
 
-exports.Disabled = Object.assign({}, exports.WithContent, {
+export const Disabled = Object.assign({}, WithContent, {
     disabled: true,
 });
 
-exports.ModalWithContent = Object.assign({}, exports.WithContent, {
+export const ModalWithContent = Object.assign({}, WithContent, {
     variant: 'modal',
     a11yCloseButtonText: 'Close mini dialog',
 });
 
-exports.ModalDisabled = Object.assign({}, exports.ModalWithContent, {
+export const ModalDisabled = Object.assign({}, ModalWithContent, {
     disabled: true,
 });

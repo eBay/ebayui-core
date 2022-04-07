@@ -1,7 +1,7 @@
-const sinon = require('sinon');
-const { expect } = require('chai');
-const { simulateScroll } = require('../../../../../common/test-utils/browser');
-const onScroll = require('../');
+import sinon from 'sinon';
+import { expect } from 'chai';
+import { simulateScroll } from '../../../../../common/test-utils/browser';
+import { onScrollDebounced } from '..';
 
 describe('scroll-debounced', () => {
     let scrollEl;
@@ -23,7 +23,7 @@ describe('scroll-debounced', () => {
 
     it('calls a handler at most every 600ms', (done) => {
         const scrollSpy = sinon.spy();
-        onScroll(scrollEl, scrollSpy);
+        onScrollDebounced(scrollEl, scrollSpy);
         simulateScroll(scrollEl, 50, () => {
             simulateScroll(scrollEl, 100, () => {
                 setTimeout(() => {
@@ -36,7 +36,7 @@ describe('scroll-debounced', () => {
 
     it('can be canceled', (done) => {
         const scrollEndSpy = sinon.spy();
-        const cancel = onScroll(scrollEl, scrollEndSpy);
+        const cancel = onScrollDebounced(scrollEl, scrollEndSpy);
         simulateScroll(scrollEl, 100);
         setTimeout(() => {
             expect(scrollEndSpy.notCalled).to.equal(true);
