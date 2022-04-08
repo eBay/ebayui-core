@@ -1,5 +1,4 @@
 {
-  "migrator": "./migrator.js",
   "attribute-groups": ["html-attributes"],
   "@*": {
     "type": "expression",

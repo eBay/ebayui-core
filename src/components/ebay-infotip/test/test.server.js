@@ -2,7 +2,6 @@ import { expect, use } from 'chai';
 import { render } from '@marko/testing-library';
 import template from '..';
 import * as mock from './mock';
-const { testAttributeRenameMigrator } = require('../../../common/test-utils/server');
 
 use(require('chai-dom'));
 
@@ -44,14 +43,4 @@ describe('infotip modal', () => {
         const { queryByText } = await render(template, input);
         expect(queryByText(input.heading.renderBody.text)).equals(null);
     });
-});
-
-describe('migrator', () => {
-    testAttributeRenameMigrator(
-        require('../migrator'),
-        'infotip',
-        'a11yCloseText',
-        'a11yCloseButtonText',
-        '../index.marko'
-    );
 });

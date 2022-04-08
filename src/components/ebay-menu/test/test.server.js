@@ -75,10 +75,4 @@ describe('menu', () => {
             multiple: true,
         },
     });
-    testUtils.testEventsMigrator(
-        require('../migrator'),
-        'menu',
-        ['change', 'select', 'keydown'],
-        '../index.marko'
-    );
 });
