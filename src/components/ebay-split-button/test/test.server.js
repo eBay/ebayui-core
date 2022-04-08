@@ -4,8 +4,6 @@ import snap from 'mocha-snap';
 import template from '..';
 import * as mock from './mock';
 
-// import { testPassThroughAttributes } from '../../../common/test-utils/server';
-
 const snapDOM = (node) => snap(prettyDOM(node), '.html', __dirname);
 
 use(require('chai-dom'));

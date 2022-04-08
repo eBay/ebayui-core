@@ -1,8 +1,6 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import button from './index.marko';
 import readme from './README.md';
-import migratorTemplate from './examples/migrator.marko';
-import migratorCode from './examples/migrator.marko?raw';
 
 const Template = (args) => ({
     input: {
@@ -209,20 +207,6 @@ Standard.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-button', Standard.args),
-        },
-    },
-};
-
-export const migrators = (args) => ({
-    input: args,
-    component: migratorTemplate,
-});
-
-migrators.args = {};
-migrators.parameters = {
-    docs: {
-        source: {
-            code: migratorCode,
         },
     },
 };

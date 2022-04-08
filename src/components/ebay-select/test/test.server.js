@@ -2,10 +2,7 @@ import { expect, use } from 'chai';
 import { render } from '@marko/testing-library';
 import template from '..';
 import * as mock from './mock';
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 
 use(require('chai-dom'));
 
@@ -75,5 +72,4 @@ describe('select', () => {
             return component.getByRole('combobox').parentElement;
         },
     });
-    testEventsMigrator(require('../migrator'), 'select', ['change'], '../index.marko');
 });

@@ -2,10 +2,7 @@ import { expect, use } from 'chai';
 import { render } from '@marko/testing-library';
 import template from '..';
 import * as mock from './mock';
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 
 use(require('chai-dom'));
 
@@ -44,7 +41,6 @@ describe('listbox', () => {
             multiple: true,
         },
     });
-    testEventsMigrator(require('../migrator'), 'listbox', ['change'], '../index.marko');
 });
 
 function isAriaSelected(el) {

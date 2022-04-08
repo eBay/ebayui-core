@@ -1,16 +1,8 @@
 import { expect, use } from 'chai';
 import { render } from '@marko/testing-library';
-import snap from 'mocha-snap';
-import {
-    runMigrateTransformer,
-    testPassThroughAttributes,
-    testEventsMigrator,
-} from '../../../common/test-utils/server';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
 import template from '..';
 import * as mock from './mock';
-const migrator = require('../migrator');
-
-const snapDOM = (node) => snap(node, '.html', __dirname);
 
 use(require('chai-dom'));
 
@@ -101,113 +93,4 @@ describe('ebay-textbox', () => {
             return component.getByRole('textbox').parentElement;
         },
     });
-});
-
-describe('migrator', () => {
-    const componentPath = '../index.marko';
-
-    it('transforms an prefix-icon attribute into a tag', async () => {
-        const tagString = '<ebay-textbox prefix-icon="settings"/>';
-        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
-        if (code) {
-            await snapDOM(code);
-            return;
-        }
-        const {
-            body: {
-                array: [iconEl],
-            },
-        } = el;
-        expect(iconEl.tagName).to.equal('@prefix-icon');
-    });
-
-    it('transforms an postfix-icon attribute into a tag', async () => {
-        const tagString = '<ebay-textbox postfix-icon="settings"/>';
-        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
-        if (code) {
-            await snapDOM(code);
-            return;
-        }
-
-        const {
-            body: {
-                array: [iconEl],
-            },
-        } = el;
-        expect(iconEl.tagName).to.equal('@postfix-icon');
-    });
-
-    it('does not transform when icon attribute is missing', async () => {
-        const tagString = '<ebay-textbox/>';
-        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
-        if (code) {
-            await snapDOM(code);
-            return;
-        }
-
-        const {
-            body: {
-                array: [iconEl],
-            },
-        } = el;
-        expect(iconEl).to.equal(undefined);
-    });
-
-    it('migrates icon without position to prefix-icon', async () => {
-        const tagString = '<ebay-textbox icon="close"/>';
-        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
-        if (code) {
-            await snapDOM(code);
-            return;
-        }
-
-        const {
-            body: {
-                array: [iconEl],
-            },
-        } = el;
-        expect(iconEl.tagName).to.equal('@prefix-icon');
-        expect(el.hasAttribute('prefix-icon')).to.equal(false);
-        expect(el.hasAttribute('postfix-icon')).to.equal(false);
-        expect(el.hasAttribute('icon')).to.equal(false);
-        expect(el.hasAttribute('icon-position')).to.equal(false);
-    });
-
-    it('migrates icon with postfix position to postfix-icon', async () => {
-        const tagString = '<ebay-textbox icon="close" icon-position="postfix"/>';
-        const { el, code } = runMigrateTransformer(migrator, tagString, componentPath);
-        if (code) {
-            await snapDOM(code);
-            return;
-        }
-
-        const {
-            body: {
-                array: [iconEl],
-            },
-        } = el;
-        expect(iconEl.tagName).to.equal('@postfix-icon');
-
-        expect(el.hasAttribute('postfix-icon')).to.equal(false);
-        expect(el.hasAttribute('prefix-icon')).to.equal(false);
-        expect(el.hasAttribute('icon')).to.equal(false);
-        expect(el.hasAttribute('icon-position')).to.equal(false);
-    });
-
-    testEventsMigrator(
-        require('../migrator'),
-        'textbox',
-        [
-            'change',
-            { from: 'input', to: 'input-change' },
-            'focus',
-            'blur',
-            'keydown',
-            'keypress',
-            'keyup',
-            'floating-label-init',
-            'button-click',
-        ],
-        '../index.marko'
-    );
 });

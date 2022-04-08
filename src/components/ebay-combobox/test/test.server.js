@@ -2,10 +2,7 @@ import { expect, use } from 'chai';
 import { render } from '@marko/testing-library';
 import template from '..';
 import * as mock from './mock';
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 
 use(require('chai-dom'));
 
@@ -75,10 +72,3 @@ describe('combobox-option', () => {
 function isAriaSelected(el) {
     return el.getAttribute('aria-selected') === 'true';
 }
-
-testEventsMigrator(
-    require('../migrator'),
-    'combobox',
-    [{ from: 'input', to: 'input-change' }, 'collapse', 'change', 'select', 'expand'],
-    '../index.marko'
-);

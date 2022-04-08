@@ -1,5 +1,4 @@
 {
-  "migrator": "../components/ebay-dialog-base/migrator.js",
   "attribute-groups": ["html-attributes"],
   "@*": {
     "targetProperty": null,

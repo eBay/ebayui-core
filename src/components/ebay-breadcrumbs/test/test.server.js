@@ -1,6 +1,6 @@
 import { expect, use } from 'chai';
 import { render } from '@marko/testing-library';
-import { testPassThroughAttributes, testEventsMigrator } from '../../../common/test-utils/server';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
 import * as mock from '../mock';
 import template from '..';
 
@@ -54,7 +54,6 @@ describe('breadcrumbs', () => {
     });
 });
 
-testEventsMigrator(require('../migrator'), 'breadcrumbs', ['select'], '../index.marko');
 testPassThroughAttributes(template);
 testPassThroughAttributes(template, {
     child: {
