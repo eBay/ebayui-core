@@ -1,7 +1,7 @@
 <p>
     <a href="https://travis-ci.org/eBay/ebayui-core"><img src="https://api.travis-ci.org/eBay/ebayui-core.svg?branch=master" alt="Build Status" /></a>
     <a href='https://coveralls.io/github/eBay/ebayui-core?branch=master'><img src='https://coveralls.io/repos/eBay/ebayui-core/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
-    <a alt='BrowserStack status' href="https://www.browserstack.com/automate/public-build/M1FCV3RrZHhkTG9ZaXBwWmY0VDJvZUhPM1cwM1RCZTBMRUVrODJ0MVg5Yz0tLTMyY0tGZHNKSGpTbk5DeFVURTNGNFE9PQ==--dd4c576f4331f72c56cb7f9a9f4ac4f403d34b0f"><img src='https://www.browserstack.com/automate/badge.svg?badge_key=M1FCV3RrZHhkTG9ZaXBwWmY0VDJvZUhPM1cwM1RCZTBMRUVrODJ0MVg5Yz0tLTMyY0tGZHNKSGpTbk5DeFVURTNGNFE9PQ==--dd4c576f4331f72c56cb7f9a9f4ac4f403d34b0f'/></a>
+    <a alt='BrowserStack status' href="https://automate.browserstack.com/public-build/Ry9hKzYrbzFaZDRhaVVURy9FMEg3VWhPRGxpaVlZSDNQWExYSXRUNFZEST0tLUtoQWxxOFBkMlFOVjRhUk0rN21IY2c9PQ==--0a38773d707add060a28097f5f014c7bcfcc60a1"><img src='https://automate.browserstack.com/badge.svg?badge_key=Ry9hKzYrbzFaZDRhaVVURy9FMEg3VWhPRGxpaVlZSDNQWExYSXRUNFZEST0tLUtoQWxxOFBkMlFOVjRhUk0rN21IY2c9PQ==--0a38773d707add060a28097f5f014c7bcfcc60a1'/></a>
     <a href="https://david-dm.org/eBay/ebayui-core"><img src="https://david-dm.org/eBay/ebayui-core.svg" alt="Dependency status" /></a>
     <a href="https://david-dm.org/eBay/ebayui-core#info=devDependencies"><img src="https://david-dm.org/eBay/ebayui-core/dev-status.svg" alt="devDependency status" /></a>
 </p>
