@@ -1,10 +1,7 @@
 import { use } from 'chai';
-import { render, prettyDOM } from '@marko/testing-library';
-import snap from 'mocha-snap';
 import template from '..';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
 import * as mock from './mock';
-
-const snapDOM = (node) => snap(prettyDOM(node), '.html', __dirname);
 
 use(require('chai-dom'));
 
@@ -17,28 +14,23 @@ Object.keys(properties).forEach((property) => {
     const values = properties[property];
     values.forEach((value) => {
         it(`renders button with ${property}=${value}`, async () => {
-            const { container } = await render(template, { [property]: value });
-            await snapDOM(container);
+            await snapshotHTML(template, { [property]: value }, __dirname);
         });
     });
 });
 
 it('renders defaults', async () => {
-    const { container } = await render(template);
-    await snapDOM(container);
+    await snapshotHTML(template, {}, __dirname);
 });
 
 it('renders with menu items', async () => {
-    const { container } = await render(template, mock.basic3Items);
-    await snapDOM(container);
+    await snapshotHTML(template, mock.basic3Items, __dirname);
 });
 
 it('renders loading state', async () => {
-    const { container } = await render(template, mock.Loading_3Items);
-    await snapDOM(container);
+    await snapshotHTML(template, mock.Loading_3Items, __dirname);
 });
 
 it('renders various options', async () => {
-    const { container } = await render(template, mock.Options_3Items);
-    await snapDOM(container);
+    await snapshotHTML(template, mock.Options_3Items, __dirname);
 });

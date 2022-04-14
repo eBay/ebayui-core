@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import snap from 'mocha-snap';
 import * as testUtils from '../../../test-utils/server';
+import { snapshotNode } from '../../../../common/test-utils/snapshots';
 const transformer = require('../');
 
-const snapDOM = (node) => snap(node, '.html', __dirname);
+const snapDOM = snapshotNode(__dirname);
 
 describe('when the ebay-menu-separator tag is transformed', () => {
     let outputTemplate;
