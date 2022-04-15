@@ -5,10 +5,12 @@ function snapshotNode(dirname) {
     return (container) => snap(container, '.html', dirname);
 }
 
-async function snapshotHTML(template, input, dirname) {
+function snapshotHTML(dirname) {
     const localSnap = snapshotNode(dirname);
-    const { container } = await render(template, input);
-    await localSnap(prettyDOM(container));
+    return async (template, input) => {
+        const { container } = await render(template, input);
+        await localSnap(prettyDOM(container));
+    };
 }
 
 export { snapshotHTML, snapshotNode };

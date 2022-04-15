@@ -206,6 +206,7 @@ export default {
 export const Standard = Template.bind({});
 Standard.args = {
     renderBody: 'Button',
+    a11yMenuText: 'Menu',
     items: [
         {
             renderBody: `item 1 that has very long text`,

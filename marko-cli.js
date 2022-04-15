@@ -1,11 +1,14 @@
 'use strict';
 
 module.exports = ({ config }) => {
-    config.mochaOptions = { timeout: 60000, require: ['@babel/register', 'mocha-snap'] };
+    config.mochaOptions = {
+        timeout: 60000,
+        require: ['@babel/register', 'mocha-snap', './src/common/test-utils/require-extensions.js'],
+    };
 
     config.lassoOptions = {
         flags: [],
-        plugins: ['lasso-less'],
+        plugins: ['./src/common/test-utils/lasso-require-extensions.js', 'lasso-less'],
         require: {
             transforms: [
                 {

@@ -4,6 +4,7 @@ import template from '..';
 
 const iconName = 'mic';
 const progrmaBadgeIcon = 'program-badge-authenticity-guaranteed';
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
@@ -14,7 +15,7 @@ describe('icon', () => {
             _type: 'icon',
             a11yText: 'inline icon',
         };
-        await snapshotHTML(template, input, __dirname);
+        await htmlSnap(template, input);
     });
 
     it('renders icon inline type without title text', async () => {
@@ -25,7 +26,7 @@ describe('icon', () => {
                 'data-testid': 'icon',
             },
         };
-        await snapshotHTML(template, input, __dirname);
+        await htmlSnap(template, input);
     });
 
     it('renders icon no-skin-classes', async () => {
@@ -38,7 +39,7 @@ describe('icon', () => {
                 'data-testid': 'icon',
             },
         };
-        await snapshotHTML(template, input, __dirname);
+        await htmlSnap(template, input);
     });
 });
 
@@ -50,7 +51,7 @@ describe('program badges', () => {
             a11yText: 'inline icon',
         };
 
-        await snapshotHTML(template, input, __dirname);
+        await htmlSnap(template, input);
     });
 
     it('renders program badge inline type without title text', async () => {
@@ -61,7 +62,7 @@ describe('program badges', () => {
                 'data-testid': 'icon',
             },
         };
-        await snapshotHTML(template, input, __dirname);
+        await htmlSnap(template, input);
     });
 
     it('renders program badge no-skin-classes', async () => {
@@ -74,6 +75,6 @@ describe('program badges', () => {
                 'data-testid': 'icon',
             },
         };
-        await snapshotHTML(template, input, __dirname);
+        await htmlSnap(template, input);
     });
 });
