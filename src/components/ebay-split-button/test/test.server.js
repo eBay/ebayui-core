@@ -1,7 +1,10 @@
 import { use } from 'chai';
-import template from '..';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { snapshotHTML } from '../../../common/test-utils/snapshots';
-import * as mock from './mock';
+import * as stories from '../split-button.stories'; // import all stories from the stories file
+
+const { Standard } = composeStories(stories);
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
@@ -14,23 +17,30 @@ Object.keys(properties).forEach((property) => {
     const values = properties[property];
     values.forEach((value) => {
         it(`renders button with ${property}=${value}`, async () => {
-            await snapshotHTML(template, { [property]: value }, __dirname);
+            await htmlSnap(Standard, { [property]: value });
         });
     });
 });
 
 it('renders defaults', async () => {
-    await snapshotHTML(template, {}, __dirname);
+    await htmlSnap(Standard);
 });
 
 it('renders with menu items', async () => {
-    await snapshotHTML(template, mock.basic3Items, __dirname);
+    await htmlSnap(Standard);
 });
 
 it('renders loading state', async () => {
-    await snapshotHTML(template, mock.Loading_3Items, __dirname);
+    await htmlSnap(Standard, {
+        a11yButtonLoadingText: 'button loading',
+        bodyState: 'loading',
+    });
 });
 
 it('renders various options', async () => {
-    await snapshotHTML(template, mock.Options_3Items, __dirname);
+    await htmlSnap(Standard, {
+        disabled: true,
+        size: 'large',
+        type: 'radio',
+    });
 });
