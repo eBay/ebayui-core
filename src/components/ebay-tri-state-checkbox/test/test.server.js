@@ -1,35 +1,36 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../tri-state-checkbox.stories';
 import { testPassThroughAttributes } from '../../../common/test-utils/server';
-import template from '..';
+
+const { Isolated, WithLabel } = composeStories(stories);
+
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
 it('renders default tri-state-checkbox', async () => {
-    const { getByRole } = await render(template);
-    const checkbox = getByRole('checkbox');
-
-    expect(checkbox).has.property('checked', false);
-    expect(checkbox.parentElement).has.class('checkbox');
+    await htmlSnap(Isolated);
 });
 
 it('renders disabled tri-state-checkbox', async () => {
-    const { getByRole } = await render(template, { disabled: true });
-    expect(getByRole('checkbox')).has.attr('disabled');
+    await htmlSnap(Isolated, { disabled: true });
 });
 
 it('renders tri-state-checkbox with id', async () => {
-    const { getByRole } = await render(template, { id: 'abc123' });
-    expect(getByRole('checkbox')).attr('id').contains('abc123');
+    await htmlSnap(Isolated, { id: 'abc123' });
 });
 
 it('renders mixed checkbox', async () => {
-    const { getByRole } = await render(template, { checked: 'mixed' });
-    const checkbox = getByRole('checkbox');
-    expect(checkbox).has.attr('aria-checked', 'mixed');
+    await htmlSnap(Isolated, { checked: 'mixed' });
 });
 
-testPassThroughAttributes(template, {
+it('renders labeled checkbox', async () => {
+    await htmlSnap(WithLabel);
+});
+
+testPassThroughAttributes(Isolated, {
     getClassAndStyleEl(component) {
         return component.getByRole('checkbox').parentElement;
     },

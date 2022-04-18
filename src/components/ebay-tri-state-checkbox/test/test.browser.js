@@ -1,7 +1,10 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
 import { render, cleanup, fireEvent, waitFor } from '@marko/testing-library';
-import template from '..';
+import { composeStories } from '@storybook/marko/dist/testing';
+import * as stories from '../tri-state-checkbox.stories';
+
+const { Isolated } = composeStories(stories);
 
 use(chaiDom);
 afterEach(cleanup);
@@ -11,7 +14,7 @@ let component;
 
 describe('given tri-state-checkbox button is enabled', () => {
     beforeEach(async () => {
-        component = await render(template, { htmlAttributes: { value: 'food' } });
+        component = await render(Isolated, { htmlAttributes: { value: 'food' } });
     });
 
     describe('when checkbox button is clicked', () => {
@@ -41,7 +44,7 @@ describe('given tri-state-checkbox button is enabled', () => {
 
 describe('given tri-state-checkbox button is enabled in mixed state', () => {
     beforeEach(async () => {
-        component = await render(template, { htmlAttributes: { value: 'food' }, checked: 'mixed' });
+        component = await render(Isolated, { htmlAttributes: { value: 'food' }, checked: 'mixed' });
     });
 
     describe('when checkbox button is clicked', () => {
@@ -70,7 +73,7 @@ describe('given tri-state-checkbox button is enabled in mixed state', () => {
 });
 describe('given tri-state-checkbox button is disabled', () => {
     beforeEach(async () => {
-        component = await render(template, { disabled: true });
+        component = await render(Isolated, { disabled: true });
     });
 
     describe('when checkbox button is clicked', () => {
@@ -90,7 +93,7 @@ describe('given tri-state-checkbox button is disabled', () => {
 
 describe('when native focus event is fired', () => {
     beforeEach(async () => {
-        component = await render(template, { htmlAttributes: { value: 'food' } });
+        component = await render(Isolated, { htmlAttributes: { value: 'food' } });
         await fireEvent.focus(component.getByRole('checkbox'));
     });
 
@@ -106,7 +109,7 @@ describe('when native focus event is fired', () => {
 
 describe('when native keydown event is fired', () => {
     beforeEach(async () => {
-        component = await render(template, { htmlAttributes: { value: 'food' } });
+        component = await render(Isolated, { htmlAttributes: { value: 'food' } });
         await fireEvent.keyDown(component.getByRole('checkbox'));
     });
 
@@ -122,7 +125,7 @@ describe('when native keydown event is fired', () => {
 
 describe('given tri-state-checkbox button is two-state', () => {
     beforeEach(async () => {
-        component = await render(template, { skipMixed: true });
+        component = await render(Isolated, { skipMixed: true });
     });
 
     describe('when checkbox button is clicked', () => {

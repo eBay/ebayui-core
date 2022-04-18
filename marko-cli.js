@@ -12,6 +12,9 @@ module.exports = ({ config }) => {
         require: {
             transforms: [
                 {
+                    transform: './src/common/test-utils/lasso-require-transform.js',
+                },
+                {
                     transform: 'lasso-babel-transform',
                 },
             ],
