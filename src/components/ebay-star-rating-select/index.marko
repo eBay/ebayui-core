@@ -10,7 +10,8 @@ $ var starText = input.a11yStarText || [];
             <input
                 aria-label=starText[i - 1]
                 class=[
-                    i <= state.value && "star-rating-select_filled",
+                    "star-rating-select__control",
+                    i <= state.value && "star-rating-select__control--filled"
                 ]
                 type="radio"
                 name:scoped="star-rating"
@@ -20,7 +21,7 @@ $ var starText = input.a11yStarText || [];
                 onClick("handleClick", i)
                 onFocus("handleFocus", i)
                 onKeydown("handleKeydown", i)/>
-            <span class="star-rating-select__icon">
+            <span class="star-rating-select__radio-icon">
                 <ebay-star-dynamic-icon/>
             </span>
         </span>
