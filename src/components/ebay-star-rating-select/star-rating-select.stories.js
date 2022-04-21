@@ -88,7 +88,7 @@ Isolated.args = {
 Isolated.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-radio', Isolated.args),
+            code: tagToString('ebay-star-rating-select', Isolated.args),
         },
     },
 };
