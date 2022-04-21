@@ -1,6 +1,8 @@
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
-import Component from './examples/01-star-rating/template.marko';
+import fixed from './examples/01-star-rating/template.marko';
 import code from './examples/01-star-rating/template.marko?raw';
+import component from './index.marko';
 
 const Template = (args) => ({
     input: {
@@ -15,7 +17,7 @@ const Template = (args) => ({
 
 export default {
     title: 'ebay-star-rating',
-    component: Component,
+    component: component,
     parameters: {
         docs: {
             description: {
@@ -24,12 +26,37 @@ export default {
         },
     },
 
-    argTypes: {},
+    argTypes: {
+        value: {
+            control: { type: 'select' },
+            options: ['0', '1', '1-5', '2', '2-5', '3', '3-5', '4', '4-5', '5'],
+            description:
+                'Only for <ebay-star-rating/>. 1 - 5, depending on how many starts are selected. If 0 or null defaults to no stars selected. Can use 2-5 for 2 and a half stars',
+        },
+        a11yText: {
+            description: 'The aria label for the outer container.',
+        },
+    },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {};
-Standard.parameters = {
+export const DynamicStars = Template.bind({});
+DynamicStars.args = {
+    value: '3-5',
+};
+DynamicStars.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-star-rating', DynamicStars.args),
+        },
+    },
+};
+
+export const FixedStars = (args) => ({
+    input: args,
+    component: fixed,
+});
+FixedStars.args = {};
+FixedStars.parameters = {
     docs: {
         source: {
             code,
