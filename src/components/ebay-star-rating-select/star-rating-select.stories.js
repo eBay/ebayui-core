@@ -33,7 +33,7 @@ export default {
         value: {
             control: { type: 'number' },
             description:
-                '1 - 5, depending on how many starts are selected. If 0 or null defaults to no stars selected',
+                '1 - 5, depending on how many stars are selected. If 0 or null defaults to no stars selected',
         },
         a11yStarText: {
             control: 'object',
@@ -81,7 +81,7 @@ export const Isolated = Template.bind({});
 Isolated.args = {
     disabled: false,
     a11yStarText: ['1 star', '2 stars', '3 stars', '4 stars', '5 stars'],
-    a11yText: 'Leave a rating',
+    a11yText: 'Rate product',
     value: 0,
 };
 
