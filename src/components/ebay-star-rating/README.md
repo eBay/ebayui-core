@@ -14,12 +14,15 @@
 
 ```marko
 <ebay-star-rating-1/>
+<ebay-star-rating value="1"/>
 <ebay-star-rating-1-5/>
+<ebay-star-rating value="1-5"/>
 ```
 
 ## ebay-star-rating-{rating} Attributes
 
-| Name              | Type    | Stateful | Required | Description                                                                                 |
-| ----------------- | ------- | -------- | -------- | ------------------------------------------------------------------------------------------- |
-| `no-skin-classes` | Boolean | No       | No       | Used for special cases where `icon` classes from Skin should not be applied                 |
-| `a11y-text`       | String  | No       | Yes      | text for non-decorative inline icon; icon is assumed to be decorative if this is not passed |
+| Name              | Type    | Stateful | Required | Description                                                                                                  |
+| ----------------- | ------- | -------- | -------- | ------------------------------------------------------------------------------------------------------------ |
+| `no-skin-classes` | Boolean | No       | No       | Used for special cases where `icon` classes from Skin should not be applied                                  |
+| `a11y-text`       | String  | No       | Yes      | text for non-decorative inline icon; icon is assumed to be decorative if this is not passed                  |
+| `value`           | String  | No       | Yes      | For `<ebay-star-rating/>` only, assigns the amount of stars to be filled. Can be 2-5 for 2 and a half stars. |

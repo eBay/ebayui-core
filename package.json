@@ -72,7 +72,7 @@
     "@commitlint/cli": "^16",
     "@commitlint/config-conventional": "^16",
     "@ebay/browserslist-config": "^2.0.2",
-    "@ebay/skin": "~13.6.0",
+    "@ebay/skin": "~13.7.0-0",
     "@lasso/marko-taglib": "^2.0.1",
     "@marko/build": "^4.2.3",
     "@marko/compile": "^4.1.2",
@@ -96,7 +96,7 @@
     "browser-refresh": "^1.7.2",
     "chai": "4.3.6",
     "chai-dom": "^1.10.0",
-    "chromedriver": "^99",
+    "chromedriver": "^100",
     "coveralls": "^3.1.1",
     "css-loader": "^6",
     "dotenv-webpack": "^7.0.2",
@@ -147,7 +147,7 @@
     "wdio-chromedriver-service": "^7.2.2"
   },
   "peerDependencies": {
-    "@ebay/skin": "~13.6.0",
+    "@ebay/skin": "~13.7.0-0",
     "marko": "^4 || ^5"
   },
   "dependencies": {

@@ -1,0 +1,12 @@
+class {}
+
+<fieldset>
+    <legend>Rate Product</legend>
+    <ebay-star-rating-select
+        value=input.value
+        a11y-star-text=input.a11yStarText
+        onChange("emit", 'change')
+        onKeyup("emit", 'keyup')
+        onFocus("emit", 'focus')
+    />
+</fieldset>
