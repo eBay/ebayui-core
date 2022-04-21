@@ -1,0 +1,10 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@value": "#html-value",
+  "@a11y-text": "string"
+}
