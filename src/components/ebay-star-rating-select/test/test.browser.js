@@ -1,18 +1,19 @@
-const { expect, use } = require('chai');
+import { expect, use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import * as stories from '../star-rating-select.stories';
+
+const { Isolated } = composeStories(stories);
 const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const template = require('..');
-const mock = require('./mock');
 
 use(require('chai-dom'));
 afterEach(cleanup);
 
-/** @type import("@marko/testing-library").RenderResult */
 let component;
 
 describe('given star rating', () => {
     beforeEach(async () => {
-        component = await render(template, mock.Basic);
-        await fireEvent.click(component.getByLabelText('star 2'));
+        component = await render(Isolated);
+        await fireEvent.click(component.getByLabelText('2 stars'));
     });
 
     it('then it emits the event', () => {
@@ -27,7 +28,7 @@ describe('given star rating', () => {
 
     describe('when star is clicked', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByLabelText('star 4'));
+            await fireEvent.click(component.getByLabelText('4 stars'));
         });
 
         it('then it emits the event', () => {
@@ -44,12 +45,12 @@ describe('given star rating', () => {
 
 describe('given star is disabled', () => {
     beforeEach(async () => {
-        component = await render(template, mock.Basic_Disbaled);
+        component = await render(Isolated, { disabled: true });
     });
 
     describe('when star is clicked', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByLabelText('star 2'));
+            await fireEvent.click(component.getByLabelText('2 stars'));
         });
 
         it("then it doesn't emit the event", () => {
@@ -61,8 +62,8 @@ describe('given star is disabled', () => {
 
 describe('when native focus event is fired on star', () => {
     beforeEach(async () => {
-        component = await render(template, mock.Basic);
-        await fireEvent.focus(component.getByLabelText('star 2'));
+        component = await render(Isolated);
+        await fireEvent.focus(component.getByLabelText('2 stars'));
     });
 
     it('then it emits the event', () => {
@@ -77,8 +78,8 @@ describe('when native focus event is fired on star', () => {
 
 describe('when native keyboard event is fired on star', () => {
     beforeEach(async () => {
-        component = await render(template, mock.Basic);
-        await fireEvent.keyDown(component.getByLabelText('star 5'));
+        component = await render(Isolated);
+        await fireEvent.keyDown(component.getByLabelText('5 stars'));
     });
 
     it('then it emits the event', () => {
