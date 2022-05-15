@@ -1,3 +1,4 @@
+$ var cancelId = component.getElId("confirm-dialog-cancel");
 $ var confirmId = component.getElId("confirm-dialog-confirm");
 $ var mainId = component.getElId("confirm-dialog-main");
 <ebay-dialog-base
@@ -12,7 +13,10 @@ $ var mainId = component.getElId("confirm-dialog-main");
     window-class=["confirm-dialog__window--fade"]
     button-position="hidden">
     <@footer>
-        <ebay-button on-click("emit", "reject") class="confirm-dialog__reject">
+        <ebay-button
+            on-click("emit", "reject")
+            id=cancelId
+            class="confirm-dialog__reject">
             ${input.rejectText}
         </ebay-button>
         <ebay-button
