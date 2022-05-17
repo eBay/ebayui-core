@@ -58,7 +58,12 @@ $ var displayText = selectedText || unselectedText;
                 <span class="expand-btn__text">${input.prefixLabel} ${displayText}</span>
             </else-if>
             <else>
-                <span id=labelId class="expand-btn__text">${displayText}</span>
+                <span>
+                    <if(input.label)>
+                        <span class="clipped">${input.label}</span>
+                    </if>
+                    <span id=labelId class="expand-btn__text">${displayText}</span>
+                </span>
             </else>
             <ebay-dropdown-icon/>
         </span>
