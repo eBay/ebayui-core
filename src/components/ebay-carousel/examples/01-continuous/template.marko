@@ -6,8 +6,6 @@ $ const {
     itemWidth,
     a11yPreviousText,
     a11yNextText,
-    a11yStatusText,
-    a11yStatusTag,
     images,
     gap,
     getItemWidth
@@ -31,9 +29,7 @@ $ const {
     gap=gap
     image-treatment=imageTreatment
     a11y-previous-text=a11yPreviousText
-    a11y-next-text=a11yNextText
-    a11y-status-text=a11yStatusText
-    a11y-status-tag=a11yStatusTag>
+    a11y-next-text=a11yNextText>
     <for|i| from=0 to=(items - 1)>
         <if(imageTreatment === "matte" && images[i])>
             <@item>

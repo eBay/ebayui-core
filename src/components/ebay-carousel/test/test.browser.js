@@ -276,10 +276,6 @@ describe('given a discrete carousel', () => {
             );
             expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
-
-        it('then has the appropriate heading', () => {
-            expect(component.getByRole('heading')).has.text('1 of 1');
-        });
     });
 
     describe('with 1 item per slide and 3 items at the beginning', () => {
@@ -303,10 +299,6 @@ describe('given a discrete carousel', () => {
             );
         });
 
-        it('then has the appropriate heading', () => {
-            expect(component.getByRole('heading')).has.text('1 of 3');
-        });
-
         describe('when it is rerendered to show the second item', () => {
             beforeEach(async () => {
                 await component.rerender(Object.assign({}, input, { index: 1 }));
@@ -316,10 +308,6 @@ describe('given a discrete carousel', () => {
             it('then it moved to the second item', () => {
                 const secondItem = component.getByText(input.items[1].renderBody.text);
                 assertAtStartOfSlide(secondItem);
-            });
-
-            it('then has the appropriate heading', () => {
-                expect(component.getByRole('heading')).has.text('2 of 3');
             });
         });
 
@@ -409,10 +397,6 @@ describe('given a discrete carousel', () => {
                     'aria-disabled'
                 );
             });
-
-            it('then has updated the heading', () => {
-                expect(component.getByRole('heading')).has.text('2 of 3');
-            });
         }
     });
 
@@ -472,10 +456,6 @@ describe('given a discrete carousel', () => {
             );
         });
 
-        it('then has the appropriate heading', () => {
-            expect(component.getByRole('heading')).has.text('1 of 3');
-        });
-
         describe('when next button is clicked', () => {
             beforeEach(async () => {
                 fireEvent.click(component.getByLabelText(input.a11yNextText));
@@ -498,10 +478,6 @@ describe('given a discrete carousel', () => {
                 const secondItem = component.getByText(input.items[2].renderBody.text);
                 assertAtStartOfSlide(secondItem);
             });
-
-            it('then has updated the heading', () => {
-                expect(component.getByRole('heading')).has.text('2 of 3');
-            });
         }
     });
 
@@ -517,10 +493,6 @@ describe('given a discrete carousel', () => {
                     'aria-disabled'
                 )
             );
-        });
-
-        it('then has the appropriate heading', () => {
-            expect(component.getByRole('heading')).has.text('1 of 2');
         });
 
         it('then it shows part of the next slide', () => {
@@ -549,10 +521,6 @@ describe('given a discrete carousel', () => {
             it('then it moved to the third item', () => {
                 const secondItem = component.getByText(input.items[2].renderBody.text);
                 assertAtStartOfSlide(secondItem);
-            });
-
-            it('then has the appropriate heading', () => {
-                expect(component.getByRole('heading')).has.text('2 of 2');
             });
         });
     });
@@ -632,7 +600,7 @@ describe('given a discrete carousel', () => {
 
         describe('when it is interacted with', () => {
             beforeEach(async () => {
-                await fireEvent.mouseOver(component.getByRole('heading'));
+                await fireEvent.mouseOver(component.getByRole('list'));
             });
 
             it('then the autoplay does not run', async () => {
@@ -642,7 +610,7 @@ describe('given a discrete carousel', () => {
 
             describe('when the interaction has finished', () => {
                 beforeEach(async () => {
-                    await fireEvent.mouseOut(component.getByRole('heading'));
+                    await fireEvent.mouseOut(component.getByRole('list'));
                 });
 
                 it('then it does autoplay', async () => {
@@ -655,10 +623,6 @@ describe('given a discrete carousel', () => {
             it('then it is displaying the first item', () => {
                 const firstItem = component.getByText(input.items[0].renderBody.text);
                 assertAtStartOfSlide(firstItem);
-            });
-
-            it('then it has the appropriate heading', () => {
-                expect(component.getByRole('heading')).has.text('1 of 3');
             });
         }
     });

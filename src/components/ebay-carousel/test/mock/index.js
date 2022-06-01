@@ -4,8 +4,6 @@ export const discrete1PerSlide0Items = {
     itemsPerSlide: 1,
     a11yPreviousText: 'prev',
     a11yNextText: 'next',
-    a11yStatusText: '{currentSlide} of {totalSlides}',
-    a11yStatusTag: 'h2',
     items: [],
 };
 

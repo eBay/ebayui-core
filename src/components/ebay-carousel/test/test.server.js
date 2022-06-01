@@ -10,12 +10,9 @@ describe('carousel', () => {
     describe('with discrete items per slide', () => {
         it('renders base version', async () => {
             const input = mock.discrete1PerSlide3Items;
-            const { queryByText, getByText } = await render(template, input);
-            const statusEl = getByText(/\d+ of \d+/).parentElement;
+            const { queryByText, getByRole } = await render(template, input);
 
-            expect(statusEl).has.property('tagName', input.a11yStatusTag.toUpperCase());
-            expect(statusEl).has.text('1 of 3');
-            expect(statusEl).has.attr('aria-live', 'polite');
+            expect(getByRole('group')).to.have.attr('aria-roledescription');
 
             input.items.forEach((item) =>
                 expect(queryByText(item.renderBody.text)).not.to.equal(null)
@@ -64,9 +61,6 @@ describe('carousel', () => {
         it('renders base version', async () => {
             const input = mock.continuous6Items;
             const { queryByText, queryByLabelText, getByLabelText } = await render(template, input);
-
-            // Status text is only used for discrete carousels.
-            expect(queryByText(/\d+ of \d+/)).equals(null);
 
             // Also it should not have the dot controls.
             expect(queryByLabelText(/go to slide/)).equals(null);
