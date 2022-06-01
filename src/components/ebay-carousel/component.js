@@ -23,16 +23,13 @@ function getTemplateData(state) {
     const bothControlsDisabled = isAnimating(state)
         ? state.bothControlsDisabled
         : prevControlDisabled && nextControlDisabled;
-    let slide, itemWidth, totalSlides, a11yStatusText;
+    let slide, itemWidth, totalSlides;
 
     if (itemsPerSlide) {
         const itemsInSlide = itemsPerSlide + state.peek;
         slide = getSlide(state);
         itemWidth = `calc(${100 / itemsInSlide}% - ${((itemsInSlide - 1) * gap) / itemsInSlide}px)`;
         totalSlides = getSlide(state, items.length);
-        a11yStatusText = state.a11yStatusText
-            .replace('{currentSlide}', slide + 1)
-            .replace('{totalSlides}', totalSlides);
     }
 
     items.forEach((item, i) => {
@@ -62,7 +59,6 @@ function getTemplateData(state) {
         offset: hasOverride ? config.offsetOverride : offset,
         disableTransition: hasOverride,
         totalSlides,
-        a11yStatusText,
         prevControlDisabled,
         nextControlDisabled,
         bothControlsDisabled,
@@ -482,10 +478,6 @@ export default {
                 'itemsPerSlide',
                 'a11yPreviousText',
                 'a11yNextText',
-                'a11yStatusText',
-                'a11yStatusTag',
-                'a11yHeadingText',
-                'a11yHeadingTag',
                 'a11yPlayText',
                 'a11yPauseText',
                 'items',
@@ -503,12 +495,9 @@ export default {
             itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
             a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
             a11yNextText: input.a11yNextText || 'Next Slide',
-            a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides}',
-            a11yStatusTag: input.a11yStatusTag || 'span',
-            a11yHeadingText: input.a11yHeadingText,
-            a11yHeadingTag: input.a11yHeadingTag || 'h2',
             a11yPauseText: input.a11yPauseText || 'Pause',
             a11yPlayText: input.a11yPlayText || 'Play',
+            ariaRoleDescription: input['aria-roledescription'] || 'Carousel',
         };
 
         const itemSkippedAttributes = ['class', 'style', 'key'];

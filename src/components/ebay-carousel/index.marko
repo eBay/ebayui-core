@@ -1,15 +1,11 @@
 $ var data = component.getTemplateData(state, input);
 $ var config = data.config;
-$ var discrete = data.totalSlides >= 1;
-$ var statusId = (discrete && "carousel-status-" + component.id) || (
-   data.a11yStatusText || data.a11yHeadingText && component.getElId("carousel"));
 
 <div ...data.htmlAttributes
     class=data.classes
     style=data.style
-    aria-labelledby=statusId
-    role="group"
-    aria-roledescription="carousel">
+    aria-roledescription=data.ariaRoleDescription
+    role="group">
    <div
         class=[
             "carousel__container",
@@ -24,25 +20,6 @@ $ var statusId = (discrete && "carousel-status-" + component.id) || (
         onTouchend(data.autoplayInterval && "handleEndInteraction")
         key="container"
         id:scoped="container">
-        <if(data.a11yStatusText || data.a11yHeadingText)>
-            <${discrete ? data.a11yStatusTag : data.a11yHeadingTag}
-                id=statusId
-                class="clipped"
-                aria-live=(
-                    discrete
-                        ? data.autoplayInterval && !data.paused
-                            ? "off"
-                            : "polite"
-                        : false
-                )>
-                <if(discrete)>
-                    <span>${data.a11yStatusText}</span>
-                </if>
-                <else>
-                    <span>${data.a11yHeadingText}</span>
-                </else>
-            </>
-        </if>
         <button
             class=[
                 "carousel__control",

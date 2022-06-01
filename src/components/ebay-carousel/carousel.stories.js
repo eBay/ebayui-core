@@ -98,27 +98,33 @@ export default {
                 },
             },
         },
-        'a11y-heading-text': {
-            description:
-                'Text to announce as heading. Used when there is no external heading for carousel',
-            table: {
-                defaultValue: {
-                    summary: '',
-                },
 
+        'aria-label': {
+            description: 'a11y label text for component',
+            table: {
                 category: 'accessibility attributes',
             },
+            control: { type: 'text' },
         },
-        'a11y-heading-tag': {
-            description:
-                "h1-h6 when there isn't a visible heading before the carousel (continuous only)",
+
+        'aria-labelledby': {
+            description: 'id of element containing a11y label text for component',
+            table: {
+                category: 'accessibility attributes',
+            },
+            control: { type: 'text' },
+        },
+
+        'aria-roledescription': {
+            description: 'a11y role description for component',
             table: {
                 defaultValue: {
-                    summary: 'h2',
+                    summary: 'Carousel',
                 },
 
                 category: 'accessibility attributes',
             },
+            control: { type: 'text' },
         },
 
         'a11y-next-text': {
@@ -229,10 +235,9 @@ continuous.args = {
     index: 0,
     gap: 16,
     items: getItems(10),
-    'a11y-heading-text': '',
-    'a11y-heading-tag': '',
     'a11y-previous-text': '',
     'a11y-next-text': '',
+    'aria-label': 'Continuous',
 };
 
 continuous.parameters = {
@@ -248,10 +253,9 @@ continuousVariedWidth.args = {
     index: 0,
     gap: 16,
     items: getItems(10, 'none', false, 'variable'),
-    'a11y-heading-text': '',
-    'a11y-heading-tag': '',
     'a11y-previous-text': '',
     'a11y-next-text': '',
+    'aria-label': 'Continuous, Varied Width',
 };
 
 continuousVariedWidth.parameters = {
@@ -269,10 +273,9 @@ imageTreatment.args = {
     imageTreatment: 'matte',
     items: getItems(10, 'matte'),
     itemWidth: 'fixed',
-    'a11y-heading-text': '',
-    'a11y-heading-tag': '',
     'a11y-previous-text': '',
     'a11y-next-text': '',
+    'aria-label': 'Image treatment',
 };
 
 imageTreatment.parameters = {
@@ -291,6 +294,7 @@ itemsPerSlide.args = {
     'a11y-previous-text': null,
     'a11y-next-text': null,
     itemsPerSlide: '2',
+    'aria-label': 'Items Per Slide',
 };
 itemsPerSlide.parameters = {
     controls: { exclude: ['autoplay'] },
@@ -310,6 +314,7 @@ autoplay.args = {
     'a11y-next-text': null,
     itemsPerSlide: '1',
     autoplay: true,
+    'aria-label': 'Autoplay',
 };
 
 autoplay.parameters = {
