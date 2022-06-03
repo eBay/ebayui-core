@@ -20,6 +20,7 @@ const svgDir = path.join(skinDir, 'src/svg');
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const outputBaseDir = path.join(__dirname, '../src/components');
+const examplesMap = {};
 
 const htmlMinifierOptions = {
     keepClosingSlash: true,
@@ -32,10 +33,21 @@ function getOutputDir(fileName) {
     return path.join(outputBaseDir, `ebay-${fileName}`, 'icons');
 }
 
+function getExamples(fileName) {
+    return path.join(outputBaseDir, `ebay-${fileName}`, 'examples', 'all.marko');
+}
+
 function setupDir(fileName) {
     const outputDir = getOutputDir(fileName);
+    const example = getExamples(fileName);
     cp.execSync(`rm -rf ${JSON.stringify(outputDir)}`);
+    cp.execSync(`rm -rf ${JSON.stringify(example)}`);
     fs.mkdirSync(outputDir);
+    fs.writeFileSync(
+        example,
+        `class {}
+div.icon-examples`
+    );
 }
 
 // Remove unused tags in markoTag
@@ -83,13 +95,67 @@ function generateFile(type, iconMap) {
     }
 }
 
-function generateIcon(filename, componentName) {
-    const icons = new Map();
-    setupDir(componentName);
-    addIcons(filename, icons);
-    generateFile(componentName, icons);
+function generateExamples(type, iconMap) {
+    const exampleFile = path.join(getExamples(type));
+    const file = fs.readFileSync(exampleFile, 'utf-8');
+    const exampleHTML = [];
+    for (const name of iconMap) {
+        const postfixName = type === 'icon' ? '-icon' : '';
+        const iconName = `ebay-${name}${postfixName}`;
+        exampleHTML.push(`   div
+        span.icon
+            ${iconName}
+        span.text
+            -- ${iconName}\n`);
+    }
+    fs.writeFileSync(exampleFile, `${file}\n${exampleHTML.join('\n')}`);
 }
 
-generateIcon('icons', 'icon');
+function generateIcon(filename, componentName, skipExample) {
+    const icons = new Map();
+    addIcons(filename, icons);
+    generateFile(componentName, icons);
+    if (!skipExample) {
+        examplesMap[componentName] = examplesMap[componentName] || [];
+        for (const [name] of icons) {
+            examplesMap[componentName].push(name);
+        }
+    }
+}
+
+setupDir('icon');
+setupDir('program-badge');
+setupDir('star-rating');
+
+generateIcon('aliased', 'icon', true);
+generateIcon('direction', 'icon');
+generateIcon('large', 'icon');
+generateIcon('social', 'icon');
+generateIcon('user', 'icon');
+generateIcon('content', 'icon');
+generateIcon('filter', 'icon');
+generateIcon('interface', 'icon');
+generateIcon('media', 'icon');
+generateIcon('reviews', 'icon');
+generateIcon('device', 'icon');
+generateIcon('general', 'icon');
+generateIcon('internal', 'icon');
+generateIcon('photo', 'icon');
+generateIcon('shipping', 'icon');
+generateIcon('status', 'icon');
+
 generateIcon('program-badges', 'program-badge');
 generateIcon('star-rating', 'star-rating');
+
+Object.keys(examplesMap).forEach((componentName) => {
+    examplesMap[componentName].sort((a, b) => {
+        if (a < b) {
+            return -1;
+        }
+        if (a > b) {
+            return 1;
+        }
+        return 0;
+    });
+    generateExamples(componentName, examplesMap[componentName]);
+});
