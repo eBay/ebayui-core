@@ -52,7 +52,7 @@ describe('given an input textbox with floating label and no value', () => {
         expect(component.container.firstElementChild).has.class('floating-label');
     });
 
-    it('then is showing the label inline', () => {
+    it('then is showing the label inline', async () => {
         expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
     });
 
