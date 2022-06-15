@@ -86,6 +86,7 @@
     "arc-webpack": "^2.0.6",
     "async": "^3.2.1",
     "babel-loader": "^8.0.6",
+    "babel-plugin-add-module-exports": "^1.0.4",
     "browser-refresh": "^1.7.2",
     "chai": "4.3.6",
     "chai-dom": "^1.10.0",

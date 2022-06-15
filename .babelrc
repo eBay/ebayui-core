@@ -20,7 +20,9 @@
                         "loose": true
                     }
                 ]
-            ]
+            ],
+            "plugins": ["add-module-exports"]
+
         }
     }
 }
