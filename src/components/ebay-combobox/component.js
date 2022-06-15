@@ -197,7 +197,7 @@ export default {
                 this.getEl('listbox'),
                 '[role="option"]',
                 {
-                    activeDescendantClassName: 'combobox_option--active',
+                    activeDescendantClassName: 'combobox__option--active',
                     autoInit: -1,
                     autoReset: -1,
                     axis: 'y',
@@ -247,6 +247,10 @@ export default {
         if (this.expander) {
             this.expander.destroy();
             this.expander = null;
+        }
+        if (this._floatingLabel) {
+            this._floatingLabel.destroy();
+            this._floatingLabel = null;
         }
     },
 

@@ -5,7 +5,6 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@floating-label": "string",
   "@borderless": "boolean",
   "@autocomplete": "string",
   "@expanded": "boolean",
@@ -21,6 +20,7 @@
   "@role": "never",
   "@aria-autocomplete": "never",
   "@aria-haspopup": "never",
+  "@floating-label": "string",
   "@actionable <actionable>": {
     "attribute-groups": ["html-attributes"],
     "@*": {

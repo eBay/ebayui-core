@@ -14,8 +14,8 @@ describe('combobox-readonly', () => {
         const listbox = getAllByRole('listbox').find(isVisible);
         const visibleOptions = getAllByRole('option').filter(isVisible);
         expect(combobox).has.attr('aria-haspopup');
-        expect(combobox.parentElement).does.not.have.class('combobox_control--borderless');
-        expect(listbox).has.class('combobox_listbox');
+        expect(combobox.parentElement).does.not.have.class('combobox__control--borderless');
+        expect(listbox).has.class('combobox__listbox');
         expect(listbox).has.property('parentElement').with.class('combobox');
         expect(visibleOptions).has.length(3);
         expect(visibleOptions.filter(isAriaSelected)).has.length(1);
@@ -38,7 +38,7 @@ describe('combobox-readonly', () => {
         const input = mock.combobox3OptionsBorderless;
         const { getAllByRole } = await render(template, input);
         const combobox = getAllByRole('combobox').find(isVisible);
-        expect(combobox).has.property('parentElement').with.class('combobox_control--borderless');
+        expect(combobox).has.property('parentElement').with.class('combobox__control--borderless');
     });
 
     testPassThroughAttributes(template, {

@@ -1,6 +1,7 @@
+import '@ebay/skin/tokens';
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
-import { render, fireEvent, cleanup } from '@marko/testing-library';
+import { render, fireEvent, cleanup, waitFor } from '@marko/testing-library';
 import { pressKey } from '../../../common/test-utils/browser';
 import template from '..';
 import * as mock from './mock';
@@ -81,8 +82,8 @@ describe('given the combobox with 3 items', () => {
 
                 it('then it should highlight the first option in the combobox', () => {
                     const options = component.getAllByRole('option');
-                    expect(options).has.property(0).with.class('combobox_option--active');
-                    expect(options).has.property(1).not.with.class('combobox_option--active');
+                    expect(options).has.property(0).with.class('combobox__option--active');
+                    expect(options).has.property(1).not.with.class('combobox__option--active');
                     expect(component.getByRole('combobox')).has.value(input.options[0].text);
                 });
 
@@ -115,8 +116,8 @@ describe('given the combobox with 3 items', () => {
 
                     it('then it should highlight the second option in the combobox', () => {
                         const options = component.getAllByRole('option');
-                        expect(options).has.property(0).not.with.class('combobox_option--active');
-                        expect(options).has.property(1).with.class('combobox_option--active');
+                        expect(options).has.property(0).not.with.class('combobox__option--active');
+                        expect(options).has.property(1).with.class('combobox__option--active');
                         expect(component.getByRole('combobox')).has.value(input.options[1].text);
                     });
                 });
@@ -200,7 +201,7 @@ describe('given the combobox with 3 items and 2 selected', () => {
             it('then should show all items by default', () => {
                 const options = component.getAllByRole('option');
                 expect(options.length).to.equal(3);
-                expect(options).has.property(1).with.class('combobox_option--active');
+                expect(options).has.property(1).with.class('combobox__option--active');
             });
         });
     }
@@ -276,8 +277,8 @@ describe('given the combobox with 3 items set to manual selection', () => {
 
                 it('then it should highlight the first option in the combobox', () => {
                     const options = component.getAllByRole('option');
-                    expect(options).has.property(0).with.class('combobox_option--active');
-                    expect(options).has.property(1).not.with.class('combobox_option--active');
+                    expect(options).has.property(0).with.class('combobox__option--active');
+                    expect(options).has.property(1).not.with.class('combobox__option--active');
                     expect(component.getByRole('combobox')).has.value('');
                 });
 
@@ -308,8 +309,8 @@ describe('given the combobox with 3 items set to manual selection', () => {
 
                     it('then it should highlight the second option in the combobox', () => {
                         const options = component.getAllByRole('option');
-                        expect(options).has.property(0).not.with.class('combobox_option--active');
-                        expect(options).has.property(1).with.class('combobox_option--active');
+                        expect(options).has.property(0).not.with.class('combobox__option--active');
+                        expect(options).has.property(1).with.class('combobox__option--active');
                         expect(component.getByRole('combobox')).has.value('');
                     });
                 });
@@ -446,8 +447,8 @@ describe('given the combobox starts with zero options', () => {
 
                 it('then it should highlight the first option in the combobox', () => {
                     const options = component.getAllByRole('option');
-                    expect(options).has.property(0).with.class('combobox_option--active');
-                    expect(options).has.property(1).not.with.class('combobox_option--active');
+                    expect(options).has.property(0).with.class('combobox__option--active');
+                    expect(options).has.property(1).not.with.class('combobox__option--active');
                 });
 
                 describe('when the enter key is pressed', () => {
@@ -479,8 +480,8 @@ describe('given the combobox starts with zero options', () => {
 
                     it('then it should highlight the second option in the combobox', () => {
                         const options = component.getAllByRole('option');
-                        expect(options).has.property(0).not.with.class('combobox_option--active');
-                        expect(options).has.property(1).with.class('combobox_option--active');
+                        expect(options).has.property(0).not.with.class('combobox__option--active');
+                        expect(options).has.property(1).with.class('combobox__option--active');
                     });
                 });
             });
@@ -576,9 +577,11 @@ describe('given an input textbox with floating label and no value', () => {
                 await fireEvent.blur(component.getByRole('combobox'));
             });
 
-            it('then is showing the label inline', () => {
-                expect(component.getByText(input.floatingLabel)).has.class(
-                    'floating-label__label--inline'
+            it('then is showing the label inline', async () => {
+                await waitFor(() =>
+                    expect(component.getByText(input.floatingLabel)).has.class(
+                        'floating-label__label--inline'
+                    )
                 );
             });
         });

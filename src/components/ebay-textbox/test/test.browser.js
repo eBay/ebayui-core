@@ -1,3 +1,4 @@
+import '@ebay/skin/tokens';
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
 import { render, fireEvent, cleanup } from '@marko/testing-library';
