@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 import ExpandButton from '<ebay-expand-button>'
 import IconButton from '<ebay-icon-button>'
 import Button from '<ebay-button>'
@@ -31,16 +31,20 @@ static var ignoredAttributes = [
 
 $ {
     var labelId = input.prefixId && component.getElId("label");
+    var isFormVariant = input.variant === "form"
     var isOverflowVariant = input.variant === "overflow";
-    var isButtonVariant = input.variant === "button";
+    var isButtonVariant = false;
     var priority = null;
     var prefix = 'expand-btn'
 
-    var tagName = ExpandButton;
+    var tagName;
     if (isOverflowVariant) {
         tagName = IconButton;
-    } else if (isButtonVariant) {
-        tagName = Button;
+    } else if (isFormVariant) {
+        tagName = ExpandButton;
+    } else {
+        isButtonVariant = true;
+        tagName = Button
         priority = input.priority
         prefix = 'btn';
     }

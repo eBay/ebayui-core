@@ -1,10 +1,11 @@
-const { createRenderBody } = require('../../../../common/test-utils/shared');
+/* eslint camelcase: "off" */
+import { createRenderBody } from '../../../../common/test-utils/shared';
 
-exports.Default_Details = {
+export const Default_Details = {
     text: 'open',
     renderBody: createRenderBody('body content'),
 };
 
-exports.Open_Details = Object.assign({}, exports.Default_Details, {
+export const Open_Details = Object.assign({}, Default_Details, {
     open: true,
 });

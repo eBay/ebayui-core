@@ -1,4 +1,4 @@
-import processHtmlAttributes from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "name",
@@ -70,7 +70,7 @@ $ var displayText = selectedText || unselectedText;
         tabindex=-1
         list-selection=input.listSelection
         on-change("handleListboxChange")>
-        <for|option| of=input.options>
+        <for|option| of=(input.options || [])>
             <@option ...option selected=(selectedOption === option)/>
         </for>
     </ebay-listbox>

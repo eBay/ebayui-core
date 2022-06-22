@@ -1,9 +1,9 @@
-const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
-const rovingTabIndex = require('makeup-roving-tabindex');
-const eventUtils = require('../../common/event-utils');
-const menuUtils = require('../../common/menu-utils');
+import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
+import { createLinear } from 'makeup-roving-tabindex';
+import * as eventUtils from '../../common/event-utils';
+import * as menuUtils from '../../common/menu-utils';
 
-module.exports = Object.assign({}, menuUtils, {
+export default Object.assign({}, menuUtils, {
     resetIndex() {
         this._rovingTabIndex.index = 0;
         this.lastTabIndexPosition = 0;
@@ -87,7 +87,7 @@ module.exports = Object.assign({}, menuUtils, {
 
     _setupMakeup() {
         if (this.input.variant !== 'form') {
-            this._rovingTabIndex = rovingTabIndex.createLinear(this.getEl('menu'), 'div', {
+            this._rovingTabIndex = createLinear(this.getEl('menu'), 'div', {
                 index: this.lastTabIndexPosition || 0,
             });
 

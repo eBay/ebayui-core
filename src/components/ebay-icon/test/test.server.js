@@ -1,31 +1,24 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { runTransformer } = require('../../../common/test-utils/server');
-const migrator = require('../migrator');
-const template = require('..');
+import { use } from 'chai';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import template from '..';
 
 const iconName = 'mic';
 const progrmaBadgeIcon = 'program-badge-authenticity-guaranteed';
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
 describe('icon', () => {
-    it('renders inline type with title text', async () => {
+    it('renders icon inline type with title text', async () => {
         const input = {
             _name: iconName,
             _type: 'icon',
             a11yText: 'inline icon',
         };
-
-        const { getByRole, getByTitle } = await render(template, input);
-        const svg = getByRole('img');
-        const title = getByTitle(input.a11yText);
-        expect(svg).has.class(`icon--${iconName}`);
-        expect(svg).contains(title);
-        expect(svg).has.attr('aria-labelledby', title.id);
+        await htmlSnap(template, input);
     });
 
-    it('renders inline type without title text', async () => {
+    it('renders icon inline type without title text', async () => {
         const input = {
             _name: iconName,
             _type: 'icon',
@@ -33,13 +26,10 @@ describe('icon', () => {
                 'data-testid': 'icon',
             },
         };
-
-        const { getByTestId } = await render(template, input);
-        const svg = getByTestId('icon');
-        expect(svg).has.attr('aria-hidden', 'true');
+        await htmlSnap(template, input);
     });
 
-    it('renders no-skin-classes', async () => {
+    it('renders icon no-skin-classes', async () => {
         const input = {
             _name: iconName,
             noSkinClasses: true,
@@ -49,31 +39,22 @@ describe('icon', () => {
                 'data-testid': 'icon',
             },
         };
-        const { getByTestId } = await render(template, input);
-        const svg = getByTestId('icon');
-
-        expect(svg).has.class('custom-class');
-        expect(svg).does.not.have.class(`icon--${iconName}`);
+        await htmlSnap(template, input);
     });
 });
 
 describe('program badges', () => {
-    it('renders inline type with title text', async () => {
+    it('renders program badge inline type with title text', async () => {
         const input = {
             _name: progrmaBadgeIcon,
             _type: 'program-badge',
             a11yText: 'inline icon',
         };
 
-        const { getByRole, getByTitle } = await render(template, input);
-        const svg = getByRole('img');
-        const title = getByTitle(input.a11yText);
-        expect(svg).has.class(`program-badge--authenticity-guaranteed`);
-        expect(svg).contains(title);
-        expect(svg).has.attr('aria-labelledby', title.id);
+        await htmlSnap(template, input);
     });
 
-    it('renders inline type without title text', async () => {
+    it('renders program badge inline type without title text', async () => {
         const input = {
             _name: iconName,
             _type: 'program-badge',
@@ -81,13 +62,10 @@ describe('program badges', () => {
                 'data-testid': 'icon',
             },
         };
-
-        const { getByTestId } = await render(template, input);
-        const svg = getByTestId('icon');
-        expect(svg).has.attr('aria-hidden', 'true');
+        await htmlSnap(template, input);
     });
 
-    it('renders no-skin-classes', async () => {
+    it('renders program badge no-skin-classes', async () => {
         const input = {
             _name: iconName,
             noSkinClasses: true,
@@ -97,32 +75,6 @@ describe('program badges', () => {
                 'data-testid': 'icon',
             },
         };
-        const { getByTestId } = await render(template, input);
-        const svg = getByTestId('icon');
-
-        expect(svg).has.class('custom-class');
-        expect(svg).does.not.have.class(`program-badge--authenticity-guaranteed`);
-    });
-});
-
-describe('migrator', () => {
-    const componentPath = '../index.js';
-    function getTagString() {
-        return `<ebay-icon type="inline" name="${iconName}" />`;
-    }
-
-    it('removes type attribute', () => {
-        const tagString = getTagString();
-        const { el } = runTransformer(migrator, tagString, componentPath);
-        const attr = el.hasAttribute('type');
-        expect(attr).to.equal(false);
-    });
-
-    it('changes name attribute', () => {
-        const tagString = getTagString();
-        const { el } = runTransformer(migrator, tagString, componentPath);
-        expect(el.tagName).to.equal('ebay-mic-icon');
-        const attr = el.hasAttribute('name');
-        expect(attr).to.equal(false);
+        await htmlSnap(template, input);
     });
 });

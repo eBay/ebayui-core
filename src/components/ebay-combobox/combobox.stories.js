@@ -93,7 +93,7 @@ FloatingLabel.args = {
         { text: 'Basic Offer 3' },
         { text: 'Basic Offer 4' },
     ],
-    'floating-label': 'Default Label',
+    floatingLabel: 'Default Label',
 };
 FloatingLabel.parameters = {
     docs: {

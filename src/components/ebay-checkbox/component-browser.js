@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     handleChange: forwardEvent('change'),
     handleFocus: forwardEvent('focus'),
     handleKeydown: forwardEvent('keydown'),

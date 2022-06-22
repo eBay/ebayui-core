@@ -1,47 +1,36 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { use } from 'chai';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
+import template from '..';
+import * as mock from './mock';
 
+const htmlSnap = snapshotHTML(__dirname);
 use(require('chai-dom'));
 
 describe('details', () => {
     it('renders basic version', async () => {
         const input = mock.Default_Details;
-        const { getByText } = await render(template, input);
-        expect(getByText(input.text)).has.class('details__label');
-        expect(getByText(input.renderBody.text)).has.property('tagName', 'P');
-        expect(getByText(input.text).closest('details')).has.property('open', false);
-        expect(getByText(input.renderBody.text).closest('details')).has.property('open', false);
+        await htmlSnap(template, input);
     });
 
     it('renders as div version', async () => {
         const input = Object.assign({}, mock.Default_Details, { as: 'div' });
-        const { getByText } = await render(template, input);
-        expect(getByText(input.text)).has.class('details__label');
-        expect(getByText(input.renderBody.text)).has.property('tagName', 'DIV');
+        await htmlSnap(template, input);
     });
 
     it('renders in open state', async () => {
         const input = mock.Open_Details;
-        const { getByText } = await render(template, input);
-        expect(getByText(input.text)).has.class('details__label');
-        expect(getByText(input.renderBody.text)).has.property('tagName', 'P');
-        expect(getByText(input.text).closest('details')).has.property('open', true);
-        expect(getByText(input.renderBody.text).closest('details')).has.property('open', true);
+        await htmlSnap(template, input);
     });
 
     it('renders small version', async () => {
         const input = Object.assign({}, mock.Default_Details, { size: 'small' });
-        const { getByText } = await render(template, input);
-        expect(getByText(input.text).closest('summary')).has.class('details__summary--small');
+        await htmlSnap(template, input);
     });
 
     it('renders center version', async () => {
         const input = Object.assign({}, mock.Default_Details, { alignment: 'center' });
-        const { getByText } = await render(template, input);
-        expect(getByText(input.text).closest('summary')).has.class('details__summary--center');
+        await htmlSnap(template, input);
     });
 
     testPassThroughAttributes(template);

@@ -1,9 +1,7 @@
 import './custom-styles.less';
-if (process.env.DS !== '4') {
-    require('@ebay/skin/marketsans');
-}
-
-require('@ebay/skin/global');
+import '@ebay/skin/tokens';
+import '@ebay/skin/global';
+import '@ebay/skin/marketsans';
 
 export const parameters = {
     layout: 'centered',

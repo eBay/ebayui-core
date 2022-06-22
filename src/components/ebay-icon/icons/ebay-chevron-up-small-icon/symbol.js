@@ -1,4 +1,4 @@
-module.exports = function () {
+export function symbol() {
     // eslint-disable-next-line max-len,quotes
-    return '<symbol viewbox="0 0 14 8" id=icon-chevron-up-small><path d="M13 8a1.006 1.006 0 01-.714-.29L6.972 2.404 1.658 7.71c-.399.34-.993.317-1.364-.053a.999.999 0 01-.052-1.359L6.269.291a1.007 1.007 0 011.416 0l6.028 6.007a.999.999 0 01.21 1.087c-.156.37-.52.613-.923.615z"></path></symbol>';
-};
+    return '<symbol viewbox="0 0 16 16" id=icon-chevron-up-small><path d="m8.707 3.293 6 6a1 1 0 0 1-1.414 1.414L8 5.414l-5.293 5.293a1 1 0 0 1-1.414-1.414l6-6a1 1 0 0 1 1.414 0Z"></path></symbol>';
+}

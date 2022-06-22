@@ -1,6 +1,6 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
-import Component from './examples/01-inline/template.marko';
+import Component from './examples/all.marko';
 
 const Template = (args) => ({
     input: {

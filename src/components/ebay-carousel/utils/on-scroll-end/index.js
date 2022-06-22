@@ -6,7 +6,7 @@
  * @param {(offset: number)=>{}} fn The function to call after scrolling completes.
  * @return {function} A function to cancel the scroll listener.
  */
-module.exports = function onScrollEnd(el, fn) {
+export function onScrollEnd(el, fn) {
     let timeout;
     let frame;
     let lastPos;
@@ -28,4 +28,4 @@ module.exports = function onScrollEnd(el, fn) {
         clearTimeout(timeout);
         cancelAnimationFrame(frame);
     };
-};
+}

@@ -1,7 +1,7 @@
-const Expander = require('makeup-expander').default;
-const scrollKeyPreventer = require('makeup-prevent-scroll-keys');
+import Expander from 'makeup-expander';
+import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
 
-module.exports = {
+export default {
     handleExpand() {
         this.getComponent('options').elementScroll();
         this.emit('expand');

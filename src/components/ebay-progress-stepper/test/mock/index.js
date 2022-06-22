@@ -1,4 +1,4 @@
-const { createRenderBody, getNItems } = require('../../../../common/test-utils/shared');
+import { createRenderBody, getNItems } from '../../../../common/test-utils/shared';
 
 function getType(i) {
     switch (i) {
@@ -11,7 +11,7 @@ function getType(i) {
     }
 }
 
-exports.ProgressStepper = {
+export const ProgressStepper = {
     a11yHeadingText: 'shipment',
     step: getNItems(4, (i) => ({
         current: i === 2,
@@ -20,17 +20,17 @@ exports.ProgressStepper = {
     })),
 };
 
-exports.ProgressStepper_NoCurrent = {
+export const progressStepperNoCurrent = {
     step: getNItems(4, (i) => ({
         renderBody: createRenderBody(`status ${i}`),
     })),
 };
 
-exports.ProgressStepper_Vertical = Object.assign({}, exports.ProgressStepper, {
+export const progressStepperVertical = Object.assign({}, ProgressStepper, {
     direction: 'column',
 });
 
-exports.ProgressStepper_States = {
+export const progressStepperStates = {
     step: getNItems(5, (i) => ({
         current: i === 1,
         type: getType(i),

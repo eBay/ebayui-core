@@ -1,10 +1,7 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
-const template = require('..');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 
 use(require('chai-dom'));
 
@@ -28,5 +25,3 @@ testPassThroughAttributes(template, {
         return component.getByRole('radio').parentElement;
     },
 });
-
-testEventsMigrator(require('../migrator'), 'radio', ['focus', 'change'], '../index.marko');

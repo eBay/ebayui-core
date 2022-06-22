@@ -1,6 +1,6 @@
 let rootSvg;
 
-module.exports = {
+export default {
     onMount() {
         // Create a hidden svg to store all symbols on startup.
         if (!rootSvg) {
@@ -16,7 +16,7 @@ module.exports = {
 
         if (defs) {
             if (this.input && this.input._themes) {
-                defs.innerHTML = this.input._themes[0]();
+                defs.innerHTML = this.input._themes();
             }
             const symbol = defs.querySelector('symbol');
             defs.parentNode.removeChild(defs);

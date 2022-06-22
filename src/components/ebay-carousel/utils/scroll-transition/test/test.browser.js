@@ -1,6 +1,6 @@
-const sinon = require('sinon');
-const { expect } = require('chai');
-const scrollTransition = require('../');
+import sinon from 'sinon';
+import { expect } from 'chai';
+import { scrollTransition } from '../';
 
 describe('scroll-transition', () => {
     let scrollEl;

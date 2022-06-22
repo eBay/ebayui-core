@@ -1,10 +1,11 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { pressKey } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import { pressKey } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -16,7 +17,7 @@ before(() => document.body.appendChild(form));
 after(() => document.body.removeChild(form));
 
 describe('given the readonly combobox with 3 items', () => {
-    const input = mock.Combobox_3Options;
+    const input = mock.combobox3Options;
 
     beforeEach(async () => {
         component = await render(template, input, { container: form });
@@ -196,7 +197,7 @@ describe('given the readonly combobox with 3 items', () => {
 });
 
 describe('given the readonly combobox with 3 items that is disabled', () => {
-    const input = mock.Combobox_3Options_Disabled;
+    const input = mock.combobox3OptionsDisabled;
 
     beforeEach(async () => {
         component = await render(template, input, { container: form });

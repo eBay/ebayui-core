@@ -1,6 +1,8 @@
 {
   "template": "./index.marko",
-  "attribute-groups": ["html-attributes"],
+  "attribute-groups": [
+    "html-attributes"
+  ],
   "@*": {
     "targetProperty": null,
     "type": "expression"

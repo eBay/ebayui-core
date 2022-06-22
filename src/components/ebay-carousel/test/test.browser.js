@@ -1,8 +1,10 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, waitFor, cleanup } = require('@marko/testing-library');
-const { fastAnimations } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, waitFor, cleanup } from '@marko/testing-library';
+import { fastAnimations } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
+use(chaiDom);
 const supportsNativeScrolling =
     CSS.supports &&
     CSS.supports(
@@ -13,7 +15,6 @@ const supportsNativeScrolling =
     (scroll-snap-align: start))`
     );
 
-use(require('chai-dom'));
 before(fastAnimations.start);
 after(fastAnimations.stop);
 afterEach(cleanup);
@@ -26,7 +27,7 @@ let component;
 
 describe('given a continuous carousel', () => {
     describe('without any items', () => {
-        const input = mock.Continuous_0Items;
+        const input = mock.continuous0Items;
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -42,7 +43,7 @@ describe('given a continuous carousel', () => {
     });
 
     describe('with 1 item (single slide)', () => {
-        const input = mock.Continuous_1Item;
+        const input = mock.continuous1Item;
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -58,7 +59,7 @@ describe('given a continuous carousel', () => {
     });
 
     describe('with 6 items at the beginning', () => {
-        const input = mock.Continuous_6Items;
+        const input = mock.continuous6Items;
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -138,7 +139,7 @@ describe('given a continuous carousel', () => {
     });
 
     describe('with 6 items at the end', () => {
-        const input = Object.assign({}, mock.Continuous_6Items, { index: 5 });
+        const input = Object.assign({}, mock.continuous6Items, { index: 5 });
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -178,7 +179,7 @@ describe('given a continuous carousel', () => {
     });
 
     describe('with 12 items', () => {
-        const input = mock.Continuous_12Items;
+        const input = mock.continuous12Items;
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -246,7 +247,7 @@ describe('given a continuous carousel', () => {
 
 describe('given a discrete carousel', () => {
     describe('without any items', () => {
-        const input = mock.Discrete_1PerSlide_0Items;
+        const input = mock.discrete1PerSlide0Items;
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -262,7 +263,7 @@ describe('given a discrete carousel', () => {
     });
 
     describe('with 1 item per slide and 1 item', () => {
-        const input = mock.Discrete_1PerSlide_1Items;
+        const input = mock.discrete1PerSlide1Items;
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -275,14 +276,10 @@ describe('given a discrete carousel', () => {
             );
             expect(component.getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
         });
-
-        it('then has the appropriate heading', () => {
-            expect(component.getByRole('heading')).has.text('1 of 1');
-        });
     });
 
     describe('with 1 item per slide and 3 items at the beginning', () => {
-        const input = mock.Discrete_1PerSlide_3Items;
+        const input = mock.discrete1PerSlide3Items;
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -302,10 +299,6 @@ describe('given a discrete carousel', () => {
             );
         });
 
-        it('then has the appropriate heading', () => {
-            expect(component.getByRole('heading')).has.text('1 of 3');
-        });
-
         describe('when it is rerendered to show the second item', () => {
             beforeEach(async () => {
                 await component.rerender(Object.assign({}, input, { index: 1 }));
@@ -315,10 +308,6 @@ describe('given a discrete carousel', () => {
             it('then it moved to the second item', () => {
                 const secondItem = component.getByText(input.items[1].renderBody.text);
                 assertAtStartOfSlide(secondItem);
-            });
-
-            it('then has the appropriate heading', () => {
-                expect(component.getByRole('heading')).has.text('2 of 3');
             });
         });
 
@@ -408,15 +397,11 @@ describe('given a discrete carousel', () => {
                     'aria-disabled'
                 );
             });
-
-            it('then has updated the heading', () => {
-                expect(component.getByRole('heading')).has.text('2 of 3');
-            });
         }
     });
 
     describe('with 1 item per slide and 3 items at the end', () => {
-        const input = Object.assign({}, mock.Discrete_1PerSlide_3Items, { index: 2 });
+        const input = Object.assign({}, mock.discrete1PerSlide3Items, { index: 2 });
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -458,7 +443,7 @@ describe('given a discrete carousel', () => {
     });
 
     describe('with 2 items per slide and 6 items at the beginning', () => {
-        const input = mock.Discrete_2PerSlide_6Items;
+        const input = mock.discrete2PerSlide6Items;
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -469,10 +454,6 @@ describe('given a discrete carousel', () => {
                     'aria-disabled'
                 )
             );
-        });
-
-        it('then has the appropriate heading', () => {
-            expect(component.getByRole('heading')).has.text('1 of 3');
         });
 
         describe('when next button is clicked', () => {
@@ -497,15 +478,11 @@ describe('given a discrete carousel', () => {
                 const secondItem = component.getByText(input.items[2].renderBody.text);
                 assertAtStartOfSlide(secondItem);
             });
-
-            it('then has updated the heading', () => {
-                expect(component.getByRole('heading')).has.text('2 of 3');
-            });
         }
     });
 
     describe('with 2.1 items per slide and 3 items at the beginning', () => {
-        const input = mock.Discrete_2_1PerSlide_3Items;
+        const input = mock.discrete21PerSlide3Items;
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -516,10 +493,6 @@ describe('given a discrete carousel', () => {
                     'aria-disabled'
                 )
             );
-        });
-
-        it('then has the appropriate heading', () => {
-            expect(component.getByRole('heading')).has.text('1 of 2');
         });
 
         it('then it shows part of the next slide', () => {
@@ -549,15 +522,11 @@ describe('given a discrete carousel', () => {
                 const secondItem = component.getByText(input.items[2].renderBody.text);
                 assertAtStartOfSlide(secondItem);
             });
-
-            it('then has the appropriate heading', () => {
-                expect(component.getByRole('heading')).has.text('2 of 2');
-            });
         });
     });
 
     describe('with autoplay enabled', () => {
-        const input = mock.Discrete_1PerSlide_3Items_AutoPlay;
+        const input = mock.discrete1PerSlide3ItemsAutoPlay;
 
         beforeEach(async () => {
             component = await render(template, input);
@@ -631,7 +600,7 @@ describe('given a discrete carousel', () => {
 
         describe('when it is interacted with', () => {
             beforeEach(async () => {
-                await fireEvent.mouseOver(component.getByRole('heading'));
+                await fireEvent.mouseOver(component.getByRole('list'));
             });
 
             it('then the autoplay does not run', async () => {
@@ -641,7 +610,7 @@ describe('given a discrete carousel', () => {
 
             describe('when the interaction has finished', () => {
                 beforeEach(async () => {
-                    await fireEvent.mouseOut(component.getByRole('heading'));
+                    await fireEvent.mouseOut(component.getByRole('list'));
                 });
 
                 it('then it does autoplay', async () => {
@@ -654,10 +623,6 @@ describe('given a discrete carousel', () => {
             it('then it is displaying the first item', () => {
                 const firstItem = component.getByText(input.items[0].renderBody.text);
                 assertAtStartOfSlide(firstItem);
-            });
-
-            it('then it has the appropriate heading', () => {
-                expect(component.getByRole('heading')).has.text('1 of 3');
             });
         }
     });

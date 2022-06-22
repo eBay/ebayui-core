@@ -1,24 +1,18 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 
 use(require('chai-dom'));
 
 describe('carousel', () => {
     describe('with discrete items per slide', () => {
         it('renders base version', async () => {
-            const input = mock.Discrete_1PerSlide_3Items;
-            const { queryByText, getByText } = await render(template, input);
-            const statusEl = getByText(/\d+ of \d+/).parentElement;
+            const input = mock.discrete1PerSlide3Items;
+            const { queryByText, getByRole } = await render(template, input);
 
-            expect(statusEl).has.property('tagName', input.a11yStatusTag.toUpperCase());
-            expect(statusEl).has.text('1 of 3');
-            expect(statusEl).has.attr('aria-live', 'polite');
+            expect(getByRole('group')).to.have.attr('aria-roledescription');
 
             input.items.forEach((item) =>
                 expect(queryByText(item.renderBody.text)).not.to.equal(null)
@@ -27,7 +21,7 @@ describe('carousel', () => {
 
         describe('with hidden scrollbar', () => {
             it('renders', async () => {
-                const input = Object.assign({}, mock.Discrete_1PerSlide_3Items, {
+                const input = Object.assign({}, mock.discrete1PerSlide3Items, {
                     hiddenScrollbar: true,
                 });
                 const { getByRole } = await render(template, input);
@@ -37,7 +31,7 @@ describe('carousel', () => {
         });
 
         it('renders without any provided items', async () => {
-            const input = mock.Discrete_1PerSlide_0Items;
+            const input = mock.discrete1PerSlide0Items;
             const { getByLabelText } = await render(template, input);
 
             expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
@@ -46,14 +40,14 @@ describe('carousel', () => {
 
         describe('with autoplay enabled', () => {
             it('renders base version', async () => {
-                const input = mock.Discrete_1PerSlide_3Items_AutoPlay;
+                const input = mock.discrete1PerSlide3ItemsAutoPlay;
                 const { queryByLabelText } = await render(template, input);
 
                 expect(queryByLabelText(input.a11yPauseText)).to.not.equal(null);
             });
 
             it('renders paused version', async () => {
-                const input = Object.assign({}, mock.Discrete_1PerSlide_3Items_AutoPlay, {
+                const input = Object.assign({}, mock.discrete1PerSlide3ItemsAutoPlay, {
                     paused: true,
                 });
                 const { queryByLabelText } = await render(template, input);
@@ -65,11 +59,8 @@ describe('carousel', () => {
 
     describe('without items per slide (continuous)', () => {
         it('renders base version', async () => {
-            const input = mock.Continuous_6Items;
+            const input = mock.continuous6Items;
             const { queryByText, queryByLabelText, getByLabelText } = await render(template, input);
-
-            // Status text is only used for discrete carousels.
-            expect(queryByText(/\d+ of \d+/)).equals(null);
 
             // Also it should not have the dot controls.
             expect(queryByLabelText(/go to slide/)).equals(null);
@@ -84,7 +75,7 @@ describe('carousel', () => {
         });
 
         it('renders without any provided items', async () => {
-            const input = mock.Continuous_0Items;
+            const input = mock.continuous0Items;
             const { getByLabelText } = await render(template, input);
 
             expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
@@ -100,10 +91,3 @@ describe('carousel', () => {
         },
     });
 });
-
-testEventsMigrator(
-    require('../migrator'),
-    'carousel',
-    [{ from: 'update', to: 'move' }, 'next', 'previous', 'slide', 'play', 'pause', 'scroll'],
-    '../index.marko'
-);

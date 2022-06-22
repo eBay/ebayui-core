@@ -1,8 +1,3 @@
-const { getDSFlags } = require('../src/common/ds-util');
-
-const AdaptivePlugin = require('arc-webpack');
-
-const dsVersion = getDSFlags(process.env.DS);
 module.exports = {
     stories: ['../src/**/*.stories.js'],
     addons: [
@@ -18,7 +13,6 @@ module.exports = {
             test: /\.less$/,
             use: ['style-loader', 'css-loader', 'less-loader'],
         });
-
         config.module.rules.push({
             test: /\.txt$/,
             type: 'asset/source',

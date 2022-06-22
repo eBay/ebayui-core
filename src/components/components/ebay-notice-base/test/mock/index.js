@@ -1,6 +1,7 @@
-const { createRenderBody } = require('../../../../../common/test-utils/shared');
+/* eslint camelcase: "off" */
+import { createRenderBody } from '../../../../../common/test-utils/shared';
 
-exports.Default_Notice = {
+export const defaultNotice = {
     prefixClass: 'page-notice',
     status: 'attention',
     a11yText: 'default label',
@@ -8,7 +9,7 @@ exports.Default_Notice = {
     renderBody: createRenderBody('body'),
 };
 
-exports.Inline_Notice = {
+export const inlineNotice = {
     root: 'div',
     prefixClass: 'inline-notice',
     status: 'information',
@@ -18,7 +19,7 @@ exports.Inline_Notice = {
     renderBody: createRenderBody('body'),
 };
 
-exports.Title_Footer_Notice = {
+export const titleFooterNotice = {
     prefixClass: 'window-notice',
     status: 'attention',
     a11yText: 'default label',

@@ -1,8 +1,28 @@
 {
-    "retainLines": true,
     "presets": [
-        ["@babel/preset-env", {
-            "loose": true
-        }]
-    ]
+        [
+            "@babel/preset-env",
+            {
+                "targets": {
+                    "chrome": "58",
+                    "safari": "11"
+                }
+            }
+        ]
+    ],
+    "env": {
+        "prod": {
+            "retainLines": true,
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "loose": true
+                    }
+                ]
+            ],
+            "plugins": ["add-module-exports"]
+
+        }
+    }
 }

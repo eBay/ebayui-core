@@ -1,19 +1,16 @@
-const { expect, use } = require('chai');
-const sinon = require('sinon');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { fastAnimations } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup, waitFor } from '@marko/testing-library';
+import { fastAnimations } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
 
-let timer;
-use(require('chai-dom'));
+use(chaiDom);
 before(() => {
-    timer = sinon.useFakeTimers();
     fastAnimations.start();
 });
 
 after(() => {
-    timer.restore();
     fastAnimations.stop();
 });
 afterEach(() => {
@@ -46,8 +43,9 @@ describe('given an open snackbar', () => {
             await fireEvent.mouseEnter(component.getByText(/action/i).parentElement);
             await fireEvent.focus(component.getByText(/action/i).parentElement);
             await fireEvent.blur(component.getByText(/action/i).parentElement);
-            timer.tick(7000);
-            expect(component.emitted('close')).has.length(0);
+            await waitFor(() => {
+                expect(component.emitted('close')).has.length(0);
+            }, 7000);
         });
     });
 });

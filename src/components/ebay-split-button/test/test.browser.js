@@ -1,10 +1,13 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { pressKey } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import { composeStories } from '@storybook/marko/dist/testing';
+import * as stories from '../split-button.stories'; // import all stories from the stories file
 
-use(require('chai-dom'));
+const { Standard } = composeStories(stories);
+
+import { pressKey } from '../../../common/test-utils/browser';
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -12,12 +15,12 @@ let component;
 
 describe('given button is enabled', () => {
     beforeEach(async () => {
-        component = await render(template, mock.Basic_3Items);
+        component = await render(Standard);
     });
 
     describe('when button is clicked', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByText('button'));
+            await fireEvent.click(component.getByText('Button'));
         });
 
         it('then it emits the event with correct data', () => {
@@ -27,7 +30,7 @@ describe('given button is enabled', () => {
 
     describe('when escape key is pressed', () => {
         beforeEach(async () => {
-            await pressKey(component.getByText('button'), {
+            await pressKey(component.getByText('Button'), {
                 key: 'Escape',
                 keyCode: 27,
             });
@@ -39,7 +42,7 @@ describe('given button is enabled', () => {
     });
     describe('when menu is clicked', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByLabelText('menu'));
+            await fireEvent.click(component.getByLabelText('Menu'));
         });
 
         it('then it emits the event with correct data', () => {
@@ -48,7 +51,7 @@ describe('given button is enabled', () => {
 
         describe('when menu is clicked again', () => {
             beforeEach(async () => {
-                await fireEvent.click(component.getByLabelText('menu'));
+                await fireEvent.click(component.getByLabelText('Menu'));
             });
 
             it('then it emits the event with correct data', () => {
@@ -60,15 +63,12 @@ describe('given button is enabled', () => {
 
 describe('given button is disabled', () => {
     beforeEach(async () => {
-        component = await render(
-            template,
-            Object.assign({}, mock.Basic_3Items, { disabled: true })
-        );
+        component = await render(Standard, { disabled: true });
     });
 
     describe('when button is clicked', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByText('button'));
+            await fireEvent.click(component.getByText('Button'));
         });
 
         it('then it does not emit the event', () => {
@@ -78,7 +78,7 @@ describe('given button is disabled', () => {
 
     describe('when escape key is pressed', () => {
         beforeEach(async () => {
-            await pressKey(component.getByText('button'), {
+            await pressKey(component.getByText('Button'), {
                 key: 'Escape',
                 keyCode: 27,
             });
@@ -90,7 +90,7 @@ describe('given button is disabled', () => {
     });
     describe('when menu is clicked', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByLabelText('menu'));
+            await fireEvent.click(component.getByLabelText('Menu'));
         });
 
         it('then it does not emit the event', () => {

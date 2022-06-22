@@ -1,10 +1,11 @@
-const { expect, use } = require('chai');
-const { render, cleanup } = require('@marko/testing-library');
-const template = require('../icons/ebay-add-icon');
-const template2 = require('../icons/ebay-arrow-left-icon');
-const template3 = require('../icons/ebay-arrow-right-icon');
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, cleanup } from '@marko/testing-library';
+import template from '../icons/ebay-add-icon';
+import template2 from '../icons/ebay-arrow-left-icon';
+import template3 from '../icons/ebay-arrow-right-icon';
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */

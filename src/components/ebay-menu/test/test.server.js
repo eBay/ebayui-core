@@ -1,14 +1,14 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const testUtils = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as testUtils from '../../../common/test-utils/server';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
 describe('menu', () => {
     it('renders basic version', async () => {
-        const input = mock.Basic_2Items;
+        const input = mock.basic2Items;
         const { getByRole, getAllByRole, getByText } = await render(template, input);
         expect(getByRole('menu')).with.class('menu__items');
 
@@ -22,19 +22,19 @@ describe('menu', () => {
     });
 
     it('renders with reverse=true', async () => {
-        const input = Object.assign({ reverse: true }, mock.Basic_2Items);
+        const input = Object.assign({ reverse: true }, mock.basic2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu')).with.class('menu__menu--reverse');
     });
 
     it('renders with fix-width=true', async () => {
-        const input = Object.assign({ fixWidth: true }, mock.Basic_2Items);
+        const input = Object.assign({ fixWidth: true }, mock.basic2Items);
         const { getByRole } = await render(template, input);
         expect(getByRole('menu').closest('.menu')).with.class('menu__menu--fix-width');
     });
 
     it('renders with separators', async () => {
-        const input = mock.Separator_4Items;
+        const input = mock.separator4Items;
         const { queryByText, getAllByRole, getByText } = await render(template, input);
         const menuItemEls = getAllByRole('menuitem');
         const separators = getAllByRole('separator');
@@ -75,10 +75,4 @@ describe('menu', () => {
             multiple: true,
         },
     });
-    testUtils.testEventsMigrator(
-        require('../migrator'),
-        'menu',
-        ['change', 'select', 'keydown'],
-        '../index.marko'
-    );
 });

@@ -3,12 +3,22 @@
 module.exports = ({ config }) => {
     config.mochaOptions = {
         timeout: 60000,
-        require: ['mocha-snap'],
+        require: ['@babel/register', 'mocha-snap', './src/common/test-utils/require-extensions.js'],
     };
 
     config.lassoOptions = {
         flags: [],
-        plugins: ['lasso-less'],
+        plugins: ['./src/common/test-utils/lasso-require-extensions.js', 'lasso-less'],
+        require: {
+            transforms: [
+                {
+                    transform: './src/common/test-utils/lasso-require-transform.js',
+                },
+                {
+                    transform: 'lasso-babel-transform',
+                },
+            ],
+        },
     };
 
     config.wdioOptions = {

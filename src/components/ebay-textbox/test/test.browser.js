@@ -1,11 +1,13 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { getComponentForEl } = require('marko/components');
-const template = require('..');
-const mock = require('./mock');
+import '@ebay/skin/tokens';
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import template from '..';
+import componentB from '../component-browser';
+import * as mock from './mock';
 
-require('../component-browser').renderer = template._; // Allow re-rendering the split component for testing.
-use(require('chai-dom'));
+componentB.renderer = template._; // Allow re-rendering the split component for testing.
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -38,15 +40,10 @@ describe('given an input textbox', () => {
             });
         }
     );
-
-    it('focuses element on focus call', () => {
-        getComponentForEl(component.container.firstElementChild).focus();
-        expect(document.activeElement).to.equal(component.getByRole('textbox'));
-    });
 });
 
 describe('given an input textbox with floating label and no value', () => {
-    const input = mock.Floating_Label_No_Value;
+    const input = mock.floatingLabelNoValue;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -56,7 +53,7 @@ describe('given an input textbox with floating label and no value', () => {
         expect(component.container.firstElementChild).has.class('floating-label');
     });
 
-    it('then is showing the label inline', () => {
+    it('then is showing the label inline', async () => {
         expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
     });
 
@@ -96,7 +93,7 @@ describe('given an input textbox with floating label and no value', () => {
 });
 
 describe('when the component has a postfix button', () => {
-    const input = mock.Postfix_Icon_Button;
+    const input = mock.postfixIconButton;
 
     beforeEach(async () => {
         component = await render(template, input);

@@ -1,8 +1,7 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const { testAttributeRenameMigrator } = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 
@@ -44,14 +43,4 @@ describe('infotip modal', () => {
         const { queryByText } = await render(template, input);
         expect(queryByText(input.heading.renderBody.text)).equals(null);
     });
-});
-
-describe('migrator', () => {
-    testAttributeRenameMigrator(
-        require('../migrator'),
-        'infotip',
-        'a11yCloseText',
-        'a11yCloseButtonText',
-        '../index.marko'
-    );
 });

@@ -1,8 +1,9 @@
-const focusables = require('makeup-focusables').default;
-const resizeUtil = require('../../common/event-utils').resizeUtil;
-const processHtmlAttributes = require('../../common/html-attributes');
-const onScroll = require('./utils/on-scroll-debounced');
-const scrollTransition = require('./utils/scroll-transition');
+import focusables from 'makeup-focusables';
+// TODO check carousel
+import { resizeUtil } from '../../common/event-utils';
+import { processHtmlAttributes } from '../../common/html-attributes';
+import { onScrollDebounced as onScroll } from './utils/on-scroll-debounced';
+import { scrollTransition } from './utils/scroll-transition';
 
 // Used for carousel slide direction.
 const LEFT = -1;
@@ -22,16 +23,13 @@ function getTemplateData(state) {
     const bothControlsDisabled = isAnimating(state)
         ? state.bothControlsDisabled
         : prevControlDisabled && nextControlDisabled;
-    let slide, itemWidth, totalSlides, a11yStatusText;
+    let slide, itemWidth, totalSlides;
 
     if (itemsPerSlide) {
         const itemsInSlide = itemsPerSlide + state.peek;
         slide = getSlide(state);
         itemWidth = `calc(${100 / itemsInSlide}% - ${((itemsInSlide - 1) * gap) / itemsInSlide}px)`;
         totalSlides = getSlide(state, items.length);
-        a11yStatusText = state.a11yStatusText
-            .replace('{currentSlide}', slide + 1)
-            .replace('{totalSlides}', totalSlides);
     }
 
     items.forEach((item, i) => {
@@ -61,7 +59,6 @@ function getTemplateData(state) {
         offset: hasOverride ? config.offsetOverride : offset,
         disableTransition: hasOverride,
         totalSlides,
-        a11yStatusText,
         prevControlDisabled,
         nextControlDisabled,
         bothControlsDisabled,
@@ -458,7 +455,7 @@ function isNativeScrolling(el) {
     return getComputedStyle(el).overflowX !== 'visible';
 }
 
-module.exports = {
+export default {
     getTemplateData,
     move,
     handleMove,
@@ -481,10 +478,6 @@ module.exports = {
                 'itemsPerSlide',
                 'a11yPreviousText',
                 'a11yNextText',
-                'a11yStatusText',
-                'a11yStatusTag',
-                'a11yHeadingText',
-                'a11yHeadingTag',
                 'a11yPlayText',
                 'a11yPauseText',
                 'items',
@@ -502,12 +495,9 @@ module.exports = {
             itemsPerSlide: parseFloat(input.itemsPerSlide, 10) || undefined,
             a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
             a11yNextText: input.a11yNextText || 'Next Slide',
-            a11yStatusText: input.a11yStatusText || 'Showing Slide {currentSlide} of {totalSlides}',
-            a11yStatusTag: input.a11yStatusTag || 'span',
-            a11yHeadingText: input.a11yHeadingText,
-            a11yHeadingTag: input.a11yHeadingTag || 'h2',
             a11yPauseText: input.a11yPauseText || 'Pause',
             a11yPlayText: input.a11yPlayText || 'Play',
+            ariaRoleDescription: input['aria-roledescription'] || 'Carousel',
         };
 
         const itemSkippedAttributes = ['class', 'style', 'key'];

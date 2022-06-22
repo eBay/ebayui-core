@@ -1,36 +1,35 @@
-const { use } = require('chai');
-const { render, prettyDOM } = require('@marko/testing-library');
-const snap = require('mocha-snap').default;
-const template = require('..');
-const mock = require('./mock');
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../star-rating-select.stories';
 
-const snapDOM = (node) => snap(prettyDOM(node), '.html', __dirname);
+const { Isolated, Fieldset } = composeStories(stories);
+
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
 describe('star-rating-select', () => {
     it('renders defaults', async () => {
-        const { container } = await render(template);
-        await snapDOM(container);
+        await htmlSnap(Isolated, {
+            a11yText: null,
+            a11yStarText: null,
+        });
     });
 
-    it('renders basic', async () => {
-        const { container } = await render(template, mock.Basic);
-        await snapDOM(container);
+    it('renders basic fieldset', async () => {
+        await htmlSnap(Fieldset);
     });
 
     it('renders with 0 selected', async () => {
-        const { container } = await render(template, mock.Basic_0Selected);
-        await snapDOM(container);
+        await htmlSnap(Isolated, { value: 0 });
     });
 
     it('renders with 2 selected', async () => {
-        const { container } = await render(template, mock.Basic_2Selected);
-        await snapDOM(container);
+        await htmlSnap(Isolated, { value: 2 });
     });
 
     it('renders with 5 selected', async () => {
-        const { container } = await render(template, mock.Basic_5Selected);
-        await snapDOM(container);
+        await htmlSnap(Isolated, { value: 5 });
     });
 });

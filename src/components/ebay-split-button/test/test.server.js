@@ -1,12 +1,10 @@
-const { use } = require('chai');
-const { render, prettyDOM } = require('@marko/testing-library');
-const snap = require('mocha-snap').default;
-const template = require('..');
-const mock = require('./mock');
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../split-button.stories'; // import all stories from the stories file
 
-// const { testPassThroughAttributes } = require('../../../common/test-utils/server');
-
-const snapDOM = (node) => snap(prettyDOM(node), '.html', __dirname);
+const { Standard } = composeStories(stories);
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
@@ -19,28 +17,30 @@ Object.keys(properties).forEach((property) => {
     const values = properties[property];
     values.forEach((value) => {
         it(`renders button with ${property}=${value}`, async () => {
-            const { container } = await render(template, { [property]: value });
-            await snapDOM(container);
+            await htmlSnap(Standard, { [property]: value });
         });
     });
 });
 
 it('renders defaults', async () => {
-    const { container } = await render(template);
-    await snapDOM(container);
+    await htmlSnap(Standard);
 });
 
 it('renders with menu items', async () => {
-    const { container } = await render(template, mock.Basic_3Items);
-    await snapDOM(container);
+    await htmlSnap(Standard);
 });
 
 it('renders loading state', async () => {
-    const { container } = await render(template, mock.Loading_3Items);
-    await snapDOM(container);
+    await htmlSnap(Standard, {
+        a11yButtonLoadingText: 'button loading',
+        bodyState: 'loading',
+    });
 });
 
 it('renders various options', async () => {
-    const { container } = await render(template, mock.Options_3Items);
-    await snapDOM(container);
+    await htmlSnap(Standard, {
+        disabled: true,
+        size: 'large',
+        type: 'radio',
+    });
 });

@@ -13,3 +13,42 @@ A couple of modules need to have a fixed with otherwise they will not work well
 #root > .stepper {
     width: 100%;
 }
+
+.icon-examples {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+.icon-examples > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    justify-content: center;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.icon-examples > div > span.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 64px;
+    margin: 15px 0;
+}
+.icon-examples > div > span.text {
+    color: var(--color-yellow-6);
+    text-align: center;
+}
+
+.icon-examples > div > span.text:before {
+    content: "<";
+    color: var(--color-blue-5);
+}
+
+.icon-examples > div > span.text:after {
+    content: "/>";
+    color: var(--color-blue-5);
+}

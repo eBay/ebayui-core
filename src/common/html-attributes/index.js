@@ -36,4 +36,4 @@ function processHtmlAttributes(input, ignore = EMPTY_ARR) {
     return attributes;
 }
 
-module.exports = processHtmlAttributes;
+export { processHtmlAttributes };

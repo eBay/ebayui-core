@@ -1,9 +1,9 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const mock = require('../mock');
-const template = require('..');
-
-use(require('chai-dom'));
+import { render, fireEvent, cleanup } from '@marko/testing-library';
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import * as mock from '../mock';
+import template from '..';
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */

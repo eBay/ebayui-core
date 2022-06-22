@@ -1,18 +1,15 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const {
-    testPassThroughAttributes,
-    testEventsMigrator,
-} = require('../../../common/test-utils/server');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
+const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 
 use(require('chai-dom'));
 
 describe('pagination', () => {
     describe('with links', () => {
         it('renders basic version', async () => {
-            const input = mock.Links_6Items_No_Selected;
+            const input = mock.link6ItemsNoSelected;
             const { getByRole, getByText, getByLabelText } = await render(template, input);
             const navigationEl = getByRole('navigation');
             const statusEl = getByRole('status');
@@ -41,7 +38,7 @@ describe('pagination', () => {
         });
 
         it('renders with a selected item', async () => {
-            const input = mock.Links_9Items_1Selected;
+            const input = mock.link9Items1Selected;
             const { getByText } = await render(template, input);
             input.items.slice(1, -1).forEach((itemData, i) => {
                 const itemEl = getByText(itemData.renderBody.text);
@@ -54,7 +51,7 @@ describe('pagination', () => {
         });
 
         it('renders with aria-disabled when navigation is disabled', async () => {
-            const input = mock.Links_1Items_Navigation_Disabled;
+            const input = mock.link1ItemsNavigationDisabled;
             const { getByLabelText } = await render(template, input);
             expect(getByLabelText(input.a11yPreviousText)).has.property('tagName', 'A');
             expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
@@ -63,7 +60,7 @@ describe('pagination', () => {
         });
 
         it('renders with aria-disabled when navigation items missing', async () => {
-            const input = mock.Links_1Items_No_Navigation;
+            const input = mock.link1ItemsNoNavigation;
             const { getByLabelText } = await render(template, input);
             expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
             expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
@@ -72,7 +69,7 @@ describe('pagination', () => {
 
     describe('with buttons', () => {
         it('renders button version', async () => {
-            const input = mock.Buttons_0Selected;
+            const input = mock.Buttons0Selected;
             const { getByText, getByLabelText } = await render(template, input);
 
             expect(getByLabelText(input.a11yPreviousText)).has.property('tagName', 'BUTTON');
@@ -82,12 +79,6 @@ describe('pagination', () => {
     });
 
     testPassThroughAttributes(template);
-    testEventsMigrator(
-        require('../migrator'),
-        'pagination',
-        ['next', 'previous', 'select'],
-        '../index.marko'
-    );
 });
 
 describe('pagination-item', () => {

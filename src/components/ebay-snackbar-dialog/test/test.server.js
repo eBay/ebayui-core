@@ -1,7 +1,7 @@
-const { expect, use } = require('chai');
-const { render } = require('@marko/testing-library');
-const template = require('..');
-const mock = require('./mock');
+import { expect, use } from 'chai';
+import { render } from '@marko/testing-library';
+import template from '..';
+import * as mock from './mock';
 
 use(require('chai-dom'));
 

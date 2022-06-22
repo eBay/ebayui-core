@@ -1,4 +1,4 @@
-module.exports = function () {
+export function symbol() {
     // eslint-disable-next-line max-len,quotes
-    return '<symbol viewbox="0 0 12 16" id=icon-share-small><path d="M3 6a1 1 0 110 2H2v6h8V8H9a1 1 0 110-2h2a1 1 0 011 1v8a1 1 0 01-1 1H1a1 1 0 01-1-1V7a1 1 0 011-1zm3-6c.265 0 .52.106.707.293l3 3a1 1 0 01-1.414 1.414L7 3.413V10a1 1 0 11-2 0V3.413L3.707 4.707a1 1 0 01-1.317.08l-.094-.083a1 1 0 01-.003-1.411l3-3C5.481.106 5.735 0 6 0z"></path></symbol>';
-};
+    return '<symbol viewbox="0 0 16 16" id=icon-share-small><path d="M7.293.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1-1.414 1.414L9 3.414V10a1 1 0 1 1-2 0V3.414l-.293.293a1 1 0 0 1-1.414-1.414l2-2Z"></path><path d="M3 6a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1h-2a1 1 0 1 0 0 2h1v5H4V8h1a1 1 0 0 0 0-2H3Z"></path></symbol>';
+}

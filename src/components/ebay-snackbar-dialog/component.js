@@ -1,6 +1,6 @@
 const DEFAULT_TIMEOUT_LENGTH = 6000;
 
-module.exports = class {
+export default class {
     _clearTimeout() {
         clearTimeout(this.timeout);
     }
@@ -81,4 +81,4 @@ module.exports = class {
         this.state.open = false;
         this.emit('close');
     }
-};
+}

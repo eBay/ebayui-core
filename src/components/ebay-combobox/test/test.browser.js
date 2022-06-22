@@ -1,17 +1,19 @@
-const { expect, use } = require('chai');
-const { render, fireEvent, cleanup } = require('@marko/testing-library');
-const { pressKey } = require('../../../common/test-utils/browser');
-const template = require('..');
-const mock = require('./mock');
+import '@ebay/skin/tokens';
+import { expect, use } from 'chai';
+import chaiDom from 'chai-dom';
+import { render, fireEvent, cleanup, waitFor } from '@marko/testing-library';
+import { pressKey } from '../../../common/test-utils/browser';
+import template from '..';
+import * as mock from './mock';
 
-use(require('chai-dom'));
+use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
 describe('given the combobox with 3 items', () => {
-    const input = mock.Combobox_3Options;
+    const input = mock.combobox3Options;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -161,7 +163,7 @@ describe('given the combobox with 3 items', () => {
 });
 
 describe('given the combobox with 3 items and 2 selected', () => {
-    const input = mock.Combobox_3Options_2Selected;
+    const input = mock.combobox3Options2Selected;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -206,7 +208,7 @@ describe('given the combobox with 3 items and 2 selected', () => {
 });
 
 describe('given the combobox with 3 items set to manual selection', () => {
-    const input = mock.Combobox_3Options_Manual;
+    const input = mock.combobox3OptionsManual;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -354,7 +356,7 @@ describe('given the combobox with 3 items set to manual selection', () => {
 });
 
 describe('given the combobox starts with zero options', () => {
-    const input = mock.Combobox_0Options;
+    const input = mock.combobox0Options;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -397,7 +399,7 @@ describe('given the combobox starts with zero options', () => {
     });
 
     describe('when it is rerendered with 3 items', () => {
-        const newInput = mock.Combobox_3Options;
+        const newInput = mock.combobox3Options;
 
         beforeEach(async () => {
             await component.rerender(newInput);
@@ -515,7 +517,7 @@ describe('given the combobox starts with zero options', () => {
 });
 
 describe('when it is rerendered with actionable', () => {
-    const input = mock.Combobox_3Options_Actionable;
+    const input = mock.combobox3OptionsActionable;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -545,7 +547,7 @@ describe('when it is rerendered with actionable', () => {
 });
 
 describe('given an input textbox with floating label and no value', () => {
-    const input = mock.Combobox_3OptionsFloatingLabel;
+    const input = mock.combobox3OptionsFloatingLabel;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -575,9 +577,11 @@ describe('given an input textbox with floating label and no value', () => {
                 await fireEvent.blur(component.getByRole('combobox'));
             });
 
-            it('then is showing the label inline', () => {
-                expect(component.getByText(input.floatingLabel)).has.class(
-                    'floating-label__label--inline'
+            it('then is showing the label inline', async () => {
+                await waitFor(() =>
+                    expect(component.getByText(input.floatingLabel)).has.class(
+                        'floating-label__label--inline'
+                    )
                 );
             });
         });
