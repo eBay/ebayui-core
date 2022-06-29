@@ -1,24 +1,3 @@
 {
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@direction": {
-    "enum": ["row", "column"]
-  },
-  "@step <step>[]": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
-    },
-    "@html-attributes": "expression",
-    "@current": "boolean",
-    "@type": {
-      "enum": ["attention", "default", "confirmation"]
-    },
-    "@number": "number"
-  }
+  "migrator": "./migrator.js"
 }
