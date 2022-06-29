@@ -12,12 +12,18 @@ export default {
     },
 
     handleListboxChange(event) {
-        if (event.wasClicked) {
-            this._expander.expanded = false;
-        }
         const selectedIndex = event.index;
         this.state.selectedIndex = selectedIndex;
         this.emit('change', event);
+    },
+
+    handleListboxSelect(event) {
+        if (this.input.collapseOnSelect) {
+            this._expander.expanded = false;
+            if (!event.wasClicked) this.el.firstChild.focus();
+        } else if (event.wasClicked) {
+            document.activeElement.blur();
+        }
     },
 
     onCreate() {

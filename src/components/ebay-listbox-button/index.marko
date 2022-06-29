@@ -13,7 +13,8 @@ static var ignoredAttributes = [
     "prefixLabel",
     "prefixId",
     "unselectedText",
-    "floatingLabel"
+    "floatingLabel",
+    "collapseOnSelect"
 ];
 
 $ var selectedOption = input.options[state.selectedIndex];
@@ -69,7 +70,8 @@ $ var displayText = selectedText || unselectedText;
         name=input.name
         tabindex=-1
         list-selection=input.listSelection
-        on-change("handleListboxChange")>
+        on-change("handleListboxChange")
+        on-select("handleListboxSelect")>
         <for|option| of=(input.options || [])>
             <@option ...option selected=(selectedOption === option)/>
         </for>
