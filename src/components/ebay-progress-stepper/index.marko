@@ -17,14 +17,15 @@ static var ignoredStepTitleAttributes = ["as", "a11yText", "current", "type", "t
 
 $ {
     var direction = input.direction || "row";
-    var current = (input.step || []).findIndex(item => item.current);
+    var current;
     switch(input.defaultState) {
         case "complete":
         case "upcoming":
             current = -1;
             break;
         default:
-            current = current === -1 ? 0 : current;
+            var step = (input.step || []).findIndex(item => item.current)
+            current = step === -1 ? 0 : step;
     }
 }
 
