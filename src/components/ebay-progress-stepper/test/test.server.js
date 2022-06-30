@@ -1,83 +1,50 @@
-import { expect, use } from 'chai';
-import { render, within } from '@marko/testing-library';
-import template from '..';
-import * as testUtils from '../../../common/test-utils/server';
-import * as mock from './mock';
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../progress-stepper.stories';
+
+const { InProgress, Blocked, Information, Migrator } = composeStories(stories);
+
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
-describe('stepper', () => {
-    it('renders basic stepper', async () => {
-        const input = mock.ProgressStepper;
-        const { getByLabelText, getByRole, getAllByRole, getByText } = await render(
-            template,
-            input
-        );
+it('renders in progress progress-stepper', async () => {
+    await htmlSnap(InProgress);
+});
 
-        expect(getByLabelText(input.a11yHeadingText)).has.class('progress-stepper');
+it('renders vertical progress-stepper', async () => {
+    await htmlSnap(InProgress, { direction: 'colummn' });
+});
 
-        expect(getAllByRole('presentation')).has.length(3);
-        expect(getByRole('list').parentElement).does.not.have.class('progress-stepper--vertical');
+it('renders default state progress-stepper', async () => {
+    await htmlSnap(InProgress, { defaultState: 'active' });
+});
 
-        const list = getAllByRole('listitem');
-        expect(list).has.length(4);
+it('renders default state upcoming progress-stepper', async () => {
+    await htmlSnap(InProgress, { defaultState: 'upcoming' });
+});
 
-        expect(getByText('status 2').parentElement.parentElement).has.attr('aria-current');
+it('renders default state complete progress-stepper', async () => {
+    await htmlSnap(InProgress, { defaultState: 'complete' });
+});
 
-        checkItem(list[0], 'confirmation');
-        checkItem(list[1], 'confirmation');
-        checkItem(list[2], 'status 2', true);
-        checkItem(list[3], 'status 3', true);
+it('renders blocked progress-stepper', async () => {
+    await htmlSnap(Blocked);
+});
 
-        expect(getByLabelText('a11yIconLabel')).has.attr('role', 'img');
-    });
+it('renders information progress-stepper', async () => {
+    await htmlSnap(Information);
+});
 
-    it('renders vertical stepper', async () => {
-        const input = mock.progressStepperVertical;
-        const { getByText, getByRole, getAllByRole } = await render(template, input);
-        expect(getAllByRole('presentation')).has.length(3);
-        expect(getByRole('list').parentElement).has.class('progress-stepper--vertical');
+it('renders migrator from stepper', async () => {
+    await htmlSnap(Migrator);
+});
 
-        const list = getAllByRole('listitem');
-        expect(list).has.length(4);
-        expect(getByText('status 2').parentElement.parentElement).has.attr('aria-current');
-
-        checkItem(list[0], 'confirmation');
-        checkItem(list[1], 'confirmation');
-        checkItem(list[2], 'status 2', true);
-        checkItem(list[3], 'status 3', true);
-    });
-
-    it('renders stepper with states', async () => {
-        const input = mock.progressStepperStates;
-        const { getAllByRole } = await render(template, input);
-        expect(getAllByRole('presentation')).has.length(4);
-
-        const list = getAllByRole('listitem');
-        expect(list).has.length(5);
-
-        checkItem(list[0], 'confirmation');
-        checkItem(list[1], 'status 1', true);
-        checkItem(list[2], 'status 2', true);
-        checkItem(list[3], 'attention');
-        checkItem(list[4], 'information');
-    });
-
-    function checkItem(list, icon, text) {
-        const firstChild = list.children[0].children[0];
-        if (text) {
-            expect(within(list).getAllByText(icon)).has.length(1);
-        } else {
-            expect(firstChild).has.class(`icon--stepper-${icon}`);
-        }
-    }
-
-    testUtils.testPassThroughAttributes(template);
-    testUtils.testPassThroughAttributes(template, {
-        child: {
-            name: 'step',
-            input: mock.ProgressStepper.step[2],
-            multiple: true,
-        },
+it('renders default without pragraph', async () => {
+    await htmlSnap(InProgress, {
+        autoParagraph: false,
+        a11yHeadingText: 'Other',
+        a11yHeadingTag: 'h3',
     });
 });
