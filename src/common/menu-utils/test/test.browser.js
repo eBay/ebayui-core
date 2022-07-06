@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
-import * as menuUtils from '../';
+import menuUtils from '../';
 import { getNItems } from '../../test-utils/shared';
 
 describe('non radio component', () => {
