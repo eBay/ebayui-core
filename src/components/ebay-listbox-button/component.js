@@ -20,7 +20,7 @@ export default {
     handleListboxSelect(event) {
         if (this.input.collapseOnSelect) {
             this._expander.expanded = false;
-            if (!event.wasClicked) this.el.firstChild.focus();
+            if (!event.wasClicked) setTimeout(() => this.getEl('button').focus(), 0);
         } else if (event.wasClicked) {
             document.activeElement.blur();
         }
