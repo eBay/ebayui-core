@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-fake-menu',
+    title: 'building blocks/ebay-fake-menu',
     component: Component,
     parameters: {
         docs: {

@@ -1,0 +1,74 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Welcome" />
+
+# eBayUI Core
+
+> Collection of Marko widgets; considered to be the core building blocks for all eBay components, pages & apps.
+
+## Requirements
+
+-   [Node.js](https://nodejs.org/en/)
+-   [Marko](https://markojs.com) (v4+)
+-   [eBay Skin](https://ebay.github.io/skin/) (v13+)
+
+_Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components._
+
+_Note: `@ebay/skin/global` and `@ebay/skin/marketsans` are required to be loaded by your app for all modules to load correctly._
+
+_Note: In order for spread attributes to work properly, `marko@4.18.22` at least is required_
+
+### Browser Policy
+
+All components are developed and tested cross-browser using [BrowserStack](https://www.browserstack.com/automate/public-build/M1FCV3RrZHhkTG9ZaXBwWmY0VDJvZUhPM1cwM1RCZTBMRUVrODJ0MVg5Yz0tLTMyY0tGZHNKSGpTbk5DeFVURTNGNFE9PQ==--dd4c576f4331f72c56cb7f9a9f4ac4f403d34b0f), in accordance with our official [eBay Browser Policy](https://github.com/eBay/browserslist-config).
+
+### Accessibility (A11Y)
+
+We take accessibility very seriously. Very seriously indeed. Therefore, all components are built in accordance to the <a href="https://ebay.gitbooks.io/mindpatterns/content/">eBay MIND Patterns</a>. These patterns, in turn, build on from the specifications provided by the <a href="https://w3c.github.io/aria-practices/">WAI-ARIA Authoring Practices</a>.
+
+Components are built in a layered, progressively enhanced fashion, utilizing the following resources:
+
+-   <a href="https://github.com/ianmcburnie/bones">Bones (HTML)</a>
+-   <a href="https://github.com/eBay/skin">eBay Skin (CSS)</a>
+-   <a href="https://github.com/makeup-js">MakeupJS (JavaScript)</a>
+
+Each layer does its bit to enforce and enhance accessibility. We consider this level of support to be one of our chief selling points, and we hope you do too!
+
+## Releases &amp; Milestones
+
+For upcoming roadmap and release history, please refer to our [releases](https://github.com/eBay/ebayui-core/releases) and [milestones](https://github.com/eBay/ebayui-core/milestones) pages.
+
+### Versioning
+
+The ebayui-core package follows strict [Semantic Versioning](http://semver.org).
+
+Given a version number MAJOR.MINOR.PATCH:
+
+-   MAJOR version is incremented when we make incompatible API changes
+-   MINOR version is incremented when we add functionality in a backwards-compatible manner
+-   PATCH version is incremented when we make backwards-compatible bug fixes.
+
+### Deprecations
+
+Deprecations will be communicated via [release notes](https://github.com/eBay/ebayui-core/releases), so please ensure that you read those carefully. In general, expect any deprecated feature to be removed in the next major version. However, in some cases we may wait a while longer.
+
+### Issues
+
+Please use our [issues page](https://github.com/eBay/ebayui-core/issues) to ask questions, report issues or submit feature requests.
+
+To help track your issue, our admins will assign it with one or more coloured labels:
+
+-   Black: Issue Type (e.g. bug, question, test case)
+-   White: Resolution (e.g. wont fix, invalid, duplicate)
+-   Gray: Status (e.g. backlog, in progress, help wanted)
+-   Red: Blocker (e.g. dependency, discussion, design)
+-   Green: Module (e.g. button, radio, dialog)
+-   Blue: Aspect (e.g. build, documentation, website)
+-   Yellow: Semver Guidance (e.g. breaking change, backwards compatible)
+-   Purple: Sprint (e.g. sprint 1, sprint 2, etc)
+
+## License
+
+Copyright (c) 2018 eBay Inc.
+
+Use of this source code is governed by a MIT-style license that can be found in the LICENSE file or at [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT).

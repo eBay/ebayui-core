@@ -17,7 +17,7 @@ const Template = (args) => ({
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
-    title: 'ebay-split-button',
+    title: 'buttons/ebay-split-button',
     component: button,
     parameters: {
         docs: {

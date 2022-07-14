@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-program-badges',
+    title: 'graphics & icons/ebay-program-badges',
     component: Component,
     parameters: {
         docs: {

@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-progress-stepper',
+    title: 'progress/ebay-progress-stepper',
     component: Component,
     parameters: {
         docs: {

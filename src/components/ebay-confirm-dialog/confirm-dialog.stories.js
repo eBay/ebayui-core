@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-confirm-dialog',
+    title: 'dialogs/ebay-confirm-dialog',
     component: Confirm,
     parameters: {
         docs: {

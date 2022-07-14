@@ -18,7 +18,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-radio',
+    title: 'form input/ebay-radio',
     component: Component,
     parameters: {
         docs: {

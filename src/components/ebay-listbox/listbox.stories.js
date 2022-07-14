@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-listbox',
+    title: 'building blocks/ebay-listbox',
     component: Component,
     parameters: {
         docs: {

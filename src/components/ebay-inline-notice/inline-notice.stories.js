@@ -13,7 +13,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-inline-notice',
+    title: 'notices & tips/ebay-inline-notice',
     component: Component,
     parameters: {
         docs: {

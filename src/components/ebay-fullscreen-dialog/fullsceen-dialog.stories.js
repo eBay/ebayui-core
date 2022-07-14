@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-fullscreen-dialog',
+    title: 'dialogs/ebay-fullscreen-dialog',
     component: Component,
     parameters: {
         docs: {

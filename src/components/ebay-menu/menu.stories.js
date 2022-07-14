@@ -9,7 +9,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-menu',
+    title: 'building blocks/ebay-menu',
     component: Component,
     parameters: {
         docs: {

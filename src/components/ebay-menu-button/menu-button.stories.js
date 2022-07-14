@@ -12,7 +12,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-menu-button',
+    title: 'buttons/ebay-menu-button',
     component: Component,
     parameters: {
         docs: {

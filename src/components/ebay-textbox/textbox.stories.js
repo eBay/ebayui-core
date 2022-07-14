@@ -18,7 +18,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-textbox',
+    title: 'form input/ebay-textbox',
     component: Component,
     parameters: {
         docs: {

@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-tabs',
+    title: 'navigation & disclosure/ebay-tabs',
     component: Component,
     parameters: {
         docs: {

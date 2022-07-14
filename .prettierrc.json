@@ -4,7 +4,15 @@
   "tabWidth": 4,
   "overrides": [
     {
-      "files": ["**/*.css", "**/*.html", "**/*.less", "**/*.json", "**/*.yml", "**/*.md"],
+      "files": [
+        "**/*.css",
+        "**/*.html",
+        "**/*.less",
+        "**/*.json",
+        "**/*.yml",
+        "**/*.md",
+        "**/*.mdx"
+      ],
       "options": {
         "singleQuote": false
       }

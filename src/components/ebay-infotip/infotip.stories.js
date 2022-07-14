@@ -19,7 +19,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-infotip',
+    title: 'buttons/ebay-infotip',
     component: Component,
     parameters: {
         docs: {
