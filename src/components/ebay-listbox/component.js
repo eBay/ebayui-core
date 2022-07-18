@@ -12,17 +12,18 @@ export default class {
     }
 
     handleChange(index, wasClicked) {
-        const details = { index, wasClicked };
         if (this.state.selectedIndex !== index) {
             const option = this.input.options[index];
-            details.selected = [option.value];
-            details.el = this.getEls('option')[index];
             this.state.selectedIndex = index;
             this.once('update', () => {
-                this.emit('change', details);
+                this.emit('change', {
+                    index,
+                    wasClicked,
+                    selected: [option.value],
+                    el: this.getEls('option')[index],
+                });
             });
         }
-        this.emit('select', details);
     }
 
     handleClick(index) {

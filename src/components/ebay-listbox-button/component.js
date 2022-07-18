@@ -8,22 +8,17 @@ export default {
     },
 
     handleCollapse() {
+        this.getEl('button').focus();
         this.emit('collapse');
     },
 
     handleListboxChange(event) {
+        if (this.input.collapseOnSelect) {
+            this._expander.expanded = false;
+        }
         const selectedIndex = event.index;
         this.state.selectedIndex = selectedIndex;
         this.emit('change', event);
-    },
-
-    handleListboxSelect(event) {
-        if (this.input.collapseOnSelect) {
-            this._expander.expanded = false;
-            if (!event.wasClicked) setTimeout(() => this.getEl('button').focus(), 0);
-        } else if (event.wasClicked) {
-            document.activeElement.blur();
-        }
     },
 
     onCreate() {

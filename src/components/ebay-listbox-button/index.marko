@@ -70,8 +70,7 @@ $ var displayText = selectedText || unselectedText;
         name=input.name
         tabindex=-1
         list-selection=input.listSelection
-        on-change("handleListboxChange")
-        on-select("handleListboxSelect")>
+        on-change("handleListboxChange")>
         <for|option| of=(input.options || [])>
             <@option ...option selected=(selectedOption === option)/>
         </for>
