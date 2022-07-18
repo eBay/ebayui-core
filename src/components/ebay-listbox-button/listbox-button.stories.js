@@ -42,6 +42,11 @@ export default {
             description:
                 'will truncate the text of the button onto a single line, and adds an ellipsis, when the buttons text overflows',
         },
+        collapseOnSelect: {
+            type: 'boolean',
+            control: { type: 'boolean' },
+            description: 'When an option is selected, the dropdown menu collapses into the button',
+        },
         listSelection: {
             table: {
                 defaultValue: {

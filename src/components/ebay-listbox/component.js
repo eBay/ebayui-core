@@ -14,14 +14,13 @@ export default class {
     handleChange(index, wasClicked) {
         if (this.state.selectedIndex !== index) {
             const option = this.input.options[index];
-            const el = this.getEls('option')[index];
             this.state.selectedIndex = index;
             this.once('update', () => {
                 this.emit('change', {
                     index,
-                    selected: [option.value],
-                    el,
                     wasClicked,
+                    selected: [option.value],
+                    el: this.getEls('option')[index],
                 });
             });
         }

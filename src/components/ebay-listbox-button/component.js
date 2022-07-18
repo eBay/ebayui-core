@@ -8,11 +8,12 @@ export default {
     },
 
     handleCollapse() {
+        this.getEl('button').focus();
         this.emit('collapse');
     },
 
     handleListboxChange(event) {
-        if (event.wasClicked) {
+        if (this.input.collapseOnSelect) {
             this._expander.expanded = false;
         }
         const selectedIndex = event.index;
