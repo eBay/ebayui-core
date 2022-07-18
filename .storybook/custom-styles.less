@@ -16,7 +16,7 @@ A couple of modules need to have a fixed with otherwise they will not work well
 
 .icon-examples {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap: 10px;
 }
 
@@ -51,4 +51,16 @@ A couple of modules need to have a fixed with otherwise they will not work well
 .icon-examples > div > span.text:after {
     content: "/>";
     color: var(--color-blue-5);
+}
+
+@media (min-width: 601px) {
+    .icon-examples {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (min-width: 901px) {
+    .icon-examples {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
 }
