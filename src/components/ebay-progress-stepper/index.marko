@@ -81,10 +81,10 @@ $ {
                         <ebay-stepper-confirmation-icon width="24" height="24" a11y-text=(item.a11yText || 'complete')/>
                     </else-if>
                     <else-if(index === current)>
-                        <ebay-stepper-current-icon width="24" height="24"/>
+                        <ebay-stepper-current-icon width="24" height="24" a11y-text=(item.a11yText || 'current')/>
                     </else-if>
                     <else>
-                        <span role="img" aria-label=(item.a11yText || (current === index ? 'current' : 'upcoming'))></span>
+                        <span role="img" aria-label=(item.a11yText || 'upcoming')></span>
                     </else>
                 </span>
                 <span class="progress-stepper__text">
