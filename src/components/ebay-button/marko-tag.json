@@ -12,6 +12,7 @@
   "@fixed-height": "boolean",
   "@truncate": "boolean",
   "@transparent": "boolean",
+  "@borderless": "boolean",
   "@autofocus": "#html-autofocus",
   "@disabled": "#html-disabled",
   "@form": "#html-form",

@@ -60,6 +60,15 @@ export default {
                 },
             },
         },
+        borderless: {
+            description: 'Shows button without border.',
+            table: {
+                category: 'Toggles',
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
+        },
         bodyState: {
             description:
                 'when state is loading, adds progress spinner. when user interacts with button, reset should be called to reset aria-live state. default is none',
@@ -194,6 +203,7 @@ Standard.args = {
     renderBody: 'Button',
     href: '',
     fluid: false,
+    borderless: false,
     size: null,
     disabled: false,
     priority: null,
