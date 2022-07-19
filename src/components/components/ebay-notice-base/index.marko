@@ -15,11 +15,13 @@ static var ignoredAttributes = [
     "footer",
     "type",
     "mainRoot",
-    "noA11yLabel"
+    "noA11yLabel",
+    "a11yDismissText"
 ];
 
 $ var status = input.status;
 $ var prefixClass = input.prefixClass;
+<if(!state.dismissed)>
 <${input.root || "section"}
     aria-labelledby=(!input.noA11yLabel && component.elId('status'))
     aria-roledescription=input.a11yRoleDescription
@@ -48,6 +50,11 @@ $ var prefixClass = input.prefixClass;
             </else-if>
         </>
     </if>
+    <if(input.cta)>
+        <p class="page-notice__cta">
+            $!{input.cta}
+        </p>
+    </if>
     <${input.mainRoot || "div"} class=`${prefixClass}__main`>
         <if(input.title)>
             <${input.title.as || "h2"}
@@ -58,9 +65,21 @@ $ var prefixClass = input.prefixClass;
         </if>
         <${input.renderBody}/>
     </>
-    <if(input.footer)>
+    <if(input.footer && !input.a11yDismissText)>
         <div class=`${prefixClass}__footer`>
             <${input.footer}/>
         </div>
     </if>
+    <if(input.a11yDismissText)>
+        <div class=`${prefixClass}__footer`>
+            <button
+                aria-label=`${input.a11yDismissText}`
+                class="fake-link page-notice__dismiss"
+                onClick("handleDismissClick")
+                onKeydown("handleDismissKeydown")>
+                <ebay-close-icon class="icon icon--close-small"/>
+            </button>
+        </div>
+    </if>
 </>
+</if>

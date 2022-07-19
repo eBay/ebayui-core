@@ -32,7 +32,7 @@ export default {
                 },
             },
 
-            description: 'The icon used and status of the noptice',
+            description: 'The icon used and status of the notice',
             options: ['attention', 'confirmation', 'information', 'celebration'],
             type: 'select',
         },
@@ -49,7 +49,10 @@ export default {
         a11yIconText: {
             description: 'adding description for the icon in the notice for a11y users',
         },
-
+        a11yDismissText: {
+            description:
+                'This adds a dismiss icon allowing the notice to be dismissed/hidden and sets the a11y text on the icon',
+        },
         title: {
             name: '@title',
             description: 'The title content to be displayed. Used mostly for celebration notice',
@@ -59,9 +62,23 @@ export default {
         },
         footer: {
             name: '@footer',
-            description: 'The footer content to be displayed. Used to show a CTA button generally',
+            description:
+                'The footer content to be displayed. Used to show the dismiss button generally',
             table: {
                 category: '@attribute tags',
+            },
+        },
+        cta: {
+            description: 'This adds a CTA link using full HTML anchor tag',
+        },
+        onDismiss: {
+            action: 'on-dismiss',
+            description: 'Triggered on notice dismiss',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
             },
         },
     },
@@ -70,8 +87,11 @@ export default {
 export const Standard = Template.bind({});
 Standard.args = {
     a11yText: 'attention',
+    a11yIconText: '',
+    a11yDismissText: '',
     status: null,
     icon: null,
+    cta: null,
 };
 Standard.parameters = {
     docs: {
@@ -90,6 +110,25 @@ export const WithAction = (args) => ({
 });
 WithAction.args = {
     a11yText: 'attention',
+    a11yIconText: '',
+    a11yDismissText: '',
     status: null,
     icon: null,
+};
+
+export const WithDismiss = (args) => ({
+    input: {
+        ...args,
+        title,
+        renderBody,
+        footer,
+    },
+});
+WithDismiss.args = {
+    a11yText: 'information',
+    a11yIconText: '',
+    a11yDismissText: 'Dismiss Notice',
+    status: 'information',
+    icon: null,
+    cta: `<a href="https://www.ebay.com">Opt in</a>`,
 };

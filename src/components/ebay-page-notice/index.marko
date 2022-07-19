@@ -1,3 +1,5 @@
+class {}
+
 $ var status = input.status || 'attention';
 
 <ebay-notice-base
@@ -6,4 +8,5 @@ $ var status = input.status || 'attention';
     status=status
     role="region"
     prefixClass="page-notice"
+    on-dismiss('emit', 'on-dismiss')
 />
