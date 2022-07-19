@@ -1,43 +1,25 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import { testPassThroughAttributes } from '../../../common/test-utils/server';
-import template from '..';
-import * as mock from './mock';
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../fullsceen-dialog.stories'; // import all stories from the stories file
+
+const { Standard } = composeStories(stories);
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
-describe('dialog', () => {
-    it('renders basic version', async () => {
-        const input = mock.Dialog;
-        const { getByRole, getByLabelText, getByText } = await render(template, input);
-        const dialog = getByRole('dialog', { hidden: true });
+it('renders defaults', async () => {
+    await htmlSnap(Standard);
+});
 
-        expect(dialog).has.attr('hidden');
-        expect(dialog).has.class('fullscreen-dialog');
-        expect(getByLabelText(input.a11yCloseText)).has.class('fullscreen-dialog__close');
-        expect(getByText(input.renderBody.text)).has.class('fullscreen-dialog__main');
-    });
+it('renders without footer and header', async () => {
+    await htmlSnap(Standard, { header: null, footer: null });
+});
 
-    it('renders with header and footer', async () => {
-        const input = mock.headerFooterDialog;
-        const { getByRole, getByLabelText, getByText } = await render(template, input);
-        const dialog = getByRole('dialog', { hidden: true });
+it('renders open', async () => {
+    await htmlSnap(Standard, { open: true });
+});
 
-        expect(dialog).has.attr('hidden');
-        expect(dialog).has.class('fullscreen-dialog');
-        expect(getByLabelText(input.a11yCloseText)).has.class('fullscreen-dialog__close');
-        expect(getByText(input.renderBody.text)).has.class('fullscreen-dialog__main');
-        expect(getByText(input.header.renderBody.text).parentElement).has.class(
-            'fullscreen-dialog__header'
-        );
-        expect(getByText(input.footer.renderBody.text)).has.class('fullscreen-dialog__footer');
-    });
-
-    it('renders in open state', async () => {
-        const input = mock.fillDialogOpen;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('dialog')).does.not.have.attr('hidden');
-    });
-
-    testPassThroughAttributes(template);
+it('renders slide end', async () => {
+    await htmlSnap(Standard, { slideFrom: 'end' });
 });
