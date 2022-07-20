@@ -52,7 +52,7 @@ $ var prefixClass = input.prefixClass;
     </if>
     <if(input.cta)>
         <p class="page-notice__cta">
-            $!{input.cta}
+            <a ...input.cta><${input.cta}/></a>
         </p>
     </if>
     <${input.mainRoot || "div"} class=`${prefixClass}__main`>

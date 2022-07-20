@@ -25,5 +25,13 @@
       "type": "expression"
     },
     "@html-attributes": "expression"
+  },
+  "@cta <cta>": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
   }
 }

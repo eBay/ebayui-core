@@ -4,6 +4,7 @@ import Component from './index.marko';
 import footer from './examples/button.marko';
 import renderBody from './examples/body.marko';
 import title from './examples/title.marko';
+import cta from './examples/cta.marko';
 
 const Template = (args) => ({
     input: {
@@ -69,7 +70,11 @@ export default {
             },
         },
         cta: {
-            description: 'This adds a CTA link using full HTML anchor tag',
+            name: '@cta',
+            description: 'This allows the addition of a main CTA link',
+            table: {
+                category: '@attribute tags',
+            },
         },
         onDismiss: {
             action: 'on-dismiss',
@@ -122,6 +127,7 @@ export const WithDismiss = (args) => ({
         title,
         renderBody,
         footer,
+        cta,
     },
 });
 WithDismiss.args = {
@@ -130,5 +136,4 @@ WithDismiss.args = {
     a11yDismissText: 'Dismiss Notice',
     status: 'information',
     icon: null,
-    cta: `<a href="https://www.ebay.com">Opt in</a>`,
 };
