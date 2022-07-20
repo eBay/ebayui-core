@@ -83,8 +83,12 @@ export default {
         variant: {
             control: { type: 'select' },
             options: ['overflow', 'form', 'button'],
-            description:
-                'will change the button style, "overflow", "form" or "button. Default is form"',
+            table: {
+                defaultValue: {
+                    summary: 'button',
+                },
+            },
+            description: 'will change the button style, "overflow", "form" or "button"',
         },
         collapseOnSelect: {
             type: 'boolean',

@@ -60,4 +60,12 @@ function toggleChecked(index) {
     }
 }
 
-export { isRadio, getInputState, isChecked, getCheckedIndexes, getCheckedValues, toggleChecked };
+const menuUtils = {
+    isRadio,
+    getInputState,
+    isChecked,
+    getCheckedIndexes,
+    getCheckedValues,
+    toggleChecked,
+};
+export default menuUtils;

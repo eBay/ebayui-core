@@ -1,6 +1,6 @@
 import Expander from 'makeup-expander';
 import * as eventUtils from '../../common/event-utils';
-import * as menuUtils from '../../common/menu-utils';
+import menuUtils from '../../common/menu-utils';
 
 export default Object.assign({}, menuUtils, {
     toggleItemChecked(index, itemEl, originalEvent) {

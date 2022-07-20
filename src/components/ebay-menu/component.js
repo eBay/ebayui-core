@@ -2,7 +2,7 @@ import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
 import { createLinear } from 'makeup-roving-tabindex';
 import typeahead from 'makeup-typeahead';
 import * as eventUtils from '../../common/event-utils';
-import * as menuUtils from '../../common/menu-utils';
+import menuUtils from '../../common/menu-utils';
 
 const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 

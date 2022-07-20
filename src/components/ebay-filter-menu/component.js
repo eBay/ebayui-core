@@ -1,7 +1,7 @@
 import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
 import { createLinear } from 'makeup-roving-tabindex';
 import * as eventUtils from '../../common/event-utils';
-import * as menuUtils from '../../common/menu-utils';
+import menuUtils from '../../common/menu-utils';
 
 export default Object.assign({}, menuUtils, {
     resetIndex() {
