@@ -59,7 +59,7 @@ export default {
         borderless: {
             type: 'boolean',
             control: { type: 'boolean' },
-            description: 'whether button has borders',
+            description: 'whether button has borders. Forces variant=button',
         },
         size: {
             control: { type: 'text' },

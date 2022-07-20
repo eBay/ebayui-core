@@ -18,7 +18,8 @@ static var ignoredAttributes = [
     "transparent",
     "bodyState",
     "toJSON",
-    "variant"
+    "variant",
+    "borderless"
 ];
 
 static var validPriorities = [
@@ -32,6 +33,9 @@ $ {
     input.toJSON = toJSON;
     var size = input.size === "large" ? "large" : null;
     var priority = input.priority || "secondary";
+    if (input.borderless) {
+        priority = 'none';
+    }
     var baseClass = input.href ? "fake-btn" : "btn";
     var sizeClass = size && baseClass + "--" + size;
     var truncateClass =
@@ -63,6 +67,7 @@ $ {
         variantClass,
         !truncateClass && !fixedHeightClass && sizeClass,
         split !== 'none' && `${baseClass}--split-${split}`,
+        input.borderless && `${baseClass}--borderless`,
         (validPriorities.includes(priority) &&
         `${baseClass}--${priority}`)
     ]
