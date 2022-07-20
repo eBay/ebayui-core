@@ -1,12 +1,12 @@
 $ var status = input.status || 'attention';
 
 <if (!state.dismissed)>
-<ebay-notice-base
-    ...input
-    class=[`page-notice--${status}`, input.class]
-    status=status
-    role="region"
-    prefixClass="page-notice"
-    on-dismiss('onDismiss')
-/>
+    <ebay-notice-base
+        ...input
+        class=[`page-notice--${status}`, input.class]
+        status=status
+        role="region"
+        prefixClass="page-notice"
+        on-dismiss('onDismiss')
+    />
 </if>

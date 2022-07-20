@@ -103,7 +103,7 @@ Standard.args = {
     status: null,
     icon: null,
     cta: null,
-    dimissed: false,
+    dismissed: false,
 };
 Standard.parameters = {
     docs: {
