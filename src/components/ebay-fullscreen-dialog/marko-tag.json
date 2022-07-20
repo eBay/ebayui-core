@@ -10,6 +10,9 @@
   "@close-focus": "string",
   "@a11y-close-text": "string",
   "@role": "never",
+  "@slideFrom": {
+    "enum": ["bottom", "end"]
+  },
   "@hidden": "never",
   "@header <header>": {
     "attribute-groups": ["html-attributes"],
