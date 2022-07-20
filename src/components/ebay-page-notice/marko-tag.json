@@ -33,5 +33,6 @@
       "type": "expression"
     },
     "@html-attributes": "expression"
-  }
+  },
+  "@dismissed": "bool"
 }

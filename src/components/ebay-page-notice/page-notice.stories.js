@@ -56,6 +56,10 @@ export default {
             description:
                 'This adds a dismiss icon allowing the notice to be dismissed/hidden and sets the a11y text on the icon',
         },
+        dismissed: {
+            description: 'whether or not the notice is dismissed',
+            type: 'boolean',
+        },
         title: {
             name: '@title',
             description: 'The title content to be displayed. Used mostly for celebration notice',
@@ -99,6 +103,7 @@ Standard.args = {
     status: null,
     icon: null,
     cta: null,
+    dimissed: false,
 };
 Standard.parameters = {
     docs: {

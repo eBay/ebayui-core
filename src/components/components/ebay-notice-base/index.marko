@@ -21,7 +21,7 @@ static var ignoredAttributes = [
 
 $ var status = input.status;
 $ var prefixClass = input.prefixClass;
-<if(!state.dismissed)>
+
 <${input.root || "section"}
     aria-labelledby=(!input.noA11yLabel && component.elId('status'))
     aria-roledescription=input.a11yRoleDescription
@@ -82,4 +82,3 @@ $ var prefixClass = input.prefixClass;
         </div>
     </if>
 </>
-</if>
