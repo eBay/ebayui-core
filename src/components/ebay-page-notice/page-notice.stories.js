@@ -1,9 +1,12 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
-import footer from './examples/button.marko';
 import renderBody from './examples/body.marko';
 import title from './examples/title.marko';
+import withAction from './examples/with-action.marko';
+import withActionCode from './examples/with-action.marko?raw';
+import withDismiss from './examples/with-dismiss.marko';
+import withDismissCode from './examples/with-dismiss.marko?raw';
 
 const Template = (args) => ({
     input: {
@@ -32,7 +35,7 @@ export default {
                 },
             },
 
-            description: 'The icon used and status of the noptice',
+            description: 'The icon used and status of the notice',
             options: ['attention', 'confirmation', 'information', 'celebration'],
             type: 'select',
         },
@@ -49,7 +52,14 @@ export default {
         a11yIconText: {
             description: 'adding description for the icon in the notice for a11y users',
         },
-
+        a11yDismissText: {
+            description:
+                'This adds a dismiss icon allowing the notice to be dismissed/hidden and sets the a11y text on the icon',
+        },
+        dismissed: {
+            description: 'whether or not the notice is dismissed',
+            type: 'boolean',
+        },
         title: {
             name: '@title',
             description: 'The title content to be displayed. Used mostly for celebration notice',
@@ -59,9 +69,27 @@ export default {
         },
         footer: {
             name: '@footer',
-            description: 'The footer content to be displayed. Used to show a CTA button generally',
+            description:
+                'The footer content to be displayed. Used to show the dismiss button generally',
             table: {
                 category: '@attribute tags',
+            },
+        },
+        cta: {
+            name: '@cta',
+            description: 'This allows the addition of a main CTA link',
+            table: {
+                category: '@attribute tags',
+            },
+        },
+        onDismiss: {
+            action: 'on-dismiss',
+            description: 'Triggered on notice dismiss',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
             },
         },
     },
@@ -70,8 +98,12 @@ export default {
 export const Standard = Template.bind({});
 Standard.args = {
     a11yText: 'attention',
+    a11yIconText: '',
+    a11yDismissText: '',
     status: null,
     icon: null,
+    cta: null,
+    dismissed: false,
 };
 Standard.parameters = {
     docs: {
@@ -82,14 +114,42 @@ Standard.parameters = {
 };
 
 export const WithAction = (args) => ({
-    input: {
-        ...args,
-        renderBody,
-        footer,
-    },
+    input: args,
+    component: withAction,
 });
 WithAction.args = {
     a11yText: 'attention',
+    a11yIconText: '',
+    a11yDismissText: '',
     status: null,
     icon: null,
+};
+
+WithAction.parameters = {
+    docs: {
+        source: {
+            code: withActionCode,
+        },
+    },
+};
+
+export const WithDismiss = (args) => ({
+    input: args,
+    component: withDismiss,
+});
+
+WithDismiss.args = {
+    a11yText: 'information',
+    a11yIconText: '',
+    a11yDismissText: 'Dismiss Notice',
+    status: 'information',
+    icon: null,
+};
+
+WithDismiss.parameters = {
+    docs: {
+        source: {
+            code: withDismissCode,
+        },
+    },
 };
