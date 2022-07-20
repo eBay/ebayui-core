@@ -36,6 +36,11 @@ $ {
     var isButtonVariant = false;
     var priority = null;
     var prefix = 'expand-btn'
+    if (input.borderless) {
+        // Force button variant for borderless
+        isOverflowVariant = false;
+        isFormVariant = false;
+    }
 
     var tagName;
     if (isOverflowVariant) {
