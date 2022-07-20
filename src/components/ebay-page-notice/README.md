@@ -25,19 +25,8 @@ The `<ebay-page-notice>` is a tag used to create a custom-designed notice elemen
 </ebay-page-notice>
 ```
 
-## ebay-page-notice Sub-tags
+## Links
 
-| Tag         | Required | Description                                                           |
-| ----------- | -------- | --------------------------------------------------------------------- |
-| `<@title>`  | No       | The title content to be displayed. Used mostly for celebration notice |
-| `<@footer>` | No       | The footer content to be displayed. Used to show a ebay-fake-link     |
-
-## ebay-page-notice Attributes
-
-| Name              | Type   | Stateful | Required | Description                                                                                    |
-| ----------------- | ------ | -------- | -------- | ---------------------------------------------------------------------------------------------- |
-| `status`          | String | No       | No       | "attention" (default for "page" and "inline"), "confirmation" "information", or "celebration". |
-| `a11y-icon-text`  | String | No       | Yes      | adding description for the notice for a11y users                                               |
-| `icon`            | String | Yes      | No       | "default" (matches whatever is specified by the "status") or "none"                            |
-| `cta`             | String | No       | No       | adding a dedicated CTA link in notice with full anchor tag in HTML                             |
-| `a11yDismissText` | String | No       | No       | adding a dismiss button to dismiss the notice                                                  |
+-   (Storybook)[https://ebay.github.io/ebayui-core/?path=/story/ebay-page-notice]
+-   (Storybook Docs)[https://ebay.github.io/ebayui-core/?path=/docs/ebay-page-notice]
+-   (Code Examples)[https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-page-notice/examples]
