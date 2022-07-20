@@ -4,8 +4,8 @@ module.exports = {
             dismissed: false,
         };
     },
-    handleDismissClick: forwardEvent('on-dismiss'),
-    handleDismissKeydown: forwardEvent('on-dismiss'),
+    handleDismissClick: forwardEvent('dismiss'),
+    handleDismissKeydown: forwardEvent('dismiss'),
 };
 
 function forwardEvent(eventName) {
