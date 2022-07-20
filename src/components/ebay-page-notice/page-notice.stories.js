@@ -1,10 +1,12 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
-import footer from './examples/button.marko';
 import renderBody from './examples/body.marko';
 import title from './examples/title.marko';
-import cta from './examples/cta.marko';
+import withAction from './examples/with-action.marko';
+import withActionCode from './examples/with-action.marko?raw';
+import withDismiss from './examples/with-dismiss.marko';
+import withDismissCode from './examples/with-dismiss.marko?raw';
 
 const Template = (args) => ({
     input: {
@@ -107,11 +109,8 @@ Standard.parameters = {
 };
 
 export const WithAction = (args) => ({
-    input: {
-        ...args,
-        renderBody,
-        footer,
-    },
+    input: args,
+    component: withAction,
 });
 WithAction.args = {
     a11yText: 'attention',
@@ -121,19 +120,31 @@ WithAction.args = {
     icon: null,
 };
 
-export const WithDismiss = (args) => ({
-    input: {
-        ...args,
-        title,
-        renderBody,
-        footer,
-        cta,
+WithAction.parameters = {
+    docs: {
+        source: {
+            code: withActionCode,
+        },
     },
+};
+
+export const WithDismiss = (args) => ({
+    input: args,
+    component: withDismiss,
 });
+
 WithDismiss.args = {
     a11yText: 'information',
     a11yIconText: '',
     a11yDismissText: 'Dismiss Notice',
     status: 'information',
     icon: null,
+};
+
+WithDismiss.parameters = {
+    docs: {
+        source: {
+            code: withDismissCode,
+        },
+    },
 };
