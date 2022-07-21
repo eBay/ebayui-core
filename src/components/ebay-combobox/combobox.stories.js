@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-combobox',
+    title: 'form input/ebay-combobox',
     component: Combobox,
     parameters: {
         docs: {

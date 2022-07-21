@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-progress-spinner',
+    title: 'progress/ebay-progress-spinner',
     component: Component,
     parameters: {
         docs: {

@@ -17,7 +17,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-tri-state-checkbox',
+    title: 'form input/ebay-tri-state-checkbox',
     component: Component,
     parameters: {
         docs: {

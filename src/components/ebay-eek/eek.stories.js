@@ -17,7 +17,7 @@ import example5 from './examples/05-invalid-combinations/template.marko';
 // });
 
 export default {
-    title: 'ebay-eek',
+    title: 'graphics & icons/ebay-eek',
     component: eek,
     parameters: {
         docs: {

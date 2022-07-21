@@ -9,7 +9,7 @@ import Readme from './README.md';
 // const Template = (args) => ({ input: args });
 
 export default {
-    title: 'ebay-breadcrumbs',
+    title: 'navigation & disclosure/ebay-breadcrumbs',
     parameters: {
         docs: {
             description: {

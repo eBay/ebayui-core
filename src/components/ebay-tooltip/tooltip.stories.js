@@ -21,7 +21,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-tooltip',
+    title: 'notices & tips/ebay-tooltip',
     component: Component,
     parameters: {
         docs: {

@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-snackbar-dialog',
+    title: 'dialogs/ebay-snackbar-dialog',
     component: Component,
     parameters: {
         docs: {

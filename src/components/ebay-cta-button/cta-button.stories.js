@@ -12,7 +12,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-cta-button',
+    title: 'buttons/ebay-cta-button',
     component: Cta,
     parameters: {
         docs: {

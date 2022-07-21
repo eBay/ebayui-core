@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-lightbox-dialog',
+    title: 'dialogs/ebay-lightbox-dialog',
     component: Component,
     parameters: {
         docs: {

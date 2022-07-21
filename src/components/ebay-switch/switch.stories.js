@@ -16,7 +16,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-switch',
+    title: 'form input/ebay-switch',
     component: Component,
     parameters: {
         docs: {

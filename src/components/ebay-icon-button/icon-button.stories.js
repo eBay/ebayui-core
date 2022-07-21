@@ -14,7 +14,7 @@ const Template = (args) => ({
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
-    title: 'ebay-icon-button',
+    title: 'buttons/ebay-icon-button',
     component: button,
     parameters: {
         docs: {

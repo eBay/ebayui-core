@@ -47,7 +47,7 @@ const Template = (args) => ({ input: { ...args } });
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
-    title: 'ebay-carousel',
+    title: 'navigation & disclosure/ebay-carousel',
     component: carousel,
     parameters: {
         docs: {
