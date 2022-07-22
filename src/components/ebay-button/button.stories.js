@@ -15,7 +15,7 @@ const Template = (args) => ({
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
-    title: 'ebay-button',
+    title: 'buttons/ebay-button',
     component: button,
     parameters: {
         docs: {
@@ -53,6 +53,15 @@ export default {
         },
         fluid: {
             description: 'button fills 100% width of container',
+            table: {
+                category: 'Toggles',
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
+        },
+        borderless: {
+            description: 'Shows button without border.',
             table: {
                 category: 'Toggles',
                 defaultValue: {
@@ -194,6 +203,7 @@ Standard.args = {
     renderBody: 'Button',
     href: '',
     fluid: false,
+    borderless: false,
     size: null,
     disabled: false,
     priority: null,

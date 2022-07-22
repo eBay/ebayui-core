@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-3d-viewer',
+    title: 'media/ebay-3d-viewer',
     component: Component,
     parameters: {
         docs: {

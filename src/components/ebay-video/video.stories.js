@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-video',
+    title: 'media/ebay-video',
     component: Component,
     parameters: {
         docs: {

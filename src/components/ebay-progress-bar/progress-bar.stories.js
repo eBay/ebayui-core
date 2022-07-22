@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-progress-bar',
+    title: 'progress/ebay-progress-bar',
     component: Component,
     parameters: {
         docs: {

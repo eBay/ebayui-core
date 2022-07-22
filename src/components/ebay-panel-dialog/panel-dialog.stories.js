@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-panel-dialog',
+    title: 'dialogs/ebay-panel-dialog',
     component: Component,
     parameters: {
         docs: {

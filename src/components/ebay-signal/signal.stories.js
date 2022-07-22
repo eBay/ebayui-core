@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-signal',
+    title: 'graphics & icons/ebay-signal',
     component: Component,
     parameters: {
         docs: {

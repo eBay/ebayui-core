@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-expand-button',
+    title: 'building blocks/ebay-expand-button',
     component: Expand,
     parameters: {
         docs: {

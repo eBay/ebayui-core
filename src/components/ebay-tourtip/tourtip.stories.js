@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-tourtip',
+    title: 'notices & tips/ebay-tourtip',
     component: Component,
     parameters: {
         docs: {

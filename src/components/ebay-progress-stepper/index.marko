@@ -8,14 +8,27 @@ static var ignoredStepAttributes = [
     "information",
     "attention",
     "class",
+    "title",
     "a11yHeadingText",
     "a11yHeadingTag",
 ];
 
 static var ignoredStepTitleAttributes = ["as", "a11yText", "current", "type", "title"];
 
-$ var direction = input.direction || "row";
-$ var current = (input.step || []).findIndex(item => item.current);
+$ {
+    var direction = input.direction || "row";
+    var current;
+    switch(input.defaultState) {
+        case "complete":
+        case "upcoming":
+            current = -1;
+            break;
+        default:
+            var step = (input.step || []).findIndex(item => item.current)
+            current = step === -1 ? 0 : step;
+    }
+}
+
 <div
     class=[
         "progress-stepper",
@@ -46,6 +59,8 @@ $ var current = (input.step || []).findIndex(item => item.current);
                         "progress-stepper__item--attention",
                     item.type === "information" &&
                         "progress-stepper__item--information",
+                    current < index && input.defaultState !== 'complete' &&
+                        "progress-stepper__item--upcoming",
                     item.class
                 ]
                 aria-current=(current === index && "step")
@@ -58,21 +73,24 @@ $ var current = (input.step || []).findIndex(item => item.current);
                     <else-if(item.type === "information")>
                         <ebay-stepper-information-icon width="24" height="24" a11y-text=(item.a11yText || 'issue')/>
                     </else-if>
-                    <else-if(
+                   <else-if(
                         index < current ||
                         item.type === "complete" ||
                         input.defaultState === "complete"
                     )>
                         <ebay-stepper-confirmation-icon width="24" height="24" a11y-text=(item.a11yText || 'complete')/>
                     </else-if>
+                    <else-if(index === current)>
+                        <ebay-stepper-current-icon width="24" height="24" a11y-text=(item.a11yText || 'current')/>
+                    </else-if>
                     <else>
-                        <span role="img" aria-label=(item.a11yText || (current === index ? 'current' : 'upcoming'))></span>
+                        <span role="img" aria-label=(item.a11yText || 'upcoming')></span>
                     </else>
                 </span>
                 <span class="progress-stepper__text">
                     <if(item.title)>
                         <${(item.title && item.title.as) || "h4"}
-                        ...processHtmlAttributes(item, ignoredStepTitleAttributes)>
+                        ...processHtmlAttributes(item.title, ignoredStepTitleAttributes)>
                             <${item.title}/>
                         </>
                     </if>

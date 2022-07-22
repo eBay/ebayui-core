@@ -3,7 +3,7 @@ import Component from './examples/01-default/template.marko';
 import code from './examples/01-default/template.marko?raw';
 
 export default {
-    title: 'ebay-drawer-dialog',
+    title: 'dialogs/ebay-drawer-dialog',
     component: Component,
     parameters: {
         docs: {

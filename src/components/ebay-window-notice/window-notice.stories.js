@@ -9,7 +9,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-window-notice',
+    title: 'notices & tips/ebay-window-notice',
     component: Component,
     parameters: {
         docs: {

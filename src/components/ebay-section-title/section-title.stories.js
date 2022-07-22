@@ -10,7 +10,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-section-title',
+    title: 'navigation & disclosure/ebay-section-title',
     component: Component,
     parameters: {
         docs: {

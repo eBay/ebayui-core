@@ -1,5 +1,7 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import { addRenderBodies } from '../../../.storybook/utils';
+import MigratorTemplate from './examples/05-migrator/template.marko';
+import MigratorTemplateCode from './examples/05-migrator/template.marko?raw';
 import Readme from './README.md';
 import Component from './';
 
@@ -8,7 +10,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-progress-stepper',
+    title: 'progress/ebay-progress-stepper',
     component: Component,
     parameters: {
         docs: {
@@ -31,7 +33,7 @@ export default {
             control: { type: 'select' },
             options: ['complete', 'upcoming', 'active'],
             description:
-                'If complete, then all items will be in complete state by default. If upcoming, all items will be in upcoming state. Otherwise, the default (active), will change items based on the `current` item.',
+                'If complete, then all items will be in complete state by default. If upcoming, all items will be in upcoming state. Otherwise, the default (active), will change items based on the `current` item (current defaults to first step if not set).',
         },
         autoParagraph: {
             type: 'boolean',
@@ -197,6 +199,19 @@ Information.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-progress-stepper', Information.args, { step: 'step' }),
+        },
+    },
+};
+
+export const Migrator = (args) => ({
+    input: args,
+    component: MigratorTemplate,
+});
+Migrator.args = {};
+Migrator.parameters = {
+    docs: {
+        source: {
+            code: MigratorTemplateCode,
         },
     },
 };

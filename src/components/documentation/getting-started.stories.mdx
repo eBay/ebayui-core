@@ -1,0 +1,110 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Getting Started" />
+
+# Getting Started
+
+The eBayUI core components are available as the `@ebay/ebayui-core` package on [NPM](https://www.npmjs.com/package/@ebay/ebayui-core).
+
+Use npm or yarn to add the package dependency to your project:
+
+```sh
+npm add @ebay/ebayui-core
+```
+
+## Upgrading to the latest versions
+
+See the [upgrade guide](https://github.com/eBay/ebayui-core/tree/master/UPGRADE.md) for more information
+
+### Custom Tags
+
+Once the package dependency is added, the eBay [customs tags](https://markojs.com/docs/custom-tags/) are now available for use in your Marko templates. For example, to use an `ebay-menu` component:
+
+#### _template.marko_
+
+```marko
+<ebay-menu text="Sort" type="radio">
+    <@item>Price</@item>
+    <@item>Time</@item>
+    <@item>Distance</@item>
+</ebay-menu>
+```
+
+### Attributes
+
+Attributes provide initial state for a component. We can see that the menu has `text` and `type` attributes:
+
+#### _template.marko_
+
+```marko
+<ebay-menu text="Sort" type="radio">
+    <@item>Price</@item>
+    <@item>Time</@item>
+    <@item>Distance</@item>
+</ebay-menu>
+```
+
+Passing new attributes to an ebayui component will always reset it's internal state. If you want to persist this state yourself, events are exposed which allow you to synchronize the state into your own components, for example:
+
+```marko
+class {
+    onCreate() {
+        this.state = {
+            dialogIsOpen: false
+        }
+    }
+
+    handleDialogClose() {
+        this.state.dialogIsOpen = false;
+    }
+
+    handleDialogOpen() {
+        this.state.dialogIsOpen = true;
+    }
+}
+
+<ebay-lightbox-dialog
+    open=state.dialogIsOpen
+    on-open('handleDialogOpen')
+    on-close('handleDialogClose')>
+    ...
+</ebay-lightbox-dialog>
+```
+
+#### Pass-Through Attributes
+
+HTML attributes can be used on any component, and they will be passed through to the most prominent tag of the component. The most prominent tag is usually the root or form control, but individual components will note if it varies for specific cases.
+
+Example of static usage:
+
+```marko
+<ebay-button id="my-button"/>
+```
+
+For using pass-through attributes dynamically, they should be sent through the `html-attributes` attribute:
+
+```marko
+$ const myAttributes = { id: 'my-button' };
+<ebay-button html-attributes=myAttributes/>
+```
+
+Static and dynamic pass-through attributes can be used simultaneously (html-attributes takes precedence in conflicts):
+
+```marko
+$ const myAttributes = { id: 'my-button' };
+<ebay-button html-attributes=myAttributes type="submit"/>
+```
+
+### Events
+
+Events can also be handled using [Marko syntax](https://markojs.com/docs/events/):
+
+#### _template.marko_
+
+```marko
+<ebay-menu text="Sort" type="radio" on-change("onMenuChange")>
+    <@item>Price</@item>
+    <@item>Time</@item>
+    <@item>Distance</@item>
+</ebay-menu>
+```

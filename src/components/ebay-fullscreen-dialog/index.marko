@@ -7,6 +7,6 @@
     on-close("emit", "close")
     class=input.class
     useHiddenProperty=true
-    window-class="fullscreen-dialog__window--slide">
+    window-class=(input.slideFrom === 'end' ? "fullscreen-dialog__window--slide-end" : "fullscreen-dialog__window--slide")>
     <${input.renderBody}/>
 </ebay-dialog-base>

@@ -12,7 +12,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-details',
+    title: 'navigation & disclosure/ebay-details',
     component: Details,
     parameters: {
         docs: {

@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-fullscreen-dialog',
+    title: 'dialogs/ebay-fullscreen-dialog',
     component: Component,
     parameters: {
         docs: {
@@ -31,6 +31,17 @@ export default {
             control: { type: 'text' },
             description:
                 'An id for an element which will receive focus when the dialog opens (defaults to close button).',
+        },
+        slideFrom: {
+            options: ['bottom', 'end'],
+            description:
+                'Either bottom or end. Where the panel slide begins from, either on the bottom or the end of the page.',
+            table: {
+                defaultValue: {
+                    summary: 'bottom',
+                },
+            },
+            type: { category: 'Options' },
         },
         closeFocus: {
             control: { type: 'text' },
@@ -86,6 +97,7 @@ Standard.args = {
     footer: {
         renderBody: `Footer Text`,
     },
+    slideFrom: null,
 };
 
 Standard.parameters = {

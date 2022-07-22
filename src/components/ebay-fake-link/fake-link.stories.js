@@ -12,7 +12,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-fake-link',
+    title: 'buttons/ebay-fake-link',
     component,
     parameters: {
         docs: {

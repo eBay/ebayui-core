@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-filter',
+    title: 'building blocks/ebay-filter',
     component: Component,
     parameters: {
         docs: {

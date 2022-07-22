@@ -16,7 +16,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-toast-dialog',
+    title: 'dialogs/ebay-toast-dialog',
     component: Component,
     parameters: {
         docs: {

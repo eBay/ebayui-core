@@ -5,7 +5,7 @@ import Readme from './README.md';
 const Template = (args) => ({ input: args });
 
 export default {
-    title: 'ebay-badge',
+    title: 'graphics & icons/ebay-badge',
     component: badge,
     parameters: {
         docs: {

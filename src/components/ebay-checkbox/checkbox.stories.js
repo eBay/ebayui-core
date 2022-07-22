@@ -9,7 +9,7 @@ import WithLabelCode from './examples/WithLabel.marko?raw';
 const Template = (args) => ({ input: args });
 
 export default {
-    title: 'ebay-checkbox',
+    title: 'form input/ebay-checkbox',
     component: Checkbox,
     parameters: {
         docs: {

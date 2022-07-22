@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-alert-dialog',
+    title: 'dialogs/ebay-alert-dialog',
     component: Component,
     parameters: {
         docs: {

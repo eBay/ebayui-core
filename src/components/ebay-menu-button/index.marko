@@ -36,6 +36,11 @@ $ {
     var isButtonVariant = false;
     var priority = null;
     var prefix = 'expand-btn'
+    if (input.borderless) {
+        // Force button variant for borderless
+        isOverflowVariant = false;
+        isFormVariant = false;
+    }
 
     var tagName;
     if (isOverflowVariant) {
@@ -59,11 +64,11 @@ $ {
     onMousedown("handleMousedown")>
     <${tagName}
         class=[
-            `menu-button__button`,
-            input.borderless && !isOverflowVariant && "expand-btn--borderless"
+            `menu-button__button`
         ]
         size=input.size
         priority=priority
+        borderless=input.borderless
         aria-expanded="false"
         aria-haspopup="true"
         aria-label=input.a11yText

@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-section-notice',
+    title: 'notices & tips/ebay-section-notice',
     component: Component,
     parameters: {
         docs: {

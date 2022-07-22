@@ -16,7 +16,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-star-rating',
+    title: 'graphics & icons/ebay-star-rating',
     component: component,
     parameters: {
         docs: {

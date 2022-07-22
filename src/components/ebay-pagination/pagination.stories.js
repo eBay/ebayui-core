@@ -8,7 +8,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'ebay-pagination',
+    title: 'navigation & disclosure/ebay-pagination',
     component: Component,
     parameters: {
         docs: {
