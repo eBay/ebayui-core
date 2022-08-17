@@ -38,7 +38,7 @@ export default {
 
         const parentForm = this.el.closest('form');
         if (parentForm) {
-            const { selectedIndex } = this.el.querySelector('select');
+            const { selectedIndex } = document.getElementById(this.getElId('select'));
             this.subscribeTo(parentForm).on('reset', () => {
                 this.handleChange({ target: { selectedIndex } });
             });
