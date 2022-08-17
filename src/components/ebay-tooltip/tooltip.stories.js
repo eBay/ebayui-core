@@ -5,17 +5,6 @@ import Component from './index.marko';
 import buttonComponent from './examples/01-icon-button-host/template.marko';
 import code from './examples/01-icon-button-host/template.marko?raw';
 
-// const Template = (args) => ({
-//     input: {
-//         ...args,
-//         renderBody: args.renderBody
-//             ? (out) => {
-//                   out.html(args.renderBody);
-//               }
-//             : null,
-//     },
-// });
-
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
@@ -33,7 +22,21 @@ export default {
 
     argTypes: {
         pointer: {
-            control: { type: 'text' },
+            options: [
+                'top-left',
+                'top',
+                'top-right',
+                'right',
+                'right-bottom',
+                'right-top',
+                'bottom-left',
+                'bottom-right',
+                'bottom',
+                'left',
+                'left-bottom',
+                'left-top',
+            ],
+            control: { type: 'select' },
             description:
                 'options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`',
         },
@@ -101,7 +104,7 @@ export default {
 export const Standard = Template.bind({});
 Standard.args = {
     host: {
-        renderBody: `<a href="https://www.ebay.com">View options</a>`,
+        renderBody: `<a href="https://www.ebay.com" class="tooltip__host">View options</a>`,
     },
     content: {
         renderBody: `<p>Use Access Key 'S' to display settings.</p>`,
