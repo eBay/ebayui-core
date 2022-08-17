@@ -1,9 +1,13 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { render, fireEvent, cleanup, waitFor } from '@marko/testing-library';
-import template from '..';
-import * as mock from './mock';
+import * as stories from '../tooltip.stories';
 const pointerStyles = require('./location-styles.json');
+
+const Pointers = Object.keys(pointerStyles);
+
+const { Standard } = composeStories(stories);
 
 use(chaiDom);
 afterEach(cleanup);
@@ -11,27 +15,25 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-describe('given the default tooltip', () => {
-    const input = mock.Basic;
+const renderBodyText = 'View options';
 
+describe('given the default tooltip', () => {
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard);
     });
 
     describe('when the host element is hovered', () => {
         beforeEach(async () => {
-            await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
+            await fireEvent.mouseEnter(component.getByText(renderBodyText));
         });
 
-        it('then it emits the expand event', () => {
-            expect(component.emitted('expand')).has.length(1);
+        it('then it emits the expand event', async () => {
+            await waitFor(() => expect(component.emitted('expand')).has.length(1));
         });
 
         describe('when the host element loses hover', () => {
             beforeEach(async () => {
-                await fireEvent.mouseLeave(
-                    component.getByText(input.host.renderBody.text).parentElement
-                );
+                await fireEvent.mouseLeave(component.getByText(renderBodyText).parentElement);
             });
 
             it('then it emits the collapse event', async () => {
@@ -41,10 +43,10 @@ describe('given the default tooltip', () => {
 
         describe('when the escape key is pressed', () => {
             beforeEach(async () => {
-                await fireEvent.keyDown(
-                    component.getByText(input.host.renderBody.text).parentElement,
-                    { key: 'Escape', keyCode: 27 }
-                );
+                await fireEvent.keyDown(component.getByText(renderBodyText).parentElement, {
+                    key: 'Escape',
+                    keyCode: 27,
+                });
             });
 
             it('then it emits the collapse event', async () => {
@@ -55,19 +57,20 @@ describe('given the default tooltip', () => {
 });
 
 describe('given the a custom aligned tooltip', () => {
-    const input = mock.customPointer;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard, {
+            styleTop: '20px',
+            styleLeft: '20px',
+        });
     });
 
     describe('when the host element is hovered', () => {
         beforeEach(async () => {
-            await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
+            await fireEvent.mouseEnter(component.getByText(renderBodyText));
         });
 
         it('then it sets the overlay styles correctly', () => {
-            const overlay = component.getByText(input.host.renderBody.text).nextElementSibling;
+            const overlay = component.getByText(renderBodyText).nextElementSibling;
             expect(overlay.style.transform).to.equal('');
             expect(overlay.style.left).to.equal('20px');
             expect(overlay.style.top).to.equal('20px');
@@ -77,21 +80,19 @@ describe('given the a custom aligned tooltip', () => {
     });
 });
 
-mock.Pointers.forEach((input) => {
-    const { pointer } = input;
-
+Pointers.forEach((pointer) => {
     describe(`given the tooltip with pointer ${pointer}`, () => {
         beforeEach(async () => {
-            component = await render(template, input);
+            component = await render(Standard, { pointer });
         });
 
         describe('when the host element is hovered', () => {
             beforeEach(async () => {
-                await fireEvent.mouseEnter(component.getByText(input.host.renderBody.text));
+                await fireEvent.mouseEnter(component.getByText(renderBodyText));
             });
 
             it('then it sets the overlay styles correctly', () => {
-                const overlay = component.getByText(input.host.renderBody.text).nextElementSibling;
+                const overlay = component.getByText(renderBodyText).nextElementSibling;
                 const overlayStyle = overlay.style;
                 const expectedStyles = pointerStyles[pointer];
                 expect(overlayStyle).has.property('transform', expectedStyles.overlayTransform);

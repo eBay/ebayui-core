@@ -3,7 +3,7 @@
     "overlayTransform": "translateX(16px) translateY(-50%)",
     "overlayLeft": "100%",
     "overlayRight": "auto",
-    "overlayTop": "0px",
+    "overlayTop": "-6px",
     "overlayBottom": "auto"
   },
   "left-top": {
@@ -24,7 +24,7 @@
     "overlayTransform": "translateX(-16px) translateY(-50%)",
     "overlayLeft": "auto",
     "overlayRight": "100%",
-    "overlayTop": "0px",
+    "overlayTop": "-6px",
     "overlayBottom": "auto"
   },
   "right-top": {
