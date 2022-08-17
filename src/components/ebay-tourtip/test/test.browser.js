@@ -1,11 +1,11 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { render, fireEvent, cleanup } from '@marko/testing-library';
-import template from '..';
-import componentB from '../component-browser';
-import * as mock from './mock';
+import * as stories from '../tourtip.stories';
 
-componentB.renderer = template._; // Allow re-rendering the split component for testing.
+const { Standard } = composeStories(stories);
+
 use(chaiDom);
 afterEach(cleanup);
 
@@ -13,10 +13,8 @@ afterEach(cleanup);
 let component;
 
 describe('given the default tourtip', () => {
-    const input = mock.Basic;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard);
     });
 
     thenItIsOpen();
@@ -24,7 +22,7 @@ describe('given the default tourtip', () => {
 
     describe('after it is rerendered', () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { disabled: false }));
+            component = await render(Standard, { open: true });
         });
 
         thenItIsOpen();
@@ -33,17 +31,14 @@ describe('given the default tourtip', () => {
 
     function thenItIsOpen() {
         it('then it is open', () => {
-            expect(component.getByText(input.host.renderBody.text).parentElement).has.attr(
-                'aria-expanded',
-                'true'
-            );
+            expect(component.queryByRole('region')).to.not.equal(null);
         });
     }
 
     function thenItCanBeClosed() {
         describe('when the close button is clicked', () => {
             beforeEach(async () => {
-                await fireEvent.click(component.getByLabelText(input.a11yCloseText));
+                await fireEvent.click(component.getByLabelText('close'));
             });
 
             it('then it emits the collapse event', () => {
@@ -51,10 +46,7 @@ describe('given the default tourtip', () => {
             });
 
             it('then it is closed', () => {
-                expect(component.getByText(input.host.renderBody.text).parentElement).has.attr(
-                    'aria-expanded',
-                    'false'
-                );
+                expect(component.queryByRole('region')).to.equal(null);
             });
         });
     }
