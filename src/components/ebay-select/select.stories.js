@@ -3,6 +3,8 @@ import Readme from './README.md';
 import Component from './index.marko';
 import WithLabelTemplate from './examples/07-external-label/template.marko';
 import WithLabelCode from './examples/07-external-label/template.marko?raw';
+import InFormTemplate from './examples/08-in-form/template.marko';
+import InFormCode from './examples/08-in-form/template.marko';
 
 const Template = (args) => ({
     input: {
@@ -136,6 +138,35 @@ ExternalLabel.parameters = {
     docs: {
         source: {
             code: WithLabelCode,
+        },
+    },
+};
+
+export const InForm = (args) => ({
+    input: args,
+    component: InFormTemplate,
+});
+
+InForm.args = {
+    options: [
+        {
+            text: 'option 1',
+            value: 'option 1',
+        },
+        {
+            text: 'option 2',
+            value: 'option 2',
+        },
+        {
+            text: 'option 3',
+            value: 'option 3',
+        },
+    ],
+};
+InForm.parameters = {
+    docs: {
+        source: {
+            code: InFormCode,
         },
     },
 };
