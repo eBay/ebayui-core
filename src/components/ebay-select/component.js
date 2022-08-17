@@ -36,12 +36,11 @@ export default {
     onMount() {
         this._setupMakeup();
 
-        const selectedOnMount = this.el.querySelector('select').selectedIndex;
-
         const parentForm = this.el.closest('form');
         if (parentForm) {
+            const { selectedIndex } = this.el.querySelector('select');
             this.subscribeTo(parentForm).on('reset', () => {
-                this.handleChange({ target: { selectedIndex: selectedOnMount } });
+                this.handleChange({ target: { selectedIndex } });
             });
         }
     },
