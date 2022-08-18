@@ -21,6 +21,10 @@ export default {
         this.emit('change', event);
     },
 
+    handleListboxEscape() {
+        this._expander.expanded = false;
+    },
+
     onCreate() {
         this.state = {
             selectedIndex: -1,
