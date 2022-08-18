@@ -35,6 +35,10 @@ export default class {
     }
 
     handleKeyDown(originalEvent) {
+        eventUtils.handleEscapeKeydown(originalEvent, () => {
+            this.emit('escape');
+        });
+
         eventUtils.handleActionKeydown(originalEvent, () =>
             this.handleChange(this._activeDescendant.index, false)
         );
