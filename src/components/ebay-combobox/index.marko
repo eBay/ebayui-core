@@ -75,7 +75,7 @@ $ var id = input.id || component.getElId("input")
             ...processHtmlAttributes(input.button, ignoredButtonAttributes)
             onClick("handleButtonClick")
             key="actionable"
-            class=["icon-btn", hasButton && input.button.class]>
+            class=["icon-btn", "icon-btn--transparent", hasButton && input.button.class]>
             <if(hasButton && input.button.renderBody)>
                 <${input.button.renderBody}/>
             </if>
