@@ -42,8 +42,10 @@ export default {
                 'Specify whether to auto wrap @step body text with a paragraph tag (default: true)',
         },
         a11yHeadingTag: {
-            defaultValue: {
-                summary: 'h2',
+            table: {
+                defaultValue: {
+                    summary: 'h2',
+                },
             },
             control: { type: 'text' },
             description: 'heading tag for progress stepper',

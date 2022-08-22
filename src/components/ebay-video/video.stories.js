@@ -34,7 +34,9 @@ export default {
         },
         volume: {
             type: 'number',
-            defaultValue: 0,
+            table: {
+                defaultValue: 0,
+            },
             control: { type: 'number', min: 0, max: 1, step: 0.1 },
         },
         muted: {
