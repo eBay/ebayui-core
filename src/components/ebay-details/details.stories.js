@@ -57,7 +57,7 @@ export default {
             description: 'The root element.',
             table: {
                 defaultValue: {
-                    summary: 'p',
+                    summary: 'div',
                 },
             },
         },
