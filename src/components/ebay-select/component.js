@@ -1,6 +1,10 @@
 import FloatingLabel from 'makeup-floating-label';
 
 export default {
+    get selectId() {
+        return this.input.id || this.getElId('select');
+    },
+
     handleChange(event) {
         const { selectedIndex } = event.target;
         const el = this.getEls('option')[selectedIndex];
@@ -38,7 +42,7 @@ export default {
 
         const parentForm = this.el.closest('form');
         if (parentForm) {
-            const { selectedIndex } = document.getElementById(this.getElId('select'));
+            const { selectedIndex } = document.getElementById(this.selectId);
             this.subscribeTo(parentForm).on('reset', () => {
                 this.handleChange({ target: { selectedIndex } });
             });
