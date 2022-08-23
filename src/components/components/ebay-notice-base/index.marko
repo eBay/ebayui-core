@@ -31,19 +31,19 @@ $ var prefixClass = input.prefixClass;
         <${input.headerRoot || "div"} class=`${prefixClass}__header` id:scoped="status"
         >
             <if(status === "confirmation" || status === "celebration")>
-                <ebay-confirmation-filled-icon
+                <ebay-confirmation-filled-small-icon
                     a11y-text=(input.a11yIconText || input.a11yText)
                     a11y-variant="label"
                     class=input.iconClass/>
             </if>
             <else-if(status === "attention")>
-                <ebay-attention-filled-icon
+                <ebay-attention-filled-small-icon
                     a11y-variant="label"
                     a11y-text=(input.a11yIconText || input.a11yText)
                     class=input.iconClass/>
             </else-if>
             <else-if(status === "information")>
-                <ebay-information-filled-icon
+                <ebay-information-filled-small-icon
                     a11y-variant="label"
                     a11y-text=(input.a11yIconText || input.a11yText)
                     class=input.iconClass/>
@@ -77,7 +77,7 @@ $ var prefixClass = input.prefixClass;
                 class="fake-link page-notice__dismiss"
                 onClick("handleDismissClick")
                 onKeydown("handleDismissKeydown")>
-                <ebay-close-icon class="icon icon--close-small"/>
+                <ebay-close-small-icon class="icon icon--close-small"/>
             </button>
         </div>
     </if>

@@ -35,6 +35,14 @@ export default {
 
     onMount() {
         this._setupMakeup();
+
+        const parentForm = this.el.closest('form');
+        if (parentForm) {
+            const { selectedIndex } = document.getElementById(this.getElId('select'));
+            this.subscribeTo(parentForm).on('reset', () => {
+                this.handleChange({ target: { selectedIndex } });
+            });
+        }
     },
 
     onUpdate() {

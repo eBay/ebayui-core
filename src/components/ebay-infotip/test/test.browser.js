@@ -1,9 +1,11 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { render, fireEvent, cleanup, waitFor } from '@marko/testing-library';
 import { fastAnimations } from '../../../common/test-utils/browser';
-import template from '..';
-import * as mock from './mock';
+import * as stories from '../infotip.stories';
+
+const { Standard, OpenOnRender } = composeStories(stories);
 
 use(chaiDom);
 before(fastAnimations.start);
@@ -14,26 +16,22 @@ afterEach(cleanup);
 let component;
 
 describe('given the default infotip', () => {
-    const input = mock.WithContent;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard);
     });
 
     thenItCanBeOpenAndClosed();
 
     describe('when it is rerendered', () => {
         // Needed to change input for rerender to work correctly
-        beforeEach(
-            async () => await component.rerender(Object.assign({}, input, { disabled: false }))
-        );
+        beforeEach(async () => await component.rerender());
         thenItCanBeOpenAndClosed();
     });
 
     function thenItCanBeOpenAndClosed() {
         describe('when the host element is clicked', () => {
             beforeEach(async () => {
-                await fireEvent.click(component.getAllByLabelText(input.ariaLabel)[0]);
+                await fireEvent.click(component.getAllByLabelText('Important information')[0]);
             });
 
             it('then it emits the expand event', () => {
@@ -41,12 +39,15 @@ describe('given the default infotip', () => {
             });
 
             it('then it is expanded', () => {
-                expect(component.getByLabelText(input.ariaLabel)).has.attr('aria-expanded', 'true');
+                expect(component.getByLabelText('Important information')).has.attr(
+                    'aria-expanded',
+                    'true'
+                );
             });
 
             describe('when the host element is clicked a second time to close', () => {
                 beforeEach(async () => {
-                    await fireEvent.click(component.getByLabelText(input.ariaLabel));
+                    await fireEvent.click(component.getByLabelText('Important information'));
                 });
 
                 it('then it emits the collapse event', async () => {
@@ -54,7 +55,7 @@ describe('given the default infotip', () => {
                 });
 
                 it('then it is collapsed', () => {
-                    expect(component.getByLabelText(input.ariaLabel)).does.not.have.attr(
+                    expect(component.getByLabelText('Important information')).does.not.have.attr(
                         'aria-expanded',
                         'true'
                     );
@@ -65,15 +66,13 @@ describe('given the default infotip', () => {
 });
 
 describe('given the modal infotip', () => {
-    const input = mock.ModalWithContent;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard, { variant: 'modal' });
     });
 
     describe('when the host element is clicked', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getAllByLabelText(input.ariaLabel)[0]);
+            await fireEvent.click(component.getAllByLabelText('Important information')[0]);
         });
 
         it('then it emits the expand event', async () => {
@@ -89,15 +88,13 @@ describe('given the modal infotip', () => {
 });
 
 describe('given the modal infotip opened', () => {
-    const input = Object.assign({}, mock.ModalWithContent, { open: true });
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(OpenOnRender, { variant: 'modal' });
     });
 
     describe('when the host element is opened and then closed', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByLabelText(input.a11yCloseButtonText));
+            await fireEvent.click(component.getByLabelText('close'));
         });
 
         it('then it emits the collapse event', async () => {

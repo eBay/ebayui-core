@@ -66,16 +66,17 @@ $ var pointer = input.pointer || "bottom";
                     onOverlay-close("handleOverlayClose")/>
             </if>
             <else>
-                <ebay-lightbox-dialog
+                <ebay-drawer-dialog
                     open=state.open
-                    class=[`${classPrefix}__overlay`]
-                    variant="_mini"
                     a11y-close-text=input.a11yCloseButtonText
                     on-open("handleExpand")
                     on-close("handleCollapse")
                     aria-label=input.ariaLabel>
+                    <@header>
+                        <${input.heading && input.heading.renderBody}/>
+                    </@header>
                     <${input.content}/>
-                </ebay-lightbox-dialog>
+                </ebay-drawer-dialog>
             </else>
         </span>
     </ebay-tooltip-base>

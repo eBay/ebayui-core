@@ -8,7 +8,7 @@ exports.pointerStyles = {
         transform: 'translateX(16px) translateY(-50%)',
         left: '100%',
         right: 'auto',
-        top: '0',
+        top: '-6px',
         bottom: 'auto',
     },
     'left-top': {
@@ -29,7 +29,7 @@ exports.pointerStyles = {
         transform: 'translateX(-16px) translateY(-50%)',
         left: 'auto',
         right: '100%',
-        top: '0',
+        top: '-6px',
         bottom: 'auto',
     },
     'right-top': {

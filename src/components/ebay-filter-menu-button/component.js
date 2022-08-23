@@ -28,6 +28,7 @@ export default Object.assign({}, menuUtils, {
     },
 
     handleCollapse({ originalEvent }) {
+        this.getEl('button').focus();
         this._emitComponentEvent('collapse', originalEvent);
     },
 

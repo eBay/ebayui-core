@@ -54,9 +54,10 @@ export default {
         const container = this.getEl('container');
         const isTooltip = type === 'tooltip';
         const isInfotip = type === 'infotip';
+        const isTourtip = type === 'tourtip';
         const expanderEl = container.getElementsByClassName(type)[0];
 
-        if (host) {
+        if (host && !isTourtip) {
             this._expander = new Expander(expanderEl, {
                 hostSelector: hostSelector,
                 contentSelector: `.${type}__overlay`,

@@ -1,21 +1,10 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
+import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
 
 const Template = (args) => ({
-    input: {
-        ...args,
-        spread: null,
-        ...args.spread,
-        content: {
-            renderBody:
-                args.content && args.content.renderBody
-                    ? (out) => {
-                          out.html(args.content.renderBody);
-                      }
-                    : null,
-        },
-    },
+    input: addRenderBodies(args),
 });
 
 export default {
@@ -49,7 +38,8 @@ export default {
             },
         },
         variant: {
-            control: { type: 'text' },
+            control: { type: 'select' },
+            options: ['default', 'modal'],
             description:
                 'Either modal or default. If modal will show the mobile version of infotip',
         },
@@ -92,7 +82,7 @@ export default {
             control: { type: 'text' },
             description: 'a style property for the CSS `top` rule',
         },
-        a11yCloseText: {
+        a11yCloseButtonText: {
             control: { type: 'text' },
             description: 'A11y text for close button',
         },
@@ -125,15 +115,6 @@ export default {
                 },
             },
         },
-        spread: {
-            control: {
-                type: 'object',
-            },
-            description: 'Additional attributes being passed to component',
-            table: {
-                category: 'Other',
-            },
-        },
     },
 };
 
@@ -145,9 +126,8 @@ Standard.args = {
     content: {
         renderBody: `<p>This is some important info</p>`,
     },
-    spread: {
-        ariaLabel: 'Important information',
-    },
+    ariaLabel: 'Important information',
+    a11yCloseButtonText: 'close',
 };
 Standard.parameters = {
     docs: {
@@ -165,6 +145,7 @@ OpenOnRender.args = {
     content: {
         renderBody: `<p>This is some important info</p>`,
     },
+    a11yCloseButtonText: 'close',
     open: true,
 };
 OpenOnRender.parameters = {

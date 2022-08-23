@@ -21,7 +21,7 @@
 | `alignment` | String  | No       | No       | Can be "regular" / "center". Default "regular" |
 | `size`      | String  | No       | No       | Can be "regular" / "small". Default "regular"  |
 | `open`      | Boolean | No       | No       | Whether details is open.                       |
-| `as`        | String  | No       | No       | The root element. Defaults to `<p>`            |
+| `as`        | String  | No       | No       | The root element. Defaults to `<div>`          |
 
 ## Events
 

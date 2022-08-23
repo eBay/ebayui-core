@@ -1,46 +1,28 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import template from '..';
-import * as mock from './mock';
-use(require('chai-dom'));
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../tooltip.stories';
+const pointerStyles = require('./location-styles.json');
+
+const { Standard, buttonHost } = composeStories(stories);
+
+const htmlSnap = snapshotHTML(__dirname);
+
+export const Pointers = Object.keys(pointerStyles);
 
 describe('tooltip', () => {
     it('renders default tooltip', async () => {
-        const input = mock.Basic;
-        const { getByText, getByRole } = await render(template, input);
-        expect(getByRole('tooltip')).has.class('tooltip__overlay');
-        expect(getByText(input.host.renderBody.text)).has.class('tooltip__host');
-        expect(getByText(input.content.renderBody.text)).has.class('tooltip__content');
-        expect(getByText(input.heading.renderBody.text)).has.class('tooltip__heading');
+        await htmlSnap(Standard);
+    });
+    it('renders tooltip closed', async () => {
+        await htmlSnap(Standard, { open: false });
+    });
+    it('renders tooltip with button host', async () => {
+        await htmlSnap(buttonHost);
     });
 
-    mock.Pointers.forEach((input) => {
-        it(`renders tooltip pointer: ${input.pointer}`, async () => {
-            const { getByRole } = await render(template, input);
-            expect(getByRole('tooltip'))
-                .has.property('firstElementChild')
-                .with.class(`tooltip__pointer--${input.pointer}`);
+    Pointers.forEach((pointer) => {
+        it(`renders tooltip pointer: ${pointer}`, async () => {
+            await htmlSnap(Standard, { pointer });
         });
     });
-
-    // TODO: looks like class and style are not passed through to the tooltip.
-    // testPassThroughAttributes(template);
-
-    // testPassThroughAttributes(template, {
-    //     child: {
-    //         name: 'host'
-    //     }
-    // });
-
-    // testPassThroughAttributes(template, {
-    //     child: {
-    //         name: 'heading'
-    //     }
-    // });
-
-    // testPassThroughAttributes(template, {
-    //     child: {
-    //         name: 'content'
-    //     }
-    // });
 });

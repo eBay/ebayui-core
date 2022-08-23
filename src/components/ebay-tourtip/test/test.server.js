@@ -1,19 +1,16 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import template from '..';
-import * as mock from './mock';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../tourtip.stories';
 
-use(require('chai-dom'));
+const { Standard } = composeStories(stories);
+
+const htmlSnap = snapshotHTML(__dirname);
 
 describe('tourtip', () => {
     it('renders default tourtip', async () => {
-        const input = mock.Basic;
-        const { getByText, getByRole } = await render(template, input);
-        expect(getByRole('region')).has.class('tourtip__overlay');
-        expect(getByText(input.host.renderBody.text))
-            .has.property('parentElement')
-            .with.class('tourtip__host');
-        expect(getByText(input.content.renderBody.text)).has.class('tourtip__content');
-        expect(getByText(input.heading.renderBody.text)).has.class('tourtip__heading');
+        await htmlSnap(Standard);
+    });
+    it('renders tourtip closed', async () => {
+        await htmlSnap(Standard, { open: false });
     });
 });
