@@ -8,6 +8,9 @@ module.exports = {
     core: {
         builder: 'webpack5',
     },
+    features: {
+        previewMdx2: true,
+    },
     webpackFinal: async (config, { configType }) => {
         config.module.rules.push({
             test: /\.less$/,
