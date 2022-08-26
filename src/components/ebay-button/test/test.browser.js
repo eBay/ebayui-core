@@ -1,8 +1,10 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { render, fireEvent, cleanup } from '@marko/testing-library';
 import { pressKey } from '../../../common/test-utils/browser';
-import template from '..';
+import * as stories from '../button.stories'; // import all stories from the stories file
+const { Standard } = composeStories(stories);
 
 use(chaiDom);
 afterEach(cleanup);
@@ -12,7 +14,7 @@ let component;
 
 describe('given button is enabled', () => {
     beforeEach(async () => {
-        component = await render(template);
+        component = await render(Standard);
     });
 
     describe('when button is clicked', () => {
@@ -41,7 +43,7 @@ describe('given button is enabled', () => {
 
 describe('given button is disabled', () => {
     beforeEach(async () => {
-        component = await render(template, { disabled: true });
+        component = await render(Standard, { disabled: true });
     });
 
     describe('when button is clicked', () => {

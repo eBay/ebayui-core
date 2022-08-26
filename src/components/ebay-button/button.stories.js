@@ -1,16 +1,12 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
+import { addRenderBodies } from '../../../.storybook/utils';
 import button from './index.marko';
 import readme from './README.md';
+import ExpandButtonTemplate from './examples/02-expand-button/template.marko';
+import ExpandButtonCode from './examples/02-expand-button/template.marko?raw';
 
 const Template = (args) => ({
-    input: {
-        ...args,
-        spread: null,
-        ...args.spread,
-        renderBody(out) {
-            out.html(args.renderBody);
-        },
-    },
+    input: addRenderBodies(args),
 });
 // const Template = args =({ input: withRenderBody(args) })
 
@@ -72,7 +68,7 @@ export default {
         bodyState: {
             description:
                 'when state is loading, adds progress spinner. when user interacts with button, reset should be called to reset aria-live state. default is none',
-            options: ['none', 'loading', 'reset'],
+            options: ['none', 'loading', 'reset', 'expand'],
             control: { type: 'select' },
             table: {
                 defaultValue: {
@@ -99,7 +95,7 @@ export default {
             },
         },
         variant: {
-            options: ['standard', 'destructive'],
+            options: ['standard', 'destructive', 'form'],
             description:
                 'transforms to a specific variant that styles in conjunction with priority',
             table: {
@@ -217,6 +213,19 @@ Standard.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-button', Standard.args),
+        },
+    },
+};
+
+export const ExpandButton = (args) => ({
+    input: args,
+    component: ExpandButtonTemplate,
+});
+ExpandButton.args = {};
+ExpandButton.parameters = {
+    docs: {
+        source: {
+            code: ExpandButtonCode,
         },
     },
 };
