@@ -38,6 +38,7 @@ export default {
             -1,
             input.options.findIndex((option) => option.selected)
         );
+        input.collapseOnSelect = input.collapseOnSelect !== false;
     },
 
     onMount() {
