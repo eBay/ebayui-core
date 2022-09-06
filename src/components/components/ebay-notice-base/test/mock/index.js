@@ -20,7 +20,7 @@ export const inlineNotice = {
 };
 
 export const titleFooterNotice = {
-    prefixClass: 'window-notice',
+    prefixClass: 'other-notice',
     status: 'attention',
     a11yText: 'default label',
     class: 'page-notice--attention',

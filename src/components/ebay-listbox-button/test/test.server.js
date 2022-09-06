@@ -47,7 +47,7 @@ describe('listbox', () => {
         const input = mock.basic3Optionstruncated;
         const { getAllByRole, getByRole } = await render(template, input);
         expect(getAllByRole('button')).has.length(1);
-        expect(getByRole('button')).has.class('expand-btn--truncated');
+        expect(getByRole('button')).has.class('btn--truncated');
         expect(getAllByRole('listbox')[0].parentNode).has.tagName('DIV');
     });
 
@@ -89,9 +89,9 @@ describe('listbox', () => {
 
         const label = getAllByText('floating label');
         expect(label).has.length(1);
-        expect(label[0]).has.class('expand-btn__floating-label');
+        expect(label[0]).has.class('btn__floating-label');
         const btnEl = getByRole('button');
-        expect(btnEl).has.class('expand-btn--floating-label');
+        expect(btnEl).has.class('btn--floating-label');
     });
 
     testPassThroughAttributes(template);

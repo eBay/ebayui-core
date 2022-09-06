@@ -33,7 +33,7 @@ $ {
     input.toJSON = toJSON;
     var size = input.size === "large" ? "large" : null;
     var priority = input.priority || "secondary";
-    if (input.borderless) {
+    if (input.borderless || input.variant === 'form') {
         priority = 'none';
     }
     var baseClass = input.href ? "fake-btn" : "btn";
@@ -81,6 +81,14 @@ $ {
             <ebay-progress-spinner/>
         </span>
     </if>
+    <else-if(input.bodyState === "expand")>
+        <span class="btn__cell">
+            <span class="btn__text">
+                <${input.renderBody}/>
+            </span>
+            <ebay-dropdown-icon/>
+        </span>
+    </else-if>
     <else>
         <${input.renderBody}/>
     </else>

@@ -1,5 +1,4 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
-import ExpandButton from '<ebay-expand-button>'
 import IconButton from '<ebay-icon-button>'
 import Button from '<ebay-button>'
 
@@ -28,19 +27,23 @@ static var ignoredAttributes = [
 $ {
     var labelId = input.prefixId && component.getElId("label");
     var isOverflowVariant = input.variant === "overflow";
-    var isButtonVariant = input.variant === "button";
+    var isFormVariant = input.variant === "form";
+    var isButtonVariant = true;
     if (input.borderless) {
-        isButtonVariant = true;
         isOverflowVariant = false;
     }
     var priority = null;
     var prefix = 'expand-btn'
+    var variant;
 
-    var tagName = ExpandButton;
-    if (isOverflowVariant) {
+    var tagName = Button;
+    if (isFormVariant) {
+        prefix = 'btn';
+        variant = 'form';
+    } else if (isOverflowVariant) {
         tagName = IconButton;
-    } else if (isButtonVariant) {
-        tagName = Button;
+        isButtonVariant = false;
+    } else {
         priority = input.priority
         prefix = 'btn';
     }
@@ -59,6 +62,7 @@ $ {
         size=input.size
         borderless=input.borderless
         priority=priority
+        variant=variant
         icon-only=(!input.text && !input.icon && !isOverflowVariant)
         aria-expanded="false"
         aria-label=input.a11yText

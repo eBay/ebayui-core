@@ -1,7 +1,5 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import { addRenderBodies } from '../../../.storybook/utils';
-import MigratorTemplate from './examples/05-migrator/template.marko';
-import MigratorTemplateCode from './examples/05-migrator/template.marko?raw';
 import Readme from './README.md';
 import Component from './';
 
@@ -201,19 +199,6 @@ Information.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-progress-stepper', Information.args, { step: 'step' }),
-        },
-    },
-};
-
-export const Migrator = (args) => ({
-    input: args,
-    component: MigratorTemplate,
-});
-Migrator.args = {};
-Migrator.parameters = {
-    docs: {
-        source: {
-            code: MigratorTemplateCode,
         },
     },
 };

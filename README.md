@@ -51,7 +51,6 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-details`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-details)
 -   [`ebay-drawer-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-drawer-dialog)
 -   [`ebay-eek`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-eek)
--   [`ebay-expand-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-expand-button)
 -   [`ebay-fake-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-menu-button)
 -   [`ebay-fake-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-menu-button)
 -   [`ebay-fake-tabs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-tabs)
@@ -85,7 +84,6 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-toast`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toast)
 -   [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
 -   [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
--   [`ebay-window-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-window-notice)
 
 ## Getting Started
 

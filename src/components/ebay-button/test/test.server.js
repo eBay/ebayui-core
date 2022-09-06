@@ -1,7 +1,10 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import { testPassThroughAttributes } from '../../../common/test-utils/server';
-import template from '..';
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import expandMigrator from '../examples/03-expand-migrator/template.marko';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../button.stories'; // import all stories from the stories file
+const { Standard, ExpandButton } = composeStories(stories);
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
@@ -14,102 +17,88 @@ Object.keys(properties).forEach((property) => {
     const values = properties[property];
     values.forEach((value) => {
         it(`renders button with ${property}=${value}`, async () => {
-            const { getByRole } = await render(template, { [property]: value });
-            expect(getByRole('button')).has.class(`btn--${value}`);
+            await htmlSnap(Standard, { [property]: value });
         });
     });
 });
 
 [false, true].forEach((fluid) => {
     it(`renders button with fluid=${fluid}`, async () => {
-        const { getByRole } = await render(template, { fluid });
-        expect(getByRole('button'))[fluid ? 'has' : 'not'].class('btn--fluid');
+        await htmlSnap(Standard, { fluid });
     });
 });
 
 it('renders defaults', async () => {
-    const { getByRole } = await render(template);
-    expect(getByRole('button')).has.class('btn--secondary');
+    await htmlSnap(Standard);
 });
 
 it('renders with id override', async () => {
-    const { getByRole } = await render(template, { id: 'test' });
-    expect(getByRole('button')).has.id('test');
+    await htmlSnap(Standard, { id: 'test' });
 });
 
 it('renders with type override', async () => {
-    const { getByRole } = await render(template, { type: 'submit' });
-    expect(getByRole('button')).has.attr('type', 'submit');
+    await htmlSnap(Standard, { type: 'submit' });
 });
 
 it('does not apply priority class for unsupported value', async () => {
-    const { getByRole } = await render(template, { priority: 'none' });
-    expect(getByRole('button'))
-        .does.not.have.class('btn--none')
-        .and.does.not.have.class('btn--secondary');
+    await htmlSnap(Standard, { priority: 'none' });
 });
 
 it('renders fake version', async () => {
-    const { getByLabelText } = await render(template, {
+    await htmlSnap(Standard, {
         href: '#',
         size: 'large',
         priority: 'primary',
         ariaLabel: 'fake button',
     });
-
-    const btn = getByLabelText('fake button');
-    expect(btn).has.attr('href', '#');
-    expect(btn).has.property('tagName', 'A');
-    expect(btn).has.class('fake-btn--large').and.class('fake-btn--primary');
 });
 
 it('renders disabled version', async () => {
-    const { getByRole } = await render(template, { disabled: true });
-    expect(getByRole('button')).has.attr('disabled');
+    await htmlSnap(Standard, { disabled: true });
 });
 
 it('renders partially disabled version', async () => {
-    const { getByRole } = await render(template, { partiallyDisabled: true });
-    expect(getByRole('button')).has.attr('aria-disabled', 'true');
+    await htmlSnap(Standard, { partiallyDisabled: true });
 });
 
 it('renders truncated button', async () => {
-    const { getByRole } = await render(template, {
+    await htmlSnap(Standard, {
         truncate: true,
     });
-    expect(getByRole('button')).has.class('btn--truncated');
 });
 
 it('renders large truncated button', async () => {
-    const { getByRole } = await render(template, {
+    await htmlSnap(Standard, {
         truncate: true,
         size: 'large',
     });
-    expect(getByRole('button')).has.class('btn--large-truncated');
 });
 
 it('renders fixed-height button', async () => {
-    const { getByRole } = await render(template, {
+    await htmlSnap(Standard, {
         fixedHeight: true,
     });
-    expect(getByRole('button')).has.class('btn--fixed-height');
 });
 
 it('renders large fixed-height button', async () => {
-    const { getByRole } = await render(template, {
+    await htmlSnap(Standard, {
         fixedHeight: true,
         size: 'large',
     });
-    expect(getByRole('button')).has.class('btn--large-fixed-height');
 });
 
 it('renders a11yText when bodyState === loading', async () => {
-    const { getByRole } = await render(template, {
+    await htmlSnap(Standard, {
         priority: 'primary',
         a11yText: 'loading text',
         bodyState: 'loading',
     });
-    expect(getByRole('button')).has.attr('aria-label', 'loading text');
 });
 
-testPassThroughAttributes(template);
+it('renders expanded button', async () => {
+    await htmlSnap(ExpandButton);
+});
+
+it('renders expanded button migrator', async () => {
+    await htmlSnap(expandMigrator);
+});
