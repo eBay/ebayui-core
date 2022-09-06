@@ -29,15 +29,19 @@ export default {
         defaultState: {
             type: 'enum',
             control: { type: 'select' },
-            options: ['complete', 'upcoming', 'active'],
+            options: ['complete', 'upcoming', 'attention', 'active'],
             description:
-                'If complete, then all items will be in complete state by default. If upcoming, all items will be in upcoming state. Otherwise, the default (active), will change items based on the `current` item (current defaults to first step if not set).',
+                'If complete, then all items will be in complete state by default. If upcoming, all items will be in upcoming state. If attention, then the current item will show as blocked. Otherwise, the default (active), will change items based on the `current` item (current defaults to first step if not set).',
         },
         autoParagraph: {
             type: 'boolean',
             control: { type: 'boolean' },
-            description:
-                'Specify whether to auto wrap @step body text with a paragraph tag (default: true)',
+            table: {
+                defaultValue: {
+                    summary: 'true',
+                },
+            },
+            description: 'Specify whether to auto wrap @step body text with a paragraph tag',
         },
         a11yHeadingTag: {
             table: {
@@ -86,18 +90,7 @@ export default {
             },
             type: 'string',
             description:
-                'The accessibility text for the icon. Defaults to either complete, upcoming, current, issue, or blocked depending on type or current',
-        },
-        type: {
-            table: {
-                category: '@step attributes',
-                control: false,
-            },
-            type: 'enum',
-            control: { type: 'select' },
-            options: [`attention`, `information`, `complete`],
-            description:
-                'Either `attention`, `information`, or `complete`. This takes prescedence over current. Will render the current step with the given icon and color',
+                'The accessibility text for the icon. Defaults to either complete, upcoming, current, or blocked depending on type or current',
         },
     },
 };
@@ -149,7 +142,6 @@ Blocked.args = {
         },
         {
             current: true,
-            type: 'attention',
             title: { renderBody: 'Blocked' },
             renderBody: 'July 5th',
         },
@@ -158,6 +150,7 @@ Blocked.args = {
             renderBody: 'July 6th',
         },
     ],
+    defaultState: 'attention',
     a11yHeadingTag: '',
     a11yHeadingText: 'Shipment progress, shipment is blocked',
 };
@@ -165,40 +158,6 @@ Blocked.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-progress-stepper', Blocked.args, { step: 'step' }),
-        },
-    },
-};
-
-export const Information = Template.bind({});
-Information.args = {
-    step: [
-        {
-            title: { renderBody: 'Started' },
-            renderBody: 'July 3rd',
-        },
-
-        {
-            title: { renderBody: 'Shipped' },
-            renderBody: 'July 4th',
-        },
-        {
-            current: true,
-            type: 'information',
-            title: { renderBody: 'Information' },
-            renderBody: 'July 5th',
-        },
-        {
-            title: { renderBody: 'Delivered' },
-            renderBody: 'July 6th',
-        },
-    ],
-    a11yHeadingTag: '',
-    a11yHeadingText: 'Shipment progress, waiting for more info.',
-};
-Information.parameters = {
-    docs: {
-        source: {
-            code: tagToString('ebay-progress-stepper', Information.args, { step: 'step' }),
         },
     },
 };

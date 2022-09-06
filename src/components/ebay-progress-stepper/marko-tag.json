@@ -6,7 +6,7 @@
   },
   "@html-attributes": "expression",
   "@default-state": {
-    "enum": ["upcoming", "complete", "active"]
+    "enum": ["upcoming", "complete", "attention", "active"]
   },
   "@a11y-heading-text": "string",
   "@a11y-heading-tag": "string",
@@ -23,9 +23,6 @@
     "@html-attributes": "expression",
     "@current": "boolean",
     "@a11y-text": "string",
-    "@type": {
-      "enum": ["attention", "default", "complete"]
-    },
     "@number": "number"
   }
 }

@@ -56,17 +56,19 @@ delete markoTagJson.transformer;
 delete markoTagJson['@_name'];
 delete markoTagJson['@_themes'];
 
-function addIcons(fileName, iconMap) {
-    const svgFile = path.join(svgDir, `${fileName}.svg`);
+function addIcons(component, iconMap) {
+    const svgFile = path.join(svgDir, `icons.svg`);
     const svgContent = fs.readFileSync(svgFile, 'utf-8');
     const $ = cheerio.load(svgContent);
 
     for (const el of Array.from($('symbol'))) {
         const $symbol = $(el);
-        const name = $symbol.attr('id').replace(/^(?:svg-)?icon-/, '');
-        const symbolContent = minify($.html($symbol), htmlMinifierOptions);
+        if ($symbol.attr('id').startsWith(component)) {
+            const name = $symbol.attr('id').replace(/^(?:svg-)?icon-/, '');
+            const symbolContent = minify($.html($symbol), htmlMinifierOptions);
 
-        iconMap.set(name, symbolContent);
+            iconMap.set(name, symbolContent);
+        }
     }
 }
 function generateFile(type, iconMap) {
@@ -111,15 +113,13 @@ function generateExamples(type, iconMap) {
     fs.writeFileSync(exampleFile, `${file}\n${exampleHTML.join('\n')}`);
 }
 
-function generateIcon(filename, componentName, skipExample) {
+function generateIcon(componentName) {
     const icons = new Map();
-    addIcons(filename, icons);
+    addIcons(componentName, icons);
     generateFile(componentName, icons);
-    if (!skipExample) {
-        examplesMap[componentName] = examplesMap[componentName] || [];
-        for (const [name] of icons) {
-            examplesMap[componentName].push(name);
-        }
+    examplesMap[componentName] = examplesMap[componentName] || [];
+    for (const [name] of icons) {
+        examplesMap[componentName].push(name);
     }
 }
 
@@ -127,25 +127,9 @@ setupDir('icon');
 setupDir('program-badge');
 setupDir('star-rating');
 
-generateIcon('aliased', 'icon', true);
-generateIcon('direction', 'icon');
-generateIcon('large', 'icon');
-generateIcon('social', 'icon');
-generateIcon('user', 'icon');
-generateIcon('content', 'icon');
-generateIcon('filter', 'icon');
-generateIcon('interface', 'icon');
-generateIcon('media', 'icon');
-generateIcon('reviews', 'icon');
-generateIcon('device', 'icon');
-generateIcon('general', 'icon');
-generateIcon('internal', 'icon');
-generateIcon('photo', 'icon');
-generateIcon('shipping', 'icon');
-generateIcon('status', 'icon');
-
-generateIcon('program-badges', 'program-badge');
-generateIcon('star-rating', 'star-rating');
+generateIcon('icon');
+generateIcon('program-badge');
+generateIcon('star-rating');
 
 Object.keys(examplesMap).forEach((componentName) => {
     examplesMap[componentName].sort((a, b) => {
