@@ -43,8 +43,8 @@ $ {
             "progress-stepper__items",
             input.defaultState === "upcoming" &&
                 "progress-stepper__items--upcoming",
-            input.defaultState !== 'complete' &&
-                "progress-stepper__items--complete",
+            input.defaultState === 'current' &&
+                "progress-stepper__items--current",
         ]
         role="list">
         <for|item, index, list| of=(input.step || [])>
@@ -73,6 +73,11 @@ $ {
                         <if(input.defaultState === "attention")>
                             <ebay-stepper-attention-icon width="24" height="24" a11y-text=(item.a11yText || 'blocked')/>
                         </if>
+                        <else-if(input.defaultState === "current")>
+                            <!-- DEPRECATED, remove next major -->
+                            <ebay-stepper-current-icon width="24" height="24" a11y-text=(item.a11yText || 'current')/>
+                        </else-if>
+
                         <else>
                             <ebay-stepper-confirmation-icon width="24" height="24" a11y-text=(item.a11yText || 'current')/>
                         </else>
