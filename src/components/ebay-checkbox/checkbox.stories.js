@@ -39,7 +39,7 @@ export default {
             type: 'boolean',
         },
         size: {
-            options: ['large', 'regular'],
+            options: ['regular', 'large'],
 
             description:
                 'Sets the checkbox icon. Default is regular. For mweb this should be set to large. (Note: The dimensions of the checkbox will not change, but only the icon)',
@@ -102,8 +102,6 @@ export const WithLabel = (args) => ({
 WithLabel.args = {
     checked: false,
     disabled: false,
-    size: 'regular',
-    'icon-style': 'rounded',
 };
 
 WithLabel.parameters = {
@@ -132,8 +130,6 @@ export const Isolated = Template.bind({});
 Isolated.args = {
     checked: false,
     disabled: false,
-    size: 'regular',
-    'icon-style': 'rounded',
 };
 
 Isolated.parameters = {

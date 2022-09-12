@@ -33,7 +33,13 @@ export default {
             control: { type: 'boolean' },
         },
         size: {
-            control: { type: 'text' },
+            options: ['regular', 'large'],
+            type: { category: 'Options' },
+            table: {
+                defaultValue: {
+                    summary: 'regular',
+                },
+            },
             description:
                 'Either "large" or "regular". Sets the radio icon. Default is regular. For mweb this should be set to large. (Note: The dimensions of the radio will not change, but only the icon)',
         },
@@ -102,9 +108,6 @@ Group.parameters = {
         source: {
             code: groupCode,
         },
-    },
-    controls: {
-        disabled: true,
     },
 };
 
