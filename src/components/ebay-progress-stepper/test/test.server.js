@@ -3,7 +3,7 @@ import { composeStories } from '@storybook/marko/dist/testing';
 import { snapshotHTML } from '../../../common/test-utils/snapshots';
 import * as stories from '../progress-stepper.stories';
 
-const { InProgress, Blocked, Information } = composeStories(stories);
+const { InProgress, Blocked } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
 
@@ -31,10 +31,6 @@ it('renders default state complete progress-stepper', async () => {
 
 it('renders blocked progress-stepper', async () => {
     await htmlSnap(Blocked);
-});
-
-it('renders information progress-stepper', async () => {
-    await htmlSnap(Information);
 });
 
 it('renders default without pragraph', async () => {
