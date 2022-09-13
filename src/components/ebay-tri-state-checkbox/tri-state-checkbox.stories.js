@@ -3,7 +3,9 @@ import Readme from './README.md';
 import Component from './index.marko';
 import mixedImplementationComponent from './examples/04-mixed-implementation/template.marko';
 import WithLabelTemplate from './examples/05-with-label/template.marko';
+import DisabledTemplate from './examples/06-disabled-with-label/template.marko';
 import WithLabelCode from './examples/05-with-label/template.marko?raw';
+import DisabledCode from './examples/06-disabled-with-label/template.marko?raw';
 
 const Template = (args) => ({
     input: {
@@ -28,14 +30,16 @@ export default {
     },
 
     argTypes: {
-        disabled: {
-            type: 'boolean',
-            control: { type: 'boolean' },
-        },
         checked: {
-            control: { type: 'text' },
+            options: ['false', 'mixed', 'true'],
+            type: { category: 'Options' },
             description:
                 'Either "true", "false" or "mixed". Defaults to "false". Changes the checkbox state to the given one depdending on the checked state.',
+            table: {
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
         },
         skipMixed: {
             type: 'boolean',
@@ -44,9 +48,15 @@ export default {
                 'If set, then will skip the mixed toggle when clicking on checkbox. Used if in some cases you want to toggle between all items selected or none.',
         },
         size: {
-            control: { type: 'text' },
+            options: ['regular', 'large'],
+            type: { category: 'Options' },
             description:
                 'Either "large" or "regular". Sets the checkbox icon. Default is regular. For mweb this should be set to large. (Note: The dimensions of the checkbox will not change, but only the icon)',
+            table: {
+                defaultValue: {
+                    summary: 'regular',
+                },
+            },
         },
         onChange: {
             action: 'on-change',
@@ -84,13 +94,21 @@ WithLabel.parameters = {
     },
 };
 
-export const mixedImplementation = Template.bind({});
-mixedImplementation.component = mixedImplementationComponent;
-mixedImplementation.parameters = {
-    controls: {
-        disabled: true,
+export const Disabled = (args) => ({
+    input: args,
+    component: DisabledTemplate,
+});
+Disabled.args = {};
+Disabled.parameters = {
+    docs: {
+        source: {
+            code: DisabledCode,
+        },
     },
 };
+
+export const mixedImplementation = Template.bind({});
+mixedImplementation.component = mixedImplementationComponent;
 
 export const Isolated = Template.bind({});
 Isolated.args = {};

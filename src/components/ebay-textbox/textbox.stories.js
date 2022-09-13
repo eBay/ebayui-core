@@ -2,8 +2,10 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 import WithLabelTemplate from './examples/22-with-external-label/template.marko';
+import DisabledTemplate from './examples/23-disabled-with-label/template.marko';
 import FloatingLabelTemplate from './examples/15-floating-label-with-value/template.marko';
 import WithLabelCode from './examples/22-with-external-label/template.marko?raw';
+import DisabledCode from './examples/23-disabled-with-label/template.marko?raw';
 import FloatingLabelCode from './examples/15-floating-label-with-value/template.marko?raw';
 
 const Template = (args) => ({
@@ -34,8 +36,14 @@ export default {
             control: { type: 'boolean' },
         },
         inputSize: {
-            control: { type: 'text' },
+            options: ['regular', 'large'],
+            type: { category: 'Options' },
             description: 'either "regular" or "large". If large, then renders larger sized textbox',
+            table: {
+                defaultValue: {
+                    summary: 'regular',
+                },
+            },
         },
         multiline: {
             type: 'boolean',
@@ -180,6 +188,19 @@ WithLabel.parameters = {
     docs: {
         source: {
             code: WithLabelCode,
+        },
+    },
+};
+
+export const Disabled = (args) => ({
+    input: args,
+    component: DisabledTemplate,
+});
+Disabled.args = {};
+Disabled.parameters = {
+    docs: {
+        source: {
+            code: DisabledCode,
         },
     },
 };

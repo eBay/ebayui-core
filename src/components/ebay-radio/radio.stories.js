@@ -3,8 +3,10 @@ import Readme from './README.md';
 import Component from './index.marko';
 import groupTemplate from './examples/03-grouped-radio/template.marko';
 import WithLabelTemplate from './examples/05-with-label/template.marko';
+import DisabledTemplate from './examples/06-disabled-with-label/template.marko';
 import groupCode from './examples/03-grouped-radio/template.marko?raw';
 import WithLabelCode from './examples/05-with-label/template.marko?raw';
+import DisabledCode from './examples/06-disabled-with-label/template.marko?raw';
 
 const Template = (args) => ({
     input: {
@@ -29,9 +31,6 @@ export default {
     },
 
     argTypes: {
-        disabled: {
-            control: { type: 'boolean' },
-        },
         size: {
             options: ['regular', 'large'],
             type: { category: 'Options' },
@@ -80,14 +79,24 @@ export const WithLabel = (args) => ({
     input: args,
     component: WithLabelTemplate,
 });
-WithLabel.args = {
-    disabled: false,
-};
 
 WithLabel.parameters = {
     docs: {
         source: {
             code: WithLabelCode,
+        },
+    },
+};
+
+export const Disabled = (args) => ({
+    input: args,
+    component: DisabledTemplate,
+});
+
+Disabled.parameters = {
+    docs: {
+        source: {
+            code: DisabledCode,
         },
     },
 };

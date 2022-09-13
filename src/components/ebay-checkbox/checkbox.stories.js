@@ -3,8 +3,10 @@ import Readme from './README.md';
 import Checkbox from './index.marko';
 import GroupTemplate from './examples/group.marko';
 import WithLabelTemplate from './examples/WithLabel.marko';
+import DisabledTemplate from './examples/DisabledWithLabel.marko';
 import GroupCode from './examples/group.marko?raw';
 import WithLabelCode from './examples/WithLabel.marko?raw';
+import DisabledCode from './examples/DisabledWithLabel.marko?raw';
 
 const Template = (args) => ({ input: args });
 
@@ -22,15 +24,6 @@ export default {
     argTypes: {
         checked: {
             description: 'if checked or not',
-            table: {
-                defaultValue: {
-                    summary: 'false',
-                },
-            },
-            type: 'boolean',
-        },
-        disabled: {
-            description: 'disables button',
             table: {
                 defaultValue: {
                     summary: 'false',
@@ -101,13 +94,28 @@ export const WithLabel = (args) => ({
 });
 WithLabel.args = {
     checked: false,
-    disabled: false,
 };
 
 WithLabel.parameters = {
     docs: {
         source: {
             code: WithLabelCode,
+        },
+    },
+};
+
+export const Disabled = (args) => ({
+    input: args,
+    component: DisabledTemplate,
+});
+Disabled.args = {
+    checked: false,
+};
+
+Disabled.parameters = {
+    docs: {
+        source: {
+            code: DisabledCode,
         },
     },
 };
@@ -129,7 +137,6 @@ Group.parameters = {
 export const Isolated = Template.bind({});
 Isolated.args = {
     checked: false,
-    disabled: false,
 };
 
 Isolated.parameters = {
