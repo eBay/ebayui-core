@@ -2,9 +2,11 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 import WithLabelTemplate from './examples/07-external-label/template.marko';
-import WithLabelCode from './examples/07-external-label/template.marko?raw';
 import InFormTemplate from './examples/08-in-form/template.marko';
+import DisabledTemplate from './examples/09-disabled-with-label/template.marko';
+import WithLabelCode from './examples/07-external-label/template.marko?raw';
 import InFormCode from './examples/08-in-form/template.marko';
+import DisabledCode from './examples/09-disabled-with-label/template.marko';
 
 const Template = (args) => ({
     input: {
@@ -118,26 +120,23 @@ export const ExternalLabel = (args) => ({
     component: WithLabelTemplate,
 });
 
-ExternalLabel.args = {
-    options: [
-        {
-            text: 'option 1',
-            value: 'option 1',
-        },
-        {
-            text: 'option 2',
-            value: 'option 2',
-        },
-        {
-            text: 'option 3',
-            value: 'option 3',
-        },
-    ],
-};
 ExternalLabel.parameters = {
     docs: {
         source: {
             code: WithLabelCode,
+        },
+    },
+};
+
+export const Disabled = (args) => ({
+    input: args,
+    component: DisabledTemplate,
+});
+
+Disabled.parameters = {
+    docs: {
+        source: {
+            code: DisabledCode,
         },
     },
 };
@@ -147,22 +146,6 @@ export const InForm = (args) => ({
     component: InFormTemplate,
 });
 
-InForm.args = {
-    options: [
-        {
-            text: 'option 1',
-            value: 'option 1',
-        },
-        {
-            text: 'option 2',
-            value: 'option 2',
-        },
-        {
-            text: 'option 3',
-            value: 'option 3',
-        },
-    ],
-};
 InForm.parameters = {
     docs: {
         source: {
