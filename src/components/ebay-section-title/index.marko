@@ -10,6 +10,8 @@ static var ignoredAttributes = [
     "overflow"
 ];
 
+$ const ctaText = input.ctaText || 'See All';
+
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
@@ -28,13 +30,7 @@ static var ignoredAttributes = [
         style=(input.title && input.title.style)>
         <!-- Title-->
         <h2 class="section-title__title" key="title" id:scoped="title">
-            <${input.href && "a"} href=input.href>
-                <${input.title || input.renderBody}/>
-            </>
-            <!-- CTA -->
-            <if(input.href)>
-                <ebay-arrow-right-extra-small-icon/>
-            </if>
+            <${input.title || input.renderBody}/>
         </h2>
         <!-- Subtitle-->
         <if(input.subtitle)>
@@ -45,15 +41,7 @@ static var ignoredAttributes = [
             </span>
         </if>
     </div>
-     <!-- CTA -->
-     <if(input.ctaText && input.href)>
-        <div class="section-title__cta">
-            <a href=input.href tabindex="-1" aria-hidden="true">
-                <span class="section-title__cta-text">${input.ctaText}</span>
-                <ebay-cta-icon />
-            </a>
-        </div>
-    </if>
+
     <!-- Info-->
     <if(input.info)>
         <div
@@ -62,6 +50,16 @@ static var ignoredAttributes = [
             <${input.info.renderBody}/>
         </div>
     </if>
+
+     <!-- CTA -->
+     <if(input.href)>
+        <div class="section-title__cta">
+            <a href=input.href tabindex="-1" aria-hidden="true">
+                <span class="section-title__cta-text">${ctaText}</span>
+            </a>
+        </div>
+    </if>
+
     <!-- Overflow-->
     <if(input.overflow)>
         <div
