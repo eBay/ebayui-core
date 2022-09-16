@@ -1,95 +1,39 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import { testPassThroughAttributes } from '../../../common/test-utils/server';
-import template from '..';
-import * as mock from './mock';
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../section-title.stories'; // import all stories from the stories file
+
+const { Standard, iconAndSeeAll, withOverflow } = composeStories(stories);
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
 describe('section-title', () => {
-    it('renders with title', async () => {
-        const input = mock.TitleBasic;
-        const { getByText } = await render(template, input);
-        const title = getByText(input.renderBody.text);
-        expect(title.parentElement.parentElement).has.class('section-title');
-        expect(title.parentElement).has.class('section-title__title-container');
-        expect(title).has.class('section-title__title');
-        expect(title).has.property('tagName', 'H2');
+    it('renders defaults', async () => {
+        await htmlSnap(Standard);
     });
 
-    it('renders with title tag', async () => {
-        const input = mock.Title;
-        const { getByText } = await render(template, input);
-        const title = getByText(input.title.renderBody.text);
-        expect(title.parentElement.parentElement).has.class('section-title');
-        expect(title.parentElement).has.class('section-title__title-container');
-        expect(title).has.class('section-title__title');
-        expect(title).has.property('tagName', 'H2');
+    it('renders with cta custom text', async () => {
+        await htmlSnap(Standard, { href: 'www.ebay.com', ctaText: 'Custom Text' });
     });
 
-    it('renders with subtitle', async () => {
-        const input = mock.Subtitle;
-        const { getByText } = await render(template, input);
-        const subtitle = getByText(input.subtitle.renderBody.text);
-        expect(subtitle.parentElement).has.class('section-title__title-container');
-        expect(subtitle).has.class('section-title__subtitle');
-        expect(subtitle).has.property('tagName', 'SPAN');
+    it('renders with no subtitle', async () => {
+        await htmlSnap(Standard, { subtitle: null });
     });
 
-    it('renders with see-all cta', async () => {
-        const input = mock.CTASeeAll;
-        const { getByText } = await render(template, input);
-
-        const title = getByText(input.title.renderBody.text);
-        expect(title.parentElement).has.property('tagName', 'H2');
-        expect(title).has.property('tagName', 'A');
-        expect(title).has.attr('href', input.href);
-
-        const cta = getByText(input.ctaText);
-        expect(cta).has.property('tagName', 'SPAN');
-        expect(cta.parentElement).has.attr('href', input.href);
-        expect(cta.parentElement.parentElement).has.class('section-title__cta');
+    it('renders icon and see all', async () => {
+        await htmlSnap(iconAndSeeAll);
     });
 
-    it('renders with no-text cta', async () => {
-        const input = mock.CTA;
-        const { container, getByText } = await render(template, input);
-
-        const title = getByText(input.title.renderBody.text);
-        expect(title.parentElement).has.property('tagName', 'H2');
-        expect(title).has.property('tagName', 'A');
-        expect(title).has.attr('href', input.href);
-
-        const cta = container.querySelector('svg');
-        expect(cta.parentElement).has.class('section-title__title');
-    });
-
-    it('renders with info', async () => {
-        const input = mock.Info;
-        const { getByText } = await render(template, input);
-        const info = getByText(input.info.renderBody.text);
-        expect(info).has.class('section-title__info');
-        expect(info).has.property('tagName', 'DIV');
+    it('renders icon and see all and no subtitle', async () => {
+        await htmlSnap(iconAndSeeAll, { subtitle: null });
     });
 
     it('renders with overflow', async () => {
-        const input = mock.Overflow;
-        const { getByText } = await render(template, input);
-        const overflow = getByText(input.overflow.renderBody.text);
-        expect(overflow).has.class('section-title__overflow');
-        expect(overflow).has.property('tagName', 'DIV');
+        await htmlSnap(withOverflow);
     });
 
-    it('renders with large size', async () => {
-        const input = mock.Size;
-        const { container } = await render(template, input);
-        const section = container.firstElementChild;
-        expect(section).has.class('section-title');
-        expect(section).has.class('section-title--large');
-        expect(section).has.property('tagName', 'DIV');
-    });
-
-    testPassThroughAttributes(template, {
-        input: mock.Title,
+    it('renders with overflow and no subtitle', async () => {
+        await htmlSnap(withOverflow, { subtitle: null });
     });
 });
