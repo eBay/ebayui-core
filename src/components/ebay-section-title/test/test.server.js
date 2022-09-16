@@ -13,10 +13,6 @@ describe('section-title', () => {
         await htmlSnap(Standard);
     });
 
-    it('renders small', async () => {
-        await htmlSnap(Standard, { size: 'small' });
-    });
-
     it('renders with cta custom text', async () => {
         await htmlSnap(Standard, { href: 'www.ebay.com', ctaText: 'Custom Text' });
     });

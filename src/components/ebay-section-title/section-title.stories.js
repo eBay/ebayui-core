@@ -36,10 +36,6 @@ export default {
                 },
             },
         },
-        size: {
-            control: { type: 'text' },
-            description: '"large", or "regular" (default: regular)',
-        },
         title: {
             name: '@title',
             description:
@@ -57,7 +53,7 @@ export default {
         },
         info: {
             name: '@info',
-            control: { type: 'text' },
+            control: { type: 'json' },
             description: 'Placeholder for `<ebay-infotip>` component',
             table: {
                 category: '@attribute tags',
@@ -65,7 +61,7 @@ export default {
         },
         overflow: {
             name: '@overflow',
-            control: { type: 'text' },
+            control: { type: 'json' },
             description: 'Placeholder for `<ebay-menu-button>` component',
             table: {
                 category: '@attribute tags',

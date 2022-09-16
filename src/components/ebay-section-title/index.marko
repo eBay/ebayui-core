@@ -3,7 +3,6 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 static var ignoredAttributes = [
     "ctaText",
     "href",
-    "size",
     "title",
     "subtitle",
     "info",
@@ -16,7 +15,6 @@ $ const ctaText = input.ctaText || 'See All';
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
         "section-title",
-        input.size && `section-title--${input.size}`,
         input.class
     ]>
     <div
