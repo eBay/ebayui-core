@@ -37,6 +37,7 @@ $ var isForm = input.variant === "form";
                     class=[`${baseClass}__item`, item.class]
                     role=(isRadio ? "menuitemradio" : "menuitemcheckbox")
                     aria-checked=String(isChecked)
+                    aria-disabled=item.disabled && "true"
                     for=(isForm && component.elId(`${prefixName}-${i}`))
                     onClick("handleItemClick", i)
                     onKeydown("handleItemKeydown", i)>
