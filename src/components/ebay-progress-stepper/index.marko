@@ -3,17 +3,14 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 static var ignoredAttributes = ["step", "direction", "defaultState", "class"];
 
 static var ignoredStepAttributes = [
-    "badge",
     "current",
-    "information",
-    "attention",
     "class",
     "title",
     "a11yHeadingText",
     "a11yHeadingTag",
 ];
 
-static var ignoredStepTitleAttributes = ["as", "a11yText", "current", "type", "title"];
+static var ignoredStepTitleAttributes = ["as", "a11yText", "title"];
 
 $ {
     var direction = input.direction || "row";
@@ -45,7 +42,9 @@ $ {
         class=[
             "progress-stepper__items",
             input.defaultState === "upcoming" &&
-                "progress-stepper__items--upcoming"
+                "progress-stepper__items--upcoming",
+            input.defaultState === 'current' &&
+                "progress-stepper__items--current",
         ]
         role="list">
         <for|item, index, list| of=(input.step || [])>
@@ -55,36 +54,36 @@ $ {
             <div
                 class=[
                     "progress-stepper__item",
-                    item.type === "attention" &&
+                    index === current &&
+                    input.defaultState === "attention" &&
                         "progress-stepper__item--attention",
-                    item.type === "information" &&
-                        "progress-stepper__item--information",
-                    current < index && input.defaultState !== 'complete' &&
-                        "progress-stepper__item--upcoming",
                     item.class
                 ]
                 aria-current=(current === index && "step")
                 role="listitem"
                 ...processHtmlAttributes(item, ignoredStepAttributes)>
                 <span class="progress-stepper__icon">
-                    <if(item.type === "attention")>
-                        <ebay-stepper-attention-icon width="24" height="24" a11y-text=(item.a11yText || 'blocked')/>
-                    </if>
-                    <else-if(item.type === "information")>
-                        <ebay-stepper-information-icon width="24" height="24" a11y-text=(item.a11yText || 'issue')/>
-                    </else-if>
-                   <else-if(
+                  <if(
                         index < current ||
-                        item.type === "complete" ||
                         input.defaultState === "complete"
                     )>
                         <ebay-stepper-confirmation-icon width="24" height="24" a11y-text=(item.a11yText || 'complete')/>
-                    </else-if>
+                    </if>
                     <else-if(index === current)>
-                        <ebay-stepper-current-icon width="24" height="24" a11y-text=(item.a11yText || 'current')/>
+                        <if(input.defaultState === "attention")>
+                            <ebay-stepper-attention-icon width="24" height="24" a11y-text=(item.a11yText || 'blocked')/>
+                        </if>
+                        <else-if(input.defaultState === "current")>
+                            <!-- DEPRECATED, remove next major -->
+                            <ebay-stepper-current-icon width="24" height="24" a11y-text=(item.a11yText || 'current')/>
+                        </else-if>
+
+                        <else>
+                            <ebay-stepper-confirmation-icon width="24" height="24" a11y-text=(item.a11yText || 'current')/>
+                        </else>
                     </else-if>
                     <else>
-                        <span role="img" aria-label=(item.a11yText || 'upcoming')></span>
+                        <ebay-stepper-upcoming-icon width="24" height="24" a11y-text=(item.a11yText || 'upcoming')/>
                     </else>
                 </span>
                 <span class="progress-stepper__text">
@@ -100,7 +99,9 @@ $ {
                         </p>
                     </if>
                     <else>
-                        <${item.renderBody}/>
+                        <span>
+                            <${item.renderBody}/>
+                        </span>
                     </else>
                 </span>
             </div>

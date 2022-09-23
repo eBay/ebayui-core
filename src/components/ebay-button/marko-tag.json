@@ -32,7 +32,7 @@
   "@rel": "#html-rel",
   "@a11y-text": "string",
   "@body-state": {
-    "enum": ["none", "loading"]
+    "enum": ["none", "loading", "expand"]
   },
   "@target": "#html-target",
   "@aria-disabled": "never"

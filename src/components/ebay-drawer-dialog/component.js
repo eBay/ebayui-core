@@ -20,15 +20,20 @@ export default {
 
     handleTouchStart(event) {
         const touches = event.changedTouches;
-        this.touches = Array.prototype.map.call(touches, ({ identifier, pageY }) => ({
-            identifier,
-            pageY,
-        }));
+        this.touches = [];
+        for (let i = 0; i < touches.length; i++) {
+            const { identifier, pageY } = touches[i];
+            this.touches.push({
+                identifier,
+                pageY,
+            });
+        }
     },
 
     handleTouchMove(event) {
         if (this.touches.length) {
-            event.changedTouches.forEach((current) => {
+            for (let i = 0; i < event.changedTouches.length; i++) {
+                const current = event.changedTouches[i];
                 const compare = this.touches.findIndex(
                     (item) => item.identifier === current.identifier
                 );
@@ -46,17 +51,18 @@ export default {
                     this.setExpandedState(true);
                     this.handleTouchEnd(event);
                 }
-            });
+            }
         }
     },
 
     handleTouchEnd(event) {
-        event.changedTouches.forEach((current) => {
+        for (let i = 0; i < event.changedTouches.length; i++) {
+            const current = event.changedTouches[i];
             const idx = this.touches.findIndex((item) => item.identifier === current.identifier);
             if (idx > -1) {
                 this.touches.splice(idx, 1);
             }
-        });
+        }
     },
 
     onMount() {

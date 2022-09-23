@@ -33,11 +33,11 @@ $ var displayText = selectedText || unselectedText;
         key="button"
         class=[
             "listbox-button__control",
-            "expand-btn",
-            "expand-btn--regular",
-            input.borderless && "expand-btn--borderless",
-            input.truncate && "expand-btn--truncated",
-            input.floatingLabel && "expand-btn--floating-label"
+            'btn',
+            'btn--form',
+            input.borderless && "btn--borderless",
+            input.truncate && "btn--truncated",
+            input.floatingLabel && "btn--floating-label"
         ]
         value=selectedText
         type="button"
@@ -46,20 +46,20 @@ $ var displayText = selectedText || unselectedText;
         aria-haspopup="listbox"
         aria-labelledby=(labelId && `${input.prefixId} ${labelId}`)
         aria-invalid=(input.invalid && "true")>
-        <span class="expand-btn__cell">
+        <span class="btn__cell">
             <if (input.floatingLabel)>
                 <span class=[
-                    "expand-btn__floating-label",
-                    "expand-btn__floating-label--animate",
-                    !selectedText && "expand-btn__floating-label--inline",
+                    "btn__floating-label",
+                    "btn__floating-label--animate",
+                    !selectedText && "btn__floating-label--inline",
                     ]>${input.floatingLabel}</span>
-                <span class="expand-btn__text">${displayText}</span>
+                <span class="btn__text">${displayText}</span>
             </if>
             <else-if (input.prefixLabel)>
-                <span class="expand-btn__text">${input.prefixLabel} ${displayText}</span>
+                <span class="btn__text">${input.prefixLabel} ${displayText}</span>
             </else-if>
             <else>
-                <span id=labelId class="expand-btn__text">${displayText}</span>
+                <span id=labelId class="btn__text">${displayText}</span>
             </else>
             <ebay-dropdown-icon/>
         </span>

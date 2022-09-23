@@ -2,7 +2,9 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
 import WithLabelTemplate from './examples/03-with-label/template.marko';
+import DisabledTemplate from './examples/04-disabled-with-label/template.marko';
 import WithLabelCode from './examples/03-with-label/template.marko?raw';
+import DisabledCode from './examples/04-disabled-with-label/template.marko?raw';
 
 const Template = (args) => ({
     input: {
@@ -27,10 +29,6 @@ export default {
     },
 
     argTypes: {
-        disabled: {
-            type: 'boolean',
-            control: { type: 'boolean' },
-        },
         onChange: {
             action: 'on-change',
             description: 'Triggered on change',
@@ -53,6 +51,19 @@ WithLabel.parameters = {
     docs: {
         source: {
             code: WithLabelCode,
+        },
+    },
+};
+
+export const Disabled = (args) => ({
+    input: args,
+    component: DisabledTemplate,
+});
+Disabled.args = {};
+Disabled.parameters = {
+    docs: {
+        source: {
+            code: DisabledCode,
         },
     },
 };

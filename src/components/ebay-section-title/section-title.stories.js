@@ -2,8 +2,10 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
-import exampleComponent from './examples/09-medium-with-info-overflow/template.marko';
-import code from './examples/09-medium-with-info-overflow/template.marko?raw';
+import overflowComponent from './examples/overflow.marko';
+import overflowComponentCode from './examples/overflow.marko?raw';
+import buttonSeeAllComponent from './examples/save-see-all.marko';
+import buttonSeeAllComponentCode from './examples/save-see-all.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -25,9 +27,14 @@ export default {
             control: { type: 'text' },
             description: 'RL. Title content and optional CTA content will link to this',
         },
-        size: {
+        ctaText: {
             control: { type: 'text' },
-            description: '"small", "large", or "giant" (default: medium)',
+            description: 'The text for the CTA. Only used when href is set.',
+            table: {
+                defaultValue: {
+                    summary: 'See All',
+                },
+            },
         },
         title: {
             name: '@title',
@@ -46,7 +53,7 @@ export default {
         },
         info: {
             name: '@info',
-            control: { type: 'text' },
+            control: { type: 'json' },
             description: 'Placeholder for `<ebay-infotip>` component',
             table: {
                 category: '@attribute tags',
@@ -54,7 +61,7 @@ export default {
         },
         overflow: {
             name: '@overflow',
-            control: { type: 'text' },
+            control: { type: 'json' },
             description: 'Placeholder for `<ebay-menu-button>` component',
             table: {
                 category: '@attribute tags',
@@ -77,14 +84,26 @@ Standard.parameters = {
     },
 };
 
-export const example = () => ({
-    component: exampleComponent,
+export const iconAndSeeAll = () => ({
+    component: buttonSeeAllComponent,
 });
 
-Standard.parameters = {
+iconAndSeeAll.parameters = {
     docs: {
         source: {
-            code,
+            buttonSeeAllComponentCode,
+        },
+    },
+};
+
+export const withOverflow = () => ({
+    component: overflowComponent,
+});
+
+withOverflow.parameters = {
+    docs: {
+        source: {
+            overflowComponentCode,
         },
     },
 };

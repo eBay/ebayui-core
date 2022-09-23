@@ -3,8 +3,10 @@ import Readme from './README.md';
 import Checkbox from './index.marko';
 import GroupTemplate from './examples/group.marko';
 import WithLabelTemplate from './examples/WithLabel.marko';
+import DisabledTemplate from './examples/DisabledWithLabel.marko';
 import GroupCode from './examples/group.marko?raw';
 import WithLabelCode from './examples/WithLabel.marko?raw';
+import DisabledCode from './examples/DisabledWithLabel.marko?raw';
 
 const Template = (args) => ({ input: args });
 
@@ -29,17 +31,8 @@ export default {
             },
             type: 'boolean',
         },
-        disabled: {
-            description: 'disables button',
-            table: {
-                defaultValue: {
-                    summary: 'false',
-                },
-            },
-            type: 'boolean',
-        },
         size: {
-            options: ['large', 'regular'],
+            options: ['regular', 'large'],
 
             description:
                 'Sets the checkbox icon. Default is regular. For mweb this should be set to large. (Note: The dimensions of the checkbox will not change, but only the icon)',
@@ -101,15 +94,28 @@ export const WithLabel = (args) => ({
 });
 WithLabel.args = {
     checked: false,
-    disabled: false,
-    size: 'regular',
-    'icon-style': 'rounded',
 };
 
 WithLabel.parameters = {
     docs: {
         source: {
             code: WithLabelCode,
+        },
+    },
+};
+
+export const Disabled = (args) => ({
+    input: args,
+    component: DisabledTemplate,
+});
+Disabled.args = {
+    checked: false,
+};
+
+Disabled.parameters = {
+    docs: {
+        source: {
+            code: DisabledCode,
         },
     },
 };
@@ -131,9 +137,6 @@ Group.parameters = {
 export const Isolated = Template.bind({});
 Isolated.args = {
     checked: false,
-    disabled: false,
-    size: 'regular',
-    'icon-style': 'rounded',
 };
 
 Isolated.parameters = {

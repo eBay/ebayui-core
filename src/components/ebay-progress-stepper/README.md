@@ -29,3 +29,9 @@
     </@step>
 </ebay-progress-stepper>
 ```
+
+## Links
+
+-   (Storybook)[https://ebay.github.io/ebayui-core/?path=/story/ebay-progress-stepper]
+-   (Storybook Docs)[https://ebay.github.io/ebayui-core/?path=/docs/ebay-progress-stepper]
+-   (Code Examples)[https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-stepper/examples]

@@ -3,8 +3,10 @@ import Readme from './README.md';
 import Component from './index.marko';
 import groupTemplate from './examples/03-grouped-radio/template.marko';
 import WithLabelTemplate from './examples/05-with-label/template.marko';
+import DisabledTemplate from './examples/06-disabled-with-label/template.marko';
 import groupCode from './examples/03-grouped-radio/template.marko?raw';
 import WithLabelCode from './examples/05-with-label/template.marko?raw';
+import DisabledCode from './examples/06-disabled-with-label/template.marko?raw';
 
 const Template = (args) => ({
     input: {
@@ -29,11 +31,14 @@ export default {
     },
 
     argTypes: {
-        disabled: {
-            control: { type: 'boolean' },
-        },
         size: {
-            control: { type: 'text' },
+            options: ['regular', 'large'],
+            type: { category: 'Options' },
+            table: {
+                defaultValue: {
+                    summary: 'regular',
+                },
+            },
             description:
                 'Either "large" or "regular". Sets the radio icon. Default is regular. For mweb this should be set to large. (Note: The dimensions of the radio will not change, but only the icon)',
         },
@@ -74,14 +79,24 @@ export const WithLabel = (args) => ({
     input: args,
     component: WithLabelTemplate,
 });
-WithLabel.args = {
-    disabled: false,
-};
 
 WithLabel.parameters = {
     docs: {
         source: {
             code: WithLabelCode,
+        },
+    },
+};
+
+export const Disabled = (args) => ({
+    input: args,
+    component: DisabledTemplate,
+});
+
+Disabled.parameters = {
+    docs: {
+        source: {
+            code: DisabledCode,
         },
     },
 };
@@ -102,9 +117,6 @@ Group.parameters = {
         source: {
             code: groupCode,
         },
-    },
-    controls: {
-        disabled: true,
     },
 };
 
