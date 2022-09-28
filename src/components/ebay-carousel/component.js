@@ -93,7 +93,14 @@ function onRender() {
             forEls(listEl, (itemEl) => {
                 focusables(itemEl).forEach(
                     itemEl.getAttribute('aria-hidden') !== 'true'
-                        ? (child) => child.removeAttribute('tabindex')
+                        ? // Default the child tabindex to default-tabindex if it exists, or remove it
+                          (child) =>
+                              child.hasAttribute('default-tabindex')
+                                  ? child.setAttribute(
+                                        'tabindex',
+                                        child.getAttribute('default-tabindex')
+                                    )
+                                  : child.removeAttribute('tabindex')
                         : (child) => child.setAttribute('tabindex', '-1')
                 );
             });
