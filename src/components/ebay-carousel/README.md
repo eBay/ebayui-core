@@ -18,4 +18,4 @@ Descrete or Continuious carousel component. Can show items as a slide or various
 ## Preserving tabindex for focusable elements
 
 When scrolling items, focusable elements that are not visible in the carousel should not be tabbable by default. When the carousel scrolls, it then removes the tabindex to allow the item to be focusable.
-In order to preserve the tabindex on an item, pass `default-tabindex="-1"` attribute to a given focusable element in order to default to that tabindex instead of removing the tabindex when the item is visible.
+In order to preserve the tabindex on an item, pass `data-carousel-tabindex="-1"` attribute to a given focusable element in order to default to that tabindex instead of removing the tabindex when the item is visible.
