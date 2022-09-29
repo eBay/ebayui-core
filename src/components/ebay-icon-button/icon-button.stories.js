@@ -1,21 +1,16 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import button from './index.marko';
-import renderBody from './examples/body.marko';
+import { addRenderBodies } from '../../../.storybook/utils';
+import component from './examples/icon-button.marko';
+import code from './examples/icon-button.marko?raw';
 import readme from './README.md';
 
 const Template = (args) => ({
-    input: {
-        ...args,
-        spread: null,
-        ...args.spread,
-        renderBody,
-    },
+    input: addRenderBodies(args),
 });
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
     title: 'buttons/ebay-icon-button',
-    component: button,
+    component,
     parameters: {
         docs: {
             description: {
@@ -24,7 +19,6 @@ export default {
         },
     },
     argTypes: {
-        renderBody: {},
         href: {
             description: 'url for link behaviour (switches to anchor tag)',
         },
@@ -117,14 +111,12 @@ Standard.args = {
     disabled: false,
     partiallyDisabled: false,
     badgeNumber: 0,
-    spread: {
-        'aria-label': 'menu',
-    },
+    'aria-label': 'menu',
 };
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-icon-button', Standard.args),
+            code,
         },
     },
 };

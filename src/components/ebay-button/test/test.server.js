@@ -1,6 +1,6 @@
 import { use } from 'chai';
 import { composeStories } from '@storybook/marko/dist/testing';
-import expandMigrator from '../examples/03-expand-migrator/template.marko';
+import expandMigrator from '../examples/expand-migrator.marko';
 import { snapshotHTML } from '../../../common/test-utils/snapshots';
 import * as stories from '../button.stories'; // import all stories from the stories file
 const { Standard, ExpandButton } = composeStories(stories);

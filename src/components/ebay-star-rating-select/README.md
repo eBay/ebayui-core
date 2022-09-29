@@ -13,8 +13,8 @@
 <ebay-star-rating-select/>
 ```
 
-## Links
+## Examples and Documentation
 
--   (Storybook)[https://ebay.github.io/ebayui-core/?path=/story/ebay-star-rating-select]
--   (Storybook Docs)[https://ebay.github.io/ebayui-core/?path=/docs/ebay-star-rating-select]
--   (Code Examples)[https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-star-rating-select/examples]
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/ebay-star-rating-select)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/ebay-star-rating-select)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-star-rating-select/examples)
