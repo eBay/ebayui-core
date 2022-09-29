@@ -13,14 +13,8 @@
 <ebay-badge number=5 aria-label="5 unread items"/>
 ```
 
-## ebay-badge Attributes
+## Examples and Documentation
 
-| Name         | Type   | Stateful | Required | Description                                                                  |
-| ------------ | ------ | -------- | -------- | ---------------------------------------------------------------------------- |
-| `number`     | Number | No       | Yes      | used as the number to be placed in the badge                                 |
-| `aria-label` | String | No       | Yes      | A descriptive label of what the badge represents (e.g. "5 unread items")     |
-| `type`       | String | No       | No       | optional, to alter Skin classes. "menu" / "icon" / "img". Defaults to "img". |
-
-## ebay-badge Events
-
-None
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-badge)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-badge)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-badge/examples)

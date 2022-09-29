@@ -7,40 +7,10 @@
     </span>
 </h1>
 
-## ebay-fake-tabs Usage
+Tabs which link to other pages. This can be used to deep link to other pages which switch the current tab.
 
-```marko
-<ebay-fake-tabs>
-    <@tab>Tab 1</@tab>
-    <@tab>Tab 2</@tab>
-    <@tab>Tab 3</@tab>
-    Body Content
-</ebay-fake-tabs>
-```
+## Examples and Documentation
 
-## ebay-fake-tabs Attributes
-
-| Name                   | Type    | Stateful | Required | Description                                                                                                                                                                                                                       |
-| ---------------------- | ------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `selectedIndex`        | Number  | Yes      | No       | 0-based index of selected tab tab and panel                                                                                                                                                                                       |
-| `tabMatchesCurrentUrl` | Boolean | No       | No       | Specify whether the href of the currently active fake tab matches the current window url. Default is true. This property is used to configure the underlying aria-current attribute (i.e. a value of "page" (default) or "true"). |
-
-> _Note:_ When using fake tabs there is no `preventDefault` applied, and therefore the link in the tab tab will work as a normal and navigate to the URL provided in the `href`.
-
-## @tab Tag
-
-### @tab Usage
-
-```marko
-<@tab href="www.ebay.com">Tab 1</@tab>
-```
-
-## @tab Attributes
-
-| Name   | Type   | Stateful | Required | Description                               |
-| ------ | ------ | -------- | -------- | ----------------------------------------- |
-| `href` | String | No       | Yes      | The link to take the user to for each tab |
-
-## Body
-
-The body content will be the visible panel of the current "selected" fake tab
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-fake-tabs)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-fake-tabs)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-video/examples)
