@@ -1,19 +1,14 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
+import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
-import renderBody from './examples/body.marko';
-import title from './examples/title.marko';
 import withAction from './examples/with-action.marko';
 import withActionCode from './examples/with-action.marko?raw';
 import withDismiss from './examples/with-dismiss.marko';
 import withDismissCode from './examples/with-dismiss.marko?raw';
 
 const Template = (args) => ({
-    input: {
-        ...args,
-        renderBody,
-        title: args.status === 'celebration' && title,
-    },
+    input: addRenderBodies(args),
 });
 
 export default {
@@ -95,8 +90,8 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Basic = Template.bind({});
+Basic.args = {
     a11yText: 'attention',
     a11yIconText: '',
     a11yDismissText: '',
@@ -104,11 +99,22 @@ Standard.args = {
     icon: null,
     cta: null,
     dismissed: false,
+    title: {
+        renderBody: 'An error has occurred',
+    },
+    renderBody: `<p><strong>Error:</strong> Please take another look at the following:</p>
+    <p>
+        <a href='#'>Card number</a>
+        ,
+        <a href='#'>Expiration date</a>
+         &amp;
+        <a href='#'>Security code</a>
+    </p>`,
 };
-Standard.parameters = {
+Basic.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-page-notice', Standard.args),
+            code: tagToString('ebay-page-notice', Basic.args),
         },
     },
 };
