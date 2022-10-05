@@ -1,9 +1,11 @@
 import { expect, use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
 import chaiDom from 'chai-dom';
 import { render, fireEvent, waitFor, cleanup } from '@marko/testing-library';
 import { fastAnimations } from '../../../common/test-utils/browser';
-import template from '..';
-import * as mock from './mock';
+import { addRenderBodies } from '../../../../.storybook/utils';
+import * as stories from '../drawer-dialog.stories'; // import all stories from the stories file
+const { Standard } = composeStories(stories);
 
 use(chaiDom);
 before(fastAnimations.start);
@@ -41,11 +43,11 @@ function getTouchedData(target, pageY) {
     };
 }
 
-describe('given a closed drawer', () => {
-    const input = mock.Drawer;
+const { a11yMinimizeText, a11yMaximizeText, renderBody } = Standard.args;
 
+describe('given a closed drawer', () => {
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard);
     });
 
     it('then it is hidden in the DOM', () => {
@@ -54,7 +56,9 @@ describe('given a closed drawer', () => {
 
     describe('then it is opened', () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { open: true }));
+            await component.rerender(
+                Object.assign({}, addRenderBodies(Standard.args), { open: true })
+            );
         });
 
         it('then it is visible in the DOM', async () => {
@@ -62,20 +66,20 @@ describe('given a closed drawer', () => {
         });
         describe('then it is expanded', () => {
             beforeEach(async () => {
-                await fireEvent.click(component.getByLabelText(input.a11yMaximizeText));
+                await fireEvent.click(component.getByLabelText(a11yMaximizeText));
             });
 
             it('then it is expanded in DOM', async () => {
                 await waitFor(() => expect(component.emitted('expanded')).has.length(1));
-                expect(component.getAllByLabelText(input.a11yMinimizeText)).has.length(1);
+                expect(component.getAllByLabelText(a11yMinimizeText)).has.length(1);
             });
         });
         describe('then it is expanded on scroll', () => {
             beforeEach(async () => {
-                await fireEvent.scroll(component.getByText(input.renderBody.text));
+                await fireEvent.scroll(component.getByText(renderBody));
                 // Fire multiple scrolls, expect only 1 expanded is called
-                await fireEvent.scroll(component.getByText(input.renderBody.text));
-                await fireEvent.scroll(component.getByText(input.renderBody.text));
+                await fireEvent.scroll(component.getByText(renderBody));
+                await fireEvent.scroll(component.getByText(renderBody));
             });
 
             it('then it is expanded in DOM', async () => {
@@ -86,10 +90,8 @@ describe('given a closed drawer', () => {
 });
 
 describe('given an open and expanded drawer', () => {
-    const input = mock.Drawer_Expanded;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard, { open: true, expanded: true });
     });
 
     it('then it is not hidden in the DOM', () => {
@@ -98,18 +100,18 @@ describe('given an open and expanded drawer', () => {
 
     describe('then it is collapsed', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByLabelText(input.a11yMinimizeText));
+            await fireEvent.click(component.getByLabelText(a11yMinimizeText));
         });
 
         it('then it is expanded in DOM', async () => {
             await waitFor(() => expect(component.emitted('collapsed')).has.length(1));
-            expect(component.getAllByLabelText(input.a11yMaximizeText)).has.length(1);
+            expect(component.getAllByLabelText(a11yMaximizeText)).has.length(1);
         });
     });
 
     describe('no events on scroll', () => {
         beforeEach(async () => {
-            await fireEvent.scroll(component.getByText(input.renderBody.text));
+            await fireEvent.scroll(component.getByText(renderBody));
         });
 
         it('then it is expanded in DOM', async () => {
@@ -119,10 +121,8 @@ describe('given an open and expanded drawer', () => {
 });
 
 describe('given an open and non expanded drawer for touch events', () => {
-    const input = mock.Drawer_Open;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard, { open: true });
     });
 
     it('then it is hidden in the DOM', () => {
@@ -132,7 +132,7 @@ describe('given an open and non expanded drawer for touch events', () => {
     (hasTouch ? describe : describe.skip)('then it is expanded on touch drag up', () => {
         // eslint-disable-next-line mocha/no-sibling-hooks
         beforeEach(async () => {
-            await triggerTouch(component.getByLabelText(input.a11yMaximizeText), -50);
+            await triggerTouch(component.getByLabelText(a11yMaximizeText), -50);
         });
 
         it('then it is expanded in DOM', async () => {
@@ -145,7 +145,7 @@ describe('given an open and non expanded drawer for touch events', () => {
         () => {
             // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
-                await triggerTouch(component.getByLabelText(input.a11yMaximizeText), -10);
+                await triggerTouch(component.getByLabelText(a11yMaximizeText), -10);
             });
 
             it('then it did not trigger', async () => {
@@ -161,7 +161,7 @@ describe('given an open and non expanded drawer for touch events', () => {
         () => {
             // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
-                await triggerTouch(component.getByLabelText(input.a11yMaximizeText), 10);
+                await triggerTouch(component.getByLabelText(a11yMaximizeText), 10);
             });
 
             it('then it did not trigger threshold when dragged down', async () => {
@@ -173,7 +173,7 @@ describe('given an open and non expanded drawer for touch events', () => {
     (hasTouch ? describe : describe.skip)('then it is closed on touch drag down', () => {
         // eslint-disable-next-line mocha/no-sibling-hooks
         beforeEach(async () => {
-            await triggerTouch(component.getByLabelText(input.a11yMaximizeText), 50);
+            await triggerTouch(component.getByLabelText(a11yMaximizeText), 50);
         });
 
         it('then it is closed', async () => {
@@ -189,10 +189,8 @@ describe('given an open and non expanded drawer for touch events', () => {
 });
 
 describe('given an open and expanded drawer for touch events', () => {
-    const input = mock.Drawer_Expanded;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard, { open: true, expanded: true });
     });
 
     it('then it is shown in the DOM', () => {
@@ -202,7 +200,7 @@ describe('given an open and expanded drawer for touch events', () => {
     (hasTouch ? describe : describe.skip)('nothing happens on touch drag up', () => {
         // eslint-disable-next-line mocha/no-sibling-hooks
         beforeEach(async () => {
-            await triggerTouch(component.getByLabelText(input.a11yMinimizeText), -50);
+            await triggerTouch(component.getByLabelText(a11yMinimizeText), -50);
         });
 
         it('then it is expanded in DOM', async () => {
@@ -213,7 +211,7 @@ describe('given an open and expanded drawer for touch events', () => {
     (hasTouch ? describe : describe.skip)('then it is collapsed on touch drag down', () => {
         // eslint-disable-next-line mocha/no-sibling-hooks
         beforeEach(async () => {
-            await triggerTouch(component.getByLabelText(input.a11yMinimizeText), 50);
+            await triggerTouch(component.getByLabelText(a11yMinimizeText), 50);
         });
 
         it('then it is closed', async () => {
@@ -226,7 +224,7 @@ describe('given an open and expanded drawer for touch events', () => {
         () => {
             // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
-                await triggerTouch(component.getByLabelText(input.a11yMinimizeText), -10);
+                await triggerTouch(component.getByLabelText(a11yMinimizeText), -10);
             });
 
             it('then it did not trigger', async () => {
@@ -240,7 +238,7 @@ describe('given an open and expanded drawer for touch events', () => {
         () => {
             // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
-                await triggerTouch(component.getByLabelText(input.a11yMinimizeText), 10);
+                await triggerTouch(component.getByLabelText(a11yMinimizeText), 10);
             });
 
             it('then it did not trigger on drag down', async () => {
