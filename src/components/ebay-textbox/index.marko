@@ -16,6 +16,7 @@ static var ignoredAttributes = [
     "prefixIcon",
     "postfixIcon",
     "inputSize",
+    "opaqueLabel",
     "toJSON"
 ];
 
@@ -26,7 +27,7 @@ $ var isLarge = input.inputSize === "large";
 $ var displayIcon = Boolean(!input.multiline && hasIcon);
 $ var id = input.id || component.getElId("textbox");
 $ var defaultTag = input.fluid ? "div" : "span";
-<${input.floatingLabel && defaultTag} class=["floating-label", isLarge && "floating-label--large"]>
+<${input.floatingLabel && defaultTag} class=["floating-label", isLarge && "floating-label--large", input.opaqueLabel && "floating-label--opaque"]>
     <if(input.floatingLabel)>
         <label
             for=id

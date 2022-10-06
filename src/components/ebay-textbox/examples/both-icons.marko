@@ -7,8 +7,9 @@ class {
     change({ value }) {
         this.state.value = value;
     }
-    clear() {
+    clear(e) {
         this.state.value = "";
+        this.emit('button-click', e)
     }
 }
 
@@ -17,6 +18,7 @@ class {
     value=state.value
     button-aria-label="Clear"
     placeholder="name"
+    ...input
     on-change("change")
     on-button-click("clear")>
     <@postfix-icon>
