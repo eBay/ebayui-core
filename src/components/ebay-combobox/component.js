@@ -82,11 +82,7 @@ export default {
     handleComboboxKeyDown(originalEvent) {
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             originalEvent.preventDefault();
-
-            if (!this.isExpanded()) {
-                this.activeDescendant.reset();
-                this.expand();
-            }
+            this.expand();
         });
 
         eventUtils.handleEnterKeydown(originalEvent, () => {
@@ -131,7 +127,6 @@ export default {
         }
 
         if (
-            this.isExpanded() &&
             !wasClickedOption &&
             !this.buttonClicked &&
             this.input.expanded !== true
@@ -218,29 +213,33 @@ export default {
 
     _setupMakeup() {
         if (this._hasVisibleOptions()) {
-            if (this.activeDescendant) this.activeDescendant = createLinear(
-                this.el,
-                this.getEl('combobox'),
-                this.getEl('listbox'),
-                '[role="option"]',
-                {
-                    activeDescendantClassName: 'combobox__option--active',
-                    autoInit: -1,
-                    autoReset: -1,
-                    axis: 'y',
-                    autoScroll: true,
-                }
-            );
+            if (!this.activeDescendant) {
+                this.activeDescendant = createLinear(
+                    this.el,
+                    this.getEl('combobox'),
+                    this.getEl('listbox'),
+                    '[role="option"]',
+                    {
+                        activeDescendantClassName: 'combobox__option--active',
+                        autoInit: -1,
+                        autoReset: -1,
+                        axis: 'y',
+                        autoScroll: true,
+                    }
+                );
+            }
 
-            if (this.expander) this.expander = new Expander(this.el, {
-                autoCollapse: !this.expanded,
-                expandOnFocus: true,
-                collapseOnFocusOut: !this.expanded && !this.input.button,
-                contentSelector: '[role="listbox"]',
-                hostSelector: '[role="combobox"]',
-                expandedClass: 'combobox--expanded',
-                simulateSpacebarClick: true,
-            });
+            if (!this.expander) {
+                this.expander = new Expander(this.el, {
+                    autoCollapse: !this.expanded,
+                    expandOnFocus: true,
+                    collapseOnFocusOut: !this.expanded && !this.input.button,
+                    contentSelector: '[role="listbox"]',
+                    hostSelector: '[role="combobox"]',
+                    expandedClass: 'combobox--expanded',
+                    simulateSpacebarClick: true,
+                });
+            }
 
             if (this.expandedChange) {
                 this.expander.expanded = this.expanded;
