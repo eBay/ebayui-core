@@ -198,9 +198,27 @@ export default {
         this._cleanupMakeup();
     },
 
+    _setupFloatingLabel() { 
+        // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
+        // It probably makes more sense to just move this functionality into Marko though.
+        if (this._floatingLabel) {
+            this._floatingLabel.refresh();
+            this.handleFloatingLabelInit();
+        } else if (document.readyState === 'complete') {
+            if (this.el) {
+                this._floatingLabel = new FloatingLabel(this.el);
+                this.handleFloatingLabelInit();
+            }
+        } else {
+            this.subscribeTo(window).once('load', () => {
+                this._setupFloatingLabel();
+            });
+        }
+    },
+
     _setupMakeup() {
         if (this._hasVisibleOptions()) {
-            this.activeDescendant = createLinear(
+            if (this.activeDescendant) this.activeDescendant = createLinear(
                 this.el,
                 this.getEl('combobox'),
                 this.getEl('listbox'),
@@ -214,7 +232,7 @@ export default {
                 }
             );
 
-            this.expander = new Expander(this.el, {
+            if (this.expander) this.expander = new Expander(this.el, {
                 autoCollapse: !this.expanded,
                 expandOnFocus: true,
                 collapseOnFocusOut: !this.expanded && !this.input.button,
@@ -229,21 +247,8 @@ export default {
                 this.expandedChange = false;
             }
         }
-        // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
-        // It probably makes more sense to just move this functionality into Marko though.
-        if (this.input.floatingLabel) {
-            if (this._floatingLabel) {
-                this._floatingLabel.refresh();
-                this.handleFloatingLabelInit();
-            } else if (document.readyState === 'complete') {
-                if (this.el) {
-                    this._floatingLabel = new FloatingLabel(this.el);
-                    this.handleFloatingLabelInit();
-                }
-            } else {
-                this.subscribeTo(window).once('load', this._setupMakeup.bind(this));
-            }
-        }
+
+        this._setupFloatingLabel();
     },
 
     _cleanupMakeup() {
