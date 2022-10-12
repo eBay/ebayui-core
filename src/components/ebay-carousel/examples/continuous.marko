@@ -1,16 +1,3 @@
-import knobs from '../knobs';
-$ const {
-    items,
-    index,
-    imageTreatment,
-    itemWidth,
-    a11yPreviousText,
-    a11yNextText,
-    images,
-    gap,
-    getItemWidth
-} = knobs('continuous');
-
 <style>
     .demo-card {
         color: #0a1c6b;
@@ -25,13 +12,13 @@ $ const {
 </style>
 
 <ebay-carousel
-    index=index
-    gap=gap
-    image-treatment=imageTreatment
-    a11y-previous-text=a11yPreviousText
-    a11y-next-text=a11yNextText>
-    <for|i| from=0 to=(items - 1)>
-        <if(imageTreatment === "matte" && images[i])>
+    index=input.index
+    gap=input.gap
+    image-treatment=input.imageTreatment
+    a11y-previous-text=input.a11yPreviousText
+    a11y-next-text=input.a11yNextText>
+    <for|i| from=0 to=(input.items.length - 1)>
+        <if(input.imageTreatment === "matte" && input.images[i])>
             <@item>
                 <img src=images[i]/>
             </@item>
@@ -39,7 +26,7 @@ $ const {
         <else>
             <@item
                 style={
-                    width: getItemWidth(i)
+                    width: 400
                 }
                 class=`demo-card`>
                 Card ${i + 1}
