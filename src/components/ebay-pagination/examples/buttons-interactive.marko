@@ -19,7 +19,9 @@ class {
     on-next("handleNext")
     on-previous("handlePrev")
     on-select("handleSelect")
-    a11y-current-text=`Results Pagination - Page ${state.current}`>
+    a11y-current-text=`Results Pagination - Page ${state.current}`
+    ...input
+    >
     <@item type="previous" disabled=(state.current === 0)/>
     <for|i| from=0 to=SIZE>
         <@item current=(i === state.current)>${i}</@item>

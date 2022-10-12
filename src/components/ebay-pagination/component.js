@@ -83,7 +83,7 @@ export default {
         }
 
         if (hasDots) {
-            if (i + range >= lastIndex) {
+            if (i + range >= lastIndex || end >= lastIndex) {
                 hideDots = true;
             } else if (i <= end - 2) {
                 end -= 2;
