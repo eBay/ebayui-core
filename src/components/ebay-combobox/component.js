@@ -193,7 +193,7 @@ export default {
         this._cleanupMakeup();
     },
 
-    _setupFloatingLabel() { 
+    _setupFloatingLabel() {
         // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
         // It probably makes more sense to just move this functionality into Marko though.
         if (this._floatingLabel) {
