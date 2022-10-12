@@ -247,7 +247,9 @@ export default {
             }
         }
 
-        this._setupFloatingLabel();
+        if (this.input.floatingLabel) {
+            this._setupFloatingLabel();
+        }
     },
 
     _cleanupMakeup() {
