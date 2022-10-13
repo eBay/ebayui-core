@@ -2,10 +2,15 @@ import { createRenderBody } from '../../../../common/test-utils/shared';
 
 export const Basic = {
     renderBody: createRenderBody('text'),
+    useAriaPressed: true,
 };
 
 export const Selected = Object.assign({}, Basic, {
     selected: true,
+});
+
+export const withOutPressed = Object.assign({}, Selected, {
+    useAriaPressed: false,
 });
 
 export const Disabled = Object.assign({}, Basic, {

@@ -18,5 +18,6 @@
   "@referrerpolicy": "#html-referrerpolicy",
   "@rel": "#html-rel",
   "@target": "#html-target",
-  "@aria-pressed": "never"
+  "@aria-pressed": "never",
+  "@useAriaPressed": "boolean"
 }

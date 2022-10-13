@@ -22,6 +22,12 @@ describe('filter', () => {
         expect(getByRole('button')).has.attr('aria-pressed', 'true');
     });
 
+    it('renders without pressed attribute', async () => {
+        const input = mock.withOutPressed;
+        const { getByRole } = await render(template, input);
+        expect(getByRole('button')).does.not.have.attr('aria-pressed');
+    });
+
     it('renders with disabled attribute', async () => {
         const input = mock.Disabled;
         const { getByRole } = await render(template, input);
