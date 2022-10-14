@@ -20,15 +20,25 @@ export default {
 
     handleTouchStart(event) {
         const touches = event.changedTouches;
-        this.touches = Array.prototype.map.call(touches, ({ identifier, pageY }) => ({
-            identifier,
-            pageY,
-        }));
+        this.touches = [];
+        // Sometimes there can be multiple touches on an object.
+        // This saves the current touches when the user begins to tap on the handle
+        for (let i = 0; i < touches.length; i++) {
+            const { identifier, pageY } = touches[i];
+            this.touches.push({
+                identifier,
+                pageY,
+            });
+        }
     },
 
     handleTouchMove(event) {
+        // This will verify that a given touch moved about 30px up/down from the handle
+        // If so, then it will either expand or collapse the drawer.
+        // It uses all the saved touch start events
         if (this.touches.length) {
-            event.changedTouches.forEach((current) => {
+            for (let i = 0; i < event.changedTouches.length; i++) {
+                const current = event.changedTouches[i];
                 const compare = this.touches.findIndex(
                     (item) => item.identifier === current.identifier
                 );
@@ -46,17 +56,20 @@ export default {
                     this.setExpandedState(true);
                     this.handleTouchEnd(event);
                 }
-            });
+            }
         }
     },
 
     handleTouchEnd(event) {
-        event.changedTouches.forEach((current) => {
+        // Remove all matching touches from the list when the touch is over.
+        // This is done this way in case a finger is lifted up before another finger
+        for (let i = 0; i < event.changedTouches.length; i++) {
+            const current = event.changedTouches[i];
             const idx = this.touches.findIndex((item) => item.identifier === current.identifier);
             if (idx > -1) {
                 this.touches.splice(idx, 1);
             }
-        });
+        }
     },
 
     onMount() {

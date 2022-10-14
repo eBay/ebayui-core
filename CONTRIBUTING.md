@@ -4,12 +4,12 @@ This page contains instructions and guidelines for anybody contributing code to 
 
 ## Table of Contents
 
-* [Development](#development)
-* [Pull Requests](#pull-requests)
-* [Branching Strategy](#branching-strategy)
-* [Unit Tests](#unit-tests)
-* [Definition of Done](#definition-of-done)
-* [Releases](#releases)
+-   [Development](#development)
+-   [Pull Requests](#pull-requests)
+-   [Branching Strategy](#branching-strategy)
+-   [Unit Tests](#unit-tests)
+-   [Definition of Done](#definition-of-done)
+-   [Releases](#releases)
 
 ## Development
 
@@ -17,7 +17,7 @@ This section includes information on system requirements, running the local serv
 
 ### System Requirements
 
-* [Node.js](https://nodejs.org/en/)
+-   [Node.js](https://nodejs.org/en/)
 
 Clone this repo to your local environment then run `npm i` to install all dependencies.
 
@@ -33,6 +33,8 @@ The demo page will render the `examples/` for each component. To selectively inc
 
 Execute `npm test` to run all tests and generate coverage reports at `./coverage/index.html`.
 
+Most of our server tests use `mocha-snap` in order to verify html snapshots against the generated html that the current component outputs. If these change the test will fail. In order to update the snapshots, one needs to run `UPDATE_SNAPSHOTS=1 npm test` and then new snapshots will be genrated, which should be checked in.
+
 ### Marko Lifecycle Functions
 
 Because eBayUI components are written in Marko, the component files may contain many of the Marko lifecycle functions. Within a given component's `index.js` file you will find the lifecycle functions intermixed with the component functions. Documentation on these functions can be found in the [Marko documentation on lifecycle events](http://v3.markojs.com/docs/marko-widgets/component-lifecycle/).
@@ -41,7 +43,7 @@ Because eBayUI components are written in Marko, the component files may contain 
 
 Execute `npm run`, or check the "scripts" section of `package.json` to view all available utility scripts.
 
-Please ensure all scripts in `package.json` are Unix *and* Windows friendly.
+Please ensure all scripts in `package.json` are Unix _and_ Windows friendly.
 
 ### Continuous Integration (CI)
 
@@ -64,13 +66,13 @@ This section contains information and etiquette regarding pull requests (or "PRs
 
 ### Before You Start
 
-If you are creating a new component or significantly altering an existing one, please ensure that an issue has been created *before* you start any work, and that it has been assigned to you. The same goes for any big new additions or changes to the project structure, CI or documentation.
+If you are creating a new component or significantly altering an existing one, please ensure that an issue has been created _before_ you start any work, and that it has been assigned to you. The same goes for any big new additions or changes to the project structure, CI or documentation.
 
 We ask this because:
 
-* we want to avoid cases where developers build something that does not align with our wants & needs
-* we want to be able to carefully plan our sprint and test cycles with minimal disruption
-* we want to avoid cases where two developers duplicate work
+-   we want to avoid cases where developers build something that does not align with our wants & needs
+-   we want to be able to carefully plan our sprint and test cycles with minimal disruption
+-   we want to avoid cases where two developers duplicate work
 
 ### Writing Code
 
@@ -78,22 +80,22 @@ The contents of a pull request should be related to a single issue only (or, at 
 
 Whilst it may be tempting to fix any [broken windows](https://www.rtuin.nl/2012/08/software-development-and-the-broken-windows-theory/) that you encounter, we ask you not to because:
 
-* it can distract the reviewer from the main issue at hand
-* it can add additional time needed for the reviewer
-* it can increase the chance of regressions
-* it can make rollbacks more difficult
+-   it can distract the reviewer from the main issue at hand
+-   it can add additional time needed for the reviewer
+-   it can increase the chance of regressions
+-   it can make rollbacks more difficult
 
 So please be a good citizen and create separate issues or pull requests for any broken windows that you find.
 
 ### Moving Code
 
-Please try and isolate "noisy" commits that only *move* many files or lines of code, from commits that actually modify code logic. The reviewer has the right to reject a pull request that is difficult to reason with due to too much *unnecessary* noise in the diff.
+Please try and isolate "noisy" commits that only _move_ many files or lines of code, from commits that actually modify code logic. The reviewer has the right to reject a pull request that is difficult to reason with due to too much _unnecessary_ noise in the diff.
 
-For example, assuming moving some code doesn't put the app into a broken state, the move can be considered a safe atomic commit (e.g. "moved functions x, y and z to bottom of file"). The actual *fixes* to functions x, y and z can then be made in a follow up commit (e.g. "fixed functions x, y and z") which will be easier for the reviewer to diff.
+For example, assuming moving some code doesn't put the app into a broken state, the move can be considered a safe atomic commit (e.g. "moved functions x, y and z to bottom of file"). The actual _fixes_ to functions x, y and z can then be made in a follow up commit (e.g. "fixed functions x, y and z") which will be easier for the reviewer to diff.
 
 ### Breaking Changes
 
-Please think very carefully before introducing breaking API changes. Breaking changes may only be introduced in a major version. If you wish to alter the API *before* a major version, then aliases can often be a good way to achieve this. Using an alias, the old API can be deprecated and will still continue to function.
+Please think very carefully before introducing breaking API changes. Breaking changes may only be introduced in a major version. If you wish to alter the API _before_ a major version, then aliases can often be a good way to achieve this. Using an alias, the old API can be deprecated and will still continue to function.
 
 ### Deprecating Code
 
@@ -109,7 +111,7 @@ If you are working on a large feature, that takes many days, then there is a goo
 
 ### Commit History
 
-Whilst having multiple "work in progress", "almost done" and "merged branch" type commits in a feature branch is fine, we wish to refrain from those commits polluting the milestone and master branch history. On the flip side, although rarer in comparison, we might also have some *atomic* commits in our feature branch that we absolutely wish to keep as part of the project history.
+Whilst having multiple "work in progress", "almost done" and "merged branch" type commits in a feature branch is fine, we wish to refrain from those commits polluting the milestone and master branch history. On the flip side, although rarer in comparison, we might also have some _atomic_ commits in our feature branch that we absolutely wish to keep as part of the project history.
 
 Before creating your pull request you have two options regarding what to do with the commit history of your feature branch:
 
@@ -128,7 +130,7 @@ The final commit message should include a reference to the pull request number. 
 
 Members of the eBayUI team must work in the main repository. Non-members must work in their own fork.
 
-Do not attempt to commit feature work directly to the master branch. Pushes to the master branch  should only be used for important corrections to the documentation or website. The master branch **always** reflects the current production facing code.
+Do not attempt to commit feature work directly to the master branch. Pushes to the master branch should only be used for important corrections to the documentation or website. The master branch **always** reflects the current production facing code.
 
 All other branches are "milestone" branches or "issue" branches.
 
@@ -146,60 +148,60 @@ A milestone branch will be deleted after it has been merged into master. There i
 
 With this strategy, there are rarely more than a handful of branches at any one moment in time:
 
-* master branch (reflects current production code/release)
-* next minor or major milestone branch
-* next patch milestone branch
-* *n* number of feature/issue branches (usually 1 - 3)
+-   master branch (reflects current production code/release)
+-   next minor or major milestone branch
+-   next patch milestone branch
+-   _n_ number of feature/issue branches (usually 1 - 3)
 
 ## Unit Tests
 
 Each component has two suites of unit tests: server-side tests & client-side tests.
 
-Our unit tests follow the "black-box" approach. We test only the exposed, public API. We do not explicitly test the internal, private methods. Private methods are considered to be tested *implicitly* whenever we test part of the public API (which can be evidenced via code coverage reports).
+Our unit tests follow the "black-box" approach. We test only the exposed, public API. We do not explicitly test the internal, private methods. Private methods are considered to be tested _implicitly_ whenever we test part of the public API (which can be evidenced via code coverage reports).
 
-Server side testing is predominantly concerned with the testing of *rendering*. Given an input of a marko tag and it's attributes, we test that the rendered output matches our expected outcome.
+Server side testing is predominantly concerned with the testing of _rendering_. Given an input of a marko tag and it's attributes, we test that the rendered output matches our expected outcome.
 
-Browser side testing is predominantly concerned with the testing of *state*. For this we follow the Given-When-Then approach (i.e. *given* a component is in a well-defined state, *when* a well-defined action is performed on it, *then* we assert that it meets the expected outcome).
+Browser side testing is predominantly concerned with the testing of _state_. For this we follow the Given-When-Then approach (i.e. _given_ a component is in a well-defined state, _when_ a well-defined action is performed on it, _then_ we assert that it meets the expected outcome).
 
 For both types of tests, please observe the following golden rules:
 
-* A test should only test one thing
-    * Watch out for the words 'and' & 'or' in your test description!
-* A test should not contain conditional logic
-    * We don't want to have to write tests for our tests!
-* A test description should avoid interpolated strings
-    * Test descriptions should be human readable (readable != parsable)
+-   A test should only test one thing
+    -   Watch out for the words 'and' & 'or' in your test description!
+-   A test should not contain conditional logic
+    -   We don't want to have to write tests for our tests!
+-   A test description should avoid interpolated strings
+    -   Test descriptions should be human readable (readable != parsable)
 
-Above all, all aspects of a test should be human readable. A simple litmus test for this is that anybody should be able to read the test and, within a few seconds, be able to tell you what the *purpose* of the test is. If they are confused, or ask questions, then it is not a well written test. Go back and refactor!
+Above all, all aspects of a test should be human readable. A simple litmus test for this is that anybody should be able to read the test and, within a few seconds, be able to tell you what the _purpose_ of the test is. If they are confused, or ask questions, then it is not a well written test. Go back and refactor!
 
 ## Definition of Done
 
 A component is considered "done", and ready for merge into release branch, when the following 3 checkpoints have been satisfied:
 
-1) Foundational layer review
+1. Foundational layer review
 
-* Visual design (DS6)
-* Markup structure (Bones)
-* Accessibility pattern (MIND)
-* CSS (Skin)
+-   Visual design (DS6)
+-   Markup structure (Bones)
+-   Accessibility pattern (MIND)
+-   CSS (Skin)
 
-2) Component layer review
+2. Component layer review
 
-* Tag API
-* Event API
-* Unit tests
-* Integration test
-* Performance test
-* Documentation
+-   Tag API
+-   Event API
+-   Unit tests
+-   Integration test
+-   Performance test
+-   Documentation
 
-3) Code review
+3. Code review
 
-* Linter should catch syntax and style issues
-* Prefer performance over readability, but readability over "space saving" code
-* Apply the single-responsibility principle to functions
-* Refactor long functions into several small functions
-* Identify and move common utility functions to libraries or static methods
-* All CSS should come from Skin
+-   Linter should catch syntax and style issues
+-   Prefer performance over readability, but readability over "space saving" code
+-   Apply the single-responsibility principle to functions
+-   Refactor long functions into several small functions
+-   Identify and move common utility functions to libraries or static methods
+-   All CSS should come from Skin
 
 ## Releases
 
@@ -208,9 +210,9 @@ A component is considered "done", and ready for merge into release branch, when 
 All major and minor releases should be preceded by one or more pre-releases. All pre-releases must be created from a `milestone` branch.
 
 1. Run `npm version prepatch`, `npm version preminor`, or `npm version premajor`. If you need to increment an existing prerelease use `npm version prerelease`. This command will automatically:
-    * update the version number in `package.json`
-    * commit all changes locally
-    * create a Git tag
+    - update the version number in `package.json`
+    - commit all changes locally
+    - create a Git tag
 1. Run `git push` to push the commit to origin. (**Note**: do not push tags for prereleases.)
 1. Run `npm publish --tag beta` to publish the package to NPM.
 
@@ -222,11 +224,11 @@ A final release is always made from the `master` branch.
 1. Merge the PR after approval (do not squash!)
 1. Switch to your local master branch and pull the changes from origin.
 1. Run `npm version patch`, `npm version minor`, or `npm version major`. This command will automatically:
-    * update the version number in `package.json`
-    * commit all changes locally
-    * create a Git tag
-2. Run `git push` to push the commit to origin.
-3. Push the git tag to origin, e.g. run `git push origin v1.0.0` using the new version tag you just created.
-4. Run `npm publish` to publish the package to NPM.
+    - update the version number in `package.json`
+    - commit all changes locally
+    - create a Git tag
+1. Run `git push` to push the commit to origin.
+1. Push the git tag to origin, e.g. run `git push origin v1.0.0` using the new version tag you just created.
+1. Run `npm publish` to publish the package to NPM.
 
-After every major and minor release, please take the opportunity to upgrade any outdated dependencies and devDependencies (*hint*: run `npm outdated` to see outdated dependencies). Except for major version upgrades, the version in `package.json` should always reflect the last known working version, not the version you are upgrading to.
+After every major and minor release, please take the opportunity to upgrade any outdated dependencies and devDependencies (_hint_: run `npm outdated` to see outdated dependencies). Except for major version upgrades, the version in `package.json` should always reflect the last known working version, not the version you are upgrading to.

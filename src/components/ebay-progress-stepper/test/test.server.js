@@ -33,6 +33,10 @@ it('renders blocked progress-stepper', async () => {
     await htmlSnap(Blocked);
 });
 
+it('renders in old progress progress-stepper (remove next version)', async () => {
+    await htmlSnap(InProgress, { defaultState: 'current' });
+});
+
 it('renders default without pragraph', async () => {
     await htmlSnap(InProgress, {
         autoParagraph: false,

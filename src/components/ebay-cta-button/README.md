@@ -7,19 +7,8 @@
     </span>
 </h1>
 
-## ebay-cta-button Usage
+## Examples and Documentation
 
-```marko
-<ebay-cta-button href="http://www.ebay.com">text</ebay-cta-button>
-```
-
-## ebay-cta-button Attributes
-
-| Name   | Type   | Stateful | Required | Description                                     |
-| ------ | ------ | -------- | -------- | ----------------------------------------------- |
-| `size` | String | No       | No       | Can be "large". If not set, defaults to default |
-| `href` | String | No       | Yes      | link target                                     |
-
-## ebay-cta-button Events
-
-None
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-cta-button)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/buttons-ebay-cta-button)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-cta-button/examples)

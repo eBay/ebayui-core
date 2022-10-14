@@ -7,16 +7,10 @@
     </span>
 </h1>
 
-## ebay-eek Usage
+EU energy label
 
-```marko
-<ebay-eek rating="A+++" max="A+++" min="D"/>
-```
+## Examples and Documentation
 
-## ebay-eek Attributes
-
-| Name     | Type   | Stateful | Required | Description       |
-| -------- | ------ | -------- | -------- | ----------------- |
-| `rating` | String | No       | Yes      | The energy rating |
-| `max`    | String | No       | Yes      | The maximum range |
-| `min`    | String | No       | Yes      | The minimum range |
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-eek)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-eek)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-eek/examples)

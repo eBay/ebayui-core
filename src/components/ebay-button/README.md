@@ -7,8 +7,10 @@
     </span>
 </h1>
 
-## ebay-button Usage
+Button styled with core classes.
 
-```marko
-<ebay-button>text</ebay-button>
-```
+## Examples and Documentation
+
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-button)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/buttons-ebay-button)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button/examples)

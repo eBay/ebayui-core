@@ -1,12 +1,12 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
-import groupTemplate from './examples/grouped-radio.marko';
-import WithLabelTemplate from './examples/with-label.marko';
-import DisabledTemplate from './examples/disabled-with-label.marko';
-import groupCode from './examples/grouped-radio.marko?raw';
-import WithLabelCode from './examples/with-label.marko?raw';
-import DisabledCode from './examples/disabled-with-label.marko?raw';
+import groupTemplate from './examples/03-grouped-radio/template.marko';
+import WithLabelTemplate from './examples/05-with-label/template.marko';
+import DisabledTemplate from './examples/06-disabled-with-label/template.marko';
+import groupCode from './examples/03-grouped-radio/template.marko?raw';
+import WithLabelCode from './examples/05-with-label/template.marko?raw';
+import DisabledCode from './examples/06-disabled-with-label/template.marko?raw';
 
 const Template = (args) => ({
     input: {

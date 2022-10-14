@@ -1,0 +1,30 @@
+<style>
+    .preserve-tabindex-card {
+        color: #cdf4fd;
+        background: #eee;
+        font-size: 36px;
+        font-weight: bold;
+        height: 330px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+</style>
+
+<ebay-carousel gap=input.gap items-per-slide=input.itemsPerSlide index=input.index
+    a11y-previous-text=input.a11yPreviousText
+    a11y-next-text=input.a11yNextText>
+    <for|i| from=0 to=(input.items.length - 1)>
+        <@item >
+            <div class='preserve-tabindex-card'>
+                <a href="https://www.ebay.com" data-carousel-tabindex="-1">
+                    Image here
+                </a>
+                <a href="https://www.ebay.com">
+                    <${input.items[i]}/>
+                </a>
+            </div>
+        </@item>
+    </for>
+</ebay-carousel>

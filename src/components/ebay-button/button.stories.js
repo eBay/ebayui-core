@@ -2,8 +2,8 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import { addRenderBodies } from '../../../.storybook/utils';
 import button from './index.marko';
 import readme from './README.md';
-import ExpandButtonTemplate from './examples/02-expand-button/template.marko';
-import ExpandButtonCode from './examples/02-expand-button/template.marko?raw';
+import ExpandButtonTemplate from './examples/expand-button.marko';
+import ExpandButtonCode from './examples/expand-button.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),

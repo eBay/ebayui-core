@@ -7,25 +7,10 @@
     </span>
 </h1>
 
-```marko
-<ebay-details open text="Show me the details">
-    The details
-</ebay-details>
-```
+Details component which expands and collapses extra text on click
 
-## Attributes
+## Examples and Documentation
 
-| Name        | Type    | Stateful | Required | Description                                    |
-| ----------- | ------- | -------- | -------- | ---------------------------------------------- |
-| `text`      | String  | No       | No       | The text to display in the details toggle      |
-| `alignment` | String  | No       | No       | Can be "regular" / "center". Default "regular" |
-| `size`      | String  | No       | No       | Can be "regular" / "small". Default "regular"  |
-| `open`      | Boolean | No       | No       | Whether details is open.                       |
-| `as`        | String  | No       | No       | The root element. Defaults to `<div>`          |
-
-## Events
-
-| Event    | Data                      | Description                                                                                            |
-| -------- | ------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `toggle` | `{ originalEvent, open }` | details toggled. Open is boolean if true then details was opened, otherwise false means details closed |
-| `click`  | `{ originalEvent }`       | details clicked                                                                                        |
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-details)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-details)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-details/examples)

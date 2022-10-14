@@ -56,7 +56,8 @@ $ var displayText = selectedText || unselectedText;
                 <span class="btn__text">${displayText}</span>
             </if>
             <else-if (input.prefixLabel)>
-                <span class="btn__text">${input.prefixLabel} ${displayText}</span>
+                <span class="btn__label">${input.prefixLabel} </span>
+                <span class="btn__text">${displayText}</span>
             </else-if>
             <else>
                 <span id=labelId class="btn__text">${displayText}</span>
