@@ -73,7 +73,14 @@ export default {
                 category: '@item attributes',
             },
             control: { type: 'text' },
-            description: 'the items value (returned in emitted events when checked)',
+            description: "the item's value (returned in emitted events when checked)",
+        },
+        disabled: {
+            table: {
+                category: '@item attributes',
+            },
+            control: { type: 'boolean' },
+            description: 'whether or not the item is disabled',
         },
         onChange: {
             action: 'on-change',

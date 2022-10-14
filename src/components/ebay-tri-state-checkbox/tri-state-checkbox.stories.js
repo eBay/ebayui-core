@@ -1,11 +1,11 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
-import mixedImplementationComponent from './examples/04-mixed-implementation/template.marko';
-import WithLabelTemplate from './examples/05-with-label/template.marko';
-import DisabledTemplate from './examples/06-disabled-with-label/template.marko';
-import WithLabelCode from './examples/05-with-label/template.marko?raw';
-import DisabledCode from './examples/06-disabled-with-label/template.marko?raw';
+import mixedImplementationComponent from './examples/mixed-implementation.marko';
+import WithLabelTemplate from './examples/with-label.marko';
+import DisabledTemplate from './examples/disabled-with-label.marko';
+import WithLabelCode from './examples/with-label.marko?raw';
+import DisabledCode from './examples/disabled-with-label.marko?raw';
 
 const Template = (args) => ({
     input: {

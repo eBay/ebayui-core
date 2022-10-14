@@ -14,6 +14,9 @@ export default class {
     handleChange(index, wasClicked) {
         if (this.state.selectedIndex !== index) {
             const option = this.input.options[index];
+            if (option.disabled) {
+                return;
+            }
             this.state.selectedIndex = index;
             this.once('update', () => {
                 this.emit('change', {

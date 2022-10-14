@@ -126,11 +126,7 @@ export default {
             this.focus();
         }
 
-        if (
-            !wasClickedOption &&
-            !this.buttonClicked &&
-            this.input.expanded !== true
-        ) {
+        if (!wasClickedOption && !this.buttonClicked && this.input.expanded !== true) {
             this.collapse();
         }
 

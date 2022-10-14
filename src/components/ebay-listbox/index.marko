@@ -30,6 +30,7 @@ $ var selectedText = selectedOption && selectedOption.text;
             class:no-update=["listbox__option", option.class]
             role="option"
             tabindex=(option.disabled ? -1 : option.tabindex)
+            aria-disabled=(option.disabled && "true")
             aria-selected=(selectedOption === option && "true")
             onClick(!component.isAutoSelection && "handleClick", index)
             onMousedown(component.isAutoSelection && "handleMouseDown")>
