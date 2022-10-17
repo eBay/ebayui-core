@@ -63,6 +63,7 @@ export default {
         },
         floatingLabel: {
             description: 'If set then shows this text as the floating label.',
+            control: { type: 'text' },
             table: {
                 category: 'floating-label',
                 defaultValue: {
