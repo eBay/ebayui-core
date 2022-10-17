@@ -1,8 +1,13 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
 import { render, fireEvent, cleanup } from '@marko/testing-library';
-import template from '..';
-import * as mock from './mock';
+import { composeStories } from '@storybook/marko/dist/testing';
+import * as stories from '../pagination.stories';
+import { getPaginationItems } from '../../../common/test-utils/shared';
+
+const { Buttons, Links } = composeStories(stories);
+
+const { a11yNextText, a11yPreviousText } = Buttons.args;
 
 use(chaiDom);
 afterEach(cleanup);
@@ -11,12 +16,9 @@ afterEach(cleanup);
 let component;
 
 describe('given the pagination is rendered', () => {
-    let input;
-
     describe('with links', () => {
         beforeEach(async () => {
-            input = mock.link6ItemsNoSelected;
-            component = await render(template, input);
+            component = await render(Links, { items: getPaginationItems(6, true) });
         });
 
         thenItCanBeInteractedWith();
@@ -24,8 +26,7 @@ describe('given the pagination is rendered', () => {
 
     describe('with buttons', () => {
         beforeEach(async () => {
-            input = mock.Buttons0Selected;
-            component = await render(template, input);
+            component = await render(Buttons, { items: getPaginationItems(6) });
         });
 
         thenItCanBeInteractedWith();
@@ -35,7 +36,7 @@ describe('given the pagination is rendered', () => {
         describe('when the previous button is activated', () => {
             describe('via click', () => {
                 beforeEach(async () => {
-                    await fireEvent.click(component.getByLabelText(input.a11yPreviousText), {
+                    await fireEvent.click(component.getByLabelText(a11yPreviousText), {
                         detail: 1,
                     });
                 });
@@ -58,7 +59,7 @@ describe('given the pagination is rendered', () => {
         describe('when the next button is activated', () => {
             describe('via click', () => {
                 beforeEach(async () => {
-                    await fireEvent.click(component.getByLabelText(input.a11yNextText), {
+                    await fireEvent.click(component.getByLabelText(a11yNextText), {
                         detail: 1,
                     });
                 });
@@ -81,7 +82,7 @@ describe('given the pagination is rendered', () => {
         describe('when the item number is activated', () => {
             describe('via click', () => {
                 beforeEach(async () => {
-                    await fireEvent.click(component.getByText(input.items[1].renderBody.text), {
+                    await fireEvent.click(component.getByText('item 2'), {
                         detail: 1,
                     });
                 });
@@ -97,7 +98,7 @@ describe('given the pagination is rendered', () => {
                     const [[eventArg]] = selectEvents;
                     expect(eventArg).has.property('originalEvent').instanceOf(Event);
                     expect(eventArg).has.property('el').instanceOf(HTMLElement);
-                    expect(eventArg).has.property('value', input.items[1].renderBody.text);
+                    expect(eventArg).has.property('value', 'item 2');
                 });
             }
         });
@@ -105,16 +106,14 @@ describe('given the pagination is rendered', () => {
 });
 
 describe('given the pagination is rendered with disabled controls', () => {
-    const input = mock.link1ItemsNavigationDisabled;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Links, { items: getPaginationItems(1, true, null, true) });
     });
 
     describe('when the previous button is activated', () => {
         describe('via click', () => {
             beforeEach(async () => {
-                await fireEvent.click(component.getByLabelText(input.a11yPreviousText), {
+                await fireEvent.click(component.getByLabelText(a11yPreviousText), {
                     detail: 1,
                 });
             });
@@ -132,7 +131,7 @@ describe('given the pagination is rendered with disabled controls', () => {
     describe('when the next button is activated', () => {
         describe('via click', () => {
             beforeEach(async () => {
-                await fireEvent.click(component.getByLabelText(input.a11yNextText), {
+                await fireEvent.click(component.getByLabelText(a11yNextText), {
                     detail: 1,
                 });
             });
@@ -152,7 +151,7 @@ describe('given the pagination is rendered at various sizes', () => {
     [
         {
             name: 'with the second item selected',
-            input: mock.link9Items1Selected,
+            input: { items: getPaginationItems(9, true, 1) },
             cases: [
                 {
                     width: 330,
@@ -170,7 +169,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'with the fifth item selected',
-            input: mock.link9Items4Selected,
+            input: { items: getPaginationItems(9, true, 4) },
             cases: [
                 {
                     width: 330,
@@ -192,7 +191,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'with the eighth item selected',
-            input: mock.link9Items7Selected,
+            input: { items: getPaginationItems(9, true, 7) },
             cases: [
                 {
                     width: 330,
@@ -210,7 +209,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'first item and dots',
-            input: mock.link16ItemsDots1Selected,
+            input: { items: getPaginationItems(16, true, 1), variant: 'show-last' },
             cases: [
                 {
                     width: 330,
@@ -229,7 +228,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'with the seventh item selected and dots',
-            input: mock.link16ItemsDots7Selected,
+            input: { items: getPaginationItems(16, true, 7), variant: 'show-last' },
             cases: [
                 {
                     width: 330,
@@ -252,7 +251,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'with the 3rd to last item selected and hidden dots',
-            input: mock.link16ItemsDots13Selected,
+            input: { items: getPaginationItems(16, true, 13), variant: 'show-last' },
             cases: [
                 {
                     width: 330,
@@ -271,7 +270,7 @@ describe('given the pagination is rendered at various sizes', () => {
         },
         {
             name: 'with the last item selected and hidden dots',
-            input: mock.link16ItemsDots15Selected,
+            input: { items: getPaginationItems(16, true, 15), variant: 'show-last' },
             cases: [
                 {
                     width: 330,
@@ -288,10 +287,29 @@ describe('given the pagination is rendered at various sizes', () => {
             ],
             dots: false,
         },
+        {
+            name: 'hidden dots',
+            input: { items: getPaginationItems(5, true, 1), variant: 'show-last' },
+            cases: [
+                {
+                    width: 330,
+                    expect: [0, 5],
+                },
+                {
+                    width: 430,
+                    expect: [0, 5],
+                },
+                {
+                    width: 640,
+                    expect: [0, 5],
+                },
+            ],
+            dots: false,
+        },
     ].forEach(({ name, input, cases, dots }) => {
         describe(name, () => {
             beforeEach(async () => {
-                component = await render(template, input);
+                component = await render(Links, input);
             });
 
             cases.forEach(({ width, expect: [from, to, last] }) => {
