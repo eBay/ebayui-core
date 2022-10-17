@@ -1,12 +1,18 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
-import WithLabelTemplate from './examples/22-with-external-label/template.marko';
-import DisabledTemplate from './examples/23-disabled-with-label/template.marko';
-import FloatingLabelTemplate from './examples/15-floating-label-with-value/template.marko';
-import WithLabelCode from './examples/22-with-external-label/template.marko?raw';
-import DisabledCode from './examples/23-disabled-with-label/template.marko?raw';
-import FloatingLabelCode from './examples/15-floating-label-with-value/template.marko?raw';
+import WithLabelTemplate from './examples/external-label.marko';
+import DisabledTemplate from './examples/external-label-disabled.marko';
+import FloatingLabelTemplate from './examples/floating-label.marko';
+import WithBothIcons from './examples/both-icons.marko';
+import WithPostfixIcon from './examples/postfix-icon.marko';
+import WithPrefixIcon from './examples/prefix-icon.marko';
+import WithLabelCode from './examples/external-label.marko?raw';
+import DisabledCode from './examples/external-label-disabled.marko?raw';
+import FloatingLabelCode from './examples/floating-label.marko?raw';
+import WithBothIconsCode from './examples/both-icons.marko?raw';
+import WithPostfixIconCode from './examples/postfix-icon.marko?raw';
+import WithPrefixIconCode from './examples/prefix-icon.marko?raw';
 
 const Template = (args) => ({
     input: {
@@ -54,6 +60,27 @@ export default {
             type: 'boolean',
             control: { type: 'boolean' },
             description: 'indicates a field-level error with red border if true',
+        },
+        floatingLabel: {
+            description: 'If set then shows this text as the floating label.',
+            control: { type: 'text' },
+            table: {
+                category: 'floating-label',
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
+        opaqueLabel: {
+            description:
+                'Only works with floating label. If set, then background is obscured of the floating label. Used with textarea to prevent label overlap',
+            control: { type: 'boolean' },
+            table: {
+                category: 'floating-label',
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
         },
         buttonAriaLabel: {
             control: { type: 'text' },
@@ -224,6 +251,45 @@ Isolated.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-textbox', Isolated.args),
+        },
+    },
+};
+
+export const PrefixIcon = (args) => ({
+    input: args,
+    component: WithPrefixIcon,
+});
+PrefixIcon.args = {};
+PrefixIcon.parameters = {
+    docs: {
+        source: {
+            code: WithPrefixIconCode,
+        },
+    },
+};
+
+export const PostfixIcon = (args) => ({
+    input: args,
+    component: WithPostfixIcon,
+});
+PostfixIcon.args = {};
+PostfixIcon.parameters = {
+    docs: {
+        source: {
+            code: WithPostfixIconCode,
+        },
+    },
+};
+
+export const BothIcons = (args) => ({
+    input: args,
+    component: WithBothIcons,
+});
+BothIcons.args = {};
+BothIcons.parameters = {
+    docs: {
+        source: {
+            code: WithBothIconsCode,
         },
     },
 };

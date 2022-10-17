@@ -1,10 +1,15 @@
 import '@ebay/skin/tokens';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
 import { render, fireEvent, cleanup } from '@marko/testing-library';
 import template from '..';
 import componentB from '../component-browser';
-import * as mock from './mock';
+import * as stories from '../textbox.stories';
+
+const { Isolated, FloatingLabel, BothIcons } = composeStories(stories);
+
+const floatingLabel = 'Email address';
 
 componentB.renderer = template._; // Allow re-rendering the split component for testing.
 use(chaiDom);
@@ -14,10 +19,8 @@ afterEach(cleanup);
 let component;
 
 describe('given an input textbox', () => {
-    const input = mock.Basic;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Isolated, { value: 'test-value' });
     });
 
     ['change', 'input', 'focus', 'blur', 'keyDown', 'keyPress', 'keyUp', 'invalid'].forEach(
@@ -34,7 +37,7 @@ describe('given an input textbox', () => {
                     expect(events).has.length(1);
 
                     const [[eventArg]] = events;
-                    expect(eventArg).has.property('value', input.value);
+                    expect(eventArg).has.property('value', 'test-value');
                     expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
                 });
             });
@@ -43,10 +46,8 @@ describe('given an input textbox', () => {
 });
 
 describe('given an input textbox with floating label and no value', () => {
-    const input = mock.floatingLabelNoValue;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(FloatingLabel, { value: '' });
     });
 
     it('then component is wrapped into floating label element', () => {
@@ -54,7 +55,7 @@ describe('given an input textbox with floating label and no value', () => {
     });
 
     it('then is showing the label inline', async () => {
-        expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
+        expect(component.getByText(floatingLabel)).has.class('floating-label__label--inline');
     });
 
     describe('when the input is focused', () => {
@@ -63,7 +64,7 @@ describe('given an input textbox with floating label and no value', () => {
         });
 
         it('then it is not showing the label inline', () => {
-            expect(component.getByText(input.floatingLabel)).does.not.have.class(
+            expect(component.getByText(floatingLabel)).does.not.have.class(
                 'floating-label__label--inline'
             );
         });
@@ -74,7 +75,7 @@ describe('given an input textbox with floating label and no value', () => {
             });
 
             it('then is showing the label inline', () => {
-                expect(component.getByText(input.floatingLabel)).has.class(
+                expect(component.getByText(floatingLabel)).has.class(
                     'floating-label__label--inline'
                 );
             });
@@ -93,11 +94,9 @@ describe('given an input textbox with floating label and no value', () => {
 });
 
 describe('when the component has a postfix button', () => {
-    const input = mock.postfixIconButton;
-
     beforeEach(async () => {
-        component = await render(template, input);
-        await fireEvent.click(component.getByLabelText(input.buttonAriaLabel));
+        component = await render(BothIcons);
+        await fireEvent.click(component.getByLabelText('Clear'));
     });
 
     it('it should trigger a postfix click event', () => {
