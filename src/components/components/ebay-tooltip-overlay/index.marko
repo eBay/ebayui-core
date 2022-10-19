@@ -58,6 +58,11 @@ $ var overlayStyles = hasUserStyles ? {
                     <ebay-close-small-icon/>
                 </button>
             </if>
+            <if (input.footer)>
+                <span class=[`${input.type}__footer`, input.footer.class]>
+                    <${input.footer}/>
+                </span>
+            </if>
         </span>
     </span>
 </span>
