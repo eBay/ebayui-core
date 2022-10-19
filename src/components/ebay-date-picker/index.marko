@@ -1,0 +1,45 @@
+import { getWeekdayInfo, floorDay } from "./component.js"
+
+$ const today = floorDay(input.today ?? new Date());
+$ const numActiveMonths = input.numActiveMonths ?? 2;
+$ const locale = input.locale ?? navigator.language;
+$ const range = input.range ?? false;
+
+$ const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(locale);
+
+<div.date-picker class=(input.numActiveMonths === 1 && 'date-picker--single-month') hidden=!open>
+    <ebay-icon-button
+        class=['date-picker__month-button', 'date-picker__month-button--left']
+        aria-label='Show Previous Month'
+        onClick('onPrevious')
+    >
+        <ebay-chevron-left-icon/>
+    </ebay-icon-button>
+    <ebay-icon-button
+        class=['date-picker__month-button', 'date-picker__month-button--right']
+        aria-label='Show Next Month'
+        onClick('onNext')
+    >
+        <ebay-chevron-right-icon/>
+    </ebay-icon-button>
+    <for|monthOffset| from=0 to=numActiveMonths-1>
+        <ebay-date-picker-month
+            date=new Date(
+                today.getFullYear(),
+                today.getMonth() + state.offset + monthOffset
+            )
+            locale=locale
+            weekdayLabels=weekdayLabels
+            firstDayOfWeek=firstDayOfWeek
+            today=floorDay(today)
+            isRange=range
+            firstSelected=state.firstSelected
+            secondSelected=state.secondSelected
+            focusDate=state.focusDate
+            on-select("onDaySelect")
+            on-focus("onDayFocus")
+            on-blur("onDayBlur")
+            on-keydown("onKeyDown")
+        />
+    </for>
+</div>

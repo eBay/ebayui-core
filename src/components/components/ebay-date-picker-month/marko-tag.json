@@ -1,0 +1,17 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@date": "date",
+  "@locale": "string",
+  "@weekdayLabels": "array",
+  "@firstDayOfWeek": "number",
+  "@today": "date",
+  "@isRange": "boolean",
+  "@firstSelected": "date",
+  "@secondSelected": "date",
+  "@focusDate": "date"
+}
