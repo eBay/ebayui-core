@@ -4,6 +4,8 @@ import Readme from './README.md';
 import Component from './index.marko';
 import withAction from './examples/with-action.marko';
 import withActionCode from './examples/with-action.marko?raw';
+import withDismiss from './examples/with-dismiss.marko';
+import withDismissCode from './examples/with-dismiss.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -53,6 +55,10 @@ export default {
             },
             description: 'The roledescription to announce the component type for a11y users.',
         },
+        dismissed: {
+            description: 'whether or not the notice is dismissed',
+            type: 'boolean',
+        },
         title: {
             name: '@title',
             description: 'The title content to be displayed.',
@@ -65,6 +71,23 @@ export default {
             description: 'The footer content to be displayed. Used to show a CTA button generally',
             table: {
                 category: '@attribute tags',
+            },
+        },
+        cta: {
+            name: '@cta',
+            description: 'This allows the addition of a main CTA link',
+            table: {
+                category: '@attribute tags',
+            },
+        },
+        onDismiss: {
+            action: 'on-dismiss',
+            description: 'Triggered on notice dismiss',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
             },
         },
     },
@@ -118,6 +141,27 @@ WithAction.parameters = {
     docs: {
         source: {
             code: withActionCode,
+        },
+    },
+};
+
+export const WithDismiss = (args) => ({
+    input: args,
+    component: withDismiss,
+});
+
+WithDismiss.args = {
+    a11yText: 'information',
+    a11yIconText: '',
+    a11yDismissText: 'Dismiss Notice',
+    status: 'information',
+    icon: null,
+};
+
+WithDismiss.parameters = {
+    docs: {
+        source: {
+            code: withDismissCode,
         },
     },
 };

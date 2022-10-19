@@ -51,7 +51,7 @@ $ var prefixClass = input.prefixClass;
         </>
     </if>
     <if(input.cta)>
-        <p class="page-notice__cta">
+        <p class=`${prefixClass}__cta`>
             <a ...input.cta><${input.cta}/></a>
         </p>
     </if>
@@ -74,7 +74,7 @@ $ var prefixClass = input.prefixClass;
         <div class=`${prefixClass}__footer`>
             <button
                 aria-label=`${input.a11yDismissText}`
-                class="fake-link page-notice__dismiss"
+                class=["fake-link", `${prefixClass}__dismiss`]
                 onClick("handleDismissClick")
                 onKeydown("handleDismissKeydown")>
                 <ebay-close-small-icon class="icon icon--close-small"/>

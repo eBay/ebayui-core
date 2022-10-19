@@ -1,8 +1,11 @@
-<ebay-notice-base
-    ...input
-    role="region"
-    prefix-class="section-notice"
-    main-root="span"
-    a11yRoleDescription=(input.a11yRoleDescription || "Notice")
-    class=[input.status && `section-notice--${input.status}`, input.class]
+<if(!state.dismissed)>
+    <ebay-notice-base
+        ...input
+        role='region'
+        prefix-class='section-notice'
+        main-root='span'
+        a11yRoleDescription=input.a11yRoleDescription || 'Notice'
+        class=[input.status && `section-notice--${input.status}`, input.class]
+        on-dismiss('onDismiss')
     />
+</if>
