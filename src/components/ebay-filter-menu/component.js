@@ -65,6 +65,9 @@ export default Object.assign({}, menuUtils, {
     },
 
     _toggleItemChecked(index, originalEvent, el) {
+        if (this.isDisabled(index)) {
+            return;
+        }
         this.toggleChecked(index);
         this._emitComponentEvent('change', originalEvent, { el, index });
     },

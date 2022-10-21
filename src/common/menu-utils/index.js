@@ -40,6 +40,10 @@ function isChecked(index) {
     return this.state.checkedItems[index];
 }
 
+function isDisabled(index) {
+    return this.input.items[index].disabled;
+}
+
 function toggleChecked(index) {
     if (Array.isArray(index)) {
         if (this.isRadio()) {
@@ -67,5 +71,6 @@ const menuUtils = {
     getCheckedIndexes,
     getCheckedValues,
     toggleChecked,
+    isDisabled,
 };
 export default menuUtils;
