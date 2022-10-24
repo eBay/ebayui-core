@@ -84,7 +84,7 @@ export default Object.assign({}, menuUtils, {
         this._expander = new Expander(this.getEl('container'), {
             hostSelector: '.filter-menu-button__button',
             contentSelector: '.filter-menu-button__menu',
-            focusManagement: 'focusable',
+            focusManagement: 'interactive',
             expandOnClick: true,
             autoCollapse: true,
             alwaysDoFocusManagement: true,

@@ -91,7 +91,7 @@ export default Object.assign({}, menuUtils, {
     _setupMakeup() {
         if (this.input.variant !== 'form') {
             this._rovingTabIndex = createLinear(this.getEl('menu'), 'div', {
-                index: this.lastTabIndexPosition || 0,
+                autoInit: this.lastTabIndexPosition || 'first',
             });
 
             scrollKeyPreventer.add(this.getEl('container'));

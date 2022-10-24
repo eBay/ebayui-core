@@ -32,7 +32,7 @@ export default Object.assign({}, menuUtils, {
         }
 
         if (this.rovingTabindex) {
-            this.tabindexPosition = this.rovingTabindex.filteredItems.findIndex(
+            this.tabindexPosition = this.rovingTabindex.navigableItems.findIndex(
                 (el) => el.tabIndex === 0
             );
         }
