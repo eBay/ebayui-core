@@ -1,0 +1,100 @@
+import { processHtmlAttributes } from '../../common/html-attributes';
+static var ignoredAttributes = ['class', 'size', 'description', 'portions', 'metric', 'subtitle', 'layout'];
+static {
+    var colorsAll = [
+        'primary',
+        'secondary',
+        'tertiary',
+        'quaternary',
+        'quinary'
+    ];
+}
+static var colorsTwo = ['primary', 'secondary'];
+static var colorsThree = ['primary', 'tertiary', 'secondary'];
+static var colorsMore = ['primary', 'tertiary', 'secondary', 'quaternary', 'quinary'];
+$ var hasDescription = !!input.description;
+$ var colors = input.portions.length > 2 ? colorsThree : colorsTwo;
+$ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    onKeydown('handleKeydown')
+    tabindex='0'
+    id=state.containerId
+    class=[
+        'donut-graph',
+        input.class
+    ]>
+    <svg
+        version='1.1'
+        width=state.size
+        height=state.size
+        viewBox=`0 0 ${state.size} ${state.size}`
+        role='graphics-document'
+        aria-labelledby=input['aria-labelledby']
+    >
+        <if(hasDescription && input.description.renderBody)>
+            <desc><${input.description.renderBody}/></desc>
+        </if>
+        <defs>
+            <pattern#dataVizPattern0
+                patternUnits='userSpaceOnUse'
+                patternContentUnits='userSpaceOnUse'
+                width='3' height='5' x='0' y='0'>
+                <rect x='0' y='0' width='3' height='5'
+                    fill='var(--color-data-viz-chart-quaternary-background)'/>
+                <path
+                    d='M0 0 L3 0'
+                    stroke='var(--color-data-viz-chart-quaternary-stroke)'
+                    stroke-width='2'
+                    fill='none'/>
+            </pattern>
+            <pattern#dataVizPattern1
+                patternUnits='userSpaceOnUse'
+                patternContentUnits='userSpaceOnUse'
+                width='4.5' height='3' x='0' y='0'
+                patternTransform='rotate(-60 50 50)'>
+                <rect x='0' y='0' width='4.5' height='3'
+                    fill='var(--color-data-viz-chart-tertiary-background)'/>
+                <path
+                    d='M0 0 L0 3'
+                    stroke='var(--color-data-viz-chart-tertiary-stroke)'
+                    stroke-width='2'
+                    fill='none'/>
+            </pattern>
+        </defs>
+        <for|portion, index| of=state.portions>
+            <path
+                class=[
+                    'donut-graph__segment',
+                    `donut-graph__segment--${colorClasses[index]}`,
+                    state.focusIndex !== -1 &&
+                        state.focusIndex !== index &&
+                        'donut-graph--inactive',
+                ]
+                d=component.getPortionShape(portion.percentage, index)
+                data-id=index
+                role='graphics-symbol'
+                tabindex='-1'
+                aria-labelledby=`${input.containerId}-chart-legend-label-${index}`
+                on-mouseover('handlePathFocus')
+                on-mouseout('handlePathBlur')
+                on-mousemove('handleToolTip')
+                on-click('handlePathFocus')
+                on-focus('handlePathFocus')
+                on-blur('handlePathBlur')
+            />
+        </for>
+    </svg>
+    <if (state.showToolTip)>
+        <div.donut-graph__tooltip tabindex="-1">
+            <div.donut-graph__tooltip-container>
+                <span class="tooltip__pointer"></span>
+                <if(state.focusIndex !== -1)>
+                    <span.donut-graph__tooltip__label>${state.portions[state.focusIndex].text}</span>
+                    <span.donut-graph__tooltip__value>${state.portions[state.focusIndex].rawValue}</span>
+                </if>
+            </div>
+        </div>
+    </if>
+</div>

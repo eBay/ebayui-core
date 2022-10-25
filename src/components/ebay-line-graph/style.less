@@ -1,0 +1,40 @@
+.ebay-line-graph {
+    width: 100%;
+
+    &__container {
+        height: 300px;
+    }
+
+    .highcharts-point {
+        opacity: 0;
+        stroke-width: 2px;
+
+        &.visible {
+            opacity: 1;
+        }
+    }
+
+    .highcharts-legend-item {
+        .highcharts-point {
+            opacity: 1;
+            stroke-width: 0;
+        }
+
+        .highcharts-graph {
+            display: none;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .highcharts-halo {
+            fill-opacity: 0.8;
+        }
+    }
+}
+
+// remove this before finished, just used as a sample
+.selling-sample {
+    .ebay-line-graph__container {
+        height: 100px;
+    }
+}

@@ -1,0 +1,41 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+
+static var ignoredAttributes = ["class", "values"];
+static {
+    var colorsAll = [
+        'primary',
+        'secondary',
+        'tertiary',
+        'quaternary',
+        'quinary'
+    ];
+}
+static var colorsTwo = ['primary', 'secondary'];
+static var colorsThree = ['primary', 'tertiary', 'secondary'];
+static var colorsMore = ['primary', 'tertiary', 'secondary', 'quaternary', 'quinary'];
+
+$ var colors = input.values.length > 2 ? colorsThree : colorsTwo;
+$ var colorClasses = input.values.length > 3 ? colorsMore : colors;
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=["chart-legend", "chart-legend__table"]>
+    <ul>
+        <for|portion, index| of=input.values>
+            <li id=`${input.containerId}-chart-legend-label-${index}`
+                data-id=index
+                class=['chart-legend__item', `chart-legend__item--${colorClasses[index]}`, input.patternfill && "patternfill", state.focusIndex !== -1 && state.focusIndex !== index && "chart-legend--inactive"]
+                on-mouseover("handleFocus")
+                on-mouseout("handleBlur")
+                on-click("handleFocus")
+                on-focus("handleFocus")
+                on-blur("handleBlur")>
+                ${portion.text}
+                <span.value>${portion.value}</span>
+                <if (portion.percentage)>
+                    <span.clipped>${(portion.percentage * 100).toFixed(2)}%</span>
+                </if>
+            </li>
+        </for>
+    </ul>
+</div>

@@ -1,0 +1,23 @@
+.ebay-area-chart {
+    .highcharts-point {
+        opacity: 0;
+        stroke-width: 2px;
+
+        &.visible {
+            opacity: 1;
+        }
+    }
+
+    .highcharts-legend-item {
+        .highcharts-point {
+            opacity: 1;
+            stroke-width: 1;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .highcharts-halo {
+            fill-opacity: 0.8;
+        }
+    }
+}

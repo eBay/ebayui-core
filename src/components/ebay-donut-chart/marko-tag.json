@@ -1,0 +1,54 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@patternfill": "boolean",
+  "@size": {
+    "enum": ["small", "medium", "large"]
+  },
+  "@title <title>": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@class": "string",
+    "@style": "string"
+  },
+  "@description <description>": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@class": "string",
+    "@style": "string"
+  },
+  "@description <metric>": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@class": "string",
+    "@style": "string"
+  },
+  "@description <sub-title>": {
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@class": "string",
+    "@style": "string"
+  },
+  "@portions <portion>[]": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@value": "string",
+    "@text": "string"
+  }
+}

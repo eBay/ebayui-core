@@ -1,0 +1,107 @@
+import { processHtmlAttributes } from '../../common/html-attributes';
+static var ignoredAttributes = ['class', 'size', 'description', 'portions', 'metric', 'subtitle', 'layout'];
+static {
+    var colorsAll = [
+        'primary',
+        'secondary',
+        'tertiary',
+        'quaternary',
+        'quinary'
+    ];
+}
+static var colorsTwo = ['primary', 'secondary'];
+static var colorsThree = ['primary', 'tertiary', 'secondary'];
+static var colorsMore = ['primary', 'tertiary', 'secondary', 'quaternary', 'quinary'];
+$ var hasTitle = !!input.title;
+$ var hasDescription = !!input.description;
+$ var colors = input.portions.length > 2 ? colorsThree : colorsTwo;
+$ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[
+        'donut-chart',
+        (input.layout === 'legend-left' || input.layout === 'legend-right') && 'donut-chart__legend-horizontal',
+        input.layout === 'legend-left' && 'donut-chart__legend-left',
+        input.layout === 'legend-right' && 'donut-chart__legend-right',
+        input.layout === 'stacked' && 'donut-chart__stacked',
+        !input.layout && !input.metric && !input.subtitle && 'donut-chart__stacked',
+        input.class,
+    ]
+    id=state.containerId
+>
+    <if(input.metric && !input.layout || input.layout === 'stacked')>
+        <div
+            class=[
+                'donut-chart__metrics',
+                input.layout === 'stacked' && 'donut-chart__metrics-stacked'
+        ]>
+            <if (input.metric)>
+                <span.donut-chart__metric>
+                    <${input.metric.renderBody}/>
+                </span>
+            </if>
+            <if(input.subtitle)>
+                <span.donut-chart__subtitle>
+                    <${input.subtitle.renderBody}/>
+                </span>
+            </if>
+        </div>
+    </if>
+    <ebay-donut-graph
+        containerId=state.containerId
+        class=[
+            'donut-chart__container',
+            (input.layout === 'legend-left' || input.layout === 'legend-right') && 'donut-chart__container-horizontal',
+            input.layout === 'legend-left' && 'donut-chart__container-left',
+            input.layout === 'legend-right' && 'donut-chart__container-right',
+            !input.layout || input.layout === 'stacked' && 'donut-chart__container-vertical',
+            !input.layout && !input.metric && !input.subtitle && 'donut-chart__container-vertical']
+        ...input
+        focusIndex=state.focusIndex
+        on-focus('handlePathFocus')
+        on-blur('handlePathBlur') />
+    <div
+        class=[
+            'donut-chart-legend__container',
+            (input.layout === 'legend-left' || input.layout === 'legend-right') && 'donut-chart-legend__container-horizontal'
+        ]>
+        <if(input.metric && input.layout && input.layout !== 'stacked')>
+            <div
+                class=[
+                    'donut-chart__metrics',
+                    'donut-chart__metrics-horizontal'
+            ]>
+                <span.donut-chart__metric>
+                    <${input.metric.renderBody}/>
+                </span>
+                <if(input.subtitle)>
+                    <span.donut-chart__subtitle>
+                        <${input.subtitle.renderBody}/>
+                    </span>
+                </if>
+            </div>
+        </if>
+        <ebay-chart-legend
+            focusIndex=state.focusIndex
+            containerId=state.containerId
+            on-focus('handlePathFocus')
+            on-blur('handlePathBlur')
+        >
+            <for|v| of=state.portions>
+                <@value ...v value=v.rawValue/>
+            </for>
+        </ebay-chart-legend>
+    </div>
+    <if (state.showToolTip)>
+        <div.donut-chart__tooltip>
+            <div.donut-chart__tooltip-container>
+                <span class="tooltip__pointer"></span>
+                <if(state.focusIndex !== -1)>
+                    <span.donut-chart__tooltip__label>${state.portions[state.focusIndex].text}</span>
+                    <span.donut-chart__tooltip__value>${state.portions[state.focusIndex].rawValue}</span>
+                </if>
+            </div>
+        </div>
+    </if>
+</div>

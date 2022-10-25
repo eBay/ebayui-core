@@ -1,0 +1,20 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@patternfill": "boolean",
+  "@values <value>[]": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@value": "string",
+    "@text": "string",
+    "@percentage": "number"
+  }
+}

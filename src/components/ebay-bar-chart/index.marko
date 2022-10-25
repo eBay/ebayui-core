@@ -1,0 +1,14 @@
+import { processHtmlAttributes } from "../../common/html-attributes"
+static var ignoredAttributes = [
+    'data',
+    'class'
+];
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[
+        input.class,
+        'ebay-bar-chart'
+    ]>
+    <div.ebay-bar-chart__container id=state.containerId/>
+</div>

@@ -90,7 +90,7 @@
     "chai": "4.3.6",
     "chai-dom": "^1.10.0",
     "cheerio": "^1.0.0-rc.11",
-    "chromedriver": "^106",
+    "chromedriver": "^107",
     "coveralls": "^3.1.1",
     "css-loader": "^6",
     "dotenv-webpack": "^8",
@@ -135,6 +135,8 @@
   },
   "dependencies": {
     "@marko-tags/subscribe": "^0.4.2",
+    "@martin-ebay/ebay-data-viz-generator": "^0.0.3",
+    "highcharts": "^10.2.1",
     "makeup-active-descendant": "0.5.1",
     "makeup-expander": "~0.10.0",
     "makeup-floating-label": "~0.3.1",
