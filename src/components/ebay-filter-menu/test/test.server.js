@@ -1,39 +1,30 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import template from '..';
-import * as testUtils from '../../../common/test-utils/server';
-import * as mock from './mock';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../filter-menu.stories';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
 
-use(require('chai-dom'));
+const { Standard } = composeStories(stories);
+
+const htmlSnap = snapshotHTML(__dirname);
+const items = [...Standard.args.items];
 
 describe('filter-menu', () => {
     it('renders basic version', async () => {
-        const input = mock.basic2Items;
-        const { getByRole, getAllByRole, getByText } = await render(template, input);
-        const menuEl = getByRole('menu');
-        expect(menuEl).has.class('filter-menu__items');
-        expect(menuEl).has.property('parentElement').with.class('filter-menu');
-
-        const menuItemEls = getAllByRole('menuitemcheckbox');
-        input.items.forEach((item, i) => {
-            const menuItemEl = menuItemEls[i];
-            const textEl = getByText(item.renderBody.text);
-            expect(menuItemEl).has.class('filter-menu__item');
-            expect(menuItemEl).contains(textEl);
-        });
+        await htmlSnap(Standard);
     });
 
     it(`renders checked item`, async () => {
-        const input = { items: [{ checked: true }] };
-        const { getAllByRole } = await render(template, input);
-        const optionEls = getAllByRole(`menuitemcheckbox`);
-
-        expect(optionEls).has.length(1);
-        expect(optionEls[0]).has.attr('aria-checked', String('true'));
+        items[1] = Object.assign({ checked: true }, items[1]);
+        await htmlSnap(Standard);
     });
 
-    testUtils.testPassThroughAttributes(template);
-    testUtils.testPassThroughAttributes(template, {
+    it(`renders disabled item`, async () => {
+        items[1] = Object.assign({ disabled: true }, items[1]);
+        await htmlSnap(Standard);
+    });
+
+    testPassThroughAttributes(Standard);
+    testPassThroughAttributes(Standard, {
         child: {
             name: 'items',
             multiple: true,

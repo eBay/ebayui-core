@@ -1,9 +1,14 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { render, fireEvent, cleanup } from '@marko/testing-library';
 import { pressKey } from '../../../common/test-utils/browser';
-import template from '..';
-import * as mock from './mock';
+import * as stories from '../listbox-button.stories';
+
+const { Standard } = composeStories(stories);
+
+const options = [...Standard.args.options];
+options[0] = Object.assign({ selected: true }, options[0]);
 
 use(chaiDom);
 afterEach(cleanup);
@@ -17,12 +22,14 @@ before(() => document.body.appendChild(form));
 after(() => document.body.removeChild(form));
 
 describe('given the listbox with 3 items', () => {
-    const input = mock.basic3Options;
-
     beforeEach(async () => {
-        component = await render(template, Object.assign({}, input, { listSelection: 'auto' }), {
-            container: form,
-        });
+        component = await render(
+            Standard,
+            { listSelection: 'auto', name: 'listbox-name', buttonName: 'listbox-button-name' },
+            {
+                container: form,
+            }
+        );
     });
 
     it('then it should not be expanded', () => {
@@ -34,9 +41,7 @@ describe('given the listbox with 3 items', () => {
     });
 
     it('then the native select should be initialized to the first option value', () => {
-        expect(form.elements)
-            .has.property(input.name)
-            .with.property('value', input.options[0].value);
+        expect(form.elements).has.property('listbox-name').with.property('value', options[0].value);
     });
 
     describe('when the down arrow key is pressed', () => {
@@ -96,18 +101,20 @@ describe('given the listbox with 3 items', () => {
 });
 
 describe('given the listbox is in an expanded state', () => {
-    const input = mock.basic3OptionsFirstSelected;
-
     beforeEach(async () => {
-        component = await render(template, Object.assign({}, input, { listSelection: 'auto' }), {
-            container: form,
-        });
+        component = await render(
+            Standard,
+            { listSelection: 'auto', options },
+            {
+                container: form,
+            }
+        );
         await fireEvent.click(component.getByRole('button'));
     });
 
     describe('when an option is clicked', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByText(input.options[1].text));
+            await fireEvent.click(component.getByText(options[1].text));
         });
 
         it('Should trigger listbox change change', () => {
@@ -116,9 +123,7 @@ describe('given the listbox is in an expanded state', () => {
 
             const [[changeEvent]] = changeEvents;
             expect(changeEvent).has.property('index', 1);
-            expect(changeEvent)
-                .has.property('selected')
-                .and.is.deep.equal([input.options[1].value]);
+            expect(changeEvent).has.property('selected').and.is.deep.equal([options[1].value]);
         });
     });
 
@@ -136,18 +141,14 @@ describe('given the listbox is in an expanded state', () => {
 
             const [[changeEvent]] = changeEvents;
             expect(changeEvent).has.property('index', 1);
-            expect(changeEvent)
-                .has.property('selected')
-                .and.is.deep.equal([input.options[1].value]);
+            expect(changeEvent).has.property('selected').and.is.deep.equal([options[1].value]);
         });
     });
 });
 
 describe('given the listbox is in an expanded state with manual list-selection', () => {
-    const input = mock.basic3OptionsFirstSelected;
-
     beforeEach(async () => {
-        component = await render(template, input, { container: form });
+        component = await render(Standard, { options }, { container: form });
         await fireEvent.click(component.getByRole('button'));
     });
 
@@ -183,9 +184,7 @@ describe('given the listbox is in an expanded state with manual list-selection',
 
             const [[changeEvent]] = changeEvents;
             expect(changeEvent).has.property('index', 1);
-            expect(changeEvent)
-                .has.property('selected')
-                .and.is.deep.equal([input.options[1].value]);
+            expect(changeEvent).has.property('selected').and.is.deep.equal([options[1].value]);
         });
     });
 });

@@ -1,9 +1,14 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { render, fireEvent, cleanup } from '@marko/testing-library';
+import * as stories from '../filter-menu-button.stories';
 import { pressKey } from '../../../common/test-utils/browser';
-import template from '..';
-import * as mock from './mock';
+import { addRenderBodies } from '../../../../.storybook/utils';
+
+const { Standard } = composeStories(stories);
+
+const items = [...Standard.args.items];
 
 use(chaiDom);
 afterEach(cleanup);
@@ -12,11 +17,10 @@ afterEach(cleanup);
 let component;
 
 describe('given the filter menu is in the default state', () => {
-    const input = mock.basic2Items;
     let filterButton;
 
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard);
         filterButton = component.getAllByRole('button')[0];
     });
 
@@ -50,7 +54,9 @@ describe('given the filter menu is in the default state', () => {
 
     describe('when re-rendered with expanded set to false', () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { expanded: false }));
+            await component.rerender(
+                Object.assign({}, addRenderBodies(Standard.args), { expanded: false })
+            );
         });
 
         it('then it remains collapsed', () => {
@@ -65,7 +71,9 @@ describe('given the filter menu is in the default state', () => {
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to true', () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { expanded: true }));
+            await component.rerender(
+                Object.assign({}, addRenderBodies(Standard.args), { expanded: true })
+            );
         });
 
         it('then it expands', () => {
@@ -79,12 +87,11 @@ describe('given the filter menu is in the default state', () => {
 });
 
 describe('given the menu is in the expanded state', () => {
-    const input = mock.basic2Items;
-    const firstItemText = input.items[0].renderBody.text;
+    const firstItemText = items[0].renderBody;
     let filterButton, footerButton, firstItem, secondItem;
 
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Standard);
         filterButton = component.getAllByRole('button')[0];
         footerButton = component.getAllByRole('button', { hidden: true })[1];
         firstItem = component.getAllByRole('menuitemcheckbox', { hidden: true })[0];
@@ -96,7 +103,9 @@ describe('given the menu is in the expanded state', () => {
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to true', () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { expanded: true }));
+            await component.rerender(
+                Object.assign({}, addRenderBodies(Standard.args), { expanded: true })
+            );
         });
 
         it('then it remains expanded', () => {
@@ -111,7 +120,9 @@ describe('given the menu is in the expanded state', () => {
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to false', () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { expanded: false }));
+            await component.rerender(
+                Object.assign({}, addRenderBodies(Standard.args), { expanded: false })
+            );
         });
 
         it('then it expands', () => {
@@ -134,7 +145,7 @@ describe('given the menu is in the expanded state', () => {
 
             const [[eventArg]] = selectEvents;
             expect(eventArg).has.property('el').with.text(firstItemText);
-            expect(eventArg).has.property('checked').to.deep.equal(['item 0']);
+            expect(eventArg).has.property('checked').to.deep.equal(['item 1']);
             expect(eventArg).has.property('currentChecked').to.equal(true);
             expect(eventArg).has.property('index').to.equal(0);
         });
@@ -176,7 +187,7 @@ describe('given the menu is in the expanded state', () => {
             expect(changeEvents).to.have.length(2);
 
             const [firstEventData, secondEventData] = changeEvents.flat();
-            expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
+            expect(firstEventData).has.property('checked').to.deep.equal(['item 1']);
             expect(secondEventData).has.property('checked').to.deep.equal([]);
             expect(firstEventData).has.property('currentChecked').to.equal(true);
             expect(secondEventData).has.property('currentChecked').to.equal(false);
@@ -203,7 +214,7 @@ describe('given the menu is in the expanded state', () => {
 
             const [firstEventData] = changeEvents.flat();
             expect(firstEventData).has.property('el').with.text(firstItemText);
-            expect(firstEventData).has.property('checked').to.deep.equal(['item 0']);
+            expect(firstEventData).has.property('checked').to.deep.equal(['item 1']);
             expect(firstEventData).has.property('currentChecked').to.equal(true);
             expect(firstEventData).has.property('index').to.equal(0);
         });
@@ -222,23 +233,49 @@ describe('given the menu is in the expanded state', () => {
     });
 
     describe('when an item is added via input from its parent and the new item is clicked', () => {
-        const newInput = mock.basic3Items;
-        const thirdItemText = newInput.items[2].renderBody.text;
-        beforeEach(async () => {
-            await component.rerender(newInput);
-            await fireEvent.click(component.getByText(thirdItemText));
-        });
+        const newItems = addRenderBodies([
+            ...items,
+            {
+                value: 'item 4',
+                renderBody: `item 4`,
+            },
+        ]);
+        const fourthItem = 'item 4';
 
-        it('then the new item is selected or something');
+        beforeEach(async () => {
+            await component.rerender(Object.assign({}, Standard.args, { items: newItems }));
+            await fireEvent.click(component.getByText(fourthItem));
+        });
 
         it('then it uses the new input in event data', () => {
             const selectEvents = component.emitted('change');
             expect(selectEvents).has.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property('el').with.text(thirdItemText);
+            expect(eventArg).has.property('checked').to.deep.equal(['item 4']);
             expect(eventArg).has.property('currentChecked').to.equal(true);
-            expect(eventArg).has.property('index').to.equal(2);
+            expect(eventArg).has.property('index').to.equal(3);
+        });
+    });
+});
+
+describe('given the menu item is disabled', () => {
+    const firstItemText = items[0].renderBody;
+
+    beforeEach(async () => {
+        items[0] = Object.assign({}, items[0], { disabled: true });
+
+        component = await render(Standard, { items: addRenderBodies(items) });
+    });
+
+    describe('when an item is clicked', () => {
+        beforeEach(async () => {
+            await fireEvent.click(component.getByText(firstItemText));
+        });
+
+        it('then it does not emit the change event with correct data', () => {
+            const selectEvents = component.emitted('change');
+            expect(selectEvents).to.length(0);
         });
     });
 });

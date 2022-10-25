@@ -55,6 +55,12 @@ export default {
                 category: '@option attributes',
             },
         },
+        disabled: {
+            control: { type: 'boolean' },
+            table: {
+                category: '@option attributes',
+            },
+        },
         onChange: {
             action: 'on-change',
             description: 'Triggered on item clicked',

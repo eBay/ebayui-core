@@ -3,6 +3,7 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 static var ignoredAttributes = [
     "variant",
     "footerText",
+    "a11yFooterText",
     "class",
     "style",
     "classPrefix",
@@ -13,7 +14,7 @@ static var ignoredAttributes = [
     "type"
 ];
 
-static var itemIgnoredAttributes = ["checked", "value"];
+static var itemIgnoredAttributes = ["checked", "value", "disabled"];
 
 $ var isRadio = input.type === "radio";
 $ var prefixName = isRadio ? 'radio' : 'checkbox';
@@ -37,6 +38,7 @@ $ var isForm = input.variant === "form";
                     class=[`${baseClass}__item`, item.class]
                     role=(isRadio ? "menuitemradio" : "menuitemcheckbox")
                     aria-checked=String(isChecked)
+                    aria-disabled=(item.disabled && "true")
                     for=(isForm && component.elId(`${prefixName}-${i}`))
                     onClick("handleItemClick", i)
                     onKeydown("handleItemKeydown", i)>

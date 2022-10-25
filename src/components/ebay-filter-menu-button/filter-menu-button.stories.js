@@ -170,6 +170,8 @@ Standard.args = {
             renderBody: `item 3`,
         },
     ],
+    footerText: 'Apply',
+    a11yText: 'Filter Menu Button A11y Text',
 };
 Standard.parameters = {
     docs: {

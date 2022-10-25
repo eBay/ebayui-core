@@ -1,50 +1,33 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import template from '..';
-import * as testUtils from '../../../common/test-utils/server';
-import * as mock from './mock';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../filter-menu-button.stories';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
 
-use(require('chai-dom'));
+const { Standard } = composeStories(stories);
 
-describe('filter-menu-button', () => {
+const htmlSnap = snapshotHTML(__dirname);
+const items = [...Standard.args.items];
+
+describe('filter-menu', () => {
     it('renders basic version', async () => {
-        const input = mock.basic2Items;
-        const { getByRole, getAllByRole, getByText } = await render(template, input);
-        const btnEl = getAllByRole('button')[0];
-        expect(btnEl).contains(getByText(input.text));
-        expect(btnEl).has.attr('aria-label', input.a11yText);
-        expect(btnEl).has.class('filter-menu-button__button');
-        expect(btnEl).has.attr('aria-haspopup', 'true');
-        expect(btnEl).has.attr('aria-expanded', 'false');
-        expect(btnEl).has.property('parentElement').with.class('filter-menu-button');
-        expect(btnEl.querySelector('.icon--chevron-down')).has.property('tagName', 'svg');
-        expect(getByRole('menu'))
-            .has.property('parentElement')
-            .with.class('filter-menu-button__menu');
-
-        const menuItemEls = getAllByRole('menuitemcheckbox');
-        input.items.forEach((item, i) => {
-            const menuItemEl = menuItemEls[i];
-            const textEl = getByText(item.renderBody.text);
-            expect(menuItemEl).has.class('filter-menu-button__item');
-            expect(menuItemEl).contains(textEl);
-        });
-    });
-
-    it('renders with disabled state', async () => {
-        const input = mock.Disabled;
-        const { getAllByRole } = await render(template, input);
-        expect(getAllByRole('button')[0]).has.attr('disabled');
+        await htmlSnap(Standard);
     });
 
     it(`renders checked item`, async () => {
-        const input = { items: [{ checked: true }] };
-        const { getAllByRole } = await render(template, input);
-        const optionEls = getAllByRole(`menuitemcheckbox`);
-
-        expect(optionEls).has.length(1);
-        expect(optionEls[0]).has.attr('aria-checked', String('true'));
+        items[1] = Object.assign({ checked: true }, items[1]);
+        await htmlSnap(Standard);
     });
 
-    testUtils.testPassThroughAttributes(template);
+    it(`renders disabled item`, async () => {
+        items[1] = Object.assign({ disabled: true }, items[1]);
+        await htmlSnap(Standard);
+    });
+
+    testPassThroughAttributes(Standard);
+    testPassThroughAttributes(Standard, {
+        child: {
+            name: 'items',
+            multiple: true,
+        },
+    });
 });

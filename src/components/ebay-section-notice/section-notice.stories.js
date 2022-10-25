@@ -1,16 +1,14 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
+import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
-import footer from './examples/button.marko';
-import renderBody from './examples/body.marko';
-import title from './examples/title.marko';
+import withAction from './examples/with-action.marko';
+import withActionCode from './examples/with-action.marko?raw';
+import withDismiss from './examples/with-dismiss.marko';
+import withDismissCode from './examples/with-dismiss.marko?raw';
 
 const Template = (args) => ({
-    input: {
-        ...args,
-        renderBody,
-        title: args.status === 'celebration' && title,
-    },
+    input: addRenderBodies(args),
 });
 
 export default {
@@ -57,7 +55,17 @@ export default {
             },
             description: 'The roledescription to announce the component type for a11y users.',
         },
-
+        dismissed: {
+            description: 'whether or not the notice is dismissed',
+            type: 'boolean',
+        },
+        title: {
+            name: '@title',
+            description: 'The title content to be displayed.',
+            table: {
+                category: '@attribute tags',
+            },
+        },
         footer: {
             name: '@footer',
             description: 'The footer content to be displayed. Used to show a CTA button generally',
@@ -65,39 +73,95 @@ export default {
                 category: '@attribute tags',
             },
         },
+        cta: {
+            name: '@cta',
+            description: 'This allows the addition of a main CTA link',
+            table: {
+                category: '@attribute tags',
+            },
+        },
+        onDismiss: {
+            action: 'on-dismiss',
+            description: 'Triggered on notice dismiss',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ originalEvent }',
+                },
+            },
+        },
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Basic = Template.bind({});
+Basic.args = {
     a11yText: 'attention',
     status: 'attention',
     a11yRoleDescription: 'Notice',
+    renderBody: '<p>Section notice info. Things you need to know.</p>',
 };
-Standard.parameters = {
+Basic.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-section-notice', Standard.args),
+            code: tagToString('ebay-section-notice', Basic.args),
+        },
+    },
+};
+
+export const WithTitle = Template.bind({});
+WithTitle.args = {
+    a11yText: 'attention',
+    status: 'attention',
+    a11yRoleDescription: 'Notice',
+    title: {
+        renderBody: 'Section notice title',
+    },
+    renderBody: '<p>Section notice info. Things you need to know.</p>',
+};
+
+WithTitle.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-section-notice', WithTitle.args),
         },
     },
 };
 
 export const WithAction = (args) => ({
-    input: {
-        ...args,
-        renderBody,
-    },
+    input: args,
+    component: withAction,
 });
+
 WithAction.args = {
     a11yText: 'attention',
     status: 'attention',
-    footer,
 };
 
 WithAction.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-section-notice', WithAction.args),
+            code: withActionCode,
+        },
+    },
+};
+
+export const WithDismiss = (args) => ({
+    input: args,
+    component: withDismiss,
+});
+
+WithDismiss.args = {
+    a11yText: 'information',
+    a11yIconText: '',
+    a11yDismissText: 'Dismiss Notice',
+    status: 'information',
+    icon: null,
+};
+
+WithDismiss.parameters = {
+    docs: {
+        source: {
+            code: withDismissCode,
         },
     },
 };

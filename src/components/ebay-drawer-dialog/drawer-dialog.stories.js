@@ -1,6 +1,9 @@
+import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
-import Component from './examples/01-default/template.marko';
-import code from './examples/01-default/template.marko?raw';
+import Component from './examples/default.marko';
+import code from './examples/default.marko?raw';
+import withFooter from './examples/withFooter.marko';
+import withFooterCode from './examples/withFooter.marko?raw';
 
 export default {
     title: 'dialogs/ebay-drawer-dialog',
@@ -31,6 +34,10 @@ export default {
             type: 'boolean',
             control: { type: 'boolean' },
             description: 'Whether the drawer is expanded to full height or max 50%',
+        },
+        closeButtonText: {
+            control: { type: 'text' },
+            description: 'If set, then will show this text instead of a close button',
         },
         focus: {
             control: { type: 'text' },
@@ -115,20 +122,41 @@ export default {
     },
 };
 
-export const Standard = (args) => ({ input: args });
+export const Standard = (args) => ({
+    input: addRenderBodies(args),
+});
 Standard.args = {
     header: {
         renderBody: 'Heading Text',
     },
     renderBody: `Body Content`,
-    footer: {
-        renderBody: `Footer Text`,
-    },
+    a11yMinimizeText: 'Minimize Drawer',
+    a11yMaximizeText: 'Maximize Drawer',
 };
 Standard.parameters = {
     docs: {
         source: {
             code,
+        },
+    },
+};
+
+export const WithFooter = (args) => ({
+    component: withFooter,
+    input: addRenderBodies(args),
+});
+WithFooter.args = {
+    header: {
+        renderBody: 'Heading Text',
+    },
+    renderBody: `Body Content`,
+    a11yMinimizeText: 'Minimize Drawer',
+    a11yMaximizeText: 'Maximize Drawer',
+};
+WithFooter.parameters = {
+    docs: {
+        source: {
+            code: withFooterCode,
         },
     },
 };

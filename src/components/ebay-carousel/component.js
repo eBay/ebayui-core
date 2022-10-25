@@ -93,7 +93,14 @@ function onRender() {
             forEls(listEl, (itemEl) => {
                 focusables(itemEl).forEach(
                     itemEl.getAttribute('aria-hidden') !== 'true'
-                        ? (child) => child.removeAttribute('tabindex')
+                        ? // Default the child tabindex to data-carousel-tabindex if it exists, or remove it
+                          (child) =>
+                              child.hasAttribute('data-carousel-tabindex')
+                                  ? child.setAttribute(
+                                        'tabindex',
+                                        child.getAttribute('data-carousel-tabindex')
+                                    )
+                                  : child.removeAttribute('tabindex')
                         : (child) => child.setAttribute('tabindex', '-1')
                 );
             });

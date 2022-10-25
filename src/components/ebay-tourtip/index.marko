@@ -13,6 +13,9 @@ static var ignoredAttributes = [
     "heading",
     "content"
 ];
+static var ignoredFooterAttributes = [
+    "index"
+];
 
 $ var pointer = input.pointer || "bottom";
 
@@ -49,7 +52,19 @@ $ var pointer = input.pointer || "bottom";
                 heading=input.heading
                 content=input.content
                 a11y-close-text=input.a11yCloseText
-                onOverlay-close("handleCollapse")/>
+                onOverlay-close("handleCollapse")>
+                <if(input.footer)>
+                    <@footer class=[input.footer.class]>
+                        <if (input.footer.index)>
+                            <span class="tourtip__index">
+                                ${input.footer.index}
+                            </span>
+                        </if>
+                        <${input.footer}/>
+                    </@footer>
+
+                </if>
+            </ebay-tooltip-overlay>
         </span>
     </ebay-tooltip-base>
 </span>
