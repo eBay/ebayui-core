@@ -72,7 +72,7 @@
     "@marko/compiler": "^5.22.8",
     "@marko/migrate": "^6.0.2",
     "@marko/prettyprint": "^3.0.1",
-    "@marko/test": "^9",
+    "@marko/test": "^10",
     "@marko/testing-library": "^6",
     "@mdx-js/react": "^2.1.5",
     "@storybook/addon-a11y": "^6.5.12",
