@@ -1,0 +1,40 @@
+.ebay-line-graph {
+    width: 100%;
+
+    &__container {
+        height: 300px;
+    }
+
+    .highcharts-point {
+        opacity: 0; // overriding the default highcharts opacity to 0 so we can control it
+        stroke-width: 2px; // and adjusting the stroke width;
+    }
+
+    .ebay-line-graph__marker--visible {
+        opacity: 1;
+    }
+
+    .highcharts-legend-item {
+        .highcharts-point {
+            opacity: 1; // displays the legend marker symbols which are hidden by the highcharts-point opacity
+            stroke-width: 0; // hide the default stroke
+        }
+
+        .highcharts-graph {
+            display: none; // this hides a line strike through the marker symbols that we do not want
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .highcharts-halo {
+            fill-opacity: 0.8; // this inverses the default 0.2 fill opacity in from light mode
+        }
+    }
+}
+
+// remove this before finished, just used as a sample
+.selling-sample {
+    .ebay-line-graph__container {
+        height: 100px;
+    }
+}
