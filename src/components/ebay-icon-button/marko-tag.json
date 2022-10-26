@@ -6,6 +6,7 @@
   },
   "@html-attributes": "expression",
   "@partially-disabled": "boolean",
+  "@transparent": "boolean",
   "@badge-number": "expression",
   "@badge-aria-label": "string",
   "@autofocus": "#html-autofocus",

@@ -41,9 +41,11 @@ $ {
         isFormVariant = false;
     }
 
+    var isIconVariant = input.variant === 'icon' || isOverflowVariant;
+
     tagName = Button
     var tagName;
-    if (isOverflowVariant) {
+    if (isIconVariant) {
         tagName = IconButton;
     } else if (isFormVariant) {
         variant = 'form';
@@ -71,6 +73,7 @@ $ {
         variant=variant
         aria-expanded="false"
         aria-haspopup="true"
+        transparent=(isIconVariant && input.transparent)
         aria-label=input.a11yText
         aria-labelledby=(labelId && `${input.prefixId} ${labelId}`)
         split=(isButtonVariant && input.split)

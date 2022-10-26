@@ -15,6 +15,10 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
+function isHidden(item) {
+    return Boolean(item.closest('[hidden]'));
+}
+
 describe('given the pagination is rendered', () => {
     describe('with links', () => {
         beforeEach(async () => {
@@ -144,6 +148,97 @@ describe('given the pagination is rendered with disabled controls', () => {
                 expect(component.emitted('next')).has.length(0);
             });
         }
+    });
+});
+
+describe('given the pagination is rendered with overflow menu', () => {
+    // Standard render which will also wait for resize event to trigger
+    async function renderWithOverflow(items, selected) {
+        component = await render(Links, {
+            items: getPaginationItems(items, true, selected),
+            variant: 'overflow',
+        });
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+        // Wait a setTimeout for Marko to finish rendering.
+        await new Promise((resolve) => setTimeout(resolve));
+    }
+
+    // Verifies the overflow menu, that they should be hidden/shown
+    function checkOverflow(firstHidden, lastHidden) {
+        const dotsEl = component.getAllByRole('separator', { hidden: true });
+        const isFirstHidden = Boolean(dotsEl[0].closest('[hidden]'));
+        const isLastHidden = Boolean(dotsEl[1].closest('[hidden]'));
+        expect(isFirstHidden).to.equal(
+            firstHidden,
+            `leading is ${firstHidden ? 'visible' : 'hidden'}`
+        );
+        expect(isLastHidden).to.equal(lastHidden, `end is ${lastHidden ? 'visible' : 'hidden'}`);
+    }
+
+    // Verifies that the given item is present in both html dom structure as hidden, but also available in menu
+    function checkMenuItem(text, leading) {
+        const item = component.getAllByText(text, { hidden: true });
+        expect(item.length).to.equal(2);
+        if (leading) {
+            // Means item is in first menu
+            expect(isHidden(item[0])).to.equal(false, 'item is in menu');
+            expect(isHidden(item[1])).to.equal(true, 'item should be hidden');
+        } else {
+            // Means item is in end menu
+            expect(isHidden(item[0])).to.equal(true, 'item should be hidden');
+            expect(isHidden(item[1])).to.equal(false, 'item is in menu');
+        }
+    }
+
+    describe('renders with 15 items and first is selected', () => {
+        beforeEach(async () => {
+            await renderWithOverflow(16, 1);
+        });
+
+        it('shows overflow menu when it is at start', () => {
+            checkOverflow(true, false);
+            checkMenuItem('item 11', false);
+        });
+    });
+    describe('renders with 15 items and middle is selected', () => {
+        beforeEach(async () => {
+            await renderWithOverflow(16, 8);
+        });
+
+        it('should show both overflow menus', () => {
+            checkOverflow(false, false);
+            checkMenuItem('item 14', false);
+            checkMenuItem('item 1', true);
+        });
+    });
+
+    describe('renders with 15 items and end is selected', () => {
+        beforeEach(async () => {
+            await renderWithOverflow(16, 15);
+        });
+
+        it('should show both overflow menus', () => {
+            checkOverflow(false, true);
+            checkMenuItem('item 1', true);
+        });
+    });
+
+    describe('properly triggers on the menu', () => {
+        beforeEach(async () => {
+            await renderWithOverflow(16, 1);
+            await fireEvent.click(component.getByRole('separator'));
+            await fireEvent.click(component.getAllByText('item 11')[1]);
+        });
+
+        it('should trigger select', () => {
+            const selectEvents = component.emitted('select');
+            expect(selectEvents).has.length(1);
+
+            const [[eventArg]] = selectEvents;
+            expect(eventArg).has.property('originalEvent').instanceOf(Event);
+            expect(eventArg).has.property('el').instanceOf(HTMLElement);
+            expect(eventArg).has.property('value', 'item 11');
+        });
     });
 });
 
@@ -326,8 +421,7 @@ describe('given the pagination is rendered at various sizes', () => {
                     it(`then it shows items ${from} through ${to}`, () => {
                         input.items.slice(1, -1).forEach((itemData, i) => {
                             const itemEl = component.getByText(itemData.renderBody.text);
-                            const isHidden = Boolean(itemEl.closest('[hidden]'));
-                            expect(isHidden).to.equal(
+                            expect(isHidden(itemEl)).to.equal(
                                 (i < from || i >= to) && last !== i,
                                 `item ${i} should be ${isHidden ? 'visible' : 'hidden'}`
                             );
@@ -336,8 +430,7 @@ describe('given the pagination is rendered at various sizes', () => {
                     if (typeof dots === 'boolean') {
                         it(`should ${dots ? 'show' : 'hide'} the dots`, () => {
                             const dotsEl = component.getByRole('separator', { hidden: true });
-                            const isHidden = Boolean(dotsEl.closest('[hidden]'));
-                            expect(isHidden).to.equal(
+                            expect(isHidden(dotsEl)).to.equal(
                                 !dots,
                                 `dots should be ${isHidden ? 'visible' : 'hidden'}`
                             );

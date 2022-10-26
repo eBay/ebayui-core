@@ -10,7 +10,8 @@ static var ignoredAttributes = [
     "partiallyDisabled",
     "badgeNumber",
     "badgeAriaLabel",
-    "toJSON"
+    "toJSON",
+    "transparent"
 ];
 
 $ {
@@ -28,7 +29,8 @@ $ {
     class=[
         input.class,
         'icon-btn',
-        isBadged && `icon-btn--badged`
+        isBadged && `icon-btn--badged`,
+        input.transparent && 'icon-btn--transparent'
     ]
     data-ebayui=true
     type=(tag === "button" && (input.type || "button"))
