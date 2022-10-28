@@ -24,6 +24,7 @@ $ var isRadio = input.type === "radio";
 $ var isCheckbox = input.type === "checkbox";
 $ var isNotCheckable = input.type !== "checkbox" && input.type !== "radio";
 $ var baseClass = input.classPrefix || "menu";
+$ var separatorCount = 0;
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
@@ -50,6 +51,7 @@ $ var baseClass = input.classPrefix || "menu";
                 var checked = component.isChecked(index);
             }
             <if (item.separator)>
+                $ separatorCount += 1;
                 <hr class=`${baseClass}__separator` role="separator" />
             </if>
             <else>
@@ -61,8 +63,8 @@ $ var baseClass = input.classPrefix || "menu";
                 aria-disabled=(item.disabled && "true")
                 href=(item.disabled ? null : item.href)
                 role=itemRole
-                onClick(!item.disabled && "handleItemClick", index)
-                onKeydown(!item.disabled && "handleItemKeydown", index)
+                onClick(!item.disabled && "handleItemClick", index - separatorCount)
+                onKeydown(!item.disabled && "handleItemKeydown", index - separatorCount)
                 onKeypress(!item.disabled && "handleItemKeypress")
                 key="item[]">
                 <span>
