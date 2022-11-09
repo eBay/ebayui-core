@@ -118,6 +118,21 @@ describe('given the menu is in the default state', () => {
         });
     });
 
+    describe('when footer attributes are passed', () => {
+        const footer = {
+            renderBody: 'Apply',
+            disabled: true,
+        };
+
+        beforeEach(async () => {
+            component = await render(Standard, { footer });
+            footerButton = component.getAllByRole('button')[0];
+        });
+        it('then footer has attribute disabled', () => {
+            expect(footerButton).has.attribute('disabled');
+        });
+    });
+
     describe('when an item is added via input from its parent and the new item is clicked', () => {
         const newItems = addRenderBodies([
             ...items,

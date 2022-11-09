@@ -28,17 +28,6 @@ export default {
             control: { type: 'text' },
             description: '"" (default) / "form"',
         },
-        footerText: {
-            control: { type: 'text' },
-            description: 'a11y text for the button',
-        },
-        a11yFooterText: {
-            control: { type: 'text' },
-            description: 'a11y text for the footer button',
-            table: {
-                category: 'when footer-text is set',
-            },
-        },
         classPrefix: {
             control: { type: 'text' },
             description:
@@ -113,6 +102,12 @@ export default {
                 },
             },
         },
+        footer: {
+            name: '@footer',
+            table: {
+                category: '@attribute tags',
+            },
+        },
     },
 };
 
@@ -133,8 +128,10 @@ Standard.args = {
         },
     ],
     text: 'Button',
-    footerText: 'Apply',
-    a11yText: 'Filter Menu Button A11y Text',
+    footer: {
+        renderBody: 'Apply',
+        a11yFooterText: 'a11y text for footer button',
+    },
 };
 Standard.parameters = {
     docs: {
