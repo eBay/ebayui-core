@@ -18,7 +18,7 @@ $ {
     onKeydown("handleKeydown")
     onFocus("handleFocus")
     onBlur("handleBlur")
-    class=[input.class, "fake-link"]
+    class=[input.class, "fake-link", input.standalone && 'standalone-link']
     data-ebayui=true
     type=(input.type || "button")>
     <${input.renderBody}/>

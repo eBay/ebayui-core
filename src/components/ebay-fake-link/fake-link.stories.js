@@ -32,6 +32,15 @@ export default {
                 },
             },
         },
+        standalone: {
+            description: '',
+            table: {
+                category: 'Toggles',
+                defaultValue: {
+                    summary: 'false',
+                },
+            },
+        },
         onClick: {
             action: 'on-click',
             description: 'Triggered on click',
@@ -79,6 +88,7 @@ export const Standard = Template.bind({});
 Standard.args = {
     renderBody: 'Fake-Link',
     disabled: false,
+    standalone: false,
 };
 
 Standard.parameters = {
