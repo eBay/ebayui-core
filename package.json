@@ -135,7 +135,6 @@
   },
   "dependencies": {
     "@marko-tags/subscribe": "^0.4.2",
-    "@martin-ebay/ebay-data-viz-generator": "^0.0.3",
     "highcharts": "^10.2.1",
     "makeup-active-descendant": "0.5.1",
     "makeup-expander": "~0.10.0",
