@@ -30,7 +30,9 @@ $ {
         input.class,
         'icon-btn',
         isBadged && `icon-btn--badged`,
-        input.transparent && 'icon-btn--transparent'
+        input.transparent && 'icon-btn--transparent',
+        input.size === 'small' && 'icon-btn--small',
+        input.size === 'large' && 'icon-btn--large'
     ]
     data-ebayui=true
     type=(tag === "button" && (input.type || "button"))

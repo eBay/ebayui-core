@@ -32,6 +32,16 @@ export default {
             },
             control: { type: 'boolean' },
         },
+        size: {
+            description: 'alternative size for the icon button',
+            options: ['small', 'large'],
+            control: { type: 'select' },
+            table: {
+                defaultValue: {
+                    summary: '',
+                },
+            },
+        },
         partiallyDisabled: {
             description: 'programmatically disabled, but remains keyboard focusable',
             table: {
