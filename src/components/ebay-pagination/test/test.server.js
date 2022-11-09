@@ -19,6 +19,11 @@ describe('pagination', () => {
         it('renders with last page visible', async () => {
             await htmlSnap(Links, { variant: 'show-last' });
         });
+
+        it('renders with overflow', async () => {
+            await htmlSnap(Links, { variant: 'overflow' });
+        });
+
         it('renders empty version', async () => {
             await htmlSnap(Links, { items: getPaginationItems(0, true, 3) });
         });
@@ -40,15 +45,23 @@ describe('pagination', () => {
         it('renders default button version', async () => {
             await htmlSnap(Buttons);
         });
+
         it('renders buttons with last page visible', async () => {
             await htmlSnap(Buttons, { variant: 'show-last' });
         });
+
+        it('renders default button with overflow', async () => {
+            await htmlSnap(Buttons, { variant: 'overflow' });
+        });
+
         it('renders empty button version', async () => {
             await htmlSnap(Buttons, { items: getPaginationItems(0, false) });
         });
+
         it('renders button version', async () => {
             await htmlSnap(Buttons, { items: getPaginationItems(15, false) });
         });
+
         it('renders button version selected items', async () => {
             await htmlSnap(Buttons, { items: getPaginationItems(15, false, 3) });
         });

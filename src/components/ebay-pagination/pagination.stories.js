@@ -42,7 +42,7 @@ export default {
                 },
             },
 
-            options: ['show-last', 'show-range'],
+            options: ['show-last', 'show-range', 'overflow'],
             description:
                 'Either `show-last`, or `show-range`. If `show-last` then will show the last page always and will put `…` between the last visible range and the last page. `…` and the last page will take up two items in the range. `…` will be hidden when the range to the last item is fully visible.',
         },

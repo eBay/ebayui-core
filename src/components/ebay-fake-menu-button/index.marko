@@ -35,12 +35,13 @@ $ {
     var priority = null;
     var prefix = 'expand-btn'
     var variant;
+    var isIconVariant = input.variant === 'icon' || isOverflowVariant;
 
     var tagName = Button;
     if (isFormVariant) {
         prefix = 'btn';
         variant = 'form';
-    } else if (isOverflowVariant) {
+    } else if (isIconVariant) {
         tagName = IconButton;
         isButtonVariant = false;
     } else {
@@ -63,6 +64,7 @@ $ {
         borderless=input.borderless
         priority=priority
         variant=variant
+        transparent=(isIconVariant && input.transparent)
         icon-only=(!input.text && !input.icon && !isOverflowVariant)
         aria-expanded="false"
         aria-label=input.a11yText
