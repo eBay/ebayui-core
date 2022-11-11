@@ -1,5 +1,7 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
+static const VALID_SIZES = ['small', 'large']
+
 static function toJSON() {
     return {
         disabled: this.disabled
@@ -11,7 +13,8 @@ static var ignoredAttributes = [
     "badgeNumber",
     "badgeAriaLabel",
     "toJSON",
-    "transparent"
+    "transparent",
+    "size"
 ];
 
 $ {
@@ -31,8 +34,7 @@ $ {
         'icon-btn',
         isBadged && `icon-btn--badged`,
         input.transparent && 'icon-btn--transparent',
-        input.size === 'small' && 'icon-btn--small',
-        input.size === 'large' && 'icon-btn--large'
+        VALID_SIZES.includes(input.size) && `icon-btn--${input.size}`
     ]
     data-ebayui=true
     type=(tag === "button" && (input.type || "button"))
