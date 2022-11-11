@@ -5,10 +5,6 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@patternfill": "boolean",
-  "@size": {
-    "enum": ["small", "medium", "large"]
-  },
   "@title <title>": {
     "@*": {
       "targetProperty": null,
@@ -25,7 +21,7 @@
     "@class": "string",
     "@style": "string"
   },
-  "@description <metric>": {
+  "@metric <metric>": {
     "@*": {
       "targetProperty": null,
       "type": "expression"
@@ -33,7 +29,7 @@
     "@class": "string",
     "@style": "string"
   },
-  "@description <sub-title>": {
+  "@sub-title <sub-title>": {
     "@*": {
       "targetProperty": null,
       "type": "expression"

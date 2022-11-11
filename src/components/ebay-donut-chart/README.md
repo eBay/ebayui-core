@@ -8,7 +8,7 @@
 </h1>
 
 ```marko
-<ebay-donut-chart value=50 max=100 aria-labelledby="donutChartTitle">
+<ebay-donut-chart aria-labelledby="donutChartTitle">
     <@description>Chart displaying random sample values</@description>
     <@portion value="1" text="Value 1"/>
     <@portion value="2" text="Value 2"/>
@@ -18,16 +18,13 @@
 
 ## Description
 
-The donut chart displays percentages as an svg with a labels list.
+The donut chart displays percentages as an svg with a labels list, and optional metrics and subtitle
 
 ## Attributes
 
-| Name              | Type    | Stateful | Required | Description                                                                                |
-| ----------------- | ------- | -------- | -------- | ------------------------------------------------------------------------------------------ |
-| `size`            | String  | No       | No       | default is `medium`; available values are `large`, `medium` or `small`                     |
-| `patternfill`     | Boolean | No       | No       | default is false; set to true to display patterns in fills                                 |
-| `legendStyle`     | String  | No       | No       | default is `minimal`; available values are `minimal` or `table`                            |
-| `aria-labelledby` | String  | No       | Yes      | no default, this element ID is required to provide a title to the chart for screen readers |
+| Name              | Type   | Stateful | Required | Description                                                                                |
+| ----------------- | ------ | -------- | -------- | ------------------------------------------------------------------------------------------ |
+| `aria-labelledby` | String | No       | Yes      | no default, this element ID is required to provide a title to the chart for screen readers |
 
 ## Sub-tags
 
@@ -35,6 +32,8 @@ The donut chart displays percentages as an svg with a labels list.
 | ---------------- | -------- | ------------------------------------------------------------------------- |
 | `<@description>` | No       | A description of what the chart is displaying                             |
 | `<@portion>`     | Yes      | defines each portion of the chart and requires a value and text attribute |
+| `<@metric>`      | No       | A string to display as a large metric value                               |
+| `<@subtitle>`    | No       | A string displayed below the metric value                                 |
 
 ## @description
 
@@ -43,10 +42,6 @@ The donut chart displays percentages as an svg with a labels list.
 ```marko
  <@description>Chart displaying random sample vlaues</@description>
 ```
-
-### @description Attributes
-
-None
 
 ## @portion
 

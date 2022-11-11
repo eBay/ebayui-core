@@ -58,7 +58,7 @@ export default class {
                 s.bottom = true;
             });
         }
-
+        let yLabelsItterator = 0;
         const config = {
             title: {
                 text: this.input.title,
@@ -90,7 +90,16 @@ export default class {
                 opposite: true,
                 reversedStacks: false,
                 labels: {
-                    format: '${text}',
+                    format: !this.input.yAxisLabels && '${text}',
+                    formatter:
+                        this.input.yAxisLabels &&
+                        function () {
+                            if (this.isFirst) {
+                                yLabelsItterator = -1;
+                            }
+                            yLabelsItterator = yLabelsItterator + 1;
+                            return _this.input.yAxisLabels[yLabelsItterator];
+                        },
                     style: {
                         color: labelsColor,
                     },
@@ -186,6 +195,9 @@ export default class {
                     },
             },
             plotOptions: {
+                series: {
+                    description: this.input.description,
+                },
                 column: {
                     events: {
                         legendItemClick: function () {

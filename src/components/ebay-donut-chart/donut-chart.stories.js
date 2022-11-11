@@ -19,26 +19,6 @@ export default {
     },
 
     argTypes: {
-        size: {
-            options: ['large', 'medium', 'small'],
-            description: 'Sets the donut chart size. Default is medium.',
-            table: {
-                defaultValue: {
-                    summary: 'medium',
-                },
-            },
-            type: 'select',
-        },
-        legendStyle: {
-            options: ['minimal', 'table'],
-            description: 'if set to table display table with each portions text and value.',
-            table: {
-                defaultValue: {
-                    summary: 'minimal',
-                },
-            },
-            type: 'select',
-        },
         'aria-labelledby': {
             description: 'id of element containing a11y label text for component',
             table: {
@@ -89,7 +69,7 @@ TwoValues.args = {
         {
             value: '$ 2',
             text: 'Value 2',
-        }
+        },
     ],
 };
 
@@ -149,7 +129,7 @@ FourValues.args = {
         {
             value: '$ 29',
             text: 'Value 1',
-        }
+        },
     ],
 };
 
@@ -260,7 +240,7 @@ FiveValuesWithMetric.args = {
         },
     ],
     metric: { renderBody: '$178 total' },
-    subtitle: { renderBody: 'return rate' }
+    subtitle: { renderBody: 'return rate' },
 };
 
 FiveValuesWithMetric.parameters = {
@@ -299,7 +279,7 @@ FiveValuesWithMetricStacked.args = {
     ],
     metric: { renderBody: '$178 total' },
     subtitle: { renderBody: 'return rate' },
-    layout: 'stacked'
+    layout: 'stacked',
 };
 
 FiveValuesWithMetricStacked.parameters = {
@@ -336,7 +316,7 @@ FiveValuesLegendOnRight.args = {
             text: 'Value 2',
         },
     ],
-    'layout': 'legend-right'
+    layout: 'legend-right',
 };
 
 FiveValuesLegendOnRight.parameters = {
@@ -373,8 +353,8 @@ FiveValuesLegendOnRightWithMetrics.args = {
             text: 'Value 2',
         },
     ],
-    'layout': 'legend-right',
-    metric: { renderBody: '$178 total' }
+    layout: 'legend-right',
+    metric: { renderBody: '$178 total' },
 };
 
 FiveValuesLegendOnRightWithMetrics.parameters = {
@@ -411,15 +391,18 @@ FiveValuesLegendOnRightWithMetricsWithSubtitle.args = {
             text: 'Value 2',
         },
     ],
-    'layout': 'legend-right',
+    layout: 'legend-right',
     metric: { renderBody: '$178 total' },
-    subtitle: { renderBody: 'return rate' }
+    subtitle: { renderBody: 'return rate' },
 };
 
 FiveValuesLegendOnRightWithMetricsWithSubtitle.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-donut-chart', FiveValuesLegendOnRightWithMetricsWithSubtitle.args),
+            code: tagToString(
+                'ebay-donut-chart',
+                FiveValuesLegendOnRightWithMetricsWithSubtitle.args
+            ),
         },
     },
 };
@@ -450,7 +433,7 @@ FiveValuesLegendOnLeft.args = {
             text: 'Value 2',
         },
     ],
-    'layout': 'legend-left'
+    layout: 'legend-left',
 };
 
 FiveValuesLegendOnLeft.parameters = {
@@ -487,8 +470,8 @@ FiveValuesLegendOnLeftWithMetrics.args = {
             text: 'Value 2',
         },
     ],
-    'layout': 'legend-left',
-    metric: { renderBody: '$178 total' }
+    layout: 'legend-left',
+    metric: { renderBody: '$178 total' },
 };
 
 FiveValuesLegendOnLeftWithMetrics.parameters = {
@@ -525,15 +508,18 @@ FiveValuesLegendOnLeftWithMetricsWithSubtitle.args = {
             text: 'Value 2',
         },
     ],
-    'layout': 'legend-left',
+    layout: 'legend-left',
     metric: { renderBody: '$178 total' },
-    subtitle: { renderBody: 'return rate' }
+    subtitle: { renderBody: 'return rate' },
 };
 
 FiveValuesLegendOnLeftWithMetricsWithSubtitle.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-donut-chart', FiveValuesLegendOnLeftWithMetricsWithSubtitle.args),
+            code: tagToString(
+                'ebay-donut-chart',
+                FiveValuesLegendOnLeftWithMetricsWithSubtitle.args
+            ),
         },
     },
 };

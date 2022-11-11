@@ -52,9 +52,16 @@ export default class {
         });
 
         const colors = setSeriesColors(series);
+        let yLabelsItterator = 0;
         const config = {
             title: {
                 text: this.input.title,
+                align: 'left',
+                useHTML: true,
+                style: {
+                    fontSize: '18px',
+                    fontWeight: 700,
+                },
             },
             chart: {
                 type: 'area',
@@ -86,7 +93,16 @@ export default class {
                 opposite: true,
                 reversedStacks: false,
                 labels: {
-                    format: '${text}',
+                    format: !this.input.yAxisLabels && '${text}',
+                    formatter:
+                        this.input.yAxisLabels &&
+                        function () {
+                            if (this.isFirst) {
+                                yLabelsItterator = -1;
+                            }
+                            yLabelsItterator = yLabelsItterator + 1;
+                            return _this.input.yAxisLabels[yLabelsItterator];
+                        },
                     style: {
                         color: labelsColor,
                     },
@@ -153,6 +169,7 @@ export default class {
             },
             plotOptions: {
                 series: {
+                    description: this.input.description,
                     stacking: 'normal',
                     point: {
                         events: {

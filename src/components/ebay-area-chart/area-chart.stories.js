@@ -1,6 +1,5 @@
 import { addRenderBodies } from '../../../.storybook/utils';
-// import { tagToString } from '../../../.storybook/storybook-code-source';
-// import Readme from './README.md';
+import Readme from './README.md';
 import Component from './index.marko';
 
 function getPositiveTrend(days) {
@@ -43,36 +42,47 @@ const Template = (args) => ({
 export default {
     title: 'charts/ebay-area-chart',
     component: Component,
-    // parameters: {
-    //     docs: {
-    //         description: {
-    //             component: Readme
-    //         }
-    //     }
-    // },
+    parameters: {
+        docs: {
+            description: {
+                component: Readme,
+            },
+        },
+    },
 };
 
 export const Standard = Template.bind({});
 Standard.args = {
+    title: 'Single series sample area chart',
+    description: 'this chart displays 30 days of sample values',
     series: multipleLineSeries(1, 30),
 };
 
 export const TwoSeries = Template.bind({});
 TwoSeries.args = {
+    title: 'Two series sample area chart',
+    description: 'this chart displays 30 days of values for sample1 and sample2',
     series: multipleLineSeries(2, 30),
 };
 
 export const ThreeSeries = Template.bind({});
 ThreeSeries.args = {
+    title: 'Three series sample area chart',
+    description: 'this chart displays 30 days of values for sample1, sample2 and sample3',
     series: multipleLineSeries(3, 30),
 };
 
 export const FourSeries = Template.bind({});
 FourSeries.args = {
+    title: 'Four series sample area chart',
+    description: 'this chart displays 30 days of values for sample1, sample2, sample3, and sample4',
     series: multipleLineSeries(4, 30),
 };
 
 export const FiveSeries = Template.bind({});
 FiveSeries.args = {
+    title: 'Five series sample area chart',
+    description:
+        'this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5',
     series: multipleLineSeries(5, 30),
 };

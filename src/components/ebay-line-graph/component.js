@@ -73,9 +73,16 @@ export default class {
             }
         }
         colors[0] = baseLineColor;
+        let yLabelsItterator = 0;
         const config = {
             title: {
                 text: this.input.title,
+                align: 'left',
+                useHTML: true,
+                style: {
+                    fontSize: '18px',
+                    fontWeight: 700,
+                },
             },
             chart: {
                 type: 'line',
@@ -106,7 +113,16 @@ export default class {
                 gridLineColor: gridColor,
                 opposite: true,
                 labels: {
-                    format: '${text}',
+                    format: !this.input.yAxisLabels && '${text}',
+                    formatter:
+                        this.input.yAxisLabels &&
+                        function () {
+                            if (this.isFirst) {
+                                yLabelsItterator = -1;
+                            }
+                            yLabelsItterator = yLabelsItterator + 1;
+                            return _this.input.yAxisLabels[yLabelsItterator];
+                        },
                     style: {
                         color: labelsColor,
                     },
@@ -176,6 +192,7 @@ export default class {
                     },
                 },
                 series: {
+                    description: this.input.description,
                     lineWidth: 3,
                     pointStart: series[0].data[0].x,
                     point: {

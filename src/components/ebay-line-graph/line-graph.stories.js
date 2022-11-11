@@ -1,6 +1,5 @@
 import { addRenderBodies } from '../../../.storybook/utils';
-// import { tagToString } from '../../../.storybook/storybook-code-source';
-// import Readme from './README.md';
+import Readme from './README.md';
 import Component from './index.marko';
 
 const sellingData = require('./selling-mock.json');
@@ -116,13 +115,13 @@ const Template = (args) => ({
 export default {
     title: 'charts/ebay-line-graph',
     component: Component,
-    // parameters: {
-    //     docs: {
-    //         description: {
-    //             component: Readme
-    //         }
-    //     }
-    // },
+    parameters: {
+        docs: {
+            description: {
+                component: Readme,
+            },
+        },
+    },
 };
 function getTickPositions() {
     const min = Math.floor(this.dataMin);
@@ -133,30 +132,40 @@ function getTickPositions() {
 export const Standard = Template.bind({});
 Standard.args = {
     series: multipleLineSeries(1, 10),
+    title: 'standard line graph with single series',
+    description: 'sample line graph description',
 };
 
 export const TrendAutoPositive = Template.bind({});
 TrendAutoPositive.args = {
     series: getPositiveTrend(30),
     trend: true,
+    title: 'positive trend graph',
+    description: 'standard line graph with single series the tend set to true',
 };
 
 export const TrendSetPositive = Template.bind({});
 TrendSetPositive.args = {
     series: getLineGraphData(30),
     trend: 'positive',
+    title: 'forced positive trend graph',
+    description: 'standard line graph with single series the tend set to "positive"',
 };
 
 export const TrendAutoNegative = Template.bind({});
 TrendAutoNegative.args = {
     series: getNegativeTrend(30),
     trend: true,
+    title: 'negative trend graph',
+    description: 'standard line graph with single series the tend set to true',
 };
 
 export const TrendSetNegative = Template.bind({});
 TrendSetNegative.args = {
     series: getLineGraphData(30),
     trend: 'negative',
+    title: 'forced negative trend graph',
+    description: 'standard line graph with single series the tend set to "negative"',
 };
 
 export const TrendSetNeutral = Template.bind({});
