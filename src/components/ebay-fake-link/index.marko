@@ -6,7 +6,7 @@ static function toJSON() {
     };
 }
 
-static var ignoredAttributes = ["toJSON"];
+static var ignoredAttributes = ["toJSON", "variant"];
 
 $ {
     input.toJSON = toJSON;
@@ -18,7 +18,7 @@ $ {
     onKeydown("handleKeydown")
     onFocus("handleFocus")
     onBlur("handleBlur")
-    class=[input.class, "fake-link"]
+    class=[input.class, "fake-link", input.variant === 'standalone' && 'standalone-link']
     data-ebayui=true
     type=(input.type || "button")>
     <${input.renderBody}/>
