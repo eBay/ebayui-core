@@ -1,6 +1,6 @@
 import { addRenderBodies } from '../../../.storybook/utils';
 import { tagToString } from '../../../.storybook/storybook-code-source';
-// import Readme from './README.md';
+import Readme from './README.md';
 import Component from './index.marko';
 
 const Template = (args) => ({
@@ -11,11 +11,11 @@ export default {
     title: 'charts/ebay-donut-graph',
     component: Component,
     parameters: {
-        // docs: {
-        //     description: {
-        //         component: Readme,
-        //     },
-        // },
+        docs: {
+            description: {
+                component: Readme,
+            },
+        },
     },
 
     argTypes: {
@@ -55,7 +55,7 @@ TwoValues.args = {
         {
             value: '$ 2',
             text: 'Value 2',
-        }
+        },
     ],
 };
 
@@ -115,7 +115,7 @@ FourValues.args = {
         {
             value: '$ 29',
             text: 'Value 1',
-        }
+        },
     ],
 };
 

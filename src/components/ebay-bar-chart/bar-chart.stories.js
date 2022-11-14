@@ -1,6 +1,5 @@
 import { addRenderBodies } from '../../../.storybook/utils';
-// import { tagToString } from '../../../.storybook/storybook-code-source';
-// import Readme from './README.md';
+import Readme from './README.md';
 import Component from './index.marko';
 
 const Template = (args) => ({
@@ -39,13 +38,13 @@ function multipleBarSeries(num, days) {
 export default {
     title: 'charts/ebay-bar-chart',
     component: Component,
-    // parameters: {
-    //     docs: {
-    //         description: {
-    //             component: Readme
-    //         }
-    //     }
-    // },
+    parameters: {
+        docs: {
+            description: {
+                component: Readme,
+            },
+        },
+    },
 };
 
 export const singleSeriesFiveDays = Template.bind({});

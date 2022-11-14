@@ -19,5 +19,5 @@
   "@xAxisPositioner": "function",
   "@yAxisLabels": "array",
   "@yAxisPositioner": "function",
-  "@trend": "boolean"
+  "@stacked": "boolean"
 }

@@ -18,6 +18,5 @@
   "@xAxisLabelFormat": "string",
   "@xAxisPositioner": "function",
   "@yAxisLabels": "array",
-  "@yAxisPositioner": "function",
-  "@trend": "boolean"
+  "@yAxisPositioner": "function"
 }
