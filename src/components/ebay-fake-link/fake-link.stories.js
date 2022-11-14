@@ -32,12 +32,14 @@ export default {
                 },
             },
         },
-        standalone: {
-            description: '',
+        variant: {
+            description:
+                'Should only be standalone when it is clear contextually that this is a link, regardless of styles',
+            options: ['inline', 'standalone'],
+            control: { type: 'select' },
             table: {
-                category: 'Toggles',
                 defaultValue: {
-                    summary: 'false',
+                    summary: 'inline',
                 },
             },
         },
@@ -88,7 +90,6 @@ export const Standard = Template.bind({});
 Standard.args = {
     renderBody: 'Fake-Link',
     disabled: false,
-    standalone: false,
 };
 
 Standard.parameters = {
