@@ -1,83 +1,85 @@
-import { processHtmlAttributes } from "../../../common/html-attributes"
-
-static var ignoredAttributes = [
-    "status",
-    "a11yText",
-    "a11yIconText",
-    "icon",
-    "iconClass",
-    "class",
-    "root",
-    "headerRoot",
-    "a11yRoleDescription",
-    "prefixClass",
-    "title",
-    "footer",
-    "type",
-    "mainRoot",
-    "noA11yLabel",
-    "a11yDismissText"
-];
-
+import { processHtmlAttributes } from '../../../common/html-attributes';
+static {
+    var ignoredAttributes = [
+        'status',
+        'a11yText',
+        'a11yIconText',
+        'icon',
+        'iconClass',
+        'class',
+        'root',
+        'headerRoot',
+        'a11yRoleDescription',
+        'prefixClass',
+        'title',
+        'footer',
+        'type',
+        'mainRoot',
+        'noA11yLabel',
+        'a11yDismissText',
+    ];
+}
 $ var status = input.status;
 $ var prefixClass = input.prefixClass;
 
-<${input.root || "section"}
-    aria-labelledby=(!input.noA11yLabel && component.elId('status'))
+<${input.root || 'section'}
+    aria-labelledby=!input.noA11yLabel && component.elId('status')
     aria-roledescription=input.a11yRoleDescription
     class=[prefixClass, input.class]
-    ...processHtmlAttributes(input, ignoredAttributes)>
-    <if(input.icon !== "none")>
-        <${input.headerRoot || "div"} class=`${prefixClass}__header` id:scoped="status"
-        >
-            <if(status === "confirmation" || status === "celebration")>
+    ...processHtmlAttributes(input, ignoredAttributes)
+>
+    <if(input.icon !== 'none')>
+        <${input.headerRoot || 'div'} class=`${prefixClass}__header` id:scoped='status'>
+            <if(status === 'confirmation' || status === 'celebration')>
                 <ebay-confirmation-filled-small-icon
-                    a11y-text=(input.a11yIconText || input.a11yText)
-                    a11y-variant="label"
-                    class=input.iconClass/>
+                    a11y-text=input.a11yIconText || input.a11yText
+                    a11y-variant='label'
+                    class=input.iconClass
+                />
             </if>
-            <else-if(status === "attention")>
+            <else-if(status === 'attention')>
                 <ebay-attention-filled-small-icon
-                    a11y-variant="label"
-                    a11y-text=(input.a11yIconText || input.a11yText)
-                    class=input.iconClass/>
+                    a11y-variant='label'
+                    a11y-text=input.a11yIconText || input.a11yText
+                    class=input.iconClass
+                />
             </else-if>
-            <else-if(status === "information")>
+            <else-if(status === 'information')>
                 <ebay-information-filled-small-icon
-                    a11y-variant="label"
-                    a11y-text=(input.a11yIconText || input.a11yText)
-                    class=input.iconClass/>
+                    a11y-variant='label'
+                    a11y-text=input.a11yIconText || input.a11yText
+                    class=input.iconClass
+                />
             </else-if>
         </>
     </if>
-    <if(input.cta)>
-        <p class=`${prefixClass}__cta`>
-            <a ...input.cta><${input.cta}/></a>
-        </p>
-    </if>
-    <${input.mainRoot || "div"} class=`${prefixClass}__main`>
+    <${input.mainRoot || 'div'} class=`${prefixClass}__main`>
         <if(input.title)>
-            <${input.title.as || "h2"}
+            <${input.title.as || 'h2'}
                 ...input.title
-                class=[`${prefixClass}__title`, input.title.class]>
+                class=[`${prefixClass}__title`, input.title.class]
+            >
                 <${input.title}/>
             </>
         </if>
         <${input.renderBody}/>
     </>
+    <if(input.cta)>
+        <p class=`${prefixClass}__cta`><a ...input.cta><${input.cta}/></a></p>
+    </if>
+
     <if(input.footer && !input.a11yDismissText)>
-        <div class=`${prefixClass}__footer`>
-            <${input.footer}/>
-        </div>
+        <div class=`${prefixClass}__footer`><${input.footer}/></div>
     </if>
     <if(input.a11yDismissText)>
         <div class=`${prefixClass}__footer`>
             <button
                 aria-label=`${input.a11yDismissText}`
-                class=["fake-link", `${prefixClass}__dismiss`]
-                onClick("handleDismissClick")
-                onKeydown("handleDismissKeydown")>
-                <ebay-close-small-icon class="icon icon--close-small"/>
+                class=['fake-link', `${prefixClass}__dismiss`]
+                onClick('handleDismissClick')
+                onKeydown('handleDismissKeydown')
+            >
+                <ebay-close-small-icon.icon.icon--close-small/>
             </button>
         </div>
     </if>
