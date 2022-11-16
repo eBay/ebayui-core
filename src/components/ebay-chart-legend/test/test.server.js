@@ -13,7 +13,6 @@ it('renders defaults given input contains 3 portions', async () => {
     mock.values.forEach((item, i) => {
         const textEl = getByText(item.text);
         expect(textEl.innerHTML).contains(item.text);
-        console.log('hmmm textEl.innerHTML ', textEl.parentElement.innerHTML);
         expect(textEl.parentElement.innerHTML).contains(item.percentage * 100);
         expect(textEl.parentElement).has.class(`chart-legend__item--${colorsThree[i]}`);
     });
