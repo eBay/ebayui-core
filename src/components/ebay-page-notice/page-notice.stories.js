@@ -107,7 +107,7 @@ Basic.args = {
         <a href='#'>Card number</a>
         ,
         <a href='#'>Expiration date</a>
-         &amp;
+        &amp;
         <a href='#'>Security code</a>
     </p>`,
 };

@@ -1,7 +1,6 @@
 import { onScrollEnd } from '../on-scroll-end';
 const supportsScrollBehavior =
     typeof window !== 'undefined' && 'scrollBehavior' in document.documentElement.style;
-
 /**
  * Utility to animate scroll position of an element using an `ease-out` curve over 250ms.
  * Cancels the animation if the user touches back down.

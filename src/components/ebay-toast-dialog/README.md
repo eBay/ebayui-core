@@ -9,7 +9,7 @@
 
 ```marko
 <ebay-toast-dialog open a11y-close-text="Close Toast">
-  <h1>Hello World</h1>
+    <h1>Hello World</h1>
 </ebay-toast-dialog>
 ```
 
@@ -35,8 +35,8 @@ Creates a header for the toast
 
 ```marko
 <ebay-toast-dialog open a11y-close-text="Close Toast">
-  <@header>Title</header>
-  <h1>Hello World</h1>
+    <@header>Title</header>
+    <h1>Hello World</h1>
 </ebay-toast-dialog>
 
 ```

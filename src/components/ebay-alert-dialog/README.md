@@ -11,8 +11,8 @@ Used to force the user to read an import message. The dialog will only be dismis
 
 ```marko
 <ebay-alert-dialog open alert-text="Confirm">
-  <@header>Title</@header>
-  <p>Hello some important info</p>
+    <@header>Title</@header>
+    <p>Hello some important info</p>
 </ebay-alert-dialog>
 ```
 

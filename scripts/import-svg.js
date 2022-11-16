@@ -104,7 +104,7 @@ function generateExamples(type, iconMap) {
     for (const name of iconMap) {
         const postfixName = type === 'icon' ? '-icon' : '';
         const iconName = `ebay-${name}${postfixName}`;
-        exampleHTML.push(`   div
+        exampleHTML.push(`    div
         span.icon
             ${iconName}
         span.text

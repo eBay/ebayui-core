@@ -29,7 +29,8 @@
         "mocha/no-identical-title": 2,
         "mocha/no-nested-tests": 2,
         "mocha/no-sibling-hooks": 2,
-        "compat/compat": 2
+        "compat/compat": 2,
+        "no-multiple-empty-lines": 2
     },
     "overrides": [
         {

@@ -1,29 +1,31 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
-
-static var ignoredAttributes = ["class", "value", "a11yText", "a11yStarText", "disbaled"];
+import { processHtmlAttributes } from '../../common/html-attributes';
+static var ignoredAttributes = ['class', 'value', 'a11yText', 'a11yStarText', 'disbaled'];
 $ var starText = input.a11yStarText || [];
 
-<div role=(input.a11yText && "radiogroup") aria-label=input.a11yText class=["star-rating-select", input.class] ...processHtmlAttributes(input, ignoredAttributes)>
+<div
+    role=input.a11yText && 'radiogroup'
+    aria-label=input.a11yText
+    class=['star-rating-select', input.class]
+    ...processHtmlAttributes(input, ignoredAttributes)
+>
     <for|i| from=1 to=5>
-       <span
-       class="star-rating-select__radio">
+        <span.star-rating-select__radio>
             <input
                 aria-label=starText[i - 1]
                 class=[
-                    "star-rating-select__control",
-                    i <= state.value && "star-rating-select__control--filled"
+                    'star-rating-select__control',
+                    i <= state.value && 'star-rating-select__control--filled',
                 ]
-                type="radio"
-                name:scoped="star-rating"
+                type='radio'
+                name:scoped='star-rating'
                 value=i
                 disabled=input.disabled
-                checked=(state.value === i)
-                onClick("handleClick", i)
-                onFocus("handleFocus", i)
-                onKeydown("handleKeydown", i)/>
-            <span class="star-rating-select__radio-icon">
-                <ebay-star-dynamic-icon/>
-            </span>
+                checked=state.value === i
+                onClick('handleClick', i)
+                onFocus('handleFocus', i)
+                onKeydown('handleKeydown', i)
+            >
+            <span.star-rating-select__radio-icon><ebay-star-dynamic-icon/></span>
         </span>
     </for>
 </div>
