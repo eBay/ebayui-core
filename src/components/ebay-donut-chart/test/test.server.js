@@ -35,7 +35,7 @@ const mockFive = {
         {
             value: '1',
             text: 'Value 5',
-        }
+        },
     ],
 };
 
@@ -52,7 +52,7 @@ describe('donut-chart', () => {
         mock.portions.forEach((item, i) => {
             const textEl = getByText(item.text);
             expect(textEl.innerHTML).contains(item.text);
-            expect(textEl).has.class(`chart-legend__item--${colorsThree[i]}`);
+            expect(textEl.parentElement).has.class(`chart-legend__item--${colorsThree[i]}`);
             expect(pathEls[i]).has.class(`donut-graph__segment--${colorsThree[i]}`);
         });
     });
@@ -66,7 +66,7 @@ describe('donut-chart', () => {
         mock.portions.forEach((item, i) => {
             const textEl = getByText(item.text);
             expect(textEl.innerHTML).contains(item.text);
-            expect(textEl).has.class(`chart-legend__item--${colorsAll[i]}`);
+            expect(textEl.parentElement).has.class(`chart-legend__item--${colorsAll[i]}`);
             expect(pathEls[i]).has.class(`donut-graph__segment--${colorsAll[i]}`);
         });
     });
