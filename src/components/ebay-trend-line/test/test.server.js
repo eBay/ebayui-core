@@ -1,7 +1,6 @@
 import { expect, use } from 'chai';
 import { render } from '@marko/testing-library';
 import template from '..';
-import { useSerialIds } from 'highcharts';
 
 use(require('chai-dom'));
 
@@ -20,7 +19,6 @@ const mock = {
 describe('trend-line', () => {
     it('renders a blue line', async () => {
         const { getByRole } = await render(template, mock);
-        console.log('trend line render');
         const line = getByRole('graphics-symbol');
         expect(line.classList.contains('ebay-trend-line__path-neutral'));
     });
