@@ -1,0 +1,16 @@
+<svg.ebay-trend-line version='1.1'
+    role='graphics-document'
+    viewBox=state.viewBox
+    preserveAspectRatio="none"
+    >
+    <path class=[
+        'ebay-trend-line__path',
+        !input.trend && 'ebay-trend-line__path-neutral',
+        input.trend === 'positive' && 'ebay-trend-line__path-positive',
+        input.trend === 'negative' && 'ebay-trend-line__path-negative'
+        ]
+        d=state.path
+        role='graphics-symbol'
+        tabindex="-1"
+        vector-effect="non-scaling-stroke" />
+</svg>

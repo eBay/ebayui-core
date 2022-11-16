@@ -1,0 +1,1 @@
+require('./trend-line.less');

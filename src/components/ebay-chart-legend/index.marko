@@ -19,10 +19,10 @@ $ var colorClasses = input.values.length > 3 ? colorsMore : colors;
 
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
-    class=["chart-legend", "chart-legend__table"]>
-    <ul>
+    class=["chart-legend"]>
+    <dl>
         <for|portion, index| of=input.values>
-            <li id=`${input.containerId}-chart-legend-label-${index}`
+            <div id=`${input.containerId}-chart-legend-label-${index}`
                 data-id=index
                 class=['chart-legend__item', `chart-legend__item--${colorClasses[index]}`, input.patternfill && "patternfill", state.focusIndex !== -1 && state.focusIndex !== index && "chart-legend--inactive"]
                 on-mouseover("handleFocus")
@@ -30,12 +30,15 @@ $ var colorClasses = input.values.length > 3 ? colorsMore : colors;
                 on-click("handleFocus")
                 on-focus("handleFocus")
                 on-blur("handleBlur")>
+                <dt>
                 ${portion.text}
-                <span.value>${portion.value}</span>
-                <if (portion.percentage)>
-                    <span.clipped>${(portion.percentage * 100).toFixed(2)}%</span>
-                </if>
-            </li>
+                </dt>
+                <dd.value>${portion.value}
+                    <if (portion.percentage)>
+                        <span.clipped>${(portion.percentage * 100).toFixed(2)}%</span>
+                    </if>
+                </dd>
+            </div>
         </for>
-    </ul>
+    </dl>
 </div>
