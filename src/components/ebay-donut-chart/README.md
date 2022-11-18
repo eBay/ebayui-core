@@ -13,6 +13,8 @@
     <@portion value="1" text="Value 1"/>
     <@portion value="2" text="Value 2"/>
     <@portion value="3" text="Value 3"/>
+    <@metric>$178 total</@metric>
+    <@subtitle>return rate</@subtitle>
 </ebay-donut-chart>
 ```
 
@@ -22,9 +24,10 @@ The donut chart displays percentages as an svg with a labels list, and optional 
 
 ## Attributes
 
-| Name              | Type   | Stateful | Required | Description                                                                                |
-| ----------------- | ------ | -------- | -------- | ------------------------------------------------------------------------------------------ |
-| `aria-labelledby` | String | No       | Yes      | no default, this element ID is required to provide a title to the chart for screen readers |
+| Name              | Type   | Stateful | Required | Description                                                                                                                   |
+| ----------------- | ------ | -------- | -------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `aria-labelledby` | String | No       | Yes      | no default, this element ID is required to provide a title to the chart for screen readers                                    |
+| `layout` .        | String | No       | No       | options are 'legend-left', 'legend-right' and 'composition'. If no layout attribute is provided it defaults to a stacked view |
 
 ## Sub-tags
 
@@ -57,3 +60,19 @@ The donut chart displays percentages as an svg with a labels list, and optional 
 | ------- | ------ | -------- | -------- | ----------------------------------------------------------------------------------------------- |
 | `value` | String | No       | Yes      | string that must contain a numeric value to be parsed for chart generation, for example `$10.0` |
 | `text`  | String | No       | Yes      | label that is displayed in the legend for the portion of the chart and used for a11y            |
+
+## @metric
+
+### @metric Usage
+
+```marko
+ <@metric>$178 total</@metric>
+```
+
+## @subtitle
+
+### @subtitle Usage
+
+```marko
+ <@subtitle>return rate</@subtitle>
+```

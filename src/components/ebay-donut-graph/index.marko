@@ -2,7 +2,10 @@ import { processHtmlAttributes } from '../../common/html-attributes';
 static var ignoredAttributes = [
     'class',
     'description',
-    'portions'
+    'portions',
+    'containerId',
+    'metric',
+    'subtitle',
 ];
 static {
     var colorsAll = [
@@ -24,7 +27,6 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
     ...processHtmlAttributes(input, ignoredAttributes)
     onKeydown('handleKeydown')
     tabindex='0'
-    id=state.containerId
     class=[
         'donut-graph',
         input.class

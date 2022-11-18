@@ -24,7 +24,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'charts/ebay-trend-line',
+    title: 'charts/ebay-spark-line',
     component: Component,
     parameters: {
         docs: {

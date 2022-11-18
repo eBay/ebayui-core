@@ -283,6 +283,9 @@ export default class {
                 },
             },
             series,
+            credits: {
+                enabled: false,
+            },
         };
         this.chartRef = Highcharts.chart(this.state.containerId, config);
     }

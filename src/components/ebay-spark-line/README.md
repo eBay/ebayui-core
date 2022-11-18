@@ -1,6 +1,6 @@
 <h1 style='display: flex; justify-content: space-between; align-items: center;'>
     <span>
-        ebay-trend-line
+        ebay-spark-line
     </span>
     <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
         DS v3.7.0
@@ -24,7 +24,7 @@
 
 ## Description
 
-The trend line displays data points as a static svg graphic
+The spark line displays data points as a static svg graphic
 
 ## Attributes
 

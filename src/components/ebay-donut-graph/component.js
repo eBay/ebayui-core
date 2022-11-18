@@ -105,10 +105,12 @@ export default {
         }
 
         if (direction === 'bottom') {
-            if (!tooltipPointer.classList.contains('donut-graph__tooltip--bottom')) {
+            if (!tooltip.classList.contains('donut-graph__tooltip--bottom')) {
+                tooltip.classList.add('donut-graph__tooltip--bottom');
                 tooltipPointer.classList.add('tooltip__pointer--bottom');
             }
-        } else if (tooltipPointer.classList.contains('donut-graph__tooltip--bottom')) {
+        } else if (tooltip.classList.contains('donut-graph__tooltip--bottom')) {
+            tooltip.classList.remove('donut-graph__tooltip--bottom');
             tooltipPointer.classList.remove('tooltip__pointer--bottom');
         }
     },

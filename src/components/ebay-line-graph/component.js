@@ -27,7 +27,7 @@ export default class {
     onCreate() {
         this.chartRef = null;
         this.axisTicksLength = -1;
-        this.activeX = -1;
+        // this.activeX = -1;
         this.state = {
             containerId: `ebay-line-graph-${this.id}`,
         };
@@ -204,6 +204,9 @@ export default class {
                 },
             },
             series,
+            credits: {
+                enabled: false,
+            },
         };
 
         this.chartRef = Highcharts.chart(this.state.containerId, config);
@@ -274,8 +277,8 @@ export default class {
         return s;
     }
     handleMouseOver(e) {
-        this.lastX = this.activeX;
-        this.activeX = e.target.x;
+        // this.lastX = this.activeX;
+        // this.activeX = e.target.x;
         this.chartRef.series.forEach((s) => {
             s.data.forEach((d) => {
                 if (d.x === e.target.x) {

@@ -1,1 +1,1 @@
-require('../../../../skin/dist/donut-chart/donut-chart.css');
+require('../../../../skin/dist/chart/chart.css');

@@ -27,29 +27,27 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
-        'donut-chart',
-        (input.layout === 'legend-left' || input.layout === 'legend-right') && 'donut-chart__legend-horizontal',
-        input.layout === 'legend-left' && 'donut-chart__legend-left',
-        input.layout === 'legend-right' && 'donut-chart__legend-right',
-        input.layout === 'stacked' && 'donut-chart__stacked',
-        !input.layout && !input.metric && !input.subtitle && 'donut-chart__stacked',
-        input.class,
+        'chart',
+        (!input.layout || (input.layout === 'composition' && !input.metric && !input.subtitle)) && 'chart--stacked',
+        input.layout === 'composition' && (input.metric || input.subtitle) && 'chart--composition',
+        (input.layout === 'legend-left' || input.layout === 'legend-right') && 'chart--horizontal',
+        input.layout === 'legend-left' && 'chart--left',
+        input.layout === 'legend-right' && 'chart--right',
+        input.class
     ]
-    id=state.containerId
 >
-    <if(input.metric && !input.layout || input.layout === 'stacked')>
+    <if((input.metric || input.subtitle) && input.layout === 'composition' || !input.layout)>
         <div
             class=[
-                'donut-chart__metrics',
-                input.layout === 'stacked' && 'donut-chart__metrics-stacked'
+                !input.layout ? 'chart__metrics-stacked' : 'chart__metrics'
         ]>
             <if (input.metric)>
-                <span.donut-chart__metric>
+                <span.chart__metric>
                     <${input.metric.renderBody}/>
                 </span>
             </if>
             <if(input.subtitle)>
-                <span.donut-chart__subtitle>
+                <span.chart__subtitle>
                     <${input.subtitle.renderBody}/>
                 </span>
             </if>
@@ -58,32 +56,29 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
     <ebay-donut-graph
         containerId=state.containerId
         class=[
-            'donut-chart__container',
-            (input.layout === 'legend-left' || input.layout === 'legend-right') && 'donut-chart__container-horizontal',
-            input.layout === 'legend-left' && 'donut-chart__container-left',
-            input.layout === 'legend-right' && 'donut-chart__container-right',
-            !input.layout || input.layout === 'stacked' && 'donut-chart__container-vertical',
-            !input.layout && !input.metric && !input.subtitle && 'donut-chart__container-vertical']
-        ...input
+            'chart__container',
+            (input.layout === 'legend-left' || input.layout === 'legend-right') && 'chart__container-horizontal',
+            input.layout === 'legend-left' && 'chart__container-left',
+            input.layout === 'legend-right' && 'chart__container-right',
+            (!input.layout || (input.layout === 'composition' && !input.metric && !input.subtitle)) && 'chart__container-stacked']
+        portions=input.portions
         focusIndex=state.focusIndex
+        description=input.description
         on-focus('handlePathFocus')
         on-blur('handlePathBlur') />
     <div
         class=[
-            'donut-chart-legend__container',
-            (input.layout === 'legend-left' || input.layout === 'legend-right') && 'donut-chart-legend__container-horizontal'
+            'chart-legend__container',
+            (input.layout === 'legend-left' || input.layout === 'legend-right') && 'chart-legend__container-horizontal',
+            (!input.layout || (input.layout !== 'legend-left' && input.layout !== 'legend-right')) && 'chart-legend__container-vertical'
         ]>
-        <if(input.metric && input.layout && input.layout !== 'stacked')>
-            <div
-                class=[
-                    'donut-chart__metrics',
-                    'donut-chart__metrics-horizontal'
-            ]>
-                <span.donut-chart__metric>
+        <if((input.metric || input.subtitle) && (input.layout === 'legend-left' || input.layout === 'legend-right'))>
+            <div class='chart__metrics-horizontal'>
+                <span.chart__metric>
                     <${input.metric.renderBody}/>
                 </span>
                 <if(input.subtitle)>
-                    <span.donut-chart__subtitle>
+                    <span.chart__subtitle>
                         <${input.subtitle.renderBody}/>
                     </span>
                 </if>
@@ -101,12 +96,12 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
         </ebay-chart-legend>
     </div>
     <if (state.showToolTip)>
-        <div.donut-chart__tooltip>
-            <div.donut-chart__tooltip-container>
+        <div.chart__tooltip>
+            <div.chart__tooltip-container>
                 <span class="tooltip__pointer"></span>
                 <if(state.focusIndex !== -1)>
-                    <span.donut-chart__tooltip__label>${state.portions[state.focusIndex].text}</span>
-                    <span.donut-chart__tooltip__value>${state.portions[state.focusIndex].rawValue}</span>
+                    <span.chart__tooltip__label>${state.portions[state.focusIndex].text}</span>
+                    <span.chart__tooltip__value>${state.portions[state.focusIndex].rawValue}</span>
                 </if>
             </div>
         </div>

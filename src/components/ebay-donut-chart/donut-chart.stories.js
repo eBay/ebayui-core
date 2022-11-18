@@ -213,6 +213,45 @@ FiveValuesWithSmallSlice.parameters = {
     },
 };
 
+export const FiveValuesWithMetricCompositionLayout = Template.bind({});
+FiveValuesWithMetricCompositionLayout.args = {
+    'aria-labelledby': 'donutcharttitle',
+    description: { renderBody: 'This donut chart is displaying a selection of sample values' },
+    portions: [
+        {
+            value: '$ 50',
+            text: 'Value 1',
+        },
+        {
+            value: '$ 42',
+            text: 'Value 2',
+        },
+        {
+            value: '$ 35',
+            text: 'Value 3',
+        },
+        {
+            value: '$ 29',
+            text: 'Value 1',
+        },
+        {
+            value: '$ 22',
+            text: 'Value 2',
+        },
+    ],
+    metric: { renderBody: '$178 total' },
+    subtitle: { renderBody: 'return rate' },
+    layout: 'composition',
+};
+
+FiveValuesWithMetricCompositionLayout.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-donut-chart', FiveValuesWithMetricCompositionLayout.args),
+        },
+    },
+};
+
 export const FiveValuesWithMetric = Template.bind({});
 FiveValuesWithMetric.args = {
     'aria-labelledby': 'donutcharttitle',
@@ -247,45 +286,6 @@ FiveValuesWithMetric.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-donut-chart', FiveValuesWithMetric.args),
-        },
-    },
-};
-
-export const FiveValuesWithMetricStacked = Template.bind({});
-FiveValuesWithMetricStacked.args = {
-    'aria-labelledby': 'donutcharttitle',
-    description: { renderBody: 'This donut chart is displaying a selection of sample values' },
-    portions: [
-        {
-            value: '$ 50',
-            text: 'Value 1',
-        },
-        {
-            value: '$ 42',
-            text: 'Value 2',
-        },
-        {
-            value: '$ 35',
-            text: 'Value 3',
-        },
-        {
-            value: '$ 29',
-            text: 'Value 1',
-        },
-        {
-            value: '$ 22',
-            text: 'Value 2',
-        },
-    ],
-    metric: { renderBody: '$178 total' },
-    subtitle: { renderBody: 'return rate' },
-    layout: 'stacked',
-};
-
-FiveValuesWithMetricStacked.parameters = {
-    docs: {
-        source: {
-            code: tagToString('ebay-donut-chart', FiveValuesWithMetricStacked.args),
         },
     },
 };

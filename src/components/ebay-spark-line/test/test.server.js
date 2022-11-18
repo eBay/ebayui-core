@@ -16,11 +16,11 @@ const mock = {
         },
     ],
 };
-describe('trend-line', () => {
+describe('spark-line', () => {
     it('renders a blue line', async () => {
         const { getByRole } = await render(template, mock);
         const line = getByRole('graphics-symbol');
-        expect(line.classList.contains('ebay-trend-line__path-neutral'));
+        expect(line.classList.contains('ebay-spark-line__path-neutral'));
     });
 
     it('renders a red line', async () => {
@@ -29,7 +29,7 @@ describe('trend-line', () => {
             trend: 'negative',
         });
         const line = getByRole('graphics-symbol');
-        expect(line.classList.contains('ebay-trend-line__path-negative'));
+        expect(line.classList.contains('ebay-spark-line__path-negative'));
     });
 
     it('renders a green line', async () => {
@@ -38,6 +38,6 @@ describe('trend-line', () => {
             trend: 'positive',
         });
         const line = getByRole('graphics-symbol');
-        expect(line.classList.contains('ebay-trend-line__path-positive'));
+        expect(line.classList.contains('ebay-spark-line__path-positive'));
     });
 });
