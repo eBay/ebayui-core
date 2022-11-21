@@ -5,6 +5,9 @@
     "targetProperty": null
   },
   "@html-attributes": "expression",
+  "@variant": {
+    "enum": ["inline", "standalone"]
+  },
   "@autofocus": "#html-autofocus",
   "@disabled": "#html-disabled",
   "@form": "#html-form",

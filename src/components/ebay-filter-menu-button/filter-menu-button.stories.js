@@ -32,10 +32,6 @@ export default {
             control: { type: 'text' },
             description: 'a11y text for the button',
         },
-        footerText: {
-            control: { type: 'text' },
-            description: 'footer text for the button',
-        },
         pressed: {
             control: { type: 'boolean' },
             description: 'whether button is pressed (default is `false`)',
@@ -62,13 +58,6 @@ export default {
         item: {
             table: {
                 category: '@attribute tags',
-            },
-        },
-        a11yFooterText: {
-            control: { type: 'text' },
-            description: 'a11y text for the footer button',
-            table: {
-                category: 'when footer-text is set',
             },
         },
         formName: {
@@ -150,6 +139,12 @@ export default {
                 },
             },
         },
+        footer: {
+            name: '@footer',
+            table: {
+                category: '@attribute tags',
+            },
+        },
     },
 };
 
@@ -170,8 +165,11 @@ Standard.args = {
             renderBody: `item 3`,
         },
     ],
-    footerText: 'Apply',
-    a11yText: 'Filter Menu Button A11y Text',
+    a11yText: 'filter menu button a11y text',
+    footer: {
+        renderBody: 'Apply',
+        a11yFooterText: 'footer button a11y text',
+    },
 };
 Standard.parameters = {
     docs: {

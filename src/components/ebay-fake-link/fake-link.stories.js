@@ -32,6 +32,17 @@ export default {
                 },
             },
         },
+        variant: {
+            description:
+                'Should only be standalone when it is clear contextually that this is a link, regardless of styles',
+            options: ['inline', 'standalone'],
+            control: { type: 'select' },
+            table: {
+                defaultValue: {
+                    summary: 'inline',
+                },
+            },
+        },
         onClick: {
             action: 'on-click',
             description: 'Triggered on click',

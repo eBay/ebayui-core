@@ -2,6 +2,7 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "variant",
+    "footer",
     "footerText",
     "a11yFooterText",
     "class",
@@ -78,13 +79,14 @@ $ var isForm = input.variant === "form";
                 </>
             </for>
         </div>
-        <if(input.footerText)>
+        <if(input.footerText || input.footer)>
             <button
+                ...processHtmlAttributes(input.footer, ignoredAttributes)
                 type=(isForm ? "submit" : "button")
-                aria-label=input.a11yFooterText
+                aria-label=`${input.a11yFooterText || input.footer.a11yFooterText}`
                 class=`${baseClass}__footer`
                 onClick(!isForm && "handleFooterButtonClick")>
-                ${input.footerText}
+                <${input.footerText || input.footer.renderBody}/>
             </button>
         </if>
     </>

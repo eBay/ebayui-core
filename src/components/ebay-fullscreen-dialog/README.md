@@ -9,8 +9,8 @@
 
 ```marko
 <ebay-fullscreen-dialog open a11y-close-text="Close Dialog">
-  <@header>Hello World</@header>
-  Body content
+    <@header>Hello World</@header>
+    Body content
 </ebay-fullscreen-dialog>
 ```
 

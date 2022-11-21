@@ -1,68 +1,52 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
-
-static var ignoredAttributes = [
-    "ctaText",
-    "href",
-    "title",
-    "subtitle",
-    "info",
-    "overflow"
-];
-
+import { processHtmlAttributes } from '../../common/html-attributes';
+static var ignoredAttributes = ['ctaText', 'href', 'title', 'subtitle', 'info', 'overflow'];
 $ const ctaText = input.ctaText || 'See All';
 
-<div
-    ...processHtmlAttributes(input, ignoredAttributes)
-    class=[
-        "section-title",
-        input.class
-    ]>
+<div ...processHtmlAttributes(input, ignoredAttributes) class=['section-title', input.class]>
     <div
         class=[
-            "section-title__title-container",
+            'section-title__title-container',
             // TODO: Does this make more sense on the h2?
             // If so then we should probably spread in the rest of the
             // title attrs.
-            input.title && input.title.class
+            input.title && input.title.class,
         ]
-        style=(input.title && input.title.style)>
+        style=(input.title && input.title.style)
+    >
         <!-- Title-->
-        <h2 class="section-title__title" key="title" id:scoped="title">
+        <h2.section-title__title key='title' id:scoped='title'>
             <${input.title || input.renderBody}/>
         </h2>
         <!-- Subtitle-->
         <if(input.subtitle)>
             <span
                 ...processHtmlAttributes(input.subtitle)
-                class=["section-title__subtitle", input.subtitle.class]>
+                class=['section-title__subtitle', input.subtitle.class]
+            >
                 <${input.subtitle.renderBody}/>
             </span>
         </if>
     </div>
-
     <!-- Info-->
     <if(input.info)>
-        <div
-            ...processHtmlAttributes(input.info)
-            class=["section-title__info", input.info.class]>
+        <div ...processHtmlAttributes(input.info) class=['section-title__info', input.info.class]>
             <${input.info.renderBody}/>
         </div>
     </if>
-
-     <!-- CTA -->
-     <if(input.href)>
-        <div class="section-title__cta">
-            <a href=input.href tabindex="-1" aria-hidden="true">
-                <span class="section-title__cta-text">${ctaText}</span>
+    <!-- CTA -->
+    <if(input.href)>
+        <div.section-title__cta>
+            <a href=input.href tabindex='-1' aria-hidden='true'>
+                <span.section-title__cta-text>${ctaText}</span>
             </a>
         </div>
     </if>
-
     <!-- Overflow-->
     <if(input.overflow)>
         <div
             ...processHtmlAttributes(input.overflow)
-            class=["section-title__overflow", input.overflow.class]>
+            class=['section-title__overflow', input.overflow.class]
+        >
             <${input.overflow.renderBody}/>
         </div>
     </if>

@@ -1,5 +1,4 @@
 const TRANSITION_END = 'transitionend';
-
 /**
  * Applies a primer `-init` class before starting a transition
  * to make transitioning properties that are not animatable easier.

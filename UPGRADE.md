@@ -42,7 +42,7 @@ import pageNotice from '<ebay-page-notice>'
 import inlineNotice from '<ebay-inline-notice>'
 
 <${input.noticeType === 'page' ? pageNotice : inlineNotice}>
-   Notice body
+    Notice body
 </>
 ```
 

@@ -28,5 +28,13 @@
     "@role": "never",
     "@aria-checked": "never",
     "@for": "never"
+  },
+  "@footer <footer>": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
   }
 }
