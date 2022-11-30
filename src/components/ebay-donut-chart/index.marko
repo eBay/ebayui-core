@@ -28,7 +28,6 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
         'chart',
-        (!input.layout || (input.layout === 'composition' && !input.metric && !input.subtitle)) && 'chart--stacked',
         input.layout === 'composition' && (input.metric || input.subtitle) && 'chart--composition',
         (input.layout === 'legend-left' || input.layout === 'legend-right') && 'chart--horizontal',
         input.layout === 'legend-left' && 'chart--left',
@@ -60,7 +59,7 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
             (input.layout === 'legend-left' || input.layout === 'legend-right') && 'chart__container-horizontal',
             input.layout === 'legend-left' && 'chart__container-left',
             input.layout === 'legend-right' && 'chart__container-right',
-            (!input.layout || (input.layout === 'composition' && !input.metric && !input.subtitle)) && 'chart__container-stacked']
+            (input.layout === 'composition' && (input.metric || input.subtitle)) && 'chart__container-composition']
         portions=input.portions
         focusIndex=state.focusIndex
         description=input.description
