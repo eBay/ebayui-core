@@ -9,6 +9,7 @@
  *   firstSelected: Date | undefined,
  *   secondSelected: Date | undefined,
  *   focusDate: Date | undefined,
+ *   tabindexDate: Date
  * }} Input
  */
 
@@ -29,6 +30,13 @@ export default class {
 
     onDayBlur() {
         this.emit('blur');
+    }
+
+    /**
+     * @param {KeyboardEvent} event
+     */
+    onKeyDown(event) {
+        this.emit('keydown', event);
     }
 }
 

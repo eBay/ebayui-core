@@ -9,7 +9,7 @@ $ const displayName = getMonthDisplayName(input);
 $ const { showRange, rangeStart, rangeEnd } = findVisibleRange(input);
 $ const dateGrid = generateDateGrid(input);
 
-<div.date-picker__month>
+<div.date-picker__month onKeyDown('onKeyDown')>
     <h3>${displayName}</h3>
     <div role='grid' aria-label=displayName>
         <if(input.weekdayLabels)>
@@ -45,6 +45,7 @@ $ const dateGrid = generateDateGrid(input);
                             ]
                         >
                             <button
+                                key=`day-${timestamp}`
                                 type='button'
                                 aria-label=dayLabelFormatter.format(date)
                                 aria-selected=(
@@ -52,6 +53,7 @@ $ const dateGrid = generateDateGrid(input);
                                         (input.firstSelected && timestamp === input.firstSelected.getTime()) ||
                                         (input.secondSelected && timestamp === input.secondSelected.getTime())
                                     ) && 'true')
+                                tabindex=(timestamp !== input.tabindexDate.getTime() && -1)
                                 onClick('onDaySelect', date)
                                 onFocus('onDayFocus', date)
                                 onMouseOver('onDayFocus', date)

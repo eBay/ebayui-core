@@ -1,9 +1,9 @@
-import { getWeekdayInfo, floorDay } from "./component.js"
+import { getWeekdayInfo, floorDay, getMonthWithOffset } from "./component.js"
 
 $ const today = floorDay(input.today ?? new Date());
 $ const numActiveMonths = input.numActiveMonths ?? 2;
 $ const locale = input.locale ?? navigator.language;
-$ const range = input.range ?? false;
+$ const isRange = input.range ?? false;
 
 $ const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(locale);
 
@@ -22,24 +22,24 @@ $ const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(locale);
     >
         <ebay-chevron-right-icon/>
     </ebay-icon-button>
-    <for|monthOffset| from=0 to=numActiveMonths-1>
+    <for|monthOffset| from=state.offset to=state.offset + numActiveMonths - 1>
+        $ const monthDate = getMonthWithOffset(today, monthOffset)
         <ebay-date-picker-month
-            date=new Date(
-                today.getFullYear(),
-                today.getMonth() + state.offset + monthOffset
-            )
+            key=`month-${monthDate.getTime()}`
+            date=monthDate
             locale=locale
             weekdayLabels=weekdayLabels
             firstDayOfWeek=firstDayOfWeek
-            today=floorDay(today)
-            isRange=range
+            today=today
+            isRange=isRange
             firstSelected=state.firstSelected
             secondSelected=state.secondSelected
             focusDate=state.focusDate
-            on-select("onDaySelect")
-            on-focus("onDayFocus")
-            on-blur("onDayBlur")
-            on-keydown("onKeyDown")
+            tabindexDate=state.tabindexDate
+            onSelect("onDaySelect")
+            onFocus("onDayFocus")
+            onBlur("onDayBlur")
+            onKeydown("onKeyDown")
         />
     </for>
 </div>
