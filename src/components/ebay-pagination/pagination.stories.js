@@ -2,6 +2,8 @@ import { addRenderBodies } from '../../../.storybook/utils';
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
+import interactiveTemplate from './examples/buttons-interactive.marko';
+import interactiveCode from './examples/buttons-interactive.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -32,7 +34,15 @@ export default {
             description: 'Description for the current page (e.g. Results of Page 1)',
         },
         variant: {
-            control: { type: 'text' },
+            control: { type: 'select' },
+
+            table: {
+                defaultValue: {
+                    summary: 'show-range',
+                },
+            },
+
+            options: ['show-last', 'show-range', 'overflow'],
             description:
                 'Either `show-last`, or `show-range`. If `show-last` then will show the last page always and will put `…` between the last visible range and the last page. `…` and the last page will take up two items in the range. `…` will be hidden when the range to the last item is fully visible.',
         },
@@ -114,6 +124,9 @@ export default {
 
 export const Links = Template.bind({});
 Links.args = {
+    a11yPreviousText: 'previous',
+    a11yNextText: 'next',
+    a11yCurrentText: 'Current page',
     items: [
         {
             renderBody: ``,
@@ -176,6 +189,9 @@ Links.parameters = {
 
 export const Buttons = Template.bind({});
 Buttons.args = {
+    a11yPreviousText: 'previous',
+    a11yNextText: 'next',
+    a11yCurrentText: 'Current page',
     items: [
         {
             renderBody: ``,
@@ -221,6 +237,20 @@ Buttons.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-pagination', Buttons.args),
+        },
+    },
+};
+
+export const Interactive = (args) => ({
+    component: interactiveTemplate,
+    input: addRenderBodies(args),
+});
+
+Interactive.args = {};
+Interactive.parameters = {
+    docs: {
+        source: {
+            code: interactiveCode,
         },
     },
 };

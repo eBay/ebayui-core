@@ -17,6 +17,7 @@ static var ignoredAttributes = [
     "isModal",
     "closeButton",
     "closeButtonClass",
+    "closeButtonText",
     "ignoreEscape",
     "slideFrom",
     "windowType",
@@ -49,13 +50,16 @@ $ var header = input.header;
     <if(buttonPosition !== "hidden")>
         <button
             key="close"
-            class=["icon-btn", input.closeButtonClass, `${input.classPrefix}__close` ]
+            class=[input.closeButtonText ? "fake-link" : "icon-btn", input.closeButtonClass, `${input.classPrefix}__close` ]
             type="button"
             aria-label=input.a11yCloseText
             onClick("handleCloseButtonClick")>
-            <if(input.closeButton)>
-                <${input.closeButton}/>
+            <if (input.closeButtonText)>
+                ${input.closeButtonText}
             </if>
+            <else-if(input.closeButton)>
+                <${input.closeButton}/>
+            </else-if>
             <else>
                 <ebay-close-small-icon/>
             </else>

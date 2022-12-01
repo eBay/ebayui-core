@@ -29,6 +29,10 @@ export default {
         selected: {
             control: { type: 'boolean' },
         },
+        useAriaPressed: {
+            control: { type: 'boolean' },
+            description: 'defaults to `true`',
+        },
         a11ySelectedText: {
             control: { type: 'text' },
             description: 'defaults to `"Selected"`, but should be changed based on L10N or I18N',
@@ -52,6 +56,7 @@ export default {
 export const Standard = Template.bind({});
 Standard.args = {
     renderBody: `text`,
+    useAriaPressed: true,
 };
 Standard.parameters = {
     docs: {

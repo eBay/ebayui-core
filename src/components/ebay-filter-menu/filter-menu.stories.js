@@ -28,17 +28,6 @@ export default {
             control: { type: 'text' },
             description: '"" (default) / "form"',
         },
-        footerText: {
-            control: { type: 'text' },
-            description: 'a11y text for the button',
-        },
-        a11yFooterText: {
-            control: { type: 'text' },
-            description: 'a11y text for the footer button',
-            table: {
-                category: 'when footer-text is set',
-            },
-        },
         classPrefix: {
             control: { type: 'text' },
             description:
@@ -73,7 +62,14 @@ export default {
                 category: '@item attributes',
             },
             control: { type: 'text' },
-            description: 'the items value (returned in emitted events when checked)',
+            description: "the item's value (returned in emitted events when checked)",
+        },
+        disabled: {
+            table: {
+                category: '@item attributes',
+            },
+            control: { type: 'boolean' },
+            description: 'whether or not the item is disabled',
         },
         onChange: {
             action: 'on-change',
@@ -106,6 +102,12 @@ export default {
                 },
             },
         },
+        footer: {
+            name: '@footer',
+            table: {
+                category: '@attribute tags',
+            },
+        },
     },
 };
 
@@ -125,6 +127,11 @@ Standard.args = {
             renderBody: `item 3`,
         },
     ],
+    text: 'Button',
+    footer: {
+        renderBody: 'Apply',
+        a11yFooterText: 'a11y text for footer button',
+    },
 };
 Standard.parameters = {
     docs: {

@@ -1,6 +1,7 @@
 import * as eventUtils from '../../common/event-utils';
+import { getMaxWidth } from '../../common/dom';
 const MAX_PAGES = 9;
-const MIN_PAGES = 3;
+const MIN_PAGES = 5;
 
 export default {
     /**
@@ -14,6 +15,18 @@ export default {
             value: el.innerText,
             index,
         });
+    },
+
+    handleMenuPageNumber({ originalEvent, el }) {
+        const index = parseInt(el.getAttribute('data-page-number'), 10);
+        this.emit('select', {
+            el,
+            originalEvent,
+            value: el.innerText,
+            index,
+        });
+        // Have to set timeout becasue menu will also trigger focus back to menu container
+        setTimeout(() => this.getEl('pageItem[]', index).focus(), 0);
     },
 
     handleNextPageClick(originalEvent, el) {
@@ -58,13 +71,24 @@ export default {
         const { state, input } = this;
         const { maxItems } = state;
         const { variant } = input;
-        const hasDots = variant === 'show-last';
+        const hasDots = variant === 'show-last' || variant === 'overflow';
+        const hasLeadingDots = variant === 'overflow';
+        const hasOverflow = variant === 'overflow';
         const lastIndex = items.length - 1;
         const dotsIndex = hasDots ? lastIndex : -1;
+        const leadingDotsIndex = hasLeadingDots ? 1 : -1;
         let hideDots = false;
+        let hideLeadingDots = false;
 
         if (!maxItems) {
-            return { start: 0, end: lastIndex, hideDots: true, dotsIndex };
+            return {
+                start: 0,
+                end: lastIndex,
+                hideDots: true,
+                dotsIndex,
+                leadingDotsIndex,
+                hasOverflow,
+            };
         }
 
         const i = items.findIndex((item) => item.current);
@@ -83,7 +107,7 @@ export default {
         }
 
         if (hasDots) {
-            if (i + range >= lastIndex) {
+            if (i + range >= lastIndex || end >= lastIndex) {
                 hideDots = true;
             } else if (i <= end - 2) {
                 end -= 2;
@@ -93,7 +117,18 @@ export default {
             }
         }
 
-        return { start, end, hideDots, dotsIndex };
+        if (hasLeadingDots) {
+            if (i - range <= 0) {
+                hideLeadingDots = true;
+            } else if (i >= start - 1) {
+                start += 2;
+            } else {
+                end -= 1;
+                start -= 1;
+            }
+        }
+
+        return { start, end, hideDots, dotsIndex, hasOverflow, leadingDotsIndex, hideLeadingDots };
     },
 
     _calculateMaxItems() {
@@ -105,28 +140,14 @@ export default {
         }
 
         const itemContainer = this.getEl('items');
+        const root = this.getEl('root');
         const itemWidth =
             this._itemWidth || // Cache the item width since it should be static.
             (this._itemWidth = itemContainer.firstElementChild.offsetWidth);
-
+        // subtract 2 from the rounded results to take into account previous/next page buttons
         state.maxItems = Math.max(
             MIN_PAGES,
-            Math.min(MAX_PAGES, Math.floor(getMaxWidth(itemContainer) / itemWidth))
+            Math.min(MAX_PAGES, Math.floor(getMaxWidth(root) / itemWidth) - 2)
         );
     },
 };
-
-/**
- * Calculates the maximum width for an element within its container.
- * Works my making the element as large as possible, reading its width,
- * and then restoring its original width.
- *
- * @param {HTMLElement} el the element to get the max width for
- * @return {number}
- */
-function getMaxWidth(el) {
-    el.style.width = '100vw';
-    const result = el.offsetWidth;
-    el.style.width = null;
-    return result;
-}

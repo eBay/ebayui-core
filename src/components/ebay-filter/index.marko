@@ -2,7 +2,8 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "selected",
-    "a11ySelectedText"
+    "a11ySelectedText",
+    "useAriaPressed"
 ];
 
 $ var baseClass = input.href ? "filter-link" : "filter-button";
@@ -15,7 +16,7 @@ $ var baseClass = input.href ? "filter-link" : "filter-button";
         input.class
     ]
     type=(!input.href && "button")
-    aria-pressed=(!input.href && state.selected && "true")
+    aria-pressed=(input.useAriaPressed !== false && !input.href && state.selected && "true")
     onClick("handleButtonClick")>
     <span class=`${baseClass}__cell`>
         <span>

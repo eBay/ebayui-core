@@ -6,8 +6,12 @@
   },
   "@html-attributes": "expression",
   "@partially-disabled": "boolean",
+  "@transparent": "boolean",
   "@badge-number": "expression",
   "@badge-aria-label": "string",
+  "@size": {
+    "enum": ["small", "regular", "large"]
+  },
   "@autofocus": "#html-autofocus",
   "@disabled": "#html-disabled",
   "@form": "#html-form",

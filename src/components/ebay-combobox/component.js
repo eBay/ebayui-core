@@ -15,11 +15,23 @@ export default {
     },
 
     isExpanded() {
-        return this.expander.expanded;
+        return this.expander && this.expander.expanded;
+    },
+
+    isCollapsed() {
+        return this.expander && !this.expander.expanded;
+    },
+
+    expand() {
+        if (this.isCollapsed()) {
+            this.expander.expanded = true;
+        }
     },
 
     collapse() {
-        return (this.expander.expanded = false);
+        if (this.isExpanded()) {
+            this.expander.expanded = false;
+        }
     },
 
     handleButtonClick(originalEvent) {
@@ -62,23 +74,19 @@ export default {
     },
 
     handleComboboxClick(e) {
-        if (e.target === document.activeElement && this.expander && !this.isExpanded()) {
-            this.expander.expanded = true;
+        if (e.target === document.activeElement) {
+            this.expand();
         }
     },
 
     handleComboboxKeyDown(originalEvent) {
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             originalEvent.preventDefault();
-
-            if (this.expander && !this.expander.expanded) {
-                this.activeDescendant.reset();
-                this.expander.expanded = true;
-            }
+            this.expand();
         });
 
         eventUtils.handleEnterKeydown(originalEvent, () => {
-            if (this.expander.expanded) {
+            if (this.isExpanded()) {
                 const selectedIndex = this.activeDescendant.index;
 
                 if (selectedIndex !== -1) {
@@ -86,13 +94,13 @@ export default {
                 }
 
                 if (this.input.expanded !== true) {
-                    this.expander.expanded = false;
+                    this.collapse();
                 }
             }
         });
 
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.expander.expanded = false;
+            this.collapse();
         });
     },
 
@@ -103,9 +111,7 @@ export default {
                 // If we have an expander after the update
                 // that could mean that new content was made visible.
                 // We force the expander open just in case.
-                if (this.expander) {
-                    this.expander.expanded = true;
-                }
+                this.expand();
             });
             this.state.viewAllOptions = false;
 
@@ -120,14 +126,8 @@ export default {
             this.focus();
         }
 
-        if (
-            this.expander &&
-            this.expander.expanded &&
-            !wasClickedOption &&
-            !this.buttonClicked &&
-            this.input.expanded !== true
-        ) {
-            this.expander.expanded = false;
+        if (!wasClickedOption && !this.buttonClicked && this.input.expanded !== true) {
+            this.collapse();
         }
 
         this.buttonClicked = false;
@@ -189,51 +189,62 @@ export default {
         this._cleanupMakeup();
     },
 
+    _setupFloatingLabel() {
+        // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
+        // It probably makes more sense to just move this functionality into Marko though.
+        if (this._floatingLabel) {
+            this._floatingLabel.refresh();
+            this.handleFloatingLabelInit();
+        } else if (document.readyState === 'complete') {
+            if (this.el) {
+                this._floatingLabel = new FloatingLabel(this.el);
+                this.handleFloatingLabelInit();
+            }
+        } else {
+            this.subscribeTo(window).once('load', () => {
+                this._setupFloatingLabel();
+            });
+        }
+    },
+
     _setupMakeup() {
         if (this._hasVisibleOptions()) {
-            this.activeDescendant = createLinear(
-                this.el,
-                this.getEl('combobox'),
-                this.getEl('listbox'),
-                '[role="option"]',
-                {
-                    activeDescendantClassName: 'combobox__option--active',
-                    autoInit: -1,
-                    autoReset: -1,
-                    axis: 'y',
-                    autoScroll: true,
-                }
-            );
+            if (!this.activeDescendant) {
+                this.activeDescendant = createLinear(
+                    this.el,
+                    this.getEl('combobox'),
+                    this.getEl('listbox'),
+                    '[role="option"]',
+                    {
+                        activeDescendantClassName: 'combobox__option--active',
+                        autoInit: -1,
+                        autoReset: -1,
+                        axis: 'y',
+                        autoScroll: true,
+                    }
+                );
+            }
 
-            this.expander = new Expander(this.el, {
-                autoCollapse: !this.expanded,
-                expandOnFocus: true,
-                collapseOnFocusOut: !this.expanded && !this.input.button,
-                contentSelector: '[role="listbox"]',
-                hostSelector: '[role="combobox"]',
-                expandedClass: 'combobox--expanded',
-                simulateSpacebarClick: true,
-            });
+            if (!this.expander) {
+                this.expander = new Expander(this.el, {
+                    autoCollapse: !this.expanded,
+                    expandOnFocus: true,
+                    collapseOnFocusOut: !this.expanded && !this.input.button,
+                    contentSelector: '[role="listbox"]',
+                    hostSelector: '[role="combobox"]',
+                    expandedClass: 'combobox--expanded',
+                    simulateSpacebarClick: true,
+                });
+            }
 
             if (this.expandedChange) {
                 this.expander.expanded = this.expanded;
                 this.expandedChange = false;
             }
         }
-        // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
-        // It probably makes more sense to just move this functionality into Marko though.
+
         if (this.input.floatingLabel) {
-            if (this._floatingLabel) {
-                this._floatingLabel.refresh();
-                this.handleFloatingLabelInit();
-            } else if (document.readyState === 'complete') {
-                if (this.el) {
-                    this._floatingLabel = new FloatingLabel(this.el);
-                    this.handleFloatingLabelInit();
-                }
-            } else {
-                this.subscribeTo(window).once('load', this._setupMakeup.bind(this));
-            }
+            this._setupFloatingLabel();
         }
     },
 

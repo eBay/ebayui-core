@@ -1,88 +1,83 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import template from '..';
-import * as mock from './mock';
-const { testPassThroughAttributes } = require('../../../common/test-utils/server');
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../pagination.stories';
+import { testPassThroughAttributes } from '../../../common/test-utils/server';
+import { getPaginationItems } from '../../../common/test-utils/shared';
+
+const { Buttons, Links, Interactive } = composeStories(stories);
+
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
 describe('pagination', () => {
     describe('with links', () => {
         it('renders basic version', async () => {
-            const input = mock.link6ItemsNoSelected;
-            const { getByRole, getByText, getByLabelText } = await render(template, input);
-            const navigationEl = getByRole('navigation');
-            const statusEl = getByRole('status');
-            const statusTextEl = getByText(input.a11yCurrentText);
-            const prevEl = getByLabelText(input.a11yPreviousText);
-            const nextEl = getByLabelText(input.a11yNextText);
+            await htmlSnap(Links);
+        });
+        it('renders with last page visible', async () => {
+            await htmlSnap(Links, { variant: 'show-last' });
+        });
 
-            expect(statusEl).contains(statusTextEl);
-            expect(navigationEl).has.class('pagination');
-            expect(navigationEl).has.attr('aria-labelledby', statusTextEl.id);
+        it('renders with overflow', async () => {
+            await htmlSnap(Links, { variant: 'overflow' });
+        });
 
-            expect(prevEl).has.class('pagination__previous');
-            expect(prevEl).has.attr('href', input.items[0].href);
-            expect(prevEl).does.not.have.attr('aria-disabled');
-
-            expect(nextEl).has.class('pagination__next');
-            expect(nextEl).has.attr('href', input.items[input.items.length - 1].href);
-            expect(nextEl).does.not.have.attr('aria-disabled');
-
-            input.items.slice(1, -1).forEach((itemData) => {
-                const itemEl = getByText(itemData.renderBody.text);
-                expect(itemEl).has.class('pagination__item');
-                expect(itemEl).has.attr('href', itemData.href);
-                expect(itemEl).does.not.have.attr('aria-current');
-            });
+        it('renders empty version', async () => {
+            await htmlSnap(Links, { items: getPaginationItems(0, true, 3) });
         });
 
         it('renders with a selected item', async () => {
-            const input = mock.link9Items1Selected;
-            const { getByText } = await render(template, input);
-            input.items.slice(1, -1).forEach((itemData, i) => {
-                const itemEl = getByText(itemData.renderBody.text);
-                if (i === 1) {
-                    expect(itemEl).has.attr('aria-current', 'page');
-                } else {
-                    expect(itemEl).does.not.have.attr('aria-current');
-                }
-            });
+            await htmlSnap(Links, { items: getPaginationItems(15, true, 3) });
         });
 
         it('renders with aria-disabled when navigation is disabled', async () => {
-            const input = mock.link1ItemsNavigationDisabled;
-            const { getByLabelText } = await render(template, input);
-            expect(getByLabelText(input.a11yPreviousText)).has.property('tagName', 'A');
-            expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
-            expect(getByLabelText(input.a11yNextText)).has.property('tagName', 'A');
-            expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+            await htmlSnap(Links, { items: getPaginationItems(15, true, 3, true) });
         });
 
         it('renders with aria-disabled when navigation items missing', async () => {
-            const input = mock.link1ItemsNoNavigation;
-            const { getByLabelText } = await render(template, input);
-            expect(getByLabelText(input.a11yPreviousText)).has.attr('aria-disabled', 'true');
-            expect(getByLabelText(input.a11yNextText)).has.attr('aria-disabled', 'true');
+            await htmlSnap(Links, { items: getPaginationItems(15, true, 3, true, true) });
         });
     });
 
     describe('with buttons', () => {
-        it('renders button version', async () => {
-            const input = mock.Buttons0Selected;
-            const { getByText, getByLabelText } = await render(template, input);
+        it('renders default button version', async () => {
+            await htmlSnap(Buttons);
+        });
 
-            expect(getByLabelText(input.a11yPreviousText)).has.property('tagName', 'BUTTON');
-            expect(getByLabelText(input.a11yNextText)).has.property('tagName', 'BUTTON');
-            expect(getByText(input.items[1].renderBody.text)).has.property('tagName', 'BUTTON');
+        it('renders buttons with last page visible', async () => {
+            await htmlSnap(Buttons, { variant: 'show-last' });
+        });
+
+        it('renders default button with overflow', async () => {
+            await htmlSnap(Buttons, { variant: 'overflow' });
+        });
+
+        it('renders empty button version', async () => {
+            await htmlSnap(Buttons, { items: getPaginationItems(0, false) });
+        });
+
+        it('renders button version', async () => {
+            await htmlSnap(Buttons, { items: getPaginationItems(15, false) });
+        });
+
+        it('renders button version selected items', async () => {
+            await htmlSnap(Buttons, { items: getPaginationItems(15, false, 3) });
+        });
+    });
+    describe('Interactive', () => {
+        it('renders defaults', async () => {
+            await htmlSnap(Interactive);
         });
     });
 
-    testPassThroughAttributes(template);
+    testPassThroughAttributes(Links);
+    testPassThroughAttributes(Buttons);
 });
 
 describe('pagination-item', () => {
-    testPassThroughAttributes(template, {
+    testPassThroughAttributes(Links, {
         child: {
             name: 'items',
             multiple: true,

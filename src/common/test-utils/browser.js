@@ -1,5 +1,4 @@
 import { fireEvent, createEvent } from '@marko/testing-library';
-
 /**
  * Simulates a touch based scroll event over 4 animation frames.
  *

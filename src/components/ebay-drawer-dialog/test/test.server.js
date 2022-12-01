@@ -1,52 +1,34 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { testPassThroughAttributes } from '../../../common/test-utils/server';
-import template from '..';
-import * as mock from './mock';
-
-use(require('chai-dom'));
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../drawer-dialog.stories'; // import all stories from the stories file
+const { Standard, WithFooter } = composeStories(stories);
+const htmlSnap = snapshotHTML(__dirname);
 
 describe('drawer-dialog', () => {
     it('renders basic version', async () => {
-        const input = mock.Drawer;
-        const { getByRole, getByLabelText, getByText } = await render(template, input);
-        const dialog = getByRole('dialog', { hidden: true });
-
-        expect(dialog).has.attr('hidden');
-        expect(dialog).has.class('drawer-dialog');
-        expect(dialog).has.class('drawer-dialog--mask-fade-slow');
-        expect(getByLabelText(input.a11yCloseText)).has.class('drawer-dialog__close');
-        expect(getByLabelText(input.a11yMaximizeText)).has.class('drawer-dialog__handle');
-        expect(getByText(input.renderBody.text)).has.class('drawer-dialog__main');
-        expect(getByText(input.header.renderBody.text).parentElement).has.class(
-            'drawer-dialog__header'
-        );
-        expect(getByText(input.footer.renderBody.text)).has.class('drawer-dialog__footer');
+        await htmlSnap(Standard);
     });
 
     it('renders without handle ', async () => {
-        const input = mock.Drawer;
-        const { queryByLabelText } = await render(
-            template,
-            Object.assign({}, input, { noHandle: true })
-        );
-        expect(queryByLabelText(input.a11yMaximizeText)).to.equal(null);
+        await htmlSnap(Standard, { noHandle: true });
+    });
+
+    it('renders with text close', async () => {
+        await htmlSnap(Standard, { closeButtonText: 'Close dialog' });
     });
 
     it('renders in open state', async () => {
-        const input = mock.Drawer_Open;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('dialog')).does.not.have.attr('hidden');
+        await htmlSnap(Standard, { open: true });
+    });
+
+    it('renders with footer version', async () => {
+        await htmlSnap(WithFooter);
     });
 
     it('renders in expanded state', async () => {
-        const { getByRole } = await render(template, mock.Drawer_Expanded);
-        const $drawer = getByRole('dialog');
-        const $window = $drawer.children[0];
-
-        expect($window).has.class('drawer-dialog__window--expanded');
-        expect($window).has.class('drawer-dialog__window--slide');
+        await htmlSnap(Standard, { expanded: true, open: true });
     });
 
-    testPassThroughAttributes(template);
+    testPassThroughAttributes(Standard);
 });

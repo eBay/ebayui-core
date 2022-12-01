@@ -2,6 +2,8 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import carousel from './index.marko';
 import readme from './README.md';
 import './examples/example-styles.less';
+import defaultTabIndex from './examples/preserve-tabindex.marko';
+import defaultTabIndexCode from './examples/preserve-tabindex.marko?raw';
 
 const images = [
     'http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/aztec-pyramid.jpeg',
@@ -321,6 +323,27 @@ autoplay.parameters = {
     docs: {
         source: {
             code: tagToString('ebay-carousel', autoplay.args, { items: 'item' }),
+        },
+    },
+};
+
+export const PreserveTabindex = (args) => ({
+    input: args,
+    component: defaultTabIndex,
+});
+PreserveTabindex.args = {
+    items: getItems(5),
+    index: 0,
+    gap: null,
+    'a11y-previous-text': null,
+    'a11y-next-text': null,
+    itemsPerSlide: '2',
+    'aria-label': 'Items Per Slide',
+};
+PreserveTabindex.parameters = {
+    docs: {
+        source: {
+            code: defaultTabIndexCode,
         },
     },
 };

@@ -49,5 +49,14 @@
       "type": "expression"
     },
     "@html-attributes": "expression"
+  },
+  "@footer <footer>": {
+    "@index": "string",
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
   }
 }

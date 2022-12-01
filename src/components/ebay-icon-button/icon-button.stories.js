@@ -30,6 +30,17 @@ export default {
                     summary: 'false',
                 },
             },
+            control: { type: 'boolean' },
+        },
+        size: {
+            description: 'alternative size for the icon button',
+            options: ['small', 'regular', 'large'],
+            control: { type: 'select' },
+            table: {
+                defaultValue: {
+                    summary: 'regular',
+                },
+            },
         },
         partiallyDisabled: {
             description: 'programmatically disabled, but remains keyboard focusable',
@@ -39,6 +50,7 @@ export default {
                 },
                 category: 'Toggles',
             },
+            control: { type: 'boolean' },
         },
         badgeNumber: {
             description: 'number to show in badge',
@@ -52,6 +64,16 @@ export default {
             table: {
                 category: 'Badge',
             },
+        },
+        transparent: {
+            description: 'is icon button is transparent or not',
+            table: {
+                defaultValue: {
+                    summary: 'false',
+                },
+                category: 'Toggles',
+            },
+            control: { type: 'boolean' },
         },
         onClick: {
             action: 'on-click',

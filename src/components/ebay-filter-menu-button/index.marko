@@ -3,6 +3,7 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 static var ignoredAttributes = [
     "variant",
     "text",
+    "footer",
     "footerText",
     "disabled",
     "selected",
@@ -12,6 +13,7 @@ static var ignoredAttributes = [
     "items",
     "type"
 ];
+$ var footer = input.footer || {};
 
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -30,7 +32,7 @@ static var ignoredAttributes = [
         aria-pressed=(component.getCheckedValues().some(Boolean) && "true")>
         <span class="filter-menu-button__button-cell">
             <span class="filter-menu-button__button-text">${input.text}</span>
-            <ebay-chevron-down-icon/>
+            <ebay-dropdown-icon/>
         </span>
     </button>
     <ebay-filter-menu
@@ -41,6 +43,7 @@ static var ignoredAttributes = [
         form-action=input.formAction
         form-method=input.formMethod
         footer-text=input.footerText
+        a11y-footer-text=input.a11yFooterText
         on-keydown("handleMenuKeydown")
         on-change("handleMenuChange")
         on-form-submit("handleFormSubmit")
@@ -48,5 +51,10 @@ static var ignoredAttributes = [
         <for|item, i| of=(input.items || [])>
             <@item ...item checked=component.isChecked(i)/>
         </for>
+        <if(input.footerText || input.footer)>
+            <@footer ...footer a11y-footer-text=(input.a11yFooterText || input.footer.a11yFooterText)>
+                <${input.footerText || input.footer.renderBody}/>
+            </@footer>
+        </if>
     </ebay-filter-menu>
 </span>

@@ -1,19 +1,21 @@
-<ebay-fullscreen-dialog a11y-close-text="Close Dialog" open=state.open on-close('closeDialog') on-open('emit', 'open') ...input>
-</ebay-fullscreen-dialog>
+<ebay-fullscreen-dialog
+    a11y-close-text='Close Dialog'
+    open=state.open
+    on-close('closeDialog')
+    on-open('emit', 'open')
+    ...input
+/>
 
-<ebay-button on-click('openDialog')>
-    Open Dialog
-</ebay-button>
-
+<ebay-button on-click('openDialog')>Open Dialog</ebay-button>
 class {
-  onCreate() {
-    this.state = { open: false };
-  }
-  openDialog() {
-    this.state.open = true;
-  }
-  closeDialog() {
-    this.state.open = false;
-    this.emit('close');
-  }
+    onCreate() {
+        this.state = { open: false };
+    }
+    openDialog() {
+        this.state.open = true;
+    }
+    closeDialog() {
+        this.state.open = false;
+        this.emit('close');
+    }
 }

@@ -2,7 +2,9 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = [
     "variant",
+    "footer",
     "footerText",
+    "a11yFooterText",
     "class",
     "style",
     "classPrefix",
@@ -13,7 +15,7 @@ static var ignoredAttributes = [
     "type"
 ];
 
-static var itemIgnoredAttributes = ["checked", "value"];
+static var itemIgnoredAttributes = ["checked", "value", "disabled"];
 
 $ var isRadio = input.type === "radio";
 $ var prefixName = isRadio ? 'radio' : 'checkbox';
@@ -37,6 +39,7 @@ $ var isForm = input.variant === "form";
                     class=[`${baseClass}__item`, item.class]
                     role=(isRadio ? "menuitemradio" : "menuitemcheckbox")
                     aria-checked=String(isChecked)
+                    aria-disabled=(item.disabled && "true")
                     for=(isForm && component.elId(`${prefixName}-${i}`))
                     onClick("handleItemClick", i)
                     onKeydown("handleItemKeydown", i)>
@@ -76,13 +79,14 @@ $ var isForm = input.variant === "form";
                 </>
             </for>
         </div>
-        <if(input.footerText)>
+        <if(input.footerText || input.footer)>
             <button
+                ...processHtmlAttributes(input.footer, ignoredAttributes)
                 type=(isForm ? "submit" : "button")
-                aria-label=input.a11yFooterText
+                aria-label=`${input.a11yFooterText || input.footer.a11yFooterText}`
                 class=`${baseClass}__footer`
                 onClick(!isForm && "handleFooterButtonClick")>
-                ${input.footerText}
+                <${input.footerText || input.footer.renderBody}/>
             </button>
         </if>
     </>

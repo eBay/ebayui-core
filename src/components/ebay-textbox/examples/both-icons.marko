@@ -1,0 +1,30 @@
+class {
+    onCreate() {
+        this.state = {
+            value: ""
+        };
+    }
+    change({ value }) {
+        this.state.value = value;
+    }
+    clear(e) {
+        this.state.value = "";
+        this.emit('button-click', e)
+    }
+}
+
+<ebay-textbox
+    key="textbox"
+    value=state.value
+    button-aria-label="Clear"
+    placeholder="name"
+    ...input
+    on-change("change")
+    on-button-click("clear")>
+    <@postfix-icon>
+        <ebay-close-icon/>
+    </@postfix-icon>
+    <@prefix-icon>
+        <ebay-user-profile-icon/>
+    </@prefix-icon>
+</ebay-textbox>

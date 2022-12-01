@@ -1,94 +1,74 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../textbox.stories';
 import { testPassThroughAttributes } from '../../../common/test-utils/server';
-import template from '..';
-import * as mock from './mock';
+
+const { Isolated, WithLabel, FloatingLabel, Disabled, PrefixIcon, BothIcons, PostfixIcon } =
+    composeStories(stories);
+
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
 describe('ebay-textbox', () => {
     it('renders default input textbox', async () => {
-        const input = mock.Basic;
-        const { getByRole } = await render(template, input);
-        const textboxEl = getByRole('textbox');
-        expect(textboxEl).has.value(input.value);
-        expect(textboxEl).has.class('textbox__control');
-        expect(textboxEl).has.property('tagName', 'INPUT');
-        expect(textboxEl).has.property('parentElement').with.class('textbox');
+        await htmlSnap(Isolated);
     });
 
     it('renders default input textbox with an id', async () => {
-        const input = mock.basicWithId;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('textbox')).contains.id(input.id);
+        await htmlSnap(Isolated, { id: 'textbox-id' });
     });
 
     it('renders fluid input textbox', async () => {
-        const input = mock.Fluid;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('textbox')).has.class('textbox__control--fluid');
+        await htmlSnap(Isolated, { fluid: true });
     });
 
     it('renders a disabled input textbox', async () => {
-        const input = mock.Disabled;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('textbox')).has.property('disabled', true);
+        await htmlSnap(Disabled);
     });
 
     it('renders a input textbox with invalid/error state', async () => {
-        const input = mock.Invalid;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('textbox')).has.attr('aria-invalid', 'true');
+        await htmlSnap(Isolated, { invalid: true });
+    });
+
+    it('renders a input textbox with external label', async () => {
+        await htmlSnap(WithLabel);
     });
 
     it('renders a textarea element', async () => {
-        const input = mock.Multiline;
-        const { getByRole } = await render(template, input);
-        const textboxEl = getByRole('textbox');
-        expect(textboxEl).has.property('tagName', 'TEXTAREA');
-        expect(textboxEl).has.text(input.value);
-        expect(textboxEl).has.value(input.value);
+        await htmlSnap(Isolated, { multiline: true });
     });
 
     it('renders a textarea element with prefix icon', async () => {
-        const input = mock.prefixIcon;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('textbox')).has.property('previousElementSibling').with.class('icon');
+        await htmlSnap(PrefixIcon);
     });
 
     it('renders a textarea element with postfix icon', async () => {
-        const input = mock.postfixIcon;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('textbox')).has.property('nextElementSibling').with.class('icon');
+        await htmlSnap(PostfixIcon);
     });
 
     it('renders a textarea element with postfix icon button', async () => {
-        const input = mock.postfixIconButton;
-        const { getByLabelText } = await render(template, input);
-        expect(getByLabelText('search button')).has.class('icon-btn');
-        expect(getByLabelText('search button').firstElementChild).has.class('icon');
+        await htmlSnap(BothIcons);
     });
 
     it('renders an input textbox with inline floating label', async () => {
-        const input = mock.floatingLabel;
-        const { getByRole, getByLabelText, getByText } = await render(template, input);
-        expect(getByRole('textbox')).to.equal(getByLabelText(input.floatingLabel));
-        expect(getByText(input.floatingLabel)).has.class('floating-label__label');
+        await htmlSnap(FloatingLabel);
+    });
+
+    it('renders an input textbox with opaque floating label', async () => {
+        await htmlSnap(FloatingLabel, { opaqueLabel: true });
     });
 
     it('renders an input textbox with inline floating label and an id', async () => {
-        const input = mock.floatingLabelWithId;
-        const { getByLabelText } = await render(template, input);
-        expect(getByLabelText(input.floatingLabel)).has.id(input.id);
+        await htmlSnap(FloatingLabel, { id: 'text-id' });
     });
 
     it('renders a disabled input textbox with disabled floating label', async () => {
-        const input = mock.floatingLabelDisabled;
-        const { getByText } = await render(template, input);
-        expect(getByText(input.floatingLabel)).has.class('floating-label__label--disabled');
+        await htmlSnap(FloatingLabel, { disabled: true });
     });
 
-    testPassThroughAttributes(template, {
+    testPassThroughAttributes(Isolated, {
         getClassAndStyleEl(component) {
             return component.getByRole('textbox').parentElement;
         },
