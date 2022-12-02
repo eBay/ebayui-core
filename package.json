@@ -68,6 +68,7 @@
     "@commitlint/config-conventional": "^17",
     "@ebay/browserslist-config": "^2.2.0",
     "@ebay/skin": "~15.2.0",
+    "@google/model-viewer": "^2.1.1",
     "@lasso/marko-taglib": "^2.0.5",
     "@marko/compiler": "^5.23.0",
     "@marko/migrate": "^6.0.2",

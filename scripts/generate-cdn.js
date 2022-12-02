@@ -11,7 +11,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
 
-function updateJsonFile(version) {
+function update3dPlayerJSONFile(version) {
+    const versionFile = path.join(rootDir, 'src/components/ebay-3d-viewer/versions.json');
+    const threedVersions = {
+        '//': 'This is a generated file. Run script file to update',
+        modelViewer: version,
+    };
+    const newVersion = JSON.stringify(threedVersions);
+    fs.writeFileSync(versionFile, newVersion);
+}
+
+function updateVideoJSONFile(version) {
     const versionFile = path.join(rootDir, 'src/components/ebay-video/versions.json');
     const videoVersions = {
         '//': 'This is a generated file. Run script file to update',
@@ -48,18 +58,30 @@ async function run() {
         "npm list shaka-player --depth 1 | grep shaka-player | awk -F @ '{ print  $2 }'",
         { encoding: 'utf8' }
     ).trim();
+    const threeDVersion = execSync(
+        "npm list @google/model-viewer --depth 1 | grep google/model-viewer | awk -F @ '{ print  $3 }'",
+        { encoding: 'utf8' }
+    ).trim();
+
     const cdnDir = path.join(rootDir, '_cdn', 'ebayui');
     const playerPath = path.join(cdnDir, 'shaka', `v${version}`);
+    const threeDPlayerPath = path.join(cdnDir, 'google-model-viewer', `v${threeDVersion}`);
 
     try {
         rimraf.sync(cdnDir);
-        updateJsonFile(version);
+        updateVideoJSONFile(version);
         await fs.promises.mkdir(playerPath, { recursive: true });
         await download(getShakaUrl(version), playerPath, 'shaka-player.ui.js');
         await download(getShakaCSSUrl(version), playerPath, 'controls.css');
         // Remove define
         execSync(
             `sed -i '' -e 's/typeof define=="function"/typeof define=="w"/' ${playerPath}/shaka-player.ui.js`
+        );
+        update3dPlayerJSONFile(threeDVersion);
+        await fs.promises.mkdir(threeDPlayerPath, { recursive: true });
+        await fs.promises.cp(
+            `${rootDir}/node_modules/@google/model-viewer/dist/model-viewer.min.js`,
+            `${threeDPlayerPath}/model-viewer.min.js`
         );
     } catch (e) {
         console.error(e);
