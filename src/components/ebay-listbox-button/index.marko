@@ -14,7 +14,8 @@ static var ignoredAttributes = [
     "prefixId",
     "unselectedText",
     "floatingLabel",
-    "collapseOnSelect"
+    "collapseOnSelect",
+    "variant"
 ];
 
 $ var selectedOption = input.options[state.selectedIndex];
@@ -33,6 +34,7 @@ $ var displayText = selectedText || unselectedText;
         key="button"
         class=[
             "listbox-button__control",
+            input.variant && `listbox-button__control--${input.variant}`,
             'btn',
             'btn--form',
             input.borderless && "btn--borderless",

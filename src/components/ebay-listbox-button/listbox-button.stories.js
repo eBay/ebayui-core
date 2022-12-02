@@ -95,6 +95,12 @@ export default {
                 category: '@option attributes',
             },
         },
+        variant: {
+            description:
+                'If `form`, changes appearance to match other form-specific dropdown-esque components for visual consistency.',
+            options: ['', 'form'],
+            type: 'select',
+        },
 
         onChange: {
             action: 'on-change',
