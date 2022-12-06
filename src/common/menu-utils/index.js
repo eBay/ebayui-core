@@ -4,10 +4,10 @@ function isRadio() {
 
 function getCheckedValues() {
     if (this.isRadio()) {
-        const item = this.input.items[this.state.checkedIndex] || {};
+        const item = this.items[this.state.checkedIndex] || {};
         return [item.value];
     }
-    return this.input.items
+    return this.items
         .filter((item, index) => this.state.checkedItems[index])
         .map((item) => item.value);
 }
@@ -16,20 +16,26 @@ function getCheckedIndexes() {
     if (this.isRadio()) {
         return [this.state.checkedIndex];
     }
-    return this.input.items
+    return this.items
         .map((item, i) => this.state.checkedItems[i] && i)
         .filter((item) => item !== false && typeof item !== 'undefined');
 }
 
 function getInputState(input) {
+    /* 
+        ebay-menu uses separators and we need to exclude these 
+        from items to pass correct indexes to state
+        Any other component that doesn't have separator should pass through
+    */
+    this.items = (input.items || []).filter((item) => !item.separator);
     this.type = input.type;
     if (this.isRadio()) {
         return {
-            checkedIndex: (input.items || []).findIndex((item) => item.checked || false),
+            checkedIndex: (this.items || []).findIndex((item) => item.checked || false),
         };
     }
     return {
-        checkedItems: (input.items || []).map((item) => item.checked || false),
+        checkedItems: (this.items || []).map((item) => item.checked || false),
     };
 }
 
@@ -41,7 +47,7 @@ function isChecked(index) {
 }
 
 function isDisabled(index) {
-    return this.input.items[index].disabled;
+    return this.items[index].disabled;
 }
 
 function toggleChecked(index) {
