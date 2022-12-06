@@ -24,11 +24,14 @@ function cssLoad(cssSrc, promiseKey) {
     });
 }
 
-function srcLoad(src, promiseKey) {
+function srcLoad(src, promiseKey, type) {
     return new Promise((resolve, reject) => {
         const head = document.head || document.getElementsByTagName('head')[0];
         const script = document.createElement('script');
         script.src = src;
+        if (type) {
+            script.type = type;
+        }
 
         script.onload = () => {
             resolve();
@@ -64,6 +67,8 @@ function loader(srcList, typeList) {
                         return cssLoad(src, promiseKey);
                     } else if (typeList[key] === 'restar-worker') {
                         return restArWorker(src, promiseKey);
+                    } else if (typeList[key] === 'model-viewer') {
+                        return srcLoad(src, promiseKey, 'module');
                     }
                 }
                 return srcLoad(src, promiseKey);
