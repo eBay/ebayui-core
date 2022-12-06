@@ -298,11 +298,16 @@ describe('given the menu is in the radio state', () => {
 
 describe('given the menu item is disabled', () => {
     const firstItemText = items[0].renderBody;
+    let firstItem;
+    let secondItem;
 
     beforeEach(async () => {
         items[0] = Object.assign({}, items[0], { disabled: true });
 
         component = await render(Standard, { items: addRenderBodies(items) });
+
+        firstItem = component.getAllByRole('menuitemcheckbox')[0];
+        secondItem = component.getAllByRole('menuitemcheckbox')[1];
     });
 
     describe('when an item is clicked', () => {
@@ -313,6 +318,38 @@ describe('given the menu item is disabled', () => {
         it('then it does not emit the change event with correct data', () => {
             const selectEvents = component.emitted('change');
             expect(selectEvents).to.length(0);
+        });
+    });
+
+    describe('when the current item is pressed with space', () => {
+        beforeEach(async () => {
+            await pressKey(firstItem, {
+                key: '(Space character)',
+                keyCode: 32,
+            });
+        });
+
+        it('then it does not emit the change event with the correct data', () => {
+            const selectEvents = component.emitted('change');
+            expect(selectEvents).has.length(0);
+        });
+    });
+    describe('when the second item is pressed with space', () => {
+        beforeEach(async () => {
+            await pressKey(secondItem, {
+                key: '(Space character)',
+                keyCode: 32,
+            });
+        });
+
+        it('then it emits the change event with the correct data', () => {
+            const selectEvents = component.emitted('change');
+            expect(selectEvents).has.length(1);
+
+            const [[eventArg]] = selectEvents;
+            expect(eventArg).has.property('checked').to.deep.equal(['item 2']);
+            expect(eventArg).has.property('currentChecked').to.equal(true);
+            expect(eventArg).has.property('index').to.equal(1);
         });
     });
 });

@@ -178,9 +178,13 @@ describe('given the listbox with disabled option', () => {
             });
         });
 
-        it('then it does not emit the change event with the correct data', () => {
+        it('then it emits the change event with the correct data', () => {
             const changeEvents = component.emitted('change');
-            expect(changeEvents).has.length(0);
+            expect(changeEvents).has.length(1);
+
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property('index', 2);
+            expect(changeEvent).has.property('selected').and.is.deep.equal([options[2].value]);
         });
     });
 });
