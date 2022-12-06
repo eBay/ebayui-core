@@ -86,7 +86,12 @@ $ var isForm = input.variant === "form";
                 aria-label=`${input.a11yFooterText || input.footer.a11yFooterText}`
                 class=`${baseClass}__footer`
                 onClick(!isForm && "handleFooterButtonClick")>
-                <${input.footerText || input.footer.renderBody}/>
+                <if(input.footerText)>
+                    ${input.footerText}
+                </if>
+                <else>
+                    <${input.footer.renderBody}/>
+                </else>
             </button>
         </if>
     </>
