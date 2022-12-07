@@ -83,7 +83,7 @@ $ var isForm = input.variant === "form";
             <button
                 ...processHtmlAttributes(input.footer, ignoredAttributes)
                 type=(isForm ? "submit" : "button")
-                aria-label=`${input.a11yFooterText || input.footer.a11yFooterText}`
+                aria-label=`${input.a11yFooterText || (input.footer && input.footer.a11yFooterText)}`
                 class=`${baseClass}__footer`
                 onClick(!isForm && "handleFooterButtonClick")>
                 <if(input.footerText)>

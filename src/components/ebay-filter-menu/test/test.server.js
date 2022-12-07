@@ -28,6 +28,10 @@ describe('filter-menu', () => {
         await htmlSnap(Standard, { footerText: 'test text' });
     });
 
+    it('renders with footer text and accessible text', async () => {
+        await htmlSnap(Standard, { footerText: 'test text', a11yFooterText: 'test a11y' });
+    });
+
     it(`renders with footer render body`, async () => {
         await htmlSnap(Standard, {
             footer: {
