@@ -70,6 +70,17 @@ function toggleChecked(index) {
     }
 }
 
+function getSeparatorMap(input) {
+    let separatorCount = 0;
+    return (input.items || []).reduce((map, item, index) => {
+        if (item.separator) {
+            map[index - separatorCount] = true;
+            separatorCount++;
+        }
+        return map;
+    }, {});
+}
+
 const menuUtils = {
     isRadio,
     getInputState,
@@ -78,5 +89,6 @@ const menuUtils = {
     getCheckedValues,
     toggleChecked,
     isDisabled,
+    getSeparatorMap,
 };
 export default menuUtils;

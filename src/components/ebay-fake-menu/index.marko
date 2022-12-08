@@ -24,14 +24,7 @@ static {
 }
 
 $ var baseClass = input.classPrefix || "fake-menu";
-$ var separatorCount = 0;
-$ var seperatorMap = (input.items || []).reduce((map, item, index) => {
-    if(item.separator) {
-        map[index - separatorCount] = true;
-        separatorCount++;
-    }
-    return map;
-}, {});
+$ var separatorMap = component.getSeparatorMap(input);
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
@@ -51,7 +44,7 @@ $ var seperatorMap = (input.items || []).reduce((map, item, index) => {
         <for|item, index| of=(component.items)>
             $ var isDisabled = !item.href || item.disabled;
             $ var defaultAriaCurrent = item.itemMatchesUrl === false ? 'true' : 'page';
-            <if (seperatorMap[index])>
+            <if (separatorMap[index])>
                 <li>
                     <hr class=`${baseClass}__separator` role="separator" />
                 </li>
