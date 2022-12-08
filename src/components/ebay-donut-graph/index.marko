@@ -36,7 +36,6 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
         width=state.size
         height=state.size
         viewBox=`0 0 ${state.size} ${state.size}`
-        role='graphics-document'
         aria-labelledby=input['aria-labelledby']
     >
         <if(hasDescription && input.description.renderBody)>
@@ -80,7 +79,6 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
                 ]
                 d=component.getPortionShape(portion.percentage, index)
                 data-id=index
-                role='graphics-symbol'
                 tabindex='-1'
                 aria-labelledby=`${input.containerId}-chart-legend-label-${index}`
                 on-mouseover('handlePathFocus')

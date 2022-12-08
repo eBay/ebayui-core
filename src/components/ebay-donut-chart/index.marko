@@ -38,7 +38,7 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
     <if((input.metric || input.subtitle) && input.layout === 'composition' || !input.layout)>
         <div
             class=[
-                !input.layout ? 'chart__metrics-stacked' : 'chart__metrics'
+                !input.layout ? 'chart__metrics--stacked' : 'chart__metrics'
         ]>
             <if (input.metric)>
                 <span.chart__metric>
@@ -55,11 +55,11 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
     <ebay-donut-graph
         containerId=state.containerId
         class=[
-            'chart__container',
-            (input.layout === 'legend-left' || input.layout === 'legend-right') && 'chart__container-horizontal',
-            input.layout === 'legend-left' && 'chart__container-left',
-            input.layout === 'legend-right' && 'chart__container-right',
-            (input.layout === 'composition' && (input.metric || input.subtitle)) && 'chart__container-composition']
+            'chart-graph__container',
+            (input.layout === 'legend-left' || input.layout === 'legend-right') && 'chart-graph__container--horizontal',
+            input.layout === 'legend-left' && 'chart-graph__container--left',
+            input.layout === 'legend-right' && 'chart-graph__container--right',
+            (input.layout === 'composition' && (input.metric || input.subtitle)) && 'chart-graph__container--composition']
         portions=input.portions
         focusIndex=state.focusIndex
         description=input.description
@@ -68,8 +68,7 @@ $ var colorClasses = input.portions.length > 3 ? colorsMore : colors;
     <div
         class=[
             'chart-legend__container',
-            (input.layout === 'legend-left' || input.layout === 'legend-right') && 'chart-legend__container-horizontal',
-            (!input.layout || (input.layout !== 'legend-left' && input.layout !== 'legend-right')) && 'chart-legend__container-vertical'
+            (input.layout === 'legend-left' || input.layout === 'legend-right') && 'chart-legend__container--horizontal'
         ]>
         <if((input.metric || input.subtitle) && (input.layout === 'legend-left' || input.layout === 'legend-right'))>
             <div class='chart__metrics-horizontal'>
