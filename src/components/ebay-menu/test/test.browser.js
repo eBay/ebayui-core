@@ -257,3 +257,58 @@ describe('given the menu has checkbox items', () => {
         });
     });
 });
+
+describe('given the menu has checkbox items with separator', () => {
+    const input = Object.assign({ type: 'checkbox' }, mock.separator4Items);
+    let firstItem, secondItem, thirdItem;
+
+    beforeEach(async () => {
+        component = await render(template, input);
+        firstItem = component.getAllByRole('menuitemcheckbox')[0];
+        secondItem = component.getAllByRole('menuitemcheckbox')[1];
+        thirdItem = component.getAllByRole('menuitemcheckbox')[2];
+    });
+
+    describe('when all items are clicked', () => {
+        beforeEach(async () => {
+            await fireEvent.click(firstItem);
+            await fireEvent.click(secondItem);
+            await fireEvent.click(thirdItem);
+        });
+
+        it('then it emits three change events with correct data', () => {
+            const changeEvents = component.emitted('change');
+            expect(changeEvents).to.have.length(3);
+
+            const firstEventData = changeEvents[0][0];
+            const secondEventData = changeEvents[1][0];
+            const thirdEventData = changeEvents[2][0];
+
+            expect(firstEventData.checked).to.deep.equal([0]);
+            expect(secondEventData.checked).to.deep.equal([0, 1]);
+            expect(thirdEventData.checked).to.deep.equal([0, 1, 2]);
+        });
+    });
+
+    describe('when an item is checked and then unchecked', () => {
+        beforeEach(async () => {
+            await fireEvent.click(thirdItem);
+            await fireEvent.click(thirdItem);
+        });
+
+        it('then it emits the change events with correct data', () => {
+            const changeEvents = component.emitted('change');
+            expect(changeEvents).to.have.length(2);
+
+            const firstEventData = changeEvents[0][0];
+            const secondEventData = changeEvents[1][0];
+
+            expect(firstEventData.checked).to.deep.equal([2]);
+            expect(secondEventData.checked).to.deep.equal([]);
+        });
+
+        it('then the item is unchecked', () => {
+            expect(thirdItem).to.have.attr('aria-checked', 'false');
+        });
+    });
+});

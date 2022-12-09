@@ -24,6 +24,7 @@ static {
 }
 
 $ var baseClass = input.classPrefix || "fake-menu";
+$ var separatorMap = component.getSeparatorMap(input);
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
@@ -40,40 +41,38 @@ $ var baseClass = input.classPrefix || "fake-menu";
         key="menu"
         tabindex="-1"
         id:scoped="menu">
-        <for|item, index| of=(input.items || [])>
+        <for|item, index| of=(component.items)>
             $ var isDisabled = !item.href || item.disabled;
             $ var defaultAriaCurrent = item.itemMatchesUrl === false ? 'true' : 'page';
-            <if (item.separator)>
+            <if (separatorMap[index])>
                 <li>
                     <hr class=`${baseClass}__separator` role="separator" />
                 </li>
             </if>
-            <else>
-                <li>
-                    $ var isButton = item.type === "button" || item.type ==="submit";
-                    <${isButton ? "button" : "a"}
-                        ...processHtmlAttributes(item, itemIgnoredAttributes)
-                        class=[`${baseClass}__item`, item.class]
-                        style=item.style
-                        disabled=(isButton && item.disabled)
-                        aria-disabled=(!isButton && item.disabled && 'true')
-                        aria-current=(item.current ? defaultAriaCurrent : false)
-                        href=(item.disabled ? null : item.href)
-                        type=(isButton && item.type)
-                        onKeydown(!item.disabled && "handleItemKeydown", index)
-                        onClick(!item.disabled && "handleItemClick", index)
-                        key="item[]">
-                        <span>
-                            <${item.renderBody}/>
-                        </span>
-                        <if(item.badgeNumber)>
-                            <ebay-badge type="menu" number=item.badgeNumber/>
-                        </if>
+            <li>
+                $ var isButton = item.type === "button" || item.type ==="submit";
+                <${isButton ? "button" : "a"}
+                    ...processHtmlAttributes(item, itemIgnoredAttributes)
+                    class=[`${baseClass}__item`, item.class]
+                    style=item.style
+                    disabled=(isButton && item.disabled)
+                    aria-disabled=(!isButton && item.disabled && 'true')
+                    aria-current=(item.current ? defaultAriaCurrent : false)
+                    href=(item.disabled ? null : item.href)
+                    type=(isButton && item.type)
+                    onKeydown(!item.disabled && "handleItemKeydown", index)
+                    onClick(!item.disabled && "handleItemClick", index)
+                    key="item[]">
+                    <span>
+                        <${item.renderBody}/>
+                    </span>
+                    <if(item.badgeNumber)>
+                        <ebay-badge type="menu" number=item.badgeNumber/>
+                    </if>
 
-                        <ebay-tick-small-icon />
-                    </>
-                </li>
-            </else>
+                    <ebay-tick-small-icon />
+                </>
+            </li>
         </for>
     </ul>
 </span>
