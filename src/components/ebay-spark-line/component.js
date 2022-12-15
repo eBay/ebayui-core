@@ -24,7 +24,7 @@ export default {
             // set the x value minus the startX times the normlize ratio + 6 for padding and line width
             path.push((p.x - startX) * xScale + 6);
             // set the y value minus the minimum y value times the normalize ratio + 10 padding and line width
-            path.push((p.y - yMin) * yScale + 10);
+            path.push(120 - ((p.y - yMin) * yScale + 10));
         });
         // set the viewBox x, y, width, height
         const viewBox = `0 0 ${(endX - startX) * xScale + 12} ${(yMax - yMin) * yScale + 20}`;

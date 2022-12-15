@@ -21,21 +21,22 @@ import {
 import { debounce } from '../../common/event-utils';
 
 const pointSize = 6; // controls the size of the plot point markers on lines
-if (typeof Highcharts === 'object') {
-    // enable highcharts accessibility with wrapper function
-    accessibility(Highcharts);
-}
 
 export default class {
     onCreate() {
         this.axisTicksLength = -1;
     }
     onMount() {
+        this._initializeHighchartsExtensions();
         this._setupEvents();
         this._setupChart();
     }
     getContainerId() {
         return `ebay-line-graph-${this.id}`;
+    }
+    _initializeHighchartsExtensions() {
+        // enable highcharts accessibility with wrapper function
+        accessibility(Highcharts);
     }
     _setupChart() {
         const colors = [
@@ -423,5 +424,8 @@ export default class {
                 this.chartRef.redraw(); // trigger redraw after all points have been updated
             }
         }
+    }
+    onDestroy() {
+        this.chartRef.destroy();
     }
 }

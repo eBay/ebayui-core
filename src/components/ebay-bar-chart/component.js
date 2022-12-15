@@ -18,28 +18,27 @@ import {
 import { ebayLegend } from '../../common/charts/legend';
 import { eBayColumns } from '../../common/charts/bar-chart';
 
-if (typeof Highcharts === 'object') {
-    // enable highcharts accessibility with wrapper function
-    accessibility(Highcharts);
-    // patternFill highcharts wrapper function enables rendering patterns instead of just solid colors
-    patternFill(Highcharts);
-    // add custom legend wrapper function
-    ebayLegend(Highcharts);
-    // add custom columns wrapper to enable rounded bar corners, and stacks with spaces between each stacked point
-    eBayColumns(Highcharts);
-}
-
 export default class {
     onMount() {
+        this._initializeHighchartsExtensions();
         this._setupCharts();
     }
     getContainerId() {
         return `ebay-bar-chart-${this.id}`;
     }
+    _initializeHighchartsExtensions() {
+        // enable highcharts accessibility with wrapper function
+        accessibility(Highcharts);
+        // patternFill highcharts wrapper function enables rendering patterns instead of just solid colors
+        patternFill(Highcharts);
+        // add custom legend wrapper function
+        ebayLegend(Highcharts);
+        // add custom columns wrapper to enable rounded bar corners, and stacks with spaces between each stacked point
+        eBayColumns(Highcharts);
+    }
     _setupCharts() {
         // check if a single series was passed in for series and if so add it to a new array
         const series = Array.isArray(this.input.series) ? this.input.series : [this.input.series];
-
         // controls rounded corders and spacing at the bottom of data points
         if (this.input.stacked) {
             series[0].bottom = true; // set a variable on the first series so it renders rounder corners on the bottom of the bar
@@ -57,7 +56,6 @@ export default class {
                 s.bottom = true;
             });
         }
-
         const config = {
             title: {
                 text: this.input.title, // set the title that will render above the chart
@@ -75,6 +73,7 @@ export default class {
             },
         };
         this.chartRef = Highcharts.chart(this.getContainerId(), config);
+        this.chartRef.redraw();
     }
 
     getChartConfig() {
@@ -340,5 +339,8 @@ export default class {
                 },
             },
         };
+    }
+    onDestroy() {
+        this.chartRef.destroy();
     }
 }

@@ -14,26 +14,26 @@ import {
     setSeriesColors,
 } from '../../common/charts/shared';
 import { debounce } from '../../common/event-utils';
-
 import { ebayLegend } from '../../common/charts/legend';
 
-if (typeof Highcharts === 'object') {
-    // enable highcharts accessibility with wrapper function
-    accessibility(Highcharts);
-    // patternFill highcharts wrapper function enables rendering patterns instead of just solid colors
-    patternFill(Highcharts);
-    // add custom legend wrapper function
-    ebayLegend(Highcharts);
-}
 const pointSize = 1.5;
 
 export default class {
     onMount() {
+        this._initializeHighchartExtensions();
         this._setupEvents();
         this._setupCharts();
     }
     getContainerId() {
         return `ebay-bar-chart-${this.id}`;
+    }
+    _initializeHighchartExtensions() {
+        // enable highcharts accessibility with wrapper function
+        accessibility(Highcharts);
+        // patternFill highcharts wrapper function enables rendering patterns instead of just solid colors
+        patternFill(Highcharts);
+        // add custom legend wrapper function
+        ebayLegend(Highcharts);
     }
     _setupEvents() {
         // bind functions to keep scope and setup debounced versions of function calls
@@ -331,5 +331,8 @@ export default class {
             });
         });
         this.chartRef.redraw(); // trigger redraw after all points have been updated
+    }
+    onDestroy() {
+        this.chartRef.destroy();
     }
 }
