@@ -18,6 +18,7 @@ import {
     trendPositiveColor,
     trendNegativeColor,
 } from '../../common/charts/shared';
+import { debounce } from '../../common/event-utils';
 
 const pointSize = 6; // controls the size of the plot point markers on lines
 if (typeof Highcharts === 'object') {
@@ -27,13 +28,16 @@ if (typeof Highcharts === 'object') {
 
 export default class {
     onCreate() {
-        this.chartRef = null;
         this.axisTicksLength = -1;
-        this.state = {
-            containerId: `ebay-line-graph-${this.id}`, // set unique ID for html container element that highcharts will use
-        };
     }
     onMount() {
+        this._setupEvents();
+        this._setupChart();
+    }
+    getContainerId() {
+        return `ebay-line-graph-${this.id}`;
+    }
+    _setupChart() {
         const colors = [
             // configure the array of colors to use for each series
             lineChartPrimaryColor,
@@ -60,14 +64,6 @@ export default class {
                 colors[0] = trendNegativeColor; // set the negative trend color
             }
         }
-
-        // bind functions to keep scope and setup debounced versions of function calls
-        this.updateMarkers = this.updateMarkers.bind(this);
-        this.debounce = this.debounce.bind(this);
-        this.handleMouseOver = this.handleMouseOver.bind(this);
-        this.handleMouseOut = this.handleMouseOut.bind(this);
-        this.mouseOut = this.debounce(() => this.handleMouseOut(), 80); // 80ms delay for debounce
-        this.mouseOver = this.debounce((e) => this.handleMouseOver(e), 85); // 85ms delay for debounce so it doesn't colide with mouseOut debounce calls
 
         // configure the symbol used for each series markers
         series.forEach((s, i) => {
@@ -100,9 +96,19 @@ export default class {
         };
 
         // initialize and keep reference to chart
-        this.chartRef = Highcharts.chart(this.state.containerId, config);
+        this.chartRef = Highcharts.chart(this.getContainerId(), config);
         // call update markers after the initial render to determine which markers to display if plotPoints is set to true
         this.updateMarkers();
+    }
+
+    _setupEvents() {
+        // bind functions to keep scope and setup debounced versions of function calls
+        this.updateMarkers = this.updateMarkers.bind(this);
+        this.debounce = debounce.bind(this);
+        this.handleMouseOver = this.handleMouseOver.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.mouseOut = this.debounce(() => this.handleMouseOut(), 80); // 80ms delay for debounce
+        this.mouseOver = this.debounce((e) => this.handleMouseOver(e), 85); // 85ms delay for debounce so it doesn't colide with mouseOut debounce calls
     }
 
     getSymbol(index) {
@@ -280,16 +286,6 @@ export default class {
                     },
                 },
             },
-        };
-    }
-    // debounce used to help improve performance on mouse interactions
-    debounce(func, timeout = 100) {
-        let timer;
-        return (...args) => {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                func.apply(this, args);
-            }, timeout);
         };
     }
     handleMouseOut() {

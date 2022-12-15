@@ -30,13 +30,13 @@ if (typeof Highcharts === 'object') {
 }
 
 export default class {
-    onCreate() {
-        this.chartRef = null;
-        this.state = {
-            containerId: `ebay-bar-chart-${this.id}`, // set unique ID for html container element that highcharts will use
-        };
-    }
     onMount() {
+        this._setupCharts();
+    }
+    getContainerId() {
+        return `ebay-bar-chart-${this.id}`;
+    }
+    _setupCharts() {
         // check if a single series was passed in for series and if so add it to a new array
         const series = Array.isArray(this.input.series) ? this.input.series : [this.input.series];
 
@@ -74,7 +74,7 @@ export default class {
                 enabled: false, // hide the highcharts label and link in the bottom right
             },
         };
-        this.chartRef = Highcharts.chart(this.state.containerId, config);
+        this.chartRef = Highcharts.chart(this.getContainerId(), config);
     }
 
     getChartConfig() {

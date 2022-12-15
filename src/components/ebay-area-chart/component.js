@@ -13,6 +13,7 @@ import {
     tooltipShadows,
     setSeriesColors,
 } from '../../common/charts/shared';
+import { debounce } from '../../common/event-utils';
 
 import { ebayLegend } from '../../common/charts/legend';
 
@@ -27,20 +28,22 @@ if (typeof Highcharts === 'object') {
 const pointSize = 1.5;
 
 export default class {
-    onCreate() {
-        this.chartRef = null;
-        this.state = {
-            containerId: `ebay-bar-chart-${this.id}`, // set unique ID for html container element that highcharts will use
-        };
-    }
     onMount() {
+        this._setupEvents();
+        this._setupCharts();
+    }
+    getContainerId() {
+        return `ebay-bar-chart-${this.id}`;
+    }
+    _setupEvents() {
         // bind functions to keep scope and setup debounced versions of function calls
-        this.debounce = this.debounce.bind(this);
+        this.debounce = debounce.bind(this);
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
         this.mouseOut = this.debounce(() => this.handleMouseOut(), 80); // 80ms delay for debounce
         this.mouseOver = this.debounce((e) => this.handleMouseOver(e), 85); // 85ms delay for debounce so it doesn't colide with mouseOut debounce calls
-
+    }
+    _setupCharts() {
         // check if a single series was passed in for series and if so add it to a new array
         const series = Array.isArray(this.input.series) ? this.input.series : [this.input.series];
 
@@ -69,7 +72,7 @@ export default class {
             },
         };
         // initialize and keep reference to chart
-        this.chartRef = Highcharts.chart(this.state.containerId, config);
+        this.chartRef = Highcharts.chart(this.getContainerId(), config);
     }
     getTitleConfig() {
         return {
