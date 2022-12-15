@@ -1,16 +1,16 @@
-export function eBayColumns(H) {
-    if (!H.seriesTypes.column.prototype.ebayColumn) {
+export function eBayColumns(HighCharts) {
+    if (!HighCharts.seriesTypes.column.prototype.ebayColumn) {
         // check if the column has been extended before attempting to extend again
-        H.wrap(H.seriesTypes.column.prototype, 'translate', function (proceed) {
+        HighCharts.wrap(HighCharts.seriesTypes.column.prototype, 'translate', function (proceed) {
             // set a flag that can be checked so the prototype isn't overwritten twice, which looses the original code that is called with the proceed function
-            H.seriesTypes.column.prototype.ebayColumn = true;
+            HighCharts.seriesTypes.column.prototype.ebayColumn = true;
             const top = this.options.top, // pull out the top value from the highcharts options object
                 bottom = this.options.bottom; // pull out the bottom value from the highcarts options object
 
             // this runs the original code for this translate function at this point
-            // if it is not run H.each will not exist yet
+            // if it is not run HighCharts.each will not exist yet
             proceed.call(this);
-            H.each(this.points, (point) => {
+            HighCharts.each(this.points, (point) => {
                 // loop over each data point element
                 const shapeArgs = point.shapeArgs, // reference to the points shapeArgs object
                     x = shapeArgs.x, // references to the shapeArgs X value
@@ -29,34 +29,26 @@ export function eBayColumns(H) {
 
                 const cornerRadius = 3;
 
-                // H.relativeLength returns a length based on either the integer value, or a percentage of a base with w being the base.
-                let rTopLeft = H.relativeLength(top ? cornerRadius : 0, w),
-                    rTopRight = H.relativeLength(top ? cornerRadius : 0, w),
-                    rBottomRight = H.relativeLength(bottom ? cornerRadius : 0, w),
-                    rBottomLeft = H.relativeLength(bottom ? cornerRadius : 0, w);
+                // HighCharts.relativeLength returns a length based on either the integer value, or a percentage of a base with w being the base.
+                let rTopLeft = HighCharts.relativeLength(top ? cornerRadius : 0, w),
+                    rTopRight = HighCharts.relativeLength(top ? cornerRadius : 0, w),
+                    rBottomRight = HighCharts.relativeLength(bottom ? cornerRadius : 0, w),
+                    rBottomLeft = HighCharts.relativeLength(bottom ? cornerRadius : 0, w);
 
                 // max corner radius is half the width and height of the shape
                 const maxCornerRadius = Math.min(w, h) / 2;
 
                 // adjust top left corner if it is larger that maxCornerRadius
-                if (rTopLeft > maxCornerRadius) {
-                    rTopLeft = maxCornerRadius;
-                }
+                if (rTopLeft > maxCornerRadius) rTopLeft = maxCornerRadius;
 
                 // adjust top right corner if it is larger that maxCornerRadius
-                if (rTopRight > maxCornerRadius) {
-                    rTopRight = maxCornerRadius;
-                }
+                if (rTopRight > maxCornerRadius) rTopRight = maxCornerRadius;
 
                 // adjust bottom right corner if it is larger that maxCornerRadius
-                if (rBottomRight > maxCornerRadius) {
-                    rBottomRight = maxCornerRadius;
-                }
+                if (rBottomRight > maxCornerRadius) rBottomRight = maxCornerRadius;
 
                 // adjust bottom left corner if it is larger that maxCornerRadius
-                if (rBottomLeft > maxCornerRadius) {
-                    rBottomLeft = maxCornerRadius;
-                }
+                if (rBottomLeft > maxCornerRadius) rBottomLeft = maxCornerRadius;
 
                 point.dlBox = point.shapeArgs; // set the data label Box for aligning tooltips to match the point shape
                 point.shapeY = y; // set the points y position
