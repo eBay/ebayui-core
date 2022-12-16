@@ -704,15 +704,16 @@ const sampleSeriesData = [
         name: 'Value 5',
     },
 ];
+function getSeriesData(series, days) {
+    return sampleSeriesData.slice(0, series).map((s) => ({
+        ...s,
+        data: s.data.slice(0, days),
+    }));
+}
 
 export const singleSeriesFiveDays = Template.bind({});
 singleSeriesFiveDays.args = {
-    series: [
-        {
-            ...sampleSeriesData[0],
-            data: sampleSeriesData[0].data.slice(0, 5),
-        },
-    ],
+    series: getSeriesData(1, 5),
 };
 singleSeriesFiveDays.parameters = {
     docs: {
@@ -724,12 +725,7 @@ singleSeriesFiveDays.parameters = {
 
 export const singleSeriesThirteenDays = Template.bind({});
 singleSeriesThirteenDays.args = {
-    series: [
-        {
-            ...sampleSeriesData[0],
-            data: sampleSeriesData[0].data.slice(0, 13),
-        },
-    ],
+    series: getSeriesData(1, 13),
 };
 singleSeriesThirteenDays.parameters = {
     docs: {
@@ -741,12 +737,7 @@ singleSeriesThirteenDays.parameters = {
 
 export const singleSeriesThirtyDays = Template.bind({});
 singleSeriesThirtyDays.args = {
-    series: [
-        {
-            ...sampleSeriesData[0],
-            data: sampleSeriesData[0].data.slice(0, 30),
-        },
-    ],
+    series: getSeriesData(1, 30),
 };
 singleSeriesThirtyDays.parameters = {
     docs: {
@@ -758,16 +749,7 @@ singleSeriesThirtyDays.parameters = {
 
 export const twoSeriesEightDays = Template.bind({});
 twoSeriesEightDays.args = {
-    series: [
-        {
-            ...sampleSeriesData[0],
-            data: sampleSeriesData[0].data.slice(0, 8),
-        },
-        {
-            ...sampleSeriesData[1],
-            data: sampleSeriesData[1].data.slice(0, 8),
-        },
-    ],
+    series: getSeriesData(2, 8),
 };
 twoSeriesEightDays.parameters = {
     docs: {
@@ -779,20 +761,7 @@ twoSeriesEightDays.parameters = {
 
 export const threeSeriesThreeDays = Template.bind({});
 threeSeriesThreeDays.args = {
-    series: [
-        {
-            ...sampleSeriesData[0],
-            data: sampleSeriesData[0].data.slice(0, 3),
-        },
-        {
-            ...sampleSeriesData[1],
-            data: sampleSeriesData[1].data.slice(0, 3),
-        },
-        {
-            ...sampleSeriesData[2],
-            data: sampleSeriesData[2].data.slice(0, 3),
-        },
-    ],
+    series: getSeriesData(3, 3),
 };
 threeSeriesThreeDays.parameters = {
     docs: {
@@ -804,24 +773,7 @@ threeSeriesThreeDays.parameters = {
 
 export const fourSeriesFourDays = Template.bind({});
 fourSeriesFourDays.args = {
-    series: [
-        {
-            ...sampleSeriesData[0],
-            data: sampleSeriesData[0].data.slice(0, 4),
-        },
-        {
-            ...sampleSeriesData[1],
-            data: sampleSeriesData[1].data.slice(0, 4),
-        },
-        {
-            ...sampleSeriesData[2],
-            data: sampleSeriesData[2].data.slice(0, 4),
-        },
-        {
-            ...sampleSeriesData[3],
-            data: sampleSeriesData[3].data.slice(0, 4),
-        },
-    ],
+    series: getSeriesData(4, 4),
 };
 fourSeriesFourDays.parameters = {
     docs: {
@@ -833,28 +785,7 @@ fourSeriesFourDays.parameters = {
 
 export const fiveSeriesThreeDays = Template.bind({});
 fiveSeriesThreeDays.args = {
-    series: [
-        {
-            ...sampleSeriesData[0],
-            data: sampleSeriesData[0].data.slice(0, 3),
-        },
-        {
-            ...sampleSeriesData[1],
-            data: sampleSeriesData[1].data.slice(0, 3),
-        },
-        {
-            ...sampleSeriesData[2],
-            data: sampleSeriesData[2].data.slice(0, 3),
-        },
-        {
-            ...sampleSeriesData[3],
-            data: sampleSeriesData[3].data.slice(0, 3),
-        },
-        {
-            ...sampleSeriesData[4],
-            data: sampleSeriesData[4].data.slice(0, 3),
-        },
-    ],
+    series: getSeriesData(5, 3),
 };
 fiveSeriesThreeDays.parameters = {
     docs: {
@@ -866,28 +797,7 @@ fiveSeriesThreeDays.parameters = {
 
 export const fiveSeriesSixDays = Template.bind({});
 fiveSeriesSixDays.args = {
-    series: [
-        {
-            ...sampleSeriesData[0],
-            data: sampleSeriesData[0].data.slice(0, 6),
-        },
-        {
-            ...sampleSeriesData[1],
-            data: sampleSeriesData[1].data.slice(0, 6),
-        },
-        {
-            ...sampleSeriesData[2],
-            data: sampleSeriesData[2].data.slice(0, 6),
-        },
-        {
-            ...sampleSeriesData[3],
-            data: sampleSeriesData[3].data.slice(0, 6),
-        },
-        {
-            ...sampleSeriesData[4],
-            data: sampleSeriesData[4].data.slice(0, 6),
-        },
-    ],
+    series: getSeriesData(5, 6),
 };
 fiveSeriesSixDays.parameters = {
     docs: {
@@ -899,7 +809,7 @@ fiveSeriesSixDays.parameters = {
 
 export const twoSeriesStacked = Template.bind({});
 twoSeriesStacked.args = {
-    series: sampleSeriesData.slice(0, 2),
+    series: getSeriesData(2, 24),
     stacked: true,
 };
 twoSeriesStacked.parameters = {
@@ -912,7 +822,7 @@ twoSeriesStacked.parameters = {
 
 export const threeSeriesStacked = Template.bind({});
 threeSeriesStacked.args = {
-    series: sampleSeriesData.slice(0, 3),
+    series: getSeriesData(3, 24),
     stacked: true,
 };
 threeSeriesStacked.parameters = {
@@ -925,7 +835,7 @@ threeSeriesStacked.parameters = {
 
 export const fourSeriesStacked = Template.bind({});
 fourSeriesStacked.args = {
-    series: sampleSeriesData.slice(0, 4),
+    series: getSeriesData(4, 24),
     stacked: true,
 };
 fourSeriesStacked.parameters = {
@@ -938,7 +848,7 @@ fourSeriesStacked.parameters = {
 
 export const fiveSeriesStacked = Template.bind({});
 fiveSeriesStacked.args = {
-    series: sampleSeriesData,
+    series: getSeriesData(5, 24),
     stacked: true,
 };
 fiveSeriesStacked.parameters = {
