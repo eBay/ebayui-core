@@ -23,6 +23,13 @@ export default class {
         this._initializeHighchartsExtensions();
         this._setupCharts();
     }
+    onInput() {
+        // if chartRef does not exist do not try to run setupCharts as it may be server side and highcharts only works on the client side
+        if (this.chartRef && this.chartRef.destroy) {
+            this.chartRef.destroy();
+            this._setupCharts();
+        }
+    }
     getContainerId() {
         return `ebay-bar-chart-${this.id}`;
     }
@@ -39,8 +46,10 @@ export default class {
     _setupCharts() {
         // check if a single series was passed in for series and if so add it to a new array
         const series = Array.isArray(this.input.series) ? this.input.series : [this.input.series];
+        const stacked = this.input.stacked;
+        const title = this.input.title;
         // controls rounded corders and spacing at the bottom of data points
-        if (this.input.stacked) {
+        if (stacked) {
             series[0].bottom = true; // set a variable on the first series so it renders rounder corners on the bottom of the bar
             series[series.length - 1].top = true; // set a variable on the last series to render rounded corner on the top of the bar
 
@@ -58,7 +67,7 @@ export default class {
         }
         const config = {
             title: {
-                text: this.input.title, // set the title that will render above the chart
+                text: title, // set the title that will render above the chart
             },
             chart: this.getChartConfig(),
             colors: setSeriesColors(series),
@@ -79,7 +88,7 @@ export default class {
     getChartConfig() {
         return {
             type: 'column',
-            backgroundColor: backgroundColor, // set the chart background color
+            backgroundColor,
             style: {
                 fontFamily: chartFontFamily, // set the font for all chart svg text elements
             },
@@ -87,6 +96,8 @@ export default class {
     }
 
     getXAxisConfig() {
+        const xAxisLabelFormat = this.input.xAxisLabelFormat;
+        const xAxisPositioner = this.input.xAxisPositioner;
         return {
             // currently setup to support epoch time values for xAxisLabels.
             // It is possible to set custom non datetime xAxisLabels but will need changes to this component
@@ -94,19 +105,21 @@ export default class {
             labels: {
                 // input.xAxisLabelFormat allows overriding the default short month / day label
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat to customize
-                format: this.input.xAxisLabelFormat ? this.input.xAxisLabelFormat : '{value:%b %e}',
+                format: xAxisLabelFormat || '{value:%b %e}',
                 align: 'center',
                 style: {
                     color: labelsColor, // setting label colors
                 },
             },
             tickWidth: 0, // hide the vertical tick on xAxis labels
-            tickPositioner: this.input.xAxisPositioner, // optional input to allow configuring the position of xAxis tick marks
+            tickPositioner: xAxisPositioner, // optional input to allow configuring the position of xAxis tick marks
         };
     }
 
     getYAxisConfig(series) {
-        const component = this; // component reference used in formatter functions that don't have the same scope
+        const yAxisLabels = this.input.yAxisLabels;
+        const yAxisPositioner = this.input.yAxisPositioner;
+
         let maxVal = 0; // use to determine the highest yAxis value
         series.forEach((s) => {
             maxVal = s.data.reduce((p, c) => (c > p ? c : p), maxVal);
@@ -117,17 +130,17 @@ export default class {
             opposite: true, // moves yAxis labels to the right side of the chart
             reversedStacks: false, // makes so series one starts at the bottom of the yAxis, by default this is true
             labels: {
-                format: !this.input.yAxisLabels && '${text}',
+                format: !yAxisLabels && '${text}',
                 // if yAxisLabels array is passed in this formatter function is needed to
                 // return the proper label for each yAxis tick mark
                 formatter:
-                    this.input.yAxisLabels &&
+                    yAxisLabels &&
                     function () {
                         if (this.isFirst) {
                             yLabelsItterator = -1;
                         }
                         yLabelsItterator = yLabelsItterator + 1;
-                        return component.input.yAxisLabels[yLabelsItterator];
+                        return yAxisLabels[yLabelsItterator];
                     },
                 style: {
                     color: labelsColor, // setting label colors
@@ -139,14 +152,15 @@ export default class {
             },
             offset: 0, // set to zero for no offset refer to https://api.highcharts.com/highcharts/yAxis.offset
             // passed in function for yAxisPositioner refer to https://api.highcharts.com/highcharts/yAxis.tickPositioner for use
-            tickPositioner: this.input.yAxisPositioner,
+            tickPositioner: yAxisPositioner,
         };
     }
 
     getLegendConfig() {
+        const series = this.input.series;
         return {
             symbolRadius: 2, // set corner radius of legend identifiers
-            enabled: this.input.series.length > 1, // disabled legend if only one series is passed in
+            enabled: series.length > 1, // disabled legend if only one series is passed in
             itemStyle: {
                 color: legendColor, // set the color of the legend text
             },
@@ -160,14 +174,17 @@ export default class {
     }
     tooltipFormatter() {
         // function returns a function so it can keep a reference to the component scope
-        const component = this; // component reference used in formatter functions that don't have the same scope
+        const stacked = this.input.stacked;
+        // on initialization chartRef does not exist
+        // if we did not try to set this to a const at the top of this function it would work fine as the returned function would not try to access chartRef until after it exist
+        const series = this.chartRef && this.chartRef.series;
         return function () {
             // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
             // s is used to compile html string of formatted tooltip data
             let s = `<b>${Highcharts.dateFormat('%b %e, %Y', this.x, false)}</b>`; // sets the displayed date at the top of the tooltip
-            if (component.input.stacked) {
+            if (stacked) {
                 // setup html for stacked tooltip
-                component.chartRef.series.forEach((serie) => {
+                series.forEach((serie) => {
                     // cycle through each series
                     serie.data.forEach((d) => {
                         // cycle through each series data array to match x value with active hovered xAxis position
@@ -186,13 +203,14 @@ export default class {
         };
     }
     tooltipPositioner(labelWidth, labelHeight) {
+        const series = this.chart.series;
         const chartPosition = this.chart.pointer.getChartPosition(); // returns the pointers top and left positions
         const hpIndex = this.chart.hoverPoint.index; // reference to the index of the original hovered point of the series
         const hoverPoint = this.chart.hoverPoint, // reference to the original hovered point of the series
             y = // setting the y position of the tooltip to the top of the hovered stack of points
                 chartPosition.top +
                 hoverPoint.series.yAxis.top +
-                this.chart.series[this.chart.series.length - 1].data[hpIndex].shapeY -
+                series[series.length - 1].data[hpIndex].shapeY -
                 labelHeight -
                 15; // adjust for the arrow
         let x = // setting the x position of the tooltip based on the center of the hovered stack of points
@@ -213,6 +231,7 @@ export default class {
     }
 
     getTooltipConfig() {
+        const stacked = this.input.stacked;
         return {
             formatter: this.tooltipFormatter(),
             useHTML: true, // allows defining html to format tooltip content
@@ -226,36 +245,37 @@ export default class {
                 fontSize: '12px',
             },
             // this callback function is used to position the tooltip at the top of the stacked bars
-            positioner: this.input.stacked && this.tooltipPositioner,
+            positioner: stacked && this.tooltipPositioner,
         };
     }
 
     legendItemClick() {
         // returns a function so that can access input values
-        const component = this; // component reference used in item click functions that don't have the same scope
+        const stacked = this.input.stacked;
         return function () {
-            if (component.input.stacked) {
+            const series = this.chart.series;
+            if (stacked) {
                 // setTimeout with 0 ms to push this function to the end of the execution stack to prevent issues with hover events
                 setTimeout(() => {
                     let topFound = false;
                     let bottomFound = false;
                     // loop through and reset bottom variables on series based on their visibility
-                    for (let i = 0; i < this.chart.series.length; i++) {
-                        if (!bottomFound && this.chart.series[i].visible) {
-                            this.chart.series[i].options.bottom = true;
+                    for (let i = 0; i < series.length; i++) {
+                        if (!bottomFound && series[i].visible) {
+                            series[i].options.bottom = true;
                             bottomFound = true;
                         } else {
-                            this.chart.series[i].options.bottom = false;
+                            series[i].options.bottom = false;
                         }
                     }
 
                     // loop through and reset top variables on series based on their visibility
-                    for (let i = this.chart.series.length - 1; i >= 0; i--) {
-                        if (!topFound && this.chart.series[i].visible) {
-                            this.chart.series[i].options.top = true;
+                    for (let i = series.length - 1; i >= 0; i--) {
+                        if (!topFound && series[i].visible) {
+                            series[i].options.top = true;
                             topFound = true;
                         } else {
-                            this.chart.series[i].options.top = false;
+                            series[i].options.top = false;
                         }
                     }
                     this.chart.redraw(); // redraw the chart after all series variables have been updated
@@ -266,7 +286,7 @@ export default class {
 
     // handleMouseOver returns a function while keeping scope to the class compnent to access input values
     handleMouseOver() {
-        const component = this; // component reference used in mouse over functions that don't have the same scope
+        const stacked = this.input.stacked;
         return function () {
             const refPoint = this; // this is the active hovered point of the series
             const chart = this.series.chart;
@@ -277,8 +297,8 @@ export default class {
                     s.points.forEach((p) => {
                         // loop through each point in the series
                         if (
-                            (component.input.stacked && p.x !== refPoint.x) || // if the stacked flag is set to true and each points x value does not match
-                            (!component.input.stacked && p !== refPoint) // or if not stacked and refPoint does not match the current point
+                            (stacked && p.x !== refPoint.x) || // if the stacked flag is set to true and each points x value does not match
+                            (!stacked && p !== refPoint) // or if not stacked and refPoint does not match the current point
                         ) {
                             p.update(
                                 {
@@ -315,15 +335,17 @@ export default class {
     }
 
     getPlotOptionsConfig() {
+        const description = this.input.description;
+        const stacked = this.input.stacked;
         return {
             series: {
-                description: this.input.description,
+                description,
             },
             column: {
                 events: {
                     legendItemClick: this.legendItemClick(),
                 },
-                stacking: this.input.stacked ? 'normal' : null, // set stacking to normal if stacked flag is set
+                stacking: stacked ? 'normal' : null, // set stacking to normal if stacked flag is set
                 groupPadding: 0.1, // padding around groups of points
                 pointPadding: 0.15, // padding between single points
                 states: {

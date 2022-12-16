@@ -24,6 +24,13 @@ export default class {
         this._setupEvents();
         this._setupCharts();
     }
+    onInput() {
+        // if chartRef does not exist do not try to run setupCharts as it may be server side and highcharts only works on the client side
+        if (this.chartRef && this.chartRef.destroy) {
+            this.chartRef.destroy();
+            this._setupCharts();
+        }
+    }
     getContainerId() {
         return `ebay-bar-chart-${this.id}`;
     }
