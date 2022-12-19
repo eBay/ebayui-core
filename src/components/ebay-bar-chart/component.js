@@ -18,6 +18,8 @@ import {
 import { ebayLegend } from '../../common/charts/legend';
 import { eBayColumns } from '../../common/charts/bar-chart';
 
+import subtemplate from './subtemplate.marko';
+
 export default class {
     onMount() {
         this._initializeHighchartsExtensions();
@@ -172,34 +174,20 @@ export default class {
             },
         };
     }
+    // returns a function that can be called on each mouseover event
     tooltipFormatter() {
-        // function returns a function so it can keep a reference to the component scope
         const stacked = this.input.stacked;
-        // on initialization chartRef does not exist
-        // if we did not try to set this to a const at the top of this function it would work fine as the returned function would not try to access chartRef until after it exist
-        const series = this.chartRef && this.chartRef.series;
         return function () {
+            // references to the charts updates series array, only available when the returned tooltip function is called and not before
+            const series = this.series.chart.series;
+
             // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
-            // s is used to compile html string of formatted tooltip data
-            let s = `<b>${Highcharts.dateFormat('%b %e, %Y', this.x, false)}</b>`; // sets the displayed date at the top of the tooltip
-            if (stacked) {
-                // setup html for stacked tooltip
-                series.forEach((serie) => {
-                    // cycle through each series
-                    serie.data.forEach((d) => {
-                        // cycle through each series data array to match x value with active hovered xAxis position
-                        if (d.x === this.x) {
-                            // when the x value matches the hovered xAxis position
-                            s += `<div style="display: flex; justify-content: space-between; width: 100%; align-items: flex-start;">${serie.name}<span style="margin-left: 16px">${d.label}</span></div>`;
-                        }
-                    });
-                });
-            } else {
-                // setup html for single series tooltip
-                // add the label value from the data point to the tooltip below the date
-                s += `<div><span>${this.point.label}</span></div>`;
-            }
-            return s;
+            return subtemplate.renderToString({
+                date: Highcharts.dateFormat('%b %e, %Y', this.x, false),
+                data: stacked ? series : this.point,
+                stacked,
+                x: this.x,
+            });
         };
     }
     tooltipPositioner(labelWidth, labelHeight) {
