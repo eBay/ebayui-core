@@ -1,43 +1,22 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import template from '..';
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../spark-line.stories'; // import all stories from the stories file
+const { Basic, Positive, Negative } = composeStories(stories);
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
-const mock = {
-    data: [
-        {
-            x: 0,
-            y: 0,
-        },
-        {
-            x: 1,
-            y: 1,
-        },
-    ],
-};
 describe('spark-line', () => {
     it('renders a blue line', async () => {
-        const { getByRole } = await render(template, mock);
-        const line = getByRole('graphics-symbol');
-        expect(line.classList.contains('ebay-spark-line__path-neutral'));
+        await htmlSnap(Basic);
     });
 
     it('renders a red line', async () => {
-        const { getByRole } = await render(template, {
-            ...mock,
-            trend: 'negative',
-        });
-        const line = getByRole('graphics-symbol');
-        expect(line.classList.contains('ebay-spark-line__path-negative'));
+        await htmlSnap(Negative);
     });
 
     it('renders a green line', async () => {
-        const { getByRole } = await render(template, {
-            ...mock,
-            trend: 'positive',
-        });
-        const line = getByRole('graphics-symbol');
-        expect(line.classList.contains('ebay-spark-line__path-positive'));
+        await htmlSnap(Positive);
     });
 });
