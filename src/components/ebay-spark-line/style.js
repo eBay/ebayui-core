@@ -1,1 +1,1 @@
-require('./spark-line.less');
+require('./style.less');
