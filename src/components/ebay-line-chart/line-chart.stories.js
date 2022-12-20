@@ -3,44 +3,13 @@ import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
 import * as sampleSeriesData from './examples/data.json';
-import * as sellingData from './selling-mock.json';
-
-function getSellingSample() {
-    return {
-        data: sellingData.model.salesTrendData.chartData.points.map((p) => ({
-            x: p.xValue,
-            y: p.yValue,
-            tooltip: p.tooltip.dataItems.reduce((tp, c) => {
-                let t = tp;
-                t += '<div>';
-                t += c.textSpans.reduce((tsp, tc) => {
-                    if (tc.styles && tc.styles.includes('BOLD')) {
-                        return `<span>${tsp}<b>${tc.text}</b></span>`;
-                    }
-                    return `<span>${tsp}${tc.text}</span>`;
-                }, '');
-                t += '</div>';
-                return t;
-            }, ''),
-        })),
-    };
-}
-function getSellingSampleAxisLabels(axis) {
-    return sellingData.model.salesTrendData.chartData[`${axis}Axis`].labels.reduce((p, c) => {
-        p.push(c.textSpans[0].text);
-        return p;
-    }, []);
-}
-function getSellingSampleTrendDirection() {
-    return sellingData.model.salesTrendData.chartData.lineColor;
-}
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'charts/ebay-line-graph',
+    title: 'charts/ebay-line-chart',
     component: Component,
     parameters: {
         docs: {
@@ -109,11 +78,6 @@ export default {
         },
     },
 };
-function getTickPositions() {
-    const min = Math.floor(this.dataMin);
-    const max = Math.ceil(this.dataMax);
-    return [min, (min + max) / 2, max];
-}
 
 export const Standard = Template.bind({});
 Standard.args = {
@@ -125,7 +89,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', Standard.args),
+            code: tagToString('line-chart', Standard.args),
         },
     },
 };
@@ -143,7 +107,7 @@ TrendAutoPositive.args = {
 TrendAutoPositive.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', TrendAutoPositive.args),
+            code: tagToString('line-chart', TrendAutoPositive.args),
         },
     },
 };
@@ -161,7 +125,7 @@ TrendSetPositive.args = {
 TrendSetPositive.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', TrendSetPositive.args),
+            code: tagToString('line-chart', TrendSetPositive.args),
         },
     },
 };
@@ -179,7 +143,7 @@ TrendAutoNegative.args = {
 TrendAutoNegative.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', TrendAutoNegative.args),
+            code: tagToString('line-chart', TrendAutoNegative.args),
         },
     },
 };
@@ -197,7 +161,7 @@ TrendSetNegative.args = {
 TrendSetNegative.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', TrendSetNegative.args),
+            code: tagToString('line-chart', TrendSetNegative.args),
         },
     },
 };
@@ -213,26 +177,7 @@ TrendSetNeutral.args = {
 TrendSetNeutral.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', TrendSetNeutral.args),
-        },
-    },
-};
-
-export const SellingSample = Template.bind({});
-SellingSample.args = {
-    series: getSellingSample(),
-    xAxisLabelFormat: '{value:%b %e, %Y}',
-    yAxisLabels: getSellingSampleAxisLabels('y'),
-    xAxisPositioner: getTickPositions,
-    yAxisPositioner: getTickPositions,
-    trend: getSellingSampleTrendDirection(),
-    class: 'selling-sample',
-};
-
-SellingSample.parameters = {
-    docs: {
-        source: {
-            code: tagToString('line-graph', SellingSample.args),
+            code: tagToString('line-chart', TrendSetNeutral.args),
         },
     },
 };
@@ -245,7 +190,7 @@ TwoSeries.args = {
 TwoSeries.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', TwoSeries.args),
+            code: tagToString('line-chart', TwoSeries.args),
         },
     },
 };
@@ -259,7 +204,7 @@ TwoSeriesWithPlotPoints.args = {
 TwoSeriesWithPlotPoints.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', TwoSeriesWithPlotPoints.args),
+            code: tagToString('line-chart', TwoSeriesWithPlotPoints.args),
         },
     },
 };
@@ -272,7 +217,7 @@ ThreeSeries.args = {
 ThreeSeries.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', ThreeSeries.args),
+            code: tagToString('line-chart', ThreeSeries.args),
         },
     },
 };
@@ -286,7 +231,7 @@ ThreeSeriesWithPlotPoints.args = {
 ThreeSeriesWithPlotPoints.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', ThreeSeriesWithPlotPoints.args),
+            code: tagToString('line-chart', ThreeSeriesWithPlotPoints.args),
         },
     },
 };
@@ -299,7 +244,7 @@ FourSeries.args = {
 FourSeries.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', FourSeries.args),
+            code: tagToString('line-chart', FourSeries.args),
         },
     },
 };
@@ -313,34 +258,34 @@ FourSeriesWithPlotPoints.args = {
 FourSeriesWithPlotPoints.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', FourSeriesWithPlotPoints.args),
+            code: tagToString('line-chart', FourSeriesWithPlotPoints.args),
         },
     },
 };
 
 export const FiveSeries = Template.bind({});
 FiveSeries.args = {
-    series: sampleSeriesData,
+    series: sampleSeriesData.slice(0),
 };
 
 FiveSeries.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', FiveSeries.args),
+            code: tagToString('line-chart', FiveSeries.args),
         },
     },
 };
 
 export const FiveSeriesWithPlotPoints = Template.bind({});
 FiveSeriesWithPlotPoints.args = {
-    series: sampleSeriesData,
+    series: sampleSeriesData.slice(0),
     plotPoints: true,
 };
 
 FiveSeriesWithPlotPoints.parameters = {
     docs: {
         source: {
-            code: tagToString('line-graph', FiveSeriesWithPlotPoints.args),
+            code: tagToString('line-chart', FiveSeriesWithPlotPoints.args),
         },
     },
 };
