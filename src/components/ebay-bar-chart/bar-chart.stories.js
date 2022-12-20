@@ -9,6 +9,7 @@ const Template = (args) => ({
 
 export default {
     title: 'charts/ebay-bar-chart',
+    excludeStories: '.*',
     component: Component,
     parameters: {
         docs: {

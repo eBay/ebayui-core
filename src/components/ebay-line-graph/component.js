@@ -19,6 +19,7 @@ import {
     trendNegativeColor,
 } from '../../common/charts/shared';
 import { debounce } from '../../common/event-utils';
+import tooltipTemplate from './tooltip.marko';
 
 const pointSize = 6; // controls the size of the plot point markers on lines
 
@@ -28,7 +29,6 @@ export default class {
     }
     onMount() {
         this._initializeHighchartsExtensions();
-        this._setupEvents();
         this._setupChart();
     }
     onInput() {
@@ -80,23 +80,32 @@ export default class {
             };
         });
 
-        const config = {
-            title: {
-                text: this.input.title,
-                align: 'left',
-                useHTML: true,
-                style: {
-                    fontSize: '18px',
-                    fontWeight: 700,
-                },
+        const chart = this.getChartConfig();
+        const xAxis = this.getXAxisConfig();
+        const yAxis = this.getYAxisConfig(series);
+        const legend = this.getLegendConfig();
+        const tooltip = this.getTooltipConfig();
+        const plotOptions = this.getPlotOptionsConfig(series);
+
+        const title = {
+            text: this.input.title,
+            align: 'left',
+            useHTML: true,
+            style: {
+                fontSize: '18px',
+                fontWeight: 700,
             },
-            chart: this.getChartConfig(),
+        };
+
+        const config = {
+            title,
+            chart,
             colors,
-            xAxis: this.getXAxisConfig(),
-            yAxis: this.getYAxisConfig(series),
-            legend: this.getLegendConfig(),
-            tooltip: this.getTooltipConfig(),
-            plotOptions: this.getPlotOptionsConfig(series),
+            xAxis,
+            yAxis,
+            legend,
+            tooltip,
+            plotOptions,
             series, // pass in the configured series array
             credits: {
                 enabled: false, // hide the highcharts label and link in the bottom right of chart
@@ -107,16 +116,6 @@ export default class {
         this.chartRef = Highcharts.chart(this.getContainerId(), config);
         // call update markers after the initial render to determine which markers to display if plotPoints is set to true
         this.updateMarkers();
-    }
-
-    _setupEvents() {
-        // bind functions to keep scope and setup debounced versions of function calls
-        this.updateMarkers = this.updateMarkers.bind(this);
-        this.debounce = debounce.bind(this);
-        this.handleMouseOver = this.handleMouseOver.bind(this);
-        this.handleMouseOut = this.handleMouseOut.bind(this);
-        this.mouseOut = this.debounce(() => this.handleMouseOut(), 80); // 80ms delay for debounce
-        this.mouseOver = this.debounce((e) => this.handleMouseOver(e), 85); // 85ms delay for debounce so it doesn't colide with mouseOut debounce calls
     }
 
     getSymbol(index) {
@@ -149,7 +148,7 @@ export default class {
             },
             events: {
                 // on chart redraw trigger updateMarkers to look for changes in xAxis tick marks and adjust series markers visibility accordingly
-                redraw: this.updateMarkers,
+                redraw: () => this.updateMarkers(),
             },
         };
     }
@@ -161,7 +160,7 @@ export default class {
             labels: {
                 // input.xAxisLabelFormat allows overriding the default short month / day label
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat to customize
-                format: this.input.xAxisLabelFormat ? this.input.xAxisLabelFormat : '{value:%b %e}',
+                format: this.input.xAxisLabelFormat || '{value:%b %e}',
                 align: 'center',
                 style: {
                     color: labelsColor, // setting label colors
@@ -176,8 +175,8 @@ export default class {
         let yLabelsItterator = 0; // used when yAxisLabels array is provided in input
         let maxVal = 0; // use to determine the highest yAxis value
         // configure the symbol used for each series markers
-        series.forEach((s) => {
-            maxVal = s.data.reduce((p, c) => (c > p ? c : p), maxVal);
+        series.forEach((seriesItem) => {
+            maxVal = Math.max(...seriesItem.data, maxVal);
         });
         return {
             gridLineColor: gridColor, // sets the horizontal grid line colors
@@ -233,28 +232,11 @@ export default class {
             formatter: function () {
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
                 // s is used to compile html string of formatted tooltip data
-                let s = `<b>${Highcharts.dateFormat(
-                    '%b %e, %Y',
-                    this.points[0].x,
-                    false
-                )}</b><br/>`;
-                this.points.forEach((p) => {
-                    // if tooltip data is defined on each data point that is passed in use that tooltip content
-                    // the selling sample does this as they want the tooltip formatted differently
-                    if (p.point.tooltip) {
-                        s = p.point.tooltip;
-                    } else {
-                        // if no tooltip data is present on each data point format the data portion of the tooltip
-                        if (component.input.series.length > 1) {
-                            // if more than one series is passed in setup html for tooltip to display the series name and the label
-                            s += `<div style="display: flex; justify-content: space-between; width: 100%; align-items: flex-start;">${p.series.name}<span style="margin-left: 16px">${p.point.label}</span></div>`;
-                        } else {
-                            // if only one series is passed in just add the label to the tooltip
-                            s += ` ${p.point.label}`;
-                        }
-                    }
+                return tooltipTemplate.renderToString({
+                    date: Highcharts.dateFormat('%b %e, %Y', this.points[0].x, false),
+                    points: this.points,
+                    seriesLength: component.input.series.length > 1,
                 });
-                return s;
             },
             useHTML: true, // allows defining html to format tooltip content
             backgroundColor: tooltipBackgroundColor, // sets tooltip background color
@@ -273,11 +255,14 @@ export default class {
         };
     }
     getPlotOptionsConfig(series) {
+        const mouseOut = debounce(() => this.handleMouseOut(), 80);
+        const mouseOver = debounce((e) => this.handleMouseOver(e), 85); // 85ms delay for debounce so it doesn't colide with mouseOut debounce calls
+
         return {
             line: {
                 events: {
                     // assign mouse events to point hovers
-                    mouseOut: this.mouseOut,
+                    mouseOut,
                 },
             },
             series: {
@@ -289,8 +274,8 @@ export default class {
                 point: {
                     // assign mouse events to point hovers
                     events: {
-                        mouseOver: this.mouseOver,
-                        mouseOut: this.mouseOut,
+                        mouseOver,
+                        mouseOut,
                     },
                 },
             },
@@ -299,11 +284,11 @@ export default class {
     handleMouseOut() {
         // this function is debounced to improve performance
         this.chartRef.series.forEach((s) => {
-            s.data.forEach((d) => {
+            s.data.forEach((data) => {
                 // check if hover is on the xAxis (onTick) for each item,
                 // and if they have a className remove and disable the marker
-                if (!d.onTick && d.className !== null) {
-                    d.update(
+                if (!data.onTick && data.className !== null) {
+                    data.update(
                         {
                             className: null, // nullify className if not active
                             marker: {
@@ -313,11 +298,11 @@ export default class {
                         false, // disable auto redraw
                         false // disable auto animation
                     );
-                } else if (d.onTick && d.className === null) {
-                    d.update(
+                } else if (data.onTick && data.className === null) {
+                    data.update(
                         {
                             className: 'ebay-line-graph__marker--visible', // set classname
-                            onTick: d.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
+                            onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
                             marker: {
                                 enabled: true, // set marker enabled
                                 radius: pointSize, // set the size of marker
@@ -336,13 +321,13 @@ export default class {
     handleMouseOver(e) {
         // this function is debounced to improve performance
         this.chartRef.series.forEach((s) => {
-            s.data.forEach((d) => {
+            s.data.forEach((data) => {
                 // if active xAxis hover position matches the data point x update the marker to display
-                if (d.x === e.target.x) {
-                    d.update(
+                if (data.x === e.target.x) {
+                    data.update(
                         {
                             className: 'ebay-line-graph__marker--visible', // sets the classname
-                            onTick: d.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
+                            onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
                             marker: {
                                 enabled: true, // set marker enabled
                                 radius: pointSize, // set the size of marker
@@ -353,11 +338,11 @@ export default class {
                         false, // disable auto redraw
                         false // disable auto animation
                     );
-                } else if (!d.onTick && d.className !== null) {
-                    d.update(
+                } else if (!data.onTick && data.className !== null) {
+                    data.update(
                         {
                             className: null, // nullify className if not active
-                            onTick: d.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
+                            onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
                             marker: {
                                 enabled: false, // disable marker
                             },
@@ -374,18 +359,20 @@ export default class {
         if (this.input.plotPoints) {
             // ticks is an object with the xaxis date values as their keys
             // setting tickValues to the keys of the ticks object and parsing into an int for data matching of xValues in series below
-            this.tickValues = Object.keys(this.chartRef.axes[0].ticks).map((v) => parseInt(v, 10));
+            this.tickValues = Object.keys(this.chartRef.axes[0].ticks).map((value) =>
+                parseInt(value, 10)
+            );
 
             // this checks if the resize has adjust the number of xAxis tick marks, and if so make updates
             if (this.axisTicksLength !== this.tickValues.length || e === true) {
                 // update the axisTicksLenth variable used for checks in the updateMarkers calls
                 this.axisTicksLength = this.tickValues.length;
                 // loops through each series if a className exist remove and hide the marker
-                this.chartRef.series.forEach((s) => {
+                this.chartRef.series.forEach((series) => {
                     // looping through each series data array
-                    s.data.forEach((d) => {
-                        if (d.className !== null) {
-                            d.update(
+                    series.data.forEach((data) => {
+                        if (data.className !== null) {
+                            data.update(
                                 {
                                     className: null, // removing className used to help keep track of active markers
                                     onTick: false, // sets the onTick flag to keep track of the points enabled status for mouse events
@@ -401,15 +388,15 @@ export default class {
                 });
 
                 // loop through each series again and update markers that line up to xAxis tick marks
-                this.chartRef.series.forEach((s) => {
+                this.chartRef.series.forEach((series) => {
                     // loop through each searies data objects
-                    s.data.forEach((d) => {
+                    series.data.forEach((data) => {
                         // loop through the tickValues that come from the x axis ticks and are epoch time stamps
-                        this.tickValues.forEach((t) => {
+                        this.tickValues.forEach((tick) => {
                             // if the current point x value matches the tickValue or the updateMarkers event exist from the redraw event
-                            if (t === d.x || d.x === e) {
-                                if (d.className === null) {
-                                    d.update(
+                            if (tick === data.x || data.x === e) {
+                                if (data.className === null) {
+                                    data.update(
                                         {
                                             className: 'ebay-line-graph__marker--visible', // add the ebay-line-graph__marker--visible class to boost it's visibility
                                             onTick: true, // sets the onTick flag to keep track of the points enabled status for mouse events

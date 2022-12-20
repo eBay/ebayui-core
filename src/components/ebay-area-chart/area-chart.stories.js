@@ -11,6 +11,7 @@ const Template = (args) => ({
 
 export default {
     title: 'charts/ebay-area-chart',
+    excludeStories: '.*',
     component: Component,
     parameters: {
         docs: {

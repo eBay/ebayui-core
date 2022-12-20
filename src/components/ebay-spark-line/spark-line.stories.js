@@ -10,6 +10,7 @@ const Template = (args) => ({
 
 export default {
     title: 'charts/ebay-spark-line',
+    excludeStories: '.*',
     component: Component,
     parameters: {
         docs: {
