@@ -12,6 +12,7 @@ import {
     tooltipBackgroundColor,
     tooltipShadows,
     setSeriesColors,
+    colorMapping,
 } from '../../common/charts/shared';
 import { debounce } from '../../common/event-utils';
 import { ebayLegend } from '../../common/charts/legend';
@@ -63,11 +64,12 @@ export default class {
                 borderWidth: 3,
             };
         });
+        setSeriesColors(series);
 
         const config = {
             title: this.getTitleConfig(),
             chart: this.getChartConfig(),
-            colors: setSeriesColors(series),
+            colors: colorMapping,
             xAxis: this.getXAxisConfig(),
             yAxis: this.getYAxisConfig(series),
             legend: this.getLegendConfig(),

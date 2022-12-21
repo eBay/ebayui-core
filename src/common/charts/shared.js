@@ -25,7 +25,7 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
     chartQuinaryStrokeColor = 'var(--color-data-viz-chart-quinary-stroke)',
     // patterns are in highcharts PatternOptionsObject format
     // refer to https://api.highcharts.com/class-reference/Highcharts.PatternOptionsObject
-    pattern1 = {
+    patternTertiary = {
         pattern: {
             path: {
                 // d is a standard SVG path definition string
@@ -39,7 +39,7 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
             patternTransform: 'rotate(-60)', // rotates the path -60 degrees
         },
     },
-    pattern2 = {
+    patternQuaternary = {
         pattern: {
             path: {
                 // d is a standard SVG path definition string
@@ -52,48 +52,28 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
             color: chartQuaternaryStrokeColor, // sets the patterns stroke color
         },
     },
-    // configure the color sequences based on how many series are used
-    colorsSingle = [chartPrimaryColor],
-    colorsTwo = [chartSecondaryColor, chartPrimaryColor],
-    colorsThree = [chartSecondaryColor, chartPrimaryColor, pattern1],
-    colorsMore = [
-        chartSecondaryColor,
-        pattern1,
+    colorMapping = [
         chartPrimaryColor,
-        pattern2,
+        chartSecondaryColor,
+        patternTertiary,
+        patternQuaternary,
         chartQuinaryBackgroundColor,
     ],
     // function is used to set up the colors including lineColor(svg stroke) on each of the series objects
     // based on the length of the series array
     setSeriesColors = function (series) {
-        let colors;
-        switch (series.length) {
-            case 1:
-                colors = colorsSingle;
-                series[0].lineColor = series[0].borderColor = chartPrimaryColor;
-                break;
-            case 2:
-                colors = colorsTwo;
-                series[0].lineColor = series[0].borderColor = chartSecondaryColor;
-                series[1].lineColor = series[1].borderColor = chartPrimaryColor;
-                break;
-            case 3:
-                colors = colorsThree;
-                series[0].lineColor = series[0].borderColor = chartSecondaryColor;
-                series[1].lineColor = series[1].borderColor = chartPrimaryColor;
-                series[2].lineColor = series[2].borderColor = chartTertiaryStrokeColor;
-                break;
-            default:
-                colors = colorsMore;
-                series[0].lineColor = series[0].borderColor = chartSecondaryColor;
-                series[1].lineColor = series[1].borderColor = chartTertiaryStrokeColor;
-                series[2].lineColor = series[2].borderColor = chartPrimaryColor;
-                if (series.length > 3) {
-                    series[3].lineColor = series[3].borderColor = chartQuaternaryStrokeColor;
-                }
-                if (series.length > 4) {
-                    series[4].lineColor = series[4].borderColor = chartQuaternaryStrokeColor;
-                }
+        const strokeColorMapping = [
+            chartPrimaryColor,
+            chartSecondaryColor,
+            chartTertiaryStrokeColor,
+            chartQuaternaryStrokeColor,
+            chartQuaternaryStrokeColor,
+        ];
+
+        for (let i = 0; i < series.length; i++) {
+            // Added a modulus in case the user passes in more than 5 series so it doesn't error out
+            const color = strokeColorMapping[i % strokeColorMapping.length];
+            series[i].lineColor = color;
+            series[i].borderColor = color;
         }
-        return colors;
     };

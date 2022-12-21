@@ -231,7 +231,6 @@ export default class {
         return {
             formatter: function () {
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
-                // s is used to compile html string of formatted tooltip data
                 return tooltipTemplate.renderToString({
                     date: Highcharts.dateFormat('%b %e, %Y', this.points[0].x, false),
                     points: this.points,
