@@ -55,6 +55,7 @@ $ {
         isButtonVariant = true;
         priority = input.priority
     }
+    var separatorCount = 0;
 }
 
 <span
@@ -121,7 +122,10 @@ $ {
         on-select("handleMenuSelect")
         key="content">
         <for|item,index| of=(input.items || [])>
-            <@item  ...item checked=component.isChecked(index) />
+            $ if (item.separator) {
+                separatorCount++;
+            }
+            <@item  ...item checked=component.isChecked(index - separatorCount) />
         </for>
     </ebay-menu>
 </span>
