@@ -1,12 +1,8 @@
 import { loader } from '../../common/loader';
+import versions from './versions.json';
 const MAX_RETRIES = 3;
 
 export default {
-    get cdnBaseUrl() {
-        const version = this.input.cdnVersion || '1.1.4';
-        return `https://ir.ebaystatic.com/cr/v/c1/ebay-dist-${version}/`;
-    },
-
     handleError(err) {
         this.state.failed = true;
         this.state.isLoaded = true;
@@ -50,62 +46,16 @@ export default {
         }
     },
 
-    attachViewer() {
-        const self = this;
-        if (window.RestARViewer) {
-            const {
-                defaultDistance = 5.5,
-                maxDistance = 5.5,
-                minDistance = 4.0,
-                fov = 45,
-                minPolarAngle = 0.3,
-                maxPolarAngle = 1.3,
-                dampingFactor = 0.12,
-            } = this.input;
-
-            const allowViewBottom = !this.input.noAllowViewButtom;
-            const autoRotate = !this.input.noAutoRotate;
-            const mouseMoveFollow = !this.input.noMouseMoveFollow;
-            const animatedPlacement = !this.input.noAnimatedPlacement;
-
-            // eslint-disable-next-line no-undef,new-cap
-            this.rest = RestARViewer({
-                workerElementID: 'restar-worker',
-                chunksFolder: this.cdnBaseUrl,
-                element: this.viewer, // container to add 3DViewer
-                assetID: this.input.assetId, // asset ID value
-                camera: {
-                    defaultDistance,
-                    maxDistance,
-                    minDistance,
-                    fov,
-                    minPolarAngle,
-                    maxPolarAngle,
-                    dampingFactor,
-                    allowViewBottom,
-                    autoRotate,
-                    mouseMoveFollow,
-                    animatedPlacement,
-                },
-                onError(error) {
-                    // On error callback
-                    self.handleError(error);
-                },
-                onTrackEvent(action) {
-                    // On user action callback
-                    self.emit('action', action);
-                },
-            });
-        }
-    },
-
     _loadCDN() {
-        const cdnUrl = this.input.cdnUrl || `${this.cdnBaseUrl}/restar.viewer.js`;
-        const workerUrl = this.input.cssUrl || `${this.cdnBaseUrl}/restar.worker.js`;
+        const version = this.input.cdnVersion || versions.modelViewer;
+        const cdnBaseUrl = `https://ir.ebaystatic.com/cr/v/c1/ebayui/google-model-viewer/v${version}`;
+        const cdnUrl = this.input.cdnUrl || `${cdnBaseUrl}/model-viewer.min.js`;
 
-        loader([cdnUrl, workerUrl], ['src', 'restar-worker'])
+        loader([cdnUrl], ['model-viewer'])
             .then(() => {
-                this.attachViewer();
+                this.state.isLoaded = true;
+                this.state.showLoading = false;
+                this.state.failed = false;
             })
             .catch((err) => {
                 clearTimeout(this.retryTimeout);
@@ -121,10 +71,6 @@ export default {
     onMount() {
         this.viewer = this.getEl('3d-viewer');
         this._loadViewer();
-    },
-
-    onUpdate() {
-        this.attachViewer();
     },
 
     _loadViewer() {
