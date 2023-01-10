@@ -1,0 +1,16 @@
+<b>${input.date}</b>
+<if(!input.stacked)>
+    <div><span>${input.data.label}</span></div>
+</if>
+<else>
+    <for|series| of=input.data>
+        <for|point| of=series.data>
+            <if(point.x === input.x)>
+                <div style="display: flex; justify-content: space-between; width: 100%; align-items: flex-start;">
+                    ${series.name}
+                    <span style="margin-left: 16px">${point.label}</span>
+                </div>
+            </if>
+        </for>
+    </for>
+</else>
