@@ -1,5 +1,4 @@
-import Highcharts from 'highcharts';
-import accessibility from 'highcharts/modules/accessibility';
+import { CDNLoader } from '../../common/cdn';
 import {
     chartFontFamily,
     backgroundColor,
@@ -26,11 +25,34 @@ const pointSize = 6; // controls the size of the plot point markers on lines
 export default class {
     onCreate() {
         this.axisTicksLength = -1;
+
+        this.cdnLoader = new CDNLoader(this, {
+            stagger: true,
+            key: 'highcharts',
+            types: ['src', 'src'],
+            files: ['highcharts.js', 'accessibility.js'],
+            setLoading: () => {},
+            handleError: this.handleError.bind(this),
+            handleSuccess: this.handleSuccess.bind(this),
+        });
     }
-    onMount() {
-        this._initializeHighchartsExtensions();
+
+    handleError(err) {
+        this.emit('load-error', err);
+    }
+    handleSuccess() {
         this._setupChart();
     }
+
+    onMount() {
+        this.cdnLoader
+            .setOverrides(
+                [this.input.cdnHighcharts, this.input.cdnHighchartsAccessibility],
+                this.input.version
+            )
+            .mount();
+    }
+
     onInput() {
         // if chartRef does not exist do not try to run setupCharts as it may be server side and highcharts only works on the client side
         if (this.chartRef && this.chartRef.destroy) {
@@ -41,10 +63,7 @@ export default class {
     getContainerId() {
         return `ebay-line-graph-${this.id}`;
     }
-    _initializeHighchartsExtensions() {
-        // enable highcharts accessibility with wrapper function
-        accessibility(Highcharts);
-    }
+
     _setupChart() {
         const colors = [
             // configure the array of colors to use for each series
@@ -113,6 +132,7 @@ export default class {
         };
 
         // initialize and keep reference to chart
+        // eslint-disable-next-line no-undef,new-cap
         this.chartRef = Highcharts.chart(this.getContainerId(), config);
         // call update markers after the initial render to determine which markers to display if plotPoints is set to true
         this.updateMarkers();
@@ -232,6 +252,7 @@ export default class {
             formatter: function () {
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
                 return tooltipTemplate.renderToString({
+                    // eslint-disable-next-line no-undef,new-cap
                     date: Highcharts.dateFormat('%b %e, %Y', this.points[0].x, false),
                     points: this.points,
                     seriesLength: component.input.series.length > 1,

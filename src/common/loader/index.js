@@ -57,23 +57,47 @@ function restArWorker(src) {
     });
 }
 
-function loader(srcList, typeList) {
+function getPromise(typeList, promiseKey, src, key) {
+    if (typeList[key]) {
+        if (typeList[key] === 'css') {
+            return cssLoad(src, promiseKey);
+        } else if (typeList[key] === 'restar-worker') {
+            return restArWorker(src, promiseKey);
+        } else if (typeList[key] === 'module') {
+            return srcLoad(src, promiseKey, 'module');
+        }
+    }
+    return srcLoad(src, promiseKey);
+}
+
+/**
+ * Loader, which loads a script or stylesheet. Will cache the results on the page so it does not load more than once.
+ * @param {*} srcList Array of sources to load
+ * @param {*} typeList The type of each src. Each index should match with srcList. See types for more info
+ * @param {boolean} stagger If true, will wait for one source to load before loading the next.
+ * @returns Promise, when resolved, all sources are loaded
+ *
+ * Types for typelist
+ * src - standard javascript source (default value)
+ * restar-worker - (deprecated), loads restar service worker
+ * module - loads javascript script with type=module
+ * css - CSS source file
+ */
+function loader(srcList, typeList, stagger) {
     const promiseKey = srcList.join(',');
     if (!cachePromises[promiseKey]) {
-        cachePromises[promiseKey] = Promise.all(
-            srcList.map((src, key) => {
-                if (typeList[key]) {
-                    if (typeList[key] === 'css') {
-                        return cssLoad(src, promiseKey);
-                    } else if (typeList[key] === 'restar-worker') {
-                        return restArWorker(src, promiseKey);
-                    } else if (typeList[key] === 'model-viewer') {
-                        return srcLoad(src, promiseKey, 'module');
-                    }
-                }
-                return srcLoad(src, promiseKey);
-            })
-        );
+        if (stagger) {
+            // Make sure each file loading completes, before loading the next
+            cachePromises[promiseKey] = srcList.reduce(
+                (p, src, key) => p.then(() => getPromise(typeList, promiseKey, src, key)),
+                Promise.resolve()
+            );
+        } else {
+            // Each can complete in any order
+            cachePromises[promiseKey] = Promise.all(
+                srcList.map((src, key) => getPromise(typeList, promiseKey, src, key))
+            );
+        }
     }
     return cachePromises[promiseKey];
 }
