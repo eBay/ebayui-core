@@ -31,10 +31,7 @@ static {
             <else>An error has occurred</else>
         </div>
     </div>
-    <div
-        class=['three-d-player__overlay', state.isLoaded && 'three-d-player__overlay--hidden']
-        on-click('loadCDN', true)
-    >
+    <div class=['three-d-player__overlay', state.isLoaded && 'three-d-player__overlay--hidden']>
         <if(!state.showLoading)>
             <ebay-video-play-icon a11y-text=input.a11yStartText || 'Click to start'/>
         </if>

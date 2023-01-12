@@ -10,7 +10,7 @@ const MAX_RETRIES = 3;
  * function setLoaded(boolean) : sets the is loaded state
  * function handleSuccess() : when cdn is succsssfully loaded
  * function handleError(err) : when the cdn loading fails
- * boolean stagger :  (optional) if all promoses should be staggered or executed in any order
+ * boolean stagger :  (optional) if all promises should be staggered or executed in any order
  */
 export class CDNLoader {
     constructor(self, { key, files, types, setLoading, handleSuccess, handleError, stagger }) {
@@ -56,7 +56,7 @@ export class CDNLoader {
         }
     }
 
-    loadCDN(immediate) {
+    loadCDN() {
         const _timeout =
             window.requestIdleCallback ||
             function (handler, arg) {
@@ -75,13 +75,8 @@ export class CDNLoader {
         this.setLoading(false);
 
         _cancel(this.loadDelay);
-        if (!immediate) {
-            this.setLoading(false);
-            this.loadDelay = _timeout(() => this._loadCDN(), { timeout: 100 });
-        } else {
-            this.setLoading(true);
-            this._loadCDN();
-        }
+        this.setLoading(true);
+        this.loadDelay = _timeout(() => this._loadCDN(), { timeout: 100 });
     }
 
     _catchError(err) {
