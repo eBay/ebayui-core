@@ -58,7 +58,7 @@ static var ignoredAttributes = [
             "video-player__overlay",
             state.isLoaded && "video-player__overlay--hidden"
         ]
-        on-click("loadCDN", true)>
+        on-click("loadVideo", true)>
         <if(!state.showLoading)>
             <ebay-video-play-icon a11y-text=(input.a11yPlayText || "Click to play")/>
         </if>

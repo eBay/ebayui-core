@@ -1,7 +1,4 @@
-import Highcharts from 'highcharts';
-import accessibility from 'highcharts/modules/accessibility';
-import patternFill from 'highcharts/modules/pattern-fill';
-
+import { CDNLoader } from '../../common/cdn';
 import {
     chartFontFamily,
     backgroundColor,
@@ -22,10 +19,6 @@ import { eBayColumns } from '../../common/charts/bar-chart';
 import subtemplate from './subtemplate.marko';
 
 export default class {
-    onMount() {
-        this._initializeHighchartsExtensions();
-        this._setupCharts();
-    }
     onInput() {
         // if chartRef does not exist do not try to run setupCharts as it may be server side and highcharts only works on the client side
         if (this.chartRef && this.chartRef.destroy) {
@@ -33,17 +26,50 @@ export default class {
             this._setupCharts();
         }
     }
+
+    onCreate() {
+        this.cdnLoader = new CDNLoader(this, {
+            stagger: true,
+            key: 'highcharts',
+            types: ['src', 'src', 'src'],
+            files: ['highcharts.js', 'accessibility.js', 'pattern-fill.js'],
+            setLoading: () => {},
+            handleError: this.handleError.bind(this),
+            handleSuccess: this.handleSuccess.bind(this),
+        });
+    }
+
+    onMount() {
+        this.cdnLoader
+            .setOverrides(
+                [
+                    this.input.cdnHighcharts,
+                    this.input.cdnHighchartsAccessibility,
+                    this.input.cdnHighchartsPatternFill,
+                ],
+                this.input.version
+            )
+            .mount();
+    }
+
+    handleError(err) {
+        this.emit('load-error', err);
+    }
+    handleSuccess() {
+        this._initializeHighchartExtensions();
+        this._setupEvents();
+        this._setupCharts();
+    }
+
     getContainerId() {
         return `ebay-bar-chart-${this.id}`;
     }
     _initializeHighchartsExtensions() {
-        // enable highcharts accessibility with wrapper function
-        accessibility(Highcharts);
-        // patternFill highcharts wrapper function enables rendering patterns instead of just solid colors
-        patternFill(Highcharts);
         // add custom legend wrapper function
+        // eslint-disable-next-line no-undef,new-cap
         ebayLegend(Highcharts);
         // add custom columns wrapper to enable rounded bar corners, and stacks with spaces between each stacked point
+        // eslint-disable-next-line no-undef,new-cap
         eBayColumns(Highcharts);
     }
     _setupCharts() {
@@ -86,6 +112,7 @@ export default class {
                 enabled: false, // hide the highcharts label and link in the bottom right
             },
         };
+        // eslint-disable-next-line no-undef,new-cap
         this.chartRef = Highcharts.chart(this.getContainerId(), config);
         this.chartRef.redraw();
     }
@@ -186,6 +213,7 @@ export default class {
 
             // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
             return subtemplate.renderToString({
+                // eslint-disable-next-line no-undef,new-cap
                 date: Highcharts.dateFormat('%b %e, %Y', this.x, false),
                 data: stacked ? series : this.point,
                 stacked,

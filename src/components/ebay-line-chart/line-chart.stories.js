@@ -76,6 +76,18 @@ export default {
             type: { name: 'string', require: false },
             description: 'A class name that will be added to the main chart container',
         },
+        cdnHighcharts: {
+            type: { name: 'string', require: false },
+            description: 'CDN url override for loading highcharts',
+        },
+        cdnHighchartsAccessibility: {
+            type: { name: 'string', require: false },
+            description: 'CDN url override for loading highcharts accessibility module',
+        },
+        version: {
+            type: { name: 'string', require: false },
+            description: 'Highcharts version to load from CDN',
+        },
     },
 };
 

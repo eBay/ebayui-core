@@ -1,6 +1,4 @@
-import Highcharts from 'highcharts';
-import accessibility from 'highcharts/modules/accessibility';
-import patternFill from 'highcharts/modules/pattern-fill';
+import { CDNLoader } from '../../common/cdn';
 import {
     chartFontFamily,
     backgroundColor,
@@ -20,11 +18,6 @@ import { ebayLegend } from '../../common/charts/legend';
 const pointSize = 1.5;
 
 export default class {
-    onMount() {
-        this._initializeHighchartExtensions();
-        this._setupEvents();
-        this._setupCharts();
-    }
     onInput() {
         // if chartRef does not exist do not try to run setupCharts as it may be server side and highcharts only works on the client side
         if (this.chartRef && this.chartRef.destroy) {
@@ -32,15 +25,46 @@ export default class {
             this._setupCharts();
         }
     }
+
+    onCreate() {
+        this.cdnLoader = new CDNLoader(this, {
+            stagger: true,
+            key: 'highcharts',
+            types: ['src', 'src', 'src'],
+            files: ['highcharts.js', 'accessibility.js', 'pattern-fill.js'],
+            setLoading: () => {},
+            handleError: this.handleError.bind(this),
+            handleSuccess: this.handleSuccess.bind(this),
+        });
+    }
+
+    onMount() {
+        this.cdnLoader
+            .setOverrides(
+                [
+                    this.input.cdnHighcharts,
+                    this.input.cdnHighchartsAccessibility,
+                    this.input.cdnHighchartsPatternFill,
+                ],
+                this.input.version
+            )
+            .mount();
+    }
+
+    handleError(err) {
+        this.emit('load-error', err);
+    }
+    handleSuccess() {
+        this._initializeHighchartExtensions();
+        this._setupEvents();
+        this._setupCharts();
+    }
     getContainerId() {
         return `ebay-bar-chart-${this.id}`;
     }
     _initializeHighchartExtensions() {
-        // enable highcharts accessibility with wrapper function
-        accessibility(Highcharts);
-        // patternFill highcharts wrapper function enables rendering patterns instead of just solid colors
-        patternFill(Highcharts);
         // add custom legend wrapper function
+        // eslint-disable-next-line no-undef,new-cap
         ebayLegend(Highcharts);
     }
     _setupEvents() {
@@ -81,6 +105,7 @@ export default class {
             },
         };
         // initialize and keep reference to chart
+        // eslint-disable-next-line no-undef,new-cap
         this.chartRef = Highcharts.chart(this.getContainerId(), config);
     }
     getTitleConfig() {
@@ -189,6 +214,9 @@ export default class {
             formatter: function () {
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
                 // s is used to compile html string of formatted tooltip data
+
+                // TODO need to change this to use a component
+                // eslint-disable-next-line no-undef,new-cap
                 let s = `<b>${Highcharts.dateFormat('%b %e, %Y', this.x, false)}</b></br>`; // sets the displayed date at the top of the tooltip
                 if (component.chartRef.series.length > 1) {
                     // setup html for multi series tooltip

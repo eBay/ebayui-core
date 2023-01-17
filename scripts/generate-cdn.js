@@ -10,24 +10,36 @@ import rimraf from 'rimraf';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
+const versionPath = 'src/common/cdn/versions.json';
 
-function update3dPlayerJSONFile(version) {
-    const versionFile = path.join(rootDir, 'src/components/ebay-3d-viewer/versions.json');
-    const threedVersions = {
-        '//': 'This is a generated file. Run script file to update',
-        modelViewer: version,
-    };
-    const newVersion = JSON.stringify(threedVersions);
-    fs.writeFileSync(versionFile, newVersion);
-}
+const cdnConfig = {
+    shaka: {
+        versionCommand:
+            "npm list shaka-player --depth 1 | grep shaka-player | awk -F @ '{ print  $2 }'",
+        generator: shakaGenerator,
+    },
+    highcharts: {
+        versionCommand:
+            "npm list highcharts --depth 1 | grep highcharts | awk -F @ '{ print  $2 }'",
+        generator: highchartsGenerator,
+    },
+    modelViewer: {
+        versionCommand:
+            "npm list @google/model-viewer --depth 1 | grep google/model-viewer | awk -F @ '{ print  $3 }'",
+        generator: threeDPlayerGenerator,
+    },
+};
 
-function updateVideoJSONFile(version) {
-    const versionFile = path.join(rootDir, 'src/components/ebay-video/versions.json');
-    const videoVersions = {
-        '//': 'This is a generated file. Run script file to update',
-        shaka: version,
-    };
-    const newVersion = JSON.stringify(videoVersions);
+function updateVersionFile(version) {
+    const versionFile = path.join(rootDir, versionPath);
+    const versionObject = Object.assign(
+        {},
+        {
+            '//': 'This is a generated file. Run generateCDN script file to update',
+        },
+        version
+    );
+    const newVersion = JSON.stringify(versionObject);
     fs.writeFileSync(versionFile, newVersion);
 }
 
@@ -53,36 +65,58 @@ function download(url, dir, fileName) {
     });
 }
 
+async function shakaGenerator({ version, cdnVersionPath }) {
+    await download(getShakaUrl(version), cdnVersionPath, 'shaka-player.ui.js');
+    await download(getShakaCSSUrl(version), cdnVersionPath, 'controls.css');
+    // Remove define
+    execSync(
+        `sed -i '' -e 's/typeof define=="function"/typeof define=="w"/' ${cdnVersionPath}/shaka-player.ui.js`
+    );
+}
+
+async function threeDPlayerGenerator({ cdnVersionPath }) {
+    await fs.promises.cp(
+        `${rootDir}/node_modules/@google/model-viewer/dist/model-viewer.min.js`,
+        `${cdnVersionPath}/model-viewer.min.js`
+    );
+}
+
+async function highchartsGenerator({ cdnVersionPath }) {
+    await fs.promises.cp(
+        `${rootDir}/node_modules/highcharts/highcharts.js`,
+        `${cdnVersionPath}/highcharts.js`
+    );
+    await fs.promises.cp(
+        `${rootDir}/node_modules/highcharts/modules/accessibility.js`,
+        `${cdnVersionPath}/accessibility.js`
+    );
+    await fs.promises.cp(
+        `${rootDir}/node_modules/highcharts/modules/pattern-fill.js`,
+        `${cdnVersionPath}/pattern-fill.js`
+    );
+}
+
 async function run() {
-    const version = execSync(
-        "npm list shaka-player --depth 1 | grep shaka-player | awk -F @ '{ print  $2 }'",
-        { encoding: 'utf8' }
-    ).trim();
-    const threeDVersion = execSync(
-        "npm list @google/model-viewer --depth 1 | grep google/model-viewer | awk -F @ '{ print  $3 }'",
-        { encoding: 'utf8' }
-    ).trim();
+    const versionObject = {};
 
     const cdnDir = path.join(rootDir, '_cdn', 'ebayui');
-    const playerPath = path.join(cdnDir, 'shaka', `v${version}`);
-    const threeDPlayerPath = path.join(cdnDir, 'google-model-viewer', `v${threeDVersion}`);
 
     try {
         rimraf.sync(cdnDir);
-        updateVideoJSONFile(version);
-        await fs.promises.mkdir(playerPath, { recursive: true });
-        await download(getShakaUrl(version), playerPath, 'shaka-player.ui.js');
-        await download(getShakaCSSUrl(version), playerPath, 'controls.css');
-        // Remove define
-        execSync(
-            `sed -i '' -e 's/typeof define=="function"/typeof define=="w"/' ${playerPath}/shaka-player.ui.js`
-        );
-        update3dPlayerJSONFile(threeDVersion);
-        await fs.promises.mkdir(threeDPlayerPath, { recursive: true });
-        await fs.promises.cp(
-            `${rootDir}/node_modules/@google/model-viewer/dist/model-viewer.min.js`,
-            `${threeDPlayerPath}/model-viewer.min.js`
-        );
+        for (const key of Object.keys(cdnConfig)) {
+            const { versionCommand, generator } = cdnConfig[key];
+
+            const version = execSync(versionCommand, { encoding: 'utf8' }).trim();
+
+            versionObject[key] = version;
+
+            const cdnVersionPath = path.join(cdnDir, key, `v${version}`);
+
+            await fs.promises.mkdir(cdnVersionPath, { recursive: true });
+
+            await generator({ cdnVersionPath, version });
+        }
+        updateVersionFile(versionObject);
     } catch (e) {
         console.error(e);
     }
