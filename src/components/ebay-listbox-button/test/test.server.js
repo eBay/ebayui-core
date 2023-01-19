@@ -34,4 +34,8 @@ describe('listbox', () => {
     it('renders with floating label', async () => {
         await htmlSnap(Standard, { floatingLabel: 'floating label' });
     });
+
+    it('renders with form', async () => {
+        await htmlSnap(Standard, { variant: 'form' });
+    });
 });

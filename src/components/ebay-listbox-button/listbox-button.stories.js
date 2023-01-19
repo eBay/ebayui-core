@@ -98,7 +98,7 @@ export default {
         variant: {
             description:
                 'If `form`, changes appearance to match other form-specific dropdown-esque components for visual consistency.',
-            options: ['', 'form'],
+            options: ['standard', 'form'],
             type: 'select',
         },
 

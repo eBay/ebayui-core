@@ -23,6 +23,7 @@ $ var selectedText = selectedOption && selectedOption.text;
 $ var labelId = input.prefixId && component.getElId("label");
 $ var unselectedText = input.unselectedText || '-';
 $ var displayText = selectedText || unselectedText;
+$ var isForm = input.variant === 'form';
 
 <${input.truncate && !input.fluid ? "div" : "span"}
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -34,7 +35,7 @@ $ var displayText = selectedText || unselectedText;
         key="button"
         class=[
             "listbox-button__control",
-            input.variant && `listbox-button__control--${input.variant}`,
+            isForm && `listbox-button--form`,
             'btn',
             'btn--form',
             input.borderless && "btn--borderless",
