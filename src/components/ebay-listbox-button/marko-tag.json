@@ -22,7 +22,7 @@
   "@button-name": "#html-name",
   "@disabled": "#html-disabled",
   "@variant": {
-    "enum": ["", "form"]
+    "enum": ["standard", "form"]
   },
   "@options <option>[]": {
     "attribute-groups": ["html-attributes"],
