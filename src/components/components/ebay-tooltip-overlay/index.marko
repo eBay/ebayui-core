@@ -4,6 +4,7 @@ import constants from "./constants";
 static function noop() {}
 static var typeRoles = constants.typeRoles;
 static var pointerStyles = constants.pointerStyles;
+static var ignoredHeaderAttributes = ["id", "as", "class"];
 
 $ input.toJSON = noop;
 
@@ -19,6 +20,7 @@ $ var overlayStyles = hasUserStyles ? {
     right: input.styleRight,
     bottom: input.styleBottom
 } : pointerStyles[input.pointer || "bottom"];
+$ var heading = input.heading;
 
 <span
     id=input.id
@@ -26,7 +28,7 @@ $ var overlayStyles = hasUserStyles ? {
     role=typeRoles[input.type]
     aria-labelledby=(
         input.type === "tourtip" &&
-        input.heading &&
+        heading &&
         component.elId("tourtip-label")
     )
     style=overlayStyles>
@@ -34,13 +36,13 @@ $ var overlayStyles = hasUserStyles ? {
     <span class=`${input.type}__mask`>
         <span class=`${input.type}__cell`>
             <span class=`${input.type}__content`>
-                <if(input.heading)>
-                    <span
-                        ...processHtmlAttributes(input.heading)
+                <if(heading)>
+                    <${heading.as || "span"}
+                        ...processHtmlAttributes(heading, ignoredHeaderAttributes)
                         class=[`${input.type}__heading`, input.heading.class]
                         id:scoped="tourtip-label">
-                        <${input.heading.renderBody}/>
-                    </span>
+                        <${heading.renderBody}/>
+                    </>
                 </if>
                 <if(input.content)>
                     <${Object.keys(input.content).length > 1 && "span"}

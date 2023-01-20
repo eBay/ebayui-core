@@ -1,6 +1,6 @@
 {
   "name": "@ebay/ebayui-core",
-  "version": "10.2.0",
+  "version": "11.0.0",
   "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
   "scripts": {
     "installMarkoV5": "npm i marko@5 @marko/compiler@5 --force",
@@ -67,7 +67,8 @@
     "@commitlint/cli": "^17",
     "@commitlint/config-conventional": "^17",
     "@ebay/browserslist-config": "^2.2.0",
-    "@ebay/skin": "~15.2.0",
+    "@ebay/skin": "~15.3.0",
+    "@google/model-viewer": "^2.1.1",
     "@lasso/marko-taglib": "^2.0.5",
     "@marko/compiler": "^5.23.0",
     "@marko/migrate": "^6.0.2",
@@ -83,14 +84,14 @@
     "@storybook/manager-webpack5": "^6.5.13",
     "@storybook/marko": "~7.4.4",
     "@storybook/mdx2-csf": "^0.0.3",
-    "@wdio/browserstack-service": "^7.25.0",
+    "@wdio/browserstack-service": "^8.0.11",
     "async": "^3.2.4",
     "babel-loader": "^9.1.0",
     "babel-plugin-add-module-exports": "^1.0.4",
     "chai": "4.3.7",
     "chai-dom": "^1.10.0",
     "cheerio": "^1.0.0-rc.11",
-    "chromedriver": "^107",
+    "chromedriver": "^108",
     "coveralls": "^3.1.1",
     "css-loader": "^6",
     "del": "^7.0.0",
@@ -121,8 +122,8 @@
     "prettier": "^2.7.1",
     "raw-loader": "^4.0.2",
     "rimraf": "^3.0.2",
-    "shaka-player": "4.3.0",
-    "sinon": "^14.0.2",
+    "sinon": "^15.0.1",
+    "shaka-player": "4.3.2",
     "style-loader": "^3",
     "stylelint": "^14.15.0",
     "stylelint-config-prettier": "^9.0.4",
@@ -131,21 +132,22 @@
     "wdio-chromedriver-service": "^8"
   },
   "peerDependencies": {
-    "@ebay/skin": "~15.2.0",
+    "@ebay/skin": "~15.3.0",
     "marko": "^4 || ^5"
   },
   "dependencies": {
     "@marko-tags/subscribe": "^0.4.2",
-    "makeup-active-descendant": "0.5.1",
-    "makeup-expander": "~0.10.0",
-    "makeup-floating-label": "~0.3.1",
-    "makeup-focusables": "~0.3.0",
-    "makeup-key-emitter": "~0.3.0",
+    "highcharts": "^10.2.1",
+    "makeup-active-descendant": "0.6.1",
+    "makeup-expander": "~0.10.1",
+    "makeup-floating-label": "~0.3.2",
+    "makeup-focusables": "~0.3.1",
+    "makeup-key-emitter": "~0.3.1",
     "makeup-keyboard-trap": "~0.4.1",
-    "makeup-prevent-scroll-keys": "~0.2.0",
-    "makeup-roving-tabindex": "~0.5.1",
+    "makeup-prevent-scroll-keys": "~0.2.1",
+    "makeup-roving-tabindex": "~0.6.0",
     "makeup-screenreader-trap": "~0.4.1",
-    "makeup-typeahead": "^0.2.0"
+    "makeup-typeahead": "^0.2.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

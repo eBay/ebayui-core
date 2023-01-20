@@ -27,6 +27,7 @@ describe('given the default tourtip', () => {
 
         thenItIsOpen();
         thenItCanBeClosed();
+        thenIthasHeading();
     });
 
     function thenItIsOpen() {
@@ -48,6 +49,12 @@ describe('given the default tourtip', () => {
             it('then it is closed', () => {
                 expect(component.queryByRole('region')).to.equal(null);
             });
+        });
+    }
+
+    function thenIthasHeading() {
+        it('then it has the right heading', () => {
+            expect(component.getByText('Important').tagName).equal('H2');
         });
     }
 });

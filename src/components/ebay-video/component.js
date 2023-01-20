@@ -1,7 +1,5 @@
-import { loader } from '../../common/loader';
+import { CDNLoader } from '../../common/cdn';
 import { getElements, playIcon } from './elements';
-import versions from './versions.json';
-const MAX_RETRIES = 3;
 const DEFAULT_SPINNER_TIMEOUT = 2000;
 
 const videoConfig = {
@@ -133,35 +131,17 @@ export default {
             failed: false,
             played: false,
         };
-    },
 
-    loadCDN(immediate) {
-        const _timeout =
-            window.requestIdleCallback ||
-            function (handler, arg) {
-                return setTimeout(() => {
-                    handler();
-                }, arg.timeout);
-            };
-
-        const _cancel =
-            window.cancelIdleCallback ||
-            function (id) {
-                clearTimeout(id);
-            };
-
-        this.retryTimes = 0;
-        this.state.failed = false;
-        this.state.isLoaded = false;
-
-        _cancel(this.loadDelay);
-        if (!immediate) {
-            this.state.showLoading = false;
-            this.loadDelay = _timeout(() => this._loadCDN(), { timeout: 100 });
-        } else {
-            this.state.showLoading = true;
-            this._loadCDN();
-        }
+        this.cdnLoader = new CDNLoader(this, {
+            key: 'shaka',
+            types: ['src', 'css'],
+            files: ['shaka-player.ui.js', 'controls.css'],
+            setLoading: (value) => {
+                this.state.showLoading = value;
+            },
+            handleError: this.handleError.bind(this),
+            handleSuccess: this.handleSuccess.bind(this),
+        });
     },
 
     _addTextTracks() {
@@ -243,32 +223,15 @@ export default {
         }
     },
 
-    _loadCDN() {
-        const version = this.input.cdnVersion || versions.shaka;
-        const cdnBaseUrl = `https://ir.ebaystatic.com/cr/v/c1/ebayui/shaka/v${version}/`;
-        const cdnUrl = this.input.cdnUrl || `${cdnBaseUrl}/shaka-player.ui.js`;
-        const cssUrl = this.input.cssUrl || `${cdnBaseUrl}/controls.css`;
+    handleSuccess() {
+        // eslint-disable-next-line no-undef,new-cap
+        shaka.polyfill.installAll();
 
-        loader([cdnUrl, cssUrl], ['src', 'css'])
-            .then(() => {
-                // eslint-disable-next-line no-undef,new-cap
-                shaka.polyfill.installAll();
+        // eslint-disable-next-line no-undef,new-cap
+        this.player = new shaka.Player(this.video);
+        this._attach();
 
-                // eslint-disable-next-line no-undef,new-cap
-                this.player = new shaka.Player(this.video);
-                this._attach();
-
-                this._loadSrc();
-            })
-            .catch((err) => {
-                clearTimeout(this.retryTimeout);
-                this.retryTimes += 1;
-                if (this.retryTimes < MAX_RETRIES) {
-                    this.retryTimeout = setTimeout(() => this._loadCDN(cdnUrl), 2000);
-                } else {
-                    this.handleError(err);
-                }
-            });
+        this._loadSrc();
     },
 
     onMount() {
@@ -293,14 +256,10 @@ export default {
     },
 
     _loadVideo() {
+        this.state.failed = false;
         this.state.isLoaded = false;
-
-        if (document.readyState === 'complete') {
-            this.loadCDN();
-        } else {
-            this.subscribeTo(window).once('load', this.loadCDN.bind(this));
-        }
-
-        this.handleResize();
+        this.cdnLoader
+            .setOverrides([this.input.cdnUrl, this.input.cssUrl], this.input.version)
+            .mount();
     },
 };

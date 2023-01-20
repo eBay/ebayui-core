@@ -3,27 +3,27 @@ static const isBrowser = typeof window !== 'undefined';
 static {
     var ignoredAttributes = [
         'class',
-        'assetId',
-        'cdnVersion',
-        'defaultDistance',
-        'maxDistance',
-        'minDistance',
-        'fov',
-        'minPolarAngle',
-        'maxPolarAngle',
-        'dampingFactor',
-        'allowViewBottom',
-        'autoRotate',
-        'mouseMoveFollow',
-        'animatedPlacement',
+        'src',
+        'a11yText'
     ];
 }
 
 <div
-    key='3d-viewer'
-    class=['three-d-player', input.class]
-    ...processHtmlAttributes(input, ignoredAttributes)
->
+    class=['three-d-player', input.class]>
+    <${'model-viewer'}
+        camera-controls
+        touch-action="pan-y"
+        key='3d-viewer'
+        alt=input.a11yText
+        src=input.src
+        ...processHtmlAttributes(input, ignoredAttributes)
+        on-error('handleError')
+        on-load('emit', 'load')
+        on-progress('emit', 'progress')
+        on-model-visibility('emit', 'model-visibility')
+        on-poster-dismissed('emit', 'poster-dismissed')
+        on-render-scale('emit', 'render-scale')
+        />
     <div class=['three-d-player__overlay', !state.failed && 'three-d-player__overlay--hidden']>
         <ebay-attention-icon/>
         <div.three-d-player__overlay-text>
@@ -31,10 +31,7 @@ static {
             <else>An error has occurred</else>
         </div>
     </div>
-    <div
-        class=['three-d-player__overlay', state.isLoaded && 'three-d-player__overlay--hidden']
-        on-click('loadCDN', true)
-    >
+    <div class=['three-d-player__overlay', state.isLoaded && 'three-d-player__overlay--hidden']>
         <if(!state.showLoading)>
             <ebay-video-play-icon a11y-text=input.a11yStartText || 'Click to start'/>
         </if>

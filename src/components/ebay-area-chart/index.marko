@@ -1,0 +1,22 @@
+import { processHtmlAttributes } from "../../common/html-attributes"
+static var ignoredAttributes = [
+    'data',
+    'class',
+    'series',
+    'title',
+    'description',
+    'xAxisLabelFormat',
+    'yAxisLabels',
+    'yAxisLabels',
+    'xAxisPositioner',
+    'yAxisPositioner'
+];
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[
+        input.class,
+        'ebay-area-chart'
+    ]>
+    <div.ebay-area-chart__container id=component.getContainerId()/>
+</div>

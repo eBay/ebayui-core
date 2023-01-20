@@ -24,7 +24,7 @@ $ var isRadio = input.type === "radio";
 $ var isCheckbox = input.type === "checkbox";
 $ var isNotCheckable = input.type !== "checkbox" && input.type !== "radio";
 $ var baseClass = input.classPrefix || "menu";
-$ var separatorCount = 0;
+$ var separatorMap = component.getSeparatorMap(input);
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[
@@ -41,7 +41,7 @@ $ var separatorCount = 0;
         class=`${baseClass}__items`
         key="menu"
         id:scoped="menu">
-        <for|item, index| of=(input.items || [])>
+        <for|item, index| of=(component.items)>
             $ {
                 var itemRole = isRadio
                                 ? "menuitemradio"
@@ -50,11 +50,9 @@ $ var separatorCount = 0;
                                 : "menuitem";
                 var checked = component.isChecked(index);
             }
-            <if (item.separator)>
-                $ separatorCount += 1;
+            <if (separatorMap[index])>
                 <hr class=`${baseClass}__separator` role="separator" />
             </if>
-            <else>
             <div
                 ...processHtmlAttributes(item, itemIgnoredAttributes)
                 class=[`${baseClass}__item`, item.class, item.badgeNumber && `${baseClass}__item--badged`]
@@ -63,8 +61,8 @@ $ var separatorCount = 0;
                 aria-disabled=(item.disabled && "true")
                 href=(item.disabled ? null : item.href)
                 role=itemRole
-                onClick(!item.disabled && "handleItemClick", index - separatorCount)
-                onKeydown(!item.disabled && "handleItemKeydown", index - separatorCount)
+                onClick(!item.disabled && "handleItemClick", index)
+                onKeydown(!item.disabled && "handleItemKeydown", index)
                 onKeypress(!item.disabled && "handleItemKeypress")
                 key="item[]">
                 <span>
@@ -75,7 +73,6 @@ $ var separatorCount = 0;
                 </span>
                 <ebay-tick-small-icon />
             </div>
-            </else>
         </for>
     </div>
 </span>
