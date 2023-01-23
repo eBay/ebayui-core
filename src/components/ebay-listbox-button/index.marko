@@ -14,7 +14,8 @@ static var ignoredAttributes = [
     "prefixId",
     "unselectedText",
     "floatingLabel",
-    "collapseOnSelect"
+    "collapseOnSelect",
+    "variant"
 ];
 
 $ var selectedOption = input.options[state.selectedIndex];
@@ -22,11 +23,12 @@ $ var selectedText = selectedOption && selectedOption.text;
 $ var labelId = input.prefixId && component.getElId("label");
 $ var unselectedText = input.unselectedText || '-';
 $ var displayText = selectedText || unselectedText;
+$ var isForm = input.variant === 'form';
 
 <${input.truncate && !input.fluid ? "div" : "span"}
     ...processHtmlAttributes(input, ignoredAttributes)
     key="container"
-    class=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
+    class=["listbox-button", input.class, input.fluid && "listbox-button--fluid", isForm && `listbox-button--form`]
     on-expander-expand("handleExpand")
     on-expander-collapse("handleCollapse")>
     <button
