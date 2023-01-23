@@ -28,14 +28,13 @@ $ var isForm = input.variant === 'form';
 <${input.truncate && !input.fluid ? "div" : "span"}
     ...processHtmlAttributes(input, ignoredAttributes)
     key="container"
-    class=["listbox-button", input.class, input.fluid && "listbox-button--fluid"]
+    class=["listbox-button", input.class, input.fluid && "listbox-button--fluid", isForm && `listbox-button--form`]
     on-expander-expand("handleExpand")
     on-expander-collapse("handleCollapse")>
     <button
         key="button"
         class=[
             "listbox-button__control",
-            isForm && `listbox-button--form`,
             'btn',
             'btn--form',
             input.borderless && "btn--borderless",
