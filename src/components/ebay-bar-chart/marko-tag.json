@@ -1,0 +1,23 @@
+{
+  "attribute-groups": ["html-attributes"],
+  "@*": {
+    "targetProperty": null,
+    "type": "expression"
+  },
+  "@html-attributes": "expression",
+  "@title": "string",
+  "@description": "string",
+  "@series[]": {
+    "@title": "string",
+    "@data[]": {
+      "@x": "number",
+      "@y": "number",
+      "@label": "string"
+    }
+  },
+  "@xAxisLabelFormat": "string",
+  "@xAxisPositioner": "function",
+  "@yAxisLabels": "array",
+  "@yAxisPositioner": "function",
+  "@stacked": "boolean"
+}

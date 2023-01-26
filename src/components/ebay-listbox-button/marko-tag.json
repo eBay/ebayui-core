@@ -21,6 +21,9 @@
   "@name": "#html-name",
   "@button-name": "#html-name",
   "@disabled": "#html-disabled",
+  "@variant": {
+    "enum": ["standard", "form"]
+  },
   "@options <option>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {

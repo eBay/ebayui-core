@@ -1,5 +1,6 @@
 module.exports = {
     handleDismissClick: forwardEvent('dismiss'),
+    handleDismissKeydown: forwardEvent('dismiss'),
 };
 
 function forwardEvent(eventName) {

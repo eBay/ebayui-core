@@ -1,0 +1,13 @@
+<b>${input.date}</b>
+<br>
+<for|pts| of=input.points>
+    $ var point = pts.point;
+    <if(point.tooltip)>${point.tooltip}</if>
+    <else-if(input.seriesLength)>
+        <div style='display: flex; justify-content: space-between; width: 100%; align-items: flex-start;'>
+            ${pnt.series.name}
+            <span style='margin-left: 16px'>${point.label}</span>
+        </div>
+    </else-if>
+    <else>${point.label}</else>
+</for>
