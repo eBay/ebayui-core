@@ -84,6 +84,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-toast`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toast)
 -   [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
 -   [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
+-   [`ebay-video`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-video)
 
 ## Getting Started
 
