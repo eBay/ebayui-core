@@ -1,7 +1,9 @@
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
 import Readme from './README.md';
-import Component from './examples/01-basic/template.marko';
-import code from './examples/01-basic/template.marko?raw';
+import Component from './examples/basic.marko';
+import code from './examples/basic.marko?raw';
+import ScrollingTemplate from './examples/scrolling.marko';
+import ScrollingTemplateCode from './examples/scrolling.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -40,12 +42,15 @@ export default {
         },
         header: {
             name: '@header',
+            control: { type: 'object' },
             table: {
                 category: '@attribute tags',
             },
         },
         footer: {
             name: '@footer',
+            control: { type: 'object' },
+
             table: {
                 category: '@attribute tags',
             },
@@ -73,17 +78,22 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     header: {
         renderBody: `Heading Text`,
     },
+    footer: {
+        renderBody: ``,
+    },
 };
 
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
             code,
         },
     },
 };
+
+export const Scrolling = buildExtensionTemplate(ScrollingTemplate, ScrollingTemplateCode);

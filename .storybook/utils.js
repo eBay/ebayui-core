@@ -22,4 +22,22 @@ function addRenderBodies(input) {
     return input;
 }
 
-module.exports = { addRenderBodies };
+function buildExtensionTemplate(template, code, args = {}) {
+    const builder = (args) => ({
+        input: addRenderBodies(args),
+        component: template,
+    });
+
+    builder.args = Object.assign({}, args);
+    builder.parameters = {
+        docs: {
+            source: {
+                code,
+            },
+        },
+    };
+
+    return builder;
+}
+
+module.exports = { addRenderBodies, buildExtensionTemplate };

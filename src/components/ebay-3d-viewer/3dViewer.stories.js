@@ -1,18 +1,11 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
+import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
 
 const Template = (args) => ({
-    input: {
-        ...args,
-        renderBody: args.renderBody
-            ? (out) => {
-                  out.html(args.renderBody);
-              }
-            : null,
-    },
+    input: addRenderBodies(args),
 });
-
 export default {
     title: 'media/ebay-3d-viewer',
     component: Component,
@@ -158,15 +151,15 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     src: 'https://ir.ebaystatic.com/cr/v/c1/ebayui/3d/v1/image.glb',
     a11yText: 'View these shoes for sale.',
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-3d-viewer', Standard.args),
+            code: tagToString('ebay-3d-viewer', Default.args),
         },
     },
 };
