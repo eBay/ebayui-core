@@ -41,7 +41,7 @@ $ var pointer = input.pointer || "bottom";
                 key="host"
                 class=[`${classPrefix}__host`, "icon-btn", "icon-btn--transparent"]
                 type="button"
-                on-click(isModal && "handleExpand")
+                on-click(isModal && "handleOpenModal")
                 disabled=input.disabled
                 aria-label=input.ariaLabel>
                 <if(input.icon)>
