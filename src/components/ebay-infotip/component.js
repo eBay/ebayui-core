@@ -11,6 +11,10 @@ export default {
         }
     },
 
+    handleOpenModal() {
+        this.setOpen(true);
+    },
+
     handleExpand() {
         this.setOpen(true);
         this.emit('expand');
