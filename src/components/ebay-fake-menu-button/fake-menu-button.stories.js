@@ -1,7 +1,13 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
 import Readme from './README.md';
-import iconExample from './examples/09-icon-with-text/template.marko';
+import IconTemplate from './examples/icon-with-text.marko';
+import IconTemplateCode from './examples/icon-with-text.marko?raw';
+import CustomLabelTemplate from './examples/custom-label.marko';
+import CustomLabelTemplateCode from './examples/custom-label.marko?raw';
+import SeparatorTemplate from './examples/separator.marko';
+import SeparatorTemplateCode from './examples/separator.marko?raw';
+
 import Component from './index.marko';
 
 const Template = (args) => ({
@@ -180,11 +186,7 @@ export default {
 };
 
 export const Standard = Template.bind({});
-Standard.args = {};
 
-export const iconText = () => ({
-    component: iconExample,
-});
 Standard.args = {
     items: [
         {
@@ -209,3 +211,7 @@ Standard.parameters = {
         },
     },
 };
+
+export const IconText = buildExtensionTemplate(IconTemplate, IconTemplateCode);
+export const CustomLabelText = buildExtensionTemplate(CustomLabelTemplate, CustomLabelTemplateCode);
+export const Separator = buildExtensionTemplate(SeparatorTemplate, SeparatorTemplateCode);

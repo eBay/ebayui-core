@@ -5,7 +5,7 @@ import { render, fireEvent, cleanup, waitFor } from '@marko/testing-library';
 import { fastAnimations } from '../../../common/test-utils/browser';
 import * as stories from '../infotip.stories';
 
-const { Standard, OpenOnRender } = composeStories(stories);
+const { Default, OpenOnRender } = composeStories(stories);
 
 use(chaiDom);
 before(fastAnimations.start);
@@ -17,7 +17,7 @@ let component;
 
 describe('given the default infotip', () => {
     beforeEach(async () => {
-        component = await render(Standard);
+        component = await render(Default);
     });
 
     thenItCanBeOpenAndClosed();
@@ -67,7 +67,7 @@ describe('given the default infotip', () => {
 
 describe('given the modal infotip', () => {
     beforeEach(async () => {
-        component = await render(Standard, { variant: 'modal' });
+        component = await render(Default, { variant: 'modal' });
     });
 
     describe('when the host element is clicked', () => {
@@ -94,7 +94,7 @@ describe('given the modal infotip opened', () => {
 
     describe('when the host element is opened and then closed', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByLabelText('close'));
+            await fireEvent.click(component.getByLabelText('Dismiss infotip'));
         });
 
         it('then it emits the collapse event', async () => {
