@@ -195,6 +195,7 @@ export default class {
         let yLabelsItterator = 0; // used when yAxisLabels array is provided in input
         let maxVal = 0; // use to determine the highest yAxis value
         // configure the symbol used for each series markers
+
         series.forEach((seriesItem) => {
             maxVal = Math.max(...seriesItem.data, maxVal);
         });

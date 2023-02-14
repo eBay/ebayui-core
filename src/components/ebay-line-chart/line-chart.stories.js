@@ -93,7 +93,11 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    series: sampleSeriesData.slice(0, 1),
+    series: [
+        {
+            data: sampleSeriesData[0].data,
+        },
+    ],
     title: 'standard line graph with single series',
     description: 'sample line graph description',
 };
@@ -196,7 +200,14 @@ TrendSetNeutral.parameters = {
 
 export const TwoSeries = Template.bind({});
 TwoSeries.args = {
-    series: sampleSeriesData.slice(0, 2),
+    series: [
+        {
+            data: sampleSeriesData[0].data,
+        },
+        {
+            data: sampleSeriesData[1].data,
+        },
+    ],
 };
 
 TwoSeries.parameters = {
@@ -209,7 +220,14 @@ TwoSeries.parameters = {
 
 export const TwoSeriesWithPlotPoints = Template.bind({});
 TwoSeriesWithPlotPoints.args = {
-    series: sampleSeriesData.slice(0, 2),
+    series: [
+        {
+            data: sampleSeriesData[0].data,
+        },
+        {
+            data: sampleSeriesData[1].data,
+        },
+    ],
     plotPoints: true,
 };
 
@@ -223,7 +241,17 @@ TwoSeriesWithPlotPoints.parameters = {
 
 export const ThreeSeries = Template.bind({});
 ThreeSeries.args = {
-    series: sampleSeriesData.slice(0, 3),
+    series: [
+        {
+            data: sampleSeriesData[0].data,
+        },
+        {
+            data: sampleSeriesData[1].data,
+        },
+        {
+            data: sampleSeriesData[2].data,
+        },
+    ],
 };
 
 ThreeSeries.parameters = {
@@ -236,7 +264,17 @@ ThreeSeries.parameters = {
 
 export const ThreeSeriesWithPlotPoints = Template.bind({});
 ThreeSeriesWithPlotPoints.args = {
-    series: sampleSeriesData.slice(0, 3),
+    series: [
+        {
+            data: sampleSeriesData[0].data,
+        },
+        {
+            data: sampleSeriesData[1].data,
+        },
+        {
+            data: sampleSeriesData[2].data,
+        },
+    ],
     plotPoints: true,
 };
 
@@ -250,7 +288,20 @@ ThreeSeriesWithPlotPoints.parameters = {
 
 export const FourSeries = Template.bind({});
 FourSeries.args = {
-    series: sampleSeriesData.slice(0, 4),
+    series: [
+        {
+            data: sampleSeriesData[0].data,
+        },
+        {
+            data: sampleSeriesData[1].data,
+        },
+        {
+            data: sampleSeriesData[2].data,
+        },
+        {
+            data: sampleSeriesData[3].data,
+        },
+    ],
 };
 
 FourSeries.parameters = {
@@ -263,7 +314,20 @@ FourSeries.parameters = {
 
 export const FourSeriesWithPlotPoints = Template.bind({});
 FourSeriesWithPlotPoints.args = {
-    series: sampleSeriesData.slice(0, 4),
+    series: [
+        {
+            data: sampleSeriesData[0].data,
+        },
+        {
+            data: sampleSeriesData[1].data,
+        },
+        {
+            data: sampleSeriesData[2].data,
+        },
+        {
+            data: sampleSeriesData[3].data,
+        },
+    ],
     plotPoints: true,
 };
 
@@ -277,7 +341,23 @@ FourSeriesWithPlotPoints.parameters = {
 
 export const FiveSeries = Template.bind({});
 FiveSeries.args = {
-    series: sampleSeriesData.slice(0),
+    series: [
+        {
+            data: sampleSeriesData[0].data,
+        },
+        {
+            data: sampleSeriesData[1].data,
+        },
+        {
+            data: sampleSeriesData[2].data,
+        },
+        {
+            data: sampleSeriesData[3].data,
+        },
+        {
+            data: sampleSeriesData[4].data,
+        },
+    ],
 };
 
 FiveSeries.parameters = {
@@ -290,7 +370,23 @@ FiveSeries.parameters = {
 
 export const FiveSeriesWithPlotPoints = Template.bind({});
 FiveSeriesWithPlotPoints.args = {
-    series: sampleSeriesData.slice(0),
+    series: [
+        {
+            data: sampleSeriesData[0].data,
+        },
+        {
+            data: sampleSeriesData[1].data,
+        },
+        {
+            data: sampleSeriesData[2].data,
+        },
+        {
+            data: sampleSeriesData[3].data,
+        },
+        {
+            data: sampleSeriesData[4].data,
+        },
+    ],
     plotPoints: true,
 };
 

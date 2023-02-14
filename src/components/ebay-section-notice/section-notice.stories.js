@@ -1,5 +1,5 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
 import withAction from './examples/with-action.marko';
@@ -127,41 +127,15 @@ WithTitle.parameters = {
     },
 };
 
-export const WithAction = (args) => ({
-    input: args,
-    component: withAction,
-});
-
-WithAction.args = {
+export const WithAction = buildExtensionTemplate(withAction, withActionCode, {
     a11yText: 'attention',
     status: 'attention',
-};
-
-WithAction.parameters = {
-    docs: {
-        source: {
-            code: withActionCode,
-        },
-    },
-};
-
-export const WithDismiss = (args) => ({
-    input: args,
-    component: withDismiss,
 });
 
-WithDismiss.args = {
+export const WithDismiss = buildExtensionTemplate(withDismiss, withDismissCode, {
     a11yText: 'information',
     a11yIconText: '',
     a11yDismissText: 'Dismiss Notice',
     status: 'information',
     icon: null,
-};
-
-WithDismiss.parameters = {
-    docs: {
-        source: {
-            code: withDismissCode,
-        },
-    },
-};
+});
