@@ -1,51 +1,54 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
-
-static var ignoredAttributes = [
-    "class",
-    "style",
-    "borderless",
-    "autocomplete",
-    "options",
-    "roledescription",
-    "floatingLabel",
-    "listSelection",
-    "expanded"
-];
-
-static var ignoredButtonAttributes = [
-    "class"
-];
-
-static var itemIgnoredAttributes = ["text"];
-$ {
-    var roledescription = input.roledescription ||
-        (`Use up and down arrow keys to navigate options.${
-            component.autocomplete === 'none' ? '': ' Options change based on text input'
-        }`);
+import { processHtmlAttributes } from '../../common/html-attributes';
+static {
+    var ignoredAttributes = [
+        'class',
+        'style',
+        'borderless',
+        'autocomplete',
+        'options',
+        'roledescription',
+        'floatingLabel',
+        'listSelection',
+        'expanded',
+        'fluid',
+    ];
 }
-
+static var ignoredButtonAttributes = ['class'];
+static var itemIgnoredAttributes = ['text'];
+$ {
+    var roledescription =
+        input.roledescription ||
+        `Use up and down arrow keys to navigate options.${
+            component.autocomplete === 'none' ? '' : ' Options change based on text input'
+        }`;
+}
 $ var hasButton = !!input.button;
-$ var id = input.id || component.getElId("input")
-<span
-    class=["combobox", input.floatingLabel && "floating-label", input.class]
+$ var defaultTag = input.fluid ? 'div' : 'span';
+$ var id = input.id || component.getElId('input');
+<${defaultTag}
+    class=[
+        'combobox',
+        input.floatingLabel && 'floating-label',
+        input.fluid && 'combobox--fluid',
+        input.class,
+    ]
     style=input.style
-    on-activeDescendantChange("handleActiveDescendantChange")
-    onExpander-expand("handleExpand")
-    onExpander-collapse("handleCollapse")>
+    on-activeDescendantChange('handleActiveDescendantChange')
+    onExpander-expand('handleExpand')
+    onExpander-collapse('handleCollapse')
+>
     <if(input.floatingLabel)>
         <label
             for=id
-            class=[
-                "floating-label__label",
-                input.disabled && "floating-label__label--disabled",
-            ]>
+            class=['floating-label__label', input.disabled && 'floating-label__label--disabled']
+        >
             ${input.floatingLabel}
         </label>
     </if>
     <span class=[
-        "combobox__control",
-        hasButton && "combobox__control--actionable",
-        input.borderless && "combobox__control--borderless"
+        'combobox__control',
+        hasButton && 'combobox__control--actionable',
+        input.borderless && 'combobox__control--borderless',
     ]>
         <!--
         NOTE: Uses autocomplete="new-password" because of a problem with Chrome where the autfill does not
@@ -54,52 +57,53 @@ $ var id = input.id || component.getElId("input")
         <input
             ...processHtmlAttributes(
                 Object.assign(input, {
-                    id: id
+                    id: id,
                 }),
                 ignoredAttributes
             )
-            key="combobox"
-            type="text"
-            role="combobox"
+            key='combobox'
+            type='text'
+            role='combobox'
             value=state.currentValue
             aria-autocomplete=component.autocomplete
             aria-roledescription=roledescription
-            aria-haspopup="listbox"
-            autocomplete="off"
-            onBlur("handleComboboxBlur")
-            onClick("handleComboboxClick")
-            onFocus("handleFocus")
-            onKeydown("handleComboboxKeyDown")
-            onKeyup("handleComboboxKeyUp")/>
-        <${hasButton ? "button" : null}
+            aria-haspopup='listbox'
+            autocomplete='off'
+            onBlur('handleComboboxBlur')
+            onClick('handleComboboxClick')
+            onFocus('handleFocus')
+            onKeydown('handleComboboxKeyDown')
+            onKeyup('handleComboboxKeyUp')
+        >
+        <${hasButton ? 'button' : null}
             ...processHtmlAttributes(input.button, ignoredButtonAttributes)
-            onClick("handleButtonClick")
-            key="actionable"
-            class=["icon-btn", "icon-btn--transparent", hasButton && input.button.class]>
+            onClick('handleButtonClick')
+            key='actionable'
+            class=['icon-btn', 'icon-btn--transparent', hasButton && input.button.class]
+        >
             <if(hasButton && input.button.renderBody)>
                 <${input.button.renderBody}/>
             </if>
-            <else>
-                <ebay-dropdown-icon/>
-            </else>
+            <else><ebay-dropdown-icon/></else>
         </>
     </span>
     <if(component._hasVisibleOptions())>
-        <div key="listbox" role="listbox" class="combobox__listbox">
+        <div.combobox__listbox key='listbox' role='listbox'>
             <for|option| of=component._getVisibleOptions()>
                 $ var isSelected = (option.value || option.text) === state.currentValue;
                 <div
                     ...processHtmlAttributes(option, itemIgnoredAttributes)
-                    key="options[]"
-                    role="option"
-                    class:no-update=["combobox__option", option.class]
-                    tabindex:no-update="-1"
-                    aria-selected=(isSelected && "true")
-                    onClick("handleSelectOption", option.text)
-                    onMousedown("handleSelectOption", option.text)>
+                    key='options[]'
+                    role='option'
+                    class:no-update=['combobox__option', option.class]
+                    tabindex:no-update='-1'
+                    aria-selected=isSelected && 'true'
+                    onClick('handleSelectOption', option.text)
+                    onMousedown('handleSelectOption', option.text)
+                >
                     <span>${option.text}</span>
                 </div>
             </for>
         </div>
     </if>
-</span>
+</>
