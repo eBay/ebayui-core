@@ -1,9 +1,9 @@
 /**
  * @typedef {{
+ *   header: boolean,
+ *   interactive: boolean,
  *   date: Date,
  *   locale: string,
- *   weekdayLabels: string[] | undefined
- *   firstDayOfWeek: number,
  *   today: Date,
  *   isRange: boolean,
  *   firstSelected: Date | undefined,
@@ -43,7 +43,7 @@ export default class {
 /**
  * @param {Input} param0
  */
-export function getMonthDisplayName({ locale, date }) {
+export function getMonthTitle({ locale, date }) {
     const formatter = new Intl.DateTimeFormat(locale, {
         month: 'long',
         year: 'numeric',
@@ -52,31 +52,20 @@ export function getMonthDisplayName({ locale, date }) {
 }
 
 /**
- * @param {Input} param0
+ * @param {number} firstDayOfWeek
+ * @param {Date} firstDay
  */
-export function getDayLabelFormatter({ locale }) {
-    return new Intl.DateTimeFormat(locale, {
-        month: 'long',
-        year: 'numeric',
-        day: 'numeric',
-        weekday: 'long',
-    });
-}
-
-/**
- * @param {Input} param0
- */
-export function generateDateGrid({ firstDayOfWeek, date }) {
-    const numEmptyDays = (date.getDay() - firstDayOfWeek + 7) % 7;
+export function generateMonthGrid(firstDayOfWeek, firstDay) {
+    const numEmptyDays = (firstDay.getDay() - firstDayOfWeek + 7) % 7;
     // The date of the last day in the month is the same as the number of days in the month
-    const numDaysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    const numDaysInMonth = new Date(firstDay.getFullYear(), firstDay.getMonth() + 1, 0).getDate();
 
     const dateGrid = [Array(numEmptyDays).fill(undefined)];
     for (let i = 1; i <= numDaysInMonth; i++) {
         if (dateGrid.at(-1).length === 7) {
             dateGrid.push([]);
         }
-        dateGrid.at(-1).push(new Date(date.getFullYear(), date.getMonth(), i));
+        dateGrid.at(-1).push(new Date(firstDay.getFullYear(), firstDay.getMonth(), i));
     }
 
     return dateGrid;
@@ -106,4 +95,35 @@ export function findVisibleRange({ isRange, firstSelected, secondSelected, focus
     }
 
     return { showRange, rangeStart, rangeEnd };
+}
+
+/**
+ * @param {string} localeName
+ * @return {number} 0 or 7 is Sun, 1 is Mon, -1 or 6 is Sat
+ */
+export function findFirstDayOfWeek(localeName) {
+    const locale = new Intl.Locale(localeName);
+    if (locale.weekInfo) {
+        return locale.weekInfo.firstDay;
+    }
+    return 0;
+}
+
+/**
+ * @param {string} localeName
+ */
+export function getWeekdayInfo(localeName) {
+    const firstDayOfWeek = findFirstDayOfWeek(localeName);
+
+    const weekdayLabelFormatter = new Intl.DateTimeFormat(localeName, {
+        weekday: 'short',
+    });
+    const weekday = new Date(2022, 9, 2 + firstDayOfWeek); // October 2, 2022 was a Sunday
+    const weekdayLabels = [...Array(7)].map(() => {
+        const dayLabel = weekdayLabelFormatter.format(weekday);
+        weekday.setDate(weekday.getDate() + 1);
+        return dayLabel;
+    });
+
+    return { firstDayOfWeek, weekdayLabels };
 }

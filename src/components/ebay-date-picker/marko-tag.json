@@ -5,9 +5,7 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
-  "@open": "boolean",
   "@today": "date",
-  "@numActiveMonths": "number",
   "@locale": "string",
   "@range": "boolean",
   "@selected": "date",

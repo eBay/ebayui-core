@@ -5,13 +5,14 @@
     "type": "expression"
   },
   "@html-attributes": "expression",
+  "@header": "boolean",
+  "@interactive": "boolean",
   "@date": "date",
   "@locale": "string",
-  "@weekdayLabels": "array",
-  "@firstDayOfWeek": "number",
   "@today": "date",
   "@isRange": "boolean",
   "@firstSelected": "date",
   "@secondSelected": "date",
-  "@focusDate": "date"
+  "@focusDate": "date",
+  "@tabindexDate": "date"
 }

@@ -1,0 +1,81 @@
+// @ts-check
+
+import {
+    getMonthTitle,
+    findVisibleRange,
+    generateMonthGrid,
+    getWeekdayInfo,
+} from './component.js';
+/**
+ * @typedef {import("./component.js").Input} Input
+ */
+$ const title = getMonthTitle(input);
+$ const { showRange, rangeStart, rangeEnd } = findVisibleRange(input);
+$ const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(input.locale);
+$ const dateGrid = generateMonthGrid(firstDayOfWeek, input.date);
+
+<table.calendar onKeyDown('onKeyDown')>
+    <caption>${title}</caption>
+        <if(input.header !== false)>
+            <thead>
+                <tr>
+                    <for|label| of=weekdayLabels>
+                        <th>${label}</th>
+                    </for>
+                </tr>
+            </thead>
+        </if>
+    <tbody>
+        <for|row| of=dateGrid>
+            <tr>
+                <for|date| of=row>
+                    <if(date === undefined)>
+                        <td/>
+                    </if>
+                    <else>
+                        $ const timestamp = date.getTime();
+                        $ const isRangeStart = rangeStart && timestamp === rangeStart.getTime()
+                        $ const isRangeEnd = rangeEnd && timestamp === rangeEnd.getTime()
+                        $ const isInRange = date >= rangeStart && date <= rangeEnd
+                        <td
+                            class=[
+                                showRange && isRangeStart && 'calendar__range--start',
+                                showRange && isInRange && 'calendar__range',
+                                showRange && isRangeEnd && 'calendar__range--end',
+                            ]
+                            aria-current=timestamp === input.today.getTime() && "date"
+                            aria-selected=(
+                                (
+                                    (input.firstSelected && timestamp === input.firstSelected.getTime()) ||
+                                    (input.secondSelected && timestamp === input.secondSelected.getTime())
+                                ) && 'true')
+                        >
+                            $ let label = `${date.getDate()}`
+                            $ if (rangeStart && rangeEnd && isInRange) {
+                                if (isRangeStart) {
+                                    label = label + " - start of range"
+                                } else if (isRangeEnd) {
+                                    label = label + " - end of range"
+                                } else {
+                                    label = label + " - in range"
+                                }
+                            }
+                            <${input.interactive ? "button" : "span"}
+                                key=`day-${timestamp}`
+                                aria-label=label
+                                tabindex=(timestamp !== input.tabindexDate.getTime() && -1)
+                                onClick('onDaySelect', date)
+                                onFocus('onDayFocus', date)
+                                onMouseover('onDayFocus', date)
+                                onBlur('onDayBlur')
+                                onMouseout('onDayBlur')
+                            >
+                                ${date.getDate()}
+                            </>
+                        </td>
+                    </else>
+                </for>
+            </tr>
+        </for>
+    </tbody>
+</table>

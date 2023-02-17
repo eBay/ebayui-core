@@ -14,21 +14,6 @@ export default {
     },
 
     argTypes: {
-        isOpen: {
-            type: 'boolean',
-            control: { type: 'boolean' },
-            description: 'Whether date picker is open.',
-        },
-        numActiveMonths: {
-            type: 'number',
-            control: { type: 'number' },
-            description: 'Number of months displayed at once.',
-            table: {
-                defaultValue: {
-                    summary: '2',
-                },
-            },
-        },
         range: {
             type: 'boolean',
             control: { type: 'boolean' },
@@ -88,9 +73,6 @@ export default {
 };
 
 export const Standard = (args) => ({ input: args });
-Standard.args = {
-    isOpen: true,
-};
 Standard.parameters = {
     docs: {
         source: {
