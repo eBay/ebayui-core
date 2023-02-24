@@ -1,58 +1,52 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import template from '..';
-import * as mock from './mock';
+import { composeStories } from '@storybook/marko/dist/testing';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import { createRenderBody } from '../../../common/test-utils/shared';
+import * as stories from '../combobox.stories';
 const { testPassThroughAttributes } = require('../../../common/test-utils/server');
 
-use(require('chai-dom'));
+const { Isolated, FloatingLabel } = composeStories(stories);
+
+const htmlSnap = snapshotHTML(__dirname);
 
 describe('combobox', () => {
     it('renders basic version', async () => {
-        const input = mock.combobox3Options;
-        const { getByRole, getAllByRole } = await render(template, input);
-        expect(getByRole('combobox')).has.attr('aria-haspopup');
-        expect(getByRole('combobox').parentElement).does.not.have.class(
-            'combobox__control--borderless'
-        );
-        expect(getByRole('listbox')).has.class('combobox__listbox');
-        expect(getByRole('listbox').parentElement).has.class('combobox');
-        expect(getAllByRole('option')).has.length(3);
-        expect(getAllByRole('option').filter(isAriaSelected)).has.length(0);
+        await htmlSnap(Isolated);
     });
 
     it('renders empty', async () => {
-        const input = mock.combobox0Options;
-        const { queryByRole } = await render(template, input);
-        expect(queryByRole('combobox')).does.not.equal(null);
-        expect(queryByRole('listbox')).equals(null);
+        await htmlSnap(Isolated, { options: [] });
     });
 
     it('renders with second item selected', async () => {
-        const input = mock.combobox3Options2Selected;
-        const { getAllByRole } = await render(template, input);
-        expect(getAllByRole('option')[1].textContent).is.equal(input.value);
+        await htmlSnap(Isolated, { value: Isolated.args.options[2].text });
     });
 
     it('renders with borderless enabled', async () => {
-        const input = mock.combobox3OptionsBorderless;
-        const { getByRole } = await render(template, input);
-        expect(getByRole('combobox').parentElement).has.class('combobox__control--borderless');
+        await htmlSnap(Isolated, { borderless: true });
     });
 
     it('renders with actionable button', async () => {
-        const input = mock.combobox3OptionsActionable;
-        const { getByText } = await render(template, input);
-        expect(getByText(input.button.renderBody.text)).has.class('icon-btn');
+        await htmlSnap(Isolated, {
+            button: {
+                renderBody: createRenderBody('button'),
+            },
+        });
     });
 
     it('renders with default actionable button', async () => {
-        const input = mock.combobox3OptionsActionable_No_Body;
-        const { getByLabelText } = await render(template, input);
-        expect(getByLabelText(input.button.ariaLabel)).has.class('icon-btn');
+        await htmlSnap(Isolated, {
+            button: {
+                ariaLabel: 'Actionable Button',
+            },
+        });
     });
 
-    testPassThroughAttributes(template, {
-        input: mock.combobox3Options,
+    it('renders with floating label', async () => {
+        await htmlSnap(FloatingLabel);
+    });
+
+    testPassThroughAttributes(Isolated, {
+        input: Isolated.args,
         getClassAndStyleEl(component) {
             return component.container.firstElementChild;
         },
@@ -60,15 +54,14 @@ describe('combobox', () => {
 });
 
 describe('combobox-option', () => {
-    testPassThroughAttributes(template, {
+    testPassThroughAttributes(Isolated, {
         child: {
             name: 'options',
-            input: mock.combobox3Options.options[0],
+            input: {
+                text: 'test',
+                value: 'value',
+            },
             multiple: true,
         },
     });
 });
-
-function isAriaSelected(el) {
-    return el.getAttribute('aria-selected') === 'true';
-}

@@ -1,0 +1,47 @@
+import countryList from './data.json';
+class {
+    onCreate() {
+        this.state = {
+            options: countryList,
+            autocompleteOption: 'none',
+            value: '',
+        };
+    }
+    async inputChange({ currentInputValue }, { el, index, selected }) {
+        this.state.autocompleteOption = 'none';
+        this.state.value = currentInputValue;
+        const options = await this.searchCountry(currentInputValue);
+        this.state.options = options;
+        this.state.autocompleteOption = 'list';
+    }
+
+    async searchCountry(currentInputValue) {
+        return new Promise((resolve) => {
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                const filtered = countryList
+                    .filter((country) =>
+                        country.name.toLowerCase().startsWith(currentInputValue.toLowerCase())
+                    )
+                    .slice(0, 10);
+                resolve(filtered);
+            }, 500);
+        });
+    }
+    selected(el) {
+        console.log('selected', el);
+    }
+}
+
+<ebay-combobox
+    ...input
+    name='example2text'
+    autocomplete=state.autocompleteOption
+    value=state.value
+    on-input-change('inputChange')
+    on-select('selected')
+>
+    <for|option| of=state.options>
+        <@option data-id=option.code text=option.name/>
+    </for>
+</ebay-combobox>
