@@ -1,16 +1,8 @@
+import { buildExtensionTemplate } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
-
-const Template = (args) => ({
-    input: {
-        ...args,
-        renderBody: args.renderBody
-            ? (out) => {
-                  out.html(args.renderBody);
-              }
-            : null,
-    },
-});
+import DefaultTemplate from './examples/default.marko';
+import DefaultTemplateCode from './examples/default.marko?raw';
 
 export default {
     title: 'notices & tips/ebay-inline-notice',
@@ -51,18 +43,4 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
-    renderBody: `<p>
-    <strong>Error:</strong> Please take another look at the following:
-</p>
-<p>
-    <a href="#">Card number</a>,
-    <a href="#">Expiration date</a>
-    &amp;
-    <a href="#">Security code</a>
-</p>`,
-    a11yText: 'attention',
-    status: null,
-    icon: null,
-};
+export const Default = buildExtensionTemplate(DefaultTemplate, DefaultTemplateCode);

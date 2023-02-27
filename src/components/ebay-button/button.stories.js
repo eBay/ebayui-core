@@ -1,9 +1,9 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
 import button from './index.marko';
 import readme from './README.md';
 import ExpandButtonTemplate from './examples/expand-button.marko';
-import ExpandButtonCode from './examples/expand-button.marko?raw';
+import ExpandButtonTemplateCode from './examples/expand-button.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -217,15 +217,4 @@ Standard.parameters = {
     },
 };
 
-export const ExpandButton = (args) => ({
-    input: args,
-    component: ExpandButtonTemplate,
-});
-ExpandButton.args = {};
-ExpandButton.parameters = {
-    docs: {
-        source: {
-            code: ExpandButtonCode,
-        },
-    },
-};
+export const ExpandButton = buildExtensionTemplate(ExpandButtonTemplate, ExpandButtonTemplateCode);

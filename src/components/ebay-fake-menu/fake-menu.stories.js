@@ -1,7 +1,13 @@
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
+import ItemMatchesTemplate from './examples/item-matches-url.marko';
+import ItemMatchesTemplateCode from './examples/item-matches-url.marko?raw';
+import SpritesTemplate from './examples/sprites.marko';
+import SpritesTemplateCode from './examples/sprites.marko?raw';
+import SeparatorTemplate from './examples/separator.marko';
+import SeparatorTemplateCode from './examples/separator.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -138,3 +144,7 @@ Standard.parameters = {
         },
     },
 };
+
+export const ItemMatches = buildExtensionTemplate(ItemMatchesTemplate, ItemMatchesTemplateCode);
+export const Sprites = buildExtensionTemplate(SpritesTemplate, SpritesTemplateCode);
+export const Separator = buildExtensionTemplate(SeparatorTemplate, SeparatorTemplateCode);

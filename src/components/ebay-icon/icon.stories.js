@@ -38,14 +38,14 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     a11yText: 'icon description here',
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-icon', Standard.args),
+            code: tagToString('ebay-icon', Default.args),
         },
     },
 };

@@ -71,7 +71,7 @@ $ var prefixClass = input.prefixClass;
     <if(input.footer && !input.a11yDismissText)>
         <div class=`${prefixClass}__footer`><${input.footer}/></div>
     </if>
-    <if(input.a11yDismissText)>
+    <if(!input.footer && input.a11yDismissText)>
         <div class=`${prefixClass}__footer`>
             <button
                 aria-label=`${input.a11yDismissText}`

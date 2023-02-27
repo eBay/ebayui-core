@@ -1,14 +1,14 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
 import Readme from './README.md';
-import badgedExample from './examples/22-badged-items/template.marko';
-import badgedExampleCode from './examples/22-badged-items/template.marko?raw';
-import iconExample from './examples/09-icon-with-text/template.marko';
-import iconExampleCode from './examples/09-icon-with-text/template.marko?raw';
-import typeaheadExample from './examples/18-typeahead/template.marko';
-import typeaheadExampleCode from './examples/18-typeahead/template.marko?raw';
-import separatorExample from './examples/02-separator/template.marko';
-import separatorExampleCode from './examples/02-separator/template.marko?raw';
+import BadgedTemplate from './examples/badged-items.marko';
+import BadgedTemplateCode from './examples/badged-items.marko?raw';
+import IconTemplate from './examples/icon-with-text.marko';
+import IconTemplateCode from './examples/icon-with-text.marko?raw';
+import TypeaheadTemplate from './examples/typeahead.marko';
+import TypeaheadTemplateCode from './examples/typeahead.marko?raw';
+import SeparatorTemplate from './examples/separator.marko';
+import SeparatorTemplateCode from './examples/separator.marko?raw';
 import Component from './index.marko';
 
 const Template = (args) => ({
@@ -201,44 +201,8 @@ Standard.parameters = {
         },
     },
 };
-export const iconText = () => ({
-    component: iconExample,
-});
-iconText.parameters = {
-    docs: {
-        source: {
-            code: iconExampleCode,
-        },
-    },
-};
 
-export const BadgedItems = () => ({
-    component: badgedExample,
-});
-BadgedItems.parameters = {
-    docs: {
-        source: {
-            code: badgedExampleCode,
-        },
-    },
-};
-export const Typeahead = () => ({
-    component: typeaheadExample,
-});
-Typeahead.parameters = {
-    docs: {
-        source: {
-            code: typeaheadExampleCode,
-        },
-    },
-};
-export const Separator = () => ({
-    component: separatorExample,
-});
-Separator.parameters = {
-    docs: {
-        source: {
-            code: separatorExampleCode,
-        },
-    },
-};
+export const IconText = buildExtensionTemplate(IconTemplate, IconTemplateCode);
+export const Separator = buildExtensionTemplate(SeparatorTemplate, SeparatorTemplateCode);
+export const Typeahead = buildExtensionTemplate(TypeaheadTemplate, TypeaheadTemplateCode);
+export const Badged = buildExtensionTemplate(BadgedTemplate, BadgedTemplateCode);

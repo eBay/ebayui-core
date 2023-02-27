@@ -1,20 +1,16 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import eek from './index.marko';
-import example1 from './examples/01-A+++/template.marko';
-import example2 from './examples/02-A++/template.marko';
-import example3 from './examples/03-A+/template.marko';
-import example4 from './examples/04-A/template.marko';
-import example5 from './examples/05-invalid-combinations/template.marko';
-
-// const Template = (args) => ({
-//     input: {
-//         ...args,
-//         renderBody(out) {
-//             out.html(args.renderBody);
-//         },
-//     },
-// });
+import example1 from './examples/A+++.marko';
+import example2 from './examples/A++.marko';
+import example3 from './examples/A+.marko';
+import example4 from './examples/A.marko';
+import example5 from './examples/invalid.marko';
+import example1Code from './examples/A+++.marko?raw';
+import example2Code from './examples/A++.marko?raw';
+import example3Code from './examples/A+.marko?raw';
+import example4Code from './examples/A.marko?raw';
+import example5Code from './examples/invalid.marko?raw';
 
 export default {
     title: 'graphics & icons/ebay-eek',
@@ -43,11 +39,19 @@ export default {
     },
 };
 
-export const Standard = (args) => ({ input: args });
-Standard.args = {
+export const Default = (args) => ({ input: args });
+Default.args = {
     max: 'A+++',
     min: 'E',
     rating: 'C',
+};
+
+Default.parameters = {
+    docs: {
+        source: {
+            code: tagToString('ebay-eek', Default.args),
+        },
+    },
 };
 
 export const exampleOne = () => ({
@@ -57,6 +61,11 @@ export const exampleOne = () => ({
 exampleOne.storyName = 'A+++';
 exampleOne.parameters = {
     controls: { hideNoControlsWarning: true },
+    docs: {
+        source: {
+            code: example1Code,
+        },
+    },
 };
 
 export const exampleTwo = () => ({
@@ -65,6 +74,11 @@ export const exampleTwo = () => ({
 exampleTwo.storyName = 'A++';
 exampleTwo.parameters = {
     controls: { hideNoControlsWarning: true },
+    docs: {
+        source: {
+            code: example2Code,
+        },
+    },
 };
 
 export const exampleThree = () => ({
@@ -74,6 +88,11 @@ export const exampleThree = () => ({
 exampleThree.storyName = 'A++';
 exampleThree.parameters = {
     controls: { hideNoControlsWarning: true },
+    docs: {
+        source: {
+            code: example3Code,
+        },
+    },
 };
 
 export const exampleFour = () => ({
@@ -83,6 +102,11 @@ export const exampleFour = () => ({
 exampleFour.storyName = 'A';
 exampleFour.parameters = {
     controls: { hideNoControlsWarning: true },
+    docs: {
+        source: {
+            code: example4Code,
+        },
+    },
 };
 
 export const invalidCombinations = () => ({
@@ -90,12 +114,9 @@ export const invalidCombinations = () => ({
 });
 invalidCombinations.parameters = {
     controls: { hideNoControlsWarning: true },
-};
-
-Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-eek', Standard.args),
+            code: example5Code,
         },
     },
 };

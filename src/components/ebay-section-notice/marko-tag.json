@@ -11,6 +11,14 @@
   "@icon": "string",
   "@a11y-text": "string",
   "@a11y-role-description": "string",
+  "@title <title>": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+      "targetProperty": null,
+      "type": "expression"
+    },
+    "@html-attributes": "expression"
+  },
   "@footer <footer>": {
     "attribute-groups": ["html-attributes"],
     "@*": {
