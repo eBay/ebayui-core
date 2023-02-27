@@ -67,7 +67,7 @@
     "@commitlint/cli": "^17",
     "@commitlint/config-conventional": "^17",
     "@ebay/browserslist-config": "^2.2.0",
-    "@ebay/skin": "~15.5.0-0",
+    "@ebay/skin": "~15.5.0",
     "@google/model-viewer": "^2.1.1",
     "@lasso/marko-taglib": "^2.0.5",
     "@marko/compiler": "^5.23.2",
@@ -92,7 +92,7 @@
     "chai": "4.3.7",
     "chai-dom": "^1.10.0",
     "cheerio": "^1.0.0-rc.11",
-    "chromedriver": "^109",
+    "chromedriver": "^110",
     "coveralls": "^3.1.1",
     "css-loader": "^6",
     "del": "^7.0.0",
@@ -127,14 +127,13 @@
     "sinon": "^15.0.1",
     "shaka-player": "4.3.3",
     "style-loader": "^3",
-    "stylelint": "^14.16.1",
-    "stylelint-config-prettier": "^9.0.4",
-    "stylelint-config-standard": "^29",
-    "stylelint-prettier": "^2",
+    "stylelint": "^15.0.1",
+    "stylelint-config-standard": "^30",
+    "stylelint-prettier": "^3",
     "wdio-chromedriver-service": "^8"
   },
   "peerDependencies": {
-    "@ebay/skin": "~15.5.0-0",
+    "@ebay/skin": "~15.5.0",
     "marko": "^4 || ^5"
   },
   "dependencies": {
