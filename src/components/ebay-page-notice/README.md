@@ -9,31 +9,6 @@
 
 The `<ebay-page-notice>` is a tag used to create a custom-designed notice element. The notice can be single or multi-line but each line should be wrapped inside a `<p>` tag.
 
-## ebay-page-notice Usage
-
-```marko
-<ebay-page-notice a11y-text="Attention" status="attention">
-    <p>Couldn't load all the items, please try again later.</p>
-</ebay-page-notice>
-```
-
-```marko
-<ebay-page-notice a11y-text="Attention" status="attention" type="page">
-    <@title>An Error</@title>
-    <p>Couldn't load all the items, please try again later.</p>
-    <@footer><ebay-fake-link>Try again</ebay-fake-link></@footer>
-</ebay-page-notice>
-```
-
-```marko
-<ebay-page-notice a11y-text="Attention" status="attention" type="page">
-    <@title>An Error</@title>
-    <p>Couldn't load all the items, please try again later.</p>
-    <@footer><ebay-fake-link>Try again</ebay-fake-link></@footer>
-    <@cta href="https://ebay.com">Opt In</@cta>
-</ebay-page-notice>
-```
-
 ## Examples and Documentation
 
 -   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/notices-tips-ebay-page-notice)
