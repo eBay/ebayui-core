@@ -1,6 +1,6 @@
 import Readme from './README.md';
-import Component from './examples/01-default/template.marko';
-import code from './examples/01-default/template.marko?raw';
+import Component from './examples/default.marko';
+import code from './examples/default.marko?raw';
 
 const Template = (args) => ({
     input: {
