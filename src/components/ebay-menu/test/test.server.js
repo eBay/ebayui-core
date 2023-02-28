@@ -1,75 +1,52 @@
-import { expect, use } from 'chai';
-import { render } from '@marko/testing-library';
-import template from '..';
+import { use } from 'chai';
+import { composeStories } from '@storybook/marko/dist/testing';
 import * as testUtils from '../../../common/test-utils/server';
-import * as mock from './mock';
+import { snapshotHTML } from '../../../common/test-utils/snapshots';
+import * as stories from '../menu.stories'; // import all stories from the stories file
+
+const { Default, Typeahead, Badged, Sprites, Separator } = composeStories(stories);
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require('chai-dom'));
 
 describe('menu', () => {
     it('renders basic version', async () => {
-        const input = mock.basic2Items;
-        const { getByRole, getAllByRole, getByText } = await render(template, input);
-        expect(getByRole('menu')).with.class('menu__items');
-
-        const menuItemEls = getAllByRole('menuitem');
-        input.items.forEach((item, i) => {
-            const menuItemEl = menuItemEls[i];
-            const textEl = getByText(item.renderBody.text);
-            expect(menuItemEl).has.class('menu__item');
-            expect(menuItemEl).contains(textEl);
-        });
+        await htmlSnap(Default);
     });
 
     it('renders with reverse=true', async () => {
-        const input = Object.assign({ reverse: true }, mock.basic2Items);
-        const { getByRole } = await render(template, input);
-        expect(getByRole('menu').closest('.menu')).with.class('menu__menu--reverse');
+        await htmlSnap(Default, { reverse: true });
     });
 
     it('renders with fix-width=true', async () => {
-        const input = Object.assign({ fixWidth: true }, mock.basic2Items);
-        const { getByRole } = await render(template, input);
-        expect(getByRole('menu').closest('.menu')).with.class('menu__menu--fix-width');
+        await htmlSnap(Default, { fixWidth: true });
     });
 
     it('renders with separators', async () => {
-        const input = mock.separator4Items;
-        const { queryByText, getAllByRole, getByText } = await render(template, input);
-        const menuItemEls = getAllByRole('menuitem');
-        const separators = getAllByRole('separator');
-        input.items.forEach((item) => {
-            if (item.separator) {
-                const menuItemEl = separators.shift();
-                const textEl = queryByText(item.renderBody.text);
-                expect(textEl).to.equal(null);
-                expect(menuItemEl).has.class('menu__separator');
-            } else {
-                const menuItemEl = menuItemEls.shift();
-                const textEl = getByText(item.renderBody.text);
-                expect(menuItemEl).has.class('menu__item');
-                expect(menuItemEl).contains(textEl);
-            }
-        });
+        await htmlSnap(Separator);
+    });
+
+    it('renders with typeahead', async () => {
+        await htmlSnap(Typeahead);
+    });
+
+    it('renders with badged version', async () => {
+        await htmlSnap(Badged);
+    });
+    it('renders with sprites version', async () => {
+        await htmlSnap(Sprites);
     });
 
     ['radio', 'checkbox'].forEach((type) => {
         [true, false].forEach((checked) => {
             it(`renders with type=${type} and checked=${checked}`, async () => {
-                const input = { type, items: [{ checked }] };
-                const { getByRole, getAllByRole } = await render(template, input);
-                const optionEls = getAllByRole(`menuitem${type}`);
-
-                expect(optionEls).has.length(1);
-                expect(optionEls[0]).has.attr('aria-checked', String(checked));
-
-                expect(getByRole('menu').querySelector('.icon--tick-small')).does.not.equal(null);
+                await htmlSnap(Default, { type, items: [{ checked }] });
             });
         });
     });
 
-    testUtils.testPassThroughAttributes(template);
-    testUtils.testPassThroughAttributes(template, {
+    testUtils.testPassThroughAttributes(Default);
+    testUtils.testPassThroughAttributes(Default, {
         child: {
             name: 'items',
             multiple: true,

@@ -1,9 +1,10 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { render, fireEvent, cleanup, waitFor } from '@marko/testing-library';
 import { pressKey } from '../../../common/test-utils/browser';
-import template from '..';
-import * as mock from './mock';
+import * as stories from '../menu.stories'; // import all stories from the stories file
+const { Default, Typeahead, Separator } = composeStories(stories);
 
 use(chaiDom);
 afterEach(cleanup);
@@ -12,13 +13,12 @@ afterEach(cleanup);
 let component;
 
 describe('typeahead functionality', () => {
-    const input = mock.Countries;
-    const firstItemText = input.items[0].renderBody.text;
-    const secondItemText = input.items[1].renderBody.text;
-    const thirdItemText = input.items[2].renderBody.text;
+    const firstItemText = 'Albania';
+    const secondItemText = 'Alcania';
+    const thirdItemText = 'Alcdnia';
 
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Typeahead);
     });
     describe('first', () => {
         beforeEach(async () => {
@@ -77,11 +77,10 @@ describe('typeahead functionality', () => {
 });
 
 describe('given the menu is in the default state', () => {
-    const input = mock.basic2Items;
-    const firstItemText = input.items[0].renderBody.text;
+    const firstItemText = Default.args.items[0].renderBody;
 
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Default);
     });
 
     describe('when an item is clicked', () => {
@@ -113,11 +112,10 @@ describe('given the menu is in the default state', () => {
 });
 
 describe('given the menu has radio items', () => {
-    const input = Object.assign({ type: 'radio' }, mock.basic2Items);
     let firstItem, secondItem;
 
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Default, { type: 'radio' });
         firstItem = component.getAllByRole('menuitemradio')[0];
         secondItem = component.getAllByRole('menuitemradio')[1];
     });
@@ -205,11 +203,10 @@ describe('given the menu has radio items', () => {
 });
 
 describe('given the menu has checkbox items', () => {
-    const input = Object.assign({ type: 'checkbox' }, mock.basic2Items);
     let firstItem, secondItem;
 
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Default, { type: 'checkbox' });
         firstItem = component.getAllByRole('menuitemcheckbox')[0];
         secondItem = component.getAllByRole('menuitemcheckbox')[1];
     });
@@ -259,11 +256,10 @@ describe('given the menu has checkbox items', () => {
 });
 
 describe('given the menu has checkbox items with separator', () => {
-    const input = Object.assign({ type: 'checkbox' }, mock.separator4Items);
     let firstItem, secondItem, thirdItem;
 
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Separator, { type: 'checkbox' });
         firstItem = component.getAllByRole('menuitemcheckbox')[0];
         secondItem = component.getAllByRole('menuitemcheckbox')[1];
         thirdItem = component.getAllByRole('menuitemcheckbox')[2];
