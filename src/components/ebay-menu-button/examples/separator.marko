@@ -1,4 +1,11 @@
-<ebay-menu-button text="eBay Menu separator">
+<ebay-menu-button
+    text='eBay Menu separator'
+    on-collapse('emit', 'collapse')
+    on-expand('emit', 'expand')
+    on-change('emit', 'change')
+    on-select('emit', 'select')
+    ...input
+>
     <@item>item 1</@item>
     <@item>item 2</@item>
     <@item separator/>

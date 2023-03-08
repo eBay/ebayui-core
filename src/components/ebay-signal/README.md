@@ -13,13 +13,8 @@
 </ebay-signal>
 ```
 
-## Description
+## Examples and Documentation
 
-Signals are data-backed recommendations to help customers make more informed decisions.
-There are four signal statuses, each corresponding to a specific color: trustworthy, recent, time-sensitive & neutral.
-
-## Attributes
-
-| Name     | Type | Stateful | Required | Description                        |
-| -------- | ---- | -------- | -------- | ---------------------------------- |
-| `status` | Enum | No       | Yes      | Status of signal; determines color |
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-signal)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-signal)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-signal/examples)

@@ -103,8 +103,8 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     items: [
         {
             renderBody: `item 1 that has very long text`,
@@ -117,15 +117,15 @@ Standard.args = {
         },
     ],
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-menu', Standard.args, { items: 'item' }),
+            code: tagToString('ebay-menu', Default.args, { items: 'item' }),
         },
     },
 };
 
 export const Typeahead = buildExtensionTemplate(TypeaheadTemplate, TypeaheadTemplateCode);
 export const Badged = buildExtensionTemplate(BadgedTemplate, BadgedTemplateCode);
-export const Srpites = buildExtensionTemplate(SpritesTemplate, SpritesTemplateCode);
+export const Sprites = buildExtensionTemplate(SpritesTemplate, SpritesTemplateCode);
 export const Separator = buildExtensionTemplate(SeparatorTemplate, SeparatorTemplateCode);
