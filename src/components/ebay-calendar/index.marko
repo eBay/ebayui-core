@@ -52,9 +52,9 @@ $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(
                                     $ const dayISO = toISO(new Date(year, month, day));
                                     $ const isRangeStart = dayISO === state.rangeStart;
                                     $ const isInRange = (state.rangeStart && state.rangeEnd
-                                                && dayISO >= state.rangeStart
-                                                && dayISO <= state.rangeEnd);
+                                              && dayISO >= state.rangeStart && dayISO <= state.rangeEnd);
                                     $ const isRangeEnd = dayISO === state.rangeEnd;
+                                    $ const disabled = component.isDisabled(dayISO);
                                     <td
                                         class={
                                             "calendar__range--start": isRangeStart,
@@ -68,7 +68,9 @@ $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(
                                                 : input.selected && toISO(input.selected) === dayISO
                                         ) && "true">
                                         <${input.interactive ? "button" : "span"}
-                                            key=`day-${dayISO}`
+                                            key=dayISO
+                                            class=input.interactive && disabled && "calendar__cell--disabled"
+                                            disabled=disabled
                                             aria-label=(
                                                 input.range && Array.isArray(input.selected) && (
                                                     isRangeStart

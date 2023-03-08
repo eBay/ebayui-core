@@ -6,9 +6,14 @@ import { fromISO } from '../ebay-calendar/component';
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
 /**
+ * @typedef {import('../ebay-calendar/component').DayISO} DayISO
  * @typedef {{
  *   locale?: string,
  *   range?: boolean,
+ *   disableBefore?: Date | number | string,
+ *   disableAfter?: Date | number | string,
+ *   disableWeekdays?: number[],
+ *   disableList?: (Date | number | string)[],
  * }} Input
  * @typedef {{
  *   numMonths: number;
@@ -44,7 +49,7 @@ export default class extends Marko.Component {
     }
 
     /**
-     * @param {{ iso: string }} param0
+     * @param {{ iso: DayISO }} param0
      */
     onPopoverSelect({ iso }) {
         this.state.date = fromISO(iso);

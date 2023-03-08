@@ -34,6 +34,48 @@ export default {
                 },
             },
         },
+        disableBefore: {
+            type: 'date',
+            control: { type: 'date' },
+            description: 'First date that may be selected',
+            table: {
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        disableAfter: {
+            type: 'date',
+            control: { type: 'date' },
+            description: 'Last date that may be selected',
+            table: {
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        disableWeekdays: {
+            type: 'array',
+            control: { type: 'array' },
+            description:
+                'List of weekdays that are disabled. Must be an array of numbers, where Sunday is `0` and Saturday is `6`',
+            table: {
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
+        disableList: {
+            type: 'array',
+            control: { type: 'array' },
+            description:
+                'List of specific days that are disabled. Should be a list of date objects, but also accepts timestamps or ISO strings',
+            table: {
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
     },
 };
 

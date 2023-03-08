@@ -9,7 +9,7 @@ const DAY_UPDATE_KEYMAP = {
 
 /**
  * Always in `YYYY-MM-DD` format
- * @typedef {String} DayISO
+ * @typedef {`${number}-${number}-${number}`} DayISO
  * @typedef {{
  *   navigable?: boolean,
  *   interactive?: boolean,
@@ -17,6 +17,10 @@ const DAY_UPDATE_KEYMAP = {
  *   locale?: string,
  *   range?: boolean,
  *   selected?: Date | [Date, Date],
+ *   disableBefore?: Date | number | string,
+ *   disableAfter?: Date | number | string,
+ *   disableWeekdays?: number[],
+ *   disableList?: (Date | number | string)[],
  * }} Input
  * @typedef {{
  *   todayISO: DayISO,
@@ -28,6 +32,10 @@ const DAY_UPDATE_KEYMAP = {
  *   rangeStart: DayISO | undefined,
  *   rangeEnd: DayISO | undefined,
  *   baseISO: DayISO,
+ *   disableBefore: DayISO | undefined,
+ *   disableAfter: DayISO | undefined,
+ *   disableWeekdays: number[],
+ *   disableList: DayISO[],
  * }} State
  * @extends {Marko.Component<Input, State>}
  */
@@ -48,6 +56,10 @@ export default class extends Marko.Component {
             weekdayLabels,
             rangeStart: undefined,
             rangeEnd: undefined,
+            disableBefore: undefined,
+            disableAfter: undefined,
+            disableWeekdays: [],
+            disableList: [],
         };
     }
 
@@ -59,7 +71,7 @@ export default class extends Marko.Component {
             // If no selected times are visible, snap the view to the first one
             const selectedISOs = (
                 Array.isArray(input.selected) ? input.selected : [input.selected]
-            ).map((date) => toISO(date));
+            ).map(toISO);
             const currFirstISO = this.getFirstVisibleISO();
             const currLastISO = this.getLastVisibleISO(input);
             const selectedTimeInView = selectedISOs.find(
@@ -71,6 +83,29 @@ export default class extends Marko.Component {
             }
         }
         this.calculateRangeDisplay(input);
+
+        // handle changes regarding disabled dates
+        this.state.disableBefore = dateArgToISO(input.disableBefore);
+        this.state.disableAfter = dateArgToISO(input.disableAfter);
+        this.state.disableWeekdays = input.disableWeekdays ?? [];
+        this.state.disableList = /** @type {DayISO[]} */ (
+            input.disableList?.map(dateArgToISO) ?? []
+        );
+        if (this.isDisabled(this.state.tabindexISO)) {
+            this.state.tabindexISO = this.getFirstActiveISO(input);
+        }
+    }
+
+    /**
+     * @param {DayISO} iso
+     */
+    isDisabled(iso) {
+        return (
+            (this.state.disableBefore && iso < this.state.disableBefore) ||
+            (this.state.disableAfter && iso > this.state.disableAfter) ||
+            this.state.disableWeekdays.includes(new Date(iso).getUTCDay()) ||
+            this.state.disableList.includes(iso)
+        );
     }
 
     /**
@@ -99,30 +134,49 @@ export default class extends Marko.Component {
     onKeyDown(event) {
         const dayChange = DAY_UPDATE_KEYMAP[event.key];
         if (dayChange) {
-            // find new tabindex date
-            const currDate = fromISO(this.state.tabindexISO);
-            let newISO = toISO(
-                new Date(
-                    currDate.getFullYear(),
-                    currDate.getMonth(),
-                    currDate.getDate() + dayChange
-                )
-            );
-            // check for edges of calendar
-            const firstVisibleISO = this.getFirstVisibleISO();
-            const lastVisibleISO = this.getLastVisibleISO();
-            if (newISO < firstVisibleISO) {
-                if (this.input.navigable) this.state.offset--;
-                else newISO = firstVisibleISO;
-            } else if (newISO > lastVisibleISO) {
-                if (this.input.navigable) this.state.offset++;
-                else newISO = lastVisibleISO;
+            event.preventDefault();
+            // find new tabindex iso, skipping up to 7 disabled cells
+            let curr = fromISO(this.state.tabindexISO);
+            let tries = 7;
+            let iso;
+            do {
+                const next = new Date(
+                    curr.getFullYear(),
+                    curr.getMonth(),
+                    curr.getDate() + dayChange
+                );
+                iso = toISO(next);
+                curr = next;
+            } while (tries-- > 0 && this.isDisabled(iso));
+            if (tries > 0) {
+                // check for edges of calendar
+                const firstVisibleISO = this.getFirstVisibleISO();
+                const lastVisibleISO = this.getLastVisibleISO();
+                if (iso < firstVisibleISO) {
+                    if (this.input.navigable) this.prevMonth();
+                    else iso = firstVisibleISO;
+                } else if (iso > lastVisibleISO) {
+                    if (this.input.navigable) this.nextMonth();
+                    else iso = lastVisibleISO;
+                }
+                this.setTabindexAndFocus(iso);
             }
-            this.state.tabindexISO = newISO;
-            // After UI updates, focus on the new tabindex date
-            setTimeout(() => {
-                /** @type {HTMLButtonElement | undefined} */ (this.getEl(`day-${newISO}`))?.focus();
-            });
+        } else {
+            switch (event.key) {
+                case 'PageUp':
+                    this.prevMonth(true);
+                    break;
+                case 'PageDown':
+                    this.nextMonth(true);
+                    break;
+                case 'Home':
+                    this.setTabindexAndFocus(this.getFirstActiveISO());
+                    break;
+                case 'End':
+                    this.setTabindexAndFocus(this.getLastActiveISO());
+                    break;
+                default:
+            }
         }
         this.emit('keydown', event);
     }
@@ -150,6 +204,26 @@ export default class extends Marko.Component {
         );
     }
 
+    getFirstActiveISO(input = this.input) {
+        let iso = this.getFirstVisibleISO();
+        const lastVisible = this.getLastVisibleISO(input);
+        while (iso <= lastVisible && this.isDisabled(iso)) {
+            const curr = fromISO(iso);
+            iso = toISO(new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() + 1));
+        }
+        return iso;
+    }
+
+    getLastActiveISO(input = this.input) {
+        let iso = this.getLastVisibleISO(input);
+        const firstVisible = this.getFirstVisibleISO();
+        while (iso >= firstVisible && this.isDisabled(iso)) {
+            const curr = fromISO(iso);
+            iso = toISO(new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() - 1));
+        }
+        return iso;
+    }
+
     /**
      * @param {Date} date
      */
@@ -161,20 +235,57 @@ export default class extends Marko.Component {
         return formatter.format(date);
     }
 
-    prevMonth() {
-        this.state.offset--;
-        const lastVisibleISO = this.getLastVisibleISO();
-        if (this.state.tabindexISO > lastVisibleISO) {
-            this.state.tabindexISO = lastVisibleISO;
+    /**
+     * @param {boolean | void} focus
+     */
+    prevMonth(focus) {
+        if (this.state.disableBefore && this.getFirstVisibleISO() <= this.state.disableBefore) {
+            return false;
         }
+
+        this.state.offset--;
+        let newTabindexISO = this.state.tabindexISO;
+        const lastActiveISO = this.getLastActiveISO();
+        if (this.state.tabindexISO > lastActiveISO) {
+            newTabindexISO = this.state.tabindexISO = lastActiveISO;
+        }
+        if (focus) {
+            this.setTabindexAndFocus(newTabindexISO);
+        }
+
+        return true;
     }
 
-    nextMonth() {
-        this.state.offset++;
-        const firstVisibleISO = this.getFirstVisibleISO();
-        if (this.state.tabindexISO < firstVisibleISO) {
-            this.state.tabindexISO = firstVisibleISO;
+    /**
+     * @param {boolean | void} focus
+     */
+    nextMonth(focus) {
+        if (this.state.disableAfter && this.getLastVisibleISO() >= this.state.disableAfter) {
+            return false;
         }
+
+        this.state.offset++;
+        let newTabindexISO = this.state.tabindexISO;
+        const firstActiveISO = this.getFirstActiveISO();
+        if (this.state.tabindexISO < firstActiveISO) {
+            newTabindexISO = this.state.tabindexISO = firstActiveISO;
+        }
+        if (focus) {
+            this.setTabindexAndFocus(newTabindexISO);
+        }
+
+        return true;
+    }
+
+    /**
+     * @param {DayISO} iso
+     */
+    setTabindexAndFocus(iso) {
+        this.state.tabindexISO = iso;
+        // After UI updates, focus on the new tabindex date
+        setTimeout(() => {
+            /** @type {HTMLButtonElement | undefined} */ (this.getEl(iso))?.focus();
+        });
     }
 
     /**
@@ -185,7 +296,7 @@ export default class extends Marko.Component {
             // Determine range display (state.rangeStart-state.rangeEnd)
             let iso1, iso2;
             if (Array.isArray(input.selected)) {
-                [iso1, iso2] = input.selected.map((date) => toISO(date));
+                [iso1, iso2] = input.selected.map(toISO);
             } else if (this.state.focusISO) {
                 const selectedISO = toISO(input.selected);
                 iso1 = selectedISO;
@@ -243,11 +354,18 @@ export function getWeekdayInfo(localeName) {
 }
 
 /**
+ * @param {DateConstructor["arguments"]} arg
+ */
+function dateArgToISO(arg) {
+    return arg ? toISO(new Date(arg)) : undefined;
+}
+
+/**
  * @param {Date} date
  * @returns {DayISO}
  */
 export function toISO(date) {
-    return date.toISOString().slice(0, 10);
+    return /** @type {DayISO} */ (date?.toISOString().slice(0, 10));
 }
 
 /**
