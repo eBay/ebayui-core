@@ -1,28 +1,17 @@
 {
-    "extends": [
-        "ebay",
-        "prettier"
-    ],
+    "globals": {
+        "Marko": "readonly"
+    },
+    "extends": ["ebay", "prettier"],
     "env": {
         "browser": true
     },
-    "plugins": [
-        "import",
-        "mocha",
-        "compat"
-    ],
+    "plugins": ["import", "mocha", "compat"],
     "rules": {
         "import/order": [
             2,
             {
-                "groups": [
-                    "builtin",
-                    "external",
-                    "internal",
-                    "parent",
-                    "sibling",
-                    "index"
-                ]
+                "groups": ["builtin", "external", "internal", "parent", "sibling", "index"]
             }
         ],
         "mocha/no-exclusive-tests": 2,
@@ -34,10 +23,7 @@
     },
     "overrides": [
         {
-            "files": [
-                "**/test/*",
-                "**/test-utils/*"
-            ],
+            "files": ["**/test/*", "**/test-utils/*"],
             "rules": {
                 "compat/compat": 0
             }

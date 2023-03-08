@@ -1,0 +1,100 @@
+// @ts-check
+import {toISO} from "./component"
+
+$ const numMonths = input.numMonths || 1;
+$ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(state.offset + i))
+
+<div.calendar>
+    <if(input.navigable)>
+        <div.calendar__header>
+            <div.calendar__header--inner>
+                <ebay-icon-button transparent size="small" onClick('prevMonth')>
+                    <ebay-chevron-left-icon/>
+                </ebay-icon-button>
+                <for|monthDate| of=monthDates>
+                    <h3>${component.monthTitle(monthDate)}</h3>
+                </for>
+                <ebay-icon-button transparent size="small" onClick('nextMonth')>
+                    <ebay-chevron-right-icon/>
+                </ebay-icon-button>
+            </div>
+        </div>
+    </if>
+    <div.calendar__body>
+        <for|monthDate| of=monthDates>
+            <div.calendar__month>
+                <table onKeydown('onKeyDown')>
+                    <caption>${component.monthTitle(monthDate)}</caption>
+                    <thead>
+                        <tr>
+                            <for|dayName| of=state.weekdayLabels>
+                                <th>${dayName}</th>
+                            </for>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        $ const numBlankDays = (monthDate.getDay() - state.firstDayOfWeek + 7) % 7;
+                        $ const year = monthDate.getFullYear();
+                        $ const month = monthDate.getMonth();
+                        $ const daysInMonth = new Date(year, month + 1, 0).getDate();
+                        <for|row| from=0 to=Math.floor((numBlankDays + daysInMonth) / 7)>
+                            <tr>
+                                $ let startDate = row * 7 - numBlankDays + 1;
+                                $ let endDate = startDate + 6;
+                                <if(row === 0 && numBlankDays !== 0)>
+                                    <td colspan=numBlankDays/>
+                                    $ startDate = 1;
+                                </if>
+                                <else-if(endDate > daysInMonth)>
+                                    $ endDate = daysInMonth;
+                                </else-if>
+                                <for|day| from=startDate to=endDate>
+                                    $ const dayISO = toISO(new Date(year, month, day));
+                                    $ const isRangeStart = dayISO === state.rangeStart;
+                                    $ const isInRange = (state.rangeStart && state.rangeEnd
+                                                && dayISO >= state.rangeStart
+                                                && dayISO <= state.rangeEnd);
+                                    $ const isRangeEnd = dayISO === state.rangeEnd;
+                                    <td
+                                        class={
+                                            "calendar__range--start": isRangeStart,
+                                            "calendar__range": isInRange,
+                                            "calendar__range--end": isRangeEnd,
+                                        }
+                                        aria-current=dayISO === state.todayISO && "date"
+                                        aria-selected=(
+                                            Array.isArray(input.selected)
+                                                ? input.selected.some((date) => toISO(date) === dayISO)
+                                                : input.selected && toISO(input.selected) === dayISO
+                                        ) && "true">
+                                        <${input.interactive ? "button" : "span"}
+                                            key=`day-${dayISO}`
+                                            aria-label=(
+                                                input.range && Array.isArray(input.selected) && (
+                                                    isRangeStart
+                                                    ? `${day} - start of range`
+                                                    : isRangeEnd
+                                                    ? `${day} - end of range`
+                                                    : isInRange
+                                                    ? `${day} - in range`
+                                                    : undefined
+                                                )
+                                            )
+                                            tabindex=input.interactive && state.tabindexISO !== dayISO && -1
+                                            onClick('onDaySelect', dayISO)
+                                            onFocus('onDayFocus', dayISO)
+                                            onMouseover('onDayFocus', dayISO)
+                                            onBlur('onDayBlur')
+                                            onMouseout('onDayBlur')>
+                                            ${day}
+                                        </>
+                                    </td>
+                                </for>
+                            </tr>
+                        </for>
+                    </tbody>
+                </table>
+            </div>
+        </for>
+    </div>
+</div>

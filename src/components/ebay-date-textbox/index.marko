@@ -1,0 +1,24 @@
+// @ts-check
+import { toISO } from "../ebay-calendar/component";
+
+<span.date-textbox
+    on-expander-expand("openPopover")
+    on-expander-collapse("closePopover")>
+    <ebay-textbox
+        class="ebay-date-textbox--main"
+        placeholder="date"
+        buttonAriaLabel="open calendar"
+        value=state.date && toISO(state.date)
+        on-blur("handleInputChange")>
+        <@postfix-icon><ebay-calendar-icon/></@postfix-icon>
+    </ebay-textbox>
+    <div.date-textbox__popover hidden=!state.popover key="popover">
+        <ebay-calendar
+            interactive
+            navigable
+            numMonths=state.numMonths
+            selected=state.date
+            locale=input.locale
+            on-select("onPopoverSelect")/>
+    </div>
+</span>
