@@ -85,7 +85,7 @@
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/marko": "~7.4.4",
     "@storybook/mdx2-csf": "^0.0.3",
-    "@wdio/browserstack-service": "^8.5.7",
+    "@wdio/browserstack-service": "^7.30.2",
     "async": "^3.2.4",
     "babel-loader": "^9.1.2",
     "babel-plugin-add-module-exports": "^1.0.4",
