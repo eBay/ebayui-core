@@ -8,13 +8,21 @@ $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(
     <if(input.navigable)>
         <div.calendar__header>
             <div.calendar__header--inner>
-                <ebay-icon-button transparent size="small" onClick('prevMonth')>
+                <ebay-icon-button
+                    transparent size="small"
+                    disabled=(state.disableBefore && component.getFirstVisibleISO() <= state.disableBefore)
+                    aria-label=`Show ${component.monthTitle(component.getMonthDate(state.offset - 1))}`
+                    onClick('prevMonth')>
                     <ebay-chevron-left-icon/>
                 </ebay-icon-button>
                 <for|monthDate| of=monthDates>
                     <h3>${component.monthTitle(monthDate)}</h3>
                 </for>
-                <ebay-icon-button transparent size="small" onClick('nextMonth')>
+                <ebay-icon-button
+                    transparent size="small"
+                    disabled=(state.disableAfter && component.getLastVisibleISO() >= state.disableAfter)
+                    aria-label=`Show ${component.monthTitle(component.getMonthDate(state.offset + numMonths))}`
+                    onClick('nextMonth')>
                     <ebay-chevron-right-icon/>
                 </ebay-icon-button>
             </div>
@@ -64,8 +72,8 @@ $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(
                                         aria-current=dayISO === state.todayISO && "date"
                                         aria-selected=(
                                             Array.isArray(input.selected)
-                                                ? input.selected.some((date) => toISO(date) === dayISO)
-                                                : input.selected && toISO(input.selected) === dayISO
+                                                ? input.selected.some((iso) => iso === dayISO)
+                                                : input.selected && input.selected === dayISO
                                         ) && "true">
                                         <${input.interactive ? "button" : "span"}
                                             key=dayISO

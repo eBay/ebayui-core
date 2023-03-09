@@ -16,7 +16,7 @@ const DAY_UPDATE_KEYMAP = {
  *   numMonths?: number,
  *   locale?: string,
  *   range?: boolean,
- *   selected?: Date | [Date, Date],
+ *   selected?: DayISO | [DayISO, DayISO],
  *   disableBefore?: Date | number | string,
  *   disableAfter?: Date | number | string,
  *   disableWeekdays?: number[],
@@ -69,9 +69,7 @@ export default class extends Marko.Component {
     onInput(input) {
         if (input.selected) {
             // If no selected times are visible, snap the view to the first one
-            const selectedISOs = (
-                Array.isArray(input.selected) ? input.selected : [input.selected]
-            ).map(toISO);
+            const selectedISOs = Array.isArray(input.selected) ? input.selected : [input.selected];
             const currFirstISO = this.getFirstVisibleISO();
             const currLastISO = this.getLastVisibleISO(input);
             const selectedTimeInView = selectedISOs.find(
@@ -296,10 +294,9 @@ export default class extends Marko.Component {
             // Determine range display (state.rangeStart-state.rangeEnd)
             let iso1, iso2;
             if (Array.isArray(input.selected)) {
-                [iso1, iso2] = input.selected.map(toISO);
+                [iso1, iso2] = input.selected;
             } else if (this.state.focusISO) {
-                const selectedISO = toISO(input.selected);
-                iso1 = selectedISO;
+                iso1 = input.selected;
                 iso2 = this.state.focusISO;
             }
             if (iso1 && iso2) {
@@ -365,7 +362,7 @@ function dateArgToISO(arg) {
  * @returns {DayISO}
  */
 export function toISO(date) {
-    return /** @type {DayISO} */ (date?.toISOString().slice(0, 10));
+    return /** @type {DayISO} */ (date.toISOString().slice(0, 10));
 }
 
 /**

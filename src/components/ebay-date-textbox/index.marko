@@ -4,20 +4,38 @@ import { toISO } from "../ebay-calendar/component";
 <span.date-textbox
     on-expander-expand("openPopover")
     on-expander-collapse("closePopover")>
-    <ebay-textbox
-        class="ebay-date-textbox--main"
-        placeholder="date"
-        buttonAriaLabel="open calendar"
-        value=state.date && toISO(state.date)
-        on-blur("handleInputChange")>
-        <@postfix-icon><ebay-calendar-icon/></@postfix-icon>
-    </ebay-textbox>
+    <if(input.range)>
+        <ebay-textbox
+            placeholder="YYYY-MM-DD"
+            value=state.firstSelected
+            on-blur("handleInputChange", 0)>
+        </ebay-textbox>
+        <ebay-textbox
+            class="ebay-date-textbox--main"
+            placeholder="YYYY-MM-DD"
+            buttonAriaLabel="open calendar"
+            value=state.secondSelected
+            on-blur("handleInputChange", 1)>
+            <@postfix-icon><ebay-calendar-icon/></@postfix-icon>
+        </ebay-textbox>
+    </if>
+    <else>
+        <ebay-textbox
+            class="ebay-date-textbox--main"
+            placeholder="YYYY-MM-DD"
+            buttonAriaLabel="open calendar"
+            value=state.firstSelected
+            on-blur("handleInputChange", 0)>
+            <@postfix-icon><ebay-calendar-icon/></@postfix-icon>
+        </ebay-textbox>
+    </else>
     <div.date-textbox__popover hidden=!state.popover key="popover">
         <ebay-calendar
             interactive
             navigable
+            range=input.range
             numMonths=state.numMonths
-            selected=state.date
+            selected=(state.firstSelected && state.secondSelected) ? [state.firstSelected, state.secondSelected] : (state.firstSelected ?? state.secondSelected)
             locale=input.locale
             disableBefore=input.disableBefore
             disableAfter=input.disableAfter

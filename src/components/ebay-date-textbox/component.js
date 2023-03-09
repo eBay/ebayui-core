@@ -1,7 +1,7 @@
 // @ts-check
 
 import Expander from 'makeup-expander';
-import { fromISO } from '../ebay-calendar/component';
+import { toISO } from '../ebay-calendar/component';
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -16,9 +16,10 @@ const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
  *   disableList?: (Date | number | string)[],
  * }} Input
  * @typedef {{
- *   numMonths: number;
- *   date: Date | undefined;
- *   popover: boolean;
+ *   numMonths: number,
+ *   firstSelected: DayISO | undefined,
+ *   secondSelected: DayISO | undefined,
+ *   popover: boolean,
  * }} State
  * @extends {Marko.Component<Input, State>}
  */
@@ -29,15 +30,29 @@ export default class extends Marko.Component {
     }
 
     /**
+     * @param {Input} input
+     */
+    onInput(input) {
+        if (!input.range) {
+            this.state.secondSelected = undefined;
+        }
+    }
+
+    /**
+     * @param {number} index
      * @param {{
      *   originalEvent: Event,
      *   value: string,
-     * }} param0
+     * }} param1
      */
-    handleInputChange({ value }) {
+    handleInputChange(index, { value }) {
         const valueDate = new Date(value);
-        this.state.date = isNaN(valueDate.getTime()) ? undefined : new Date(value);
-        // TODO: Should trigger update when it is _already_ undefined and value is an invalid date
+        const iso = isNaN(valueDate.getTime()) ? undefined : toISO(valueDate);
+        if (index === 0) {
+            this.state.firstSelected = iso;
+        } else {
+            this.state.secondSelected = iso;
+        }
     }
 
     openPopover() {
@@ -52,13 +67,32 @@ export default class extends Marko.Component {
      * @param {{ iso: DayISO }} param0
      */
     onPopoverSelect({ iso }) {
-        this.state.date = fromISO(iso);
+        if (this.input.range) {
+            if (this.state.firstSelected && this.state.secondSelected) {
+                this.state.firstSelected = iso;
+                this.state.secondSelected = undefined;
+            } else {
+                const selected = this.state.firstSelected || this.state.secondSelected;
+                if (!selected) {
+                    this.state.firstSelected = iso;
+                } else if (selected < iso) {
+                    this.state.firstSelected = selected;
+                    this.state.secondSelected = iso;
+                } else {
+                    this.state.firstSelected = iso;
+                    this.state.secondSelected = selected;
+                }
+            }
+        } else {
+            this.state.firstSelected = iso;
+        }
     }
 
     onCreate() {
         this.state = {
             numMonths: 1,
-            date: undefined,
+            firstSelected: undefined,
+            secondSelected: undefined,
             popover: false,
         };
 
