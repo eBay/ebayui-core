@@ -1,13 +1,13 @@
 <h1 style='display: flex; justify-content: space-between; align-items: center;'>
     <span>
-        ebay-date-textbox
+        ebay-calendar
     </span>
     <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
         DS v1.2.0
     </span>
 </h1>
 
-Date textbox component, used as an alternative method for entering dates instead of `<input type="date">`.
+Calendar component, used for displaying dates and date ranges.
 
 ## Examples and Documentation
 
