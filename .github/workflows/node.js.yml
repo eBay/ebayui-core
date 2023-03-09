@@ -10,11 +10,11 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-node@master
       with:
-        node-version: '14.x'
+        node-version: '16.x'
     - uses: webfactory/ssh-agent@v0.5.4
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-    - run: npm ci
+    - run: npm i
     - run: npm run build:ci
       env:
         BROWSERSTACK_USER: ${{ secrets.BROWSERSTACK_USERNAME }}
