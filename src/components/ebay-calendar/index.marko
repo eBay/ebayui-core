@@ -60,7 +60,7 @@ $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(
                                     $ const dayISO = toISO(new Date(year, month, day));
                                     $ const isRangeStart = dayISO === state.rangeStart;
                                     $ const isInRange = (state.rangeStart && state.rangeEnd
-                                              && dayISO >= state.rangeStart && dayISO <= state.rangeEnd);
+                                                && dayISO >= state.rangeStart && dayISO <= state.rangeEnd);
                                     $ const isRangeEnd = dayISO === state.rangeEnd;
                                     $ const disabled = component.isDisabled(dayISO);
                                     <td
