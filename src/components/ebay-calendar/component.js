@@ -101,7 +101,7 @@ export default class extends Marko.Component {
         return (
             (this.state.disableBefore && iso < this.state.disableBefore) ||
             (this.state.disableAfter && iso > this.state.disableAfter) ||
-            this.state.disableWeekdays.includes(new Date(iso).getUTCDay()) ||
+            this.state.disableWeekdays.includes(fromISO(iso).getDay()) ||
             this.state.disableList.includes(iso)
         );
     }
@@ -134,17 +134,10 @@ export default class extends Marko.Component {
         if (dayChange) {
             event.preventDefault();
             // find new tabindex iso, skipping up to 7 disabled cells
-            let curr = fromISO(this.state.tabindexISO);
             let tries = 7;
-            let iso;
+            let iso = this.state.tabindexISO;
             do {
-                const next = new Date(
-                    curr.getFullYear(),
-                    curr.getMonth(),
-                    curr.getDate() + dayChange
-                );
-                iso = toISO(next);
-                curr = next;
+                iso = offsetISO(iso, dayChange);
             } while (tries-- > 0 && this.isDisabled(iso));
             if (tries > 0) {
                 // check for edges of calendar
@@ -206,8 +199,7 @@ export default class extends Marko.Component {
         let iso = this.getFirstVisibleISO();
         const lastVisible = this.getLastVisibleISO(input);
         while (iso <= lastVisible && this.isDisabled(iso)) {
-            const curr = fromISO(iso);
-            iso = toISO(new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() + 1));
+            iso = offsetISO(iso, 1);
         }
         return iso;
     }
@@ -216,8 +208,7 @@ export default class extends Marko.Component {
         let iso = this.getLastVisibleISO(input);
         const firstVisible = this.getFirstVisibleISO();
         while (iso >= firstVisible && this.isDisabled(iso)) {
-            const curr = fromISO(iso);
-            iso = toISO(new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() - 1));
+            iso = offsetISO(iso, -1);
         }
         return iso;
     }
@@ -354,7 +345,9 @@ export function getWeekdayInfo(localeName) {
  * @param {DateConstructor["arguments"]} arg
  */
 function dateArgToISO(arg) {
-    return arg ? toISO(new Date(arg)) : undefined;
+    if (!arg) return undefined;
+    if (/^\d\d\d\d-\d\d-\d\d$/g.test(arg)) return arg;
+    return toISO(new Date(arg));
 }
 
 /**
@@ -374,10 +367,17 @@ export function fromISO(iso) {
 }
 
 /**
+ * @param {DayISO} iso
+ * @param {number} days
+ */
+function offsetISO(iso, days) {
+    const curr = fromISO(iso);
+    return toISO(new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() + days));
+}
+
+/**
  * @param {string | undefined} locale
  */
 export function localeOverride(locale) {
-    if (locale) return locale;
-
-    return navigator.language;
+    return locale || navigator.language;
 }
