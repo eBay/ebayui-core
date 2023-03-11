@@ -76,6 +76,16 @@ export default {
                 },
             },
         },
+        onChange: {
+            action: 'on-change',
+            description: 'Triggered when the selection changes',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ selected } | { rangeStart, rangeEnd }',
+                },
+            },
+        },
     },
 };
 

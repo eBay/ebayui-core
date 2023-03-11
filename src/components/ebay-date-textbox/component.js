@@ -53,6 +53,7 @@ export default class extends Marko.Component {
         } else {
             this.state.secondSelected = iso;
         }
+        this.emitSelectedChange();
     }
 
     openPopover() {
@@ -86,6 +87,21 @@ export default class extends Marko.Component {
         } else {
             this.state.firstSelected = iso;
         }
+        this.emitSelectedChange();
+    }
+
+    emitSelectedChange() {
+        this.emit(
+            'change',
+            this.input.range
+                ? {
+                      rangeStart: this.state.firstSelected,
+                      rangeEnd: this.state.secondSelected,
+                  }
+                : {
+                      selected: this.state.firstSelected,
+                  }
+        );
     }
 
     onCreate() {
