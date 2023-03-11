@@ -107,17 +107,17 @@ export default class extends Marko.Component {
     }
 
     /**
-     * @param {DayISO} time
+     * @param {DayISO} day
      */
-    onDaySelect(time) {
-        this.emit('select', { iso: time });
+    onDaySelect(day) {
+        this.emit('select', { iso: day });
     }
 
     /**
-     * @param {DayISO} time
+     * @param {DayISO} day
      */
-    onDayFocus(time) {
-        this.state.focusISO = this.state.tabindexISO = time;
+    onDayFocus(day) {
+        this.state.focusISO = this.state.tabindexISO = day;
         this.calculateRangeDisplay();
     }
 
@@ -151,6 +151,8 @@ export default class extends Marko.Component {
                     else iso = lastVisibleISO;
                 }
                 this.setTabindexAndFocus(iso);
+
+                this.emit('focus', { iso: this.state.tabindexISO });
             }
         } else {
             switch (event.key) {
@@ -162,14 +164,15 @@ export default class extends Marko.Component {
                     break;
                 case 'Home':
                     this.setTabindexAndFocus(this.getFirstActiveISO());
+                    this.emit('focus', { iso: this.state.tabindexISO });
                     break;
                 case 'End':
                     this.setTabindexAndFocus(this.getLastActiveISO());
+                    this.emit('focus', { iso: this.state.tabindexISO });
                     break;
                 default:
             }
         }
-        this.emit('keydown', event);
     }
 
     /**
@@ -242,6 +245,8 @@ export default class extends Marko.Component {
             this.setTabindexAndFocus(newTabindexISO);
         }
 
+        this.emit('month', { iso: toISO(this.getMonthDate(this.state.offset)) });
+
         return true;
     }
 
@@ -262,6 +267,10 @@ export default class extends Marko.Component {
         if (focus) {
             this.setTabindexAndFocus(newTabindexISO);
         }
+
+        this.emit('month', {
+            iso: toISO(this.getMonthDate(this.state.offset + (this.input.numMonths || 1))),
+        });
 
         return true;
     }

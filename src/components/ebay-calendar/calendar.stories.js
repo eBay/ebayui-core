@@ -107,6 +107,36 @@ export default {
                 },
             },
         },
+        onSelect: {
+            action: 'on-select',
+            description: 'Triggered when a date is selected',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ iso }',
+                },
+            },
+        },
+        onMonth: {
+            action: 'on-month',
+            description: 'Triggered during month navigation',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ iso }',
+                },
+            },
+        },
+        onFocus: {
+            action: 'on-focus',
+            description: 'Triggered when a day is focused on, typically via keyboard events',
+            table: {
+                category: 'Events',
+                defaultValue: {
+                    summary: '{ iso }',
+                },
+            },
+        },
     },
 };
 
