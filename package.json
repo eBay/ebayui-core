@@ -132,7 +132,7 @@
   },
   "peerDependencies": {
     "@ebay/skin": "~15.2.0",
-    "marko": "^4 || ^5"
+    "marko": "^4 || ^5.23.0"
   },
   "dependencies": {
     "@marko-tags/subscribe": "^0.4.2",
