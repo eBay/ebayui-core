@@ -1,12 +1,12 @@
 // @ts-check
 
 import Expander from 'makeup-expander';
-import { toISO } from '../ebay-calendar/component';
+import { toISO } from '../ebay-calendar/helper';
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
 /**
- * @typedef {import('../ebay-calendar/component').DayISO} DayISO
+ * @typedef {import('../ebay-calendar/helper').DayISO} DayISO
  * @typedef {{
  *   locale?: string,
  *   range?: boolean,
