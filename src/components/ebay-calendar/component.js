@@ -297,12 +297,17 @@ export default class extends Marko.Component {
             // Determine range display (state.rangeStart-state.rangeEnd)
             let iso1, iso2;
             if (Array.isArray(input.selected)) {
+                // Two elements are selected, we can use them as the ends of the range.
                 [iso1, iso2] = input.selected;
             } else if (this.state.focusISO) {
+                // One element is selected and the user is focused on a date,
+                // so we use the selected component and the focus date instead
                 iso1 = input.selected;
                 iso2 = this.state.focusISO;
             }
+
             if (iso1 && iso2) {
+                // Both ends of the range are valid, figure out which is first
                 if (iso1 < iso2) {
                     this.state.rangeStart = iso1;
                     this.state.rangeEnd = iso2;
@@ -311,6 +316,7 @@ export default class extends Marko.Component {
                     this.state.rangeEnd = iso1;
                 }
             } else {
+                // We can't display a range, so ensure that no range is highlighted
                 this.state.rangeStart = this.state.rangeEnd = undefined;
             }
         }
