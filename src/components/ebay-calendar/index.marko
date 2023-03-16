@@ -63,8 +63,7 @@ $ const rangeEndText = input.a11yRangeEndText ?? "end of range"
                                 <for|day| from=startDate to=endDate>
                                     $ const dayISO = toISO(new Date(year, month, day));
                                     $ const isRangeStart = dayISO === state.rangeStart;
-                                    $ const isInRange = (state.rangeStart && state.rangeEnd
-                                                && dayISO >= state.rangeStart && dayISO <= state.rangeEnd);
+                                    $ const isInRange = component.isInRange(dayISO);
                                     $ const isRangeEnd = dayISO === state.rangeEnd;
                                     $ const disabled = component.isDisabled(dayISO);
                                     <td

@@ -325,6 +325,20 @@ export default class extends Marko.Component {
             }
         }
     }
+
+    /**
+     * @param {DayISO} iso
+     */
+    isInRange(iso) {
+        if (!this.state.rangeStart || !this.state.rangeEnd)
+            // range doesn't exist
+            return false;
+        if (iso < this.state.rangeStart || iso > this.state.rangeEnd)
+            // date is outside of range
+            return false;
+
+        return true;
+    }
 }
 
 /**
