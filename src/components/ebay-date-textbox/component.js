@@ -2,6 +2,7 @@
 
 import Expander from 'makeup-expander';
 import { toISO } from '../ebay-calendar/component';
+import * as eventUtils from '../../common/event-utils';
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -28,9 +29,29 @@ const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
  * @extends {Marko.Component<Input, State>}
  */
 export default class extends Marko.Component {
-    calculateNumMonths() {
-        this.state.numMonths =
-            document.documentElement.clientWidth < MIN_WIDTH_FOR_DOUBLE_PANE ? 1 : 2;
+    onCreate() {
+        this.state = {
+            numMonths: 1,
+            firstSelected: undefined,
+            secondSelected: undefined,
+            popover: false,
+        };
+
+        this.calculateNumMonths();
+    }
+
+    onMount() {
+        this.expander = new Expander(/** @type {HTMLElement} */ (this.el), {
+            hostSelector: '.ebay-date-textbox--main > .icon-btn',
+            contentSelector: '.date-textbox__popover',
+            expandOnClick: true,
+            autoCollapse: true,
+        });
+        this.subscribeTo(eventUtils.resizeUtil).on('resize', this.calculateNumMonths.bind(this));
+    }
+
+    onDestroy() {
+        this.expander?.destroy();
     }
 
     /**
@@ -40,6 +61,11 @@ export default class extends Marko.Component {
         if (!input.range) {
             this.state.secondSelected = undefined;
         }
+    }
+
+    calculateNumMonths() {
+        this.state.numMonths =
+            document.documentElement.clientWidth < MIN_WIDTH_FOR_DOUBLE_PANE ? 1 : 2;
     }
 
     /**
@@ -106,31 +132,5 @@ export default class extends Marko.Component {
                       selected: this.state.firstSelected,
                   }
         );
-    }
-
-    onCreate() {
-        this.state = {
-            numMonths: 1,
-            firstSelected: undefined,
-            secondSelected: undefined,
-            popover: false,
-        };
-
-        this.calculateNumMonths();
-        document.addEventListener('resize', this.calculateNumMonths);
-    }
-
-    onMount() {
-        this.expander = new Expander(/** @type {HTMLElement} */ (this.el), {
-            hostSelector: '.ebay-date-textbox--main > .icon-btn',
-            contentSelector: '.date-textbox__popover',
-            expandOnClick: true,
-            autoCollapse: true,
-        });
-    }
-
-    onDestroy() {
-        document.removeEventListener('resize', this.calculateNumMonths);
-        this.expander?.destroy();
     }
 }

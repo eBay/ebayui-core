@@ -13,7 +13,8 @@ $ const rangeEndText = input.a11yRangeEndText ?? "end of range"
         <div.calendar__header>
             <div.calendar__header--inner>
                 <ebay-icon-button
-                    transparent size="small"
+                    transparent
+                    size="small"
                     disabled=(state.disableBefore && component.getFirstVisibleISO() <= state.disableBefore)
                     aria-label=getShowMonthText(component.monthTitle(component.getMonthDate(state.offset - 1)))
                     onClick('prevMonth')>
@@ -23,7 +24,8 @@ $ const rangeEndText = input.a11yRangeEndText ?? "end of range"
                     <h3>${component.monthTitle(monthDate)}</h3>
                 </for>
                 <ebay-icon-button
-                    transparent size="small"
+                    transparent
+                    size="small"
                     disabled=(state.disableAfter && component.getLastVisibleISO() >= state.disableAfter)
                     aria-label=getShowMonthText(component.monthTitle(component.getMonthDate(state.offset + numMonths)))
                     onClick('nextMonth')>
