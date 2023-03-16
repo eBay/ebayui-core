@@ -145,8 +145,8 @@ export default {
                 },
             },
         },
-        onMonth: {
-            action: 'on-month',
+        onMonthChange: {
+            action: 'on-month-change',
             description: 'Triggered during month navigation',
             table: {
                 category: 'Events',
