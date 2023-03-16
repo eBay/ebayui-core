@@ -3,6 +3,10 @@ import {toISO} from "./component"
 
 $ const numMonths = input.numMonths || 1;
 $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(state.offset + i))
+$ const getShowMonthText = input.getA11yShowMonthText ?? ((month) => `Show ${month}`)
+$ const rangeStartText = input.a11yRangeStartText ?? "start of range"
+$ const inRangeText = input.a11yInRangeText ?? "in range"
+$ const rangeEndText = input.a11yRangeEndText ?? "end of range"
 
 <div.calendar>
     <if(input.navigable)>
@@ -11,7 +15,7 @@ $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(
                 <ebay-icon-button
                     transparent size="small"
                     disabled=(state.disableBefore && component.getFirstVisibleISO() <= state.disableBefore)
-                    aria-label=`Show ${component.monthTitle(component.getMonthDate(state.offset - 1))}`
+                    aria-label=getShowMonthText(component.monthTitle(component.getMonthDate(state.offset - 1)))
                     onClick('prevMonth')>
                     <ebay-chevron-left-icon/>
                 </ebay-icon-button>
@@ -21,7 +25,7 @@ $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(
                 <ebay-icon-button
                     transparent size="small"
                     disabled=(state.disableAfter && component.getLastVisibleISO() >= state.disableAfter)
-                    aria-label=`Show ${component.monthTitle(component.getMonthDate(state.offset + numMonths))}`
+                    aria-label=getShowMonthText(component.monthTitle(component.getMonthDate(state.offset + numMonths)))
                     onClick('nextMonth')>
                     <ebay-chevron-right-icon/>
                 </ebay-icon-button>
@@ -82,11 +86,11 @@ $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(
                                             aria-label=(
                                                 input.range && Array.isArray(input.selected) && (
                                                     isRangeStart
-                                                    ? `${day} - start of range`
+                                                    ? `${day} - ${rangeStartText}`
                                                     : isRangeEnd
-                                                    ? `${day} - end of range`
+                                                    ? `${day} - ${rangeEndText}`
                                                     : isInRange
-                                                    ? `${day} - in range`
+                                                    ? `${day} - ${inRangeText}`
                                                     : undefined
                                                 )
                                             )

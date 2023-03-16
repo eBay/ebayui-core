@@ -1,5 +1,4 @@
 // @ts-check
-import { toISO } from "../ebay-calendar/component";
 
 <span.date-textbox
     on-expander-expand("openPopover")
@@ -41,6 +40,10 @@ import { toISO } from "../ebay-calendar/component";
             disableAfter=input.disableAfter
             disableList=input.disableList
             disableWeekdays=input.disableWeekdays
+            getA11yShowMonthText=input.getA11yShowMonthText
+            a11yRangeStartText=input.a11yRangeStartText
+            a11yInRangeText=input.a11yInRangeText
+            a11yRangeEndText=input.a11yRangeEndText
             on-select("onPopoverSelect")/>
     </div>
 </span>

@@ -107,6 +107,34 @@ export default {
                 },
             },
         },
+        getA11yShowMonthText: {
+            type: 'callback',
+            control: { type: 'callback' },
+            description: 'Function used to get the text for showing previous and next months',
+            table: {
+                defaultValue: {
+                    summary: '(monthName) => `Show ${monthName}`',
+                },
+            },
+        },
+        a11yRangeStartText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to indicate the start of a selected range',
+            table: { defaultValue: { summary: 'start of range' } },
+        },
+        a11yInRangeText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to indicate a value that is inside the selected range',
+            table: { defaultValue: { summary: 'in range' } },
+        },
+        a11yRangeEndText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to indicate the end of a selected range',
+            table: { defaultValue: { summary: 'end of range' } },
+        },
         onSelect: {
             action: 'on-select',
             description: 'Triggered when a date is selected',

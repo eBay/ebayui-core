@@ -14,6 +14,10 @@ const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
  *   disableAfter?: Date | number | string,
  *   disableWeekdays?: number[],
  *   disableList?: (Date | number | string)[],
+ *   getA11yShowMonthText?: (monthName: string) => string,
+ *   a11yRangeStartText?: string,
+ *   a11yInRangeText?: string,
+ *   a11yRangeEndText?: string,
  * }} Input
  * @typedef {{
  *   numMonths: number,
