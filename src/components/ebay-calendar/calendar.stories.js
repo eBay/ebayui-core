@@ -1,10 +1,15 @@
+import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
-import Component from './examples/default.marko';
-import code from './examples/default.marko?raw';
+import DefaultTemplate from './examples/default.marko';
+import DefaultTemplateCode from './examples/default.marko?raw';
+
+const Template = (args) => ({
+    input: addRenderBodies(args),
+});
 
 export default {
     title: 'building blocks/ebay-calendar',
-    component: Component,
+    component: DefaultTemplate,
     parameters: {
         docs: {
             description: {
@@ -168,11 +173,11 @@ export default {
     },
 };
 
-export const Standard = (args) => ({ input: args });
+export const Standard = Template.bind({});
 Standard.parameters = {
     docs: {
         source: {
-            code,
+            DefaultTemplateCode,
         },
     },
 };

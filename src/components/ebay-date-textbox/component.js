@@ -2,7 +2,6 @@
 
 import Expander from 'makeup-expander';
 import { toISO } from '../ebay-calendar/component';
-import * as eventUtils from '../../common/event-utils';
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -19,11 +18,13 @@ const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
  *   a11yRangeStartText?: string,
  *   a11yInRangeText?: string,
  *   a11yRangeEndText?: string,
+ *   a11yOpenPopoverText?: string,
+ *   inputPlaceholderText?: string | [string, string],
  * }} Input
  * @typedef {{
  *   numMonths: number,
- *   firstSelected: DayISO | undefined,
- *   secondSelected: DayISO | undefined,
+ *   firstSelected: DayISO | null,
+ *   secondSelected: DayISO | null,
  *   popover: boolean,
  * }} State
  * @extends {Marko.Component<Input, State>}
@@ -32,8 +33,8 @@ export default class extends Marko.Component {
     onCreate() {
         this.state = {
             numMonths: 1,
-            firstSelected: undefined,
-            secondSelected: undefined,
+            firstSelected: null,
+            secondSelected: null,
             popover: false,
         };
 
@@ -47,7 +48,6 @@ export default class extends Marko.Component {
             expandOnClick: true,
             autoCollapse: true,
         });
-        this.subscribeTo(eventUtils.resizeUtil).on('resize', this.calculateNumMonths.bind(this));
     }
 
     onDestroy() {
@@ -59,7 +59,7 @@ export default class extends Marko.Component {
      */
     onInput(input) {
         if (!input.range) {
-            this.state.secondSelected = undefined;
+            this.state.secondSelected = null;
         }
     }
 
@@ -77,7 +77,7 @@ export default class extends Marko.Component {
      */
     handleInputChange(index, { value }) {
         const valueDate = new Date(value);
-        const iso = isNaN(valueDate.getTime()) ? undefined : toISO(valueDate);
+        const iso = isNaN(valueDate.getTime()) ? null : toISO(valueDate);
         if (index === 0) {
             this.state.firstSelected = iso;
         } else {
@@ -98,25 +98,27 @@ export default class extends Marko.Component {
      * @param {{ iso: DayISO }} param0
      */
     onPopoverSelect({ iso }) {
+        const { firstSelected, secondSelected } = this.state;
+
+        this.state.firstSelected = iso;
+
         if (this.input.range) {
-            if (this.state.firstSelected && this.state.secondSelected) {
-                this.state.firstSelected = iso;
-                this.state.secondSelected = undefined;
-            } else {
-                const selected = this.state.firstSelected || this.state.secondSelected;
-                if (!selected) {
-                    this.state.firstSelected = iso;
-                } else if (selected < iso) {
+            const selected = firstSelected || secondSelected;
+
+            if (firstSelected && secondSelected) {
+                // both were selected; reset selection
+                this.state.secondSelected = null;
+            } else if (selected) {
+                // exactly one was selected; figure out the order
+                if (selected < iso) {
                     this.state.firstSelected = selected;
                     this.state.secondSelected = iso;
                 } else {
-                    this.state.firstSelected = iso;
                     this.state.secondSelected = selected;
                 }
             }
-        } else {
-            this.state.firstSelected = iso;
         }
+
         this.emitSelectedChange();
     }
 

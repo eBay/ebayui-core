@@ -35,12 +35,12 @@ const DAY_UPDATE_KEYMAP = {
  *   offset: number,
  *   firstDayOfWeek: number,
  *   weekdayLabels: string[],
- *   focusISO: DayISO | undefined,
- *   rangeStart: DayISO | undefined,
- *   rangeEnd: DayISO | undefined,
+ *   focusISO: DayISO | null,
+ *   rangeStart: DayISO | null,
+ *   rangeEnd: DayISO | null,
  *   baseISO: DayISO,
- *   disableBefore: DayISO | undefined,
- *   disableAfter: DayISO | undefined,
+ *   disableBefore: DayISO | null,
+ *   disableAfter: DayISO | null,
  *   disableWeekdays: number[],
  *   disableList: DayISO[],
  * }} State
@@ -54,17 +54,17 @@ export default class extends Marko.Component {
         const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(localeOverride(input.locale));
         const todayISO = toISO(new Date());
         this.state = {
-            focusISO: undefined,
+            focusISO: null,
             baseISO: todayISO,
             tabindexISO: todayISO,
             todayISO,
             offset: 0,
             firstDayOfWeek,
             weekdayLabels,
-            rangeStart: undefined,
-            rangeEnd: undefined,
-            disableBefore: undefined,
-            disableAfter: undefined,
+            rangeStart: null,
+            rangeEnd: null,
+            disableBefore: null,
+            disableAfter: null,
             disableWeekdays: [],
             disableList: [],
         };
@@ -129,7 +129,7 @@ export default class extends Marko.Component {
     }
 
     onDayBlur() {
-        this.state.focusISO = undefined;
+        this.state.focusISO = null;
         this.calculateRangeDisplay();
     }
 
@@ -321,7 +321,7 @@ export default class extends Marko.Component {
                 }
             } else {
                 // We can't display a range, so ensure that no range is highlighted
-                this.state.rangeStart = this.state.rangeEnd = undefined;
+                this.state.rangeStart = this.state.rangeEnd = null;
             }
         }
     }

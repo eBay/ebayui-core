@@ -1,10 +1,15 @@
+import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
-import Component from './examples/default.marko';
-import code from './examples/default.marko?raw';
+import DefaultTemplate from './examples/default.marko';
+import DefaultTemplateCode from './examples/default.marko?raw';
+
+const Template = (args) => ({
+    input: addRenderBodies(args),
+});
 
 export default {
     title: 'form input/ebay-date-textbox',
-    component: Component,
+    component: DefaultTemplate,
     parameters: {
         docs: {
             description: {
@@ -104,6 +109,19 @@ export default {
             description: 'Text to indicate the end of a selected range',
             table: { defaultValue: { summary: 'end of range' } },
         },
+        a11yOpenPopoverText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'A11y label for the button that opens the calendar popover',
+            table: { defaultValue: { summary: 'open calendar' } },
+        },
+        inputPlaceholderText: {
+            type: 'text|array',
+            control: { type: 'object' },
+            description:
+                'Text for the input placeholder. Should indicate that users need to enter dates in ISO format. If separate placeholders are required for a range display, use an array of two strings (i. e. `["Start (YYYY-MM-DD)", "End (YYYY-MM-DD)"]`).',
+            table: { defaultValue: { summary: '"YYYY-MM-DD"' } },
+        },
         onChange: {
             action: 'on-change',
             description: 'Triggered when the selection changes',
@@ -117,11 +135,11 @@ export default {
     },
 };
 
-export const Standard = (args) => ({ input: args });
+export const Standard = Template.bind({});
 Standard.parameters = {
     docs: {
         source: {
-            code,
+            DefaultTemplateCode,
         },
     },
 };
