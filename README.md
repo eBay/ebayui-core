@@ -84,6 +84,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-toast`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toast)
 -   [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
 -   [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
+-   [`ebay-video`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-video)
 
 ## Getting Started
 
@@ -234,3 +235,11 @@ Looking to contribute to eBay UI? Please visit our [contributing page](CONTRIBUT
 Copyright (c) 2018 eBay Inc.
 
 Use of this source code is governed by a MIT-style license that can be found in the LICENSE file or at [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT).
+
+USE OF SOME COMPONENTS REQUIRES A SEPARATE, NON-OPEN-SOURCE LICENSE FROM THIRD PARTIES
+
+The data visualization components and the charting components of the eBayUI library are designed to use one or more HighCharts® software products. HighCharts® is a registered trademark of HighSoft AS. HighSoft AS is not affiliated with Ebay. Ebay provides no warranties of any kind (e.g., of merchantability, fitness for a particular purpose, and noninfringement), whether express or implied, with respect to the HighCharts® software products that the data visualization components and the charting components are designed to use.
+
+COMMERCIAL USE OF HIGHCHARTS® SOFTWARE PRODUCTS REQUIRES A PAID LICENSE PROVIDED BY HIGHSOFT AS. While many components of the eBayUI library are licensed under the MIT License, the HighCharts® software products which the data visualization components and charting components of the EbayUI library are designed to use are NOT licensed under the MIT License or any other open source license. Rights pertaining to HighCharts® software products (e.g., including, but not limited to, rights to use, install, distribute, publish, merge, duplicate, and modify) are governed by the terms of one or more proprietary license agreements that are available online at http://www.highcharts.com or by the terms of custom license agreements that HighSoft AS may negotiate with its customers at its own discretion. While HighSoft AS may choose to license HighCharts® software products for non-commercial use at no cost, IT IS THE RESPONSIBILITY OF ANY PARTY THAT WISHES TO USE HIGHCHARTS® SOFTWARE PRODUCTS TO VERIFY THE TERMS OF SUCH A LICENSE WITH HIGHSOFT AS. NOTWITHSTANDING ANY PROVISION OF THIS LICENSE, PARTIES WHO ARE NOT LICENSED BY HIGHSOFT AS (OR ITS SUCCESSORS OR ASSIGNS) TO USE HIGHCHARTS® SOFTWARE PRODUCTS ARE NOT LICENSED TO USE THE DATA VISUALIZATION COMPONENTS AND THE CHARTING COMPONENTS OF THE EBAYUI LIBRARY.
+
+This notice shall be included in all copies or substantial portions of the Software.

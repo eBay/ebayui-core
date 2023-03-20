@@ -114,6 +114,7 @@ Standard.args = {
     },
     heading: {
         renderBody: 'Important',
+        as: 'h2',
     },
     content: {
         renderBody: `<p>This new feature was added.</p>`,

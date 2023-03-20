@@ -1,8 +1,8 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
 import Component from './index.marko';
-import FieldsetTemplate from './examples/02-fieldset/template.marko';
-import FieldsetCode from './examples/02-fieldset/template.marko?raw';
+import FieldsetTemplate from './examples/fieldset.marko';
+import FieldsetCode from './examples/fieldset.marko?raw';
 
 const Template = (args) => ({
     input: {

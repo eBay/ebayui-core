@@ -1,8 +1,15 @@
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
-import badgedExample from './examples/09-badged-items/template.marko';
 import Component from './index.marko';
+import BadgedTemplate from './examples/badged.marko';
+import BadgedTemplateCode from './examples/badged.marko?raw';
+import SpritesTemplate from './examples/sprites.marko';
+import SpritesTemplateCode from './examples/sprites.marko?raw';
+import TypeaheadTemplate from './examples/typeahead.marko';
+import TypeaheadTemplateCode from './examples/typeahead.marko?raw';
+import SeparatorTemplate from './examples/separator.marko';
+import SeparatorTemplateCode from './examples/separator.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -96,8 +103,8 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     items: [
         {
             renderBody: `item 1 that has very long text`,
@@ -110,14 +117,15 @@ Standard.args = {
         },
     ],
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-menu', Standard.args, { items: 'item' }),
+            code: tagToString('ebay-menu', Default.args, { items: 'item' }),
         },
     },
 };
 
-export const Badged = () => ({
-    component: badgedExample,
-});
+export const Typeahead = buildExtensionTemplate(TypeaheadTemplate, TypeaheadTemplateCode);
+export const Badged = buildExtensionTemplate(BadgedTemplate, BadgedTemplateCode);
+export const Sprites = buildExtensionTemplate(SpritesTemplate, SpritesTemplateCode);
+export const Separator = buildExtensionTemplate(SeparatorTemplate, SeparatorTemplateCode);

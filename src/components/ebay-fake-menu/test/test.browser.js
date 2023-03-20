@@ -46,3 +46,33 @@ describe('given the menu is in the default state', () => {
         });
     });
 });
+
+describe('given the menu has checkbox items with separator', () => {
+    const input = Object.assign({ type: 'checkbox' }, mock.separator4Items);
+
+    const firstItemText = input.items[0].renderBody.text;
+    const secondItemText = input.items[1].renderBody.text;
+    const thirdItemText = input.items[3].renderBody.text;
+
+    beforeEach(async () => {
+        component = await render(template, input);
+    });
+
+    describe('when all items are clicked', () => {
+        beforeEach(async () => {
+            await fireEvent.click(component.getByText(firstItemText));
+            await fireEvent.click(component.getByText(secondItemText));
+            await fireEvent.click(component.getByText(thirdItemText));
+        });
+
+        it('then it emits three select events with correct data', () => {
+            const selectEvents = component.emitted('select');
+            expect(selectEvents).to.have.length(3);
+
+            const [[eventArg0], [eventArg1], [eventArg2]] = selectEvents;
+            expect(eventArg0.index).to.deep.equal(0);
+            expect(eventArg1.index).to.deep.equal(1);
+            expect(eventArg2.index).to.deep.equal(2);
+        });
+    });
+});

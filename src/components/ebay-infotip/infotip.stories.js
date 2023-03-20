@@ -1,11 +1,10 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
+import { buildExtensionTemplate } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
-
-const Template = (args) => ({
-    input: addRenderBodies(args),
-});
+import DefaultTemplate from './examples/default.marko';
+import DefaultTemplateCode from './examples/default.marko?raw';
+import OpenOnRenderTemplate from './examples/open-on-render.marko';
+import OpenOnRenderTemplateCode from './examples/open-on-render.marko?raw';
 
 export default {
     title: 'buttons/ebay-infotip',
@@ -118,40 +117,13 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
-    heading: {
-        renderBody: `Important`,
-    },
-    content: {
-        renderBody: `<p>This is some important info</p>`,
-    },
+export const Default = buildExtensionTemplate(DefaultTemplate, DefaultTemplateCode, {
+    a11yCloseButtonText: 'Dismiss infotip',
     ariaLabel: 'Important information',
-    a11yCloseButtonText: 'close',
-};
-Standard.parameters = {
-    docs: {
-        source: {
-            code: tagToString('ebay-infotip', Standard.args),
-        },
-    },
-};
+});
 
-export const OpenOnRender = Template.bind({});
-OpenOnRender.args = {
-    heading: {
-        renderBody: `Important`,
-    },
-    content: {
-        renderBody: `<p>This is some important info</p>`,
-    },
-    a11yCloseButtonText: 'close',
+export const OpenOnRender = buildExtensionTemplate(OpenOnRenderTemplate, OpenOnRenderTemplateCode, {
+    a11yCloseButtonText: 'Dismiss infotip',
+    ariaLabel: 'Important information',
     open: true,
-};
-OpenOnRender.parameters = {
-    docs: {
-        source: {
-            code: tagToString('ebay-infotip', OpenOnRender.args),
-        },
-    },
-};
+});

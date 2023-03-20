@@ -12,6 +12,7 @@ import { fileURLToPath } from 'url';
 import cheerio from 'cheerio';
 import { minify } from 'html-minifier';
 import markoTagJson from '../src/components/ebay-icon/marko-tag.json';
+// import markoTagJson from '../src/components/ebay-icon/marko-tag.json' assert { type: 'json' };
 const require = createRequire(import.meta.url);
 
 const skinDir = path.dirname(require.resolve('@ebay/skin/package.json'));

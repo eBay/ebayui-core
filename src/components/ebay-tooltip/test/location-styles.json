@@ -18,7 +18,7 @@
     "overlayLeft": "100%",
     "overlayRight": "auto",
     "overlayTop": "auto",
-    "overlayBottom": "-10px"
+    "overlayBottom": "-8px"
   },
   "right": {
     "overlayTransform": "translateX(-16px) translateY(-50%) scale3d(1, 1, 1)",
@@ -39,39 +39,39 @@
     "overlayLeft": "auto",
     "overlayRight": "100%",
     "overlayTop": "auto",
-    "overlayBottom": "-50%"
+    "overlayBottom": "calc(-50% + 2px)"
   },
   "top": {
     "overlayTransform": "translateX(-50%) scale3d(1, 1, 1)",
     "overlayLeft": "50%",
     "overlayRight": "auto",
-    "overlayTop": "calc(100% + 2px)",
+    "overlayTop": "calc(100% - 2px)",
     "overlayBottom": "auto"
   },
   "top-left": {
     "overlayTransform": "scale3d(1, 1, 1)",
-    "overlayLeft": "-10px",
+    "overlayLeft": "-6px",
     "overlayRight": "auto",
-    "overlayTop": "calc(100% + 2px)",
+    "overlayTop": "calc(100% - 2px)",
     "overlayBottom": "auto"
   },
   "top-right": {
     "overlayTransform": "scale3d(1, 1, 1)",
     "overlayLeft": "auto",
-    "overlayRight": "-10px",
-    "overlayTop": "calc(100% + 2px)",
+    "overlayRight": "-5px",
+    "overlayTop": "calc(100% - 2px)",
     "overlayBottom": "auto"
   },
   "bottom-right": {
     "overlayTransform": "scale3d(1, 1, 1)",
     "overlayLeft": "auto",
-    "overlayRight": "-10px",
+    "overlayRight": "-5px",
     "overlayTop": "auto",
     "overlayBottom": "calc(100% + 12px)"
   },
   "bottom-left": {
     "overlayTransform": "scale3d(1, 1, 1)",
-    "overlayLeft": "-10px",
+    "overlayLeft": "-8px",
     "overlayRight": "auto",
     "overlayTop": "auto",
     "overlayBottom": "calc(100% + 12px)"

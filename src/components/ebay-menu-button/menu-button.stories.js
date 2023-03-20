@@ -1,10 +1,14 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
 import Readme from './README.md';
-import badgedExample from './examples/22-badged-items/template.marko';
-import iconExample from './examples/09-icon-with-text/template.marko';
-import typeaheadExample from './examples/18-typeahead/template.marko';
-import separatorExample from './examples/02-separator/template.marko';
+import BadgedTemplate from './examples/badged-items.marko';
+import BadgedTemplateCode from './examples/badged-items.marko?raw';
+import IconTemplate from './examples/icon-with-text.marko';
+import IconTemplateCode from './examples/icon-with-text.marko?raw';
+import TypeaheadTemplate from './examples/typeahead.marko';
+import TypeaheadTemplateCode from './examples/typeahead.marko?raw';
+import SeparatorTemplate from './examples/separator.marko';
+import SeparatorTemplateCode from './examples/separator.marko?raw';
 import Component from './index.marko';
 
 const Template = (args) => ({
@@ -175,8 +179,8 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     items: [
         {
             renderBody: `item 1 that has very long text`,
@@ -190,23 +194,15 @@ Standard.args = {
     ],
     text: `eBay Menu`,
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-menu-button', Standard.args),
+            code: tagToString('ebay-menu-button', Default.args),
         },
     },
 };
-export const iconText = () => ({
-    component: iconExample,
-});
-export const BadgedItems = () => ({
-    component: badgedExample,
-});
-export const Typeahead = () => ({
-    component: typeaheadExample,
-});
 
-export const Separator = () => ({
-    component: separatorExample,
-});
+export const IconText = buildExtensionTemplate(IconTemplate, IconTemplateCode);
+export const Separator = buildExtensionTemplate(SeparatorTemplate, SeparatorTemplateCode);
+export const Typeahead = buildExtensionTemplate(TypeaheadTemplate, TypeaheadTemplateCode);
+export const Badged = buildExtensionTemplate(BadgedTemplate, BadgedTemplateCode);

@@ -1,11 +1,13 @@
 import '@ebay/skin/tokens';
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { render, fireEvent, cleanup, waitFor } from '@marko/testing-library';
+import { createRenderBody } from '../../../common/test-utils/shared';
 import { pressKey } from '../../../common/test-utils/browser';
-import template from '..';
-import * as mock from './mock';
+import * as stories from '../combobox.stories';
 
+const { Isolated, FloatingLabel } = composeStories(stories);
 use(chaiDom);
 afterEach(cleanup);
 
@@ -13,10 +15,8 @@ afterEach(cleanup);
 let component;
 
 describe('given the combobox with 3 items', () => {
-    const input = mock.combobox3Options;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Isolated);
     });
 
     it('has no options selected by default', () => {
@@ -84,7 +84,9 @@ describe('given the combobox with 3 items', () => {
                     const options = component.getAllByRole('option');
                     expect(options).has.property(0).with.class('combobox__option--active');
                     expect(options).has.property(1).not.with.class('combobox__option--active');
-                    expect(component.getByRole('combobox')).has.value(input.options[0].text);
+                    expect(component.getByRole('combobox')).has.value(
+                        Isolated.args.options[0].text
+                    );
                 });
 
                 describe('when the enter key is pressed', () => {
@@ -97,7 +99,7 @@ describe('given the combobox with 3 items', () => {
 
                     it('then it should correctly set value for the input', () => {
                         expect(component.getByRole('combobox').value).to.equal(
-                            input.options[0].text
+                            Isolated.args.options[0].text
                         );
                     });
 
@@ -118,7 +120,9 @@ describe('given the combobox with 3 items', () => {
                         const options = component.getAllByRole('option');
                         expect(options).has.property(0).not.with.class('combobox__option--active');
                         expect(options).has.property(1).with.class('combobox__option--active');
-                        expect(component.getByRole('combobox')).has.value(input.options[1].text);
+                        expect(component.getByRole('combobox')).has.value(
+                            Isolated.args.options[1].text
+                        );
                     });
                 });
             });
@@ -133,7 +137,9 @@ describe('given the combobox with 3 items', () => {
                 });
 
                 it('then it should update the input', () => {
-                    expect(component.getByRole('combobox')).has.value(input.options[1].text);
+                    expect(component.getByRole('combobox')).has.value(
+                        Isolated.args.options[1].text
+                    );
                 });
 
                 describe('Should allow combobox to reopen on click', () => {
@@ -163,10 +169,8 @@ describe('given the combobox with 3 items', () => {
 });
 
 describe('given the combobox with 3 items and 2 selected', () => {
-    const input = mock.combobox3Options2Selected;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Isolated, { value: Isolated.args.options[1].text });
     });
 
     it('has no options selected by default', () => {
@@ -200,7 +204,7 @@ describe('given the combobox with 3 items and 2 selected', () => {
 
             it('then should show all items by default', () => {
                 const options = component.getAllByRole('option');
-                expect(options.length).to.equal(3);
+                expect(options.length).to.equal(6);
                 expect(options).has.property(1).with.class('combobox__option--active');
             });
         });
@@ -208,10 +212,10 @@ describe('given the combobox with 3 items and 2 selected', () => {
 });
 
 describe('given the combobox with 3 items set to manual selection', () => {
-    const input = mock.combobox3OptionsManual;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Isolated, {
+            listSelection: 'manual',
+        });
     });
 
     it('has no options selected by default', () => {
@@ -291,7 +295,9 @@ describe('given the combobox with 3 items set to manual selection', () => {
                     });
 
                     it('then it should correctly set value for the input', () => {
-                        expect(component.getByRole('combobox')).has.value(input.options[0].text);
+                        expect(component.getByRole('combobox')).has.value(
+                            Isolated.args.options[0].text
+                        );
                     });
 
                     it('then it emitted the select event', () => {
@@ -326,7 +332,9 @@ describe('given the combobox with 3 items set to manual selection', () => {
                 });
 
                 it('then it should update the input', () => {
-                    expect(component.getByRole('combobox')).has.value(input.options[1].text);
+                    expect(component.getByRole('combobox')).has.value(
+                        Isolated.args.options[1].text
+                    );
                 });
 
                 describe('Should allow combobox to reopen on click', () => {
@@ -356,10 +364,8 @@ describe('given the combobox with 3 items set to manual selection', () => {
 });
 
 describe('given the combobox starts with zero options', () => {
-    const input = mock.combobox0Options;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Isolated, { options: [] });
     });
 
     describe('when the input receives focus', () => {
@@ -398,11 +404,9 @@ describe('given the combobox starts with zero options', () => {
         });
     });
 
-    describe('when it is rerendered with 3 items', () => {
-        const newInput = mock.combobox3Options;
-
+    describe('when it is rerendered with 6 items', () => {
         beforeEach(async () => {
-            await component.rerender(newInput);
+            await component.rerender(Isolated.args);
         });
 
         describe('when the input receives focus', () => {
@@ -461,7 +465,7 @@ describe('given the combobox starts with zero options', () => {
 
                     it('then it should correctly set value for the input', () => {
                         expect(component.getByRole('combobox').value).to.equal(
-                            newInput.options[0].text
+                            Isolated.args.options[0].text
                         );
                     });
 
@@ -496,7 +500,9 @@ describe('given the combobox starts with zero options', () => {
                 });
 
                 it('then it should update the input', () => {
-                    expect(component.getByRole('combobox')).has.value(newInput.options[1].text);
+                    expect(component.getByRole('combobox')).has.value(
+                        Isolated.args.options[1].text
+                    );
                 });
             });
 
@@ -517,15 +523,17 @@ describe('given the combobox starts with zero options', () => {
 });
 
 describe('when it is rerendered with actionable', () => {
-    const input = mock.combobox3OptionsActionable;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Isolated, {
+            button: {
+                renderBody: createRenderBody('button'),
+            },
+        });
     });
 
     describe('when the actionable is clicked', () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByText(input.button.renderBody.text));
+            await fireEvent.click(component.getByText('button'));
         });
 
         it('should emit event', () => {
@@ -536,7 +544,7 @@ describe('when it is rerendered with actionable', () => {
     describe('when it is expanded and actionable is clicked', () => {
         beforeEach(async () => {
             await fireEvent.focus(component.getByRole('combobox'));
-            await fireEvent.click(component.getByText(input.button.renderBody.text));
+            await fireEvent.click(component.getByText('button'));
         });
 
         it('should emit event and not close', () => {
@@ -547,10 +555,8 @@ describe('when it is rerendered with actionable', () => {
 });
 
 describe('given an input textbox with floating label and no value', () => {
-    const input = mock.combobox3OptionsFloatingLabel;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(FloatingLabel);
     });
 
     it('then component is wrapped into floating label element', () => {
@@ -558,7 +564,9 @@ describe('given an input textbox with floating label and no value', () => {
     });
 
     it('then is showing the label inline', () => {
-        expect(component.getByText(input.floatingLabel)).has.class('floating-label__label--inline');
+        expect(component.getByText(FloatingLabel.args.floatingLabel)).has.class(
+            'floating-label__label--inline'
+        );
     });
 
     describe('when the input is focused', () => {
@@ -567,7 +575,7 @@ describe('given an input textbox with floating label and no value', () => {
         });
 
         it('then it is not showing the label inline', () => {
-            expect(component.getByText(input.floatingLabel)).does.not.have.class(
+            expect(component.getByText(FloatingLabel.args.floatingLabel)).does.not.have.class(
                 'floating-label__label--inline'
             );
         });
@@ -579,7 +587,7 @@ describe('given an input textbox with floating label and no value', () => {
 
             it('then is showing the label inline', async () => {
                 await waitFor(() =>
-                    expect(component.getByText(input.floatingLabel)).has.class(
+                    expect(component.getByText(FloatingLabel.args.floatingLabel)).has.class(
                         'floating-label__label--inline'
                     )
                 );
