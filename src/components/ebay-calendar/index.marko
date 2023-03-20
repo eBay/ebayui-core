@@ -18,7 +18,7 @@ $ const rangeEndText = input.a11yRangeEndText ?? "end of range"
                     disabled=(state.disableBefore && component.getFirstVisibleISO() <= state.disableBefore)
                     aria-label=getShowMonthText(component.monthTitle(component.getMonthDate(state.offset - 1)))
                     onClick('prevMonth')>
-                    <ebay-chevron-left-icon/>
+                    <ebay-chevron-left-24-icon/>
                 </ebay-icon-button>
                 <for|monthDate| of=monthDates>
                     <h3>${component.monthTitle(monthDate)}</h3>
@@ -29,7 +29,7 @@ $ const rangeEndText = input.a11yRangeEndText ?? "end of range"
                     disabled=(state.disableAfter && component.getLastVisibleISO() >= state.disableAfter)
                     aria-label=getShowMonthText(component.monthTitle(component.getMonthDate(state.offset + numMonths)))
                     onClick('nextMonth')>
-                    <ebay-chevron-right-icon/>
+                    <ebay-chevron-right-24-icon/>
                 </ebay-icon-button>
             </div>
         </div>
