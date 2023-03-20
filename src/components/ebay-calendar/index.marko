@@ -68,6 +68,15 @@ $ const rangeEndText = input.a11yRangeEndText ?? "end of range"
                                     $ const isInRange = component.isInRange(dayISO);
                                     $ const isRangeEnd = dayISO === state.rangeEnd;
                                     $ const disabled = component.isDisabled(dayISO);
+                                    $ const rangeAriaLabel = (input.range && Array.isArray(input.selected) && (
+                                            isRangeStart
+                                            ? `${day} - ${rangeStartText}`
+                                            : isRangeEnd
+                                            ? `${day} - ${rangeEndText}`
+                                            : isInRange
+                                            ? `${day} - ${inRangeText}`
+                                            : undefined
+                                        ))
                                     <td
                                         class={
                                             "calendar__range--start": isRangeStart,
@@ -80,29 +89,27 @@ $ const rangeEndText = input.a11yRangeEndText ?? "end of range"
                                                 ? input.selected.some((iso) => iso === dayISO)
                                                 : input.selected && input.selected === dayISO
                                         ) && "true">
-                                        <${input.interactive ? "button" : "span"}
-                                            key=dayISO
-                                            class=input.interactive && disabled && "calendar__cell--disabled"
-                                            disabled=disabled
-                                            aria-label=(
-                                                input.range && Array.isArray(input.selected) && (
-                                                    isRangeStart
-                                                    ? `${day} - ${rangeStartText}`
-                                                    : isRangeEnd
-                                                    ? `${day} - ${rangeEndText}`
-                                                    : isInRange
-                                                    ? `${day} - ${inRangeText}`
-                                                    : undefined
-                                                )
-                                            )
-                                            tabindex=input.interactive && state.tabindexISO !== dayISO && -1
-                                            onClick('onDaySelect', dayISO)
-                                            onFocus('onDayFocus', dayISO)
-                                            onMouseover('onDayFocus', dayISO)
-                                            onBlur('onDayBlur')
-                                            onMouseout('onDayBlur')>
-                                            ${day}
-                                        </>
+                                        <if(input.interactive)>
+                                            <button
+                                                key=dayISO
+                                                disabled=disabled
+                                                aria-label=rangeAriaLabel
+                                                tabindex=state.tabindexISO !== dayISO && -1
+                                                onClick('onDaySelect', dayISO)
+                                                onFocus('onDayFocus', dayISO)
+                                                onMouseover('onDayFocus', dayISO)
+                                                onBlur('onDayBlur')
+                                                onMouseout('onDayBlur')>
+                                                ${day}
+                                            </button>
+                                        </if>
+                                        <else>
+                                            <span
+                                                class=disabled && "calendar__cell--disabled"
+                                                aria-label=rangeAriaLabel>
+                                                ${day}
+                                            </span>
+                                        </else>
                                     </td>
                                 </for>
                             </tr>
