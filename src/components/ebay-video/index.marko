@@ -47,7 +47,7 @@ static var ignoredAttributes = [
         "video-player__overlay",
         !state.failed && "video-player__overlay--hidden"
     ]>
-        <ebay-attention-icon/>
+        <ebay-attention-24-icon/>
         <div class="video-player__overlay-text">
             <if(input.errorText)>${input.errorText}</if>
             <else>An error has occurred</else>
@@ -60,7 +60,7 @@ static var ignoredAttributes = [
         ]
         on-click("loadVideo", true)>
         <if(!state.showLoading)>
-            <ebay-video-play-icon a11y-text=(input.a11yPlayText || "Click to play")/>
+            <ebay-play-24-icon a11y-text=(input.a11yPlayText || "Click to play")/>
         </if>
         <else>
             <ebay-progress-spinner a11y-text=(input.a11yLoadText || "Loading")/>
