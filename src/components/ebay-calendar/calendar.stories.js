@@ -173,8 +173,8 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.parameters = {
+export const Default = Template.bind({});
+Default.parameters = {
     docs: {
         source: {
             DefaultTemplateCode,
