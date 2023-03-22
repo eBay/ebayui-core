@@ -378,7 +378,7 @@ describe('given the combobox starts with zero options', () => {
         });
 
         it('then it should not be expanded', () => {
-            expect(component.getByRole('combobox')).not.has.attr('aria-expanded');
+            expect(component.getByRole('combobox')).has.attr('aria-expanded', 'false');
         });
     });
 

@@ -19,7 +19,7 @@ describe('notice-icon', () => {
         const content = getByText(input.renderBody.text);
         expect(content).has.class(`${input.prefixClass}__main`);
 
-        expect(getByLabelText(input.a11yText)).has.class('icon--attention-filled-small');
+        expect(getByLabelText(input.a11yText)).has.class('icon--attention-filled-16');
     });
 
     it('renders inline version', async () => {
@@ -31,7 +31,7 @@ describe('notice-icon', () => {
         expect(status.parentElement).has.class(input.class);
         expect(status.parentElement).has.tagName('DIV');
 
-        expect(getByLabelText(input.a11yText)).has.class('icon--information-filled-small');
+        expect(getByLabelText(input.a11yText)).has.class('icon--information-filled-16');
         expect(getByLabelText(input.a11yText)).has.class('notice-class');
     });
 

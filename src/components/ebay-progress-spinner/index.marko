@@ -7,9 +7,12 @@ static var ignoredAttributes = ["class", "size"];
     class=["progress-spinner", input.size === "large" && "progress-spinner--large", input.class]
     role="img">
     <if(input.size === "large")>
-        <ebay-spinner-large-icon/>
+        <ebay-spinner-30-icon/>
     </if>
+    <else-if(input.size === "small")>
+        <ebay-spinner-20-icon/>
+    </else-if>
     <else>
-        <ebay-spinner-icon/>
+        <ebay-spinner-24-icon/>
     </else>
 </span>

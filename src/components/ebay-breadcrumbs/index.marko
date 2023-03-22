@@ -1,5 +1,5 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
-import DotsIcon from '<ebay-overflow-small-icon>';
+import DotsIcon from '<ebay-overflow-ios-16-icon>';
 static var ignoredAttributes = ['a11yHeadingText', 'a11yHeadingTag', 'items', 'toJSON'];
 $ var anyHref = (input.items || []).some((element) => element.href != null);
 <nav
@@ -33,7 +33,7 @@ $ var anyHref = (input.items || []).some((element) => element.href != null);
                             </@item>
                         </for>
                     </ebay-fake-menu-button>
-                    <ebay-breadcrumb-icon/>
+                    <ebay-chevron-right-12-icon/>
                 </li>
             </if>
             <li hidden=isHidden>
@@ -47,7 +47,7 @@ $ var anyHref = (input.items || []).some((element) => element.href != null);
                     <${item.renderBody}/>
                 </>
                 <if(!isLast)>
-                    <ebay-breadcrumb-icon/>
+                    <ebay-chevron-right-12-icon/>
                 </if>
             </li>
         </for>
