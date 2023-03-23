@@ -1,0 +1,18 @@
+{
+  "attributes": {
+    "navigable": "boolean",
+    "interactive": "boolean",
+    "numMonths": "number",
+    "locale": "string",
+    "range": "boolean",
+    "selected": "string",
+    "disableBefore": "expression",
+    "disableAfter": "expression",
+    "disableWeekdays": "array",
+    "disableList": "array",
+    "getA11yShowMonthText": "function",
+    "a11yRangeStartText": "string",
+    "a11yInRangeText": "string",
+    "a11yRangeEndText": "string"
+  }
+}

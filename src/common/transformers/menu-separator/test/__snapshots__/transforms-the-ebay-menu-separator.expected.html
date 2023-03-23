@@ -1,4 +1,4 @@
-// Compiled using marko@5.22.8 - DO NOT EDIT
+// Compiled using marko@5.25.1 - DO NOT EDIT
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _index = require("marko/src/runtime/html/index.js");
+var _selfIterator = _interopRequireDefault(require("marko/src/runtime/helpers/self-iterator.js"));
 var _index2 = _interopRequireDefault(require("./index.marko"));
 var _renderTag = _interopRequireDefault(require("marko/src/runtime/helpers/render-tag.js"));
 var _component2 = _interopRequireDefault(require("./component.js"));
@@ -16,10 +17,11 @@ const _marko_componentType = "src/components/ebay-menu/index.marko",
 var _default = _marko_template;
 exports.default = _default;
 const _marko_component2 = _component2.default;
-_marko_template._ = (0, _renderer.default)(function (input, out, _componentDef, _component, state) {
+_marko_template._ = (0, _renderer.default)(function (input, out, _componentDef, _component, state, $global) {
   const _items = [];
   _items.push({
-    "separator": true
+    "separator": true,
+    [Symbol.iterator]: _selfIterator.default
   });
   (0, _renderTag.default)(_index2.default, {
     "items": _items

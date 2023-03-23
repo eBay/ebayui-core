@@ -1,0 +1,54 @@
+// @ts-check
+
+$ const openPopoverText = input.a11yOpenPopoverText ?? "open calendar"
+$ {
+    const defaultPlaceholder = "YYYY-MM-DD"
+    const [rangeStartPlaceholder, mainPlaceholder] =
+        Array.isArray(input.inputPlaceholderText)
+            ? input.inputPlaceholderText
+            : [
+                input.inputPlaceholderText ?? defaultPlaceholder,
+                input.inputPlaceholderText ?? defaultPlaceholder
+            ]
+}
+
+<span.date-textbox
+    on-expander-expand("openPopover")
+    on-expander-collapse("closePopover")>
+    <if(input.range)>
+        <ebay-textbox
+            placeholder=rangeStartPlaceholder
+            value=state.firstSelected
+            on-blur("handleInputChange", 0)>
+        </ebay-textbox>
+    </if>
+    <ebay-textbox
+        class="ebay-date-textbox--main"
+        placeholder=mainPlaceholder
+        buttonAriaLabel=openPopoverText
+        value=input.range ? state.secondSelected : state.firstSelected
+        on-blur("handleInputChange", 0)>
+        <@postfix-icon><ebay-calendar-24-icon/></@postfix-icon>
+    </ebay-textbox>
+    <div.date-textbox__popover hidden=!state.popover key="popover">
+        <if(state.popover)>
+            <subscribe to=window on-resize("calculateNumMonths")/>
+        </if>
+        <ebay-calendar
+            interactive
+            navigable
+            range=input.range
+            numMonths=state.numMonths
+            selected=(state.firstSelected && state.secondSelected) ? [state.firstSelected, state.secondSelected] : (state.firstSelected ?? state.secondSelected)
+            locale=input.locale
+            disableBefore=input.disableBefore
+            disableAfter=input.disableAfter
+            disableList=input.disableList
+            disableWeekdays=input.disableWeekdays
+            getA11yShowMonthText=input.getA11yShowMonthText
+            a11yRangeStartText=input.a11yRangeStartText
+            a11yInRangeText=input.a11yInRangeText
+            a11yRangeEndText=input.a11yRangeEndText
+            on-select("onPopoverSelect")/>
+    </div>
+</span>
