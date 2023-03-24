@@ -67,7 +67,7 @@
     "@commitlint/cli": "^17",
     "@commitlint/config-conventional": "^17",
     "@ebay/browserslist-config": "^2.2.0",
-    "@ebay/skin": "~15.5.1",
+    "@ebay/skin": "~16.0.0-1",
     "@google/model-viewer": "^2.1.1",
     "@lasso/marko-taglib": "^2.0.5",
     "@marko/compiler": "^5.23.2",
@@ -133,7 +133,7 @@
     "wdio-chromedriver-service": "^8"
   },
   "peerDependencies": {
-    "@ebay/skin": "~15.5.1",
+    "@ebay/skin": "~16.0.0-1",
     "marko": "^4 || ^5.23.0"
   },
   "dependencies": {

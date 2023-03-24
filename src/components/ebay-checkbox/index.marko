@@ -16,49 +16,25 @@ $ var isSquare = input.iconStyle === 'square';
         onFocus("handleFocus")
         onKeydown("handleKeydown")/>
     <span class="checkbox__icon" hidden>
-        <if (isSquare)>
-            <if (input.size === 'large')>
-                <ebay-checkbox-square-unchecked-large-icon
-                    class="checkbox__unchecked"
-                    focusable="false"
-                    no-skin-classes/>
-                <ebay-checkbox-square-checked-large-icon
-                    class="checkbox__checked"
-                    focusable="false"
-                    no-skin-classes/>
-            </if>
-            <else>
-                <ebay-checkbox-square-unchecked-icon
-                    class="checkbox__unchecked"
-                    focusable="false"
-                    no-skin-classes/>
-                <ebay-checkbox-square-checked-icon
-                    class="checkbox__checked"
-                    focusable="false"
-                    no-skin-classes/>
-            </else>
+        <if (input.size === 'large')>
+            <ebay-checkbox-unchecked-24-icon
+                class="checkbox__unchecked"
+                focusable="false"
+                no-skin-classes/>
+            <ebay-checkbox-checked-24-icon
+                class="checkbox__checked"
+                focusable="false"
+                no-skin-classes/>
         </if>
         <else>
-            <if (input.size === 'large')>
-                <ebay-checkbox-unchecked-large-icon
-                    class="checkbox__unchecked"
-                    focusable="false"
-                    no-skin-classes/>
-                <ebay-checkbox-checked-large-icon
-                    class="checkbox__checked"
-                    focusable="false"
-                    no-skin-classes/>
-            </if>
-            <else>
-                <ebay-checkbox-unchecked-icon
-                    class="checkbox__unchecked"
-                    focusable="false"
-                    no-skin-classes/>
-                <ebay-checkbox-checked-icon
-                    class="checkbox__checked"
-                    focusable="false"
-                    no-skin-classes/>
-            </else>
+            <ebay-checkbox-unchecked-18-icon
+                class="checkbox__unchecked"
+                focusable="false"
+                no-skin-classes/>
+            <ebay-checkbox-checked-18-icon
+                class="checkbox__checked"
+                focusable="false"
+                no-skin-classes/>
         </else>
     </span>
 </span>
