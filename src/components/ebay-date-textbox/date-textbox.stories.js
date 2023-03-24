@@ -91,6 +91,12 @@ export default {
                 },
             },
         },
+        a11ySelectedText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to indicate a selected date',
+            table: { defaultValue: { summary: 'selected' } },
+        },
         a11yRangeStartText: {
             type: 'text',
             control: { type: 'text' },

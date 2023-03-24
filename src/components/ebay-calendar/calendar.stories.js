@@ -60,6 +60,17 @@ export default {
                 },
             },
         },
+        selected: {
+            type: 'text|array',
+            control: { type: 'object' },
+            description:
+                'Date or list of dates that are selected, represented as an ISO string or an array of ISO strings',
+            table: {
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
         locale: {
             type: 'text',
             control: { type: 'text' },
@@ -122,6 +133,12 @@ export default {
                 },
             },
         },
+        a11ySelectedText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to indicate a selected date',
+            table: { defaultValue: { summary: 'selected' } },
+        },
         a11yRangeStartText: {
             type: 'text',
             control: { type: 'text' },
@@ -139,6 +156,13 @@ export default {
             control: { type: 'text' },
             description: 'Text to indicate the end of a selected range',
             table: { defaultValue: { summary: 'end of range' } },
+        },
+        a11yTodayText: {
+            type: 'text',
+            control: { type: 'text' },
+            description:
+                'Text to indicate the current date. Only shown in static calendars, where "aria-current" is not supported',
+            table: { defaultValue: { summary: 'today' } },
         },
         onSelect: {
             action: 'on-select',

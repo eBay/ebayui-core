@@ -25,9 +25,11 @@ const DAY_UPDATE_KEYMAP = {
  *   disableWeekdays?: number[],
  *   disableList?: (Date | number | string)[],
  *   getA11yShowMonthText?: (monthName: string) => string,
+ *   a11ySelectedText?: string,
  *   a11yRangeStartText?: string,
  *   a11yInRangeText?: string,
  *   a11yRangeEndText?: string,
+ *   a11yTodayText?: string,
  * }} Input
  * @typedef {{
  *   todayISO: DayISO,
