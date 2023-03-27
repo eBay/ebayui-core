@@ -1,0 +1,15 @@
+<ebay-date-textbox
+    disableBefore="2023-01-12"
+    disableAfter="2023-02-19"
+    range
+    locale="af"
+    getA11yShowMonthText=(monthName) => `Gaan na ${monthName}`
+    buildA11yCellText=({isSelected, isRangeStart, isInRange, isRangeEnd}) => {
+        let string = ""
+        if (isSelected) string += " (geselekteerde)";
+        if (isRangeStart) string += " (reeks begin)";
+        if (isInRange) string += " (binne bereik)";
+        if (isRangeEnd) string += " (reeks einde)";
+        return string;
+    }
+    on-change("emit", "change")/>

@@ -25,7 +25,7 @@ const DAY_UPDATE_KEYMAP = {
  *   disableWeekdays?: number[],
  *   disableList?: (Date | number | string)[],
  *   getA11yShowMonthText?: (monthName: string) => string,
- *   buildA11yCellText?: (info: {selected?: boolean, rangeStart?: boolean, inRange?: boolean, rangeEnd?: boolean, today?: boolean, disabled?: boolean}) => string,
+ *   buildA11yCellText?: (info: {isSelected: boolean, isRangeStart: boolean, isInRange: boolean, isRangeEnd: boolean, isToday: boolean, isDisabled: boolean, locale: string}) => string,
  * }} Input
  * @typedef {{
  *   todayISO: DayISO,

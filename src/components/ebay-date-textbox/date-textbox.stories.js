@@ -1,7 +1,9 @@
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
-import DefaultTemplate from './examples/default.marko';
-import DefaultTemplateCode from './examples/default.marko?raw';
+import Component from './index.marko';
+import LocalizedTemplate from './examples/localized.marko';
+import LocalizedTemplateCode from './examples/localized.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -9,7 +11,7 @@ const Template = (args) => ({
 
 export default {
     title: 'form input/ebay-date-textbox',
-    component: DefaultTemplate,
+    component: Component,
     parameters: {
         docs: {
             description: {
@@ -95,7 +97,7 @@ export default {
             type: 'callback',
             control: { type: 'callback' },
             description:
-                'Function used to get the text for each cell in the calendar. Should return a string that describes the cell. The function is passed an object with the following properties: `selected`, `rangeStart`, `inRange`, and `rangeEnd`. By default, the function returns hyphen-separated english words describing each property, such as `" - selected - start of range"`',
+                'Function used to get the text for each cell in the calendar. Should return a string that describes the cell. The function is passed an object with the following properties: `isSelected`, `isRangeStart`, `isInRange`, `isRangeEnd`, and `locale`. By default, the function returns hyphen-separated english words describing each property, such as `" - selected - start of range"`',
             table: {
                 defaultValue: {
                     summary: '(info) => [generates hyphen-separated list of strings]',
@@ -132,7 +134,9 @@ export const Default = Template.bind({});
 Default.parameters = {
     docs: {
         source: {
-            DefaultTemplateCode,
+            code: tagToString('ebay-date-textbox', {}),
         },
     },
 };
+
+export const Localized = buildExtensionTemplate(LocalizedTemplate, LocalizedTemplateCode);

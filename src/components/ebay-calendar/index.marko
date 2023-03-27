@@ -1,20 +1,20 @@
 // @ts-check
-import {toISO} from "./component"
+import {localeOverride, toISO} from "./component"
 
 $ const numMonths = input.numMonths || 1;
 $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(state.offset + i));
 $ const getShowMonthText = input.getA11yShowMonthText ?? ((month) => `Show ${month}`);
 /**
-* @param {{selected: boolean, rangeStart: boolean, inRange: boolean, rangeEnd: boolean, today: boolean, disabled: boolean}} info
+* @param {{isSelected: boolean, isRangeStart: boolean, isInRange: boolean, isRangeEnd: boolean, isToday: boolean, isDisabled: boolean}} info
 */
 static function defaultBuildA11yCellText(info) {
     const parts = [""];
-    if (info.selected) parts.push("selected");
-    if (info.rangeStart) parts.push("start of range");
-    if (info.rangeEnd) parts.push("end of range");
-    if (!info.rangeStart && !info.rangeEnd && info.inRange) parts.push("in range");
-    if (info.today) parts.push("today");
-    if (info.disabled) parts.push("inactive");
+    if (info.isSelected) parts.push("selected");
+    if (info.isRangeStart) parts.push("start of range");
+    if (info.isRangeEnd) parts.push("end of range");
+    if (!info.isRangeStart && !info.isRangeEnd && info.isInRange) parts.push("in range");
+    if (info.isToday) parts.push("today");
+    if (info.isDisabled) parts.push("inactive");
     return parts.join(" - ");
 }
 $ const buildA11yCellText = input.buildA11yCellText ?? defaultBuildA11yCellText;
@@ -84,12 +84,13 @@ $ const buildA11yCellText = input.buildA11yCellText ?? defaultBuildA11yCellText;
                                     $ const isRangeEnd = dayISO === state.rangeEnd;
                                     $ const isDisabled = component.isDisabled(dayISO);
                                     $ const a11yText = buildA11yCellText({
-                                        selected: isSelected,
-                                        rangeStart: isRangeStart,
-                                        inRange: isInRange,
-                                        rangeEnd: isRangeEnd,
-                                        today: !input.interactive && isToday,
-                                        disabled: !input.interactive && isDisabled,
+                                        isSelected,
+                                        isRangeStart,
+                                        isInRange,
+                                        isRangeEnd,
+                                        isToday: !input.interactive && isToday,
+                                        isDisabled: !input.interactive && isDisabled,
+                                        locale: localeOverride(input.locale)
                                     });
                                     <td class={
                                             "calendar__cell--selected": isSelected,
