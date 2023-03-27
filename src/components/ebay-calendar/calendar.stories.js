@@ -133,36 +133,16 @@ export default {
                 },
             },
         },
-        a11ySelectedText: {
-            type: 'text',
-            control: { type: 'text' },
-            description: 'Text to indicate a selected date',
-            table: { defaultValue: { summary: 'selected' } },
-        },
-        a11yRangeStartText: {
-            type: 'text',
-            control: { type: 'text' },
-            description: 'Text to indicate the start of a selected range',
-            table: { defaultValue: { summary: 'start of range' } },
-        },
-        a11yInRangeText: {
-            type: 'text',
-            control: { type: 'text' },
-            description: 'Text to indicate a value that is inside the selected range',
-            table: { defaultValue: { summary: 'in range' } },
-        },
-        a11yRangeEndText: {
-            type: 'text',
-            control: { type: 'text' },
-            description: 'Text to indicate the end of a selected range',
-            table: { defaultValue: { summary: 'end of range' } },
-        },
-        a11yTodayText: {
-            type: 'text',
-            control: { type: 'text' },
+        buildA11yCellText: {
+            type: 'callback',
+            control: { type: 'callback' },
             description:
-                'Text to indicate the current date. Only shown in static calendars, where "aria-current" is not supported',
-            table: { defaultValue: { summary: 'today' } },
+                'Function used to get the text for each cell in the calendar. Should return a string that describes the cell. The function is passed an object with the following properties: `selected`, `rangeStart`, `inRange`, `rangeEnd`, `today`, and `disabled`. By default, the function returns hyphen-separated english words describing each property, such as `" - selected - start of range - today"`',
+            table: {
+                defaultValue: {
+                    summary: '(info) => [generates hyphen-separated list of strings]',
+                },
+            },
         },
         onSelect: {
             action: 'on-select',
