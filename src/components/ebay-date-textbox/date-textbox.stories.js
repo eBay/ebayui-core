@@ -95,7 +95,7 @@ export default {
             type: 'callback',
             control: { type: 'callback' },
             description:
-                'Function used to get the text for each cell in the calendar. Should return a string that describes the cell. The function is passed an object with the following properties: `selected`, `rangeStart`, `inRange`, `rangeEnd`, `today`, and `disabled`. By default, the function returns hyphen-separated english words describing each property, such as `" - selected - start of range - today"`',
+                'Function used to get the text for each cell in the calendar. Should return a string that describes the cell. The function is passed an object with the following properties: `selected`, `rangeStart`, `inRange`, and `rangeEnd`. By default, the function returns hyphen-separated english words describing each property, such as `" - selected - start of range"`',
             table: {
                 defaultValue: {
                     summary: '(info) => [generates hyphen-separated list of strings]',
