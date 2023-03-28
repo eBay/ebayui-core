@@ -14,10 +14,14 @@ const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
  *   disableAfter?: Date | number | string,
  *   disableWeekdays?: number[],
  *   disableList?: (Date | number | string)[],
- *   getA11yShowMonthText?: (monthName: string) => string,
- *   buildA11yCellText?: (info: {isSelected: boolean, isRangeStart: boolean, isInRange: boolean, isRangeEnd: boolean, locale: string}) => string,
- *   a11yOpenPopoverText?: string,
  *   inputPlaceholderText?: string | [string, string],
+ *   getA11yShowMonthText?: (monthName: string) => string,
+ *   a11yOpenPopoverText?: string,
+ *   a11ySelectedText?: string,
+ *   a11yRangeStartText?: string,
+ *   a11yInRangeText?: string,
+ *   a11yRangeEndText?: string,
+ *   a11ySeparator?: string,
  * }} Input
  * @typedef {{
  *   numMonths: number,

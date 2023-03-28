@@ -3,21 +3,15 @@ import {localeOverride, toISO} from "./component"
 
 $ const numMonths = input.numMonths || 1;
 $ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(state.offset + i));
+
 $ const getShowMonthText = input.getA11yShowMonthText ?? ((month) => `Show ${month}`);
-/**
-* @param {{isSelected: boolean, isRangeStart: boolean, isInRange: boolean, isRangeEnd: boolean, isToday: boolean, isDisabled: boolean}} info
-*/
-static function defaultBuildA11yCellText(info) {
-    const parts = [""];
-    if (info.isSelected) parts.push("selected");
-    if (info.isRangeStart) parts.push("start of range");
-    if (info.isRangeEnd) parts.push("end of range");
-    if (!info.isRangeStart && !info.isRangeEnd && info.isInRange) parts.push("in range");
-    if (info.isToday) parts.push("today");
-    if (info.isDisabled) parts.push("inactive");
-    return parts.join(" - ");
-}
-$ const buildA11yCellText = input.buildA11yCellText ?? defaultBuildA11yCellText;
+$ const a11ySelectedText = input.a11ySelectedText ?? "selected";
+$ const a11yRangeStartText = input.a11yRangeStartText ?? "start of range";
+$ const a11yInRangeText = input.a11yInRangeText ?? "in range";
+$ const a11yRangeEndText = input.a11yRangeEndText ?? "end of range";
+$ const a11yTodayText = input.a11yTodayText ?? "today";
+$ const a11yDisabledText = input.a11yDisabledText ?? "inactive";
+$ const a11ySeparator = input.a11ySeparator ?? " - ";
 
 <div.calendar>
     <if(input.navigable)>
@@ -83,15 +77,12 @@ $ const buildA11yCellText = input.buildA11yCellText ?? defaultBuildA11yCellText;
                                     $ const isInRange = component.isInRange(dayISO);
                                     $ const isRangeEnd = dayISO === state.rangeEnd;
                                     $ const isDisabled = component.isDisabled(dayISO);
-                                    $ const a11yText = buildA11yCellText({
-                                        isSelected,
-                                        isRangeStart,
-                                        isInRange,
-                                        isRangeEnd,
-                                        isToday: !input.interactive && isToday,
-                                        isDisabled: !input.interactive && isDisabled,
-                                        locale: localeOverride(input.locale)
-                                    });
+                                    $ let a11yTexts = [""];
+                                    $ if (isSelected) a11yTexts.push(a11ySelectedText);
+                                    $ if (isRangeStart) a11yTexts.push(a11yRangeStartText);
+                                    $ if (!isRangeStart && !isRangeEnd && isInRange) a11yTexts.push(a11yInRangeText);
+                                    $ if (isRangeEnd) a11yTexts.push(a11yRangeEndText);
+
                                     <td class={
                                             "calendar__cell--selected": isSelected,
                                             "calendar__range--start": isRangeStart,
@@ -102,7 +93,7 @@ $ const buildA11yCellText = input.buildA11yCellText ?? defaultBuildA11yCellText;
                                             <button
                                                 key=dayISO
                                                 disabled=isDisabled
-                                                aria-label=a11yText && `${day}${a11yText}`
+                                                aria-label=(a11yTexts.length > 1) && `${day}${a11yTexts.join(a11ySeparator)}`
                                                 tabindex=state.tabindexISO !== dayISO && -1
                                                 aria-current=isToday && "date"
                                                 onClick('onDaySelect', dayISO)
@@ -114,11 +105,13 @@ $ const buildA11yCellText = input.buildA11yCellText ?? defaultBuildA11yCellText;
                                             </button>
                                         </if>
                                         <else>
+                                            $ if (isToday) a11yTexts.push(a11yTodayText);
+                                            $ if (isDisabled) a11yTexts.push(a11yDisabledText);
                                             <span class={
                                                     "calendar__cell--disabled": isDisabled,
                                                     "calendar__cell--current": isToday,
                                                 }>
-                                                ${day}<if(a11yText)><span.clipped>${a11yText}</span></if>
+                                                ${day}<if(a11yTexts.length > 1)><span.clipped>${a11yTexts.join(a11ySeparator)}</span></if>
                                             </span>
                                         </else>
                                     </td>

@@ -133,14 +133,73 @@ export default {
                 },
             },
         },
-        buildA11yCellText: {
-            type: 'callback',
-            control: { type: 'callback' },
-            description:
-                'Function used to get the text for each cell in the calendar. Should return a string that describes the cell. The function is passed an object with the following properties: `isSelected`, `isRangeStart`, `isInRange`, `isRangeEnd`, `isToday`, `isDisabled`, and `locale`. By default, the function returns hyphen-separated english words describing each property, such as `" - selected - start of range - today"`',
+        a11ySelectedText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers when a date is selected',
             table: {
                 defaultValue: {
-                    summary: '(info) => [generates hyphen-separated list of strings]',
+                    summary: 'selected',
+                },
+            },
+        },
+        a11yRangeStartText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers when a date is the start of a range',
+            table: {
+                defaultValue: {
+                    summary: 'start of range',
+                },
+            },
+        },
+        a11yInRangeText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers when a date is in a range',
+            table: {
+                defaultValue: {
+                    summary: 'in range',
+                },
+            },
+        },
+        a11yRangeEndText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers when a date is the end of a range',
+            table: {
+                defaultValue: {
+                    summary: 'end of range',
+                },
+            },
+        },
+        a11yTodayText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers when a date is the current date',
+            table: {
+                defaultValue: {
+                    summary: 'today',
+                },
+            },
+        },
+        a11yDisabledText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers when a date is disabled',
+            table: {
+                defaultValue: {
+                    summary: 'inactive',
+                },
+            },
+        },
+        a11ySeparator: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers to separate properties',
+            table: {
+                defaultValue: {
+                    summary: ' - ',
                 },
             },
         },

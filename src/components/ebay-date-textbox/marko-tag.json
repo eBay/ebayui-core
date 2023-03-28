@@ -6,9 +6,13 @@
     "disableAfter": "expression",
     "disableWeekdays": "array",
     "disableList": "array",
+    "inputPlaceholderText": "expression",
     "getA11yShowMonthText": "function",
-    "buildA11yCellText": "function",
     "a11yOpenPopoverText": "string",
-    "inputPlaceholderText": "expression"
+    "a11ySelectedText": "string",
+    "a11yRangeStartText": "string",
+    "a11yInRangeText": "string",
+    "a11yRangeEndText": "string",
+    "a11ySeparator": "string"
   }
 }
