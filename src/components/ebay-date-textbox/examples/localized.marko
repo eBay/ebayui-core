@@ -5,7 +5,7 @@
     locale="af"
     getA11yShowMonthText=(monthName) => `Gaan na ${monthName}`
     buildA11yCellText=({isSelected, isRangeStart, isInRange, isRangeEnd}) => {
-        let string = ""
+        let string = "";
         if (isSelected) string += " (geselekteerde)";
         if (isRangeStart) string += " (reeks begin)";
         if (isInRange) string += " (binne bereik)";
