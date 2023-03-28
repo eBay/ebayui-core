@@ -53,7 +53,8 @@ export default class {
             .mount();
     }
 
-    onInput() {
+    onInput(input) {
+        this.input = this.input || input;
         // if chartRef does not exist do not try to run setupCharts as it may be server side and highcharts only works on the client side
         if (this.chartRef && this.chartRef.destroy) {
             this.chartRef.destroy();
