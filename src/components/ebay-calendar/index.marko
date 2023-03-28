@@ -107,12 +107,15 @@ $ const a11ySeparator = input.a11ySeparator ?? " - ";
                                         <else>
                                             $ if (isToday) a11yTexts.push(a11yTodayText);
                                             $ if (isDisabled) a11yTexts.push(a11yDisabledText);
-                                            <span class={
+                                            $ const link = !isDisabled && input.linkMap && input.linkMap[dayISO];
+                                            <${link ? "a" : "span"}
+                                                class={
                                                     "calendar__cell--disabled": isDisabled,
                                                     "calendar__cell--current": isToday,
-                                                }>
+                                                }
+                                                href=link>
                                                 ${day}<if(a11yTexts.length > 1)><span.clipped>${a11yTexts.join(a11ySeparator)}</span></if>
-                                            </span>
+                                            </>
                                         </else>
                                     </td>
                                 </for>

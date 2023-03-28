@@ -123,6 +123,17 @@ export default {
                 },
             },
         },
+        linkMap: {
+            type: 'object',
+            control: { type: 'object' },
+            description:
+                'Map of dates (in ISO format) to URLs. If a date is in the map, it will be rendered as a link',
+            table: {
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
         getA11yShowMonthText: {
             type: 'callback',
             control: { type: 'callback' },
