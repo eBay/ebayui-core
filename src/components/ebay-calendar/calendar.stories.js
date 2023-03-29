@@ -123,11 +123,11 @@ export default {
                 },
             },
         },
-        linkMap: {
-            type: 'object',
-            control: { type: 'object' },
+        linkBuilder: {
+            type: 'callback',
+            control: { type: 'callback' },
             description:
-                'Map of dates (in ISO format) to URLs. If a date is in the map, it will be rendered as a link',
+                "Function used to build the href for each date. The function is passed the date as a Date object, and should return a url string. For dates that don't have a link, the function should return a falsy value",
             table: {
                 defaultValue: {
                     summary: 'undefined',

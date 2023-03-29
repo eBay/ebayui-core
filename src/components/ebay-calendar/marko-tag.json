@@ -10,7 +10,7 @@
     "disableAfter": "expression",
     "disableWeekdays": "array",
     "disableList": "array",
-    "linkMap": "object",
+    "linkBuilder": "function",
     "getA11yShowMonthText": "function",
     "a11ySelectedText": "string",
     "a11yRangeStartText": "string",

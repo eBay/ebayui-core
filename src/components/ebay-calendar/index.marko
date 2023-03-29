@@ -108,7 +108,7 @@ $ var a11ySeparator = input.a11ySeparator ?? " - ";
                                         <else>
                                             $ if (isToday) a11yTexts.push(a11yTodayText);
                                             $ if (isDisabled) a11yTexts.push(a11yDisabledText);
-                                            $ var link = !isDisabled && input.linkMap && input.linkMap[dayISO];
+                                            $ var link = !isDisabled && input.linkBuilder && input.linkBuilder(dayISO);
                                             <${link ? "a" : "span"}
                                                 class={
                                                     "calendar__cell--disabled": isDisabled,
