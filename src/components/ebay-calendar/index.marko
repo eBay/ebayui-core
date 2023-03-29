@@ -1,12 +1,17 @@
 // @ts-check
-import {toISO} from "./component"
+import {localeOverride, toISO} from "./component"
 
 $ const numMonths = input.numMonths || 1;
-$ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(state.offset + i))
-$ const getShowMonthText = input.getA11yShowMonthText ?? ((month) => `Show ${month}`)
-$ const rangeStartText = input.a11yRangeStartText ?? "start of range"
-$ const inRangeText = input.a11yInRangeText ?? "in range"
-$ const rangeEndText = input.a11yRangeEndText ?? "end of range"
+$ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(state.offset + i));
+
+$ const getShowMonthText = input.getA11yShowMonthText ?? ((month) => `Show ${month}`);
+$ const a11ySelectedText = input.a11ySelectedText ?? "selected";
+$ const a11yRangeStartText = input.a11yRangeStartText ?? "start of range";
+$ const a11yInRangeText = input.a11yInRangeText ?? "in range";
+$ const a11yRangeEndText = input.a11yRangeEndText ?? "end of range";
+$ const a11yTodayText = input.a11yTodayText ?? "today";
+$ const a11yDisabledText = input.a11yDisabledText ?? "inactive";
+$ const a11ySeparator = input.a11ySeparator ?? " - ";
 
 <div.calendar>
     <if(input.navigable)>
@@ -64,37 +69,33 @@ $ const rangeEndText = input.a11yRangeEndText ?? "end of range"
                                 </else-if>
                                 <for|day| from=startDate to=endDate>
                                     $ const dayISO = toISO(new Date(year, month, day));
+                                    $ const isToday = dayISO === state.todayISO;
+                                    $ const isSelected = (Array.isArray(input.selected)
+                                            ? input.selected.some((iso) => iso === dayISO)
+                                            : input.selected && input.selected === dayISO);
                                     $ const isRangeStart = dayISO === state.rangeStart;
                                     $ const isInRange = component.isInRange(dayISO);
                                     $ const isRangeEnd = dayISO === state.rangeEnd;
-                                    $ const disabled = component.isDisabled(dayISO);
-                                    $ const rangeAriaLabel = (input.range && Array.isArray(input.selected) && (
-                                            isRangeStart
-                                            ? `${day} - ${rangeStartText}`
-                                            : isRangeEnd
-                                            ? `${day} - ${rangeEndText}`
-                                            : isInRange
-                                            ? `${day} - ${inRangeText}`
-                                            : undefined
-                                        ))
-                                    <td
-                                        class={
+                                    $ const isDisabled = component.isDisabled(dayISO);
+                                    $ let a11yTexts = [""];
+                                    $ if (isSelected) a11yTexts.push(a11ySelectedText);
+                                    $ if (isRangeStart) a11yTexts.push(a11yRangeStartText);
+                                    $ if (!isRangeStart && !isRangeEnd && isInRange) a11yTexts.push(a11yInRangeText);
+                                    $ if (isRangeEnd) a11yTexts.push(a11yRangeEndText);
+
+                                    <td class={
+                                            "calendar__cell--selected": isSelected,
                                             "calendar__range--start": isRangeStart,
                                             "calendar__range": isInRange,
                                             "calendar__range--end": isRangeEnd,
-                                        }
-                                        aria-current=dayISO === state.todayISO && "date"
-                                        aria-selected=(
-                                            Array.isArray(input.selected)
-                                                ? input.selected.some((iso) => iso === dayISO)
-                                                : input.selected && input.selected === dayISO
-                                        ) && "true">
+                                        }>
                                         <if(input.interactive)>
                                             <button
                                                 key=dayISO
-                                                disabled=disabled
-                                                aria-label=rangeAriaLabel
+                                                disabled=isDisabled
+                                                aria-label=(a11yTexts.length > 1) && `${day}${a11yTexts.join(a11ySeparator)}`
                                                 tabindex=state.tabindexISO !== dayISO && -1
+                                                aria-current=isToday && "date"
                                                 onClick('onDaySelect', dayISO)
                                                 onFocus('onDayFocus', dayISO)
                                                 onMouseover('onDayFocus', dayISO)
@@ -104,10 +105,13 @@ $ const rangeEndText = input.a11yRangeEndText ?? "end of range"
                                             </button>
                                         </if>
                                         <else>
-                                            <span
-                                                class=disabled && "calendar__cell--disabled"
-                                                aria-label=rangeAriaLabel>
-                                                ${day}
+                                            $ if (isToday) a11yTexts.push(a11yTodayText);
+                                            $ if (isDisabled) a11yTexts.push(a11yDisabledText);
+                                            <span class={
+                                                    "calendar__cell--disabled": isDisabled,
+                                                    "calendar__cell--current": isToday,
+                                                }>
+                                                ${day}<if(a11yTexts.length > 1)><span.clipped>${a11yTexts.join(a11ySeparator)}</span></if>
                                             </span>
                                         </else>
                                     </td>

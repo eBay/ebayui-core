@@ -11,8 +11,12 @@
     "disableWeekdays": "array",
     "disableList": "array",
     "getA11yShowMonthText": "function",
+    "a11ySelectedText": "string",
     "a11yRangeStartText": "string",
     "a11yInRangeText": "string",
-    "a11yRangeEndText": "string"
+    "a11yRangeEndText": "string",
+    "a11yTodayText": "string",
+    "a11yDisabledText": "string",
+    "a11ySeparator": "string"
   }
 }

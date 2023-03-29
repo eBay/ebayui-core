@@ -1,7 +1,9 @@
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
-import DefaultTemplate from './examples/default.marko';
-import DefaultTemplateCode from './examples/default.marko?raw';
+import Component from './index.marko';
+import LocalizedTemplate from './examples/localized.marko';
+import LocalizedTemplateCode from './examples/localized.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -9,7 +11,7 @@ const Template = (args) => ({
 
 export default {
     title: 'form input/ebay-date-textbox',
-    component: DefaultTemplate,
+    component: Component,
     parameters: {
         docs: {
             description: {
@@ -91,23 +93,55 @@ export default {
                 },
             },
         },
+        a11ySelectedText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers when a date is selected',
+            table: {
+                defaultValue: {
+                    summary: 'selected',
+                },
+            },
+        },
         a11yRangeStartText: {
             type: 'text',
             control: { type: 'text' },
-            description: 'Text to indicate the start of a selected range',
-            table: { defaultValue: { summary: 'start of range' } },
+            description: 'Text to be read by screen readers when a date is the start of a range',
+            table: {
+                defaultValue: {
+                    summary: 'start of range',
+                },
+            },
         },
         a11yInRangeText: {
             type: 'text',
             control: { type: 'text' },
-            description: 'Text to indicate a value that is inside the selected range',
-            table: { defaultValue: { summary: 'in range' } },
+            description: 'Text to be read by screen readers when a date is in a range',
+            table: {
+                defaultValue: {
+                    summary: 'in range',
+                },
+            },
         },
         a11yRangeEndText: {
             type: 'text',
             control: { type: 'text' },
-            description: 'Text to indicate the end of a selected range',
-            table: { defaultValue: { summary: 'end of range' } },
+            description: 'Text to be read by screen readers when a date is the end of a range',
+            table: {
+                defaultValue: {
+                    summary: 'end of range',
+                },
+            },
+        },
+        a11ySeparator: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers to separate properties',
+            table: {
+                defaultValue: {
+                    summary: ' - ',
+                },
+            },
         },
         a11yOpenPopoverText: {
             type: 'text',
@@ -139,7 +173,9 @@ export const Default = Template.bind({});
 Default.parameters = {
     docs: {
         source: {
-            DefaultTemplateCode,
+            code: tagToString('ebay-date-textbox', {}),
         },
     },
 };
+
+export const Localized = buildExtensionTemplate(LocalizedTemplate, LocalizedTemplateCode);

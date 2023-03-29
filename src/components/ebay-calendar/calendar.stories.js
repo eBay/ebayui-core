@@ -60,6 +60,17 @@ export default {
                 },
             },
         },
+        selected: {
+            type: 'text|array',
+            control: { type: 'object' },
+            description:
+                'Date or list of dates that are selected, represented as an ISO string or an array of ISO strings',
+            table: {
+                defaultValue: {
+                    summary: 'undefined',
+                },
+            },
+        },
         locale: {
             type: 'text',
             control: { type: 'text' },
@@ -122,23 +133,75 @@ export default {
                 },
             },
         },
+        a11ySelectedText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers when a date is selected',
+            table: {
+                defaultValue: {
+                    summary: 'selected',
+                },
+            },
+        },
         a11yRangeStartText: {
             type: 'text',
             control: { type: 'text' },
-            description: 'Text to indicate the start of a selected range',
-            table: { defaultValue: { summary: 'start of range' } },
+            description: 'Text to be read by screen readers when a date is the start of a range',
+            table: {
+                defaultValue: {
+                    summary: 'start of range',
+                },
+            },
         },
         a11yInRangeText: {
             type: 'text',
             control: { type: 'text' },
-            description: 'Text to indicate a value that is inside the selected range',
-            table: { defaultValue: { summary: 'in range' } },
+            description: 'Text to be read by screen readers when a date is in a range',
+            table: {
+                defaultValue: {
+                    summary: 'in range',
+                },
+            },
         },
         a11yRangeEndText: {
             type: 'text',
             control: { type: 'text' },
-            description: 'Text to indicate the end of a selected range',
-            table: { defaultValue: { summary: 'end of range' } },
+            description: 'Text to be read by screen readers when a date is the end of a range',
+            table: {
+                defaultValue: {
+                    summary: 'end of range',
+                },
+            },
+        },
+        a11yTodayText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers when a date is the current date',
+            table: {
+                defaultValue: {
+                    summary: 'today',
+                },
+            },
+        },
+        a11yDisabledText: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers when a date is disabled',
+            table: {
+                defaultValue: {
+                    summary: 'inactive',
+                },
+            },
+        },
+        a11ySeparator: {
+            type: 'text',
+            control: { type: 'text' },
+            description: 'Text to be read by screen readers to separate properties',
+            table: {
+                defaultValue: {
+                    summary: ' - ',
+                },
+            },
         },
         onSelect: {
             action: 'on-select',
