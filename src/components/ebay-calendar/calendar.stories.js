@@ -1,7 +1,11 @@
-import { addRenderBodies } from '../../../.storybook/utils';
+import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
+import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
-import DefaultTemplate from './examples/default.marko';
-import DefaultTemplateCode from './examples/default.marko?raw';
+import Component from './index.marko';
+import WithLinksTemplate from './examples/links.marko';
+import WithLinksTemplateCode from './examples/links.marko?raw';
+import WithSpecificLinksTemplate from './examples/linkMap.marko';
+import WithSpecificLinksTemplateCode from './examples/linkMap.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -9,7 +13,7 @@ const Template = (args) => ({
 
 export default {
     title: 'building blocks/ebay-calendar',
-    component: DefaultTemplate,
+    component: Component,
     parameters: {
         docs: {
             description: {
@@ -251,7 +255,13 @@ export const Default = Template.bind({});
 Default.parameters = {
     docs: {
         source: {
-            DefaultTemplateCode,
+            code: tagToString('ebay-calendar', {}),
         },
     },
 };
+
+export const WithLinks = buildExtensionTemplate(WithLinksTemplate, WithLinksTemplateCode);
+export const WithSpecificLinks = buildExtensionTemplate(
+    WithSpecificLinksTemplate,
+    WithSpecificLinksTemplateCode
+);

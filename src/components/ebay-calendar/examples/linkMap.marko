@@ -1,0 +1,17 @@
+import { toISO } from "../component";
+static const yesterdayISO = toISO(new Date(Date.now() - 24 * 60 * 60 * 1000));
+static const tomorrowISO = toISO(new Date(Date.now() + 24 * 60 * 60 * 1000));
+static const linkMap = {
+    [yesterdayISO]: "https://www.ebay.com/sch/i.html?_nkw=yesterday",
+    [tomorrowISO]: "https://www.ebay.com/sch/i.html?_nkw=tomorrow"
+};
+
+<ebay-calendar
+    ...input
+    linkBuilder=(iso) => {
+        return linkMap[iso];
+    }
+    on-select("emit", "select")
+    on-month-change("emit", "month")
+    on-focus("emit", "focus")
+    />
