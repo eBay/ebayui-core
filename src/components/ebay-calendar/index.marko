@@ -96,6 +96,7 @@ $ const a11ySeparator = input.a11ySeparator ?? " - ";
                                                 aria-label=(a11yTexts.length > 1) && `${day}${a11yTexts.join(a11ySeparator)}`
                                                 tabindex=state.tabindexISO !== dayISO && -1
                                                 aria-current=isToday && "date"
+                                                aria-pressed=isSelected && "true"
                                                 onClick('onDaySelect', dayISO)
                                                 onFocus('onDayFocus', dayISO)
                                                 onMouseover('onDayFocus', dayISO)
