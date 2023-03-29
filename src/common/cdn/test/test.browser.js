@@ -5,6 +5,10 @@ import { CDNLoader } from '..';
 import * as load from '../../loader';
 
 describe('CDN Loader', () => {
+    afterEach(() => {
+        load.loader.restore();
+    });
+
     it('Properly loads files from CDN', async () => {
         sinon.stub(load, 'loader').returns(Promise.resolve());
         const setLoading = sinon.spy();
@@ -13,7 +17,7 @@ describe('CDN Loader', () => {
 
         const cdnLoader = new CDNLoader(
             {
-                subscribeTo: sinon.spy(),
+                subscribeTo: sinon.stub(),
             },
             {
                 key: 'key',
@@ -25,14 +29,12 @@ describe('CDN Loader', () => {
             }
         );
 
-        cdnLoader.mount();
-
         await waitFor(() => {
+            cdnLoader.mount();
             expect(load.loader.called).to.equal(true, 'loader called');
             expect(handleError.called).to.equal(false, 'error called');
             expect(handleSuccess.called).to.equal(true, 'success called');
             expect(setLoading.calledWith(false)).to.equal(true);
-            load.loader.restore();
         });
     });
 
@@ -44,7 +46,9 @@ describe('CDN Loader', () => {
 
         const cdnLoader = new CDNLoader(
             {
-                subscribeTo: sinon.spy(),
+                subscribeTo: sinon.stub().returns({
+                    once: sinon.spy(),
+                }),
             },
             {
                 key: 'key',
@@ -64,7 +68,6 @@ describe('CDN Loader', () => {
                 expect(handleError.called).to.equal(true, 'error called');
                 expect(handleSuccess.called).to.equal(false, 'success called');
                 expect(setLoading.calledWith(false)).to.equal(true);
-                load.loader.restore();
             },
             { timeout: 6000 }
         );

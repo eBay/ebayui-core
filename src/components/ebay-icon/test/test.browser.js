@@ -1,9 +1,9 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
 import { render, cleanup } from '@marko/testing-library';
-import template from '../icons/ebay-add-icon';
-import template2 from '../icons/ebay-arrow-left-icon';
-import template3 from '../icons/ebay-arrow-right-icon';
+import template from '../icons/ebay-add-24-icon';
+import template2 from '../icons/ebay-arrow-left-24-icon';
+import template3 from '../icons/ebay-arrow-right-24-icon';
 
 use(chaiDom);
 afterEach(cleanup);
@@ -38,7 +38,7 @@ describe('rendering an icon in the browser', () => {
 
     it('should create root SVG', () => {
         expect(document.body.firstChild.hasAttribute('hidden')).to.equal(true);
-        expect(() => checkIcon('icon-add')).to.not.throw(Error);
+        expect(() => checkIcon('icon-add-24')).to.not.throw(Error);
     });
 
     it('should not have defs tag', () => {
@@ -64,9 +64,9 @@ describe('rendering multiple icons in the browser', () => {
         const svg = document.body.firstChild.firstChild;
         expect(svg.tagName).to.equal('SVG');
 
-        expect(() => checkIcon('icon-add')).to.not.throw(Error);
-        expect(() => checkIcon('icon-arrow-right')).to.not.throw(Error);
-        expect(() => checkIcon('icon-arrow-left')).to.not.throw(Error);
+        expect(() => checkIcon('icon-add-24')).to.not.throw(Error);
+        expect(() => checkIcon('icon-arrow-right-24')).to.not.throw(Error);
+        expect(() => checkIcon('icon-arrow-left-24')).to.not.throw(Error);
         // Should have at least 3 icon symbols
         expect(svg.childNodes.length).to.be.greaterThan(2);
     });

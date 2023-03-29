@@ -1,9 +1,14 @@
 import { expect, use } from 'chai';
 import chaiDom from 'chai-dom';
+import { composeStories } from '@storybook/marko/dist/testing';
 import { render, fireEvent, cleanup } from '@marko/testing-library';
 import { pressKey } from '../../../common/test-utils/browser';
-import template from '..';
-import * as mock from './mock';
+import * as stories from '../menu-button.stories'; // import all stories from the stories file
+import { addRenderBodies } from '../../../../.storybook/utils';
+
+const { Default } = composeStories(stories);
+
+const items = [...Default.args.items];
 
 use(chaiDom);
 afterEach(cleanup);
@@ -11,10 +16,13 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
+function getExpandedInput(expanded) {
+    return Object.assign({}, Default.args, { items: addRenderBodies([...items]), expanded });
+}
+
 describe('given the menu is in the default state', () => {
-    const input = mock.basic2Items;
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Default);
     });
 
     describe('when the button is clicked once', () => {
@@ -46,11 +54,18 @@ describe('given the menu is in the default state', () => {
     });
 
     describe('when an item is added via input from its parent and the new item is clicked', () => {
-        const newInput = mock.basic3Items;
-        const thirdItemText = newInput.items[2].renderBody.text;
+        const newItems = addRenderBodies([
+            ...items,
+            {
+                value: 'item 4',
+                renderBody: `item 4`,
+            },
+        ]);
+        const fourthItem = 'item 4';
+
         beforeEach(async () => {
-            await component.rerender(newInput);
-            await fireEvent.click(component.getByText(thirdItemText));
+            await component.rerender(Object.assign({}, Default.args, { items: newItems }));
+            await fireEvent.click(component.getByText(fourthItem));
         });
 
         it('then the new item is selected or something');
@@ -60,13 +75,13 @@ describe('given the menu is in the default state', () => {
             expect(selectEvents).has.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property('el').with.text(thirdItemText);
+            expect(eventArg).has.property('el').with.text(fourthItem);
         });
     });
 
     describe('when re-rendered with expanded set to false', () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { expanded: false }));
+            await component.rerender(getExpandedInput(false));
         });
 
         it('then it remains collapsed', () => {
@@ -81,7 +96,7 @@ describe('given the menu is in the default state', () => {
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to true', () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { expanded: true }));
+            await component.rerender(getExpandedInput(true));
         });
 
         it('then it expands', () => {
@@ -95,11 +110,10 @@ describe('given the menu is in the default state', () => {
 });
 
 describe('given the menu is in the expanded state', () => {
-    const input = mock.basic2Items;
-    const firstItemText = input.items[0].renderBody.text;
+    const firstItemText = Default.args.items[0].renderBody;
 
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Default);
         await fireEvent.click(component.getByRole('button'));
         expect(component.emitted('expand')).has.length(1);
     });
@@ -107,7 +121,7 @@ describe('given the menu is in the expanded state', () => {
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to true', () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { expanded: true }));
+            await component.rerender(getExpandedInput(true));
         });
 
         it('then it remains expanded', () => {
@@ -122,7 +136,7 @@ describe('given the menu is in the expanded state', () => {
     // TODO: we should make the `expanded` property controllable via input.
     describe.skip('when re-rendered with expanded set to false', () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { expanded: false }));
+            await component.rerender(getExpandedInput(false));
         });
 
         it('then it expands', () => {
@@ -190,10 +204,9 @@ describe('given the menu is in the expanded state', () => {
 });
 
 describe('given the menu is in the expanded state with radio items', () => {
-    const input = Object.assign({ type: 'radio' }, mock.basic2Items);
     let firstItem, secondItem;
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Default, { type: 'radio' });
         firstItem = component.getAllByRole('menuitemradio', { hidden: true })[0];
         secondItem = component.getAllByRole('menuitemradio', { hidden: true })[1];
     });
@@ -280,10 +293,9 @@ describe('given the menu is in the expanded state with radio items', () => {
 });
 
 describe('given the menu is in the expanded state with checkbox items', () => {
-    const input = Object.assign({ type: 'checkbox' }, mock.basic2Items);
     let firstItem, secondItem;
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Default, { type: 'checkbox' });
         firstItem = component.getAllByRole('menuitemcheckbox', { hidden: true })[0];
         secondItem = component.getAllByRole('menuitemcheckbox', { hidden: true })[1];
     });

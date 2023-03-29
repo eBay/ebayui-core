@@ -1,5 +1,5 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
-import DotsIcon from '<ebay-overflow-icon>';
+import DotsIcon from '<ebay-overflow-horizontal-24-icon>';
 static var disabledItem = { disabled: true };
 static var ignoredAttributes = ['items'];
 static var ignoredItemAttributes = ['current', 'disabled'];
@@ -43,7 +43,7 @@ $ var range = component._getVisibleRange(items);
         style=[prevItem.style, { minWidth: 40 }]
         onClick('handlePreviousPageClick')
     >
-        <ebay-pagination-prev-icon/>
+        <ebay-arrow-left-16-icon/>
     </>
 
     <ol.pagination__items key='items'>
@@ -85,7 +85,7 @@ $ var range = component._getVisibleRange(items);
                     </if>
                     <else>
                         <span class=['pagination__item', item.class] role='separator'>
-                            <ebay-overflow-icon/>
+                            <ebay-overflow-horizontal-24-icon/>
                         </span>
                     </else>
                 </li>
@@ -112,6 +112,6 @@ $ var range = component._getVisibleRange(items);
         style=[nextItem.style, { minWidth: 40 }]
         onClick('handleNextPageClick')
     >
-        <ebay-pagination-next-icon/>
+        <ebay-arrow-right-16-icon/>
     </>
 </nav>

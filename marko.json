@@ -3,7 +3,6 @@
   "tags-dir": "./src/components",
   "taglib-imports": [
     "./src/components/ebay-icon/marko.json",
-    "./src/components/ebay-program-badge/marko.json",
     "./src/components/ebay-star-rating/marko.json"
   ]
 }

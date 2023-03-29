@@ -10,17 +10,14 @@
     }
 </style>
 
-<ebay-menu text="Country">
-    <@item>
-        <span class="sprite-flag" style="background-position: 0 -25px"/>
-        <span>Austria</span>
-    </@item>
-    <@item>
-        <span class="sprite-flag" style="background-position: 0 -100px"/>
-        <span>Denmark</span>
-    </@item>
-    <@item>
-        <span class="sprite-flag" style="background-position: 0 -275px"/>
-        <span>Norway</span>
-    </@item>
+<ebay-menu
+    text='Country'
+    ...input
+    on-keydown('emit', 'keydown')
+    on-change('emit', 'change')
+    on-select('emit', 'select')
+>
+    <@item><span.sprite-flag style='background-position: 0 -25px'/><span>Austria</span></@item>
+    <@item><span.sprite-flag style='background-position: 0 -100px'/><span>Denmark</span></@item>
+    <@item><span.sprite-flag style='background-position: 0 -275px'/><span>Norway</span></@item>
 </ebay-menu>

@@ -11,13 +11,10 @@
 <ebay-progress-bar value=50 max=100 />
 ```
 
-## Description
-
 The progress bar gives an immediate, real-time visualisation of the current task completion status.
 
-## Attributes
+## Examples and Documentation
 
-| Name    | Type    | Stateful | Required | Description                |
-| ------- | ------- | -------- | -------- | -------------------------- |
-| `value` | Integer | No       | No       | HTML value of progress bar |
-| `max`   | Integer | No       | No       | HTML max. Defaults to 100  |
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/progress-ebay-progress-bar)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/progress-ebay-progress-bar)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-bar/examples)

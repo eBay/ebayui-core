@@ -179,8 +179,8 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     items: [
         {
             renderBody: `item 1 that has very long text`,
@@ -194,10 +194,10 @@ Standard.args = {
     ],
     text: `eBay Menu`,
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-menu-button', Standard.args),
+            code: tagToString('ebay-menu-button', Default.args),
         },
     },
 };

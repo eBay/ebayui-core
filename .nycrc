@@ -11,7 +11,6 @@
     "**/style.js",
     "src/common/test-utils",
     "src/components/ebay-icon/icons",
-    "src/components/ebay-program-badge/icons",
     "src/components/ebay-star-rating/icons"
   ],
   "sourceMap": true,

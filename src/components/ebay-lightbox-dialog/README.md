@@ -7,32 +7,8 @@
     </span>
 </h1>
 
-```marko
-<ebay-lightbox-dialog open a11y-close-text="Close Dialog">
-    <@header>Hello World</@header>
-    Body content
-</ebay-lightbox-dialog>
-```
+## Examples and Documentation
 
-## Attributes
-
-| Name              | Type    | Stateful | Required | Description                                                                                     |
-| ----------------- | ------- | -------- | -------- | ----------------------------------------------------------------------------------------------- |
-| `open`            | Boolean | Yes      | No       | Whether dialog is open.                                                                         |
-| `focus`           | String  | No       | No       | An id for an element which will receive focus when the dialog opens (defaults to close button). |
-| `a11y-close-text` | String  | No       | Yes      | A11y text for close button and mask.                                                            |
-
-## Events
-
-| Event   | Data | Description   |
-| ------- | ---- | ------------- |
-| `open`  |      | dialog opened |
-| `close` |      | dialog closed |
-
-## <@header>
-
-Will render a header content for lightbox. Will always render the header element even if this is not present
-
-## <@footer>
-
-Will render the footer content for lightbox. If not present then will not have any footer.
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/dialogs-ebay-lightbox-dialog)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/dialogs-ebay-lightbox-dialog)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-lightbox-dialog/examples)

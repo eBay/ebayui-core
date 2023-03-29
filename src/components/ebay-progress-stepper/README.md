@@ -7,31 +7,8 @@
     </span>
 </h1>
 
-## ebay-progress-stepper Example
+## Examples and Documentation
 
-```marko
-<ebay-progress-stepper>
-    <@step>
-        <@title>Started</@title>
-        July 3rd
-    </@step>
-    <@step>
-        <@title>Shipped</@title>
-        July 4th
-    </@step>
-    <@step current>
-        <@title>Transit</@title>
-        July 5th
-    </@step>
-    <@step>
-        <@title>Delivered</@title>
-        July 6th
-    </@step>
-</ebay-progress-stepper>
-```
-
-## Links
-
--   (Storybook)[https://ebay.github.io/ebayui-core/?path=/story/ebay-progress-stepper]
--   (Storybook Docs)[https://ebay.github.io/ebayui-core/?path=/docs/ebay-progress-stepper]
--   (Code Examples)[https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-stepper/examples]
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/progress-ebay-progress-stepper)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/progress-ebay-progress-stepper)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-stepper/examples)

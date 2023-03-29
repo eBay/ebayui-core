@@ -1,6 +1,6 @@
 import { tagToString } from '../../../.storybook/storybook-code-source';
 import Readme from './README.md';
-import Component from './examples/01-basic/template.marko';
+import Component from './examples/default.marko';
 
 const Template = (args) => ({
     input: {
@@ -75,12 +75,12 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {};
-Standard.parameters = {
+export const Default = Template.bind({});
+Default.args = {};
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-panel-dialog', Standard.args),
+            code: tagToString('ebay-panel-dialog', Default.args),
         },
     },
 };

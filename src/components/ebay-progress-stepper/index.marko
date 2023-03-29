@@ -51,7 +51,7 @@ $ {
             >
                 <span.progress-stepper__icon>
                     <if(index < current || input.defaultState === 'complete')>
-                        <ebay-stepper-confirmation-icon
+                        <ebay-stepper-confirmation-24-icon
                             width='24'
                             height='24'
                             a11y-text=item.a11yText || 'complete'
@@ -59,7 +59,7 @@ $ {
                     </if>
                     <else-if(index === current)>
                         <if(input.defaultState === 'attention')>
-                            <ebay-stepper-attention-icon
+                            <ebay-stepper-attention-24-icon
                                 width='24'
                                 height='24'
                                 a11y-text=item.a11yText || 'blocked'
@@ -67,7 +67,7 @@ $ {
                         </if>
                         <else-if(input.defaultState === 'current')>
                             <!-- DEPRECATED, remove next major -->
-                            <ebay-stepper-current-icon
+                            <ebay-stepper-current-24-icon
                                 width='24'
                                 height='24'
                                 a11y-text=item.a11yText || 'current'
@@ -75,7 +75,7 @@ $ {
                         </else-if>
 
                         <else>
-                            <ebay-stepper-confirmation-icon
+                            <ebay-stepper-confirmation-24-icon
                                 width='24'
                                 height='24'
                                 a11y-text=item.a11yText || 'current'
@@ -83,7 +83,7 @@ $ {
                         </else>
                     </else-if>
                     <else>
-                        <ebay-stepper-upcoming-icon
+                        <ebay-stepper-upcoming-24-icon
                             width='24'
                             height='24'
                             a11y-text=item.a11yText || 'upcoming'

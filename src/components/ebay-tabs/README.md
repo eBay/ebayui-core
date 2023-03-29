@@ -7,44 +7,8 @@
     </span>
 </h1>
 
-## ebay-tabs Usage
+## Examples and Documentation
 
-```marko
-<ebay-tabs>
-    <@tab>Tab 1</@tab>
-    <@tab>Tab 2</@tab>
-    <@tab>Tab 3</@tab>
-    <@panel>Panel 1</@panel>
-    <@panel>Panel 2</@panel>
-    <@panel>Panel 3</@panel>
-</ebay-tabs>
-```
-
-## ebay-tabs Attributes
-
-| Name            | Type   | Stateful | Required | Description                                                                                            |
-| --------------- | ------ | -------- | -------- | ------------------------------------------------------------------------------------------------------ |
-| `selectedIndex` | String | Yes      | No       | 0-based index of selected tab tab and panel                                                            |
-| `activation`    | String | Yes      | No       | whether to use automatic or manual activation when navigating by keyboard, "auto" (default) / "manual" |
-
-## ebay-tabs Events
-
-| Event    | Data                | Description |
-| -------- | ------------------- | ----------- |
-| `select` | `{ selectedIndex }` |
-
-## @tab Tag
-
-### @tab Usage
-
-```marko
-<@tab>Tab 1</@tab>
-```
-
-## @panel Tag
-
-### @panel Usage
-
-```marko
-<@panel>Panel 1</@panel>
-```
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-tabs)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-tabs)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tabs/examples)

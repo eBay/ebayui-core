@@ -23,21 +23,21 @@ static var ignoredAttributes = [
     <span class="checkbox__icon" hidden>
         <if(state.checked === "mixed")>
             <if(input.size === "large")>
-                <ebay-checkbox-mixed-large-icon focusable="false" no-skin-classes/>
+                <ebay-checkbox-mixed-24-icon focusable="false" no-skin-classes/>
             </if>
             <else>
-                <ebay-checkbox-mixed-icon focusable="false" no-skin-classes/>
+                <ebay-checkbox-mixed-18-icon focusable="false" no-skin-classes/>
             </else>
         </if>
         <else-if(state.checked === "true")>
             <if(input.size === "large")>
-                <ebay-checkbox-checked-large-icon
+                <ebay-checkbox-checked-24-icon
                     class="checkbox__checked"
                     focusable="false"
                     no-skin-classes/>
             </if>
             <else>
-                <ebay-checkbox-checked-icon
+                <ebay-checkbox-checked-18-icon
                     class="checkbox__checked"
                     focusable="false"
                     no-skin-classes/>
@@ -45,13 +45,13 @@ static var ignoredAttributes = [
         </else-if>
         <else>
             <if(input.size === "large")>
-                <ebay-checkbox-unchecked-large-icon
+                <ebay-checkbox-unchecked-24-icon
                     class="checkbox__unchecked"
                     focusable="false"
                     no-skin-classes/>
             </if>
             <else>
-                <ebay-checkbox-unchecked-icon
+                <ebay-checkbox-unchecked-18-icon
                     class="checkbox__unchecked"
                     focusable="false"
                     no-skin-classes/>

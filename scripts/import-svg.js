@@ -125,11 +125,9 @@ function generateIcon(componentName) {
 }
 
 setupDir('icon');
-setupDir('program-badge');
 setupDir('star-rating');
 
 generateIcon('icon');
-generateIcon('program-badge');
 generateIcon('star-rating');
 
 Object.keys(examplesMap).forEach((componentName) => {

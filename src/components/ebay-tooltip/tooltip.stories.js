@@ -2,8 +2,8 @@ import { tagToString } from '../../../.storybook/storybook-code-source';
 import { addRenderBodies } from '../../../.storybook/utils';
 import Readme from './README.md';
 import Component from './index.marko';
-import buttonComponent from './examples/01-icon-button-host/template.marko';
-import code from './examples/01-icon-button-host/template.marko?raw';
+import buttonComponent from './examples/icon-button-host.marko';
+import code from './examples/icon-button-host.marko?raw';
 
 const Template = (args) => ({
     input: addRenderBodies(args),

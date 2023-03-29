@@ -1,7 +1,7 @@
 import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
 import Readme from './README.md';
-import Component from './examples/basic.marko';
-import code from './examples/basic.marko?raw';
+import Component from './examples/default.marko';
+import code from './examples/default.marko?raw';
 import ScrollingTemplate from './examples/scrolling.marko';
 import ScrollingTemplateCode from './examples/scrolling.marko?raw';
 
