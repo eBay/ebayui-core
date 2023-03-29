@@ -24,6 +24,7 @@ const DAY_UPDATE_KEYMAP = {
  *   disableAfter?: Date | number | string,
  *   disableWeekdays?: number[],
  *   disableList?: (Date | number | string)[],
+ *   linkBuilder?: (iso: string) => string | false | null | undefined,
  *   getA11yShowMonthText?: (monthName: string) => string,
  *   a11ySelectedText?: string,
  *   a11yRangeStartText?: string,
