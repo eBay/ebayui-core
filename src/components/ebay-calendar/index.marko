@@ -1,17 +1,17 @@
 // @ts-check
 import {localeOverride, toISO} from "./component"
 
-$ const numMonths = input.numMonths || 1;
-$ const monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(state.offset + i));
+$ var numMonths = input.numMonths || 1;
+$ var monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(state.offset + i));
 
-$ const getShowMonthText = input.getA11yShowMonthText ?? ((month) => `Show ${month}`);
-$ const a11ySelectedText = input.a11ySelectedText ?? "selected";
-$ const a11yRangeStartText = input.a11yRangeStartText ?? "start of range";
-$ const a11yInRangeText = input.a11yInRangeText ?? "in range";
-$ const a11yRangeEndText = input.a11yRangeEndText ?? "end of range";
-$ const a11yTodayText = input.a11yTodayText ?? "today";
-$ const a11yDisabledText = input.a11yDisabledText ?? "inactive";
-$ const a11ySeparator = input.a11ySeparator ?? " - ";
+$ var getShowMonthText = input.getA11yShowMonthText ?? ((month) => `Show ${month}`);
+$ var a11ySelectedText = input.a11ySelectedText ?? "selected";
+$ var a11yRangeStartText = input.a11yRangeStartText ?? "start of range";
+$ var a11yInRangeText = input.a11yInRangeText ?? "in range";
+$ var a11yRangeEndText = input.a11yRangeEndText ?? "end of range";
+$ var a11yTodayText = input.a11yTodayText ?? "today";
+$ var a11yDisabledText = input.a11yDisabledText ?? "inactive";
+$ var a11ySeparator = input.a11ySeparator ?? " - ";
 
 <div.calendar>
     <if(input.navigable)>
@@ -52,14 +52,14 @@ $ const a11ySeparator = input.a11ySeparator ?? " - ";
                         </tr>
                     </thead>
                     <tbody>
-                        $ const numBlankDays = (monthDate.getDay() - state.firstDayOfWeek + 7) % 7;
-                        $ const year = monthDate.getFullYear();
-                        $ const month = monthDate.getMonth();
-                        $ const daysInMonth = new Date(year, month + 1, 0).getDate();
+                        $ var numBlankDays = (monthDate.getDay() - state.firstDayOfWeek + 7) % 7;
+                        $ var year = monthDate.getFullYear();
+                        $ var month = monthDate.getMonth();
+                        $ var daysInMonth = new Date(year, month + 1, 0).getDate();
                         <for|row| from=0 to=Math.floor((numBlankDays + daysInMonth) / 7)>
                             <tr>
-                                $ let startDate = row * 7 - numBlankDays + 1;
-                                $ let endDate = startDate + 6;
+                                $ var startDate = row * 7 - numBlankDays + 1;
+                                $ var endDate = startDate + 6;
                                 <if(row === 0 && numBlankDays !== 0)>
                                     <td colspan=numBlankDays/>
                                     $ startDate = 1;
@@ -68,16 +68,16 @@ $ const a11ySeparator = input.a11ySeparator ?? " - ";
                                     $ endDate = daysInMonth;
                                 </else-if>
                                 <for|day| from=startDate to=endDate>
-                                    $ const dayISO = toISO(new Date(year, month, day));
-                                    $ const isToday = dayISO === state.todayISO;
-                                    $ const isSelected = (Array.isArray(input.selected)
+                                    $ var dayISO = toISO(new Date(year, month, day));
+                                    $ var isToday = dayISO === state.todayISO;
+                                    $ var isSelected = (Array.isArray(input.selected)
                                             ? input.selected.some((iso) => iso === dayISO)
                                             : input.selected && input.selected === dayISO);
-                                    $ const isRangeStart = dayISO === state.rangeStart;
-                                    $ const isInRange = component.isInRange(dayISO);
-                                    $ const isRangeEnd = dayISO === state.rangeEnd;
-                                    $ const isDisabled = component.isDisabled(dayISO);
-                                    $ let a11yTexts = [""];
+                                    $ var isRangeStart = dayISO === state.rangeStart;
+                                    $ var isInRange = component.isInRange(dayISO);
+                                    $ var isRangeEnd = dayISO === state.rangeEnd;
+                                    $ var isDisabled = component.isDisabled(dayISO);
+                                    $ var a11yTexts = [""];
                                     $ if (isSelected) a11yTexts.push(a11ySelectedText);
                                     $ if (isRangeStart) a11yTexts.push(a11yRangeStartText);
                                     $ if (!isRangeStart && !isRangeEnd && isInRange) a11yTexts.push(a11yInRangeText);
@@ -108,7 +108,7 @@ $ const a11ySeparator = input.a11ySeparator ?? " - ";
                                         <else>
                                             $ if (isToday) a11yTexts.push(a11yTodayText);
                                             $ if (isDisabled) a11yTexts.push(a11yDisabledText);
-                                            $ const link = !isDisabled && input.linkMap && input.linkMap[dayISO];
+                                            $ var link = !isDisabled && input.linkMap && input.linkMap[dayISO];
                                             <${link ? "a" : "span"}
                                                 class={
                                                     "calendar__cell--disabled": isDisabled,
