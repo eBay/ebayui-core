@@ -1,7 +1,7 @@
-import { addRenderBodies } from '../../../.storybook/utils';
-import component from './examples/icon-button.marko';
-import code from './examples/icon-button.marko?raw';
-import readme from './README.md';
+import { addRenderBodies } from "../../../.storybook/utils";
+import component from "./examples/icon-button.marko";
+import code from "./examples/icon-button.marko?raw";
+import readme from "./README.md";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -9,7 +9,7 @@ const Template = (args) => ({
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
-    title: 'buttons/ebay-icon-button',
+    title: "buttons/ebay-icon-button",
     component,
     parameters: {
         docs: {
@@ -20,108 +20,109 @@ export default {
     },
     argTypes: {
         href: {
-            description: 'url for link behaviour (switches to anchor tag)',
+            description: "url for link behaviour (switches to anchor tag)",
         },
         disabled: {
-            description: '',
+            description: "",
             table: {
-                category: 'Toggles',
+                category: "Toggles",
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
             },
-            control: { type: 'boolean' },
+            control: { type: "boolean" },
         },
         size: {
-            description: 'alternative size for the icon button',
-            options: ['small', 'regular', 'large'],
-            control: { type: 'select' },
+            description: "alternative size for the icon button",
+            options: ["small", "regular", "large"],
+            control: { type: "select" },
             table: {
                 defaultValue: {
-                    summary: 'regular',
+                    summary: "regular",
                 },
             },
         },
         partiallyDisabled: {
-            description: 'programmatically disabled, but remains keyboard focusable',
+            description:
+                "programmatically disabled, but remains keyboard focusable",
             table: {
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
-                category: 'Toggles',
+                category: "Toggles",
             },
-            control: { type: 'boolean' },
+            control: { type: "boolean" },
         },
         badgeNumber: {
-            description: 'number to show in badge',
+            description: "number to show in badge",
             table: {
-                category: 'Badge (only with variant=icon)',
+                category: "Badge (only with variant=icon)",
             },
-            type: 'number',
+            type: "number",
         },
         badgeAriaLabel: {
-            description: '`aria-label` for badge',
+            description: "`aria-label` for badge",
             table: {
-                category: 'Badge',
+                category: "Badge",
             },
         },
         transparent: {
-            description: 'is icon button is transparent or not',
+            description: "is icon button is transparent or not",
             table: {
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
-                category: 'Toggles',
+                category: "Toggles",
             },
-            control: { type: 'boolean' },
+            control: { type: "boolean" },
         },
         onClick: {
-            action: 'on-click',
-            description: 'Triggered on click',
+            action: "on-click",
+            description: "Triggered on click",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onEscape: {
-            action: 'on-escape',
-            description: 'Triggered on escape key',
+            action: "on-escape",
+            description: "Triggered on escape key",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onFocus: {
-            action: 'on-focus',
-            description: 'Triggered on focus',
+            action: "on-focus",
+            description: "Triggered on focus",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onBlur: {
-            action: 'on-blur',
-            description: 'Triggered on blur',
+            action: "on-blur",
+            description: "Triggered on blur",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         spread: {
             control: {
-                type: 'object',
+                type: "object",
             },
-            description: 'Additional attributes being passed to component',
+            description: "Additional attributes being passed to component",
             table: {
-                category: 'Other',
+                category: "Other",
             },
         },
     },
@@ -129,11 +130,11 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    href: '',
+    href: "",
     disabled: false,
     partiallyDisabled: false,
     badgeNumber: 0,
-    'aria-label': 'menu',
+    "aria-label": "menu",
 };
 Standard.parameters = {
     docs: {

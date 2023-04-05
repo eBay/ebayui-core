@@ -11,9 +11,9 @@ module.exports = {
         }
         this.state.value = input.value;
     },
-    handleClick: forwardEvent('change'),
-    handleFocus: forwardEvent('focus'),
-    handleKeydown: forwardEvent('keydown'),
+    handleClick: forwardEvent("change"),
+    handleFocus: forwardEvent("focus"),
+    handleKeydown: forwardEvent("keydown"),
 };
 
 function forwardEvent(eventName) {

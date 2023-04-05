@@ -1,21 +1,24 @@
-import { createRenderBody, getNItems } from '../../../../common/test-utils/shared';
+import {
+    createRenderBody,
+    getNItems,
+} from "../../../../common/test-utils/shared";
 
 function getType(i) {
     switch (i) {
         case 3:
-            return 'attention';
+            return "attention";
         case 4:
-            return 'information';
+            return "information";
         default:
             return null;
     }
 }
 
 export const ProgressStepper = {
-    a11yHeadingText: 'shipment',
+    a11yHeadingText: "shipment",
     step: getNItems(4, (i) => ({
         current: i === 2,
-        a11yText: i === 3 && 'a11yIconLabel',
+        a11yText: i === 3 && "a11yIconLabel",
         renderBody: createRenderBody(`status ${i}`),
     })),
 };
@@ -27,7 +30,7 @@ export const progressStepperNoCurrent = {
 };
 
 export const progressStepperVertical = Object.assign({}, ProgressStepper, {
-    direction: 'column',
+    direction: "column",
 });
 
 export const progressStepperStates = {

@@ -1,23 +1,23 @@
-import * as eventUtils from '../../common/event-utils';
+import * as eventUtils from "../../common/event-utils";
 
 export default {
     handleClick(originalEvent) {
         if (!this.input.disabled) {
-            this.emit('click', { originalEvent });
+            this.emit("click", { originalEvent });
         }
     },
 
     handleKeydown(originalEvent) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             if (!this.input.disabled) {
-                this.emit('escape', { originalEvent });
+                this.emit("escape", { originalEvent });
             }
         });
     },
     handleFocus(originalEvent) {
-        this.emit('focus', { originalEvent });
+        this.emit("focus", { originalEvent });
     },
     handleBlur(originalEvent) {
-        this.emit('blur', { originalEvent });
+        this.emit("blur", { originalEvent });
     },
 };

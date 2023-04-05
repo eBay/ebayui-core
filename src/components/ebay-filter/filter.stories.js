@@ -1,14 +1,14 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './index.marko';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./index.marko";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'building blocks/ebay-filter',
+    title: "building blocks/ebay-filter",
     component: Component,
     parameters: {
         docs: {
@@ -20,33 +20,34 @@ export default {
 
     argTypes: {
         href: {
-            control: { type: 'text' },
-            description: 'for link that looks like a button',
+            control: { type: "text" },
+            description: "for link that looks like a button",
         },
         disabled: {
-            control: { type: 'boolean' },
+            control: { type: "boolean" },
         },
         selected: {
-            control: { type: 'boolean' },
+            control: { type: "boolean" },
         },
         useAriaPressed: {
-            control: { type: 'boolean' },
-            description: 'defaults to `true`',
+            control: { type: "boolean" },
+            description: "defaults to `true`",
         },
         a11ySelectedText: {
-            control: { type: 'text' },
-            description: 'defaults to `"Selected"`, but should be changed based on L10N or I18N',
+            control: { type: "text" },
+            description:
+                'defaults to `"Selected"`, but should be changed based on L10N or I18N',
             table: {
-                category: 'when using fake filters',
+                category: "when using fake filters",
             },
         },
         onClick: {
-            action: 'on-click',
-            description: 'Triggered on item clicked',
+            action: "on-click",
+            description: "Triggered on item clicked",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ el, checked, originalEvent }',
+                    summary: "{ el, checked, originalEvent }",
                 },
             },
         },
@@ -61,7 +62,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-filter', Standard.args),
+            code: tagToString("ebay-filter", Standard.args),
         },
     },
 };

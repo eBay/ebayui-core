@@ -1,6 +1,7 @@
-import { onScrollEnd } from '../on-scroll-end';
+import { onScrollEnd } from "../on-scroll-end";
 const supportsScrollBehavior =
-    typeof window !== 'undefined' && 'scrollBehavior' in document.documentElement.style;
+    typeof window !== "undefined" &&
+    "scrollBehavior" in document.documentElement.style;
 /**
  * Utility to animate scroll position of an element using an `ease-out` curve over 250ms.
  * Cancels the animation if the user touches back down.
@@ -35,7 +36,7 @@ export function scrollTransition(el, to, fn) {
     });
 
     // The animation can be interrupted by new touch events.
-    el.addEventListener('touchstart', handleTouchStart);
+    el.addEventListener("touchstart", handleTouchStart);
 
     return cancel;
 
@@ -54,7 +55,7 @@ export function scrollTransition(el, to, fn) {
         cancel();
         lastPosition = el.scrollLeft;
         // If we were interrupted by a touch start we wait for a touch end to see if we moved.
-        el.addEventListener('touchend', handleTouchEnd);
+        el.addEventListener("touchend", handleTouchEnd);
     }
 
     function handleTouchEnd() {
@@ -66,11 +67,11 @@ export function scrollTransition(el, to, fn) {
     }
 
     function cancelTouchStart() {
-        el.removeEventListener('touchstart', handleTouchStart);
+        el.removeEventListener("touchstart", handleTouchStart);
     }
 
     function cancelTouchEnd() {
-        el.removeEventListener('touchend', handleTouchEnd);
+        el.removeEventListener("touchend", handleTouchEnd);
     }
 }
 

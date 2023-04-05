@@ -1,2 +1,2 @@
-require('@ebay/skin/checkbox');
-require('@ebay/skin/field');
+require("@ebay/skin/checkbox");
+require("@ebay/skin/field");

@@ -1,2 +1,2 @@
-require('@ebay/skin/page-notice');
-require('@ebay/skin/icon');
+require("@ebay/skin/page-notice");
+require("@ebay/skin/icon");

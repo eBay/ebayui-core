@@ -1,13 +1,13 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './index.marko';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./index.marko";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 export default {
-    title: 'media/ebay-3d-viewer',
+    title: "media/ebay-3d-viewer",
     component: Component,
     parameters: {
         docs: {
@@ -18,133 +18,134 @@ export default {
     },
     argTypes: {
         src: {
-            control: { type: 'text' },
-            description: 'The asset to load',
+            control: { type: "text" },
+            description: "The asset to load",
         },
         cdnVersion: {
-            control: { type: 'text' },
+            control: { type: "text" },
             table: {
-                category: '',
+                category: "",
                 defaultValue: {
-                    summary: '2.1.1',
+                    summary: "2.1.1",
                 },
             },
             description:
-                'The version of the assets to load from CDN. This can be overriden in case the current verion has issues',
+                "The version of the assets to load from CDN. This can be overriden in case the current verion has issues",
         },
         cdnUrl: {
-            control: { type: 'text' },
+            control: { type: "text" },
             description:
-                'This will override the whole URL used for downloading the media player assets. This is mainly used if you want to use your own CDN.',
+                "This will override the whole URL used for downloading the media player assets. This is mainly used if you want to use your own CDN.",
         },
         a11yText: {
-            control: { type: 'text' },
+            control: { type: "text" },
             table: {
-                category: 'Accessibility',
+                category: "Accessibility",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
             description:
-                'The text for screen readers to read out when interacting with the 3d player.',
+                "The text for screen readers to read out when interacting with the 3d player.",
         },
         a11yStartText: {
-            control: { type: 'text' },
+            control: { type: "text" },
             table: {
-                category: 'Accessibility',
+                category: "Accessibility",
                 defaultValue: {
-                    summary: 'Click to start',
+                    summary: "Click to start",
                 },
             },
-            description: 'Text for start icon to load viewer',
+            description: "Text for start icon to load viewer",
         },
         a11yLoadText: {
-            control: { type: 'text' },
+            control: { type: "text" },
             table: {
-                category: 'Accessibility',
+                category: "Accessibility",
                 defaultValue: {
-                    summary: 'Loading',
+                    summary: "Loading",
                 },
             },
-            description: 'Text for loading icon loading viewer',
+            description: "Text for loading icon loading viewer",
         },
         errorText: {
-            control: { type: 'text' },
+            control: { type: "text" },
             table: {
-                category: 'Accessibility',
+                category: "Accessibility",
                 defaultValue: {
-                    summary: 'An error has occurred',
+                    summary: "An error has occurred",
                 },
             },
-            description: 'Text to show error message',
+            description: "Text to show error message",
         },
         onAction: {
-            action: 'on-action',
-            description: 'Triggered when interacting with player',
+            action: "on-action",
+            description: "Triggered when interacting with player",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ }',
+                    summary: "{ }",
                 },
             },
         },
         onProgress: {
-            action: 'on-progress',
-            description: 'Triggered ',
+            action: "on-progress",
+            description: "Triggered ",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ }',
+                    summary: "{ }",
                 },
             },
         },
         onLoad: {
-            action: 'on-load',
-            description: 'Triggered when loading is complete',
+            action: "on-load",
+            description: "Triggered when loading is complete",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ }',
+                    summary: "{ }",
                 },
             },
         },
         onLoadError: {
-            action: 'on-load-error',
-            description: 'Triggered when loading error happens',
+            action: "on-load-error",
+            description: "Triggered when loading error happens",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ }',
+                    summary: "{ }",
                 },
             },
         },
-        'on-model-visibility': {
-            action: 'on-model-visibility',
-            description: 'Triggered when model is visible',
+        "on-model-visibility": {
+            action: "on-model-visibility",
+            description: "Triggered when model is visible",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ }',
+                    summary: "{ }",
                 },
             },
         },
-        'on-render-scale': {
-            action: 'on-render-scale',
-            description: 'Triggered when model scales',
+        "on-render-scale": {
+            action: "on-render-scale",
+            description: "Triggered when model scales",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ }',
+                    summary: "{ }",
                 },
             },
         },
-        'on-poster-dismissed': {
-            action: 'on-poster-dismissed',
-            description: "Triggered when there's a placeholder image and it is removed",
+        "on-poster-dismissed": {
+            action: "on-poster-dismissed",
+            description:
+                "Triggered when there's a placeholder image and it is removed",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ }',
+                    summary: "{ }",
                 },
             },
         },
@@ -153,13 +154,13 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    src: 'https://ir.ebaystatic.com/cr/v/c1/ebayui/3d/v1/image.glb',
-    a11yText: 'View these shoes for sale.',
+    src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/3d/v1/image.glb",
+    a11yText: "View these shoes for sale.",
 };
 Default.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-3d-viewer', Default.args),
+            code: tagToString("ebay-3d-viewer", Default.args),
         },
     },
 };

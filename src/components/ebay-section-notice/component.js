@@ -9,6 +9,6 @@ export default class {
 
     onDismiss() {
         this.state.dismissed = true;
-        this.emit('dismiss');
+        this.emit("dismiss");
     }
 }

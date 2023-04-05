@@ -1,6 +1,6 @@
 /* eslint-disable no-undef,new-cap */
-const flagIconTemplate = require('../ebay-icon/icons/ebay-flag-24-icon/index.marko');
-const playIconTemplate = require('../ebay-icon/icons/ebay-play-24-icon/index.marko');
+const flagIconTemplate = require("../ebay-icon/icons/ebay-flag-24-icon/index.marko");
+const playIconTemplate = require("../ebay-icon/icons/ebay-play-24-icon/index.marko");
 
 // Marko 4 workaround
 const flagIcon = flagIconTemplate.default || flagIconTemplate;
@@ -13,15 +13,15 @@ function getElements(self) {
             super(parent, controls);
 
             // The actual button that will be displayed
-            this.button_ = document.createElement('button');
-            this.button_.classList.add('video-player__report-button');
+            this.button_ = document.createElement("button");
+            this.button_.classList.add("video-player__report-button");
 
-            this.button_.textContent = text || 'Report';
+            this.button_.textContent = text || "Report";
             flagIcon.renderSync().prependTo(this.button_);
             this.parent.appendChild(this.button_);
 
-            this.eventManager.listen(this.button_, 'click', () => {
-                self.emit('report');
+            this.eventManager.listen(this.button_, "click", () => {
+                self.emit("report");
             });
         }
     };

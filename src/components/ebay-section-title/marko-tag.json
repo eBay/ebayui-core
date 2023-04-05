@@ -1,45 +1,45 @@
 {
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@cta-text": "string",
-  "@size": {
-    "enum": ["small", "large", "giant"]
-  },
-  "@href": "#html-href",
-  "@title <title>": {
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
-    },
-    "@class": "string",
-    "@style": "string"
-  },
-  "@subtitle <subtitle>": {
     "attribute-groups": ["html-attributes"],
     "@*": {
-      "targetProperty": null,
-      "type": "expression"
+        "targetProperty": null,
+        "type": "expression"
     },
-    "@html-attributes": "expression"
-  },
-  "@info <info>": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
+    "@html-attributes": "expression",
+    "@cta-text": "string",
+    "@size": {
+        "enum": ["small", "large", "giant"]
     },
-    "@html-attributes": "expression"
-  },
-  "@overflow <overflow>": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
+    "@href": "#html-href",
+    "@title <title>": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@class": "string",
+        "@style": "string"
     },
-    "@html-attributes": "expression"
-  }
+    "@subtitle <subtitle>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@info <info>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@overflow <overflow>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    }
 }

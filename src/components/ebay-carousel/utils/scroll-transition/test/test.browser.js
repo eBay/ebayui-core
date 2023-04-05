@@ -1,13 +1,13 @@
-import sinon from 'sinon';
-import { expect } from 'chai';
-import { scrollTransition } from '../';
+import sinon from "sinon";
+import { expect } from "chai";
+import { scrollTransition } from "../";
 
-describe('scroll-transition', () => {
+describe("scroll-transition", () => {
     let scrollEl;
 
     before(() => {
-        scrollEl = document.createElement('div');
-        scrollEl.style.overflowX = 'scroll';
+        scrollEl = document.createElement("div");
+        scrollEl.style.overflowX = "scroll";
         scrollEl.innerHTML = `<div style="width: 200%; border: 25px dashed #000;"></div>`;
         document.body.appendChild(scrollEl);
     });
@@ -20,14 +20,14 @@ describe('scroll-transition', () => {
         document.body.removeChild(scrollEl);
     });
 
-    it('scrolls an element to an offset and calls a function once done', (done) => {
+    it("scrolls an element to an offset and calls a function once done", (done) => {
         scrollTransition(scrollEl, 100, () => {
             expect(scrollEl.scrollLeft).to.equal(100);
             done();
         });
     });
 
-    it('does not call finish function if scroll is canceled', (done) => {
+    it("does not call finish function if scroll is canceled", (done) => {
         const spy = sinon.spy();
         const cancel = scrollTransition(scrollEl, 100, spy);
         setTimeout(() => {

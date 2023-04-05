@@ -1,9 +1,9 @@
-import { createRenderBody, getNItems } from '../../../common/test-utils/shared';
+import { createRenderBody, getNItems } from "../../../common/test-utils/shared";
 
 export const Links = {
-    a11yHeadingText: 'Page navigation',
+    a11yHeadingText: "Page navigation",
     items: getNItems(3, (i) => ({
-        href: i === 2 ? undefined : '#',
+        href: i === 2 ? undefined : "#",
         renderBody: createRenderBody(`Item Text ${i}`),
     })),
 };
@@ -13,12 +13,12 @@ export const Buttons = {
     })),
 };
 export const linkLastWithoutHREF = {
-    a11yHeadingText: 'Page navigation',
+    a11yHeadingText: "Page navigation",
     items: getNItems(3, (i) => ({
-        href: i === 2 ? undefined : '#',
+        href: i === 2 ? undefined : "#",
         renderBody: createRenderBody(`Item Text ${i}`),
     })),
 };
 export const linkHeadingTag = Object.assign({}, Links, {
-    a11yHeadingTag: 'h3',
+    a11yHeadingTag: "h3",
 });

@@ -1,5 +1,5 @@
 function isRadio() {
-    return this.type === 'radio';
+    return this.type === "radio";
 }
 
 function getCheckedValues() {
@@ -18,7 +18,7 @@ function getCheckedIndexes() {
     }
     return this.items
         .map((item, i) => this.state.checkedItems[i] && i)
-        .filter((item) => item !== false && typeof item !== 'undefined');
+        .filter((item) => item !== false && typeof item !== "undefined");
 }
 
 function getInputState(input) {
@@ -31,7 +31,9 @@ function getInputState(input) {
     this.type = input.type;
     if (this.isRadio()) {
         return {
-            checkedIndex: (this.items || []).findIndex((item) => item.checked || false),
+            checkedIndex: (this.items || []).findIndex(
+                (item) => item.checked || false
+            ),
         };
     }
     return {
@@ -64,9 +66,9 @@ function toggleChecked(index) {
 
     if (this.isRadio() && index !== this.state.checkedIndex) {
         this.state.checkedIndex = index;
-    } else if (this.type !== 'radio') {
+    } else if (this.type !== "radio") {
         this.state.checkedItems[index] = !this.state.checkedItems[index];
-        this.setStateDirty('checkedItems');
+        this.setStateDirty("checkedItems");
     }
 }
 

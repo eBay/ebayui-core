@@ -1,5 +1,5 @@
-import Expander from 'makeup-expander';
-import * as eventUtils from '../../common/event-utils';
+import Expander from "makeup-expander";
+import * as eventUtils from "../../common/event-utils";
 
 export default {
     handleMenuKeydown({ el, originalEvent, index }) {
@@ -14,7 +14,7 @@ export default {
     },
 
     focus() {
-        this.getComponent('button').el.focus();
+        this.getComponent("button").el.focus();
     },
 
     handleButtonEscape() {
@@ -22,18 +22,23 @@ export default {
     },
 
     handleExpand() {
-        this.emitComponentEvent({ eventType: 'expand' });
+        this.emitComponentEvent({ eventType: "expand" });
     },
 
     handleCollapse() {
-        this.emitComponentEvent({ eventType: 'collapse' });
+        this.emitComponentEvent({ eventType: "collapse" });
     },
 
     handleMenuSelect({ el, originalEvent, index }) {
-        this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
+        this.emitComponentEvent({
+            eventType: "select",
+            el,
+            originalEvent,
+            index,
+        });
     },
     handleMousedown({ el, originalEvent }) {
-        this.emitComponentEvent({ eventType: 'mousedown', el, originalEvent });
+        this.emitComponentEvent({ eventType: "mousedown", el, originalEvent });
     },
     emitComponentEvent({ eventType, el, originalEvent, index }) {
         const eventObj = {
@@ -45,7 +50,7 @@ export default {
     },
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     },
@@ -70,9 +75,9 @@ export default {
         // This would cause the menu to close before events are fired
 
         this.expander = new Expander(this.el, {
-            hostSelector: '.fake-menu-button__button',
-            contentSelector: '.fake-menu-button__menu',
-            focusManagement: 'interactive',
+            hostSelector: ".fake-menu-button__button",
+            contentSelector: ".fake-menu-button__menu",
+            focusManagement: "interactive",
             expandOnClick: true,
             autoCollapse: true,
             alwaysDoFocusManagement: true,

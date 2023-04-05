@@ -4,23 +4,23 @@
  * Loads DS4 and DS6 icons from skin and adds them to the ebay-icon symbols.
  */
 
-import * as fs from 'fs';
-import * as cp from 'child_process';
-import * as path from 'path';
-import { createRequire } from 'module';
-import { fileURLToPath } from 'url';
-import cheerio from 'cheerio';
-import { minify } from 'html-minifier';
-import markoTagJson from '../src/components/ebay-icon/marko-tag.json';
+import * as fs from "fs";
+import * as cp from "child_process";
+import * as path from "path";
+import { createRequire } from "module";
+import { fileURLToPath } from "url";
+import cheerio from "cheerio";
+import { minify } from "html-minifier";
+import markoTagJson from "../src/components/ebay-icon/marko-tag.json";
 // import markoTagJson from '../src/components/ebay-icon/marko-tag.json' assert { type: 'json' };
 const require = createRequire(import.meta.url);
 
-const skinDir = path.dirname(require.resolve('@ebay/skin/package.json'));
-const svgDir = path.join(skinDir, 'src/svg');
+const skinDir = path.dirname(require.resolve("@ebay/skin/package.json"));
+const svgDir = path.join(skinDir, "src/svg");
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const outputBaseDir = path.join(__dirname, '../src/components');
+const outputBaseDir = path.join(__dirname, "../src/components");
 const examplesMap = {};
 
 const htmlMinifierOptions = {
@@ -31,11 +31,16 @@ const htmlMinifierOptions = {
 };
 
 function getOutputDir(fileName) {
-    return path.join(outputBaseDir, `ebay-${fileName}`, 'icons');
+    return path.join(outputBaseDir, `ebay-${fileName}`, "icons");
 }
 
 function getExamples(fileName) {
-    return path.join(outputBaseDir, `ebay-${fileName}`, 'examples', 'all.marko');
+    return path.join(
+        outputBaseDir,
+        `ebay-${fileName}`,
+        "examples",
+        "all.marko"
+    );
 }
 
 function setupDir(fileName) {
@@ -54,18 +59,18 @@ div.icon-examples`
 // Remove unused tags in markoTag
 delete markoTagJson.migrator;
 delete markoTagJson.transformer;
-delete markoTagJson['@_name'];
-delete markoTagJson['@_themes'];
+delete markoTagJson["@_name"];
+delete markoTagJson["@_themes"];
 
 function addIcons(component, iconMap) {
     const svgFile = path.join(svgDir, `icons.svg`);
-    const svgContent = fs.readFileSync(svgFile, 'utf-8');
+    const svgContent = fs.readFileSync(svgFile, "utf-8");
     const $ = cheerio.load(svgContent);
 
-    for (const el of Array.from($('symbol'))) {
+    for (const el of Array.from($("symbol"))) {
         const $symbol = $(el);
-        if ($symbol.attr('id').startsWith(component)) {
-            const name = $symbol.attr('id').replace(/^(?:svg-)?icon-/, '');
+        if ($symbol.attr("id").startsWith(component)) {
+            const name = $symbol.attr("id").replace(/^(?:svg-)?icon-/, "");
             const symbolContent = minify($.html($symbol), htmlMinifierOptions);
 
             iconMap.set(name, symbolContent);
@@ -74,13 +79,16 @@ function addIcons(component, iconMap) {
 }
 function generateFile(type, iconMap) {
     for (const [name, themes] of iconMap) {
-        const postfixName = type === 'icon' ? '-icon' : '';
-        const iconFolder = path.join(getOutputDir(type), `ebay-${name}${postfixName}`);
-        const markoTag = path.join(iconFolder, 'marko-tag.json');
-        const index = path.join(iconFolder, 'index.marko');
+        const postfixName = type === "icon" ? "-icon" : "";
+        const iconFolder = path.join(
+            getOutputDir(type),
+            `ebay-${name}${postfixName}`
+        );
+        const markoTag = path.join(iconFolder, "marko-tag.json");
+        const index = path.join(iconFolder, "index.marko");
 
         if (!fs.existsSync(iconFolder)) fs.mkdirSync(iconFolder);
-        const filePath = path.join(iconFolder, 'symbol.js');
+        const filePath = path.join(iconFolder, "symbol.js");
         const content = `export function symbol() {
     // eslint-disable-next-line max-len,quotes
     return ${JSON.stringify(themes)};
@@ -88,7 +96,10 @@ function generateFile(type, iconMap) {
 
         fs.writeFileSync(filePath, `${content.trim()}\n`);
 
-        fs.writeFileSync(markoTag, `${JSON.stringify(markoTagJson, null, 2)}\n`);
+        fs.writeFileSync(
+            markoTag,
+            `${JSON.stringify(markoTagJson, null, 2)}\n`
+        );
 
         // eslint-disable-next-line max-len
         fs.writeFileSync(
@@ -100,10 +111,10 @@ function generateFile(type, iconMap) {
 
 function generateExamples(type, iconMap) {
     const exampleFile = path.join(getExamples(type));
-    const file = fs.readFileSync(exampleFile, 'utf-8');
+    const file = fs.readFileSync(exampleFile, "utf-8");
     const exampleHTML = [];
     for (const name of iconMap) {
-        const postfixName = type === 'icon' ? '-icon' : '';
+        const postfixName = type === "icon" ? "-icon" : "";
         const iconName = `ebay-${name}${postfixName}`;
         exampleHTML.push(`    div
         span.icon
@@ -111,7 +122,7 @@ function generateExamples(type, iconMap) {
         span.text
             -- ${iconName}\n`);
     }
-    fs.writeFileSync(exampleFile, `${file}\n${exampleHTML.join('\n')}`);
+    fs.writeFileSync(exampleFile, `${file}\n${exampleHTML.join("\n")}`);
 }
 
 function generateIcon(componentName) {
@@ -124,11 +135,11 @@ function generateIcon(componentName) {
     }
 }
 
-setupDir('icon');
-setupDir('star-rating');
+setupDir("icon");
+setupDir("star-rating");
 
-generateIcon('icon');
-generateIcon('star-rating');
+generateIcon("icon");
+generateIcon("star-rating");
 
 Object.keys(examplesMap).forEach((componentName) => {
     examplesMap[componentName].sort((a, b) => {

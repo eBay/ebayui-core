@@ -1,6 +1,6 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import component from './index.marko';
-import readme from './README.md';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import component from "./index.marko";
+import readme from "./README.md";
 
 const Template = (args) => ({
     input: {
@@ -12,7 +12,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'buttons/ebay-fake-link',
+    title: "buttons/ebay-fake-link",
     component,
     parameters: {
         docs: {
@@ -24,62 +24,62 @@ export default {
     argTypes: {
         renderBody: {},
         disabled: {
-            description: '',
+            description: "",
             table: {
-                category: 'Toggles',
+                category: "Toggles",
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
             },
         },
         variant: {
             description:
-                'Should only be standalone when it is clear contextually that this is a link, regardless of styles',
-            options: ['inline', 'standalone'],
-            control: { type: 'select' },
+                "Should only be standalone when it is clear contextually that this is a link, regardless of styles",
+            options: ["inline", "standalone"],
+            control: { type: "select" },
             table: {
                 defaultValue: {
-                    summary: 'inline',
+                    summary: "inline",
                 },
             },
         },
         onClick: {
-            action: 'on-click',
-            description: 'Triggered on click',
+            action: "on-click",
+            description: "Triggered on click",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onEscape: {
-            action: 'on-escape',
-            description: 'Triggered on escape key',
+            action: "on-escape",
+            description: "Triggered on escape key",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onFocus: {
-            action: 'on-focus',
-            description: 'Triggered on focus',
+            action: "on-focus",
+            description: "Triggered on focus",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onBlur: {
-            action: 'on-blur',
-            description: 'Triggered on blur',
+            action: "on-blur",
+            description: "Triggered on blur",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
@@ -88,14 +88,14 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    renderBody: 'Fake-Link',
+    renderBody: "Fake-Link",
     disabled: false,
 };
 
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-fake-link', Standard.args),
+            code: tagToString("ebay-fake-link", Standard.args),
         },
     },
 };

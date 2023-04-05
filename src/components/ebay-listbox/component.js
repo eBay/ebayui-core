@@ -1,14 +1,14 @@
-import { createLinear } from 'makeup-active-descendant';
-import { scroll } from '../../common/element-scroll';
-import * as eventUtils from '../../common/event-utils';
+import { createLinear } from "makeup-active-descendant";
+import { scroll } from "../../common/element-scroll";
+import * as eventUtils from "../../common/event-utils";
 
 export default class {
     get isAutoSelection() {
-        return this.input.listSelection === 'auto';
+        return this.input.listSelection === "auto";
     }
 
     elementScroll() {
-        scroll(this.getEls('option')[this.state.selectedIndex]);
+        scroll(this.getEls("option")[this.state.selectedIndex]);
     }
 
     handleChange(index, wasClicked) {
@@ -18,12 +18,12 @@ export default class {
                 return;
             }
             this.state.selectedIndex = index;
-            this.once('update', () => {
-                this.emit('change', {
+            this.once("update", () => {
+                this.emit("change", {
                     index,
                     wasClicked,
                     selected: [option.value],
-                    el: this.getEls('option')[index],
+                    el: this.getEls("option")[index],
                 });
             });
         }
@@ -39,7 +39,7 @@ export default class {
 
     handleKeyDown(originalEvent) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.emit('escape');
+            this.emit("escape");
         });
 
         eventUtils.handleActionKeydown(originalEvent, () =>
@@ -49,7 +49,7 @@ export default class {
 
     handleListboxChange(event) {
         const selectedIndex = parseInt(event.detail.toIndex, 10);
-        const el = this.getEls('option')[selectedIndex];
+        const el = this.getEls("option")[selectedIndex];
         const wasClicked = this.wasClicked;
 
         scroll(el);
@@ -84,7 +84,7 @@ export default class {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     }
@@ -97,15 +97,15 @@ export default class {
         const { input, state } = this;
 
         if (input.options.length && !input.disabled) {
-            const container = this.getEl('options');
-            const optionsContainer = this.getEl('options');
+            const container = this.getEl("options");
+            const optionsContainer = this.getEl("options");
             this._activeDescendant = createLinear(
                 container,
                 optionsContainer,
                 optionsContainer,
-                '.listbox__option[role=option]',
+                ".listbox__option[role=option]",
                 {
-                    activeDescendantClassName: 'listbox__option--active',
+                    activeDescendantClassName: "listbox__option--active",
                     autoInit: state.selectedIndex,
                     autoReset: null,
                     autoScroll: !this.isAutoSelection,

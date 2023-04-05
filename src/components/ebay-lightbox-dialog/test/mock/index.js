@@ -1,19 +1,19 @@
-import { createRenderBody } from '../../../../common/test-utils/shared';
+import { createRenderBody } from "../../../../common/test-utils/shared";
 
 export const Dialog = {
-    a11yCloseText: 'close',
-    renderBody: createRenderBody('body content'),
+    a11yCloseText: "close",
+    renderBody: createRenderBody("body content"),
 };
 
 export const headerFooterDialog = {
-    a11yCloseText: 'close',
+    a11yCloseText: "close",
     footer: {
-        renderBody: createRenderBody('footer content'),
+        renderBody: createRenderBody("footer content"),
     },
     header: {
-        renderBody: createRenderBody('title content'),
+        renderBody: createRenderBody("title content"),
     },
-    renderBody: createRenderBody('body content'),
+    renderBody: createRenderBody("body content"),
 };
 
 export const dialogOpen = Object.assign({}, Dialog, {

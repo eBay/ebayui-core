@@ -1,6 +1,6 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import Readme from './README.md';
-import Cta from './index.marko';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import Readme from "./README.md";
+import Cta from "./index.marko";
 
 const Template = (args) => ({
     input: {
@@ -12,7 +12,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'buttons/ebay-cta-button',
+    title: "buttons/ebay-cta-button",
     component: Cta,
     parameters: {
         docs: {
@@ -25,20 +25,20 @@ export default {
     argTypes: {
         renderBody: {},
         size: {
-            type: 'options',
+            type: "options",
             description: 'Can be "large"',
             table: {
                 defaultValue: {
-                    summary: 'default',
+                    summary: "default",
                 },
             },
-            options: ['default', 'large'],
+            options: ["default", "large"],
         },
         href: {
-            description: 'link target',
+            description: "link target",
             table: {
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
@@ -47,15 +47,15 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    renderBody: 'CTA button',
-    href: 'http://www.ebay.com',
-    size: 'regular',
+    renderBody: "CTA button",
+    href: "http://www.ebay.com",
+    size: "regular",
 };
 
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-cta-button', Standard.args),
+            code: tagToString("ebay-cta-button", Standard.args),
         },
     },
 };

@@ -6,7 +6,7 @@ export function onScrollDebounced(el, cb) {
     return cancel;
 
     function waitForScroll() {
-        el.addEventListener('scroll', handleScroll, eventOptions);
+        el.addEventListener("scroll", handleScroll, eventOptions);
     }
 
     function handleScroll() {
@@ -20,7 +20,7 @@ export function onScrollDebounced(el, cb) {
     }
 
     function cancelWaitForScroll() {
-        el.removeEventListener('scroll', handleScroll, eventOptions);
+        el.removeEventListener("scroll", handleScroll, eventOptions);
     }
 
     function cancel() {

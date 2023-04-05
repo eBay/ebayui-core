@@ -1,12 +1,12 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import Readme from './README.md';
-import Component from './index.marko';
-import groupTemplate from './examples/grouped-radio.marko';
-import WithLabelTemplate from './examples/with-label.marko';
-import DisabledTemplate from './examples/disabled-with-label.marko';
-import groupCode from './examples/grouped-radio.marko?raw';
-import WithLabelCode from './examples/with-label.marko?raw';
-import DisabledCode from './examples/disabled-with-label.marko?raw';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import groupTemplate from "./examples/grouped-radio.marko";
+import WithLabelTemplate from "./examples/with-label.marko";
+import DisabledTemplate from "./examples/disabled-with-label.marko";
+import groupCode from "./examples/grouped-radio.marko?raw";
+import WithLabelCode from "./examples/with-label.marko?raw";
+import DisabledCode from "./examples/disabled-with-label.marko?raw";
 
 const Template = (args) => ({
     input: {
@@ -20,7 +20,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'form input/ebay-radio',
+    title: "form input/ebay-radio",
     component: Component,
     parameters: {
         docs: {
@@ -32,43 +32,43 @@ export default {
 
     argTypes: {
         size: {
-            options: ['regular', 'large'],
-            type: { category: 'Options' },
+            options: ["regular", "large"],
+            type: { category: "Options" },
             table: {
                 defaultValue: {
-                    summary: 'regular',
+                    summary: "regular",
                 },
             },
             description:
                 'Either "large" or "regular". Sets the radio icon. Default is regular. For mweb this should be set to large. (Note: The dimensions of the radio will not change, but only the icon)',
         },
         onChange: {
-            action: 'on-change',
-            description: 'Triggered on change',
+            action: "on-change",
+            description: "Triggered on change",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent, value }',
+                    summary: "{ originalEvent, value }",
                 },
             },
         },
         onFocus: {
-            action: 'on-focus',
-            description: 'Triggered on focus',
+            action: "on-focus",
+            description: "Triggered on focus",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent, value }',
+                    summary: "{ originalEvent, value }",
                 },
             },
         },
         onKeydown: {
-            action: 'on-keydown',
-            description: 'Triggered on keydown',
+            action: "on-keydown",
+            description: "Triggered on keydown",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent, value }',
+                    summary: "{ originalEvent, value }",
                 },
             },
         },
@@ -126,7 +126,7 @@ Isolated.component = Component;
 Isolated.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-radio', Isolated.args),
+            code: tagToString("ebay-radio", Isolated.args),
         },
     },
 };

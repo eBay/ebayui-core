@@ -1,4 +1,4 @@
-import * as eventUtils from '../../common/event-utils';
+import * as eventUtils from "../../common/event-utils";
 
 export default {
     onCreate() {
@@ -13,11 +13,11 @@ export default {
     },
     handleExpand() {
         this.state.open = true;
-        this.emit('expand');
+        this.emit("expand");
     },
     handleCollapse() {
         this.state.open = false;
-        this.emit('collapse');
+        this.emit("collapse");
     },
     handleKeydown(e) {
         eventUtils.handleEscapeKeydown(e, () => {

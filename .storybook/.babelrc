@@ -1,9 +1,12 @@
 {
-  "retainLines": true,
-  "presets": [
-    "@babel/react",
-    ["@babel/preset-env", {
-      "loose": true
-    }]
-  ]
+    "retainLines": true,
+    "presets": [
+        "@babel/react",
+        [
+            "@babel/preset-env",
+            {
+                "loose": true
+            }
+        ]
+    ]
 }

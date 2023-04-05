@@ -1,16 +1,16 @@
 /* eslint-disable compat/compat */
 
-import { execSync } from 'child_process';
-import * as https from 'https'; // or 'https' for https:// URLs
-import { fileURLToPath } from 'url';
-import * as fs from 'fs';
-import * as path from 'path';
-import rimraf from 'rimraf';
+import { execSync } from "child_process";
+import * as https from "https"; // or 'https' for https:// URLs
+import { fileURLToPath } from "url";
+import * as fs from "fs";
+import * as path from "path";
+import rimraf from "rimraf";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const rootDir = path.join(__dirname, '..');
-const versionPath = 'src/common/cdn/versions.json';
+const rootDir = path.join(__dirname, "..");
+const versionPath = "src/common/cdn/versions.json";
 
 const cdnConfig = {
     shaka: {
@@ -35,7 +35,7 @@ function updateVersionFile(version) {
     const versionObject = Object.assign(
         {},
         {
-            '//': 'This is a generated file. Run generateCDN script file to update',
+            "//": "This is a generated file. Run generateCDN script file to update",
         },
         version
     );
@@ -56,18 +56,18 @@ function download(url, dir, fileName) {
         const req = https.get(url, (response) => {
             response.pipe(file);
         });
-        req.on('error', (err) => {
+        req.on("error", (err) => {
             reject({ statusCode: 0, error: err });
         });
-        req.on('close', () => {
+        req.on("close", () => {
             resolve();
         });
     });
 }
 
 async function shakaGenerator({ version, cdnVersionPath }) {
-    await download(getShakaUrl(version), cdnVersionPath, 'shaka-player.ui.js');
-    await download(getShakaCSSUrl(version), cdnVersionPath, 'controls.css');
+    await download(getShakaUrl(version), cdnVersionPath, "shaka-player.ui.js");
+    await download(getShakaCSSUrl(version), cdnVersionPath, "controls.css");
     // Remove define
     execSync(
         `sed -i '' -e 's/typeof define=="function"/typeof define=="w"/' ${cdnVersionPath}/shaka-player.ui.js`
@@ -99,14 +99,16 @@ async function highchartsGenerator({ cdnVersionPath }) {
 async function run() {
     const versionObject = {};
 
-    const cdnDir = path.join(rootDir, '_cdn', 'ebayui');
+    const cdnDir = path.join(rootDir, "_cdn", "ebayui");
 
     try {
         rimraf.sync(cdnDir);
         for (const key of Object.keys(cdnConfig)) {
             const { versionCommand, generator } = cdnConfig[key];
 
-            const version = execSync(versionCommand, { encoding: 'utf8' }).trim();
+            const version = execSync(versionCommand, {
+                encoding: "utf8",
+            }).trim();
 
             versionObject[key] = version;
 

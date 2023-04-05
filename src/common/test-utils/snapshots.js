@@ -1,8 +1,8 @@
-import { render, prettyDOM } from '@marko/testing-library';
-import snap from 'mocha-snap';
+import { render, prettyDOM } from "@marko/testing-library";
+import snap from "mocha-snap";
 
 function snapshotNode(dirname) {
-    return (container) => snap(container, '.html', dirname);
+    return (container) => snap(container, ".html", dirname);
 }
 
 function snapshotHTML(dirname) {

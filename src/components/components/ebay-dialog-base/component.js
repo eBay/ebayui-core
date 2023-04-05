@@ -1,8 +1,8 @@
-import * as keyboardTrap from 'makeup-keyboard-trap';
-import * as screenReaderTrap from 'makeup-screenreader-trap';
-import * as bodyScroll from '../../../common/body-scroll';
-import * as eventUtils from '../../../common/event-utils';
-import transition from '../../../common/transition';
+import * as keyboardTrap from "makeup-keyboard-trap";
+import * as screenReaderTrap from "makeup-screenreader-trap";
+import * as bodyScroll from "../../../common/body-scroll";
+import * as eventUtils from "../../../common/event-utils";
+import transition from "../../../common/transition";
 
 export default {
     get useHiddenProperty() {
@@ -10,13 +10,19 @@ export default {
     },
 
     trackLastClick(e) {
-        if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) {
+        if (
+            e.defaultPrevented ||
+            e.metaKey ||
+            e.ctrlKey ||
+            e.shiftKey ||
+            e.button !== 0
+        ) {
             return;
         }
 
         let el = e.target;
         // Find an <button> element that may have been clicked.
-        while (el !== null && el.nodeName !== 'BUTTON') {
+        while (el !== null && el.nodeName !== "BUTTON") {
             el = el.parentNode;
         }
         // Store the button that was clicked.
@@ -29,7 +35,9 @@ export default {
             closeFocusEl = document.getElementById(input.closeFocus);
         }
         const el =
-            document.activeElement === document.body ? this.clickTarget : document.activeElement;
+            document.activeElement === document.body
+                ? this.clickTarget
+                : document.activeElement;
         return closeFocusEl || el;
     },
 
@@ -38,7 +46,7 @@ export default {
     },
 
     handleScroll() {
-        this.emit('scroll');
+        this.emit("scroll");
     },
 
     handleKeydown(event) {
@@ -52,7 +60,7 @@ export default {
 
         this.startEl = null;
 
-        if (this.input.buttonPosition === 'hidden') {
+        if (this.input.buttonPosition === "hidden") {
             return;
         }
 
@@ -84,25 +92,25 @@ export default {
     },
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._release();
         }
     },
 
     onMount() {
         this.rootEl = this.getEl();
-        this.windowEl = this.getEl('window');
-        this.closeEl = this.getEl('close');
-        this.bodyEl = this.getEl('body');
-        if (this.input.transitionEl === 'root') {
+        this.windowEl = this.getEl("window");
+        this.closeEl = this.getEl("close");
+        this.bodyEl = this.getEl("body");
+        if (this.input.transitionEl === "root") {
             this.transitionEls = [this.rootEl];
-        } else if (this.input.transitionEl === 'window') {
+        } else if (this.input.transitionEl === "window") {
             this.transitionEls = [this.windowEl];
         } else {
             this.transitionEls = [this.windowEl, this.rootEl];
         }
         // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
-        this.subscribeTo(this.rootEl).on('click', () => {});
+        this.subscribeTo(this.rootEl).on("click", () => {});
 
         this._trap({
             firstRender: true,
@@ -141,7 +149,8 @@ export default {
     },
 
     _getTrapCallback(restoreTrap, isTrapped, wasTrapped) {
-        const willTrap = this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped));
+        const willTrap =
+            this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped));
         const useHiddenProperty = this.useHiddenProperty;
 
         return () => {
@@ -164,8 +173,13 @@ export default {
         const isFirstRender = opts && opts.firstRender;
         const wasToggled = isTrapped !== wasTrapped;
         const focusEl =
-            (this.input.focus && document.getElementById(this.input.focus)) || this.closeEl;
-        const runTraps = this._getTrapCallback(restoreTrap, isTrapped, wasTrapped);
+            (this.input.focus && document.getElementById(this.input.focus)) ||
+            this.closeEl;
+        const runTraps = this._getTrapCallback(
+            restoreTrap,
+            isTrapped,
+            wasTrapped
+        );
 
         // Ensure focus is set and body scroll prevented on initial render.
         if (isFirstRender && this.input.isModal && isTrapped) {
@@ -180,14 +194,14 @@ export default {
                 runTraps();
 
                 if (isTrapped) {
-                    this.rootEl.removeAttribute('hidden');
+                    this.rootEl.removeAttribute("hidden");
                     this._triggerFocus(focusEl);
-                    this.emit('open');
+                    this.emit("open");
                 } else {
                     this._triggerBodyScroll(false);
                     const activeElement = this.getActiveElement();
-                    this.rootEl.setAttribute('hidden', '');
-                    this.emit('close');
+                    this.rootEl.setAttribute("hidden", "");
+                    this.emit("close");
 
                     if (
                         // Skip restoring focus if the focused element was changed via the dialog-close event
@@ -201,7 +215,10 @@ export default {
                     // Reset dialog scroll position lazily to avoid jank.
                     // Note since the dialog is not in the dom at this point none of the scroll methods will work.
                     this.cancelScrollReset = setTimeout(() => {
-                        this.rootEl.parentNode.replaceChild(this.rootEl, this.rootEl);
+                        this.rootEl.parentNode.replaceChild(
+                            this.rootEl,
+                            this.rootEl
+                        );
                         this.cancelScrollReset = undefined;
                     }, 20);
                 }
@@ -220,7 +237,7 @@ export default {
                         onFinishTransition
                     );
                 } else {
-                    this.rootEl.removeAttribute('hidden');
+                    this.rootEl.removeAttribute("hidden");
                     runTraps();
                 }
             } else {
@@ -234,7 +251,7 @@ export default {
                         onFinishTransition
                     );
                 } else {
-                    this.rootEl.setAttribute('hidden', '');
+                    this.rootEl.setAttribute("hidden", "");
                 }
             }
         } else if (restoreTrap) {

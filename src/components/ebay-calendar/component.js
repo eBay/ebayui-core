@@ -56,7 +56,9 @@ export default class extends Marko.Component {
      * @param {Input} input
      */
     onCreate(input) {
-        const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(localeOverride(input.locale));
+        const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(
+            localeOverride(input.locale)
+        );
         const todayISO = toISO(new Date());
         this.state = {
             focusISO: null,
@@ -81,7 +83,9 @@ export default class extends Marko.Component {
     onInput(input) {
         if (input.selected) {
             // If no selected times are visible, snap the view to the first one
-            const selectedISOs = Array.isArray(input.selected) ? input.selected : [input.selected];
+            const selectedISOs = Array.isArray(input.selected)
+                ? input.selected
+                : [input.selected];
             const currFirstISO = this.getFirstVisibleISO();
             const currLastISO = this.getLastVisibleISO(input);
             const selectedTimeInView = selectedISOs.find(
@@ -122,7 +126,7 @@ export default class extends Marko.Component {
      * @param {DayISO} day
      */
     onDaySelect(day) {
-        this.emit('select', { iso: day });
+        this.emit("select", { iso: day });
     }
 
     /**
@@ -164,23 +168,23 @@ export default class extends Marko.Component {
                 }
                 this.setTabindexAndFocus(iso);
 
-                this.emit('focus', { iso: this.state.tabindexISO });
+                this.emit("focus", { iso: this.state.tabindexISO });
             }
         } else {
             switch (event.key) {
-                case 'PageUp':
+                case "PageUp":
                     this.prevMonth(true);
                     break;
-                case 'PageDown':
+                case "PageDown":
                     this.nextMonth(true);
                     break;
-                case 'Home':
+                case "Home":
                     this.setTabindexAndFocus(this.getFirstActiveISO());
-                    this.emit('focus', { iso: this.state.tabindexISO });
+                    this.emit("focus", { iso: this.state.tabindexISO });
                     break;
-                case 'End':
+                case "End":
                     this.setTabindexAndFocus(this.getLastActiveISO());
-                    this.emit('focus', { iso: this.state.tabindexISO });
+                    this.emit("focus", { iso: this.state.tabindexISO });
                     break;
                 default:
             }
@@ -204,7 +208,9 @@ export default class extends Marko.Component {
         return toISO(
             new Date(
                 baseDate.getFullYear(),
-                baseDate.getMonth() + this.state.offset + (input.numMonths || 1),
+                baseDate.getMonth() +
+                    this.state.offset +
+                    (input.numMonths || 1),
                 0
             )
         );
@@ -232,10 +238,13 @@ export default class extends Marko.Component {
      * @param {Date} date
      */
     monthTitle(date) {
-        const formatter = new Intl.DateTimeFormat(localeOverride(this.input.locale), {
-            month: 'long',
-            year: 'numeric',
-        });
+        const formatter = new Intl.DateTimeFormat(
+            localeOverride(this.input.locale),
+            {
+                month: "long",
+                year: "numeric",
+            }
+        );
         return formatter.format(date);
     }
 
@@ -243,7 +252,10 @@ export default class extends Marko.Component {
      * @param {boolean | void} focus
      */
     prevMonth(focus) {
-        if (this.state.disableBefore && this.getFirstVisibleISO() <= this.state.disableBefore) {
+        if (
+            this.state.disableBefore &&
+            this.getFirstVisibleISO() <= this.state.disableBefore
+        ) {
             return false;
         }
 
@@ -257,7 +269,9 @@ export default class extends Marko.Component {
             this.setTabindexAndFocus(newTabindexISO);
         }
 
-        this.emit('month', { iso: toISO(this.getMonthDate(this.state.offset)) });
+        this.emit("month", {
+            iso: toISO(this.getMonthDate(this.state.offset)),
+        });
 
         return true;
     }
@@ -266,7 +280,10 @@ export default class extends Marko.Component {
      * @param {boolean | void} focus
      */
     nextMonth(focus) {
-        if (this.state.disableAfter && this.getLastVisibleISO() >= this.state.disableAfter) {
+        if (
+            this.state.disableAfter &&
+            this.getLastVisibleISO() >= this.state.disableAfter
+        ) {
             return false;
         }
 
@@ -280,8 +297,12 @@ export default class extends Marko.Component {
             this.setTabindexAndFocus(newTabindexISO);
         }
 
-        this.emit('month', {
-            iso: toISO(this.getMonthDate(this.state.offset + (this.input.numMonths || 1))),
+        this.emit("month", {
+            iso: toISO(
+                this.getMonthDate(
+                    this.state.offset + (this.input.numMonths || 1)
+                )
+            ),
         });
 
         return true;
@@ -294,7 +315,9 @@ export default class extends Marko.Component {
         this.state.tabindexISO = iso;
         // After UI updates, focus on the new tabindex date
         setTimeout(() => {
-            /** @type {HTMLButtonElement | undefined} */ (this.getEl(iso))?.focus();
+            /** @type {HTMLButtonElement | undefined} */ (
+                this.getEl(iso)
+            )?.focus();
         });
     }
 
@@ -354,9 +377,10 @@ export function findFirstDayOfWeek(localeName) {
     // weekInfo only exists on some browsers, so we default to Sunday otherwise
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/weekInfo
 
-    const locale = /** @type {Intl.Locale & { weekInfo?: { firstDay: number } }} */ (
-        new Intl.Locale(localeName)
-    );
+    const locale =
+        /** @type {Intl.Locale & { weekInfo?: { firstDay: number } }} */ (
+            new Intl.Locale(localeName)
+        );
     if (locale.weekInfo) {
         return locale.weekInfo.firstDay;
     }
@@ -370,7 +394,7 @@ export function getWeekdayInfo(localeName) {
     const firstDayOfWeek = findFirstDayOfWeek(localeName);
 
     const weekdayLabelFormatter = new Intl.DateTimeFormat(localeName, {
-        weekday: 'short',
+        weekday: "short",
     });
     const weekday = new Date(2022, 9, 2 + firstDayOfWeek); // October 2, 2022 was a Sunday
     const weekdayLabels = [...Array(7)].map(() => {
@@ -403,7 +427,7 @@ export function toISO(date) {
  * @param {DayISO} iso
  */
 export function fromISO(iso) {
-    const [year, month, day] = iso.split('-');
+    const [year, month, day] = iso.split("-");
     return new Date(+year, +month - 1, +day);
 }
 
@@ -413,7 +437,9 @@ export function fromISO(iso) {
  */
 export function offsetISO(iso, days) {
     const curr = fromISO(iso);
-    return toISO(new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() + days));
+    return toISO(
+        new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() + days)
+    );
 }
 
 /**

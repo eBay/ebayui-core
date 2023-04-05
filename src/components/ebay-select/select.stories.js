@@ -1,12 +1,12 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import Readme from './README.md';
-import Component from './index.marko';
-import WithLabelTemplate from './examples/external-label.marko';
-import InFormTemplate from './examples/in-form.marko';
-import DisabledTemplate from './examples/disabled-with-label.marko';
-import WithLabelCode from './examples/external-label.marko?raw';
-import InFormCode from './examples/in-form.marko';
-import DisabledCode from './examples/disabled-with-label.marko';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import WithLabelTemplate from "./examples/external-label.marko";
+import InFormTemplate from "./examples/in-form.marko";
+import DisabledTemplate from "./examples/disabled-with-label.marko";
+import WithLabelCode from "./examples/external-label.marko?raw";
+import InFormCode from "./examples/in-form.marko";
+import DisabledCode from "./examples/disabled-with-label.marko";
 
 const Template = (args) => ({
     input: {
@@ -20,7 +20,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'form input/ebay-select',
+    title: "form input/ebay-select",
     component: Component,
     parameters: {
         docs: {
@@ -32,53 +32,55 @@ export default {
 
     argTypes: {
         selected: {
-            control: { type: 'number' },
-            description: 'allows you to set the selected index option to `selected`',
+            control: { type: "number" },
+            description:
+                "allows you to set the selected index option to `selected`",
         },
         floatingLabel: {
-            type: 'string',
-            control: { type: 'string' },
+            type: "string",
+            control: { type: "string" },
             description:
-                'if set, then label will move up and down. Need to have first option to have a nullable value.',
+                "if set, then label will move up and down. Need to have first option to have a nullable value.",
         },
         borderless: {
-            type: 'boolean',
-            control: { type: 'boolean' },
-            description: 'whether button has borders',
+            type: "boolean",
+            control: { type: "boolean" },
+            description: "whether button has borders",
         },
         isLarge: {
-            type: 'boolean',
-            control: { type: 'boolean' },
-            description: 'to show large version',
+            type: "boolean",
+            control: { type: "boolean" },
+            description: "to show large version",
         },
 
         text: {
-            control: { type: 'text' },
-            description: 'text to use in the option',
+            control: { type: "text" },
+            description: "text to use in the option",
             table: {
-                category: '@option attributes',
+                category: "@option attributes",
             },
         },
         value: {
-            control: { type: 'text' },
-            description: 'used for the `value` attribute of the native `<option>`',
+            control: { type: "text" },
+            description:
+                "used for the `value` attribute of the native `<option>`",
             table: {
-                category: '@option attributes',
+                category: "@option attributes",
             },
         },
         option: {
-            name: '@option',
+            name: "@option",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         onChange: {
-            action: 'on-change',
-            description: 'Triggered on option selected',
+            action: "on-change",
+            description: "Triggered on option selected",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ el, index, selected }',
+                    summary: "{ el, index, selected }",
                 },
             },
         },
@@ -87,30 +89,32 @@ export default {
 
 export const Floating = Template.bind({});
 Floating.args = {
-    floatingLabel: 'Option',
+    floatingLabel: "Option",
     options: [
         {
-            text: 'Select an option',
-            value: '',
+            text: "Select an option",
+            value: "",
         },
         {
-            text: 'option 1',
-            value: 'option 1',
+            text: "option 1",
+            value: "option 1",
         },
         {
-            text: 'option 2',
-            value: 'option 2',
+            text: "option 2",
+            value: "option 2",
         },
         {
-            text: 'option 3',
-            value: 'option 3',
+            text: "option 3",
+            value: "option 3",
         },
     ],
 };
 Floating.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-select', Floating.args, { options: 'option' }),
+            code: tagToString("ebay-select", Floating.args, {
+                options: "option",
+            }),
         },
     },
 };

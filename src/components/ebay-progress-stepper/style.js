@@ -1,1 +1,1 @@
-require('@ebay/skin/progress-stepper');
+require("@ebay/skin/progress-stepper");

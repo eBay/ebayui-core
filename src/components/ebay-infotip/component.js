@@ -6,7 +6,7 @@ export default {
     },
 
     setOpen(isOpen) {
-        if (this.input.variant === 'modal') {
+        if (this.input.variant === "modal") {
             this.state.open = isOpen;
         }
     },
@@ -17,29 +17,29 @@ export default {
 
     handleExpand() {
         this.setOpen(true);
-        this.emit('expand');
+        this.emit("expand");
     },
 
     handleOverlayClose() {
-        this.getComponent('base').collapse();
+        this.getComponent("base").collapse();
     },
 
     isExpanded() {
-        return this.getComponent('base').isExpanded();
+        return this.getComponent("base").isExpanded();
     },
 
     expand() {
-        this.getComponent('base').expand();
+        this.getComponent("base").expand();
     },
 
     collapse() {
-        this.getComponent('base').collapse();
+        this.getComponent("base").collapse();
     },
 
     handleCollapse() {
         this.setOpen(false);
 
-        this.getEl('host').focus();
-        this.emit('collapse');
+        this.getEl("host").focus();
+        this.emit("collapse");
     },
 };

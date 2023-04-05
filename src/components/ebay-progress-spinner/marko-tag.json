@@ -1,12 +1,12 @@
 {
-  "@size": {
-    "enum": ["small", "large"]
-  },
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@role": "never"
+    "@size": {
+        "enum": ["small", "large"]
+    },
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@role": "never"
 }

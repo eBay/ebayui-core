@@ -7,7 +7,7 @@
  * @return {number}
  */
 export function getMaxWidth(el) {
-    el.style.width = '100vw';
+    el.style.width = "100vw";
     const result = el.offsetWidth;
     el.style.width = null;
     return result;

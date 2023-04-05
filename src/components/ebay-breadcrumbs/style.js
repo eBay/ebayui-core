@@ -1,2 +1,2 @@
-require('@ebay/skin/breadcrumbs');
-require('@ebay/skin/utility');
+require("@ebay/skin/breadcrumbs");
+require("@ebay/skin/utility");

@@ -1,5 +1,5 @@
-import { createLinear } from 'makeup-roving-tabindex';
-import * as eventUtils from '../../common/event-utils';
+import { createLinear } from "makeup-roving-tabindex";
+import * as eventUtils from "../../common/event-utils";
 
 export default {
     /**
@@ -24,7 +24,7 @@ export default {
             const selectedIndex = (state.selectedIndex + len + direction) % len;
             this.getEl(`tabs-${selectedIndex}`).focus();
 
-            if (!input.activation || input.activation === 'auto') {
+            if (!input.activation || input.activation === "auto") {
                 this._setIndex(selectedIndex);
             }
         });
@@ -44,7 +44,8 @@ export default {
         input.panels = input.panels || [];
 
         if (!isNaN(input.selectedIndex)) {
-            state.selectedIndex = parseInt(input.selectedIndex, 10) % (input.tabs.length || 1);
+            state.selectedIndex =
+                parseInt(input.selectedIndex, 10) % (input.tabs.length || 1);
         }
     },
 
@@ -57,7 +58,7 @@ export default {
     },
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     },
@@ -71,7 +72,7 @@ export default {
 
         if (selectedIndex !== state.selectedIndex) {
             state.selectedIndex = selectedIndex;
-            this.emit('select', { selectedIndex });
+            this.emit("select", { selectedIndex });
         }
     },
 
@@ -79,10 +80,14 @@ export default {
         const { input, state } = this;
 
         if (!input.fake) {
-            this._linearRovingTabindex = createLinear(this.getEl('tabs'), '.tabs__item', {
-                index: state.selectedIndex,
-                wrap: true,
-            });
+            this._linearRovingTabindex = createLinear(
+                this.getEl("tabs"),
+                ".tabs__item",
+                {
+                    index: state.selectedIndex,
+                    wrap: true,
+                }
+            );
         }
     },
 

@@ -10,10 +10,13 @@ about: Something isn't working
 ## eBayUI Version: x.x.x
 
 ## Description
+
 <!-- What's the bug? Include steps to reproduce, actual vs. expected behavior, etc. -->
 
 ## Workaround
+
 <!-- Is there a known workaround? If so, what is it? -->
 
 ## Screenshots
+
 <!-- Upload screenshots if appropriate. -->

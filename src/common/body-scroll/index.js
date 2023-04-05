@@ -1,4 +1,4 @@
-import { resizeUtil } from '../event-utils';
+import { resizeUtil } from "../event-utils";
 let previousPosition;
 let previousStyles;
 let isPrevented = false;
@@ -22,26 +22,30 @@ function prevent() {
         const { body } = document;
         const { pageXOffset, pageYOffset } = window;
         const { width, height, marginTop, marginLeft } = getComputedStyle(body);
-        let styleText = 'position:fixed;overflow:hidden;';
+        let styleText = "position:fixed;overflow:hidden;";
         previousPosition = [pageXOffset, pageYOffset];
-        previousStyles = body.getAttribute('style');
+        previousStyles = body.getAttribute("style");
         styleText += `height:${height};`;
         styleText += `width:${width};`;
 
         if (pageYOffset) {
-            styleText += `margin-top:${-1 * (pageYOffset - parseInt(marginTop, 10))}px;`;
+            styleText += `margin-top:${
+                -1 * (pageYOffset - parseInt(marginTop, 10))
+            }px;`;
         }
 
         if (pageXOffset) {
-            styleText += `margin-left:${-1 * (pageXOffset - parseInt(marginLeft, 10))}px`;
+            styleText += `margin-left:${
+                -1 * (pageXOffset - parseInt(marginLeft, 10))
+            }px`;
         }
 
         if (previousStyles) {
             styleText = `${previousStyles};${styleText}`;
         }
 
-        body.setAttribute('style', styleText);
-        resizeUtil.addEventListener('', recalculate);
+        body.setAttribute("style", styleText);
+        resizeUtil.addEventListener("", recalculate);
         isPrevented = true;
     }
 }
@@ -57,13 +61,13 @@ function restore() {
     if (isPrevented) {
         const { body } = document;
         if (previousStyles) {
-            body.setAttribute('style', previousStyles);
+            body.setAttribute("style", previousStyles);
         } else {
-            body.removeAttribute('style');
+            body.removeAttribute("style");
         }
 
         window.scrollTo(...previousPosition);
-        resizeUtil.removeEventListener('', recalculate);
+        resizeUtil.removeEventListener("", recalculate);
         isPrevented = false;
     }
 }

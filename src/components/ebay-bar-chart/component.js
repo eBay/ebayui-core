@@ -1,4 +1,4 @@
-import { CDNLoader } from '../../common/cdn';
+import { CDNLoader } from "../../common/cdn";
 import {
     chartFontFamily,
     backgroundColor,
@@ -11,12 +11,12 @@ import {
     tooltipShadows,
     setSeriesColors,
     colorMapping,
-} from '../../common/charts/shared';
+} from "../../common/charts/shared";
 
-import { ebayLegend } from '../../common/charts/legend';
-import { eBayColumns } from '../../common/charts/bar-chart';
+import { ebayLegend } from "../../common/charts/legend";
+import { eBayColumns } from "../../common/charts/bar-chart";
 
-import subtemplate from './subtemplate.marko';
+import subtemplate from "./subtemplate.marko";
 
 export default class {
     onInput() {
@@ -30,9 +30,9 @@ export default class {
     onCreate() {
         this.cdnLoader = new CDNLoader(this, {
             stagger: true,
-            key: 'highcharts',
-            types: ['src', 'src', 'src'],
-            files: ['highcharts.js', 'accessibility.js', 'pattern-fill.js'],
+            key: "highcharts",
+            types: ["src", "src", "src"],
+            files: ["highcharts.js", "accessibility.js", "pattern-fill.js"],
             setLoading: () => {},
             handleError: this.handleError.bind(this),
             handleSuccess: this.handleSuccess.bind(this),
@@ -53,7 +53,7 @@ export default class {
     }
 
     handleError(err) {
-        this.emit('load-error', err);
+        this.emit("load-error", err);
     }
     handleSuccess() {
         this._initializeHighchartExtensions();
@@ -74,7 +74,9 @@ export default class {
     }
     _setupCharts() {
         // check if a single series was passed in for series and if so add it to a new array
-        const series = Array.isArray(this.input.series) ? this.input.series : [this.input.series];
+        const series = Array.isArray(this.input.series)
+            ? this.input.series
+            : [this.input.series];
         const stacked = this.input.stacked;
         const title = this.input.title;
         // controls rounded corders and spacing at the bottom of data points
@@ -85,7 +87,7 @@ export default class {
             series.forEach((s) => {
                 // used to help link each series to the previous one for stacked views
                 // refer to https://api.highcharts.com/highcharts/series.column.linkedTo
-                s.group = ':previous';
+                s.group = ":previous";
             });
         } else {
             // if not stacked, set the top and bottom flag on each series so the single bar has rounded top and bottom corners
@@ -119,7 +121,7 @@ export default class {
 
     getChartConfig() {
         return {
-            type: 'column',
+            type: "column",
             backgroundColor,
             style: {
                 fontFamily: chartFontFamily, // set the font for all chart svg text elements
@@ -133,12 +135,12 @@ export default class {
         return {
             // currently setup to support epoch time values for xAxisLabels.
             // It is possible to set custom non datetime xAxisLabels but will need changes to this component
-            type: 'datetime',
+            type: "datetime",
             labels: {
                 // input.xAxisLabelFormat allows overriding the default short month / day label
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat to customize
-                format: xAxisLabelFormat || '{value:%b %e}',
-                align: 'center',
+                format: xAxisLabelFormat || "{value:%b %e}",
+                align: "center",
                 style: {
                     color: labelsColor, // setting label colors
                 },
@@ -162,7 +164,7 @@ export default class {
             opposite: true, // moves yAxis labels to the right side of the chart
             reversedStacks: false, // makes so series one starts at the bottom of the yAxis, by default this is true
             labels: {
-                format: !yAxisLabels && '${text}',
+                format: !yAxisLabels && "${text}",
                 // if yAxisLabels array is passed in this formatter function is needed to
                 // return the proper label for each yAxis tick mark
                 formatter:
@@ -214,7 +216,7 @@ export default class {
             // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
             return subtemplate.renderToString({
                 // eslint-disable-next-line no-undef,new-cap
-                date: Highcharts.dateFormat('%b %e, %Y', this.x, false),
+                date: Highcharts.dateFormat("%b %e, %Y", this.x, false),
                 data: stacked ? series : this.point,
                 stacked,
                 x: this.x,
@@ -243,8 +245,15 @@ export default class {
             x = 6;
         }
         // check right bound and adjust if the tooltip would be clipped
-        if (x + hoverPoint.dlBox.width > chartPosition.left + this.chart.chartWidth - 6) {
-            x = chartPosition.left + this.chart.chartWidth - hoverPoint.dlBox.width - 6;
+        if (
+            x + hoverPoint.dlBox.width >
+            chartPosition.left + this.chart.chartWidth - 6
+        ) {
+            x =
+                chartPosition.left +
+                this.chart.chartWidth -
+                hoverPoint.dlBox.width -
+                6;
         }
         return { x, y }; // return the tooltip x and y position
     }
@@ -261,7 +270,7 @@ export default class {
             shadow: false, // hide the default shadow as it conflicts with designs
             style: {
                 filter: tooltipShadows, // sets tooltip shadows
-                fontSize: '12px',
+                fontSize: "12px",
             },
             // this callback function is used to position the tooltip at the top of the stacked bars
             positioner: stacked && this.tooltipPositioner,
@@ -364,7 +373,7 @@ export default class {
                 events: {
                     legendItemClick: this.legendItemClick(),
                 },
-                stacking: stacked ? 'normal' : null, // set stacking to normal if stacked flag is set
+                stacking: stacked ? "normal" : null, // set stacking to normal if stacked flag is set
                 groupPadding: 0.1, // padding around groups of points
                 pointPadding: 0.15, // padding between single points
                 states: {

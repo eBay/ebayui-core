@@ -1,1 +1,1 @@
-require('@ebay/skin/star-rating-select');
+require("@ebay/skin/star-rating-select");

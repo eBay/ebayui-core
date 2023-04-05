@@ -1,8 +1,8 @@
 const validRanges = {
-    'A+++': ['D', 'E', 'G'],
-    'A++': ['E', 'G'],
-    'A+': ['F', 'G'],
-    A: ['G'],
+    "A+++": ["D", "E", "G"],
+    "A++": ["E", "G"],
+    "A+": ["F", "G"],
+    A: ["G"],
 };
 
 module.exports = (input) => {

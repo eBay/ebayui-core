@@ -1,5 +1,5 @@
-import * as eventUtils from '../../common/event-utils';
-import { getMaxWidth } from '../../common/dom';
+import * as eventUtils from "../../common/event-utils";
+import { getMaxWidth } from "../../common/dom";
 const MAX_PAGES = 9;
 const MIN_PAGES = 5;
 
@@ -9,7 +9,7 @@ export default {
      * @param {MouseEvent} originalEvent
      */
     handlePageNumberClick(index, originalEvent, el) {
-        this.emit('select', {
+        this.emit("select", {
             el,
             originalEvent,
             value: el.innerText,
@@ -18,20 +18,20 @@ export default {
     },
 
     handleMenuPageNumber({ originalEvent, el }) {
-        const index = parseInt(el.getAttribute('data-page-number'), 10);
-        this.emit('select', {
+        const index = parseInt(el.getAttribute("data-page-number"), 10);
+        this.emit("select", {
             el,
             originalEvent,
             value: el.innerText,
             index,
         });
         // Have to set timeout becasue menu will also trigger focus back to menu container
-        setTimeout(() => this.getEl('pageItem[]', index).focus(), 0);
+        setTimeout(() => this.getEl("pageItem[]", index).focus(), 0);
     },
 
     handleNextPageClick(originalEvent, el) {
-        if (!el.hasAttribute('aria-disabled')) {
-            this.emit('next', {
+        if (!el.hasAttribute("aria-disabled")) {
+            this.emit("next", {
                 el,
                 originalEvent,
             });
@@ -39,8 +39,8 @@ export default {
     },
 
     handlePreviousPageClick(originalEvent, el) {
-        if (!el.hasAttribute('aria-disabled')) {
-            this.emit('previous', {
+        if (!el.hasAttribute("aria-disabled")) {
+            this.emit("previous", {
                 el,
                 originalEvent,
             });
@@ -53,14 +53,17 @@ export default {
 
     onMount() {
         this._calculateMaxItems();
-        this.subscribeTo(eventUtils.resizeUtil).on('resize', this._calculateMaxItems.bind(this));
+        this.subscribeTo(eventUtils.resizeUtil).on(
+            "resize",
+            this._calculateMaxItems.bind(this)
+        );
     },
 
     getItemTag(item) {
         if (item.variant) {
-            return item.variant === 'link' ? 'a' : 'button';
+            return item.variant === "link" ? "a" : "button";
         }
-        return !!item.href ? 'a' : 'button';
+        return !!item.href ? "a" : "button";
     },
 
     /**
@@ -71,9 +74,9 @@ export default {
         const { state, input } = this;
         const { maxItems } = state;
         const { variant } = input;
-        const hasDots = variant === 'show-last' || variant === 'overflow';
-        const hasLeadingDots = variant === 'overflow';
-        const hasOverflow = variant === 'overflow';
+        const hasDots = variant === "show-last" || variant === "overflow";
+        const hasLeadingDots = variant === "overflow";
+        const hasOverflow = variant === "overflow";
         const lastIndex = items.length - 1;
         const dotsIndex = hasDots ? lastIndex : -1;
         const leadingDotsIndex = hasLeadingDots ? 1 : -1;
@@ -128,7 +131,15 @@ export default {
             }
         }
 
-        return { start, end, hideDots, dotsIndex, hasOverflow, leadingDotsIndex, hideLeadingDots };
+        return {
+            start,
+            end,
+            hideDots,
+            dotsIndex,
+            hasOverflow,
+            leadingDotsIndex,
+            hideLeadingDots,
+        };
     },
 
     _calculateMaxItems() {
@@ -139,8 +150,8 @@ export default {
             return;
         }
 
-        const itemContainer = this.getEl('items');
-        const root = this.getEl('root');
+        const itemContainer = this.getEl("items");
+        const root = this.getEl("root");
         const itemWidth =
             this._itemWidth || // Cache the item width since it should be static.
             (this._itemWidth = itemContainer.firstElementChild.offsetWidth);

@@ -1,18 +1,18 @@
 {
-  "attributes": {
-    "locale": "string",
-    "range": "boolean",
-    "disableBefore": "expression",
-    "disableAfter": "expression",
-    "disableWeekdays": "array",
-    "disableList": "array",
-    "inputPlaceholderText": "expression",
-    "getA11yShowMonthText": "function",
-    "a11yOpenPopoverText": "string",
-    "a11ySelectedText": "string",
-    "a11yRangeStartText": "string",
-    "a11yInRangeText": "string",
-    "a11yRangeEndText": "string",
-    "a11ySeparator": "string"
-  }
+    "attributes": {
+        "locale": "string",
+        "range": "boolean",
+        "disableBefore": "expression",
+        "disableAfter": "expression",
+        "disableWeekdays": "array",
+        "disableList": "array",
+        "inputPlaceholderText": "expression",
+        "getA11yShowMonthText": "function",
+        "a11yOpenPopoverText": "string",
+        "a11ySelectedText": "string",
+        "a11yRangeStartText": "string",
+        "a11yInRangeText": "string",
+        "a11yRangeEndText": "string",
+        "a11ySeparator": "string"
+    }
 }

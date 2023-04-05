@@ -26,7 +26,7 @@ export default class {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._clearTimeout();
         }
     }
@@ -42,17 +42,17 @@ export default class {
 
     handleAction() {
         this._clearTimeout();
-        this.emit('action');
+        this.emit("action");
         this.state.open = false;
     }
 
     handleFocus() {
         this._clearTimeout();
-        this.eventSet.add('focus');
+        this.eventSet.add("focus");
     }
 
     handleBlur() {
-        this.eventSet.delete('focus');
+        this.eventSet.delete("focus");
         if (this.eventSet.size === 0) {
             this._clearTimeout();
             this.timeout = setTimeout(() => {
@@ -63,11 +63,11 @@ export default class {
 
     handleMouseEnter() {
         this._clearTimeout();
-        this.eventSet.add('mouseOver');
+        this.eventSet.add("mouseOver");
     }
 
     handleMouseLeave() {
-        this.eventSet.delete('mouseOver');
+        this.eventSet.delete("mouseOver");
         if (this.eventSet.size === 0 && this.state.open === true) {
             this._clearTimeout();
             this.timeout = setTimeout(() => {
@@ -79,6 +79,6 @@ export default class {
     handleClose() {
         this._clearTimeout();
         this.state.open = false;
-        this.emit('close');
+        this.emit("close");
     }
 }

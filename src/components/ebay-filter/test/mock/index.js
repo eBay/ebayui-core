@@ -1,7 +1,7 @@
-import { createRenderBody } from '../../../../common/test-utils/shared';
+import { createRenderBody } from "../../../../common/test-utils/shared";
 
 export const Basic = {
-    renderBody: createRenderBody('text'),
+    renderBody: createRenderBody("text"),
     useAriaPressed: true,
 };
 
@@ -18,12 +18,12 @@ export const Disabled = Object.assign({}, Basic, {
 });
 
 export const Fake = Object.assign({}, Basic, {
-    href: '#fake',
+    href: "#fake",
 });
 
 export const fakeSelected = Object.assign({}, Fake, {
     selected: true,
-    a11ySelectedText: 'Selected Filter',
+    a11ySelectedText: "Selected Filter",
 });
 
 export const fakeDisabled = Object.assign({}, Fake, {

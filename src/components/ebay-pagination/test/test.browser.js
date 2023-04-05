@@ -1,9 +1,9 @@
-import { expect, use } from 'chai';
-import chaiDom from 'chai-dom';
-import { render, fireEvent, cleanup } from '@marko/testing-library';
-import { composeStories } from '@storybook/marko/dist/testing';
-import * as stories from '../pagination.stories';
-import { getPaginationItems } from '../../../common/test-utils/shared';
+import { expect, use } from "chai";
+import chaiDom from "chai-dom";
+import { render, fireEvent, cleanup } from "@marko/testing-library";
+import { composeStories } from "@storybook/marko/dist/testing";
+import * as stories from "../pagination.stories";
+import { getPaginationItems } from "../../../common/test-utils/shared";
 
 const { Buttons, Links } = composeStories(stories);
 
@@ -16,19 +16,21 @@ afterEach(cleanup);
 let component;
 
 function isHidden(item) {
-    return Boolean(item.closest('[hidden]'));
+    return Boolean(item.closest("[hidden]"));
 }
 
-describe('given the pagination is rendered', () => {
-    describe('with links', () => {
+describe("given the pagination is rendered", () => {
+    describe("with links", () => {
         beforeEach(async () => {
-            component = await render(Links, { items: getPaginationItems(6, true) });
+            component = await render(Links, {
+                items: getPaginationItems(6, true),
+            });
         });
 
         thenItCanBeInteractedWith();
     });
 
-    describe('with buttons', () => {
+    describe("with buttons", () => {
         beforeEach(async () => {
             component = await render(Buttons, { items: getPaginationItems(6) });
         });
@@ -37,56 +39,66 @@ describe('given the pagination is rendered', () => {
     });
 
     function thenItCanBeInteractedWith() {
-        describe('when the previous button is activated', () => {
-            describe('via click', () => {
+        describe("when the previous button is activated", () => {
+            describe("via click", () => {
                 beforeEach(async () => {
-                    await fireEvent.click(component.getByLabelText(a11yPreviousText), {
-                        detail: 1,
-                    });
+                    await fireEvent.click(
+                        component.getByLabelText(a11yPreviousText),
+                        {
+                            detail: 1,
+                        }
+                    );
                 });
 
                 thenItEmittedThePaginationPreviousEvent();
             });
 
             function thenItEmittedThePaginationPreviousEvent() {
-                it('then it emits the previous event', () => {
-                    const previousEvents = component.emitted('previous');
+                it("then it emits the previous event", () => {
+                    const previousEvents = component.emitted("previous");
                     expect(previousEvents).has.length(1);
 
                     const [[eventArg]] = previousEvents;
-                    expect(eventArg).has.property('originalEvent').instanceOf(Event);
-                    expect(eventArg).has.property('el').instanceOf(HTMLElement);
+                    expect(eventArg)
+                        .has.property("originalEvent")
+                        .instanceOf(Event);
+                    expect(eventArg).has.property("el").instanceOf(HTMLElement);
                 });
             }
         });
 
-        describe('when the next button is activated', () => {
-            describe('via click', () => {
+        describe("when the next button is activated", () => {
+            describe("via click", () => {
                 beforeEach(async () => {
-                    await fireEvent.click(component.getByLabelText(a11yNextText), {
-                        detail: 1,
-                    });
+                    await fireEvent.click(
+                        component.getByLabelText(a11yNextText),
+                        {
+                            detail: 1,
+                        }
+                    );
                 });
 
                 thenItEmittedThePaginationNextEvent();
             });
 
             function thenItEmittedThePaginationNextEvent() {
-                it('then it emits the next event', () => {
-                    const nextEvents = component.emitted('next');
+                it("then it emits the next event", () => {
+                    const nextEvents = component.emitted("next");
                     expect(nextEvents).has.length(1);
 
                     const [[eventArg]] = nextEvents;
-                    expect(eventArg).has.property('originalEvent').instanceOf(Event);
-                    expect(eventArg).has.property('el').instanceOf(HTMLElement);
+                    expect(eventArg)
+                        .has.property("originalEvent")
+                        .instanceOf(Event);
+                    expect(eventArg).has.property("el").instanceOf(HTMLElement);
                 });
             }
         });
 
-        describe('when the item number is activated', () => {
-            describe('via click', () => {
+        describe("when the item number is activated", () => {
+            describe("via click", () => {
                 beforeEach(async () => {
-                    await fireEvent.click(component.getByText('item 2'), {
+                    await fireEvent.click(component.getByText("item 2"), {
                         detail: 1,
                     });
                 });
@@ -95,45 +107,52 @@ describe('given the pagination is rendered', () => {
             });
 
             function thenItEmittedThePaginationSelectEvent() {
-                it('then it emits the select event', () => {
-                    const selectEvents = component.emitted('select');
+                it("then it emits the select event", () => {
+                    const selectEvents = component.emitted("select");
                     expect(selectEvents).has.length(1);
 
                     const [[eventArg]] = selectEvents;
-                    expect(eventArg).has.property('originalEvent').instanceOf(Event);
-                    expect(eventArg).has.property('el').instanceOf(HTMLElement);
-                    expect(eventArg).has.property('value', 'item 2');
+                    expect(eventArg)
+                        .has.property("originalEvent")
+                        .instanceOf(Event);
+                    expect(eventArg).has.property("el").instanceOf(HTMLElement);
+                    expect(eventArg).has.property("value", "item 2");
                 });
             }
         });
     }
 });
 
-describe('given the pagination is rendered with disabled controls', () => {
+describe("given the pagination is rendered with disabled controls", () => {
     beforeEach(async () => {
-        component = await render(Links, { items: getPaginationItems(1, true, null, true) });
+        component = await render(Links, {
+            items: getPaginationItems(1, true, null, true),
+        });
     });
 
-    describe('when the previous button is activated', () => {
-        describe('via click', () => {
+    describe("when the previous button is activated", () => {
+        describe("via click", () => {
             beforeEach(async () => {
-                await fireEvent.click(component.getByLabelText(a11yPreviousText), {
-                    detail: 1,
-                });
+                await fireEvent.click(
+                    component.getByLabelText(a11yPreviousText),
+                    {
+                        detail: 1,
+                    }
+                );
             });
 
             thenItDidNotEmitThePaginationPreviousEvent();
         });
 
         function thenItDidNotEmitThePaginationPreviousEvent() {
-            it('then it does not emit the previous event', () => {
-                expect(component.emitted('previous')).has.length(0);
+            it("then it does not emit the previous event", () => {
+                expect(component.emitted("previous")).has.length(0);
             });
         }
     });
 
-    describe('when the next button is activated', () => {
-        describe('via click', () => {
+    describe("when the next button is activated", () => {
+        describe("via click", () => {
             beforeEach(async () => {
                 await fireEvent.click(component.getByLabelText(a11yNextText), {
                     detail: 1,
@@ -144,19 +163,19 @@ describe('given the pagination is rendered with disabled controls', () => {
         });
 
         function thenItDidNotEmitThePaginationNextEvent() {
-            it('then it does not emit the next event', () => {
-                expect(component.emitted('next')).has.length(0);
+            it("then it does not emit the next event", () => {
+                expect(component.emitted("next")).has.length(0);
             });
         }
     });
 });
 
-describe('given the pagination is rendered with overflow menu', () => {
+describe("given the pagination is rendered with overflow menu", () => {
     // Standard render which will also wait for resize event to trigger
     async function renderWithOverflow(items, selected) {
         component = await render(Links, {
             items: getPaginationItems(items, true, selected),
-            variant: 'overflow',
+            variant: "overflow",
         });
         await new Promise((resolve) => requestAnimationFrame(resolve));
         // Wait a setTimeout for Marko to finish rendering.
@@ -165,14 +184,17 @@ describe('given the pagination is rendered with overflow menu', () => {
 
     // Verifies the overflow menu, that they should be hidden/shown
     function checkOverflow(firstHidden, lastHidden) {
-        const dotsEl = component.getAllByRole('separator', { hidden: true });
-        const isFirstHidden = Boolean(dotsEl[0].closest('[hidden]'));
-        const isLastHidden = Boolean(dotsEl[1].closest('[hidden]'));
+        const dotsEl = component.getAllByRole("separator", { hidden: true });
+        const isFirstHidden = Boolean(dotsEl[0].closest("[hidden]"));
+        const isLastHidden = Boolean(dotsEl[1].closest("[hidden]"));
         expect(isFirstHidden).to.equal(
             firstHidden,
-            `leading is ${firstHidden ? 'visible' : 'hidden'}`
+            `leading is ${firstHidden ? "visible" : "hidden"}`
         );
-        expect(isLastHidden).to.equal(lastHidden, `end is ${lastHidden ? 'visible' : 'hidden'}`);
+        expect(isLastHidden).to.equal(
+            lastHidden,
+            `end is ${lastHidden ? "visible" : "hidden"}`
+        );
     }
 
     // Verifies that the given item is present in both html dom structure as hidden, but also available in menu
@@ -181,71 +203,71 @@ describe('given the pagination is rendered with overflow menu', () => {
         expect(item.length).to.equal(2);
         if (leading) {
             // Means item is in first menu
-            expect(isHidden(item[0])).to.equal(false, 'item is in menu');
-            expect(isHidden(item[1])).to.equal(true, 'item should be hidden');
+            expect(isHidden(item[0])).to.equal(false, "item is in menu");
+            expect(isHidden(item[1])).to.equal(true, "item should be hidden");
         } else {
             // Means item is in end menu
-            expect(isHidden(item[0])).to.equal(true, 'item should be hidden');
-            expect(isHidden(item[1])).to.equal(false, 'item is in menu');
+            expect(isHidden(item[0])).to.equal(true, "item should be hidden");
+            expect(isHidden(item[1])).to.equal(false, "item is in menu");
         }
     }
 
-    describe('renders with 15 items and first is selected', () => {
+    describe("renders with 15 items and first is selected", () => {
         beforeEach(async () => {
             await renderWithOverflow(16, 1);
         });
 
-        it('shows overflow menu when it is at start', () => {
+        it("shows overflow menu when it is at start", () => {
             checkOverflow(true, false);
-            checkMenuItem('item 11', false);
+            checkMenuItem("item 11", false);
         });
     });
-    describe('renders with 15 items and middle is selected', () => {
+    describe("renders with 15 items and middle is selected", () => {
         beforeEach(async () => {
             await renderWithOverflow(16, 8);
         });
 
-        it('should show both overflow menus', () => {
+        it("should show both overflow menus", () => {
             checkOverflow(false, false);
-            checkMenuItem('item 14', false);
-            checkMenuItem('item 1', true);
+            checkMenuItem("item 14", false);
+            checkMenuItem("item 1", true);
         });
     });
 
-    describe('renders with 15 items and end is selected', () => {
+    describe("renders with 15 items and end is selected", () => {
         beforeEach(async () => {
             await renderWithOverflow(16, 15);
         });
 
-        it('should show both overflow menus', () => {
+        it("should show both overflow menus", () => {
             checkOverflow(false, true);
-            checkMenuItem('item 1', true);
+            checkMenuItem("item 1", true);
         });
     });
 
-    describe('properly triggers on the menu', () => {
+    describe("properly triggers on the menu", () => {
         beforeEach(async () => {
             await renderWithOverflow(16, 1);
-            await fireEvent.click(component.getByRole('separator'));
-            await fireEvent.click(component.getAllByText('item 11')[1]);
+            await fireEvent.click(component.getByRole("separator"));
+            await fireEvent.click(component.getAllByText("item 11")[1]);
         });
 
-        it('should trigger select', () => {
-            const selectEvents = component.emitted('select');
+        it("should trigger select", () => {
+            const selectEvents = component.emitted("select");
             expect(selectEvents).has.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property('originalEvent').instanceOf(Event);
-            expect(eventArg).has.property('el').instanceOf(HTMLElement);
-            expect(eventArg).has.property('value', 'item 11');
+            expect(eventArg).has.property("originalEvent").instanceOf(Event);
+            expect(eventArg).has.property("el").instanceOf(HTMLElement);
+            expect(eventArg).has.property("value", "item 11");
         });
     });
 });
 
-describe('given the pagination is rendered at various sizes', () => {
+describe("given the pagination is rendered at various sizes", () => {
     [
         {
-            name: 'with the second item selected',
+            name: "with the second item selected",
             input: { items: getPaginationItems(9, true, 1) },
             cases: [
                 {
@@ -263,7 +285,7 @@ describe('given the pagination is rendered at various sizes', () => {
             ],
         },
         {
-            name: 'with the fifth item selected',
+            name: "with the fifth item selected",
             input: { items: getPaginationItems(9, true, 4) },
             cases: [
                 {
@@ -285,7 +307,7 @@ describe('given the pagination is rendered at various sizes', () => {
             ],
         },
         {
-            name: 'with the eighth item selected',
+            name: "with the eighth item selected",
             input: { items: getPaginationItems(9, true, 7) },
             cases: [
                 {
@@ -303,8 +325,11 @@ describe('given the pagination is rendered at various sizes', () => {
             ],
         },
         {
-            name: 'first item and dots',
-            input: { items: getPaginationItems(16, true, 1), variant: 'show-last' },
+            name: "first item and dots",
+            input: {
+                items: getPaginationItems(16, true, 1),
+                variant: "show-last",
+            },
             cases: [
                 {
                     width: 330,
@@ -322,8 +347,11 @@ describe('given the pagination is rendered at various sizes', () => {
             dots: true,
         },
         {
-            name: 'with the seventh item selected and dots',
-            input: { items: getPaginationItems(16, true, 7), variant: 'show-last' },
+            name: "with the seventh item selected and dots",
+            input: {
+                items: getPaginationItems(16, true, 7),
+                variant: "show-last",
+            },
             cases: [
                 {
                     width: 330,
@@ -345,8 +373,11 @@ describe('given the pagination is rendered at various sizes', () => {
             dots: true,
         },
         {
-            name: 'with the 3rd to last item selected and hidden dots',
-            input: { items: getPaginationItems(16, true, 13), variant: 'show-last' },
+            name: "with the 3rd to last item selected and hidden dots",
+            input: {
+                items: getPaginationItems(16, true, 13),
+                variant: "show-last",
+            },
             cases: [
                 {
                     width: 330,
@@ -364,8 +395,11 @@ describe('given the pagination is rendered at various sizes', () => {
             dots: false,
         },
         {
-            name: 'with the last item selected and hidden dots',
-            input: { items: getPaginationItems(16, true, 15), variant: 'show-last' },
+            name: "with the last item selected and hidden dots",
+            input: {
+                items: getPaginationItems(16, true, 15),
+                variant: "show-last",
+            },
             cases: [
                 {
                     width: 330,
@@ -383,8 +417,11 @@ describe('given the pagination is rendered at various sizes', () => {
             dots: false,
         },
         {
-            name: 'hidden dots',
-            input: { items: getPaginationItems(5, true, 1), variant: 'show-last' },
+            name: "hidden dots",
+            input: {
+                items: getPaginationItems(5, true, 1),
+                variant: "show-last",
+            },
             cases: [
                 {
                     width: 330,
@@ -411,28 +448,38 @@ describe('given the pagination is rendered at various sizes', () => {
                 describe(`when it is ${width} wide`, () => {
                     beforeEach(async () => {
                         component.container.style.width = `${width}px`;
-                        await fireEvent(window, new Event('resize'));
+                        await fireEvent(window, new Event("resize"));
                         // Wait one frame for the resize util to emit.
-                        await new Promise((resolve) => requestAnimationFrame(resolve));
+                        await new Promise((resolve) =>
+                            requestAnimationFrame(resolve)
+                        );
                         // Wait a setTimeout for Marko to finish rendering.
                         await new Promise((resolve) => setTimeout(resolve));
                     });
 
                     it(`then it shows items ${from} through ${to}`, () => {
                         input.items.slice(1, -1).forEach((itemData, i) => {
-                            const itemEl = component.getByText(itemData.renderBody.text);
+                            const itemEl = component.getByText(
+                                itemData.renderBody.text
+                            );
                             expect(isHidden(itemEl)).to.equal(
                                 (i < from || i >= to) && last !== i,
-                                `item ${i} should be ${isHidden ? 'visible' : 'hidden'}`
+                                `item ${i} should be ${
+                                    isHidden ? "visible" : "hidden"
+                                }`
                             );
                         });
                     });
-                    if (typeof dots === 'boolean') {
-                        it(`should ${dots ? 'show' : 'hide'} the dots`, () => {
-                            const dotsEl = component.getByRole('separator', { hidden: true });
+                    if (typeof dots === "boolean") {
+                        it(`should ${dots ? "show" : "hide"} the dots`, () => {
+                            const dotsEl = component.getByRole("separator", {
+                                hidden: true,
+                            });
                             expect(isHidden(dotsEl)).to.equal(
                                 !dots,
-                                `dots should be ${isHidden ? 'visible' : 'hidden'}`
+                                `dots should be ${
+                                    isHidden ? "visible" : "hidden"
+                                }`
                             );
                         });
                     }

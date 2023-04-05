@@ -1,38 +1,38 @@
 {
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@status": {
-    "enum": ["attention", "confirmation", "information", "celebration"]
-  },
-  "@icon": "string",
-  "@a11y-icon-text": "string",
-  "@title <title>": {
     "attribute-groups": ["html-attributes"],
     "@*": {
-      "targetProperty": null,
-      "type": "expression"
+        "targetProperty": null,
+        "type": "expression"
     },
-    "@html-attributes": "expression"
-  },
-  "@footer <footer>": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
+    "@html-attributes": "expression",
+    "@status": {
+        "enum": ["attention", "confirmation", "information", "celebration"]
     },
-    "@html-attributes": "expression"
-  },
-  "@cta <cta>": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
+    "@icon": "string",
+    "@a11y-icon-text": "string",
+    "@title <title>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
     },
-    "@html-attributes": "expression"
-  },
-  "@dismissed": "bool"
+    "@footer <footer>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@cta <cta>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@dismissed": "bool"
 }

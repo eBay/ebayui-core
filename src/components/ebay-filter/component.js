@@ -3,7 +3,7 @@ export default {
         if (!this.input.disabled) {
             const selected = !this.state.selected;
             this.state.selected = selected;
-            this.emit('click', {
+            this.emit("click", {
                 selected,
                 originalEvent,
             });

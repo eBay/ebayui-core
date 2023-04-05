@@ -6,7 +6,7 @@ const EMPTY_ARR = [];
  * @param {String} s
  */
 function camelToKebab(s) {
-    return s.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    return s.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 }
 
 /**
@@ -25,7 +25,11 @@ function processHtmlAttributes(input, ignore = EMPTY_ARR) {
         obj = Object.assign({}, htmlAttributes);
     }
     Object.keys(input).forEach((key) => {
-        if (ignore.indexOf(key) === -1 && !skipAttributes.test(key) && !obj[key]) {
+        if (
+            ignore.indexOf(key) === -1 &&
+            !skipAttributes.test(key) &&
+            !obj[key]
+        ) {
             obj[key] = input[key];
         }
     });

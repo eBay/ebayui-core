@@ -1,41 +1,41 @@
 {
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@grow": "boolean",
-  "@borderless": "boolean",
-  "@collapseOnSelect": "boolean",
-  "@fluid": "boolean",
-  "@invalid": "boolean",
-  "@truncate": "boolean",
-  "@prefix-id": "string",
-  "@prefix-label": "string",
-  "@floating-label": "string",
-  "@unselected-text": "string",
-  "@list-selection": {
-    "enum": ["manual", "auto"]
-  },
-  "@name": "#html-name",
-  "@button-name": "#html-name",
-  "@disabled": "#html-disabled",
-  "@variant": {
-    "enum": ["standard", "form"]
-  },
-  "@options <option>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {
-      "targetProperty": null,
-      "type": "expression"
+        "targetProperty": null,
+        "type": "expression"
     },
     "@html-attributes": "expression",
-    "@text": "string",
-    "@selected": "#html-selected",
-    "@value": "#html-value",
-    "@role": "never",
-    "@tabindex": "never",
-    "@aria-selected": "never"
-  }
+    "@grow": "boolean",
+    "@borderless": "boolean",
+    "@collapseOnSelect": "boolean",
+    "@fluid": "boolean",
+    "@invalid": "boolean",
+    "@truncate": "boolean",
+    "@prefix-id": "string",
+    "@prefix-label": "string",
+    "@floating-label": "string",
+    "@unselected-text": "string",
+    "@list-selection": {
+        "enum": ["manual", "auto"]
+    },
+    "@name": "#html-name",
+    "@button-name": "#html-name",
+    "@disabled": "#html-disabled",
+    "@variant": {
+        "enum": ["standard", "form"]
+    },
+    "@options <option>[]": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression",
+        "@text": "string",
+        "@selected": "#html-selected",
+        "@value": "#html-value",
+        "@role": "never",
+        "@tabindex": "never",
+        "@aria-selected": "never"
+    }
 }
