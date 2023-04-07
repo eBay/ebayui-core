@@ -84,7 +84,7 @@ Default.args = {
         renderBody: `Heading Text`,
     },
     footer: {
-        renderBody: ``,
+        renderBody: '',
     },
 };
 
