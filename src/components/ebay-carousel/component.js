@@ -580,6 +580,7 @@ export default {
             };
         });
 
+        this.skipScrolling = false;
         this.state = state;
     },
 
