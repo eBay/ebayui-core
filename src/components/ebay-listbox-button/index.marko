@@ -17,11 +17,12 @@ static var ignoredAttributes = [
     "collapseOnSelect",
     "variant"
 ];
+static const DASH = '-';
 
 $ var selectedOption = input.options[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
 $ var labelId = input.prefixId && component.getElId("label");
-$ var unselectedText = input.unselectedText || '-';
+$ var unselectedText = input.unselectedText || DASH;
 $ var displayText = selectedText || unselectedText;
 $ var isForm = input.variant === 'form';
 
@@ -55,7 +56,9 @@ $ var isForm = input.variant === 'form';
                     "btn__floating-label--animate",
                     !selectedText && "btn__floating-label--inline",
                     ]>${input.floatingLabel}</span>
-                <span class="btn__text">${displayText}</span>
+                <if(displayText !== DASH)>
+                    <span class="btn__text">${displayText}</span>
+                </if>
             </if>
             <else-if (input.prefixLabel)>
                 <span class="btn__label">${input.prefixLabel} </span>
