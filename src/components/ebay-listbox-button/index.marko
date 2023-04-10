@@ -56,7 +56,7 @@ $ var isForm = input.variant === 'form';
                     "btn__floating-label--animate",
                     !selectedText && "btn__floating-label--inline",
                     ]>${input.floatingLabel}</span>
-                <if(displayText !== DASH)>
+                <if(selectedText)>
                     <span class="btn__text">${displayText}</span>
                 </if>
             </if>
