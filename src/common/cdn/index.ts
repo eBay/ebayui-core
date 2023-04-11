@@ -2,6 +2,15 @@ import { loader } from '../loader';
 import versions from './versions.json';
 const MAX_RETRIES = 3;
 
+interface CDNLoaderConfig {
+    key: string;
+    files: string[];
+    types: string[];
+    setLoading: (loading: boolean) => void;
+    handleSuccess: () => void;
+    handleError: (err: Error) => void;
+    stagger?: boolean;
+}
 /**
  * @config object with the following (all are required)
  * string key : the key to lookup both in versions and CDN url
@@ -13,7 +22,25 @@ const MAX_RETRIES = 3;
  * boolean stagger :  (optional) if all promises should be staggered or executed in any order
  */
 export class CDNLoader {
-    constructor(self, { key, files, types, setLoading, handleSuccess, handleError, stagger }) {
+    self: any;
+    retryTimes: number;
+    setLoading: (loading: boolean) => void;
+    handleError: (err: Error) => void;
+    handleSuccess: () => void;
+    files: string[];
+    types: string[];
+    key: string;
+    stagger: boolean;
+    cdnFiles: string[];
+    url: string;
+    isLoaded: boolean;
+    loadDelay: number | NodeJS.Timeout;
+    retryTimeout: NodeJS.Timeout;
+
+    constructor(
+        self: CDNLoader,
+        { key, files, types, setLoading, handleSuccess, handleError, stagger }: CDNLoaderConfig
+    ) {
         this.self = self;
         this.retryTimes = 0;
         this.setLoading = setLoading;
@@ -22,17 +49,17 @@ export class CDNLoader {
         this.files = files;
         this.types = types;
         this.key = key;
-        this.stagger = stagger;
+        this.stagger = !!stagger;
         this._setFiles();
     }
 
-    setOverrides(overrides, version) {
+    setOverrides(overrides?: string[], version?: string) {
         this._setFiles(overrides, version);
 
         return this;
     }
 
-    _setFiles(overrides, version) {
+    _setFiles(overrides?: string[], version?: string) {
         this.cdnFiles = [];
         this.url = `https://ir.ebaystatic.com/cr/v/c1/ebayui/${this.key}/v${
             version || versions[this.key]
@@ -59,7 +86,7 @@ export class CDNLoader {
     loadCDN() {
         const _timeout =
             window.requestIdleCallback ||
-            function (handler, arg) {
+            function (handler: Function, arg: { timeout: number }) {
                 return setTimeout(() => {
                     handler();
                 }, arg.timeout);
@@ -67,14 +94,14 @@ export class CDNLoader {
 
         const _cancel =
             window.cancelIdleCallback ||
-            function (id) {
+            function (id: NodeJS.Timeout) {
                 clearTimeout(id);
             };
 
         this.retryTimes = 0;
         this.setLoading(false);
 
-        _cancel(this.loadDelay);
+        _cancel(this.loadDelay as NodeJS.Timeout & number);
         this.setLoading(true);
         this.loadDelay = _timeout(() => this._loadCDN(), { timeout: 100 });
     }
