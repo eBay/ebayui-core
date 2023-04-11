@@ -1,7 +1,7 @@
 /**
  * Scrolls the parent element until the child element is in view
  */
-function scroll(el) {
+function scroll(el: HTMLElement) {
     if (!el) {
         return;
     }
