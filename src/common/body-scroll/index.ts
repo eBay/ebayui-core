@@ -1,6 +1,7 @@
 import { resizeUtil } from '../event-utils';
-let previousPosition;
-let previousStyles;
+
+let previousPosition: [number, number];
+let previousStyles: string;
 let isPrevented = false;
 
 export { prevent, restore };
