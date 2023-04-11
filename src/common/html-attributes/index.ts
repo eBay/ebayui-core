@@ -3,9 +3,8 @@ const EMPTY_ARR = [];
 
 /**
  * Convert camelCase to kebab-case
- * @param {String} s
  */
-function camelToKebab(s) {
+function camelToKebab(s: string) {
     return s.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
@@ -13,10 +12,11 @@ function camelToKebab(s) {
  * Create object of HTML attributes for pass-through to the DOM
  * All fields in ignore will be skipped. This should generally match with the marko.json
  * input fields so that duplicate/unwanted attributes will not be rendered
- * @param {Object} input
- * @param {Array} ignore
  */
-function processHtmlAttributes(input, ignore = EMPTY_ARR) {
+function processHtmlAttributes(
+    input: { htmlAttributes: Map<string, string>; [key: string]: unknown },
+    ignore: string[] = EMPTY_ARR
+) {
     const attributes = {};
     const htmlAttributes = input.htmlAttributes;
 
