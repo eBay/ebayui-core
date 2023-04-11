@@ -4,9 +4,8 @@
  * and then restoring its original width.
  *
  * @param {HTMLElement} el the element to get the max width for
- * @return {number}
  */
-export function getMaxWidth(el) {
+export function getMaxWidth(el: HTMLElement) {
     el.style.width = '100vw';
     const result = el.offsetWidth;
     el.style.width = null;
