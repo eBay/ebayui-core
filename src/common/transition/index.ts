@@ -16,8 +16,11 @@ const TRANSITION_END = 'transitionend';
  * @param {Element[]} options.waitFor Elements that will transition and should be waited for.
  * @param {Function} cb A callback called after the transition as ended.
  */
-export default ({ el, className, waitFor }, cb) => {
-    let ended;
+export default (
+    { el, className, waitFor }: { el: HTMLElement; className: string; waitFor: Element[] },
+    cb: Function
+) => {
+    let ended: boolean;
     let ran = 0;
     const pending = waitFor ? waitFor.length : 0;
     const classList = el.classList;
@@ -91,13 +94,10 @@ export default ({ el, className, waitFor }, cb) => {
 
 /**
  * Runs a function during the next animation frame.
- *
- * @param {function} fn a function to run on the next animation frame.
- * @return {function} a function to cancel the callback.
  */
-function nextFrame(fn) {
-    let frame;
-    let cancelFrame;
+function nextFrame(fn: FrameRequestCallback) {
+    let frame: number;
+    let cancelFrame: typeof cancelAnimationFrame | typeof clearTimeout;
 
     if (window.requestAnimationFrame) {
         frame = requestAnimationFrame(() => {
