@@ -1,6 +1,7 @@
 {
   "taglib-id": "ebayui-core",
   "tags-dir": "./src/components",
+  "script-lang": "ts",
   "taglib-imports": [
     "./src/components/ebay-icon/marko.json",
     "./src/components/ebay-star-rating/marko.json"
