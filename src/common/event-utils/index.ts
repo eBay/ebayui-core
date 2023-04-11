@@ -1,10 +1,4 @@
-/**
- * Generic keydown handler used by more specific cases
- * @param {Array} keyCodes: List of acceptable keyCodes
- * @param {KeyboardEvent} e
- * @param {Function} callback
- */
-function handleKeydown(keyCodes, e, callback) {
+function handleKeydown(keyCodes: number[], e: KeyboardEvent, callback: () => any) {
     const keyCode = e.charCode || e.keyCode;
     if (keyCodes.indexOf(keyCode) !== -1) {
         callback();
@@ -12,7 +6,7 @@ function handleKeydown(keyCodes, e, callback) {
 }
 
 // inverse of found keys
-function handleNotKeydown(keyCodes, e, callback) {
+function handleNotKeydown(keyCodes: number[], e: KeyboardEvent, callback: () => any) {
     const keyCode = e.charCode || e.keyCode;
     if (keyCodes.indexOf(keyCode) === -1) {
         callback();
@@ -20,33 +14,33 @@ function handleNotKeydown(keyCodes, e, callback) {
 }
 
 // enter key
-function handleEnterKeydown(e, callback) {
+function handleEnterKeydown(e: KeyboardEvent, callback: () => any) {
     handleKeydown([13], e, callback);
 }
 
 // space and enter keys
-function handleActionKeydown(e, callback) {
+function handleActionKeydown(e: KeyboardEvent, callback: () => any) {
     handleKeydown([32, 13], e, callback);
 }
 
-function handleEscapeKeydown(e, callback) {
+function handleEscapeKeydown(e: KeyboardEvent, callback: () => any) {
     handleKeydown([27], e, callback);
 }
 
-function handleUpDownArrowsKeydown(e, callback) {
+function handleUpDownArrowsKeydown(e: KeyboardEvent, callback: () => any) {
     handleKeydown([38, 40], e, callback);
 }
 
-function handleLeftRightArrowsKeydown(e, callback) {
+function handleLeftRightArrowsKeydown(e: KeyboardEvent, callback: () => any) {
     handleKeydown([37, 39], e, callback);
 }
 
-function handleArrowsKeydown(e, callback) {
+function handleArrowsKeydown(e: KeyboardEvent, callback: () => any) {
     handleKeydown([37, 38, 39, 40], e, callback);
 }
 
 // only fire for character input, not modifier/meta keys (enter, escape, backspace, tab, etc.)
-function handleTextInput(e, callback) {
+function handleTextInput(e: KeyboardEvent, callback: () => any) {
     const keys = [
         9, // tab
         13, // enter key
@@ -64,30 +58,30 @@ function handleTextInput(e, callback) {
     handleNotKeydown(keys, e, callback);
 }
 
-function preventDefaultIfHijax(e, hijax) {
+function preventDefaultIfHijax(e: KeyboardEvent, hijax: boolean) {
     if (hijax) {
         e.preventDefault();
     }
 }
 
-const handlers = [];
-function addEventListener(_, handler) {
+const handlers: ((e: Event) => void)[] = [];
+function addEventListener(_: unknown, handler: (e: Event) => void) {
     if (handlers.length === 0) {
         window.addEventListener('resize', handleResize);
     }
     handlers.push(handler);
 }
-function removeEventListener(_, handler) {
+function removeEventListener(_: unknown, handler: (e: Event) => void) {
     if (handlers.length === 1) {
         window.removeEventListener('resize', handleResize);
     }
     handlers.splice(handlers.indexOf(handler), 1);
 }
-function handleResize(ev) {
+function handleResize(e: Event) {
     window.removeEventListener('resize', handleResize);
     (window.requestAnimationFrame || window.setTimeout)(() => {
         if (handlers.length) {
-            handlers.forEach((handler) => handler(ev));
+            handlers.forEach((handler) => handler(e));
             window.addEventListener('resize', handleResize);
         }
     }, 16);
@@ -98,9 +92,9 @@ const resizeUtil = {
     removeEventListener,
 };
 
-function debounce(func, timeout = 100) {
-    let timer;
-    return (...args) => {
+function debounce(func: Function, timeout = 100) {
+    let timer: NodeJS.Timeout;
+    return (...args: any[]) => {
         clearTimeout(timer);
         timer = setTimeout(() => {
             func.apply(this, args);
