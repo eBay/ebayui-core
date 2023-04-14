@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],
+    "moduleResolution": "node",
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "target": "ESNext"
   }
 }

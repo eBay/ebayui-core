@@ -81,7 +81,7 @@ $ var header = input.header;
     onClick("handleDialogClick")
     onMousedown("handleStartClick")>
     <if(state.open && isBrowser && !input.ignoreEscape)>
-        <subscribe to=document on-keydown("handleKeydown")/>
+        <subscribe to=(document as any) on-keydown("handleKeydown")/>
     </if>
     <if(!state.open && isBrowser)>
         <subscribe to=window on-click("trackLastClick")/>

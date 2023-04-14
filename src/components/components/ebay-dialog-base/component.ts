@@ -4,48 +4,103 @@ import * as bodyScroll from '../../../common/body-scroll';
 import * as eventUtils from '../../../common/event-utils';
 import transition from '../../../common/transition';
 
-export default {
+interface Input {
+    buttonPosition?: 'right' | 'left' | 'bottom' | 'hidden';
+    useHiddenProperty?: boolean;
+    baseEl?: string;
+    header: Marko.NativeTagInput<`h${number}`> & {
+        as?: `h${number}`;
+        id: string;
+        renderBody: Marko.Body;
+    };
+    classPrefix?: string;
+    closeButtonText?: string;
+    closeButtonClass?: string;
+    a11yCloseText?: string;
+    closeButton?: Marko.Renderable;
+    ariaLabelledby?: string;
+    role: string;
+    class?: string;
+    isModal?: boolean;
+    ignoreEscape?: boolean;
+    windowType?: string;
+    windowClass?: string;
+    top?: {
+        renderBody: Marko.Body;
+    };
+    mainId?: string;
+    renderBody?: Marko.Body;
+    action?: {
+        renderBody?: Marko.Body;
+    };
+    footer?: {
+        renderBody?: Marko.Body;
+    };
+    closeFocus?: string;
+    open?: boolean;
+    transitionEl?: 'root' | 'window';
+    focus?: string;
+}
+
+interface State {
+    open: boolean;
+}
+
+export default class extends Marko.Component<Input, State> {
+    clickTarget: HTMLButtonElement | null;
+    startEl: Element | null;
+    closeEl: Element | null;
+    windowEl: Element | null;
+    rootEl: Element | null;
+    bodyEl: Element | null;
+    transitionEls: Element[];
+    isTrapped: boolean;
+    restoreTrap: boolean;
+    _prevFocusEl: Element | null;
+    cancelTransition: (() => void) | undefined;
+    cancelScrollReset: NodeJS.Timeout | undefined;
+
     get useHiddenProperty() {
         return this.input.useHiddenProperty || false;
-    },
+    }
 
-    trackLastClick(e) {
+    trackLastClick(e: MouseEvent) {
         if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) {
             return;
         }
 
-        let el = e.target;
+        let el = e.target as Node | null;
         // Find an <button> element that may have been clicked.
         while (el !== null && el.nodeName !== 'BUTTON') {
             el = el.parentNode;
         }
         // Store the button that was clicked.
-        this.clickTarget = el;
-    },
+        this.clickTarget = el as HTMLButtonElement | null;
+    }
 
-    getActiveElement(input) {
-        let closeFocusEl;
+    getActiveElement(input: Input) {
+        let closeFocusEl: HTMLElement | null = null;
         if (input && input.closeFocus) {
             closeFocusEl = document.getElementById(input.closeFocus);
         }
         const el =
             document.activeElement === document.body ? this.clickTarget : document.activeElement;
         return closeFocusEl || el;
-    },
+    }
 
-    handleStartClick({ target }) {
+    handleStartClick({ target }: { target: HTMLElement }) {
         this.startEl = target;
-    },
+    }
 
     handleScroll() {
         this.emit('scroll');
-    },
+    }
 
-    handleKeydown(event) {
+    handleKeydown(event: KeyboardEvent) {
         eventUtils.handleEscapeKeydown(event, () => {
             this.state.open = false;
         });
-    },
+    }
 
     handleDialogClick({ target, clientY }) {
         const { closeEl, windowEl, startEl } = this;
@@ -56,13 +111,13 @@ export default {
             return;
         }
 
-        if (windowEl.contains(startEl)) {
+        if (windowEl?.contains(startEl)) {
             // Started on dialog window and user dragged out, don't close
             return;
         }
 
         // Checks if we clicked inside the white panel of the dialog.
-        if (!closeEl.contains(target) && windowEl.contains(target)) {
+        if (!closeEl?.contains(target) && windowEl?.contains(target)) {
             const { bottom } = windowEl.getBoundingClientRect();
             const { paddingBottom } = getComputedStyle(windowEl);
             const windowBottom = bottom - parseInt(paddingBottom, 10);
@@ -72,34 +127,34 @@ export default {
         }
 
         this.state.open = false;
-    },
+    }
 
     handleCloseButtonClick() {
         this.state.open = false;
-    },
+    }
 
-    onInput(input) {
+    onInput(input: Input) {
         input.isModal = input.isModal !== false;
         this.state = { open: input.open || false };
-    },
+    }
 
     onRender() {
         if (typeof window !== 'undefined') {
             this._release();
         }
-    },
+    }
 
     onMount() {
-        this.rootEl = this.getEl();
-        this.windowEl = this.getEl('window');
-        this.closeEl = this.getEl('close');
-        this.bodyEl = this.getEl('body');
+        this.rootEl = this.getEl() ?? null;
+        this.windowEl = this.getEl('window') ?? null;
+        this.closeEl = this.getEl('close') ?? null;
+        this.bodyEl = this.getEl('body') ?? null;
         if (this.input.transitionEl === 'root') {
-            this.transitionEls = [this.rootEl];
+            this.transitionEls = [this.rootEl as Element];
         } else if (this.input.transitionEl === 'window') {
-            this.transitionEls = [this.windowEl];
+            this.transitionEls = [this.windowEl as Element];
         } else {
-            this.transitionEls = [this.windowEl, this.rootEl];
+            this.transitionEls = [this.windowEl as Element, this.rootEl as Element];
         }
         // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
         this.subscribeTo(this.rootEl).on('click', () => {});
@@ -107,21 +162,21 @@ export default {
         this._trap({
             firstRender: true,
         });
-    },
+    }
 
     onUpdate() {
         this._trap({
             firstRender: false,
         });
-    },
+    }
 
-    _triggerFocus(focusEl) {
+    _triggerFocus(focusEl: HTMLElement) {
         if (this.input.isModal && focusEl) {
             focusEl.focus();
         }
-    },
+    }
 
-    _triggerBodyScroll(prevent) {
+    _triggerBodyScroll(prevent: boolean) {
         if (this.input.isModal) {
             if (prevent) {
                 bodyScroll.prevent();
@@ -129,7 +184,7 @@ export default {
                 bodyScroll.restore();
             }
         }
-    },
+    }
 
     onDestroy() {
         this._cancelAsync();
@@ -138,9 +193,9 @@ export default {
         if (this.isTrapped) {
             this._triggerBodyScroll(false);
         }
-    },
+    }
 
-    _getTrapCallback(restoreTrap, isTrapped, wasTrapped) {
+    _getTrapCallback(restoreTrap: boolean, isTrapped: boolean, wasTrapped: boolean) {
         const willTrap = this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped));
         const useHiddenProperty = this.useHiddenProperty;
 
@@ -152,7 +207,7 @@ export default {
                 }
             }
         };
-    },
+    }
 
     /**
      * Ensures that if a component is supposed to be trapped that this is
@@ -170,7 +225,7 @@ export default {
         // Ensure focus is set and body scroll prevented on initial render.
         if (isFirstRender && this.input.isModal && isTrapped) {
             this._prevFocusEl = this.getActiveElement(this.input);
-            this._triggerFocus(focusEl);
+            focusEl && this._triggerFocus(focusEl as HTMLElement);
             this._triggerBodyScroll(true);
         }
         if (wasToggled) {
@@ -180,28 +235,28 @@ export default {
                 runTraps();
 
                 if (isTrapped) {
-                    this.rootEl.removeAttribute('hidden');
-                    this._triggerFocus(focusEl);
+                    this.rootEl?.removeAttribute('hidden');
+                    this._triggerFocus(focusEl as HTMLElement);
                     this.emit('open');
                 } else {
                     this._triggerBodyScroll(false);
-                    const activeElement = this.getActiveElement();
-                    this.rootEl.setAttribute('hidden', '');
+                    const activeElement = this.getActiveElement(this.input);
+                    this.rootEl?.setAttribute('hidden', '');
                     this.emit('close');
 
                     if (
                         // Skip restoring focus if the focused element was changed via the dialog-close event
-                        activeElement === this.getActiveElement() &&
+                        activeElement === this.getActiveElement(this.input) &&
                         // Skip restoring focus if the previously focused element was removed from the DOM.
                         document.documentElement.contains(this._prevFocusEl)
                     ) {
-                        this._prevFocusEl.focus();
+                        (this._prevFocusEl as HTMLElement)?.focus();
                     }
 
                     // Reset dialog scroll position lazily to avoid jank.
                     // Note since the dialog is not in the dom at this point none of the scroll methods will work.
                     this.cancelScrollReset = setTimeout(() => {
-                        this.rootEl.parentNode.replaceChild(this.rootEl, this.rootEl);
+                        this.rootEl?.parentNode?.replaceChild(this.rootEl, this.rootEl);
                         this.cancelScrollReset = undefined;
                     }, 20);
                 }
@@ -213,35 +268,35 @@ export default {
                     this._triggerBodyScroll(true);
                     this.cancelTransition = transition(
                         {
-                            el: this.rootEl,
+                            el: this.rootEl as HTMLElement,
                             className: `${this.input.classPrefix}--show`,
                             waitFor: this.transitionEls,
                         },
                         onFinishTransition
                     );
                 } else {
-                    this.rootEl.removeAttribute('hidden');
+                    this.rootEl?.removeAttribute('hidden');
                     runTraps();
                 }
             } else {
                 if (!isFirstRender) {
                     this.cancelTransition = transition(
                         {
-                            el: this.rootEl,
+                            el: this.rootEl as HTMLElement,
                             className: `${this.input.classPrefix}--hide`,
                             waitFor: this.transitionEls,
                         },
                         onFinishTransition
                     );
                 } else {
-                    this.rootEl.setAttribute('hidden', '');
+                    this.rootEl?.setAttribute('hidden', '');
                 }
             }
         } else if (restoreTrap) {
             // In the case where the page rerendered, attach all traps again
             runTraps();
         }
-    },
+    }
 
     /**
      * Releases the trap before each render and on destroy so
@@ -258,7 +313,7 @@ export default {
         } else {
             this.restoreTrap = false;
         }
-    },
+    }
 
     _cancelAsync() {
         if (this.cancelScrollReset) {
@@ -270,5 +325,5 @@ export default {
             this.cancelTransition();
             this.cancelTransition = undefined;
         }
-    },
-};
+    }
+}
