@@ -1,6 +1,6 @@
 /* eslint-disable no-undef,new-cap */
 const flagIconTemplate = require("../ebay-icon/icons/ebay-flag-24-icon/index.marko");
-const playIconTemplate = require("../ebay-icon/icons/ebay-play-24-icon/index.marko");
+const playIconTemplate = require("../ebay-icon/icons/ebay-play-64-colored-icon/index.marko");
 
 // Marko 4 workaround
 const flagIcon = flagIconTemplate.default || flagIconTemplate;
