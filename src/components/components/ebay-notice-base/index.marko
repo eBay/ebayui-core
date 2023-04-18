@@ -19,6 +19,33 @@ static {
         'a11yDismissText',
     ];
 }
+
+export interface Input {
+    status?: "confirmation" | "celebration" | "attention" | "information";
+    prefixClass?: string;
+    root?: Marko.Renderable;
+    noA11yLabel?: boolean;
+    a11yRoleDescription?: string;
+    class: string | string[] | Record<string, boolean>;
+    icon?: "none";
+    iconClass?: string;
+    headerRoot?: Marko.Renderable;
+    a11yText?: string;
+    a11yIconText?: string;
+    mainRoot?: Marko.Renderable;
+    renderBody?: Marko.Renderable;
+    footer?: Marko.Renderable;
+    a11yDismissText?: string;
+    title?: {
+        as?: Marko.Renderable;
+        class?: string | string[] | Record<string, boolean>;
+        renderBody?: Marko.Renderable;
+    };
+    cta?: Marko.NativeTagInput<"a"> & {
+        renderBody?: Marko.Renderable;
+    };
+}
+
 $ var status = input.status;
 $ var prefixClass = input.prefixClass;
 

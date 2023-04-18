@@ -3,8 +3,8 @@ module.exports = {
     handleDismissKeydown: forwardEvent('dismiss'),
 };
 
-function forwardEvent(eventName) {
-    return function (value, originalEvent) {
+function forwardEvent(eventName: string) {
+    return function (value: unknown, originalEvent: Event) {
         this.emit(eventName, {
             originalEvent,
             value: value,
