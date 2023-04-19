@@ -1,5 +1,5 @@
 module.exports = {
-    stories: ['../src/**/*.stories.@(mdx|js)'],
+    stories: ['../src/**/*.stories.@(mdx|ts)'],
     addons: [
         './plugins/theme-switcher/register.jsx',
         '@storybook/addon-essentials',
@@ -19,6 +19,14 @@ module.exports = {
         config.module.rules.push({
             test: /\.txt$/,
             type: 'asset/source',
+        });
+        config.module.rules.push({
+            test: /\.ts$/,
+            use: [
+                {
+                    loader: require.resolve('ts-loader'),
+                },
+            ],
         });
         config.module.rules = [
             {

@@ -137,6 +137,7 @@
     "marko": "^4 || ^5.23.0"
   },
   "dependencies": {
+    "@babel/preset-typescript": "^7.21.4",
     "@marko-tags/subscribe": "^0.4.2",
     "makeup-active-descendant": "0.6.1",
     "makeup-expander": "~0.10.1",
@@ -147,7 +148,8 @@
     "makeup-prevent-scroll-keys": "~0.2.1",
     "makeup-roving-tabindex": "~0.6.0",
     "makeup-screenreader-trap": "~0.4.1",
-    "makeup-typeahead": "^0.2.1"
+    "makeup-typeahead": "^0.2.1",
+    "ts-loader": "^9.4.2"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
