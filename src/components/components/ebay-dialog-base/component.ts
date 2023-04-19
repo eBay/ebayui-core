@@ -8,7 +8,7 @@ interface Input {
     buttonPosition?: 'right' | 'left' | 'bottom' | 'hidden';
     useHiddenProperty?: boolean;
     baseEl?: string;
-    header: Marko.NativeTagInput<`h${number}`> & {
+    header: Marko.Input<`h${number}`> & {
         as?: `h${number}`;
         id: string;
         renderBody: Marko.Body;

@@ -41,7 +41,7 @@ export interface Input {
         class?: string | string[] | Record<string, boolean>;
         renderBody?: Marko.Renderable;
     };
-    cta?: Marko.NativeTagInput<"a"> & {
+    cta?: Marko.Input<"a"> & {
         renderBody?: Marko.Renderable;
     };
 }
