@@ -1,52 +1,66 @@
 import Expander from 'makeup-expander';
 import focusables from 'makeup-focusables';
 
-export default {
+interface Input {
+    open: boolean;
+    toJSON: () => Object;
+    type: string;
+    noHover: boolean;
+    overlayStyle: string;
+    overlayId: string;
+    renderBody: Marko.Renderable;
+}
+
+export default class extends Marko.Component<Input> {
+    declare action: 'expand' | 'collapse' | null;
+    declare _expander: Expander;
+    declare cancelFocus: ReturnType<typeof focusables>;
+
     handleExpand() {
         this.emit('base-expand');
-    },
+    }
 
     handleCollapse() {
         this.emit('base-collapse');
-    },
+    }
 
     onMount() {
         this._setupBaseTooltip();
-    },
+    }
 
     onUpdate() {
         this._setupBaseTooltip();
-    },
+    }
 
-    onInput(input) {
+    onInput(input: Input) {
         if (input.open === true) {
             this.action = 'expand';
         } else if (input.open === false) {
             this.action = 'collapse';
         }
-    },
+    }
 
     onRender() {
         if (typeof window !== 'undefined') {
             this._cleanupMakeup();
         }
-    },
+    }
 
     collapse() {
         this._expander.expanded = false;
-    },
+    }
 
     expand() {
         this._expander.expanded = true;
-    },
+    }
 
     isExpanded() {
         return this._expander.expanded;
-    },
+    }
 
     onDestroy() {
         this._cleanupMakeup();
-    },
+    }
 
     _setupExpander(host, hostSelector) {
         const { input } = this;
@@ -55,7 +69,7 @@ export default {
         const isTooltip = type === 'tooltip';
         const isInfotip = type === 'infotip';
         const isTourtip = type === 'tourtip';
-        const expanderEl = container.getElementsByClassName(type)[0];
+        const expanderEl = container?.getElementsByClassName(type)[0];
 
         if (host && !isTourtip) {
             this._expander = new Expander(expanderEl, {
@@ -73,7 +87,7 @@ export default {
                 host.setAttribute('aria-describedby', input.overlayId);
             }
         }
-    },
+    }
 
     _setupBaseTooltip() {
         if (this.input.type !== 'dialog--mini') {
@@ -87,7 +101,7 @@ export default {
             }
             this.action = null;
         }
-    },
+    }
 
     _setupMakeup() {
         const { input } = this;
@@ -95,7 +109,7 @@ export default {
         const container = this.getEl('container');
         const hostClass = `${type}__host`;
         const hostSelector = `.${hostClass}`;
-        let host = container.querySelector(hostSelector);
+        let host = container?.querySelector(hostSelector);
 
         if (!host) {
             if (this.cancelFocus) {
@@ -116,7 +130,7 @@ export default {
         } else {
             this._setupExpander(host, hostSelector);
         }
-    },
+    }
 
     _cleanupMakeup() {
         if (this.cancelFocus) {
@@ -127,5 +141,5 @@ export default {
             this._expander.destroy();
             this._expander = undefined;
         }
-    },
-};
+    }
+}
