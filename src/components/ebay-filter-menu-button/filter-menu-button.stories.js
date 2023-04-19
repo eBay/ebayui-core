@@ -150,8 +150,35 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
+    text: "text",
+    items: [
+        {
+            value: "item 1",
+            renderBody: `item 1`,
+        },
+        {
+            value: "item 2",
+            renderBody: `item 2`,
+        },
+        {
+            value: "item 3",
+            renderBody: `item 3`,
+        },
+    ],
+    a11yText: "filter menu button a11y text",
+};
+Default.parameters = {
+    docs: {
+        source: {
+            code: tagToString("ebay-filter-menu-button", Default.args),
+        },
+    },
+};
+
+export const WithFooter = Template.bind({});
+WithFooter.args = {
     text: "text",
     items: [
         {
@@ -173,10 +200,10 @@ Standard.args = {
         a11yFooterText: "footer button a11y text",
     },
 };
-Standard.parameters = {
+WithFooter.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-filter-menu-button", Standard.args),
+            code: tagToString("ebay-filter-menu-button", WithFooter.args),
         },
     },
 };
