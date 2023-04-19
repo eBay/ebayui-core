@@ -1,9 +1,7 @@
 import { processHtmlAttributes } from "../../../common/html-attributes";
-import constants from "./constants";
+import { typeRoles, pointerStyles } from "./constants";
 
 static function noop() {}
-static var typeRoles = constants.typeRoles;
-static var pointerStyles = constants.pointerStyles;
 static var ignoredHeaderAttributes = ["id", "as", "class"];
 
 $ input.toJSON = noop;
