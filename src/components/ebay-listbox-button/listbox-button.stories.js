@@ -74,7 +74,7 @@ export default {
         unselectedText: {
             control: { type: "text" },
             description:
-                'The text to be shown when no options are selected. Default is "-"',
+                "The text to be shown when no options are selected. Default is '-'. Cannot be used with `floating-label`",
         },
         prefixLabel: {
             control: { type: "text" },
