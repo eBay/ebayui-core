@@ -1,7 +1,7 @@
-import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
-import { createLinear } from 'makeup-roving-tabindex';
-import * as eventUtils from '../../common/event-utils';
-import menuUtils from '../../common/menu-utils';
+import * as scrollKeyPreventer from "makeup-prevent-scroll-keys";
+import { createLinear } from "makeup-roving-tabindex";
+import * as eventUtils from "../../common/event-utils";
+import menuUtils from "../../common/menu-utils";
 
 export default Object.assign({}, menuUtils, {
     resetIndex() {
@@ -15,7 +15,10 @@ export default Object.assign({}, menuUtils, {
 
     handleItemClick(index, ev, itemEl) {
         const targetEv = ev.originalEvent || ev;
-        if (this.input.variant !== 'form' || targetEv.target.tagName !== 'INPUT') {
+        if (
+            this.input.variant !== "form" ||
+            targetEv.target.tagName !== "INPUT"
+        ) {
             this._toggleItemChecked(index, ev, itemEl);
         }
     },
@@ -24,10 +27,10 @@ export default Object.assign({}, menuUtils, {
         eventUtils.handleEscapeKeydown(ev, () => {
             // TODO: this event is not documented.
             // Do we need it? (it is only used by the filter-menu-button)
-            this._emitComponentEvent('keydown', ev, { index });
+            this._emitComponentEvent("keydown", ev, { index });
         });
 
-        if (this.input.variant !== 'form') {
+        if (this.input.variant !== "form") {
             eventUtils.handleActionKeydown(ev, () => {
                 this._toggleItemChecked(index, ev, itemEl);
             });
@@ -35,11 +38,11 @@ export default Object.assign({}, menuUtils, {
     },
 
     handleFooterButtonClick(originalEvent) {
-        this._emitComponentEvent('footer-click', originalEvent);
+        this._emitComponentEvent("footer-click", originalEvent);
     },
 
     handleFormSubmit(originalEvent) {
-        this._emitComponentEvent('form-submit', originalEvent);
+        this._emitComponentEvent("form-submit", originalEvent);
     },
 
     onInput(input) {
@@ -55,7 +58,7 @@ export default Object.assign({}, menuUtils, {
     },
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     },
@@ -69,7 +72,7 @@ export default Object.assign({}, menuUtils, {
             return;
         }
         this.toggleChecked(index);
-        this._emitComponentEvent('change', originalEvent, { el, index });
+        this._emitComponentEvent("change", originalEvent, { el, index });
     },
 
     _emitComponentEvent(eventType, originalEvent, args) {
@@ -89,12 +92,12 @@ export default Object.assign({}, menuUtils, {
     },
 
     _setupMakeup() {
-        if (this.input.variant !== 'form') {
-            this._rovingTabIndex = createLinear(this.getEl('menu'), 'div', {
-                autoInit: this.lastTabIndexPosition || 'interactive',
+        if (this.input.variant !== "form") {
+            this._rovingTabIndex = createLinear(this.getEl("menu"), "div", {
+                autoInit: this.lastTabIndexPosition || "interactive",
             });
 
-            scrollKeyPreventer.add(this.getEl('container'));
+            scrollKeyPreventer.add(this.getEl("container"));
         }
     },
 
@@ -103,7 +106,7 @@ export default Object.assign({}, menuUtils, {
             this.lastTabIndexPosition = this._rovingTabIndex.index;
             this._rovingTabIndex.destroy();
             this._rovingTabIndex = undefined;
-            scrollKeyPreventer.remove(this.getEl('container'));
+            scrollKeyPreventer.remove(this.getEl("container"));
         }
     },
 });

@@ -1,5 +1,8 @@
 /* eslint camelcase: "off" */
-import { getNItems, createRenderBody } from '../../../../common/test-utils/shared';
+import {
+    getNItems,
+    createRenderBody,
+} from "../../../../common/test-utils/shared";
 
 export const basic3Headings_3Panels_No_Index = {
     tabs: getNItems(3, (i) => ({
@@ -10,19 +13,27 @@ export const basic3Headings_3Panels_No_Index = {
     })),
 };
 
-export const basic3Headings_3Panels_1Index = Object.assign({}, basic3Headings_3Panels_No_Index, {
-    selectedIndex: 1,
-});
+export const basic3Headings_3Panels_1Index = Object.assign(
+    {},
+    basic3Headings_3Panels_No_Index,
+    {
+        selectedIndex: 1,
+    }
+);
 
-export const basic3Headings_3Panels_2Index = Object.assign({}, basic3Headings_3Panels_No_Index, {
-    selectedIndex: 2,
-});
+export const basic3Headings_3Panels_2Index = Object.assign(
+    {},
+    basic3Headings_3Panels_No_Index,
+    {
+        selectedIndex: 2,
+    }
+);
 
 export const basic3Headings_3Panels_ActivationManual = Object.assign(
     {},
     basic3Headings_3Panels_No_Index,
     {
-        activation: 'manual',
+        activation: "manual",
     }
 );
 
@@ -34,7 +45,7 @@ export const fake3HeadingsNoIndex = {
     })),
     panels: [
         {
-            renderBody: createRenderBody('Panel 0'),
+            renderBody: createRenderBody("Panel 0"),
         },
     ],
 };

@@ -1,38 +1,38 @@
 {
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@open": "boolean",
-  "@focus": "string",
-  "@close-focus": "string",
-  "@a11y-close-text": "string",
-  "@role": "never",
-  "@hidden": "never",
-  "@header <header>": {
     "attribute-groups": ["html-attributes"],
     "@*": {
-      "targetProperty": null,
-      "type": "expression"
+        "targetProperty": null,
+        "type": "expression"
     },
-    "@html-attributes": "expression"
-  },
-  "@closeButton <close-button>": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
+    "@html-attributes": "expression",
+    "@open": "boolean",
+    "@focus": "string",
+    "@close-focus": "string",
+    "@a11y-close-text": "string",
+    "@role": "never",
+    "@hidden": "never",
+    "@header <header>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
     },
-    "@html-attributes": "expression"
-  },
-  "@footer <footer>": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
+    "@closeButton <close-button>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
     },
-    "@html-attributes": "expression"
-  }
+    "@footer <footer>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    }
 }

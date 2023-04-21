@@ -1,16 +1,16 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './index.marko';
-import * as sampleData from './examples/data.json';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import * as sampleData from "./examples/data.json";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'charts/ebay-spark-line',
-    excludeStories: '.*',
+    title: "charts/ebay-spark-line",
+    excludeStories: ".*",
     component: Component,
     parameters: {
         docs: {
@@ -22,13 +22,14 @@ export default {
 
     argTypes: {
         data: {
-            type: { name: 'array', required: true },
-            description: 'an array of point objects, each point contains an `x` and `y` value',
+            type: { name: "array", required: true },
+            description:
+                "an array of point objects, each point contains an `x` and `y` value",
         },
         trend: {
-            type: { name: 'string', required: false },
+            type: { name: "string", required: false },
             description:
-                'Trend can bet set to `positive` or `negative` to change the color of the line',
+                "Trend can bet set to `positive` or `negative` to change the color of the line",
         },
     },
 };
@@ -39,7 +40,7 @@ Basic.args = sampleData.basic;
 Basic.parameters = {
     docs: {
         source: {
-            code: tagToString('spark-line', Basic.args),
+            code: tagToString("spark-line", Basic.args),
         },
     },
 };
@@ -50,7 +51,7 @@ Positive.args = sampleData.positive;
 Positive.parameters = {
     docs: {
         source: {
-            code: tagToString('spark-line', Positive.args),
+            code: tagToString("spark-line", Positive.args),
         },
     },
 };
@@ -61,7 +62,7 @@ Negative.args = sampleData.negative;
 Negative.parameters = {
     docs: {
         source: {
-            code: tagToString('spark-line', Negative.args),
+            code: tagToString("spark-line", Negative.args),
         },
     },
 };

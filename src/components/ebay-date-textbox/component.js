@@ -1,7 +1,7 @@
 // @ts-check
 
-import Expander from 'makeup-expander';
-import { toISO } from '../ebay-calendar/component';
+import Expander from "makeup-expander";
+import { toISO } from "../ebay-calendar/component";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -45,8 +45,8 @@ export default class extends Marko.Component {
 
     onMount() {
         this.expander = new Expander(/** @type {HTMLElement} */ (this.el), {
-            hostSelector: '.ebay-date-textbox--main > .icon-btn',
-            contentSelector: '.date-textbox__popover',
+            hostSelector: ".ebay-date-textbox--main > .icon-btn",
+            contentSelector: ".date-textbox__popover",
             expandOnClick: true,
             autoCollapse: true,
         });
@@ -67,7 +67,9 @@ export default class extends Marko.Component {
 
     calculateNumMonths() {
         this.state.numMonths =
-            document.documentElement.clientWidth < MIN_WIDTH_FOR_DOUBLE_PANE ? 1 : 2;
+            document.documentElement.clientWidth < MIN_WIDTH_FOR_DOUBLE_PANE
+                ? 1
+                : 2;
     }
 
     /**
@@ -126,7 +128,7 @@ export default class extends Marko.Component {
 
     emitSelectedChange() {
         this.emit(
-            'change',
+            "change",
             this.input.range
                 ? {
                       rangeStart: this.state.firstSelected,

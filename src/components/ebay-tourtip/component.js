@@ -2,14 +2,14 @@ export default {
     handleCollapse({ originalEvent }) {
         if (this.state.expanded) {
             this.state.expanded = false;
-            this.emit('collapse', { originalEvent });
+            this.emit("collapse", { originalEvent });
         }
     },
 
     handleExpand({ originalEvent }) {
         if (!this.state.expanded) {
             this.state.expanded = true;
-            this.emit('expand', { originalEvent });
+            this.emit("expand", { originalEvent });
         }
     },
     onInput(input) {

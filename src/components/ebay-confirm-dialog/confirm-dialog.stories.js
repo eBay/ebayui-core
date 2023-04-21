@@ -1,14 +1,14 @@
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Confirm from './examples/default.marko';
-import code from './examples/default.marko?raw';
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Confirm from "./examples/default.marko";
+import code from "./examples/default.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'dialogs/ebay-confirm-dialog',
+    title: "dialogs/ebay-confirm-dialog",
     component: Confirm,
     parameters: {
         docs: {
@@ -20,53 +20,53 @@ export default {
 
     argTypes: {
         open: {
-            type: 'boolean',
-            control: { type: 'boolean' },
-            description: 'Whether dialog is open.',
+            type: "boolean",
+            control: { type: "boolean" },
+            description: "Whether dialog is open.",
             table: {
                 disable: true,
             },
         },
         closeFocus: {
-            control: { type: 'text' },
+            control: { type: "text" },
             description:
-                'An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened',
+                "An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened",
         },
-        'confirm-text': {
-            control: { type: 'text' },
-            description: 'Text for confirm button',
+        "confirm-text": {
+            control: { type: "text" },
+            description: "Text for confirm button",
         },
-        'reject-text': {
-            control: { type: 'text' },
-            description: 'Text for reject button',
+        "reject-text": {
+            control: { type: "text" },
+            description: "Text for reject button",
         },
         onOpen: {
-            action: 'on-open',
-            description: 'Triggered on dialog open',
+            action: "on-open",
+            description: "Triggered on dialog open",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onConfirm: {
-            action: 'on-confirm',
-            description: 'Triggered on dialog confirm button click',
+            action: "on-confirm",
+            description: "Triggered on dialog confirm button click",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onReject: {
-            action: 'on-reject',
-            description: 'Triggered when dialog is closed',
+            action: "on-reject",
+            description: "Triggered when dialog is closed",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
@@ -75,8 +75,8 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    'confirm-text': 'Okay',
-    'reject-text': 'Cancel',
+    "confirm-text": "Okay",
+    "reject-text": "Cancel",
 };
 Standard.parameters = {
     docs: {

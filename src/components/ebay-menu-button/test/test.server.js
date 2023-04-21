@@ -1,65 +1,66 @@
-import { composeStories } from '@storybook/marko/dist/testing';
-import * as testUtils from '../../../common/test-utils/server';
-import { snapshotHTML } from '../../../common/test-utils/snapshots';
-import * as stories from '../menu-button.stories'; // import all stories from the stories file
+import { composeStories } from "@storybook/marko/dist/testing";
+import * as testUtils from "../../../common/test-utils/server";
+import { snapshotHTML } from "../../../common/test-utils/snapshots";
+import * as stories from "../menu-button.stories"; // import all stories from the stories file
 
-const { Default, Typeahead, Badged, Separator, IconText } = composeStories(stories);
+const { Default, Typeahead, Badged, Separator, IconText } =
+    composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
 
-describe('menu-button', () => {
-    it('renders basic version', async () => {
+describe("menu-button", () => {
+    it("renders basic version", async () => {
         await htmlSnap(Default);
     });
 
-    it('renders with reverse=true', async () => {
+    it("renders with reverse=true", async () => {
         await htmlSnap(Default, { reverse: true });
     });
 
-    it('renders with fix-width=true', async () => {
+    it("renders with fix-width=true", async () => {
         await htmlSnap(Default, { fixWidth: true });
     });
 
-    it('renders with borderless=true', async () => {
+    it("renders with borderless=true", async () => {
         await htmlSnap(Default, { borderless: true });
     });
 
-    it('renders with size=small', async () => {
-        await htmlSnap(Default, { size: 'small' });
+    it("renders with size=small", async () => {
+        await htmlSnap(Default, { size: "small" });
     });
 
-    it('renders with icon', async () => {
+    it("renders with icon", async () => {
         await htmlSnap(IconText);
     });
 
-    it('renders without toggle icon', async () => {
+    it("renders without toggle icon", async () => {
         await htmlSnap(Default, { noToggleIcon: true });
     });
 
-    it('renders with disabled state', async () => {
+    it("renders with disabled state", async () => {
         await htmlSnap(Default, { disabled: true });
     });
 
-    it('renders with a badge', async () => {
+    it("renders with a badge", async () => {
         await htmlSnap(Badged);
     });
 
-    it('renders with typeahead', async () => {
+    it("renders with typeahead", async () => {
         await htmlSnap(Typeahead);
     });
 
-    it('renders with overflow variant', async () => {
-        await htmlSnap(Default, { text: '', variant: 'overflow' });
+    it("renders with overflow variant", async () => {
+        await htmlSnap(Default, { text: "", variant: "overflow" });
     });
 
-    it('renders with button variant', async () => {
-        await htmlSnap(Default, { text: 'Button', variant: 'button' });
+    it("renders with button variant", async () => {
+        await htmlSnap(Default, { text: "Button", variant: "button" });
     });
 
-    it('renders with separators', async () => {
+    it("renders with separators", async () => {
         await htmlSnap(Separator);
     });
 
-    ['radio', 'checkbox'].forEach((type) => {
+    ["radio", "checkbox"].forEach((type) => {
         [true, false].forEach((checked) => {
             it(`renders with type=${type} and checked=${checked}`, async () => {
                 await htmlSnap(Default, { type, items: [{ checked }] });
@@ -70,7 +71,7 @@ describe('menu-button', () => {
     testUtils.testPassThroughAttributes(Default);
     testUtils.testPassThroughAttributes(Default, {
         child: {
-            name: 'items',
+            name: "items",
             multiple: true,
         },
     });

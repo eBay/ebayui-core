@@ -1,19 +1,19 @@
-import FloatingLabel from 'makeup-floating-label';
+import FloatingLabel from "makeup-floating-label";
 
 export default {
     get selectId() {
-        return this.input.id || this.getElId('select');
+        return this.input.id || this.getElId("select");
     },
 
     handleChange(event) {
         const { selectedIndex } = event.target;
-        const el = this.getEls('option')[selectedIndex];
+        const el = this.getEls("option")[selectedIndex];
         const option = this.input.options[selectedIndex];
 
         this.state.selectedIndex = selectedIndex;
 
         // TODO: we should not cast the selected value to a string here, but this is a breaking change.
-        this.emit('change', {
+        this.emit("change", {
             index: selectedIndex,
             selected: [String(option.value)],
             el,
@@ -21,7 +21,7 @@ export default {
     },
 
     handleFloatingLabelInit() {
-        this.emit('floating-label-init');
+        this.emit("floating-label-init");
     },
 
     onCreate() {
@@ -40,10 +40,10 @@ export default {
     onMount() {
         this._setupMakeup();
 
-        const parentForm = this.el.closest('form');
+        const parentForm = this.el.closest("form");
         if (parentForm) {
             const { selectedIndex } = document.getElementById(this.selectId);
-            this.subscribeTo(parentForm).on('reset', () => {
+            this.subscribeTo(parentForm).on("reset", () => {
                 this.handleChange({ target: { selectedIndex } });
             });
         }
@@ -60,13 +60,16 @@ export default {
             if (this._floatingLabel) {
                 this._floatingLabel.refresh();
                 this.handleFloatingLabelInit();
-            } else if (document.readyState === 'complete') {
+            } else if (document.readyState === "complete") {
                 if (this.el) {
                     this._floatingLabel = new FloatingLabel(this.el);
                     this.handleFloatingLabelInit();
                 }
             } else {
-                this.subscribeTo(window).once('load', this._setupMakeup.bind(this));
+                this.subscribeTo(window).once(
+                    "load",
+                    this._setupMakeup.bind(this)
+                );
             }
         }
     },

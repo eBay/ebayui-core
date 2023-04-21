@@ -1,16 +1,16 @@
-import { expect } from 'chai';
-import { waitFor } from '@marko/testing-library';
-import sinon from 'sinon';
-import { CDNLoader } from '..';
-import * as load from '../../loader';
+import { expect } from "chai";
+import { waitFor } from "@marko/testing-library";
+import sinon from "sinon";
+import { CDNLoader } from "..";
+import * as load from "../../loader";
 
-describe('CDN Loader', () => {
+describe("CDN Loader", () => {
     afterEach(() => {
         load.loader.restore();
     });
 
-    it('Properly loads files from CDN', async () => {
-        sinon.stub(load, 'loader').returns(Promise.resolve());
+    it("Properly loads files from CDN", async () => {
+        sinon.stub(load, "loader").returns(Promise.resolve());
         const setLoading = sinon.spy();
         const handleSuccess = sinon.spy();
         const handleError = sinon.spy();
@@ -20,9 +20,9 @@ describe('CDN Loader', () => {
                 subscribeTo: sinon.stub(),
             },
             {
-                key: 'key',
-                files: ['files'],
-                types: ['src'],
+                key: "key",
+                files: ["files"],
+                types: ["src"],
                 setLoading,
                 handleSuccess,
                 handleError,
@@ -31,15 +31,15 @@ describe('CDN Loader', () => {
 
         await waitFor(() => {
             cdnLoader.mount();
-            expect(load.loader.called).to.equal(true, 'loader called');
-            expect(handleError.called).to.equal(false, 'error called');
-            expect(handleSuccess.called).to.equal(true, 'success called');
+            expect(load.loader.called).to.equal(true, "loader called");
+            expect(handleError.called).to.equal(false, "error called");
+            expect(handleSuccess.called).to.equal(true, "success called");
             expect(setLoading.calledWith(false)).to.equal(true);
         });
     });
 
-    it('Properly fails', async () => {
-        sinon.stub(load, 'loader').returns(Promise.reject());
+    it("Properly fails", async () => {
+        sinon.stub(load, "loader").returns(Promise.reject());
         const setLoading = sinon.spy();
         const handleSuccess = sinon.spy();
         const handleError = sinon.spy();
@@ -51,9 +51,9 @@ describe('CDN Loader', () => {
                 }),
             },
             {
-                key: 'key',
-                files: ['files'],
-                types: ['src'],
+                key: "key",
+                files: ["files"],
+                types: ["src"],
                 setLoading,
                 handleSuccess,
                 handleError,
@@ -64,9 +64,9 @@ describe('CDN Loader', () => {
 
         await waitFor(
             () => {
-                expect(load.loader.called).to.equal(true, 'loader called');
-                expect(handleError.called).to.equal(true, 'error called');
-                expect(handleSuccess.called).to.equal(false, 'success called');
+                expect(load.loader.called).to.equal(true, "loader called");
+                expect(handleError.called).to.equal(true, "error called");
+                expect(handleSuccess.called).to.equal(false, "success called");
                 expect(setLoading.calledWith(false)).to.equal(true);
             },
             { timeout: 6000 }

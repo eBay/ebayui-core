@@ -1,4 +1,4 @@
-import { fireEvent, createEvent } from '@marko/testing-library';
+import { fireEvent, createEvent } from "@marko/testing-library";
 /**
  * Simulates a touch based scroll event over 4 animation frames.
  *
@@ -23,7 +23,10 @@ function waitFrames(count, cb) {
 }
 
 async function pressKey(el, info) {
-    for (const event of [createEvent.keyDown(el, info), createEvent.keyUp(el, info)]) {
+    for (const event of [
+        createEvent.keyDown(el, info),
+        createEvent.keyUp(el, info),
+    ]) {
         // we assign properties to them for older browsers (chrome 49)
         Object.keys(info).forEach((key) => {
             if (event[key] !== info[key]) {
@@ -42,7 +45,7 @@ const fastAnimations = {
             return;
         }
 
-        this.fastAnimationStyle = document.createElement('style');
+        this.fastAnimationStyle = document.createElement("style");
         this.fastAnimationStyle.innerHTML = `* {
                 transition-duration: 0.1s !important;
                 scroll-behavior: auto !important;

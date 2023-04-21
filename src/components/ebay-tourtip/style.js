@@ -1,2 +1,2 @@
-require('@ebay/skin/icon-button');
-require('@ebay/skin/tourtip');
+require("@ebay/skin/icon-button");
+require("@ebay/skin/tourtip");

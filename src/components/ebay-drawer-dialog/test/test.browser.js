@@ -1,10 +1,10 @@
-import { expect, use } from 'chai';
-import { composeStories } from '@storybook/marko/dist/testing';
-import chaiDom from 'chai-dom';
-import { render, fireEvent, waitFor, cleanup } from '@marko/testing-library';
-import { fastAnimations } from '../../../common/test-utils/browser';
-import { addRenderBodies } from '../../../../.storybook/utils';
-import * as stories from '../drawer-dialog.stories'; // import all stories from the stories file
+import { expect, use } from "chai";
+import { composeStories } from "@storybook/marko/dist/testing";
+import chaiDom from "chai-dom";
+import { render, fireEvent, waitFor, cleanup } from "@marko/testing-library";
+import { fastAnimations } from "../../../common/test-utils/browser";
+import { addRenderBodies } from "../../../../.storybook/utils";
+import * as stories from "../drawer-dialog.stories"; // import all stories from the stories file
 const { Standard } = composeStories(stories);
 
 use(chaiDom);
@@ -12,7 +12,7 @@ before(fastAnimations.start);
 after(fastAnimations.stop);
 afterEach(cleanup);
 
-const hasTouch = typeof Touch !== 'undefined';
+const hasTouch = typeof Touch !== "undefined";
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
@@ -45,36 +45,48 @@ function getTouchedData(target, pageY) {
 
 const { a11yMinimizeText, a11yMaximizeText, renderBody } = Standard.args;
 
-describe('given a closed drawer', () => {
+describe("given a closed drawer", () => {
     beforeEach(async () => {
         component = await render(Standard);
     });
 
-    it('then it is hidden in the DOM', () => {
-        expect(component.getByRole('dialog', { hidden: true })).has.attr('hidden');
+    it("then it is hidden in the DOM", () => {
+        expect(component.getByRole("dialog", { hidden: true })).has.attr(
+            "hidden"
+        );
     });
 
-    describe('then it is opened', () => {
+    describe("then it is opened", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, addRenderBodies(Standard.args), { open: true })
+                Object.assign({}, addRenderBodies(Standard.args), {
+                    open: true,
+                })
             );
         });
 
-        it('then it is visible in the DOM', async () => {
-            await waitFor(() => expect(component.emitted('open')).has.length(1));
+        it("then it is visible in the DOM", async () => {
+            await waitFor(() =>
+                expect(component.emitted("open")).has.length(1)
+            );
         });
-        describe('then it is expanded', () => {
+        describe("then it is expanded", () => {
             beforeEach(async () => {
-                await fireEvent.click(component.getByLabelText(a11yMaximizeText));
+                await fireEvent.click(
+                    component.getByLabelText(a11yMaximizeText)
+                );
             });
 
-            it('then it is expanded in DOM', async () => {
-                await waitFor(() => expect(component.emitted('expanded')).has.length(1));
-                expect(component.getAllByLabelText(a11yMinimizeText)).has.length(1);
+            it("then it is expanded in DOM", async () => {
+                await waitFor(() =>
+                    expect(component.emitted("expanded")).has.length(1)
+                );
+                expect(
+                    component.getAllByLabelText(a11yMinimizeText)
+                ).has.length(1);
             });
         });
-        describe('then it is expanded on scroll', () => {
+        describe("then it is expanded on scroll", () => {
             beforeEach(async () => {
                 await fireEvent.scroll(component.getByText(renderBody));
                 // Fire multiple scrolls, expect only 1 expanded is called
@@ -82,166 +94,228 @@ describe('given a closed drawer', () => {
                 await fireEvent.scroll(component.getByText(renderBody));
             });
 
-            it('then it is expanded in DOM', async () => {
-                await waitFor(() => expect(component.emitted('expanded')).has.length(1));
+            it("then it is expanded in DOM", async () => {
+                await waitFor(() =>
+                    expect(component.emitted("expanded")).has.length(1)
+                );
             });
         });
     });
 });
 
-describe('given an open and expanded drawer', () => {
+describe("given an open and expanded drawer", () => {
     beforeEach(async () => {
         component = await render(Standard, { open: true, expanded: true });
     });
 
-    it('then it is not hidden in the DOM', () => {
-        expect(component.getByRole('dialog', { hidden: true })).does.not.have.attr('hidden');
+    it("then it is not hidden in the DOM", () => {
+        expect(
+            component.getByRole("dialog", { hidden: true })
+        ).does.not.have.attr("hidden");
     });
 
-    describe('then it is collapsed', () => {
+    describe("then it is collapsed", () => {
         beforeEach(async () => {
             await fireEvent.click(component.getByLabelText(a11yMinimizeText));
         });
 
-        it('then it is expanded in DOM', async () => {
-            await waitFor(() => expect(component.emitted('collapsed')).has.length(1));
+        it("then it is expanded in DOM", async () => {
+            await waitFor(() =>
+                expect(component.emitted("collapsed")).has.length(1)
+            );
             expect(component.getAllByLabelText(a11yMaximizeText)).has.length(1);
         });
     });
 
-    describe('no events on scroll', () => {
+    describe("no events on scroll", () => {
         beforeEach(async () => {
             await fireEvent.scroll(component.getByText(renderBody));
         });
 
-        it('then it is expanded in DOM', async () => {
-            await waitFor(() => expect(component.emitted('expanded')).has.length(0));
-        });
-    });
-});
-
-describe('given an open and non expanded drawer for touch events', () => {
-    beforeEach(async () => {
-        component = await render(Standard, { open: true });
-    });
-
-    it('then it is hidden in the DOM', () => {
-        expect(component.getByRole('dialog', { hidden: true })).does.not.have.attr('hidden');
-    });
-
-    (hasTouch ? describe : describe.skip)('then it is expanded on touch drag up', () => {
-        // eslint-disable-next-line mocha/no-sibling-hooks
-        beforeEach(async () => {
-            await triggerTouch(component.getByLabelText(a11yMaximizeText), -50);
-        });
-
-        it('then it is expanded in DOM', async () => {
-            await waitFor(() => expect(component.emitted('expanded')).has.length(1));
-        });
-    });
-
-    (hasTouch ? describe : describe.skip)(
-        'then does not trigger when threshold is not met for drag up',
-        () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
-            beforeEach(async () => {
-                await triggerTouch(component.getByLabelText(a11yMaximizeText), -10);
-            });
-
-            it('then it did not trigger', async () => {
-                await waitFor(() => expect(component.emitted('expanded')).has.length(0));
-                await waitFor(() => expect(component.emitted('close')).has.length(0));
-                await waitFor(() => expect(component.emitted('collapsed')).has.length(0));
-            });
-        }
-    );
-
-    (hasTouch ? describe : describe.skip)(
-        'then does not trigger when threshold is not met for drag down',
-        () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
-            beforeEach(async () => {
-                await triggerTouch(component.getByLabelText(a11yMaximizeText), 10);
-            });
-
-            it('then it did not trigger threshold when dragged down', async () => {
-                await checkNoEvenets(component);
-            });
-        }
-    );
-
-    (hasTouch ? describe : describe.skip)('then it is closed on touch drag down', () => {
-        // eslint-disable-next-line mocha/no-sibling-hooks
-        beforeEach(async () => {
-            await triggerTouch(component.getByLabelText(a11yMaximizeText), 50);
-        });
-
-        it('then it is closed', async () => {
-            await waitFor(() => expect(component.emitted('close')).has.length(1));
-        });
-
-        it('then it is hidden in the DOM when dragged down', async () => {
+        it("then it is expanded in DOM", async () => {
             await waitFor(() =>
-                expect(component.getByRole('dialog', { hidden: true })).has.attr('hidden')
+                expect(component.emitted("expanded")).has.length(0)
             );
         });
     });
 });
 
-describe('given an open and expanded drawer for touch events', () => {
+describe("given an open and non expanded drawer for touch events", () => {
     beforeEach(async () => {
-        component = await render(Standard, { open: true, expanded: true });
+        component = await render(Standard, { open: true });
     });
 
-    it('then it is shown in the DOM', () => {
-        expect(component.getByRole('dialog')).does.not.have.attr('hidden');
-    });
-
-    (hasTouch ? describe : describe.skip)('nothing happens on touch drag up', () => {
-        // eslint-disable-next-line mocha/no-sibling-hooks
-        beforeEach(async () => {
-            await triggerTouch(component.getByLabelText(a11yMinimizeText), -50);
-        });
-
-        it('then it is expanded in DOM', async () => {
-            await waitFor(() => expect(component.emitted('expanded')).has.length(0));
-        });
-    });
-
-    (hasTouch ? describe : describe.skip)('then it is collapsed on touch drag down', () => {
-        // eslint-disable-next-line mocha/no-sibling-hooks
-        beforeEach(async () => {
-            await triggerTouch(component.getByLabelText(a11yMinimizeText), 50);
-        });
-
-        it('then it is closed', async () => {
-            await waitFor(() => expect(component.emitted('collapsed')).has.length(1));
-        });
+    it("then it is hidden in the DOM", () => {
+        expect(
+            component.getByRole("dialog", { hidden: true })
+        ).does.not.have.attr("hidden");
     });
 
     (hasTouch ? describe : describe.skip)(
-        'then does not trigger when threshold is not met for drag up',
+        "then it is expanded on touch drag up",
         () => {
             // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
-                await triggerTouch(component.getByLabelText(a11yMinimizeText), -10);
+                await triggerTouch(
+                    component.getByLabelText(a11yMaximizeText),
+                    -50
+                );
             });
 
-            it('then it did not trigger', async () => {
+            it("then it is expanded in DOM", async () => {
+                await waitFor(() =>
+                    expect(component.emitted("expanded")).has.length(1)
+                );
+            });
+        }
+    );
+
+    (hasTouch ? describe : describe.skip)(
+        "then does not trigger when threshold is not met for drag up",
+        () => {
+            // eslint-disable-next-line mocha/no-sibling-hooks
+            beforeEach(async () => {
+                await triggerTouch(
+                    component.getByLabelText(a11yMaximizeText),
+                    -10
+                );
+            });
+
+            it("then it did not trigger", async () => {
+                await waitFor(() =>
+                    expect(component.emitted("expanded")).has.length(0)
+                );
+                await waitFor(() =>
+                    expect(component.emitted("close")).has.length(0)
+                );
+                await waitFor(() =>
+                    expect(component.emitted("collapsed")).has.length(0)
+                );
+            });
+        }
+    );
+
+    (hasTouch ? describe : describe.skip)(
+        "then does not trigger when threshold is not met for drag down",
+        () => {
+            // eslint-disable-next-line mocha/no-sibling-hooks
+            beforeEach(async () => {
+                await triggerTouch(
+                    component.getByLabelText(a11yMaximizeText),
+                    10
+                );
+            });
+
+            it("then it did not trigger threshold when dragged down", async () => {
                 await checkNoEvenets(component);
             });
         }
     );
 
     (hasTouch ? describe : describe.skip)(
-        'then does not trigger when threshold is not met for drag down',
+        "then it is closed on touch drag down",
         () => {
             // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
-                await triggerTouch(component.getByLabelText(a11yMinimizeText), 10);
+                await triggerTouch(
+                    component.getByLabelText(a11yMaximizeText),
+                    50
+                );
             });
 
-            it('then it did not trigger on drag down', async () => {
+            it("then it is closed", async () => {
+                await waitFor(() =>
+                    expect(component.emitted("close")).has.length(1)
+                );
+            });
+
+            it("then it is hidden in the DOM when dragged down", async () => {
+                await waitFor(() =>
+                    expect(
+                        component.getByRole("dialog", { hidden: true })
+                    ).has.attr("hidden")
+                );
+            });
+        }
+    );
+});
+
+describe("given an open and expanded drawer for touch events", () => {
+    beforeEach(async () => {
+        component = await render(Standard, { open: true, expanded: true });
+    });
+
+    it("then it is shown in the DOM", () => {
+        expect(component.getByRole("dialog")).does.not.have.attr("hidden");
+    });
+
+    (hasTouch ? describe : describe.skip)(
+        "nothing happens on touch drag up",
+        () => {
+            // eslint-disable-next-line mocha/no-sibling-hooks
+            beforeEach(async () => {
+                await triggerTouch(
+                    component.getByLabelText(a11yMinimizeText),
+                    -50
+                );
+            });
+
+            it("then it is expanded in DOM", async () => {
+                await waitFor(() =>
+                    expect(component.emitted("expanded")).has.length(0)
+                );
+            });
+        }
+    );
+
+    (hasTouch ? describe : describe.skip)(
+        "then it is collapsed on touch drag down",
+        () => {
+            // eslint-disable-next-line mocha/no-sibling-hooks
+            beforeEach(async () => {
+                await triggerTouch(
+                    component.getByLabelText(a11yMinimizeText),
+                    50
+                );
+            });
+
+            it("then it is closed", async () => {
+                await waitFor(() =>
+                    expect(component.emitted("collapsed")).has.length(1)
+                );
+            });
+        }
+    );
+
+    (hasTouch ? describe : describe.skip)(
+        "then does not trigger when threshold is not met for drag up",
+        () => {
+            // eslint-disable-next-line mocha/no-sibling-hooks
+            beforeEach(async () => {
+                await triggerTouch(
+                    component.getByLabelText(a11yMinimizeText),
+                    -10
+                );
+            });
+
+            it("then it did not trigger", async () => {
+                await checkNoEvenets(component);
+            });
+        }
+    );
+
+    (hasTouch ? describe : describe.skip)(
+        "then does not trigger when threshold is not met for drag down",
+        () => {
+            // eslint-disable-next-line mocha/no-sibling-hooks
+            beforeEach(async () => {
+                await triggerTouch(
+                    component.getByLabelText(a11yMinimizeText),
+                    10
+                );
+            });
+
+            it("then it did not trigger on drag down", async () => {
                 await checkNoEvenets(component);
             });
         }
@@ -249,7 +323,13 @@ describe('given an open and expanded drawer for touch events', () => {
 });
 
 async function checkNoEvenets(triggerComponent) {
-    await waitFor(() => expect(triggerComponent.emitted('expanded')).has.length(0));
-    await waitFor(() => expect(triggerComponent.emitted('close')).has.length(0));
-    await waitFor(() => expect(triggerComponent.emitted('collapsed')).has.length(0));
+    await waitFor(() =>
+        expect(triggerComponent.emitted("expanded")).has.length(0)
+    );
+    await waitFor(() =>
+        expect(triggerComponent.emitted("close")).has.length(0)
+    );
+    await waitFor(() =>
+        expect(triggerComponent.emitted("collapsed")).has.length(0)
+    );
 }

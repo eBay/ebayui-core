@@ -1,1 +1,1 @@
-require('@ebay/skin/drawer-dialog');
+require("@ebay/skin/drawer-dialog");

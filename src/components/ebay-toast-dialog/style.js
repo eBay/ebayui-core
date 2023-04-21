@@ -1,1 +1,1 @@
-require('@ebay/skin/toast-dialog');
+require("@ebay/skin/toast-dialog");

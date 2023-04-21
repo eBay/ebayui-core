@@ -1,1 +1,1 @@
-require('./style.less');
+require("./style.less");

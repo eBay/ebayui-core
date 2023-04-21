@@ -1,12 +1,12 @@
 module.exports = {
-    stories: ['../src/**/*.stories.@(mdx|js)'],
+    stories: ["../src/**/*.stories.@(mdx|js)"],
     addons: [
-        './plugins/theme-switcher/register.jsx',
-        '@storybook/addon-essentials',
-        '@storybook/addon-a11y',
+        "./plugins/theme-switcher/register.jsx",
+        "@storybook/addon-essentials",
+        "@storybook/addon-a11y",
     ],
     core: {
-        builder: 'webpack5',
+        builder: "webpack5",
     },
     features: {
         previewMdx2: true,
@@ -14,18 +14,18 @@ module.exports = {
     webpackFinal: async (config, { configType }) => {
         config.module.rules.push({
             test: /\.less$/,
-            use: ['style-loader', 'css-loader', 'less-loader'],
+            use: ["style-loader", "css-loader", "less-loader"],
         });
         config.module.rules.push({
             test: /\.txt$/,
-            type: 'asset/source',
+            type: "asset/source",
         });
         config.module.rules = [
             {
                 oneOf: [
                     {
                         resourceQuery: /raw/,
-                        type: 'asset/source',
+                        type: "asset/source",
                     },
                     ...config.module.rules,
                 ],

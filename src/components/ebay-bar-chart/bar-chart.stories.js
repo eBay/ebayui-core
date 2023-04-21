@@ -1,15 +1,15 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './index.marko';
-import * as sampleSeriesData from './examples/data.json';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import * as sampleSeriesData from "./examples/data.json";
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'charts/ebay-bar-chart',
-    excludeStories: '.*',
+    title: "charts/ebay-bar-chart",
+    excludeStories: ".*",
     component: Component,
     parameters: {
         docs: {
@@ -20,55 +20,57 @@ export default {
     },
     argTypes: {
         title: {
-            type: { name: 'string', required: false },
-            description: 'A title displayed above the graph',
+            type: { name: "string", required: false },
+            description: "A title displayed above the graph",
         },
         description: {
-            type: { name: 'string', required: true },
-            description: 'A description of what the chart is displaying',
+            type: { name: "string", required: true },
+            description: "A description of what the chart is displaying",
         },
         series: {
-            type: { name: 'object', required: true },
+            type: { name: "object", required: true },
             description:
-                'The series is an array of one to five arrays of point objects, each point contains an `x`, `y`, and `label`. `x` is an epoch/unix time code, `y` is a numeric value, `label` is what is displayed for the `y` value in the tool tip',
+                "The series is an array of one to five arrays of point objects, each point contains an `x`, `y`, and `label`. `x` is an epoch/unix time code, `y` is a numeric value, `label` is what is displayed for the `y` value in the tool tip",
         },
         xAxisLabelFormat: {
-            type: { name: 'string', required: false },
+            type: { name: "string", required: false },
             description:
-                'Used to modify the display of the x-axis labels. Accepts a string like `{value:%Y-%m-%d}`. Refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for available format keys',
+                "Used to modify the display of the x-axis labels. Accepts a string like `{value:%Y-%m-%d}`. Refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for available format keys",
             table: {
                 defaultValue: {
-                    summary: '{value:%b %e}',
+                    summary: "{value:%b %e}",
                 },
             },
         },
         xAxisPositioner: {
-            type: { name: 'function', required: false },
+            type: { name: "function", required: false },
             description:
-                'A custom function that returns an array of epoch/unix time values where x-axis labels will be displayed. You can access `this.dataMin` and `this.dataMax` from the function to help determine positions.',
+                "A custom function that returns an array of epoch/unix time values where x-axis labels will be displayed. You can access `this.dataMin` and `this.dataMax` from the function to help determine positions.",
         },
         yAxisLabels: {
-            type: { name: 'array', required: false },
+            type: { name: "array", required: false },
             description:
-                'An array of labels to use on the y-axis. Use in conjunction with yAxisPositioner. Make sure the length of the yAxisLabels match the length of the positions array returned by the yAxisPositioner function',
+                "An array of labels to use on the y-axis. Use in conjunction with yAxisPositioner. Make sure the length of the yAxisLabels match the length of the positions array returned by the yAxisPositioner function",
         },
         yAxisPositioner: {
-            type: { name: 'function', required: false },
+            type: { name: "function", required: false },
             description:
-                'A custom function that returns an array of numeric values where y-axis labels will be displayed. You can access `this.dataMin` and `this.dataMax` from the function to help determine positions',
+                "A custom function that returns an array of numeric values where y-axis labels will be displayed. You can access `this.dataMin` and `this.dataMax` from the function to help determine positions",
         },
         stacked: {
-            type: { name: 'boolean', required: false },
-            description: 'Stacked can bet set to `true` or `false` and defaults to false',
+            type: { name: "boolean", required: false },
+            description:
+                "Stacked can bet set to `true` or `false` and defaults to false",
             table: {
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
             },
         },
         class: {
-            type: { name: 'string', require: false },
-            description: 'A class name that will be added to the main chart container',
+            type: { name: "string", require: false },
+            description:
+                "A class name that will be added to the main chart container",
         },
     },
 };
@@ -87,7 +89,7 @@ singleSeriesFiveDays.args = {
 singleSeriesFiveDays.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', singleSeriesFiveDays.args),
+            code: tagToString("bar-chart", singleSeriesFiveDays.args),
         },
     },
 };
@@ -99,7 +101,7 @@ singleSeriesThirteenDays.args = {
 singleSeriesThirteenDays.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', singleSeriesThirteenDays.args),
+            code: tagToString("bar-chart", singleSeriesThirteenDays.args),
         },
     },
 };
@@ -111,7 +113,7 @@ singleSeriesThirtyDays.args = {
 singleSeriesThirtyDays.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', singleSeriesThirtyDays.args),
+            code: tagToString("bar-chart", singleSeriesThirtyDays.args),
         },
     },
 };
@@ -123,7 +125,7 @@ twoSeriesEightDays.args = {
 twoSeriesEightDays.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', twoSeriesEightDays.args),
+            code: tagToString("bar-chart", twoSeriesEightDays.args),
         },
     },
 };
@@ -135,7 +137,7 @@ threeSeriesThreeDays.args = {
 threeSeriesThreeDays.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', threeSeriesThreeDays.args),
+            code: tagToString("bar-chart", threeSeriesThreeDays.args),
         },
     },
 };
@@ -147,7 +149,7 @@ fourSeriesFourDays.args = {
 fourSeriesFourDays.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', fourSeriesFourDays.args),
+            code: tagToString("bar-chart", fourSeriesFourDays.args),
         },
     },
 };
@@ -159,7 +161,7 @@ fiveSeriesThreeDays.args = {
 fiveSeriesThreeDays.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', fiveSeriesThreeDays.args),
+            code: tagToString("bar-chart", fiveSeriesThreeDays.args),
         },
     },
 };
@@ -171,7 +173,7 @@ fiveSeriesSixDays.args = {
 fiveSeriesSixDays.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', fiveSeriesSixDays.args),
+            code: tagToString("bar-chart", fiveSeriesSixDays.args),
         },
     },
 };
@@ -184,7 +186,7 @@ twoSeriesStacked.args = {
 twoSeriesStacked.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', twoSeriesStacked.args),
+            code: tagToString("bar-chart", twoSeriesStacked.args),
         },
     },
 };
@@ -197,7 +199,7 @@ threeSeriesStacked.args = {
 threeSeriesStacked.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', threeSeriesStacked.args),
+            code: tagToString("bar-chart", threeSeriesStacked.args),
         },
     },
 };
@@ -210,7 +212,7 @@ fourSeriesStacked.args = {
 fourSeriesStacked.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', fourSeriesStacked.args),
+            code: tagToString("bar-chart", fourSeriesStacked.args),
         },
     },
 };
@@ -223,7 +225,7 @@ fiveSeriesStacked.args = {
 fiveSeriesStacked.parameters = {
     docs: {
         source: {
-            code: tagToString('bar-chart', fiveSeriesStacked.args),
+            code: tagToString("bar-chart", fiveSeriesStacked.args),
         },
     },
 };

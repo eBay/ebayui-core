@@ -1,28 +1,28 @@
 {
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@default-state": {
-    "enum": ["upcoming", "complete", "attention", "active"]
-  },
-  "@a11y-heading-text": "string",
-  "@a11y-heading-tag": "string",
-  "@auto-paragraph": "boolean",
-  "@direction": {
-    "enum": ["row", "column"]
-  },
-  "@step <step>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {
-      "targetProperty": null,
-      "type": "expression"
+        "targetProperty": null,
+        "type": "expression"
     },
     "@html-attributes": "expression",
-    "@current": "boolean",
-    "@a11y-text": "string",
-    "@number": "number"
-  }
+    "@default-state": {
+        "enum": ["upcoming", "complete", "attention", "active"]
+    },
+    "@a11y-heading-text": "string",
+    "@a11y-heading-tag": "string",
+    "@auto-paragraph": "boolean",
+    "@direction": {
+        "enum": ["row", "column"]
+    },
+    "@step <step>[]": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression",
+        "@current": "boolean",
+        "@a11y-text": "string",
+        "@number": "number"
+    }
 }

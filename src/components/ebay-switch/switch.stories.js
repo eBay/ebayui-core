@@ -1,10 +1,10 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import Readme from './README.md';
-import Component from './index.marko';
-import WithLabelTemplate from './examples/with-label.marko';
-import DisabledTemplate from './examples/disabled-with-label.marko';
-import WithLabelCode from './examples/with-label.marko?raw';
-import DisabledCode from './examples/disabled-with-label.marko?raw';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import WithLabelTemplate from "./examples/with-label.marko";
+import DisabledTemplate from "./examples/disabled-with-label.marko";
+import WithLabelCode from "./examples/with-label.marko?raw";
+import DisabledCode from "./examples/disabled-with-label.marko?raw";
 
 const Template = (args) => ({
     input: {
@@ -18,7 +18,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'form input/ebay-switch',
+    title: "form input/ebay-switch",
     component: Component,
     parameters: {
         docs: {
@@ -30,12 +30,12 @@ export default {
 
     argTypes: {
         onChange: {
-            action: 'on-change',
-            description: 'Triggered on change',
+            action: "on-change",
+            description: "Triggered on change",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent, value, checked }',
+                    summary: "{ originalEvent, value, checked }",
                 },
             },
         },
@@ -73,7 +73,7 @@ Isolated.args = {};
 Isolated.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-switch', Isolated.args),
+            code: tagToString("ebay-switch", Isolated.args),
         },
     },
 };

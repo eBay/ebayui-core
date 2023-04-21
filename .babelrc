@@ -22,7 +22,6 @@
                 ]
             ],
             "plugins": ["add-module-exports"]
-
         }
     }
 }

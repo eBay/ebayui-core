@@ -1,31 +1,32 @@
-import { CDNLoader } from '../../common/cdn';
-import { getElements, playIcon } from './elements';
+import { CDNLoader } from "../../common/cdn";
+import { getElements, playIcon } from "./elements";
 const DEFAULT_SPINNER_TIMEOUT = 2000;
 
 const videoConfig = {
     addBigPlayButton: false,
     addSeekBar: true,
     controlPanelElements: [
-        'play_pause',
-        'time_and_duration',
-        'spacer',
-        'mute',
-        'report',
-        'fullscreen',
-        'overflow_menu',
+        "play_pause",
+        "time_and_duration",
+        "spacer",
+        "mute",
+        "report",
+        "fullscreen",
+        "overflow_menu",
     ],
-    overflowMenuButtons: ['captions'],
+    overflowMenuButtons: ["captions"],
 };
 
 export default {
     isPlaylist(source) {
         const type = source.type && source.type.toLowerCase();
         const src = source.src;
-        if (type === 'dash' || type === 'hls') {
+        if (type === "dash" || type === "hls") {
             return true;
         } else if (source.src) {
             return (
-                src.indexOf('.mpd') === src.length - 5 || src.indexOf('.m3u8') === src.length - 6
+                src.indexOf(".mpd") === src.length - 5 ||
+                src.indexOf(".m3u8") === src.length - 6
             );
         }
         return false;
@@ -34,7 +35,7 @@ export default {
     handleResize() {
         if (!this.input.width && this.video) {
             const { width: containerWidth } = this.root.getBoundingClientRect();
-            this.containerEl.setAttribute('width', containerWidth);
+            this.containerEl.setAttribute("width", containerWidth);
         }
     },
 
@@ -43,21 +44,21 @@ export default {
         // This forces the controls to always hide
         this.video.controls = false;
 
-        this.emit('pause', { originalEvent, player: this.player });
+        this.emit("pause", { originalEvent, player: this.player });
     },
 
     handlePlaying(originalEvent) {
         this.showControls();
 
-        if (this.input.playView === 'fullscreen') {
+        if (this.input.playView === "fullscreen") {
             this.video.requestFullscreen();
         }
         this.state.played = true;
-        this.emit('play', { originalEvent, player: this.player });
+        this.emit("play", { originalEvent, player: this.player });
     },
 
     handleVolumeChange(originalEvent) {
-        this.emit('volume-change', {
+        this.emit("volume-change", {
             originalEvent,
             volume: this.video.volume,
             muted: this.video.muted,
@@ -73,7 +74,7 @@ export default {
                 addBigPlayButton: false,
             });
         }
-        this.emit('load-error', err);
+        this.emit("load-error", err);
     },
 
     showControls() {
@@ -84,17 +85,17 @@ export default {
                 copyConfig.controlPanelElements.length - 2 > 0
                     ? copyConfig.controlPanelElements.length - 2
                     : copyConfig.controlPanelElements.length;
-            copyConfig.controlPanelElements.splice(insertAt, 0, 'volume');
+            copyConfig.controlPanelElements.splice(insertAt, 0, "volume");
         }
         this.ui.configure(copyConfig);
         this.video.controls = false;
     },
     takeAction() {
         switch (this.state.action) {
-            case 'play':
+            case "play":
                 this.video.play();
                 break;
-            case 'pause':
+            case "pause":
                 this.video.pause();
                 break;
             default:
@@ -104,7 +105,7 @@ export default {
     onInput(input) {
         if (this.video) {
             if (input.width || input.height) {
-                this.containerEl.setAttribute('style', {
+                this.containerEl.setAttribute("style", {
                     width: `${input.width}px`,
                 });
             }
@@ -125,7 +126,7 @@ export default {
     onCreate() {
         this.state = {
             volumeSlider: false,
-            action: '',
+            action: "",
             showLoading: false,
             isLoaded: true,
             failed: false,
@@ -133,9 +134,9 @@ export default {
         };
 
         this.cdnLoader = new CDNLoader(this, {
-            key: 'shaka',
-            types: ['src', 'css'],
-            files: ['shaka-player.ui.js', 'controls.css'],
+            key: "shaka",
+            types: ["src", "css"],
+            files: ["shaka-player.ui.js", "controls.css"],
             setLoading: (value) => {
                 this.state.showLoading = value;
             },
@@ -193,14 +194,20 @@ export default {
             this.player,
             this.containerEl,
             this.video,
-            this.input.reportText || ''
+            this.input.reportText || ""
         );
 
         // eslint-disable-next-line no-undef,new-cap
-        shaka.ui.Controls.registerElement('report', new Report.Factory(this.input.reportText));
+        shaka.ui.Controls.registerElement(
+            "report",
+            new Report.Factory(this.input.reportText)
+        );
 
         // eslint-disable-next-line no-undef,new-cap
-        shaka.ui.Controls.registerElement('captions', new TextSelection.Factory());
+        shaka.ui.Controls.registerElement(
+            "captions",
+            new TextSelection.Factory()
+        );
 
         this.ui.configure({
             addBigPlayButton: true,
@@ -210,11 +217,11 @@ export default {
 
         // Replace play icon
         if (this.el) {
-            const playButton = this.el.querySelector('.shaka-play-button');
-            playButton.removeAttribute('icon');
+            const playButton = this.el.querySelector(".shaka-play-button");
+            playButton.removeAttribute("icon");
             playIcon.renderSync().appendTo(playButton);
 
-            const shakaSpinner = this.el.querySelector('.shaka-spinner');
+            const shakaSpinner = this.el.querySelector(".shaka-spinner");
             if (shakaSpinner) {
                 setTimeout(() => {
                     shakaSpinner.hidden = true;
@@ -235,16 +242,16 @@ export default {
     },
 
     onMount() {
-        this.root = this.getEl('root');
-        this.video = this.root.querySelector('video');
-        this.containerEl = this.root.querySelector('.video-player__container');
+        this.root = this.getEl("root");
+        this.video = this.root.querySelector("video");
+        this.containerEl = this.root.querySelector(".video-player__container");
         this.video.volume = this.input.volume || 1;
         this.video.muted = this.input.muted || false;
 
         this.subscribeTo(this.video)
-            .on('playing', this.handlePlaying.bind(this))
-            .on('pause', this.handlePause.bind(this))
-            .on('volumechange', this.handleVolumeChange.bind(this));
+            .on("playing", this.handlePlaying.bind(this))
+            .on("pause", this.handlePause.bind(this))
+            .on("volumechange", this.handleVolumeChange.bind(this));
 
         this._loadVideo();
     },
@@ -259,7 +266,10 @@ export default {
         this.state.failed = false;
         this.state.isLoaded = false;
         this.cdnLoader
-            .setOverrides([this.input.cdnUrl, this.input.cssUrl], this.input.version)
+            .setOverrides(
+                [this.input.cdnUrl, this.input.cssUrl],
+                this.input.version
+            )
             .mount();
     },
 };

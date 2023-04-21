@@ -1,14 +1,24 @@
-import * as eventUtils from '../../common/event-utils';
-import menuUtils from '../../common/menu-utils';
+import * as eventUtils from "../../common/event-utils";
+import menuUtils from "../../common/menu-utils";
 
 export default Object.assign({}, menuUtils, {
     handleItemClick(index, originalEvent, el) {
-        this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
+        this.emitComponentEvent({
+            eventType: "select",
+            el,
+            originalEvent,
+            index,
+        });
     },
 
     handleItemKeydown(index, originalEvent, el) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.emitComponentEvent({ eventType: 'keydown', el, originalEvent, index });
+            this.emitComponentEvent({
+                eventType: "keydown",
+                el,
+                originalEvent,
+                index,
+            });
         });
     },
 

@@ -1,6 +1,6 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import Readme from './README.md';
-import Component from './index.marko';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import Readme from "./README.md";
+import Component from "./index.marko";
 
 const Template = (args) => ({
     input: {
@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'graphics & icons/ebay-signal',
+    title: "graphics & icons/ebay-signal",
     component: Component,
     parameters: {
         docs: {
@@ -26,9 +26,9 @@ export default {
 
     argTypes: {
         status: {
-            type: 'enum',
-            control: { type: 'select' },
-            options: ['trustworthy', 'recent', 'time-sensitive', 'neutral'],
+            type: "enum",
+            control: { type: "select" },
+            options: ["trustworthy", "recent", "time-sensitive", "neutral"],
         },
     },
 };
@@ -40,7 +40,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-signal', Standard.args),
+            code: tagToString("ebay-signal", Standard.args),
         },
     },
 };

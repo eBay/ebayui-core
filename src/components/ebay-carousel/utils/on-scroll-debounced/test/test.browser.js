@@ -1,14 +1,14 @@
-import sinon from 'sinon';
-import { expect } from 'chai';
-import { simulateScroll } from '../../../../../common/test-utils/browser';
-import { onScrollDebounced } from '..';
+import sinon from "sinon";
+import { expect } from "chai";
+import { simulateScroll } from "../../../../../common/test-utils/browser";
+import { onScrollDebounced } from "..";
 
-describe('scroll-debounced', () => {
+describe("scroll-debounced", () => {
     let scrollEl;
 
     before(() => {
-        scrollEl = document.createElement('div');
-        scrollEl.style.overflowX = 'scroll';
+        scrollEl = document.createElement("div");
+        scrollEl.style.overflowX = "scroll";
         scrollEl.innerHTML = `<div style="width: 200%; border: 25px dashed #000;"></div>`;
         document.body.appendChild(scrollEl);
     });
@@ -21,7 +21,7 @@ describe('scroll-debounced', () => {
         document.body.removeChild(scrollEl);
     });
 
-    it('calls a handler at most every 600ms', (done) => {
+    it("calls a handler at most every 600ms", (done) => {
         const scrollSpy = sinon.spy();
         onScrollDebounced(scrollEl, scrollSpy);
         simulateScroll(scrollEl, 50, () => {
@@ -34,7 +34,7 @@ describe('scroll-debounced', () => {
         });
     });
 
-    it('can be canceled', (done) => {
+    it("can be canceled", (done) => {
         const scrollEndSpy = sinon.spy();
         const cancel = onScrollDebounced(scrollEl, scrollEndSpy);
         simulateScroll(scrollEl, 100);

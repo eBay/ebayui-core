@@ -1,5 +1,5 @@
 /* eslint camelcase: "off" */
-import { getNItems } from '../../../../common/test-utils/shared';
+import { getNItems } from "../../../../common/test-utils/shared";
 
 export const basic0Options = {
     options: [],
@@ -14,7 +14,7 @@ export const basic3Options = {
 
 export const basic3OptionsWithBlank = {
     options: getNItems(4, (i) => ({
-        value: i === 0 ? '' : String(i),
+        value: i === 0 ? "" : String(i),
         text: `option ${i}`,
     })),
 };
@@ -32,11 +32,11 @@ export const basic3Options1Selected = {
 };
 
 export const floatingLabel_Always = Object.assign({}, basic3Options, {
-    floatingLabel: 'Email address',
+    floatingLabel: "Email address",
 });
 
 export const floatingLabel = Object.assign({}, basic3OptionsWithBlank, {
-    floatingLabel: 'Email address',
+    floatingLabel: "Email address",
 });
 
 export const floatingLabelNoValue = Object.assign({}, floatingLabel, {
@@ -44,7 +44,7 @@ export const floatingLabelNoValue = Object.assign({}, floatingLabel, {
 });
 
 export const floatingLabelWithId = Object.assign({}, floatingLabel, {
-    id: 'select-id',
+    id: "select-id",
 });
 
 export const floatingLabelDisabled = Object.assign({}, floatingLabel, {

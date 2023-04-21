@@ -1,6 +1,6 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import Readme from './README.md';
-import Component from './examples/default.marko';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import Readme from "./README.md";
+import Component from "./examples/default.marko";
 
 const Template = (args) => ({
     input: {
@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'dialogs/ebay-panel-dialog',
+    title: "dialogs/ebay-panel-dialog",
     component: Component,
     parameters: {
         docs: {
@@ -26,49 +26,49 @@ export default {
 
     argTypes: {
         open: {
-            type: 'boolean',
-            control: { type: 'boolean' },
-            description: 'Whether dialog is open.',
+            type: "boolean",
+            control: { type: "boolean" },
+            description: "Whether dialog is open.",
             table: {
                 disable: true,
             },
         },
         position: {
-            control: { type: 'text' },
+            control: { type: "text" },
             description:
                 '"end" or "start", defaults to "start", the position of the panel, either at the start (left side) of the page, or end (right side) of the page.',
         },
         focus: {
-            control: { type: 'text' },
+            control: { type: "text" },
             description:
-                'An id for an element which will receive focus when the dialog opens (defaults to close button)',
+                "An id for an element which will receive focus when the dialog opens (defaults to close button)",
         },
         closeFocus: {
-            control: { type: 'text' },
+            control: { type: "text" },
             description:
-                'An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened',
+                "An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened",
         },
         a11yCloseText: {
-            control: { type: 'text' },
-            description: 'A11y text for close button and mask.',
+            control: { type: "text" },
+            description: "A11y text for close button and mask.",
         },
         onOpen: {
-            action: 'on-open',
-            description: 'Triggered on dialog opened',
+            action: "on-open",
+            description: "Triggered on dialog opened",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
         onClose: {
-            action: 'on-close',
-            description: 'Triggered on dialog closed.',
+            action: "on-close",
+            description: "Triggered on dialog closed.",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
@@ -80,7 +80,7 @@ Default.args = {};
 Default.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-panel-dialog', Default.args),
+            code: tagToString("ebay-panel-dialog", Default.args),
         },
     },
 };

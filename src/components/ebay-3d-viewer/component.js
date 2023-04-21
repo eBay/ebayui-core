@@ -1,10 +1,10 @@
-import { CDNLoader } from '../../common/cdn';
+import { CDNLoader } from "../../common/cdn";
 
 export default {
     handleError(err) {
         this.state.failed = true;
         this.state.isLoaded = true;
-        this.emit('load-error', err);
+        this.emit("load-error", err);
     },
 
     onCreate() {
@@ -15,9 +15,9 @@ export default {
         };
 
         this.cdnLoader = new CDNLoader(this, {
-            key: 'modelViewer',
-            types: ['module'],
-            files: ['model-viewer.min.js'],
+            key: "modelViewer",
+            types: ["module"],
+            files: ["model-viewer.min.js"],
             setLoading: (value) => {
                 this.state.showLoading = value;
             },
@@ -33,7 +33,7 @@ export default {
     },
 
     onMount() {
-        this.viewer = this.getEl('3d-viewer');
+        this.viewer = this.getEl("3d-viewer");
         this._loadViewer();
     },
 
@@ -41,6 +41,8 @@ export default {
         this.state.failed = false;
         this.state.isLoaded = false;
 
-        this.cdnLoader.setOverrides([this.input.cdnUrl], this.input.version).mount();
+        this.cdnLoader
+            .setOverrides([this.input.cdnUrl], this.input.version)
+            .mount();
     },
 };

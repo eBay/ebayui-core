@@ -1,6 +1,6 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import Readme from './README.md';
-import Component from './index.marko';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import Readme from "./README.md";
+import Component from "./index.marko";
 
 const Template = (args) => ({
     input: {
@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'progress/ebay-progress-bar',
+    title: "progress/ebay-progress-bar",
     component: Component,
     parameters: {
         docs: {
@@ -26,12 +26,12 @@ export default {
 
     argTypes: {
         value: {
-            control: { type: 'number', min: 1, max: 100 },
-            description: 'HTML value of progress bar',
+            control: { type: "number", min: 1, max: 100 },
+            description: "HTML value of progress bar",
         },
         max: {
-            control: { type: 'number', min: 1, max: 100 },
-            description: 'HTML max. Defaults to 100',
+            control: { type: "number", min: 1, max: 100 },
+            description: "HTML max. Defaults to 100",
         },
     },
 };
@@ -44,7 +44,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-progress-bar', Standard.args),
+            code: tagToString("ebay-progress-bar", Standard.args),
         },
     },
 };

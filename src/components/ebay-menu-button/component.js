@@ -1,12 +1,13 @@
-import Expander from 'makeup-expander';
-import * as eventUtils from '../../common/event-utils';
-import menuUtils from '../../common/menu-utils';
+import Expander from "makeup-expander";
+import * as eventUtils from "../../common/event-utils";
+import menuUtils from "../../common/menu-utils";
 
 export default Object.assign({}, menuUtils, {
     toggleItemChecked(index, itemEl, originalEvent) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
-        const shouldEmitRadio = this.isRadio() && index !== this.state.checkedIndex;
+        const shouldEmitRadio =
+            this.isRadio() && index !== this.state.checkedIndex;
         this.toggleChecked(index);
 
         if (shouldEmitRadio) {
@@ -15,24 +16,26 @@ export default Object.assign({}, menuUtils, {
             }
             this.emitComponentEvent({
                 index,
-                eventType: 'change',
+                eventType: "change",
                 el: itemEl,
                 originalEvent,
             });
-        } else if (this.type !== 'radio') {
+        } else if (this.type !== "radio") {
             if (this.input.collapseOnSelect) {
                 this.expander.expanded = false;
             }
             this.emitComponentEvent({
                 index,
-                eventType: !this.type ? 'select' : 'change',
+                eventType: !this.type ? "select" : "change",
                 el: itemEl,
                 originalEvent,
             });
         }
 
         if (this.rovingTabindex) {
-            this.tabindexPosition = this.rovingTabindex.items.findIndex((el) => el.tabIndex === 0);
+            this.tabindexPosition = this.rovingTabindex.items.findIndex(
+                (el) => el.tabIndex === 0
+            );
         }
     },
 
@@ -52,7 +55,7 @@ export default Object.assign({}, menuUtils, {
     },
 
     focus() {
-        this.getComponent('button').el.focus();
+        this.getComponent("button").el.focus();
     },
 
     handleButtonEscape() {
@@ -60,11 +63,11 @@ export default Object.assign({}, menuUtils, {
     },
 
     handleExpand() {
-        this.emitComponentEvent({ eventType: 'expand' });
+        this.emitComponentEvent({ eventType: "expand" });
     },
 
     handleCollapse() {
-        this.emitComponentEvent({ eventType: 'collapse' });
+        this.emitComponentEvent({ eventType: "collapse" });
     },
 
     handleMenuChange({ el, originalEvent, index }) {
@@ -76,14 +79,19 @@ export default Object.assign({}, menuUtils, {
             this.expander.expanded = false;
         }
 
-        this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
+        this.emitComponentEvent({
+            eventType: "select",
+            el,
+            originalEvent,
+            index,
+        });
     },
     handleMousedown({ el, originalEvent }) {
-        this.emitComponentEvent({ eventType: 'mousedown', el, originalEvent });
+        this.emitComponentEvent({ eventType: "mousedown", el, originalEvent });
     },
     emitComponentEvent({ eventType, el, originalEvent, index }) {
         const checkedIndexes = this.getCheckedIndexes();
-        const isCheckbox = this.type === 'checkbox';
+        const isCheckbox = this.type === "checkbox";
 
         const eventObj = {
             el,
@@ -102,7 +110,7 @@ export default Object.assign({}, menuUtils, {
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues(), // DEPRECATED in v5
             });
-        } else if (eventType !== 'expand' && eventType !== 'collapse') {
+        } else if (eventType !== "expand" && eventType !== "collapse") {
             Object.assign(eventObj, {
                 index, // DEPRECATED in v5
                 checked: [index], // DEPRECATED in v5 (keep but change from indexes to values)
@@ -117,7 +125,7 @@ export default Object.assign({}, menuUtils, {
     },
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     },
@@ -136,9 +144,9 @@ export default Object.assign({}, menuUtils, {
 
     _setupMakeup() {
         this.expander = new Expander(this.el, {
-            hostSelector: '.menu-button__button',
-            contentSelector: '.menu-button__menu',
-            focusManagement: 'focusable',
+            hostSelector: ".menu-button__button",
+            contentSelector: ".menu-button__menu",
+            focusManagement: "focusable",
             expandOnClick: true,
             autoCollapse: true,
             alwaysDoFocusManagement: true,

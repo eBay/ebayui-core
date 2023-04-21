@@ -1,15 +1,15 @@
-import Expander from 'makeup-expander';
-import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
+import Expander from "makeup-expander";
+import * as scrollKeyPreventer from "makeup-prevent-scroll-keys";
 
 export default {
     handleExpand() {
-        this.getComponent('options').elementScroll();
-        this.emit('expand');
+        this.getComponent("options").elementScroll();
+        this.emit("expand");
     },
 
     handleCollapse() {
-        this.getEl('button').focus();
-        this.emit('collapse');
+        this.getEl("button").focus();
+        this.emit("collapse");
     },
 
     handleListboxChange(event) {
@@ -18,7 +18,7 @@ export default {
         }
         const selectedIndex = event.index;
         this.state.selectedIndex = selectedIndex;
-        this.emit('change', event);
+        this.emit("change", event);
     },
 
     handleListboxEscape() {
@@ -50,7 +50,7 @@ export default {
     },
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     },
@@ -63,19 +63,19 @@ export default {
         const { input } = this;
 
         if (input.options.length && !input.disabled) {
-            const container = this.getEl('container');
+            const container = this.getEl("container");
 
             this._expander = new Expander(container, {
                 autoCollapse: true,
                 expandOnClick: true,
                 simulateSpacebarClick: true,
-                contentSelector: '.listbox-button__listbox',
-                hostSelector: '.listbox-button__control',
-                expandedClass: 'listbox-button--expanded',
-                focusManagement: 'content',
+                contentSelector: ".listbox-button__listbox",
+                hostSelector: ".listbox-button__control",
+                expandedClass: "listbox-button--expanded",
+                focusManagement: "content",
             });
 
-            scrollKeyPreventer.add(this.getEl('button'));
+            scrollKeyPreventer.add(this.getEl("button"));
         }
     },
 

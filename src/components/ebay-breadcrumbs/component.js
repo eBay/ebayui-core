@@ -1,13 +1,13 @@
-import * as eventUtils from '../../common/event-utils';
-import { getMaxWidth } from '../../common/dom';
+import * as eventUtils from "../../common/event-utils";
+import { getMaxWidth } from "../../common/dom";
 
 export default {
     handleClick(originalEvent) {
-        this.emit('select', { originalEvent, el: originalEvent.target });
+        this.emit("select", { originalEvent, el: originalEvent.target });
     },
 
     handleMenuBreadcrumb(originalEvent) {
-        this.emit('select', { originalEvent, el: originalEvent.target });
+        this.emit("select", { originalEvent, el: originalEvent.target });
     },
 
     onCreate() {
@@ -16,7 +16,10 @@ export default {
 
     onMount() {
         this._calculateMaxItems();
-        this.subscribeTo(eventUtils.resizeUtil).on('resize', this._calculateMaxItems.bind(this));
+        this.subscribeTo(eventUtils.resizeUtil).on(
+            "resize",
+            this._calculateMaxItems.bind(this)
+        );
     },
 
     onInput(input) {
@@ -47,10 +50,10 @@ export default {
             for (let i = 0; i < itemContainer.children.length; i++) {
                 const currentItem = itemContainer.children[i];
                 // We need to remove the hidden attribute to get the width
-                if (currentItem.hasAttribute('hidden')) {
-                    currentItem.removeAttribute('hidden');
+                if (currentItem.hasAttribute("hidden")) {
+                    currentItem.removeAttribute("hidden");
                     itemWidths[i] = currentItem.offsetWidth;
-                    currentItem.setAttribute('hidden', true);
+                    currentItem.setAttribute("hidden", true);
                 } else {
                     itemWidths[i] = currentItem.offsetWidth;
                 }
@@ -68,7 +71,7 @@ export default {
             return;
         }
 
-        const itemContainer = this.getEl('items');
+        const itemContainer = this.getEl("items");
         const maxWidth = getMaxWidth(itemContainer);
         const lastItemIndex = itemContainer.children.length - 1;
 

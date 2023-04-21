@@ -1,7 +1,7 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
-import button from './index.marko';
-import readme from './README.md';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../../.storybook/utils";
+import button from "./index.marko";
+import readme from "./README.md";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -17,7 +17,7 @@ const Template = (args) => ({
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
-    title: 'buttons/ebay-split-button',
+    title: "buttons/ebay-split-button",
     component: button,
     parameters: {
         docs: {
@@ -27,177 +27,179 @@ export default {
         },
     },
     argTypes: {
-        renderBody: 'Button',
+        renderBody: "Button",
         href: {
-            description: 'url for link behaviour (switches to anchor tag)',
-            control: { type: 'text' },
+            description: "url for link behaviour (switches to anchor tag)",
+            control: { type: "text" },
         },
         size: {
-            options: ['large', 'regular'],
+            options: ["large", "regular"],
 
-            description: '',
+            description: "",
             table: {
                 defaultValue: {
-                    summary: 'none',
+                    summary: "none",
                 },
             },
-            type: { category: 'Options' },
+            type: { category: "Options" },
         },
         priority: {
-            options: ['primary', 'secondary', 'tertiary', 'none'],
-            description: '',
+            options: ["primary", "secondary", "tertiary", "none"],
+            description: "",
 
             table: {
                 defaultValue: {
-                    summary: 'secondary',
+                    summary: "secondary",
                 },
             },
-            type: { category: 'Options' },
+            type: { category: "Options" },
         },
         bodyState: {
             description:
-                'when state is loading, adds progress spinner. when user interacts with button, reset should be called to reset aria-live state. default is none',
-            options: ['none', 'loading', 'reset'],
-            control: { type: 'select' },
+                "when state is loading, adds progress spinner. when user interacts with button, reset should be called to reset aria-live state. default is none",
+            options: ["none", "loading", "reset"],
+            control: { type: "select" },
             table: {
                 defaultValue: {
-                    summary: 'none',
+                    summary: "none",
                 },
             },
-            type: { category: 'Options' },
+            type: { category: "Options" },
         },
         a11yButtonLoadingText: {
-            description: 'aria label for button when bodyState === loading',
+            description: "aria label for button when bodyState === loading",
             table: {
-                defaultValue: '',
+                defaultValue: "",
             },
-            control: { type: 'text' },
-            type: { category: 'Options' },
+            control: { type: "text" },
+            type: { category: "Options" },
         },
 
         a11yMenuText: {
-            description: 'aria label for menu button part',
+            description: "aria label for menu button part",
             table: {
-                defaultValue: '',
+                defaultValue: "",
             },
-            control: { type: 'text' },
-            type: { category: 'Options' },
+            control: { type: "text" },
+            type: { category: "Options" },
         },
         type: {
-            control: { type: 'select' },
-            options: ['none', 'radio', 'checkbox'],
+            control: { type: "select" },
+            options: ["none", "radio", "checkbox"],
             description: 'Can be "radio" / "checkbox"',
         },
         disabled: {
-            description: '',
-            control: { type: 'boolean' },
+            description: "",
+            control: { type: "boolean" },
             table: {
-                category: 'Toggles',
+                category: "Toggles",
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
             },
         },
-        'partially-disabled': {
-            description: 'programmatically disabled, but remains keyboard focusable',
-            control: { type: 'boolean' },
+        "partially-disabled": {
+            description:
+                "programmatically disabled, but remains keyboard focusable",
+            control: { type: "boolean" },
             table: {
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
-                category: 'Toggles',
+                category: "Toggles",
             },
         },
         onClick: {
-            action: 'on-click',
-            description: 'Triggered on click',
+            action: "on-click",
+            description: "Triggered on click",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onEscape: {
-            action: 'on-escape',
-            description: 'Triggered on escape key',
+            action: "on-escape",
+            description: "Triggered on escape key",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onFocus: {
-            action: 'on-focus',
-            description: 'Triggered on focus',
+            action: "on-focus",
+            description: "Triggered on focus",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onBlur: {
-            action: 'on-blur',
-            description: 'Triggered on blur',
+            action: "on-blur",
+            description: "Triggered on blur",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onCollapse: {
-            action: 'on-collapse',
-            description: 'Triggered on menu collapse',
+            action: "on-collapse",
+            description: "Triggered on menu collapse",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
         onExpand: {
-            action: 'on-expand',
-            description: 'Triggered on menu expand',
+            action: "on-expand",
+            description: "Triggered on menu expand",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
         onChange: {
-            action: 'on-change',
-            description: 'Triggered on item checked change, (checkbox/radio type only)',
+            action: "on-change",
+            description:
+                "Triggered on item checked change, (checkbox/radio type only)",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
                     summary:
-                        'radio: { el, index, checked } | checkbox: { el, [indexes], [checked] }',
+                        "radio: { el, index, checked } | checkbox: { el, [indexes], [checked] }",
                 },
             },
         },
 
         onSelect: {
-            action: 'on-select',
-            description: 'Triggered on item clicked (non radio/checkbox)',
+            action: "on-select",
+            description: "Triggered on item clicked (non radio/checkbox)",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ el, index, checked }',
+                    summary: "{ el, index, checked }",
                 },
             },
         },
 
         spread: {
             control: {
-                type: 'object',
+                type: "object",
             },
-            description: 'Additional attributes being passed to component',
+            description: "Additional attributes being passed to component",
             table: {
-                category: 'Other',
+                category: "Other",
             },
         },
     },
@@ -205,8 +207,8 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    renderBody: 'Button',
-    a11yMenuText: 'Menu',
+    renderBody: "Button",
+    a11yMenuText: "Menu",
     items: [
         {
             renderBody: `item 1 that has very long text`,
@@ -223,7 +225,9 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-split-button', Standard.args, { items: 'item' }),
+            code: tagToString("ebay-split-button", Standard.args, {
+                items: "item",
+            }),
         },
     },
 };

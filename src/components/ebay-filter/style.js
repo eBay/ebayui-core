@@ -1,1 +1,1 @@
-require('@ebay/skin/filter-button');
+require("@ebay/skin/filter-button");

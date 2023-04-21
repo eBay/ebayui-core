@@ -1,14 +1,14 @@
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './examples/default.marko';
-import code from './examples/default.marko?raw';
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./examples/default.marko";
+import code from "./examples/default.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'dialogs/ebay-alert-dialog',
+    title: "dialogs/ebay-alert-dialog",
     component: Component,
     parameters: {
         docs: {
@@ -20,26 +20,26 @@ export default {
 
     argTypes: {
         open: {
-            type: 'boolean',
-            control: { type: 'boolean' },
-            description: 'Whether dialog is open.',
+            type: "boolean",
+            control: { type: "boolean" },
+            description: "Whether dialog is open.",
             table: {
                 disable: true,
             },
         },
         closeFocus: {
-            control: { type: 'text' },
+            control: { type: "text" },
             description:
-                'An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened',
+                "An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened",
         },
-        'confirm-text': {
-            control: { type: 'text' },
-            description: 'Text for confirm button',
+        "confirm-text": {
+            control: { type: "text" },
+            description: "Text for confirm button",
         },
         header: {
-            name: '@header',
+            name: "@header",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
     },

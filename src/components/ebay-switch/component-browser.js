@@ -1,7 +1,7 @@
 export default {
     handleChange(originalEvent) {
         if (!this.input.disabled) {
-            this.emit('change', {
+            this.emit("change", {
                 originalEvent,
                 value: originalEvent.target.value,
                 checked: originalEvent.target.checked,

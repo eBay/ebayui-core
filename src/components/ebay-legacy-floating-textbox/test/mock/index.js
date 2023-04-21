@@ -1,19 +1,19 @@
-import { createRenderBody } from '../../../../common/test-utils/shared';
+import { createRenderBody } from "../../../../common/test-utils/shared";
 const iconBody = {
     renderBody: createRenderBody(
         '<svg class="icon" focusable="false" id="w11-w0" ' +
             'aria-hidden="true"> <defs id="w11-w0-defs"></defs><use ' +
             'xlink:href="#icon-profile"></use></svg>',
-        ''
+        ""
     ),
 };
 
 export const Basic = {
-    value: 'textbox value',
+    value: "textbox value",
 };
 
 export const basicWithId = Object.assign({}, Basic, {
-    id: 'textbox-id',
+    id: "textbox-id",
 });
 
 export const Fluid = Object.assign({}, Basic, {
@@ -41,11 +41,11 @@ export const postfixIcon = Object.assign({}, Basic, {
 });
 
 export const postfixIconButton = Object.assign({}, postfixIcon, {
-    buttonAriaLabel: 'search button',
+    buttonAriaLabel: "search button",
 });
 
 export const floatingLabel = Object.assign({}, Basic, {
-    floatingLabel: 'Email address',
+    floatingLabel: "Email address",
 });
 
 export const floatingLabelNoValue = Object.assign({}, floatingLabel, {
@@ -53,7 +53,7 @@ export const floatingLabelNoValue = Object.assign({}, floatingLabel, {
 });
 
 export const floatingLabelWithId = Object.assign({}, floatingLabel, {
-    id: 'textbox-id',
+    id: "textbox-id",
 });
 
 export const floatingLabelDisabled = Object.assign({}, floatingLabel, {
