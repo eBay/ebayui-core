@@ -1,4 +1,6 @@
 import { processHtmlAttributes } from '../../../common/html-attributes';
+import type { AttrClass } from 'marko/tags-html';
+
 static {
     var ignoredAttributes = [
         'status',
@@ -26,7 +28,7 @@ export interface Input {
     root?: Marko.Renderable;
     noA11yLabel?: boolean;
     a11yRoleDescription?: string;
-    class: string | string[] | Record<string, boolean>;
+    class: AttrClass;
     icon?: "none";
     iconClass?: string;
     headerRoot?: Marko.Renderable;
@@ -38,7 +40,7 @@ export interface Input {
     a11yDismissText?: string;
     title?: {
         as?: Marko.Renderable;
-        class?: string | string[] | Record<string, boolean>;
+        class?: AttrClass;
         renderBody?: Marko.Renderable;
     };
     cta?: Marko.Input<"a"> & {
@@ -104,7 +106,7 @@ $ var prefixClass = input.prefixClass;
                 aria-label=`${input.a11yDismissText}`
                 class=['fake-link', `${prefixClass}__dismiss`]
                 onClick('handleDismissClick')
-                onKeydown('handleDismissKeydown')
+                onKeyDown('handleDismissKeydown')
             >
                 <ebay-close-16-icon.icon.icon--close-16/>
             </button>

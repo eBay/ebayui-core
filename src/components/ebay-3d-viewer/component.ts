@@ -1,9 +1,10 @@
+import type { AttrClass } from 'marko/tags-html';
 import { CDNLoader } from '../../common/cdn';
 
 interface Input {
     cdnUrl?: string;
     version?: string;
-    class?: string | string[] | Record<string, boolean>;
+    class?: AttrClass;
     a11yText?: string;
     src?: string;
     errorText?: string;

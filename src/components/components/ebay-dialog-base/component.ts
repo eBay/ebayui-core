@@ -4,7 +4,7 @@ import * as bodyScroll from '../../../common/body-scroll';
 import * as eventUtils from '../../../common/event-utils';
 import transition from '../../../common/transition';
 
-interface Input {
+interface Input extends Marko.Input<'div'> {
     buttonPosition?: 'right' | 'left' | 'bottom' | 'hidden';
     useHiddenProperty?: boolean;
     baseEl?: string;
@@ -19,8 +19,6 @@ interface Input {
     a11yCloseText?: string;
     closeButton?: Marko.Renderable;
     ariaLabelledby?: string;
-    role: string;
-    class?: string;
     isModal?: boolean;
     ignoreEscape?: boolean;
     windowType?: string;

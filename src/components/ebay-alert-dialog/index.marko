@@ -1,3 +1,11 @@
+import type { AttrClass } from "marko/tags-html";
+
+export interface Input {
+    open?: boolean;
+    class?: AttrClass;
+    confirmText?: string;
+}
+
 $ var confirmId = component.getElId("alert-dialog-confirm");
 $ var mainId = component.getElId("alert-dialog-main");
 <ebay-dialog-base
