@@ -1,6 +1,18 @@
-let rootSvg;
+import type { AttrClass } from 'marko/tags-html';
 
-export default {
+let rootSvg: HTMLElement;
+
+export interface Input extends Marko.Input<'svg'> {
+    _themes?: () => string;
+    _type: string;
+    _name: string;
+    a11yVariant?: 'label';
+    a11yText?: string;
+    class?: AttrClass;
+    noSkinClasses?: boolean;
+}
+
+export default class extends Marko.Component<Input> {
     onMount() {
         // Create a hidden svg to store all symbols on startup.
         if (!rootSvg) {
@@ -19,11 +31,11 @@ export default {
                 defs.innerHTML = this.input._themes();
             }
             const symbol = defs.querySelector('symbol');
-            defs.parentNode.removeChild(defs);
+            defs.parentNode?.removeChild(defs);
 
             if (symbol) {
                 rootSvg.appendChild(symbol);
             }
         }
-    },
-};
+    }
+}

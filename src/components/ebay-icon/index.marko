@@ -8,7 +8,7 @@ static var browserLookup = {};
 
 static var ignoredAttributes = ["_name", "_type", "noSkinClasses", "_themes", "toJSON"];
 
-static function getIconClass(type, name) {
+static function getIconClass(type: string, name: string) {
     if (type === "icon") {
         return `icon icon--${name}`;
     } else {
@@ -19,7 +19,6 @@ static function getIconClass(type, name) {
 }
 
 $ var noTitle = input.a11yVariant === "label";
-$ input.toJSON = noop;
 $ var lookup = isBrowser ? browserLookup : out.global;
 $ {
     var a11yAttributes = input.a11yText
@@ -44,14 +43,6 @@ $ {
     <if(renderDefs && themes)>
         <defs key="defs">
             <if(!isBrowser)>
-                $ var lassoContext = out.global["lasso/LassoRenderContext"];
-                $ {
-                    var flags =
-                                        lassoContext &&
-                                        lassoContext.data &&
-                                        lassoContext.data.config &&
-                                        lassoContext.data.config.flags;
-                }
                 $!{themes()}
             </if>
         </defs>
