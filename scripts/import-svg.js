@@ -93,7 +93,11 @@ function generateFile(type, iconMap) {
         // eslint-disable-next-line max-len
         fs.writeFileSync(
             index,
-            `import { symbol } from "./symbol.js";\n<ebay-icon ...input _name="${name}" _type="${type}" _themes=symbol/>\n`
+            `import { symbol } from "./symbol.js";
+import type { Input as IconInput } from "../../component"
+export type Input = Omit<IconInput, \`_\${string}\`>;
+<ebay-icon ...input _name="${name}" _type="${type}" _themes=symbol/>
+`
         );
     }
 }
