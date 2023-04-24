@@ -1,27 +1,44 @@
 import * as eventUtils from '../../common/event-utils';
 import { getMaxWidth } from '../../common/dom';
+import type { AttrClass } from 'marko/tags-html';
 
-export default {
-    handleClick(originalEvent) {
-        this.emit('select', { originalEvent, el: originalEvent.target });
-    },
+interface Input {
+    a11yHeadingTag?: keyof Marko.NativeTags;
+    a11yHeadingText?: string;
+    class?: AttrClass;
+    items: (Marko.Input<'a' | 'button'> & {
+        href?: string;
+        renderBody: Marko.Body;
+    })[];
+}
+interface State {
+    hiddenIndex: number[];
+}
 
-    handleMenuBreadcrumb(originalEvent) {
+export default class extends Marko.Component<Input, State> {
+    declare cachedWidths: number[];
+    declare newInput: boolean;
+
+    handleClick(originalEvent: Event) {
         this.emit('select', { originalEvent, el: originalEvent.target });
-    },
+    }
+
+    handleMenuBreadcrumb(originalEvent: Event) {
+        this.emit('select', { originalEvent, el: originalEvent.target });
+    }
 
     onCreate() {
         this.state = { hiddenIndex: [] };
-    },
+    }
 
     onMount() {
         this._calculateMaxItems();
         this.subscribeTo(eventUtils.resizeUtil).on('resize', this._calculateMaxItems.bind(this));
-    },
+    }
 
-    onInput(input) {
+    onInput(input: Input) {
         this.cachedWidths = [];
-        const hiddenIndex = [];
+        const hiddenIndex: number[] = [];
         if ((input.items || []).length > 4) {
             // If we have more than 4 items, we automatically add them into hiddenIndexes.
             // The first, second to last, and last indexes will be shown automatically
@@ -31,26 +48,26 @@ export default {
         }
         this.state.hiddenIndex = hiddenIndex;
         this.newInput = true;
-    },
+    }
 
     onUpdate() {
         if (this.newInput) {
             this.newInput = false;
             this._calculateMaxItems();
         }
-    },
+    }
 
-    _getItemWidths(itemContainer) {
+    _getItemWidths(itemContainer: HTMLElement) {
         let itemWidths = this.cachedWidths;
         if (itemWidths.length !== itemContainer.children.length) {
             itemWidths = [];
             for (let i = 0; i < itemContainer.children.length; i++) {
-                const currentItem = itemContainer.children[i];
+                const currentItem = itemContainer.children[i] as HTMLElement;
                 // We need to remove the hidden attribute to get the width
                 if (currentItem.hasAttribute('hidden')) {
                     currentItem.removeAttribute('hidden');
                     itemWidths[i] = currentItem.offsetWidth;
-                    currentItem.setAttribute('hidden', true);
+                    currentItem.setAttribute('hidden', '');
                 } else {
                     itemWidths[i] = currentItem.offsetWidth;
                 }
@@ -58,7 +75,7 @@ export default {
             this.cachedWidths = itemWidths;
         }
         return itemWidths;
-    },
+    }
 
     _calculateMaxItems() {
         const { input, state } = this;
@@ -68,7 +85,7 @@ export default {
             return;
         }
 
-        const itemContainer = this.getEl('items');
+        const itemContainer = this.getEl('items') as HTMLElement;
         const maxWidth = getMaxWidth(itemContainer);
         const lastItemIndex = itemContainer.children.length - 1;
 
@@ -93,7 +110,7 @@ export default {
             startRange++;
         }
 
-        const hiddenIndex = [];
+        const hiddenIndex: number[] = [];
         // We only need to check the length of the second to last and third to last items.
         // All other items will be truncated automatically. (due to indexCutoff variable)
         for (let i = endRange; i >= startRange; i--) {
@@ -105,5 +122,5 @@ export default {
             }
         }
         state.hiddenIndex = hiddenIndex;
-    },
-};
+    }
+}
