@@ -1,12 +1,12 @@
-const { render } = require('@marko/testing-library');
+require('@marko/testing-library');
 
-function addRenderBodies(input) {
+function addRenderBodies(input: any) {
     if (input && typeof input === 'object') {
         if (Array.isArray(input)) {
             return input.map(addRenderBodies);
         }
 
-        const clone = {};
+        const clone: typeof input = {};
         for (const key in input) {
             clone[key] = addRenderBodies(input[key]);
         }
@@ -22,8 +22,12 @@ function addRenderBodies(input) {
     return input;
 }
 
-function buildExtensionTemplate(template, code, args = {}) {
-    const builder = (args) => ({
+function buildExtensionTemplate(
+    template: Marko.Template,
+    code: string,
+    args: Record<string, any> = {}
+) {
+    const builder = (args: Record<string, any>) => ({
         input: addRenderBodies(args),
         component: template,
     });
@@ -40,4 +44,4 @@ function buildExtensionTemplate(template, code, args = {}) {
     return builder;
 }
 
-module.exports = { addRenderBodies, buildExtensionTemplate };
+export { addRenderBodies, buildExtensionTemplate };

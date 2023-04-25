@@ -13,6 +13,5 @@ export default create({
     brandUrl: '/',
     brandImage:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/EBay_logo.svg/1280px-EBay_logo.svg.png',
-    brandIcon: 'https://pages.ebay.com/favicon.ico',
     brandTarget: '/',
 });

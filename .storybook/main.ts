@@ -11,7 +11,7 @@ module.exports = {
     features: {
         previewMdx2: true,
     },
-    webpackFinal: async (config, { configType }) => {
+    webpackFinal: async (config: any) => {
         config.module.rules.push({
             test: /\.less$/,
             use: ['style-loader', 'css-loader', 'less-loader'],

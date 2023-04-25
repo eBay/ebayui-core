@@ -1,4 +1,10 @@
-function tagToString(tagName, args, plurarls = {}, indent = '', fromAttribute = false) {
+function tagToString(
+    tagName: string,
+    args: any,
+    plurarls: Record<string, string> = {},
+    indent = '',
+    fromAttribute = false
+) {
     const nextIndex = indent + '\t';
     const { body, attrs } = argsToString(args, plurarls, nextIndex);
     let formattedTagName = tagName;
@@ -12,7 +18,7 @@ function tagToString(tagName, args, plurarls = {}, indent = '', fromAttribute = 
     }`;
 }
 
-function argsToString(args, plurarls, indent) {
+function argsToString(args: any, plurarls: Record<string, string>, indent: string) {
     let attrs = '';
     let body = '';
     for (const key in args) {
@@ -44,4 +50,4 @@ function argsToString(args, plurarls, indent) {
     return { attrs, body };
 }
 
-module.exports = { tagToString };
+export { tagToString };
