@@ -4,8 +4,8 @@ export default {
     handleKeydown: forwardEvent('keydown'),
 };
 
-function forwardEvent(eventName) {
-    return function (originalEvent, el) {
+function forwardEvent(eventName: string) {
+    return function (originalEvent: Event, el: HTMLInputElement) {
         const value = (el || this.el.querySelector('input')).value;
         const checked = (el || this.el.querySelector('input')).checked;
         this.emit(`${eventName}`, {

@@ -1,11 +1,14 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
+export interface Input extends Marko.Input<'input'> {
+    toJSON?: any;
+    iconStyle?: 'rounded' | 'square';
+}
+
 static function noop() {}
 static var ignoredAttributes = ["class", "style", "size", "toJSON", "iconStyle"];
 
 $ input.toJSON = noop;
-
-$ var isSquare = input.iconStyle === 'square';
 
 <span class=["checkbox", input.class] style=input.style>
     <input
@@ -14,7 +17,7 @@ $ var isSquare = input.iconStyle === 'square';
         type="checkbox"
         onClick("handleChange")
         onFocus("handleFocus")
-        onKeydown("handleKeydown")/>
+        onKeyDown("handleKeydown")/>
     <span class="checkbox__icon" hidden>
         <if (input.size === 'large')>
             <ebay-checkbox-unchecked-24-icon
