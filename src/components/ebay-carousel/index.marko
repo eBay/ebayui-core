@@ -1,4 +1,4 @@
-$ var data = component.getTemplateData(state, input);
+$ var data = component.getTemplateData(state);
 $ var config = data.config;
 
 <div
@@ -13,12 +13,12 @@ $ var config = data.config;
             'carousel__container',
             data.bothControlsDisabled && 'carousel__container--controls-disabled',
         ]
-        onFocusin(data.autoplayInterval && 'handleStartInteraction')
-        onTouchstart(data.autoplayInterval && 'handleStartInteraction')
-        onMouseover(data.autoplayInterval && 'handleStartInteraction')
-        onFocusout(data.autoplayInterval && 'handleEndInteraction')
-        onMouseout(data.autoplayInterval && 'handleEndInteraction')
-        onTouchend(data.autoplayInterval && 'handleEndInteraction')
+        onFocusIn(!!data.autoplayInterval && 'handleStartInteraction')
+        onTouchStart(!!data.autoplayInterval && 'handleStartInteraction')
+        onMouseOver(!!data.autoplayInterval && 'handleStartInteraction')
+        onFocusOut(!!data.autoplayInterval && 'handleEndInteraction')
+        onMouseOut(!!data.autoplayInterval && 'handleEndInteraction')
+        onTouchEnd(!!data.autoplayInterval && 'handleEndInteraction')
         key='container'
         id:scoped='container'
     >
@@ -44,7 +44,7 @@ $ var config = data.config;
                     input.imageTreatment === 'matte' && 'carousel__list--image-treatment',
                 ]
                 style=!config.nativeScrolling &&
-                data.offset && {
+                !!data.offset && {
                     transform: 'translate3d(' + data.offset * -1 + 'px,0,0)',
                     transition: data.disableTransition ? 'none' : undefined,
                 }

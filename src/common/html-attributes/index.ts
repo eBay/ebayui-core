@@ -14,7 +14,10 @@ function camelToKebab(s: string) {
  * input fields so that duplicate/unwanted attributes will not be rendered
  */
 function processHtmlAttributes(
-    input: { htmlAttributes?: Map<string, string>; [key: string]: any },
+    input: {
+        htmlAttributes?: Record<string, any>;
+        [key: string]: any;
+    },
     ignore: string[] = EMPTY_ARR
 ) {
     const attributes = {};
