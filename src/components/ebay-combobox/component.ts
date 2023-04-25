@@ -4,57 +4,94 @@ import Expander from 'makeup-expander';
 import { scroll } from '../../common/element-scroll';
 import * as eventUtils from '../../common/event-utils';
 import safeRegex from '../../common/build-safe-regex';
+import { AttrClass } from 'marko/tags-html';
 
-export default {
+interface Input extends Marko.Input<'input'> {
+    expanded?: boolean;
+    borderless?: boolean;
+    fluid?: boolean;
+    autocomplete?: 'list' | 'none';
+    listSelection?: 'manual' | 'automatic';
+    floatingLabel?: boolean;
+    button?: Marko.Input<'button'> & {
+        htmlAttributes?: Record<string, unknown>;
+        renderBody?: Marko.Body;
+    };
+    options: {
+        text: string;
+        value: string;
+        class?: AttrClass;
+        sticky?: boolean;
+    }[];
+    roledescription?: string;
+}
+
+interface State {
+    currentValue: Input['value'];
+    viewAllOptions: boolean;
+}
+
+export default class extends Marko.Component<Input, State> {
+    declare expander: Expander;
+    declare buttonClicked: boolean;
+    declare optionClicked: boolean;
+    declare activeDescendant: ReturnType<typeof createLinear>;
+    declare lastValue: Input['value'];
+    declare autocomplete: NonNullable<Input['autocomplete']>;
+    declare listSelection: NonNullable<Input['listSelection']>;
+    declare expanded: boolean;
+    declare expandedChange: boolean;
+    declare _floatingLabel: FloatingLabel;
+
     focus() {
-        this.getEl('combobox').focus();
-    },
+        (this.getEl('combobox') as HTMLElement).focus();
+    }
 
     handleFocus() {
         this._emitComboboxEvent('focus');
-    },
+    }
 
     isExpanded() {
         return this.expander && this.expander.expanded;
-    },
+    }
 
     isCollapsed() {
         return this.expander && !this.expander.expanded;
-    },
+    }
 
     expand() {
         if (this.isCollapsed()) {
             this.expander.expanded = true;
         }
-    },
+    }
 
     collapse() {
         if (this.isExpanded()) {
             this.expander.expanded = false;
         }
-    },
+    }
 
-    handleButtonClick(originalEvent) {
+    handleButtonClick(originalEvent: MouseEvent) {
         this.buttonClicked = true;
         this.emit('button-click', { originalEvent });
-    },
+    }
 
-    handleActiveDescendantChange(ev) {
+    handleActiveDescendantChange(ev: CustomEvent) {
         if (this.listSelection === 'automatic') {
             const selected = this._getVisibleOptions()[ev.detail.toIndex];
             // Set textbox value to selected, don't update state since it messes up active descendant
-            this.getEl('combobox').value = selected.text;
+            (this.getEl('combobox') as HTMLInputElement).value = selected.text;
         }
-    },
+    }
 
     setSelectedView() {
-        const current = this._getVisibleOptions().indexOf(this._getSelectedOption());
+        const current = this._getVisibleOptions().indexOf(this._getSelectedOption()!);
         this.activeDescendant.index = current;
-        const selectedEl = this.getEls('options')[current];
+        const selectedEl = this.getEls('options')[current] as HTMLElement;
         if (selectedEl) {
             scroll(selectedEl);
         }
-    },
+    }
 
     handleExpand() {
         if (this.state.viewAllOptions) {
@@ -66,20 +103,20 @@ export default {
             });
         }
         this.emit('expand');
-    },
+    }
 
     handleCollapse() {
         this.activeDescendant.reset();
         this.emit('collapse');
-    },
+    }
 
-    handleComboboxClick(e) {
+    handleComboboxClick(e: MouseEvent) {
         if (e.target === document.activeElement) {
             this.expand();
         }
-    },
+    }
 
-    handleComboboxKeyDown(originalEvent) {
+    handleComboboxKeyDown(originalEvent: KeyboardEvent) {
         eventUtils.handleUpDownArrowsKeydown(originalEvent, () => {
             originalEvent.preventDefault();
             this.expand();
@@ -102,11 +139,11 @@ export default {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.collapse();
         });
-    },
+    }
 
     handleComboboxKeyUp(originalEvent) {
         eventUtils.handleTextInput(originalEvent, () => {
-            this.state.currentValue = this.getEl('combobox').value;
+            this.state.currentValue = (this.getEl('combobox') as HTMLInputElement).value;
             this.once('update', () => {
                 // If we have an expander after the update
                 // that could mean that new content was made visible.
@@ -117,7 +154,7 @@ export default {
 
             this._emitComboboxEvent('input-change');
         });
-    },
+    }
 
     handleComboboxBlur() {
         const wasClickedOption = this.optionClicked;
@@ -132,28 +169,27 @@ export default {
 
         this.buttonClicked = false;
 
-        if (
-            this.listSelection === 'automatic' &&
-            this.getEl('combobox').value !== this.state.currentValue
-        ) {
-            this.state.currentValue = this.getEl('combobox').value;
+        const combobox = this.getEl('combobox') as HTMLInputElement;
+
+        if (this.listSelection === 'automatic' && combobox.value !== this.state.currentValue) {
+            this.state.currentValue = combobox.value;
         }
 
         if (this.lastValue !== this.state.currentValue) {
             this.lastValue = this.state.currentValue;
             this._emitComboboxEvent('change');
         }
-    },
+    }
 
     handleSelectOption(text) {
         this._setSelectedText(text);
-    },
+    }
 
     handleFloatingLabelInit() {
         this._emitComboboxEvent('floating-label-init');
-    },
+    }
 
-    onInput(input) {
+    onInput(input: Input) {
         this.autocomplete = input.autocomplete === 'list' ? 'list' : 'none';
         this.listSelection = input.listSelection === 'manual' ? 'manual' : 'automatic';
         input.options = input.options || [];
@@ -168,26 +204,26 @@ export default {
                 this.expander.expanded = input.expanded;
             }
         }
-        this.expanded = input.expanded;
-    },
+        this.expanded = !!input.expanded;
+    }
 
     onMount() {
         this._setupMakeup();
-    },
+    }
 
     onUpdate() {
         this._setupMakeup();
-    },
+    }
 
     onRender() {
         if (typeof window !== 'undefined') {
             this._cleanupMakeup();
         }
-    },
+    }
 
     onDestroy() {
         this._cleanupMakeup();
-    },
+    }
 
     _setupFloatingLabel() {
         // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
@@ -205,7 +241,7 @@ export default {
                 this._setupFloatingLabel();
             });
         }
-    },
+    }
 
     _setupMakeup() {
         if (this._hasVisibleOptions()) {
@@ -246,7 +282,7 @@ export default {
         if (this.input.floatingLabel) {
             this._setupFloatingLabel();
         }
-    },
+    }
 
     _cleanupMakeup() {
         if (this.activeDescendant) {
@@ -263,37 +299,37 @@ export default {
             this._floatingLabel.destroy();
             this._floatingLabel = null;
         }
-    },
+    }
 
-    _setSelectedText(text) {
+    _setSelectedText(text: string) {
         if (this.state.currentValue !== text) {
-            const input = this.getEl('combobox');
+            const input = this.getEl('combobox') as HTMLInputElement;
             this.state.currentValue = input.value = text;
             // Move cursor to the end of the input.
             input.selectionStart = input.selectionEnd = text.length;
             input.focus();
             this._emitComboboxEvent('select');
         }
-    },
+    }
 
     _getSelectedOption() {
         return this.input.options.find((option) => option.text === this.state.currentValue);
-    },
+    }
 
     _getVisibleOptions() {
         if (this.autocomplete === 'none' || this.state.viewAllOptions) {
             return this.input.options;
         }
 
-        const currentValueReg = safeRegex(this.state.currentValue);
+        const currentValueReg = safeRegex(this.state.currentValue?.toString());
         return this.input.options.filter(
             (option) => currentValueReg.test(option.text || '') || option.sticky
         );
-    },
+    }
 
     _hasVisibleOptions() {
         return !this.input.disabled && this._getVisibleOptions().length > 0;
-    },
+    }
 
     _emitComboboxEvent(eventName) {
         this.emit(`${eventName}`, {
@@ -301,5 +337,5 @@ export default {
             selectedOption: this._getSelectedOption(),
             options: this.input.options,
         });
-    },
-};
+    }
+}

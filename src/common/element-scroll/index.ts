@@ -6,7 +6,7 @@ function scroll(el: HTMLElement) {
         return;
     }
 
-    const parentEl = el && el.parentElement;
+    const parentEl = el && el.parentElement!;
     const offsetBottom = el.offsetTop + el.offsetHeight;
     const scrollBottom = parentEl.scrollTop + parentEl.offsetHeight;
 
@@ -17,4 +17,4 @@ function scroll(el: HTMLElement) {
     }
 }
 
-module.exports = { scroll };
+export { scroll };

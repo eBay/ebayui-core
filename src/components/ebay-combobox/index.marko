@@ -73,16 +73,16 @@ $ var id = input.id || component.getElId('input');
             onBlur('handleComboboxBlur')
             onClick('handleComboboxClick')
             onFocus('handleFocus')
-            onKeydown('handleComboboxKeyDown')
-            onKeyup('handleComboboxKeyUp')
+            onKeyDown('handleComboboxKeyDown')
+            onKeyUp('handleComboboxKeyUp')
         >
         <${hasButton ? 'button' : null}
-            ...processHtmlAttributes(input.button, ignoredButtonAttributes)
+            ...processHtmlAttributes(input.button ?? {}, ignoredButtonAttributes)
             onClick('handleButtonClick')
             key='actionable'
-            class=['icon-btn', 'icon-btn--transparent', hasButton && input.button.class]
+            class=['icon-btn', 'icon-btn--transparent', input.button && input.button.class]
         >
-            <if(hasButton && input.button.renderBody)>
+            <if(input.button && input.button.renderBody)>
                 <${input.button.renderBody}/>
             </if>
             <else><ebay-chevron-down-12-icon/></else>
