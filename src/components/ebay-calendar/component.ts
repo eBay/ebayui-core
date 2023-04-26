@@ -28,6 +28,9 @@ interface Input {
     a11yTodayText?: string;
     a11yDisabledText?: string;
     a11ySeparator?: string;
+    onSelect?: (event: { iso: DayISO }) => void;
+    onFocus?: (event: { iso: DayISO }) => void;
+    onMonth?: (event: { iso: DayISO }) => void;
 }
 
 interface State {

@@ -1,5 +1,3 @@
-// @ts-check
-
 $ const openPopoverText = input.a11yOpenPopoverText ?? "open calendar"
 $ {
     const defaultPlaceholder = "YYYY-MM-DD"
@@ -32,14 +30,14 @@ $ {
     </ebay-textbox>
     <div.date-textbox__popover hidden=!state.popover key="popover">
         <if(state.popover)>
-            <subscribe to=window on-resize("calculateNumMonths")/>
+            <subscribe to=window onResize("calculateNumMonths")/>
         </if>
         <ebay-calendar
             interactive
             navigable
             range=input.range
             numMonths=state.numMonths
-            selected=(state.firstSelected && state.secondSelected) ? [state.firstSelected, state.secondSelected] : (state.firstSelected ?? state.secondSelected)
+            selected=(state.firstSelected && state.secondSelected) ? [state.firstSelected, state.secondSelected] : (state.firstSelected ?? state.secondSelected ?? undefined)
             locale=input.locale
             disableBefore=input.disableBefore
             disableAfter=input.disableAfter
@@ -51,6 +49,6 @@ $ {
             a11yInRangeText=input.a11yInRangeText
             a11yRangeEndText=input.a11yRangeEndText
             a11ySeparator=input.a11ySeparator
-            on-select("onPopoverSelect")/>
+            onSelect("onPopoverSelect")/>
     </div>
 </span>
