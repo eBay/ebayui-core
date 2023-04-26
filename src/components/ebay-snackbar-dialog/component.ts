@@ -1,6 +1,20 @@
 const DEFAULT_TIMEOUT_LENGTH = 6000;
+import { Input as BaseInput } from '../components/ebay-dialog-base/component';
 
-export default class {
+interface Input extends BaseInput {
+    layout?: 'row' | 'column';
+    action?: BaseInput['action'] & {
+        accessKey?: string;
+    };
+}
+interface State {
+    open: boolean;
+}
+
+export default class extends Marko.Component<Input, State> {
+    declare timeout: ReturnType<typeof setTimeout>;
+    declare eventSet: Set<string>;
+
     _clearTimeout() {
         clearTimeout(this.timeout);
     }

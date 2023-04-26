@@ -1,15 +1,20 @@
+import { Input as BaseInput } from "<ebay-dialog-base>";
+export interface Input extends BaseInput {
+    variant?: "_mini";
+}
+
 $ var isMini = input.variant === "_mini";
 $ var buttonPosition = input.buttonPosition || 'right';
 
 <ebay-dialog-base
     ...input
     open=input.open
-    class-prefix="lightbox-dialog"
-    on-open("emit", "open")
-    on-close("emit", "close")
-    button-position=buttonPosition
+    classPrefix="lightbox-dialog"
+    onOpen("emit", "open")
+    onClose("emit", "close")
+    buttonPosition=buttonPosition
     class=[input.class, "lightbox-dialog--mask-fade"]
-    window-class=[
+    windowClass=[
         "lightbox-dialog__window--fade",
         isMini && "lightbox-dialog__window--mini"
     ]>

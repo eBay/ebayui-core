@@ -1,28 +1,29 @@
 import * as keyboardTrap from 'makeup-keyboard-trap';
 import * as screenReaderTrap from 'makeup-screenreader-trap';
+import { AttrClass } from 'marko/tags-html';
 import * as bodyScroll from '../../../common/body-scroll';
 import * as eventUtils from '../../../common/event-utils';
 import transition from '../../../common/transition';
 
-interface Input extends Marko.Input<'div'> {
+export interface Input extends Marko.Input<'div'> {
     buttonPosition?: 'right' | 'left' | 'bottom' | 'hidden';
     useHiddenProperty?: boolean;
     baseEl?: string;
-    header: Marko.Input<`h${number}`> & {
+    header?: Marko.Input<`h${number}`> & {
         as?: `h${number}`;
-        id: string;
-        renderBody: Marko.Body;
+        id?: string;
+        renderBody?: Marko.Body;
     };
     classPrefix?: string;
     closeButtonText?: string;
-    closeButtonClass?: string;
+    closeButtonClass?: AttrClass;
     a11yCloseText?: string;
     closeButton?: Marko.Renderable;
     ariaLabelledby?: string;
     isModal?: boolean;
     ignoreEscape?: boolean;
     windowType?: string;
-    windowClass?: string;
+    windowClass?: AttrClass;
     top?: {
         renderBody: Marko.Body;
     };
@@ -38,6 +39,9 @@ interface Input extends Marko.Input<'div'> {
     open?: boolean;
     transitionEl?: 'root' | 'window';
     focus?: string;
+    onOpen?: (event: Event) => void;
+    onClose?: (event: Event) => void;
+    onScroll?: (event: Event) => void;
 }
 
 interface State {
