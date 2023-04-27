@@ -5,7 +5,15 @@ const validRanges = {
     A: ['G'],
 };
 
-module.exports = (input) => {
+export interface Input extends Marko.Input<'div'> {
+    toJSON?: any;
+    max: string;
+    min: string;
+    rating: string;
+    a11yText?: string;
+}
+
+export default (input: Input) => {
     const { max, min, rating } = input;
     const validMax = validRanges[max];
     if (!(validMax && validMax.indexOf(min) > -1)) {
