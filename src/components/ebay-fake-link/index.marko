@@ -10,12 +10,12 @@ static var ignoredAttributes = ["toJSON", "variant"];
 
 $ {
     input.toJSON = toJSON;
-    var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
+    var htmlAttributes = processHtmlAttributes(input, ignoredAttributes);
 }
 <button
     ...htmlAttributes
     onClick("handleClick")
-    onKeydown("handleKeydown")
+    onKeyDown("handleKeydown")
     onFocus("handleFocus")
     onBlur("handleBlur")
     class=[input.class, "fake-link", input.variant === 'standalone' && 'standalone-link']
