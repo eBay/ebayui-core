@@ -2,12 +2,55 @@ import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
 import { createLinear } from 'makeup-roving-tabindex';
 import typeahead from 'makeup-typeahead';
 import * as eventUtils from '../../common/event-utils';
-import menuUtils from '../../common/menu-utils';
+import setupMenu, {
+    type MenuItem,
+    type MenuInput,
+    type MenuState,
+    MenuUtils,
+} from '../../common/menu-utils';
 
 const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 
-export default Object.assign({}, menuUtils, {
-    toggleItemChecked(index, originalEvent, itemEl) {
+export interface MenuEvent<T extends Event = Event> {
+    el?: Element;
+    checked?: string[];
+    checkedIndex?: number[];
+    originalEvent: T;
+    index?: number;
+    currentChecked?: boolean;
+}
+
+interface Item extends MenuItem {
+    badgeNumber?: number;
+}
+
+export interface Input extends MenuInput, Omit<Marko.Input<'span'>, `on${string}`> {
+    items?: Marko.RepeatableAttrTag<Item>;
+    classPrefix?: string;
+    typeaheadTimeoutLength?: number;
+    reverse?: boolean;
+    fixWidth?: boolean;
+    renderBody?: Marko.Body;
+    'on-keydown'?: (event: MenuEvent) => void;
+    onKeydown?: this['on-keydown'];
+    'on-change'?: (event: MenuEvent) => void;
+    onChange?: this['on-change'];
+    'on-select'?: (event: MenuEvent) => void;
+    onSelect?: this['on-select'];
+}
+
+export default class extends MenuUtils<Input, MenuState> {
+    declare rovingTabindex: ReturnType<typeof createLinear>;
+    declare tabindexPosition: number;
+    declare contentEl: HTMLElement;
+    declare getTypeaheadIndex: ReturnType<typeof typeahead>['getIndex'];
+    declare destroyTypeahead: ReturnType<typeof typeahead>['destroy'];
+
+    onCreate() {
+        setupMenu(this);
+    }
+
+    toggleItemChecked(index: number, originalEvent: Event, itemEl: HTMLElement) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
         const shouldEmitRadio = this.isRadio() && index !== this.state.checkedIndex;
@@ -32,13 +75,13 @@ export default Object.assign({}, menuUtils, {
         if (this.rovingTabindex) {
             this.tabindexPosition = this.rovingTabindex.items.findIndex((el) => el.tabIndex === 0);
         }
-    },
+    }
 
-    handleItemClick(index, originalEvent, itemEl) {
+    handleItemClick(index: number, originalEvent: MouseEvent, itemEl: HTMLElement) {
         this.toggleItemChecked(index, originalEvent, itemEl);
-    },
+    }
 
-    handleItemKeydown(index, originalEvent, itemEl) {
+    handleItemKeydown(index: number, originalEvent: KeyboardEvent, itemEl: HTMLElement) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.emitComponentEvent({ eventType: 'keydown', originalEvent, index });
         });
@@ -46,11 +89,11 @@ export default Object.assign({}, menuUtils, {
         eventUtils.handleActionKeydown(originalEvent, () =>
             this.toggleItemChecked(index, originalEvent, itemEl)
         );
-    },
+    }
 
-    handleItemKeypress({ key }) {
+    handleItemKeypress({ key }: KeyboardEvent) {
         const itemIndex = this.getTypeaheadIndex(
-            this.getEl('menu').children,
+            (this.getEl('menu') as HTMLElement).children,
             key,
             this.input.typeaheadTimeoutLength || TYPEAHEAD_TIMEOUT_LENGTH
         );
@@ -58,9 +101,19 @@ export default Object.assign({}, menuUtils, {
         if (itemIndex !== -1) {
             this.tabindexPosition = this.rovingTabindex.index = itemIndex;
         }
-    },
+    }
 
-    emitComponentEvent({ eventType, el, originalEvent, index }) {
+    emitComponentEvent({
+        eventType,
+        el,
+        originalEvent,
+        index,
+    }: {
+        eventType: string;
+        el?: Element;
+        originalEvent: Event;
+        index?: number;
+    }) {
         const checkedIndexes = this.getCheckedIndexes();
         const isCheckbox = this.type === 'checkbox';
 
@@ -69,7 +122,7 @@ export default Object.assign({}, menuUtils, {
             originalEvent,
         };
 
-        if (isCheckbox && checkedIndexes.length > 1) {
+        if (isCheckbox && checkedIndexes && checkedIndexes.length > 1) {
             Object.assign(eventObj, {
                 index,
                 indexes: this.getCheckedIndexes(), // DEPRECATED in v5
@@ -90,30 +143,30 @@ export default Object.assign({}, menuUtils, {
         }
 
         this.emit(`${eventType}`, eventObj);
-    },
+    }
 
-    onInput(input) {
+    onInput(input: Input) {
         this.state = this.getInputState(input);
-    },
+    }
 
     onRender() {
         if (typeof window !== 'undefined') {
             this._cleanupMakeup();
         }
-    },
+    }
 
     onMount() {
         this.tabindexPosition = 0;
         this._setupMakeup();
-    },
+    }
 
     onUpdate() {
         this._setupMakeup();
-    },
+    }
 
     onDestroy() {
         this._cleanupMakeup();
-    },
+    }
 
     _setupMakeup() {
         this.contentEl = this.getEl('menu');
@@ -128,7 +181,7 @@ export default Object.assign({}, menuUtils, {
         const { getIndex: getTypeaheadIndex, destroy: destroyTypeahead } = typeahead();
         this.getTypeaheadIndex = getTypeaheadIndex;
         this.destroyTypeahead = destroyTypeahead;
-    },
+    }
 
     _cleanupMakeup() {
         if (this.rovingTabindex) {
@@ -138,5 +191,5 @@ export default Object.assign({}, menuUtils, {
         if (this.destroyTypeahead) {
             this.destroyTypeahead();
         }
-    },
-});
+    }
+}

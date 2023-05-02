@@ -86,7 +86,7 @@ export default {
         },
         variant: {
             control: { type: 'select' },
-            options: ['overflow', 'form', 'button'],
+            options: ['overflow', 'form', 'button', 'icon'],
             table: {
                 defaultValue: {
                     summary: 'button',

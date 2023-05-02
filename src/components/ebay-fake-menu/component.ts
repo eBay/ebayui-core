@@ -1,6 +1,16 @@
-import { AttrClass, AttrString, AttrStyle } from 'marko/tags-html';
 import * as eventUtils from '../../common/event-utils';
-import MenuUtils, { type MenuItem, type MenuInput, type MenuState } from '../../common/menu-utils';
+import setupMenu, {
+    type MenuItem,
+    type MenuInput,
+    type MenuState,
+    MenuUtils,
+} from '../../common/menu-utils';
+
+export interface MenuEvent {
+    el: Element;
+    originalEvent: Event;
+    index: number;
+}
 
 interface Item extends MenuItem {
     disabled?: boolean;
@@ -9,16 +19,22 @@ interface Item extends MenuItem {
     badgeNumber?: number;
 }
 
-interface Input extends MenuInput {
-    items: Item[];
+export interface Input extends MenuInput, Omit<Marko.Input<'span'>, `on${string}`> {
+    items: Marko.RepeatableAttrTag<Item>;
     classPrefix?: string;
     reverse?: boolean;
     fixWidth?: boolean;
-    class?: AttrClass;
-    style?: AttrStyle;
+    'on-keydown'?: (event: MenuEvent) => void;
+    onKeydown?: this['on-keydown'];
+    'on-select'?: (event: MenuEvent) => void;
+    onSelect?: this['on-select'];
 }
 
-export default class FakeMenu extends MenuUtils<Input, MenuState> {
+export default class extends MenuUtils<Input, MenuState> {
+    onCreate() {
+        setupMenu(this);
+    }
+
     handleItemClick(index: number, originalEvent: MouseEvent, el: HTMLElement) {
         this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
     }
@@ -29,21 +45,13 @@ export default class FakeMenu extends MenuUtils<Input, MenuState> {
         });
     }
 
-    emitComponentEvent({ eventType, el, originalEvent, index }) {
-        const eventObj = {
-            el,
-            originalEvent,
-            index,
-        };
-
+    emitComponentEvent({ eventType, ...eventObj }: MenuEvent & { eventType: string }) {
         this.emit(`${eventType}`, eventObj);
     }
 
     onInput(input: Input) {
-        this.items = (input.items || []).filter((item) => !item.separator);
-    }
-
-    getSeparatorMap(input: Input) {
-        return super.getSeparatorMap(input);
+        this.items = ((input.items as Marko.AttrTag<Item>[]) || []).filter(
+            (item) => !item.separator
+        );
     }
 }

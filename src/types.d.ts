@@ -1,8 +1,8 @@
 declare global {
     namespace Marko {
         interface HTMLAttributes {
-            'on-expander-expand'?: (event: CustomEvent) => void;
-            'on-expander-collapse'?: (event: CustomEvent) => void;
+            'on-expander-expand'?: (event: any) => void;
+            'on-expander-collapse'?: (event: any) => void;
         }
     }
 }

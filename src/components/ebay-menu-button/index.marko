@@ -32,10 +32,10 @@ static var ignoredAttributes = [
 $ {
     var labelId = input.prefixId && component.getElId("label");
     var isFormVariant = input.variant === "form"
-    var variant;
+    var variant: 'form' | undefined;
     var isOverflowVariant = input.variant === "overflow";
     var isButtonVariant = false;
-    var priority = null;
+    var priority: (typeof input)['priority'] | null = null;
     if (input.borderless) {
         // Force button variant for borderless
         isOverflowVariant = false;
@@ -62,9 +62,9 @@ $ {
     ...processHtmlAttributes(input, ignoredAttributes)
     class=["menu-button", input.class]
     style=input.style
-    onExpander-expand("handleExpand")
-    onExpander-collapse("handleCollapse")
-    onMousedown("handleMousedown")>
+    on-expander-expand("handleExpand")
+    on-expander-collapse("handleCollapse")
+    onMouseDown("handleMousedown")>
     <${tagName}
         class=[
             `menu-button__button`
@@ -112,10 +112,10 @@ $ {
         </else>
     </>
     <ebay-menu
-        class-prefix="menu-button"
+        classPrefix="menu-button"
         type=input.type
-        reverse=(isOverflowVariant ? !input.reverse : input.reverse)
-        fix-width=input.fixWidth
+        reverse=(isOverflowVariant !== !!input.reverse) // Boolean XOR
+        fixWidth=input.fixWidth
         tabindex=-1
         on-keydown("handleMenuKeydown")
         on-change("handleMenuChange")

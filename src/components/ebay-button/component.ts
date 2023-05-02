@@ -1,6 +1,6 @@
 import * as eventUtils from '../../common/event-utils';
 
-interface Input extends Marko.Input<'button'> {
+export interface Input extends Marko.Input<'button'> {
     href?: string;
     toJSON?: () => Object;
     size?: 'regular' | 'large' | 'none';
