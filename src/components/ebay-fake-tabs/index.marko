@@ -4,7 +4,13 @@ static var ignoredAttributes = ["selectedIndex", "tabs", "panels", "tabAriaCurre
 
 static var itemAnchorIgnoredAttributes = ["href"];
 
-$ var tabAriaCurrent = input.tabMatchesCurrentUrl === false ? "true" : "page";
+export interface Input extends Marko.Input<"div"> {
+    selectedIndex?: number;
+    tabs?: Marko.RepeatableAttrTag<Marko.Input<'li'> & { href: string}>;
+    tabMatchesCurrentUrl?: boolean;
+}
+
+$ var tabAriaCurrent: Marko.Input<"li">['aria-current'] = input.tabMatchesCurrentUrl === false ? "true" : "page";
 
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
