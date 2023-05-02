@@ -1,0 +1,31 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+
+static var ignoredAttributes = [
+    "a11yText",
+    "class",
+    "size",
+    "color",
+    "img",
+    "variant"
+];
+
+$ var isSignedOut = input.variant === "signedout";
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    role="img"
+    aria-label=input.a11yText
+    class=["avatar", input.class,
+    input.size && `avatar--${input.size}`,
+    input.color && `avatar--${input.color}`,
+    ]>
+    <if(isSignedOut) >
+        <ebay-avatar-signed-out-icon/>
+    </if>
+    <else-if(input.img)>
+        <img ...input.img/>
+    </else-if>
+    <else>
+        <${input.renderBody}/>
+    </else>
+</div>
