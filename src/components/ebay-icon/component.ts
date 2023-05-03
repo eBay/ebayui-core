@@ -2,7 +2,7 @@ import type { AttrClass } from 'marko/tags-html';
 
 let rootSvg: HTMLElement;
 
-export interface Input extends Marko.Input<'svg'> {
+export interface Input extends Omit<Marko.Input<'svg'>, `on${string}`> {
     _themes?: () => string;
     _type: string;
     _name: string;

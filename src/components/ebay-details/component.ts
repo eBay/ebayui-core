@@ -1,4 +1,4 @@
-interface Input extends Marko.Input<'details'> {
+interface Input extends Omit<Marko.Input<'details'>, `on${string}`> {
     toJSON?: any;
     text: string;
     size?: 'regular' | 'small';

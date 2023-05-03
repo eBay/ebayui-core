@@ -6,7 +6,7 @@ import * as eventUtils from '../../common/event-utils';
 import safeRegex from '../../common/build-safe-regex';
 import { AttrClass } from 'marko/tags-html';
 
-interface Input extends Marko.Input<'input'> {
+interface Input extends Omit<Marko.Input<'input'>, `on${string}`> {
     expanded?: boolean;
     borderless?: boolean;
     fluid?: boolean;

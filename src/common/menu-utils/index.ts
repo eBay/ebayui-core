@@ -1,4 +1,4 @@
-export interface MenuItem extends Marko.Input<'button'> {
+export interface MenuItem extends Omit<Marko.Input<'button'>, `on${string}`> {
     href?: string;
     value: string;
     renderBody?: Marko.Body;

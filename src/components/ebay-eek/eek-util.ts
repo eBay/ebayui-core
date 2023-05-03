@@ -5,7 +5,7 @@ const validRanges = {
     A: ['G'],
 };
 
-export interface Input extends Marko.Input<'div'> {
+export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
     toJSON?: any;
     max: string;
     min: string;

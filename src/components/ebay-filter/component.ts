@@ -1,4 +1,4 @@
-export interface Input extends Marko.Input<'button'> {
+export interface Input extends Omit<Marko.Input<'button'>, `on${string}`> {
     selected?: boolean;
     href?: string;
     useAriaPressed?: boolean;

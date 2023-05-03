@@ -5,7 +5,7 @@ import * as bodyScroll from '../../../common/body-scroll';
 import * as eventUtils from '../../../common/event-utils';
 import transition from '../../../common/transition';
 
-export interface Input extends Marko.Input<'div'> {
+export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
     buttonPosition?: 'right' | 'left' | 'bottom' | 'hidden';
     useHiddenProperty?: boolean;
     baseEl?: string;

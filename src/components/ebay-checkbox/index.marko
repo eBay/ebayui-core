@@ -1,6 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-export interface Input extends Marko.Input<'input'> {
+export interface Input extends Omit<Marko.Input<'input'>, `on${string}`> {
     toJSON?: any;
     iconStyle?: 'rounded' | 'square';
 }
