@@ -1,5 +1,4 @@
 import { processHtmlAttributes } from '../../../common/html-attributes';
-import type { AttrClass } from 'marko/tags-html';
 
 static {
     var ignoredAttributes = [
@@ -20,32 +19,6 @@ static {
         'noA11yLabel',
         'a11yDismissText',
     ];
-}
-
-export interface Input {
-    status?: "confirmation" | "celebration" | "attention" | "information";
-    prefixClass?: string;
-    root?: Marko.Renderable;
-    noA11yLabel?: boolean;
-    a11yRoleDescription?: string;
-    class: AttrClass;
-    icon?: "none";
-    iconClass?: string;
-    headerRoot?: Marko.Renderable;
-    a11yText?: string;
-    a11yIconText?: string;
-    mainRoot?: Marko.Renderable;
-    renderBody?: Marko.Renderable;
-    footer?: Marko.Renderable;
-    a11yDismissText?: string;
-    title?: {
-        as?: Marko.Renderable;
-        class?: AttrClass;
-        renderBody?: Marko.Renderable;
-    };
-    cta?: Marko.Input<"a"> & {
-        renderBody?: Marko.Renderable;
-    };
 }
 
 $ var status = input.status;
@@ -105,8 +78,8 @@ $ var prefixClass = input.prefixClass;
             <button
                 aria-label=`${input.a11yDismissText}`
                 class=['fake-link', `${prefixClass}__dismiss`]
-                onClick('handleDismissClick')
-                onKeyDown('handleDismissKeydown')
+                onClick('emit', 'dismiss')
+                onKeyDown('emit', 'dismiss')
             >
                 <ebay-close-16-icon.icon.icon--close-16/>
             </button>
