@@ -1,6 +1,7 @@
 export const typeRoles = {
     tourtip: 'region',
     tooltip: 'tooltip',
+    infotip: 'tooltip',
 } as const;
 
 // Added scale3d for safari to trigger gpu rerendering to fix a bug with filter
