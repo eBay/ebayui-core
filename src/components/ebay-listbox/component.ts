@@ -3,7 +3,7 @@ import { AttrStringOrNumber } from 'marko/tags-html';
 import { scroll } from '../../common/element-scroll';
 import * as eventUtils from '../../common/event-utils';
 
-interface ChangeEvent {
+export interface ChangeEvent {
     index: number;
     wasClicked: boolean;
     selected: AttrStringOrNumber[];
