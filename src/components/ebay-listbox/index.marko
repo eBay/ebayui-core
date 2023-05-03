@@ -1,4 +1,5 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
+import type { Option } from "./component";
 
 static var ignoredAttributes = [
     "name",
@@ -13,7 +14,7 @@ static var ignoredAttributes = [
 
 static var itemIgnoredAttributes = ["value", "text", "selected", "disabled"];
 
-$ var selectedOption = input.options[state.selectedIndex];
+$ var selectedOption = (input.options as Option[])?.[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -21,7 +22,7 @@ $ var selectedText = selectedOption && selectedOption.text;
     role="listbox"
     class=["listbox__options", input.class]
     tabindex:no-update=(input.tabindex || 0)
-    on-activeDescendantChange(component.isAutoSelection && "handleListboxChange")
+    on-activeDescendantChange(component.isAutoSelection ? "handleListboxChange" : undefined)
     onKeydown(!component.isAutoSelection && "handleKeyDown")>
     <for|option,index| of=(input.options || [])>
         <div

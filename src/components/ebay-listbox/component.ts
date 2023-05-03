@@ -1,19 +1,50 @@
 import { createLinear } from 'makeup-active-descendant';
+import { AttrStringOrNumber } from 'marko/tags-html';
 import { scroll } from '../../common/element-scroll';
 import * as eventUtils from '../../common/event-utils';
 
-export default class {
+interface ChangeEvent {
+    index: number;
+    wasClicked: boolean;
+    selected: AttrStringOrNumber[];
+    el: HTMLOptionElement;
+}
+
+export interface Option extends Omit<Marko.Input<'option'>, `on${string}`> {
+    disabled?: boolean;
+    text?: string;
+}
+
+export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
+    listSelection?: 'auto' | 'manual';
+    options?: Marko.RepeatableAttrTag<Option>;
+    name?: string;
+    disabled?: boolean;
+    'on-change'?: (event: ChangeEvent) => void;
+    onChange?: this['on-change'];
+    'on-escape'?: () => void;
+    onEscape?: this['on-escape'];
+}
+
+interface State {
+    selectedIndex: number;
+}
+
+export default class extends Marko.Component<Input, State> {
+    declare wasClicked: boolean;
+    declare _activeDescendant: ReturnType<typeof createLinear>;
+
     get isAutoSelection() {
         return this.input.listSelection === 'auto';
     }
 
     elementScroll() {
-        scroll(this.getEls('option')[this.state.selectedIndex]);
+        scroll(this.getEls('option')[this.state.selectedIndex] as HTMLElement);
     }
 
-    handleChange(index, wasClicked) {
+    handleChange(index: number, wasClicked: boolean) {
         if (this.state.selectedIndex !== index) {
-            const option = this.input.options[index];
+            const option = (this.input.options as Option[])?.[index];
             if (option.disabled) {
                 return;
             }
@@ -23,13 +54,13 @@ export default class {
                     index,
                     wasClicked,
                     selected: [option.value],
-                    el: this.getEls('option')[index],
-                });
+                    el: this.getEls('option')[index] as HTMLOptionElement,
+                } satisfies ChangeEvent);
             });
         }
     }
 
-    handleClick(index) {
+    handleClick(index: number) {
         this.handleChange(index, true);
     }
 
@@ -37,7 +68,7 @@ export default class {
         this.wasClicked = true;
     }
 
-    handleKeyDown(originalEvent) {
+    handleKeyDown(originalEvent: KeyboardEvent) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.emit('escape');
         });
@@ -47,12 +78,12 @@ export default class {
         );
     }
 
-    handleListboxChange(event) {
+    handleListboxChange(event: CustomEvent) {
         const selectedIndex = parseInt(event.detail.toIndex, 10);
         const el = this.getEls('option')[selectedIndex];
         const wasClicked = this.wasClicked;
 
-        scroll(el);
+        scroll(el as HTMLElement);
 
         if (this.wasClicked) {
             this.wasClicked = false;
@@ -66,12 +97,12 @@ export default class {
         };
     }
 
-    onInput(input) {
+    onInput(input: Input) {
         const { state } = this;
-        input.options = input.options || [];
+        input.options = input.options || ([] as any);
         state.selectedIndex = Math.max(
             -1,
-            input.options.findIndex((option) => option.selected)
+            (input.options as Option[]).findIndex((option) => option.selected)
         );
     }
 
@@ -96,7 +127,7 @@ export default class {
     _setupMakeup() {
         const { input, state } = this;
 
-        if (input.options.length && !input.disabled) {
+        if ((input.options as Option[]).length && !input.disabled) {
             const container = this.getEl('options');
             const optionsContainer = this.getEl('options');
             this._activeDescendant = createLinear(
