@@ -1,3 +1,7 @@
+import { Input as BaseInput } from "<ebay-notice-base>";
+
+export type Input = Omit<BaseInput, 'prefixClass' | 'root' | 'headerRoot' | 'mainRoot' | 'noA11yLabel'>;
+
 $ var status = input.status || "attention";
 
 <ebay-notice-base
@@ -6,7 +10,7 @@ $ var status = input.status || "attention";
     status=status
     prefixClass="inline-notice"
     root="div"
-    header-root="span"
-    main-root="span"
+    headerRoot="span"
+    mainRoot="span"
     noA11yLabel
 />
