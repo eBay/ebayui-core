@@ -71,7 +71,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ originalEvent, value }",
+                    summary: "{ originalEvent, value, checked }",
                 },
             },
         },
@@ -81,7 +81,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ originalEvent, value }",
+                    summary: "{ originalEvent, value, checked }",
                 },
             },
         },

@@ -143,7 +143,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ el, index, checked }",
+                    summary: "{ el, originalEvent, index }",
                 },
             },
         },
@@ -153,7 +153,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "",
+                    summary: "{ el, originalEvent, index }",
                 },
             },
         },
@@ -163,7 +163,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "",
+                    summary: "{ el, originalEvent, index }",
                 },
             },
         },
@@ -174,7 +174,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "",
+                    summary: "{ el, originalEvent, index }",
                 },
             },
         },
@@ -184,7 +184,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ el, index, checked }",
+                    summary: "{ el, originalEvent, index }",
                 },
             },
         },
