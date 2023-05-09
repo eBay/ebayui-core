@@ -1,12 +1,13 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
 import DotsIcon from '<ebay-overflow-horizontal-24-icon>';
-static var disabledItem = { disabled: true };
+import { Item } from './component';
+static var disabledItem: Item = { disabled: true };
 static var ignoredAttributes = ['items'];
 static var ignoredItemAttributes = ['current', 'disabled'];
-static function isItemHidden(index, range) {
+static function isItemHidden(index: number, range: {start: number, end: number, dotsIndex: number, leadingDotsIndex: number}) {
     return (index < range.start || index > range.end) && (range.dotsIndex !== index && range.leadingDotsIndex - 1 !== index);
 }
-$ var baseItems = input.items || [];
+$ var baseItems = (input.items as Item[]) || [];
 $ var lastItemIndex = baseItems.length - 1;
 $ var prevItem = (baseItems[0] && baseItems[0].type === 'previous' && baseItems[0]) || disabledItem;
 $ {
@@ -55,7 +56,7 @@ $ var range = component._getVisibleRange(items);
 
                     if (range.leadingDotsIndex === i) {
                         isLeading = true;
-                        hideDots = range.hideLeadingDots;
+                        hideDots = !!range.hideLeadingDots;
                     }
                 }
                 <li hidden=hideDots>
@@ -65,8 +66,8 @@ $ var range = component._getVisibleRange(items);
                                 variant='icon'
                                 transparent
                                 icon=DotsIcon
-                                collapse-on-select
-                                on-select('handleMenuPageNumber')
+                                collapseOnSelect
+                                onSelect('handleMenuPageNumber')
                             >
                                 <for|item, j| of=items>
                                     $ var visible = isLeading ? j < range.start : j > range.end;
