@@ -1,0 +1,30 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "type": "expression",
+        "targetProperty": null
+    },
+    "@html-attributes": "expression",
+    "@buttons <button>[]": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@value": "string",
+        "@selected": "string",
+        "@icon <icon>": {
+            "@*": {
+                "targetProperty": null,
+                "type": "expression"
+            },
+            "@html-attributes": "expression",
+            "@class": "string",
+            "@style": "string"
+        }
+    },
+    "@target": "#html-target",
+    "@aria-disabled": "never"
+}

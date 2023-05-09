@@ -1,0 +1,19 @@
+$ var items = ["Q1", "Q2", "Q3", "Q4"];
+class {
+    onCreate() {
+        this.state = {
+            selected: 0,
+        };
+    }
+    selectItem({ index }) {
+        this.state.selected = index;
+    }
+}
+
+<ebay-segemented-button on-change("selectItem")>
+    <for|item, index| of=items>
+        <@button selected=index === state.selected>
+            ${item}
+        </@button>
+    </for>
+</ebay-segemented-button>

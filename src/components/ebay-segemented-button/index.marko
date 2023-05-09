@@ -1,0 +1,42 @@
+import { processHtmlAttributes } from '../../common/html-attributes';
+static {
+    var ignoredAttributes = [
+        "class",
+        "buttons",
+    ];
+    var ignoredButtonAttributes = [
+        "class",
+        "icon"
+    ];
+}
+
+<span class=["segmented-buttons", input.class]
+    ...processHtmlAttributes(input, ignoredAttributes)>
+    <ul>
+        <for|button,index| of=(input.buttons || [])>
+            <li>
+                <button class=[
+                    "segmented-buttons__button",
+                    button.class
+                ]
+                aria-current=(state.selectedIndex === index && 'true')
+                on-click('onButtonClick', index)
+                ...processHtmlAttributes(button, ignoredButtonAttributes)>
+                    <if(button.icon)>
+                        <span.segmented-buttons__button-cell>
+                            <${button.icon}/>
+                            <span>
+                                <${button}/>
+                            </span>
+                        </span>
+
+                    </if>
+                    <else>
+                        <${button.renderBody}/>
+                    </else>
+                </button>
+            </li>
+        </for>
+    </ul>
+
+</span>
