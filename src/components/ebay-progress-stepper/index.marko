@@ -1,4 +1,22 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
+
+export interface Step extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
+    current?: boolean;
+    a11yText?: string;
+    title?: Omit<Marko.Input<"h4">, `on${string}`> & {
+        as?: Marko.NativeTags;
+    }
+}
+
+export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+    direction?: "row" | "column";
+    step?: Marko.AttrTag<Step>[];
+    defaultState?: "complete" | "upcoming" | "attention" | "current";
+    a11yHeadingTag?: Marko.NativeTags;
+    a11yHeadingText?: string;
+    autoParagraph?: boolean;
+}
+
 static var ignoredAttributes = ['step', 'direction', 'defaultState', 'class'];
 static {
     var ignoredStepAttributes = ['current', 'class', 'title', 'a11yHeadingText', 'a11yHeadingTag'];
@@ -6,7 +24,7 @@ static {
 static var ignoredStepTitleAttributes = ['as', 'a11yText', 'title'];
 $ {
     var direction = input.direction || 'row';
-    var current;
+    var current: number;
     switch (input.defaultState) {
         case 'complete':
         case 'upcoming':
