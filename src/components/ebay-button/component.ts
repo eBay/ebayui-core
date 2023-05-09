@@ -1,5 +1,9 @@
 import * as eventUtils from '../../common/event-utils';
 
+export interface ButtonEvent<T extends Event> {
+    originalEvent: T;
+}
+
 export interface Input extends Omit<Marko.Input<'button'>, `on${string}`> {
     href?: string;
     toJSON?: () => Object;
@@ -11,14 +15,20 @@ export interface Input extends Omit<Marko.Input<'button'>, `on${string}`> {
     borderless?: boolean;
     disabled?: boolean;
     partiallyDisabled?: boolean;
-    'partially-disabled'?: this['partiallyDisabled'];
     transparent?: boolean;
     fixedHeight?: boolean;
-    'fixed-height'?: this['fixedHeight'];
     truncate?: boolean;
     split?: string;
     a11yText?: string;
     ariaLabel?: string;
+    'on-click'?: (event: ButtonEvent<MouseEvent>) => void;
+    onClick?: this['on-click'];
+    'on-escape'?: (event: ButtonEvent<KeyboardEvent>) => void;
+    onEscape?: this['on-escape'];
+    'on-focus'?: (event: ButtonEvent<FocusEvent>) => void;
+    onFocus?: this['on-focus'];
+    'on-blur'?: (event: ButtonEvent<FocusEvent>) => void;
+    onBlur?: this['on-blur'];
 }
 
 export default class extends Marko.Component<Input> {
