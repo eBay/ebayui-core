@@ -16,6 +16,18 @@ interface Input {
     loading?: 'auto' | 'lazy' | 'eager';
     reveal?: 'auto' | 'manual';
     'with-credentials'?: boolean;
+    'on-load-error'?: (err: CustomEvent) => void;
+    'onLoad-error'?: this['on-load-error'];
+    'on-load'?: () => void;
+    onLoad?: this['on-load'];
+    'on-progress'?: () => void;
+    onProgress?: this['on-progress'];
+    'on-model-visibility'?: () => void;
+    'onModel-visibility'?: this['on-model-visibility'];
+    'on-poster-dismissed'?: () => void;
+    'onPoster-dismissed'?: this['on-poster-dismissed'];
+    'on-render-scale'?: () => void;
+    'onRender-scale'?: this['on-render-scale'];
 }
 
 interface State {
@@ -28,7 +40,7 @@ export default class extends Marko.Component<Input, State> {
     declare cdnLoader: CDNLoader;
     declare viewer: HTMLElement;
 
-    handleError(err: Error) {
+    handleError(err: CustomEvent) {
         this.state.failed = true;
         this.state.isLoaded = true;
         this.emit('load-error', err);
