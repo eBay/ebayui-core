@@ -2,7 +2,7 @@ import Expander from 'makeup-expander';
 import * as eventUtils from '../../common/event-utils';
 import setupMenu, { MenuUtils, type MenuInput, type MenuState } from '../../common/menu-utils';
 import { MenuEvent } from '../ebay-menu/component';
-import { Input as EbayButtonInput } from '../ebay-button/component';
+import { Input as EbayButtonInput } from '../ebay-button/component-browser';
 
 export interface MenuButtonEvent {
     el?: Element;

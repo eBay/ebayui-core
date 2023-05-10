@@ -1,5 +1,5 @@
-import { Input as TooltipBaseInput } from '../components/ebay-tooltip-base/component';
-import { Input as TooltipOverlayInput } from '../components/ebay-tooltip-overlay/component';
+import { Input as TooltipBaseInput } from '../components/ebay-tooltip-base/component-browser';
+import { Input as TooltipOverlayInput } from '../components/ebay-tooltip-overlay/component-browser';
 
 export interface Input extends Omit<Marko.Input<'span'>, `on${string}`> {
     open?: boolean;

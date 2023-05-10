@@ -1,5 +1,5 @@
 import { pointerStyles } from '../components/ebay-tooltip-overlay/constants';
-import EbayTooltipBase from '../components/ebay-tooltip-base/component';
+import EbayTooltipBase from '../components/ebay-tooltip-base/component-browser';
 
 export interface Input extends Omit<Marko.Input<'span'>, `on${string}`> {
     open?: boolean;
