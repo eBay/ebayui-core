@@ -1,4 +1,14 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
+
+export interface Input extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
+    ctaText?: string;
+    title?: Omit<Marko.Input<"h2">, `on${string}`>;
+    href?: string;
+    subtitle?: Omit<Marko.Input<"span">, `on${string}`>;
+    info?: Omit<Marko.Input<"div">, `on${string}`>;
+    overflow?: Omit<Marko.Input<"div">, `on${string}`>;
+}
+
 static var ignoredAttributes = ['ctaText', 'href', 'title', 'subtitle', 'info', 'overflow'];
 $ const ctaText = input.ctaText || 'See All';
 
