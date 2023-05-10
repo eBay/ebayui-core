@@ -3,7 +3,7 @@ static var ignoredAttributes = ['class', 'value', 'a11yText', 'a11yStarText', 'd
 $ var starText = input.a11yStarText || [];
 
 <div
-    role=input.a11yText && 'radiogroup'
+    role=!!input.a11yText && 'radiogroup'
     aria-label=input.a11yText
     class=['star-rating-select', input.class]
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -21,9 +21,9 @@ $ var starText = input.a11yStarText || [];
                 value=i
                 disabled=input.disabled
                 checked=state.value === i
-                onClick('handleClick', i)
-                onFocus('handleFocus', i)
-                onKeydown('handleKeydown', i)
+                onClick('emitEvent', 'change', i)
+                onFocus('emitEvent', 'focus', i)
+                onKeyDown('emitEvent', 'keydown', i)
             >
             <span.star-rating-select__radio-icon><ebay-star-dynamic-icon/></span>
         </span>
