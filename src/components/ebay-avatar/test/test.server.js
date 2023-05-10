@@ -7,18 +7,31 @@ const htmlSnap = snapshotHTML(__dirname);
 
 use(require("chai-dom"));
 
-it("renders defaults", async () => {
-    await htmlSnap(Default);
-});
+describe("avatar", () => {
+    it("renders defaults", async () => {
+        await htmlSnap(Default);
+    });
 
-it("renders with image", async () => {
-    await htmlSnap(WithImage);
-});
+    it("renders with image", async () => {
+        await htmlSnap(WithImage);
+    });
 
-it("renders signed out", async () => {
-    await htmlSnap(SignedOut);
-});
+    it("renders signed out", async () => {
+        await htmlSnap(SignedOut);
+    });
 
-it("renders 128 px with magenta", async () => {
-    await htmlSnap(Default, { size: "128", color: "magenta" });
+    it("renders 128 px with magenta", async () => {
+        await htmlSnap(Default, { size: "128", color: "magenta" });
+    });
+
+    it("renders with test as usernames", async () => {
+        await htmlSnap(Default, { username: "test" });
+    });
+    it("renders with robert as username", async () => {
+        await htmlSnap(Default, { username: "robert" });
+    });
+
+    it("renders with doggy as username", async () => {
+        await htmlSnap(Default, { username: "doggy" });
+    });
 });

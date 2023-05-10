@@ -1,4 +1,5 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
+import {getColorForText} from './util';
 
 static var ignoredAttributes = [
     "a11yText",
@@ -6,24 +7,31 @@ static var ignoredAttributes = [
     "size",
     "color",
     "img",
-    "variant"
+    "username"
 ];
 
-$ var isSignedOut = input.variant === "signedout";
+$ var isSignedOut = !input.username;
+$ var color = getColorForText(input.username, input.color)
 
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
     role="img"
     aria-label=input.a11yText
-    class=["avatar", input.class,
-    input.size && `avatar--${input.size}`,
-    input.color && `avatar--${input.color}`,
+    class=[
+        "avatar",
+        input.class,
+        input.size && `avatar--${input.size}`,
+        `avatar--${color}`,
     ]>
     <if(isSignedOut) >
         <ebay-avatar-signed-out-icon/>
     </if>
     <else-if(input.img)>
         <img ...input.img/>
+    </else-if>
+    <else-if(input.username)>
+
+        ${input.username.charAt(0).toUpperCase()}
     </else-if>
     <else>
         <${input.renderBody}/>

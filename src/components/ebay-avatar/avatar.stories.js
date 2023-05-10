@@ -41,7 +41,7 @@ export default {
             },
             type: { category: "Options" },
             description:
-                "The color to color the background. This can be only used in the non icon/image case",
+                "The color to color the background. This can be only used in the non icon/image case. This is used simply as an override to the username hash",
         },
         size: {
             options: ["32", "40", "48", "56", "64", "96", "128"],
@@ -55,15 +55,9 @@ export default {
             description:
                 "The pixel size of the avatar. Can only be specific sizes",
         },
-        variant: {
-            options: ["default", "signedout"],
-            table: {
-                defaultValue: {
-                    summary: "standard",
-                },
-            },
-            type: { category: "Options" },
-            description: "",
+        username: {
+            description:
+                "The username to display. If there is no username passed, then user is signed out. Based on the username, the icon will change colors and show the first letter if there is no user profile pic.",
         },
         a11yText: {
             control: { type: "text" },
@@ -76,7 +70,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     a11yText: "Signed in - as Elizabeth",
-    renderBody: "E",
+    username: "Elizabeth",
 };
 
 Default.parameters = {
@@ -92,13 +86,13 @@ export const WithImage = buildExtensionTemplate(
     imageTemplateCode,
     {
         a11yText: "Signed in - as Doggy",
+        username: "Doggy",
     }
 );
 
 export const SignedOut = Template.bind({});
 SignedOut.args = {
     a11yText: "Signed out",
-    variant: "signedout",
 };
 
 SignedOut.parameters = {
