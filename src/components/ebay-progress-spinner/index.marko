@@ -2,6 +2,7 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 
 export interface Input extends Omit<Marko.Input<"span">, `on${string}`> {
     size?: "large" | "small";
+    a11yText?: string;
 }
 
 static var ignoredAttributes = ["class", "size"];

@@ -17,8 +17,43 @@ const videoConfig = {
     overflowMenuButtons: ['captions'],
 };
 
-export default {
-    isPlaylist(source) {
+export interface Input extends Omit<Marko.Input<'video'>, `on${string}`> {
+    playView?: 'fullscreen' | 'inline';
+    volume?: number;
+    action?: 'play' | 'pause';
+    volumeSlider?: boolean;
+    tracks?: any[];
+    sources: Marko.AttrTag<Marko.Input<'source'>>[];
+    reportText?: string;
+    spinnerTimeout?: number;
+    cdnUrl?: string;
+    cssUrl?: string;
+    version?: string;
+    thumbnail?: string;
+    track?: Marko.AttrTag<Marko.Input<'track'>>[];
+    errorText?: string;
+    a11yPlayText?: string;
+    a11yLoadText?: string;
+}
+
+interface State {
+    played: boolean;
+    failed: boolean;
+    isLoaded: boolean;
+    volumeSlider: boolean;
+    action: 'play' | 'pause' | '';
+    showLoading: boolean;
+}
+
+export default class extends Marko.Component<Input, State> {
+    declare video: HTMLVideoElement;
+    declare root: HTMLElement;
+    declare containerEl: HTMLElement;
+    declare player: any;
+    declare ui: any;
+    declare cdnLoader: CDNLoader;
+
+    isPlaylist(source: Marko.Input<'source'> & { src: string }) {
         const type = source.type && source.type.toLowerCase();
         const src = source.src;
         if (type === 'dash' || type === 'hls') {
@@ -29,24 +64,24 @@ export default {
             );
         }
         return false;
-    },
+    }
 
     handleResize() {
         if (!this.input.width && this.video) {
             const { width: containerWidth } = this.root.getBoundingClientRect();
-            this.containerEl.setAttribute('width', containerWidth);
+            this.containerEl.setAttribute('width', containerWidth.toString());
         }
-    },
+    }
 
-    handlePause(originalEvent) {
+    handlePause(originalEvent: Event) {
         // On IOS, the controls force showing up if the video exist fullscreen while playing.
         // This forces the controls to always hide
         this.video.controls = false;
 
         this.emit('pause', { originalEvent, player: this.player });
-    },
+    }
 
-    handlePlaying(originalEvent) {
+    handlePlaying(originalEvent: Event) {
         this.showControls();
 
         if (this.input.playView === 'fullscreen') {
@@ -54,15 +89,15 @@ export default {
         }
         this.state.played = true;
         this.emit('play', { originalEvent, player: this.player });
-    },
+    }
 
-    handleVolumeChange(originalEvent) {
+    handleVolumeChange(originalEvent: Event) {
         this.emit('volume-change', {
             originalEvent,
             volume: this.video.volume,
             muted: this.video.muted,
         });
-    },
+    }
 
     handleError(err) {
         this.state.failed = true;
@@ -74,7 +109,7 @@ export default {
             });
         }
         this.emit('load-error', err);
-    },
+    }
 
     showControls() {
         const copyConfig = Object.assign({}, videoConfig);
@@ -88,7 +123,7 @@ export default {
         }
         this.ui.configure(copyConfig);
         this.video.controls = false;
-    },
+    }
     takeAction() {
         switch (this.state.action) {
             case 'play':
@@ -99,28 +134,26 @@ export default {
                 break;
             default:
         }
-    },
+    }
 
-    onInput(input) {
+    onInput(input: Input) {
         if (this.video) {
             if (input.width || input.height) {
-                this.containerEl.setAttribute('style', {
-                    width: `${input.width}px`,
-                });
+                this.containerEl.style.width = `${input.width}px`;
             }
-            this.video.volume = input.volume;
-            this.video.muted = input.muted;
+            this.video.volume = input.volume ?? 0;
+            this.video.muted = !!input.muted;
         }
 
         // Check if action is changed
         if (this.state.action !== input.action) {
-            this.state.action = input.action;
+            this.state.action = input.action ?? '';
             this.takeAction();
         }
         if (input.volumeSlider === true) {
             this.state.volumeSlider = input.volumeSlider;
         }
-    },
+    }
 
     onCreate() {
         this.state = {
@@ -132,7 +165,7 @@ export default {
             played: false,
         };
 
-        this.cdnLoader = new CDNLoader(this, {
+        this.cdnLoader = new CDNLoader(this as any, {
             key: 'shaka',
             types: ['src', 'css'],
             files: ['shaka-player.ui.js', 'controls.css'],
@@ -142,7 +175,7 @@ export default {
             handleError: this.handleError.bind(this),
             handleSuccess: this.handleSuccess.bind(this),
         });
-    },
+    }
 
     _addTextTracks() {
         (this.input.tracks || []).forEach((track) => {
@@ -153,12 +186,12 @@ export default {
         if (track) {
             this.player.selectTextTrack(track.id); // => this finds the id and everythings fine but it does nothing
         }
-    },
+    }
 
-    _loadSrc(index) {
+    _loadSrc(index?: number) {
         const currentIndex = index || 0;
         const src = this.input.sources[currentIndex];
-        let nextIndex;
+        let nextIndex: number;
         if (src && this.input.sources.length > currentIndex + 1) {
             nextIndex = currentIndex + 1;
         }
@@ -170,7 +203,7 @@ export default {
                 this.state.isLoaded = true;
                 this.state.failed = false;
             })
-            .catch((err) => {
+            .catch((err: Error & { code: number }) => {
                 if (err.code === 7000) {
                     // Load interrupted by another load, just return
                     return;
@@ -184,7 +217,7 @@ export default {
                     this.handleError(err);
                 }
             });
-    },
+    }
 
     _attach() {
         const { Report, TextSelection } = getElements(this);
@@ -210,18 +243,18 @@ export default {
 
         // Replace play icon
         if (this.el) {
-            const playButton = this.el.querySelector('.shaka-play-button');
+            const playButton = this.el.querySelector<HTMLElement>('.shaka-play-button')!;
             playButton.removeAttribute('icon');
             playIcon.renderSync().appendTo(playButton);
 
-            const shakaSpinner = this.el.querySelector('.shaka-spinner');
+            const shakaSpinner = this.el.querySelector<HTMLElement>('.shaka-spinner');
             if (shakaSpinner) {
                 setTimeout(() => {
                     shakaSpinner.hidden = true;
                 }, this.input.spinnerTimeout || DEFAULT_SPINNER_TIMEOUT);
             }
         }
-    },
+    }
 
     handleSuccess() {
         // eslint-disable-next-line no-undef,new-cap
@@ -232,12 +265,12 @@ export default {
         this._attach();
 
         this._loadSrc();
-    },
+    }
 
     onMount() {
         this.root = this.getEl('root');
-        this.video = this.root.querySelector('video');
-        this.containerEl = this.root.querySelector('.video-player__container');
+        this.video = this.root.querySelector('video')!;
+        this.containerEl = this.root.querySelector('.video-player__container')!;
         this.video.volume = this.input.volume || 1;
         this.video.muted = this.input.muted || false;
 
@@ -247,19 +280,22 @@ export default {
             .on('volumechange', this.handleVolumeChange.bind(this));
 
         this._loadVideo();
-    },
+    }
 
     onDestroy() {
         if (this.ui) {
             this.ui.destroy();
         }
-    },
+    }
 
     _loadVideo() {
         this.state.failed = false;
         this.state.isLoaded = false;
         this.cdnLoader
-            .setOverrides([this.input.cdnUrl, this.input.cssUrl], this.input.version)
+            .setOverrides(
+                [this.input.cdnUrl as string, this.input.cssUrl as string],
+                this.input.version
+            )
             .mount();
-    },
-};
+    }
+}

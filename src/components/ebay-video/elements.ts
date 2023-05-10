@@ -1,3 +1,5 @@
+import type EbayVideo from './component';
+
 /* eslint-disable no-undef,new-cap */
 const flagIconTemplate = require('../ebay-icon/icons/ebay-flag-24-icon/index.marko');
 const playIconTemplate = require('../ebay-icon/icons/ebay-play-24-icon/index.marko');
@@ -7,9 +9,9 @@ const flagIcon = flagIconTemplate.default || flagIconTemplate;
 const playIcon = playIconTemplate.default || playIconTemplate;
 
 // Have to contain in order to not execute until shaka is downloaded
-function getElements(self) {
+function getElements(self: EbayVideo) {
     const Report = class extends shaka.ui.Element {
-        constructor(parent, controls, text) {
+        constructor(parent: HTMLElement, controls: any, text: string) {
             super(parent, controls);
 
             // The actual button that will be displayed
@@ -26,11 +28,13 @@ function getElements(self) {
         }
     };
     Report.Factory = class {
-        constructor(reportText) {
+        declare reportText: string;
+
+        constructor(reportText: string) {
             this.reportText = reportText;
         }
 
-        create(rootElement, controls) {
+        create(rootElement: HTMLElement, controls: any) {
             return new Report(rootElement, controls, this.reportText);
         }
     };
@@ -39,7 +43,7 @@ function getElements(self) {
 
     TextSelection.Factory = class {
         /** @override */
-        create(rootElement, controls) {
+        create(rootElement: HTMLElement, controls: any) {
             return new shaka.ui.TextSelection(rootElement, controls);
         }
     };

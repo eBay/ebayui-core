@@ -58,12 +58,12 @@ static var ignoredAttributes = [
             "video-player__overlay",
             state.isLoaded && "video-player__overlay--hidden"
         ]
-        on-click("loadVideo", true)>
+        on-click("_loadVideo", true)>
         <if(!state.showLoading)>
-            <ebay-play-24-icon a11y-text=(input.a11yPlayText || "Click to play")/>
+            <ebay-play-24-icon a11yText=(input.a11yPlayText || "Click to play")/>
         </if>
         <else>
-            <ebay-progress-spinner a11y-text=(input.a11yLoadText || "Loading")/>
+            <ebay-progress-spinner a11yText=(input.a11yLoadText || "Loading")/>
         </else>
     </div>
 </div>
