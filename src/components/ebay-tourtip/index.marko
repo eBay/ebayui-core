@@ -23,12 +23,7 @@ $ var pointer = input.pointer || "bottom";
     <ebay-tooltip-base
         key="base"
         type="tourtip"
-        pointer=pointer
-        overlay-id:scoped="overlay"
-        style-left=input.styleLeft
-        style-top=input.styleTop
-        style-right=input.styleRight
-        style-bottom=input.styleBottom
+        overlayId:scoped="overlay"
         onBase-collapse("handleCollapse")
         onBase-expand("handleExpand")>
         <span
@@ -45,13 +40,13 @@ $ var pointer = input.pointer || "bottom";
                 type="tourtip"
                 id:scoped="overlay"
                 pointer=pointer
-                style-left=input.styleLeft
-                style-top=input.styleTop
-                style-right=input.styleRight
-                style-bottom=input.styleBottom
+                styleLeft=input.styleLeft
+                styleTop=input.styleTop
+                styleRight=input.styleRight
+                styleBottom=input.styleBottom
                 heading=input.heading
                 content=input.content
-                a11y-close-text=input.a11yCloseText
+                a11yCloseText=input.a11yCloseText
                 onOverlay-close("handleCollapse")>
                 <if(input.footer)>
                     <@footer class=[input.footer.class]>

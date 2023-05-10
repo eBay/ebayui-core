@@ -1,3 +1,4 @@
+import { AttrClass } from 'marko/tags-html';
 import type { pointerStyles, typeRoles } from './constants';
 
 export interface Input {
@@ -16,8 +17,10 @@ export interface Input {
     content?: Marko.Input<'span'>;
     a11yCloseText?: string;
     footer?: Marko.Renderable & {
-        class?: string;
+        class?: AttrClass;
     };
+    'on-overlay-close'?: (event: { originalEvent: Event }) => void;
+    'onOverlay-close'?: this['on-overlay-close'];
 }
 
 export default class extends Marko.Component<Input> {

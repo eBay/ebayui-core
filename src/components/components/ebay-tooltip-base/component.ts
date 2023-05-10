@@ -9,9 +9,9 @@ export interface Input {
     overlayStyle?: string;
     overlayId: string;
     renderBody?: Marko.Renderable;
-    'on-base-expand'?: () => void;
+    'on-base-expand'?: (event: { originalEvent: Event }) => void;
     'onBase-expand'?: this['on-base-expand'];
-    'on-base-collapse'?: () => void;
+    'on-base-collapse'?: (event: { originalEvent: Event }) => void;
     'onBase-collapse'?: this['on-base-collapse'];
 }
 
