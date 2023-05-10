@@ -39,9 +39,12 @@ export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
     open?: boolean;
     transitionEl?: 'root' | 'window';
     focus?: string;
-    onOpen?: (event: Event) => void;
-    onClose?: (event: Event) => void;
-    onScroll?: (event: Event) => void;
+    'on-open'?: (event: Event) => void;
+    onOpen?: this['on-open'];
+    'on-close'?: (event: Event) => void;
+    onClose?: this['on-close'];
+    'on-scroll'?: (event: Event) => void;
+    onScroll?: this['on-scroll'];
 }
 
 interface State {
