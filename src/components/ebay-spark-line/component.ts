@@ -1,8 +1,13 @@
-export default {
+export interface Input {
+    data: { x: number; y: number }[];
+    trend?: 'positive' | 'negative';
+}
+
+export default class extends Marko.Component<Input> {
     getSparkLinePath() {
         // path is used to compile the commands to draw the spark line svg
         // refer to https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d
-        const path = [];
+        const path: (string | number)[] = [];
         const minMax = this.getMinMax();
         const normalizationScaleRatios = this.getNormalizationScaleRatios(minMax);
 
@@ -16,15 +21,16 @@ export default {
             path.push(120 - ((p.y - minMax.yMin) * normalizationScaleRatios.yScale + 10));
         });
         return path.join(' '); // join the path array into a string with spaces for use in the path d attribute
-    },
+    }
+
     getMinMax() {
         // get the start and end x values
         const startX = this.input.data[0].x;
         const endX = this.input.data[this.input.data.length - 1].x;
 
         // find the max and min y values
-        let yMax;
-        let yMin;
+        let yMax!: number;
+        let yMin!: number;
         this.input.data.forEach((p) => {
             yMax = !yMax || p.y > yMax ? p.y : yMax;
             yMin = !yMin || p.y < yMin ? p.y : yMin;
@@ -35,8 +41,9 @@ export default {
             yMin,
             yMax,
         };
-    },
-    getNormalizationScaleRatios(minMax) {
+    }
+
+    getNormalizationScaleRatios(minMax: ReturnType<typeof this.getMinMax>) {
         // calculate the x and y scale ratios to normalize data
         const yScale = 100 / (minMax.yMax - minMax.yMin);
         const xScale = 100 / (minMax.endX - minMax.startX);
@@ -44,7 +51,8 @@ export default {
             xScale,
             yScale,
         };
-    },
+    }
+
     getViewBox() {
         const minMax = this.getMinMax();
         const normalizationScaleRatios = this.getNormalizationScaleRatios(minMax);
@@ -52,5 +60,5 @@ export default {
         return `0 0 ${(minMax.endX - minMax.startX) * normalizationScaleRatios.xScale + 12} ${
             (minMax.yMax - minMax.yMin) * normalizationScaleRatios.yScale + 20
         }`;
-    },
-};
+    }
+}
