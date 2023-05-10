@@ -1,7 +1,11 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
+export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+    value?: number;
+    a11yText?: string;
+}
+
 static var ignoredAttributes = ["class", "value", "a11yText"];
-$ var starText = input.a11yStarText || [];
 
 <div role="img" aria-label=input.a11yText class=["star-rating", input.class] data-stars=input.value ...processHtmlAttributes(input, ignoredAttributes)>
     <for|i| from=1 to=5>
