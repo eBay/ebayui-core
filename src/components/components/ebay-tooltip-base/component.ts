@@ -1,14 +1,18 @@
 import Expander from 'makeup-expander';
 import focusables from 'makeup-focusables';
 
-interface Input {
-    open: boolean;
-    toJSON: () => Object;
+export interface Input {
+    open?: boolean;
+    toJSON?: () => Object;
     type: string;
-    noHover: boolean;
-    overlayStyle: string;
+    noHover?: boolean;
+    overlayStyle?: string;
     overlayId: string;
-    renderBody: Marko.Renderable;
+    renderBody?: Marko.Renderable;
+    'on-base-expand'?: () => void;
+    'onBase-expand'?: this['on-base-expand'];
+    'on-base-collapse'?: () => void;
+    'onBase-collapse'?: this['on-base-collapse'];
 }
 
 export default class extends Marko.Component<Input> {
@@ -62,7 +66,7 @@ export default class extends Marko.Component<Input> {
         this._cleanupMakeup();
     }
 
-    _setupExpander(host, hostSelector) {
+    _setupExpander(host: Element | null | undefined, hostSelector: string) {
         const { input } = this;
         const { type } = input;
         const container = this.getEl('container');

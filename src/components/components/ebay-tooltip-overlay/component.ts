@@ -1,13 +1,13 @@
 import type { pointerStyles, typeRoles } from './constants';
 
-interface Input {
-    toJSON(): any;
+export interface Input {
+    toJSON?: any;
     styleTop?: string;
     styleLeft?: string;
     styleRight?: string;
     styleBottom?: string;
     pointer?: keyof typeof pointerStyles;
-    heading: Marko.Input<'span'> & {
+    heading?: Marko.Input<'span'> & {
         as: Marko.NativeTags;
         renderBody: Marko.Renderable;
     };

@@ -37,7 +37,7 @@ $ var heading = input.heading;
                 <if(heading)>
                     <${heading.as || "span"}
                         ...processHtmlAttributes(heading, ignoredHeaderAttributes)
-                        class=[`${input.type}__heading`, input.heading.class]
+                        class=[`${input.type}__heading`, input.heading?.class]
                         id:scoped="tourtip-label">
                         <${heading.renderBody}/>
                     </>
