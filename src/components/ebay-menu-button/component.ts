@@ -24,7 +24,7 @@ export interface Input extends MenuInput, Omit<Marko.Input<'span'>, `on${string}
     transparent?: boolean;
     a11yText?: string;
     disabled?: boolean;
-    split?: boolean;
+    split?: string;
     noToggleIcon?: boolean;
     label?: {
         renderBody?: Marko.Body;
