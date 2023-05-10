@@ -1,5 +1,16 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
+export interface Input extends Omit<Marko.Input<'input'>, `on${string}`> {
+    toJSON?: any;
+    iconStyle?: "rounded" | "square";
+    "on-click"?: () => void;
+    onClick?: this["on-click"];
+    "on-focus"?: () => void;
+    onFocus?: this["on-focus"];
+    "on-keydown"?: () => void;
+    onKeyDown?: this["on-keydown"];
+}
+
 static function noop() {}
 static var ignoredAttributes = ["class", "style", "size", "toJSON"];
 
@@ -12,7 +23,7 @@ $ input.toJSON = noop;
         class="radio__control"
         onClick("handleClick")
         onFocus("handleFocus")
-        onKeydown("handleKeydown")/>
+        onKeyDown("handleKeydown")/>
     <span class="radio__icon" hidden>
         <if (input.size === "large")>
             <ebay-radio-unchecked-24-icon

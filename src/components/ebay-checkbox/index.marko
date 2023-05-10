@@ -2,7 +2,13 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 
 export interface Input extends Omit<Marko.Input<'input'>, `on${string}`> {
     toJSON?: any;
-    iconStyle?: 'rounded' | 'square';
+    iconStyle?: "rounded" | "square";
+    "on-click"?: () => void;
+    onClick?: this["on-click"];
+    "on-focus"?: () => void;
+    onFocus?: this["on-focus"];
+    "on-keydown"?: () => void;
+    onKeyDown?: this["on-keydown"];
 }
 
 static function noop() {}

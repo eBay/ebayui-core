@@ -4,8 +4,8 @@ export default {
     handleKeydown: forwardEvent('keydown'),
 };
 
-function forwardEvent(eventName) {
-    return function (originalEvent, el) {
+function forwardEvent(eventName: string) {
+    return function (originalEvent: Event, el: HTMLInputElement) {
         if (!el.disabled) {
             this.emit(eventName, {
                 originalEvent,
