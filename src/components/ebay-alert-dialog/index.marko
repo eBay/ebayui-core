@@ -1,6 +1,10 @@
 import { Input as BaseInput } from "<ebay-dialog-base>";
 export interface Input extends BaseInput {
     confirmText?: string;
+    'on-open'?: () => void;
+    onOpen?: this['on-open'];
+    'on-close'?: () => void;
+    onClose?: this['on-close'];
 }
 
 $ var confirmId = component.getElId("alert-dialog-confirm");
@@ -11,14 +15,14 @@ $ var mainId = component.getElId("alert-dialog-main");
     role="alertdialog"
     open=input.open
     classPrefix="alert-dialog"
-    ignore-escape=true
-    main-id=mainId
+    ignoreEscape=true
+    mainId=mainId
     on-open("emit", "open")
     on-close("emit", "close")
     buttonPosition="hidden"
     focus=confirmId
     class=[input.class, "alert-dialog--mask-fade"]
-    window-class=["alert-dialog__window alert-dialog__window--fade"]>
+    windowClass=["alert-dialog__window alert-dialog__window--fade"]>
     <@footer>
         <ebay-button
             priority="primary"
