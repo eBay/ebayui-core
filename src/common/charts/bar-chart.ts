@@ -1,4 +1,4 @@
-export function eBayColumns(HighCharts) {
+export function eBayColumns(HighCharts: any) {
     if (!HighCharts.seriesTypes.column.prototype.ebayColumn) {
         // check if the column has been extended before attempting to extend again
         HighCharts.wrap(HighCharts.seriesTypes.column.prototype, 'translate', function (proceed) {

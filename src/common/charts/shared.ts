@@ -61,7 +61,7 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
     ],
     // function is used to set up the colors including lineColor(svg stroke) on each of the series objects
     // based on the length of the series array
-    setSeriesColors = function (series) {
+    setSeriesColors = function (series: Highcharts.PlotAreaOptions[]) {
         const strokeColorMapping = [
             chartPrimaryColor,
             chartSecondaryColor,
