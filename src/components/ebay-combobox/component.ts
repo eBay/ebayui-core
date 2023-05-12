@@ -6,7 +6,13 @@ import * as eventUtils from '../../common/event-utils';
 import safeRegex from '../../common/build-safe-regex';
 import { AttrClass } from 'marko/tags-html';
 
-interface Input extends Omit<Marko.Input<'input'>, `on${string}`> {
+interface ComboboxEvent {
+    currentInputValue: State['currentValue'];
+    selectedOption: ReturnType<Combobox['_getSelectedOption']>;
+    options: Input['options'];
+}
+
+export interface Input extends Omit<Marko.Input<'input'>, `on${string}`> {
     expanded?: boolean;
     borderless?: boolean;
     fluid?: boolean;
@@ -24,6 +30,22 @@ interface Input extends Omit<Marko.Input<'input'>, `on${string}`> {
         sticky?: boolean;
     }[];
     roledescription?: string;
+    'on-focus'?: (event: ComboboxEvent) => void;
+    onFocus?: this['on-focus'];
+    'on-button-click'?: (event: { originalEvent: MouseEvent }) => void;
+    'onButton-click'?: this['on-button-click'];
+    'on-expand'?: () => void;
+    onExpand?: this['on-expand'];
+    'on-collapse'?: () => void;
+    onCollapse?: this['on-collapse'];
+    'on-input-change'?: (event: ComboboxEvent) => void;
+    'onInput-change'?: this['on-input-change'];
+    'on-change'?: (event: ComboboxEvent) => void;
+    onChange?: this['on-change'];
+    'on-floating-label-init'?: (event: ComboboxEvent) => void;
+    'onFloating-label-init'?: this['on-floating-label-init'];
+    'on-select'?: (event: ComboboxEvent) => void;
+    onSelect?: this['on-select'];
 }
 
 interface State {
@@ -31,7 +53,7 @@ interface State {
     viewAllOptions: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+export default class Combobox extends Marko.Component<Input, State> {
     declare expander: Expander;
     declare buttonClicked: boolean;
     declare optionClicked: boolean;
@@ -331,11 +353,11 @@ export default class extends Marko.Component<Input, State> {
         return !this.input.disabled && this._getVisibleOptions().length > 0;
     }
 
-    _emitComboboxEvent(eventName) {
+    _emitComboboxEvent(eventName: string) {
         this.emit(`${eventName}`, {
             currentInputValue: this.state.currentValue,
             selectedOption: this._getSelectedOption(),
             options: this.input.options,
-        });
+        } satisfies ComboboxEvent);
     }
 }
