@@ -2,15 +2,15 @@ import * as eventUtils from '../../common/event-utils';
 import { getMaxWidth } from '../../common/dom';
 import type { AttrClass } from 'marko/tags-html';
 
-interface Input {
+export interface Input extends Omit<Marko.Input<'nav'>, `on${string}`> {
     a11yHeadingTag?: keyof Marko.NativeTags;
     a11yHeadingText?: string;
     class?: AttrClass;
-    items: (Marko.Input<'a' | 'button'> & {
-        href?: string;
-        renderBody: Marko.Body;
-    })[];
+    items: (Marko.Input<'a'> & Marko.Input<'button'>)[];
+    'on-select'?: (event: { originalEvent: Event; el: HTMLElement }) => void;
+    onSelect?: this['on-select'];
 }
+
 interface State {
     hiddenIndex: number[];
 }
