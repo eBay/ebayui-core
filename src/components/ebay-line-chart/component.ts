@@ -19,14 +19,39 @@ import {
 } from '../../common/charts/shared';
 import { debounce } from '../../common/event-utils';
 import tooltipTemplate from './tooltip.marko';
+import Highcharts from 'highcharts';
+
+interface SeriesLineOptions extends Highcharts.SeriesLineOptions {
+    data: Highcharts.PointOptionsObject[];
+}
+
+export interface Input extends Omit<Marko.Input<'div'>, `on${string}` | 'title'> {
+    title?: Highcharts.TitleOptions['text'];
+    description?: Highcharts.PlotSeriesOptions['description'];
+    xAxisLabelFormat?: Highcharts.XAxisLabelsOptions['format'];
+    xAxisPositioner?: Highcharts.XAxisOptions['tickPositioner'];
+    yAxisLabels?: Highcharts.YAxisLabelsOptions['format'][];
+    yAxisPositioner?: Highcharts.YAxisOptions['tickPositioner'];
+    plotPoints?: boolean;
+    cdnHighcharts?: string;
+    cdnHighchartsAccessibility?: string;
+    version?: string;
+    series: SeriesLineOptions | SeriesLineOptions[];
+    trend?: 'positive' | 'negative' | 'neutral';
+}
 
 const pointSize = 6; // controls the size of the plot point markers on lines
 
-export default class {
+export default class extends Marko.Component<Input> {
+    declare axisTicksLength: number;
+    declare cdnLoader: CDNLoader;
+    declare chartRef: Highcharts.Chart;
+    declare tickValues: number[];
+
     onCreate() {
         this.axisTicksLength = -1;
 
-        this.cdnLoader = new CDNLoader(this, {
+        this.cdnLoader = new CDNLoader(this as any, {
             stagger: true,
             key: 'highcharts',
             types: ['src', 'src'],
@@ -47,14 +72,14 @@ export default class {
     onMount() {
         this.cdnLoader
             .setOverrides(
-                [this.input.cdnHighcharts, this.input.cdnHighchartsAccessibility],
+                [this.input.cdnHighcharts, this.input.cdnHighchartsAccessibility] as string[],
                 this.input.version
             )
             .mount();
     }
 
-    onInput(input) {
-        this.input = this.input || input;
+    onInput(input: Input) {
+        (this.input as any) = this.input || input;
         // if chartRef does not exist do not try to run setupCharts as it may be server side and highcharts only works on the client side
         if (this.chartRef && this.chartRef.destroy) {
             this.chartRef.destroy();
@@ -81,7 +106,7 @@ export default class {
         if (this.input.trend) {
             // if the trend property exist check value and adjust the first color
             const trend = typeof this.input.trend === 'string' && this.input.trend.toLowerCase(); // if trend of type string force to lowercase
-            const isPositive = series[0].data[0].y < series[0].data[series[0].data.length - 1].y; // auto trend positive check between first and last data values of the single series
+            const isPositive = series[0].data[0].y! < series[0].data[series[0].data.length - 1].y!; // auto trend positive check between first and last data values of the single series
             if (
                 trend === 'positive' || // if "positive" is passed in for the trend property
                 (trend !== 'negative' && trend !== 'neutral' && isPositive) // if check if trend is does not equal negative or neutral, and if so use the auto positive calculation
@@ -107,17 +132,17 @@ export default class {
         const tooltip = this.getTooltipConfig();
         const plotOptions = this.getPlotOptionsConfig(series);
 
-        const title = {
+        const title: Highcharts.TitleOptions = {
             text: this.input.title,
             align: 'left',
             useHTML: true,
             style: {
                 fontSize: '18px',
-                fontWeight: 700,
+                fontWeight: '700',
             },
         };
 
-        const config = {
+        const config: Highcharts.Options = {
             title,
             chart,
             colors,
@@ -139,8 +164,8 @@ export default class {
         this.updateMarkers();
     }
 
-    getSymbol(index) {
-        let s;
+    getSymbol(index: number) {
+        let s: Highcharts.SymbolKeyValue;
         switch (index) {
             case 1:
                 s = 'square';
@@ -160,7 +185,7 @@ export default class {
         }
         return s;
     }
-    getChartConfig() {
+    getChartConfig(): Highcharts.ChartOptions {
         return {
             type: 'line',
             backgroundColor: backgroundColor,
@@ -173,7 +198,7 @@ export default class {
             },
         };
     }
-    getXAxisConfig() {
+    getXAxisConfig(): Highcharts.XAxisOptions {
         return {
             // currently setup to support epoch time values for xAxisLabels.
             // It is possible to set custom non datetime xAxisLabels but will need changes to this component
@@ -191,49 +216,49 @@ export default class {
             tickPositioner: this.input.xAxisPositioner, // optional input to allow configuring the position of xAxis tick marks
         };
     }
-    getYAxisConfig(series) {
+    getYAxisConfig(series: SeriesLineOptions[]): Highcharts.YAxisOptions {
         const component = this; // component reference used in formatter functions that don't have the same scope
         let yLabelsItterator = 0; // used when yAxisLabels array is provided in input
         let maxVal = 0; // use to determine the highest yAxis value
         // configure the symbol used for each series markers
 
         series.forEach((seriesItem) => {
-            maxVal = Math.max(...seriesItem.data, maxVal);
+            maxVal = Math.max(...(seriesItem.data as any), maxVal);
         });
         return {
             gridLineColor: gridColor, // sets the horizontal grid line colors
             opposite: true, // moves yAxis labels to the right side of the chart
             labels: {
                 // if yAxisLabels are not passed in display the standard label
-                format: !this.input.yAxisLabels && '${text}',
+                format: this.input.yAxisLabels ? undefined : '${text}',
                 // if yAxisLabels array is passed in this formatter function is needed to
                 // return the proper label for each yAxis tick mark
-                formatter:
-                    this.input.yAxisLabels &&
-                    function () {
-                        if (this.isFirst) {
-                            yLabelsItterator = -1;
-                        }
-                        yLabelsItterator = yLabelsItterator + 1;
-                        return component.input.yAxisLabels[yLabelsItterator];
-                    },
+                formatter: this.input.yAxisLabels
+                    ? function () {
+                          if (this.isFirst) {
+                              yLabelsItterator = -1;
+                          }
+                          yLabelsItterator = yLabelsItterator + 1;
+                          return component.input.yAxisLabels![yLabelsItterator] as string;
+                      }
+                    : undefined,
                 style: {
                     color: labelsColor, // setting label colors
                 },
             },
-            maxVal,
+            max: maxVal,
             title: {
                 enabled: false, // hide the axis label next to the axis
-            },
+            } as Highcharts.YAxisTitleOptions,
             offset: 0, // set to zero for no offset refer to https://api.highcharts.com/highcharts/yAxis.offset
             // passed in function for yAxisPositioner refer to https://api.highcharts.com/highcharts/yAxis.tickPositioner for use
             tickPositioner: this.input.yAxisPositioner,
         };
     }
-    getLegendConfig() {
+    getLegendConfig(): Highcharts.LegendOptions {
         return {
             // if only a single series is provided do not display the legend
-            enabled: this.input.series.length > 1,
+            enabled: Array.isArray(this.input.series) && this.input.series.length > 1,
             symbolRadius: 6, // corner radius on legend identifiers svg element
             symbolWidth: 12, // setting the width of the legend identifiers svg element
             symbolHeight: 12, // setting the height of the legend identifiers svg element
@@ -248,17 +273,18 @@ export default class {
             },
         };
     }
-    getTooltipConfig() {
+    getTooltipConfig(): Highcharts.TooltipOptions & { crosshair: Highcharts.AxisCrosshairOptions } {
         const component = this; // component reference used in formatter functions that don't have the same scope
         return {
             formatter: function () {
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
                 return tooltipTemplate.renderToString({
                     // eslint-disable-next-line no-undef,new-cap
-                    date: Highcharts.dateFormat('%b %e, %Y', this.points[0].x, false),
+                    date: Highcharts.dateFormat('%b %e, %Y', this.points![0].x as number, false),
                     points: this.points,
-                    seriesLength: component.input.series.length > 1,
-                });
+                    seriesLength:
+                        Array.isArray(component.input.series) && component.input.series.length > 1,
+                } as Marko.TemplateInput);
             },
             useHTML: true, // allows defining html to format tooltip content
             backgroundColor: tooltipBackgroundColor, // sets tooltip background color
@@ -266,8 +292,8 @@ export default class {
             borderRadius: 10, // set the border radius of the tooltip
             outside: true, // used to render the tooltip outside of the main SVG element
             shadow: false, // hide the default shadow as it conflicts with designs
-            crosshairs: {
-                dashStyle: 'solid', // makes a yaxis cross hair appear over the hovered xAxis data points
+            crosshair: {
+                dashStyle: 'Solid', // makes a yaxis cross hair appear over the hovered xAxis data points
             },
             shared: true, // shared means that if there are multipe series passed in there will be a single tooltip element per xAxis point
             style: {
@@ -276,9 +302,9 @@ export default class {
             },
         };
     }
-    getPlotOptionsConfig(series) {
+    getPlotOptionsConfig(series: SeriesLineOptions[]): Highcharts.PlotOptions {
         const mouseOut = debounce(() => this.handleMouseOut(), 80);
-        const mouseOver = debounce((e) => this.handleMouseOver(e), 85); // 85ms delay for debounce so it doesn't colide with mouseOut debounce calls
+        const mouseOver = debounce((e: Event) => this.handleMouseOver(e), 85); // 85ms delay for debounce so it doesn't colide with mouseOut debounce calls
 
         return {
             line: {
@@ -306,13 +332,13 @@ export default class {
     handleMouseOut() {
         // this function is debounced to improve performance
         this.chartRef.series.forEach((s) => {
-            s.data.forEach((data) => {
+            s.data.forEach((data: Highcharts.Point & { className: string; onTick: boolean }) => {
                 // check if hover is on the xAxis (onTick) for each item,
                 // and if they have a className remove and disable the marker
                 if (!data.onTick && data.className !== null) {
                     data.update(
                         {
-                            className: null, // nullify className if not active
+                            className: undefined, // nullify className if not active
                             marker: {
                                 enabled: false, // disable marker if not active
                             },
@@ -331,7 +357,7 @@ export default class {
                                 lineColor: backgroundColor, // set border color of hover markers
                                 lineWidth: 2, // sets the border line width of the marker symbol
                             },
-                        },
+                        } as Highcharts.PointOptionsType,
                         false, // disable auto redraw
                         false // disable auto animation
                     );
@@ -343,7 +369,7 @@ export default class {
     handleMouseOver(e) {
         // this function is debounced to improve performance
         this.chartRef.series.forEach((s) => {
-            s.data.forEach((data) => {
+            s.data.forEach((data: Highcharts.Point & { className: string; onTick: boolean }) => {
                 // if active xAxis hover position matches the data point x update the marker to display
                 if (data.x === e.target.x) {
                     data.update(
@@ -356,19 +382,19 @@ export default class {
                                 lineColor: backgroundColor, // set border color of hover markers
                                 lineWidth: 2, // sets the border line width of the marker symbol
                             },
-                        },
+                        } as Highcharts.PointOptionsType,
                         false, // disable auto redraw
                         false // disable auto animation
                     );
                 } else if (!data.onTick && data.className !== null) {
                     data.update(
                         {
-                            className: null, // nullify className if not active
+                            className: undefined, // nullify className if not active
                             onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
                             marker: {
                                 enabled: false, // disable marker
                             },
-                        },
+                        } as Highcharts.PointOptionsType,
                         false, // disable auto redraw
                         false // disable auto animation
                     );
@@ -377,7 +403,7 @@ export default class {
         });
         this.chartRef.redraw(); // trigger redraw after all points have been updated
     }
-    updateMarkers(e) {
+    updateMarkers(e?: number | boolean) {
         if (this.input.plotPoints) {
             // ticks is an object with the xaxis date values as their keys
             // setting tickValues to the keys of the ticks object and parsing into an int for data matching of xValues in series below
@@ -392,50 +418,54 @@ export default class {
                 // loops through each series if a className exist remove and hide the marker
                 this.chartRef.series.forEach((series) => {
                     // looping through each series data array
-                    series.data.forEach((data) => {
-                        if (data.className !== null) {
-                            data.update(
-                                {
-                                    className: null, // removing className used to help keep track of active markers
-                                    onTick: false, // sets the onTick flag to keep track of the points enabled status for mouse events
-                                    marker: {
-                                        enabled: false, // disable the marker
-                                    },
-                                },
-                                false, // disable auto redraw
-                                false // disable auto animation
-                            );
+                    series.data.forEach(
+                        (data: Highcharts.Point & { className: string; onTick: boolean }) => {
+                            if (data.className !== null) {
+                                data.update(
+                                    {
+                                        className: undefined, // removing className used to help keep track of active markers
+                                        onTick: false, // sets the onTick flag to keep track of the points enabled status for mouse events
+                                        marker: {
+                                            enabled: false, // disable the marker
+                                        },
+                                    } as Highcharts.PointOptionsType,
+                                    false, // disable auto redraw
+                                    false // disable auto animation
+                                );
+                            }
                         }
-                    });
+                    );
                 });
 
                 // loop through each series again and update markers that line up to xAxis tick marks
                 this.chartRef.series.forEach((series) => {
                     // loop through each searies data objects
-                    series.data.forEach((data) => {
-                        // loop through the tickValues that come from the x axis ticks and are epoch time stamps
-                        this.tickValues.forEach((tick) => {
-                            // if the current point x value matches the tickValue or the updateMarkers event exist from the redraw event
-                            if (tick === data.x || data.x === e) {
-                                if (data.className === null) {
-                                    data.update(
-                                        {
-                                            className: 'ebay-line-graph__marker--visible', // add the ebay-line-graph__marker--visible class to boost it's visibility
-                                            onTick: true, // sets the onTick flag to keep track of the points enabled status for mouse events
-                                            marker: {
-                                                enabled: true, // set marker enabled
-                                                radius: pointSize, // set the size of the marker
-                                                lineColor: backgroundColor, // set the border color of the hover markers
-                                                lineWidth: 2, // set the border width of the hover markers
-                                            },
-                                        },
-                                        false, // disable auto redraw
-                                        false // disable auto animation
-                                    );
+                    series.data.forEach(
+                        (data: Highcharts.Point & { className: string; onTick: boolean }) => {
+                            // loop through the tickValues that come from the x axis ticks and are epoch time stamps
+                            this.tickValues.forEach((tick) => {
+                                // if the current point x value matches the tickValue or the updateMarkers event exist from the redraw event
+                                if (tick === data.x || data.x === e) {
+                                    if (data.className === null) {
+                                        data.update(
+                                            {
+                                                className: 'ebay-line-graph__marker--visible', // add the ebay-line-graph__marker--visible class to boost it's visibility
+                                                onTick: true, // sets the onTick flag to keep track of the points enabled status for mouse events
+                                                marker: {
+                                                    enabled: true, // set marker enabled
+                                                    radius: pointSize, // set the size of the marker
+                                                    lineColor: backgroundColor, // set the border color of the hover markers
+                                                    lineWidth: 2, // set the border width of the hover markers
+                                                },
+                                            } as Highcharts.PointOptionsType,
+                                            false, // disable auto redraw
+                                            false // disable auto animation
+                                        );
+                                    }
                                 }
-                            }
-                        });
-                    });
+                            });
+                        }
+                    );
                 });
                 this.chartRef.redraw(); // trigger redraw after all points have been updated
             }
