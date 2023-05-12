@@ -2,6 +2,12 @@ import { Input as BaseInput } from "<ebay-dialog-base>";
 export interface Input extends BaseInput {
     rejectText?: string;
     confirmText?: string;
+    "on-open"?: () => void;
+    onOpen?: this["on-open"];
+    "on-reject"?: () => void;
+    onReject?: this["on-reject"];
+    "on-confirm"?: () => void;
+    onConfirm?: this["on-confirm"];
 }
 
 $ var cancelId = component.getElId("confirm-dialog-cancel");
