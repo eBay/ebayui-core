@@ -3,7 +3,7 @@ import { toISO, type DayISO } from '../ebay-calendar/component';
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
-interface Input {
+export interface Input {
     locale?: string;
     range?: boolean;
     disableBefore?: Date | number | string;
@@ -18,6 +18,10 @@ interface Input {
     a11yInRangeText?: string;
     a11yRangeEndText?: string;
     a11ySeparator?: string;
+    'on-change'?: (
+        event: { selected: DayISO | null } | { rangeStart: DayISO | null; rangeEnd: DayISO | null }
+    ) => void;
+    onChange?: this['on-change'];
 }
 
 interface State {
