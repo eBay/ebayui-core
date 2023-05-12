@@ -1,10 +1,18 @@
 import DialogBase, { Input as BaseInput } from '../components/ebay-dialog-base/component';
 
-interface Input extends BaseInput {
+export interface Input extends BaseInput {
     a11yMaximizeText?: string;
     a11yMinimizeText?: string;
     noHandle?: boolean;
     expanded?: boolean;
+    'on-expanded'?: () => void;
+    onExpanded?: this['on-expanded'];
+    'on-collapsed'?: () => void;
+    onCollapsed?: this['on-collapsed'];
+    'on-open'?: () => void;
+    onOpen?: this['on-open'];
+    'on-close'?: () => void;
+    onClose?: this['on-close'];
 }
 interface State {
     expanded: boolean;
