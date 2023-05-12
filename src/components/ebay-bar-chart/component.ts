@@ -15,10 +15,39 @@ import {
 
 import { ebayLegend } from '../../common/charts/legend';
 import { eBayColumns } from '../../common/charts/bar-chart';
+import Highcharts from 'highcharts';
 
 import subtemplate from './subtemplate.marko';
 
-export default class {
+interface SeriesItem
+    extends Highcharts.PlotAreaOptions,
+        Omit<Highcharts.SeriesBarOptions, 'dataLabels' | 'pointRange'> {
+    top?: boolean;
+    bottom?: boolean;
+    group?: string;
+}
+
+export interface Input extends Omit<Marko.Input<'div'>, `on${string}` | 'title'> {
+    title: Highcharts.TitleOptions['text'];
+    description?: Highcharts.PlotSeriesOptions['description'];
+    xAxisLabelFormat?: Highcharts.XAxisLabelsOptions['format'];
+    xAxisPositioner?: Highcharts.XAxisOptions['tickPositioner'];
+    yAxisLabels?: Highcharts.YAxisLabelsOptions['format'][];
+    yAxisPositioner?: Highcharts.YAxisOptions['tickPositioner'];
+    series: SeriesItem | SeriesItem[];
+    cdnHighcharts?: string;
+    cdnHighchartsAccessibility?: string;
+    cdnHighchartsPatternFill?: string;
+    version?: string;
+    stacked?: boolean;
+}
+
+export default class extends Marko.Component<Input> {
+    declare chartRef: Highcharts.Chart;
+    declare cdnLoader: CDNLoader;
+    declare chart: Highcharts.Chart;
+    declare series: Highcharts.Series;
+
     onInput() {
         // if chartRef does not exist do not try to run setupCharts as it may be server side and highcharts only works on the client side
         if (this.chartRef && this.chartRef.destroy) {
@@ -28,7 +57,7 @@ export default class {
     }
 
     onCreate() {
-        this.cdnLoader = new CDNLoader(this, {
+        this.cdnLoader = new CDNLoader(this as any, {
             stagger: true,
             key: 'highcharts',
             types: ['src', 'src', 'src'],
@@ -46,7 +75,7 @@ export default class {
                     this.input.cdnHighcharts,
                     this.input.cdnHighchartsAccessibility,
                     this.input.cdnHighchartsPatternFill,
-                ],
+                ] as string[],
                 this.input.version
             )
             .mount();
@@ -55,15 +84,16 @@ export default class {
     handleError(err) {
         this.emit('load-error', err);
     }
+
     handleSuccess() {
-        this._initializeHighchartExtensions();
-        this._setupEvents();
+        this._initializeHighchartsExtensions();
         this._setupCharts();
     }
 
     getContainerId() {
         return `ebay-bar-chart-${this.id}`;
     }
+
     _initializeHighchartsExtensions() {
         // add custom legend wrapper function
         // eslint-disable-next-line no-undef,new-cap
@@ -96,7 +126,7 @@ export default class {
         }
         setSeriesColors(series);
 
-        const config = {
+        const config: Highcharts.Options = {
             title: {
                 text: title, // set the title that will render above the chart
             },
@@ -107,7 +137,7 @@ export default class {
             legend: this.getLegendConfig(),
             tooltip: this.getTooltipConfig(),
             plotOptions: this.getPlotOptionsConfig(),
-            series,
+            series: series as Highcharts.SeriesOptionsType[],
             credits: {
                 enabled: false, // hide the highcharts label and link in the bottom right
             },
@@ -117,7 +147,7 @@ export default class {
         this.chartRef.redraw();
     }
 
-    getChartConfig() {
+    getChartConfig(): Highcharts.ChartOptions {
         return {
             type: 'column',
             backgroundColor,
@@ -127,7 +157,7 @@ export default class {
         };
     }
 
-    getXAxisConfig() {
+    getXAxisConfig(): Highcharts.XAxisOptions {
         const xAxisLabelFormat = this.input.xAxisLabelFormat;
         const xAxisPositioner = this.input.xAxisPositioner;
         return {
@@ -148,13 +178,13 @@ export default class {
         };
     }
 
-    getYAxisConfig(series) {
+    getYAxisConfig(series: SeriesItem[]): Highcharts.YAxisOptions {
         const yAxisLabels = this.input.yAxisLabels;
         const yAxisPositioner = this.input.yAxisPositioner;
 
         let maxVal = 0; // use to determine the highest yAxis value
         series.forEach((s) => {
-            maxVal = s.data.reduce((p, c) => (c > p ? c : p), maxVal);
+            maxVal = s.data!.reduce((p: number, c: number) => (c > p ? c : p), maxVal) as number;
         });
         let yLabelsItterator = 0;
         return {
@@ -162,37 +192,37 @@ export default class {
             opposite: true, // moves yAxis labels to the right side of the chart
             reversedStacks: false, // makes so series one starts at the bottom of the yAxis, by default this is true
             labels: {
-                format: !yAxisLabels && '${text}',
+                format: yAxisLabels ? undefined : '${text}',
                 // if yAxisLabels array is passed in this formatter function is needed to
                 // return the proper label for each yAxis tick mark
-                formatter:
-                    yAxisLabels &&
-                    function () {
-                        if (this.isFirst) {
-                            yLabelsItterator = -1;
-                        }
-                        yLabelsItterator = yLabelsItterator + 1;
-                        return yAxisLabels[yLabelsItterator];
-                    },
+                formatter: yAxisLabels
+                    ? function () {
+                          if (this.isFirst) {
+                              yLabelsItterator = -1;
+                          }
+                          yLabelsItterator = yLabelsItterator + 1;
+                          return yAxisLabels[yLabelsItterator] as string;
+                      }
+                    : undefined,
                 style: {
                     color: labelsColor, // setting label colors
                 },
             },
-            maxVal,
+            max: maxVal,
             title: {
                 enabled: false, // hide the axis label next to the axis
-            },
+            } as Highcharts.YAxisTitleOptions,
             offset: 0, // set to zero for no offset refer to https://api.highcharts.com/highcharts/yAxis.offset
             // passed in function for yAxisPositioner refer to https://api.highcharts.com/highcharts/yAxis.tickPositioner for use
             tickPositioner: yAxisPositioner,
         };
     }
 
-    getLegendConfig() {
+    getLegendConfig(): Highcharts.LegendOptions {
         const series = this.input.series;
         return {
             symbolRadius: 2, // set corner radius of legend identifiers
-            enabled: series.length > 1, // disabled legend if only one series is passed in
+            enabled: Array.isArray(series) && series.length > 1, // disabled legend if only one series is passed in
             itemStyle: {
                 color: legendColor, // set the color of the legend text
             },
@@ -218,24 +248,24 @@ export default class {
                 data: stacked ? series : this.point,
                 stacked,
                 x: this.x,
-            });
+            } as Marko.TemplateInput);
         };
     }
-    tooltipPositioner(labelWidth, labelHeight) {
+    tooltipPositioner(labelWidth: number, labelHeight: number) {
         const series = this.chart.series;
         const chartPosition = this.chart.pointer.getChartPosition(); // returns the pointers top and left positions
-        const hpIndex = this.chart.hoverPoint.index; // reference to the index of the original hovered point of the series
-        const hoverPoint = this.chart.hoverPoint, // reference to the original hovered point of the series
+        const hpIndex = this.chart.hoverPoint!.index; // reference to the index of the original hovered point of the series
+        const hoverPoint = this.chart.hoverPoint!, // reference to the original hovered point of the series
             y = // setting the y position of the tooltip to the top of the hovered stack of points
                 chartPosition.top +
-                hoverPoint.series.yAxis.top +
-                series[series.length - 1].data[hpIndex].shapeY -
+                (hoverPoint?.series.yAxis as any).top +
+                (series[series.length - 1].data[hpIndex] as any).shapeY -
                 labelHeight -
                 15; // adjust for the arrow
         let x = // setting the x position of the tooltip based on the center of the hovered stack of points
             chartPosition.left +
-            hoverPoint.dlBox.x +
-            hoverPoint.dlBox.width * 0.5 -
+            (hoverPoint as any).dlBox.x +
+            (hoverPoint as any).dlBox.width * 0.5 -
             labelWidth * 0.5 +
             3; // offset padding
         // check left bound and adjust if the tooltip would be clipped
@@ -243,13 +273,13 @@ export default class {
             x = 6;
         }
         // check right bound and adjust if the tooltip would be clipped
-        if (x + hoverPoint.dlBox.width > chartPosition.left + this.chart.chartWidth - 6) {
-            x = chartPosition.left + this.chart.chartWidth - hoverPoint.dlBox.width - 6;
+        if (x + (hoverPoint as any).dlBox.width > chartPosition.left + this.chart.chartWidth - 6) {
+            x = chartPosition.left + this.chart.chartWidth - (hoverPoint as any).dlBox.width - 6;
         }
         return { x, y }; // return the tooltip x and y position
     }
 
-    getTooltipConfig() {
+    getTooltipConfig(): Highcharts.TooltipOptions {
         const stacked = this.input.stacked;
         return {
             formatter: this.tooltipFormatter(),
@@ -264,7 +294,7 @@ export default class {
                 fontSize: '12px',
             },
             // this callback function is used to position the tooltip at the top of the stacked bars
-            positioner: stacked && this.tooltipPositioner,
+            positioner: stacked ? this.tooltipPositioner : undefined,
         };
     }
 
@@ -306,7 +336,7 @@ export default class {
     // handleMouseOver returns a function while keeping scope to the class compnent to access input values
     handleMouseOver() {
         const stacked = this.input.stacked;
-        return function () {
+        return function (this: Highcharts.Point) {
             const refPoint = this; // this is the active hovered point of the series
             const chart = this.series.chart;
             chart.series.forEach(
@@ -322,7 +352,7 @@ export default class {
                             p.update(
                                 {
                                     opacity: 0.2, // set opacity
-                                },
+                                } as Highcharts.PointOptionsObject,
                                 false // do not update immediately
                             );
                         }
@@ -345,7 +375,7 @@ export default class {
                         p.update(
                             {
                                 opacity: 1, // update the opacity to 1
-                            },
+                            } as Highcharts.PointOptionsObject,
                             false // do not update immediately
                         )
                 )
@@ -353,7 +383,7 @@ export default class {
         chart.redraw(); // trigger chart redraw after all points have been updated
     }
 
-    getPlotOptionsConfig() {
+    getPlotOptionsConfig(): Highcharts.PlotOptions {
         const description = this.input.description;
         const stacked = this.input.stacked;
         return {
@@ -364,7 +394,7 @@ export default class {
                 events: {
                     legendItemClick: this.legendItemClick(),
                 },
-                stacking: stacked ? 'normal' : null, // set stacking to normal if stacked flag is set
+                stacking: stacked ? 'normal' : undefined, // set stacking to normal if stacked flag is set
                 groupPadding: 0.1, // padding around groups of points
                 pointPadding: 0.15, // padding between single points
                 states: {
