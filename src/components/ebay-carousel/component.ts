@@ -38,6 +38,20 @@ interface Input {
     a11yPauseText?: string;
     a11yPlayText?: string;
     'aria-roledescription'?: string;
+    'on-move'?: (event: { visibleIndexes: number[] }) => void;
+    onMove?: this['on-move'];
+    'on-scroll'?: (event: { index: number }) => void;
+    onScroll?: this['on-scroll'];
+    'on-slide'?: (event: { slide: number; originalEvent: Event }) => void;
+    onSlide?: this['on-slide'];
+    'on-next'?: (event: { originalEvent: Event }) => void;
+    onNext?: this['on-next'];
+    'on-previous'?: (event: { originalEvent: Event }) => void;
+    onPrevious?: this['on-previous'];
+    'on-play'?: (event: { originalEvent: Event }) => void;
+    onPlay?: this['on-play'];
+    'on-pause'?: (event: { originalEvent: Event }) => void;
+    onPause?: this['on-pause'];
 }
 
 interface State {
