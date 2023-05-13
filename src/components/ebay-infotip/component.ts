@@ -18,6 +18,10 @@ export interface Input extends Omit<Marko.Input<'span'>, `on${string}`> {
     };
     content: Marko.Input<'span'>;
     a11yCloseButtonText?: string;
+    'on-expand'?: () => void;
+    onExpand?: this['on-expand'];
+    'on-collapse'?: () => void;
+    onCollapse?: this['on-collapse'];
 }
 
 interface State {
