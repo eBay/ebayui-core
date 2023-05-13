@@ -2,7 +2,7 @@ import * as eventUtils from '../../common/event-utils';
 
 export interface Input extends Omit<Marko.Input<'button'>, `on${string}`> {
     toJSON?: any;
-    badgeNumber?: number;
+    badgeNumber?: number | string;
     href?: string;
     transparent?: boolean;
     size?: 'small' | 'large';

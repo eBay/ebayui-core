@@ -3,12 +3,12 @@ import type { AttrClass } from "marko/tags-html";
 
 export interface Input extends Marko.Input<"span"> {
     type?: "menu" | "icon";
-    number?: number;
+    number?: number | string;
     class?: AttrClass;
 }
 
 static var ignoredAttributes = ["type", "number"];
-$ var number = Math.round(input.number ?? NaN);
+$ var number = Math.round(+(input.number ?? NaN));
 
 <if(number > 0)>
     <span
