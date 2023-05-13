@@ -1,6 +1,6 @@
 import { Input as BaseInput } from "<ebay-notice-base>";
 
-export type Input = Omit<BaseInput, 'prefixClass' | 'root' | 'headerRoot' | 'mainRoot' | 'noA11yLabel'>;
+export type Input = Omit<BaseInput, `on${string}` | 'prefixClass' | 'root' | 'headerRoot' | 'mainRoot' | 'noA11yLabel'>;
 
 $ var status = input.status || "attention";
 

@@ -18,7 +18,7 @@ export interface Input extends Omit<Marko.Input<'section'>, 'title' | `on${strin
     cta?: Marko.Input<'a'> & {
         renderBody?: Marko.Renderable;
     };
-    'on-dismiss': () => void;
+    'on-dismiss'?: () => void;
     onDismiss?: this['on-dismiss'];
 }
 
