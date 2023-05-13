@@ -32,8 +32,8 @@ interface Input {
     onSelect?: this['on-select'];
     'on-focus'?: (event: { iso: DayISO }) => void;
     onFocus?: this['on-focus'];
-    'on-month'?: (event: { iso: DayISO }) => void;
-    onMonth?: this['on-month'];
+    'on-month-change'?: (event: { iso: DayISO }) => void;
+    onMonth?: this['on-month-change'];
 }
 
 interface State {
@@ -229,7 +229,7 @@ export default class extends Marko.Component<Input, State> {
             this.setTabindexAndFocus(newTabindexISO);
         }
 
-        this.emit('month', { iso: toISO(this.getMonthDate(this.state.offset)) });
+        this.emit('month-change', { iso: toISO(this.getMonthDate(this.state.offset)) });
 
         return true;
     }
@@ -249,7 +249,7 @@ export default class extends Marko.Component<Input, State> {
             this.setTabindexAndFocus(newTabindexISO);
         }
 
-        this.emit('month', {
+        this.emit('month-change', {
             iso: toISO(this.getMonthDate(this.state.offset + (this.input.numMonths || 1))),
         });
 
