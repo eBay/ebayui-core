@@ -1,7 +1,7 @@
 import { Input as ButtonInput } from '../ebay-button/component-browser';
 import { Input as MenuButtonInput } from '../ebay-menu-button/component';
 
-export interface Input extends MenuButtonInput {
+export interface Input extends Omit<MenuButtonInput, `on${string}`> {
     size?: ButtonInput['size'];
     disabled?: ButtonInput['disabled'];
     priority?: ButtonInput['priority'];
