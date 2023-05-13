@@ -1,11 +1,15 @@
 const DEFAULT_TIMEOUT_LENGTH = 6000;
 import { Input as BaseInput } from '../components/ebay-dialog-base/component';
 
-interface Input extends BaseInput {
+interface Input extends Omit<BaseInput, `on${string}`> {
     layout?: 'row' | 'column';
     action?: BaseInput['action'] & {
         accessKey?: string;
     };
+    'on-action'?: () => void;
+    onAction?: this['on-action'];
+    'on-close'?: () => void;
+    onClose?: this['on-close'];
 }
 interface State {
     open: boolean;
