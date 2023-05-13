@@ -3,6 +3,8 @@ export interface Input extends Omit<Marko.Input<'button'>, `on${string}`> {
     href?: string;
     useAriaPressed?: boolean;
     a11ySelectedText?: string;
+    'on-click'?: (event: { selected: boolean; originalEvent: MouseEvent }) => void;
+    onClick?: this['on-click'];
 }
 
 interface State {
