@@ -1,10 +1,12 @@
 import { Input as BaseInput } from "<ebay-dialog-base>";
 export interface Input extends BaseInput {
     confirmText?: string;
-    'on-open'?: () => void;
-    onOpen?: this['on-open'];
-    'on-close'?: () => void;
-    onClose?: this['on-close'];
+    "on-open"?: () => void;
+    onOpen?: this["on-open"];
+    "on-close"?: () => void;
+    onClose?: this["on-close"];
+    "on-confirm"?: () => void;
+    onConform?: this["on-confirm"];
 }
 
 $ var confirmId = component.getElId("alert-dialog-confirm");
