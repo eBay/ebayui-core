@@ -4,7 +4,7 @@ static var ignoredAttributes = ["selectedIndex", "tabs", "panels", "tabAriaCurre
 
 static var itemAnchorIgnoredAttributes = ["href"];
 
-export interface Input extends Marko.Input<"div"> {
+export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
     selectedIndex?: number;
     tabs?: Marko.RepeatableAttrTag<Marko.Input<'li'> & { href: string}>;
     tabMatchesCurrentUrl?: boolean;
