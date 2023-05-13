@@ -12,7 +12,7 @@ export interface MenuEvent {
     index: number;
 }
 
-interface Item extends MenuItem {
+export interface Item extends MenuItem {
     disabled?: boolean;
     itemMatchesUrl?: boolean;
     current?: string;
@@ -20,7 +20,7 @@ interface Item extends MenuItem {
 }
 
 export interface Input extends MenuInput, Omit<Marko.Input<'span'>, `on${string}`> {
-    items: Marko.RepeatableAttrTag<Item>;
+    items?: Marko.RepeatableAttrTag<Item>;
     classPrefix?: string;
     reverse?: boolean;
     fixWidth?: boolean;

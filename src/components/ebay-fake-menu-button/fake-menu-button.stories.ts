@@ -76,7 +76,7 @@ export default {
         },
         variant: {
             control: { type: 'select' },
-            options: ['overflow', 'form', 'button'],
+            options: ['overflow', 'form', 'button', 'icon'],
             description:
                 'will change the button style, "overflow", "form" or "button. Default is form"',
         },

@@ -15,7 +15,7 @@ export interface MenuEvent<T extends Event = Event> {
     el?: Element;
     checked?: string[];
     checkedIndex?: number[];
-    originalEvent: T;
+    originalEvent?: T;
     index?: number;
     currentChecked?: boolean;
 }

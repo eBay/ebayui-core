@@ -26,19 +26,18 @@ static var ignoredAttributes = [
 ];
 
 $ {
-    var labelId = input.prefixId && component.getElId("label");
     var isOverflowVariant = input.variant === "overflow";
     var isFormVariant = input.variant === "form";
     var isButtonVariant = true;
     if (input.borderless) {
         isOverflowVariant = false;
     }
-    var priority = null;
+    var priority: string | null = null;
     var prefix = 'expand-btn'
-    var variant;
+    var variant: string | undefined;
     var isIconVariant = input.variant === 'icon' || isOverflowVariant;
 
-    var tagName = Button;
+    var tagName: Marko.Template = Button;
     if (isFormVariant) {
         prefix = 'btn';
         variant = 'form';
@@ -46,7 +45,7 @@ $ {
         tagName = IconButton;
         isButtonVariant = false;
     } else {
-        priority = input.priority
+        priority = input.priority ?? null;
         prefix = 'btn';
     }
 }
@@ -54,9 +53,9 @@ $ {
     ...processHtmlAttributes(input, ignoredAttributes)
     class=["fake-menu-button", input.class]
     style=input.style
-    onExpander-expand("handleExpand")
-    onExpander-collapse("handleCollapse")
-    onMousedown("handleMousedown")>
+    on-expander-expand("handleExpand")
+    on-expander-collapse("handleCollapse")
+    onMouseDown("handleMousedown")>
     <${tagName}
         class=[
             `fake-menu-button__button`
@@ -66,11 +65,11 @@ $ {
         priority=priority
         variant=variant
         transparent=(isIconVariant && input.transparent)
-        icon-only=(!input.text && !input.icon && !isOverflowVariant)
-        aria-expanded="false"
-        aria-label=input.a11yText
+        iconOnly=(!input.text && !input.icon && !isOverflowVariant)
+        ariaExpanded="false"
+        ariaLabel=input.a11yText
         disabled=input.disabled
-        no-toggle-icon=input.noToggleIcon
+        noToggle-icon=input.noToggleIcon
         on-escape("handleButtonEscape")
         key="button">
         <if(isOverflowVariant)>
@@ -100,15 +99,15 @@ $ {
         </else>
     </>
     <ebay-fake-menu
-        class-prefix="fake-menu-button"
+        classPrefix="fake-menu-button"
         type=input.type
         reverse=(isOverflowVariant ? !input.reverse : input.reverse)
-        fix-width=input.fixWidth
+        fixWidth=input.fixWidth
         tabindex=-1
         on-keydown("handleMenuKeydown")
         on-select("handleMenuSelect")
         key="content">
-        <for|item, index| of=(input.items || [])>
+        <for|item| of=(input.items || [])>
             <@item ...item/>
         </for>
     </ebay-fake-menu>

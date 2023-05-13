@@ -53,7 +53,7 @@ export default class extends MenuUtils<Input, MenuState> {
         setupMenu(this);
     }
 
-    toggleItemChecked(index: number, itemEl: Element | undefined, originalEvent: Event) {
+    toggleItemChecked(index: number, itemEl: Element | undefined, originalEvent?: Event) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
         const shouldEmitRadio = this.isRadio() && index !== this.state.checkedIndex;
@@ -87,6 +87,8 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     handleMenuKeydown({ el, originalEvent, index }: MenuEvent<KeyboardEvent>) {
+        if (originalEvent === undefined) return;
+
         eventUtils.handleActionKeydown(originalEvent, () => {
             this.handleItemClick(index ?? 0, originalEvent, el);
         });
