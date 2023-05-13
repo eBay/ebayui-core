@@ -1,6 +1,10 @@
 import { Input as BaseInput } from "<ebay-dialog-base>";
-export interface Input extends BaseInput {
+export interface Input extends Omit<BaseInput, `on${string}`> {
     slideFrom?: 'start' | 'end';
+    'on-open'?: () => void;
+    onOpen?: this['on-open'];
+    'on-close'?: () => void;
+    onClose?: this['on-close'];
 }
 
 <ebay-dialog-base
