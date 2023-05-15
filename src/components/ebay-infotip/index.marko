@@ -27,8 +27,8 @@ $ var pointer = input.pointer || "bottom";
         key="base"
         type=classPrefix
         overlayId:scoped="overlay"
-        onBase-expand(!isModal && "handleExpand")
-        onBase-collapse(!isModal && "handleCollapse")>
+        onBase-expand(isModal ? undefined : "handleExpand")
+        onBase-collapse(isModal ? undefined : "handleCollapse")>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class:no-update=[
@@ -54,10 +54,10 @@ $ var pointer = input.pointer || "bottom";
                 <ebay-tooltip-overlay
                     type="infotip"
                     id:scoped="overlay"
-                    style-left=input.styleLeft
-                    style-top=input.styleTop
-                    style-right=input.styleRight
-                    style-bottom=input.styleBottom
+                    styleLeft=input.styleLeft
+                    styleTop=input.styleTop
+                    styleRight=input.styleRight
+                    styleBottom=input.styleBottom
                     pointer=pointer
                     heading=input.heading
                     content=input.content

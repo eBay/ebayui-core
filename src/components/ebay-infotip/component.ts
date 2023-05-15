@@ -7,7 +7,7 @@ export interface Input extends Omit<Marko.Input<'span'>, `on${string}`> {
     pointer?: keyof typeof pointerStyles;
     disabled?: boolean;
     ariaLabel?: string;
-    icon?: Marko.Component;
+    icon?: Marko.AttrTag<{ renderBody: Marko.Renderable }>;
     styleLeft?: string;
     styleRight?: string;
     styleTop?: string;
