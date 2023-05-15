@@ -1,4 +1,4 @@
-function transformMarko4(el, context) {
+function transformMarko4(el: any, context: any) {
     context.deprecate(
         '<ebay-expand-button/> has been removed. Use <ebay-button body-state="expand" variant="form"/> instead'
     );
@@ -8,7 +8,7 @@ function transformMarko4(el, context) {
     el.setAttributeValue('variant', context.builder.literal('form'));
 }
 
-function transformMarko5(path, t) {
+function transformMarko5(path: any, t: any) {
     const { node } = path;
     path.replaceWith(
         t.markoTag(
@@ -22,7 +22,7 @@ function transformMarko5(path, t) {
     );
 }
 
-module.exports = function transform(a, b) {
+module.exports = function transform(a: any, b: any) {
     if (a.hub) {
         return transformMarko5(a, b);
     }
