@@ -1,5 +1,9 @@
+export interface Input {
+    renderBody?: Marko.Body;
+}
+
 <ebay-drawer-dialog
-    a11y-close-text="Close drawer"
+    a11yCloseText="Close drawer"
     aria-labelledby="drawer-title"
     open=state.open
     on-close("closeDrawer")
@@ -11,6 +15,10 @@
 </ebay-drawer-dialog>
 <ebay-button on-click("openDrawer")>Open drawer</ebay-button>
 class {
+    declare state: {
+        open: boolean;
+    }
+
     onCreate() {
         this.state = { open: false };
     }
