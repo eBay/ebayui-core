@@ -12,7 +12,7 @@ const LEFT = -1;
 const RIGHT = 1;
 
 interface Item {
-    htmlAttributes: Marko.Input<'li'>;
+    htmlAttributes?: Marko.Input<'li'>;
     key?: string;
     class?: AttrClass;
     style?: AttrStyle;
@@ -22,11 +22,11 @@ interface Item {
 }
 
 interface Input {
-    items: Item[];
+    items?: Marko.RepeatableAttrTag<Item>;
     gap?: number | string;
     index?: number | string;
     itemsPerSlide?: number | string;
-    autoplay?: number | string;
+    autoplay?: number | string | boolean;
     imageTreatment?: 'none' | 'matte';
     hiddenScrollbar?: boolean;
     paused?: boolean;
@@ -433,7 +433,7 @@ export default class extends Marko.Component<Input, State> {
 
             // Only allow autoplay option for discrete carousels.
             if (input.autoplay) {
-                const isSingleSlide = input.items.length <= itemsPerSlide;
+                const isSingleSlide = (input.items as Item[])?.length <= itemsPerSlide;
                 state.autoplayInterval = parseInt(input.autoplay as any, 10) || 4000;
                 state.classes.push('carousel__autoplay');
                 state.paused = !!(isSingleSlide || input.paused); // Force paused state if not enough slides provided;
@@ -441,7 +441,7 @@ export default class extends Marko.Component<Input, State> {
             }
         }
 
-        state.items = (input.items || []).map((item, i) => {
+        state.items = ((input.items as Item[]) || []).map((item, i) => {
             const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
             return {
                 htmlAttributes: processHtmlAttributes(item, itemSkippedAttributes),

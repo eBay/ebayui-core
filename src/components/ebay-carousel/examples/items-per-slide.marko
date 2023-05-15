@@ -1,3 +1,12 @@
+export interface Input {
+    items: number;
+    index: number;
+    itemsPerSlide: number;
+    gap: number;
+    a11yPreviousText: string;
+    a11yNextText: string;
+}
+
 $ const {
     items,
     index,
@@ -18,9 +27,9 @@ $ const {
     }
 </style>
 
-<ebay-carousel gap=gap items-per-slide=itemsPerSlide index=index
-    a11y-previous-text=a11yPreviousText
-    a11y-next-text=a11yNextText>
+<ebay-carousel gap=gap itemsPerSlide=itemsPerSlide index=index
+    a11yPreviousText=a11yPreviousText
+    a11yNextText=a11yNextText>
     <for|i| from=0 to=(items - 1)>
         <@item class=`demo2-card`>Card ${i + 1}</@item>
     </for>
