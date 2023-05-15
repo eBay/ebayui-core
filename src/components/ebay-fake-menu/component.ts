@@ -15,12 +15,14 @@ export interface MenuEvent {
 export interface Item extends MenuItem {
     disabled?: boolean;
     itemMatchesUrl?: boolean;
-    current?: string;
+    current?: boolean;
     badgeNumber?: number;
 }
 
+export interface Separator {}
 export interface Input extends MenuInput, Omit<Marko.Input<'span'>, `on${string}`> {
     items?: Marko.RepeatableAttrTag<Item>;
+    separator?: Marko.RepeatableAttrTag<Separator>;
     classPrefix?: string;
     reverse?: boolean;
     fixWidth?: boolean;
