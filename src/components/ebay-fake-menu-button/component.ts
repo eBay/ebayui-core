@@ -4,7 +4,7 @@ import { MenuEvent } from '../ebay-menu/component';
 import { Input as FakeMenuInput, Item as FakeMenuItem } from '../ebay-fake-menu/component';
 
 export interface Input extends Omit<Marko.Input<'span'>, `on${string}`> {
-    text: string;
+    text?: string;
     size?: 'none' | 'large';
     prefixId?: string;
     variant?: 'overflow' | 'form' | 'button' | 'icon';
