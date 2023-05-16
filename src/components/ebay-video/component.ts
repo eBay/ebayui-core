@@ -17,6 +17,17 @@ const videoConfig = {
     overflowMenuButtons: ['captions'],
 };
 
+export interface PlayPauseEvent {
+    originalEvent: Event;
+    player: any;
+}
+
+export interface VolumeEvent {
+    originalEvent: Event;
+    volume: number;
+    muted: boolean;
+}
+
 export interface Input extends Omit<Marko.Input<'video'>, `on${string}`> {
     playView?: 'fullscreen' | 'inline';
     volume?: number;
@@ -34,6 +45,14 @@ export interface Input extends Omit<Marko.Input<'video'>, `on${string}`> {
     errorText?: string;
     a11yPlayText?: string;
     a11yLoadText?: string;
+    'on-play'?: (event: PlayPauseEvent) => void;
+    onPlay?: this['on-play'];
+    'on-pause'?: (event: PlayPauseEvent) => void;
+    onPause?: this['on-pause'];
+    'on-volume-change'?: (event: VolumeEvent) => void;
+    onVolumeChange?: this['on-volume-change'];
+    'on-load-error'?: (err: Error) => void;
+    onLoadError?: this['on-load-error'];
 }
 
 interface State {
@@ -99,7 +118,7 @@ export default class extends Marko.Component<Input, State> {
         });
     }
 
-    handleError(err) {
+    handleError(err: Error) {
         this.state.failed = true;
         this.state.isLoaded = true;
 
