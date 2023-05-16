@@ -1,4 +1,10 @@
+import { TextboxEvent } from "../component-browser";
+
 class {
+    declare state: {
+        value: string;
+    }
+
     onCreate() {
         this.state = {
             value: ""
@@ -7,7 +13,7 @@ class {
     change({ value }) {
         this.state.value = value;
     }
-    clear(e) {
+    clear(e: TextboxEvent) {
         this.state.value = "";
         this.emit('button-click', e)
     }
@@ -16,15 +22,15 @@ class {
 <ebay-textbox
     key="textbox"
     value=state.value
-    button-aria-label="Clear"
+    buttonAriaLabel="Clear"
     placeholder="name"
     ...input
     on-change("change")
     on-button-click("clear")>
-    <@postfix-icon>
+    <@postfixIcon>
         <ebay-close-24-icon/>
-    </@postfix-icon>
-    <@prefix-icon>
+    </@postfixIcon>
+    <@prefixIcon>
         <ebay-profile-24-icon/>
-    </@prefix-icon>
+    </@prefixIcon>
 </ebay-textbox>

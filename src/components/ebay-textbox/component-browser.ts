@@ -13,8 +13,8 @@ export interface Input extends Omit<Marko.Input<'textarea'>, `on${string}`> {
     fluid?: boolean;
     opaqueLabel?: boolean;
     floatingLabel?: string;
-    prefixIcon?: Marko.Component;
-    postfixIcon?: Marko.Component;
+    prefixIcon?: Marko.AttrTag<{ renderBody: Marko.Body }>;
+    postfixIcon?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     invalid?: boolean;
     buttonAriaLabel?: string;
     'on-floating-label-init'?: () => void;
