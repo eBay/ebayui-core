@@ -66,12 +66,13 @@ export default class extends Marko.Component {
     }
 
     calculateNumMonths() {
-        if (typeof document !== "undefined") {
-            this.state.numMonths =
-                document.documentElement.clientWidth < MIN_WIDTH_FOR_DOUBLE_PANE
-                    ? 1
-                    : 2;
+        if (typeof document === "undefined") {
+            return;
         }
+        this.state.numMonths =
+            document.documentElement.clientWidth < MIN_WIDTH_FOR_DOUBLE_PANE
+                ? 1
+                : 2;
     }
 
     /**
