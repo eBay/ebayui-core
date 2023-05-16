@@ -1,4 +1,8 @@
 class {
+    declare state: {
+        open: boolean;
+    }
+
     onCreate() {
         this.state = { open: false };
     }
@@ -12,7 +16,7 @@ class {
 }
 
 <ebay-lightbox-dialog
-    a11y-close-text="Close Dialog"
+    a11yCloseText="Close Dialog"
     open=state.open
     on-close("closeDialog")
     on-open("emit", "open")
