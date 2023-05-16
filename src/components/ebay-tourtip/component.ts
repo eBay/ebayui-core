@@ -14,7 +14,7 @@ export interface Input extends Omit<Marko.Input<'span'>, `on${string}`> {
     content?: TooltipOverlayInput['content'];
     a11yCloseText?: TooltipOverlayInput['a11yCloseText'];
     footer?: TooltipOverlayInput['footer'] & {
-        index?: number;
+        index?: string;
     };
     'on-expand'?: () => void;
     onExpand?: this['on-expand'];
