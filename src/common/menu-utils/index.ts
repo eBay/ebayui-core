@@ -11,6 +11,7 @@ export interface MenuInput {
     items?: Marko.RepeatableAttrTag<MenuItem>;
     type?: string;
 }
+
 export interface MenuState {
     checkedIndex?: number;
     checkedItems?: boolean[];

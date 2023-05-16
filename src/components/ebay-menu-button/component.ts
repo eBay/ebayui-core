@@ -30,7 +30,7 @@ export interface Input extends MenuInput, Omit<Marko.Input<'span'>, `on${string}
         renderBody?: Marko.Body;
     };
     prefixLabel?: string;
-    icon?: Marko.Component;
+    icon?: Marko.AttrTag<{renderBody?: Marko.Body}>;
     text?: string;
     reverse?: boolean;
     fixWidth?: boolean;
