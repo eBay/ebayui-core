@@ -1,7 +1,7 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
 export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
-    value?: number;
+    value?: `${0|1|2|3|4}${"-5" | ""}` | "5";
     a11yText?: string;
 }
 
