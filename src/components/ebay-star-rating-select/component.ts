@@ -4,7 +4,7 @@ export interface StarRatingEvent<T extends Event> {
 }
 
 export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
-    value?: string;
+    value?: string | number;
     a11yStarText?: string;
     a11yText?: string;
     disabled?: boolean;
@@ -27,7 +27,7 @@ export default class extends Marko.Component<Input, State> {
         };
     }
     onInput(input: Input) {
-        let value = parseInt(input.value ?? '') || 0;
+        let value = parseInt(input.value as string) || 0;
         if (value > 5) {
             value = 0;
         }
