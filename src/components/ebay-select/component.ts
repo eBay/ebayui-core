@@ -6,14 +6,14 @@ export interface Option extends Omit<Marko.Input<'option'>, `on${string}`> {
 }
 
 export interface Input extends Omit<Marko.Input<'select'>, `on${string}`> {
-    options: Marko.AttrTag<Option>[];
+    options?: Marko.RepeatableAttrTag<Option>;
     floatingLabel?: string;
     isLarge?: boolean;
     borderless?: boolean;
-    'on-change': (event: { index: number; selected: string[]; el: HTMLOptionElement }) => void;
-    onChange: this['on-change'];
-    'on-floating-label-init': () => void;
-    'onFloating-label-init': this['on-floating-label-init'];
+    'on-change'?: (event: { index: number; selected: string[]; el: HTMLOptionElement }) => void;
+    onChange?: this['on-change'];
+    'on-floating-label-init'?: () => void;
+    'onFloating-label-init'?: this['on-floating-label-init'];
 }
 
 export interface State {
@@ -30,7 +30,7 @@ export default class extends Marko.Component<Input, State> {
     handleChange(event: Event | { target: { selectedIndex: number } }) {
         const { selectedIndex } = event.target as HTMLSelectElement;
         const el = this.getEls('option')[selectedIndex];
-        const option = this.input.options[selectedIndex];
+        const option = this.input.options![selectedIndex];
 
         this.state.selectedIndex = selectedIndex;
 
@@ -52,10 +52,10 @@ export default class extends Marko.Component<Input, State> {
 
     onInput(input: Input) {
         const { state } = this;
-        input.options = input.options || [];
+        (input.options as any) = input.options || [];
         state.selectedIndex = Math.max(
             0,
-            input.options.findIndex((option) => option.selected)
+            (input.options as Option[]).findIndex((option) => option.selected)
         );
     }
 
