@@ -1,4 +1,12 @@
+export interface Input {
+    snacktext: string
+}
+
 class {
+    declare state: {
+        open: boolean
+    };
+
     onCreate() {
         this.state = {open: false};
     }

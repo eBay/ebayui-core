@@ -8,6 +8,8 @@ interface Input extends Omit<BaseInput, `on${string}`> {
     };
     'on-action'?: () => void;
     onAction?: this['on-action'];
+    'on-open'?: () => void;
+    onOpen?: this['on-open'];
     'on-close'?: () => void;
     onClose?: this['on-close'];
 }
