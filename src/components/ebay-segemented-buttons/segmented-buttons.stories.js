@@ -91,7 +91,7 @@ Default.args = {
 Default.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-segmented-button", Default.args, {
+            code: tagToString("ebay-segmented-buttons", Default.args, {
                 buttons: "button",
             }),
         },

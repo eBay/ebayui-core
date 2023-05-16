@@ -8,7 +8,7 @@ const htmlSnap = snapshotHTML(__dirname);
 
 use(require("chai-dom"));
 
-describe("ebay-segmented-button", () => {
+describe("ebay-segmented-buttons", () => {
     it("renders defaults", async () => {
         await htmlSnap(Default);
     });
