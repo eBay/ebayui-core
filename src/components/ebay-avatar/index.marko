@@ -10,7 +10,6 @@ static {
         "username",
     ];
 }
-$ var isSignedOut = !input.username;
 $ var color = getColorForText(input.username, input.color);
 
 <div
@@ -31,7 +30,7 @@ $ var color = getColorForText(input.username, input.color);
     <else-if(input.renderBody)>
         <${input}/>
     </else-if>
-    <else-if(!isSignedOut)>
+    <else-if(input.username)>
         ${input.username.charAt(0).toUpperCase()}
     </else-if>
 
