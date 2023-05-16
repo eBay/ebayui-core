@@ -4,6 +4,7 @@ import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../avatar.stories"; // import all stories from the stories file
 const { Default, WithImage, SignedOut } = composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
+import { addRenderBodies } from "../../../../.storybook/utils";
 
 use(require("chai-dom"));
 
@@ -33,5 +34,9 @@ describe("avatar", () => {
 
     it("renders with doggy as username", async () => {
         await htmlSnap(Default, { username: "doggy" });
+    });
+
+    it("renders with custom body", async () => {
+        await htmlSnap(Default, addRenderBodies({ renderBody: "custom body" }));
     });
 });

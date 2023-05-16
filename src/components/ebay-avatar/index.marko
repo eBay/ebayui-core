@@ -1,17 +1,17 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
-import {getColorForText} from './util';
-
-static var ignoredAttributes = [
-    "a11yText",
-    "class",
-    "size",
-    "color",
-    "img",
-    "username"
-];
-
+import { getColorForText } from "./util";
+static {
+    var ignoredAttributes = [
+        "a11yText",
+        "class",
+        "size",
+        "color",
+        "img",
+        "username",
+    ];
+}
 $ var isSignedOut = !input.username;
-$ var color = getColorForText(input.username, input.color)
+$ var color = getColorForText(input.username, input.color);
 
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -22,18 +22,20 @@ $ var color = getColorForText(input.username, input.color)
         input.class,
         input.size && `avatar--${input.size}`,
         `avatar--${color}`,
-    ]>
-    <if(isSignedOut) >
-        <ebay-avatar-signed-out-icon/>
+    ]
+>
+    <if(input.img)>
+        <img ...input.img>
     </if>
-    <else-if(input.img)>
-        <img ...input.img/>
-    </else-if>
-    <else-if(input.username)>
 
+    <else-if(input.renderBody)>
+        <${input}/>
+    </else-if>
+    <else-if(!isSignedOut)>
         ${input.username.charAt(0).toUpperCase()}
     </else-if>
+
     <else>
-        <${input.renderBody}/>
+        <ebay-avatar-signed-out-icon/>
     </else>
 </div>

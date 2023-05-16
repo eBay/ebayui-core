@@ -57,7 +57,7 @@ export default {
         },
         username: {
             description:
-                "The username to display. If there is no username passed, then user is signed out. Based on the username, the icon will change colors and show the first letter if there is no user profile pic.",
+                "The username to display. If there is no body, then this will deternmine what the content is. If there is no username passed, then user is signed out. Based on the username, the icon will change colors and show the first letter if there is no user profile pic.",
         },
         a11yText: {
             control: { type: "text" },
