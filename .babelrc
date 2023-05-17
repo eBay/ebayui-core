@@ -8,6 +8,12 @@
                     "safari": "11"
                 }
             }
+        ],
+        [
+            "@babel/preset-typescript",
+            {
+                "allowDeclareFields": true
+            }
         ]
     ],
     "env": {
@@ -22,7 +28,6 @@
                 ]
             ],
             "plugins": ["add-module-exports"]
-
         }
     }
 }

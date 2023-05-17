@@ -3,7 +3,7 @@
 module.exports = ({ config }) => {
     config.mochaOptions = {
         timeout: 60000,
-        require: ['@babel/register', 'mocha-snap', './src/common/test-utils/require-extensions.js'],
+        require: ['mocha-snap', './src/common/test-utils/require-extensions.js'],
     };
 
     config.lassoOptions = {
@@ -16,6 +16,9 @@ module.exports = ({ config }) => {
                 },
                 {
                     transform: 'lasso-babel-transform',
+                    config: {
+                        extensions: ['.js', '.ts'],
+                    },
                 },
             ],
         },
