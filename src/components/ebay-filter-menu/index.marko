@@ -45,7 +45,7 @@ $ var isForm = input.variant === "form";
                     onKeydown("handleItemKeydown", i)>
                     <if(isForm)>
                         <if (isRadio)>
-                            <ebay-radio id:scoped=`${prefixName}-${i}` checked=isChecked on-change("handleRadioClick", i)/>
+                            <ebay-radio id:scoped=`${prefixName}-${i}` checked=isChecked on-click("handleRadioClick", i)/>
                         </if>
                         <else>
                             <ebay-checkbox id:scoped=`${prefixName}-${i}` checked=isChecked/>
