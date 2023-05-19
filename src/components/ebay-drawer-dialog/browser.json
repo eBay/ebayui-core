@@ -1,8 +1,8 @@
 {
   "requireRemap": [
     {
-      "from": "./style.js",
-      "to": "../../common/empty.js",
+      "from": "./style",
+      "to": "../../common/empty",
       "if-flag": "ebayui-no-skin"
     }
   ]

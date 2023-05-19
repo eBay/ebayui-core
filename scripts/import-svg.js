@@ -80,7 +80,7 @@ function generateFile(type, iconMap) {
         const index = path.join(iconFolder, 'index.marko');
 
         if (!fs.existsSync(iconFolder)) fs.mkdirSync(iconFolder);
-        const filePath = path.join(iconFolder, 'symbol.js');
+        const filePath = path.join(iconFolder, 'symbol.ts');
         const content = `export function symbol() {
     // eslint-disable-next-line max-len,quotes
     return ${JSON.stringify(themes)};
@@ -93,7 +93,7 @@ function generateFile(type, iconMap) {
         // eslint-disable-next-line max-len
         fs.writeFileSync(
             index,
-            `import { symbol } from "./symbol.js";
+            `import { symbol } from "./symbol";
 import type { Input as IconInput } from "../../component"
 export type Input = Omit<IconInput, \`_\${string}\`>;
 <ebay-icon ...input _name="${name}" _type="${type}" _themes=symbol/>
