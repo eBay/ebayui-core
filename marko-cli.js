@@ -1,5 +1,7 @@
 'use strict';
 
+require.extensions['.ts'] = undefined;
+
 module.exports = ({ config }) => {
     config.mochaOptions = {
         timeout: 60000,

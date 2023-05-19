@@ -115,7 +115,7 @@
     "less-loader": "^11",
     "lint-staged": "^13.0.2",
     "lintspaces-cli": "^0.8.0",
-    "marko": "^5.25.11",
+    "marko": "^5.25.14",
     "mocha": "^10",
     "mocha-snap": "^4.3.0",
     "nyc": "^15.1.0",
@@ -134,7 +134,7 @@
   },
   "peerDependencies": {
     "@ebay/skin": "~16.0.0",
-    "marko": "^4 || ^5.25.11"
+    "marko": "^4 || ^5"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.21.4",
@@ -158,6 +158,6 @@
     "extends": "@commitlint/config-conventional"
   },
   "lint-staged": {
-    "*.{js,css,md,less,json}": "prettier --write"
+    "*.{js,ts,css,md,less,json}": "prettier --write"
   }
 }
