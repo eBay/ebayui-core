@@ -5,13 +5,13 @@ module.exports = function (lasso) {
         properties: {
             path: 'string',
         },
-        async init(context) {
+        async init() {
             if (!this.path) {
                 throw new Error('"path" is required');
             }
             this.path = this.resolvePath(this.path);
         },
-        async read(context) {
+        async read() {
             return await fs.promises.readFile(this.path, 'utf-8');
         },
         getSourceFile: function () {
