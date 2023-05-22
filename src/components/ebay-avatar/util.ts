@@ -8,17 +8,12 @@ const backgroundColors = [
     "magenta",
 ];
 
-/**
- * It will hash the username and find the color based on the hash
- * @param {string} username Username to hash
- * @param {string} color Color to use to override the hash
- */
-function getColorForText(username, color) {
+function getColorForText(username?: string, color?: string) {
     if (color) return color;
 
     let hash = 0,
-        chr,
-        i;
+        chr: number,
+        i: number;
     if (username && username.length > 0) {
         for (i = 0; i < username.length; i++) {
             chr = username.charCodeAt(i);
@@ -30,4 +25,5 @@ function getColorForText(username, color) {
     const index = hash % colorCount;
     return backgroundColors[index];
 }
+
 export { getColorForText };
