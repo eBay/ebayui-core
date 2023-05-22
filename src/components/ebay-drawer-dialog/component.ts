@@ -1,33 +1,35 @@
-import DialogBase, { Input as BaseInput } from '../components/ebay-dialog-base/component';
+import DialogBase, {
+    Input as BaseInput,
+} from "../components/ebay-dialog-base/component";
 
 export interface Input extends BaseInput {
     a11yMaximizeText?: string;
     a11yMinimizeText?: string;
     noHandle?: boolean;
     expanded?: boolean;
-    'on-expanded'?: () => void;
-    onExpanded?: this['on-expanded'];
-    'on-collapsed'?: () => void;
-    onCollapsed?: this['on-collapsed'];
-    'on-open'?: () => void;
-    onOpen?: this['on-open'];
-    'on-close'?: () => void;
-    onClose?: this['on-close'];
+    "on-expanded"?: () => void;
+    onExpanded?: this["on-expanded"];
+    "on-collapsed"?: () => void;
+    onCollapsed?: this["on-collapsed"];
+    "on-open"?: () => void;
+    onOpen?: this["on-open"];
+    "on-close"?: () => void;
+    onClose?: this["on-close"];
 }
 interface State {
     expanded: boolean;
 }
 
 export default class extends Marko.Component<Input, State> {
-    declare touches: Pick<Touch, 'identifier' | 'pageY'>[];
+    declare touches: Pick<Touch, "identifier" | "pageY">[];
 
     setExpandedState(isExpanded: boolean) {
         if (isExpanded !== this.state.expanded) {
             this.state.expanded = isExpanded;
             if (isExpanded) {
-                this.emit('expanded');
+                this.emit("expanded");
             } else {
-                this.emit('collapsed');
+                this.emit("collapsed");
             }
         }
     }
@@ -71,7 +73,8 @@ export default class extends Marko.Component<Input, State> {
                     if (this.state.expanded) {
                         this.setExpandedState(false);
                     } else {
-                        (this.getComponent('dialog') as DialogBase).state.open = false;
+                        (this.getComponent("dialog") as DialogBase).state.open =
+                            false;
                     }
                     this.handleTouchEnd(event);
                 } else if (diff < -30) {
@@ -87,7 +90,9 @@ export default class extends Marko.Component<Input, State> {
         // This is done this way in case a finger is lifted up before another finger
         for (let i = 0; i < event.changedTouches.length; i++) {
             const current = event.changedTouches[i];
-            const idx = this.touches.findIndex((item) => item.identifier === current.identifier);
+            const idx = this.touches.findIndex(
+                (item) => item.identifier === current.identifier
+            );
             if (idx > -1) {
                 this.touches.splice(idx, 1);
             }

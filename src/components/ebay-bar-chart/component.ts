@@ -1,4 +1,4 @@
-import { CDNLoader } from '../../common/cdn';
+import { CDNLoader } from "../../common/cdn";
 import {
     chartFontFamily,
     backgroundColor,
@@ -11,29 +11,30 @@ import {
     tooltipShadows,
     setSeriesColors,
     colorMapping,
-} from '../../common/charts/shared';
+} from "../../common/charts/shared";
 
-import { ebayLegend } from '../../common/charts/legend';
-import { eBayColumns } from '../../common/charts/bar-chart';
-import Highcharts from 'highcharts';
+import { ebayLegend } from "../../common/charts/legend";
+import { eBayColumns } from "../../common/charts/bar-chart";
+import Highcharts from "highcharts";
 
-import subtemplate from './subtemplate.marko';
+import subtemplate from "./subtemplate.marko";
 
 interface SeriesItem
     extends Highcharts.PlotAreaOptions,
-        Omit<Highcharts.SeriesBarOptions, 'dataLabels' | 'pointRange'> {
+        Omit<Highcharts.SeriesBarOptions, "dataLabels" | "pointRange"> {
     top?: boolean;
     bottom?: boolean;
     group?: string;
 }
 
-export interface Input extends Omit<Marko.Input<'div'>, `on${string}` | 'title'> {
-    title: Highcharts.TitleOptions['text'];
-    description?: Highcharts.PlotSeriesOptions['description'];
-    xAxisLabelFormat?: Highcharts.XAxisLabelsOptions['format'];
-    xAxisPositioner?: Highcharts.XAxisOptions['tickPositioner'];
-    yAxisLabels?: Highcharts.YAxisLabelsOptions['format'][];
-    yAxisPositioner?: Highcharts.YAxisOptions['tickPositioner'];
+export interface Input
+    extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
+    title: Highcharts.TitleOptions["text"];
+    description?: Highcharts.PlotSeriesOptions["description"];
+    xAxisLabelFormat?: Highcharts.XAxisLabelsOptions["format"];
+    xAxisPositioner?: Highcharts.XAxisOptions["tickPositioner"];
+    yAxisLabels?: Highcharts.YAxisLabelsOptions["format"][];
+    yAxisPositioner?: Highcharts.YAxisOptions["tickPositioner"];
     series: SeriesItem | SeriesItem[];
     cdnHighcharts?: string;
     cdnHighchartsAccessibility?: string;
@@ -59,9 +60,9 @@ export default class extends Marko.Component<Input> {
     onCreate() {
         this.cdnLoader = new CDNLoader(this as any, {
             stagger: true,
-            key: 'highcharts',
-            types: ['src', 'src', 'src'],
-            files: ['highcharts.js', 'accessibility.js', 'pattern-fill.js'],
+            key: "highcharts",
+            types: ["src", "src", "src"],
+            files: ["highcharts.js", "accessibility.js", "pattern-fill.js"],
             setLoading: () => {},
             handleError: this.handleError.bind(this),
             handleSuccess: this.handleSuccess.bind(this),
@@ -82,7 +83,7 @@ export default class extends Marko.Component<Input> {
     }
 
     handleError(err) {
-        this.emit('load-error', err);
+        this.emit("load-error", err);
     }
 
     handleSuccess() {
@@ -104,7 +105,9 @@ export default class extends Marko.Component<Input> {
     }
     _setupCharts() {
         // check if a single series was passed in for series and if so add it to a new array
-        const series = Array.isArray(this.input.series) ? this.input.series : [this.input.series];
+        const series = Array.isArray(this.input.series)
+            ? this.input.series
+            : [this.input.series];
         const stacked = this.input.stacked;
         const title = this.input.title;
         // controls rounded corders and spacing at the bottom of data points
@@ -115,7 +118,7 @@ export default class extends Marko.Component<Input> {
             series.forEach((s) => {
                 // used to help link each series to the previous one for stacked views
                 // refer to https://api.highcharts.com/highcharts/series.column.linkedTo
-                s.group = ':previous';
+                s.group = ":previous";
             });
         } else {
             // if not stacked, set the top and bottom flag on each series so the single bar has rounded top and bottom corners
@@ -149,7 +152,7 @@ export default class extends Marko.Component<Input> {
 
     getChartConfig(): Highcharts.ChartOptions {
         return {
-            type: 'column',
+            type: "column",
             backgroundColor,
             style: {
                 fontFamily: chartFontFamily, // set the font for all chart svg text elements
@@ -163,12 +166,12 @@ export default class extends Marko.Component<Input> {
         return {
             // currently setup to support epoch time values for xAxisLabels.
             // It is possible to set custom non datetime xAxisLabels but will need changes to this component
-            type: 'datetime',
+            type: "datetime",
             labels: {
                 // input.xAxisLabelFormat allows overriding the default short month / day label
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat to customize
-                format: xAxisLabelFormat || '{value:%b %e}',
-                align: 'center',
+                format: xAxisLabelFormat || "{value:%b %e}",
+                align: "center",
                 style: {
                     color: labelsColor, // setting label colors
                 },
@@ -184,7 +187,10 @@ export default class extends Marko.Component<Input> {
 
         let maxVal = 0; // use to determine the highest yAxis value
         series.forEach((s) => {
-            maxVal = s.data!.reduce((p: number, c: number) => (c > p ? c : p), maxVal) as number;
+            maxVal = s.data!.reduce(
+                (p: number, c: number) => (c > p ? c : p),
+                maxVal
+            ) as number;
         });
         let yLabelsItterator = 0;
         return {
@@ -192,7 +198,7 @@ export default class extends Marko.Component<Input> {
             opposite: true, // moves yAxis labels to the right side of the chart
             reversedStacks: false, // makes so series one starts at the bottom of the yAxis, by default this is true
             labels: {
-                format: yAxisLabels ? undefined : '${text}',
+                format: yAxisLabels ? undefined : "${text}",
                 // if yAxisLabels array is passed in this formatter function is needed to
                 // return the proper label for each yAxis tick mark
                 formatter: yAxisLabels
@@ -244,7 +250,7 @@ export default class extends Marko.Component<Input> {
             // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
             return subtemplate.renderToString({
                 // eslint-disable-next-line no-undef,new-cap
-                date: Highcharts.dateFormat('%b %e, %Y', this.x, false),
+                date: Highcharts.dateFormat("%b %e, %Y", this.x, false),
                 data: stacked ? series : this.point,
                 stacked,
                 x: this.x,
@@ -273,8 +279,15 @@ export default class extends Marko.Component<Input> {
             x = 6;
         }
         // check right bound and adjust if the tooltip would be clipped
-        if (x + (hoverPoint as any).dlBox.width > chartPosition.left + this.chart.chartWidth - 6) {
-            x = chartPosition.left + this.chart.chartWidth - (hoverPoint as any).dlBox.width - 6;
+        if (
+            x + (hoverPoint as any).dlBox.width >
+            chartPosition.left + this.chart.chartWidth - 6
+        ) {
+            x =
+                chartPosition.left +
+                this.chart.chartWidth -
+                (hoverPoint as any).dlBox.width -
+                6;
         }
         return { x, y }; // return the tooltip x and y position
     }
@@ -291,7 +304,7 @@ export default class extends Marko.Component<Input> {
             shadow: false, // hide the default shadow as it conflicts with designs
             style: {
                 filter: tooltipShadows, // sets tooltip shadows
-                fontSize: '12px',
+                fontSize: "12px",
             },
             // this callback function is used to position the tooltip at the top of the stacked bars
             positioner: stacked ? this.tooltipPositioner : undefined,
@@ -394,7 +407,7 @@ export default class extends Marko.Component<Input> {
                 events: {
                     legendItemClick: this.legendItemClick(),
                 },
-                stacking: stacked ? 'normal' : undefined, // set stacking to normal if stacked flag is set
+                stacking: stacked ? "normal" : undefined, // set stacking to normal if stacked flag is set
                 groupPadding: 0.1, // padding around groups of points
                 pointPadding: 0.15, // padding between single points
                 states: {

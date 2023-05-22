@@ -1,13 +1,13 @@
-import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
-import { createLinear } from 'makeup-roving-tabindex';
-import typeahead from 'makeup-typeahead';
-import * as eventUtils from '../../common/event-utils';
+import * as scrollKeyPreventer from "makeup-prevent-scroll-keys";
+import { createLinear } from "makeup-roving-tabindex";
+import typeahead from "makeup-typeahead";
+import * as eventUtils from "../../common/event-utils";
 import setupMenu, {
     type MenuItem,
     type MenuInput,
     type MenuState,
     MenuUtils,
-} from '../../common/menu-utils';
+} from "../../common/menu-utils";
 
 const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 
@@ -24,66 +24,87 @@ interface Item extends MenuItem {
     badgeNumber?: number;
 }
 
-export interface Input extends MenuInput, Omit<Marko.Input<'span'>, `on${string}`> {
+export interface Input
+    extends MenuInput,
+        Omit<Marko.Input<"span">, `on${string}`> {
     items?: Marko.RepeatableAttrTag<Item>;
     classPrefix?: string;
     typeaheadTimeoutLength?: number;
     reverse?: boolean;
     fixWidth?: boolean;
     renderBody?: Marko.Body;
-    'on-keydown'?: (event: MenuEvent) => void;
-    onKeydown?: this['on-keydown'];
-    'on-change'?: (event: MenuEvent) => void;
-    onChange?: this['on-change'];
-    'on-select'?: (event: MenuEvent) => void;
-    onSelect?: this['on-select'];
+    "on-keydown"?: (event: MenuEvent) => void;
+    onKeydown?: this["on-keydown"];
+    "on-change"?: (event: MenuEvent) => void;
+    onChange?: this["on-change"];
+    "on-select"?: (event: MenuEvent) => void;
+    onSelect?: this["on-select"];
 }
 
 export default class extends MenuUtils<Input, MenuState> {
     declare rovingTabindex: ReturnType<typeof createLinear>;
     declare tabindexPosition: number;
     declare contentEl: HTMLElement;
-    declare getTypeaheadIndex: ReturnType<typeof typeahead>['getIndex'];
-    declare destroyTypeahead: ReturnType<typeof typeahead>['destroy'];
+    declare getTypeaheadIndex: ReturnType<typeof typeahead>["getIndex"];
+    declare destroyTypeahead: ReturnType<typeof typeahead>["destroy"];
 
     onCreate() {
         setupMenu(this);
     }
 
-    toggleItemChecked(index: number, originalEvent: Event, itemEl: HTMLElement) {
+    toggleItemChecked(
+        index: number,
+        originalEvent: Event,
+        itemEl: HTMLElement
+    ) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
-        const shouldEmitRadio = this.isRadio() && index !== this.state.checkedIndex;
+        const shouldEmitRadio =
+            this.isRadio() && index !== this.state.checkedIndex;
         this.toggleChecked(index);
 
         if (shouldEmitRadio) {
             this.emitComponentEvent({
                 index,
-                eventType: 'change',
+                eventType: "change",
                 el: itemEl,
                 originalEvent,
             });
-        } else if (this.type !== 'radio') {
+        } else if (this.type !== "radio") {
             this.emitComponentEvent({
                 index,
-                eventType: !this.type ? 'select' : 'change',
+                eventType: !this.type ? "select" : "change",
                 el: itemEl,
                 originalEvent,
             });
         }
 
         if (this.rovingTabindex) {
-            this.tabindexPosition = this.rovingTabindex.items.findIndex((el) => el.tabIndex === 0);
+            this.tabindexPosition = this.rovingTabindex.items.findIndex(
+                (el) => el.tabIndex === 0
+            );
         }
     }
 
-    handleItemClick(index: number, originalEvent: MouseEvent, itemEl: HTMLElement) {
+    handleItemClick(
+        index: number,
+        originalEvent: MouseEvent,
+        itemEl: HTMLElement
+    ) {
         this.toggleItemChecked(index, originalEvent, itemEl);
     }
 
-    handleItemKeydown(index: number, originalEvent: KeyboardEvent, itemEl: HTMLElement) {
+    handleItemKeydown(
+        index: number,
+        originalEvent: KeyboardEvent,
+        itemEl: HTMLElement
+    ) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.emitComponentEvent({ eventType: 'keydown', originalEvent, index });
+            this.emitComponentEvent({
+                eventType: "keydown",
+                originalEvent,
+                index,
+            });
         });
 
         eventUtils.handleActionKeydown(originalEvent, () =>
@@ -93,7 +114,7 @@ export default class extends MenuUtils<Input, MenuState> {
 
     handleItemKeypress({ key }: KeyboardEvent) {
         const itemIndex = this.getTypeaheadIndex(
-            (this.getEl('menu') as HTMLElement).children,
+            (this.getEl("menu") as HTMLElement).children,
             key,
             this.input.typeaheadTimeoutLength || TYPEAHEAD_TIMEOUT_LENGTH
         );
@@ -115,7 +136,7 @@ export default class extends MenuUtils<Input, MenuState> {
         index?: number;
     }) {
         const checkedIndexes = this.getCheckedIndexes();
-        const isCheckbox = this.type === 'checkbox';
+        const isCheckbox = this.type === "checkbox";
 
         const eventObj = {
             el,
@@ -150,7 +171,7 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     }
@@ -169,16 +190,17 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     _setupMakeup() {
-        this.contentEl = this.getEl('menu');
+        this.contentEl = this.getEl("menu");
 
-        this.rovingTabindex = createLinear(this.contentEl, 'div', {
+        this.rovingTabindex = createLinear(this.contentEl, "div", {
             index: this.tabindexPosition,
             autoReset: null,
         });
 
         scrollKeyPreventer.add(this.contentEl);
 
-        const { getIndex: getTypeaheadIndex, destroy: destroyTypeahead } = typeahead();
+        const { getIndex: getTypeaheadIndex, destroy: destroyTypeahead } =
+            typeahead();
         this.getTypeaheadIndex = getTypeaheadIndex;
         this.destroyTypeahead = destroyTypeahead;
     }

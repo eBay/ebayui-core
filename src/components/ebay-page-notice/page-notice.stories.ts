@@ -1,18 +1,18 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './index.marko';
-import withAction from './examples/with-action.marko';
-import withActionCode from './examples/with-action.marko?raw';
-import withDismiss from './examples/with-dismiss.marko';
-import withDismissCode from './examples/with-dismiss.marko?raw';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import withAction from "./examples/with-action.marko";
+import withActionCode from "./examples/with-action.marko?raw";
+import withDismiss from "./examples/with-dismiss.marko";
+import withDismissCode from "./examples/with-dismiss.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'notices & tips/ebay-page-notice',
+    title: "notices & tips/ebay-page-notice",
     component: Component,
     parameters: {
         docs: {
@@ -26,64 +26,72 @@ export default {
         status: {
             table: {
                 defaultValue: {
-                    summary: 'attention',
+                    summary: "attention",
                 },
             },
 
-            description: 'The icon used and status of the notice',
-            options: ['attention', 'confirmation', 'information', 'celebration'],
-            type: 'select',
+            description: "The icon used and status of the notice",
+            options: [
+                "attention",
+                "confirmation",
+                "information",
+                "celebration",
+            ],
+            type: "select",
         },
         icon: {
             table: {
                 defaultValue: {
-                    summary: 'default',
+                    summary: "default",
                 },
             },
-            options: ['default', 'none'],
-            type: 'select',
-            description: 'matches whatever is specified by the "status", or if none hides icon',
+            options: ["default", "none"],
+            type: "select",
+            description:
+                'matches whatever is specified by the "status", or if none hides icon',
         },
         a11yIconText: {
-            description: 'adding description for the icon in the notice for a11y users',
+            description:
+                "adding description for the icon in the notice for a11y users",
         },
         a11yDismissText: {
             description:
-                'This adds a dismiss icon allowing the notice to be dismissed/hidden and sets the a11y text on the icon',
+                "This adds a dismiss icon allowing the notice to be dismissed/hidden and sets the a11y text on the icon",
         },
         dismissed: {
-            description: 'whether or not the notice is dismissed',
-            type: 'boolean',
+            description: "whether or not the notice is dismissed",
+            type: "boolean",
         },
         title: {
-            name: '@title',
-            description: 'The title content to be displayed. Used mostly for celebration notice',
+            name: "@title",
+            description:
+                "The title content to be displayed. Used mostly for celebration notice",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         footer: {
-            name: '@footer',
+            name: "@footer",
             description:
-                'The footer content to be displayed. Used to show the dismiss button generally',
+                "The footer content to be displayed. Used to show the dismiss button generally",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         cta: {
-            name: '@cta',
-            description: 'This allows the addition of a main CTA link',
+            name: "@cta",
+            description: "This allows the addition of a main CTA link",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         onDismiss: {
-            action: 'on-dismiss',
-            description: 'Triggered on notice dismiss',
+            action: "on-dismiss",
+            description: "Triggered on notice dismiss",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
@@ -92,15 +100,15 @@ export default {
 
 export const Basic = Template.bind({});
 Basic.args = {
-    a11yText: 'attention',
-    a11yIconText: '',
-    a11yDismissText: '',
+    a11yText: "attention",
+    a11yIconText: "",
+    a11yDismissText: "",
     status: null,
     icon: null,
     cta: null,
     dismissed: false,
     title: {
-        renderBody: 'An error has occurred',
+        renderBody: "An error has occurred",
     },
     renderBody: `<p><strong>Error:</strong> Please take another look at the following:</p>
     <p>
@@ -114,7 +122,7 @@ Basic.args = {
 Basic.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-page-notice', Basic.args),
+            code: tagToString("ebay-page-notice", Basic.args),
         },
     },
 };
@@ -124,9 +132,9 @@ export const WithAction = (args) => ({
     component: withAction,
 });
 WithAction.args = {
-    a11yText: 'attention',
-    a11yIconText: '',
-    a11yDismissText: '',
+    a11yText: "attention",
+    a11yIconText: "",
+    a11yDismissText: "",
     status: null,
     icon: null,
 };
@@ -145,10 +153,10 @@ export const WithDismiss = (args) => ({
 });
 
 WithDismiss.args = {
-    a11yText: 'information',
-    a11yIconText: '',
-    a11yDismissText: 'Dismiss Notice',
-    status: 'information',
+    a11yText: "information",
+    a11yIconText: "",
+    a11yDismissText: "Dismiss Notice",
+    status: "information",
     icon: null,
 };
 

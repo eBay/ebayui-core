@@ -28,12 +28,12 @@ interface Input {
     a11yTodayText?: string;
     a11yDisabledText?: string;
     a11ySeparator?: string;
-    'on-select'?: (event: { iso: DayISO }) => void;
-    onSelect?: this['on-select'];
-    'on-focus'?: (event: { iso: DayISO }) => void;
-    onFocus?: this['on-focus'];
-    'on-month-change'?: (event: { iso: DayISO }) => void;
-    onMonth?: this['on-month-change'];
+    "on-select"?: (event: { iso: DayISO }) => void;
+    onSelect?: this["on-select"];
+    "on-focus"?: (event: { iso: DayISO }) => void;
+    onFocus?: this["on-focus"];
+    "on-month-change"?: (event: { iso: DayISO }) => void;
+    onMonth?: this["on-month-change"];
 }
 
 interface State {
@@ -54,7 +54,9 @@ interface State {
 
 export default class extends Marko.Component<Input, State> {
     onCreate(input: Input) {
-        const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(localeOverride(input.locale));
+        const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(
+            localeOverride(input.locale)
+        );
         const todayISO = toISO(new Date());
         this.state = {
             focusISO: null,
@@ -76,7 +78,9 @@ export default class extends Marko.Component<Input, State> {
     onInput(input: Input) {
         if (input.selected) {
             // If no selected times are visible, snap the view to the first one
-            const selectedISOs = Array.isArray(input.selected) ? input.selected : [input.selected];
+            const selectedISOs = Array.isArray(input.selected)
+                ? input.selected
+                : [input.selected];
             const currFirstISO = this.getFirstVisibleISO();
             const currLastISO = this.getLastVisibleISO(input);
             const selectedTimeInView = selectedISOs.find(
@@ -93,7 +97,8 @@ export default class extends Marko.Component<Input, State> {
         this.state.disableBefore = dateArgToISO(input.disableBefore);
         this.state.disableAfter = dateArgToISO(input.disableAfter);
         this.state.disableWeekdays = input.disableWeekdays ?? [];
-        this.state.disableList = /** @type {DayISO[]} */ input.disableList?.map(dateArgToISO) ?? [];
+        this.state.disableList =
+            /** @type {DayISO[]} */ input.disableList?.map(dateArgToISO) ?? [];
         if (this.isDisabled(this.state.tabindexISO)) {
             this.state.tabindexISO = this.getFirstActiveISO(input);
         }
@@ -109,7 +114,7 @@ export default class extends Marko.Component<Input, State> {
     }
 
     onDaySelect(day: DayISO) {
-        this.emit('select', { iso: day });
+        this.emit("select", { iso: day });
     }
 
     onDayFocus(day: DayISO) {
@@ -145,23 +150,23 @@ export default class extends Marko.Component<Input, State> {
                 }
                 this.setTabindexAndFocus(iso);
 
-                this.emit('focus', { iso: this.state.tabindexISO });
+                this.emit("focus", { iso: this.state.tabindexISO });
             }
         } else {
             switch (event.key) {
-                case 'PageUp':
+                case "PageUp":
                     this.prevMonth(true);
                     break;
-                case 'PageDown':
+                case "PageDown":
                     this.nextMonth(true);
                     break;
-                case 'Home':
+                case "Home":
                     this.setTabindexAndFocus(this.getFirstActiveISO());
-                    this.emit('focus', { iso: this.state.tabindexISO });
+                    this.emit("focus", { iso: this.state.tabindexISO });
                     break;
-                case 'End':
+                case "End":
                     this.setTabindexAndFocus(this.getLastActiveISO());
-                    this.emit('focus', { iso: this.state.tabindexISO });
+                    this.emit("focus", { iso: this.state.tabindexISO });
                     break;
                 default:
             }
@@ -182,7 +187,9 @@ export default class extends Marko.Component<Input, State> {
         return toISO(
             new Date(
                 baseDate.getFullYear(),
-                baseDate.getMonth() + this.state.offset + (input.numMonths || 1),
+                baseDate.getMonth() +
+                    this.state.offset +
+                    (input.numMonths || 1),
                 0
             )
         );
@@ -207,15 +214,21 @@ export default class extends Marko.Component<Input, State> {
     }
 
     monthTitle(date: Date) {
-        const formatter = new Intl.DateTimeFormat(localeOverride(this.input.locale), {
-            month: 'long',
-            year: 'numeric',
-        });
+        const formatter = new Intl.DateTimeFormat(
+            localeOverride(this.input.locale),
+            {
+                month: "long",
+                year: "numeric",
+            }
+        );
         return formatter.format(date);
     }
 
     prevMonth(focus?: boolean) {
-        if (this.state.disableBefore && this.getFirstVisibleISO() <= this.state.disableBefore) {
+        if (
+            this.state.disableBefore &&
+            this.getFirstVisibleISO() <= this.state.disableBefore
+        ) {
             return false;
         }
 
@@ -229,13 +242,18 @@ export default class extends Marko.Component<Input, State> {
             this.setTabindexAndFocus(newTabindexISO);
         }
 
-        this.emit('month-change', { iso: toISO(this.getMonthDate(this.state.offset)) });
+        this.emit("month-change", {
+            iso: toISO(this.getMonthDate(this.state.offset)),
+        });
 
         return true;
     }
 
     nextMonth(focus?: boolean) {
-        if (this.state.disableAfter && this.getLastVisibleISO() >= this.state.disableAfter) {
+        if (
+            this.state.disableAfter &&
+            this.getLastVisibleISO() >= this.state.disableAfter
+        ) {
             return false;
         }
 
@@ -249,8 +267,12 @@ export default class extends Marko.Component<Input, State> {
             this.setTabindexAndFocus(newTabindexISO);
         }
 
-        this.emit('month-change', {
-            iso: toISO(this.getMonthDate(this.state.offset + (this.input.numMonths || 1))),
+        this.emit("month-change", {
+            iso: toISO(
+                this.getMonthDate(
+                    this.state.offset + (this.input.numMonths || 1)
+                )
+            ),
         });
 
         return true;
@@ -311,7 +333,9 @@ export function findFirstDayOfWeek(localeName: string): number {
     // weekInfo only exists on some browsers, so we default to Sunday otherwise
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/weekInfo
 
-    const locale = new Intl.Locale(localeName) as Intl.Locale & { weekInfo?: { firstDay: number } };
+    const locale = new Intl.Locale(localeName) as Intl.Locale & {
+        weekInfo?: { firstDay: number };
+    };
     if (locale.weekInfo) {
         return locale.weekInfo.firstDay;
     }
@@ -322,7 +346,7 @@ export function getWeekdayInfo(localeName: string) {
     const firstDayOfWeek = findFirstDayOfWeek(localeName);
 
     const weekdayLabelFormatter = new Intl.DateTimeFormat(localeName, {
-        weekday: 'short',
+        weekday: "short",
     });
     const weekday = new Date(2022, 9, 2 + firstDayOfWeek); // October 2, 2022 was a Sunday
     const weekdayLabels = [...Array(7)].map(() => {
@@ -334,7 +358,7 @@ export function getWeekdayInfo(localeName: string) {
     return { firstDayOfWeek, weekdayLabels };
 }
 
-export function dateArgToISO(arg: DateConstructor['arguments']) {
+export function dateArgToISO(arg: DateConstructor["arguments"]) {
     if (!arg) return undefined;
     if (/^\d\d\d\d-\d\d-\d\d$/g.test(arg)) return arg;
     return toISO(new Date(arg));
@@ -345,13 +369,15 @@ export function toISO(date: Date): DayISO {
 }
 
 export function fromISO(iso: DayISO) {
-    const [year, month, day] = iso.split('-');
+    const [year, month, day] = iso.split("-");
     return new Date(+year, +month - 1, +day);
 }
 
 export function offsetISO(iso: DayISO, days: number) {
     const curr = fromISO(iso);
-    return toISO(new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() + days));
+    return toISO(
+        new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() + days)
+    );
 }
 
 export function localeOverride(locale?: string) {

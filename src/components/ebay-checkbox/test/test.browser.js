@@ -1,7 +1,7 @@
-import { expect, use } from 'chai';
-import chaiDom from 'chai-dom';
-import { render, cleanup, fireEvent } from '@marko/testing-library';
-import template from '..';
+import { expect, use } from "chai";
+import chaiDom from "chai-dom";
+import { render, cleanup, fireEvent } from "@marko/testing-library";
+import template from "..";
 
 use(chaiDom);
 afterEach(cleanup);
@@ -9,63 +9,73 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-describe('given checkbox button is enabled', () => {
+describe("given checkbox button is enabled", () => {
     beforeEach(async () => {
-        component = await render(template, { htmlAttributes: { value: 'food' } });
+        component = await render(template, {
+            htmlAttributes: { value: "food" },
+        });
     });
 
-    describe('when checkbox button is clicked', () => {
+    describe("when checkbox button is clicked", () => {
         beforeEach(async () => {
-            await component.getByRole('checkbox').click();
+            await component.getByRole("checkbox").click();
         });
 
-        it('then it emitted the change event', () => {
-            const changeEvents = component.emitted('change');
+        it("then it emitted the change event", () => {
+            const changeEvents = component.emitted("change");
             expect(changeEvents).has.length(1);
 
             const [[changeEvent]] = changeEvents;
-            expect(changeEvent).has.property('value', 'food');
-            expect(changeEvent).has.property('checked', true);
+            expect(changeEvent).has.property("value", "food");
+            expect(changeEvent).has.property("checked", true);
         });
 
-        it('then it is checked', () => {
-            expect(component.getByRole('checkbox')).has.property('checked', true);
+        it("then it is checked", () => {
+            expect(component.getByRole("checkbox")).has.property(
+                "checked",
+                true
+            );
         });
     });
 });
 
-describe('given checkbox button is disabled', () => {
+describe("given checkbox button is disabled", () => {
     beforeEach(async () => {
         component = await render(template, { disabled: true });
     });
 
-    describe('when checkbox button is clicked', () => {
+    describe("when checkbox button is clicked", () => {
         beforeEach(async () => {
-            await component.getByRole('checkbox').click();
+            await component.getByRole("checkbox").click();
         });
 
-        it('then it does not emit the change event', () => {
-            expect(component.emitted('change')).has.length(0);
+        it("then it does not emit the change event", () => {
+            expect(component.emitted("change")).has.length(0);
         });
 
-        it('then it remains unchecked', () => {
-            expect(component.getByRole('checkbox')).has.property('checked', false);
+        it("then it remains unchecked", () => {
+            expect(component.getByRole("checkbox")).has.property(
+                "checked",
+                false
+            );
         });
     });
 });
 
-describe('when native focus event is fired', () => {
+describe("when native focus event is fired", () => {
     beforeEach(async () => {
-        component = await render(template, { htmlAttributes: { value: 'food' } });
-        await fireEvent.focus(component.getByRole('checkbox'));
+        component = await render(template, {
+            htmlAttributes: { value: "food" },
+        });
+        await fireEvent.focus(component.getByRole("checkbox"));
     });
 
-    it('then it emits the event', () => {
-        const events = component.emitted('focus');
+    it("then it emits the event", () => {
+        const events = component.emitted("focus");
         expect(events).has.length(1);
 
         const [[eventArg]] = events;
-        expect(eventArg).has.property('value', 'food');
-        expect(eventArg).has.property('originalEvent').is.an.instanceOf(Event);
+        expect(eventArg).has.property("value", "food");
+        expect(eventArg).has.property("originalEvent").is.an.instanceOf(Event);
     });
 });

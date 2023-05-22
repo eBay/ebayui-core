@@ -1,4 +1,4 @@
-import { CDNLoader } from '../../common/cdn';
+import { CDNLoader } from "../../common/cdn";
 import {
     chartFontFamily,
     backgroundColor,
@@ -11,29 +11,29 @@ import {
     tooltipShadows,
     setSeriesColors,
     colorMapping,
-} from '../../common/charts/shared';
-import { debounce } from '../../common/event-utils';
-import { ebayLegend } from '../../common/charts/legend';
-import Highcharts from 'highcharts';
+} from "../../common/charts/shared";
+import { debounce } from "../../common/event-utils";
+import { ebayLegend } from "../../common/charts/legend";
+import Highcharts from "highcharts";
 
-export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
-    title: Highcharts.TitleOptions['text'];
+export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+    title: Highcharts.TitleOptions["text"];
     /**
      * input.xAxisLabelFormat allows overriding the default short month / day label.
      * refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat to customize
      **/
-    xAxisLabelFormat?: Highcharts.XAxisLabelsOptions['format'];
-    xAxisPositioner?: Highcharts.XAxisOptions['tickPositioner'];
-    yAxisLabels?: Highcharts.YAxisLabelsOptions['format'];
-    yAxisPositioner?: Highcharts.YAxisOptions['tickPositioner'];
-    description?: Highcharts.SeriesAccessibilityOptionsObject['description'];
+    xAxisLabelFormat?: Highcharts.XAxisLabelsOptions["format"];
+    xAxisPositioner?: Highcharts.XAxisOptions["tickPositioner"];
+    yAxisLabels?: Highcharts.YAxisLabelsOptions["format"];
+    yAxisPositioner?: Highcharts.YAxisOptions["tickPositioner"];
+    description?: Highcharts.SeriesAccessibilityOptionsObject["description"];
     cdnHighcharts?: string;
     cdnHighchartsAccessibility?: string;
     cdnHighchartsPatternFill?: string;
     version?: string;
     series: Highcharts.SeriesAreaOptions | Highcharts.SeriesAreaOptions[];
-    'on-load-error': (err: Error) => void;
-    'onLoad-error': this['on-load-error'];
+    "on-load-error": (err: Error) => void;
+    "onLoad-error": this["on-load-error"];
 }
 
 const pointSize = 1.5;
@@ -56,9 +56,9 @@ export default class extends Marko.Component<Input> {
     onCreate() {
         this.cdnLoader = new CDNLoader(this as any, {
             stagger: true,
-            key: 'highcharts',
-            types: ['src', 'src', 'src'],
-            files: ['highcharts.js', 'accessibility.js', 'pattern-fill.js'],
+            key: "highcharts",
+            types: ["src", "src", "src"],
+            files: ["highcharts.js", "accessibility.js", "pattern-fill.js"],
             setLoading: () => {},
             handleError: this.handleError.bind(this),
             handleSuccess: this.handleSuccess.bind(this),
@@ -79,7 +79,7 @@ export default class extends Marko.Component<Input> {
     }
 
     handleError(err: Error) {
-        this.emit('load-error', err);
+        this.emit("load-error", err);
     }
     handleSuccess() {
         this._initializeHighchartExtensions();
@@ -100,18 +100,23 @@ export default class extends Marko.Component<Input> {
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
         this.mouseOut = this.debounce(() => this.handleMouseOut(), 80); // 80ms delay for debounce
-        this.mouseOver = this.debounce((e: Event) => this.handleMouseOver(e), 85); // 85ms delay for debounce so it doesn't colide with mouseOut debounce calls
+        this.mouseOver = this.debounce(
+            (e: Event) => this.handleMouseOver(e),
+            85
+        ); // 85ms delay for debounce so it doesn't colide with mouseOut debounce calls
     }
     _setupCharts() {
         // check if a single series was passed in for series and if so add it to a new array
-        const series = Array.isArray(this.input.series) ? this.input.series : [this.input.series];
+        const series = Array.isArray(this.input.series)
+            ? this.input.series
+            : [this.input.series];
 
         // update the zIndex of each series object so they render in the correct order
         // and configure the markers that are displayed on hover
         series.forEach((s, i) => {
             s.zIndex = series.length - i;
             s.marker = {
-                symbol: 'circle',
+                symbol: "circle",
                 lineWidth: 3,
             };
         });
@@ -138,18 +143,18 @@ export default class extends Marko.Component<Input> {
     getTitleConfig(): Highcharts.TitleOptions {
         return {
             text: this.input.title,
-            align: 'left',
+            align: "left",
             useHTML: true,
             style: {
                 // styles are set in JS since they are rendered in the SVG
-                fontSize: '18px',
-                fontWeight: '700',
+                fontSize: "18px",
+                fontWeight: "700",
             },
         };
     }
     getChartConfig(): Highcharts.ChartOptions {
         return {
-            type: 'area',
+            type: "area",
             backgroundColor: backgroundColor,
             style: {
                 // styles are set in JS since they are rendered in the SVG
@@ -161,10 +166,12 @@ export default class extends Marko.Component<Input> {
         return {
             // currently setup to support epoch time values for xAxisLabels.
             // It is possible to set custom non datetime xAxisLabels but will need changes to this component
-            type: 'datetime',
+            type: "datetime",
             labels: {
-                format: this.input.xAxisLabelFormat ? this.input.xAxisLabelFormat : '{value:%b %e}',
-                align: 'center',
+                format: this.input.xAxisLabelFormat
+                    ? this.input.xAxisLabelFormat
+                    : "{value:%b %e}",
+                align: "center",
                 style: {
                     color: labelsColor, // setting label colors
                 },
@@ -176,7 +183,9 @@ export default class extends Marko.Component<Input> {
             tickPositioner: this.input.xAxisPositioner, // optional input to allow configuring the position of xAxis tick marks
         };
     }
-    getYAxisConfig(series: Highcharts.SeriesAreaOptions[]): Highcharts.YAxisOptions {
+    getYAxisConfig(
+        series: Highcharts.SeriesAreaOptions[]
+    ): Highcharts.YAxisOptions {
         const component = this; // component reference used in formatter functions that don't have the same scope
         let yLabelsIterator = 0; // used when yAxisLabels array is provided in input
         let maxYAxisValue = 0; // use to determine the highest yAxis value
@@ -192,7 +201,7 @@ export default class extends Marko.Component<Input> {
             reversedStacks: false, // makes so series one starts at the bottom of the yAxis, by default this is true
             labels: {
                 // if yAxisLabels are not passed in display the standard label
-                format: this.input.yAxisLabels ?? '${text}',
+                format: this.input.yAxisLabels ?? "${text}",
                 // if yAxisLabels array is passed in this formatter function is needed to
                 // return the proper label for each yAxis tick mark
                 formatter: this.input.yAxisLabels
@@ -201,7 +210,10 @@ export default class extends Marko.Component<Input> {
                               yLabelsIterator = -1;
                           }
                           yLabelsIterator = yLabelsIterator + 1;
-                          return component.input.yAxisLabels?.[yLabelsIterator] ?? '';
+                          return (
+                              component.input.yAxisLabels?.[yLabelsIterator] ??
+                              ""
+                          );
                       }
                     : undefined,
                 style: {
@@ -220,7 +232,9 @@ export default class extends Marko.Component<Input> {
     getLegendConfig() {
         return {
             // if only a single series is provided do not display the legend
-            enabled: Array.isArray(this.input.series) && this.input.series.length > 1,
+            enabled:
+                Array.isArray(this.input.series) &&
+                this.input.series.length > 1,
             symbolRadius: 2, // corner radius on legend identifiers svg element
             symbolWidth: 12, // setting the width of the legend identifiers svg element
             symbolHeight: 12, // setting the height of the legend identifiers svg element
@@ -245,7 +259,11 @@ export default class extends Marko.Component<Input> {
 
                 // TODO need to change this to use a component
                 // eslint-disable-next-line no-undef,new-cap
-                let s = `<b>${Highcharts.dateFormat('%b %e, %Y', this.x, false)}</b></br>`; // sets the displayed date at the top of the tooltip
+                let s = `<b>${Highcharts.dateFormat(
+                    "%b %e, %Y",
+                    this.x,
+                    false
+                )}</b></br>`; // sets the displayed date at the top of the tooltip
                 if (component.chartRef.series.length > 1) {
                     // setup html for multi series tooltip
                     component.chartRef.series.forEach((serie) => {
@@ -279,7 +297,7 @@ export default class extends Marko.Component<Input> {
             shared: true, // shared means that if there are multipe series passed in there will be a single tooltip element per xAxis point
             style: {
                 filter: tooltipShadows, // sets tooltip shadows
-                fontSize: '12px',
+                fontSize: "12px",
             },
         };
     }
@@ -292,7 +310,7 @@ export default class extends Marko.Component<Input> {
                 },
                 // config stacking to normal to make sure series stack without overlapping
                 // refer to https://api.highcharts.com/highcharts/plotOptions.area.stacking
-                stacking: 'normal',
+                stacking: "normal",
                 point: {
                     // assign mouse events to point hovers
                     events: {
@@ -302,7 +320,7 @@ export default class extends Marko.Component<Input> {
                 },
             },
             area: {
-                className: 'ebay-area-chart', // add class to area chart to allow targetted styles from style.less file
+                className: "ebay-area-chart", // add class to area chart to allow targetted styles from style.less file
                 lineWidth: 1, // set the border line width for each series item.
                 // states: { // set if we do not want series to fade out on legend hover uncomment this block
                 //     inactive: {
@@ -343,13 +361,13 @@ export default class extends Marko.Component<Input> {
                 } else if (d.getClassName() === null) {
                     d.update(
                         {
-                            className: 'ebay-area-chart__marker--visible', // set classname
+                            className: "ebay-area-chart__marker--visible", // set classname
                             marker: {
                                 enabled: true, // set marker enabled
                                 radius: pointSize, // set the size of marker
                                 lineColor: backgroundColor, // set border color of hover markers
                                 lineWidth: 4, // set border width of hover markers
-                                fillColor: '#000000', // set fill color of markers
+                                fillColor: "#000000", // set fill color of markers
                             },
                         },
                         false, // disable auto redraw
@@ -368,13 +386,13 @@ export default class extends Marko.Component<Input> {
                     // if active xAxis hover position matches the data point x update the marker to display
                     d.update(
                         {
-                            className: 'ebay-area-chart__marker--visible', // sets the classname
+                            className: "ebay-area-chart__marker--visible", // sets the classname
                             marker: {
                                 enabled: true, // set marker enabled
                                 radius: pointSize, // set the size of marker
                                 lineColor: backgroundColor, // set border color of hover markers
                                 lineWidth: 4, // set border width of hover markers
-                                fillColor: '#000000', // set fill color of markers
+                                fillColor: "#000000", // set fill color of markers
                             },
                         },
                         false, // disable auto redraw

@@ -1,14 +1,17 @@
-import sinon from 'sinon';
-import { expect } from 'chai';
-import { simulateScroll, waitFrames } from '../../../../../common/test-utils/browser';
-import { onScrollEnd } from '..';
+import sinon from "sinon";
+import { expect } from "chai";
+import {
+    simulateScroll,
+    waitFrames,
+} from "../../../../../common/test-utils/browser";
+import { onScrollEnd } from "..";
 
-describe('scroll-end', () => {
+describe("scroll-end", () => {
     let scrollEl;
 
     before(() => {
-        scrollEl = document.createElement('div');
-        scrollEl.style.overflowX = 'scroll';
+        scrollEl = document.createElement("div");
+        scrollEl.style.overflowX = "scroll";
         scrollEl.innerHTML = `<div style="width: 200%; border: 25px dashed #000;"></div>`;
         document.body.appendChild(scrollEl);
     });
@@ -21,7 +24,7 @@ describe('scroll-end', () => {
         document.body.removeChild(scrollEl);
     });
 
-    it('calls a function when a scroll has ended', (done) => {
+    it("calls a function when a scroll has ended", (done) => {
         const scrollEndSpy = sinon.spy();
         onScrollEnd(scrollEl, scrollEndSpy);
         simulateScroll(scrollEl, 50, () => {
@@ -33,7 +36,7 @@ describe('scroll-end', () => {
         });
     });
 
-    it('groups scroll events with additional touches', (done) => {
+    it("groups scroll events with additional touches", (done) => {
         const scrollEndSpy = sinon.spy();
         onScrollEnd(scrollEl, scrollEndSpy);
         setTimeout(() => {
@@ -48,7 +51,7 @@ describe('scroll-end', () => {
         simulateScroll(scrollEl, 50);
     });
 
-    it('can be canceled immediately', (done) => {
+    it("can be canceled immediately", (done) => {
         const scrollEndSpy = sinon.spy();
         const cancel = onScrollEnd(scrollEl, scrollEndSpy);
         simulateScroll(scrollEl, 100);
@@ -60,7 +63,7 @@ describe('scroll-end', () => {
         cancel();
     });
 
-    it('can be canceled after scrolling starts', (done) => {
+    it("can be canceled after scrolling starts", (done) => {
         const scrollEndSpy = sinon.spy();
         const cancel = onScrollEnd(scrollEl, scrollEndSpy);
         const startLeft = scrollEl.scrollLeft;

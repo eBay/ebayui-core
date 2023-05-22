@@ -1,4 +1,4 @@
-const TRANSITION_END = 'transitionend';
+const TRANSITION_END = "transitionend";
 /**
  * Applies a primer `-init` class before starting a transition
  * to make transitioning properties that are not animatable easier.
@@ -17,7 +17,11 @@ const TRANSITION_END = 'transitionend';
  * @param {Function} cb A callback called after the transition as ended.
  */
 export default (
-    { el, className, waitFor }: { el: HTMLElement; className: string; waitFor: Element[] },
+    {
+        el,
+        className,
+        waitFor,
+    }: { el: HTMLElement; className: string; waitFor: Element[] },
     cb: Function
 ) => {
     let ended: boolean;
@@ -26,7 +30,7 @@ export default (
     const classList = el.classList;
     const initClass = `${className}-init`;
 
-    if (!('ontransitionend' in el)) {
+    if (!("ontransitionend" in el)) {
         const id = setTimeout(cb, 0);
         return () => clearTimeout(id);
     }
@@ -37,7 +41,9 @@ export default (
         classList.remove(initClass);
 
         if (pending) {
-            waitFor.forEach((child) => child.addEventListener(TRANSITION_END, listener));
+            waitFor.forEach((child) =>
+                child.addEventListener(TRANSITION_END, listener)
+            );
         } else {
             cancel();
 

@@ -1,17 +1,17 @@
 const DEFAULT_TIMEOUT_LENGTH = 6000;
-import { Input as BaseInput } from '../components/ebay-dialog-base/component';
+import { Input as BaseInput } from "../components/ebay-dialog-base/component";
 
 interface Input extends Omit<BaseInput, `on${string}`> {
-    layout?: 'row' | 'column';
-    action?: BaseInput['action'] & {
+    layout?: "row" | "column";
+    action?: BaseInput["action"] & {
         accessKey?: string;
     };
-    'on-action'?: () => void;
-    onAction?: this['on-action'];
-    'on-open'?: () => void;
-    onOpen?: this['on-open'];
-    'on-close'?: () => void;
-    onClose?: this['on-close'];
+    "on-action"?: () => void;
+    onAction?: this["on-action"];
+    "on-open"?: () => void;
+    onOpen?: this["on-open"];
+    "on-close"?: () => void;
+    onClose?: this["on-close"];
 }
 interface State {
     open: boolean;
@@ -46,7 +46,7 @@ export default class extends Marko.Component<Input, State> {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._clearTimeout();
         }
     }
@@ -62,17 +62,17 @@ export default class extends Marko.Component<Input, State> {
 
     handleAction() {
         this._clearTimeout();
-        this.emit('action');
+        this.emit("action");
         this.state.open = false;
     }
 
     handleFocus() {
         this._clearTimeout();
-        this.eventSet.add('focus');
+        this.eventSet.add("focus");
     }
 
     handleBlur() {
-        this.eventSet.delete('focus');
+        this.eventSet.delete("focus");
         if (this.eventSet.size === 0) {
             this._clearTimeout();
             this.timeout = setTimeout(() => {
@@ -83,11 +83,11 @@ export default class extends Marko.Component<Input, State> {
 
     handleMouseEnter() {
         this._clearTimeout();
-        this.eventSet.add('mouseOver');
+        this.eventSet.add("mouseOver");
     }
 
     handleMouseLeave() {
-        this.eventSet.delete('mouseOver');
+        this.eventSet.delete("mouseOver");
         if (this.eventSet.size === 0 && this.state.open === true) {
             this._clearTimeout();
             this.timeout = setTimeout(() => {
@@ -99,6 +99,6 @@ export default class extends Marko.Component<Input, State> {
     handleClose() {
         this._clearTimeout();
         this.state.open = false;
-        this.emit('close');
+        this.emit("close");
     }
 }

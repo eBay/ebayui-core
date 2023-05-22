@@ -1,14 +1,14 @@
-import { createRenderBody } from '../../../../common/test-utils/shared';
+import { createRenderBody } from "../../../../common/test-utils/shared";
 
 export const Toast = {
-    a11yCloseText: 'close',
+    a11yCloseText: "close",
     header: {
-        renderBody: createRenderBody('head content'),
+        renderBody: createRenderBody("head content"),
     },
     footer: {
-        renderBody: createRenderBody('foter content'),
+        renderBody: createRenderBody("foter content"),
     },
-    renderBody: createRenderBody('body content'),
+    renderBody: createRenderBody("body content"),
 };
 
 export const toastOpen = Object.assign({}, Toast, {

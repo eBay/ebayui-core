@@ -1,4 +1,4 @@
-import { CDNLoader } from '../../common/cdn';
+import { CDNLoader } from "../../common/cdn";
 import {
     chartFontFamily,
     backgroundColor,
@@ -16,28 +16,29 @@ import {
     lineChartQuinaryColor,
     trendPositiveColor,
     trendNegativeColor,
-} from '../../common/charts/shared';
-import { debounce } from '../../common/event-utils';
-import tooltipTemplate from './tooltip.marko';
-import Highcharts from 'highcharts';
+} from "../../common/charts/shared";
+import { debounce } from "../../common/event-utils";
+import tooltipTemplate from "./tooltip.marko";
+import Highcharts from "highcharts";
 
 interface SeriesLineOptions extends Highcharts.SeriesLineOptions {
     data: Highcharts.PointOptionsObject[];
 }
 
-export interface Input extends Omit<Marko.Input<'div'>, `on${string}` | 'title'> {
-    title?: Highcharts.TitleOptions['text'];
-    description?: Highcharts.PlotSeriesOptions['description'];
-    xAxisLabelFormat?: Highcharts.XAxisLabelsOptions['format'];
-    xAxisPositioner?: Highcharts.XAxisOptions['tickPositioner'];
-    yAxisLabels?: Highcharts.YAxisLabelsOptions['format'][];
-    yAxisPositioner?: Highcharts.YAxisOptions['tickPositioner'];
+export interface Input
+    extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
+    title?: Highcharts.TitleOptions["text"];
+    description?: Highcharts.PlotSeriesOptions["description"];
+    xAxisLabelFormat?: Highcharts.XAxisLabelsOptions["format"];
+    xAxisPositioner?: Highcharts.XAxisOptions["tickPositioner"];
+    yAxisLabels?: Highcharts.YAxisLabelsOptions["format"][];
+    yAxisPositioner?: Highcharts.YAxisOptions["tickPositioner"];
     plotPoints?: boolean;
     cdnHighcharts?: string;
     cdnHighchartsAccessibility?: string;
     version?: string;
     series: SeriesLineOptions | SeriesLineOptions[];
-    trend?: 'positive' | 'negative' | 'neutral';
+    trend?: "positive" | "negative" | "neutral";
 }
 
 const pointSize = 6; // controls the size of the plot point markers on lines
@@ -53,9 +54,9 @@ export default class extends Marko.Component<Input> {
 
         this.cdnLoader = new CDNLoader(this as any, {
             stagger: true,
-            key: 'highcharts',
-            types: ['src', 'src'],
-            files: ['highcharts.js', 'accessibility.js'],
+            key: "highcharts",
+            types: ["src", "src"],
+            files: ["highcharts.js", "accessibility.js"],
             setLoading: () => {},
             handleError: this.handleError.bind(this),
             handleSuccess: this.handleSuccess.bind(this),
@@ -63,7 +64,7 @@ export default class extends Marko.Component<Input> {
     }
 
     handleError(err) {
-        this.emit('load-error', err);
+        this.emit("load-error", err);
     }
     handleSuccess() {
         this._setupChart();
@@ -72,7 +73,10 @@ export default class extends Marko.Component<Input> {
     onMount() {
         this.cdnLoader
             .setOverrides(
-                [this.input.cdnHighcharts, this.input.cdnHighchartsAccessibility] as string[],
+                [
+                    this.input.cdnHighcharts,
+                    this.input.cdnHighchartsAccessibility,
+                ] as string[],
                 this.input.version
             )
             .mount();
@@ -101,18 +105,27 @@ export default class extends Marko.Component<Input> {
         ];
 
         // check if a single series was passed in for series and if so add it to a new array
-        const series = Array.isArray(this.input.series) ? this.input.series : [this.input.series];
+        const series = Array.isArray(this.input.series)
+            ? this.input.series
+            : [this.input.series];
 
         if (this.input.trend) {
             // if the trend property exist check value and adjust the first color
-            const trend = typeof this.input.trend === 'string' && this.input.trend.toLowerCase(); // if trend of type string force to lowercase
-            const isPositive = series[0].data[0].y! < series[0].data[series[0].data.length - 1].y!; // auto trend positive check between first and last data values of the single series
+            const trend =
+                typeof this.input.trend === "string" &&
+                this.input.trend.toLowerCase(); // if trend of type string force to lowercase
+            const isPositive =
+                series[0].data[0].y! <
+                series[0].data[series[0].data.length - 1].y!; // auto trend positive check between first and last data values of the single series
             if (
-                trend === 'positive' || // if "positive" is passed in for the trend property
-                (trend !== 'negative' && trend !== 'neutral' && isPositive) // if check if trend is does not equal negative or neutral, and if so use the auto positive calculation
+                trend === "positive" || // if "positive" is passed in for the trend property
+                (trend !== "negative" && trend !== "neutral" && isPositive) // if check if trend is does not equal negative or neutral, and if so use the auto positive calculation
             ) {
                 colors[0] = trendPositiveColor; // set the color to the positive trend color
-            } else if (trend === 'negative' || (trend !== 'neutral' && !isPositive)) {
+            } else if (
+                trend === "negative" ||
+                (trend !== "neutral" && !isPositive)
+            ) {
                 // if the trend property equals negative, or trend does not equal neutral and isPositive is false
                 colors[0] = trendNegativeColor; // set the negative trend color
             }
@@ -134,11 +147,11 @@ export default class extends Marko.Component<Input> {
 
         const title: Highcharts.TitleOptions = {
             text: this.input.title,
-            align: 'left',
+            align: "left",
             useHTML: true,
             style: {
-                fontSize: '18px',
-                fontWeight: '700',
+                fontSize: "18px",
+                fontWeight: "700",
             },
         };
 
@@ -168,26 +181,26 @@ export default class extends Marko.Component<Input> {
         let s: Highcharts.SymbolKeyValue;
         switch (index) {
             case 1:
-                s = 'square';
+                s = "square";
                 break;
             case 2:
-                s = 'triangle';
+                s = "triangle";
                 break;
             case 3:
-                s = 'triangle-down';
+                s = "triangle-down";
                 break;
             case 4:
-                s = 'diamond';
+                s = "diamond";
                 break;
             default: // 0 index
-                s = 'circle';
+                s = "circle";
                 break;
         }
         return s;
     }
     getChartConfig(): Highcharts.ChartOptions {
         return {
-            type: 'line',
+            type: "line",
             backgroundColor: backgroundColor,
             style: {
                 fontFamily: chartFontFamily,
@@ -202,12 +215,12 @@ export default class extends Marko.Component<Input> {
         return {
             // currently setup to support epoch time values for xAxisLabels.
             // It is possible to set custom non datetime xAxisLabels but will need changes to this component
-            type: 'datetime',
+            type: "datetime",
             labels: {
                 // input.xAxisLabelFormat allows overriding the default short month / day label
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat to customize
-                format: this.input.xAxisLabelFormat || '{value:%b %e}',
-                align: 'center',
+                format: this.input.xAxisLabelFormat || "{value:%b %e}",
+                align: "center",
                 style: {
                     color: labelsColor, // setting label colors
                 },
@@ -230,7 +243,7 @@ export default class extends Marko.Component<Input> {
             opposite: true, // moves yAxis labels to the right side of the chart
             labels: {
                 // if yAxisLabels are not passed in display the standard label
-                format: this.input.yAxisLabels ? undefined : '${text}',
+                format: this.input.yAxisLabels ? undefined : "${text}",
                 // if yAxisLabels array is passed in this formatter function is needed to
                 // return the proper label for each yAxis tick mark
                 formatter: this.input.yAxisLabels
@@ -239,7 +252,9 @@ export default class extends Marko.Component<Input> {
                               yLabelsItterator = -1;
                           }
                           yLabelsItterator = yLabelsItterator + 1;
-                          return component.input.yAxisLabels![yLabelsItterator] as string;
+                          return component.input.yAxisLabels![
+                              yLabelsItterator
+                          ] as string;
                       }
                     : undefined,
                 style: {
@@ -258,7 +273,9 @@ export default class extends Marko.Component<Input> {
     getLegendConfig(): Highcharts.LegendOptions {
         return {
             // if only a single series is provided do not display the legend
-            enabled: Array.isArray(this.input.series) && this.input.series.length > 1,
+            enabled:
+                Array.isArray(this.input.series) &&
+                this.input.series.length > 1,
             symbolRadius: 6, // corner radius on legend identifiers svg element
             symbolWidth: 12, // setting the width of the legend identifiers svg element
             symbolHeight: 12, // setting the height of the legend identifiers svg element
@@ -273,17 +290,24 @@ export default class extends Marko.Component<Input> {
             },
         };
     }
-    getTooltipConfig(): Highcharts.TooltipOptions & { crosshair: Highcharts.AxisCrosshairOptions } {
+    getTooltipConfig(): Highcharts.TooltipOptions & {
+        crosshair: Highcharts.AxisCrosshairOptions;
+    } {
         const component = this; // component reference used in formatter functions that don't have the same scope
         return {
             formatter: function () {
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
                 return tooltipTemplate.renderToString({
                     // eslint-disable-next-line no-undef,new-cap
-                    date: Highcharts.dateFormat('%b %e, %Y', this.points![0].x as number, false),
+                    date: Highcharts.dateFormat(
+                        "%b %e, %Y",
+                        this.points![0].x as number,
+                        false
+                    ),
                     points: this.points,
                     seriesLength:
-                        Array.isArray(component.input.series) && component.input.series.length > 1,
+                        Array.isArray(component.input.series) &&
+                        component.input.series.length > 1,
                 } as Marko.TemplateInput);
             },
             useHTML: true, // allows defining html to format tooltip content
@@ -293,12 +317,12 @@ export default class extends Marko.Component<Input> {
             outside: true, // used to render the tooltip outside of the main SVG element
             shadow: false, // hide the default shadow as it conflicts with designs
             crosshair: {
-                dashStyle: 'Solid', // makes a yaxis cross hair appear over the hovered xAxis data points
+                dashStyle: "Solid", // makes a yaxis cross hair appear over the hovered xAxis data points
             },
             shared: true, // shared means that if there are multipe series passed in there will be a single tooltip element per xAxis point
             style: {
                 filter: tooltipShadows, // sets tooltip shadows
-                fontSize: '12px',
+                fontSize: "12px",
             },
         };
     }
@@ -332,74 +356,88 @@ export default class extends Marko.Component<Input> {
     handleMouseOut() {
         // this function is debounced to improve performance
         this.chartRef.series.forEach((s) => {
-            s.data.forEach((data: Highcharts.Point & { className: string; onTick: boolean }) => {
-                // check if hover is on the xAxis (onTick) for each item,
-                // and if they have a className remove and disable the marker
-                if (!data.onTick && data.className !== null) {
-                    data.update(
-                        {
-                            className: undefined, // nullify className if not active
-                            marker: {
-                                enabled: false, // disable marker if not active
+            s.data.forEach(
+                (
+                    data: Highcharts.Point & {
+                        className: string;
+                        onTick: boolean;
+                    }
+                ) => {
+                    // check if hover is on the xAxis (onTick) for each item,
+                    // and if they have a className remove and disable the marker
+                    if (!data.onTick && data.className !== null) {
+                        data.update(
+                            {
+                                className: undefined, // nullify className if not active
+                                marker: {
+                                    enabled: false, // disable marker if not active
+                                },
                             },
-                        },
-                        false, // disable auto redraw
-                        false // disable auto animation
-                    );
-                } else if (data.onTick && data.className === null) {
-                    data.update(
-                        {
-                            className: 'ebay-line-graph__marker--visible', // set classname
-                            onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
-                            marker: {
-                                enabled: true, // set marker enabled
-                                radius: pointSize, // set the size of marker
-                                lineColor: backgroundColor, // set border color of hover markers
-                                lineWidth: 2, // sets the border line width of the marker symbol
-                            },
-                        } as Highcharts.PointOptionsType,
-                        false, // disable auto redraw
-                        false // disable auto animation
-                    );
+                            false, // disable auto redraw
+                            false // disable auto animation
+                        );
+                    } else if (data.onTick && data.className === null) {
+                        data.update(
+                            {
+                                className: "ebay-line-graph__marker--visible", // set classname
+                                onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
+                                marker: {
+                                    enabled: true, // set marker enabled
+                                    radius: pointSize, // set the size of marker
+                                    lineColor: backgroundColor, // set border color of hover markers
+                                    lineWidth: 2, // sets the border line width of the marker symbol
+                                },
+                            } as Highcharts.PointOptionsType,
+                            false, // disable auto redraw
+                            false // disable auto animation
+                        );
+                    }
                 }
-            });
+            );
         });
         this.chartRef.redraw(); // trigger redraw after all points have been updated
     }
     handleMouseOver(e) {
         // this function is debounced to improve performance
         this.chartRef.series.forEach((s) => {
-            s.data.forEach((data: Highcharts.Point & { className: string; onTick: boolean }) => {
-                // if active xAxis hover position matches the data point x update the marker to display
-                if (data.x === e.target.x) {
-                    data.update(
-                        {
-                            className: 'ebay-line-graph__marker--visible', // sets the classname
-                            onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
-                            marker: {
-                                enabled: true, // set marker enabled
-                                radius: pointSize, // set the size of marker
-                                lineColor: backgroundColor, // set border color of hover markers
-                                lineWidth: 2, // sets the border line width of the marker symbol
-                            },
-                        } as Highcharts.PointOptionsType,
-                        false, // disable auto redraw
-                        false // disable auto animation
-                    );
-                } else if (!data.onTick && data.className !== null) {
-                    data.update(
-                        {
-                            className: undefined, // nullify className if not active
-                            onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
-                            marker: {
-                                enabled: false, // disable marker
-                            },
-                        } as Highcharts.PointOptionsType,
-                        false, // disable auto redraw
-                        false // disable auto animation
-                    );
+            s.data.forEach(
+                (
+                    data: Highcharts.Point & {
+                        className: string;
+                        onTick: boolean;
+                    }
+                ) => {
+                    // if active xAxis hover position matches the data point x update the marker to display
+                    if (data.x === e.target.x) {
+                        data.update(
+                            {
+                                className: "ebay-line-graph__marker--visible", // sets the classname
+                                onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
+                                marker: {
+                                    enabled: true, // set marker enabled
+                                    radius: pointSize, // set the size of marker
+                                    lineColor: backgroundColor, // set border color of hover markers
+                                    lineWidth: 2, // sets the border line width of the marker symbol
+                                },
+                            } as Highcharts.PointOptionsType,
+                            false, // disable auto redraw
+                            false // disable auto animation
+                        );
+                    } else if (!data.onTick && data.className !== null) {
+                        data.update(
+                            {
+                                className: undefined, // nullify className if not active
+                                onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
+                                marker: {
+                                    enabled: false, // disable marker
+                                },
+                            } as Highcharts.PointOptionsType,
+                            false, // disable auto redraw
+                            false // disable auto animation
+                        );
+                    }
                 }
-            });
+            );
         });
         this.chartRef.redraw(); // trigger redraw after all points have been updated
     }
@@ -407,8 +445,8 @@ export default class extends Marko.Component<Input> {
         if (this.input.plotPoints) {
             // ticks is an object with the xaxis date values as their keys
             // setting tickValues to the keys of the ticks object and parsing into an int for data matching of xValues in series below
-            this.tickValues = Object.keys(this.chartRef.axes[0].ticks).map((value) =>
-                parseInt(value, 10)
+            this.tickValues = Object.keys(this.chartRef.axes[0].ticks).map(
+                (value) => parseInt(value, 10)
             );
 
             // this checks if the resize has adjust the number of xAxis tick marks, and if so make updates
@@ -419,7 +457,12 @@ export default class extends Marko.Component<Input> {
                 this.chartRef.series.forEach((series) => {
                     // looping through each series data array
                     series.data.forEach(
-                        (data: Highcharts.Point & { className: string; onTick: boolean }) => {
+                        (
+                            data: Highcharts.Point & {
+                                className: string;
+                                onTick: boolean;
+                            }
+                        ) => {
                             if (data.className !== null) {
                                 data.update(
                                     {
@@ -441,7 +484,12 @@ export default class extends Marko.Component<Input> {
                 this.chartRef.series.forEach((series) => {
                     // loop through each searies data objects
                     series.data.forEach(
-                        (data: Highcharts.Point & { className: string; onTick: boolean }) => {
+                        (
+                            data: Highcharts.Point & {
+                                className: string;
+                                onTick: boolean;
+                            }
+                        ) => {
                             // loop through the tickValues that come from the x axis ticks and are epoch time stamps
                             this.tickValues.forEach((tick) => {
                                 // if the current point x value matches the tickValue or the updateMarkers event exist from the redraw event
@@ -449,7 +497,8 @@ export default class extends Marko.Component<Input> {
                                     if (data.className === null) {
                                         data.update(
                                             {
-                                                className: 'ebay-line-graph__marker--visible', // add the ebay-line-graph__marker--visible class to boost it's visibility
+                                                className:
+                                                    "ebay-line-graph__marker--visible", // add the ebay-line-graph__marker--visible class to boost it's visibility
                                                 onTick: true, // sets the onTick flag to keep track of the points enabled status for mouse events
                                                 marker: {
                                                     enabled: true, // set marker enabled

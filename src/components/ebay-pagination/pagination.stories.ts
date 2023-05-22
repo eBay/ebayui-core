@@ -1,16 +1,16 @@
-import { addRenderBodies } from '../../../.storybook/utils';
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import Readme from './README.md';
-import Component from './index.marko';
-import interactiveTemplate from './examples/buttons-interactive.marko';
-import interactiveCode from './examples/buttons-interactive.marko?raw';
+import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import interactiveTemplate from "./examples/buttons-interactive.marko";
+import interactiveCode from "./examples/buttons-interactive.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'navigation & disclosure/ebay-pagination',
+    title: "navigation & disclosure/ebay-pagination",
     component: Component,
     parameters: {
         docs: {
@@ -22,100 +22,101 @@ export default {
 
     argTypes: {
         a11yPreviousText: {
-            control: { type: 'text' },
-            description: 'a11y text for previous arrow button',
+            control: { type: "text" },
+            description: "a11y text for previous arrow button",
         },
         a11yNextText: {
-            control: { type: 'text' },
-            description: 'a11y text for next arrow button',
+            control: { type: "text" },
+            description: "a11y text for next arrow button",
         },
         a11yCurrentText: {
-            control: { type: 'text' },
-            description: 'Description for the current page (e.g. Results of Page 1)',
+            control: { type: "text" },
+            description:
+                "Description for the current page (e.g. Results of Page 1)",
         },
         variant: {
-            control: { type: 'select' },
+            control: { type: "select" },
 
             table: {
                 defaultValue: {
-                    summary: 'show-range',
+                    summary: "show-range",
                 },
             },
 
-            options: ['show-last', 'show-range', 'overflow'],
+            options: ["show-last", "show-range", "overflow"],
             description:
-                'Either `show-last`, or `show-range`. If `show-last` then will show the last page always and will put `…` between the last visible range and the last page. `…` and the last page will take up two items in the range. `…` will be hidden when the range to the last item is fully visible.',
+                "Either `show-last`, or `show-range`. If `show-last` then will show the last page always and will put `…` between the last visible range and the last page. `…` and the last page will take up two items in the range. `…` will be hidden when the range to the last item is fully visible.",
         },
         disabled: {
-            name: 'disabled',
+            name: "disabled",
             table: {
-                category: '@item attribute tags',
+                category: "@item attribute tags",
             },
-            description: 'Previous/next button is disabled or not',
+            description: "Previous/next button is disabled or not",
         },
         href: {
-            name: 'href',
+            name: "href",
             table: {
-                category: '@item attribute tags',
+                category: "@item attribute tags",
             },
             description:
-                'for link that looks like a menu-item; omitting the href will switch to a button',
+                "for link that looks like a menu-item; omitting the href will switch to a button",
         },
         item: {
-            name: '@item',
+            name: "@item",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
-        '@item variant': {
-            name: 'variant',
+        "@item variant": {
+            name: "variant",
             table: {
-                category: '@item attribute tags',
+                category: "@item attribute tags",
             },
             description:
                 '"button" or "link". Will force an item to be a link if href is omitted. Defaults to button. If not specified, tag type will still be controlled by `href`',
         },
         current: {
-            name: 'current',
+            name: "current",
             table: {
-                category: '@item attribute tags',
+                category: "@item attribute tags",
             },
-            description: 'the current page',
+            description: "the current page",
         },
         type: {
-            name: 'type',
+            name: "type",
             table: {
-                category: '@item attribute tags',
+                category: "@item attribute tags",
             },
             description: `"previous", "next" or "page"(default). To specify if the information entered is for the previous or next arrrow button or a page. If the type='previous  | next' isn't provided the previous/next arrow buttons will be taken as'disabled'`,
         },
         onPrevious: {
-            action: 'on-previous',
-            description: 'Triggered on previous arrow button',
+            action: "on-previous",
+            description: "Triggered on previous arrow button",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent, el }',
+                    summary: "{ originalEvent, el }",
                 },
             },
         },
         onNext: {
-            action: 'on-next',
-            description: 'Triggered on next arrow button',
+            action: "on-next",
+            description: "Triggered on next arrow button",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent, el }',
+                    summary: "{ originalEvent, el }",
                 },
             },
         },
         onSelect: {
-            action: 'on-select',
-            description: 'Triggered on page selected clicked',
+            action: "on-select",
+            description: "Triggered on page selected clicked",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent, el, value, index }',
+                    summary: "{ originalEvent, el, value, index }",
                 },
             },
         },
@@ -124,57 +125,57 @@ export default {
 
 export const Links = Template.bind({});
 Links.args = {
-    a11yPreviousText: 'previous',
-    a11yNextText: 'next',
-    a11yCurrentText: 'Current page',
+    a11yPreviousText: "previous",
+    a11yNextText: "next",
+    a11yCurrentText: "Current page",
     items: [
         {
             renderBody: ``,
-            type: 'previous',
-            href: '#',
+            type: "previous",
+            href: "#",
             disabled: true,
         },
         {
             renderBody: `1`,
-            href: '#',
+            href: "#",
             current: true,
         },
         {
             renderBody: `2`,
-            href: '#',
+            href: "#",
         },
         {
             renderBody: `3`,
-            href: '#',
+            href: "#",
         },
         {
             renderBody: `4`,
-            href: '#',
+            href: "#",
         },
         {
             renderBody: `5`,
-            href: '#',
+            href: "#",
         },
         {
             renderBody: `6`,
-            href: '#',
+            href: "#",
         },
         {
             renderBody: `7`,
-            href: '#',
+            href: "#",
         },
         {
             renderBody: `8`,
-            href: '#',
+            href: "#",
         },
         {
             renderBody: `9`,
-            href: '#',
+            href: "#",
         },
         {
             renderBody: ``,
-            type: 'next',
-            href: '#',
+            type: "next",
+            href: "#",
             disabled: true,
         },
     ],
@@ -182,20 +183,20 @@ Links.args = {
 Links.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-pagination', Links.args),
+            code: tagToString("ebay-pagination", Links.args),
         },
     },
 };
 
 export const Buttons = Template.bind({});
 Buttons.args = {
-    a11yPreviousText: 'previous',
-    a11yNextText: 'next',
-    a11yCurrentText: 'Current page',
+    a11yPreviousText: "previous",
+    a11yNextText: "next",
+    a11yCurrentText: "Current page",
     items: [
         {
             renderBody: ``,
-            type: 'previous',
+            type: "previous",
             disabled: true,
         },
         {
@@ -228,7 +229,7 @@ Buttons.args = {
         },
         {
             renderBody: ``,
-            type: 'next',
+            type: "next",
             disabled: true,
         },
     ],
@@ -236,7 +237,7 @@ Buttons.args = {
 Buttons.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-pagination', Buttons.args),
+            code: tagToString("ebay-pagination", Buttons.args),
         },
     },
 };

@@ -1,19 +1,23 @@
-import FloatingLabel from 'makeup-floating-label';
+import FloatingLabel from "makeup-floating-label";
 
-export interface Option extends Omit<Marko.Input<'option'>, `on${string}`> {
+export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
     optgroup?: string;
     text?: string;
 }
 
-export interface Input extends Omit<Marko.Input<'select'>, `on${string}`> {
+export interface Input extends Omit<Marko.Input<"select">, `on${string}`> {
     options?: Marko.RepeatableAttrTag<Option>;
     floatingLabel?: string;
     isLarge?: boolean;
     borderless?: boolean;
-    'on-change'?: (event: { index: number; selected: string[]; el: HTMLOptionElement }) => void;
-    onChange?: this['on-change'];
-    'on-floating-label-init'?: () => void;
-    'onFloating-label-init'?: this['on-floating-label-init'];
+    "on-change"?: (event: {
+        index: number;
+        selected: string[];
+        el: HTMLOptionElement;
+    }) => void;
+    onChange?: this["on-change"];
+    "on-floating-label-init"?: () => void;
+    "onFloating-label-init"?: this["on-floating-label-init"];
 }
 
 export interface State {
@@ -24,18 +28,18 @@ export default class extends Marko.Component<Input, State> {
     declare _floatingLabel: FloatingLabel;
 
     get selectId() {
-        return this.input.id || this.getElId('select');
+        return this.input.id || this.getElId("select");
     }
 
     handleChange(event: Event | { target: { selectedIndex: number } }) {
         const { selectedIndex } = event.target as HTMLSelectElement;
-        const el = this.getEls('option')[selectedIndex];
+        const el = this.getEls("option")[selectedIndex];
         const option = this.input.options![selectedIndex];
 
         this.state.selectedIndex = selectedIndex;
 
         // TODO: we should not cast the selected value to a string here, but this is a breaking change.
-        this.emit('change', {
+        this.emit("change", {
             index: selectedIndex,
             selected: [String(option.value)],
             el,
@@ -43,7 +47,7 @@ export default class extends Marko.Component<Input, State> {
     }
 
     handleFloatingLabelInit() {
-        this.emit('floating-label-init');
+        this.emit("floating-label-init");
     }
 
     onCreate() {
@@ -62,10 +66,12 @@ export default class extends Marko.Component<Input, State> {
     onMount() {
         this._setupMakeup();
 
-        const parentForm = this.el!.closest('form');
+        const parentForm = this.el!.closest("form");
         if (parentForm) {
-            const { selectedIndex } = document.getElementById(this.selectId) as HTMLSelectElement;
-            this.subscribeTo(parentForm).on('reset', () => {
+            const { selectedIndex } = document.getElementById(
+                this.selectId
+            ) as HTMLSelectElement;
+            this.subscribeTo(parentForm).on("reset", () => {
                 this.handleChange({ target: { selectedIndex } });
             });
         }
@@ -82,13 +88,16 @@ export default class extends Marko.Component<Input, State> {
             if (this._floatingLabel) {
                 this._floatingLabel.refresh();
                 this.handleFloatingLabelInit();
-            } else if (document.readyState === 'complete') {
+            } else if (document.readyState === "complete") {
                 if (this.el) {
                     this._floatingLabel = new FloatingLabel(this.el);
                     this.handleFloatingLabelInit();
                 }
             } else {
-                this.subscribeTo(window).once('load', this._setupMakeup.bind(this));
+                this.subscribeTo(window).once(
+                    "load",
+                    this._setupMakeup.bind(this)
+                );
             }
         }
     }

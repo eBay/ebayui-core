@@ -1,58 +1,58 @@
 {
-  "template": "./index.marko",
-  "transformer": "../../common/transformers/menu-separator",
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@class": "string",
-  "@style": "string",
-  "@text": "string",
-  "@icon": "string",
-  "@a11y-text": "string",
-  "@text-align": "string",
-  "@no-toggle-icon": "boolean",
-  "@expanded": "boolean",
-  "@reverse": "boolean",
-  "@fix-width": "boolean",
-  "@borderless": "boolean",
-  "@size": "string",
-  "@priority": "string",
-  "@icon <icon>": {
+    "template": "./index.marko",
+    "transformer": "../../common/transformers/menu-separator",
     "@*": {
-      "targetProperty": null,
-      "type": "expression"
-    },
-    "@html-attributes": "expression"
-  },
-  "@disabled": "boolean",
-  "@collapseOnSelect": "boolean",
-  "@variant": "string",
-  "@items <item>[]": {
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
+        "targetProperty": null,
+        "type": "expression"
     },
     "@html-attributes": "expression",
     "@class": "string",
     "@style": "string",
-    "@href": "string",
-    "@type": "string",
-    "@current": "boolean",
-    "@badge-number": "expression",
-    "@badge-aria-label": "string",
-    "@separator": "boolean"
-  },
-  "@label <label>": {
-    "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string"
-  },
-  "@separator <separator>[]": {
-    "@html-attributes": "expression",
-    "@class": "string",
-    "@style": "string",
-    "@separator": "boolean"
-  }
+    "@text": "string",
+    "@icon": "string",
+    "@a11y-text": "string",
+    "@text-align": "string",
+    "@no-toggle-icon": "boolean",
+    "@expanded": "boolean",
+    "@reverse": "boolean",
+    "@fix-width": "boolean",
+    "@borderless": "boolean",
+    "@size": "string",
+    "@priority": "string",
+    "@icon <icon>": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@disabled": "boolean",
+    "@collapseOnSelect": "boolean",
+    "@variant": "string",
+    "@items <item>[]": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@href": "string",
+        "@type": "string",
+        "@current": "boolean",
+        "@badge-number": "expression",
+        "@badge-aria-label": "string",
+        "@separator": "boolean"
+    },
+    "@label <label>": {
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string"
+    },
+    "@separator <separator>[]": {
+        "@html-attributes": "expression",
+        "@class": "string",
+        "@style": "string",
+        "@separator": "boolean"
+    }
 }

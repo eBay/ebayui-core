@@ -1,9 +1,9 @@
-'use strict';
-const fs = require('fs');
+"use strict";
+const fs = require("fs");
 module.exports = function (lasso) {
-    lasso.dependencies.registerJavaScriptType('ts', {
+    lasso.dependencies.registerJavaScriptType("ts", {
         properties: {
-            path: 'string',
+            path: "string",
         },
         async init() {
             if (!this.path) {
@@ -12,16 +12,18 @@ module.exports = function (lasso) {
             this.path = this.resolvePath(this.path);
         },
         async read() {
-            return await fs.promises.readFile(this.path, 'utf-8');
+            return await fs.promises.readFile(this.path, "utf-8");
         },
         getSourceFile: function () {
             return this.path;
         },
     });
 
-    lasso.dependencies.registerRequireExtension('md', {
+    lasso.dependencies.registerRequireExtension("md", {
         read: async function (path) {
-            return `module.exports = ${JSON.stringify(await fs.promises.readFile(path, 'utf-8'))}`;
+            return `module.exports = ${JSON.stringify(
+                await fs.promises.readFile(path, "utf-8")
+            )}`;
         },
 
         getLastModified: function (path, lassoContext, callback) {

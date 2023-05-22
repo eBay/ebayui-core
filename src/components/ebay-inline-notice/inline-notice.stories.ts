@@ -1,11 +1,11 @@
-import { buildExtensionTemplate } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './index.marko';
-import DefaultTemplate from './examples/default.marko';
-import DefaultTemplateCode from './examples/default.marko?raw';
+import { buildExtensionTemplate } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import DefaultTemplate from "./examples/default.marko";
+import DefaultTemplateCode from "./examples/default.marko?raw";
 
 export default {
-    title: 'notices & tips/ebay-inline-notice',
+    title: "notices & tips/ebay-inline-notice",
     component: Component,
     parameters: {
         docs: {
@@ -19,28 +19,32 @@ export default {
         status: {
             table: {
                 defaultValue: {
-                    summary: 'attention',
+                    summary: "attention",
                 },
             },
 
-            description: 'The icon used and status of the noptice',
-            options: ['attention', 'confirmation', 'information'],
-            type: 'select',
+            description: "The icon used and status of the noptice",
+            options: ["attention", "confirmation", "information"],
+            type: "select",
         },
         icon: {
             table: {
                 defaultValue: {
-                    summary: 'default',
+                    summary: "default",
                 },
             },
-            options: ['default', 'none'],
-            type: 'select',
-            description: 'matches whatever is specified by the "status", or if none hides icon',
+            options: ["default", "none"],
+            type: "select",
+            description:
+                'matches whatever is specified by the "status", or if none hides icon',
         },
         a11yText: {
-            description: 'adding description for the notice for a11y users',
+            description: "adding description for the notice for a11y users",
         },
     },
 };
 
-export const Default = buildExtensionTemplate(DefaultTemplate, DefaultTemplateCode);
+export const Default = buildExtensionTemplate(
+    DefaultTemplate,
+    DefaultTemplateCode
+);

@@ -1,11 +1,11 @@
 const validRanges = {
-    'A+++': ['D', 'E', 'G'],
-    'A++': ['E', 'G'],
-    'A+': ['F', 'G'],
-    A: ['G'],
+    "A+++": ["D", "E", "G"],
+    "A++": ["E", "G"],
+    "A+": ["F", "G"],
+    A: ["G"],
 };
 
-export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
+export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
     toJSON?: any;
     max: string;
     min: string;

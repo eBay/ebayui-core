@@ -1,22 +1,22 @@
 {
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@title": "string",
-  "@description": "string",
-  "@series[]": {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
     "@title": "string",
-    "@data[]": {
-      "@x": "number",
-      "@y": "number",
-      "@label": "string"
-    }
-  },
-  "@xAxisLabelFormat": "string",
-  "@xAxisPositioner": "function",
-  "@yAxisLabels": "array",
-  "@yAxisPositioner": "function"
+    "@description": "string",
+    "@series[]": {
+        "@title": "string",
+        "@data[]": {
+            "@x": "number",
+            "@y": "number",
+            "@label": "string"
+        }
+    },
+    "@xAxisLabelFormat": "string",
+    "@xAxisPositioner": "function",
+    "@yAxisLabels": "array",
+    "@yAxisPositioner": "function"
 }

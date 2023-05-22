@@ -1,4 +1,8 @@
-function handleKeydown(keyCodes: number[], e: KeyboardEvent, callback: () => any) {
+function handleKeydown(
+    keyCodes: number[],
+    e: KeyboardEvent,
+    callback: () => any
+) {
     const keyCode = e.charCode || e.keyCode;
     if (keyCodes.indexOf(keyCode) !== -1) {
         callback();
@@ -6,7 +10,11 @@ function handleKeydown(keyCodes: number[], e: KeyboardEvent, callback: () => any
 }
 
 // inverse of found keys
-function handleNotKeydown(keyCodes: number[], e: KeyboardEvent, callback: () => any) {
+function handleNotKeydown(
+    keyCodes: number[],
+    e: KeyboardEvent,
+    callback: () => any
+) {
     const keyCode = e.charCode || e.keyCode;
     if (keyCodes.indexOf(keyCode) === -1) {
         callback();
@@ -67,22 +75,22 @@ function preventDefaultIfHijax(e: KeyboardEvent, hijax: boolean) {
 const handlers: ((e: Event) => void)[] = [];
 function addEventListener(_: unknown, handler: (e: Event) => void) {
     if (handlers.length === 0) {
-        window.addEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
     }
     handlers.push(handler);
 }
 function removeEventListener(_: unknown, handler: (e: Event) => void) {
     if (handlers.length === 1) {
-        window.removeEventListener('resize', handleResize);
+        window.removeEventListener("resize", handleResize);
     }
     handlers.splice(handlers.indexOf(handler), 1);
 }
 function handleResize(e: Event) {
-    window.removeEventListener('resize', handleResize);
+    window.removeEventListener("resize", handleResize);
     (window.requestAnimationFrame || window.setTimeout)(() => {
         if (handlers.length) {
             handlers.forEach((handler) => handler(e));
-            window.addEventListener('resize', handleResize);
+            window.addEventListener("resize", handleResize);
         }
     }, 16);
 }

@@ -1,1 +1,1 @@
-require('@ebay/skin/tabs');
+require("@ebay/skin/tabs");

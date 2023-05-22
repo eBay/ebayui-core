@@ -1,12 +1,12 @@
-import * as keyboardTrap from 'makeup-keyboard-trap';
-import * as screenReaderTrap from 'makeup-screenreader-trap';
-import { AttrClass } from 'marko/tags-html';
-import * as bodyScroll from '../../../common/body-scroll';
-import * as eventUtils from '../../../common/event-utils';
-import transition from '../../../common/transition';
+import * as keyboardTrap from "makeup-keyboard-trap";
+import * as screenReaderTrap from "makeup-screenreader-trap";
+import { AttrClass } from "marko/tags-html";
+import * as bodyScroll from "../../../common/body-scroll";
+import * as eventUtils from "../../../common/event-utils";
+import transition from "../../../common/transition";
 
-export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
-    buttonPosition?: 'right' | 'left' | 'bottom' | 'hidden';
+export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+    buttonPosition?: "right" | "left" | "bottom" | "hidden";
     useHiddenProperty?: boolean;
     baseEl?: string;
     header?: Marko.Input<`h${number}`> & {
@@ -37,14 +37,14 @@ export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
     };
     closeFocus?: string;
     open?: boolean;
-    transitionEl?: 'root' | 'window';
+    transitionEl?: "root" | "window";
     focus?: string;
-    'on-open'?: (event: Event) => void;
-    onOpen?: this['on-open'];
-    'on-close'?: (event: Event) => void;
-    onClose?: this['on-close'];
-    'on-scroll'?: (event: Event) => void;
-    onScroll?: this['on-scroll'];
+    "on-open"?: (event: Event) => void;
+    onOpen?: this["on-open"];
+    "on-close"?: (event: Event) => void;
+    onClose?: this["on-close"];
+    "on-scroll"?: (event: Event) => void;
+    onScroll?: this["on-scroll"];
 }
 
 interface State {
@@ -70,13 +70,19 @@ export default class extends Marko.Component<Input, State> {
     }
 
     trackLastClick(e: MouseEvent) {
-        if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) {
+        if (
+            e.defaultPrevented ||
+            e.metaKey ||
+            e.ctrlKey ||
+            e.shiftKey ||
+            e.button !== 0
+        ) {
             return;
         }
 
         let el = e.target as Node | null;
         // Find an <button> element that may have been clicked.
-        while (el !== null && el.nodeName !== 'BUTTON') {
+        while (el !== null && el.nodeName !== "BUTTON") {
             el = el.parentNode;
         }
         // Store the button that was clicked.
@@ -89,7 +95,9 @@ export default class extends Marko.Component<Input, State> {
             closeFocusEl = document.getElementById(input.closeFocus);
         }
         const el =
-            document.activeElement === document.body ? this.clickTarget : document.activeElement;
+            document.activeElement === document.body
+                ? this.clickTarget
+                : document.activeElement;
         return closeFocusEl || el;
     }
 
@@ -98,7 +106,7 @@ export default class extends Marko.Component<Input, State> {
     }
 
     handleScroll() {
-        this.emit('scroll');
+        this.emit("scroll");
     }
 
     handleKeydown(event: KeyboardEvent) {
@@ -112,7 +120,7 @@ export default class extends Marko.Component<Input, State> {
 
         this.startEl = null;
 
-        if (this.input.buttonPosition === 'hidden') {
+        if (this.input.buttonPosition === "hidden") {
             return;
         }
 
@@ -144,25 +152,28 @@ export default class extends Marko.Component<Input, State> {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._release();
         }
     }
 
     onMount() {
         this.rootEl = this.getEl() ?? null;
-        this.windowEl = this.getEl('window') ?? null;
-        this.closeEl = this.getEl('close') ?? null;
-        this.bodyEl = this.getEl('body') ?? null;
-        if (this.input.transitionEl === 'root') {
+        this.windowEl = this.getEl("window") ?? null;
+        this.closeEl = this.getEl("close") ?? null;
+        this.bodyEl = this.getEl("body") ?? null;
+        if (this.input.transitionEl === "root") {
             this.transitionEls = [this.rootEl as Element];
-        } else if (this.input.transitionEl === 'window') {
+        } else if (this.input.transitionEl === "window") {
             this.transitionEls = [this.windowEl as Element];
         } else {
-            this.transitionEls = [this.windowEl as Element, this.rootEl as Element];
+            this.transitionEls = [
+                this.windowEl as Element,
+                this.rootEl as Element,
+            ];
         }
         // Add an event listener to the dialog to fix an issue with Safari not recognizing it as a touch target.
-        this.subscribeTo(this.rootEl).on('click', () => {});
+        this.subscribeTo(this.rootEl).on("click", () => {});
 
         this._trap({
             firstRender: true,
@@ -200,8 +211,13 @@ export default class extends Marko.Component<Input, State> {
         }
     }
 
-    _getTrapCallback(restoreTrap: boolean, isTrapped: boolean, wasTrapped: boolean) {
-        const willTrap = this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped));
+    _getTrapCallback(
+        restoreTrap: boolean,
+        isTrapped: boolean,
+        wasTrapped: boolean
+    ) {
+        const willTrap =
+            this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped));
         const useHiddenProperty = this.useHiddenProperty;
 
         return () => {
@@ -224,8 +240,13 @@ export default class extends Marko.Component<Input, State> {
         const isFirstRender = opts && opts.firstRender;
         const wasToggled = isTrapped !== wasTrapped;
         const focusEl =
-            (this.input.focus && document.getElementById(this.input.focus)) || this.closeEl;
-        const runTraps = this._getTrapCallback(restoreTrap, isTrapped, wasTrapped);
+            (this.input.focus && document.getElementById(this.input.focus)) ||
+            this.closeEl;
+        const runTraps = this._getTrapCallback(
+            restoreTrap,
+            isTrapped,
+            wasTrapped
+        );
 
         // Ensure focus is set and body scroll prevented on initial render.
         if (isFirstRender && this.input.isModal && isTrapped) {
@@ -240,14 +261,14 @@ export default class extends Marko.Component<Input, State> {
                 runTraps();
 
                 if (isTrapped) {
-                    this.rootEl?.removeAttribute('hidden');
+                    this.rootEl?.removeAttribute("hidden");
                     this._triggerFocus(focusEl as HTMLElement);
-                    this.emit('open');
+                    this.emit("open");
                 } else {
                     this._triggerBodyScroll(false);
                     const activeElement = this.getActiveElement(this.input);
-                    this.rootEl?.setAttribute('hidden', '');
-                    this.emit('close');
+                    this.rootEl?.setAttribute("hidden", "");
+                    this.emit("close");
 
                     if (
                         // Skip restoring focus if the focused element was changed via the dialog-close event
@@ -261,7 +282,10 @@ export default class extends Marko.Component<Input, State> {
                     // Reset dialog scroll position lazily to avoid jank.
                     // Note since the dialog is not in the dom at this point none of the scroll methods will work.
                     this.cancelScrollReset = setTimeout(() => {
-                        this.rootEl?.parentNode?.replaceChild(this.rootEl, this.rootEl);
+                        this.rootEl?.parentNode?.replaceChild(
+                            this.rootEl,
+                            this.rootEl
+                        );
                         this.cancelScrollReset = undefined;
                     }, 20);
                 }
@@ -280,7 +304,7 @@ export default class extends Marko.Component<Input, State> {
                         onFinishTransition
                     );
                 } else {
-                    this.rootEl?.removeAttribute('hidden');
+                    this.rootEl?.removeAttribute("hidden");
                     runTraps();
                 }
             } else {
@@ -294,7 +318,7 @@ export default class extends Marko.Component<Input, State> {
                         onFinishTransition
                     );
                 } else {
-                    this.rootEl?.setAttribute('hidden', '');
+                    this.rootEl?.setAttribute("hidden", "");
                 }
             }
         } else if (restoreTrap) {

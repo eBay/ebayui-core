@@ -1,6 +1,6 @@
-import Readme from './README.md';
-import Component from './examples/default.marko';
-import code from './examples/default.marko?raw';
+import Readme from "./README.md";
+import Component from "./examples/default.marko";
+import code from "./examples/default.marko?raw";
 
 const Template = (args) => ({
     input: {
@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'dialogs/ebay-snackbar-dialog',
+    title: "dialogs/ebay-snackbar-dialog",
     component: Component,
     parameters: {
         docs: {
@@ -26,48 +26,48 @@ export default {
 
     argTypes: {
         open: {
-            type: 'boolean',
-            control: { type: 'boolean' },
+            type: "boolean",
+            control: { type: "boolean" },
             table: {
                 disable: true,
             },
         },
         layout: {
-            type: 'enum',
-            control: { type: 'radio' },
-            options: ['row', 'column'],
+            type: "enum",
+            control: { type: "radio" },
+            options: ["row", "column"],
         },
         snacktext: {
-            control: { type: 'text' },
-            description: 'for demo only',
+            control: { type: "text" },
+            description: "for demo only",
         },
         onOpen: {
-            action: 'on-open',
-            description: 'Triggered on dialog opened',
+            action: "on-open",
+            description: "Triggered on dialog opened",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
         onClose: {
-            action: 'on-close',
-            description: 'Triggered on dialog closed.',
+            action: "on-close",
+            description: "Triggered on dialog closed.",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
         onAction: {
-            action: 'on-action',
-            description: 'Triggered on action pressed',
+            action: "on-action",
+            description: "Triggered on action pressed",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
@@ -76,7 +76,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    snacktext: 'This is the snackbar',
+    snacktext: "This is the snackbar",
 };
 Standard.parameters = {
     docs: {

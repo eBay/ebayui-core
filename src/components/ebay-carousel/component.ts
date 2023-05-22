@@ -1,10 +1,10 @@
-import focusables from 'makeup-focusables';
-import { AttrClass, AttrStyle } from 'marko/tags-html';
+import focusables from "makeup-focusables";
+import { AttrClass, AttrStyle } from "marko/tags-html";
 // TODO check carousel
-import { resizeUtil } from '../../common/event-utils';
-import { processHtmlAttributes } from '../../common/html-attributes';
-import { onScrollDebounced as onScroll } from './utils/on-scroll-debounced';
-import { scrollTransition } from './utils/scroll-transition';
+import { resizeUtil } from "../../common/event-utils";
+import { processHtmlAttributes } from "../../common/html-attributes";
+import { onScrollDebounced as onScroll } from "./utils/on-scroll-debounced";
+import { scrollTransition } from "./utils/scroll-transition";
 
 type Direction = typeof LEFT | typeof RIGHT;
 // Used for carousel slide direction.
@@ -12,7 +12,7 @@ const LEFT = -1;
 const RIGHT = 1;
 
 interface Item {
-    htmlAttributes?: Marko.Input<'li'>;
+    htmlAttributes?: Marko.Input<"li">;
     key?: string;
     class?: AttrClass;
     style?: AttrStyle;
@@ -27,7 +27,7 @@ interface Input {
     index?: number | string;
     itemsPerSlide?: number | string;
     autoplay?: number | string | boolean;
-    imageTreatment?: 'none' | 'matte';
+    imageTreatment?: "none" | "matte";
     hiddenScrollbar?: boolean;
     paused?: boolean;
     noPeek?: boolean;
@@ -37,21 +37,21 @@ interface Input {
     a11yNextText?: string;
     a11yPauseText?: string;
     a11yPlayText?: string;
-    'aria-roledescription'?: string;
-    'on-move'?: (event: { visibleIndexes: number[] }) => void;
-    onMove?: this['on-move'];
-    'on-scroll'?: (event: { index: number }) => void;
-    onScroll?: this['on-scroll'];
-    'on-slide'?: (event: { slide: number; originalEvent: Event }) => void;
-    onSlide?: this['on-slide'];
-    'on-next'?: (event: { originalEvent: Event }) => void;
-    onNext?: this['on-next'];
-    'on-previous'?: (event: { originalEvent: Event }) => void;
-    onPrevious?: this['on-previous'];
-    'on-play'?: (event: { originalEvent: Event }) => void;
-    onPlay?: this['on-play'];
-    'on-pause'?: (event: { originalEvent: Event }) => void;
-    onPause?: this['on-pause'];
+    "aria-roledescription"?: string;
+    "on-move"?: (event: { visibleIndexes: number[] }) => void;
+    onMove?: this["on-move"];
+    "on-scroll"?: (event: { index: number }) => void;
+    onScroll?: this["on-scroll"];
+    "on-slide"?: (event: { slide: number; originalEvent: Event }) => void;
+    onSlide?: this["on-slide"];
+    "on-next"?: (event: { originalEvent: Event }) => void;
+    onNext?: this["on-next"];
+    "on-previous"?: (event: { originalEvent: Event }) => void;
+    onPrevious?: this["on-previous"];
+    "on-play"?: (event: { originalEvent: Event }) => void;
+    onPlay?: this["on-play"];
+    "on-pause"?: (event: { originalEvent: Event }) => void;
+    onPause?: this["on-pause"];
 }
 
 interface State {
@@ -109,7 +109,7 @@ export default class extends Marko.Component<Input, State> {
     emitUpdate() {
         const { config, items } = this.state;
         config.scrollTransitioning = false;
-        this.emit('move', {
+        this.emit("move", {
             visibleIndexes: items
                 .filter(({ fullyVisible }) => fullyVisible)
                 .map((item) => items.indexOf(item)),
@@ -139,8 +139,12 @@ export default class extends Marko.Component<Input, State> {
                 }
             }
 
-            const deltaLow = Math.abs(scrollLeft - items[low * itemsPerSlide].left);
-            const deltaHigh = Math.abs(scrollLeft - items[high * itemsPerSlide].left);
+            const deltaLow = Math.abs(
+                scrollLeft - items[low * itemsPerSlide].left
+            );
+            const deltaHigh = Math.abs(
+                scrollLeft - items[high * itemsPerSlide].left
+            );
             closest = this.normalizeIndex(
                 state,
                 (deltaLow > deltaHigh ? high : low) * itemsPerSlide
@@ -150,8 +154,8 @@ export default class extends Marko.Component<Input, State> {
         if (state.index !== closest) {
             this.skipScrolling = true;
             config.preserveItems = true;
-            this.setState('index', closest);
-            this.emit('scroll', { index: closest });
+            this.setState("index", closest);
+            this.emit("scroll", { index: closest });
         }
     }
 
@@ -196,13 +200,15 @@ export default class extends Marko.Component<Input, State> {
             return false;
         }
         const currentItem = items[index];
-        return currentItem.left === undefined || currentItem.right === undefined;
+        return (
+            currentItem.left === undefined || currentItem.right === undefined
+        );
     }
 
     getNextIndex(state: State, delta: Direction): number {
         const { index, items, slideWidth, itemsPerSlide } = state;
         let i = index;
-        let item: State['items'][number];
+        let item: State["items"][number];
 
         // If going backward from 0, we go to the end.
         if (delta === LEFT && i === 0) {
@@ -227,20 +233,31 @@ export default class extends Marko.Component<Input, State> {
     }
 
     getTemplateData(state: State) {
-        const { config, autoplayInterval, items, itemsPerSlide, slideWidth, gap } = state;
+        const {
+            config,
+            autoplayInterval,
+            items,
+            itemsPerSlide,
+            slideWidth,
+            gap,
+        } = state;
         const hasOverride = config.offsetOverride !== undefined;
         const isSingleSlide = items.length <= itemsPerSlide;
         state.index = this.normalizeIndex(state, state.index);
 
         const offset = this.getOffset(state);
-        const prevControlDisabled = isSingleSlide || (!autoplayInterval && offset === 0);
+        const prevControlDisabled =
+            isSingleSlide || (!autoplayInterval && offset === 0);
         const nextControlDisabled =
-            isSingleSlide || (!autoplayInterval && offset === this.getMaxOffset(state));
+            isSingleSlide ||
+            (!autoplayInterval && offset === this.getMaxOffset(state));
         // If left/right is undefined, the carousel is moving at that moment. We should keep the old disabled state
         const bothControlsDisabled = this.isAnimating(state)
             ? state.bothControlsDisabled
             : prevControlDisabled && nextControlDisabled;
-        let slide: number | undefined, itemWidth: string, totalSlides: number | undefined;
+        let slide: number | undefined,
+            itemWidth: string,
+            totalSlides: number | undefined;
 
         if (itemsPerSlide) {
             const itemsInSlide = itemsPerSlide + state.peek;
@@ -256,20 +273,21 @@ export default class extends Marko.Component<Input, State> {
             const marginRight = i !== items.length - 1 && `${gap}px`;
 
             // Account for users providing a style string or object for each item.
-            if (typeof style === 'string') {
+            if (typeof style === "string") {
                 item.style = `${style};flex-basis:${itemWidth};margin-right:${marginRight};`;
                 if (transform) item.style += `transform:${transform}`;
             } else {
                 item.style = Object.assign({}, style, {
                     width: itemWidth,
-                    'margin-right': marginRight,
+                    "margin-right": marginRight,
                     transform,
                 });
             }
 
             item.fullyVisible =
                 item.left === undefined ||
-                (item.left - offset >= -0.01 && item.right - offset <= slideWidth + 0.01);
+                (item.left - offset >= -0.01 &&
+                    item.right - offset <= slideWidth + 0.01);
         });
 
         const data = Object.assign({}, state, {
@@ -288,8 +306,16 @@ export default class extends Marko.Component<Input, State> {
 
     move(delta: Direction) {
         const { state } = this;
-        const { index, items, itemsPerSlide, autoplayInterval, slideWidth, gap, peek, config } =
-            state;
+        const {
+            index,
+            items,
+            itemsPerSlide,
+            autoplayInterval,
+            slideWidth,
+            gap,
+            peek,
+            config,
+        } = state;
         const nextIndex = this.getNextIndex(state, delta);
         let offsetOverride: number | undefined;
 
@@ -318,15 +344,17 @@ export default class extends Marko.Component<Input, State> {
                 // Moves the items in the first slide to be after the last slide.
                 for (let i = Math.ceil(itemsPerSlide + peek); i--; ) {
                     const item = items[i];
-                    item.transform = `translateX(${this.getMaxOffset(state) + slideWidth + gap}px)`;
+                    item.transform = `translateX(${
+                        this.getMaxOffset(state) + slideWidth + gap
+                    }px)`;
                 }
             }
 
             config.offsetOverride = offsetOverride;
         }
 
-        this.setState('index', nextIndex);
-        this.once('move', () => {
+        this.setState("index", nextIndex);
+        this.once("move", () => {
             this.isMoving = false;
 
             if (offsetOverride !== undefined) {
@@ -348,16 +376,18 @@ export default class extends Marko.Component<Input, State> {
         const { state } = this;
         const nextIndex = this.move(direction);
         const slide = this.getSlide(state, nextIndex)!;
-        this.emit('slide', { slide: slide + 1, originalEvent });
-        this.emit(`${direction === 1 ? 'next' : 'previous'}`, { originalEvent });
+        this.emit("slide", { slide: slide + 1, originalEvent });
+        this.emit(`${direction === 1 ? "next" : "previous"}`, {
+            originalEvent,
+        });
     }
 
     handleStartInteraction() {
-        this.setState('interacting', true);
+        this.setState("interacting", true);
     }
 
     handleEndInteraction() {
-        this.setState('interacting', false);
+        this.setState("interacting", false);
     }
 
     togglePlay(originalEvent: MouseEvent) {
@@ -365,36 +395,36 @@ export default class extends Marko.Component<Input, State> {
             state: { config, paused },
         } = this;
         config.preserveItems = true;
-        this.setState('paused', !paused);
+        this.setState("paused", !paused);
         if (paused && !this.isMoving) {
             this.move(RIGHT);
         }
-        this.emit(`${paused ? 'play' : 'pause'}`, { originalEvent });
+        this.emit(`${paused ? "play" : "pause"}`, { originalEvent });
     }
 
     onInput(input: Input) {
         const gap = parseInt(input.gap as any, 10);
         const state = {
             htmlAttributes: processHtmlAttributes(input, [
-                'class',
-                'style',
-                'index',
-                'type',
-                'slide',
-                'gap',
-                'autoplay',
-                'paused',
-                'itemsPerSlide',
-                'a11yPreviousText',
-                'a11yNextText',
-                'a11yPlayText',
-                'a11yPauseText',
-                'items',
-                'hiddenScrollbar',
+                "class",
+                "style",
+                "index",
+                "type",
+                "slide",
+                "gap",
+                "autoplay",
+                "paused",
+                "itemsPerSlide",
+                "a11yPreviousText",
+                "a11yNextText",
+                "a11yPlayText",
+                "a11yPauseText",
+                "items",
+                "hiddenScrollbar",
             ]),
             classes: [
-                'carousel',
-                input.hiddenScrollbar && 'carousel--hidden-scrollbar',
+                "carousel",
+                input.hiddenScrollbar && "carousel--hidden-scrollbar",
                 input.class,
             ],
             style: input.style,
@@ -402,12 +432,12 @@ export default class extends Marko.Component<Input, State> {
             gap: isNaN(gap) ? 16 : gap,
             index: parseInt(input.index as any, 10) || 0,
             itemsPerSlide: parseFloat(input.itemsPerSlide as any) || 0,
-            a11yPreviousText: input.a11yPreviousText || 'Previous Slide',
-            a11yNextText: input.a11yNextText || 'Next Slide',
-            a11yPauseText: input.a11yPauseText || 'Pause',
-            a11yPlayText: input.a11yPlayText || 'Play',
-            ariaRoleDescription: input['aria-roledescription'] || 'Carousel',
-            items: [] as State['items'],
+            a11yPreviousText: input.a11yPreviousText || "Previous Slide",
+            a11yNextText: input.a11yNextText || "Next Slide",
+            a11yPauseText: input.a11yPauseText || "Pause",
+            a11yPlayText: input.a11yPlayText || "Play",
+            ariaRoleDescription: input["aria-roledescription"] || "Carousel",
+            items: [] as State["items"],
             slideWidth: 0,
             autoplayInterval: 0,
             paused: false as boolean,
@@ -416,36 +446,45 @@ export default class extends Marko.Component<Input, State> {
             bothControlsDisabled: false,
         } satisfies State;
 
-        const itemSkippedAttributes = ['class', 'style', 'key'];
+        const itemSkippedAttributes = ["class", "style", "key"];
         const { itemsPerSlide } = state;
         if (itemsPerSlide) {
             state.peek = itemsPerSlide % 1;
             state.itemsPerSlide = itemsPerSlide - state.peek;
-            state.classes.push('carousel--slides');
+            state.classes.push("carousel--slides");
 
             if (!state.peek && !input.autoplay && !input.noPeek) {
                 state.peek = 0.1;
             }
 
             if (state.peek) {
-                state.classes.push('carousel--peek');
+                state.classes.push("carousel--peek");
             }
 
             // Only allow autoplay option for discrete carousels.
             if (input.autoplay) {
-                const isSingleSlide = (input.items as Item[])?.length <= itemsPerSlide;
-                state.autoplayInterval = parseInt(input.autoplay as any, 10) || 4000;
-                state.classes.push('carousel__autoplay');
+                const isSingleSlide =
+                    (input.items as Item[])?.length <= itemsPerSlide;
+                state.autoplayInterval =
+                    parseInt(input.autoplay as any, 10) || 4000;
+                state.classes.push("carousel__autoplay");
                 state.paused = !!(isSingleSlide || input.paused); // Force paused state if not enough slides provided;
                 state.interacting = false;
             }
         }
 
         state.items = ((input.items as Item[]) || []).map((item, i) => {
-            const isStartOfSlide = state.itemsPerSlide ? i % state.itemsPerSlide === 0 : true;
+            const isStartOfSlide = state.itemsPerSlide
+                ? i % state.itemsPerSlide === 0
+                : true;
             return {
-                htmlAttributes: processHtmlAttributes(item, itemSkippedAttributes),
-                class: isStartOfSlide ? ['carousel__snap-point', item.class] : item.class,
+                htmlAttributes: processHtmlAttributes(
+                    item,
+                    itemSkippedAttributes
+                ),
+                class: isStartOfSlide
+                    ? ["carousel__snap-point", item.class]
+                    : item.class,
                 key: item.key || i.toString(),
                 style: item.style,
                 renderBody: item.renderBody,
@@ -458,17 +497,17 @@ export default class extends Marko.Component<Input, State> {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this.cleanupAsync();
         }
     }
 
     onMount() {
         const { config } = this.state;
-        this.listEl = this.getEl('list');
-        this.nextEl = this.getEl('next');
-        this.containerEl = this.getEl('container');
-        this.subscribeTo(resizeUtil).on('resize', () => {
+        this.listEl = this.getEl("list");
+        this.nextEl = this.getEl("next");
+        this.containerEl = this.getEl("container");
+        this.subscribeTo(resizeUtil).on("resize", () => {
             this.cleanupAsync();
             this.onRenderLegacy();
         });
@@ -477,7 +516,7 @@ export default class extends Marko.Component<Input, State> {
         if (isNativeScrolling(this.listEl)) {
             config.nativeScrolling = true;
             this.once(
-                'destroy',
+                "destroy",
                 onScroll(this.listEl, () => {
                     if (!config.scrollTransitioning) {
                         this.handleScroll(this.listEl.scrollLeft);
@@ -485,7 +524,7 @@ export default class extends Marko.Component<Input, State> {
                 })
             );
         } else {
-            this.subscribeTo(this.listEl).on('transitionend', ({ target }) => {
+            this.subscribeTo(this.listEl).on("transitionend", ({ target }) => {
                 if (target === this.listEl) {
                     this.emitUpdate();
                 }
@@ -515,7 +554,9 @@ export default class extends Marko.Component<Input, State> {
         // Force a rerender to start the offset override animation.
         if (config.offsetOverride) {
             config.offsetOverride = undefined;
-            this.renderFrame = requestAnimationFrame(() => this.setStateDirty(undefined as any));
+            this.renderFrame = requestAnimationFrame(() =>
+                this.setStateDirty(undefined as any)
+            );
             return;
         }
 
@@ -528,16 +569,19 @@ export default class extends Marko.Component<Input, State> {
             this.focusFrame = requestAnimationFrame(() => {
                 forEls(listEl, (itemEl) => {
                     focusables(itemEl).forEach(
-                        itemEl.getAttribute('aria-hidden') !== 'true'
+                        itemEl.getAttribute("aria-hidden") !== "true"
                             ? // Default the child tabindex to data-carousel-tabindex if it exists, or remove it
                               (child: HTMLElement) =>
-                                  child.hasAttribute('data-carousel-tabindex')
+                                  child.hasAttribute("data-carousel-tabindex")
                                       ? child.setAttribute(
-                                            'tabindex',
-                                            child.getAttribute('data-carousel-tabindex') ?? '-1'
+                                            "tabindex",
+                                            child.getAttribute(
+                                                "data-carousel-tabindex"
+                                            ) ?? "-1"
                                         )
-                                      : child.removeAttribute('tabindex')
-                            : (child: HTMLElement) => child.setAttribute('tabindex', '-1')
+                                      : child.removeAttribute("tabindex")
+                            : (child: HTMLElement) =>
+                                  child.setAttribute("tabindex", "-1")
                     );
                 });
             });
@@ -571,7 +615,7 @@ export default class extends Marko.Component<Input, State> {
                 const moveRight = this.move.bind(this, RIGHT);
                 this.autoplayTimeout = setTimeout(() => {
                     if (this.isMoving) {
-                        return this.once('move', moveRight);
+                        return this.once("move", moveRight);
                     }
                     moveRight();
                 }, autoplayInterval);
@@ -582,12 +626,13 @@ export default class extends Marko.Component<Input, State> {
 
         // Otherwise recalculates the items / slide sizes.
         this.renderFrame = requestAnimationFrame(() => {
-            const { width: containerWidth } = containerEl.getBoundingClientRect();
+            const { width: containerWidth } =
+                containerEl.getBoundingClientRect();
             const { left: currentLeft } = (
                 listEl.firstElementChild as HTMLElement
             ).getBoundingClientRect();
 
-            this.setStateDirty('slideWidth', containerWidth);
+            this.setStateDirty("slideWidth", containerWidth);
             config.preserveItems = true;
             config.nativeScrolling = isNativeScrolling(listEl);
 
@@ -606,7 +651,7 @@ export default class extends Marko.Component<Input, State> {
  * Checks if an element is using native scrolling
  */
 function isNativeScrolling(el: HTMLElement) {
-    return getComputedStyle(el).overflowX !== 'visible';
+    return getComputedStyle(el).overflowX !== "visible";
 }
 
 /**

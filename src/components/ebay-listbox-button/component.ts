@@ -1,16 +1,16 @@
-import Expander from 'makeup-expander';
-import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
-import { Input as ListboxInput } from '../ebay-listbox/component';
-import type Listbox from '../ebay-listbox/component';
-import type { Option, ChangeEvent } from '../ebay-listbox/component';
+import Expander from "makeup-expander";
+import * as scrollKeyPreventer from "makeup-prevent-scroll-keys";
+import { Input as ListboxInput } from "../ebay-listbox/component";
+import type Listbox from "../ebay-listbox/component";
+import type { Option, ChangeEvent } from "../ebay-listbox/component";
 
-export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
-    options?: ListboxInput['options'];
-    name?: ListboxInput['name'];
-    listSelection?: ListboxInput['listSelection'];
+export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+    options?: ListboxInput["options"];
+    name?: ListboxInput["name"];
+    listSelection?: ListboxInput["listSelection"];
     prefixId?: string;
     unselectedText?: string;
-    variant?: 'standard' | 'form';
+    variant?: "standard" | "form";
     truncate?: boolean;
     fluid?: boolean;
     borderless?: boolean;
@@ -20,12 +20,12 @@ export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
     invalid?: boolean;
     prefixLabel?: string;
     collapseOnSelect?: boolean;
-    'on-expand'?: () => void;
-    onExpand?: this['on-expand'];
-    'on-collapse'?: () => void;
-    onCollapse?: this['on-collapse'];
-    'on-change'?: (event: ChangeEvent) => void;
-    onChange?: this['on-change'];
+    "on-expand"?: () => void;
+    onExpand?: this["on-expand"];
+    "on-collapse"?: () => void;
+    onCollapse?: this["on-collapse"];
+    "on-change"?: (event: ChangeEvent) => void;
+    onChange?: this["on-change"];
 }
 
 interface State {
@@ -36,22 +36,22 @@ export default class extends Marko.Component<Input, State> {
     declare _expander: Expander;
 
     handleExpand() {
-        (this.getComponent('options') as Listbox).elementScroll();
-        this.emit('expand');
+        (this.getComponent("options") as Listbox).elementScroll();
+        this.emit("expand");
     }
 
     handleCollapse() {
-        (this.getEl('button') as HTMLButtonElement).focus();
-        this.emit('collapse');
+        (this.getEl("button") as HTMLButtonElement).focus();
+        this.emit("collapse");
     }
 
-    handleListboxChange: Listbox['input']['onChange'] = (event) => {
+    handleListboxChange: Listbox["input"]["onChange"] = (event) => {
         if (this.input.collapseOnSelect) {
             this._expander.expanded = false;
         }
         const selectedIndex = event.index;
         this.state.selectedIndex = selectedIndex;
-        this.emit('change', event);
+        this.emit("change", event);
     };
 
     handleListboxEscape() {
@@ -83,7 +83,7 @@ export default class extends Marko.Component<Input, State> {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     }
@@ -96,19 +96,19 @@ export default class extends Marko.Component<Input, State> {
         const { input } = this;
 
         if ((input.options as Option[]).length && !input.disabled) {
-            const container = this.getEl('container');
+            const container = this.getEl("container");
 
             this._expander = new Expander(container, {
                 autoCollapse: true,
                 expandOnClick: true,
                 simulateSpacebarClick: true,
-                contentSelector: '.listbox-button__listbox',
-                hostSelector: '.listbox-button__control',
-                expandedClass: 'listbox-button--expanded',
-                focusManagement: 'content',
+                contentSelector: ".listbox-button__listbox",
+                hostSelector: ".listbox-button__control",
+                expandedClass: "listbox-button--expanded",
+                focusManagement: "content",
             });
 
-            scrollKeyPreventer.add(this.getEl('button'));
+            scrollKeyPreventer.add(this.getEl("button"));
         }
     }
 

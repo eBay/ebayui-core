@@ -1,5 +1,5 @@
-import Expander from 'makeup-expander';
-import focusables from 'makeup-focusables';
+import Expander from "makeup-expander";
+import focusables from "makeup-focusables";
 
 export interface Input {
     open?: boolean;
@@ -9,23 +9,23 @@ export interface Input {
     overlayStyle?: string;
     overlayId: string;
     renderBody?: Marko.Renderable;
-    'on-base-expand'?: (event: { originalEvent: Event }) => void;
-    'onBase-expand'?: this['on-base-expand'];
-    'on-base-collapse'?: (event: { originalEvent: Event }) => void;
-    'onBase-collapse'?: this['on-base-collapse'];
+    "on-base-expand"?: (event: { originalEvent: Event }) => void;
+    "onBase-expand"?: this["on-base-expand"];
+    "on-base-collapse"?: (event: { originalEvent: Event }) => void;
+    "onBase-collapse"?: this["on-base-collapse"];
 }
 
 export default class extends Marko.Component<Input> {
-    declare action: 'expand' | 'collapse' | null;
+    declare action: "expand" | "collapse" | null;
     declare _expander: Expander;
     declare cancelFocus: ReturnType<typeof focusables>;
 
     handleExpand() {
-        this.emit('base-expand');
+        this.emit("base-expand");
     }
 
     handleCollapse() {
-        this.emit('base-collapse');
+        this.emit("base-collapse");
     }
 
     onMount() {
@@ -38,14 +38,14 @@ export default class extends Marko.Component<Input> {
 
     onInput(input: Input) {
         if (input.open === true) {
-            this.action = 'expand';
+            this.action = "expand";
         } else if (input.open === false) {
-            this.action = 'collapse';
+            this.action = "collapse";
         }
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     }
@@ -69,10 +69,10 @@ export default class extends Marko.Component<Input> {
     _setupExpander(host: Element | null | undefined, hostSelector: string) {
         const { input } = this;
         const { type } = input;
-        const container = this.getEl('container');
-        const isTooltip = type === 'tooltip';
-        const isInfotip = type === 'infotip';
-        const isTourtip = type === 'tourtip';
+        const container = this.getEl("container");
+        const isTooltip = type === "tooltip";
+        const isInfotip = type === "infotip";
+        const isTourtip = type === "tourtip";
         const expanderEl = container?.getElementsByClassName(type)[0];
 
         if (host && !isTourtip) {
@@ -87,20 +87,20 @@ export default class extends Marko.Component<Input> {
                 autoCollapse: isTooltip,
             });
 
-            if (isTooltip && !host.hasAttribute('aria-describedby')) {
-                host.setAttribute('aria-describedby', input.overlayId);
+            if (isTooltip && !host.hasAttribute("aria-describedby")) {
+                host.setAttribute("aria-describedby", input.overlayId);
             }
         }
     }
 
     _setupBaseTooltip() {
-        if (this.input.type !== 'dialog--mini') {
+        if (this.input.type !== "dialog--mini") {
             this._setupMakeup();
         }
         if (this.action && this._expander) {
-            if (this.action === 'expand') {
+            if (this.action === "expand") {
                 this.expand();
-            } else if (this.action === 'collapse') {
+            } else if (this.action === "collapse") {
                 this.collapse();
             }
             this.action = null;
@@ -110,7 +110,7 @@ export default class extends Marko.Component<Input> {
     _setupMakeup() {
         const { input } = this;
         const { type } = input;
-        const container = this.getEl('container');
+        const container = this.getEl("container");
         const hostClass = `${type}__host`;
         const hostSelector = `.${hostClass}`;
         let host = container?.querySelector(hostSelector);

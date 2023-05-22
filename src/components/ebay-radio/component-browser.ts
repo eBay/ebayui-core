@@ -1,7 +1,7 @@
 export default {
-    handleClick: forwardEvent('change'),
-    handleFocus: forwardEvent('focus'),
-    handleKeydown: forwardEvent('keydown'),
+    handleClick: forwardEvent("change"),
+    handleFocus: forwardEvent("focus"),
+    handleKeydown: forwardEvent("keydown"),
 };
 
 function forwardEvent(eventName: string) {
@@ -9,7 +9,7 @@ function forwardEvent(eventName: string) {
         if (!el.disabled) {
             this.emit(eventName, {
                 originalEvent,
-                value: (el || this.el.querySelector('input')).value,
+                value: (el || this.el.querySelector("input")).value,
             });
         }
     };

@@ -1,14 +1,17 @@
-import Expander from 'makeup-expander';
-import * as eventUtils from '../../common/event-utils';
-import { MenuEvent } from '../ebay-menu/component';
-import { Input as FakeMenuInput, Item as FakeMenuItem } from '../ebay-fake-menu/component';
+import Expander from "makeup-expander";
+import * as eventUtils from "../../common/event-utils";
+import { MenuEvent } from "../ebay-menu/component";
+import {
+    Input as FakeMenuInput,
+    Item as FakeMenuItem,
+} from "../ebay-fake-menu/component";
 
-export interface Input extends Omit<Marko.Input<'span'>, `on${string}`> {
+export interface Input extends Omit<Marko.Input<"span">, `on${string}`> {
     text?: string;
-    size?: 'none' | 'large';
+    size?: "none" | "large";
     prefixId?: string;
-    variant?: 'overflow' | 'form' | 'button' | 'icon';
-    priority?: 'primary' | 'secondary' | 'delete' | 'tertiary' | 'none';
+    variant?: "overflow" | "form" | "button" | "icon";
+    priority?: "primary" | "secondary" | "delete" | "tertiary" | "none";
     borderless?: boolean;
     transparent?: boolean;
     icon?: Marko.Renderable;
@@ -16,19 +19,19 @@ export interface Input extends Omit<Marko.Input<'span'>, `on${string}`> {
     disabled?: boolean;
     noToggleIcon?: boolean;
     label?: { renderBody?: Marko.Body };
-    textAlign?: 'center';
-    type?: FakeMenuInput['type'];
+    textAlign?: "center";
+    type?: FakeMenuInput["type"];
     reverse?: boolean;
     fixWidth?: boolean;
     items?: Marko.RepeatableAttrTag<FakeMenuItem>;
-    'on-expand'?: (event: MenuEvent) => void;
-    onExpand?: this['on-expand'];
-    'on-collapse'?: (event: MenuEvent) => void;
-    onCollapse?: this['on-collapse'];
-    'on-select'?: (event: MenuEvent) => void;
-    onSelect?: this['on-select'];
-    'on-mousedown'?: (event: MenuEvent) => void;
-    onMousedown?: this['on-mousedown'];
+    "on-expand"?: (event: MenuEvent) => void;
+    onExpand?: this["on-expand"];
+    "on-collapse"?: (event: MenuEvent) => void;
+    onCollapse?: this["on-collapse"];
+    "on-select"?: (event: MenuEvent) => void;
+    onSelect?: this["on-select"];
+    "on-mousedown"?: (event: MenuEvent) => void;
+    onMousedown?: this["on-mousedown"];
 }
 
 export default class extends Marko.Component<Input> {
@@ -46,7 +49,7 @@ export default class extends Marko.Component<Input> {
     }
 
     focus() {
-        (this.getComponent('button')!.el as HTMLElement).focus();
+        (this.getComponent("button")!.el as HTMLElement).focus();
     }
 
     handleButtonEscape() {
@@ -54,22 +57,32 @@ export default class extends Marko.Component<Input> {
     }
 
     handleExpand() {
-        this.emitComponentEvent({ eventType: 'expand' });
+        this.emitComponentEvent({ eventType: "expand" });
     }
 
     handleCollapse() {
-        this.emitComponentEvent({ eventType: 'collapse' });
+        this.emitComponentEvent({ eventType: "collapse" });
     }
 
     handleMenuSelect({ el, originalEvent, index }) {
-        this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
+        this.emitComponentEvent({
+            eventType: "select",
+            el,
+            originalEvent,
+            index,
+        });
     }
 
     handleMousedown(originalEvent: MouseEvent, el: HTMLElement) {
-        this.emitComponentEvent({ eventType: 'mousedown', el, originalEvent });
+        this.emitComponentEvent({ eventType: "mousedown", el, originalEvent });
     }
 
-    emitComponentEvent({ eventType, el, originalEvent, index }: MenuEvent & { eventType: string }) {
+    emitComponentEvent({
+        eventType,
+        el,
+        originalEvent,
+        index,
+    }: MenuEvent & { eventType: string }) {
         const eventObj: MenuEvent = {
             el,
             originalEvent,
@@ -79,7 +92,7 @@ export default class extends Marko.Component<Input> {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     }
@@ -104,9 +117,9 @@ export default class extends Marko.Component<Input> {
         // This would cause the menu to close before events are fired
 
         this.expander = new Expander(this.el, {
-            hostSelector: '.fake-menu-button__button',
-            contentSelector: '.fake-menu-button__menu',
-            focusManagement: 'interactive',
+            hostSelector: ".fake-menu-button__button",
+            contentSelector: ".fake-menu-button__menu",
+            focusManagement: "interactive",
             expandOnClick: true,
             autoCollapse: true,
             alwaysDoFocusManagement: true,

@@ -1,7 +1,11 @@
-import * as scrollKeyPreventer from 'makeup-prevent-scroll-keys';
-import { createLinear } from 'makeup-roving-tabindex';
-import * as eventUtils from '../../common/event-utils';
-import setupMenu, { MenuUtils, type MenuInput, type MenuState } from '../../common/menu-utils';
+import * as scrollKeyPreventer from "makeup-prevent-scroll-keys";
+import { createLinear } from "makeup-roving-tabindex";
+import * as eventUtils from "../../common/event-utils";
+import setupMenu, {
+    MenuUtils,
+    type MenuInput,
+    type MenuState,
+} from "../../common/menu-utils";
 
 export interface FilterMenuEvent<T extends Event = Event> {
     el?: Element;
@@ -12,26 +16,28 @@ export interface FilterMenuEvent<T extends Event = Event> {
     currentChecked?: boolean;
 }
 
-export interface Input extends MenuInput, Omit<Marko.Input<'span'>, `on${string}`> {
-    variant?: 'form';
+export interface Input
+    extends MenuInput,
+        Omit<Marko.Input<"span">, `on${string}`> {
+    variant?: "form";
     classPrefix?: string;
     formName?: string;
     formAction?: string;
     formMethod?: string;
     footerText?: string;
     a11yFooterText?: string;
-    footer?: Marko.Input<'button'> & {
+    footer?: Marko.Input<"button"> & {
         a11yFooterText?: string;
     };
     renderBody?: Marko.Body;
-    'on-footer-click'?: (event: FilterMenuEvent) => void;
-    'onFooter-click'?: this['on-footer-click'];
-    'on-form-submit'?: (event: FilterMenuEvent) => void;
-    'onForm-submit'?: this['on-form-submit'];
-    'on-change'?: (event: FilterMenuEvent) => void;
-    onChange?: this['on-change'];
-    'on-keydown'?: (event: FilterMenuEvent) => void;
-    onKeydown?: this['on-keydown'];
+    "on-footer-click"?: (event: FilterMenuEvent) => void;
+    "onFooter-click"?: this["on-footer-click"];
+    "on-form-submit"?: (event: FilterMenuEvent) => void;
+    "onForm-submit"?: this["on-form-submit"];
+    "on-change"?: (event: FilterMenuEvent) => void;
+    onChange?: this["on-change"];
+    "on-keydown"?: (event: FilterMenuEvent) => void;
+    onKeydown?: this["on-keydown"];
 }
 
 export default class extends MenuUtils<Input, MenuState> {
@@ -53,7 +59,10 @@ export default class extends MenuUtils<Input, MenuState> {
 
     handleItemClick(index: number, ev: MouseEvent, itemEl: Element) {
         const targetEv = (ev as any).originalEvent || ev;
-        if (this.input.variant !== 'form' || targetEv.target.tagName !== 'INPUT') {
+        if (
+            this.input.variant !== "form" ||
+            targetEv.target.tagName !== "INPUT"
+        ) {
             this._toggleItemChecked(index, ev, itemEl);
         }
     }
@@ -62,10 +71,10 @@ export default class extends MenuUtils<Input, MenuState> {
         eventUtils.handleEscapeKeydown(ev, () => {
             // TODO: this event is not documented.
             // Do we need it? (it is only used by the filter-menu-button)
-            this._emitComponentEvent('keydown', ev, { index });
+            this._emitComponentEvent("keydown", ev, { index });
         });
 
-        if (this.input.variant !== 'form') {
+        if (this.input.variant !== "form") {
             eventUtils.handleActionKeydown(ev, () => {
                 this._toggleItemChecked(index, ev, itemEl);
             });
@@ -73,11 +82,11 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     handleFooterButtonClick(originalEvent) {
-        this._emitComponentEvent('footer-click', originalEvent);
+        this._emitComponentEvent("footer-click", originalEvent);
     }
 
     handleFormSubmit(originalEvent) {
-        this._emitComponentEvent('form-submit', originalEvent);
+        this._emitComponentEvent("form-submit", originalEvent);
     }
 
     onInput(input: Input) {
@@ -93,7 +102,7 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     }
@@ -107,7 +116,7 @@ export default class extends MenuUtils<Input, MenuState> {
             return;
         }
         this.toggleChecked(index);
-        this._emitComponentEvent('change', originalEvent, { el, index });
+        this._emitComponentEvent("change", originalEvent, { el, index });
     }
 
     _emitComponentEvent(
@@ -118,7 +127,8 @@ export default class extends MenuUtils<Input, MenuState> {
         const { el, index } = args || {};
         const checked = this.getCheckedValues();
         const checkedIndex = this.getCheckedIndexes();
-        const currentChecked = index === undefined ? undefined : this.isChecked(index);
+        const currentChecked =
+            index === undefined ? undefined : this.isChecked(index);
 
         this.emit(`${eventType}`, {
             el,
@@ -131,12 +141,12 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     _setupMakeup() {
-        if (this.input.variant !== 'form') {
-            this._rovingTabIndex = createLinear(this.getEl('menu'), 'div', {
-                autoInit: this.lastTabIndexPosition || 'interactive',
+        if (this.input.variant !== "form") {
+            this._rovingTabIndex = createLinear(this.getEl("menu"), "div", {
+                autoInit: this.lastTabIndexPosition || "interactive",
             });
 
-            scrollKeyPreventer.add(this.getEl('container'));
+            scrollKeyPreventer.add(this.getEl("container"));
         }
     }
 
@@ -145,7 +155,7 @@ export default class extends MenuUtils<Input, MenuState> {
             this.lastTabIndexPosition = this._rovingTabIndex.index;
             this._rovingTabIndex.destroy();
             this._rovingTabIndex = undefined;
-            scrollKeyPreventer.remove(this.getEl('container'));
+            scrollKeyPreventer.remove(this.getEl("container"));
         }
     }
 }

@@ -1,10 +1,10 @@
 {
-  "compilerOptions": {
-    "lib": ["ESNext", "DOM"],
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "target": "ESNext",
-    "strictNullChecks": true
-  }
+    "compilerOptions": {
+        "lib": ["ESNext", "DOM"],
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "target": "ESNext",
+        "strictNullChecks": true
+    }
 }

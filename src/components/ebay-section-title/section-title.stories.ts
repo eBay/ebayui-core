@@ -1,18 +1,18 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './index.marko';
-import overflowComponent from './examples/overflow.marko';
-import overflowComponentCode from './examples/overflow.marko?raw';
-import buttonSeeAllComponent from './examples/save-see-all.marko';
-import buttonSeeAllComponentCode from './examples/save-see-all.marko?raw';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import overflowComponent from "./examples/overflow.marko";
+import overflowComponentCode from "./examples/overflow.marko?raw";
+import buttonSeeAllComponent from "./examples/save-see-all.marko";
+import buttonSeeAllComponentCode from "./examples/save-see-all.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'navigation & disclosure/ebay-section-title',
+    title: "navigation & disclosure/ebay-section-title",
     component: Component,
     parameters: {
         docs: {
@@ -24,47 +24,48 @@ export default {
 
     argTypes: {
         href: {
-            control: { type: 'text' },
-            description: 'RL. Title content and optional CTA content will link to this',
+            control: { type: "text" },
+            description:
+                "RL. Title content and optional CTA content will link to this",
         },
         ctaText: {
-            control: { type: 'text' },
-            description: 'The text for the CTA. Only used when href is set.',
+            control: { type: "text" },
+            description: "The text for the CTA. Only used when href is set.",
             table: {
                 defaultValue: {
-                    summary: 'See All',
+                    summary: "See All",
                 },
             },
         },
         title: {
-            name: '@title',
+            name: "@title",
             description:
-                'The main title content to be displayed. Title tag is required when using other sub-tags.',
+                "The main title content to be displayed. Title tag is required when using other sub-tags.",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         subtitle: {
-            name: '@subtitle',
-            description: 'The subtitle content to be displayed',
+            name: "@subtitle",
+            description: "The subtitle content to be displayed",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         info: {
-            name: '@info',
-            control: { type: 'json' },
-            description: 'Placeholder for `<ebay-infotip>` component',
+            name: "@info",
+            control: { type: "json" },
+            description: "Placeholder for `<ebay-infotip>` component",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         overflow: {
-            name: '@overflow',
-            control: { type: 'json' },
-            description: 'Placeholder for `<ebay-menu-button>` component',
+            name: "@overflow",
+            control: { type: "json" },
+            description: "Placeholder for `<ebay-menu-button>` component",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
     },
@@ -79,7 +80,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-section-title', Standard.args),
+            code: tagToString("ebay-section-title", Standard.args),
         },
     },
 };

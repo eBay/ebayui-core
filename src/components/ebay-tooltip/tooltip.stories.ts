@@ -1,16 +1,16 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './index.marko';
-import buttonComponent from './examples/icon-button-host.marko';
-import code from './examples/icon-button-host.marko?raw';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import buttonComponent from "./examples/icon-button-host.marko";
+import code from "./examples/icon-button-host.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'notices & tips/ebay-tooltip',
+    title: "notices & tips/ebay-tooltip",
     component: Component,
     parameters: {
         docs: {
@@ -23,78 +23,80 @@ export default {
     argTypes: {
         pointer: {
             options: [
-                'top-left',
-                'top',
-                'top-right',
-                'right',
-                'right-bottom',
-                'right-top',
-                'bottom-left',
-                'bottom-right',
-                'bottom',
-                'left',
-                'left-bottom',
-                'left-top',
+                "top-left",
+                "top",
+                "top-right",
+                "right",
+                "right-bottom",
+                "right-top",
+                "bottom-left",
+                "bottom-right",
+                "bottom",
+                "left",
+                "left-bottom",
+                "left-top",
             ],
-            control: { type: 'select' },
+            control: { type: "select" },
             description:
-                'options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`',
+                "options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`",
         },
         styleTop: {
-            control: { type: 'text' },
-            description: 'a style property for the CSS `top` rule',
+            control: { type: "text" },
+            description: "a style property for the CSS `top` rule",
         },
         styleLeft: {
-            control: { type: 'text' },
-            description: 'a style property for the CSS `left` rule',
+            control: { type: "text" },
+            description: "a style property for the CSS `left` rule",
         },
         styleRight: {
-            control: { type: 'text' },
-            description: 'a style property for the CSS `right` rule',
+            control: { type: "text" },
+            description: "a style property for the CSS `right` rule",
         },
         styleBottom: {
-            control: { type: 'text' },
-            description: 'a style property for the CSS `bottom` rule',
+            control: { type: "text" },
+            description: "a style property for the CSS `bottom` rule",
         },
         noHover: {
-            control: { type: 'boolean' },
-            description: 'disable hover (and only use focus) to open the tooltip',
+            control: { type: "boolean" },
+            description:
+                "disable hover (and only use focus) to open the tooltip",
         },
         host: {
-            name: '@host',
+            name: "@host",
             description: "The body which will be wrapped as the tooltip's host",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         content: {
-            name: '@content',
-            description: 'The content to be displayed in the tooltip',
+            name: "@content",
+            description: "The content to be displayed in the tooltip",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         open: {
-            control: { type: 'boolean' },
-            description: 'allows dev to specify whether tooltip is open or closed',
+            control: { type: "boolean" },
+            description:
+                "allows dev to specify whether tooltip is open or closed",
         },
         onCollapse: {
-            action: 'on-collapse',
-            description: 'Triggered on menu collapse',
+            action: "on-collapse",
+            description: "Triggered on menu collapse",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
         onExpand: {
-            action: 'on-expand',
-            description: 'Triggered on menu expand',
+            action: "on-expand",
+            description: "Triggered on menu expand",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
@@ -114,7 +116,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-tooltip', Standard.args),
+            code: tagToString("ebay-tooltip", Standard.args),
         },
     },
 };

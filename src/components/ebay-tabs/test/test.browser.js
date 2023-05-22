@@ -1,9 +1,9 @@
-import { expect, use } from 'chai';
-import chaiDom from 'chai-dom';
-import { render, fireEvent, cleanup } from '@marko/testing-library';
-import { pressKey } from '../../../common/test-utils/browser';
-import template from '..';
-import * as mock from './mock';
+import { expect, use } from "chai";
+import chaiDom from "chai-dom";
+import { render, fireEvent, cleanup } from "@marko/testing-library";
+import { pressKey } from "../../../common/test-utils/browser";
+import template from "..";
+import * as mock from "./mock";
 
 use(chaiDom);
 afterEach(cleanup);
@@ -12,48 +12,51 @@ afterEach(cleanup);
 let component;
 
 function thenItHasMovedToTab(selectedIndex) {
-    it('then it emits the select event with correct data', () => {
-        const selectEvents = component.emitted('select');
+    it("then it emits the select event with correct data", () => {
+        const selectEvents = component.emitted("select");
         expect(selectEvents).has.length(1);
 
         const [[eventArg]] = selectEvents;
-        expect(eventArg).has.property('selectedIndex', selectedIndex);
+        expect(eventArg).has.property("selectedIndex", selectedIndex);
     });
 
     it(`then heading ${selectedIndex + 1} is selected`, () => {
-        expect(component.getAllByRole('tab')[selectedIndex]).has.attr('aria-selected', 'true');
+        expect(component.getAllByRole("tab")[selectedIndex]).has.attr(
+            "aria-selected",
+            "true"
+        );
     });
 }
 
-describe('given tabs with first heading selected', () => {
+describe("given tabs with first heading selected", () => {
     const input = mock.basic3Headings_3Panels_No_Index;
 
     beforeEach(async () => {
         component = await render(template, input);
     });
 
-    describe('when the first heading is clicked', () => {
+    describe("when the first heading is clicked", () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getAllByRole('tab')[0]);
+            await fireEvent.click(component.getAllByRole("tab")[0]);
         });
 
-        it('then it does not emit the select event', () => {
-            expect(component.emitted('select')).has.length(0);
+        it("then it does not emit the select event", () => {
+            expect(component.emitted("select")).has.length(0);
         });
     });
 
-    describe('when the second tab is activated via click', () => {
+    describe("when the second tab is activated via click", () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getAllByRole('tab')[1]);
+            await fireEvent.click(component.getAllByRole("tab")[1]);
         });
 
         thenItHasMovedToTab(1);
     });
 
-    describe('when the right arrow key is pressed', () => {
+    describe("when the right arrow key is pressed", () => {
         beforeEach(async () => {
-            await pressKey(component.getAllByRole('tab')[1], {
-                key: 'ArrowRight',
+            await pressKey(component.getAllByRole("tab")[1], {
+                key: "ArrowRight",
                 keyCode: 39,
             });
         });
@@ -61,10 +64,10 @@ describe('given tabs with first heading selected', () => {
         thenItHasMovedToTab(1);
     });
 
-    describe('when the left arrow key is pressed', () => {
+    describe("when the left arrow key is pressed", () => {
         beforeEach(async () => {
-            await pressKey(component.getAllByRole('tab')[1], {
-                key: 'ArrowLeft',
+            await pressKey(component.getAllByRole("tab")[1], {
+                key: "ArrowLeft",
                 keyCode: 37,
             });
         });
@@ -73,30 +76,30 @@ describe('given tabs with first heading selected', () => {
     });
 });
 
-describe('given tabs with manual activation', () => {
+describe("given tabs with manual activation", () => {
     const input = mock.basic3Headings_3Panels_ActivationManual;
 
     beforeEach(async () => {
         component = await render(template, input);
     });
 
-    describe('when the first heading is activated via keybaord action button', () => {
+    describe("when the first heading is activated via keybaord action button", () => {
         beforeEach(async () => {
-            await pressKey(component.getAllByRole('tab')[0], {
-                key: '(Space character)',
+            await pressKey(component.getAllByRole("tab")[0], {
+                key: "(Space character)",
                 keyCode: 32,
             });
         });
 
-        it('then it does not emit the select event', () => {
-            expect(component.emitted('select')).has.length(0);
+        it("then it does not emit the select event", () => {
+            expect(component.emitted("select")).has.length(0);
         });
     });
 
-    describe('when the second tab is activated via keyboard action button', () => {
+    describe("when the second tab is activated via keyboard action button", () => {
         beforeEach(async () => {
-            await pressKey(component.getAllByRole('tab')[1], {
-                key: '(Space character)',
+            await pressKey(component.getAllByRole("tab")[1], {
+                key: "(Space character)",
                 keyCode: 32,
             });
         });
@@ -105,17 +108,17 @@ describe('given tabs with manual activation', () => {
     });
 });
 
-describe('given tabs with third heading selected', () => {
+describe("given tabs with third heading selected", () => {
     const input = mock.basic3Headings_3Panels_2Index;
 
     beforeEach(async () => {
         component = await render(template, input);
     });
 
-    describe('when the right arrow key is pressed', () => {
+    describe("when the right arrow key is pressed", () => {
         beforeEach(async () => {
-            await pressKey(component.getAllByRole('tab')[1], {
-                key: 'ArrowRight',
+            await pressKey(component.getAllByRole("tab")[1], {
+                key: "ArrowRight",
                 keyCode: 39,
             });
         });
@@ -123,10 +126,10 @@ describe('given tabs with third heading selected', () => {
         thenItHasMovedToTab(0);
     });
 
-    describe('when the left arrow key is pressed', () => {
+    describe("when the left arrow key is pressed", () => {
         beforeEach(async () => {
-            await pressKey(component.getAllByRole('tab')[1], {
-                key: 'ArrowLeft',
+            await pressKey(component.getAllByRole("tab")[1], {
+                key: "ArrowLeft",
                 keyCode: 37,
             });
         });

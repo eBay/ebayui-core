@@ -1,16 +1,16 @@
-import * as eventUtils from '../../common/event-utils';
+import * as eventUtils from "../../common/event-utils";
 
 export interface ButtonEvent<T extends Event> {
     originalEvent: T;
 }
 
-export interface Input extends Omit<Marko.Input<'button'>, `on${string}`> {
+export interface Input extends Omit<Marko.Input<"button">, `on${string}`> {
     href?: string;
     toJSON?: () => Object;
-    size?: 'regular' | 'large' | 'none';
-    priority?: 'primary' | 'secondary' | 'tertiary' | 'none';
-    variant?: 'standard' | 'destructive' | 'form';
-    bodyState?: 'loading' | 'expand' | 'reset' | 'none';
+    size?: "regular" | "large" | "none";
+    priority?: "primary" | "secondary" | "tertiary" | "none";
+    variant?: "standard" | "destructive" | "form";
+    bodyState?: "loading" | "expand" | "reset" | "none";
     fluid?: boolean;
     borderless?: boolean;
     disabled?: boolean;
@@ -21,34 +21,34 @@ export interface Input extends Omit<Marko.Input<'button'>, `on${string}`> {
     split?: string;
     a11yText?: string;
     ariaLabel?: string;
-    'on-click'?: (event: ButtonEvent<MouseEvent>) => void;
-    onClick?: this['on-click'];
-    'on-escape'?: (event: ButtonEvent<KeyboardEvent>) => void;
-    onEscape?: this['on-escape'];
-    'on-focus'?: (event: ButtonEvent<FocusEvent>) => void;
-    onFocus?: this['on-focus'];
-    'on-blur'?: (event: ButtonEvent<FocusEvent>) => void;
-    onBlur?: this['on-blur'];
+    "on-click"?: (event: ButtonEvent<MouseEvent>) => void;
+    onClick?: this["on-click"];
+    "on-escape"?: (event: ButtonEvent<KeyboardEvent>) => void;
+    onEscape?: this["on-escape"];
+    "on-focus"?: (event: ButtonEvent<FocusEvent>) => void;
+    onFocus?: this["on-focus"];
+    "on-blur"?: (event: ButtonEvent<FocusEvent>) => void;
+    onBlur?: this["on-blur"];
 }
 
 export default class extends Marko.Component<Input> {
     handleClick(originalEvent: MouseEvent) {
         if (!this.input.disabled) {
-            this.emit('click', { originalEvent });
+            this.emit("click", { originalEvent });
         }
     }
 
     handleKeydown(originalEvent: KeyboardEvent) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             if (!this.input.disabled) {
-                this.emit('escape', { originalEvent });
+                this.emit("escape", { originalEvent });
             }
         });
     }
     handleFocus(originalEvent: FocusEvent) {
-        this.emit('focus', { originalEvent });
+        this.emit("focus", { originalEvent });
     }
     handleBlur(originalEvent: FocusEvent) {
-        this.emit('blur', { originalEvent });
+        this.emit("blur", { originalEvent });
     }
 }

@@ -1,1 +1,1 @@
-require('@ebay/skin/snackbar-dialog');
+require("@ebay/skin/snackbar-dialog");

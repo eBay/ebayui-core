@@ -1,25 +1,32 @@
-'use strict';
+"use strict";
 
-require.extensions['.ts'] = undefined;
+require.extensions[".ts"] = undefined;
 
 module.exports = ({ config }) => {
     config.mochaOptions = {
         timeout: 60000,
-        require: ['mocha-snap', './src/common/test-utils/require-extensions.js'],
+        require: [
+            "mocha-snap",
+            "./src/common/test-utils/require-extensions.js",
+        ],
     };
 
     config.lassoOptions = {
         flags: [],
-        plugins: ['./src/common/test-utils/lasso-require-extensions.js', 'lasso-less'],
+        plugins: [
+            "./src/common/test-utils/lasso-require-extensions.js",
+            "lasso-less",
+        ],
         require: {
             transforms: [
                 {
-                    transform: './src/common/test-utils/lasso-require-transform.js',
+                    transform:
+                        "./src/common/test-utils/lasso-require-transform.js",
                 },
                 {
-                    transform: 'lasso-babel-transform',
+                    transform: "lasso-babel-transform",
                     config: {
-                        extensions: ['.js', '.ts'],
+                        extensions: [".js", ".ts"],
                     },
                 },
             ],
@@ -31,12 +38,12 @@ module.exports = ({ config }) => {
         timeout: 60000,
         capabilities: [
             {
-                browser: 'Chrome',
-                os: 'Windows',
-                os_version: '10',
+                browser: "Chrome",
+                os: "Windows",
+                os_version: "10",
             },
         ].map((capability) => {
-            capability['browserstack.local'] = true;
+            capability["browserstack.local"] = true;
 
             return capability;
         }),

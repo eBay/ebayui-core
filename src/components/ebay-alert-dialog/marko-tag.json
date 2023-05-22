@@ -1,22 +1,22 @@
 {
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@open": "boolean",
-  "@confirm-text": "string",
-  "@close-focus": "string",
-  "@role": "never",
-  "@hidden": "never",
-  "@footer": "never",
-  "@header <header>": {
     "attribute-groups": ["html-attributes"],
     "@*": {
-      "targetProperty": null,
-      "type": "expression"
+        "targetProperty": null,
+        "type": "expression"
     },
-    "@html-attributes": "expression"
-  }
+    "@html-attributes": "expression",
+    "@open": "boolean",
+    "@confirm-text": "string",
+    "@close-focus": "string",
+    "@role": "never",
+    "@hidden": "never",
+    "@footer": "never",
+    "@header <header>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    }
 }

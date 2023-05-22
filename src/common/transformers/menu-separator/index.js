@@ -5,9 +5,12 @@
 function transformMarko4(el, context) {
     const walker = context.createWalker({
         enter(node) {
-            if (node.tagName === '@separator') {
-                node.setTagName('@item');
-                node.setAttributeValue('separator', context.builder.literalTrue());
+            if (node.tagName === "@separator") {
+                node.setTagName("@item");
+                node.setAttributeValue(
+                    "separator",
+                    context.builder.literalTrue()
+                );
             }
         },
     });
@@ -17,11 +20,11 @@ function transformMarko4(el, context) {
 
 const replaceSeparatorVisitor = {
     MarkoTag(tag, { t }) {
-        if (tag.get('name').isStringLiteral({ value: '@separator' })) {
+        if (tag.get("name").isStringLiteral({ value: "@separator" })) {
             tag.replaceWith(
                 t.markoTag(
-                    t.stringLiteral('@item'),
-                    [t.markoAttribute('separator', t.booleanLiteral(true))],
+                    t.stringLiteral("@item"),
+                    [t.markoAttribute("separator", t.booleanLiteral(true))],
                     t.markoTagBody()
                 )
             );

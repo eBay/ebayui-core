@@ -1,1 +1,1 @@
-require('@ebay/skin/split-button');
+require("@ebay/skin/split-button");

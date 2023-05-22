@@ -1,38 +1,38 @@
 {
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@a11y-previous-text": "string",
-  "@a11y-next-text": "string",
-  "@a11y-current-text": "string",
-  "@role": "never",
-  "@aria-labelledby": "never",
-  "@variant": {
-    "enum": ["show-last", "show-range"]
-  },
-  "@items <item>[]": {
     "attribute-groups": ["html-attributes"],
     "@*": {
-      "targetProperty": null,
-      "type": "expression"
+        "targetProperty": null,
+        "type": "expression"
     },
     "@html-attributes": "expression",
-    "@type": {
-      "enum": ["previous", "next"]
+    "@a11y-previous-text": "string",
+    "@a11y-next-text": "string",
+    "@a11y-current-text": "string",
+    "@role": "never",
+    "@aria-labelledby": "never",
+    "@variant": {
+        "enum": ["show-last", "show-range"]
     },
-    "@current": "boolean",
-    "@disabled": "#html-disabled",
-    "@download": "#html-download",
-    "@href": "#html-href",
-    "@hreflang": "#html-hreflang",
-    "@media": "#html-media",
-    "@ping": "#html-ping",
-    "@referrerpolicy": "#html-referrerpolicy",
-    "@rel": "#html-rel",
-    "@target": "#html-target",
-    "@aria-current": "never"
-  }
+    "@items <item>[]": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression",
+        "@type": {
+            "enum": ["previous", "next"]
+        },
+        "@current": "boolean",
+        "@disabled": "#html-disabled",
+        "@download": "#html-download",
+        "@href": "#html-href",
+        "@hreflang": "#html-hreflang",
+        "@media": "#html-media",
+        "@ping": "#html-ping",
+        "@referrerpolicy": "#html-referrerpolicy",
+        "@rel": "#html-rel",
+        "@target": "#html-target",
+        "@aria-current": "never"
+    }
 }

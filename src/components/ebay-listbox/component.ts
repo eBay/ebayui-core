@@ -1,7 +1,7 @@
-import { createLinear } from 'makeup-active-descendant';
-import { AttrStringOrNumber } from 'marko/tags-html';
-import { scroll } from '../../common/element-scroll';
-import * as eventUtils from '../../common/event-utils';
+import { createLinear } from "makeup-active-descendant";
+import { AttrStringOrNumber } from "marko/tags-html";
+import { scroll } from "../../common/element-scroll";
+import * as eventUtils from "../../common/event-utils";
 
 export interface ChangeEvent {
     index: number;
@@ -10,20 +10,20 @@ export interface ChangeEvent {
     el: HTMLOptionElement;
 }
 
-export interface Option extends Omit<Marko.Input<'option'>, `on${string}`> {
+export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
     disabled?: boolean;
     text?: string;
 }
 
-export interface Input extends Omit<Marko.Input<'div'>, `on${string}`> {
-    listSelection?: 'auto' | 'manual';
+export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+    listSelection?: "auto" | "manual";
     options?: Marko.RepeatableAttrTag<Option>;
     name?: string;
     disabled?: boolean;
-    'on-change'?: (event: ChangeEvent) => void;
-    onChange?: this['on-change'];
-    'on-escape'?: () => void;
-    onEscape?: this['on-escape'];
+    "on-change"?: (event: ChangeEvent) => void;
+    onChange?: this["on-change"];
+    "on-escape"?: () => void;
+    onEscape?: this["on-escape"];
 }
 
 interface State {
@@ -35,11 +35,11 @@ export default class extends Marko.Component<Input, State> {
     declare _activeDescendant: ReturnType<typeof createLinear>;
 
     get isAutoSelection() {
-        return this.input.listSelection === 'auto';
+        return this.input.listSelection === "auto";
     }
 
     elementScroll() {
-        scroll(this.getEls('option')[this.state.selectedIndex] as HTMLElement);
+        scroll(this.getEls("option")[this.state.selectedIndex] as HTMLElement);
     }
 
     handleChange(index: number, wasClicked: boolean) {
@@ -49,12 +49,12 @@ export default class extends Marko.Component<Input, State> {
                 return;
             }
             this.state.selectedIndex = index;
-            this.once('update', () => {
-                this.emit('change', {
+            this.once("update", () => {
+                this.emit("change", {
                     index,
                     wasClicked,
                     selected: [option.value],
-                    el: this.getEls('option')[index] as HTMLOptionElement,
+                    el: this.getEls("option")[index] as HTMLOptionElement,
                 } satisfies ChangeEvent);
             });
         }
@@ -70,7 +70,7 @@ export default class extends Marko.Component<Input, State> {
 
     handleKeyDown(originalEvent: KeyboardEvent) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
-            this.emit('escape');
+            this.emit("escape");
         });
 
         eventUtils.handleActionKeydown(originalEvent, () =>
@@ -80,7 +80,7 @@ export default class extends Marko.Component<Input, State> {
 
     handleListboxChange(event: CustomEvent) {
         const selectedIndex = parseInt(event.detail.toIndex, 10);
-        const el = this.getEls('option')[selectedIndex];
+        const el = this.getEls("option")[selectedIndex];
         const wasClicked = this.wasClicked;
 
         scroll(el as HTMLElement);
@@ -115,7 +115,7 @@ export default class extends Marko.Component<Input, State> {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     }
@@ -128,15 +128,15 @@ export default class extends Marko.Component<Input, State> {
         const { input, state } = this;
 
         if ((input.options as Option[]).length && !input.disabled) {
-            const container = this.getEl('options');
-            const optionsContainer = this.getEl('options');
+            const container = this.getEl("options");
+            const optionsContainer = this.getEl("options");
             this._activeDescendant = createLinear(
                 container,
                 optionsContainer,
                 optionsContainer,
-                '.listbox__option[role=option]',
+                ".listbox__option[role=option]",
                 {
-                    activeDescendantClassName: 'listbox__option--active',
+                    activeDescendantClassName: "listbox__option--active",
                     autoInit: state.selectedIndex,
                     autoReset: null,
                     autoScroll: !this.isAutoSelection,

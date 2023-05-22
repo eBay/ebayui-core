@@ -1,1 +1,1 @@
-require('@ebay/skin/section-title');
+require("@ebay/skin/section-title");

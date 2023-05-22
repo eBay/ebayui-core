@@ -1,7 +1,7 @@
-require('@marko/testing-library');
+require("@marko/testing-library");
 
 function addRenderBodies(input: any) {
-    if (input && typeof input === 'object') {
+    if (input && typeof input === "object") {
         if (Array.isArray(input)) {
             return input.map(addRenderBodies);
         }
@@ -12,8 +12,9 @@ function addRenderBodies(input: any) {
         }
 
         const { renderBody } = clone;
-        if (typeof renderBody === 'string') {
-            clone.renderBody = (out) => (out.html ? out.html(renderBody) : out.write(renderBody));
+        if (typeof renderBody === "string") {
+            clone.renderBody = (out) =>
+                out.html ? out.html(renderBody) : out.write(renderBody);
         }
 
         return clone;

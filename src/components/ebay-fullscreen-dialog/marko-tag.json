@@ -1,33 +1,33 @@
 {
-  "attribute-groups": ["html-attributes"],
-  "@*": {
-    "targetProperty": null,
-    "type": "expression"
-  },
-  "@html-attributes": "expression",
-  "@open": "boolean",
-  "@focus": "string",
-  "@close-focus": "string",
-  "@a11y-close-text": "string",
-  "@role": "never",
-  "@slideFrom": {
-    "enum": ["bottom", "end"]
-  },
-  "@hidden": "never",
-  "@header <header>": {
     "attribute-groups": ["html-attributes"],
     "@*": {
-      "targetProperty": null,
-      "type": "expression"
+        "targetProperty": null,
+        "type": "expression"
     },
-    "@html-attributes": "expression"
-  },
-  "@footer <footer>": {
-    "attribute-groups": ["html-attributes"],
-    "@*": {
-      "targetProperty": null,
-      "type": "expression"
+    "@html-attributes": "expression",
+    "@open": "boolean",
+    "@focus": "string",
+    "@close-focus": "string",
+    "@a11y-close-text": "string",
+    "@role": "never",
+    "@slideFrom": {
+        "enum": ["bottom", "end"]
     },
-    "@html-attributes": "expression"
-  }
+    "@hidden": "never",
+    "@header <header>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@footer <footer>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    }
 }

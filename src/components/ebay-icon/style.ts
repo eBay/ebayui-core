@@ -1,2 +1,2 @@
-require('@ebay/skin/icon');
-require('@ebay/skin/star-rating');
+require("@ebay/skin/icon");
+require("@ebay/skin/star-rating");

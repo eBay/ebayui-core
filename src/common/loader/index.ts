@@ -2,10 +2,10 @@ const cachePromises = [];
 
 function cssLoad(cssSrc: string, promiseKey: string) {
     return new Promise((resolve, reject) => {
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const cssnode = document.createElement('link');
-        cssnode.type = 'text/css';
-        cssnode.rel = 'stylesheet';
+        const head = document.head || document.getElementsByTagName("head")[0];
+        const cssnode = document.createElement("link");
+        cssnode.type = "text/css";
+        cssnode.rel = "stylesheet";
 
         cssnode.href = cssSrc;
 
@@ -27,8 +27,8 @@ function cssLoad(cssSrc: string, promiseKey: string) {
 
 function srcLoad(src: string, promiseKey: string, type?: string) {
     return new Promise((resolve, reject) => {
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const script = document.createElement('script');
+        const head = document.head || document.getElementsByTagName("head")[0];
+        const script = document.createElement("script");
         script.src = src;
         if (type) {
             script.type = type;
@@ -48,24 +48,29 @@ function srcLoad(src: string, promiseKey: string, type?: string) {
 function restArWorker(src: string) {
     return new Promise((resolve) => {
         const content = `importScripts( "${src}" );`;
-        const head = document.head || document.getElementsByTagName('head')[0];
-        const script = document.createElement('noscript');
+        const head = document.head || document.getElementsByTagName("head")[0];
+        const script = document.createElement("noscript");
         script.textContent = content;
-        script.id = 'restar-worker';
+        script.id = "restar-worker";
 
         head.appendChild(script);
         resolve(undefined);
     });
 }
 
-function getPromise(typeList: string[], promiseKey: string, src: string, key: number) {
+function getPromise(
+    typeList: string[],
+    promiseKey: string,
+    src: string,
+    key: number
+) {
     if (typeList[key]) {
-        if (typeList[key] === 'css') {
+        if (typeList[key] === "css") {
             return cssLoad(src, promiseKey);
-        } else if (typeList[key] === 'restar-worker') {
+        } else if (typeList[key] === "restar-worker") {
             return restArWorker(src);
-        } else if (typeList[key] === 'module') {
-            return srcLoad(src, promiseKey, 'module');
+        } else if (typeList[key] === "module") {
+            return srcLoad(src, promiseKey, "module");
         }
     }
     return srcLoad(src, promiseKey);
@@ -85,18 +90,21 @@ function getPromise(typeList: string[], promiseKey: string, src: string, key: nu
  * css - CSS source file
  */
 function loader(srcList: string[], typeList: string[], stagger?: boolean) {
-    const promiseKey = srcList.join(',');
+    const promiseKey = srcList.join(",");
     if (!cachePromises[promiseKey]) {
         if (stagger) {
             // Make sure each file loading completes, before loading the next
             cachePromises[promiseKey] = srcList.reduce(
-                (p, src, key) => p.then(() => getPromise(typeList, promiseKey, src, key)),
+                (p, src, key) =>
+                    p.then(() => getPromise(typeList, promiseKey, src, key)),
                 Promise.resolve()
             );
         } else {
             // Each can complete in any order
             cachePromises[promiseKey] = Promise.all(
-                srcList.map((src, key) => getPromise(typeList, promiseKey, src, key))
+                srcList.map((src, key) =>
+                    getPromise(typeList, promiseKey, src, key)
+                )
             );
         }
     }

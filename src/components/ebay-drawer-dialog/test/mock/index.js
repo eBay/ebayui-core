@@ -1,17 +1,17 @@
 /* eslint camelcase: "off" */
-import { createRenderBody } from '../../../../common/test-utils/shared';
+import { createRenderBody } from "../../../../common/test-utils/shared";
 
 export const Drawer = {
-    a11yCloseText: 'close',
-    a11yMinimizeText: 'minimize',
-    a11yMaximizeText: 'maximize',
+    a11yCloseText: "close",
+    a11yMinimizeText: "minimize",
+    a11yMaximizeText: "maximize",
     header: {
-        renderBody: createRenderBody('head content'),
+        renderBody: createRenderBody("head content"),
     },
     footer: {
-        renderBody: createRenderBody('foter content'),
+        renderBody: createRenderBody("foter content"),
     },
-    renderBody: createRenderBody('body content'),
+    renderBody: createRenderBody("body content"),
 };
 
 export const Drawer_Open = Object.assign({}, Drawer, {

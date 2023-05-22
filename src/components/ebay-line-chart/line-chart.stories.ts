@@ -1,15 +1,15 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './index.marko';
-import * as sampleSeriesData from './examples/data.json';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import * as sampleSeriesData from "./examples/data.json";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'charts/ebay-line-chart',
+    title: "charts/ebay-line-chart",
     component: Component,
     parameters: {
         docs: {
@@ -20,73 +20,75 @@ export default {
     },
     argTypes: {
         title: {
-            type: { name: 'string', required: false },
-            description: 'A title displayed above the graph',
+            type: { name: "string", required: false },
+            description: "A title displayed above the graph",
         },
         description: {
-            type: { name: 'string', required: true },
-            description: 'A description of what the chart is displaying',
+            type: { name: "string", required: true },
+            description: "A description of what the chart is displaying",
         },
         trend: {
-            type: { name: 'boolean', required: false },
+            type: { name: "boolean", required: false },
             description:
-                'Trend can bet set to `true`, `positive`, or `negative` if set to true the trend is auto calculated by comparing the first and last data points y value',
+                "Trend can bet set to `true`, `positive`, or `negative` if set to true the trend is auto calculated by comparing the first and last data points y value",
         },
         series: {
-            type: { name: 'object', required: true },
+            type: { name: "object", required: true },
             description:
-                'The series is an array of one to five arrays of point objects, each point contains an `x`, `y`, and `label`. `x` is an epoch/unix time code, `y` is a numeric value, `label` is what is displayed for the `y` value in the tool tip',
+                "The series is an array of one to five arrays of point objects, each point contains an `x`, `y`, and `label`. `x` is an epoch/unix time code, `y` is a numeric value, `label` is what is displayed for the `y` value in the tool tip",
         },
         plotPoints: {
-            type: { name: 'boolean', required: false },
+            type: { name: "boolean", required: false },
             description:
-                'Defaults to false, if set to true markers will appear on series lines at the x-axis tick mark positions.',
+                "Defaults to false, if set to true markers will appear on series lines at the x-axis tick mark positions.",
             table: {
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
             },
         },
         xAxisLabelFormat: {
-            type: { name: 'string', required: false },
+            type: { name: "string", required: false },
             description:
-                'Used to modify the display of the x-axis labels. Accepts a string like `{value:%Y-%m-%d}`. Refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for available format keys',
+                "Used to modify the display of the x-axis labels. Accepts a string like `{value:%Y-%m-%d}`. Refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for available format keys",
             table: {
                 defaultValue: {
-                    summary: '{value:%b %e}',
+                    summary: "{value:%b %e}",
                 },
             },
         },
         xAxisPositioner: {
-            type: { name: 'function', required: false },
+            type: { name: "function", required: false },
             description:
-                'A custom function that returns an array of epoch/unix time values where x-axis labels will be displayed. You can access `this.dataMin` and `this.dataMax` from the function to help determine positions.',
+                "A custom function that returns an array of epoch/unix time values where x-axis labels will be displayed. You can access `this.dataMin` and `this.dataMax` from the function to help determine positions.",
         },
         yAxisLabels: {
-            type: { name: 'array', required: false },
+            type: { name: "array", required: false },
             description:
-                'An array of labels to use on the y-axis. Use in conjunction with yAxisPositioner. Make sure the length of the yAxisLabels match the length of the positions array returned by the yAxisPositioner function',
+                "An array of labels to use on the y-axis. Use in conjunction with yAxisPositioner. Make sure the length of the yAxisLabels match the length of the positions array returned by the yAxisPositioner function",
         },
         yAxisPositioner: {
-            type: { name: 'function', required: false },
+            type: { name: "function", required: false },
             description:
-                'A custom function that returns an array of numeric values where y-axis labels will be displayed. You can access `this.dataMin` and `this.dataMax` from the function to help determine positions',
+                "A custom function that returns an array of numeric values where y-axis labels will be displayed. You can access `this.dataMin` and `this.dataMax` from the function to help determine positions",
         },
         class: {
-            type: { name: 'string', require: false },
-            description: 'A class name that will be added to the main chart container',
+            type: { name: "string", require: false },
+            description:
+                "A class name that will be added to the main chart container",
         },
         cdnHighcharts: {
-            type: { name: 'string', require: false },
-            description: 'CDN url override for loading highcharts',
+            type: { name: "string", require: false },
+            description: "CDN url override for loading highcharts",
         },
         cdnHighchartsAccessibility: {
-            type: { name: 'string', require: false },
-            description: 'CDN url override for loading highcharts accessibility module',
+            type: { name: "string", require: false },
+            description:
+                "CDN url override for loading highcharts accessibility module",
         },
         version: {
-            type: { name: 'string', require: false },
-            description: 'Highcharts version to load from CDN',
+            type: { name: "string", require: false },
+            description: "Highcharts version to load from CDN",
         },
     },
 };
@@ -98,14 +100,14 @@ Standard.args = {
             data: sampleSeriesData[0].data,
         },
     ],
-    title: 'standard line graph with single series',
-    description: 'sample line graph description',
+    title: "standard line graph with single series",
+    description: "sample line graph description",
 };
 
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', Standard.args),
+            code: tagToString("line-chart", Standard.args),
         },
     },
 };
@@ -116,14 +118,14 @@ TrendAutoPositive.args = {
         data: sampleSeriesData[0].data,
     },
     trend: true,
-    title: 'positive trend graph',
-    description: 'standard line graph with single series the tend set to true',
+    title: "positive trend graph",
+    description: "standard line graph with single series the tend set to true",
 };
 
 TrendAutoPositive.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', TrendAutoPositive.args),
+            code: tagToString("line-chart", TrendAutoPositive.args),
         },
     },
 };
@@ -133,15 +135,16 @@ TrendSetPositive.args = {
     series: {
         data: sampleSeriesData[3].data,
     },
-    trend: 'positive',
-    title: 'forced positive trend graph',
-    description: 'standard line graph with single series the tend set to "positive"',
+    trend: "positive",
+    title: "forced positive trend graph",
+    description:
+        'standard line graph with single series the tend set to "positive"',
 };
 
 TrendSetPositive.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', TrendSetPositive.args),
+            code: tagToString("line-chart", TrendSetPositive.args),
         },
     },
 };
@@ -152,14 +155,14 @@ TrendAutoNegative.args = {
         data: sampleSeriesData[3].data,
     },
     trend: true,
-    title: 'negative trend graph',
-    description: 'standard line graph with single series the tend set to true',
+    title: "negative trend graph",
+    description: "standard line graph with single series the tend set to true",
 };
 
 TrendAutoNegative.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', TrendAutoNegative.args),
+            code: tagToString("line-chart", TrendAutoNegative.args),
         },
     },
 };
@@ -169,15 +172,16 @@ TrendSetNegative.args = {
     series: {
         data: sampleSeriesData[1].data,
     },
-    trend: 'negative',
-    title: 'forced negative trend graph',
-    description: 'standard line graph with single series the tend set to "negative"',
+    trend: "negative",
+    title: "forced negative trend graph",
+    description:
+        'standard line graph with single series the tend set to "negative"',
 };
 
 TrendSetNegative.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', TrendSetNegative.args),
+            code: tagToString("line-chart", TrendSetNegative.args),
         },
     },
 };
@@ -187,13 +191,13 @@ TrendSetNeutral.args = {
     series: {
         data: sampleSeriesData[0].data,
     },
-    trend: 'neutral',
+    trend: "neutral",
 };
 
 TrendSetNeutral.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', TrendSetNeutral.args),
+            code: tagToString("line-chart", TrendSetNeutral.args),
         },
     },
 };
@@ -213,7 +217,7 @@ TwoSeries.args = {
 TwoSeries.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', TwoSeries.args),
+            code: tagToString("line-chart", TwoSeries.args),
         },
     },
 };
@@ -234,7 +238,7 @@ TwoSeriesWithPlotPoints.args = {
 TwoSeriesWithPlotPoints.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', TwoSeriesWithPlotPoints.args),
+            code: tagToString("line-chart", TwoSeriesWithPlotPoints.args),
         },
     },
 };
@@ -257,7 +261,7 @@ ThreeSeries.args = {
 ThreeSeries.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', ThreeSeries.args),
+            code: tagToString("line-chart", ThreeSeries.args),
         },
     },
 };
@@ -281,7 +285,7 @@ ThreeSeriesWithPlotPoints.args = {
 ThreeSeriesWithPlotPoints.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', ThreeSeriesWithPlotPoints.args),
+            code: tagToString("line-chart", ThreeSeriesWithPlotPoints.args),
         },
     },
 };
@@ -307,7 +311,7 @@ FourSeries.args = {
 FourSeries.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', FourSeries.args),
+            code: tagToString("line-chart", FourSeries.args),
         },
     },
 };
@@ -334,7 +338,7 @@ FourSeriesWithPlotPoints.args = {
 FourSeriesWithPlotPoints.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', FourSeriesWithPlotPoints.args),
+            code: tagToString("line-chart", FourSeriesWithPlotPoints.args),
         },
     },
 };
@@ -363,7 +367,7 @@ FiveSeries.args = {
 FiveSeries.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', FiveSeries.args),
+            code: tagToString("line-chart", FiveSeries.args),
         },
     },
 };
@@ -393,7 +397,7 @@ FiveSeriesWithPlotPoints.args = {
 FiveSeriesWithPlotPoints.parameters = {
     docs: {
         source: {
-            code: tagToString('line-chart', FiveSeriesWithPlotPoints.args),
+            code: tagToString("line-chart", FiveSeriesWithPlotPoints.args),
         },
     },
 };

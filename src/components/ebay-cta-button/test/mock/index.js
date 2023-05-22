@@ -1,13 +1,13 @@
-import { createRenderBody } from '../../../../common/test-utils/shared';
+import { createRenderBody } from "../../../../common/test-utils/shared";
 
 export const Basic = {
-    renderBody: createRenderBody('CTA Text'),
+    renderBody: createRenderBody("CTA Text"),
 };
 
 export const Small = Object.assign({}, Basic, {
-    size: 'small',
+    size: "small",
 });
 
 export const Large = Object.assign({}, Basic, {
-    size: 'large',
+    size: "large",
 });

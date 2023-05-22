@@ -1,5 +1,5 @@
-import * as eventUtils from '../../common/event-utils';
-import { getMaxWidth } from '../../common/dom';
+import * as eventUtils from "../../common/event-utils";
+import { getMaxWidth } from "../../common/dom";
 const MAX_PAGES = 9;
 const MIN_PAGES = 5;
 
@@ -15,25 +15,26 @@ export interface NavigationEvent {
     originalEvent: Event;
 }
 
-export interface Item extends Omit<Marko.Input<'button'>, 'type' | `on${string}`> {
-    type?: 'previous' | 'next' | 'page';
+export interface Item
+    extends Omit<Marko.Input<"button">, "type" | `on${string}`> {
+    type?: "previous" | "next" | "page";
     current?: boolean;
     href?: string;
-    variant?: 'link' | 'button';
+    variant?: "link" | "button";
 }
 
-export interface Input extends Omit<Marko.Input<'nav'>, `on${string}`> {
+export interface Input extends Omit<Marko.Input<"nav">, `on${string}`> {
     items?: Marko.AttrTag<Item>[];
-    variant?: 'show-range' | 'show-last' | 'overflow';
+    variant?: "show-range" | "show-last" | "overflow";
     a11yCurrentText?: string;
     a11yPreviousText?: string;
     a11yNextText?: string;
-    'on-select'?: (event: SelectEvent) => void;
-    onSelect?: this['on-select'];
-    'on-next'?: (event: NavigationEvent) => void;
-    onNext?: this['on-next'];
-    'on-previous'?: (event: NavigationEvent) => void;
-    onPrevious?: this['on-previous'];
+    "on-select"?: (event: SelectEvent) => void;
+    onSelect?: this["on-select"];
+    "on-next"?: (event: NavigationEvent) => void;
+    onNext?: this["on-next"];
+    "on-previous"?: (event: NavigationEvent) => void;
+    onPrevious?: this["on-previous"];
 }
 
 interface State {
@@ -43,8 +44,12 @@ interface State {
 export default class extends Marko.Component<Input, State> {
     declare _itemWidth: number;
 
-    handlePageNumberClick(index: number, originalEvent: MouseEvent, el: HTMLElement) {
-        this.emit('select', {
+    handlePageNumberClick(
+        index: number,
+        originalEvent: MouseEvent,
+        el: HTMLElement
+    ) {
+        this.emit("select", {
             el,
             originalEvent,
             value: el.innerText,
@@ -52,21 +57,30 @@ export default class extends Marko.Component<Input, State> {
         } satisfies SelectEvent);
     }
 
-    handleMenuPageNumber({ originalEvent, el }: { originalEvent: Event; el: HTMLElement }) {
-        const index = parseInt(el.getAttribute('data-page-number')!, 10);
-        this.emit('select', {
+    handleMenuPageNumber({
+        originalEvent,
+        el,
+    }: {
+        originalEvent: Event;
+        el: HTMLElement;
+    }) {
+        const index = parseInt(el.getAttribute("data-page-number")!, 10);
+        this.emit("select", {
             el,
             originalEvent,
             value: el.innerText,
             index,
         } satisfies SelectEvent);
         // Have to set timeout becasue menu will also trigger focus back to menu container
-        setTimeout(() => (this.getEl('pageItem[]', index) as HTMLElement).focus(), 0);
+        setTimeout(
+            () => (this.getEl("pageItem[]", index) as HTMLElement).focus(),
+            0
+        );
     }
 
     handleNextPageClick(originalEvent: MouseEvent, el: HTMLElement) {
-        if (!el.hasAttribute('aria-disabled')) {
-            this.emit('next', {
+        if (!el.hasAttribute("aria-disabled")) {
+            this.emit("next", {
                 el,
                 originalEvent,
             });
@@ -74,8 +88,8 @@ export default class extends Marko.Component<Input, State> {
     }
 
     handlePreviousPageClick(originalEvent: MouseEvent, el: HTMLElement) {
-        if (!el.hasAttribute('aria-disabled')) {
-            this.emit('previous', {
+        if (!el.hasAttribute("aria-disabled")) {
+            this.emit("previous", {
                 el,
                 originalEvent,
             });
@@ -88,14 +102,17 @@ export default class extends Marko.Component<Input, State> {
 
     onMount() {
         this._calculateMaxItems();
-        this.subscribeTo(eventUtils.resizeUtil).on('resize', this._calculateMaxItems.bind(this));
+        this.subscribeTo(eventUtils.resizeUtil).on(
+            "resize",
+            this._calculateMaxItems.bind(this)
+        );
     }
 
     getItemTag(item: Item) {
         if (item.variant) {
-            return item.variant === 'link' ? 'a' : 'button';
+            return item.variant === "link" ? "a" : "button";
         }
-        return !!item.href ? 'a' : 'button';
+        return !!item.href ? "a" : "button";
     }
 
     /**
@@ -106,9 +123,9 @@ export default class extends Marko.Component<Input, State> {
         const { state, input } = this;
         const { maxItems } = state;
         const { variant } = input;
-        const hasDots = variant === 'show-last' || variant === 'overflow';
-        const hasLeadingDots = variant === 'overflow';
-        const hasOverflow = variant === 'overflow';
+        const hasDots = variant === "show-last" || variant === "overflow";
+        const hasLeadingDots = variant === "overflow";
+        const hasOverflow = variant === "overflow";
         const lastIndex = items.length - 1;
         const dotsIndex = hasDots ? lastIndex : -1;
         const leadingDotsIndex = hasLeadingDots ? 1 : -1;
@@ -163,7 +180,15 @@ export default class extends Marko.Component<Input, State> {
             }
         }
 
-        return { start, end, hideDots, dotsIndex, hasOverflow, leadingDotsIndex, hideLeadingDots };
+        return {
+            start,
+            end,
+            hideDots,
+            dotsIndex,
+            hasOverflow,
+            leadingDotsIndex,
+            hideLeadingDots,
+        };
     }
 
     _calculateMaxItems() {
@@ -174,11 +199,13 @@ export default class extends Marko.Component<Input, State> {
             return;
         }
 
-        const itemContainer = this.getEl('items') as HTMLElement;
-        const root = this.getEl('root') as HTMLElement;
+        const itemContainer = this.getEl("items") as HTMLElement;
+        const root = this.getEl("root") as HTMLElement;
         const itemWidth =
             this._itemWidth || // Cache the item width since it should be static.
-            (this._itemWidth = (itemContainer.firstElementChild as HTMLElement).offsetWidth);
+            (this._itemWidth = (
+                itemContainer.firstElementChild as HTMLElement
+            ).offsetWidth);
         // subtract 2 from the rounded results to take into account previous/next page buttons
         state.maxItems = Math.max(
             MIN_PAGES,

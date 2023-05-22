@@ -1,78 +1,78 @@
-import { use } from 'chai';
-import { snapshotHTML } from '../../../common/test-utils/snapshots';
-import template from '..';
+import { use } from "chai";
+import { snapshotHTML } from "../../../common/test-utils/snapshots";
+import template from "..";
 
-const iconName = 'mic';
-const progrmaBadgeIcon = 'program-badge-authenticity-guaranteed';
+const iconName = "mic";
+const progrmaBadgeIcon = "program-badge-authenticity-guaranteed";
 const htmlSnap = snapshotHTML(__dirname);
 
-use(require('chai-dom'));
+use(require("chai-dom"));
 
-describe('icon', () => {
-    it('renders icon inline type with title text', async () => {
+describe("icon", () => {
+    it("renders icon inline type with title text", async () => {
         const input = {
             _name: iconName,
-            _type: 'icon',
-            a11yText: 'inline icon',
+            _type: "icon",
+            a11yText: "inline icon",
         };
         await htmlSnap(template, input);
     });
 
-    it('renders icon inline type without title text', async () => {
+    it("renders icon inline type without title text", async () => {
         const input = {
             _name: iconName,
-            _type: 'icon',
+            _type: "icon",
             htmlAttributes: {
-                'data-testid': 'icon',
+                "data-testid": "icon",
             },
         };
         await htmlSnap(template, input);
     });
 
-    it('renders icon no-skin-classes', async () => {
+    it("renders icon no-skin-classes", async () => {
         const input = {
             _name: iconName,
             noSkinClasses: true,
-            _type: 'icon',
-            class: 'custom-class',
+            _type: "icon",
+            class: "custom-class",
             htmlAttributes: {
-                'data-testid': 'icon',
+                "data-testid": "icon",
             },
         };
         await htmlSnap(template, input);
     });
 });
 
-describe('program badges', () => {
-    it('renders program badge inline type with title text', async () => {
+describe("program badges", () => {
+    it("renders program badge inline type with title text", async () => {
         const input = {
             _name: progrmaBadgeIcon,
-            _type: 'program-badge',
-            a11yText: 'inline icon',
+            _type: "program-badge",
+            a11yText: "inline icon",
         };
 
         await htmlSnap(template, input);
     });
 
-    it('renders program badge inline type without title text', async () => {
+    it("renders program badge inline type without title text", async () => {
         const input = {
             _name: iconName,
-            _type: 'program-badge',
+            _type: "program-badge",
             htmlAttributes: {
-                'data-testid': 'icon',
+                "data-testid": "icon",
             },
         };
         await htmlSnap(template, input);
     });
 
-    it('renders program badge no-skin-classes', async () => {
+    it("renders program badge no-skin-classes", async () => {
         const input = {
             _name: iconName,
             noSkinClasses: true,
-            _type: 'program-badge',
-            class: 'custom-class',
+            _type: "program-badge",
+            class: "custom-class",
             htmlAttributes: {
-                'data-testid': 'icon',
+                "data-testid": "icon",
             },
         };
         await htmlSnap(template, input);

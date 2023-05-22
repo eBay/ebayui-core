@@ -1,16 +1,19 @@
-import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './examples/default.marko';
-import code from './examples/default.marko?raw';
-import ScrollingTemplate from './examples/scrolling.marko';
-import ScrollingTemplateCode from './examples/scrolling.marko?raw';
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./examples/default.marko";
+import code from "./examples/default.marko?raw";
+import ScrollingTemplate from "./examples/scrolling.marko";
+import ScrollingTemplateCode from "./examples/scrolling.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'dialogs/ebay-lightbox-dialog',
+    title: "dialogs/ebay-lightbox-dialog",
     component: Component,
     parameters: {
         docs: {
@@ -22,56 +25,56 @@ export default {
 
     argTypes: {
         open: {
-            type: 'boolean',
-            control: { type: 'boolean' },
-            description: 'Whether dialog is open.',
+            type: "boolean",
+            control: { type: "boolean" },
+            description: "Whether dialog is open.",
         },
         focus: {
-            control: { type: 'text' },
+            control: { type: "text" },
             description:
-                'An id for an element which will receive focus when the dialog opens (defaults to close button).',
+                "An id for an element which will receive focus when the dialog opens (defaults to close button).",
         },
         closeFocus: {
-            control: { type: 'text' },
+            control: { type: "text" },
             description:
-                'An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened',
+                "An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened",
         },
         a11yCloseText: {
-            control: { type: 'text' },
-            description: 'A11y text for close button and mask.',
+            control: { type: "text" },
+            description: "A11y text for close button and mask.",
         },
         header: {
-            name: '@header',
-            control: { type: 'object' },
+            name: "@header",
+            control: { type: "object" },
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         footer: {
-            name: '@footer',
-            control: { type: 'object' },
+            name: "@footer",
+            control: { type: "object" },
 
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         onOpen: {
-            action: 'on-open',
-            description: 'Triggered on dialog opened',
+            action: "on-open",
+            description: "Triggered on dialog opened",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
         onClose: {
-            action: 'on-close',
-            description: 'Triggered on dialog closed.',
+            action: "on-close",
+            description: "Triggered on dialog closed.",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
@@ -84,7 +87,7 @@ Default.args = {
         renderBody: `Heading Text`,
     },
     footer: {
-        renderBody: '',
+        renderBody: "",
     },
 };
 
@@ -96,4 +99,7 @@ Default.parameters = {
     },
 };
 
-export const Scrolling = buildExtensionTemplate(ScrollingTemplate, ScrollingTemplateCode);
+export const Scrolling = buildExtensionTemplate(
+    ScrollingTemplate,
+    ScrollingTemplateCode
+);

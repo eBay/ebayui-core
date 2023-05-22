@@ -1,14 +1,15 @@
-import * as eventUtils from '../../common/event-utils';
-import { getMaxWidth } from '../../common/dom';
-import type { AttrClass } from 'marko/tags-html';
+import * as eventUtils from "../../common/event-utils";
+import { getMaxWidth } from "../../common/dom";
+import type { AttrClass } from "marko/tags-html";
 
-export interface Input extends Omit<Marko.Input<'nav'>, `on${string}`> {
+export interface Input extends Omit<Marko.Input<"nav">, `on${string}`> {
     a11yHeadingTag?: keyof Marko.NativeTags;
     a11yHeadingText?: string;
     class?: AttrClass;
-    items: (Marko.Input<'a'> & Marko.Input<'button'> & { [key: string]: any })[];
-    'on-select'?: (event: { originalEvent: Event; el: HTMLElement }) => void;
-    onSelect?: this['on-select'];
+    items: (Marko.Input<"a"> &
+        Marko.Input<"button"> & { [key: string]: any })[];
+    "on-select"?: (event: { originalEvent: Event; el: HTMLElement }) => void;
+    onSelect?: this["on-select"];
 }
 
 interface State {
@@ -20,11 +21,11 @@ export default class extends Marko.Component<Input, State> {
     declare newInput: boolean;
 
     handleClick(originalEvent: Event) {
-        this.emit('select', { originalEvent, el: originalEvent.target });
+        this.emit("select", { originalEvent, el: originalEvent.target });
     }
 
     handleMenuBreadcrumb(originalEvent: Event) {
-        this.emit('select', { originalEvent, el: originalEvent.target });
+        this.emit("select", { originalEvent, el: originalEvent.target });
     }
 
     onCreate() {
@@ -33,7 +34,10 @@ export default class extends Marko.Component<Input, State> {
 
     onMount() {
         this._calculateMaxItems();
-        this.subscribeTo(eventUtils.resizeUtil).on('resize', this._calculateMaxItems.bind(this));
+        this.subscribeTo(eventUtils.resizeUtil).on(
+            "resize",
+            this._calculateMaxItems.bind(this)
+        );
     }
 
     onInput(input: Input) {
@@ -64,10 +68,10 @@ export default class extends Marko.Component<Input, State> {
             for (let i = 0; i < itemContainer.children.length; i++) {
                 const currentItem = itemContainer.children[i] as HTMLElement;
                 // We need to remove the hidden attribute to get the width
-                if (currentItem.hasAttribute('hidden')) {
-                    currentItem.removeAttribute('hidden');
+                if (currentItem.hasAttribute("hidden")) {
+                    currentItem.removeAttribute("hidden");
                     itemWidths[i] = currentItem.offsetWidth;
-                    currentItem.setAttribute('hidden', '');
+                    currentItem.setAttribute("hidden", "");
                 } else {
                     itemWidths[i] = currentItem.offsetWidth;
                 }
@@ -85,7 +89,7 @@ export default class extends Marko.Component<Input, State> {
             return;
         }
 
-        const itemContainer = this.getEl('items') as HTMLElement;
+        const itemContainer = this.getEl("items") as HTMLElement;
         const maxWidth = getMaxWidth(itemContainer);
         const lastItemIndex = itemContainer.children.length - 1;
 

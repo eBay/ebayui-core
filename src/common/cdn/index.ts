@@ -1,5 +1,5 @@
-import { loader } from '../loader';
-import versions from './versions.json';
+import { loader } from "../loader";
+import versions from "./versions.json";
 const MAX_RETRIES = 3;
 
 interface CDNLoaderConfig {
@@ -39,7 +39,15 @@ export class CDNLoader {
 
     constructor(
         self: CDNLoader,
-        { key, files, types, setLoading, handleSuccess, handleError, stagger }: CDNLoaderConfig
+        {
+            key,
+            files,
+            types,
+            setLoading,
+            handleSuccess,
+            handleError,
+            stagger,
+        }: CDNLoaderConfig
     ) {
         this.self = self;
         this.retryTimes = 0;
@@ -76,10 +84,10 @@ export class CDNLoader {
     mount() {
         this.isLoaded = false;
 
-        if (document.readyState === 'complete') {
+        if (document.readyState === "complete") {
             this.loadCDN();
         } else {
-            this.self.subscribeTo(window).once('load', this.loadCDN.bind(this));
+            this.self.subscribeTo(window).once("load", this.loadCDN.bind(this));
         }
     }
 

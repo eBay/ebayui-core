@@ -1,15 +1,15 @@
-import { addRenderBodies } from '../../../.storybook/utils';
-import Readme from './README.md';
-import Component from './index.marko';
-import example1 from './examples/default.marko?raw';
-import withFooterCode from './examples/withFooter.marko?raw';
+import { addRenderBodies } from "../../../.storybook/utils";
+import Readme from "./README.md";
+import Component from "./index.marko";
+import example1 from "./examples/default.marko?raw";
+import withFooterCode from "./examples/withFooter.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 export default {
-    title: 'notices & tips/ebay-tourtip',
+    title: "notices & tips/ebay-tourtip",
     component: Component,
     parameters: {
         docs: {
@@ -21,81 +21,82 @@ export default {
 
     argTypes: {
         pointer: {
-            control: { type: 'text' },
+            control: { type: "text" },
             description:
-                'options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`',
+                "options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`",
         },
         styleTop: {
-            control: { type: 'text' },
-            description: 'a style property for the CSS `top` rule',
+            control: { type: "text" },
+            description: "a style property for the CSS `top` rule",
         },
         styleLeft: {
-            control: { type: 'text' },
-            description: 'a style property for the CSS `left` rule',
+            control: { type: "text" },
+            description: "a style property for the CSS `left` rule",
         },
         styleRight: {
-            control: { type: 'text' },
-            description: 'a style property for the CSS `right` rule',
+            control: { type: "text" },
+            description: "a style property for the CSS `right` rule",
         },
         styleBottom: {
-            control: { type: 'text' },
-            description: 'a style property for the CSS `bottom` rule',
+            control: { type: "text" },
+            description: "a style property for the CSS `bottom` rule",
         },
         a11yCloseText: {
-            control: { type: 'text' },
-            description: 'A11y text for close button',
+            control: { type: "text" },
+            description: "A11y text for close button",
         },
 
         host: {
-            name: '@host',
+            name: "@host",
             description: "The body which will be wrapped as the tourtip's host",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         heading: {
-            name: '@heading',
-            description: 'The heading to be displayed in the tourtip',
+            name: "@heading",
+            description: "The heading to be displayed in the tourtip",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         content: {
-            name: '@content',
-            description: 'The content to be displayed in the tourtip',
+            name: "@content",
+            description: "The content to be displayed in the tourtip",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         footer: {
-            name: '@footer',
+            name: "@footer",
             description:
-                'The footer to be displayed under the tourtip. Takes an index value which can display the left portion of the footer.',
+                "The footer to be displayed under the tourtip. Takes an index value which can display the left portion of the footer.",
             table: {
-                category: '@attribute tags',
+                category: "@attribute tags",
             },
         },
         open: {
-            control: { type: 'boolean' },
-            description: 'allows dev to specify whether tourtip is open or closed',
+            control: { type: "boolean" },
+            description:
+                "allows dev to specify whether tourtip is open or closed",
         },
         onCollapse: {
-            action: 'on-collapse',
-            description: 'Triggered on menu collapse',
+            action: "on-collapse",
+            description: "Triggered on menu collapse",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
         onExpand: {
-            action: 'on-expand',
-            description: 'Triggered on menu expand',
+            action: "on-expand",
+            description: "Triggered on menu expand",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '',
+                    summary: "",
                 },
             },
         },
@@ -113,13 +114,13 @@ Standard.args = {
             voluptate dolore quis aliquip duis duis.</p>`,
     },
     heading: {
-        renderBody: 'Important',
-        as: 'h2',
+        renderBody: "Important",
+        as: "h2",
     },
     content: {
         renderBody: `<p>This new feature was added.</p>`,
     },
-    a11yCloseText: 'close',
+    a11yCloseText: "close",
 };
 Standard.parameters = {
     docs: {
@@ -140,14 +141,14 @@ withFooter.args = {
             voluptate dolore quis aliquip duis duis.</p>`,
     },
     heading: {
-        renderBody: 'Important',
+        renderBody: "Important",
     },
     content: {
         renderBody: `<p>This new feature was added.</p>`,
     },
-    a11yCloseText: 'close',
+    a11yCloseText: "close",
     footer: {
-        index: '1 of 3',
+        index: "1 of 3",
         renderBody:
             '<button class="fake-link">Back</button><button class="btn btn--primary">Next</button>',
     },

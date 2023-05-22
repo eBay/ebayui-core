@@ -1,20 +1,20 @@
-import { CDNLoader } from '../../common/cdn';
-import { getElements, playIcon } from './elements';
+import { CDNLoader } from "../../common/cdn";
+import { getElements, playIcon } from "./elements";
 const DEFAULT_SPINNER_TIMEOUT = 2000;
 
 const videoConfig = {
     addBigPlayButton: false,
     addSeekBar: true,
     controlPanelElements: [
-        'play_pause',
-        'time_and_duration',
-        'spacer',
-        'mute',
-        'report',
-        'fullscreen',
-        'overflow_menu',
+        "play_pause",
+        "time_and_duration",
+        "spacer",
+        "mute",
+        "report",
+        "fullscreen",
+        "overflow_menu",
     ],
-    overflowMenuButtons: ['captions'],
+    overflowMenuButtons: ["captions"],
 };
 
 export interface PlayPauseEvent {
@@ -28,31 +28,31 @@ export interface VolumeEvent {
     muted: boolean;
 }
 
-export interface Input extends Omit<Marko.Input<'video'>, `on${string}`> {
-    playView?: 'fullscreen' | 'inline';
+export interface Input extends Omit<Marko.Input<"video">, `on${string}`> {
+    playView?: "fullscreen" | "inline";
     volume?: number;
-    action?: 'play' | 'pause';
+    action?: "play" | "pause";
     volumeSlider?: boolean;
     tracks?: any[];
-    sources: Marko.AttrTag<Marko.Input<'source'>>[];
+    sources: Marko.AttrTag<Marko.Input<"source">>[];
     reportText?: string;
     spinnerTimeout?: number;
     cdnUrl?: string;
     cssUrl?: string;
     version?: string;
     thumbnail?: string;
-    track?: Marko.AttrTag<Marko.Input<'track'>>[];
+    track?: Marko.AttrTag<Marko.Input<"track">>[];
     errorText?: string;
     a11yPlayText?: string;
     a11yLoadText?: string;
-    'on-play'?: (event: PlayPauseEvent) => void;
-    onPlay?: this['on-play'];
-    'on-pause'?: (event: PlayPauseEvent) => void;
-    onPause?: this['on-pause'];
-    'on-volume-change'?: (event: VolumeEvent) => void;
-    onVolumeChange?: this['on-volume-change'];
-    'on-load-error'?: (err: Error) => void;
-    onLoadError?: this['on-load-error'];
+    "on-play"?: (event: PlayPauseEvent) => void;
+    onPlay?: this["on-play"];
+    "on-pause"?: (event: PlayPauseEvent) => void;
+    onPause?: this["on-pause"];
+    "on-volume-change"?: (event: VolumeEvent) => void;
+    onVolumeChange?: this["on-volume-change"];
+    "on-load-error"?: (err: Error) => void;
+    onLoadError?: this["on-load-error"];
 }
 
 interface State {
@@ -60,7 +60,7 @@ interface State {
     failed: boolean;
     isLoaded: boolean;
     volumeSlider: boolean;
-    action: 'play' | 'pause' | '';
+    action: "play" | "pause" | "";
     showLoading: boolean;
 }
 
@@ -72,14 +72,15 @@ export default class extends Marko.Component<Input, State> {
     declare ui: any;
     declare cdnLoader: CDNLoader;
 
-    isPlaylist(source: Marko.Input<'source'> & { src: string }) {
+    isPlaylist(source: Marko.Input<"source"> & { src: string }) {
         const type = source.type && source.type.toLowerCase();
         const src = source.src;
-        if (type === 'dash' || type === 'hls') {
+        if (type === "dash" || type === "hls") {
             return true;
         } else if (source.src) {
             return (
-                src.indexOf('.mpd') === src.length - 5 || src.indexOf('.m3u8') === src.length - 6
+                src.indexOf(".mpd") === src.length - 5 ||
+                src.indexOf(".m3u8") === src.length - 6
             );
         }
         return false;
@@ -88,7 +89,7 @@ export default class extends Marko.Component<Input, State> {
     handleResize() {
         if (!this.input.width && this.video) {
             const { width: containerWidth } = this.root.getBoundingClientRect();
-            this.containerEl.setAttribute('width', containerWidth.toString());
+            this.containerEl.setAttribute("width", containerWidth.toString());
         }
     }
 
@@ -97,21 +98,21 @@ export default class extends Marko.Component<Input, State> {
         // This forces the controls to always hide
         this.video.controls = false;
 
-        this.emit('pause', { originalEvent, player: this.player });
+        this.emit("pause", { originalEvent, player: this.player });
     }
 
     handlePlaying(originalEvent: Event) {
         this.showControls();
 
-        if (this.input.playView === 'fullscreen') {
+        if (this.input.playView === "fullscreen") {
             this.video.requestFullscreen();
         }
         this.state.played = true;
-        this.emit('play', { originalEvent, player: this.player });
+        this.emit("play", { originalEvent, player: this.player });
     }
 
     handleVolumeChange(originalEvent: Event) {
-        this.emit('volume-change', {
+        this.emit("volume-change", {
             originalEvent,
             volume: this.video.volume,
             muted: this.video.muted,
@@ -127,7 +128,7 @@ export default class extends Marko.Component<Input, State> {
                 addBigPlayButton: false,
             });
         }
-        this.emit('load-error', err);
+        this.emit("load-error", err);
     }
 
     showControls() {
@@ -138,17 +139,17 @@ export default class extends Marko.Component<Input, State> {
                 copyConfig.controlPanelElements.length - 2 > 0
                     ? copyConfig.controlPanelElements.length - 2
                     : copyConfig.controlPanelElements.length;
-            copyConfig.controlPanelElements.splice(insertAt, 0, 'volume');
+            copyConfig.controlPanelElements.splice(insertAt, 0, "volume");
         }
         this.ui.configure(copyConfig);
         this.video.controls = false;
     }
     takeAction() {
         switch (this.state.action) {
-            case 'play':
+            case "play":
                 this.video.play();
                 break;
-            case 'pause':
+            case "pause":
                 this.video.pause();
                 break;
             default:
@@ -166,7 +167,7 @@ export default class extends Marko.Component<Input, State> {
 
         // Check if action is changed
         if (this.state.action !== input.action) {
-            this.state.action = input.action ?? '';
+            this.state.action = input.action ?? "";
             this.takeAction();
         }
         if (input.volumeSlider === true) {
@@ -177,7 +178,7 @@ export default class extends Marko.Component<Input, State> {
     onCreate() {
         this.state = {
             volumeSlider: false,
-            action: '',
+            action: "",
             showLoading: false,
             isLoaded: true,
             failed: false,
@@ -185,9 +186,9 @@ export default class extends Marko.Component<Input, State> {
         };
 
         this.cdnLoader = new CDNLoader(this as any, {
-            key: 'shaka',
-            types: ['src', 'css'],
-            files: ['shaka-player.ui.js', 'controls.css'],
+            key: "shaka",
+            types: ["src", "css"],
+            files: ["shaka-player.ui.js", "controls.css"],
             setLoading: (value) => {
                 this.state.showLoading = value;
             },
@@ -245,14 +246,20 @@ export default class extends Marko.Component<Input, State> {
             this.player,
             this.containerEl,
             this.video,
-            this.input.reportText || ''
+            this.input.reportText || ""
         );
 
         // eslint-disable-next-line no-undef,new-cap
-        shaka.ui.Controls.registerElement('report', new Report.Factory(this.input.reportText));
+        shaka.ui.Controls.registerElement(
+            "report",
+            new Report.Factory(this.input.reportText)
+        );
 
         // eslint-disable-next-line no-undef,new-cap
-        shaka.ui.Controls.registerElement('captions', new TextSelection.Factory());
+        shaka.ui.Controls.registerElement(
+            "captions",
+            new TextSelection.Factory()
+        );
 
         this.ui.configure({
             addBigPlayButton: true,
@@ -262,11 +269,13 @@ export default class extends Marko.Component<Input, State> {
 
         // Replace play icon
         if (this.el) {
-            const playButton = this.el.querySelector<HTMLElement>('.shaka-play-button')!;
-            playButton.removeAttribute('icon');
+            const playButton =
+                this.el.querySelector<HTMLElement>(".shaka-play-button")!;
+            playButton.removeAttribute("icon");
             playIcon.renderSync().appendTo(playButton);
 
-            const shakaSpinner = this.el.querySelector<HTMLElement>('.shaka-spinner');
+            const shakaSpinner =
+                this.el.querySelector<HTMLElement>(".shaka-spinner");
             if (shakaSpinner) {
                 setTimeout(() => {
                     shakaSpinner.hidden = true;
@@ -287,16 +296,16 @@ export default class extends Marko.Component<Input, State> {
     }
 
     onMount() {
-        this.root = this.getEl('root');
-        this.video = this.root.querySelector('video')!;
-        this.containerEl = this.root.querySelector('.video-player__container')!;
+        this.root = this.getEl("root");
+        this.video = this.root.querySelector("video")!;
+        this.containerEl = this.root.querySelector(".video-player__container")!;
         this.video.volume = this.input.volume || 1;
         this.video.muted = this.input.muted || false;
 
         this.subscribeTo(this.video)
-            .on('playing', this.handlePlaying.bind(this))
-            .on('pause', this.handlePause.bind(this))
-            .on('volumechange', this.handleVolumeChange.bind(this));
+            .on("playing", this.handlePlaying.bind(this))
+            .on("pause", this.handlePause.bind(this))
+            .on("volumechange", this.handleVolumeChange.bind(this));
 
         this._loadVideo();
     }

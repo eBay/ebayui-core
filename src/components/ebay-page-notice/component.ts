@@ -1,9 +1,10 @@
-import { Input as NoticeBaseInput } from '../components/ebay-notice-base/component';
+import { Input as NoticeBaseInput } from "../components/ebay-notice-base/component";
 
-export interface Input extends Omit<NoticeBaseInput, 'role' | 'prefixClass' | `on${string}`> {
+export interface Input
+    extends Omit<NoticeBaseInput, "role" | "prefixClass" | `on${string}`> {
     dismissed?: boolean;
-    'on-dismiss'?: () => void;
-    onDismiss?: this['on-dismiss'];
+    "on-dismiss"?: () => void;
+    onDismiss?: this["on-dismiss"];
 }
 
 interface State {
@@ -21,6 +22,6 @@ export default class extends Marko.Component<Input, State> {
 
     onDismiss() {
         this.state.dismissed = true;
-        this.emit('dismiss');
+        this.emit("dismiss");
     }
 }

@@ -1,1 +1,1 @@
-require('@ebay/skin/calendar');
+require("@ebay/skin/calendar");

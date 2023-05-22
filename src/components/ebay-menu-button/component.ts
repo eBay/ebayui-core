@@ -1,8 +1,12 @@
-import Expander from 'makeup-expander';
-import * as eventUtils from '../../common/event-utils';
-import setupMenu, { MenuUtils, type MenuInput, type MenuState } from '../../common/menu-utils';
-import { MenuEvent } from '../ebay-menu/component';
-import { Input as EbayButtonInput } from '../ebay-button/component-browser';
+import Expander from "makeup-expander";
+import * as eventUtils from "../../common/event-utils";
+import setupMenu, {
+    MenuUtils,
+    type MenuInput,
+    type MenuState,
+} from "../../common/menu-utils";
+import { MenuEvent } from "../ebay-menu/component";
+import { Input as EbayButtonInput } from "../ebay-button/component-browser";
 
 export interface MenuButtonEvent {
     el?: Element;
@@ -14,13 +18,15 @@ export interface MenuButtonEvent {
     index?: number;
 }
 
-export interface Input extends MenuInput, Omit<Marko.Input<'span'>, `on${string}`> {
+export interface Input
+    extends MenuInput,
+        Omit<Marko.Input<"span">, `on${string}`> {
     collapseOnSelect?: boolean;
     prefixId?: string;
-    variant?: 'overflow' | 'form' | 'button' | 'icon';
+    variant?: "overflow" | "form" | "button" | "icon";
     borderless?: boolean;
-    priority?: 'primary' | 'secondary' | 'tertiary' | 'delete' | 'none';
-    size?: EbayButtonInput['size'];
+    priority?: "primary" | "secondary" | "tertiary" | "delete" | "none";
+    size?: EbayButtonInput["size"];
     transparent?: boolean;
     a11yText?: string;
     disabled?: boolean;
@@ -30,20 +36,20 @@ export interface Input extends MenuInput, Omit<Marko.Input<'span'>, `on${string}
         renderBody?: Marko.Body;
     };
     prefixLabel?: string;
-    icon?: Marko.AttrTag<{renderBody?: Marko.Body}>;
+    icon?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
     text?: string;
     reverse?: boolean;
     fixWidth?: boolean;
-    'on-expand'?: (event: MenuButtonEvent) => void;
-    onExpand?: this['on-expand'];
-    'on-collapse'?: (event: MenuButtonEvent) => void;
-    onCollapse?: this['on-collapse'];
-    'on-change'?: (event: MenuButtonEvent) => void;
-    onChange?: this['on-change'];
-    'on-select'?: (event: MenuButtonEvent) => void;
-    onSelect?: this['on-select'];
-    'on-mousedown'?: (event: MenuButtonEvent) => void;
-    onMousedown?: this['on-mousedown'];
+    "on-expand"?: (event: MenuButtonEvent) => void;
+    onExpand?: this["on-expand"];
+    "on-collapse"?: (event: MenuButtonEvent) => void;
+    onCollapse?: this["on-collapse"];
+    "on-change"?: (event: MenuButtonEvent) => void;
+    onChange?: this["on-change"];
+    "on-select"?: (event: MenuButtonEvent) => void;
+    onSelect?: this["on-select"];
+    "on-mousedown"?: (event: MenuButtonEvent) => void;
+    onMousedown?: this["on-mousedown"];
 }
 
 export default class extends MenuUtils<Input, MenuState> {
@@ -53,10 +59,15 @@ export default class extends MenuUtils<Input, MenuState> {
         setupMenu(this);
     }
 
-    toggleItemChecked(index: number, itemEl: Element | undefined, originalEvent?: Event) {
+    toggleItemChecked(
+        index: number,
+        itemEl: Element | undefined,
+        originalEvent?: Event
+    ) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
-        const shouldEmitRadio = this.isRadio() && index !== this.state.checkedIndex;
+        const shouldEmitRadio =
+            this.isRadio() && index !== this.state.checkedIndex;
         this.toggleChecked(index);
 
         if (shouldEmitRadio) {
@@ -65,17 +76,17 @@ export default class extends MenuUtils<Input, MenuState> {
             }
             this.emitComponentEvent({
                 index,
-                eventType: 'change',
+                eventType: "change",
                 el: itemEl,
                 originalEvent,
             });
-        } else if (this.type !== 'radio') {
+        } else if (this.type !== "radio") {
             if (this.input.collapseOnSelect) {
                 this.expander.expanded = false;
             }
             this.emitComponentEvent({
                 index,
-                eventType: !this.type ? 'select' : 'change',
+                eventType: !this.type ? "select" : "change",
                 el: itemEl,
                 originalEvent,
             });
@@ -100,7 +111,9 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     focus() {
-        ((this.getComponent('button') as Marko.Component).el as HTMLElement).focus();
+        (
+            (this.getComponent("button") as Marko.Component).el as HTMLElement
+        ).focus();
     }
 
     handleButtonEscape() {
@@ -108,11 +121,11 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     handleExpand() {
-        this.emitComponentEvent({ eventType: 'expand' });
+        this.emitComponentEvent({ eventType: "expand" });
     }
 
     handleCollapse() {
-        this.emitComponentEvent({ eventType: 'collapse' });
+        this.emitComponentEvent({ eventType: "collapse" });
     }
 
     handleMenuChange({ el, originalEvent, index }: MenuEvent) {
@@ -124,10 +137,15 @@ export default class extends MenuUtils<Input, MenuState> {
             this.expander.expanded = false;
         }
 
-        this.emitComponentEvent({ eventType: 'select', el, originalEvent, index });
+        this.emitComponentEvent({
+            eventType: "select",
+            el,
+            originalEvent,
+            index,
+        });
     }
     handleMousedown(originalEvent: MouseEvent, el: HTMLSpanElement) {
-        this.emitComponentEvent({ eventType: 'mousedown', el, originalEvent });
+        this.emitComponentEvent({ eventType: "mousedown", el, originalEvent });
     }
     emitComponentEvent({
         eventType,
@@ -141,7 +159,7 @@ export default class extends MenuUtils<Input, MenuState> {
         index?: number;
     }) {
         const checkedIndexes = this.getCheckedIndexes();
-        const isCheckbox = this.type === 'checkbox';
+        const isCheckbox = this.type === "checkbox";
 
         const eventObj = {
             el,
@@ -160,7 +178,7 @@ export default class extends MenuUtils<Input, MenuState> {
                 checked: this.getCheckedIndexes(), // DEPRECATED in v5 (keep but change from indexes to values)
                 checkedValues: this.getCheckedValues(), // DEPRECATED in v5
             });
-        } else if (eventType !== 'expand' && eventType !== 'collapse') {
+        } else if (eventType !== "expand" && eventType !== "collapse") {
             Object.assign(eventObj, {
                 index, // DEPRECATED in v5
                 checked: [index], // DEPRECATED in v5 (keep but change from indexes to values)
@@ -175,7 +193,7 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     onRender() {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             this._cleanupMakeup();
         }
     }
@@ -194,9 +212,9 @@ export default class extends MenuUtils<Input, MenuState> {
 
     _setupMakeup() {
         this.expander = new Expander(this.el, {
-            hostSelector: '.menu-button__button',
-            contentSelector: '.menu-button__menu',
-            focusManagement: 'focusable',
+            hostSelector: ".menu-button__button",
+            contentSelector: ".menu-button__menu",
+            focusManagement: "focusable",
             expandOnClick: true,
             autoCollapse: true,
             alwaysDoFocusManagement: true,

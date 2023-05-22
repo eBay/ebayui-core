@@ -1,6 +1,6 @@
 export interface Input {
     data: { x: number; y: number }[];
-    trend?: 'positive' | 'negative';
+    trend?: "positive" | "negative";
 }
 
 export default class extends Marko.Component<Input> {
@@ -9,18 +9,24 @@ export default class extends Marko.Component<Input> {
         // refer to https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d
         const path: (string | number)[] = [];
         const minMax = this.getMinMax();
-        const normalizationScaleRatios = this.getNormalizationScaleRatios(minMax);
+        const normalizationScaleRatios =
+            this.getNormalizationScaleRatios(minMax);
 
         // loop through each data point to generate the path string'
         this.input.data.forEach((p, i) => {
             // set the command, either M for move to on the first data point or L for line
-            path.push(i === 0 ? 'M ' : 'L');
+            path.push(i === 0 ? "M " : "L");
             // set the x value minus the startX times the normlize ratio + 6 for padding and line width
-            path.push((p.x - minMax.startX) * normalizationScaleRatios.xScale + 6);
+            path.push(
+                (p.x - minMax.startX) * normalizationScaleRatios.xScale + 6
+            );
             // set the y value minus the minimum y value times the normalize ratio + 10 padding and line width
-            path.push(120 - ((p.y - minMax.yMin) * normalizationScaleRatios.yScale + 10));
+            path.push(
+                120 -
+                    ((p.y - minMax.yMin) * normalizationScaleRatios.yScale + 10)
+            );
         });
-        return path.join(' '); // join the path array into a string with spaces for use in the path d attribute
+        return path.join(" "); // join the path array into a string with spaces for use in the path d attribute
     }
 
     getMinMax() {
@@ -55,9 +61,12 @@ export default class extends Marko.Component<Input> {
 
     getViewBox() {
         const minMax = this.getMinMax();
-        const normalizationScaleRatios = this.getNormalizationScaleRatios(minMax);
+        const normalizationScaleRatios =
+            this.getNormalizationScaleRatios(minMax);
         // set the viewBox x, y, width, height
-        return `0 0 ${(minMax.endX - minMax.startX) * normalizationScaleRatios.xScale + 12} ${
+        return `0 0 ${
+            (minMax.endX - minMax.startX) * normalizationScaleRatios.xScale + 12
+        } ${
             (minMax.yMax - minMax.yMin) * normalizationScaleRatios.yScale + 20
         }`;
     }

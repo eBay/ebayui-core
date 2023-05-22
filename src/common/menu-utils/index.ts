@@ -1,4 +1,4 @@
-export interface MenuItem extends Omit<Marko.Input<'button'>, `on${string}`> {
+export interface MenuItem extends Omit<Marko.Input<"button">, `on${string}`> {
     href?: string;
     value?: string;
     renderBody?: Marko.Body;
@@ -17,15 +17,15 @@ export interface MenuState {
     checkedItems?: boolean[];
 }
 
-export class MenuUtils<Input extends MenuInput, State extends MenuState> extends Marko.Component<
-    Input,
-    State
-> {
+export class MenuUtils<
+    Input extends MenuInput,
+    State extends MenuState
+> extends Marko.Component<Input, State> {
     declare type?: string;
-    declare items: Extract<Input['items'], any[]>[number][];
+    declare items: Extract<Input["items"], any[]>[number][];
 
     isRadio() {
-        return this.type === 'radio';
+        return this.type === "radio";
     }
 
     getCheckedValues() {
@@ -40,7 +40,9 @@ export class MenuUtils<Input extends MenuInput, State extends MenuState> extends
 
     getCheckedIndexes() {
         if (this.isRadio()) {
-            return this.state.checkedIndex === undefined ? undefined : [this.state.checkedIndex];
+            return this.state.checkedIndex === undefined
+                ? undefined
+                : [this.state.checkedIndex];
         }
         return this.items
             .map((item, i) => this.state.checkedItems![i] && i)
@@ -59,11 +61,15 @@ export class MenuUtils<Input extends MenuInput, State extends MenuState> extends
         this.type = input.type;
         if (this.isRadio()) {
             return {
-                checkedIndex: (this.items || []).findIndex((item) => item.checked || false),
+                checkedIndex: (this.items || []).findIndex(
+                    (item) => item.checked || false
+                ),
             };
         }
         return {
-            checkedItems: (this.items || []).map((item) => item.checked || false),
+            checkedItems: (this.items || []).map(
+                (item) => item.checked || false
+            ),
         };
     }
 
@@ -92,24 +98,30 @@ export class MenuUtils<Input extends MenuInput, State extends MenuState> extends
 
         if (this.isRadio() && index !== this.state.checkedIndex) {
             this.state.checkedIndex = index;
-        } else if (this.type !== 'radio') {
+        } else if (this.type !== "radio") {
             this.state.checkedItems![index] = !this.state.checkedItems![index];
-            this.setStateDirty('checkedItems');
+            this.setStateDirty("checkedItems");
         }
     }
 
     getSeparatorMap(input: Input) {
         let separatorCount = 0;
-        return ((input.items as MenuItem[]) || []).reduce((map, item, index) => {
-            if (item.separator) {
-                map[index - separatorCount] = true;
-                separatorCount++;
-            }
-            return map;
-        }, {});
+        return ((input.items as MenuItem[]) || []).reduce(
+            (map, item, index) => {
+                if (item.separator) {
+                    map[index - separatorCount] = true;
+                    separatorCount++;
+                }
+                return map;
+            },
+            {}
+        );
     }
 }
 
 export default function setupMenu(instance: any) {
-    Object.defineProperties(instance, Object.getOwnPropertyDescriptors(MenuUtils.prototype));
+    Object.defineProperties(
+        instance,
+        Object.getOwnPropertyDescriptors(MenuUtils.prototype)
+    );
 }

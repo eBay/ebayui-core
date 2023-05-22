@@ -1,5 +1,5 @@
-import type { AttrClass } from 'marko/tags-html';
-import { CDNLoader } from '../../common/cdn';
+import type { AttrClass } from "marko/tags-html";
+import { CDNLoader } from "../../common/cdn";
 
 interface Input {
     cdnUrl?: string;
@@ -13,21 +13,21 @@ interface Input {
     // TODO: import types from @google/model-viewer instead of
     // listing manually from https://modelviewer.dev/docs
     poster?: string;
-    loading?: 'auto' | 'lazy' | 'eager';
-    reveal?: 'auto' | 'manual';
-    'with-credentials'?: boolean;
-    'on-load-error'?: (err: CustomEvent) => void;
-    'onLoad-error'?: this['on-load-error'];
-    'on-load'?: () => void;
-    onLoad?: this['on-load'];
-    'on-progress'?: () => void;
-    onProgress?: this['on-progress'];
-    'on-model-visibility'?: () => void;
-    'onModel-visibility'?: this['on-model-visibility'];
-    'on-poster-dismissed'?: () => void;
-    'onPoster-dismissed'?: this['on-poster-dismissed'];
-    'on-render-scale'?: () => void;
-    'onRender-scale'?: this['on-render-scale'];
+    loading?: "auto" | "lazy" | "eager";
+    reveal?: "auto" | "manual";
+    "with-credentials"?: boolean;
+    "on-load-error"?: (err: CustomEvent) => void;
+    "onLoad-error"?: this["on-load-error"];
+    "on-load"?: () => void;
+    onLoad?: this["on-load"];
+    "on-progress"?: () => void;
+    onProgress?: this["on-progress"];
+    "on-model-visibility"?: () => void;
+    "onModel-visibility"?: this["on-model-visibility"];
+    "on-poster-dismissed"?: () => void;
+    "onPoster-dismissed"?: this["on-poster-dismissed"];
+    "on-render-scale"?: () => void;
+    "onRender-scale"?: this["on-render-scale"];
 }
 
 interface State {
@@ -43,7 +43,7 @@ export default class extends Marko.Component<Input, State> {
     handleError(err: CustomEvent) {
         this.state.failed = true;
         this.state.isLoaded = true;
-        this.emit('load-error', err);
+        this.emit("load-error", err);
     }
 
     onCreate() {
@@ -54,9 +54,9 @@ export default class extends Marko.Component<Input, State> {
         };
 
         this.cdnLoader = new CDNLoader(this as any, {
-            key: 'modelViewer',
-            types: ['module'],
-            files: ['model-viewer.min.js'],
+            key: "modelViewer",
+            types: ["module"],
+            files: ["model-viewer.min.js"],
             setLoading: (value) => {
                 this.state.showLoading = value;
             },
@@ -72,7 +72,7 @@ export default class extends Marko.Component<Input, State> {
     }
 
     onMount() {
-        this.viewer = this.getEl('3d-viewer');
+        this.viewer = this.getEl("3d-viewer");
         this._loadViewer();
     }
 
@@ -81,7 +81,10 @@ export default class extends Marko.Component<Input, State> {
         this.state.isLoaded = false;
 
         this.cdnLoader
-            .setOverrides(this.input.cdnUrl ? [this.input.cdnUrl] : undefined, this.input.version)
+            .setOverrides(
+                this.input.cdnUrl ? [this.input.cdnUrl] : undefined,
+                this.input.version
+            )
             .mount();
     }
 }

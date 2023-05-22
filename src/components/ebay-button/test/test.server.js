@@ -1,16 +1,16 @@
-import { use } from 'chai';
-import { composeStories } from '@storybook/marko/dist/testing';
-import expandMigrator from '../examples/expand-migrator.marko';
-import { snapshotHTML } from '../../../common/test-utils/snapshots';
-import * as stories from '../button.stories'; // import all stories from the stories file
+import { use } from "chai";
+import { composeStories } from "@storybook/marko/dist/testing";
+import expandMigrator from "../examples/expand-migrator.marko";
+import { snapshotHTML } from "../../../common/test-utils/snapshots";
+import * as stories from "../button.stories"; // import all stories from the stories file
 const { Standard, ExpandButton } = composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
 
-use(require('chai-dom'));
+use(require("chai-dom"));
 
 const properties = {
-    priority: ['primary', 'secondary', 'delete'],
-    size: ['large'],
+    priority: ["primary", "secondary", "delete"],
+    size: ["large"],
 };
 
 Object.keys(properties).forEach((property) => {
@@ -28,77 +28,77 @@ Object.keys(properties).forEach((property) => {
     });
 });
 
-it('renders defaults', async () => {
+it("renders defaults", async () => {
     await htmlSnap(Standard);
 });
 
-it('renders with id override', async () => {
-    await htmlSnap(Standard, { id: 'test' });
+it("renders with id override", async () => {
+    await htmlSnap(Standard, { id: "test" });
 });
 
-it('renders with type override', async () => {
-    await htmlSnap(Standard, { type: 'submit' });
+it("renders with type override", async () => {
+    await htmlSnap(Standard, { type: "submit" });
 });
 
-it('does not apply priority class for unsupported value', async () => {
-    await htmlSnap(Standard, { priority: 'none' });
+it("does not apply priority class for unsupported value", async () => {
+    await htmlSnap(Standard, { priority: "none" });
 });
 
-it('renders fake version', async () => {
+it("renders fake version", async () => {
     await htmlSnap(Standard, {
-        href: '#',
-        size: 'large',
-        priority: 'primary',
-        ariaLabel: 'fake button',
+        href: "#",
+        size: "large",
+        priority: "primary",
+        ariaLabel: "fake button",
     });
 });
 
-it('renders disabled version', async () => {
+it("renders disabled version", async () => {
     await htmlSnap(Standard, { disabled: true });
 });
 
-it('renders partially disabled version', async () => {
+it("renders partially disabled version", async () => {
     await htmlSnap(Standard, { partiallyDisabled: true });
 });
 
-it('renders truncated button', async () => {
+it("renders truncated button", async () => {
     await htmlSnap(Standard, {
         truncate: true,
     });
 });
 
-it('renders large truncated button', async () => {
+it("renders large truncated button", async () => {
     await htmlSnap(Standard, {
         truncate: true,
-        size: 'large',
+        size: "large",
     });
 });
 
-it('renders fixed-height button', async () => {
+it("renders fixed-height button", async () => {
     await htmlSnap(Standard, {
         fixedHeight: true,
     });
 });
 
-it('renders large fixed-height button', async () => {
+it("renders large fixed-height button", async () => {
     await htmlSnap(Standard, {
         fixedHeight: true,
-        size: 'large',
+        size: "large",
     });
 });
 
-it('renders a11yText when bodyState === loading', async () => {
+it("renders a11yText when bodyState === loading", async () => {
     await htmlSnap(Standard, {
-        priority: 'primary',
-        a11yText: 'loading text',
-        bodyState: 'loading',
+        priority: "primary",
+        a11yText: "loading text",
+        bodyState: "loading",
     });
 });
 
-it('renders expanded button', async () => {
+it("renders expanded button", async () => {
     await htmlSnap(ExpandButton);
 });
 
-it('renders expanded button migrator', async () => {
+it("renders expanded button migrator", async () => {
     await htmlSnap(expandMigrator);
 });

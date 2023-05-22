@@ -1,5 +1,5 @@
-import Expander from 'makeup-expander';
-import { toISO, type DayISO } from '../ebay-calendar/component';
+import Expander from "makeup-expander";
+import { toISO, type DayISO } from "../ebay-calendar/component";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -18,10 +18,12 @@ export interface Input {
     a11yInRangeText?: string;
     a11yRangeEndText?: string;
     a11ySeparator?: string;
-    'on-change'?: (
-        event: { selected: DayISO | null } | { rangeStart: DayISO | null; rangeEnd: DayISO | null }
+    "on-change"?: (
+        event:
+            | { selected: DayISO | null }
+            | { rangeStart: DayISO | null; rangeEnd: DayISO | null }
     ) => void;
-    onChange?: this['on-change'];
+    onChange?: this["on-change"];
 }
 
 interface State {
@@ -47,8 +49,8 @@ export default class extends Marko.Component<Input, State> {
 
     onMount() {
         this.expander = new Expander(this.el, {
-            hostSelector: '.ebay-date-textbox--main > .icon-btn',
-            contentSelector: '.date-textbox__popover',
+            hostSelector: ".ebay-date-textbox--main > .icon-btn",
+            contentSelector: ".date-textbox__popover",
             expandOnClick: true,
             autoCollapse: true,
         });
@@ -66,7 +68,9 @@ export default class extends Marko.Component<Input, State> {
 
     calculateNumMonths() {
         this.state.numMonths =
-            document.documentElement.clientWidth < MIN_WIDTH_FOR_DOUBLE_PANE ? 1 : 2;
+            document.documentElement.clientWidth < MIN_WIDTH_FOR_DOUBLE_PANE
+                ? 1
+                : 2;
     }
 
     handleInputChange(index: number, { value }: { value: string }) {
@@ -115,7 +119,7 @@ export default class extends Marko.Component<Input, State> {
 
     emitSelectedChange() {
         this.emit(
-            'change',
+            "change",
             this.input.range
                 ? {
                       rangeStart: this.state.firstSelected,

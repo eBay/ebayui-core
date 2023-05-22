@@ -1,9 +1,12 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import { addRenderBodies, buildExtensionTemplate } from '../../../.storybook/utils';
-import button from './index.marko';
-import readme from './README.md';
-import ExpandButtonTemplate from './examples/expand-button.marko';
-import ExpandButtonTemplateCode from './examples/expand-button.marko?raw';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../../.storybook/utils";
+import button from "./index.marko";
+import readme from "./README.md";
+import ExpandButtonTemplate from "./examples/expand-button.marko";
+import ExpandButtonTemplateCode from "./examples/expand-button.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -11,7 +14,7 @@ const Template = (args) => ({
 // const Template = args =({ input: withRenderBody(args) })
 
 export default {
-    title: 'buttons/ebay-button',
+    title: "buttons/ebay-button",
     component: button,
     parameters: {
         docs: {
@@ -23,172 +26,174 @@ export default {
     argTypes: {
         renderBody: {},
         href: {
-            description: 'url for link behaviour (switches to anchor tag)',
+            description: "url for link behaviour (switches to anchor tag)",
         },
         size: {
-            options: ['large', 'regular'],
+            options: ["large", "regular"],
 
-            description: '',
+            description: "",
             table: {
                 defaultValue: {
-                    summary: 'none',
+                    summary: "none",
                 },
             },
-            type: { category: 'Options' },
+            type: { category: "Options" },
         },
         priority: {
-            options: ['primary', 'secondary', 'tertiary', 'none'],
-            description: '',
+            options: ["primary", "secondary", "tertiary", "none"],
+            description: "",
 
             table: {
                 defaultValue: {
-                    summary: 'secondary',
+                    summary: "secondary",
                 },
             },
-            type: { category: 'Options' },
+            type: { category: "Options" },
         },
         fluid: {
-            description: 'button fills 100% width of container',
+            description: "button fills 100% width of container",
             table: {
-                category: 'Toggles',
+                category: "Toggles",
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
             },
         },
         borderless: {
-            description: 'Shows button without border.',
+            description: "Shows button without border.",
             table: {
-                category: 'Toggles',
+                category: "Toggles",
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
             },
         },
         bodyState: {
             description:
-                'when state is loading, adds progress spinner. when user interacts with button, reset should be called to reset aria-live state. default is none',
-            options: ['none', 'loading', 'reset', 'expand'],
-            control: { type: 'select' },
+                "when state is loading, adds progress spinner. when user interacts with button, reset should be called to reset aria-live state. default is none",
+            options: ["none", "loading", "reset", "expand"],
+            control: { type: "select" },
             table: {
                 defaultValue: {
-                    summary: 'none',
+                    summary: "none",
                 },
             },
-            type: { category: 'Options' },
+            type: { category: "Options" },
         },
         a11yText: {
-            description: 'aria label for button when bodyState === loading',
+            description: "aria label for button when bodyState === loading",
             table: {
-                defaultValue: '',
+                defaultValue: "",
             },
-            control: { type: 'text' },
-            type: { category: 'Options' },
+            control: { type: "text" },
+            type: { category: "Options" },
         },
         disabled: {
-            description: '',
+            description: "",
             table: {
-                category: 'Toggles',
+                category: "Toggles",
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
             },
         },
         variant: {
-            options: ['standard', 'destructive', 'form'],
+            options: ["standard", "destructive", "form"],
             description:
-                'transforms to a specific variant that styles in conjunction with priority',
+                "transforms to a specific variant that styles in conjunction with priority",
             table: {
                 defaultValue: {
-                    summary: 'standard',
+                    summary: "standard",
                 },
             },
-            type: { category: 'Options' },
+            type: { category: "Options" },
         },
-        'partially-disabled': {
-            description: 'programmatically disabled, but remains keyboard focusable',
+        "partially-disabled": {
+            description:
+                "programmatically disabled, but remains keyboard focusable",
             table: {
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
-                category: 'Toggles',
+                category: "Toggles",
             },
         },
         transparent: {
-            description: 'transparent background color (overrides `priority` setting)',
+            description:
+                "transparent background color (overrides `priority` setting)",
             table: {
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
-                category: 'Toggles',
+                category: "Toggles",
             },
         },
-        'fixed-height': {
-            description: 'fixes the height based on `size`',
+        "fixed-height": {
+            description: "fixes the height based on `size`",
             table: {
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
-                category: 'Toggles',
+                category: "Toggles",
             },
         },
         truncate: {
             description:
-                'used in conjunction with `fixed-height`; truncates text to single line with ellipsis when text overflows',
+                "used in conjunction with `fixed-height`; truncates text to single line with ellipsis when text overflows",
             table: {
                 defaultValue: {
-                    summary: 'false',
+                    summary: "false",
                 },
-                category: 'Toggles',
+                category: "Toggles",
             },
         },
         onClick: {
-            action: 'on-click',
-            description: 'Triggered on click',
+            action: "on-click",
+            description: "Triggered on click",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onEscape: {
-            action: 'on-escape',
-            description: 'Triggered on escape key',
+            action: "on-escape",
+            description: "Triggered on escape key",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onFocus: {
-            action: 'on-focus',
-            description: 'Triggered on focus',
+            action: "on-focus",
+            description: "Triggered on focus",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         onBlur: {
-            action: 'on-blur',
-            description: 'Triggered on blur',
+            action: "on-blur",
+            description: "Triggered on blur",
             table: {
-                category: 'Events',
+                category: "Events",
                 defaultValue: {
-                    summary: '{ originalEvent }',
+                    summary: "{ originalEvent }",
                 },
             },
         },
         spread: {
             control: {
-                type: 'object',
+                type: "object",
             },
-            description: 'Additional attributes being passed to component',
+            description: "Additional attributes being passed to component",
             table: {
-                category: 'Other',
+                category: "Other",
             },
         },
     },
@@ -196,25 +201,28 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    renderBody: 'Button',
-    href: '',
+    renderBody: "Button",
+    href: "",
     fluid: false,
     borderless: false,
     size: null,
     disabled: false,
     priority: null,
-    'partially-disabled': false,
+    "partially-disabled": false,
     transparent: false,
-    'fixed-height': false,
+    "fixed-height": false,
     truncate: false,
 };
 
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-button', Standard.args),
+            code: tagToString("ebay-button", Standard.args),
         },
     },
 };
 
-export const ExpandButton = buildExtensionTemplate(ExpandButtonTemplate, ExpandButtonTemplateCode);
+export const ExpandButton = buildExtensionTemplate(
+    ExpandButtonTemplate,
+    ExpandButtonTemplateCode
+);

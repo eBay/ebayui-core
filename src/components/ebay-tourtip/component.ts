@@ -1,25 +1,25 @@
-import { Input as TooltipBaseInput } from '../components/ebay-tooltip-base/component-browser';
-import { Input as TooltipOverlayInput } from '../components/ebay-tooltip-overlay/component-browser';
+import { Input as TooltipBaseInput } from "../components/ebay-tooltip-base/component-browser";
+import { Input as TooltipOverlayInput } from "../components/ebay-tooltip-overlay/component-browser";
 
-export interface Input extends Omit<Marko.Input<'span'>, `on${string}`> {
+export interface Input extends Omit<Marko.Input<"span">, `on${string}`> {
     open?: boolean;
-    noHover?: TooltipBaseInput['noHover'];
-    host?: Marko.Input<'span'>;
-    pointer?: TooltipOverlayInput['pointer'];
-    styleLeft?: TooltipOverlayInput['styleLeft'];
-    styleRight?: TooltipOverlayInput['styleRight'];
-    styleTop?: TooltipOverlayInput['styleTop'];
-    styleBottom?: TooltipOverlayInput['styleBottom'];
-    heading?: TooltipOverlayInput['heading'];
-    content?: TooltipOverlayInput['content'];
-    a11yCloseText?: TooltipOverlayInput['a11yCloseText'];
-    footer?: TooltipOverlayInput['footer'] & {
+    noHover?: TooltipBaseInput["noHover"];
+    host?: Marko.Input<"span">;
+    pointer?: TooltipOverlayInput["pointer"];
+    styleLeft?: TooltipOverlayInput["styleLeft"];
+    styleRight?: TooltipOverlayInput["styleRight"];
+    styleTop?: TooltipOverlayInput["styleTop"];
+    styleBottom?: TooltipOverlayInput["styleBottom"];
+    heading?: TooltipOverlayInput["heading"];
+    content?: TooltipOverlayInput["content"];
+    a11yCloseText?: TooltipOverlayInput["a11yCloseText"];
+    footer?: TooltipOverlayInput["footer"] & {
         index?: string;
     };
-    'on-expand'?: () => void;
-    onExpand?: this['on-expand'];
-    'on-collapse'?: () => void;
-    onCollapse?: this['on-collapse'];
+    "on-expand"?: () => void;
+    onExpand?: this["on-expand"];
+    "on-collapse"?: () => void;
+    onCollapse?: this["on-collapse"];
 }
 
 interface State {
@@ -30,14 +30,14 @@ export default class extends Marko.Component<Input, State> {
     handleCollapse({ originalEvent }) {
         if (this.state.expanded) {
             this.state.expanded = false;
-            this.emit('collapse', { originalEvent });
+            this.emit("collapse", { originalEvent });
         }
     }
 
     handleExpand({ originalEvent }) {
         if (!this.state.expanded) {
             this.state.expanded = true;
-            this.emit('expand', { originalEvent });
+            this.emit("expand", { originalEvent });
         }
     }
     onInput(input: Input) {

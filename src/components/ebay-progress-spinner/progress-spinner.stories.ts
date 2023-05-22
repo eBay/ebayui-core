@@ -1,6 +1,6 @@
-import { tagToString } from '../../../.storybook/storybook-code-source';
-import Readme from './README.md';
-import Component from './index.marko';
+import { tagToString } from "../../../.storybook/storybook-code-source";
+import Readme from "./README.md";
+import Component from "./index.marko";
 
 const Template = (args) => ({
     input: {
@@ -14,7 +14,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: 'progress/ebay-progress-spinner',
+    title: "progress/ebay-progress-spinner",
     component: Component,
     parameters: {
         docs: {
@@ -26,20 +26,21 @@ export default {
 
     argTypes: {
         size: {
-            options: ['small', 'large'],
-            control: { type: 'select' },
-            description: 'size of spinner - can be "small", "large". default is small ',
+            options: ["small", "large"],
+            control: { type: "select" },
+            description:
+                'size of spinner - can be "small", "large". default is small ',
         },
         ariaLabel: {
-            control: { type: 'text' },
-            description: 'Description for accessibility',
+            control: { type: "text" },
+            description: "Description for accessibility",
         },
     },
 };
 
 export const Loading = Template.bind({});
 Loading.args = {
-    ariaLabel: 'loading',
+    ariaLabel: "loading",
 };
 Loading.parameters = {
     docs: {
@@ -52,7 +53,7 @@ Loading.parameters = {
 Loading.parameters = {
     docs: {
         source: {
-            code: tagToString('ebay-progress-spinner', Loading.args),
+            code: tagToString("ebay-progress-spinner", Loading.args),
         },
     },
 };
