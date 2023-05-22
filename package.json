@@ -1,6 +1,6 @@
 {
     "name": "@ebay/ebayui-core",
-    "version": "12.0.1",
+    "version": "12.2.0",
     "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
     "scripts": {
         "installMarkoV5": "npm i marko@5 @marko/compiler@5 --force",
@@ -70,7 +70,7 @@
         "@ebay/skin": "~16.0.0",
         "@google/model-viewer": "^2.1.1",
         "@lasso/marko-taglib": "^2.0.5",
-        "@marko/compiler": "^5.27.6",
+        "@marko/compiler": "^5.23.2",
         "@marko/migrate": "^6.0.2",
         "@marko/prettyprint": "^3.0.1",
         "@marko/test": "^10",
@@ -92,7 +92,7 @@
         "chai": "4.3.7",
         "chai-dom": "^1.10.0",
         "cheerio": "^1.0.0-rc.11",
-        "chromedriver": "^110",
+        "chromedriver": "^112",
         "coveralls": "^3.1.1",
         "css-loader": "^6",
         "del": "^7.0.0",
@@ -121,20 +121,20 @@
         "nyc": "^15.1.0",
         "postcss-less": "^6.0.0",
         "pre-push": "^0.1.4",
-        "prettier": "^2.8.3",
+        "prettier": "^2.8.7",
         "raw-loader": "^4.0.2",
-        "rimraf": "^4.1.2",
-        "shaka-player": "4.3.3",
-        "sinon": "^15.0.1",
+        "rimraf": "^4.4.1",
+        "shaka-player": "4.3.5",
+        "sinon": "^15.0.3",
         "style-loader": "^3",
-        "stylelint": "^15.0.1",
-        "stylelint-config-standard": "^30",
+        "stylelint": "^15.4.0",
+        "stylelint-config-standard": "^32",
         "stylelint-prettier": "^3",
         "wdio-chromedriver-service": "^8"
     },
     "peerDependencies": {
         "@ebay/skin": "~16.0.0",
-        "marko": "^4 || ^5"
+        "marko": "^4 || ^5.23.0"
     },
     "dependencies": {
         "@babel/preset-typescript": "^7.21.4",

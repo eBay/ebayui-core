@@ -12,7 +12,7 @@ import { fileURLToPath } from "url";
 import cheerio from "cheerio";
 import { minify } from "html-minifier";
 import markoTagJson from "../src/components/ebay-icon/marko-tag.json";
-// import markoTagJson from '../src/components/ebay-icon/marko-tag.json' assert { type: 'json' };
+// import markoTagJson from "../src/components/ebay-icon/marko-tag.json" assert { type: "json" };
 const require = createRequire(import.meta.url);
 
 const skinDir = path.dirname(require.resolve("@ebay/skin/package.json"));
@@ -101,6 +101,11 @@ function generateFile(type, iconMap) {
             `${JSON.stringify(markoTagJson, null, 2)}\n`
         );
 
+        if (type === "image-placeholder") {
+            // don't write index for image placeholder
+            continue;
+        }
+
         // eslint-disable-next-line max-len
         fs.writeFileSync(
             index,
@@ -141,9 +146,11 @@ function generateIcon(componentName) {
 
 setupDir("icon");
 setupDir("star-rating");
+setupDir("image-placeholder");
 
 generateIcon("icon");
 generateIcon("star-rating");
+generateIcon("image-placeholder");
 
 Object.keys(examplesMap).forEach((componentName) => {
     examplesMap[componentName].sort((a, b) => {

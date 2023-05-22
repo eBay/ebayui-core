@@ -133,7 +133,7 @@ export default class extends MenuUtils<Input, MenuState> {
                 const checked = this.getCheckedValues();
                 this.emit(eventType, {
                     el,
-                    checked,
+                    checked: checked as string[],
                     originalEvent,
                     index,
                     currentChecked,

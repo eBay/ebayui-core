@@ -1,0 +1,33 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@variant": {
+        "enum": ["default", "signedout"]
+    },
+    "@color": {
+        "enum": [
+            "teal",
+            "light-teal",
+            "green",
+            "lime",
+            "yellow",
+            "orange",
+            "magenta"
+        ]
+    },
+    "@size": {
+        "enum": ["32", "40", "48", "56", "64", "96", "128"]
+    },
+    "@a11yText": "string",
+    "@icon <icon>": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    }
+}

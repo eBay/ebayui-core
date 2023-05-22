@@ -6,6 +6,7 @@ module.exports = ({ config }) => {
     config.mochaOptions = {
         timeout: 60000,
         require: [
+            "@babel/register",
             "mocha-snap",
             "./src/common/test-utils/require-extensions.js",
         ],

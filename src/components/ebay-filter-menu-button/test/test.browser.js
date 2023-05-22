@@ -6,9 +6,9 @@ import * as stories from "../filter-menu-button.stories";
 import { pressKey } from "../../../common/test-utils/browser";
 import { addRenderBodies } from "../../../../.storybook/utils";
 
-const { Standard } = composeStories(stories);
+const { Default, WithFooter } = composeStories(stories);
 
-const items = [...Standard.args.items];
+const items = [...Default.args.items];
 
 use(chaiDom);
 afterEach(cleanup);
@@ -20,7 +20,7 @@ describe("given the filter menu is in the default state", () => {
     let filterButton;
 
     beforeEach(async () => {
-        component = await render(Standard);
+        component = await render(Default);
         filterButton = component.getAllByRole("button")[0];
     });
 
@@ -55,7 +55,7 @@ describe("given the filter menu is in the default state", () => {
     describe("when re-rendered with expanded set to false", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, addRenderBodies(Standard.args), {
+                Object.assign({}, addRenderBodies(Default.args), {
                     expanded: false,
                 })
             );
@@ -74,7 +74,7 @@ describe("given the filter menu is in the default state", () => {
     describe.skip("when re-rendered with expanded set to true", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, addRenderBodies(Standard.args), {
+                Object.assign({}, addRenderBodies(Default.args), {
                     expanded: true,
                 })
             );
@@ -95,7 +95,7 @@ describe("given the menu is in the expanded state", () => {
     let filterButton, footerButton, firstItem, secondItem;
 
     beforeEach(async () => {
-        component = await render(Standard);
+        component = await render(WithFooter);
         filterButton = component.getAllByRole("button")[0];
         footerButton = component.getAllByRole("button", { hidden: true })[1];
         firstItem = component.getAllByRole("menuitemcheckbox", {
@@ -112,7 +112,7 @@ describe("given the menu is in the expanded state", () => {
     describe.skip("when re-rendered with expanded set to true", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, addRenderBodies(Standard.args), {
+                Object.assign({}, addRenderBodies(Default.args), {
                     expanded: true,
                 })
             );
@@ -131,7 +131,7 @@ describe("given the menu is in the expanded state", () => {
     describe.skip("when re-rendered with expanded set to false", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, addRenderBodies(Standard.args), {
+                Object.assign({}, addRenderBodies(Default.args), {
                     expanded: false,
                 })
             );
@@ -270,7 +270,7 @@ describe("given the menu is in the expanded state", () => {
 
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, Standard.args, { items: newItems })
+                Object.assign({}, Default.args, { items: newItems })
             );
             await fireEvent.click(component.getByText(fourthItem));
         });
@@ -293,7 +293,7 @@ describe("given the menu item is disabled", () => {
     beforeEach(async () => {
         items[0] = Object.assign({}, items[0], { disabled: true });
 
-        component = await render(Standard, { items: addRenderBodies(items) });
+        component = await render(Default, { items: addRenderBodies(items) });
     });
 
     describe("when an item is clicked", () => {

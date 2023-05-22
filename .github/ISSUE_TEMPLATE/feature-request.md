@@ -8,10 +8,13 @@ about: Suggest an idea for this project
 # Feature Request
 
 ## Description
+
 <!-- What is the new feature? What problem does it solve? -->
 
 ## Context
+
 <!-- Provide additional contextual information if needed. -->
 
 ## Screenshots
+
 <!-- Upload screenshots if appropriate. -->
