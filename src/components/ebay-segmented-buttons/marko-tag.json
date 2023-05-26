@@ -5,6 +5,9 @@
         "targetProperty": null
     },
     "@html-attributes": "expression",
+    "@size": {
+        "enum": ["regular", "large"]
+    },
     "@buttons <button>[]": {
         "@*": {
             "targetProperty": null,
