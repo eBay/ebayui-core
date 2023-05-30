@@ -36,6 +36,16 @@ export default {
                 category: "@button attribute",
             },
         },
+        size: {
+            options: ["large", "regular"],
+            description: "",
+            table: {
+                defaultValue: {
+                    summary: "none",
+                },
+            },
+            type: { category: "Options" },
+        },
         icon: {
             description: "The icon to show before the text",
             name: "@icon",

@@ -67,6 +67,12 @@ it("renders truncated button", async () => {
     });
 });
 
+it("renders small button", async () => {
+    await htmlSnap(Standard, {
+        size: "small",
+    });
+});
+
 it("renders large truncated button", async () => {
     await htmlSnap(Standard, {
         truncate: true,
