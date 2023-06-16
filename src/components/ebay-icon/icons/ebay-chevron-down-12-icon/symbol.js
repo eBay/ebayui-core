@@ -1,4 +1,4 @@
 export function symbol() {
     // eslint-disable-next-line max-len,quotes
-    return '<symbol viewbox="0 0 16 16" id=icon-chevron-down-12><path d="M12.194 6.306a.625.625 0 0 0-.881 0L8 9.62 4.694 6.306a.628.628 0 0 0-.888.888l3.75 3.75a.625.625 0 0 0 .882 0l3.75-3.75a.625.625 0 0 0 .006-.888Z"></path></symbol>';
+    return '<symbol viewbox="0 0 12 12" id=icon-chevron-down-12><path fill-rule=evenodd clip-rule=evenodd d="M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"></path></symbol>';
 }
