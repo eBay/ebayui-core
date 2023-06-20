@@ -28,9 +28,9 @@ export default {
         layoutType: {
             type: "string",
             control: { type: "select" },
-            options: ["minimal", "list", "gallery"],
+            options: [undefined, "list", "gallery"],
             description:
-                'Enforced layout type of the button. May be `"minimal"` (default), `"list"`, or `"gallery"`',
+                'Enforced layout type of the button. May be `undefined` (minimal default), `"list"`, or `"gallery"`. Gallery layout may only be used when there is also an icon or an image.',
         },
         pressed: {
             type: "boolean",
@@ -89,7 +89,7 @@ export default {
             },
             control: { type: "text" },
             description:
-                "Placement of the image within the given bounds using the CSS `background-position` property. Using this property will switch the image fit from `contain` to `cover`",
+                "Placement of the image within the given bounds using the CSS `background-position` property. Options include [keywords, lengths, and edge distances](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position). Using this property will switch the image fit from `contain` to `cover`",
         },
         onToggle: {
             action: "on-toggle",
@@ -107,7 +107,6 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     title: "Title",
-    subtitle: "Subtitle",
 };
 
 Default.parameters = {
