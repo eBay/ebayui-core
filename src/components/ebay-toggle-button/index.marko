@@ -11,7 +11,7 @@ static var ignoredAttributes = [
     type="button"
     class=[
         "toggle-button",
-        input.gallery ? "toggle-button--gallery-layout" : "toggle-button--list-layout",
+        input.layoutType && `toggle-button--${input.layoutType}-layout`,
         input.class
     ]
     aria-pressed=state.pressed && "true"
@@ -24,16 +24,23 @@ static var ignoredAttributes = [
     </if>
     <else-if(input.img)>
         <span class="toggle-button__image-container">
-            <span
-                role="img"
-                aria-label=input.img.alt
-                class="toggle-button__image"
-                style={
-                    backgroundImage: `url(${input.img.src})`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: input.img.position || "center",
-                    backgroundSize: input.img.size || "contain"
-                } />
+            <if(input.img.fillPlacement)>
+                <span
+                    role="img"
+                    aria-label=input.img.alt
+                    class="toggle-button__image"
+                    style={
+                        backgroundImage: `url(${input.img.src})`,
+                        backgroundPosition: input.img.fillPlacement || "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                    } />
+            </if>
+            <else>
+                <span class="toggle-button__image">
+                    <img src=input.img.src alt=input.img.alt />
+                </span>
+            </else>
         </span>
     </else-if>
     <span class="toggle-button__content">

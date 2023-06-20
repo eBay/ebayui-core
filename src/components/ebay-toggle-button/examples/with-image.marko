@@ -1,10 +1,4 @@
-<ebay-toggle-button title="Title" subtitle="Subtitle">
-    <@img src="https://cloudfront.slrlounge.com/wp-content/uploads/2012/07/01-SLRLounge-Holding-Standing-Wrong.jpg" />
-</ebay-toggle-button>
-
-<ebay-toggle-button title="Title" subtitle="Subtitle" gallery>
-    <@img
-        src="https://cloudfront.slrlounge.com/wp-content/uploads/2012/07/01-SLRLounge-Holding-Standing-Wrong.jpg"
-        size="cover"
-        position="top" />
+$ const { src, alt, fillPlacement, ...buttonInput } = input
+<ebay-toggle-button title="Title" subtitle="Subtitle" ...buttonInput onToggle("emit", "toggle")>
+    <@img src=src alt=alt fillPlacement=fillPlacement />
 </ebay-toggle-button>
