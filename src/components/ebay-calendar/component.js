@@ -197,20 +197,22 @@ export default class extends Marko.Component {
                 case "PageDown":
                     this.nextMonth(true);
                     break;
-                case "Home":
+                case "Home": {
                     const firstActiveISO = this.getFirstActiveISO();
                     if (firstActiveISO) {
                         this.setTabindexAndFocus(firstActiveISO);
                         this.emit("focus", { iso: this.state.tabindexISO });
                     }
                     break;
-                case "End":
+                }
+                case "End": {
                     const lastActiveISO = this.getLastActiveISO();
                     if (lastActiveISO) {
                         this.setTabindexAndFocus(lastActiveISO);
                         this.emit("focus", { iso: this.state.tabindexISO });
                     }
                     break;
+                }
                 default:
             }
         }
