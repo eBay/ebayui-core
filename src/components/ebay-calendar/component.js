@@ -106,7 +106,26 @@ export default class extends Marko.Component {
             input.disableList?.map(dateArgToISO) ?? []
         );
         if (this.isDisabled(this.state.tabindexISO)) {
-            this.state.tabindexISO = this.getFirstActiveISO(input);
+            const firstActive = this.getFirstActiveISO(input);
+            if (firstActive) {
+                this.state.tabindexISO = firstActive;
+            } else if (
+                this.state.disableBefore &&
+                this.state.tabindexISO < this.state.disableBefore
+            ) {
+                this.state.baseISO = this.state.disableBefore;
+                this.state.offset = 0;
+                this.state.tabindexISO =
+                    this.getFirstActiveISO(input) ?? this.state.disableBefore;
+            } else if (
+                this.state.disableAfter &&
+                this.state.tabindexISO > this.state.disableAfter
+            ) {
+                this.state.baseISO = this.state.disableAfter;
+                this.state.offset = 0;
+                this.state.tabindexISO =
+                    this.getFirstActiveISO(input) ?? this.state.disableAfter;
+            }
         }
     }
 
@@ -179,12 +198,18 @@ export default class extends Marko.Component {
                     this.nextMonth(true);
                     break;
                 case "Home":
-                    this.setTabindexAndFocus(this.getFirstActiveISO());
-                    this.emit("focus", { iso: this.state.tabindexISO });
+                    const firstActiveISO = this.getFirstActiveISO();
+                    if (firstActiveISO) {
+                        this.setTabindexAndFocus(firstActiveISO);
+                        this.emit("focus", { iso: this.state.tabindexISO });
+                    }
                     break;
                 case "End":
-                    this.setTabindexAndFocus(this.getLastActiveISO());
-                    this.emit("focus", { iso: this.state.tabindexISO });
+                    const lastActiveISO = this.getLastActiveISO();
+                    if (lastActiveISO) {
+                        this.setTabindexAndFocus(lastActiveISO);
+                        this.emit("focus", { iso: this.state.tabindexISO });
+                    }
                     break;
                 default:
             }
@@ -222,7 +247,7 @@ export default class extends Marko.Component {
         while (iso <= lastVisible && this.isDisabled(iso)) {
             iso = offsetISO(iso, 1);
         }
-        return iso;
+        return iso > lastVisible ? null : iso;
     }
 
     getLastActiveISO(input = this.input) {
@@ -231,7 +256,7 @@ export default class extends Marko.Component {
         while (iso >= firstVisible && this.isDisabled(iso)) {
             iso = offsetISO(iso, -1);
         }
-        return iso;
+        return iso < firstVisible ? null : iso;
     }
 
     /**
@@ -262,7 +287,7 @@ export default class extends Marko.Component {
         this.state.offset--;
         let newTabindexISO = this.state.tabindexISO;
         const lastActiveISO = this.getLastActiveISO();
-        if (this.state.tabindexISO > lastActiveISO) {
+        if (lastActiveISO && this.state.tabindexISO > lastActiveISO) {
             newTabindexISO = this.state.tabindexISO = lastActiveISO;
         }
         if (focus) {
@@ -290,7 +315,7 @@ export default class extends Marko.Component {
         this.state.offset++;
         let newTabindexISO = this.state.tabindexISO;
         const firstActiveISO = this.getFirstActiveISO();
-        if (this.state.tabindexISO < firstActiveISO) {
+        if (firstActiveISO && this.state.tabindexISO < firstActiveISO) {
             newTabindexISO = this.state.tabindexISO = firstActiveISO;
         }
         if (focus) {
