@@ -1,0 +1,59 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+
+static var ignoredAttributes = [
+    "class",
+    "title",
+    "subtitle",
+    "pressed"
+];
+
+<button
+    type="button"
+    class=[
+        "toggle-button",
+        input.layoutType && `toggle-button--${input.layoutType}-layout`,
+        input.class
+    ]
+    aria-pressed=state.pressed && "true"
+    ...processHtmlAttributes(input, ignoredAttributes)
+    onClick("handleClick")>
+    <if(input.icon)>
+        <span class="toggle-button__icon">
+            <${input.icon}/>
+        </span>
+    </if>
+    <else-if(input.img)>
+        <span class="toggle-button__image-container">
+            <if(input.img.fillPlacement)>
+                <span
+                    role="img"
+                    aria-label=input.img.alt
+                    class="toggle-button__image"
+                    style={
+                        backgroundImage: `url(${input.img.src})`,
+                        backgroundPosition: input.img.fillPlacement || "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                    } />
+            </if>
+            <else>
+                <span class="toggle-button__image">
+                    <img src=input.img.src alt=input.img.alt />
+                </span>
+            </else>
+        </span>
+    </else-if>
+    <span class="toggle-button__content">
+        <span class="toggle-button__title">${input.title}</span>
+        <if(input.subtitle)>
+            <span class="toggle-button__subtitle">
+                <if(typeof input.subtitle === "string")>
+                    ${input.subtitle}
+                </if>
+                <else>
+                    <${input.subtitle}/>
+                </else>
+            </span>
+        </if>
+    </span>
+</button>
