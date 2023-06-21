@@ -106,13 +106,16 @@ export default class extends Marko.Component {
             input.disableList?.map(dateArgToISO) ?? []
         );
         if (this.isDisabled(this.state.tabindexISO)) {
+            // The current tabindex is disabled, so we have to find a new one
             const firstActive = this.getFirstActiveISO(input);
             if (firstActive) {
+                // This month has active days, so we can use the first one
                 this.state.tabindexISO = firstActive;
             } else if (
                 this.state.disableBefore &&
                 this.state.tabindexISO < this.state.disableBefore
             ) {
+                // This month has no active days and the start of _possible_ dates is in the future, so we change months to the start of possible dates
                 this.state.baseISO = this.state.disableBefore;
                 this.state.offset = 0;
                 this.state.tabindexISO =
@@ -121,10 +124,14 @@ export default class extends Marko.Component {
                 this.state.disableAfter &&
                 this.state.tabindexISO > this.state.disableAfter
             ) {
+                // This month has no active days and the end of _possible_ dates is in the past, so we change months to the end of possible dates
                 this.state.baseISO = this.state.disableAfter;
                 this.state.offset = 0;
                 this.state.tabindexISO =
                     this.getFirstActiveISO(input) ?? this.state.disableAfter;
+            } else {
+                // This may be reached in very specific edge cases, such as when the user has disabled all days in the current month manually
+                // In this case, we leave the tabindex and position as is. This is a fall-through case.
             }
         }
     }
