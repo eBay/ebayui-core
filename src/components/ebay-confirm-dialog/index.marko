@@ -1,14 +1,13 @@
 import { Input as BaseInput } from "<ebay-dialog-base>";
-export interface Input extends BaseInput {
-    rejectText?: string;
-    confirmText?: string;
+static interface ConfirmDialogInput extends Omit<BaseInput, `on${string}`> {
+    "reject-text"?: string;
+    "confirm-text"?: string;
     "on-open"?: () => void;
-    onOpen?: this["on-open"];
     "on-reject"?: () => void;
-    onReject?: this["on-reject"];
     "on-confirm"?: () => void;
-    onConfirm?: this["on-confirm"];
 }
+
+export interface Input extends WithNormalizedProps<ConfirmDialogInput> {}
 
 $ var cancelId = component.getElId("confirm-dialog-cancel");
 $ var confirmId = component.getElId("confirm-dialog-confirm");

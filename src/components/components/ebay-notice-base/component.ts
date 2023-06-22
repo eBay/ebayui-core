@@ -1,18 +1,18 @@
-export interface Input
+interface NoticeBaseInput
     extends Omit<Marko.Input<"section">, "title" | `on${string}`> {
     status?: "confirmation" | "celebration" | "attention" | "information";
-    prefixClass?: string;
+    "prefix-class"?: string;
     root?: Marko.Renderable;
-    noA11yLabel?: boolean;
-    a11yRoleDescription?: string;
+    "no-a11y-label"?: boolean;
+    "a11y-role-description"?: string;
     icon?: "none";
-    iconClass?: string;
-    headerRoot?: Marko.Renderable;
-    a11yText?: string;
-    a11yIconText?: string;
-    mainRoot?: Marko.Renderable;
+    "icon-class"?: string;
+    "header-root"?: Marko.Renderable;
+    "a11y-text"?: string;
+    "a11y-icon-text"?: string;
+    "main-root"?: Marko.Renderable;
     footer?: Marko.Renderable;
-    a11yDismissText?: string;
+    "a11y-dismiss-text"?: string;
     title?: Marko.Input<"title"> & {
         as?: Marko.Renderable;
     };
@@ -20,7 +20,8 @@ export interface Input
         renderBody?: Marko.Renderable;
     };
     "on-dismiss"?: () => void;
-    onDismiss?: this["on-dismiss"];
 }
+
+export interface Input extends WithNormalizedProps<NoticeBaseInput> {}
 
 export default class extends Marko.Component<Input> {}

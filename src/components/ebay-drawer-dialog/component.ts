@@ -2,20 +2,19 @@ import DialogBase, {
     Input as BaseInput,
 } from "../components/ebay-dialog-base/component";
 
-export interface Input extends BaseInput {
-    a11yMaximizeText?: string;
-    a11yMinimizeText?: string;
-    noHandle?: boolean;
+interface DrawerDialogInput extends BaseInput {
+    "a11y-maximize-text"?: string;
+    "a11y-minimize-text"?: string;
+    "no-handle"?: boolean;
     expanded?: boolean;
     "on-expanded"?: () => void;
-    onExpanded?: this["on-expanded"];
     "on-collapsed"?: () => void;
-    onCollapsed?: this["on-collapsed"];
     "on-open"?: () => void;
-    onOpen?: this["on-open"];
     "on-close"?: () => void;
-    onClose?: this["on-close"];
 }
+
+export interface Input extends WithNormalizedProps<DrawerDialogInput> {}
+
 interface State {
     expanded: boolean;
 }

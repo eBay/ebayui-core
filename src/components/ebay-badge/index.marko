@@ -1,11 +1,13 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 import type { AttrClass } from "marko/tags-html";
 
-export interface Input extends Marko.Input<"span"> {
+static interface BadgeInput extends Marko.Input<"span"> {
     type?: "menu" | "icon";
     number?: number | string;
     class?: AttrClass;
 }
+
+export interface Input extends WithNormalizedProps<BadgeInput> {}
 
 static var ignoredAttributes = ["type", "number"];
 $ var number = Math.round(+(input.number ?? NaN));

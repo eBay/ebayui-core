@@ -5,29 +5,27 @@ import * as bodyScroll from "../../../common/body-scroll";
 import * as eventUtils from "../../../common/event-utils";
 import transition from "../../../common/transition";
 
-export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
-    buttonPosition?: "right" | "left" | "bottom" | "hidden";
-    useHiddenProperty?: boolean;
-    baseEl?: string;
+interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
+    "button-position"?: "right" | "left" | "bottom" | "hidden";
+    "use-hidden-property"?: boolean;
+    "base-el"?: string;
     header?: Marko.Input<`h${number}`> & {
         as?: `h${number}`;
-        id?: string;
         renderBody?: Marko.Body;
     };
-    classPrefix?: string;
-    closeButtonText?: string;
-    closeButtonClass?: AttrClass;
-    a11yCloseText?: string;
-    closeButton?: Marko.Renderable;
-    ariaLabelledby?: string;
-    isModal?: boolean;
-    ignoreEscape?: boolean;
-    windowType?: string;
-    windowClass?: AttrClass;
+    "class-prefix"?: string;
+    "close-button-text"?: string;
+    "close-button-class"?: AttrClass;
+    "a11y-close-text"?: string;
+    "close-button"?: Marko.Renderable;
+    "is-modal"?: boolean;
+    "ignore-escape"?: boolean;
+    "window-type"?: string;
+    "window-class"?: AttrClass;
     top?: {
         renderBody: Marko.Body;
     };
-    mainId?: string;
+    "main-id"?: string;
     renderBody?: Marko.Body;
     action?: {
         renderBody?: Marko.Body;
@@ -35,17 +33,16 @@ export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
     footer?: {
         renderBody?: Marko.Body;
     };
-    closeFocus?: string;
+    "close-focus"?: string;
     open?: boolean;
-    transitionEl?: "root" | "window";
+    "transition-el"?: "root" | "window";
     focus?: string;
     "on-open"?: (event: Event) => void;
-    onOpen?: this["on-open"];
     "on-close"?: (event: Event) => void;
-    onClose?: this["on-close"];
     "on-scroll"?: (event: Event) => void;
-    onScroll?: this["on-scroll"];
 }
+
+export interface Input extends WithNormalizedProps<DialogBaseInput> {}
 
 interface State {
     open: boolean;

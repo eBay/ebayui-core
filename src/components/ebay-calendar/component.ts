@@ -8,33 +8,32 @@ const DAY_UPDATE_KEYMAP = {
     ArrowUp: -7,
 };
 
-interface Input {
+interface CalendarInput {
     navigable?: boolean;
     interactive?: boolean;
-    numMonths?: number;
+    "num-months"?: number;
     locale?: string;
     range?: boolean;
     selected?: DayISO | [DayISO, DayISO];
-    disableBefore?: Date | number | string;
-    disableAfter?: Date | number | string;
-    disableWeekdays?: number[];
-    disableList?: (Date | number | string)[];
-    linkBuilder?: (iso: string) => string | false | null | undefined;
-    getA11yShowMonthText?: (monthName: string) => string;
-    a11ySelectedText?: string;
-    a11yRangeStartText?: string;
-    a11yInRangeText?: string;
-    a11yRangeEndText?: string;
-    a11yTodayText?: string;
-    a11yDisabledText?: string;
-    a11ySeparator?: string;
+    "disable-before"?: Date | number | string;
+    "disable-after"?: Date | number | string;
+    "disable-weekdays"?: number[];
+    "disable-list"?: (Date | number | string)[];
+    "link-builder"?: (iso: string) => string | false | null | undefined;
+    "get-a11y-show-month-text"?: (monthName: string) => string;
+    "a11y-selected-text"?: string;
+    "a11y-range-start-text"?: string;
+    "a11y-in-range-text"?: string;
+    "a11y-range-end-text"?: string;
+    "a11y-today-text"?: string;
+    "a11y-disabled-text"?: string;
+    "a11y-separator"?: string;
     "on-select"?: (event: { iso: DayISO }) => void;
-    onSelect?: this["on-select"];
     "on-focus"?: (event: { iso: DayISO }) => void;
-    onFocus?: this["on-focus"];
     "on-month-change"?: (event: { iso: DayISO }) => void;
-    onMonth?: this["on-month-change"];
 }
+
+export interface Input extends WithNormalizedProps<CalendarInput> {}
 
 interface State {
     todayISO: DayISO;
@@ -287,7 +286,7 @@ export default class extends Marko.Component<Input, State> {
     calculateRangeDisplay(input: Input = this.input) {
         if (input.selected && input.range) {
             // Determine range display (state.rangeStart-state.rangeEnd)
-            let iso1: DayISO | void, iso2: DayISO | void;
+            let iso1: DayISO | undefined, iso2: DayISO | undefined;
             if (Array.isArray(input.selected)) {
                 // Two elements are selected, we can use them as the ends of the range.
                 [iso1, iso2] = input.selected;

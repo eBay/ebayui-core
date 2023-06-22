@@ -8,11 +8,13 @@ export interface Tab extends Marko.Input<"li"> {
     href: string;
 }
 
-export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
-    selectedIndex?: number;
+static interface FakeTabsInput extends Omit<Marko.Input<"div">, `on${string}`> {
+    "selected-index"?: number;
     tabs?: Marko.RepeatableAttrTag<Tab>;
-    tabMatchesCurrentUrl?: boolean;
+    "tab-matches-current-url"?: boolean;
 }
+
+export interface Input extends WithNormalizedProps<FakeTabsInput> {}
 
 $ var tabAriaCurrent: Marko.Input<"li">['aria-current'] = input.tabMatchesCurrentUrl === false ? "true" : "page";
 

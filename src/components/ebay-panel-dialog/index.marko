@@ -1,11 +1,11 @@
 import { Input as BaseInput } from "<ebay-dialog-base>";
-export interface Input extends BaseInput {
+static interface PanelDialogInput extends Omit<BaseInput, `on${string}`> {
     position?: "start" | "end";
     "on-open"?: () => void;
-    onOpen?: this["on-open"];
     "on-close"?: () => void;
-    onClose?: this["on-close"];
 }
+
+export interface Input extends WithNormalizedProps<PanelDialogInput> {}
 
 <ebay-dialog-base
     ...input

@@ -1,28 +1,28 @@
 import { pointerStyles } from "../components/ebay-tooltip-overlay/constants";
 import EbayTooltipBase from "../components/ebay-tooltip-base/component-browser";
 
-export interface Input extends Omit<Marko.Input<"span">, `on${string}`> {
+interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     open?: boolean;
     variant?: "modal" | "default";
     pointer?: keyof typeof pointerStyles;
     disabled?: boolean;
-    ariaLabel?: string;
+    "aria-label"?: string;
     icon?: Marko.AttrTag<{ renderBody: Marko.Renderable }>;
-    styleLeft?: string;
-    styleRight?: string;
-    styleTop?: string;
-    styleBottom?: string;
+    "style-left"?: string;
+    "style-right"?: string;
+    "style-top"?: string;
+    "style-bottom"?: string;
     heading: Marko.Input<"span"> & {
         as: Marko.NativeTags;
         renderBody: Marko.Renderable;
     };
     content: Marko.Input<"span">;
-    a11yCloseButtonText?: string;
+    "a11y-close-button-text"?: string;
     "on-expand"?: () => void;
-    onExpand?: this["on-expand"];
     "on-collapse"?: () => void;
-    onCollapse?: this["on-collapse"];
 }
+
+export interface Input extends WithNormalizedProps<InfotipInput> {}
 
 interface State {
     open: boolean;

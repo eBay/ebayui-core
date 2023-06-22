@@ -1,8 +1,10 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 
-export interface Input extends Omit<Marko.Input<"span">, `on${string}`> {
+static interface SignalInput extends Omit<Marko.Input<"span">, `on${string}`> {
     status?: "trustworthy" | "recent" | "time-sensitive" | "neutral";
 }
+
+export interface Input extends WithNormalizedProps<SignalInput> {}
 
 static var ignoredAttributes = [
     "status",

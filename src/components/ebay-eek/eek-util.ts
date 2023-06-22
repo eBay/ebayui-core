@@ -5,13 +5,15 @@ const validRanges = {
     A: ["G"],
 };
 
-export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+interface EekInput extends Omit<Marko.Input<"div">, `on${string}`> {
     toJSON?: any;
     max: string;
     min: string;
     rating: string;
     a11yText?: string;
 }
+
+export interface Input extends WithNormalizedProps<EekInput> {}
 
 export default (input: Input) => {
     const { max, min, rating } = input;

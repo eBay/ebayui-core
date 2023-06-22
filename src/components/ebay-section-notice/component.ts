@@ -1,14 +1,15 @@
 import { Input as NoticeBaseInput } from "../components/ebay-notice-base/component";
 
-export interface Input
+interface SectionNoticeInput
     extends Omit<
         NoticeBaseInput,
         "role" | "prefixClass" | "mainRoot" | `on${string}`
     > {
     dismissed?: boolean;
     "on-dismiss"?: () => void;
-    onDismiss?: this["on-dismiss"];
 }
+
+export interface Input extends WithNormalizedProps<SectionNoticeInput> {}
 
 interface State {
     dismissed: boolean;

@@ -2,7 +2,7 @@ import Expander from "makeup-expander";
 import * as eventUtils from "../../common/event-utils";
 import setupMenu, {
     MenuUtils,
-    type MenuInput,
+    type BaseMenuInput,
     type MenuState,
 } from "../../common/menu-utils";
 import { MenuEvent } from "../ebay-menu/component";
@@ -19,7 +19,7 @@ export interface MenuButtonEvent {
 }
 
 export interface Input
-    extends MenuInput,
+    extends BaseMenuInput,
         Omit<Marko.Input<"span">, `on${string}`> {
     collapseOnSelect?: boolean;
     prefixId?: string;

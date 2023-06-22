@@ -4,7 +4,7 @@ import typeahead from "makeup-typeahead";
 import * as eventUtils from "../../common/event-utils";
 import setupMenu, {
     type MenuItem,
-    type MenuInput,
+    type BaseMenuInput,
     type MenuState,
     MenuUtils,
 } from "../../common/menu-utils";
@@ -24,22 +24,21 @@ interface Item extends MenuItem {
     badgeNumber?: number;
 }
 
-export interface Input
-    extends MenuInput,
+interface MenuInput
+    extends BaseMenuInput,
         Omit<Marko.Input<"span">, `on${string}`> {
     items?: Marko.RepeatableAttrTag<Item>;
-    classPrefix?: string;
-    typeaheadTimeoutLength?: number;
+    "class-prefix"?: string;
+    "typeahead-timeout-length"?: number;
     reverse?: boolean;
-    fixWidth?: boolean;
+    "fix-width"?: boolean;
     renderBody?: Marko.Body;
     "on-keydown"?: (event: MenuEvent) => void;
-    onKeydown?: this["on-keydown"];
     "on-change"?: (event: MenuEvent) => void;
-    onChange?: this["on-change"];
     "on-select"?: (event: MenuEvent) => void;
-    onSelect?: this["on-select"];
 }
+
+export interface Input extends WithNormalizedProps<MenuInput> {}
 
 export default class extends MenuUtils<Input, MenuState> {
     declare rovingTabindex: ReturnType<typeof createLinear>;

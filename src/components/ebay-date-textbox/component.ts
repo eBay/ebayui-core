@@ -3,28 +3,29 @@ import { toISO, type DayISO } from "../ebay-calendar/component";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
-export interface Input {
+interface DateTextboxInput {
     locale?: string;
     range?: boolean;
-    disableBefore?: Date | number | string;
-    disableAfter?: Date | number | string;
-    disableWeekdays?: number[];
-    disableList?: (Date | number | string)[];
-    inputPlaceholderText?: string | [string, string];
-    getA11yShowMonthText?: (monthName: string) => string;
-    a11yOpenPopoverText?: string;
-    a11ySelectedText?: string;
-    a11yRangeStartText?: string;
-    a11yInRangeText?: string;
-    a11yRangeEndText?: string;
-    a11ySeparator?: string;
+    "disable-before"?: Date | number | string;
+    "disable-after"?: Date | number | string;
+    "disable-weekdays"?: number[];
+    "disable-list"?: (Date | number | string)[];
+    "input-placeholder-text"?: string | [string, string];
+    "get-a11y-show-month-text"?: (monthName: string) => string;
+    "a11y-open-popover-text"?: string;
+    "a11y-selected-text"?: string;
+    "a11y-range-start-text"?: string;
+    "a11y-in-range-text"?: string;
+    "a11y-range-end-text"?: string;
+    "a11y-separator"?: string;
     "on-change"?: (
         event:
             | { selected: DayISO | null }
             | { rangeStart: DayISO | null; rangeEnd: DayISO | null }
     ) => void;
-    onChange?: this["on-change"];
 }
+
+export interface Input extends WithNormalizedProps<DateTextboxInput> {}
 
 interface State {
     numMonths: number;

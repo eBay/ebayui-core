@@ -7,7 +7,7 @@ export interface MenuItem extends Omit<Marko.Input<"button">, `on${string}`> {
     badgeNumber?: number | string;
 }
 
-export interface MenuInput {
+export interface BaseMenuInput {
     items?: Marko.RepeatableAttrTag<MenuItem>;
     type?: string;
 }
@@ -18,7 +18,7 @@ export interface MenuState {
 }
 
 export class MenuUtils<
-    Input extends MenuInput,
+    Input extends BaseMenuInput,
     State extends MenuState
 > extends Marko.Component<Input, State> {
     declare type?: string;

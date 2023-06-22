@@ -10,11 +10,13 @@ export interface SegmentedButton
     icon?: Marko.Renderable;
 }
 
-export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+interface SegmentedButtonsInput
+    extends Omit<Marko.Input<"div">, `on${string}`> {
     buttons?: Marko.RepeatableAttrTag<SegmentedButton>;
     "on-change"?: (event: SegmentedButtonsEvent) => void;
-    onChange?: this["on-change"];
 }
+
+export interface Input extends WithNormalizedProps<SegmentedButtonsInput> {}
 
 interface State {
     selectedIndex: number;

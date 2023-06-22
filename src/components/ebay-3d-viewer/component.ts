@@ -1,15 +1,15 @@
 import type { AttrClass } from "marko/tags-html";
 import { CDNLoader } from "../../common/cdn";
 
-interface Input {
-    cdnUrl?: string;
+interface ViewerInput {
+    "cdn-url"?: string;
     version?: string;
     class?: AttrClass;
-    a11yText?: string;
+    "a11y-text"?: string;
     src?: string;
-    errorText?: string;
-    a11yStartText?: string;
-    a11yLoadText?: string;
+    "error-text"?: string;
+    "a11y-start-text"?: string;
+    "a11y-load-text"?: string;
     // TODO: import types from @google/model-viewer instead of
     // listing manually from https://modelviewer.dev/docs
     poster?: string;
@@ -17,18 +17,14 @@ interface Input {
     reveal?: "auto" | "manual";
     "with-credentials"?: boolean;
     "on-load-error"?: (err: CustomEvent) => void;
-    "onLoad-error"?: this["on-load-error"];
     "on-load"?: () => void;
-    onLoad?: this["on-load"];
     "on-progress"?: () => void;
-    onProgress?: this["on-progress"];
     "on-model-visibility"?: () => void;
-    "onModel-visibility"?: this["on-model-visibility"];
     "on-poster-dismissed"?: () => void;
-    "onPoster-dismissed"?: this["on-poster-dismissed"];
     "on-render-scale"?: () => void;
-    "onRender-scale"?: this["on-render-scale"];
 }
+
+export interface Input extends WithNormalizedProps<ViewerInput> {}
 
 interface State {
     showLoading: boolean;

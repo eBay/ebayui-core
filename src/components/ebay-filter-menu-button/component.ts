@@ -4,7 +4,7 @@ import * as eventUtils from "../../common/event-utils";
 import menuUtils from "../../common/menu-utils";
 import setupMenu, {
     MenuUtils,
-    type MenuInput,
+    type BaseMenuInput,
     type MenuState,
 } from "../../common/menu-utils";
 import { FilterMenuEvent } from "../ebay-filter-menu/component";
@@ -17,32 +17,29 @@ export interface FilterMenuButtonEvent {
     currentChecked?: boolean;
 }
 
-export interface Input
-    extends MenuInput,
+interface FilterMenuButtonInput
+    extends BaseMenuInput,
         Omit<Marko.Input<"span">, `on${string}`> {
     text?: string;
-    footerText?: string;
-    a11yFooterText?: string;
+    "footer-text"?: string;
+    "a11y-footer-text"?: string;
     footer?: Marko.Input<"button"> & {
-        a11yFooterText?: string;
+        "a11y-footer-text"?: string;
     };
     variant?: "form";
-    formName?: string;
-    formAction?: string;
-    formMethod?: string;
+    "form-name"?: string;
+    "form-action"?: string;
+    "form-method"?: string;
     disabled?: boolean;
-    a11yText?: string;
+    "a11y-text"?: string;
     "on-expand"?: () => void;
-    onExpand?: this["on-expand"];
     "on-change"?: (event: FilterMenuButtonEvent) => void;
-    onChange?: this["on-change"];
     "on-collapse"?: (event: FilterMenuButtonEvent) => void;
-    onCollapse?: this["on-collapse"];
     "on-footer-click"?: (event: FilterMenuButtonEvent) => void;
-    "onFooter-click"?: this["on-footer-click"];
     "on-form-submit"?: (event: FilterMenuButtonEvent) => void;
-    "onForm-submit"?: this["on-form-submit"];
 }
+
+export interface Input extends WithNormalizedProps<FilterMenuButtonInput> {}
 
 export default class extends MenuUtils<Input, MenuState> {
     declare _expander: Expander;

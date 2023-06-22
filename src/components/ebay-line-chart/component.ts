@@ -25,21 +25,23 @@ interface SeriesLineOptions extends Highcharts.SeriesLineOptions {
     data: Highcharts.PointOptionsObject[];
 }
 
-export interface Input
+interface LineChartInput
     extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
     title?: Highcharts.TitleOptions["text"];
     description?: Highcharts.PlotSeriesOptions["description"];
-    xAxisLabelFormat?: Highcharts.XAxisLabelsOptions["format"];
-    xAxisPositioner?: Highcharts.XAxisOptions["tickPositioner"];
-    yAxisLabels?: Highcharts.YAxisLabelsOptions["format"][];
-    yAxisPositioner?: Highcharts.YAxisOptions["tickPositioner"];
-    plotPoints?: boolean;
-    cdnHighcharts?: string;
-    cdnHighchartsAccessibility?: string;
+    "x-axis-label-format"?: Highcharts.XAxisLabelsOptions["format"];
+    "x-axis-positioner"?: Highcharts.XAxisOptions["tickPositioner"];
+    "y-axis-labels"?: Highcharts.YAxisLabelsOptions["format"][];
+    "y-axis-positioner"?: Highcharts.YAxisOptions["tickPositioner"];
+    "plot-points"?: boolean;
+    "cdn-highcharts"?: string;
+    "cdn-highcharts-accessibility"?: string;
     version?: string;
     series: SeriesLineOptions | SeriesLineOptions[];
     trend?: "positive" | "negative" | "neutral";
 }
+
+export interface Input extends WithNormalizedProps<LineChartInput> {}
 
 const pointSize = 6; // controls the size of the plot point markers on lines
 

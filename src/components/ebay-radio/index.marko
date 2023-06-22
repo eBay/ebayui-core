@@ -1,15 +1,14 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-export interface Input extends Omit<Marko.Input<'input'>, `on${string}`> {
+static interface RadioInput extends Omit<Marko.Input<'input'>, `on${string}`> {
     toJSON?: any;
-    iconStyle?: "rounded" | "square";
+    "icon-style"?: "rounded" | "square";
     "on-click"?: () => void;
-    onClick?: this["on-click"];
     "on-focus"?: () => void;
-    onFocus?: this["on-focus"];
     "on-keydown"?: () => void;
-    onKeyDown?: this["on-keydown"];
 }
+
+export interface Input extends WithNormalizedProps<RadioInput> {}
 
 static function noop() {}
 static var ignoredAttributes = ["class", "style", "size", "toJSON"];

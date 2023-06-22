@@ -1,18 +1,18 @@
 const DEFAULT_TIMEOUT_LENGTH = 6000;
 import { Input as BaseInput } from "../components/ebay-dialog-base/component";
 
-interface Input extends Omit<BaseInput, `on${string}`> {
+interface SnackbarDialogInput extends Omit<BaseInput, `on${string}`> {
     layout?: "row" | "column";
     action?: BaseInput["action"] & {
         accessKey?: string;
     };
     "on-action"?: () => void;
-    onAction?: this["on-action"];
     "on-open"?: () => void;
-    onOpen?: this["on-open"];
     "on-close"?: () => void;
-    onClose?: this["on-close"];
 }
+
+export interface Input extends WithNormalizedProps<SnackbarDialogInput> {}
+
 interface State {
     open: boolean;
 }

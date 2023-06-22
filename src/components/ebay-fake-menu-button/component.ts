@@ -6,33 +6,32 @@ import {
     Item as FakeMenuItem,
 } from "../ebay-fake-menu/component";
 
-export interface Input extends Omit<Marko.Input<"span">, `on${string}`> {
+export interface FakeMenuButtonInput
+    extends Omit<Marko.Input<"span">, `on${string}`> {
     text?: string;
     size?: "none" | "large";
-    prefixId?: string;
+    "prefix-id"?: string;
     variant?: "overflow" | "form" | "button" | "icon";
     priority?: "primary" | "secondary" | "delete" | "tertiary" | "none";
     borderless?: boolean;
     transparent?: boolean;
     icon?: Marko.Renderable;
-    a11yText?: string;
+    "a11y-text"?: string;
     disabled?: boolean;
-    noToggleIcon?: boolean;
+    "no-toggle-icon"?: boolean;
     label?: { renderBody?: Marko.Body };
-    textAlign?: "center";
+    "text-align"?: "center";
     type?: FakeMenuInput["type"];
     reverse?: boolean;
-    fixWidth?: boolean;
+    "fix-width"?: boolean;
     items?: Marko.RepeatableAttrTag<FakeMenuItem>;
     "on-expand"?: (event: MenuEvent) => void;
-    onExpand?: this["on-expand"];
     "on-collapse"?: (event: MenuEvent) => void;
-    onCollapse?: this["on-collapse"];
     "on-select"?: (event: MenuEvent) => void;
-    onSelect?: this["on-select"];
     "on-mousedown"?: (event: MenuEvent) => void;
-    onMousedown?: this["on-mousedown"];
 }
+
+export interface Input extends WithNormalizedProps<FakeMenuButtonInput> {}
 
 export default class extends Marko.Component<Input> {
     declare expander: Expander;

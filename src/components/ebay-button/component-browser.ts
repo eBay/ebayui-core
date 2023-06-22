@@ -4,32 +4,30 @@ export interface ButtonEvent<T extends Event> {
     originalEvent: T;
 }
 
-export interface Input extends Omit<Marko.Input<"button">, `on${string}`> {
+interface ButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
     href?: string;
     toJSON?: () => Object;
     size?: "regular" | "large" | "none";
     priority?: "primary" | "secondary" | "tertiary" | "none";
     variant?: "standard" | "destructive" | "form";
-    bodyState?: "loading" | "expand" | "reset" | "none";
+    "body-state"?: "loading" | "expand" | "reset" | "none";
     fluid?: boolean;
     borderless?: boolean;
     disabled?: boolean;
-    partiallyDisabled?: boolean;
+    "partially-disabled"?: boolean;
     transparent?: boolean;
-    fixedHeight?: boolean;
+    "fixed-height"?: boolean;
     truncate?: boolean;
     split?: string;
-    a11yText?: string;
-    ariaLabel?: string;
+    "a11y-text"?: string;
+    "aria-label"?: string;
     "on-click"?: (event: ButtonEvent<MouseEvent>) => void;
-    onClick?: this["on-click"];
     "on-escape"?: (event: ButtonEvent<KeyboardEvent>) => void;
-    onEscape?: this["on-escape"];
     "on-focus"?: (event: ButtonEvent<FocusEvent>) => void;
-    onFocus?: this["on-focus"];
     "on-blur"?: (event: ButtonEvent<FocusEvent>) => void;
-    onBlur?: this["on-blur"];
 }
+
+export interface Input extends WithNormalizedProps<ButtonInput> {}
 
 export default class extends Marko.Component<Input> {
     handleClick(originalEvent: MouseEvent) {

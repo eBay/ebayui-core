@@ -8,14 +8,16 @@ export interface Step extends Omit<Marko.Input<"div">, `on${string}` | "title"> 
     }
 }
 
-export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+static interface ProgressStepperInput extends Omit<Marko.Input<"div">, `on${string}`> {
     direction?: "row" | "column";
     step?: Marko.AttrTag<Step>[];
-    defaultState?: "complete" | "upcoming" | "attention" | "current";
-    a11yHeadingTag?: Marko.NativeTags;
-    a11yHeadingText?: string;
-    autoParagraph?: boolean;
+    "default-state"?: "complete" | "upcoming" | "attention" | "current";
+    "a11y-heading-tag"?: Marko.NativeTags;
+    "a11y-heading-text"?: string;
+    "auto-paragraph"?: boolean;
 }
+
+export interface Input extends WithNormalizedProps<ProgressStepperInput> {}
 
 static var ignoredAttributes = ['step', 'direction', 'defaultState', 'class'];
 static {

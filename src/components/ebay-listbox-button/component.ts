@@ -4,29 +4,28 @@ import { Input as ListboxInput } from "../ebay-listbox/component";
 import type Listbox from "../ebay-listbox/component";
 import type { Option, ChangeEvent } from "../ebay-listbox/component";
 
-export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+interface ListboxButtonInput extends Omit<Marko.Input<"div">, `on${string}`> {
     options?: ListboxInput["options"];
     name?: ListboxInput["name"];
-    listSelection?: ListboxInput["listSelection"];
-    prefixId?: string;
-    unselectedText?: string;
+    "list-selection"?: ListboxInput["listSelection"];
+    "prefix-id"?: string;
+    "unselected-text"?: string;
     variant?: "standard" | "form";
     truncate?: boolean;
     fluid?: boolean;
     borderless?: boolean;
-    floatingLabel?: boolean;
+    "floating-label"?: boolean;
     disabled?: boolean;
-    buttonName?: string;
+    "button-name"?: string;
     invalid?: boolean;
-    prefixLabel?: string;
-    collapseOnSelect?: boolean;
+    "prefix-label"?: string;
+    "collapse-on-select"?: boolean;
     "on-expand"?: () => void;
-    onExpand?: this["on-expand"];
     "on-collapse"?: () => void;
-    onCollapse?: this["on-collapse"];
     "on-change"?: (event: ChangeEvent) => void;
-    onChange?: this["on-change"];
 }
+
+export interface Input extends WithNormalizedProps<ListboxButtonInput> {}
 
 interface State {
     selectedIndex: number;

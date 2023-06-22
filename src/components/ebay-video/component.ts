@@ -28,32 +28,30 @@ export interface VolumeEvent {
     muted: boolean;
 }
 
-export interface Input extends Omit<Marko.Input<"video">, `on${string}`> {
-    playView?: "fullscreen" | "inline";
+interface VideoInput extends Omit<Marko.Input<"video">, `on${string}`> {
+    "play-view"?: "fullscreen" | "inline";
     volume?: number;
     action?: "play" | "pause";
-    volumeSlider?: boolean;
+    "volume-slider"?: boolean;
     tracks?: any[];
     sources: Marko.AttrTag<Marko.Input<"source">>[];
-    reportText?: string;
-    spinnerTimeout?: number;
-    cdnUrl?: string;
-    cssUrl?: string;
+    "report-text"?: string;
+    "spinner-timeout"?: number;
+    "cdn-url"?: string;
+    "css-url"?: string;
     version?: string;
     thumbnail?: string;
     track?: Marko.AttrTag<Marko.Input<"track">>[];
-    errorText?: string;
-    a11yPlayText?: string;
-    a11yLoadText?: string;
+    "error-text"?: string;
+    "a11y-play-text"?: string;
+    "a11y-load-text"?: string;
     "on-play"?: (event: PlayPauseEvent) => void;
-    onPlay?: this["on-play"];
     "on-pause"?: (event: PlayPauseEvent) => void;
-    onPause?: this["on-pause"];
     "on-volume-change"?: (event: VolumeEvent) => void;
-    onVolumeChange?: this["on-volume-change"];
     "on-load-error"?: (err: Error) => void;
-    onLoadError?: this["on-load-error"];
 }
+
+export interface Input extends WithNormalizedProps<VideoInput> {}
 
 interface State {
     played: boolean;

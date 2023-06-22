@@ -1,15 +1,14 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-export interface Input extends Omit<Marko.Input<'input'>, `on${string}` | 'type'> {
+static interface CheckboxInput extends Omit<Marko.Input<'input'>, `on${string}` | 'type'> {
     toJSON?: any;
-    iconStyle?: "rounded" | "square";
+    "icon-style"?: "rounded" | "square";
     "on-change"?: () => void;
-    onChange?: this["on-change"];
     "on-focus"?: () => void;
-    onFocus?: this["on-focus"];
     "on-keydown"?: () => void;
-    onKeyDown?: this["on-keydown"];
 }
+
+export interface Input extends WithNormalizedProps<CheckboxInput> {}
 
 static function noop() {}
 static var ignoredAttributes = ["class", "style", "size", "toJSON", "iconStyle"];

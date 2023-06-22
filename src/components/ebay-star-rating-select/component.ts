@@ -3,18 +3,18 @@ export interface StarRatingEvent<T extends Event> {
     value: number;
 }
 
-export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+interface StarRatingSelectInput
+    extends Omit<Marko.Input<"div">, `on${string}`> {
     value?: string | number;
-    a11yStarText?: string;
-    a11yText?: string;
+    "a11y-star-text"?: string;
+    "a11y-text"?: string;
     disabled?: boolean;
     "on-change"?: (event: StarRatingEvent<PointerEvent>) => void;
-    onChange?: this["on-change"];
     "on-focus"?: (event: StarRatingEvent<FocusEvent>) => void;
-    onFocus?: this["on-focus"];
     "on-keydown"?: (event: StarRatingEvent<KeyboardEvent>) => void;
-    onKeydown?: this["on-keydown"];
 }
+
+export interface Input extends WithNormalizedProps<StarRatingSelectInput> {}
 
 export interface State {
     value: number;

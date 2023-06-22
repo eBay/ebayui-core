@@ -1,17 +1,15 @@
 import * as eventUtils from "../../common/event-utils";
 
-export interface Input extends Omit<Marko.Input<"button">, `on${string}`> {
+interface FakeLinkInput extends Omit<Marko.Input<"button">, `on${string}`> {
     toJSON?: any;
     variant?: "inline" | "standalone";
     "on-click"?: (event: { originalEvent: MouseEvent }) => void;
-    onClick?: this["on-click"];
     "on-escape"?: (event: { originalEvent: KeyboardEvent }) => void;
-    onEscape?: this["on-escape"];
     "on-focus"?: (event: { originalEvent: FocusEvent }) => void;
-    onFocus?: this["on-focus"];
     "on-blur"?: (event: { originalEvent: FocusEvent }) => void;
-    onBlur?: this["on-blur"];
 }
+
+export interface Input extends WithNormalizedProps<FakeLinkInput> {}
 
 export default class extends Marko.Component<Input> {
     handleClick(originalEvent: MouseEvent) {

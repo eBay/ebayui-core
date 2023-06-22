@@ -1,11 +1,11 @@
 import { Input as BaseInput } from "<ebay-dialog-base>";
-export interface Input extends Omit<BaseInput, `on${string}`> {
-    slideFrom?: 'start' | 'end';
+static interface FullscreenDialogInput extends Omit<BaseInput, `on${string}`> {
+    'slide-from'?: 'start' | 'end';
     'on-open'?: () => void;
-    onOpen?: this['on-open'];
     'on-close'?: () => void;
-    onClose?: this['on-close'];
 }
+
+export interface Input extends WithNormalizedProps<FullscreenDialogInput> {}
 
 <ebay-dialog-base
     ...input

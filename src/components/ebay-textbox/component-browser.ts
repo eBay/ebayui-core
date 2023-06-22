@@ -5,39 +5,31 @@ export interface TextboxEvent {
     value: string;
 }
 
-export interface Input extends Omit<Marko.Input<"textarea">, `on${string}`> {
+interface TextboxInput extends Omit<Marko.Input<"textarea">, `on${string}`> {
     toJSON?: any;
     multiline?: boolean;
     type?: Marko.Input<"input">["type"];
-    inputSize?: "regular" | "large";
+    "input-size"?: "regular" | "large";
     fluid?: boolean;
-    opaqueLabel?: boolean;
-    floatingLabel?: string;
-    prefixIcon?: Marko.AttrTag<{ renderBody: Marko.Body }>;
-    postfixIcon?: Marko.AttrTag<{ renderBody: Marko.Body }>;
+    "opaque-label"?: boolean;
+    "floating-label"?: string;
+    "prefix-icon"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
+    "postfix-icon"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     invalid?: boolean;
-    buttonAriaLabel?: string;
+    "button-aria-label"?: string;
     "on-floating-label-init"?: () => void;
-    "onFloating-label-init"?: this["on-floating-label-init"];
     "on-keydown"?: (event: TextboxEvent) => void;
-    onKeydown?: this["on-keydown"];
     "on-keypress"?: (event: TextboxEvent) => void;
-    onKeypress?: this["on-keypress"];
     "on-keyup"?: (event: TextboxEvent) => void;
-    onKeyup?: this["on-keyup"];
     "on-change"?: (event: TextboxEvent) => void;
-    onChange?: this["on-change"];
     "on-input-change"?: (event: TextboxEvent) => void;
-    "onInput-change"?: this["on-input-change"];
     "on-focus"?: (event: TextboxEvent) => void;
-    onFocus?: this["on-focus"];
     "on-blur"?: (event: TextboxEvent) => void;
-    onBlur?: this["on-blur"];
     "on-invalid"?: (event: TextboxEvent) => void;
-    onInvalid?: this["on-invalid"];
     "on-button-click"?: (event: TextboxEvent) => void;
-    "onButton-click"?: this["on-button-click"];
 }
+
+export interface Input extends WithNormalizedProps<TextboxInput> {}
 
 export default class extends Marko.Component<Input> {
     declare _floatingLabel: FloatingLabel;

@@ -2,15 +2,17 @@ import type { AttrClass } from "marko/tags-html";
 
 let rootSvg: HTMLElement;
 
-export interface Input extends Omit<Marko.Input<"svg">, `on${string}`> {
+interface IconInput extends Omit<Marko.Input<"svg">, `on${string}`> {
     _themes?: () => string;
     _type: string;
     _name: string;
-    a11yVariant?: "label";
-    a11yText?: string;
+    "a11y-variant"?: "label";
+    "a11y-text"?: string;
     class?: AttrClass;
-    noSkinClasses?: boolean;
+    "no-skin-classes"?: boolean;
 }
+
+export interface Input extends WithNormalizedProps<IconInput> {}
 
 export default class extends Marko.Component<Input> {
     onMount() {

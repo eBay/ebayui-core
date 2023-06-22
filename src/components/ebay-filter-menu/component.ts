@@ -3,7 +3,7 @@ import { createLinear } from "makeup-roving-tabindex";
 import * as eventUtils from "../../common/event-utils";
 import setupMenu, {
     MenuUtils,
-    type MenuInput,
+    type BaseMenuInput,
     type MenuState,
 } from "../../common/menu-utils";
 
@@ -16,29 +16,27 @@ export interface FilterMenuEvent<T extends Event = Event> {
     currentChecked?: boolean;
 }
 
-export interface Input
-    extends MenuInput,
+interface FilterMenuInput
+    extends BaseMenuInput,
         Omit<Marko.Input<"span">, `on${string}`> {
     variant?: "form";
-    classPrefix?: string;
-    formName?: string;
-    formAction?: string;
-    formMethod?: string;
-    footerText?: string;
-    a11yFooterText?: string;
+    "class-prefix"?: string;
+    "form-name"?: string;
+    "form-action"?: string;
+    "form-method"?: string;
+    "footer-text"?: string;
+    "a11y-footer-text"?: string;
     footer?: Marko.Input<"button"> & {
-        a11yFooterText?: string;
+        "a11y-footer-text"?: string;
     };
-    renderBody?: Marko.Body;
+    "render-body"?: Marko.Body;
     "on-footer-click"?: (event: FilterMenuEvent) => void;
-    "onFooter-click"?: this["on-footer-click"];
     "on-form-submit"?: (event: FilterMenuEvent) => void;
-    "onForm-submit"?: this["on-form-submit"];
     "on-change"?: (event: FilterMenuEvent) => void;
-    onChange?: this["on-change"];
     "on-keydown"?: (event: FilterMenuEvent) => void;
-    onKeydown?: this["on-keydown"];
 }
+
+export interface Input extends WithNormalizedProps<FilterMenuInput> {}
 
 export default class extends MenuUtils<Input, MenuState> {
     declare _rovingTabIndex: ReturnType<typeof createLinear>;
@@ -125,7 +123,7 @@ export default class extends MenuUtils<Input, MenuState> {
         args?: { el?: Element; index?: number }
     ) {
         const { el, index } = args || {};
-        const checked = this.getCheckedValues();
+        const checked = this.getCheckedValues() as string[];
         const checkedIndex = this.getCheckedIndexes();
         const currentChecked =
             index === undefined ? undefined : this.isChecked(index);

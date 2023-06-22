@@ -2,9 +2,11 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 
 static var ignoredAttributes = ["size"];
 
-export interface Input extends Marko.Input<"a"> {
+static interface CtaButtonInput extends Marko.Input<"a"> {
     size?: "default" | "large";
 }
+
+export interface Input extends WithNormalizedProps<CtaButtonInput> {}
 
 <a
     ...processHtmlAttributes(input, ignoredAttributes)

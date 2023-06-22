@@ -6,18 +6,17 @@ export interface TriStateCheckboxEvent {
     checked: AttrTriState;
 }
 
-export interface Input
+interface TriStateCheckboxInput
     extends Omit<Marko.Input<"input">, `on${string}` | "checked" | "type"> {
     checked?: AttrTriState;
-    skipMixed?: boolean;
+    "skip-mixed"?: boolean;
     size?: "regular" | "large";
     "on-change"?: (event: TriStateCheckboxEvent) => void;
-    onChange?: this["on-change"];
     "on-keydown"?: (event: TriStateCheckboxEvent) => void;
-    onKeydown?: this["on-keydown"];
     "on-focus"?: (event: TriStateCheckboxEvent) => void;
-    onFocus?: this["on-focus"];
 }
+
+export interface Input extends WithNormalizedProps<TriStateCheckboxInput> {}
 
 interface State {
     checked: AttrTriState;

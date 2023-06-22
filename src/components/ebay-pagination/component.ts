@@ -23,19 +23,18 @@ export interface Item
     variant?: "link" | "button";
 }
 
-export interface Input extends Omit<Marko.Input<"nav">, `on${string}`> {
+interface PaginationInput extends Omit<Marko.Input<"nav">, `on${string}`> {
     items?: Marko.AttrTag<Item>[];
     variant?: "show-range" | "show-last" | "overflow";
-    a11yCurrentText?: string;
-    a11yPreviousText?: string;
-    a11yNextText?: string;
+    "a11y-current-text"?: string;
+    "a11y-previous-text"?: string;
+    "a11y-next-text"?: string;
     "on-select"?: (event: SelectEvent) => void;
-    onSelect?: this["on-select"];
     "on-next"?: (event: NavigationEvent) => void;
-    onNext?: this["on-next"];
     "on-previous"?: (event: NavigationEvent) => void;
-    onPrevious?: this["on-previous"];
 }
+
+export interface Input extends WithNormalizedProps<PaginationInput> {}
 
 interface State {
     maxItems: number;

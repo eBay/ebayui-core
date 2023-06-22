@@ -16,25 +16,26 @@ import { debounce } from "../../common/event-utils";
 import { ebayLegend } from "../../common/charts/legend";
 import Highcharts from "highcharts";
 
-export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+interface AreaChartInput extends Omit<Marko.Input<"div">, `on${string}`> {
     title: Highcharts.TitleOptions["text"];
     /**
      * input.xAxisLabelFormat allows overriding the default short month / day label.
      * refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat to customize
      **/
-    xAxisLabelFormat?: Highcharts.XAxisLabelsOptions["format"];
-    xAxisPositioner?: Highcharts.XAxisOptions["tickPositioner"];
-    yAxisLabels?: Highcharts.YAxisLabelsOptions["format"];
-    yAxisPositioner?: Highcharts.YAxisOptions["tickPositioner"];
+    "x-axis-label-format"?: Highcharts.XAxisLabelsOptions["format"];
+    "x-axis-positioner"?: Highcharts.XAxisOptions["tickPositioner"];
+    "y-axis-labels"?: Highcharts.YAxisLabelsOptions["format"];
+    "y-axis-positioner"?: Highcharts.YAxisOptions["tickPositioner"];
     description?: Highcharts.SeriesAccessibilityOptionsObject["description"];
-    cdnHighcharts?: string;
-    cdnHighchartsAccessibility?: string;
-    cdnHighchartsPatternFill?: string;
+    "cdn-highcharts"?: string;
+    "cdn-highcharts-accessibility"?: string;
+    "cdn-highcharts-pattern-fill"?: string;
     version?: string;
     series: Highcharts.SeriesAreaOptions | Highcharts.SeriesAreaOptions[];
     "on-load-error": (err: Error) => void;
-    "onLoad-error": this["on-load-error"];
 }
+
+export interface Input extends WithNormalizedProps<AreaChartInput> {}
 
 const pointSize = 1.5;
 

@@ -2,22 +2,22 @@ import * as eventUtils from "../../common/event-utils";
 import { Input as TooltipBaseInput } from "../components/ebay-tooltip-base/component-browser";
 import { Input as TooltipOverlayInput } from "../components/ebay-tooltip-overlay/component-browser";
 
-export interface Input extends Omit<Marko.Input<"span">, `on${string}`> {
+interface TooltipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     open?: boolean;
-    noHover?: TooltipBaseInput["noHover"];
+    "no-hover"?: TooltipBaseInput["noHover"];
     host?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     pointer?: TooltipOverlayInput["pointer"];
-    styleLeft?: TooltipOverlayInput["styleLeft"];
-    styleRight?: TooltipOverlayInput["styleRight"];
-    styleTop?: TooltipOverlayInput["styleTop"];
-    styleBottom?: TooltipOverlayInput["styleBottom"];
+    "style-left"?: TooltipOverlayInput["styleLeft"];
+    "style-right"?: TooltipOverlayInput["styleRight"];
+    "style-top"?: TooltipOverlayInput["styleTop"];
+    "style-bottom"?: TooltipOverlayInput["styleBottom"];
     heading?: TooltipOverlayInput["heading"];
     content?: TooltipOverlayInput["content"];
     "on-expand"?: () => void;
-    onExpand?: this["on-expand"];
     "on-collapse"?: () => void;
-    onCollapse?: this["on-collapse"];
 }
+
+export interface Input extends WithNormalizedProps<TooltipInput> {}
 
 interface State {
     open: boolean;

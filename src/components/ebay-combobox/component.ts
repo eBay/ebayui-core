@@ -12,13 +12,13 @@ interface ComboboxEvent {
     options: Input["options"];
 }
 
-export interface Input extends Omit<Marko.Input<"input">, `on${string}`> {
+interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     expanded?: boolean;
     borderless?: boolean;
     fluid?: boolean;
     autocomplete?: "list" | "none";
-    listSelection?: "manual" | "automatic";
-    floatingLabel?: boolean;
+    "list-selection"?: "manual" | "automatic";
+    "floating-label"?: boolean;
     button?: Marko.Input<"button"> & {
         htmlAttributes?: Record<string, unknown>;
         renderBody?: Marko.Body;
@@ -31,22 +31,16 @@ export interface Input extends Omit<Marko.Input<"input">, `on${string}`> {
     }[];
     roledescription?: string;
     "on-focus"?: (event: ComboboxEvent) => void;
-    onFocus?: this["on-focus"];
     "on-button-click"?: (event: { originalEvent: MouseEvent }) => void;
-    "onButton-click"?: this["on-button-click"];
     "on-expand"?: () => void;
-    onExpand?: this["on-expand"];
     "on-collapse"?: () => void;
-    onCollapse?: this["on-collapse"];
     "on-input-change"?: (event: ComboboxEvent) => void;
-    "onInput-change"?: this["on-input-change"];
     "on-change"?: (event: ComboboxEvent) => void;
-    onChange?: this["on-change"];
     "on-floating-label-init"?: (event: ComboboxEvent) => void;
-    "onFloating-label-init"?: this["on-floating-label-init"];
     "on-select"?: (event: ComboboxEvent) => void;
-    onSelect?: this["on-select"];
 }
+
+export interface Input extends WithNormalizedProps<ComboboxInput> {}
 
 interface State {
     currentValue: Input["value"];

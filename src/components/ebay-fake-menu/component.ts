@@ -1,7 +1,7 @@
 import * as eventUtils from "../../common/event-utils";
 import setupMenu, {
     type MenuItem,
-    type MenuInput,
+    type BaseMenuInput,
     type MenuState,
     MenuUtils,
 } from "../../common/menu-utils";
@@ -20,19 +20,19 @@ export interface Item extends MenuItem {
 }
 
 export interface Separator {}
-export interface Input
-    extends MenuInput,
+interface FakeMenuInput
+    extends BaseMenuInput,
         Omit<Marko.Input<"span">, `on${string}`> {
     items?: Marko.RepeatableAttrTag<Item>;
     separator?: Marko.RepeatableAttrTag<Separator>;
-    classPrefix?: string;
+    "class-prefix"?: string;
     reverse?: boolean;
-    fixWidth?: boolean;
+    "fix-width"?: boolean;
     "on-keydown"?: (event: MenuEvent) => void;
-    onKeydown?: this["on-keydown"];
     "on-select"?: (event: MenuEvent) => void;
-    onSelect?: this["on-select"];
 }
+
+export interface Input extends WithNormalizedProps<FakeMenuInput> {}
 
 export default class extends MenuUtils<Input, MenuState> {
     onCreate() {

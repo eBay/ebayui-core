@@ -4,11 +4,12 @@ export interface SwitchEvent {
     checked: boolean;
 }
 
-export interface Input extends Omit<Marko.Input<"input">, `on${string}`> {
+interface SwitchInput extends Omit<Marko.Input<"input">, `on${string}`> {
     toJSON?: any;
     "on-change"?: (event: SwitchEvent) => void;
-    onChange?: this["on-change"];
 }
+
+export interface Input extends WithNormalizedProps<SwitchInput> {}
 
 export default class extends Marko.Component<Input> {
     handleChange(originalEvent: Event & { target: HTMLInputElement }) {

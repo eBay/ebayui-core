@@ -15,16 +15,16 @@ export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
     text?: string;
 }
 
-export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
-    listSelection?: "auto" | "manual";
+interface ListboxInput extends Omit<Marko.Input<"div">, `on${string}`> {
+    "list-selection"?: "auto" | "manual";
     options?: Marko.RepeatableAttrTag<Option>;
     name?: string;
     disabled?: boolean;
     "on-change"?: (event: ChangeEvent) => void;
-    onChange?: this["on-change"];
     "on-escape"?: () => void;
-    onEscape?: this["on-escape"];
 }
+
+export interface Input extends WithNormalizedProps<ListboxInput> {}
 
 interface State {
     selectedIndex: number;

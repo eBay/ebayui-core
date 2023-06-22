@@ -21,38 +21,33 @@ interface Item {
     renderBody?: Marko.Body;
 }
 
-interface Input {
+interface CarouselInput {
     items?: Marko.RepeatableAttrTag<Item>;
     gap?: number | string;
     index?: number | string;
-    itemsPerSlide?: number | string;
+    "items-per-slide"?: number | string;
     autoplay?: number | string | boolean;
-    imageTreatment?: "none" | "matte";
-    hiddenScrollbar?: boolean;
+    "image-treatment"?: "none" | "matte";
+    "hidden-scrollbar"?: boolean;
     paused?: boolean;
-    noPeek?: boolean;
+    "no-peek"?: boolean;
     class?: AttrClass;
     style?: AttrStyle;
-    a11yPreviousText?: string;
-    a11yNextText?: string;
-    a11yPauseText?: string;
-    a11yPlayText?: string;
+    "a11y-previous-text"?: string;
+    "a11y-next-text"?: string;
+    "a11y-pause-text"?: string;
+    "a11y-play-text"?: string;
     "aria-roledescription"?: string;
     "on-move"?: (event: { visibleIndexes: number[] }) => void;
-    onMove?: this["on-move"];
     "on-scroll"?: (event: { index: number }) => void;
-    onScroll?: this["on-scroll"];
     "on-slide"?: (event: { slide: number; originalEvent: Event }) => void;
-    onSlide?: this["on-slide"];
     "on-next"?: (event: { originalEvent: Event }) => void;
-    onNext?: this["on-next"];
     "on-previous"?: (event: { originalEvent: Event }) => void;
-    onPrevious?: this["on-previous"];
     "on-play"?: (event: { originalEvent: Event }) => void;
-    onPlay?: this["on-play"];
     "on-pause"?: (event: { originalEvent: Event }) => void;
-    onPause?: this["on-pause"];
 }
+
+export interface Input extends WithNormalizedProps<CarouselInput> {}
 
 interface State {
     htmlAttributes: Record<string, string>;

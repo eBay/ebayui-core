@@ -1,19 +1,18 @@
 import Expander from "makeup-expander";
 import focusables from "makeup-focusables";
 
-export interface Input {
+interface TooptipBaseInput {
     open?: boolean;
     toJSON?: () => Object;
     type: string;
-    noHover?: boolean;
-    overlayStyle?: string;
-    overlayId: string;
-    renderBody?: Marko.Renderable;
+    "no-hover"?: boolean;
+    "overlay-style"?: string;
+    "overlay-id": string;
+    "render-body"?: Marko.Renderable;
     "on-base-expand"?: (event: { originalEvent: Event }) => void;
-    "onBase-expand"?: this["on-base-expand"];
     "on-base-collapse"?: (event: { originalEvent: Event }) => void;
-    "onBase-collapse"?: this["on-base-collapse"];
 }
+export interface Input extends WithNormalizedProps<TooptipBaseInput> {}
 
 export default class extends Marko.Component<Input> {
     declare action: "expand" | "collapse" | null;

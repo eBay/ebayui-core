@@ -1,6 +1,8 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-export interface Input extends Omit<Marko.Input<"progress">, `on${string}`> {}
+static interface ProgressBarInput extends Omit<Marko.Input<"progress">, `on${string}`> {}
+
+export interface Input extends WithNormalizedProps<ProgressBarInput> {}
 
 static var ignoredAttributes = ["class", "max", "value"];
 

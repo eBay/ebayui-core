@@ -5,13 +5,15 @@ export interface Panel extends Omit<Marko.Input<"div">, `on${string}`> {}
 
 export interface Tab extends Omit<Marko.Input<"div">, `on${string}`> {}
 
-export interface Input extends Omit<Marko.Input<"div">, `on${string}`> {
+interface TabsInput extends Omit<Marko.Input<"div">, `on${string}`> {
     tabs: Marko.AttrTag<Tab>[];
     panels: Marko.AttrTag<Panel>[];
     activation?: "auto" | "manual";
     fake?: boolean;
-    selectedIndex?: number | string;
+    "selected-index"?: number | string;
 }
+
+export interface Input extends WithNormalizedProps<TabsInput> {}
 
 export interface State {
     selectedIndex: number;

@@ -5,20 +5,20 @@ export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
     text?: string;
 }
 
-export interface Input extends Omit<Marko.Input<"select">, `on${string}`> {
+interface SelectInput extends Omit<Marko.Input<"select">, `on${string}`> {
     options?: Marko.RepeatableAttrTag<Option>;
-    floatingLabel?: string;
-    isLarge?: boolean;
+    "floating-label"?: string;
+    "is-large"?: boolean;
     borderless?: boolean;
     "on-change"?: (event: {
         index: number;
         selected: string[];
         el: HTMLOptionElement;
     }) => void;
-    onChange?: this["on-change"];
     "on-floating-label-init"?: () => void;
-    "onFloating-label-init"?: this["on-floating-label-init"];
 }
+
+export interface Input extends WithNormalizedProps<SelectInput> {}
 
 export interface State {
     selectedIndex: number;

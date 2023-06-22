@@ -2,15 +2,16 @@ import * as eventUtils from "../../common/event-utils";
 import { getMaxWidth } from "../../common/dom";
 import type { AttrClass } from "marko/tags-html";
 
-export interface Input extends Omit<Marko.Input<"nav">, `on${string}`> {
-    a11yHeadingTag?: keyof Marko.NativeTags;
-    a11yHeadingText?: string;
+interface BreadcrumbsInput extends Omit<Marko.Input<"nav">, `on${string}`> {
+    "a11y-heading-tag"?: keyof Marko.NativeTags;
+    "a11y-heading-text"?: string;
     class?: AttrClass;
     items: (Marko.Input<"a"> &
         Marko.Input<"button"> & { [key: string]: any })[];
     "on-select"?: (event: { originalEvent: Event; el: HTMLElement }) => void;
-    onSelect?: this["on-select"];
 }
+
+export interface Input extends WithNormalizedProps<BreadcrumbsInput> {}
 
 interface State {
     hiddenIndex: number[];
