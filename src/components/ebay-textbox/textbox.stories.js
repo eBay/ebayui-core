@@ -4,12 +4,14 @@ import Component from "./index.marko";
 import WithLabelTemplate from "./examples/external-label.marko";
 import DisabledTemplate from "./examples/external-label-disabled.marko";
 import FloatingLabelTemplate from "./examples/floating-label.marko";
+import FloatingLabelAutocompleteTemplate from "./examples/floating-label-autocomplete.marko";
 import WithBothIcons from "./examples/both-icons.marko";
 import WithPostfixIcon from "./examples/postfix-icon.marko";
 import WithPrefixIcon from "./examples/prefix-icon.marko";
 import WithLabelCode from "./examples/external-label.marko?raw";
 import DisabledCode from "./examples/external-label-disabled.marko?raw";
 import FloatingLabelCode from "./examples/floating-label.marko?raw";
+import FloatingLabelAutocompleteCode from "./examples/floating-label-autocomplete.marko?raw";
 import WithBothIconsCode from "./examples/both-icons.marko?raw";
 import WithPostfixIconCode from "./examples/postfix-icon.marko?raw";
 import WithPrefixIconCode from "./examples/prefix-icon.marko?raw";
@@ -243,6 +245,19 @@ FloatingLabel.parameters = {
     docs: {
         source: {
             code: FloatingLabelCode,
+        },
+    },
+};
+
+export const FloatingLabelAutocomplete = (args) => ({
+    input: args,
+    component: FloatingLabelAutocompleteTemplate,
+});
+FloatingLabelAutocomplete.args = {};
+FloatingLabelAutocomplete.parameters = {
+    docs: {
+        source: {
+            code: FloatingLabelAutocompleteCode,
         },
     },
 };

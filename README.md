@@ -12,7 +12,7 @@
 
 -   [Node.js](https://nodejs.org/en/)
 -   [Marko](https://markojs.com) (v4+)
--   [eBay Skin](https://ebay.github.io/skin/) (v13+)
+-   [eBay Skin](https://ebay.github.io/skin/) (v16+)
 
 _Note: eBayUI Core components utilize Marko flags and, therefore, require `<lasso-page/>` to be added to any page which will have core components._
 
@@ -44,10 +44,12 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-badge`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-badge)
 -   [`ebay-breadcrumbs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumbs)
 -   [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
+-   [`ebay-calendar`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-calendar)
 -   [`ebay-carousel`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel)
 -   [`ebay-checkbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-checkbox)
 -   [`ebay-combobox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox)
 -   [`ebay-cta-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-cta-button)
+-   [`ebay-date-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-date-textbox)
 -   [`ebay-details`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-details)
 -   [`ebay-drawer-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-drawer-dialog)
 -   [`ebay-eek`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-eek)
@@ -73,6 +75,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-radio`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-radio)
 -   [`ebay-section-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-notice)
 -   [`ebay-section-title`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-title)
+-   [`ebay-segmented-buttons`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-segmented-buttons)
 -   [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
 -   [`ebay-signal`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-signal)
 -   [`ebay-snackbar-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-snackbar-dialog)
