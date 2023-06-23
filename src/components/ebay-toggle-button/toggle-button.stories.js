@@ -28,9 +28,9 @@ export default {
         layoutType: {
             type: "string",
             control: { type: "select" },
-            options: [undefined, "list", "gallery"],
+            options: ["minimal", "list", "gallery"],
             description:
-                'Enforced layout type of the button. May be `undefined` (minimal default), `"list"`, or `"gallery"`. Gallery layout may only be used when there is also an icon or an image.',
+                'Enforced layout type of the button. May be `"minimal"` (default), `"list"`, or `"gallery"`. Gallery layout may only be used when there is also an icon or an image.',
         },
         pressed: {
             type: "boolean",
