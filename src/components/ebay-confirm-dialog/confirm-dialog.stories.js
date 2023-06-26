@@ -40,6 +40,16 @@ export default {
             control: { type: "text" },
             description: "Text for reject button",
         },
+        variant: {
+            options: ["none", "destructive"],
+            description: "The alternative main CTA button variant to use.",
+            table: {
+                defaultValue: {
+                    summary: "none",
+                },
+            },
+            type: { category: "Options" },
+        },
         onOpen: {
             action: "on-open",
             description: "Triggered on dialog open",
