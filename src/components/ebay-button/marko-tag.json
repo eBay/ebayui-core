@@ -7,7 +7,9 @@
     "@html-attributes": "expression",
     "@partially-disabled": "boolean",
     "@priority": "string",
-    "@size": "size",
+    "@size": {
+        "enum": ["small", "regular", "large"]
+    },
     "@fluid": "boolean",
     "@fixed-height": "boolean",
     "@truncate": "boolean",

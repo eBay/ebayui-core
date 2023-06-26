@@ -29,8 +29,7 @@ export default {
             description: "url for link behaviour (switches to anchor tag)",
         },
         size: {
-            options: ["large", "regular"],
-
+            options: ["large", "regular", "small"],
             description: "",
             table: {
                 defaultValue: {

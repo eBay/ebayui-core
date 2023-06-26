@@ -29,9 +29,15 @@ static var validPriorities = [
     'delete'
 ];
 
+static var validSizes = [
+    'large',
+    'small'
+];
+
 $ {
     input.toJSON = toJSON;
-    var size = input.size === "large" ? "large" : null;
+    var size = validSizes.includes(input.size) ? input.size : null;
+
     var priority = input.priority || "secondary";
     if (input.borderless || input.variant === 'form') {
         priority = 'none';
