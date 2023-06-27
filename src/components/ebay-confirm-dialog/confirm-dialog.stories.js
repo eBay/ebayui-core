@@ -40,7 +40,7 @@ export default {
             control: { type: "text" },
             description: "Text for reject button",
         },
-        variant: {
+        "confirm-cta-variant": {
             options: ["none", "destructive"],
             description: "The alternative main CTA button variant to use.",
             table: {
