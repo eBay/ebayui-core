@@ -7,6 +7,7 @@
     "@html-attributes": "expression",
     "@open": "boolean",
     "@close-focus": "string",
+    "@confirm-cta-variant": "string",
     "@confirm-text": "string",
     "@reject-text": "string",
     "@role": "never",
