@@ -58,6 +58,15 @@ export default {
                 category: "@attribute tags",
             },
         },
+        expressiveSrc: {
+            control: { type: "text" },
+            description: "Image source for the expressive variant",
+        },
+        expressivePosition: {
+            control: { type: "text" },
+            description:
+                "Position of the image within the given bounds using the CSS `background-position` property. Options include [keywords, lengths, and edge distances](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)",
+        },
         onOpen: {
             action: "on-open",
             description: "Triggered on dialog opened",
@@ -87,7 +96,7 @@ Default.args = {
         renderBody: `Heading Text`,
     },
     footer: {
-        renderBody: '',
+        renderBody: "",
     },
 };
 
@@ -103,3 +112,24 @@ export const Scrolling = buildExtensionTemplate(
     ScrollingTemplate,
     ScrollingTemplateCode
 );
+
+export const Expressive = Template.bind({});
+Expressive.args = {
+    header: {
+        renderBody: `Heading Text`,
+    },
+    footer: {
+        renderBody: "",
+    },
+    expressiveSrc:
+        "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/mountain.jpeg",
+    expressivePosition: "top",
+};
+
+Expressive.parameters = {
+    docs: {
+        source: {
+            code,
+        },
+    },
+};
