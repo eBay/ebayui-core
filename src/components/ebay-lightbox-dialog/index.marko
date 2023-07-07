@@ -8,16 +8,16 @@ $ var buttonPosition = input.buttonPosition || 'right';
     on-open("emit", "open")
     on-close("emit", "close")
     button-position=buttonPosition
-    class=[input.class, "lightbox-dialog--mask-fade", input.expressiveSrc && "lightbox-dialog--expressive"]
+    class=[input.class, "lightbox-dialog--mask-fade", input.bannerImgSrc && "lightbox-dialog--expressive"]
     window-class=[
         "lightbox-dialog__window--fade",
         isMini && "lightbox-dialog__window--mini"
     ]>
-    <if(input.expressiveSrc)>
+    <if(input.bannerImgSrc)>
         <@top>
             <div class="lightbox-dialog__image" style={
-                backgroundImage: `url(${input.expressiveSrc})`,
-                backgroundPosition: input.expressivePosition,
+                backgroundImage: `url(${input.bannerImgSrc})`,
+                backgroundPosition: input.bannerImgPosition,
             } />
         </@top>
     </if>

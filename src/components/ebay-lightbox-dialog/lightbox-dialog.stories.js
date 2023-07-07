@@ -58,11 +58,11 @@ export default {
                 category: "@attribute tags",
             },
         },
-        expressiveSrc: {
+        bannerImgSrc: {
             control: { type: "text" },
             description: "Image source for the expressive variant",
         },
-        expressivePosition: {
+        bannerImgPosition: {
             control: { type: "text" },
             description:
                 "Position of the image within the given bounds using the CSS `background-position` property. Options include [keywords, lengths, and edge distances](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)",
@@ -121,9 +121,9 @@ Expressive.args = {
     footer: {
         renderBody: "",
     },
-    expressiveSrc:
+    bannerImgSrc:
         "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/mountain.jpeg",
-    expressivePosition: "top",
+    bannerImgPosition: "top",
 };
 
 Expressive.parameters = {
