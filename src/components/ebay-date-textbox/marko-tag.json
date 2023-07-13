@@ -1,6 +1,8 @@
 {
     "attributes": {
         "locale": "string",
+        "value": "expression",
+        "rangeEnd": "expression",
         "range": "boolean",
         "disableBefore": "expression",
         "disableAfter": "expression",

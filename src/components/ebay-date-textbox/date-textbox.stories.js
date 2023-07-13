@@ -24,6 +24,16 @@ export default {
     },
 
     argTypes: {
+        value: {
+            type: "date",
+            control: { type: "date" },
+            description: "Selected date",
+            table: {
+                defaultValue: {
+                    summary: "undefined",
+                },
+            },
+        },
         range: {
             type: "boolean",
             control: { type: "boolean" },
@@ -31,6 +41,16 @@ export default {
             table: {
                 defaultValue: {
                     summary: "false",
+                },
+            },
+        },
+        rangeEnd: {
+            type: "date",
+            control: { type: "date" },
+            description: "If range is true, the end of the selected range",
+            table: {
+                defaultValue: {
+                    summary: "undefined",
                 },
             },
         },
