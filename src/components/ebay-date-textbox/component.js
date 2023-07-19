@@ -1,13 +1,15 @@
 // @ts-check
 
 import Expander from "makeup-expander";
-import { toISO } from "../ebay-calendar/component";
+import { dateArgToISO, toISO } from "../ebay-calendar/component";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
 /**
  * @typedef {import('../ebay-calendar/component').DayISO} DayISO
  * @typedef {{
+ *   value?: Date | number | string,
+ *   rangeEnd?: Date | number | string,
  *   locale?: string,
  *   range?: boolean,
  *   disableBefore?: Date | number | string,
@@ -60,6 +62,12 @@ export default class extends Marko.Component {
      * @param {Input} input
      */
     onInput(input) {
+        if (input.value) {
+            this.state.firstSelected = dateArgToISO(input.value);
+        }
+        if (input.rangeEnd) {
+            this.state.secondSelected = dateArgToISO(input.rangeEnd);
+        }
         if (!input.range) {
             this.state.secondSelected = null;
         }
