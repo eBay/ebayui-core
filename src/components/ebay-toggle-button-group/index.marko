@@ -1,0 +1,19 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+static var ignoredAttributes = ["class", "columns"];
+
+<ul
+    class=["toggle-button-group", input.class]
+    data-columns=input.columns
+    ...processHtmlAttributes(input, ignoredAttributes)
+>
+    <for|{ layoutType = input.layoutType, ...buttonInput }, i| of=input.buttons>
+        <li>
+            <ebay-toggle-button
+                layoutType=layoutType
+                pressed=state.pressed[i]
+                ...buttonInput
+                on-toggle("handleToggle", i)
+            />
+        </li>
+    </for>
+</ul>
