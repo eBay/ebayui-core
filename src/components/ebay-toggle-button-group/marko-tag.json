@@ -8,7 +8,7 @@
     "@columns": "number",
     "@radio": "boolean",
     "@layout-type": "string",
-    "@buttons <toggle-button>[]": {
+    "@buttons <button>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"

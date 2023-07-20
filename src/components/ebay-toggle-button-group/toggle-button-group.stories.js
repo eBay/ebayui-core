@@ -2,8 +2,12 @@ import { tagToString } from "../../../.storybook/storybook-code-source";
 import { addRenderBodies } from "../../../.storybook/utils";
 import readme from "./README.md";
 import component from "./index.marko";
-import WithIconsTemplate from "./examples/icons.marko";
-import WithIconsCode from "./examples/icons.marko?raw";
+import withIconsTemplate from "./examples/icons.marko";
+import withIconsCode from "./examples/icons.marko?raw";
+import withDefaultTemplate from "./examples/withDefault.marko";
+import withDefaultCode from "./examples/withDefault.marko?raw";
+import controlledTemplate from "./examples/controlled.marko";
+import controlledCode from "./examples/controlled.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -38,8 +42,9 @@ export default {
                 'Enforced layout type of all buttons. May be `"minimal"` (default), `"list"`, or `"gallery"`. Gallery layout may only be used when there is also an icon or an image, and minimal layout may **not** be used when there is an icon or an image',
         },
         buttons: {
-            name: "@toggle-button",
-            description: "An `<img>` to show as the button's image",
+            name: "@button",
+            description:
+                "Represents an `<ebay-toggle-button/>` to be used as part of the group",
             table: {
                 category: "@attribute tags",
             },
@@ -80,13 +85,39 @@ Default.parameters = {
 
 export const WithIcons = (args) => ({
     input: args,
-    component: WithIconsTemplate,
+    component: withIconsTemplate,
 });
 WithIcons.args = {};
 WithIcons.parameters = {
     docs: {
         source: {
-            code: WithIconsCode,
+            code: withIconsCode,
+        },
+    },
+};
+
+export const WithDefault = (args) => ({
+    input: args,
+    component: withDefaultTemplate,
+});
+WithDefault.args = {};
+WithDefault.parameters = {
+    docs: {
+        source: {
+            code: withDefaultCode,
+        },
+    },
+};
+
+export const Controlled = (args) => ({
+    input: args,
+    component: controlledTemplate,
+});
+Controlled.args = {};
+Controlled.parameters = {
+    docs: {
+        source: {
+            code: controlledCode,
         },
     },
 };

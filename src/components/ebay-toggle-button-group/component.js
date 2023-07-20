@@ -4,15 +4,9 @@ export default class {
     }
 
     onInput(input) {
-        if (input.pressed) {
-            if (Array.isArray(input.pressed)) {
-                this.state.pressed = Object.fromEntries(
-                    input.pressed.map((i) => [i, true])
-                );
-            } else {
-                this.state.pressed = { [input.pressed]: true };
-            }
-        }
+        this.state.pressed = Object.fromEntries(
+            input.buttons.map(({ pressed }, i) => [i, !!pressed])
+        );
     }
 
     handleToggle(index, { originalEvent, pressed }) {
