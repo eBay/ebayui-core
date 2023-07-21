@@ -27,9 +27,9 @@ export default {
         variant: {
             type: "string",
             control: { type: "select" },
-            options: ["checkbox", "radio", "single"],
+            options: ["checkbox", "radio", "radio-toggle"],
             description:
-                'Selection type for the buttons in the group. May be `"checkbox"` (default), `"radio"`, or `"single"` (same as radio but with the option to deselect)',
+                'Selection type for the buttons in the group. May be `"checkbox"` (default), `"radio"`, or `"radio-toggle"` (same as radio but with the option to deselect)',
         },
         columns: {
             type: "number",

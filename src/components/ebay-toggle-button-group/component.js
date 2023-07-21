@@ -13,7 +13,7 @@ export default class {
         if (this.input.variant === "radio") {
             // radio buttons may not be deselected, so `pressed` is not necessary
             this.state.pressed = { [index]: true };
-        } else if (this.input.variant === "single") {
+        } else if (this.input.variant === "radio-toggle") {
             this.state.pressed = { [index]: pressed };
         } else {
             // act as a normal checkbox
