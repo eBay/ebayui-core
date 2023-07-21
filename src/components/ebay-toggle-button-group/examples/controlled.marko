@@ -6,7 +6,9 @@ $ const titles = ["Option 1", "Option 2", "Option 3"];
     </ebay-button>
     <ebay-toggle-button-group columns=3 on-change("handleChange") ...input>
         <for|title, i| of=titles>
-            <@button title=title pressed=state.pressed.includes(i)/>
+            <@button pressed=state.pressed.includes(i)>
+                ${title}
+            </@button>
         </for>
     </ebay-toggle-button-group>
 </div>

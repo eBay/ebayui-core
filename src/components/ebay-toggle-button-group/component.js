@@ -10,9 +10,13 @@ export default class {
     }
 
     handleToggle(index, { originalEvent, pressed }) {
-        if (this.input.radio) {
+        if (this.input.variant === "radio") {
+            // radio buttons may not be deselected, so `pressed` is not necessary
+            this.state.pressed = { [index]: true };
+        } else if (this.input.variant === "single") {
             this.state.pressed = { [index]: pressed };
         } else {
+            // act as a normal checkbox
             this.state.pressed = { ...this.state.pressed, [index]: pressed };
         }
         this.emit("change", {

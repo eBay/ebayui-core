@@ -24,15 +24,17 @@ export default {
         },
     },
     argTypes: {
-        radio: {
-            type: "boolean",
-            control: { type: "boolean" },
-            description: "Whether the buttons act as radio buttons",
+        variant: {
+            type: "string",
+            control: { type: "select" },
+            options: ["checkbox", "radio", "single"],
+            description:
+                'Selection type for the buttons in the group. May be `"checkbox"` (default), `"radio"`, or `"single"` (same as radio but with the option to deselect)',
         },
         columns: {
             type: "number",
             control: { type: "number" },
-            description: "Suggested number of columns",
+            description: "Preferred minimum number of columns",
         },
         layoutType: {
             type: "string",
