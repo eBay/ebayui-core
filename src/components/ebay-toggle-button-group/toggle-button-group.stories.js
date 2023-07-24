@@ -68,12 +68,12 @@ export const Default = Template.bind({});
 Default.args = {
     columns: 3,
     buttons: [
-        { title: "Button 1" },
-        { title: "Button 2" },
-        { title: "Button 3" },
-        { title: "Button 4" },
-        { title: "Button 5" },
-        { title: "Button 6" },
+        { renderBody: "Button 1" },
+        { renderBody: "Button 2" },
+        { renderBody: "Button 3" },
+        { renderBody: "Button 4" },
+        { renderBody: "Button 5" },
+        { renderBody: "Button 6" },
     ],
 };
 
@@ -98,12 +98,12 @@ WithIcons.parameters = {
     },
 };
 
-export const WithDefault = (args) => ({
+export const WithDefaultSelected = (args) => ({
     input: args,
     component: withDefaultTemplate,
 });
-WithDefault.args = {};
-WithDefault.parameters = {
+WithDefaultSelected.args = {};
+WithDefaultSelected.parameters = {
     docs: {
         source: {
             code: withDefaultCode,
