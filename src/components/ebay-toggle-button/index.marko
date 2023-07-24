@@ -44,7 +44,14 @@ static var ignoredAttributes = [
         </span>
     </else-if>
     <span class="toggle-button__content">
-        <span class="toggle-button__title">${input.title}</span>
+        <span class="toggle-button__title">
+            <if(input.title)>
+                ${input.title}
+            </if>
+            <else>
+                <${input.renderBody}/>
+            </else>
+        </span>
         <if(input.subtitle)>
             <span class="toggle-button__subtitle">
                 <if(typeof input.subtitle === "string")>

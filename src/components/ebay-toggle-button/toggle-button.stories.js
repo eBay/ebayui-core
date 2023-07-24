@@ -24,7 +24,9 @@ export default {
         },
     },
     argTypes: {
-        renderBody: {},
+        renderBody: {
+            control: { type: "text" },
+        },
         layoutType: {
             type: "string",
             control: { type: "select" },
@@ -106,7 +108,7 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    title: "Title",
+    renderBody: "Title",
 };
 
 Default.parameters = {

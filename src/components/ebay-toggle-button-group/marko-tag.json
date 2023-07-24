@@ -1,0 +1,18 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@columns": "number",
+    "@radio": "boolean",
+    "@layout-type": "string",
+    "@buttons <button>[]": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    }
+}

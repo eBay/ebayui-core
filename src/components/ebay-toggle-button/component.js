@@ -1,6 +1,6 @@
 export default class {
     onInput(input) {
-        this.state = { pressed: input.pressed };
+        this.state = { pressed: !!input.pressed };
     }
 
     handleClick(ev) {
