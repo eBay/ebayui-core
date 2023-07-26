@@ -461,8 +461,7 @@ export function toISO(date) {
  * @param {DayISO} iso
  */
 export function fromISO(iso) {
-    const [year, month, day] = iso.split("-");
-    return new Date(+year, +month - 1, +day);
+    return new Date(iso);
 }
 
 /**
@@ -470,10 +469,9 @@ export function fromISO(iso) {
  * @param {number} days
  */
 export function offsetISO(iso, days) {
-    const curr = fromISO(iso);
-    return toISO(
-        new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() + days)
-    );
+    const date = fromISO(iso);
+    date.setDate(date.getDate() + days);
+    return toISO(date);
 }
 
 /**
