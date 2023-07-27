@@ -4,6 +4,7 @@ $ var mainId = component.getElId("confirm-dialog-main");
 <ebay-dialog-base
     ...input
     open=input.open
+    confirm-cta-variant=input['confirm-cta-variant']
     on-open("emit", "open")
     on-close("emit", "reject")
     main-id=mainId
@@ -24,7 +25,10 @@ $ var mainId = component.getElId("confirm-dialog-main");
             on-click("emit", "confirm")
             id=confirmId
             aria-describedby=mainId
-            class="confirm-dialog__confirm">
+            class=[
+                "confirm-dialog__confirm",
+                input['confirm-cta-variant'] && input['confirm-cta-variant'] !== 'none' && `btn--${input['confirm-cta-variant']}`
+            ]>
             ${input.confirmText}
         </ebay-button>
     </@footer>

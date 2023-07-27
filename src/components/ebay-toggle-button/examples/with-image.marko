@@ -1,4 +1,6 @@
 $ const { src, alt, fillPlacement, ...buttonInput } = input
-<ebay-toggle-button title="Title" subtitle="Subtitle" layoutType="list" ...buttonInput onToggle("emit", "toggle")>
+<ebay-toggle-button layoutType="list" ...buttonInput onToggle("emit", "toggle")>
+    Title
+    <@subtitle>Subtitle</@subtitle>
     <@img src=src alt=alt fillPlacement=fillPlacement />
 </ebay-toggle-button>

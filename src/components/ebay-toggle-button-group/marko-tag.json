@@ -5,16 +5,10 @@
         "type": "expression"
     },
     "@html-attributes": "expression",
-    "@open": "boolean",
-    "@close-focus": "string",
-    "@confirm-cta-variant": "string",
-    "@confirm-text": "string",
-    "@reject-text": "string",
-    "@role": "never",
-    "@hidden": "never",
-    "@footer": "never",
-    "@header <header>": {
-        "attribute-groups": ["html-attributes"],
+    "@columns": "number",
+    "@radio": "boolean",
+    "@layout-type": "string",
+    "@buttons <button>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"
