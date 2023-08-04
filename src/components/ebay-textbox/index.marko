@@ -17,7 +17,10 @@ static var ignoredAttributes = [
     "postfixIcon",
     "inputSize",
     "opaqueLabel",
-    "toJSON"
+    "toJSON",
+    "label",
+    "charCount",
+    "description"
 ];
 
 $ input.toJSON = toJSON;
@@ -27,7 +30,11 @@ $ var isLarge = input.inputSize === "large";
 $ var displayIcon = Boolean(!input.multiline && hasIcon);
 $ var id = input.id || component.getElId("textbox");
 $ var defaultTag = input.fluid ? "div" : "span";
-<${input.floatingLabel && defaultTag} class=["floating-label", isLarge && "floating-label--large", input.opaqueLabel && "floating-label--opaque"]>
+$ const hasField = input.charCount || input.description || input.label;
+$ const floatingLabelClasses = input.floatingLabel && ["floating-label", isLarge && "floating-label--large", input.opaqueLabel && "floating-label--opaque"];
+$ const descriptionId = input.description && input.description.id || component.getElId("description")
+$ const charCountId = input.charCount && input.charCount.id || component.getElId("char-count")
+<${(hasField || floatingLabelClasses) && defaultTag} class=[floatingLabelClasses, hasField && "field"]>
     <if(input.floatingLabel)>
         <label
             for=id
@@ -38,10 +45,23 @@ $ var defaultTag = input.fluid ? "div" : "span";
             ${input.floatingLabel}
         </label>
     </if>
+    <if(input.label)>
+        <label
+            for=id
+            class=[
+                "field__label",
+                input.disabled && "field__label--disabled",
+                input.label.stacked !== false && "field__label--stacked",
+                input.label?.class
+            ]>
+            <${input.label}/>
+        </label>
+    </if>
     <${defaultTag}
         style=input.style
         class=[
             "textbox",
+            hasField && "field__control",
             input.class,
             displayIcon && isPostfix && "textbox--icon-end"
         ]>
@@ -58,17 +78,19 @@ $ var defaultTag = input.fluid ? "div" : "span";
                 isLarge && "textbox__control--large"
             ]
             type=(!input.multiline && (input.type || "text"))
-            value=(!input.multiline && input.value)
+            value=(!input.multiline && state.value)
             aria-invalid=(input.invalid && "true")
-            onKeydown("handleKeydown")
-            onKeypress("handleKeypress")
-            onKeyup("handleKeyup")
-            onChange("handleChange")
-            onInput("handleInput")
-            onFocus("handleFocus")
-            onBlur("handleBlur")
-            onInvalid("handleInvalid")>
-            <if(input.multiline && input.value)>${input.value}</if>
+            aria-live=(input.charCount?.max && input.charCount.max <= state.charCount ? "polite" : "off")
+            aria-describedby=[descriptionId, charCountId].filter(Boolean).join(" ") || false
+            onKeydown("forwardCharEvent", "keydown")
+            onKeypress("forwardCharEvent", "keypress")
+            onKeyup("forwardCharEvent", "keyup")
+            onChange("forwardCharEvent", "change")
+            onInput("forwardCharEvent", "input-change")
+            onFocus("forwardEvent", "focus")
+            onBlur("forwardEvent", "blur")
+            onInvalid("forwardEvent", "invalid")>
+            <if(input.multiline && state.value)>${state.value}</if>
         </>
         <if(displayIcon && input.postfixIcon)>
             <${input.buttonAriaLabel && "button"}
@@ -80,4 +102,26 @@ $ var defaultTag = input.fluid ? "div" : "span";
             </>
         </if>
     </>
+    <if(input.description || input.charCount)>
+        <${input.description?.as || "div"} class=["field__description", input.charCount && "field__description--group", input.description?.class]>
+            <if(input.description)>
+                <span id=descriptionId>
+                    <${input.description}/>
+                </>
+            </if>
+            <if(input.charCount)>
+                <span id=charCountId>
+                    <if(input.charCount.renderBody)>
+                        <${input.charCount}/>
+                    </if>
+                    <else>
+                        ${state.charCount}/${input.charCount.max}
+                        <if(input.charCount.clippedText)>
+                            <span class="clipped"> ${input.charCount.clippedText}</span>
+                        </if>
+                    </else>
+                </span>
+            </if>
+        </>
+    </if>
 </>

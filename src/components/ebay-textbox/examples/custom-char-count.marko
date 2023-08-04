@@ -1,0 +1,17 @@
+static const charLimit = 60;
+
+<ebay-textbox value=state.value on-char-count("handleCharCountChange")>
+    <@char-count max=charLimit>
+        ${state.charCount} of ${charLimit} (${charLimit - state.charCount} left)
+    </@char-count>
+</ebay-textbox>
+
+class {
+    onCreate() {
+        this.state = { charCount: 0, value: "" };
+    }
+    handleCharCountChange({ value, count }) {
+        this.state.charCount = count;
+        this.state.value = value;
+    }
+}

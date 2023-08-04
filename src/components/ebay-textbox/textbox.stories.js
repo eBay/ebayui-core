@@ -15,6 +15,16 @@ import FloatingLabelAutocompleteCode from "./examples/floating-label-autocomplet
 import WithBothIconsCode from "./examples/both-icons.marko?raw";
 import WithPostfixIconCode from "./examples/postfix-icon.marko?raw";
 import WithPrefixIconCode from "./examples/prefix-icon.marko?raw";
+import WithDescriptionAndLabel from "./examples/description-and-label.marko";
+import WithDescriptionAndLabelCode from "./examples/description-and-label.marko?raw";
+import WithUnstackedDescriptionAndLabel from "./examples/unstacked-description-and-label.marko";
+import WithUnstackedDescriptionAndLabelCode from "./examples/unstacked-description-and-label.marko?raw";
+import WithCharCount from "./examples/char-count.marko";
+import WithCharCountCode from "./examples/char-count.marko?raw";
+import WithCustomCharCount from "./examples/custom-char-count.marko";
+import WithCustomCharCountCode from "./examples/custom-char-count.marko?raw";
+import WithAllFieldFeatures from "./examples/all-field-features.marko";
+import WithAllFieldFeaturesCode from "./examples/all-field-features.marko?raw";
 
 const Template = (args) => ({
     input: {
@@ -307,6 +317,71 @@ BothIcons.parameters = {
     docs: {
         source: {
             code: WithBothIconsCode,
+        },
+    },
+};
+
+export const DescriptionAndLabel = (args) => ({
+    input: args,
+    component: WithDescriptionAndLabel,
+});
+DescriptionAndLabel.args = {};
+DescriptionAndLabel.parameters = {
+    docs: {
+        source: {
+            code: WithDescriptionAndLabelCode,
+        },
+    },
+};
+
+export const UnstackedDescriptionAndLabel = (args) => ({
+    input: args,
+    component: WithUnstackedDescriptionAndLabel,
+});
+UnstackedDescriptionAndLabel.args = {};
+UnstackedDescriptionAndLabel.parameters = {
+    docs: {
+        source: {
+            code: WithUnstackedDescriptionAndLabelCode,
+        },
+    },
+};
+
+export const CharCount = (args) => ({
+    input: args,
+    component: WithCharCount,
+});
+CharCount.args = {};
+CharCount.parameters = {
+    docs: {
+        source: {
+            code: WithCharCountCode,
+        },
+    },
+};
+
+export const CustomCharCount = (args) => ({
+    input: args,
+    component: WithCustomCharCount,
+});
+CustomCharCount.args = {};
+CustomCharCount.parameters = {
+    docs: {
+        source: {
+            code: WithCustomCharCountCode,
+        },
+    },
+};
+
+export const AllFieldFeatures = (args) => ({
+    input: args,
+    component: WithAllFieldFeatures,
+});
+AllFieldFeatures.args = {};
+AllFieldFeatures.parameters = {
+    docs: {
+        source: {
+            code: WithAllFieldFeaturesCode,
         },
     },
 };
