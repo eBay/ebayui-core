@@ -4,7 +4,7 @@ import { expect, use } from "chai";
 import chaiDom from "chai-dom";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import template from "..";
-import componentB from "../component-browser";
+import componentB from "../component";
 import * as stories from "../textbox.stories";
 
 const { Isolated, FloatingLabel, BothIcons } = composeStories(stories);
