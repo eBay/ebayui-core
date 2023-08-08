@@ -217,6 +217,17 @@ export default {
                 },
             },
         },
+        onCharUpdate: {
+            action: "on-char-update",
+            description:
+                "Triggered when the number of characters in the input changes. Debounced to 500ms to avoid excessive updates.",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "{ value, count }",
+                },
+            },
+        },
     },
 };
 

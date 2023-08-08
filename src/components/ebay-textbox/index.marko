@@ -1,11 +1,5 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static function toJSON() {
-    return {
-        floatingLabel: this.floatingLabel
-    };
-}
-
 static var ignoredAttributes = [
     "class",
     "style",
@@ -17,13 +11,11 @@ static var ignoredAttributes = [
     "postfixIcon",
     "inputSize",
     "opaqueLabel",
-    "toJSON",
     "label",
     "charCount",
     "description"
 ];
 
-$ input.toJSON = toJSON;
 $ var isPostfix = !!input.postfixIcon;
 $ var hasIcon = input.prefixIcon || isPostfix;
 $ var isLarge = input.inputSize === "large";
@@ -32,8 +24,8 @@ $ var id = input.id || component.getElId("textbox");
 $ var defaultTag = input.fluid ? "div" : "span";
 $ const hasField = input.charCount || input.description || input.label;
 $ const floatingLabelClasses = input.floatingLabel && ["floating-label", isLarge && "floating-label--large", input.opaqueLabel && "floating-label--opaque"];
-$ const descriptionId = input.description && input.description.id || component.getElId("description")
-$ const charCountId = input.charCount && input.charCount.id || component.getElId("char-count")
+$ const descriptionId = input.description && (input.description.id || component.getElId("description"))
+$ const charCountId = input.charCount && (input.charCount.id || component.getElId("char-count"))
 <${(hasField || floatingLabelClasses) && defaultTag} class=[floatingLabelClasses, hasField && "field"]>
     <if(input.floatingLabel)>
         <label
@@ -80,7 +72,7 @@ $ const charCountId = input.charCount && input.charCount.id || component.getElId
             type=(!input.multiline && (input.type || "text"))
             value=(!input.multiline && state.value)
             aria-invalid=(input.invalid && "true")
-            aria-live=(input.charCount?.max && input.charCount.max <= state.charCount ? "polite" : "off")
+            aria-live=input.charCount && (input.charCount.max <= state.charCount ? "polite" : "off")
             aria-describedby=[descriptionId, charCountId].filter(Boolean).join(" ") || false
             onKeydown("forwardCharEvent", "keydown")
             onKeypress("forwardCharEvent", "keypress")

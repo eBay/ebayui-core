@@ -48,7 +48,7 @@ export default class {
         this._charCountTimeout = setTimeout(() => {
             this.state.charCount = el.value.length;
             this.state.value = el.value;
-            this.emit("char-count", {
+            this.emit("char-update", {
                 value: el.value,
                 count: this.state.charCount,
             });

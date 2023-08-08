@@ -1,6 +1,6 @@
 static const charLimit = 60;
 
-<ebay-textbox value=state.value on-char-count("handleCharCountChange")>
+<ebay-textbox value=state.value on-char-update("handleCharCountChange")>
     <@char-count max=charLimit>
         ${state.charCount} of ${charLimit} (${charLimit - state.charCount} left)
     </@char-count>
