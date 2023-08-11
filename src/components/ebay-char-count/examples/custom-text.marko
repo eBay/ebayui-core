@@ -1,0 +1,45 @@
+$ const { max = 120, clippedText } = input;
+
+<span class="field">
+    <label class="field__label field__label--stacked" for="my-input">
+        Field Label
+    </label>
+    <span class="field__control">
+        <ebay-textbox
+            value=state.inputValue
+            type="text"
+            aria-describedby="my-input-charcount"
+            class="textbox__control"
+            id="my-input"
+            aria-live=state.inputAriaLive
+            on-keyup("onTextChange")
+            on-change("onTextChange")
+        />
+    </span>
+    <div class=["field__description", "field__description--group", state.charCount > max && "field__description--attention"]>
+        <ebay-char-count
+            id="my-input-charcount"
+            value=state.inputValue
+            max=max
+            on-change("onCharCountChange")
+        >
+            ${state.charCount} of ${max} (${max - state.charCount} remaining)
+        </ebay-char-count>
+    </div>
+</span>
+class {
+    onCreate() {
+        this.state = {
+            inputValue: "",
+            inputAriaLive: null,
+            charCount: 0
+        };
+    }
+    onTextChange({ originalEvent: e }) {
+        this.state.inputValue = e.target.value;
+    }
+    onCharCountChange({ count, inputAriaLive }) {
+        this.state.inputAriaLive = inputAriaLive;
+        this.state.charCount = count;
+    }
+}
