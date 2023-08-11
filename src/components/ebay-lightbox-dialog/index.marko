@@ -1,5 +1,6 @@
 $ var isMini = input.variant === "_mini";
 $ var buttonPosition = input.buttonPosition || 'right';
+$ var validSizes = ['wide', 'narrow'];
 
 <ebay-dialog-base
     ...input
@@ -7,11 +8,15 @@ $ var buttonPosition = input.buttonPosition || 'right';
     class-prefix="lightbox-dialog"
     on-open("emit", "open")
     on-close("emit", "close")
+    on-prevButtonClick("emit", "prevButtonClick")
     button-position=buttonPosition
-    class=[input.class, "lightbox-dialog--mask-fade", input.bannerImgSrc && "lightbox-dialog--expressive"]
+    class=[input.class, "lightbox-dialog--mask-fade", input.bannerImgSrc && "lightbox-dialog--expressive",
+        validSizes.includes(input.size) && `lightbox-dialog--${input.size}`,
+    ]
     window-class=[
         "lightbox-dialog__window--fade",
-        isMini && "lightbox-dialog__window--mini"
+        isMini && "lightbox-dialog__window--mini",
+
     ]>
     <if(input.bannerImgSrc)>
         <@top>
