@@ -15,7 +15,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: "building blocks/ebay-char-count",
+    title: "building blocks/ebay-character-count",
     component: Component,
     parameters: {
         docs: {
@@ -70,7 +70,7 @@ Default.args = {
 Default.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-char-count", Default.args),
+            code: tagToString("ebay-character-count", Default.args),
         },
     },
 };

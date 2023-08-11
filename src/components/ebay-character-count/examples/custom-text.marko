@@ -8,7 +8,7 @@ $ const { max = 120, clippedText } = input;
         <ebay-textbox
             value=state.inputValue
             type="text"
-            aria-describedby="my-input-description my-input-charcount"
+            aria-describedby="my-input-charcount"
             class="textbox__control"
             id="my-input"
             aria-live=state.inputAriaLive
@@ -16,17 +16,15 @@ $ const { max = 120, clippedText } = input;
             on-change("onTextChange")
         />
     </span>
-    <div class="field__description field__description--group">
-        <span id="my-input-description">
-            Brief description
-        </span>
-        <ebay-char-count
+    <div class=["field__description", "field__description--group", state.charCount > max && "field__description--attention"]>
+        <ebay-character-count
             id="my-input-charcount"
             value=state.inputValue
             max=max
-            clipped-text=clippedText
             on-change("onCharCountChange")
-        />
+        >
+            ${state.charCount} of ${max} (${max - state.charCount} remaining)
+        </ebay-character-count>
     </div>
 </span>
 class {
@@ -34,12 +32,14 @@ class {
         this.state = {
             inputValue: "",
             inputAriaLive: null,
+            charCount: 0
         };
     }
     onTextChange({ originalEvent: e }) {
         this.state.inputValue = e.target.value;
     }
-    onCharCountChange({ inputAriaLive }) {
+    onCharCountChange({ count, inputAriaLive }) {
         this.state.inputAriaLive = inputAriaLive;
+        this.state.charCount = count;
     }
 }
