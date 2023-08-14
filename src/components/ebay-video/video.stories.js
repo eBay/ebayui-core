@@ -138,6 +138,16 @@ export default {
                 },
             },
         },
+        onPause: {
+            action: "on-Pause",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "{ }",
+                },
+            },
+        },
+
         onAbort: {
             action: "on-abort",
             table: { category: "Events", defaultValue: { summary: "{ }" } },
