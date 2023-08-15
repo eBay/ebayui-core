@@ -1,2 +1,13 @@
-<style>.custom .radio__unchecked, .custom .radio__checked { color: #71c63e; }</style>
-<ebay-radio class="custom" aria-label="custom color radio example"/>
+<style>
+    .custom .radio__unchecked,
+    .custom .radio__checked {
+        color: #71c63e;
+    }
+</style>
+<ebay-radio
+    class="custom"
+    aria-label="custom color radio example"
+    on-change("emit", "change")
+    on-focus("emit", "focus")
+    on-keydown("emit", "keydown")
+/>
