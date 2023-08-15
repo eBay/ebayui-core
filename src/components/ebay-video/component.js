@@ -1,6 +1,26 @@
 import { CDNLoader } from "../../common/cdn";
-import { getElements, playIcon } from "./elements";
+import { getElements } from "./elements";
 const DEFAULT_SPINNER_TIMEOUT = 2000;
+
+const eventList = [
+    "abort",
+    "canplay",
+    "canplaythrough",
+    "durationchange",
+    "emptied",
+    "encrypted",
+    "ended",
+    "error",
+    "loadstart",
+    "progress",
+    "ratechange",
+    "seeked",
+    "seeking",
+    "stalled",
+    "suspend",
+    "timeupdate",
+    "waiting",
+];
 
 const videoConfig = {
     addBigPlayButton: false,
@@ -217,9 +237,10 @@ export default {
 
         // Replace play icon
         if (this.el) {
+            const playIcon = this.getComponent("play-icon").el.cloneNode(true);
             const playButton = this.el.querySelector(".shaka-play-button");
             playButton.removeAttribute("icon");
-            playIcon.renderSync().appendTo(playButton);
+            playButton.appendChild(playIcon);
 
             const shakaSpinner = this.el.querySelector(".shaka-spinner");
             if (shakaSpinner) {
@@ -252,6 +273,12 @@ export default {
             .on("playing", this.handlePlaying.bind(this))
             .on("pause", this.handlePause.bind(this))
             .on("volumechange", this.handleVolumeChange.bind(this));
+
+        eventList.forEach((eventName) => {
+            this.subscribeTo(this.video).on(eventName, (e) =>
+                this.emit(eventName, e)
+            );
+        });
 
         this._loadVideo();
     },
