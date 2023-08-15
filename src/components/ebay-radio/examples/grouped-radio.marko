@@ -6,14 +6,19 @@ class {}
         <span class="field">
             <ebay-radio
                 ...input
+                on-change("emit", "change")
+                on-focus("emit", "focus")
+                on-keydown("emit", "keydown")
                 class="field__control"
                 id=`group-radio-${label_num}`
                 value=label_num
-                name="radio-group"/>
+                name="radio-group"
+            />
             <label
                 class="field__label field__label--end"
-                for=`group-radio-${label_num}`>
-                    Option ${label_num}
+                for=`group-radio-${label_num}`
+            >
+                Option ${label_num}
             </label>
         </span>
     </for>

@@ -1,6 +1,16 @@
 class {}
 
-<span.field>
-    <ebay-radio.field__control#radio ...input value='1'/>
-    <label.field__label.field__label--end for='radio'>Option</label>
+<span class="field">
+    <ebay-radio
+        ...input
+        value="1"
+        on-change("emit", "change")
+        on-focus("emit", "focus")
+        on-keydown("emit", "keydown")
+        class="field__control"
+        id="radio"
+    />
+    <label for="radio" class="field__label field__label--end">
+        Option
+    </label>
 </span>
