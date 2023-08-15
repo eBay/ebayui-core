@@ -117,7 +117,7 @@ export default {
                 },
             },
         },
-        onVolumeChange: {
+        "onVolume-change": {
             action: "on-volume-change",
             description:
                 "Triggered when volume is changed. Will return the values of the volume decimal and muted true/false",
