@@ -143,7 +143,7 @@ export default class extends Marko.Component {
         return (
             (this.state.disableBefore && iso < this.state.disableBefore) ||
             (this.state.disableAfter && iso > this.state.disableAfter) ||
-            this.state.disableWeekdays.includes(fromISO(iso).getDay()) ||
+            this.state.disableWeekdays.includes(fromISO(iso).getUTCDay()) ||
             this.state.disableList.includes(iso)
         );
     }
