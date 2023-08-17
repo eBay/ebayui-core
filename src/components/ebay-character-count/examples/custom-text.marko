@@ -41,5 +41,6 @@ class {
     onCharCountChange({ count, inputAriaLive }) {
         this.state.inputAriaLive = inputAriaLive;
         this.state.charCount = count;
+        this.emit('change', {count, inputAriaLive})
     }
 }

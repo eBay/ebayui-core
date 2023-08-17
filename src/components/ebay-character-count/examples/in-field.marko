@@ -39,7 +39,8 @@ class {
     onTextChange({ originalEvent: e }) {
         this.state.inputValue = e.target.value;
     }
-    onCharCountChange({ inputAriaLive }) {
+    onCharCountChange({ count, inputAriaLive }) {
         this.state.inputAriaLive = inputAriaLive;
+        this.emit('change', {count, inputAriaLive})
     }
 }
