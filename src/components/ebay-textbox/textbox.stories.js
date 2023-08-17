@@ -186,7 +186,7 @@ export default {
                 },
             },
         },
-        onFloatingLabelInit: {
+        "onFloating-label-init": {
             action: "on-floating-label-init",
             description: "Triggered when floating label is initialized",
             table: {
@@ -196,7 +196,7 @@ export default {
                 },
             },
         },
-        onButtonClick: {
+        "onButton-click": {
             action: "on-button-click",
             description:
                 "Triggers when clicking on postfix-icon-button. Requires button-aria-label to be present in order to attach correctly",

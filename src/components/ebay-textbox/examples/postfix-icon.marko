@@ -1,3 +1,17 @@
-<ebay-textbox placeholder="name">
-    <@postfix-icon><ebay-profile-24-icon/></@postfix-icon>
+<ebay-textbox
+    placeholder="name"
+    on-change("emit", "change")
+    on-inputChange("emit", "inputChange")
+    on-focus("emit", "focus")
+    on-blur("emit", "blur")
+    on-keypress("emit", "keypress")
+    on-keyup("emit", "keyup")
+    on-keydown("emit", "keydown")
+    on-invalid("emit", "invalid")
+    on-floating-label-init("emit", "floating-label-init")
+    on-button-click("emit", "button-click")
+>
+    <@postfix-icon>
+        <ebay-profile-24-icon/>
+    </@postfix-icon>
 </ebay-textbox>

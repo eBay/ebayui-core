@@ -1,15 +1,16 @@
 class {
     onCreate() {
         this.state = {
-            value: ""
+            value: "",
         };
     }
-    change({ value }) {
+    change({ value }, e) {
         this.state.value = value;
+        this.emit('change', e);
     }
     clear(e) {
         this.state.value = "";
-        this.emit('button-click', e)
+        this.emit("button-click", e);
     }
 }
 
@@ -19,8 +20,17 @@ class {
     button-aria-label="Clear"
     placeholder="name"
     ...input
+    on-inputChange("emit", "inputChange")
+    on-focus("emit", "focus")
+    on-blur("emit", "blur")
+    on-keypress("emit", "keypress")
+    on-keyup("emit", "keyup")
+    on-keydown("emit", "keydown")
+    on-invalid("emit", "invalid")
+    on-floating-label-init("emit", "floating-label-init")
     on-change("change")
-    on-button-click("clear")>
+    on-button-click("clear")
+>
     <@postfix-icon>
         <ebay-close-24-icon/>
     </@postfix-icon>
