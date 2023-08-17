@@ -124,7 +124,7 @@ export default {
             type: "array",
             control: { type: "array" },
             description:
-                "List of specific days that are disabled. Should be a list of date objects, but also accepts timestamps or ISO strings",
+                "List of specific days that are disabled. Should be a list of ISO strings, but also accepts timestamps or `Date` objects",
             table: {
                 defaultValue: {
                     summary: "undefined",
@@ -135,7 +135,7 @@ export default {
             type: "callback",
             control: { type: "callback" },
             description:
-                "Function used to build the href for each date. The function is passed the date as a Date object, and should return a url string. For dates that don't have a link, the function should return a falsy value",
+                "Function used to build the href for each date. The function is passed the date as a `Date` object, and should return a url string. For dates that don't have a link, the function should return a falsy value",
             table: {
                 defaultValue: {
                     summary: "undefined",
