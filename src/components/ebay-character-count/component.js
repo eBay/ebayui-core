@@ -6,6 +6,9 @@ export default class extends Marko.Component {
     }
 
     onInput(input) {
+        if (typeof window === "undefined") {
+            return;
+        }
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
@@ -16,17 +19,6 @@ export default class extends Marko.Component {
                 inputAriaLive: this.state.count >= input.max ? "polite" : "off",
             });
         }, 500);
-
-        if (typeof window !== "undefined") {
-            this.timeout = setTimeout(() => {
-                this.state.count = this.countFromValue(input.value);
-                this.emit("change", {
-                    count: this.state.count,
-                    inputAriaLive:
-                        this.state.count >= input.max ? "polite" : "off",
-                });
-            }, 500);
-        }
     }
 
     countFromValue(value) {
