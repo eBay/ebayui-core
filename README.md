@@ -46,6 +46,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
 -   [`ebay-calendar`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-calendar)
 -   [`ebay-carousel`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel)
+-   [`ebay-character-count`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-character-count)
 -   [`ebay-checkbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-checkbox)
 -   [`ebay-combobox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox)
 -   [`ebay-cta-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-cta-button)
