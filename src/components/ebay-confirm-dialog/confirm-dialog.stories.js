@@ -32,15 +32,15 @@ export default {
             description:
                 "An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened",
         },
-        "confirm-text": {
+        confirmText: {
             control: { type: "text" },
             description: "Text for confirm button",
         },
-        "reject-text": {
+        rejectText: {
             control: { type: "text" },
             description: "Text for reject button",
         },
-        "confirm-cta-variant": {
+        confirmCtaVariant: {
             options: ["none", "destructive"],
             description: "The alternative main CTA button variant to use.",
             table: {
@@ -83,12 +83,12 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
-    "confirm-text": "Okay",
-    "reject-text": "Cancel",
+export const Default = Template.bind({});
+Default.args = {
+    confirmText: "Okay",
+    rejectText: "Cancel",
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
             code,

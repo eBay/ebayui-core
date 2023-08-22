@@ -1,59 +1,46 @@
-import { expect, use } from "chai";
-import { render } from "@marko/testing-library";
+import { use } from "chai";
+import { composeStories } from "@storybook/marko/dist/testing";
+import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
-import template from "..";
-import * as mock from "./mock";
+import * as stories from "../lightbox-dialog.stories"; // import all stories from the stories file
+const { Default, Scrolling, Expressive, WithPrevButton, WithFooter } =
+    composeStories(stories);
+const htmlSnap = snapshotHTML(__dirname);
 
 use(require("chai-dom"));
 
 describe("dialog", () => {
     it("renders basic version", async () => {
-        const input = mock.Dialog;
-        const { getByRole, getByLabelText, getByText } = await render(
-            template,
-            input
-        );
-        const dialog = getByRole("dialog", { hidden: true });
-
-        expect(dialog).has.attr("hidden");
-        expect(dialog).has.class("lightbox-dialog");
-        expect(getByLabelText(input.a11yCloseText)).has.class(
-            "lightbox-dialog__close"
-        );
-        expect(getByText(input.renderBody.text)).has.class(
-            "lightbox-dialog__main"
-        );
+        await htmlSnap(Default);
     });
 
     it("renders with header and footer", async () => {
-        const input = mock.headerFooterDialog;
-        const { getByRole, getByLabelText, getByText } = await render(
-            template,
-            input
-        );
-
-        const dialog = getByRole("dialog", { hidden: true });
-        expect(dialog).has.attr("hidden");
-        expect(dialog).has.class("lightbox-dialog");
-        expect(getByLabelText(input.a11yCloseText)).has.class(
-            "lightbox-dialog__close"
-        );
-        expect(getByText(input.renderBody.text)).has.class(
-            "lightbox-dialog__main"
-        );
-        expect(getByText(input.header.renderBody.text).parentElement).has.class(
-            "lightbox-dialog__header"
-        );
-        expect(getByText(input.footer.renderBody.text)).has.class(
-            "lightbox-dialog__footer"
-        );
+        await htmlSnap(WithFooter);
     });
 
     it("renders in open state", async () => {
-        const input = mock.dialogOpen;
-        const { getByRole } = await render(template, input);
-        expect(getByRole("dialog")).does.not.have.attr("hidden");
+        await htmlSnap(Default, { open: true });
     });
 
-    testPassThroughAttributes(template);
+    it("renders scrolling dialog", async () => {
+        await htmlSnap(Scrolling);
+    });
+
+    it("renders with previous button", async () => {
+        await htmlSnap(WithPrevButton);
+    });
+
+    it("renders expressive version", async () => {
+        await htmlSnap(Expressive);
+    });
+
+    it("renders size=wide", async () => {
+        await htmlSnap(Default, { size: "wide" });
+    });
+
+    it("renders size=narrow", async () => {
+        await htmlSnap(Default, { size: "narrow" });
+    });
+
+    testPassThroughAttributes(Default);
 });

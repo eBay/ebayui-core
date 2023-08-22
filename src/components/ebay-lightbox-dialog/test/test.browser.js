@@ -1,9 +1,11 @@
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
+import { composeStories } from "@storybook/marko/dist/testing";
 import { render, fireEvent, waitFor, cleanup } from "@marko/testing-library";
+import { addRenderBodies } from "../../../../.storybook/utils";
 import { fastAnimations } from "../../../common/test-utils/browser";
-import template from "..";
-import * as mock from "./mock";
+import * as stories from "../lightbox-dialog.stories"; // import all stories from the stories file
+const { Default, WithPrevButton } = composeStories(stories);
 
 use(chaiDom);
 before(fastAnimations.start);
@@ -14,10 +16,8 @@ afterEach(cleanup);
 let component;
 
 describe("given a closed dialog", () => {
-    const input = mock.Dialog;
-
     beforeEach(async () => {
-        component = await render(template, input);
+        component = await render(Default);
     });
 
     it("then it is hidden in the DOM", () => {
@@ -28,7 +28,9 @@ describe("given a closed dialog", () => {
 
     describe("then it is opened", () => {
         beforeEach(async () => {
-            await component.rerender(Object.assign({}, input, { open: true }));
+            await component.rerender(
+                Object.assign({}, addRenderBodies(Default.args), { open: true })
+            );
         });
 
         it("then it is visible in the DOM", async () => {
@@ -40,13 +42,12 @@ describe("given a closed dialog", () => {
 });
 
 describe("given an open dialog", () => {
-    const input = mock.dialogOpen;
     let sibling;
 
     beforeEach(async () => {
         sibling = document.body.appendChild(document.createElement("button"));
         sibling.focus();
-        component = await render(template, input);
+        component = await render(Default, { open: true });
     });
 
     afterEach(() => {
@@ -60,7 +61,7 @@ describe("given an open dialog", () => {
     describe("when the close button is clicked", () => {
         beforeEach(async () => {
             await fireEvent.click(
-                component.getByLabelText(input.a11yCloseText)
+                component.getByLabelText(Default.args.a11yCloseText)
             );
         });
 
@@ -91,4 +92,25 @@ describe("given an open dialog", () => {
             );
         });
     }
+});
+
+describe("given an open dialog with prev button", () => {
+    beforeEach(async () => {
+        component = await render(WithPrevButton, { open: true });
+    });
+
+    it("then it is visible in the DOM", () => {
+        expect(component.getByRole("dialog")).does.not.have.attr("hidden");
+    });
+
+    describe("when the prev button is clicked", () => {
+        beforeEach(async () => {
+            await fireEvent.click(component.getByLabelText("Go back"));
+        });
+        it("then it gets prev button clicked event", async () => {
+            await waitFor(() =>
+                expect(component.emitted("prev-button-click")).has.length(1)
+            );
+        });
+    });
 });

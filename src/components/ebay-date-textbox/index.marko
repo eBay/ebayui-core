@@ -27,7 +27,7 @@ $ {
         placeholder=mainPlaceholder
         buttonAriaLabel=openPopoverText
         value=input.range ? state.secondSelected : state.firstSelected
-        on-blur("handleInputChange", 0)>
+        on-blur("handleInputChange", input.range ? 1 : 0)>
         <@postfix-icon><ebay-calendar-24-icon/></@postfix-icon>
     </ebay-textbox>
     <div.date-textbox__popover hidden=!state.popover key="popover">

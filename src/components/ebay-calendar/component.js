@@ -143,7 +143,7 @@ export default class extends Marko.Component {
         return (
             (this.state.disableBefore && iso < this.state.disableBefore) ||
             (this.state.disableAfter && iso > this.state.disableAfter) ||
-            this.state.disableWeekdays.includes(fromISO(iso).getDay()) ||
+            this.state.disableWeekdays.includes(fromISO(iso).getUTCDay()) ||
             this.state.disableList.includes(iso)
         );
     }
@@ -230,7 +230,11 @@ export default class extends Marko.Component {
      */
     getMonthDate(offset) {
         const baseDate = fromISO(this.state.baseISO);
-        return new Date(baseDate.getFullYear(), baseDate.getMonth() + offset);
+        const date = new Date(
+            baseDate.getUTCFullYear(),
+            baseDate.getUTCMonth() + offset
+        );
+        return date;
     }
 
     getFirstVisibleISO() {
@@ -241,8 +245,8 @@ export default class extends Marko.Component {
         const baseDate = fromISO(this.state.baseISO);
         return toISO(
             new Date(
-                baseDate.getFullYear(),
-                baseDate.getMonth() +
+                baseDate.getUTCFullYear(),
+                baseDate.getUTCMonth() +
                     this.state.offset +
                     (input.numMonths || 1),
                 0
@@ -470,7 +474,7 @@ export function fromISO(iso) {
  */
 export function offsetISO(iso, days) {
     const date = fromISO(iso);
-    date.setDate(date.getDate() + days);
+    date.setUTCDate(date.getUTCDate() + days);
     return toISO(date);
 }
 

@@ -4,14 +4,17 @@ class {
     onCreate() {
         this.state = { current: 0 };
     }
-    handlePrev() {
+    handlePrev(e) {
         this.state.current = Math.max(this.state.current - 1, 0);
+        this.emit("previous", e);
     }
-    handleNext() {
+    handleNext(e) {
         this.state.current = Math.min(this.state.current + 1, SIZE);
+        this.emit("next", e);
     }
-    handleSelect({ index }) {
+    handleSelect({ index }, e) {
         this.state.current = index;
+        this.emit("select", e);
     }
 }
 

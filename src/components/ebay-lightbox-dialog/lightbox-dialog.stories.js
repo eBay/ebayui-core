@@ -7,6 +7,10 @@ import Component from "./examples/default.marko";
 import code from "./examples/default.marko?raw";
 import ScrollingTemplate from "./examples/scrolling.marko";
 import ScrollingTemplateCode from "./examples/scrolling.marko?raw";
+import WithPrevButtonTemplate from "./examples/with-prev-button.marko";
+import WithPrevButtonCode from "./examples/with-prev-button.marko?raw";
+import WithFooterTemplate from "./examples/with-footer.marko";
+import WithFooterCode from "./examples/with-footer.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -58,16 +62,35 @@ export default {
                 category: "@attribute tags",
             },
         },
+        prevButton: {
+            name: "@prevButton",
+            control: { type: "object" },
+            table: {
+                category: "@attribute tags",
+            },
+            description:
+                "Previous button, shows up before header. Usually a chevron-left icon.",
+        },
         bannerImgSrc: {
             control: { type: "text" },
             description: "Image source for the expressive variant",
+        },
+        size: {
+            options: ["regular", "wide", "narrow"],
+            description: "The size of the dialog",
+            table: {
+                defaultValue: {
+                    summary: "regular",
+                },
+            },
+            type: { category: "Options" },
         },
         bannerImgPosition: {
             control: { type: "text" },
             description:
                 "Position of the image within the given bounds using the CSS `background-position` property. Options include [keywords, lengths, and edge distances](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)",
         },
-        onOpen: {
+        "on-open": {
             action: "on-open",
             description: "Triggered on dialog opened",
             table: {
@@ -77,9 +100,19 @@ export default {
                 },
             },
         },
-        onClose: {
+        "on-close": {
             action: "on-close",
             description: "Triggered on dialog closed.",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "",
+                },
+            },
+        },
+        "on-prev-button-click": {
+            action: "on-prev-button-click",
+            description: "Triggered when previous button is clicked",
             table: {
                 category: "Events",
                 defaultValue: {
@@ -98,6 +131,7 @@ Default.args = {
     footer: {
         renderBody: "",
     },
+    a11yCloseText: "Close dialog",
 };
 
 Default.parameters = {
@@ -133,3 +167,13 @@ Expressive.parameters = {
         },
     },
 };
+
+export const WithPrevButton = buildExtensionTemplate(
+    WithPrevButtonTemplate,
+    WithPrevButtonCode
+);
+
+export const WithFooter = buildExtensionTemplate(
+    WithFooterTemplate,
+    WithFooterCode
+);

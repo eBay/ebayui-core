@@ -1,5 +1,11 @@
-<ebay-pagination>
+<ebay-pagination
+    on-previous("emit", "previous")
+    on-next("emit", "next")
+    on-select("emit", "select")
+>
     <@item type="previous" disabled/>
-    <@item href="#" current>1</@item>
+    <@item href="#" current>
+        1
+    </@item>
     <@item href="#" type="next" disabled/>
 </ebay-pagination>

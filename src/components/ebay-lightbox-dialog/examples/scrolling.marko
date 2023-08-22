@@ -1,13 +1,16 @@
 class {
+    onInput(input) {
+        this.state = { open: input.open };
+    }
     onCreate() {
         this.state = { open: false };
     }
     openDialog() {
         this.state.open = true;
     }
-    closeDialog() {
+    closeDialog(e) {
         this.state.open = false;
-        this.emit("close");
+        this.emit("close", e);
     }
 }
 
