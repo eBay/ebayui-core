@@ -41,6 +41,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 ## Components
 
 -   [`ebay-3d-viewer`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-3d-viewer)
+-   [`ebay-avatar`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-avatar)
 -   [`ebay-badge`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-badge)
 -   [`ebay-breadcrumbs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-breadcrumbs)
 -   [`ebay-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-button)
@@ -81,13 +82,17 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-signal`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-signal)
 -   [`ebay-snackbar-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-snackbar-dialog)
 -   [`ebay-split-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-split-button)
+-   [`ebay-star-rating`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-star-rating)
 -   [`ebay-star-rating-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-star-rating-select)
 -   [`ebay-switch`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-switch)
 -   [`ebay-tabs`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tabs)
 -   [`ebay-textbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-textbox)
 -   [`ebay-toast`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toast)
+-   [`ebay-toggle-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toggle-button)
+-   [`ebay-toggle-button-group`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-toggle-button-group)
 -   [`ebay-tooltip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tooltip)
 -   [`ebay-tourtip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tourtip)
+-   [`ebay-tri-state-checkbox`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tri-state-checkbox)
 -   [`ebay-video`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-video)
 
 ## Getting Started
