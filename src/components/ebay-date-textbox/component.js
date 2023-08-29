@@ -17,6 +17,7 @@ const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
  *   disableWeekdays?: number[],
  *   disableList?: (Date | number | string)[],
  *   inputPlaceholderText?: string | [string, string],
+ *   collapseOnSelect?: boolean,
  *   getA11yShowMonthText?: (monthName: string) => string,
  *   a11yOpenPopoverText?: string,
  *   a11ySelectedText?: string,
@@ -46,6 +47,7 @@ export default class extends Marko.Component {
     }
 
     onMount() {
+        /** @type {any} */
         this.expander = new Expander(/** @type {HTMLElement} */ (this.el), {
             hostSelector: ".ebay-date-textbox--main > .icon-btn",
             contentSelector: ".date-textbox__popover",
@@ -131,7 +133,12 @@ export default class extends Marko.Component {
                 } else {
                     this.state.secondSelected = selected;
                 }
+                if (this.input.collapseOnSelect) {
+                    this.expander.expanded = false;
+                }
             }
+        } else if (this.input.collapseOnSelect) {
+            this.expander.expanded = false;
         }
 
         this.emitSelectedChange();
