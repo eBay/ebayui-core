@@ -153,7 +153,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ el, originalEvent, index }",
+                    summary: "",
                 },
             },
         },
@@ -163,7 +163,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ el, originalEvent, index }",
+                    summary: "",
                 },
             },
         },
@@ -174,7 +174,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ el, originalEvent, index }",
+                    summary: "",
                 },
             },
         },
@@ -213,7 +213,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-menu-button", Standard.args, {
+            code: tagToString("ebay-fake-menu-button", Standard.args, {
                 items: "item",
             }),
         },

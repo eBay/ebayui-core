@@ -84,7 +84,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ originalEvent }",
+                    summary: "",
                 },
             },
         },
@@ -95,7 +95,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ originalEvent }",
+                    summary: "",
                 },
             },
         },
@@ -106,7 +106,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ originalEvent }",
+                    summary: "",
                 },
             },
         },
@@ -117,7 +117,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ originalEvent }",
+                    summary: "",
                 },
             },
         },
