@@ -1,7 +1,7 @@
 // @ts-check
 
 import Expander from "makeup-expander";
-import { dateArgToISO, toISO } from "../ebay-calendar/component";
+import { dateArgToISO, toISO } from "../ebay-calendar/date-utils";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -46,6 +46,7 @@ export default class extends Marko.Component {
     }
 
     onMount() {
+        /** @type {any} */
         this.expander = new Expander(/** @type {HTMLElement} */ (this.el), {
             hostSelector: ".ebay-date-textbox--main > .icon-btn",
             contentSelector: ".date-textbox__popover",
@@ -55,7 +56,7 @@ export default class extends Marko.Component {
     }
 
     onDestroy() {
-        this.expander?.destroy();
+        if (this.expander) this.expander.destroy();
     }
 
     /**
