@@ -1,0 +1,19 @@
+$ const textId = component.elId("text");
+
+<span class="chip">
+    <span class="chip__text" id=textId>
+        <${input.renderBody}/>
+    </span>
+    <if(input.deleteButtonLabel)>
+        <button
+            type="button"
+            class="chip__button"
+            type="button"
+            aria-label=input.deleteButtonLabel
+            aria-describedby=textId
+            on-click("emit", "delete")
+        >
+            <ebay-close-16-icon/>
+        </button>
+    </if>
+</span>
