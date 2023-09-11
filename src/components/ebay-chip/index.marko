@@ -1,16 +1,16 @@
-$ const textId = component.elId("text");
+import { processHtmlAttributes } from "../../common/html-attributes";
+$ const { renderBody, deleteButtonLabel, ...htmlAttributes } = input;
 
-<span class="chip">
-    <span class="chip__text" id=textId>
+<span class="chip" ...processHtmlAttributes(htmlAttributes)>
+    <span class="chip__text" id:scoped="text">
         <${input.renderBody}/>
     </span>
     <if(input.deleteButtonLabel)>
         <button
             type="button"
             class="chip__button"
-            type="button"
             aria-label=input.deleteButtonLabel
-            aria-describedby=textId
+            aria-describedby:scoped="text"
             on-click("emit", "delete")
         >
             <ebay-close-16-icon/>
