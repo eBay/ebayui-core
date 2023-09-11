@@ -46,12 +46,9 @@ export default {
             originalEvent,
             index,
         };
-        eventObj = Object.entries(eventObj)
-            .filter(([, value]) => value !== undefined)
-            .reduce((obj, [key, value]) => {
-                obj[key] = value;
-                return obj;
-            }, {});
+        eventObj = Object.fromEntries(
+            Object.entries(eventObj).filter(([, value]) => value !== undefined)
+        );
         this.emit(`${eventType}`, eventObj);
     },
 
