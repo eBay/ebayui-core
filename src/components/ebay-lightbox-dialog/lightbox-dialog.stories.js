@@ -90,6 +90,16 @@ export default {
             description:
                 "Position of the image within the given bounds using the CSS `background-position` property. Options include [keywords, lengths, and edge distances](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)",
         },
+        a11yMinimizeText: {
+            control: { type: "text" },
+            description:
+                "A11y text for draggable handle when dialog is maximized and clicking handle will minimize the dialog (small screen only).",
+        },
+        a11yMaximizeText: {
+            control: { type: "text" },
+            description:
+                "A11y text for draggable handle when dialog is minimized and clicking handle will maximize the dialog (small screen only).",
+        },
         "on-open": {
             action: "on-open",
             description: "Triggered on dialog opened",
@@ -120,6 +130,28 @@ export default {
                 },
             },
         },
+        onExpanded: {
+            action: "on-expanded",
+            description:
+                "dialog expanded to full page height. Event is triggerd on drag up of handle (touch only), clicks, or when user scrolls in content when dialog is not expanded (small screens)",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "{ originalEvent }",
+                },
+            },
+        },
+        onCollapsed: {
+            action: "on-collapsed",
+            description:
+                "dialog collapsed back to max 50%. Event is triggerd on drags down of handle (touch only) or clicks when dialog is expanded (small screens only)",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "{ originalEvent }",
+                },
+            },
+        },
     },
 };
 
@@ -132,6 +164,8 @@ Default.args = {
         renderBody: "",
     },
     a11yCloseText: "Close dialog",
+    a11yMinimizeText: "Minimize Dialog",
+    a11yMaximizeText: "Maximize Dialog",
 };
 
 Default.parameters = {
@@ -158,6 +192,8 @@ Expressive.args = {
     bannerImgSrc:
         "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/mountain.jpeg",
     bannerImgPosition: "top",
+    a11yMinimizeText: "Minimize Dialog",
+    a11yMaximizeText: "Maximize Dialog",
 };
 
 Expressive.parameters = {

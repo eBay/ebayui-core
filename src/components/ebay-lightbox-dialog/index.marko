@@ -1,9 +1,13 @@
 $ var isMini = input.variant === "_mini";
 $ var buttonPosition = input.buttonPosition || 'right';
 $ var validSizes = ['wide', 'narrow'];
+$ var handleLabel = (!state.expanded ?
+    (input.a11yMaximizeText || "Maximize Lightbox Dialog") :
+    (input.a11yMinimizeText || "Minimize Lightbox Dialog"));
 
 <ebay-dialog-base
     ...input
+    key="dialog"
     open=input.open
     class-prefix="lightbox-dialog"
     on-open("emit", "open")
@@ -14,16 +18,26 @@ $ var validSizes = ['wide', 'narrow'];
         validSizes.includes(input.size) && `lightbox-dialog--${input.size}`,
     ]
     window-class=[
-        "lightbox-dialog__window--fade",
+        "lightbox-dialog__window--animate",
         isMini && "lightbox-dialog__window--mini",
-
+        state.expanded && "lightbox-dialog__window--expanded"
     ]>
-    <if(input.bannerImgSrc)>
         <@top>
-            <div class="lightbox-dialog__image" style={
-                backgroundImage: `url(${input.bannerImgSrc})`,
-                backgroundPosition: input.bannerImgPosition,
-            } />
+            <button
+                aria-label=handleLabel
+                type="button"
+                class=`lightbox-dialog__handle`
+                onClick("handleExpand")
+                onTouchStart("handleTouchStart")
+                onTouchMove("handleTouchMove")
+                onTouchEnd("handleTouchEnd")
+                onTouchCancel("handleTouchEnd")
+            ></button>
+            <if(input.bannerImgSrc)>
+                    <div class="lightbox-dialog__image" style={
+                        backgroundImage: `url(${input.bannerImgSrc})`,
+                        backgroundPosition: input.bannerImgPosition,
+                    } />
+            </if>
         </@top>
-    </if>
 </ebay-dialog-base>
