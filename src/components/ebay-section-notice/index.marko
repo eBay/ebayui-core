@@ -6,7 +6,7 @@
         type='section'
         main-root='span'
         a11yRoleDescription=input.a11yRoleDescription || 'Notice'
-        class=[input.status && `section-notice--${input.status}`, input.class]
+        class=[input.status === 'education' && 'section-notice--large-icon', input.class]
         on-dismiss('onDismiss')
     />
 </if>

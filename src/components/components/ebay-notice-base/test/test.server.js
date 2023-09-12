@@ -74,7 +74,7 @@ describe("notice-icon", () => {
         );
         expect(containerUsingLabel).has.class(input.class);
         expect(containerUsingLabel).has.class(
-            `${input.prefixClass}--prominent`
+            `${input.prefixClass}--education`
         );
 
         expect(getByLabelText(input.a11yText)).has.class("icon--lightbulb-24");
