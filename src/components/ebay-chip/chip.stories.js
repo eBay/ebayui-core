@@ -23,7 +23,7 @@ export default {
             control: { type: "text" },
             description: "Text to be displayed in the chip",
         },
-        deleteButtonLabel: {
+        a11yDeleteButton: {
             control: { type: "text" },
             description:
                 "A11y text for the delete button, also determines if delete button is shown",
@@ -41,14 +41,14 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     renderBody: "chip text",
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-chip", Standard.args),
+            code: tagToString("ebay-chip", Default.args),
         },
     },
 };
@@ -56,12 +56,12 @@ Standard.parameters = {
 export const WithDelete = Template.bind({});
 WithDelete.args = {
     renderBody: "chip text",
-    deleteButtonLabel: "Delete",
+    a11yDeleteButton: "Delete",
 };
 WithDelete.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-chip", Standard.args),
+            code: tagToString("ebay-chip", WithDelete.args),
         },
     },
 };

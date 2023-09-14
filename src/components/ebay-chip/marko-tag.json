@@ -5,5 +5,5 @@
         "type": "expression"
     },
     "@html-attributes": "expression",
-    "@delete-button-label": "string"
+    "@a11y-delete-button": "string"
 }
