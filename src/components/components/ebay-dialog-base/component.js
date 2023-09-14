@@ -88,7 +88,9 @@ export default {
 
     onInput(input) {
         input.isModal = input.isModal !== false;
-        this.state = { open: input.open || false };
+        if (!this.isAnimating) {
+            this.state = { open: input.open || false };
+        }
     },
 
     onRender() {
@@ -197,11 +199,13 @@ export default {
                     this.rootEl.removeAttribute("hidden");
                     this._triggerFocus(focusEl);
                     this.emit("open");
+                    this.isAnimating = false;
                 } else {
                     this._triggerBodyScroll(false);
                     const activeElement = this.getActiveElement();
                     this.rootEl.setAttribute("hidden", "");
                     this.emit("close");
+                    this.isAnimating = false;
 
                     if (
                         // Skip restoring focus if the focused element was changed via the dialog-close event
@@ -228,6 +232,7 @@ export default {
                 if (!isFirstRender) {
                     this._prevFocusEl = this.getActiveElement(this.input);
                     this._triggerBodyScroll(true);
+                    this.isAnimating = true;
                     this.cancelTransition = transition(
                         {
                             el: this.rootEl,
@@ -237,11 +242,13 @@ export default {
                         onFinishTransition
                     );
                 } else {
+                    this.isAnimating = false;
                     this.rootEl.removeAttribute("hidden");
                     runTraps();
                 }
             } else {
                 if (!isFirstRender) {
+                    this.isAnimating = true;
                     this.cancelTransition = transition(
                         {
                             el: this.rootEl,
@@ -251,6 +258,7 @@ export default {
                         onFinishTransition
                     );
                 } else {
+                    this.isAnimating = false;
                     this.rootEl.setAttribute("hidden", "");
                 }
             }

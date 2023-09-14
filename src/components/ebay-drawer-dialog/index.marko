@@ -10,6 +10,7 @@ $ var handleLabel = (!state.expanded ?
     on-scroll('handleScroll')
     on-open("emit", "open")
     on-close("emit", "close")
+    on-toggled("emit", "toggled")
     class=[
         input.class,
         "drawer-dialog--mask-fade-slow"
