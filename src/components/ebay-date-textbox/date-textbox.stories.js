@@ -108,6 +108,17 @@ export default {
                 },
             },
         },
+        collapseOnSelect: {
+            type: "boolean",
+            control: { type: "boolean" },
+            description:
+                "Whether the calendar should collapse after a date is selected",
+            table: {
+                defaultValue: {
+                    summary: "false",
+                },
+            },
+        },
         getA11yShowMonthText: {
             type: "callback",
             control: { type: "callback" },
