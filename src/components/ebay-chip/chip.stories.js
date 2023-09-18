@@ -34,7 +34,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ el, checked, originalEvent }",
+                    summary: "[ Event, HTMLElement ]",
                 },
             },
         },

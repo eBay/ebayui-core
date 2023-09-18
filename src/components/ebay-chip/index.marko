@@ -2,7 +2,7 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 $ const { renderBody, a11yDeleteButton, ...htmlAttributes } = input;
 
 <span class="chip" ...processHtmlAttributes(htmlAttributes)>
-    <span class="chip__text" id:scoped="text">
+    <span class="chip__text" id:scoped="title">
         <${renderBody}/>
     </span>
     <if(a11yDeleteButton)>

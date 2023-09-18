@@ -7,10 +7,12 @@ const htmlSnap = snapshotHTML(__dirname);
 
 use(require("chai-dom"));
 
-it("renders default chip component", async () => {
-    await htmlSnap(Default);
-});
+describe("ebay-chip", () => {
+    it("renders static default", async () => {
+        await htmlSnap(Default);
+    });
 
-it("renders with close icon when label is present", async () => {
-    await htmlSnap(WithDelete);
+    it("renders interactive close button when label is provided", async () => {
+        await htmlSnap(WithDelete);
+    });
 });
