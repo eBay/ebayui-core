@@ -63,6 +63,23 @@ describe("notice-icon", () => {
         expect(title).has.class(`${input.prefixClass}__title`);
     });
 
+    it("renders education notice", async () => {
+        const input = mock.educationSectionNotice;
+        const { getByLabelText } = await render(template, input);
+        const status = getByLabelText(input.a11yText).parentElement;
+        expect(status).has.class(`${input.prefixClass}__header`);
+
+        const containerUsingLabel = status.closest(
+            `[aria-labelledby="${status.id}"]`
+        );
+        expect(containerUsingLabel).has.class(input.class);
+        expect(containerUsingLabel).has.class(
+            `${input.prefixClass}--education`
+        );
+
+        expect(getByLabelText(input.a11yText)).has.class("icon--lightbulb-24");
+    });
+
     testPassThroughAttributes(template, {
         input: mock.defaultNotice,
     });

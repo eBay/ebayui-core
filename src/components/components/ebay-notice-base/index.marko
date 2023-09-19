@@ -1,4 +1,5 @@
 import { processHtmlAttributes } from '../../../common/html-attributes';
+import LightBulbIcon from '<ebay-lightbulb-24-icon>';
 static {
     var ignoredAttributes = [
         'status',
@@ -17,6 +18,8 @@ static {
         'mainRoot',
         'noA11yLabel',
         'a11yDismissText',
+        'educationIcon',
+        'prominent',
     ];
 }
 $ var status = input.status;
@@ -25,7 +28,7 @@ $ var prefixClass = input.prefixClass;
 <${input.root || 'section'}
     aria-labelledby=!input.noA11yLabel && component.elId('status')
     aria-roledescription=input.a11yRoleDescription
-    class=[prefixClass, input.class]
+    class=[prefixClass, input.class, input.status === 'education' && input.prominent && `${prefixClass}--education`]
     ...processHtmlAttributes(input, ignoredAttributes)
 >
     <if(input.icon !== 'none')>
@@ -50,6 +53,12 @@ $ var prefixClass = input.prefixClass;
                     a11y-text=input.a11yIconText || input.a11yText
                     class=input.iconClass
                 />
+            </else-if>
+            <else-if(status === 'education' && input.type === 'section')>
+                <${input.educationIcon || LightBulbIcon}
+                    a11y-variant='label'
+                    a11y-text=input.a11yIconText || input.a11yText
+                    class=input.iconClass/>
             </else-if>
         </>
     </if>

@@ -32,3 +32,13 @@ export const titleFooterNotice = {
         renderBody: createRenderBody("footer"),
     },
 };
+
+export const educationSectionNotice = {
+    prefixClass: "section-notice",
+    status: "education",
+    a11yText: "education label",
+    class: "section-notice--education",
+    renderBody: createRenderBody("body"),
+    type: "section",
+    prominent: true,
+};
