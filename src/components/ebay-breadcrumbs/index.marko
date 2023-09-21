@@ -22,7 +22,7 @@ $ var anyHref = (input.items || []).some((element) => element.href != null);
                         transparent
                         icon=DotsIcon
                         collapse-on-select
-                        a11y-text="menu"
+                        a11y-text=input.a11yMenuButtonText
                         on-select('handleMenuBreadcrumb')
                     >
                         <for|i| of=state.hiddenIndex>
