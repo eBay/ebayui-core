@@ -3,8 +3,7 @@ export interface Input {
 }
 
 <ebay-drawer-dialog
-    a11yCloseText="Close drawer"
-    aria-labelledby="drawer-title"
+    a11y-close-text="Close drawer"
     open=state.open
     on-close("closeDrawer")
     on-expanded("emit", "expanded")
@@ -15,10 +14,6 @@ export interface Input {
 </ebay-drawer-dialog>
 <ebay-button on-click("openDrawer")>Open drawer</ebay-button>
 class {
-    declare state: {
-        open: boolean;
-    }
-
     onCreate() {
         this.state = { open: false };
     }

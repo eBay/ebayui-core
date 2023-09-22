@@ -22,7 +22,7 @@ function getColorForText(username?: string, color?: string) {
         }
     }
     const colorCount = backgroundColors.length;
-    const index = hash % colorCount;
+    const index = Math.abs(hash) % colorCount;
     return backgroundColors[index];
 }
 

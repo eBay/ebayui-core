@@ -87,6 +87,9 @@ export default class extends Marko.Component<Input> {
             originalEvent,
             index,
         };
+        eventObj = Object.fromEntries(
+            Object.entries(eventObj).filter(([, value]) => value !== undefined)
+        );
         this.emit(`${eventType}`, eventObj);
     }
 

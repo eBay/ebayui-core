@@ -13,6 +13,10 @@ describe("ebay-segmented-buttons", () => {
         await htmlSnap(Default);
     });
 
+    it("renders large", async () => {
+        await htmlSnap(Default, { size: "large" });
+    });
+
     it("renders with menu items", async () => {
         await htmlSnap(WithIcons);
     });

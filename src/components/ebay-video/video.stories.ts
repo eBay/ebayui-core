@@ -117,7 +117,7 @@ export default {
                 },
             },
         },
-        onVolumeChange: {
+        "onVolume-change": {
             action: "on-volume-change",
             description:
                 "Triggered when volume is changed. Will return the values of the volume decimal and muted true/false",
@@ -137,6 +137,84 @@ export default {
                     summary: "{ }",
                 },
             },
+        },
+        onPause: {
+            action: "on-Pause",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "{ }",
+                },
+            },
+        },
+
+        onAbort: {
+            action: "on-abort",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onCanplay: {
+            action: "on-canplay",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onCanplaythrough: {
+            action: "on-canplaythrough",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onDurationchange: {
+            action: "on-durationchange",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onEmptied: {
+            action: "on-emptied",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onEncrypted: {
+            action: "on-encrypted",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onEnded: {
+            action: "on-ended",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onError: {
+            action: "on-error",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onLoadstart: {
+            action: "on-loadstart",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onProgress: {
+            action: "on-progress",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onRatechange: {
+            action: "on-ratechange",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onSeeked: {
+            action: "on-seeked",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onSeeking: {
+            action: "on-seeking",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onStalled: {
+            action: "on-stalled",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onSuspend: {
+            action: "on-suspend",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onTimeupdate: {
+            action: "on-timeupdate",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
+        },
+        onWaiting: {
+            action: "on-waiting",
+            table: { category: "Events", defaultValue: { summary: "{ }" } },
         },
     },
 };

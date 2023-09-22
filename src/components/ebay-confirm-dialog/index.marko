@@ -5,6 +5,7 @@ static interface ConfirmDialogInput extends Omit<BaseInput, `on${string}`> {
     "on-open"?: () => void;
     "on-reject"?: () => void;
     "on-confirm"?: () => void;
+    "confirm-cta-variant"?: typeof validConfirmCTAVariants[number];
 }
 
 export interface Input extends WithNormalizedProps<ConfirmDialogInput> {}
@@ -12,10 +13,13 @@ export interface Input extends WithNormalizedProps<ConfirmDialogInput> {}
 $ var cancelId = component.getElId("confirm-dialog-cancel");
 $ var confirmId = component.getElId("confirm-dialog-confirm");
 $ var mainId = component.getElId("confirm-dialog-main");
-
+static  var validConfirmCTAVariants = [
+    "destructive"
+];
 <ebay-dialog-base
     ...input
     open=input.open
+    confirm-cta-variant=input['confirm-cta-variant']
     on-open("emit", "open")
     on-close("emit", "reject")
     main-id=mainId
@@ -36,7 +40,10 @@ $ var mainId = component.getElId("confirm-dialog-main");
             on-click("emit", "confirm")
             id=confirmId
             aria-describedby=mainId
-            class="confirm-dialog__confirm">
+            class=[
+                "confirm-dialog__confirm",
+                input.confirmCtaVariant && validConfirmCTAVariants.includes(input.confirmCtaVariant) && `btn--${input.confirmCtaVariant}`
+            ]>
             ${input.confirmText}
         </ebay-button>
     </@footer>

@@ -7,5 +7,19 @@ class {}
     <label class="field__label field__label--start" for="textbox">
         Email address
     </label>
-    <ebay-textbox ...input id="textbox" value="test"/>
+    <ebay-textbox
+        ...input
+        id="textbox"
+        value="test"
+        on-change("emit", "change")
+        on-inputChange("emit", "inputChange")
+        on-focus("emit", "focus")
+        on-blur("emit", "blur")
+        on-keypress("emit", "keypress")
+        on-keyup("emit", "keyup")
+        on-keydown("emit", "keydown")
+        on-invalid("emit", "invalid")
+        on-floating-label-init("emit", "floating-label-init")
+        on-button-click("emit", "button-click")
+    />
 </span>

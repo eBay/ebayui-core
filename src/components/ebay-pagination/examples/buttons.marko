@@ -1,6 +1,13 @@
-<ebay-pagination class="example-05">
+<ebay-pagination
+    class="example-05"
+    on-previous("emit", "previous")
+    on-next("emit", "next")
+    on-select("emit", "select")
+>
     <@item type="previous" disabled/>
-    <@item current>1</@item>
+    <@item current>
+        1
+    </@item>
     <@item>2</@item>
     <@item>3</@item>
     <@item>4</@item>

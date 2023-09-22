@@ -46,6 +46,8 @@
     "textbox": "1.1.0",
     "toast": "2.1.0",
     "toast-dialog": "2.1.0",
+    "toggle-button": "1.0.0",
+    "toggle-button-group": "1.0.0",
     "tooltip": "1.0.0",
     "tourtip": "1.0.0",
     "typography": "1.1.0"

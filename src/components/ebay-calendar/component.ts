@@ -1,5 +1,12 @@
-/** Always in `YYYY-MM-DD` format */
-export type DayISO = `${number}-${number}-${number}`;
+import {
+    dateArgToISO,
+    fromISO,
+    getWeekdayInfo,
+    localeOverride,
+    offsetISO,
+    toISO,
+    type DayISO,
+} from "./date-utils";
 
 const DAY_UPDATE_KEYMAP = {
     ArrowRight: 1,
@@ -96,10 +103,35 @@ export default class extends Marko.Component<Input, State> {
         this.state.disableBefore = dateArgToISO(input.disableBefore);
         this.state.disableAfter = dateArgToISO(input.disableAfter);
         this.state.disableWeekdays = input.disableWeekdays ?? [];
-        this.state.disableList =
-            /** @type {DayISO[]} */ input.disableList?.map(dateArgToISO) ?? [];
+        this.state.disableList = input.disableList?.map(dateArgToISO) ?? [];
         if (this.isDisabled(this.state.tabindexISO)) {
-            this.state.tabindexISO = this.getFirstActiveISO(input);
+            // The current tabindex is disabled, so we have to find a new one
+            const firstActive = this.getFirstActiveISO(input);
+            if (firstActive) {
+                // This month has active days, so we can use the first one
+                this.state.tabindexISO = firstActive;
+            } else if (
+                this.state.disableBefore &&
+                this.state.tabindexISO < this.state.disableBefore
+            ) {
+                // This month has no active days and the start of _possible_ dates is in the future, so we change months to the start of possible dates
+                this.state.baseISO = this.state.disableBefore;
+                this.state.offset = 0;
+                this.state.tabindexISO =
+                    this.getFirstActiveISO(input) ?? this.state.disableBefore;
+            } else if (
+                this.state.disableAfter &&
+                this.state.tabindexISO > this.state.disableAfter
+            ) {
+                // This month has no active days and the end of _possible_ dates is in the past, so we change months to the end of possible dates
+                this.state.baseISO = this.state.disableAfter;
+                this.state.offset = 0;
+                this.state.tabindexISO =
+                    this.getFirstActiveISO(input) ?? this.state.disableAfter;
+            } else {
+                // This may be reached in very specific edge cases, such as when the user has disabled all days in the current month manually
+                // In this case, we leave the tabindex and position as is. This is a fall-through case.
+            }
         }
     }
 
@@ -107,7 +139,7 @@ export default class extends Marko.Component<Input, State> {
         return (
             (this.state.disableBefore && iso < this.state.disableBefore) ||
             (this.state.disableAfter && iso > this.state.disableAfter) ||
-            this.state.disableWeekdays.includes(fromISO(iso).getDay()) ||
+            this.state.disableWeekdays.includes(fromISO(iso).getUTCDay()) ||
             this.state.disableList.includes(iso)
         );
     }
@@ -159,14 +191,22 @@ export default class extends Marko.Component<Input, State> {
                 case "PageDown":
                     this.nextMonth(true);
                     break;
-                case "Home":
-                    this.setTabindexAndFocus(this.getFirstActiveISO());
-                    this.emit("focus", { iso: this.state.tabindexISO });
+                case "Home": {
+                    const firstActiveISO = this.getFirstActiveISO();
+                    if (firstActiveISO) {
+                        this.setTabindexAndFocus(firstActiveISO);
+                        this.emit("focus", { iso: this.state.tabindexISO });
+                    }
                     break;
-                case "End":
-                    this.setTabindexAndFocus(this.getLastActiveISO());
-                    this.emit("focus", { iso: this.state.tabindexISO });
+                }
+                case "End": {
+                    const lastActiveISO = this.getLastActiveISO();
+                    if (lastActiveISO) {
+                        this.setTabindexAndFocus(lastActiveISO);
+                        this.emit("focus", { iso: this.state.tabindexISO });
+                    }
                     break;
+                }
                 default:
             }
         }
@@ -174,7 +214,11 @@ export default class extends Marko.Component<Input, State> {
 
     getMonthDate(offset: number) {
         const baseDate = fromISO(this.state.baseISO);
-        return new Date(baseDate.getFullYear(), baseDate.getMonth() + offset);
+        const date = new Date(
+            baseDate.getUTCFullYear(),
+            baseDate.getUTCMonth() + offset
+        );
+        return date;
     }
 
     getFirstVisibleISO() {
@@ -185,8 +229,8 @@ export default class extends Marko.Component<Input, State> {
         const baseDate = fromISO(this.state.baseISO);
         return toISO(
             new Date(
-                baseDate.getFullYear(),
-                baseDate.getMonth() +
+                baseDate.getUTCFullYear(),
+                baseDate.getUTCMonth() +
                     this.state.offset +
                     (input.numMonths || 1),
                 0
@@ -200,7 +244,7 @@ export default class extends Marko.Component<Input, State> {
         while (iso <= lastVisible && this.isDisabled(iso)) {
             iso = offsetISO(iso, 1);
         }
-        return iso;
+        return iso > lastVisible ? null : iso;
     }
 
     getLastActiveISO(input = this.input) {
@@ -209,7 +253,7 @@ export default class extends Marko.Component<Input, State> {
         while (iso >= firstVisible && this.isDisabled(iso)) {
             iso = offsetISO(iso, -1);
         }
-        return iso;
+        return iso < firstVisible ? null : iso;
     }
 
     monthTitle(date: Date) {
@@ -234,7 +278,7 @@ export default class extends Marko.Component<Input, State> {
         this.state.offset--;
         let newTabindexISO = this.state.tabindexISO;
         const lastActiveISO = this.getLastActiveISO();
-        if (this.state.tabindexISO > lastActiveISO) {
+        if (lastActiveISO && this.state.tabindexISO > lastActiveISO) {
             newTabindexISO = this.state.tabindexISO = lastActiveISO;
         }
         if (focus) {
@@ -259,7 +303,7 @@ export default class extends Marko.Component<Input, State> {
         this.state.offset++;
         let newTabindexISO = this.state.tabindexISO;
         const firstActiveISO = this.getFirstActiveISO();
-        if (this.state.tabindexISO < firstActiveISO) {
+        if (firstActiveISO && this.state.tabindexISO < firstActiveISO) {
             newTabindexISO = this.state.tabindexISO = firstActiveISO;
         }
         if (focus) {
@@ -323,62 +367,4 @@ export default class extends Marko.Component<Input, State> {
 
         return true;
     }
-}
-
-/**
- * @return {number} 0 or 7 is Sun, 1 is Mon, -1 or 6 is Sat
- */
-export function findFirstDayOfWeek(localeName: string): number {
-    // weekInfo only exists on some browsers, so we default to Sunday otherwise
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/weekInfo
-
-    const locale = new Intl.Locale(localeName) as Intl.Locale & {
-        weekInfo?: { firstDay: number };
-    };
-    if (locale.weekInfo) {
-        return locale.weekInfo.firstDay;
-    }
-    return 0;
-}
-
-export function getWeekdayInfo(localeName: string) {
-    const firstDayOfWeek = findFirstDayOfWeek(localeName);
-
-    const weekdayLabelFormatter = new Intl.DateTimeFormat(localeName, {
-        weekday: "short",
-    });
-    const weekday = new Date(2022, 9, 2 + firstDayOfWeek); // October 2, 2022 was a Sunday
-    const weekdayLabels = [...Array(7)].map(() => {
-        const dayLabel = weekdayLabelFormatter.format(weekday);
-        weekday.setDate(weekday.getDate() + 1);
-        return dayLabel;
-    });
-
-    return { firstDayOfWeek, weekdayLabels };
-}
-
-export function dateArgToISO(arg: DateConstructor["arguments"]) {
-    if (!arg) return undefined;
-    if (/^\d\d\d\d-\d\d-\d\d$/g.test(arg)) return arg;
-    return toISO(new Date(arg));
-}
-
-export function toISO(date: Date): DayISO {
-    return date.toISOString().slice(0, 10) as DayISO;
-}
-
-export function fromISO(iso: DayISO) {
-    const [year, month, day] = iso.split("-");
-    return new Date(+year, +month - 1, +day);
-}
-
-export function offsetISO(iso: DayISO, days: number) {
-    const curr = fromISO(iso);
-    return toISO(
-        new Date(curr.getFullYear(), curr.getMonth(), curr.getDate() + days)
-    );
-}
-
-export function localeOverride(locale?: string) {
-    return locale || navigator.language;
 }

@@ -121,10 +121,16 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     handleExpand() {
+        if (this.input.disabled) {
+            return;
+        }
         this.emitComponentEvent({ eventType: "expand" });
     }
 
     handleCollapse() {
+        if (this.input.disabled) {
+            return;
+        }
         this.emitComponentEvent({ eventType: "collapse" });
     }
 

@@ -7,6 +7,10 @@ import Component from "./examples/default.marko";
 import code from "./examples/default.marko?raw";
 import ScrollingTemplate from "./examples/scrolling.marko";
 import ScrollingTemplateCode from "./examples/scrolling.marko?raw";
+import WithPrevButtonTemplate from "./examples/with-prev-button.marko";
+import WithPrevButtonCode from "./examples/with-prev-button.marko?raw";
+import WithFooterTemplate from "./examples/with-footer.marko";
+import WithFooterCode from "./examples/with-footer.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -58,7 +62,45 @@ export default {
                 category: "@attribute tags",
             },
         },
-        onOpen: {
+        prevButton: {
+            name: "@prevButton",
+            control: { type: "object" },
+            table: {
+                category: "@attribute tags",
+            },
+            description:
+                "Previous button, shows up before header. Usually a chevron-left icon.",
+        },
+        bannerImgSrc: {
+            control: { type: "text" },
+            description: "Image source for the expressive variant",
+        },
+        size: {
+            options: ["regular", "wide", "narrow"],
+            description: "The size of the dialog",
+            table: {
+                defaultValue: {
+                    summary: "regular",
+                },
+            },
+            type: { category: "Options" },
+        },
+        bannerImgPosition: {
+            control: { type: "text" },
+            description:
+                "Position of the image within the given bounds using the CSS `background-position` property. Options include [keywords, lengths, and edge distances](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)",
+        },
+        a11yMinimizeText: {
+            control: { type: "text" },
+            description:
+                "A11y text for draggable handle when dialog is maximized and clicking handle will minimize the dialog (small screen only).",
+        },
+        a11yMaximizeText: {
+            control: { type: "text" },
+            description:
+                "A11y text for draggable handle when dialog is minimized and clicking handle will maximize the dialog (small screen only).",
+        },
+        "on-open": {
             action: "on-open",
             description: "Triggered on dialog opened",
             table: {
@@ -68,13 +110,45 @@ export default {
                 },
             },
         },
-        onClose: {
+        "on-close": {
             action: "on-close",
             description: "Triggered on dialog closed.",
             table: {
                 category: "Events",
                 defaultValue: {
                     summary: "",
+                },
+            },
+        },
+        "on-prev-button-click": {
+            action: "on-prev-button-click",
+            description: "Triggered when previous button is clicked",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "",
+                },
+            },
+        },
+        onExpanded: {
+            action: "on-expanded",
+            description:
+                "dialog expanded to full page height. Event is triggerd on drag up of handle (touch only), clicks, or when user scrolls in content when dialog is not expanded (small screens)",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "{ originalEvent }",
+                },
+            },
+        },
+        onCollapsed: {
+            action: "on-collapsed",
+            description:
+                "dialog collapsed back to max 50%. Event is triggerd on drags down of handle (touch only) or clicks when dialog is expanded (small screens only)",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "{ originalEvent }",
                 },
             },
         },
@@ -89,6 +163,9 @@ Default.args = {
     footer: {
         renderBody: "",
     },
+    a11yCloseText: "Close dialog",
+    a11yMinimizeText: "Minimize Dialog",
+    a11yMaximizeText: "Maximize Dialog",
 };
 
 Default.parameters = {
@@ -102,4 +179,37 @@ Default.parameters = {
 export const Scrolling = buildExtensionTemplate(
     ScrollingTemplate,
     ScrollingTemplateCode
+);
+
+export const Expressive = Template.bind({});
+Expressive.args = {
+    header: {
+        renderBody: `Heading Text`,
+    },
+    footer: {
+        renderBody: "",
+    },
+    bannerImgSrc:
+        "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/mountain.jpeg",
+    bannerImgPosition: "top",
+    a11yMinimizeText: "Minimize Dialog",
+    a11yMaximizeText: "Maximize Dialog",
+};
+
+Expressive.parameters = {
+    docs: {
+        source: {
+            code,
+        },
+    },
+};
+
+export const WithPrevButton = buildExtensionTemplate(
+    WithPrevButtonTemplate,
+    WithPrevButtonCode
+);
+
+export const WithFooter = buildExtensionTemplate(
+    WithFooterTemplate,
+    WithFooterCode
 );

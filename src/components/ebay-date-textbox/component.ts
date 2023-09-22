@@ -1,9 +1,11 @@
 import Expander from "makeup-expander";
-import { toISO, type DayISO } from "../ebay-calendar/component";
+import { toISO, type DayISO, dateArgToISO } from "../ebay-calendar/date-utils";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
 interface DateTextboxInput {
+    value?: Date | number | string;
+    rangeEnd?: Date | number | string;
     locale?: string;
     range?: boolean;
     "disable-before"?: Date | number | string;
@@ -11,6 +13,7 @@ interface DateTextboxInput {
     "disable-weekdays"?: number[];
     "disable-list"?: (Date | number | string)[];
     "input-placeholder-text"?: string | [string, string];
+    "collapse-on-select"?: boolean;
     "get-a11y-show-month-text"?: (monthName: string) => string;
     "a11y-open-popover-text"?: string;
     "a11y-selected-text"?: string;
@@ -62,6 +65,12 @@ export default class extends Marko.Component<Input, State> {
     }
 
     onInput(input: Input) {
+        if (input.value) {
+            this.state.firstSelected = dateArgToISO(input.value);
+        }
+        if (input.rangeEnd) {
+            this.state.secondSelected = dateArgToISO(input.rangeEnd);
+        }
         if (!input.range) {
             this.state.secondSelected = null;
         }
@@ -112,7 +121,12 @@ export default class extends Marko.Component<Input, State> {
                 } else {
                     this.state.secondSelected = selected;
                 }
+                if (this.input.collapseOnSelect) {
+                    this.expander.expanded = false;
+                }
             }
+        } else if (this.input.collapseOnSelect) {
+            this.expander.expanded = false;
         }
 
         this.emitSelectedChange();

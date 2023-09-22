@@ -1,7 +1,5 @@
 import { processHtmlAttributes } from "../../../common/html-attributes";
-
 static const isBrowser = typeof window !== "undefined";
-
 static var ignoredAttributes = [
     "open",
     "type",
@@ -31,11 +29,10 @@ static var ignoredAttributes = [
     "rejectText",
     "noHandle",
     "top",
-    "action"
+    "action",
 ];
-
 static var ignoredHeaderAttributes = ["id", "as", "class"];
-
+static var ignoredPrevButtonAttributes = ["id", "class", "a11yText"];
 $ var buttonPosition = input.buttonPosition || "right";
 $ var baseEl = input.baseEl || "div";
 $ var header = input.header;
@@ -51,11 +48,16 @@ $ var header = input.header;
     <if(buttonPosition !== "hidden")>
         <button
             key="close"
-            class=[input.closeButtonText ? "fake-link" : "icon-btn", input.closeButtonClass, `${input.classPrefix}__close` ]
+            class=[
+                input.closeButtonText ? "fake-link" : "icon-btn",
+                input.closeButtonClass,
+                `${input.classPrefix}__close`,
+            ]
             type="button"
             aria-label=input.a11yCloseText
-            onClick("handleCloseButtonClick")>
-            <if (input.closeButtonText)>
+            onClick("handleCloseButtonClick")
+        >
+            <if(input.closeButtonText)>
                 ${input.closeButtonText}
             </if>
             <else-if(input.closeButton)>
@@ -74,12 +76,13 @@ $ var header = input.header;
         (input.header && component.getElId("dialog-title"))
     )
     aria-modal="true"
-    role=(input.role || "dialog")
+    role=input.role || "dialog"
     class=[input.classPrefix, input.class]
     hidden:no-update=!state.open
-    aria-live=(!input.isModal && "polite")
+    aria-live=!input.isModal && "polite"
     onClick("handleDialogClick")
-    onMousedown("handleStartClick")>
+    onMousedown("handleStartClick")
+>
     <if(state.open && isBrowser && !input.ignoreEscape)>
         <subscribe to=(document as any) on-keydown("handleKeydown")/>
     </if>
@@ -94,12 +97,31 @@ $ var header = input.header;
             input.windowType
                 ? `${input.classPrefix}__${input.windowType}-window`
                 : `${input.classPrefix}__window`,
-            input.windowClass
-        ]>
+            input.windowClass,
+        ]
+    >
         <if(input.top)>
             <${input.top.renderBody}/>
         </if>
         <div class=`${input.classPrefix}__header`>
+            <if(input.prevButton)>
+                <button
+                    ...processHtmlAttributes(
+                        input.prevButton,
+                        ignoredPrevButtonAttributes
+                    )
+                    class=[
+                        "icon-btn",
+                        "lightbox-dialog__prev",
+                        input.prevButton.class,
+                    ]
+                    type="button"
+                    aria-label=input.prevButton.a11yText
+                    on-click("emit", "prevButtonClick")
+                >
+                    <${input.prevButton}/>
+                </button>
+            </if>
             <if(header && buttonPosition === "right")>
                 <header-content/>
             </if>
@@ -117,7 +139,8 @@ $ var header = input.header;
             id=input.mainId
             class=`${input.classPrefix}__main`
             key="body"
-            onScroll("handleScroll")>
+            onScroll("handleScroll")
+        >
             <${input.renderBody}/>
         </div>
         <if(input.action)>

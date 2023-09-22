@@ -5,19 +5,18 @@ export interface Input {
 }
 
 class {
-    declare state: {
-        open: boolean;
+    onInput(input: Input) {
+        this.state = { open: input.open };
     }
-
-    onCreate() {
-        this.state = { open: false };
+    onCreate(input: Input) {
+        this.state = { open: input.open || false };
     }
     openDialog() {
         this.state.open = true;
     }
-    closeDialog() {
+    closeDialog(e) {
         this.state.open = false;
-        this.emit("close");
+        this.emit("close", e);
     }
 }
 
@@ -26,6 +25,8 @@ class {
     open=state.open
     on-close("closeDialog")
     on-open("emit", "open")
+    on-expanded("emit", "expanded")
+    on-collapsed("emit", "collapsed")
     ...input
 >
     <if(input.header && input.header.renderBody)>

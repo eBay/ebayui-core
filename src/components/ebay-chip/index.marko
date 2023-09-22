@@ -1,0 +1,19 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+$ const { renderBody, a11yDeleteButton, ...htmlAttributes } = input;
+
+<span class="chip" ...processHtmlAttributes(htmlAttributes)>
+    <span class="chip__text" id:scoped="title">
+        <${renderBody}/>
+    </span>
+    <if(a11yDeleteButton)>
+        <button
+            type="button"
+            class="chip__button"
+            aria-label=a11yDeleteButton
+            aria-describedby:scoped="text"
+            on-click("emit", "delete")
+        >
+            <ebay-close-16-icon/>
+        </button>
+    </if>
+</span>

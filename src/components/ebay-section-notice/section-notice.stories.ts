@@ -7,6 +7,8 @@ import Readme from "./README.md";
 import Component from "./index.marko";
 import withAction from "./examples/with-action.marko";
 import withActionCode from "./examples/with-action.marko?raw";
+import withIcon from "./examples/with-icon.marko";
+import withIconCode from "./examples/with-icon.marko?raw";
 import withDismiss from "./examples/with-dismiss.marko";
 import withDismissCode from "./examples/with-dismiss.marko?raw";
 
@@ -34,7 +36,7 @@ export default {
             },
 
             description: "The icon used and status of the notice",
-            options: ["attention", "confirmation", "information"],
+            options: ["attention", "confirmation", "information", "education"],
             type: "select",
         },
         icon: {
@@ -47,6 +49,28 @@ export default {
             type: "select",
             description:
                 'matches whatever is specified by the "status", or if none hides icon',
+        },
+        educationIcon: {
+            name: "@educationIcon",
+            description:
+                "For status education, an `<ebay-[name]-icon>` to show as the button's icon",
+            table: {
+                category: "Education tags",
+                defaultValue: {
+                    summary: "ebay-lightbulb-24-icon",
+                },
+            },
+        },
+        prominent: {
+            description:
+                "For status education, whether notice on the page should be prominent",
+            type: "boolean",
+            defaultValue: {
+                summary: "false",
+            },
+            table: {
+                category: "Education tags",
+            },
         },
         a11yText: {
             description: "adding description for the notice for a11y users",
@@ -92,7 +116,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ originalEvent }",
+                    summary: "",
                 },
             },
         },
@@ -147,5 +171,15 @@ export const WithDismiss = buildExtensionTemplate(
         a11yDismissText: "Dismiss Notice",
         status: "information",
         icon: null,
+    }
+);
+
+export const WithEducationIcon = buildExtensionTemplate(
+    withIcon,
+    withIconCode,
+    {
+        a11yText: "education",
+        status: "education",
+        prominent: false,
     }
 );

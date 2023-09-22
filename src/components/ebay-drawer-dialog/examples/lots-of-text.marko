@@ -1,6 +1,5 @@
 <ebay-drawer-dialog
-    a11yCloseText="Close Dialog"
-    aria-labelledby="drawer-title"
+    a11y-close-text="Close Dialog"
     open=state.open
     on-close("closeDrawer")>
     <@header id="drawer-title">Heading</@header>
@@ -46,10 +45,6 @@
 </ebay-drawer-dialog>
 <ebay-button on-click("openDrawer")>Open drawer</ebay-button>
 class {
-    declare state: {
-        open: boolean;
-    }
-
     onCreate() {
         this.state = { open: false };
     }

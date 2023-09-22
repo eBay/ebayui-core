@@ -24,6 +24,16 @@ export default {
     },
 
     argTypes: {
+        value: {
+            type: "date",
+            control: { type: "date" },
+            description: "Selected date",
+            table: {
+                defaultValue: {
+                    summary: "undefined",
+                },
+            },
+        },
         range: {
             type: "boolean",
             control: { type: "boolean" },
@@ -31,6 +41,16 @@ export default {
             table: {
                 defaultValue: {
                     summary: "false",
+                },
+            },
+        },
+        rangeEnd: {
+            type: "date",
+            control: { type: "date" },
+            description: "If range is true, the end of the selected range",
+            table: {
+                defaultValue: {
+                    summary: "undefined",
                 },
             },
         },
@@ -47,7 +67,8 @@ export default {
         disableBefore: {
             type: "date",
             control: { type: "date" },
-            description: "First date that may be selected",
+            description:
+                "First date that may be selected. Should be an ISO string, but also accepts a timestamp or `Date` object",
             table: {
                 defaultValue: {
                     summary: "undefined",
@@ -57,7 +78,8 @@ export default {
         disableAfter: {
             type: "date",
             control: { type: "date" },
-            description: "Last date that may be selected",
+            description:
+                "Last date that may be selected. Should be an ISO string, but also accepts a timestamp or `Date` object",
             table: {
                 defaultValue: {
                     summary: "undefined",
@@ -79,10 +101,21 @@ export default {
             type: "array",
             control: { type: "array" },
             description:
-                "List of specific days that are disabled. Should be a list of date objects, but also accepts timestamps or ISO strings",
+                "List of specific days that are disabled. Should be a list of ISO strings, but also accepts timestamps or `Date` objects",
             table: {
                 defaultValue: {
                     summary: "undefined",
+                },
+            },
+        },
+        collapseOnSelect: {
+            type: "boolean",
+            control: { type: "boolean" },
+            description:
+                "Whether the calendar should collapse after a date is selected",
+            table: {
+                defaultValue: {
+                    summary: "false",
                 },
             },
         },

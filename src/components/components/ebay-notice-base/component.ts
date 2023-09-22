@@ -1,6 +1,12 @@
 interface NoticeBaseInput
     extends Omit<Marko.Input<"section">, "title" | `on${string}`> {
-    status?: "confirmation" | "celebration" | "attention" | "information";
+    status?:
+        | "confirmation"
+        | "celebration"
+        | "attention"
+        | "information"
+        | "education";
+    type?: "section";
     "prefix-class"?: string;
     root?: Marko.Renderable;
     "no-a11y-label"?: boolean;
@@ -19,6 +25,8 @@ interface NoticeBaseInput
     cta?: Marko.Input<"a"> & {
         renderBody?: Marko.Renderable;
     };
+    "education-icon"?: Marko.Renderable;
+    prominent?: boolean;
     "on-dismiss"?: () => void;
 }
 
