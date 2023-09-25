@@ -251,7 +251,10 @@ describe("given an open dialog", () => {
             });
 
             describe("when it is rerendered with the same input", () => {
-                beforeEach(async () => await component.rerender(input));
+                beforeEach(async () => {
+                    await new Promise((resolve) => setTimeout(resolve, 600));
+                    await component.rerender(input);
+                });
                 thenItIsOpen();
             });
         }

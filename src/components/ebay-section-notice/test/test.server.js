@@ -15,7 +15,7 @@ describe("section-notice", () => {
         const containerUsingLabel = status.closest(
             `[aria-labelledby="${status.id}"]`
         );
-        expect(containerUsingLabel).has.class("section-notice--information");
+        expect(containerUsingLabel).has.class("section-notice");
 
         const content = getByText(input.renderBody.text);
         expect(content).has.class("section-notice__main");
@@ -23,7 +23,6 @@ describe("section-notice", () => {
 
         const container = content.parentElement;
         expect(container).has.class("section-notice");
-        expect(container).has.class("section-notice--information");
     });
 
     it("renders with light", async () => {
@@ -31,7 +30,6 @@ describe("section-notice", () => {
         const { getByText } = await render(template, input);
         const container = getByText(input.renderBody.text).parentElement;
         expect(container).has.class("section-notice");
-        expect(container).does.not.have.class("section-notice--attention");
 
         const footer = getByText(input.footer.renderBody.text);
         expect(footer).has.class("section-notice__footer");

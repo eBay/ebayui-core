@@ -91,7 +91,7 @@ export default {
             table: {
                 category: "Events",
                 defaultValue: {
-                    summary: "{ originalEvent }",
+                    summary: "",
                 },
             },
         },

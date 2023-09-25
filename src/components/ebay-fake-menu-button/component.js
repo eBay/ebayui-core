@@ -41,11 +41,14 @@ export default {
         this.emitComponentEvent({ eventType: "mousedown", el, originalEvent });
     },
     emitComponentEvent({ eventType, el, originalEvent, index }) {
-        const eventObj = {
+        let eventObj = {
             el,
             originalEvent,
             index,
         };
+        eventObj = Object.fromEntries(
+            Object.entries(eventObj).filter(([, value]) => value !== undefined)
+        );
         this.emit(`${eventType}`, eventObj);
     },
 
