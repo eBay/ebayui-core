@@ -6,9 +6,9 @@ class {
             value: "",
         };
     }
-    change({ value }, e) {
+    change({ value, originalEvent }) {
         this.state.value = value;
-        this.emit('change', e);
+        this.emit('change', originalEvent);
     }
     clear(e: TextboxEvent) {
         this.state.value = "";
@@ -22,7 +22,7 @@ class {
     buttonAriaLabel="Clear"
     placeholder="name"
     ...input
-    on-inputChange("emit", "inputChange")
+    on-input-change("emit", "inputChange")
     on-focus("emit", "focus")
     on-blur("emit", "blur")
     on-keypress("emit", "keypress")
