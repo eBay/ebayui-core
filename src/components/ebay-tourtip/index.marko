@@ -28,9 +28,7 @@ $ var pointer = input.pointer || "bottom";
         style-left=input.styleLeft
         style-top=input.styleTop
         style-right=input.styleRight
-        style-bottom=input.styleBottom
-        onBase-collapse("handleCollapse")
-        onBase-expand("handleExpand")>
+        style-bottom=input.styleBottom>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class=["tourtip", state.expanded && 'tourtip--expanded']>
