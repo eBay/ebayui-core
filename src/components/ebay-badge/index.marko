@@ -2,12 +2,13 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 
 static var ignoredAttributes = ["type", "number"];
 $ var number = Math.round(input.number);
+$ var max = Math.round(input.max ?? 99)
 
 <if(number > 0)>
     <span
         ...processHtmlAttributes(input, ignoredAttributes)
         role=(input.type !== "menu" && input.type !== "icon" && "img")
         class=["badge", input.class]>
-        ${number > 99 ? "99+" : number}
+        ${number > max ? `${max}+` : number}
     </span>
 </if>

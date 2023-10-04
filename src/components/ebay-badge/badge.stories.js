@@ -20,6 +20,16 @@ export default {
             type: "number",
             description: "Used as the number to be placed in the badge",
         },
+        max: {
+            type: "number",
+            table: {
+                defaultValue: {
+                    summary: 99,
+                },
+            },
+            description:
+                'Maximum displayed number on the badge, after which a `+` will be concatenated (e.g. "99+")',
+        },
         "aria-label": {
             description:
                 'A descriptive label of what the badge represents (e.g. "5 unread items")',

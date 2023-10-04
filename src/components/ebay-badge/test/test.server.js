@@ -47,4 +47,9 @@ it("truncates when the value is greater than 99", async () => {
     expect(getByText(/\d+/)).has.text("99+");
 });
 
+it("truncates when the value is greater than custom max", async () => {
+    const { getByText } = await render(template, { number: 30, max: 10 });
+    expect(getByText(/\d+/)).has.text("10+");
+});
+
 testPassThroughAttributes(template, { input: { number: 1 } });
