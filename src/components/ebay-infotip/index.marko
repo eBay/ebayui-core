@@ -1,5 +1,4 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
-
+import { processHtmlAttributes } from "../../common/html-attributes";
 static var ignoredAttributes = [
     "icon",
     "disabled",
@@ -14,10 +13,9 @@ static var ignoredAttributes = [
     "heading",
     "content",
     "variant",
-    "open"
+    "open",
 ];
-
-$ var isModal = input.variant === 'modal'
+$ var isModal = input.variant === "modal";
 $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
 $ var pointer = input.pointer || "bottom";
 
@@ -29,21 +27,28 @@ $ var pointer = input.pointer || "bottom";
         pointer=pointer
         overlay-id:scoped="overlay"
         onBase-expand(!isModal && "handleExpand")
-        onBase-collapse(!isModal && "handleCollapse")>
+        onBase-collapse(!isModal && "handleCollapse")
+    >
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class:no-update=[
                 "infotip",
                 isModal === true && "dialog--mini",
-                input.class
-            ]>
+                input.class,
+            ]
+        >
             <button
                 key="host"
-                class=[`${classPrefix}__host`, "icon-btn", "icon-btn--transparent"]
+                class=[
+                    `${classPrefix}__host`,
+                    "icon-btn",
+                    "icon-btn--transparent",
+                ]
                 type="button"
                 on-click(isModal && "handleOpenModal")
                 disabled=input.disabled
-                aria-label=input.ariaLabel>
+                aria-label=input.ariaLabel
+            >
                 <if(input.icon)>
                     <${input.icon}/>
                 </if>
@@ -63,21 +68,23 @@ $ var pointer = input.pointer || "bottom";
                     heading=input.heading
                     content=input.content
                     a11y-close-text=input.a11yCloseButtonText
-                    onOverlay-close("handleOverlayClose")/>
+                    onOverlay-close("handleOverlayClose")
+                />
             </if>
-            <else>
-                <ebay-drawer-dialog
-                    open=state.open
-                    a11y-close-text=input.a11yCloseButtonText
-                    on-open("handleExpand")
-                    on-close("handleCollapse")
-                    aria-label=input.ariaLabel>
-                    <@header>
-                        <${input.heading && input.heading.renderBody}/>
-                    </@header>
-                    <${input.content}/>
-                </ebay-drawer-dialog>
-            </else>
         </span>
     </ebay-tooltip-base>
 </span>
+<if(isModal === true)>
+    <ebay-lightbox-dialog
+        open=state.open
+        a11y-close-text=input.a11yCloseButtonText
+        on-open("handleExpand")
+        on-close("handleCollapse")
+        aria-label=input.ariaLabel
+    >
+        <@header>
+            <${input.heading && input.heading.renderBody}/>
+        </@header>
+        <${input.content}/>
+    </ebay-lightbox-dialog>
+</if>
