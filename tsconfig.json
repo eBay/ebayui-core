@@ -1,10 +1,13 @@
 {
+    "include": ["src"],
+    "exclude": ["**/*.stories.ts", "**/test/*"],
     "compilerOptions": {
         "lib": ["ESNext", "DOM"],
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "target": "ESNext",
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "outDir": "dist"
     }
 }
