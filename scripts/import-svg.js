@@ -110,7 +110,9 @@ function generateFile(type, iconMap) {
         fs.writeFileSync(
             index,
             `import { symbol } from "./symbol";
-import type { Input as IconInput } from "../../component-browser"
+import type { Input as IconInput } from "../../${
+                type === "icon" ? "" : "../ebay-icon/"
+            }component-browser"
 export type Input = Omit<IconInput, \`_\${string}\`>;
 <ebay-icon ...input _name="${name}" _type="${type}" _themes=symbol/>
 `
