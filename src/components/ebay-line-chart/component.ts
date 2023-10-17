@@ -310,7 +310,7 @@ export default class extends Marko.Component<Input> {
                     seriesLength:
                         Array.isArray(component.input.series) &&
                         component.input.series.length > 1,
-                } as Marko.TemplateInput);
+                } as any);
             },
             useHTML: true, // allows defining html to format tooltip content
             backgroundColor: tooltipBackgroundColor, // sets tooltip background color

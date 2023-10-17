@@ -26,9 +26,11 @@ interface FilterMenuInput
     "form-method"?: string;
     "footer-text"?: string;
     "a11y-footer-text"?: string;
-    footer?: Marko.Input<"button"> & {
-        "a11y-footer-text"?: string;
-    };
+    footer?: WithNormalizedProps<
+        Omit<Marko.Input<"button">, `on${string}`> & {
+            "a11y-footer-text"?: string;
+        }
+    >;
     "render-body"?: Marko.Body;
     "on-footer-click"?: (event: FilterMenuEvent) => void;
     "on-form-submit"?: (event: FilterMenuEvent) => void;

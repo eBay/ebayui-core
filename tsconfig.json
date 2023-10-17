@@ -1,6 +1,6 @@
 {
-    "include": ["src"],
-    "exclude": ["**/*.stories.ts", "**/test/*"],
+    "include": ["src", "src/**/*.json"],
+    "exclude": ["**/*.stories.ts", "**/test/*", "**/examples/*"],
     "compilerOptions": {
         "lib": ["ESNext", "DOM"],
         "moduleResolution": "node",

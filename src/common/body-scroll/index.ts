@@ -25,7 +25,7 @@ function prevent() {
         const { width, height, marginTop, marginLeft } = getComputedStyle(body);
         let styleText = "position:fixed;overflow:hidden;";
         previousPosition = [pageXOffset, pageYOffset];
-        previousStyles = body.getAttribute("style");
+        previousStyles = body.getAttribute("style")!;
         styleText += `height:${height};`;
         styleText += `width:${width};`;
 

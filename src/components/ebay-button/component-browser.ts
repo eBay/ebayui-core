@@ -1,5 +1,7 @@
 import * as eventUtils from "../../common/event-utils";
 
+export const validSizes = ["large", "small"] as const;
+
 export interface ButtonEvent<T extends Event> {
     originalEvent: T;
 }
@@ -7,7 +9,7 @@ export interface ButtonEvent<T extends Event> {
 interface ButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
     href?: string;
     toJSON?: () => Object;
-    size?: "regular" | "large" | "none";
+    size?: (typeof validSizes)[number];
     priority?: "primary" | "secondary" | "tertiary" | "none";
     variant?: "standard" | "destructive" | "form";
     "body-state"?: "loading" | "expand" | "reset" | "none";

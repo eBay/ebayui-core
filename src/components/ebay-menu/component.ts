@@ -20,7 +20,7 @@ export interface MenuEvent<T extends Event = Event> {
     currentChecked?: boolean;
 }
 
-interface Item extends MenuItem {
+export interface Item extends MenuItem {
     badgeNumber?: number;
 }
 
@@ -140,7 +140,7 @@ export default class extends MenuUtils<Input, MenuState> {
         const eventObj = {
             el,
             originalEvent,
-        };
+        } satisfies MenuEvent;
 
         if (isCheckbox && checkedIndexes && checkedIndexes.length > 1) {
             Object.assign(eventObj, {

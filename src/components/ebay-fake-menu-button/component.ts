@@ -6,8 +6,7 @@ import {
     Item as FakeMenuItem,
 } from "../ebay-fake-menu/component";
 
-export interface FakeMenuButtonInput
-    extends Omit<Marko.Input<"span">, `on${string}`> {
+interface FakeMenuButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
     text?: string;
     size?: "none" | "large";
     "prefix-id"?: string;
@@ -25,6 +24,7 @@ export interface FakeMenuButtonInput
     reverse?: boolean;
     "fix-width"?: boolean;
     items?: Marko.RepeatableAttrTag<FakeMenuItem>;
+    "collapse-on-select"?: boolean;
     "on-expand"?: (event: MenuEvent) => void;
     "on-collapse"?: (event: MenuEvent) => void;
     "on-select"?: (event: MenuEvent) => void;
@@ -82,7 +82,7 @@ export default class extends Marko.Component<Input> {
         originalEvent,
         index,
     }: MenuEvent & { eventType: string }) {
-        const eventObj: MenuEvent = {
+        let eventObj: MenuEvent = {
             el,
             originalEvent,
             index,

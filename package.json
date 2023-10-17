@@ -76,7 +76,7 @@
         "@marko/prettyprint": "^3.0.1",
         "@marko/test": "^10",
         "@marko/testing-library": "^6",
-        "@marko/type-check": "^1.0.1",
+        "@marko/type-check": "^1.0.2",
         "@mdx-js/react": "^2.1.5",
         "@storybook/addon-a11y": "^6.5.16",
         "@storybook/addon-docs": "^6.5.15",
@@ -117,7 +117,7 @@
         "less-loader": "^11",
         "lint-staged": "^13.0.2",
         "lintspaces-cli": "^0.8.0",
-        "marko": "^5.25.14",
+        "marko": "^5.31.12",
         "mocha": "^10",
         "mocha-snap": "^4.3.0",
         "nyc": "^15.1.0",
@@ -136,7 +136,7 @@
     },
     "peerDependencies": {
         "@ebay/skin": "~16.7.0-0",
-        "marko": ">= ^4.27.0 || >= ^5.25.13"
+        "marko": ">= ^4.27.0 || >= ^5.31.12"
     },
     "dependencies": {
         "@babel/preset-typescript": "^7.21.4",

@@ -1,3 +1,5 @@
+import type EbayVideo from "./component";
+
 /* eslint-disable no-undef,new-cap */
 // Have to contain in order to not execute until shaka is downloaded
 function getElements(self: EbayVideo) {
@@ -10,7 +12,9 @@ function getElements(self: EbayVideo) {
             this.button_.classList.add("video-player__report-button");
 
             this.button_.textContent = text || "Report";
-            const flagIcon = self.getComponent("flag-icon").el.cloneNode(true);
+            const flagIcon = self
+                .getComponent("flag-icon")!
+                .el!.cloneNode(true);
             this.button_.prepend(flagIcon);
             this.parent.appendChild(this.button_);
 

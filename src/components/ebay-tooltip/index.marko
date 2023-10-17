@@ -16,7 +16,7 @@ static var ignoredAttributes = [
 $ var pointer = input.pointer || "bottom";
 
 <if(isBrowser && state.open)>
-    <subscribe to=document on-keydown("handleKeydown")/>
+    <subscribe to=document as any on-keydown("handleKeydown")/>
 </if>
 
 <span>

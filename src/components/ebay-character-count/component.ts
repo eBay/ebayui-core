@@ -1,11 +1,32 @@
-export default class extends Marko.Component {
-    onCreate(input) {
+export interface CharacterCountEvent {
+    count: number;
+    inputAriaLive: Marko.AriaAttributes["aria-live"];
+}
+
+interface CharacterCountInput extends Omit<Marko.Input<"span">, `on${string}`> {
+    renderBody?: Marko.Body;
+    value?: string | number;
+    max: number;
+    "clipped-text"?: string;
+    "on-change"?: (event?: CharacterCountEvent) => void;
+}
+
+export interface Input extends WithNormalizedProps<CharacterCountInput> {}
+
+interface State {
+    count: number;
+}
+
+export default class extends Marko.Component<Input, State> {
+    declare timeout: NodeJS.Timeout;
+
+    onCreate(input: Input) {
         this.state = {
             count: this.countFromValue(input.value),
         };
     }
 
-    onInput(input) {
+    onInput(input: Input) {
         if (typeof window === "undefined") {
             return;
         }
@@ -17,11 +38,11 @@ export default class extends Marko.Component {
             this.emit("change", {
                 count: this.state.count,
                 inputAriaLive: this.state.count >= input.max ? "polite" : "off",
-            });
+            } satisfies CharacterCountEvent);
         }, 500);
     }
 
-    countFromValue(value) {
+    countFromValue(value?: string | number) {
         if (typeof value === "string") {
             // use iterator to account for emojis and other multi-char symbols
             return [...value].length;

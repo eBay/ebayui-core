@@ -36,7 +36,7 @@ export default {
                 "String to count characters from, or a number representing the current character count",
         },
         max: {
-            type: "number",
+            type: { name: "number", required: true },
             control: { type: "number" },
             description:
                 "Maximum number of characters allowed in the input, we allow users to go over this limit but `aria-live` should be set to `polite`.",

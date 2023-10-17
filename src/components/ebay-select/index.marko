@@ -26,7 +26,7 @@ $ var list: (Option | OptGroup)[] = [];
 $ var isLarge = input.isLarge;
 $ var optgroups: Record<string, OptGroup> = {};
 $ var id = component.selectId
-$ input.options.forEach(function(option) {
+$ for (const option of input.options) {
     var optgroup = option.optgroup;
 
     if (optgroup) {
@@ -43,7 +43,7 @@ $ input.options.forEach(function(option) {
     } else {
         list.push(option);
     }
-});
+};
 <${input.floatingLabel && "span"} class=["floating-label", isLarge && "floating-label--large"]>
     <if(input.floatingLabel)>
         <label

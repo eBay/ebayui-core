@@ -1,6 +1,7 @@
 import * as eventUtils from "../../common/event-utils";
 import { getMaxWidth } from "../../common/dom";
 import type { AttrClass } from "marko/tags-html";
+import { MenuEvent } from "../ebay-menu/component";
 
 interface BreadcrumbsInput extends Omit<Marko.Input<"nav">, `on${string}`> {
     "a11y-heading-tag"?: keyof Marko.NativeTags;
@@ -21,12 +22,12 @@ export default class extends Marko.Component<Input, State> {
     declare cachedWidths: number[];
     declare newInput: boolean;
 
-    handleClick(originalEvent: Event) {
-        this.emit("select", { originalEvent, el: originalEvent.target });
+    handleClick({ originalEvent }: MenuEvent) {
+        this.emit("select", { originalEvent, el: originalEvent?.target });
     }
 
-    handleMenuBreadcrumb(originalEvent: Event) {
-        this.emit("select", { originalEvent, el: originalEvent.target });
+    handleMenuBreadcrumb({ originalEvent }: MenuEvent) {
+        this.emit("select", { originalEvent, el: originalEvent?.target });
     }
 
     onCreate() {

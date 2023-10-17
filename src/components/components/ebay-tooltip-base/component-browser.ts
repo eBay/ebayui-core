@@ -7,7 +7,7 @@ interface TooptipBaseInput {
     type: string;
     "no-hover"?: boolean;
     "overlay-style"?: string;
-    "overlay-id": string;
+    "overlay-id"?: string;
     "render-body"?: Marko.Renderable;
     "on-base-expand"?: (event: { originalEvent: Event }) => void;
     "on-base-collapse"?: (event: { originalEvent: Event }) => void;
@@ -87,7 +87,7 @@ export default class extends Marko.Component<Input> {
             });
 
             if (isTooltip && !host.hasAttribute("aria-describedby")) {
-                host.setAttribute("aria-describedby", input.overlayId);
+                host.setAttribute("aria-describedby", input.overlayId!);
             }
         }
     }

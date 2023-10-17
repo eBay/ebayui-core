@@ -15,7 +15,6 @@ static var ignoredAttributes = [
 static var itemIgnoredAttributes = ["value", "text", "selected", "disabled"];
 
 $ var selectedOption = (input.options as Option[])?.[state.selectedIndex];
-$ var selectedText = selectedOption && selectedOption.text;
 <div
     ...processHtmlAttributes(input, ignoredAttributes)
     key="options"

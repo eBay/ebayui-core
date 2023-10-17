@@ -15,7 +15,7 @@ static var itemAnchorIgnoredAttributes = ['href'];
                 aria-selected=isSelected && 'true'
                 class=[tab.class, 'tabs__item']
                 onClick('handleHeadingClick', i)
-                onKeyDown('handleHeadingKeydown', i)
+                onKeydown('handleHeadingKeydown', i)
             >
                 <span><${tab.renderBody}/></span>
             </div>

@@ -37,9 +37,17 @@ interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
     open?: boolean;
     "transition-el"?: "root" | "window";
     focus?: string;
+    prevButton?: WithNormalizedProps<
+        Omit<Marko.Input<"button">, `on${string}`> & {
+            "a11y-text"?: string;
+        }
+    >;
     "on-open"?: (event: Event) => void;
     "on-close"?: (event: Event) => void;
     "on-scroll"?: (event: Event) => void;
+    "on-mouseEnter"?: (event: Event) => void;
+    "on-mouseLeave"?: (event: Event) => void;
+    "on-prevButtonClick"?: (event: Event) => void;
 }
 
 export interface Input extends WithNormalizedProps<DialogBaseInput> {}

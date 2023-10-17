@@ -1,5 +1,6 @@
 import * as eventUtils from "../../common/event-utils";
 import { getMaxWidth } from "../../common/dom";
+
 const MAX_PAGES = 9;
 const MIN_PAGES = 5;
 

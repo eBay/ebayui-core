@@ -41,7 +41,7 @@ $ var a11ySeparator = input.a11ySeparator ?? " - ";
     <div.calendar__body>
         <for|monthDate| of=monthDates>
             <div.calendar__month>
-                <table onKeyDown('onKeyDown')>
+                <table onKeydown('onKeyDown')>
                     <caption>${component.monthTitle(monthDate)}</caption>
                     <thead>
                         <tr>
@@ -98,9 +98,9 @@ $ var a11ySeparator = input.a11ySeparator ?? " - ";
                                                 aria-pressed=isSelected && "true"
                                                 onClick('onDaySelect', dayISO)
                                                 onFocus('onDayFocus', dayISO)
-                                                onMouseOver('onDayFocus', dayISO)
+                                                onMouseover('onDayFocus', dayISO)
                                                 onBlur('onDayBlur')
-                                                onMouseOut('onDayBlur')>
+                                                onMouseout('onDayBlur')>
                                                 ${day}
                                             </button>
                                         </if>

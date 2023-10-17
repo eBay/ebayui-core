@@ -35,7 +35,7 @@ export default (
         return () => clearTimeout(id);
     }
 
-    let cancelFrame = nextFrame(() => {
+    let cancelFrame: (() => void) | undefined = nextFrame(() => {
         cancelFrame = undefined;
         classList.add(className);
         classList.remove(initClass);
@@ -103,22 +103,15 @@ export default (
  */
 function nextFrame(fn: FrameRequestCallback) {
     let frame: number;
-    let cancelFrame: typeof cancelAnimationFrame | typeof clearTimeout;
 
-    if (window.requestAnimationFrame) {
-        frame = requestAnimationFrame(() => {
-            frame = requestAnimationFrame(fn);
-        });
-        cancelFrame = cancelAnimationFrame;
-    } else {
-        frame = setTimeout(fn, 26); // 16ms to simulate RAF, 10ms to ensure called after the frame.
-        cancelFrame = clearTimeout;
-    }
+    frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(fn);
+    });
 
     return () => {
         if (frame) {
-            cancelFrame(frame);
-            frame = undefined;
+            cancelAnimationFrame(frame);
+            frame = 0;
         }
     };
 }

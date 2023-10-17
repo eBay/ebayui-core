@@ -287,9 +287,10 @@ export default class extends Marko.Component<Input, State> {
 
         // Replace play icon
         if (this.el) {
-            const playIcon = this.getComponent("play-icon").el.cloneNode(true);
+            const playIcon =
+                this.getComponent("play-icon")!.el!.cloneNode(true);
             const playButton =
-                this.el.querySelector<HTMLElement>(".shaka-play-button");
+                this.el.querySelector<HTMLElement>(".shaka-play-button")!;
             playButton.removeAttribute("icon");
             playButton.appendChild(playIcon);
 

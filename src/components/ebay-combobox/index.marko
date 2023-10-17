@@ -73,8 +73,8 @@ $ var id = input.id || component.getElId('input');
             onBlur('handleComboboxBlur')
             onClick('handleComboboxClick')
             onFocus('handleFocus')
-            onKeyDown('handleComboboxKeyDown')
-            onKeyUp('handleComboboxKeyUp')
+            onKeydown('handleComboboxKeyDown')
+            onKeyup('handleComboboxKeyUp')
         >
         <${hasButton ? 'button' : null}
             ...processHtmlAttributes(input.button ?? {}, ignoredButtonAttributes)

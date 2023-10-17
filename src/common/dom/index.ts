@@ -6,8 +6,11 @@
  * @param {HTMLElement} el the element to get the max width for
  */
 export function getMaxWidth(el: HTMLElement) {
+    const width = el.style.width;
+
     el.style.width = "100vw";
     const result = el.offsetWidth;
-    el.style.width = null;
+
+    el.style.width = width;
     return result;
 }

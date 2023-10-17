@@ -62,8 +62,8 @@ $ var separatorMap = component.getSeparatorMap(input);
                 // href=(item.disabled ? null : item.href)
                 role=itemRole
                 onClick(!item.disabled && "handleItemClick", index)
-                onKeyDown(!item.disabled && "handleItemKeydown", index)
-                onKeyPress(!item.disabled && "handleItemKeypress")
+                onKeydown(!item.disabled && "handleItemKeydown", index)
+                onKeypress(!item.disabled && "handleItemKeypress")
                 key="item[]">
                 <span>
                     <${item.renderBody}/>

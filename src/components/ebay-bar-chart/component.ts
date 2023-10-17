@@ -256,7 +256,7 @@ export default class extends Marko.Component<Input> {
                 data: stacked ? series : this.point,
                 stacked,
                 x: this.x,
-            } as Marko.TemplateInput);
+            } as any);
         };
     }
     tooltipPositioner(labelWidth: number, labelHeight: number) {

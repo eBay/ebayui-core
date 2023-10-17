@@ -87,12 +87,12 @@ function removeEventListener(_: unknown, handler: (e: Event) => void) {
 }
 function handleResize(e: Event) {
     window.removeEventListener("resize", handleResize);
-    (window.requestAnimationFrame || window.setTimeout)(() => {
+    window.requestAnimationFrame(() => {
         if (handlers.length) {
             handlers.forEach((handler) => handler(e));
             window.addEventListener("resize", handleResize);
         }
-    }, 16);
+    });
 }
 
 const resizeUtil = {

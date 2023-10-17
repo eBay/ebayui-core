@@ -4,7 +4,7 @@ export interface MenuItem extends Omit<Marko.Input<"button">, `on${string}`> {
     renderBody?: Marko.Body;
     separator?: boolean;
     checked?: boolean;
-    badgeNumber?: number | string;
+    badgeNumber?: number;
 }
 
 export interface BaseMenuInput {

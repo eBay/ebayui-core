@@ -6,7 +6,7 @@ export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
 }
 
 interface SelectInput extends Omit<Marko.Input<"select">, `on${string}`> {
-    options?: Marko.RepeatableAttrTag<Option>;
+    options: Marko.RepeatableAttrTag<Option>;
     "floating-label"?: string;
     "is-large"?: boolean;
     borderless?: boolean;

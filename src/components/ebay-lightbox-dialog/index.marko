@@ -1,15 +1,7 @@
-import { Input as BaseInput } from "<ebay-dialog-base>";
-static interface LightboxDialogInput extends Omit<BaseInput, `on${string}`> {
-    variant?: "_mini";
-    "on-open"?: () => void;
-    "on-close"?: () => void;
-}
-
-export interface Input extends WithNormalizedProps<LightboxDialogInput> {}
+import { validSizes } from "./component";
 
 $ var isMini = input.variant === "_mini";
 $ var buttonPosition = input.buttonPosition || 'right';
-$ var validSizes = ['wide', 'narrow'];
 $ var handleLabel = (!state.expanded ?
     (input.a11yMaximizeText || "Maximize Lightbox Dialog") :
     (input.a11yMinimizeText || "Minimize Lightbox Dialog"));
@@ -24,7 +16,7 @@ $ var handleLabel = (!state.expanded ?
     on-prevButtonClick("emit", "prevButtonClick")
     button-position=buttonPosition
     class=[input.class, "lightbox-dialog--mask-fade", input.bannerImgSrc && "lightbox-dialog--expressive",
-        validSizes.includes(input.size) && `lightbox-dialog--${input.size}`,
+        input.size && validSizes.includes(input.size) && `lightbox-dialog--${input.size}`,
     ]
     window-class=[
         "lightbox-dialog__window--animate",
@@ -37,10 +29,10 @@ $ var handleLabel = (!state.expanded ?
                 type="button"
                 class=`lightbox-dialog__handle`
                 onClick("handleExpand")
-                onTouchStart("handleTouchStart")
-                onTouchMove("handleTouchMove")
-                onTouchEnd("handleTouchEnd")
-                onTouchCancel("handleTouchEnd")
+                onTouchstart("handleTouchStart")
+                onTouchmove("handleTouchMove")
+                onTouchend("handleTouchEnd")
+                onTouchcancel("handleTouchEnd")
             ></button>
             <if(input.bannerImgSrc)>
                     <div class="lightbox-dialog__image" style={
