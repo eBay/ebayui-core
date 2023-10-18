@@ -1,25 +1,27 @@
 let rootSvg;
 let svgDefs;
 
-function createLinearGradientFromString(data) {
+function createSVGElementFromString(data) {
     // This is needed because if we add linear gradient as a string it will not be rendered.
+    if (!data.name) {
+        return;
+    }
     const linearGradient = document.createElementNS(
         "http://www.w3.org/2000/svg",
-        "linearGradient"
+        data.name
     );
-    linearGradient.setAttribute("id", data.id);
-    linearGradient.setAttribute("x1", data.x1);
-    linearGradient.setAttribute("y1", data.y1);
-    linearGradient.setAttribute("x2", data.x2);
-    linearGradient.setAttribute("y2", data.y2);
-    linearGradient.setAttribute("gradientUnits", data.gradientUnits);
+    for (const attr of Object.keys(data.attr)) {
+        linearGradient.setAttribute(attr, data.attr[attr]);
+    }
     data.children.forEach((stop) => {
         const newStop = document.createElementNS(
             "http://www.w3.org/2000/svg",
-            "stop"
+            stop.name
         );
-        newStop.setAttribute("offset", stop.offset);
-        newStop.setAttribute("stop-color", stop["stop-color"]);
+        for (const attr of Object.keys(stop.attr)) {
+            newStop.setAttribute(attr, stop.attr[attr]);
+        }
+
         linearGradient.appendChild(newStop);
     });
     return linearGradient;
@@ -55,7 +57,7 @@ export default {
                 defs.innerHTML = this.input._themes();
             }
             if (this.input && this.input._def) {
-                defItem = createLinearGradientFromString(this.input._def());
+                defItem = createSVGElementFromString(this.input._def());
             }
 
             const symbol = defs.querySelector("symbol");

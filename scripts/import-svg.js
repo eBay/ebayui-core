@@ -70,12 +70,17 @@ function defToObject(def) {
         const attribs = child.attribs;
         return {
             name: child.name,
-            ...attribs,
+            attr: {
+                ...attribs,
+            },
         };
     });
     const data = {
         children,
-        ...attributes,
+        name: def[0].name,
+        attr: {
+            ...attributes,
+        },
     };
     return data;
 }
