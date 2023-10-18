@@ -17,6 +17,8 @@ const require = createRequire(import.meta.url);
 
 const skinDir = path.dirname(require.resolve("@ebay/skin/package.json"));
 const svgDir = path.join(skinDir, "src/svg");
+const defs = {};
+const defsMap = new Map();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -62,15 +64,49 @@ delete markoTagJson.transformer;
 delete markoTagJson["@_name"];
 delete markoTagJson["@_themes"];
 
+function defToObject(def) {
+    const attributes = def.attr();
+    const children = Array.from(def.children()).map((child) => {
+        const attribs = child.attribs;
+        return {
+            name: child.name,
+            attr: {
+                ...attribs,
+            },
+        };
+    });
+    const data = {
+        children,
+        name: def[0].name,
+        attr: {
+            ...attributes,
+        },
+    };
+    return data;
+}
+
 function addIcons(component, iconMap) {
     const svgFile = path.join(svgDir, `icons.svg`);
     const svgContent = fs.readFileSync(svgFile, "utf-8");
     const $ = cheerio.load(svgContent);
 
+    for (const el of $("defs").children()) {
+        const $def = $(el);
+        defs[$def.attr("id")] = $def;
+    }
+
     for (const el of Array.from($("symbol"))) {
         const $symbol = $(el);
         if ($symbol.attr("id").startsWith(component)) {
             const name = $symbol.attr("id").replace(/^(?:svg-)?icon-/, "");
+            if ($symbol.html().indexOf("url(#") > -1) {
+                // Find matching def
+                for (const def of Object.keys(defs)) {
+                    if ($symbol.html().indexOf(`url(#${def})`) > -1) {
+                        defsMap.set(name, defToObject(defs[def]));
+                    }
+                }
+            }
             const symbolContent = minify($.html($symbol), htmlMinifierOptions);
 
             iconMap.set(name, symbolContent);
@@ -80,6 +116,7 @@ function addIcons(component, iconMap) {
 function generateFile(type, iconMap) {
     for (const [name, themes] of iconMap) {
         const postfixName = type === "icon" ? "-icon" : "";
+        const iconDef = defsMap.has(name) ? defsMap.get(name) : null;
         const iconFolder = path.join(
             getOutputDir(type),
             `ebay-${name}${postfixName}`
@@ -96,6 +133,16 @@ function generateFile(type, iconMap) {
 
         fs.writeFileSync(filePath, `${content.trim()}\n`);
 
+        if (iconDef) {
+            const defPath = path.join(iconFolder, "def.js");
+            const contentDef = `export function def() {
+    // eslint-disable-next-line max-len,quotes
+    return ${JSON.stringify(iconDef)};
+};`;
+
+            fs.writeFileSync(defPath, `${contentDef.trim()}\n`);
+        }
+
         fs.writeFileSync(
             markoTag,
             `${JSON.stringify(markoTagJson, null, 2)}\n`
@@ -109,7 +156,11 @@ function generateFile(type, iconMap) {
         // eslint-disable-next-line max-len
         fs.writeFileSync(
             index,
-            `import { symbol } from "./symbol.js";\n<ebay-icon ...input _name="${name}" _type="${type}" _themes=symbol/>\n`
+            `import { symbol } from "./symbol.js";\n${
+                iconDef ? 'import { def } from "./def.js"\n' : ""
+            }<ebay-icon ...input _name="${name}" _type="${type}" _themes=symbol${
+                iconDef ? " _def=def" : ""
+            }/>\n`
         );
     }
 }
