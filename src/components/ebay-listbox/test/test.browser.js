@@ -1,6 +1,6 @@
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import { pressKey } from "../../../common/test-utils/browser";
 import * as stories from "../listbox.stories";
@@ -155,11 +155,16 @@ describe("given the listbox with manual selection", () => {
 describe("given the listbox with disabled option", () => {
     beforeEach(async () => {
         options[1] = Object.assign({ disabled: true }, options[1]);
-        component = await render(Standard, {
-            options,
-            container: form,
-            name: "listbox-name",
-        });
+        component = await render(
+            Standard,
+            {
+                options,
+                name: "listbox-name",
+            },
+            {
+                container: form,
+            }
+        );
     });
 
     describe("when disabled option is clicked", () => {

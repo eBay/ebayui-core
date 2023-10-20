@@ -1,36 +1,43 @@
-module.exports = {
-    stories: ["../src/**/*.stories.@(mdx|js)"],
+import fsp from "node:fs/promises";
+
+import { mergeConfig } from "vite";
+
+// This is done because lasso does not work with readme.md?raw
+// Lasso is being used to run our browser tests with @marko/test
+// If we get rid of lasso we should remove this code and switch all readmes to use ?raw
+const markdownMatch = /\.md$/;
+const rawMarkdown = {
+    name: "markdown-loader",
+    async load(id) {
+        if (markdownMatch.test(id)) {
+            // raw query, read file and return as string
+            return `export default ${JSON.stringify(
+                await fsp.readFile(id, "utf-8")
+            )}`;
+        }
+    },
+};
+
+export default {
+    stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+    framework: "@storybook/marko-vite",
     addons: [
-        "./plugins/theme-switcher/register.jsx",
+        {
+            name: "@storybook/addon-docs",
+            options: {
+                transcludeMarkdown: true,
+            },
+        },
         "@storybook/addon-essentials",
         "@storybook/addon-a11y",
     ],
-    core: {
-        builder: "webpack5",
+    docs: {
+        autodocs: true,
+        defaultName: "Documentation",
     },
-    features: {
-        previewMdx2: true,
-    },
-    webpackFinal: async (config, { configType }) => {
-        config.module.rules.push({
-            test: /\.less$/,
-            use: ["style-loader", "css-loader", "less-loader"],
+    async viteFinal(config) {
+        return mergeConfig(config, {
+            plugins: [rawMarkdown],
         });
-        config.module.rules.push({
-            test: /\.txt$/,
-            type: "asset/source",
-        });
-        config.module.rules = [
-            {
-                oneOf: [
-                    {
-                        resourceQuery: /raw/,
-                        type: "asset/source",
-                    },
-                    ...config.module.rules,
-                ],
-            },
-        ];
-        return config;
     },
 };

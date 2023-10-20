@@ -1,2 +1,2 @@
-require("@ebay/skin/icon-button");
-require("@ebay/skin/tooltip");
+import "@ebay/skin/icon-button";
+import "@ebay/skin/tooltip";

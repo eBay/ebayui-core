@@ -4,7 +4,7 @@ import {
     buildExtensionTemplate,
 } from "../../../.storybook/utils";
 import button from "./index.marko";
-import readme from "./README.md";
+import Readme from "./README.md";
 import WithIconsTemplate from "./examples/with-icons.marko";
 import WithIconsTemplateCode from "./examples/with-icons.marko?raw";
 
@@ -18,7 +18,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: readme,
+                component: Readme,
             },
         },
     },

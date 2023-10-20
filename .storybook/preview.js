@@ -7,7 +7,7 @@ import order from "./storyOrder";
 export const parameters = {
     layout: "centered",
     controls: { expanded: true },
-    options: {
-        storySort: { order },
-    },
+    // options: {
+    //     storySort: order,
+    // },
 };

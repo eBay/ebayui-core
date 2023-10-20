@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     handleDismissClick: forwardEvent("dismiss"),
     handleDismissKeydown: forwardEvent("dismiss"),
 };

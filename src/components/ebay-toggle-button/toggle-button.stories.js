@@ -1,6 +1,6 @@
 import { tagToString } from "../../../.storybook/storybook-code-source";
 import { addRenderBodies } from "../../../.storybook/utils";
-import readme from "./README.md";
+import Readme from "./README.md";
 import component from "./index.marko";
 import WithIconTemplate from "./examples/with-icon.marko";
 import WithIconCode from "./examples/with-icon.marko?raw";
@@ -19,7 +19,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: readme,
+                component: Readme,
             },
         },
     },

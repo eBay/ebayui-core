@@ -1,2 +1,2 @@
-require("@ebay/skin/radio");
-require("@ebay/skin/field");
+import "@ebay/skin/radio";
+import "@ebay/skin/field";

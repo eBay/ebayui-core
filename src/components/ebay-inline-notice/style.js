@@ -1,1 +1,1 @@
-require("@ebay/skin/inline-notice");
+import "@ebay/skin/inline-notice";

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     onCreate() {
         this.state = {
             value: 0,

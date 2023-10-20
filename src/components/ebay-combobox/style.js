@@ -1,3 +1,3 @@
-require("@ebay/skin/combobox");
-require("@ebay/skin/icon-button");
-require("@ebay/skin/floating-label");
+import "@ebay/skin/combobox";
+import "@ebay/skin/icon-button";
+import "@ebay/skin/floating-label";
