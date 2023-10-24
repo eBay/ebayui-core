@@ -6,7 +6,7 @@ static var isBrowser = typeof window !== "undefined";
 
 static var browserLookup = {};
 
-static var ignoredAttributes = ["_name", "_type", "noSkinClasses", "_themes", "toJSON"];
+static var ignoredAttributes = ["_name", "_type", "noSkinClasses", "_themes", "_def", "toJSON"];
 
 static function getIconClass(type, name) {
     if (type === "icon") {
@@ -31,6 +31,7 @@ $ {
     ...a11yAttributes
     ...processHtmlAttributes(input, ignoredAttributes)
     class=[input.class, !input.noSkinClasses && getIconClass(input._type, input._name)]
+    key="svg"
     focusable="false"
     aria-labelledby=(input.a11yText && !noTitle && component.elId("text"))
     aria-label=(noTitle && input.a11yText)>
@@ -38,6 +39,7 @@ $ {
     <!-- Server side we store a flag in `out.global` to check if the symbol was rendered. -->
     <!-- Client side we check the `browserLookup` object to see if the symbol is already present in root svg. -->
     $ var themes = input._themes;
+    $ var defs = input._def;
     $ var lookupName = "rendered_ebay_icon_" + input._name;
     $ var renderDefs = !lookup[lookupName];
     $ lookup[lookupName] = true;
@@ -59,5 +61,5 @@ $ {
     <if(input.a11yText && !noTitle)>
         <title id:scoped="text">${input.a11yText}</title>
     </if>
-    <use xlink:href=`#${prefixSvg}${input._name}`/>
+    <use href=`#${prefixSvg}${input._name}`/>
 </svg>

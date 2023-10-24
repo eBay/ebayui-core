@@ -1,6 +1,6 @@
 {
     "name": "@ebay/ebayui-core",
-    "version": "12.6.3",
+    "version": "12.7.0-0",
     "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
     "scripts": {
         "installMarkoV5": "npm i marko@5 @marko/compiler@5 --force",
@@ -67,7 +67,7 @@
         "@commitlint/cli": "^17",
         "@commitlint/config-conventional": "^17",
         "@ebay/browserslist-config": "^2.2.0",
-        "@ebay/skin": "~16.7.0",
+        "@ebay/skin": "~16.8.0-0",
         "@google/model-viewer": "3.1.1",
         "@lasso/marko-taglib": "^2.0.5",
         "@marko/compiler": "^5.27.4",
@@ -92,7 +92,7 @@
         "chai": "4.3.7",
         "chai-dom": "^1.10.0",
         "cheerio": "^1.0.0-rc.11",
-        "chromedriver": "^116",
+        "chromedriver": "^118",
         "coveralls": "^3.1.1",
         "css-loader": "^6",
         "del": "^7.0.0",
@@ -133,7 +133,7 @@
         "wdio-chromedriver-service": "^8"
     },
     "peerDependencies": {
-        "@ebay/skin": "~16.7.0",
+        "@ebay/skin": "~16.8.0-0",
         "marko": ">= ^4.27.0 || >= ^5.25.13"
     },
     "dependencies": {

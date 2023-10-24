@@ -11,6 +11,7 @@
     "@a11y-variant": "string",
     "@no-skin-classes": "boolean",
     "@_themes": "expression",
+    "@_def": "expression",
     "@role": "never",
     "@aria-labelledby": "never"
 }

@@ -49,10 +49,13 @@ export default {
         },
         header: {
             name: "@header",
+            type: { required: true },
             control: { type: "object" },
             table: {
                 category: "@attribute tags",
             },
+            description:
+                "The header text for the content of the dialog. This is a required attribute.",
         },
         footer: {
             name: "@footer",

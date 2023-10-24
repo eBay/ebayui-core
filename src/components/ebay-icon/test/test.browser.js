@@ -4,6 +4,7 @@ import { render, cleanup } from "@marko/testing-library";
 import template from "../icons/ebay-add-24-icon";
 import template2 from "../icons/ebay-arrow-left-24-icon";
 import template3 from "../icons/ebay-arrow-right-24-icon";
+import template4 from "../icons/ebay-ai-spectrum-16-colored-icon";
 
 use(chaiDom);
 afterEach(cleanup);
@@ -11,13 +12,24 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
+function checkIfHidden() {
+    const svg = document.body.firstChild;
+
+    expect(svg.style.position).to.equal(
+        "absolute",
+        "position should be absolute"
+    );
+    expect(svg.style.height).to.equal("0px", "height should be 0px");
+    expect(svg.style.width).to.equal("0px", "width should be 0px");
+}
+
 function checkIcon(iconId) {
-    const svg = document.body.firstChild.firstChild;
-    expect(svg.tagName).to.equal("SVG");
+    const svg = document.body.firstChild;
+    expect(svg.tagName).to.equal("svg");
 
     let iconAdd;
     svg.childNodes.forEach((child) => {
-        expect(child.tagName).to.equal("symbol");
+        expect(child.tagName).to.match(/symbol|defs/);
         if (child.id === iconId) {
             if (!!iconAdd) {
                 throw new Error(`Found multiple ${iconId}, expect only 1.`);
@@ -37,7 +49,7 @@ describe("rendering an icon in the browser", () => {
     });
 
     it("should create root SVG", () => {
-        expect(document.body.firstChild.hasAttribute("hidden")).to.equal(true);
+        checkIfHidden();
         expect(() => checkIcon("icon-add-24")).to.not.throw(Error);
     });
 
@@ -47,6 +59,8 @@ describe("rendering an icon in the browser", () => {
         icon.childNodes.forEach((child) => {
             expect(child.tagName).to.not.equal("DEFS");
         });
+        const defs = document.body.firstChild.firstChild;
+        expect(defs.childNodes.length).to.equal(0);
     });
 });
 
@@ -60,14 +74,33 @@ describe("rendering multiple icons in the browser", () => {
     });
 
     it("should create root SVG", () => {
-        expect(document.body.firstChild.hasAttribute("hidden")).to.equal(true);
-        const svg = document.body.firstChild.firstChild;
-        expect(svg.tagName).to.equal("SVG");
+        checkIfHidden();
+        const svg = document.body.firstChild;
+        expect(svg.tagName).to.equal("svg");
 
         expect(() => checkIcon("icon-add-24")).to.not.throw(Error);
         expect(() => checkIcon("icon-arrow-right-24")).to.not.throw(Error);
         expect(() => checkIcon("icon-arrow-left-24")).to.not.throw(Error);
         // Should have at least 3 icon symbols
-        expect(svg.childNodes.length).to.be.greaterThan(2);
+        expect(svg.childNodes.length).to.be.greaterThan(3);
+
+        const defs = document.body.firstChild.firstChild;
+        expect(defs.childNodes.length).to.equal(0);
+    });
+});
+
+describe("rendering icons with defs in the browser", () => {
+    beforeEach(async () => {
+        await render(template4, { a11yText: "icon" });
+    });
+
+    it("should create root SVG", () => {
+        checkIfHidden();
+        const svg = document.body.firstChild;
+        expect(svg.tagName).to.equal("svg");
+
+        const defs = document.body.firstChild.firstChild;
+        expect(defs.tagName).to.equal("defs");
+        expect(defs).to.have.descendants("linearGradient");
     });
 });
