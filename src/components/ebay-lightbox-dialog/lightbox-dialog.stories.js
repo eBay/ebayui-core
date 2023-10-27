@@ -123,8 +123,8 @@ export default {
                 },
             },
         },
-        "onPrev-button-click": {
-            action: "on-prev-button-click",
+        onPrevButtonClick: {
+            action: "on-prevButtonClick",
             description: "Triggered when previous button is clicked",
             table: {
                 category: "Events",
