@@ -158,7 +158,7 @@ export default {
         //     'Badge (only with variant=icon)'
         //     )
         // },
-        onCarouselUpdate: {
+        "onCarousel-update": {
             action: "on-carousel-update",
             description:
                 "called whenever item visibility changes, including initialization",
