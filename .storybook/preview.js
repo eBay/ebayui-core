@@ -9,6 +9,9 @@ export const parameters = {
     options: {
         storySort: {
             order: [
+                "Welcome",
+                "Getting Started",
+                "Contributing",
                 "buttons",
                 "dialogs",
                 "form input",
