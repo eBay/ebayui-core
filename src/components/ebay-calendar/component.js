@@ -240,8 +240,7 @@ export default class extends Marko.Component {
     getMonthDate(offset) {
         const baseDate = fromISO(this.state.baseISO);
         const date = new Date(
-            baseDate.getUTCFullYear(),
-            baseDate.getUTCMonth() + offset
+            Date.UTC(baseDate.getUTCFullYear(), baseDate.getUTCMonth() + offset)
         );
         return date;
     }
@@ -254,11 +253,13 @@ export default class extends Marko.Component {
         const baseDate = fromISO(this.state.baseISO);
         return toISO(
             new Date(
-                baseDate.getUTCFullYear(),
-                baseDate.getUTCMonth() +
-                    this.state.offset +
-                    (input.numMonths || 1),
-                0
+                Date.UTC(
+                    baseDate.getUTCFullYear(),
+                    baseDate.getUTCMonth() +
+                        this.state.offset +
+                        (input.numMonths || 1),
+                    0
+                )
             )
         );
     }
