@@ -143,6 +143,14 @@ export default class extends Marko.Component {
                 // In this case, we leave the tabindex and position as is. This is a fall-through case.
             }
         }
+        while (
+            this.state.disableAfter &&
+            this.getMonthDate(
+                this.state.offset + (input.numMonths || 1) - 1
+            ).toISOString() > this.state.disableAfter
+        ) {
+            this.state.offset--;
+        }
     }
 
     /**
