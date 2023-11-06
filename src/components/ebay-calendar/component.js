@@ -293,7 +293,9 @@ export default class extends Marko.Component {
                 year: "numeric",
             }
         );
-        return formatter.format(date);
+        return formatter.format(
+            new Date(date.getUTCFullYear(), date.getUTCMonth())
+        );
     }
 
     /**
