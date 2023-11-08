@@ -1,7 +1,7 @@
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import * as stories from "../segmented-buttons.stories"; // import all stories from the stories file
 
 const { Default } = composeStories(stories);

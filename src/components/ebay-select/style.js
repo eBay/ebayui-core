@@ -1,2 +1,2 @@
-require("@ebay/skin/select");
-require("@ebay/skin/icon");
+import "@ebay/skin/select";
+import "@ebay/skin/icon";

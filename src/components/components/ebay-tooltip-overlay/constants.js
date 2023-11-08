@@ -1,10 +1,10 @@
-exports.typeRoles = {
+export const typeRoles = {
     tourtip: "region",
     tooltip: "tooltip",
 };
 
 // Added scale3d for safari to trigger gpu rerendering to fix a bug with filter
-exports.pointerStyles = {
+export const pointerStyles = {
     left: {
         transform: "translateX(16px) translateY(-50%) scale3d(1,1,1)",
         left: "100%",

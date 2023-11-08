@@ -1,1 +1,1 @@
-require("@ebay/skin/panel-dialog");
+import "@ebay/skin/panel-dialog";

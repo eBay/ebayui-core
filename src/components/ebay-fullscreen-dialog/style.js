@@ -1,1 +1,1 @@
-require("@ebay/skin/fullscreen-dialog");
+import "@ebay/skin/fullscreen-dialog";

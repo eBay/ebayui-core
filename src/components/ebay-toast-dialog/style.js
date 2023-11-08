@@ -1,1 +1,1 @@
-require("@ebay/skin/toast-dialog");
+import "@ebay/skin/toast-dialog";

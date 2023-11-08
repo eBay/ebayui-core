@@ -5,7 +5,7 @@ const validRanges = {
     A: ["G"],
 };
 
-module.exports = (input) => {
+export default (input) => {
     const { max, min, rating } = input;
     const validMax = validRanges[max];
     if (!(validMax && validMax.indexOf(min) > -1)) {

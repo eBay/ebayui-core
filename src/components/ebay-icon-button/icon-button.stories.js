@@ -1,7 +1,7 @@
 import { addRenderBodies } from "../../../.storybook/utils";
 import component from "./examples/icon-button.marko";
 import code from "./examples/icon-button.marko?raw";
-import readme from "./README.md";
+import Readme from "./README.md";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -14,7 +14,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: readme,
+                component: Readme,
             },
         },
     },

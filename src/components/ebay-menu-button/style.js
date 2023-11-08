@@ -1,2 +1,2 @@
-require("@ebay/skin/menu-button");
-require("./ebay-menu-button.css");
+import "@ebay/skin/menu-button";
+import "./ebay-menu-button.css";

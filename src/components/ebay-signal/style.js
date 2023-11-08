@@ -1,1 +1,1 @@
-require("@ebay/skin/signal");
+import "@ebay/skin/signal";

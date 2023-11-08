@@ -1,1 +1,1 @@
-require("@ebay/skin/cta-button");
+import "@ebay/skin/cta-button";

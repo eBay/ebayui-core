@@ -1,1 +1,1 @@
-require("@ebay/skin/alert-dialog");
+import "@ebay/skin/alert-dialog";

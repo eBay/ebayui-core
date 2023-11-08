@@ -1,0 +1,2 @@
+import{g as x}from"./_commonjsHelpers.b8add541.js";var l={exports:{}},y=function(r,e){var m=!r.n,o=!("i"in r)||r.i,s=e.b_,c=s&&s.o_._W_,_=e._X_.r_,v=_,n=e._Y_,d=n;if(n[0]!=="@"){var f=s.n_.r_;_!==f&&(v=f,d+=":"+_.id)}var i=o&&(c||v.J_[d]);m?(e.bf(n,_,o),!i&&r.renderBody&&r.renderBody(e),e.ef()):i?r.b?e._Z_.a__=!0:(e.beginElement("",null,n,_),e._Z_.aa_=!0,e.endElement()):r.renderBody&&r.renderBody(e)};(function(a){a.exports=y})(l);const b=x(l.exports);export{b as _};
+//# sourceMappingURL=preserve-tag.fa9716eb.js.map

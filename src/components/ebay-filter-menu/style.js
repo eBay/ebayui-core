@@ -1,1 +1,1 @@
-require("@ebay/skin/filter-menu");
+import "@ebay/skin/filter-menu";

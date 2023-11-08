@@ -1,4 +1,4 @@
-require("@ebay/skin/pagination");
-require("@ebay/skin/utility");
-require("@ebay/skin/icon");
-require("@ebay/skin/icon-button");
+import "@ebay/skin/pagination";
+import "@ebay/skin/utility";
+import "@ebay/skin/icon";
+import "@ebay/skin/icon-button";

@@ -1,7 +1,7 @@
 import { tagToString } from "../../../.storybook/storybook-code-source";
 import { addRenderBodies } from "../../../.storybook/utils";
 import button from "./index.marko";
-import readme from "./README.md";
+import Readme from "./README.md";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -22,7 +22,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: readme,
+                component: Readme,
             },
         },
     },

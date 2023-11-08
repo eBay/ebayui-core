@@ -1,5 +1,5 @@
 import "@ebay/skin/tokens";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
 import { render, fireEvent, cleanup } from "@marko/testing-library";

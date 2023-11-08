@@ -17,4 +17,4 @@ function scroll(el) {
     }
 }
 
-module.exports = { scroll };
+export { scroll };

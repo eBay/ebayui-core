@@ -1,2 +1,2 @@
-require("@ebay/skin/textbox");
-require("@ebay/skin/legacy-textbox");
+import "@ebay/skin/textbox";
+import "@ebay/skin/legacy-textbox";

@@ -1,1 +1,1 @@
-require("@ebay/skin/menu-button");
+import "@ebay/skin/menu-button";
