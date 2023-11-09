@@ -1,1 +1,18 @@
-{}
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@role": "never",
+    "@type": {
+        "enum": ["avatar", "button", "form", "text", "tile"]
+    },
+    "@size": {
+        "enum": ["default", "small", "large"]
+    },
+    "@multiline": "boolean",
+    "@isVisible": "boolean",
+    "@a11yText": "string"
+}

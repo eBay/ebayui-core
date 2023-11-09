@@ -1,0 +1,29 @@
+class {
+    onCreate() {
+        this.state = {
+            isLoading: true,
+            data: null,
+        };
+    }
+    async getData() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve("Button"), 2000);
+        });
+    }
+    async onMount() {
+        try {
+            this.state.data = await this.getData();
+        } catch (err) {
+            this.state.error = err;
+        } finally {
+            this.state.isLoading = false;
+        }
+    }
+}
+
+<if(state.isLoading)>
+    <ebay-skeleton-loader type="button" style="width:88px" ...input/>
+</if>
+<else>
+    <ebay-button> ${state.data} </ebay-button>
+</else>

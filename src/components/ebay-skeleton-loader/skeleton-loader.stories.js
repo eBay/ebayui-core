@@ -12,8 +12,12 @@ import textMultilineTemplate from "./examples/text-multiline.marko";
 import textMultilineCode from "./examples/text-multiline.marko?raw";
 import formTemplate from "./examples/form.marko";
 import formCode from "./examples/form.marko?raw";
+import imageTemplate from "./examples/image.marko";
+import imageCode from "./examples/image.marko?raw";
 import tileTemplate from "./examples/tile.marko";
 import tileCode from "./examples/tile.marko?raw";
+import withContentTemplate from "./examples/withContent.marko";
+import withContentCode from "./examples/withContent.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -33,7 +37,7 @@ export default {
     argTypes: {
         size: {
             control: { type: "select" },
-            options: ["default", "small", "large"],
+            options: ["small", "large"],
             table: {
                 defaultValue: {
                     summary: "default",
@@ -51,6 +55,15 @@ export default {
             },
             description:
                 "If the text should be multiline. Applicable for type `text` or `tile` only",
+        },
+        isVisible: {
+            control: { type: "boolean" },
+            table: {
+                defaultValue: {
+                    summary: "true",
+                },
+            },
+            description: "If set to true, the skeleton will be visible",
         },
         a11yText: {
             control: { type: "text" },
@@ -141,6 +154,19 @@ Form.parameters = {
     },
 };
 
+export const Image = (args) => ({
+    input: args,
+    component: imageTemplate,
+});
+Image.args = {};
+Image.parameters = {
+    docs: {
+        source: {
+            code: imageCode,
+        },
+    },
+};
+
 export const Tile = (args) => ({
     input: args,
     component: tileTemplate,
@@ -150,6 +176,19 @@ Tile.parameters = {
     docs: {
         source: {
             code: tileCode,
+        },
+    },
+};
+
+export const withContent = (args) => ({
+    input: args,
+    component: withContentTemplate,
+});
+withContent.args = {};
+withContent.parameters = {
+    docs: {
+        source: {
+            code: withContentCode,
         },
     },
 };
