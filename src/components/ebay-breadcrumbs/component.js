@@ -7,7 +7,7 @@ export default {
     },
 
     handleMenuBreadcrumb(originalEvent) {
-        this.emit("select", { originalEvent, el: originalEvent.target });
+        this.emit("select", { originalEvent, el: originalEvent.el });
     },
 
     onCreate() {
