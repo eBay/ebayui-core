@@ -96,7 +96,7 @@ export default {
                 category: "@attribute tags",
             },
         },
-        onLoadError: {
+        "onLoad-error": {
             action: "on-load-error",
             description:
                 "Triggered when there is a load error with video player or source",

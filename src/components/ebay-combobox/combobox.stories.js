@@ -117,7 +117,7 @@ export default {
 
             description: "same as the `onChange` event, which fires on blur",
         },
-        onInputChange: {
+        "onInput-change": {
             action: "on-input-change",
             table: {
                 category: "Events",
@@ -139,7 +139,7 @@ export default {
             description:
                 "similar to a `<select>`, which fires when an option is clicked or selected",
         },
-        onFloatingLabelInit: {
+        "onFloating-label-init": {
             action: "on-floating-label-init",
             table: {
                 category: "Events",
