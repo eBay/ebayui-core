@@ -93,7 +93,7 @@
         "chai": "4.3.10",
         "chai-dom": "^1.10.0",
         "cheerio": "^1.0.0-rc.11",
-        "chromedriver": "^118",
+        "chromedriver": "^119",
         "coveralls": "^3.1.1",
         "css-loader": "^6",
         "del": "^7.0.0",
