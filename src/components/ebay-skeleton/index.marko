@@ -1,0 +1,46 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+static var ignoredAttributes = [
+    "a11yText",
+    "class",
+    "size",
+    "type",
+    "multiline",
+    "count",
+    "columns",
+];
+static var validTypes = ["avatar", "button", "text", "form", "image", "tile"];
+static var validSizes = ["large", "small"];
+static var validTypeSizes = ["button", "text", "tile"];
+$ var size = validSizes.includes(input.size) ? input.size : "default";
+$ var type = validTypes.includes(input.type) ? input.type : null;
+$ var typeClass = type && `skeleton-${type}`;
+$ var skeletonClass = (
+    validTypeSizes.includes(input.type) &&
+    (size !== "default"
+        ? `${typeClass}--${size}`
+        : type === "text"
+        ? `${typeClass}--small`
+        : "")
+);
+
+<div
+    ...processHtmlAttributes(input, ignoredAttributes)
+    class=[
+        typeClass,
+        skeletonClass,
+        input.multiline && type === "text" && "skeleton-text--multiline",
+        input.class,
+    ]
+    role="img"
+    aria-label=input.a11yText || "Loading"
+>
+    <if(type === "tile")>
+        <div class="skeleton-image"/>
+        <div class=[
+            `skeleton-text skeleton-text--${
+                size !== "default" ? size : "small"
+            }`,
+            input.multiline && "skeleton-text--multiline",
+        ]/>
+    </if>
+</div>

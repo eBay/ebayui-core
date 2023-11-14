@@ -85,7 +85,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-segmented-buttons`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-segmented-buttons)
 -   [`ebay-select`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-select)
 -   [`ebay-signal`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-signal)
--   [`ebay-skeleton-loader`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-skeleton-loader)
+-   [`ebay-skeleton`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-skeleton)
 -   [`ebay-snackbar-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-snackbar-dialog)
 -   [`ebay-split-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-split-button)
 -   [`ebay-star-rating`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-star-rating)

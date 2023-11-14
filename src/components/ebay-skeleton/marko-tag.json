@@ -13,6 +13,5 @@
         "enum": ["default", "small", "large"]
     },
     "@multiline": "boolean",
-    "@isVisible": "boolean",
     "@a11yText": "string"
 }

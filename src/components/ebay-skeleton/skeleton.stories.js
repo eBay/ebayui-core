@@ -24,7 +24,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: "building blocks/ebay-skeleton-loader",
+    title: "building blocks/ebay-skeleton",
     component: Component,
     parameters: {
         docs: {
@@ -35,6 +35,11 @@ export default {
     },
 
     argTypes: {
+        type: {
+            control: { type: "select" },
+            options: ["avatar", "button", "text", "form", "image", "tile"],
+            description: "Type of the component to render.",
+        },
         size: {
             control: { type: "select" },
             options: ["small", "large"],
@@ -56,15 +61,6 @@ export default {
             description:
                 "If the text should be multiline. Applicable for type `text` or `tile` only",
         },
-        isVisible: {
-            control: { type: "boolean" },
-            table: {
-                defaultValue: {
-                    summary: "true",
-                },
-            },
-            description: "If set to true, the skeleton will be visible",
-        },
         a11yText: {
             control: { type: "text" },
             description: "The accessibility text for the component",
@@ -80,11 +76,13 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     style: "width: 220px",
+    type: "button",
+    size: "small",
 };
 Default.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-skeleton-loader", Default.args),
+            code: tagToString("ebay-skeleton", Default.args),
         },
     },
 };
