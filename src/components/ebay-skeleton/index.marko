@@ -12,8 +12,8 @@ static var validTypes = ["avatar", "button", "text", "form", "image", "tile"];
 static var validSizes = ["large", "small"];
 static var validTypeSizes = ["button", "text", "tile"];
 $ var size = validSizes.includes(input.size) ? input.size : "default";
-$ var type = validTypes.includes(input.type) ? input.type : null;
-$ var typeClass = type && `skeleton-${type}`;
+$ var type = validTypes.includes(input.type) ? input.type : "form";
+$ var typeClass = `skeleton-${type}`;
 $ var skeletonClass = (
     validTypeSizes.includes(input.type) &&
     (size !== "default"

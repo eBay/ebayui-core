@@ -38,6 +38,11 @@ export default {
         type: {
             control: { type: "select" },
             options: ["avatar", "button", "text", "form", "image", "tile"],
+            table: {
+                defaultValue: {
+                    summary: "form",
+                },
+            },
             description: "Type of the component to render.",
         },
         size: {
@@ -76,8 +81,6 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     style: "width: 220px",
-    type: "button",
-    size: "small",
 };
 Default.parameters = {
     docs: {
