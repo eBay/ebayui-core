@@ -68,7 +68,7 @@ $ var a11ySeparator = input.a11ySeparator ?? " - ";
                                     $ endDate = daysInMonth;
                                 </else-if>
                                 <for|day| from=startDate to=endDate>
-                                    $ var dayISO = toISO(new Date(year, month, day));
+                                    $ var dayISO = toISO(new Date(Date.UTC(year, month, day)));
                                     $ var isToday = dayISO === state.todayISO;
                                     $ var isSelected = (Array.isArray(input.selected)
                                             ? input.selected.some((iso) => iso === dayISO)
