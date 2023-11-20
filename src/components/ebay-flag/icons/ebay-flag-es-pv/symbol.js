@@ -1,0 +1,4 @@
+export function symbol() {
+    // eslint-disable-next-line max-len,quotes
+    return '<symbol viewbox="0 0 64 48" fill=none id=flag-es-pv><g clip-path=url(#clip0_704_43634)><path d="M0 0H64V48H0V0Z" fill=#D52B1E></path><path d="M0 0H5.31L18.65 10.01C25.99 15.51 31.99 20.01 32 20.01C32.01 20.01 38.01 15.51 58.69 0H64V3.99L50.66 13.99C43.32 19.49 37.32 24 37.32 24C37.32 24 43.32 28.51 64 44.02V48H58.69L45.35 38C38.01 32.49 32.01 27.99 32 27.99C31.99 27.99 25.99 32.49 5.31 48H0V44.02L13.34 34.01C20.68 28.51 26.68 24 26.68 24C26.68 24 20.68 19.49 0 3.99V1.99L0 0Z" fill=#009B48></path><path d="M28.81 0H35.19V20.81H64V27.19H35.19V48H28.81V27.19H0V20.81H28.81V10.41V0Z" fill=white></path></g><defs><clippath id=clip0_704_43634><rect width=64 height=48 fill=white></rect></clippath></defs></symbol>';
+}

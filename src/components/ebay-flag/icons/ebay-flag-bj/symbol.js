@@ -1,0 +1,4 @@
+export function symbol() {
+    // eslint-disable-next-line max-len,quotes
+    return '<symbol viewbox="0 0 64 48" fill=none id=flag-bj><g clip-path=url(#clip0_704_43608)><mask id=mask0_704_43608 style="mask-type: luminance" maskunits=userSpaceOnUse x=-1 y=0 width=65 height=49><path d="M-0.00402832 0.00170898H63.9986V48.0003H-0.00402832V0.00170898Z" fill=white></path></mask><g mask=url(#mask0_704_43608)><path fill-rule=evenodd clip-rule=evenodd d="M-6.50012 0.00195312H25.5012V48.0006H-6.50012V0.00195312Z" fill=#319400></path><path fill-rule=evenodd clip-rule=evenodd d="M25.5012 0.00195312H89.5038V24.0013H25.5012V0.00195312Z" fill=#FFD600></path><path fill-rule=evenodd clip-rule=evenodd d="M25.5012 24.0012H89.5038V48.0005H25.5012V24.0012Z" fill=#DE2110></path></g></g><defs><clippath id=clip0_704_43608><rect width=64 height=48 fill=white></rect></clippath></defs></symbol>';
+}
