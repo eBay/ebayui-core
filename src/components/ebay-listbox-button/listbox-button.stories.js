@@ -1,7 +1,12 @@
 import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../../.storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
+import WithDescriptionTemplate from "./examples/with-description.marko";
+import WithDescriptionTemplateCode from "./examples/with-description.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -139,8 +144,8 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     prefixLabel: "Selected:",
     options: [
         {
@@ -157,12 +162,17 @@ Standard.args = {
         },
     ],
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-listbox-button", Standard.args, {
+            code: tagToString("ebay-listbox-button", Default.args, {
                 items: "item",
             }),
         },
     },
 };
+
+export const withDescription = buildExtensionTemplate(
+    WithDescriptionTemplate,
+    WithDescriptionTemplateCode
+);
