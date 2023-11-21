@@ -1,2 +1,2 @@
-require("@ebay/skin/breadcrumbs");
-require("@ebay/skin/utility");
+import "@ebay/skin/breadcrumbs";
+import "@ebay/skin/utility";

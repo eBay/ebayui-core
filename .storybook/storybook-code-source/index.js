@@ -73,4 +73,4 @@ function argsToString(args, plurarls, indent) {
     return { attrs, body };
 }
 
-module.exports = { tagToString };
+export { tagToString };

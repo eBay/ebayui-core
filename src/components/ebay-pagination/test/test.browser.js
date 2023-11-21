@@ -1,7 +1,7 @@
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import * as stories from "../pagination.stories";
 import { getPaginationItems } from "../../../common/test-utils/shared";
 

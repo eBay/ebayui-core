@@ -1,1 +1,1 @@
-require("@ebay/skin/chip");
+import "@ebay/skin/chip";

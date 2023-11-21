@@ -1,1 +1,1 @@
-require("@ebay/skin/lightbox-dialog");
+import "@ebay/skin/lightbox-dialog";

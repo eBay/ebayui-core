@@ -1,5 +1,3 @@
-const { render } = require("@marko/testing-library");
-
 function addRenderBodies(input) {
     if (input && typeof input === "object") {
         if (Array.isArray(input)) {
@@ -41,4 +39,4 @@ function buildExtensionTemplate(template, code, args = {}) {
     return builder;
 }
 
-module.exports = { addRenderBodies, buildExtensionTemplate };
+export { addRenderBodies, buildExtensionTemplate };

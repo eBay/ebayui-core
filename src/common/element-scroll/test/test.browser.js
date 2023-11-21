@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import elementScroll from "..";
+import * as elementScroll from "../index.js";
 
 describe("element-scroll", () => {
     const contentDiv = document.createElement("div");

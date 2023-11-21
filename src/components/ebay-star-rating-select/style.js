@@ -1,1 +1,1 @@
-require("@ebay/skin/star-rating-select");
+import "@ebay/skin/star-rating-select";

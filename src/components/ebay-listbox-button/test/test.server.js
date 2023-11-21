@@ -1,41 +1,45 @@
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../listbox-button.stories";
 
-const { Standard } = composeStories(stories);
+const { Default, withDescription } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
 
 describe("listbox", () => {
     it("renders basic version", async () => {
-        await htmlSnap(Standard);
+        await htmlSnap(Default);
     });
 
     it("renders fluid layout", async () => {
-        await htmlSnap(Standard, { fluid: true });
+        await htmlSnap(Default, { fluid: true });
     });
 
     it("renders truncated layout", async () => {
-        await htmlSnap(Standard, { truncate: true });
+        await htmlSnap(Default, { truncate: true });
     });
 
     it("renders with second item selected", async () => {
-        await htmlSnap(Standard, { selected: 1 });
+        await htmlSnap(Default, { selected: 1 });
     });
 
     it("renders with prefix label", async () => {
-        await htmlSnap(Standard, { prefixLabel: "Selected: " });
+        await htmlSnap(Default, { prefixLabel: "Selected: " });
     });
 
     it("renders with prefix id", async () => {
-        await htmlSnap(Standard, { prefixId: "prefixId" });
+        await htmlSnap(Default, { prefixId: "prefixId" });
     });
 
     it("renders with floating label", async () => {
-        await htmlSnap(Standard, { floatingLabel: "floating label" });
+        await htmlSnap(Default, { floatingLabel: "floating label" });
     });
 
     it("renders with form", async () => {
-        await htmlSnap(Standard, { variant: "form" });
+        await htmlSnap(Default, { variant: "form" });
+    });
+
+    it("renders with description", async () => {
+        await htmlSnap(withDescription);
     });
 });

@@ -1,1 +1,1 @@
-require("@ebay/skin/date-textbox");
+import "@ebay/skin/date-textbox";

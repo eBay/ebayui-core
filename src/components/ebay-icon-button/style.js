@@ -1,3 +1,3 @@
-require("@ebay/skin/icon-button");
-require("@ebay/skin/button");
-require("@ebay/skin/link");
+import "@ebay/skin/icon-button";
+import "@ebay/skin/button";
+import "@ebay/skin/link";

@@ -1,1 +1,1 @@
-require("@ebay/skin/listbox-button");
+import "@ebay/skin/listbox-button";

@@ -1,6 +1,6 @@
 import { tagToString } from "../../../.storybook/storybook-code-source";
 import carousel from "./index.marko";
-import readme from "./README.md";
+import Readme from "./README.md";
 import "./examples/example-styles.less";
 import defaultTabIndex from "./examples/preserve-tabindex.marko";
 import defaultTabIndexCode from "./examples/preserve-tabindex.marko?raw";
@@ -54,7 +54,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: readme,
+                component: Readme,
             },
         },
     },
@@ -158,7 +158,7 @@ export default {
         //     'Badge (only with variant=icon)'
         //     )
         // },
-        onCarouselUpdate: {
+        "onCarousel-update": {
             action: "on-carousel-update",
             description:
                 "called whenever item visibility changes, including initialization",

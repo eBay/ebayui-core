@@ -22,10 +22,10 @@ function transformMarko5(path, t) {
     );
 }
 
-module.exports = function transform(a, b) {
+export function transform(a, b) {
     if (a.hub) {
         return transformMarko5(a, b);
     }
 
     return transformMarko4(a, b);
-};
+}

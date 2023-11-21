@@ -1,1 +1,1 @@
-require("@ebay/skin/progress-bar");
+import "@ebay/skin/progress-bar";

@@ -1,7 +1,7 @@
 import "@ebay/skin/tokens";
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup, waitFor } from "@marko/testing-library";
 import { createRenderBody } from "../../../common/test-utils/shared";
 import { pressKey } from "../../../common/test-utils/browser";

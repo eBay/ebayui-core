@@ -41,7 +41,7 @@ function getExamples(fileName) {
         outputBaseDir,
         `ebay-${fileName}`,
         "examples",
-        "all.marko"
+        "all.marko",
     );
 }
 
@@ -54,7 +54,7 @@ function setupDir(fileName) {
     fs.writeFileSync(
         example,
         `class {}
-div.icon-examples`
+div.icon-examples`,
     );
 }
 
@@ -86,7 +86,10 @@ function defToObject(def) {
 }
 
 function addIcons(component, iconMap) {
-    const svgFile = path.join(svgDir, `icons.svg`);
+    let svgFile = path.join(svgDir, `icons.svg`);
+    if (component === "flag") {
+        svgFile = path.join(svgDir, `flags.svg`);
+    }
     const svgContent = fs.readFileSync(svgFile, "utf-8");
     const $ = cheerio.load(svgContent);
 
@@ -115,11 +118,14 @@ function addIcons(component, iconMap) {
 }
 function generateFile(type, iconMap) {
     for (const [name, themes] of iconMap) {
-        const postfixName = type === "icon" ? "-icon" : "";
+        let postfixName = "";
+        if (type === "icon") {
+            postfixName = "-icon";
+        }
         const iconDef = defsMap.has(name) ? defsMap.get(name) : null;
         const iconFolder = path.join(
             getOutputDir(type),
-            `ebay-${name}${postfixName}`
+            `ebay-${name}${postfixName}`,
         );
         const markoTag = path.join(iconFolder, "marko-tag.json");
         const index = path.join(iconFolder, "index.marko");
@@ -145,7 +151,7 @@ function generateFile(type, iconMap) {
 
         fs.writeFileSync(
             markoTag,
-            `${JSON.stringify(markoTagJson, null, 2)}\n`
+            `${JSON.stringify(markoTagJson, null, 2)}\n`,
         );
 
         if (type === "image-placeholder") {
@@ -160,7 +166,7 @@ function generateFile(type, iconMap) {
                 iconDef ? 'import { def } from "./def.js"\n' : ""
             }<ebay-icon ...input _name="${name}" _type="${type}" _themes=symbol${
                 iconDef ? " _def=def" : ""
-            }/>\n`
+            }/>\n`,
         );
     }
 }
@@ -194,10 +200,12 @@ function generateIcon(componentName) {
 setupDir("icon");
 setupDir("star-rating");
 setupDir("image-placeholder");
+setupDir("flag");
 
 generateIcon("icon");
 generateIcon("star-rating");
 generateIcon("image-placeholder");
+generateIcon("flag");
 
 Object.keys(examplesMap).forEach((componentName) => {
     examplesMap[componentName].sort((a, b) => {

@@ -1,1 +1,1 @@
-require("@ebay/skin/section-title");
+import "@ebay/skin/section-title";

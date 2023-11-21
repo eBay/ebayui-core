@@ -1,6 +1,6 @@
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import { pressKey } from "../../../common/test-utils/browser";
 import * as stories from "../button.stories"; // import all stories from the stories file

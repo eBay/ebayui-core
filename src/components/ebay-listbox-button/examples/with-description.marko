@@ -1,0 +1,18 @@
+<ebay-listbox-button
+    prefix-label="Select"
+    name="formFieldName"
+    onChange("emit", "change")
+    onCollapse("emit", "collapse")
+    onExpand("emit", "expand")
+    ...input
+>
+    <@option selected value="1" text="Option 1">
+        <@description>Option 1 info</@description>
+    </@option>
+    <@option value="2" text="Option 2">
+        <@description>Option 2 info</@description>
+    </@option>
+    <@option value="3" text="Option 3">
+        <@description>Option 3 info</@description>
+    </@option>
+</ebay-listbox-button>

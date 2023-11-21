@@ -1,2 +1,2 @@
-require("@ebay/skin/section-notice");
-require("@ebay/skin/icon");
+import "@ebay/skin/section-notice";
+import "@ebay/skin/icon";

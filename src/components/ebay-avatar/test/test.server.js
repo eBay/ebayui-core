@@ -1,5 +1,5 @@
 import { use } from "chai";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../avatar.stories"; // import all stories from the stories file
 const { Default, WithImage, SignedOut } = composeStories(stories);
