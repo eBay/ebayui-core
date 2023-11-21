@@ -1,2 +1,0 @@
-import{r as _,a as c,d as l,t as v}from"./merge-attrs.9e0d7be9.js";const n="ywutLLeS",s=v(n);_.exports.r(n,()=>s);const h={onMount(){this.listen(this.input)},onInput(t){this.target&&this.target!==t.to&&(this.onDestroy(),this.listen(t))},onDestroy(){this.subscription.removeAllListeners()},listen(t){for(var r=this.target=t.to,i=this.subscription=this.subscribeTo(r),o=t.__events,a=o.length,e=0;e<a;e+=2){var m=o[e],p=o[e+1];i[m](p,this.emit.bind(this,p))}}};s._=c(function(t,r,i,o,a,e){},{t:n},h);s.Component=l(h,s._);export{s as _};
-//# sourceMappingURL=index.f495492d.js.map

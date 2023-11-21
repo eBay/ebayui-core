@@ -1,0 +1,1 @@
+{"version":3,"file":"self-iterator-81a0b488.js","sources":["../../node_modules/marko/dist/runtime/helpers/self-iterator.js"],"sourcesContent":["\"use strict\";module.exports = function* selfIterator() {\n  yield this;\n};"],"names":["selfIterator"],"mappings":"mDAAa,IAAAA,EAAiB,WAAyB,CACrD,MAAM,IACR","x_google_ignoreList":[0]}
