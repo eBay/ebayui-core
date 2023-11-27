@@ -26,7 +26,7 @@
         "build": "npm run lint && node scripts/check-postpublish && npm test",
         "build:ci": "npm run lint && node scripts/check-postpublish && npm test && npm run build",
         "build:readme": "node scripts/add-ds-version",
-        "build:storybook": "storybook build -o ./docs",
+        "build:storybook": "storybook build -o ./docs -s ./.storybook/static",
         "importSVG": "node --experimental-json-modules --experimental-import-meta-resolve scripts/import-svg",
         "ts": "npm run test:server",
         "tb": "npm run test:browser",
