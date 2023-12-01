@@ -117,7 +117,7 @@ Whilst having multiple "work in progress", "almost done" and "merged branch" typ
 Before creating your pull request you have two options regarding what to do with the commit history of your feature branch:
 
 1. Squash all superfluous commits. If more than 1 commit remains, then clearly label your PR as "do not squash" in order to keep this commit history. Any subsequent commits to the branch (i.e. those made after code review) may also need squashing by you.
-1. Do not squash any commits and clearly mark your PR as "must squash" to indicate to the reviewer that you do not wish to keep any commit history. If you wish to keep any subsequent commits (i.e. after code review), you will now need to switch tracks to option 1 above.
+2. Do not squash any commits and clearly mark your PR as "must squash" to indicate to the reviewer that you do not wish to keep any commit history. If you wish to keep any subsequent commits (i.e. after code review), you will now need to switch tracks to option 1 above.
 
 If a pull request is received with a bewildering commit history that is difficult to reason with (e.g. 10+ commits containing obscure commit messages, previously committed code, old branch merges, etc), it will most likely be deemed too risky and therefore closed immediately.
 
@@ -218,22 +218,22 @@ All major and minor releases should be preceded by one or more pre-releases. All
     - update the version number in `package.json`
     - commit all changes locally
     - create a Git tag
-1. Run `git push` to push the commit to origin. (**Note**: do not push tags for prereleases.)
-1. Run `npm publish --tag beta` to publish the package to NPM.
+2. Run `git push` to push the commit to origin. (**Note**: do not push tags for prereleases.)
+3. Run `npm publish --tag beta` to publish the package to NPM.
 
 ### Final Release
 
 A final release is always made from the `master` branch.
 
 1. Create a GitHub PR to merge the milestone branch into master branch.
-1. Merge the PR after approval (do not squash!)
-1. Switch to your local master branch and pull the changes from origin.
-1. Run `npm version patch`, `npm version minor`, or `npm version major`. This command will automatically:
+2. Merge the PR after approval (do not squash!)
+3. Switch to your local master branch and pull the changes from origin.
+4. Run `npm version patch`, `npm version minor`, or `npm version major`. This command will automatically:
     - update the version number in `package.json`
     - commit all changes locally
     - create a Git tag
-1. Run `git push` to push the commit to origin.
-1. Push the git tag to origin, e.g. run `git push origin v1.0.0` using the new version tag you just created.
-1. Run `npm publish` to publish the package to NPM.
+5. Run `git push` to push the commit to origin.
+6. Push the git tag to origin, e.g. run `git push origin v1.0.0` using the new version tag you just created.
+7. Run `npm publish` to publish the package to NPM.
 
 After every major and minor release, please take the opportunity to upgrade any outdated dependencies and devDependencies (_hint_: run `npm outdated` to see outdated dependencies). Except for major version upgrades, the version in `package.json` should always reflect the last known working version, not the version you are upgrading to.
