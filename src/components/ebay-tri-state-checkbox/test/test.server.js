@@ -1,5 +1,5 @@
 import { use } from "chai";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../tri-state-checkbox.stories";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";

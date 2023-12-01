@@ -1,1 +1,1 @@
-require("@ebay/skin/toggle-button");
+import "@ebay/skin/toggle-button";

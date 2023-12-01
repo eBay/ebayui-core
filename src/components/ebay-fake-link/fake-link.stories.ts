@@ -1,6 +1,6 @@
 import { tagToString } from "../../../.storybook/storybook-code-source";
 import component from "./index.marko";
-import readme from "./README.md";
+import Readme from "./README.md";
 
 const Template = (args) => ({
     input: {
@@ -17,7 +17,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: readme,
+                component: Readme,
             },
         },
     },

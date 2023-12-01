@@ -51,7 +51,7 @@ export default class extends MenuUtils<Input, MenuState> {
     handleItemKeydown(
         index: number,
         originalEvent: KeyboardEvent,
-        el: HTMLElement
+        el: HTMLElement,
     ) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.emitComponentEvent({
@@ -72,7 +72,7 @@ export default class extends MenuUtils<Input, MenuState> {
 
     onInput(input: Input) {
         this.items = ((input.items as Marko.AttrTag<Item>[]) || []).filter(
-            (item) => !item.separator
+            (item) => !item.separator,
         );
     }
 }

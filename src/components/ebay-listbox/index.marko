@@ -12,7 +12,7 @@ static var ignoredAttributes = [
     "options"
 ];
 
-static var itemIgnoredAttributes = ["value", "text", "selected", "disabled"];
+static var itemIgnoredAttributes = ["value", "text", "selected", "disabled", "description"];
 
 $ var selectedOption = (input.options as Option[])?.[state.selectedIndex];
 <div
@@ -35,6 +35,9 @@ $ var selectedOption = (input.options as Option[])?.[state.selectedIndex];
             onClick(!component.isAutoSelection && "handleClick", index)
             onMousedown(component.isAutoSelection && "handleMouseDown")>
             <span class="listbox__value">${option.text}</span>
+            <if (option.description)>
+                <span class="listbox__description"><${option.description}/></span>
+            </if>
             <ebay-tick-16-icon/>
         </div>
     </for>

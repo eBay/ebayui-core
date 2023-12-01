@@ -108,7 +108,7 @@ export default {
                 },
             },
         },
-        onLoadError: {
+        "onLoad-error": {
             action: "on-load-error",
             description: "Triggered when loading error happens",
             table: {
@@ -118,7 +118,7 @@ export default {
                 },
             },
         },
-        "on-model-visibility": {
+        "onModel-visibility": {
             action: "on-model-visibility",
             description: "Triggered when model is visible",
             table: {
@@ -128,7 +128,7 @@ export default {
                 },
             },
         },
-        "on-render-scale": {
+        "onRender-scale": {
             action: "on-render-scale",
             description: "Triggered when model scales",
             table: {
@@ -138,7 +138,7 @@ export default {
                 },
             },
         },
-        "on-poster-dismissed": {
+        "onPoster-dismissed": {
             action: "on-poster-dismissed",
             description:
                 "Triggered when there's a placeholder image and it is removed",

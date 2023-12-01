@@ -1,0 +1,5 @@
+import { symbol } from "./symbol";
+import { def } from "./def.ts"
+import type { Input as IconInput } from "../../../ebay-icon/component-browser"
+export type Input = Omit<IconInput, `_${string}`>;
+<ebay-icon ...input _name="flag-aq" _type="flag" _themes=symbol _def=def/>

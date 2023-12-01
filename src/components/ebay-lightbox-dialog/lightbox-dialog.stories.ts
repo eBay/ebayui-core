@@ -49,10 +49,13 @@ export default {
         },
         header: {
             name: "@header",
+            type: { required: true },
             control: { type: "object" },
             table: {
                 category: "@attribute tags",
             },
+            description:
+                "The header text for the content of the dialog. This is a required attribute.",
         },
         footer: {
             name: "@footer",
@@ -100,7 +103,7 @@ export default {
             description:
                 "A11y text for draggable handle when dialog is minimized and clicking handle will maximize the dialog (small screen only).",
         },
-        "on-open": {
+        onOpen: {
             action: "on-open",
             description: "Triggered on dialog opened",
             table: {
@@ -110,7 +113,7 @@ export default {
                 },
             },
         },
-        "on-close": {
+        onClose: {
             action: "on-close",
             description: "Triggered on dialog closed.",
             table: {
@@ -120,8 +123,8 @@ export default {
                 },
             },
         },
-        "on-prev-button-click": {
-            action: "on-prev-button-click",
+        onPrevButtonClick: {
+            action: "on-prevButtonClick",
             description: "Triggered when previous button is clicked",
             table: {
                 category: "Events",

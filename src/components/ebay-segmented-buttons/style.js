@@ -1,1 +1,1 @@
-require("@ebay/skin/segmented-buttons");
+import "@ebay/skin/segmented-buttons";

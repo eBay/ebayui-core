@@ -1,1 +1,1 @@
-require("@ebay/skin/details");
+import "@ebay/skin/details";

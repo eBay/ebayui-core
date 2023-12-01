@@ -40,6 +40,10 @@ export default {
             },
             description: "heading tag for breadcrumb ",
         },
+        a11yMenuButtonText: {
+            control: { type: "text" },
+            description: "a11y text for the collapsed menu button",
+        },
         href: {
             name: "href",
             table: {
@@ -71,6 +75,7 @@ export const heading = Template.bind({});
 
 heading.args = {
     a11yHeadingText: "Current pages",
+    a11yMenuButtonText: "menu",
     items: [
         {
             href: "http://www.ebay.com/",

@@ -26,7 +26,7 @@ function addRenderBodies(input: any) {
 function buildExtensionTemplate(
     template: Marko.Template,
     code: string,
-    args: Record<string, any> = {}
+    args: Record<string, any> = {},
 ) {
     const builder = (args: Record<string, any>) => ({
         input: addRenderBodies(args),

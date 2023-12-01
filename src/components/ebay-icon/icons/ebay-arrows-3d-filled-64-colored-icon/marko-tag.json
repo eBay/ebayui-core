@@ -9,6 +9,7 @@
     "@a11y-text": "string",
     "@a11y-variant": "string",
     "@no-skin-classes": "boolean",
+    "@_def": "expression",
     "@role": "never",
     "@aria-labelledby": "never"
 }

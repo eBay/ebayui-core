@@ -133,6 +133,14 @@ export default class extends Marko.Component<Input, State> {
                 // In this case, we leave the tabindex and position as is. This is a fall-through case.
             }
         }
+        while (
+            this.state.disableAfter &&
+            this.getMonthDate(
+                this.state.offset + (input.numMonths || 1) - 1
+            ).toISOString() > this.state.disableAfter
+        ) {
+            this.state.offset--;
+        }
     }
 
     isDisabled(iso: DayISO) {
@@ -215,8 +223,7 @@ export default class extends Marko.Component<Input, State> {
     getMonthDate(offset: number) {
         const baseDate = fromISO(this.state.baseISO);
         const date = new Date(
-            baseDate.getUTCFullYear(),
-            baseDate.getUTCMonth() + offset
+            Date.UTC(baseDate.getUTCFullYear(), baseDate.getUTCMonth() + offset)
         );
         return date;
     }
@@ -229,11 +236,13 @@ export default class extends Marko.Component<Input, State> {
         const baseDate = fromISO(this.state.baseISO);
         return toISO(
             new Date(
-                baseDate.getUTCFullYear(),
-                baseDate.getUTCMonth() +
-                    this.state.offset +
-                    (input.numMonths || 1),
-                0
+                Date.UTC(
+                    baseDate.getUTCFullYear(),
+                    baseDate.getUTCMonth() +
+                        this.state.offset +
+                        (input.numMonths || 1),
+                    0
+                )
             )
         );
     }
@@ -264,7 +273,9 @@ export default class extends Marko.Component<Input, State> {
                 year: "numeric",
             }
         );
-        return formatter.format(date);
+        return formatter.format(
+            new Date(date.getUTCFullYear(), date.getUTCMonth())
+        );
     }
 
     prevMonth(focus?: boolean) {

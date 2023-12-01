@@ -26,9 +26,9 @@ export default class extends Marko.Component<Input, State> {
         this.emit("select", { originalEvent, el: originalEvent?.target });
     }
 
-    handleMenuBreadcrumb({ originalEvent }: MenuEvent) {
-        this.emit("select", { originalEvent, el: originalEvent?.target });
-    }
+    handleMenuBreadcrumb({ originalEvent, el }: MenuEvent) {
+        this.emit("select", { originalEvent, el });
+    },
 
     onCreate() {
         this.state = { hiddenIndex: [] };

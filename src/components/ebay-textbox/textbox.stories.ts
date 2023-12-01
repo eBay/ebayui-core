@@ -115,7 +115,7 @@ export default {
                 },
             },
         },
-        onInputChange: {
+        "onInput-change": {
             action: "on-input-change",
             description: "Triggered when the value of the input is changed",
             table: {

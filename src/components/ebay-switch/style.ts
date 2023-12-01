@@ -1,1 +1,1 @@
-require("@ebay/skin/switch");
+import "@ebay/skin/switch";

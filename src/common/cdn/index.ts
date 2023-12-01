@@ -93,6 +93,7 @@ export class CDNLoader {
 
     loadCDN() {
         const _timeout =
+            // eslint-disable-next-line compat/compat
             window.requestIdleCallback ||
             function (handler: Function, arg: { timeout: number }) {
                 return setTimeout(() => {

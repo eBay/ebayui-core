@@ -1,9 +1,9 @@
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../listbox.stories";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
 
-const { Standard } = composeStories(stories);
+const { Standard, withDescription } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
 const options = [...Standard.args.options];
@@ -27,6 +27,10 @@ describe("listbox", () => {
         options[1] = Object.assign({ disabled: true }, options[1]);
 
         await htmlSnap(Standard, { options });
+    });
+
+    it("renders with description", async () => {
+        await htmlSnap(withDescription);
     });
 
     testPassThroughAttributes(Standard);

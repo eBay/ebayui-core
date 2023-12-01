@@ -29,13 +29,13 @@ export default class extends Marko.Component<Input, State> {
 
     onInput(input: Input) {
         this.state.pressed = Object.fromEntries(
-            input.buttons.map(({ pressed }, i) => [i, !!pressed])
+            input.buttons.map(({ pressed }, i) => [i, !!pressed]),
         );
     }
 
     handleToggle = (
         index: number,
-        { originalEvent, pressed }: ToggleButtonEvent
+        { originalEvent, pressed }: ToggleButtonEvent,
     ) => {
         if (this.input.variant === "radio") {
             // radio buttons may not be deselected, so `pressed` is not necessary

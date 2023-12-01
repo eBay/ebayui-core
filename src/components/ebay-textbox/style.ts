@@ -1,4 +1,4 @@
-require("@ebay/skin/icon");
-require("@ebay/skin/floating-label");
-require("@ebay/skin/textbox");
-require("@ebay/skin/icon-button");
+import "@ebay/skin/icon";
+import "@ebay/skin/floating-label";
+import "@ebay/skin/textbox";
+import "@ebay/skin/icon-button";

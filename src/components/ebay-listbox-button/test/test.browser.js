@@ -1,13 +1,13 @@
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import { pressKey } from "../../../common/test-utils/browser";
 import * as stories from "../listbox-button.stories";
 
-const { Standard } = composeStories(stories);
+const { Default, withDescription } = composeStories(stories);
 
-const options = [...Standard.args.options];
+const options = [...Default.args.options];
 options[0] = Object.assign({ selected: true }, options[0]);
 
 use(chaiDom);
@@ -24,7 +24,7 @@ after(() => document.body.removeChild(form));
 describe("given the listbox with 3 items", () => {
     beforeEach(async () => {
         component = await render(
-            Standard,
+            Default,
             {
                 listSelection: "auto",
                 name: "listbox-name",
@@ -32,21 +32,21 @@ describe("given the listbox with 3 items", () => {
             },
             {
                 container: form,
-            }
+            },
         );
     });
 
     it("then it should not be expanded", () => {
         expect(component.getByRole("button")).has.attr(
             "aria-expanded",
-            "false"
+            "false",
         );
     });
 
     it("then it should have button with name attribute", () => {
         expect(component.getByRole("button")).has.attr(
             "name",
-            "listbox-button-name"
+            "listbox-button-name",
         );
     });
 
@@ -67,7 +67,7 @@ describe("given the listbox with 3 items", () => {
         it("then it should not expand the listbox", () => {
             expect(component.getByRole("button")).has.attr(
                 "aria-expanded",
-                "false"
+                "false",
             );
         });
 
@@ -83,7 +83,7 @@ describe("given the listbox with 3 items", () => {
             it("then it should not expand the listbox", () => {
                 expect(component.getByRole("button")).has.attr(
                     "aria-expanded",
-                    "false"
+                    "false",
                 );
             });
         });
@@ -101,7 +101,7 @@ describe("given the listbox with 3 items", () => {
         it("then it has expanded the listbox", () => {
             expect(component.getByRole("button")).has.attr(
                 "aria-expanded",
-                "true"
+                "true",
             );
         });
 
@@ -117,7 +117,7 @@ describe("given the listbox with 3 items", () => {
             it("then it has collapsed the listbox", () => {
                 expect(component.getByRole("button")).has.attr(
                     "aria-expanded",
-                    "false"
+                    "false",
                 );
             });
         });
@@ -127,11 +127,11 @@ describe("given the listbox with 3 items", () => {
 describe("given the listbox is in an expanded state", () => {
     beforeEach(async () => {
         component = await render(
-            Standard,
+            Default,
             { listSelection: "auto", options },
             {
                 container: form,
-            }
+            },
         );
         await fireEvent.click(component.getByRole("button"));
     });
@@ -176,7 +176,7 @@ describe("given the listbox is in an expanded state", () => {
 
 describe("given the listbox is in an expanded state with manual list-selection", () => {
     beforeEach(async () => {
-        component = await render(Standard, { options }, { container: form });
+        component = await render(Default, { options }, { container: form });
         await fireEvent.click(component.getByRole("button"));
     });
 
@@ -215,6 +215,30 @@ describe("given the listbox is in an expanded state with manual list-selection",
             expect(changeEvent)
                 .has.property("selected")
                 .and.is.deep.equal([options[1].value]);
+        });
+    });
+});
+
+describe("given the listbox has description", () => {
+    beforeEach(async () => {
+        component = await render(withDescription);
+        await fireEvent.click(component.getByRole("button"));
+    });
+
+    describe("when an option is clicked", () => {
+        beforeEach(async () => {
+            await fireEvent.click(component.getByText("Option 2 info"));
+        });
+
+        it("Should trigger listbox change change", () => {
+            const changeEvents = component.emitted("change");
+            expect(changeEvents).has.length(1);
+
+            const [[changeEvent]] = changeEvents;
+            expect(changeEvent).has.property("index", 1);
+            expect(changeEvent)
+                .has.property("selected")
+                .and.is.deep.equal(["2"]);
         });
     });
 });

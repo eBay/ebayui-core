@@ -1,2 +1,3 @@
-require("@ebay/skin/icon");
-require("@ebay/skin/star-rating");
+import "@ebay/skin/icon";
+import "@ebay/skin/star-rating";
+import "@ebay/skin/flag";

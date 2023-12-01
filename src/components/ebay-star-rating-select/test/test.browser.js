@@ -1,5 +1,5 @@
 import { expect, use } from "chai";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import * as stories from "../star-rating-select.stories";
 
 const { Isolated } = composeStories(stories);

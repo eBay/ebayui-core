@@ -1,4 +1,4 @@
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../drawer-dialog.stories"; // import all stories from the stories file

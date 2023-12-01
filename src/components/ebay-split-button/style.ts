@@ -1,1 +1,1 @@
-require("@ebay/skin/split-button");
+import "@ebay/skin/split-button";

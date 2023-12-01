@@ -54,7 +54,7 @@ export default class extends Marko.Component<Input, State> {
     forwardEvent(
         eventName: string,
         originalEvent: Event,
-        el: HTMLInputElement
+        el: HTMLInputElement,
     ) {
         const value = (el || this.el?.querySelector("input")).value;
         const checked = this.state.checked;

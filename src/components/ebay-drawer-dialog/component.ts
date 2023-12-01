@@ -63,7 +63,7 @@ export default class extends Marko.Component<Input, State> {
             for (let i = 0; i < event.changedTouches.length; i++) {
                 const current = event.changedTouches[i];
                 const compare = this.touches.findIndex(
-                    (item) => item.identifier === current.identifier
+                    (item) => item.identifier === current.identifier,
                 );
                 const diff = current.pageY - this.touches[compare].pageY;
 
@@ -90,7 +90,7 @@ export default class extends Marko.Component<Input, State> {
         for (let i = 0; i < event.changedTouches.length; i++) {
             const current = event.changedTouches[i];
             const idx = this.touches.findIndex(
-                (item) => item.identifier === current.identifier
+                (item) => item.identifier === current.identifier,
             );
             if (idx > -1) {
                 this.touches.splice(idx, 1);

@@ -37,7 +37,7 @@ export default class extends Marko.Component<Input, State> {
         name: string,
         value: number,
         originalEvent: T,
-        el: HTMLInputElement
+        el: HTMLInputElement,
     ) {
         if (!el.disabled) {
             this.state.value = value;

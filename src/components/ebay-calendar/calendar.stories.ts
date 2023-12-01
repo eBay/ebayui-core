@@ -240,7 +240,7 @@ export default {
                 },
             },
         },
-        onMonthChange: {
+        "onMonth-change": {
             action: "on-month-change",
             description: "Triggered during month navigation",
             table: {

@@ -7,6 +7,7 @@
     </span>
 </h1>
 
+** Deprecated ** (Use lightbox-dialog instead)
 Dialog which slides in from the bottom of the screen. Used mainly on moble.
 
 ## Examples and Documentation

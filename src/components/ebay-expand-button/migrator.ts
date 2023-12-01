@@ -1,6 +1,6 @@
 function transformMarko4(el: any, context: any) {
     context.deprecate(
-        '<ebay-expand-button/> has been removed. Use <ebay-button body-state="expand" variant="form"/> instead'
+        '<ebay-expand-button/> has been removed. Use <ebay-button body-state="expand" variant="form"/> instead',
     );
 
     el.setTagName("ebay-button");
@@ -17,8 +17,8 @@ function transformMarko5(path: any, t: any) {
                 t.markoAttribute("bodyState", t.stringLiteral("expand")),
                 t.markoAttribute("variant", t.stringLiteral("form")),
             ].concat(node.attributes),
-            node.body
-        )
+            node.body,
+        ),
     );
 }
 

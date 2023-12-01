@@ -79,7 +79,7 @@ export default class extends Marko.Component<Input, State> {
         this.cdnLoader
             .setOverrides(
                 this.input.cdnUrl ? [this.input.cdnUrl] : undefined,
-                this.input.version
+                this.input.version,
             )
             .mount();
     }

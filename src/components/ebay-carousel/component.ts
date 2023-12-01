@@ -135,14 +135,14 @@ export default class extends Marko.Component<Input, State> {
             }
 
             const deltaLow = Math.abs(
-                scrollLeft - items[low * itemsPerSlide].left
+                scrollLeft - items[low * itemsPerSlide].left,
             );
             const deltaHigh = Math.abs(
-                scrollLeft - items[high * itemsPerSlide].left
+                scrollLeft - items[high * itemsPerSlide].left,
             );
             closest = this.normalizeIndex(
                 state,
-                (deltaLow > deltaHigh ? high : low) * itemsPerSlide
+                (deltaLow > deltaHigh ? high : low) * itemsPerSlide,
             );
         }
 
@@ -475,7 +475,7 @@ export default class extends Marko.Component<Input, State> {
             return {
                 htmlAttributes: processHtmlAttributes(
                     item,
-                    itemSkippedAttributes
+                    itemSkippedAttributes,
                 ),
                 class: isStartOfSlide
                     ? ["carousel__snap-point", item.class]
@@ -516,7 +516,7 @@ export default class extends Marko.Component<Input, State> {
                     if (!config.scrollTransitioning) {
                         this.handleScroll(this.listEl.scrollLeft);
                     }
-                })
+                }),
             );
         } else {
             this.subscribeTo(this.listEl).on("transitionend", ({ target }) => {
@@ -550,7 +550,7 @@ export default class extends Marko.Component<Input, State> {
         if (config.offsetOverride) {
             config.offsetOverride = undefined;
             this.renderFrame = requestAnimationFrame(() =>
-                this.setStateDirty(undefined as any)
+                this.setStateDirty(undefined as any),
             );
             return;
         }
@@ -571,12 +571,12 @@ export default class extends Marko.Component<Input, State> {
                                       ? child.setAttribute(
                                             "tabindex",
                                             child.getAttribute(
-                                                "data-carousel-tabindex"
-                                            ) ?? "-1"
+                                                "data-carousel-tabindex",
+                                            ) ?? "-1",
                                         )
                                       : child.removeAttribute("tabindex")
                             : (child: HTMLElement) =>
-                                  child.setAttribute("tabindex", "-1")
+                                  child.setAttribute("tabindex", "-1"),
                     );
                 });
             });
@@ -592,7 +592,7 @@ export default class extends Marko.Component<Input, State> {
                         this.cancelScrollTransition = scrollTransition(
                             listEl,
                             offset,
-                            this.emitUpdate
+                            this.emitUpdate,
                         );
                     } else if (this.isMoving) {
                         // Animate to the new scrolling position and emit update events afterward.
@@ -600,7 +600,7 @@ export default class extends Marko.Component<Input, State> {
                         this.cancelScrollTransition = scrollTransition(
                             listEl,
                             this.getOffset(state),
-                            this.emitUpdate
+                            this.emitUpdate,
                         );
                     }
                 }

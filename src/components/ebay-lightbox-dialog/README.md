@@ -7,6 +7,10 @@
     </span>
 </h1>
 
+## Notes / FAQ
+
+-   `@header` is _required_, and styles will break if you do not include it
+
 ## Examples and Documentation
 
 -   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/dialogs-ebay-lightbox-dialog)

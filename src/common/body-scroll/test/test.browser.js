@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import * as bodyScroll from "../";
+import * as bodyScroll from "../index.js";
 const { body } = document;
 
 describe("body-scroll", () => {

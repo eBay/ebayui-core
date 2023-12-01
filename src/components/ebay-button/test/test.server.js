@@ -1,6 +1,5 @@
 import { use } from "chai";
-import { composeStories } from "@storybook/marko/dist/testing";
-import expandMigrator from "../examples/expand-migrator.marko";
+import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../button.stories"; // import all stories from the stories file
 const { Standard, ExpandButton } = composeStories(stories);
@@ -103,8 +102,4 @@ it("renders a11yText when bodyState === loading", async () => {
 
 it("renders expanded button", async () => {
     await htmlSnap(ExpandButton);
-});
-
-it("renders expanded button migrator", async () => {
-    await htmlSnap(expandMigrator);
 });

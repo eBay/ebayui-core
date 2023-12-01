@@ -1,1 +1,1 @@
-require("./style.less");
+import "./style.less";

@@ -9,6 +9,7 @@ This page contains instructions and guidelines for anybody contributing code to 
 -   [Branching Strategy](#branching-strategy)
 -   [Unit Tests](#unit-tests)
 -   [Definition of Done](#definition-of-done)
+-   [Naming Scheme](#naming-scheme)
 -   [Releases](#releases)
 
 ## Development
@@ -202,6 +203,10 @@ A component is considered "done", and ready for merge into release branch, when 
 -   Refactor long functions into several small functions
 -   Identify and move common utility functions to libraries or static methods
 -   All CSS should come from Skin
+
+## Naming Scheme
+
+eBayUI Core is an implementation of the [eBay MIND Patterns](https://ebay.gitbook.io/mindpatterns). The MIND patterns [naming scheme](https://ebay.gitbook.io/mindpatterns/appendix/pattern-naming-scheme) follows an accessibility-first mindset; thus aligning our developer speak as closely as possible with existing W3C web standards & conventions.
 
 ## Releases
 

@@ -1,1 +1,1 @@
-require("@ebay/skin/video");
+import "@ebay/skin/video";

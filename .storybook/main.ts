@@ -1,5 +1,5 @@
 module.exports = {
-    stories: ["../src/**/*.stories.@(mdx|ts)"],
+    stories: ["../src/**/*.stories.@(mdx|js)"],
     addons: [
         "./plugins/theme-switcher/register.jsx",
         "@storybook/addon-essentials",
@@ -11,7 +11,7 @@ module.exports = {
     features: {
         previewMdx2: true,
     },
-    webpackFinal: async (config: any) => {
+    webpackFinal: async (config, { configType }) => {
         config.module.rules.push({
             test: /\.less$/,
             use: ["style-loader", "css-loader", "less-loader"],
@@ -19,14 +19,6 @@ module.exports = {
         config.module.rules.push({
             test: /\.txt$/,
             type: "asset/source",
-        });
-        config.module.rules.push({
-            test: /\.ts$/,
-            use: [
-                {
-                    loader: require.resolve("ts-loader"),
-                },
-            ],
         });
         config.module.rules = [
             {

@@ -1,1 +1,1 @@
-require("@ebay/skin/confirm-dialog");
+import "@ebay/skin/confirm-dialog";

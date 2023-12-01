@@ -4,7 +4,7 @@ import {
     buildExtensionTemplate,
 } from "../../../.storybook/utils";
 import button from "./index.marko";
-import readme from "./README.md";
+import Readme from "./README.md";
 import ExpandButtonTemplate from "./examples/expand-button.marko";
 import ExpandButtonTemplateCode from "./examples/expand-button.marko?raw";
 
@@ -19,7 +19,7 @@ export default {
     parameters: {
         docs: {
             description: {
-                component: readme,
+                component: Readme,
             },
         },
     },

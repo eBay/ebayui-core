@@ -1,5 +1,5 @@
 import { expect, use } from "chai";
-import { composeStories } from "@storybook/marko/dist/testing";
+import { composeStories } from "@storybook/marko";
 import chaiDom from "chai-dom";
 import { render, fireEvent, waitFor, cleanup } from "@marko/testing-library";
 import { fastAnimations } from "../../../common/test-utils/browser";
