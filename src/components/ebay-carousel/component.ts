@@ -81,6 +81,7 @@ interface State {
 
 export default class extends Marko.Component<Input, State> {
     declare autoplayTimeout: ReturnType<typeof setTimeout>;
+    declare interactionEndTimeout: ReturnType<typeof setTimeout>;
     declare renderFrame: number;
     declare focusFrame: number;
     declare cancelScrollTransition?: ReturnType<typeof scrollTransition>;
@@ -383,6 +384,16 @@ export default class extends Marko.Component<Input, State> {
 
     handleEndInteraction() {
         this.setState("interacting", false);
+        // In case the user moves the cursor out of the carousel before the transition is over.
+        // We need to make sure the carousel does not rerender in the middle of the transition.
+        clearTimeout(this.interactionEndTimeout);
+        if (!this.isMoving) {
+            this.setState("interacting", false);
+        } else if (this.state.interacting) {
+            this.interactionEndTimeout = setTimeout(() => {
+                this.handleEndInteraction();
+            }, 100);
+        }
     }
 
     togglePlay(originalEvent: MouseEvent) {
