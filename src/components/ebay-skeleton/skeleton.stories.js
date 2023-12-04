@@ -6,18 +6,22 @@ import avatarTemplate from "./examples/avatar.marko";
 import avatarCode from "./examples/avatar.marko?raw";
 import buttonTemplate from "./examples/button.marko";
 import buttonCode from "./examples/button.marko?raw";
+import buttonSmallTemplate from "./examples/button-small.marko";
+import buttonSmallCode from "./examples/button-small.marko?raw";
 import textTemplate from "./examples/text.marko";
 import textCode from "./examples/text.marko?raw";
 import textMultilineTemplate from "./examples/text-multiline.marko";
 import textMultilineCode from "./examples/text-multiline.marko?raw";
-import formTemplate from "./examples/form.marko";
-import formCode from "./examples/form.marko?raw";
+import textboxTemplate from "./examples/textbox.marko";
+import textboxCode from "./examples/textbox.marko?raw";
 import imageTemplate from "./examples/image.marko";
 import imageCode from "./examples/image.marko?raw";
 import tileTemplate from "./examples/tile.marko";
 import tileCode from "./examples/tile.marko?raw";
 import withContentTemplate from "./examples/withContent.marko";
 import withContentCode from "./examples/withContent.marko?raw";
+import compositeTemplate from "./examples/composite.marko";
+import compositeCode from "./examples/composite.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -35,15 +39,18 @@ export default {
     },
 
     argTypes: {
-        type: {
-            control: { type: "select" },
-            options: ["avatar", "button", "text", "form", "image", "tile"],
+        renderBody: {
+            control: { type: "text" },
+        },
+        a11yText: {
+            control: { type: "text" },
+            description:
+                "The localized accessibility text for the component. By default for english, Loading is used.",
             table: {
                 defaultValue: {
-                    summary: "form",
+                    summary: "Loading",
                 },
             },
-            description: "Type of the component to render.",
         },
         size: {
             control: { type: "select" },
@@ -54,26 +61,17 @@ export default {
                 },
             },
             description:
-                "Size of the component to render. Applicable for type `button`, `text` and `tile` only",
+                "The Size of the component to render. Applicable for `ebay-skeleton-button` and `ebay-skeleton-text` only",
         },
         multiline: {
             control: { type: "boolean" },
             table: {
                 defaultValue: {
-                    summary: "false",
+                    summary: false,
                 },
             },
             description:
-                "If the text should be multiline. Applicable for type `text` or `tile` only",
-        },
-        a11yText: {
-            control: { type: "text" },
-            description: "The accessibility text for the component",
-            table: {
-                defaultValue: {
-                    summary: "Loading",
-                },
-            },
+                "Boolean flag to make `ebay-skeleton-text` render more than one line",
         },
     },
 };
@@ -81,6 +79,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     style: "width: 220px",
+    renderBody: `<div class="skeleton__textbox" />`,
 };
 Default.parameters = {
     docs: {
@@ -116,6 +115,19 @@ Button.parameters = {
     },
 };
 
+export const ButtonSmall = (args) => ({
+    input: args,
+    component: buttonSmallTemplate,
+});
+ButtonSmall.args = {};
+ButtonSmall.parameters = {
+    docs: {
+        source: {
+            code: buttonSmallCode,
+        },
+    },
+};
+
 export const Text = (args) => ({
     input: args,
     component: textTemplate,
@@ -142,15 +154,15 @@ TextMultiLine.parameters = {
     },
 };
 
-export const Form = (args) => ({
+export const TextBox = (args) => ({
     input: args,
-    component: formTemplate,
+    component: textboxTemplate,
 });
-Form.args = {};
-Form.parameters = {
+TextBox.args = {};
+TextBox.parameters = {
     docs: {
         source: {
-            code: formCode,
+            code: textboxCode,
         },
     },
 };
@@ -177,6 +189,19 @@ Tile.parameters = {
     docs: {
         source: {
             code: tileCode,
+        },
+    },
+};
+
+export const composite = (args) => ({
+    input: args,
+    component: compositeTemplate,
+});
+composite.args = {};
+composite.parameters = {
+    docs: {
+        source: {
+            code: compositeCode,
         },
     },
 };

@@ -1,0 +1,13 @@
+import { processHtmlAttributes } from "../../../../common/html-attributes";
+static var ignoredAttributes = ["as", "class", "size", "multiline"];
+$ const { size, multiline } = input;
+
+<${input.as || "div"}
+    class=[
+        "skeleton__text",
+        multiline && "skeleton__text--multiline",
+        size && size === "large" && `skeleton__text--large`,
+        input.class,
+    ]
+    ...processHtmlAttributes(input, ignoredAttributes)
+/>

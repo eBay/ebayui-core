@@ -7,11 +7,10 @@
     </span>
 </h1>
 
-The Skeletons are simplified versions of layouts to indicate that information has not
-been fully loaded.
+The Skeletons are simplified versions of layouts to indicate that information has not been fully loaded to improve the perceived performance.
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-skeleton--avatar)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-skeleton--avatar)
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-skeleton--documentation)
+-   [Skin Docs](https://opensource.ebay.com/skin/#skeletons)
 -   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-skeleton/examples)

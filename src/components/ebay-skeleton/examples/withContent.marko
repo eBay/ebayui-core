@@ -21,9 +21,18 @@ class {
     }
 }
 
-<if(state.isLoading)>
-    <ebay-skeleton type="button" style="width:88px" ...input/>
-</if>
-<else>
-    <ebay-button> ${state.data} </ebay-button>
-</else>
+<style>
+    .demo-container {
+        width: 88px;
+    }
+</style>
+<div class="demo-container">
+    <if(state.isLoading)>
+        <ebay-skeleton>
+            <ebay-skeleton-button />
+        </ebay-skeleton>
+    </if>
+    <else>
+        <ebay-button> ${state.data} </ebay-button>
+    </else>
+</div>
