@@ -1,4 +1,4 @@
-import { Input as BaseInput } from "<ebay-notice-base>";
+import type { Input as BaseInput } from "<ebay-notice-base>";
 
 export type Input = Omit<BaseInput, `on${string}` | 'prefixClass' | 'root' | 'headerRoot' | 'mainRoot' | 'noA11yLabel'>;
 

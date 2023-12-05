@@ -1,5 +1,5 @@
-import { Input as ButtonInput } from "../ebay-button/component-browser";
-import { Input as MenuButtonInput } from "../ebay-menu-button/component";
+import type { Input as ButtonInput } from "../ebay-button/component-browser";
+import type { Input as MenuButtonInput } from "../ebay-menu-button/component";
 
 interface SplitButtonInput extends Omit<MenuButtonInput, `on${string}`> {
     size?: ButtonInput["size"];

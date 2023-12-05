@@ -23,12 +23,11 @@
         "lint:less": "stylelint '**/**.less'",
         "lint:js": "eslint .",
         "lint:whitespace": "lintspaces *.md src/**/*.md src/**/*.marko src/**/*.less --newline --maxnewlines 1 --trailingspaces --spaces 4",
-        "build": "mtc && npm run lint && node scripts/check-postpublish && npm test",
+        "build": "npm run lint && node scripts/check-postpublish && npm test",
         "build:ci": "npm run lint && node scripts/check-postpublish && npm test && npm run build",
         "build:readme": "node scripts/add-ds-version",
         "build:storybook": "storybook build -o ./docs -s ./.storybook/static",
         "importSVG": "node --experimental-json-modules --experimental-import-meta-resolve scripts/import-svg",
-        "tt": "mtc",
         "ts": "npm run test:server",
         "tb": "npm run test:browser",
         "tf": "npm run test:fps",
@@ -59,10 +58,10 @@
     ],
     "devDependencies": {
         "@babel/cli": "^7.20.7",
-        "@babel/core": "^7.20.12",
+        "@babel/core": "^7.21.4",
         "@babel/eslint-parser": "^7.19.1",
-        "@babel/plugin-transform-runtime": "^7.19.1",
-        "@babel/preset-env": "^7.20.2",
+        "@babel/plugin-transform-runtime": "^7.21.4",
+        "@babel/preset-env": "^7.21.4",
         "@babel/preset-react": "^7.17.12",
         "@babel/runtime-corejs3": "^7.20.13",
         "@commitlint/cli": "^18",
@@ -71,12 +70,11 @@
         "@ebay/skin": "~16.9.0",
         "@google/model-viewer": "3.1.1",
         "@lasso/marko-taglib": "^2.0.5",
-        "@marko/compiler": "^5.23.2",
+        "@marko/compiler": "^5.27.4",
         "@marko/migrate": "^6.0.2",
         "@marko/prettyprint": "^3.0.1",
         "@marko/test": "^10",
         "@marko/testing-library": "^6",
-        "@marko/type-check": "^1.0.2",
         "@marko/vite": "^3.1.4",
         "@storybook/addon-a11y": "^7.5.0",
         "@storybook/addon-docs": "^7.5.0",
@@ -141,7 +139,6 @@
         "marko": ">= ^4.27.0 || >= ^5.31.12"
     },
     "dependencies": {
-        "@babel/preset-typescript": "^7.21.4",
         "@marko-tags/subscribe": "^0.4.2",
         "makeup-active-descendant": "0.6.1",
         "makeup-expander": "~0.10.1",
@@ -152,8 +149,7 @@
         "makeup-prevent-scroll-keys": "~0.2.1",
         "makeup-roving-tabindex": "~0.6.0",
         "makeup-screenreader-trap": "~0.4.1",
-        "makeup-typeahead": "^0.2.1",
-        "ts-loader": "^9.4.2"
+        "makeup-typeahead": "^0.2.1"
     },
     "publishConfig": {
         "registry": "https://registry.npmjs.org"
@@ -162,6 +158,6 @@
         "extends": "@commitlint/config-conventional"
     },
     "lint-staged": {
-        "*.{js,ts,css,md,less,json}": "prettier --write"
+        "*.{js,css,md,less,json}": "prettier --write"
     }
 }

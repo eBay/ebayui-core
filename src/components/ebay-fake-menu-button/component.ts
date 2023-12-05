@@ -1,7 +1,7 @@
 import Expander from "makeup-expander";
 import * as eventUtils from "../../common/event-utils";
 import { MenuEvent } from "../ebay-menu/component";
-import {
+import type {
     Input as FakeMenuInput,
     Item as FakeMenuItem,
 } from "../ebay-fake-menu/component";
@@ -88,7 +88,7 @@ export default class extends Marko.Component<Input> {
             index,
         };
         eventObj = Object.fromEntries(
-            Object.entries(eventObj).filter(([, value]) => value !== undefined)
+            Object.entries(eventObj).filter(([, value]) => value !== undefined),
         );
         this.emit(`${eventType}`, eventObj);
     }

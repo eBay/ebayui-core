@@ -6,7 +6,7 @@ import setupMenu, {
     type MenuState,
 } from "../../common/menu-utils";
 import { MenuEvent } from "../ebay-menu/component";
-import { Input as EbayButtonInput } from "../ebay-button/component-browser";
+import type { Input as EbayButtonInput } from "../ebay-button/component-browser";
 
 export interface MenuButtonEvent {
     el?: Element;
@@ -62,7 +62,7 @@ export default class extends MenuUtils<Input, MenuState> {
     toggleItemChecked(
         index: number,
         itemEl: Element | undefined,
-        originalEvent?: Event
+        originalEvent?: Event,
     ) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly

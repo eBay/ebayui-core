@@ -1,5 +1,5 @@
 import DialogBase, {
-    Input as BaseInput,
+    type Input as BaseInput,
 } from "../components/ebay-dialog-base/component";
 
 interface DrawerDialogInput extends BaseInput {

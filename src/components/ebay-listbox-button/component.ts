@@ -1,6 +1,6 @@
 import Expander from "makeup-expander";
 import * as scrollKeyPreventer from "makeup-prevent-scroll-keys";
-import { Input as ListboxInput } from "../ebay-listbox/component";
+import type { Input as ListboxInput } from "../ebay-listbox/component";
 import type Listbox from "../ebay-listbox/component";
 import type { Option, ChangeEvent } from "../ebay-listbox/component";
 
@@ -68,7 +68,7 @@ export default class extends Marko.Component<Input, State> {
         input.options = input.options || ([] as any);
         state.selectedIndex = Math.max(
             -1,
-            (input.options as Option[]).findIndex((option) => option.selected)
+            (input.options as Option[]).findIndex((option) => option.selected),
         );
         input.collapseOnSelect = input.collapseOnSelect !== false;
     }

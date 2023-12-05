@@ -28,7 +28,7 @@ export default class extends Marko.Component<Input, State> {
 
     handleMenuBreadcrumb({ originalEvent, el }: MenuEvent) {
         this.emit("select", { originalEvent, el });
-    },
+    }
 
     onCreate() {
         this.state = { hiddenIndex: [] };
@@ -38,7 +38,7 @@ export default class extends Marko.Component<Input, State> {
         this._calculateMaxItems();
         this.subscribeTo(eventUtils.resizeUtil).on(
             "resize",
-            this._calculateMaxItems.bind(this)
+            this._calculateMaxItems.bind(this),
         );
     }
 

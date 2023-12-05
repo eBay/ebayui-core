@@ -1,5 +1,3 @@
-require("@marko/testing-library");
-
 function addRenderBodies(input: any) {
     if (input && typeof input === "object") {
         if (Array.isArray(input)) {
@@ -13,7 +11,7 @@ function addRenderBodies(input: any) {
 
         const { renderBody } = clone;
         if (typeof renderBody === "string") {
-            clone.renderBody = (out) =>
+            clone.renderBody = (out: any) =>
                 out.html ? out.html(renderBody) : out.write(renderBody);
         }
 

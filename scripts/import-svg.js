@@ -140,7 +140,7 @@ function generateFile(type, iconMap) {
         fs.writeFileSync(filePath, `${content.trim()}\n`);
 
         if (iconDef) {
-            const defPath = path.join(iconFolder, "def.js");
+            const defPath = path.join(iconFolder, "def.ts");
             const contentDef = `export function def() {
     // eslint-disable-next-line max-len,quotes
     return ${JSON.stringify(iconDef)};

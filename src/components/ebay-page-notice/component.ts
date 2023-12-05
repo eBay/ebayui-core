@@ -1,4 +1,4 @@
-import { Input as NoticeBaseInput } from "../components/ebay-notice-base/component";
+import type { Input as NoticeBaseInput } from "../components/ebay-notice-base/component";
 
 interface PageNoticeInput
     extends Omit<NoticeBaseInput, "role" | "prefixClass" | `on${string}`> {

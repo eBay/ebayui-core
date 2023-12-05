@@ -1,4 +1,4 @@
-import { Input as BaseInput } from "<ebay-dialog-base>";
+import type { Input as BaseInput } from "<ebay-dialog-base>";
 
 static interface AlertDialogInput extends Omit<BaseInput, `on${string}`> {
     "confirm-text"?: string;
