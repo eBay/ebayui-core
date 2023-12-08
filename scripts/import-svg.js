@@ -11,8 +11,8 @@ import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import cheerio from "cheerio";
 import { minify } from "html-minifier";
-import markoTagJson from "../src/components/ebay-icon/marko-tag.json";
-// import markoTagJson from "../src/components/ebay-icon/marko-tag.json" assert { type: "json" };
+// import markoTagJson from "../src/components/ebay-icon/marko-tag.json";
+import markoTagJson from "../src/components/ebay-icon/marko-tag.json" assert { type: "json" };
 const require = createRequire(import.meta.url);
 
 const skinDir = path.dirname(require.resolve("@ebay/skin/package.json"));
@@ -163,7 +163,7 @@ function generateFile(type, iconMap) {
         fs.writeFileSync(
             index,
             `import { symbol } from "./symbol";
-${iconDef ? 'import { def } from "./def.ts"' : ""}
+${iconDef ? 'import { def } from "./def"' : ""}
 import type { Input as IconInput } from "../../${
                 type === "icon" ? "" : "../ebay-icon/"
             }component-browser"
