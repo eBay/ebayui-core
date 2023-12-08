@@ -223,5 +223,5 @@ Standard.parameters = {
 
 export const ExpandButton = buildExtensionTemplate(
     ExpandButtonTemplate,
-    ExpandButtonTemplateCode
+    ExpandButtonTemplateCode,
 );

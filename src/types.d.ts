@@ -22,6 +22,11 @@ declare global {
     };
 }
 
+declare module "*?raw" {
+    const content: string;
+    export default content;
+}
+
 type KebabToCamel<T> = T extends `${infer A}-${infer B}`
     ? `${A}${Capitalize<KebabToCamel<B>>}`
     : T;

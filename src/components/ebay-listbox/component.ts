@@ -13,6 +13,7 @@ export interface ChangeEvent {
 export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
     disabled?: boolean;
     text?: string;
+    description?: string;
 }
 
 interface ListboxInput extends Omit<Marko.Input<"div">, `on${string}`> {
@@ -74,7 +75,7 @@ export default class extends Marko.Component<Input, State> {
         });
 
         eventUtils.handleActionKeydown(originalEvent, () =>
-            this.handleChange(this._activeDescendant.index, false)
+            this.handleChange(this._activeDescendant.index, false),
         );
     }
 
@@ -102,7 +103,7 @@ export default class extends Marko.Component<Input, State> {
         input.options = input.options || ([] as any);
         state.selectedIndex = Math.max(
             -1,
-            (input.options as Option[]).findIndex((option) => option.selected)
+            (input.options as Option[]).findIndex((option) => option.selected),
         );
     }
 
@@ -140,7 +141,7 @@ export default class extends Marko.Component<Input, State> {
                     autoInit: state.selectedIndex,
                     autoReset: null,
                     autoScroll: !this.isAutoSelection,
-                }
+                },
             );
         }
     }

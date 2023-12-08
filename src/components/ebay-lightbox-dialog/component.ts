@@ -11,11 +11,11 @@ interface LightboxDialogInput extends Omit<DialogBaseInput, `on${string}`> {
     "banner-img-src"?: string;
     size?: (typeof validSizes)[number];
     "banner-img-position"?: Marko.CSS.Properties["backgroundPosition"];
-    "on-expanded": () => void;
-    "on-collapsed": () => void;
-    "on-open": DialogBaseInput["on-open"];
-    "on-close": DialogBaseInput["on-close"];
-    "on-prevButtonClick": DialogBaseInput["on-prevButtonClick"];
+    "on-expanded"?: () => void;
+    "on-collapsed"?: () => void;
+    "on-open"?: DialogBaseInput["on-open"];
+    "on-close"?: DialogBaseInput["on-close"];
+    "on-prevButtonClick"?: DialogBaseInput["on-prevButtonClick"];
 }
 
 export interface Input extends WithNormalizedProps<LightboxDialogInput> {}

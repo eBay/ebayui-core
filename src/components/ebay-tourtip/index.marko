@@ -23,12 +23,7 @@ $ var pointer = input.pointer || "bottom";
     <ebay-tooltip-base
         key="base"
         type="tourtip"
-        pointer=pointer
-        overlay-id:scoped="overlay"
-        style-left=input.styleLeft
-        style-top=input.styleTop
-        style-right=input.styleRight
-        style-bottom=input.styleBottom>
+        overlay-id:scoped="overlay">
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class=["tourtip", state.expanded && 'tourtip--expanded']>

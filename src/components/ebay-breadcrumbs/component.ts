@@ -6,6 +6,7 @@ import { MenuEvent } from "../ebay-menu/component";
 interface BreadcrumbsInput extends Omit<Marko.Input<"nav">, `on${string}`> {
     "a11y-heading-tag"?: keyof Marko.NativeTags;
     "a11y-heading-text"?: string;
+    "a11y-menu-button-text"?: string;
     class?: AttrClass;
     items: (Marko.Input<"a"> &
         Marko.Input<"button"> & { [key: string]: any })[];
