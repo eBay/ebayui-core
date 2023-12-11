@@ -23,7 +23,7 @@ interface State {
     open: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Tooltip extends Marko.Component<Input, State> {
     onCreate() {
         this.state = {
             open: false,
@@ -48,3 +48,5 @@ export default class extends Marko.Component<Input, State> {
         });
     }
 }
+
+export default Tooltip;

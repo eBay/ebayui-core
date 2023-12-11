@@ -3,7 +3,7 @@ export interface Input {
     trend?: "positive" | "negative";
 }
 
-export default class extends Marko.Component<Input> {
+class SparkLine extends Marko.Component<Input> {
     getSparkLinePath() {
         // path is used to compile the commands to draw the spark line svg
         // refer to https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d
@@ -18,12 +18,13 @@ export default class extends Marko.Component<Input> {
             path.push(i === 0 ? "M " : "L");
             // set the x value minus the startX times the normlize ratio + 6 for padding and line width
             path.push(
-                (p.x - minMax.startX) * normalizationScaleRatios.xScale + 6
+                (p.x - minMax.startX) * normalizationScaleRatios.xScale + 6,
             );
             // set the y value minus the minimum y value times the normalize ratio + 10 padding and line width
             path.push(
                 120 -
-                    ((p.y - minMax.yMin) * normalizationScaleRatios.yScale + 10)
+                    ((p.y - minMax.yMin) * normalizationScaleRatios.yScale +
+                        10),
             );
         });
         return path.join(" "); // join the path array into a string with spaces for use in the path d attribute
@@ -71,3 +72,5 @@ export default class extends Marko.Component<Input> {
         }`;
     }
 }
+
+export default SparkLine;

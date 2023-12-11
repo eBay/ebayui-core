@@ -21,4 +21,6 @@ interface SplitButtonInput extends Omit<MenuButtonInput, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<SplitButtonInput> {}
 
-export default class extends Marko.Component<Input> {}
+class SplitButton extends Marko.Component<Input> {}
+
+export default SplitButton;

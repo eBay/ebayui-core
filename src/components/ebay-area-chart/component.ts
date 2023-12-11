@@ -39,7 +39,7 @@ export interface Input extends WithNormalizedProps<AreaChartInput> {}
 
 const pointSize = 1.5;
 
-export default class extends Marko.Component<Input> {
+class AreaChart extends Marko.Component<Input> {
     declare chartRef: Highcharts.Chart;
     declare cdnLoader: CDNLoader;
     declare mouseOut: ReturnType<typeof debounce>;
@@ -74,7 +74,7 @@ export default class extends Marko.Component<Input> {
                     this.input.cdnHighchartsAccessibility,
                     this.input.cdnHighchartsPatternFill,
                 ] as string[],
-                this.input.version
+                this.input.version,
             )
             .mount();
     }
@@ -103,7 +103,7 @@ export default class extends Marko.Component<Input> {
         this.mouseOut = this.debounce(() => this.handleMouseOut(), 80); // 80ms delay for debounce
         this.mouseOver = this.debounce(
             (e: Event) => this.handleMouseOver(e),
-            85
+            85,
         ); // 85ms delay for debounce so it doesn't colide with mouseOut debounce calls
     }
     _setupCharts() {
@@ -185,7 +185,7 @@ export default class extends Marko.Component<Input> {
         };
     }
     getYAxisConfig(
-        series: Highcharts.SeriesAreaOptions[]
+        series: Highcharts.SeriesAreaOptions[],
     ): Highcharts.YAxisOptions {
         const component = this; // component reference used in formatter functions that don't have the same scope
         let yLabelsIterator = 0; // used when yAxisLabels array is provided in input
@@ -193,7 +193,7 @@ export default class extends Marko.Component<Input> {
         series.forEach((s) => {
             maxYAxisValue = s.data!.reduce(
                 (p: number, c: number) => (c > p ? c : p),
-                maxYAxisValue
+                maxYAxisValue,
             ) as number;
         });
         return {
@@ -263,7 +263,7 @@ export default class extends Marko.Component<Input> {
                 let s = `<b>${Highcharts.dateFormat(
                     "%b %e, %Y",
                     this.x,
-                    false
+                    false,
                 )}</b></br>`; // sets the displayed date at the top of the tooltip
                 if (component.chartRef.series.length > 1) {
                     // setup html for multi series tooltip
@@ -357,7 +357,7 @@ export default class extends Marko.Component<Input> {
                             },
                         },
                         false, // disable auto redraw
-                        false // disable auto animation
+                        false, // disable auto animation
                     );
                 } else if (d.getClassName() === null) {
                     d.update(
@@ -372,7 +372,7 @@ export default class extends Marko.Component<Input> {
                             },
                         },
                         false, // disable auto redraw
-                        false // disable auto animation
+                        false, // disable auto animation
                     );
                 }
             });
@@ -397,7 +397,7 @@ export default class extends Marko.Component<Input> {
                             },
                         },
                         false, // disable auto redraw
-                        false // disable auto animation
+                        false, // disable auto animation
                     );
                 } else if (d.getClassName() !== null) {
                     d.update(
@@ -408,7 +408,7 @@ export default class extends Marko.Component<Input> {
                             },
                         },
                         false, // disable auto redraw
-                        false // disable auto animation
+                        false, // disable auto animation
                     );
                 }
             });
@@ -419,3 +419,5 @@ export default class extends Marko.Component<Input> {
         this.chartRef.destroy();
     }
 }
+
+export default AreaChart;

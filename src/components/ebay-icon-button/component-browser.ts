@@ -16,7 +16,7 @@ interface IconButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<IconButtonInput> {}
 
-export default class extends Marko.Component<Input> {
+class IconButton extends Marko.Component<Input> {
     handleClick(originalEvent: MouseEvent) {
         if (!this.input.disabled) {
             this.emit("click", { originalEvent });
@@ -39,3 +39,5 @@ export default class extends Marko.Component<Input> {
         this.emit("blur", { originalEvent });
     }
 }
+
+export default IconButton;

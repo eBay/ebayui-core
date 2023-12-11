@@ -14,7 +14,7 @@ interface TooptipBaseInput {
 }
 export interface Input extends WithNormalizedProps<TooptipBaseInput> {}
 
-export default class extends Marko.Component<Input> {
+class TooltipBase extends Marko.Component<Input> {
     declare action: "expand" | "collapse" | null;
     declare _expander: Expander;
     declare cancelFocus: ReturnType<typeof focusables>;
@@ -146,3 +146,5 @@ export default class extends Marko.Component<Input> {
         }
     }
 }
+
+export default TooltipBase;

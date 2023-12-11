@@ -45,7 +45,7 @@ export interface Input extends WithNormalizedProps<LineChartInput> {}
 
 const pointSize = 6; // controls the size of the plot point markers on lines
 
-export default class extends Marko.Component<Input> {
+class LineChart extends Marko.Component<Input> {
     declare axisTicksLength: number;
     declare cdnLoader: CDNLoader;
     declare chartRef: Highcharts.Chart;
@@ -79,7 +79,7 @@ export default class extends Marko.Component<Input> {
                     this.input.cdnHighcharts,
                     this.input.cdnHighchartsAccessibility,
                 ] as string[],
-                this.input.version
+                this.input.version,
             )
             .mount();
     }
@@ -304,7 +304,7 @@ export default class extends Marko.Component<Input> {
                     date: Highcharts.dateFormat(
                         "%b %e, %Y",
                         this.points![0].x as number,
-                        false
+                        false,
                     ),
                     points: this.points,
                     seriesLength:
@@ -363,7 +363,7 @@ export default class extends Marko.Component<Input> {
                     data: Highcharts.Point & {
                         className: string;
                         onTick: boolean;
-                    }
+                    },
                 ) => {
                     // check if hover is on the xAxis (onTick) for each item,
                     // and if they have a className remove and disable the marker
@@ -376,7 +376,7 @@ export default class extends Marko.Component<Input> {
                                 },
                             },
                             false, // disable auto redraw
-                            false // disable auto animation
+                            false, // disable auto animation
                         );
                     } else if (data.onTick && data.className === null) {
                         data.update(
@@ -391,10 +391,10 @@ export default class extends Marko.Component<Input> {
                                 },
                             } as Highcharts.PointOptionsType,
                             false, // disable auto redraw
-                            false // disable auto animation
+                            false, // disable auto animation
                         );
                     }
-                }
+                },
             );
         });
         this.chartRef.redraw(); // trigger redraw after all points have been updated
@@ -407,7 +407,7 @@ export default class extends Marko.Component<Input> {
                     data: Highcharts.Point & {
                         className: string;
                         onTick: boolean;
-                    }
+                    },
                 ) => {
                     // if active xAxis hover position matches the data point x update the marker to display
                     if (data.x === e.target.x) {
@@ -423,7 +423,7 @@ export default class extends Marko.Component<Input> {
                                 },
                             } as Highcharts.PointOptionsType,
                             false, // disable auto redraw
-                            false // disable auto animation
+                            false, // disable auto animation
                         );
                     } else if (!data.onTick && data.className !== null) {
                         data.update(
@@ -435,10 +435,10 @@ export default class extends Marko.Component<Input> {
                                 },
                             } as Highcharts.PointOptionsType,
                             false, // disable auto redraw
-                            false // disable auto animation
+                            false, // disable auto animation
                         );
                     }
-                }
+                },
             );
         });
         this.chartRef.redraw(); // trigger redraw after all points have been updated
@@ -448,7 +448,7 @@ export default class extends Marko.Component<Input> {
             // ticks is an object with the xaxis date values as their keys
             // setting tickValues to the keys of the ticks object and parsing into an int for data matching of xValues in series below
             this.tickValues = Object.keys(this.chartRef.axes[0].ticks).map(
-                (value) => parseInt(value, 10)
+                (value) => parseInt(value, 10),
             );
 
             // this checks if the resize has adjust the number of xAxis tick marks, and if so make updates
@@ -463,7 +463,7 @@ export default class extends Marko.Component<Input> {
                             data: Highcharts.Point & {
                                 className: string;
                                 onTick: boolean;
-                            }
+                            },
                         ) => {
                             if (data.className !== null) {
                                 data.update(
@@ -475,10 +475,10 @@ export default class extends Marko.Component<Input> {
                                         },
                                     } as Highcharts.PointOptionsType,
                                     false, // disable auto redraw
-                                    false // disable auto animation
+                                    false, // disable auto animation
                                 );
                             }
-                        }
+                        },
                     );
                 });
 
@@ -490,7 +490,7 @@ export default class extends Marko.Component<Input> {
                             data: Highcharts.Point & {
                                 className: string;
                                 onTick: boolean;
-                            }
+                            },
                         ) => {
                             // loop through the tickValues that come from the x axis ticks and are epoch time stamps
                             this.tickValues.forEach((tick) => {
@@ -510,12 +510,12 @@ export default class extends Marko.Component<Input> {
                                                 },
                                             } as Highcharts.PointOptionsType,
                                             false, // disable auto redraw
-                                            false // disable auto animation
+                                            false, // disable auto animation
                                         );
                                     }
                                 }
                             });
-                        }
+                        },
                     );
                 });
                 this.chartRef.redraw(); // trigger redraw after all points have been updated
@@ -526,3 +526,5 @@ export default class extends Marko.Component<Input> {
         this.chartRef.destroy();
     }
 }
+
+export default LineChart;

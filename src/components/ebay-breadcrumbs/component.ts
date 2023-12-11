@@ -19,7 +19,7 @@ interface State {
     hiddenIndex: number[];
 }
 
-export default class extends Marko.Component<Input, State> {
+class Breadcrumbs extends Marko.Component<Input, State> {
     declare cachedWidths: number[];
     declare newInput: boolean;
 
@@ -131,3 +131,5 @@ export default class extends Marko.Component<Input, State> {
         state.hiddenIndex = hiddenIndex;
     }
 }
+
+export default Breadcrumbs;

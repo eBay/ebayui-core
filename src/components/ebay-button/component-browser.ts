@@ -31,7 +31,7 @@ interface ButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<ButtonInput> {}
 
-export default class extends Marko.Component<Input> {
+class Button extends Marko.Component<Input> {
     handleClick(originalEvent: MouseEvent) {
         if (!this.input.disabled) {
             this.emit("click", { originalEvent });
@@ -52,3 +52,5 @@ export default class extends Marko.Component<Input> {
         this.emit("blur", { originalEvent });
     }
 }
+
+export default Button;

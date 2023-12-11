@@ -31,7 +31,7 @@ interface State {
     selectedIndex: number;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Listbox extends Marko.Component<Input, State> {
     declare wasClicked: boolean;
     declare _activeDescendant: ReturnType<typeof createLinear>;
 
@@ -153,3 +153,5 @@ export default class extends Marko.Component<Input, State> {
         }
     }
 }
+
+export default Listbox;

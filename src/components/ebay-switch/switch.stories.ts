@@ -6,16 +6,7 @@ import DisabledTemplate from "./examples/disabled-with-label.marko";
 import WithLabelCode from "./examples/with-label.marko?raw";
 import DisabledCode from "./examples/disabled-with-label.marko?raw";
 
-const Template = (args) => ({
-    input: {
-        ...args,
-        renderBody: args.renderBody
-            ? (out) => {
-                  out.html(args.renderBody);
-              }
-            : null,
-    },
-});
+const Template = (args) => ({ input: args });
 
 export default {
     title: "form input/ebay-switch",

@@ -17,7 +17,7 @@ interface State {
     open: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class SnackbarDialog extends Marko.Component<Input, State> {
     declare timeout: ReturnType<typeof setTimeout>;
     declare eventSet: Set<string>;
 
@@ -102,3 +102,5 @@ export default class extends Marko.Component<Input, State> {
         this.emit("close");
     }
 }
+
+export default SnackbarDialog;

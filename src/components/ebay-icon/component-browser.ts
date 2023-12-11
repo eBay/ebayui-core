@@ -41,7 +41,7 @@ function createSVGElementFromString(data) {
     return linearGradient;
 }
 
-export default class extends Marko.Component<Input> {
+class Icon extends Marko.Component<Input> {
     onMount() {
         // Create a hidden svg to store all symbols on startup.
         if (!rootSvg) {
@@ -86,3 +86,5 @@ export default class extends Marko.Component<Input> {
         }
     }
 }
+
+export default Icon;

@@ -22,7 +22,7 @@ interface State {
     pressed: { [index: number]: boolean };
 }
 
-export default class extends Marko.Component<Input, State> {
+class ToggleButtonGroup extends Marko.Component<Input, State> {
     onCreate() {
         this.state = { pressed: {} };
     }
@@ -54,3 +54,5 @@ export default class extends Marko.Component<Input, State> {
         } satisfies ToggleButtonGroupEvent);
     };
 }
+
+export default ToggleButtonGroup;

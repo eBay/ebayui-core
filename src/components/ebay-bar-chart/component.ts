@@ -45,7 +45,7 @@ interface BarChartInput
 
 export interface Input extends WithNormalizedProps<BarChartInput> {}
 
-export default class extends Marko.Component<Input> {
+class BarChart extends Marko.Component<Input> {
     declare chartRef: Highcharts.Chart;
     declare cdnLoader: CDNLoader;
     declare chart: Highcharts.Chart;
@@ -79,7 +79,7 @@ export default class extends Marko.Component<Input> {
                     this.input.cdnHighchartsAccessibility,
                     this.input.cdnHighchartsPatternFill,
                 ] as string[],
-                this.input.version
+                this.input.version,
             )
             .mount();
     }
@@ -191,7 +191,7 @@ export default class extends Marko.Component<Input> {
         series.forEach((s) => {
             maxVal = s.data!.reduce(
                 (p: number, c: number) => (c > p ? c : p),
-                maxVal
+                maxVal,
             ) as number;
         });
         let yLabelsItterator = 0;
@@ -356,7 +356,7 @@ export default class extends Marko.Component<Input> {
             const chart = this.series.chart;
             chart.series.forEach(
                 (
-                    s // loop through each series
+                    s, // loop through each series
                 ) =>
                     s.points.forEach((p) => {
                         // loop through each point in the series
@@ -368,10 +368,10 @@ export default class extends Marko.Component<Input> {
                                 {
                                     opacity: 0.2, // set opacity
                                 } as Highcharts.PointOptionsObject,
-                                false // do not update immediately
+                                false, // do not update immediately
                             );
                         }
-                    })
+                    }),
             );
             chart.redraw(); // trigger chart redraw after all points have been updated
         };
@@ -381,19 +381,19 @@ export default class extends Marko.Component<Input> {
         const chart = this.series.chart;
         chart.series.forEach(
             (
-                s // loop through each series
+                s, // loop through each series
             ) =>
                 s.points.forEach(
                     (
-                        p // loop through each point in the series
+                        p, // loop through each point in the series
                     ) =>
                         p.update(
                             {
                                 opacity: 1, // update the opacity to 1
                             } as Highcharts.PointOptionsObject,
-                            false // do not update immediately
-                        )
-                )
+                            false, // do not update immediately
+                        ),
+                ),
         );
         chart.redraw(); // trigger chart redraw after all points have been updated
     }
@@ -430,3 +430,5 @@ export default class extends Marko.Component<Input> {
         this.chartRef.destroy();
     }
 }
+
+export default BarChart;

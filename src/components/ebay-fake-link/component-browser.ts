@@ -11,7 +11,7 @@ interface FakeLinkInput extends Omit<Marko.Input<"button">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<FakeLinkInput> {}
 
-export default class extends Marko.Component<Input> {
+class FakeLink extends Marko.Component<Input> {
     handleClick(originalEvent: MouseEvent) {
         if (!this.input.disabled) {
             this.emit("click", { originalEvent });
@@ -32,3 +32,5 @@ export default class extends Marko.Component<Input> {
         this.emit("blur", { originalEvent });
     }
 }
+
+export default FakeLink;

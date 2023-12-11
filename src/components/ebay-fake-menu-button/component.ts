@@ -33,7 +33,7 @@ interface FakeMenuButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<FakeMenuButtonInput> {}
 
-export default class extends Marko.Component<Input> {
+class FakeMenuButton extends Marko.Component<Input> {
     declare expander: Expander;
 
     handleMenuKeydown({ el, originalEvent, index }) {
@@ -134,3 +134,5 @@ export default class extends Marko.Component<Input> {
         }
     }
 }
+
+export default FakeMenuButton;

@@ -19,7 +19,7 @@ interface State {
     expanded: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class DrawerDialog extends Marko.Component<Input, State> {
     declare touches: Pick<Touch, "identifier" | "pageY">[];
 
     setExpandedState(isExpanded: boolean) {
@@ -106,3 +106,5 @@ export default class extends Marko.Component<Input, State> {
         this.state = { expanded: input.expanded || false };
     }
 }
+
+export default DrawerDialog;

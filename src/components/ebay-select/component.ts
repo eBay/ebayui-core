@@ -24,7 +24,7 @@ export interface State {
     selectedIndex: number;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Select extends Marko.Component<Input, State> {
     declare _floatingLabel: FloatingLabel;
 
     get selectId() {
@@ -59,7 +59,7 @@ export default class extends Marko.Component<Input, State> {
         (input.options as any) = input.options || [];
         state.selectedIndex = Math.max(
             0,
-            (input.options as Option[]).findIndex((option) => option.selected)
+            (input.options as Option[]).findIndex((option) => option.selected),
         );
     }
 
@@ -69,7 +69,7 @@ export default class extends Marko.Component<Input, State> {
         const parentForm = this.el!.closest("form");
         if (parentForm) {
             const { selectedIndex } = document.getElementById(
-                this.selectId
+                this.selectId,
             ) as HTMLSelectElement;
             this.subscribeTo(parentForm).on("reset", () => {
                 this.handleChange({ target: { selectedIndex } });
@@ -96,9 +96,11 @@ export default class extends Marko.Component<Input, State> {
             } else {
                 this.subscribeTo(window).once(
                     "load",
-                    this._setupMakeup.bind(this)
+                    this._setupMakeup.bind(this),
                 );
             }
         }
     }
 }
+
+export default Select;

@@ -17,7 +17,7 @@ interface State {
     count: number;
 }
 
-export default class extends Marko.Component<Input, State> {
+class CharacterCount extends Marko.Component<Input, State> {
     declare timeout: NodeJS.Timeout;
 
     onCreate(input: Input) {
@@ -53,3 +53,5 @@ export default class extends Marko.Component<Input, State> {
         return 0;
     }
 }
+
+export default CharacterCount;

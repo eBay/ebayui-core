@@ -22,7 +22,7 @@ interface State {
     checked: AttrTriState;
 }
 
-export default class extends Marko.Component<Input, State> {
+class TriStateCheckbox extends Marko.Component<Input, State> {
     onInput(input: Input) {
         this.state = { checked: input.checked || "false" };
     }
@@ -65,3 +65,5 @@ export default class extends Marko.Component<Input, State> {
         } satisfies TriStateCheckboxEvent);
     }
 }
+
+export default TriStateCheckbox;

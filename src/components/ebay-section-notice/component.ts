@@ -15,7 +15,7 @@ interface State {
     dismissed: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class SectionNotice extends Marko.Component<Input, State> {
     onCreate() {
         this.state = { dismissed: false };
     }
@@ -29,3 +29,5 @@ export default class extends Marko.Component<Input, State> {
         this.emit("dismiss");
     }
 }
+
+export default SectionNotice;

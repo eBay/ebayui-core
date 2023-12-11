@@ -26,7 +26,7 @@ interface State {
     expanded: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Tourtip extends Marko.Component<Input, State> {
     handleCollapse({ originalEvent }) {
         if (this.state.expanded) {
             this.state.expanded = false;
@@ -52,3 +52,5 @@ export default class extends Marko.Component<Input, State> {
         };
     }
 }
+
+export default Tourtip;

@@ -82,7 +82,7 @@ interface State {
     showLoading: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Video extends Marko.Component<Input, State> {
     declare video: HTMLVideoElement;
     declare root: HTMLElement;
     declare containerEl: HTMLElement;
@@ -264,19 +264,19 @@ export default class extends Marko.Component<Input, State> {
             this.player,
             this.containerEl,
             this.video,
-            this.input.reportText || ""
+            this.input.reportText || "",
         );
 
         // eslint-disable-next-line no-undef,new-cap
         shaka.ui.Controls.registerElement(
             "report",
-            new Report.Factory(this.input.reportText)
+            new Report.Factory(this.input.reportText),
         );
 
         // eslint-disable-next-line no-undef,new-cap
         shaka.ui.Controls.registerElement(
             "captions",
-            new TextSelection.Factory()
+            new TextSelection.Factory(),
         );
 
         this.ui.configure({
@@ -329,7 +329,7 @@ export default class extends Marko.Component<Input, State> {
 
         eventList.forEach((eventName) => {
             this.subscribeTo(this.video).on(eventName, (e) =>
-                this.emit(eventName, e)
+                this.emit(eventName, e),
             );
         });
 
@@ -348,8 +348,10 @@ export default class extends Marko.Component<Input, State> {
         this.cdnLoader
             .setOverrides(
                 [this.input.cdnUrl as string, this.input.cssUrl as string],
-                this.input.version
+                this.input.version,
             )
             .mount();
     }
 }
+
+export default Video;

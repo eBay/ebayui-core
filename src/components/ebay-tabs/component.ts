@@ -19,7 +19,7 @@ export interface State {
     selectedIndex: number;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Tabs extends Marko.Component<Input, State> {
     declare _linearRovingTabindex: ReturnType<typeof createLinear>;
 
     /**
@@ -105,7 +105,7 @@ export default class extends Marko.Component<Input, State> {
                 {
                     index: state.selectedIndex,
                     wrap: true,
-                }
+                },
             );
         }
     }
@@ -117,3 +117,5 @@ export default class extends Marko.Component<Input, State> {
         }
     }
 }
+
+export default Tabs;

@@ -14,4 +14,6 @@ interface TooltipInput {
 
 export interface Input extends WithNormalizedProps<TooltipInput> {}
 
-export default class extends Marko.Component<Input> {}
+class Tooltip extends Marko.Component<Input> {}
+
+export default Tooltip;

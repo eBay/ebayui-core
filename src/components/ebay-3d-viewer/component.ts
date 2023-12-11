@@ -32,7 +32,7 @@ interface State {
     failed: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Viewer extends Marko.Component<Input, State> {
     declare cdnLoader: CDNLoader;
     declare viewer: HTMLElement;
 
@@ -84,3 +84,5 @@ export default class extends Marko.Component<Input, State> {
             .mount();
     }
 }
+
+export default Viewer;

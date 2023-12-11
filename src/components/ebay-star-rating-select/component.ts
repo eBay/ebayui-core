@@ -20,7 +20,7 @@ export interface State {
     value: number;
 }
 
-export default class extends Marko.Component<Input, State> {
+class StarRating extends Marko.Component<Input, State> {
     onCreate() {
         this.state = {
             value: 0,
@@ -48,3 +48,5 @@ export default class extends Marko.Component<Input, State> {
         }
     }
 }
+
+export default StarRating;

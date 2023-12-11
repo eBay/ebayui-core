@@ -31,7 +31,7 @@ interface State {
     selectedIndex: number;
 }
 
-export default class extends Marko.Component<Input, State> {
+class ListboxButton extends Marko.Component<Input, State> {
     declare _expander: Expander;
 
     handleExpand() {
@@ -118,3 +118,5 @@ export default class extends Marko.Component<Input, State> {
         }
     }
 }
+
+export default ListboxButton;

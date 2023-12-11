@@ -58,10 +58,10 @@ interface State {
     disableList: DayISO[];
 }
 
-export default class extends Marko.Component<Input, State> {
+class Calendar extends Marko.Component<Input, State> {
     onCreate(input: Input) {
         const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(
-            localeOverride(input.locale)
+            localeOverride(input.locale),
         );
         const todayISO = toISO(new Date());
         this.state = {
@@ -90,7 +90,7 @@ export default class extends Marko.Component<Input, State> {
             const currFirstISO = this.getFirstVisibleISO();
             const currLastISO = this.getLastVisibleISO(input);
             const selectedTimeInView = selectedISOs.find(
-                (time) => time >= currFirstISO && time <= currLastISO
+                (time) => time >= currFirstISO && time <= currLastISO,
             );
             if (selectedTimeInView === undefined) {
                 this.state.baseISO = this.state.tabindexISO = selectedISOs[0];
@@ -136,7 +136,7 @@ export default class extends Marko.Component<Input, State> {
         while (
             this.state.disableAfter &&
             this.getMonthDate(
-                this.state.offset + (input.numMonths || 1) - 1
+                this.state.offset + (input.numMonths || 1) - 1,
             ).toISOString() > this.state.disableAfter
         ) {
             this.state.offset--;
@@ -223,7 +223,10 @@ export default class extends Marko.Component<Input, State> {
     getMonthDate(offset: number) {
         const baseDate = fromISO(this.state.baseISO);
         const date = new Date(
-            Date.UTC(baseDate.getUTCFullYear(), baseDate.getUTCMonth() + offset)
+            Date.UTC(
+                baseDate.getUTCFullYear(),
+                baseDate.getUTCMonth() + offset,
+            ),
         );
         return date;
     }
@@ -241,9 +244,9 @@ export default class extends Marko.Component<Input, State> {
                     baseDate.getUTCMonth() +
                         this.state.offset +
                         (input.numMonths || 1),
-                    0
-                )
-            )
+                    0,
+                ),
+            ),
         );
     }
 
@@ -271,10 +274,10 @@ export default class extends Marko.Component<Input, State> {
             {
                 month: "long",
                 year: "numeric",
-            }
+            },
         );
         return formatter.format(
-            new Date(date.getUTCFullYear(), date.getUTCMonth())
+            new Date(date.getUTCFullYear(), date.getUTCMonth()),
         );
     }
 
@@ -324,8 +327,8 @@ export default class extends Marko.Component<Input, State> {
         this.emit("month-change", {
             iso: toISO(
                 this.getMonthDate(
-                    this.state.offset + (this.input.numMonths || 1)
-                )
+                    this.state.offset + (this.input.numMonths || 1),
+                ),
             ),
         });
 
@@ -379,3 +382,5 @@ export default class extends Marko.Component<Input, State> {
         return true;
     }
 }
+
+export default Calendar;

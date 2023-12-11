@@ -11,7 +11,7 @@ export interface DetailsInput
 
 export interface Input extends WithNormalizedProps<DetailsInput> {}
 
-export default class extends Marko.Component<Input> {
+class Details extends Marko.Component<Input> {
     toggleDetails(ev: Event) {
         this.emit("toggle", {
             originalEvent: ev,
@@ -22,3 +22,5 @@ export default class extends Marko.Component<Input> {
         this.emit("click", { originalEvent: ev });
     }
 }
+
+export default Details;

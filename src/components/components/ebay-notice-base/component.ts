@@ -32,4 +32,6 @@ interface NoticeBaseInput
 
 export interface Input extends WithNormalizedProps<NoticeBaseInput> {}
 
-export default class extends Marko.Component<Input> {}
+class NoticeBase extends Marko.Component<Input> {}
+
+export default NoticeBase;

@@ -24,8 +24,10 @@ interface TooltipOverlayInput {
 
 export interface Input extends WithNormalizedProps<TooltipOverlayInput> {}
 
-export default class extends Marko.Component<Input> {
+class TooltipOverlay extends Marko.Component<Input> {
     handleCloseButton(originalEvent: Event) {
         this.emit("overlay-close", { originalEvent });
     }
 }
+
+export default TooltipOverlay;

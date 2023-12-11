@@ -41,13 +41,13 @@ interface State {
     maxItems: number;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Pagination extends Marko.Component<Input, State> {
     declare _itemWidth: number;
 
     handlePageNumberClick(
         index: number,
         originalEvent: MouseEvent,
-        el: HTMLElement
+        el: HTMLElement,
     ) {
         this.emit("select", {
             el,
@@ -74,7 +74,7 @@ export default class extends Marko.Component<Input, State> {
         // Have to set timeout becasue menu will also trigger focus back to menu container
         setTimeout(
             () => (this.getEl("pageItem[]", index) as HTMLElement).focus(),
-            0
+            0,
         );
     }
 
@@ -104,7 +104,7 @@ export default class extends Marko.Component<Input, State> {
         this._calculateMaxItems();
         this.subscribeTo(eventUtils.resizeUtil).on(
             "resize",
-            this._calculateMaxItems.bind(this)
+            this._calculateMaxItems.bind(this),
         );
     }
 
@@ -209,7 +209,9 @@ export default class extends Marko.Component<Input, State> {
         // subtract 2 from the rounded results to take into account previous/next page buttons
         state.maxItems = Math.max(
             MIN_PAGES,
-            Math.min(MAX_PAGES, Math.floor(getMaxWidth(root) / itemWidth) - 2)
+            Math.min(MAX_PAGES, Math.floor(getMaxWidth(root) / itemWidth) - 2),
         );
     }
 }
+
+export default Pagination;

@@ -25,7 +25,7 @@ interface State {
     selectedIndex: number;
 }
 
-export default class extends Marko.Component<Input, State> {
+class SegmentedButtons extends Marko.Component<Input, State> {
     onCreate() {
         this.state = {
             selectedIndex: 0,
@@ -55,3 +55,5 @@ export default class extends Marko.Component<Input, State> {
         }
     }
 }
+
+export default SegmentedButtons;

@@ -79,7 +79,7 @@ interface State {
     ariaRoleDescription: string;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Carousel extends Marko.Component<Input, State> {
     declare autoplayTimeout: ReturnType<typeof setTimeout>;
     declare interactionEndTimeout: ReturnType<typeof setTimeout>;
     declare renderFrame: number;
@@ -671,3 +671,5 @@ function forEls(parent: HTMLElement, fn: (el: HTMLElement, i: number) => any) {
         child = child.nextElementSibling as HTMLElement;
     }
 }
+
+export default Carousel;

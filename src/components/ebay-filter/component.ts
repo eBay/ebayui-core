@@ -16,7 +16,7 @@ interface State {
     selected: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Filter extends Marko.Component<Input, State> {
     handleButtonClick(originalEvent: MouseEvent) {
         if (!this.input.disabled) {
             const selected = !this.state.selected;
@@ -34,3 +34,5 @@ export default class extends Marko.Component<Input, State> {
         };
     }
 }
+
+export default Filter;

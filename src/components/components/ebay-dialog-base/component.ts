@@ -56,7 +56,7 @@ interface State {
     open: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class DialogBase extends Marko.Component<Input, State> {
     clickTarget: HTMLButtonElement | null;
     startEl: Element | null;
     closeEl: Element | null;
@@ -222,7 +222,7 @@ export default class extends Marko.Component<Input, State> {
     _getTrapCallback(
         restoreTrap: boolean,
         isTrapped: boolean,
-        wasTrapped: boolean
+        wasTrapped: boolean,
     ) {
         const willTrap =
             this.input.isModal && (restoreTrap || (isTrapped && !wasTrapped));
@@ -253,7 +253,7 @@ export default class extends Marko.Component<Input, State> {
         const runTraps = this._getTrapCallback(
             restoreTrap,
             isTrapped,
-            wasTrapped
+            wasTrapped,
         );
 
         // Ensure focus is set and body scroll prevented on initial render.
@@ -294,7 +294,7 @@ export default class extends Marko.Component<Input, State> {
                     this.cancelScrollReset = setTimeout(() => {
                         this.rootEl?.parentNode?.replaceChild(
                             this.rootEl,
-                            this.rootEl
+                            this.rootEl,
                         );
                         this.cancelScrollReset = undefined;
                     }, 20);
@@ -312,7 +312,7 @@ export default class extends Marko.Component<Input, State> {
                             className: `${this.input.classPrefix}--show`,
                             waitFor: this.transitionEls,
                         },
-                        onFinishTransition
+                        onFinishTransition,
                     );
                 } else {
                     this.isAnimating = false;
@@ -328,7 +328,7 @@ export default class extends Marko.Component<Input, State> {
                             className: `${this.input.classPrefix}--hide`,
                             waitFor: this.transitionEls,
                         },
-                        onFinishTransition
+                        onFinishTransition,
                     );
                 } else {
                     this.isAnimating = false;
@@ -370,3 +370,5 @@ export default class extends Marko.Component<Input, State> {
         }
     }
 }
+
+export default DialogBase;

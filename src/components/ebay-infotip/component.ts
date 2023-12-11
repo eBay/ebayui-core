@@ -28,7 +28,7 @@ interface State {
     open: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class Infotip extends Marko.Component<Input, State> {
     onInput(input: Input) {
         this.state = {
             open: input.open || false,
@@ -73,3 +73,5 @@ export default class extends Marko.Component<Input, State> {
         this.emit("collapse");
     }
 }
+
+export default Infotip;

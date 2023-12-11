@@ -24,7 +24,7 @@ interface DateTextboxInput {
     "on-change"?: (
         event:
             | { selected: DayISO | null }
-            | { rangeStart: DayISO | null; rangeEnd: DayISO | null }
+            | { rangeStart: DayISO | null; rangeEnd: DayISO | null },
     ) => void;
 }
 
@@ -37,7 +37,7 @@ interface State {
     popover: boolean;
 }
 
-export default class extends Marko.Component<Input, State> {
+class DateTextbox extends Marko.Component<Input, State> {
     declare expander: Expander | null;
 
     onCreate() {
@@ -142,7 +142,9 @@ export default class extends Marko.Component<Input, State> {
                   }
                 : {
                       selected: this.state.firstSelected,
-                  }
+                  },
         );
     }
 }
+
+export default DateTextbox;

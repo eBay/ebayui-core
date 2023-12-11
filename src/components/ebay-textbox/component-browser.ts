@@ -31,7 +31,7 @@ interface TextboxInput extends Omit<Marko.Input<"textarea">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<TextboxInput> {}
 
-export default class extends Marko.Component<Input> {
+class Textbox extends Marko.Component<Input> {
     declare _floatingLabel: FloatingLabel;
 
     onMount() {
@@ -61,7 +61,7 @@ export default class extends Marko.Component<Input> {
             } else {
                 this.subscribeTo(window).once(
                     "load",
-                    this._setupMakeup.bind(this)
+                    this._setupMakeup.bind(this),
                 );
             }
         }
@@ -70,7 +70,7 @@ export default class extends Marko.Component<Input> {
     forwardEvent(
         eventName: string,
         originalEvent: Event,
-        el: HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement
+        el: HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement,
     ) {
         this.emit(eventName, {
             originalEvent,
@@ -78,3 +78,5 @@ export default class extends Marko.Component<Input> {
         } satisfies TextboxEvent);
     }
 }
+
+export default Textbox;
