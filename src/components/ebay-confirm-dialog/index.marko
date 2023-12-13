@@ -16,8 +16,10 @@ $ var mainId = component.getElId("confirm-dialog-main");
 static  var validConfirmCTAVariants = [
     "destructive"
 ];
+
+$ const { confirmCtaVariant, ...dialogInput } = input;
 <ebay-dialog-base
-    ...input
+    ...dialogInput
     open=input.open
     on-open("emit", "open")
     on-close("emit", "reject")
@@ -41,7 +43,7 @@ static  var validConfirmCTAVariants = [
             aria-describedby=mainId
             class=[
                 "confirm-dialog__confirm",
-                input.confirmCtaVariant && validConfirmCTAVariants.includes(input.confirmCtaVariant) && `btn--${input.confirmCtaVariant}`
+                confirmCtaVariant && validConfirmCTAVariants.includes(confirmCtaVariant) && `btn--${confirmCtaVariant}`
             ]>
             ${input.confirmText}
         </ebay-button>
