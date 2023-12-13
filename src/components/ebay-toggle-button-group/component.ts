@@ -49,7 +49,7 @@ class ToggleButtonGroup extends Marko.Component<Input, State> {
         this.emit("change", {
             originalEvent,
             pressed: Object.keys(this.state.pressed)
-                .filter((i) => this.state.pressed[i])
+                .filter((i) => this.state.pressed[+i])
                 .map((i) => +i),
         } satisfies ToggleButtonGroupEvent);
     };

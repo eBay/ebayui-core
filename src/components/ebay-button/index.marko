@@ -1,7 +1,7 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 import { validSizes } from "./component-browser"
 
-static function toJSON() {
+static function toJSON(this: any) {
     return {
         disabled: this.disabled
     };

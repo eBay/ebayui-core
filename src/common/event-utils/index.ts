@@ -1,7 +1,7 @@
 function handleKeydown(
     keyCodes: number[],
     e: KeyboardEvent,
-    callback: () => any
+    callback: () => any,
 ) {
     const keyCode = e.charCode || e.keyCode;
     if (keyCodes.indexOf(keyCode) !== -1) {
@@ -13,7 +13,7 @@ function handleKeydown(
 function handleNotKeydown(
     keyCodes: number[],
     e: KeyboardEvent,
-    callback: () => any
+    callback: () => any,
 ) {
     const keyCode = e.charCode || e.keyCode;
     if (keyCodes.indexOf(keyCode) === -1) {
@@ -100,7 +100,7 @@ const resizeUtil = {
     removeEventListener,
 };
 
-function debounce(func: Function, timeout = 100) {
+function debounce(this: any, func: Function, timeout = 100) {
     let timer: NodeJS.Timeout;
     return (...args: any[]) => {
         clearTimeout(timer);

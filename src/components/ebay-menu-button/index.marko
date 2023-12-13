@@ -1,6 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 import IconButton from '<ebay-icon-button>'
-import Button from '<ebay-button>'
+import Button, { type Input as ButtonInput } from '<ebay-button>'
 
 static var ignoredAttributes = [
     "class",
@@ -70,7 +70,7 @@ $ {
             `menu-button__button`
         ]
         size=input.size
-        priority=priority
+        priority=priority as ButtonInput["priority"]
         borderless=input.borderless
         variant=variant
         aria-expanded="false"
@@ -78,9 +78,8 @@ $ {
         transparent=(isIconVariant && input.transparent)
         aria-label=input.a11yText
         aria-labelledby=(labelId && `${input.prefixId} ${labelId}`)
-        split=(isButtonVariant && input.split)
+        split=(isButtonVariant ? input.split : undefined)
         disabled=input.disabled
-        no-toggle-icon=input.noToggleIcon
         on-escape("handleButtonEscape")
         key="button">
         <if(isOverflowVariant)>

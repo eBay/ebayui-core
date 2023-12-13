@@ -32,7 +32,7 @@ interface TextboxInput extends Omit<Marko.Input<"textarea">, `on${string}`> {
 export interface Input extends WithNormalizedProps<TextboxInput> {}
 
 class Textbox extends Marko.Component<Input> {
-    declare _floatingLabel: FloatingLabel;
+    declare _floatingLabel: any;
 
     onMount() {
         this._setupMakeup();

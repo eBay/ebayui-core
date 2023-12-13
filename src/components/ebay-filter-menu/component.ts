@@ -6,6 +6,7 @@ import setupMenu, {
     type BaseMenuInput,
     type MenuState,
 } from "../../common/menu-utils";
+import type { RadioEvent } from "../ebay-radio/component-browser";
 
 export interface FilterMenuEvent<T extends Event = Event> {
     el?: Element;
@@ -53,8 +54,8 @@ export default class extends MenuUtils<Input, MenuState> {
         this.lastTabIndexPosition = 0;
     }
 
-    handleRadioClick(index: number, ev: MouseEvent, itemEl: Element) {
-        this._toggleItemChecked(index, ev, itemEl);
+    handleRadioClick(index: number, ev: RadioEvent, itemEl: Element) {
+        this._toggleItemChecked(index, ev.originalEvent, itemEl);
     }
 
     handleItemClick(index: number, ev: MouseEvent, itemEl: Element) {
@@ -81,11 +82,11 @@ export default class extends MenuUtils<Input, MenuState> {
         }
     }
 
-    handleFooterButtonClick(originalEvent) {
+    handleFooterButtonClick(originalEvent: Event) {
         this._emitComponentEvent("footer-click", originalEvent);
     }
 
-    handleFormSubmit(originalEvent) {
+    handleFormSubmit(originalEvent: Event) {
         this._emitComponentEvent("form-submit", originalEvent);
     }
 
@@ -122,7 +123,7 @@ export default class extends MenuUtils<Input, MenuState> {
     _emitComponentEvent(
         eventType: string,
         originalEvent: Event,
-        args?: { el?: Element; index?: number }
+        args?: { el?: Element; index?: number },
     ) {
         const { el, index } = args || {};
         const checked = this.getCheckedValues() as string[];

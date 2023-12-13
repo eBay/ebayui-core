@@ -65,7 +65,7 @@ class LineChart extends Marko.Component<Input> {
         });
     }
 
-    handleError(err) {
+    handleError(err: Error) {
         this.emit("load-error", err);
     }
     handleSuccess() {
@@ -358,88 +358,74 @@ class LineChart extends Marko.Component<Input> {
     handleMouseOut() {
         // this function is debounced to improve performance
         this.chartRef.series.forEach((s) => {
-            s.data.forEach(
-                (
-                    data: Highcharts.Point & {
-                        className: string;
-                        onTick: boolean;
-                    },
-                ) => {
-                    // check if hover is on the xAxis (onTick) for each item,
-                    // and if they have a className remove and disable the marker
-                    if (!data.onTick && data.className !== null) {
-                        data.update(
-                            {
-                                className: undefined, // nullify className if not active
-                                marker: {
-                                    enabled: false, // disable marker if not active
-                                },
+            s.data.forEach((data: any) => {
+                // check if hover is on the xAxis (onTick) for each item,
+                // and if they have a className remove and disable the marker
+                if (!data.onTick && data.className !== null) {
+                    data.update(
+                        {
+                            className: undefined, // nullify className if not active
+                            marker: {
+                                enabled: false, // disable marker if not active
                             },
-                            false, // disable auto redraw
-                            false, // disable auto animation
-                        );
-                    } else if (data.onTick && data.className === null) {
-                        data.update(
-                            {
-                                className: "ebay-line-graph__marker--visible", // set classname
-                                onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
-                                marker: {
-                                    enabled: true, // set marker enabled
-                                    radius: pointSize, // set the size of marker
-                                    lineColor: backgroundColor, // set border color of hover markers
-                                    lineWidth: 2, // sets the border line width of the marker symbol
-                                },
-                            } as Highcharts.PointOptionsType,
-                            false, // disable auto redraw
-                            false, // disable auto animation
-                        );
-                    }
-                },
-            );
+                        },
+                        false, // disable auto redraw
+                        false, // disable auto animation
+                    );
+                } else if (data.onTick && data.className === null) {
+                    data.update(
+                        {
+                            className: "ebay-line-graph__marker--visible", // set classname
+                            onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
+                            marker: {
+                                enabled: true, // set marker enabled
+                                radius: pointSize, // set the size of marker
+                                lineColor: backgroundColor, // set border color of hover markers
+                                lineWidth: 2, // sets the border line width of the marker symbol
+                            },
+                        } as Highcharts.PointOptionsType,
+                        false, // disable auto redraw
+                        false, // disable auto animation
+                    );
+                }
+            });
         });
         this.chartRef.redraw(); // trigger redraw after all points have been updated
     }
-    handleMouseOver(e) {
+    handleMouseOver(e: any) {
         // this function is debounced to improve performance
         this.chartRef.series.forEach((s) => {
-            s.data.forEach(
-                (
-                    data: Highcharts.Point & {
-                        className: string;
-                        onTick: boolean;
-                    },
-                ) => {
-                    // if active xAxis hover position matches the data point x update the marker to display
-                    if (data.x === e.target.x) {
-                        data.update(
-                            {
-                                className: "ebay-line-graph__marker--visible", // sets the classname
-                                onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
-                                marker: {
-                                    enabled: true, // set marker enabled
-                                    radius: pointSize, // set the size of marker
-                                    lineColor: backgroundColor, // set border color of hover markers
-                                    lineWidth: 2, // sets the border line width of the marker symbol
-                                },
-                            } as Highcharts.PointOptionsType,
-                            false, // disable auto redraw
-                            false, // disable auto animation
-                        );
-                    } else if (!data.onTick && data.className !== null) {
-                        data.update(
-                            {
-                                className: undefined, // nullify className if not active
-                                onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
-                                marker: {
-                                    enabled: false, // disable marker
-                                },
-                            } as Highcharts.PointOptionsType,
-                            false, // disable auto redraw
-                            false, // disable auto animation
-                        );
-                    }
-                },
-            );
+            s.data.forEach((data: any) => {
+                // if active xAxis hover position matches the data point x update the marker to display
+                if (data.x === e.target.x) {
+                    data.update(
+                        {
+                            className: "ebay-line-graph__marker--visible", // sets the classname
+                            onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
+                            marker: {
+                                enabled: true, // set marker enabled
+                                radius: pointSize, // set the size of marker
+                                lineColor: backgroundColor, // set border color of hover markers
+                                lineWidth: 2, // sets the border line width of the marker symbol
+                            },
+                        } as Highcharts.PointOptionsType,
+                        false, // disable auto redraw
+                        false, // disable auto animation
+                    );
+                } else if (!data.onTick && data.className !== null) {
+                    data.update(
+                        {
+                            className: undefined, // nullify className if not active
+                            onTick: data.onTick, // sets the onTick flag to keep track of the points enabled status for mouse events
+                            marker: {
+                                enabled: false, // disable marker
+                            },
+                        } as Highcharts.PointOptionsType,
+                        false, // disable auto redraw
+                        false, // disable auto animation
+                    );
+                }
+            });
         });
         this.chartRef.redraw(); // trigger redraw after all points have been updated
     }
@@ -458,65 +444,51 @@ class LineChart extends Marko.Component<Input> {
                 // loops through each series if a className exist remove and hide the marker
                 this.chartRef.series.forEach((series) => {
                     // looping through each series data array
-                    series.data.forEach(
-                        (
-                            data: Highcharts.Point & {
-                                className: string;
-                                onTick: boolean;
-                            },
-                        ) => {
-                            if (data.className !== null) {
-                                data.update(
-                                    {
-                                        className: undefined, // removing className used to help keep track of active markers
-                                        onTick: false, // sets the onTick flag to keep track of the points enabled status for mouse events
-                                        marker: {
-                                            enabled: false, // disable the marker
-                                        },
-                                    } as Highcharts.PointOptionsType,
-                                    false, // disable auto redraw
-                                    false, // disable auto animation
-                                );
-                            }
-                        },
-                    );
+                    series.data.forEach((data: any) => {
+                        if (data.className !== null) {
+                            data.update(
+                                {
+                                    className: undefined, // removing className used to help keep track of active markers
+                                    onTick: false, // sets the onTick flag to keep track of the points enabled status for mouse events
+                                    marker: {
+                                        enabled: false, // disable the marker
+                                    },
+                                } as Highcharts.PointOptionsType,
+                                false, // disable auto redraw
+                                false, // disable auto animation
+                            );
+                        }
+                    });
                 });
 
                 // loop through each series again and update markers that line up to xAxis tick marks
                 this.chartRef.series.forEach((series) => {
                     // loop through each searies data objects
-                    series.data.forEach(
-                        (
-                            data: Highcharts.Point & {
-                                className: string;
-                                onTick: boolean;
-                            },
-                        ) => {
-                            // loop through the tickValues that come from the x axis ticks and are epoch time stamps
-                            this.tickValues.forEach((tick) => {
-                                // if the current point x value matches the tickValue or the updateMarkers event exist from the redraw event
-                                if (tick === data.x || data.x === e) {
-                                    if (data.className === null) {
-                                        data.update(
-                                            {
-                                                className:
-                                                    "ebay-line-graph__marker--visible", // add the ebay-line-graph__marker--visible class to boost it's visibility
-                                                onTick: true, // sets the onTick flag to keep track of the points enabled status for mouse events
-                                                marker: {
-                                                    enabled: true, // set marker enabled
-                                                    radius: pointSize, // set the size of the marker
-                                                    lineColor: backgroundColor, // set the border color of the hover markers
-                                                    lineWidth: 2, // set the border width of the hover markers
-                                                },
-                                            } as Highcharts.PointOptionsType,
-                                            false, // disable auto redraw
-                                            false, // disable auto animation
-                                        );
-                                    }
+                    series.data.forEach((data: any) => {
+                        // loop through the tickValues that come from the x axis ticks and are epoch time stamps
+                        this.tickValues.forEach((tick) => {
+                            // if the current point x value matches the tickValue or the updateMarkers event exist from the redraw event
+                            if (tick === data.x || data.x === e) {
+                                if (data.className === null) {
+                                    data.update(
+                                        {
+                                            className:
+                                                "ebay-line-graph__marker--visible", // add the ebay-line-graph__marker--visible class to boost it's visibility
+                                            onTick: true, // sets the onTick flag to keep track of the points enabled status for mouse events
+                                            marker: {
+                                                enabled: true, // set marker enabled
+                                                radius: pointSize, // set the size of the marker
+                                                lineColor: backgroundColor, // set the border color of the hover markers
+                                                lineWidth: 2, // set the border width of the hover markers
+                                            },
+                                        } as Highcharts.PointOptionsType,
+                                        false, // disable auto redraw
+                                        false, // disable auto animation
+                                    );
                                 }
-                            });
-                        },
-                    );
+                            }
+                        });
+                    });
                 });
                 this.chartRef.redraw(); // trigger redraw after all points have been updated
             }

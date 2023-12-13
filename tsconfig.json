@@ -7,12 +7,20 @@
         "**/examples/*"
     ],
     "compilerOptions": {
-        "lib": ["ESNext", "DOM"],
-        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "incremental": true,
+        "lib": ["dom", "ESNext"],
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "noImplicitOverride": true,
+        "noUnusedLocals": true,
+        "outDir": "dist",
         "resolveJsonModule": true,
-        "esModuleInterop": true,
+        "rootDir": "src",
+        "skipLibCheck": true,
+        "strict": true,
         "target": "ESNext",
-        "strictNullChecks": true,
-        "outDir": "dist"
+        "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+        "verbatimModuleSyntax": true
     }
 }

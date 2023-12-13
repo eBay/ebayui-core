@@ -8,7 +8,7 @@ interface CDNLoaderConfig {
     types: string[];
     setLoading: (loading: boolean) => void;
     handleSuccess: () => void;
-    handleError: (err: Error) => void;
+    handleError: (err: any) => void;
     stagger?: boolean;
 }
 /**
@@ -31,11 +31,11 @@ export class CDNLoader {
     types: string[];
     key: string;
     stagger: boolean;
-    cdnFiles: string[];
-    url: string;
-    isLoaded: boolean;
-    loadDelay: number | NodeJS.Timeout;
-    retryTimeout: NodeJS.Timeout;
+    cdnFiles?: string[];
+    url?: string;
+    isLoaded?: boolean;
+    loadDelay?: number | NodeJS.Timeout;
+    retryTimeout?: NodeJS.Timeout;
 
     constructor(
         self: CDNLoader,
@@ -47,7 +47,7 @@ export class CDNLoader {
             handleSuccess,
             handleError,
             stagger,
-        }: CDNLoaderConfig
+        }: CDNLoaderConfig,
     ) {
         this.self = self;
         this.retryTimes = 0;
@@ -70,7 +70,7 @@ export class CDNLoader {
     _setFiles(overrides?: string[], version?: string) {
         this.cdnFiles = [];
         this.url = `https://ir.ebaystatic.com/cr/v/c1/ebayui/${this.key}/v${
-            version || versions[this.key]
+            version || versions[this.key as keyof typeof versions]
         }`;
         for (let i = 0; i < this.files.length; i++) {
             if (overrides && overrides[i]) {
@@ -115,7 +115,7 @@ export class CDNLoader {
         this.loadDelay = _timeout(() => this._loadCDN(), { timeout: 100 });
     }
 
-    _catchError(err) {
+    _catchError(err: Error) {
         clearTimeout(this.retryTimeout);
         this.retryTimes += 1;
         if (this.retryTimes < MAX_RETRIES) {
@@ -127,12 +127,12 @@ export class CDNLoader {
     }
 
     _loadCDN() {
-        loader(this.cdnFiles, this.types, this.stagger)
+        loader(this.cdnFiles ?? [], this.types, this.stagger)
             .then(() => {
                 this.setLoading(false);
                 this.handleSuccess();
             })
-            .catch((err) => {
+            .catch((err: Error) => {
                 this._catchError(err);
             });
     }

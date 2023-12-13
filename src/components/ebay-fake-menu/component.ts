@@ -7,9 +7,9 @@ import setupMenu, {
 } from "../../common/menu-utils";
 
 export interface MenuEvent {
-    el: Element;
-    originalEvent: Event;
-    index: number;
+    el?: HTMLElement;
+    originalEvent?: Event;
+    index?: number;
 }
 
 export interface Item extends MenuItem {

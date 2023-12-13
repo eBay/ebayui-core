@@ -192,7 +192,7 @@ class AreaChart extends Marko.Component<Input> {
         let maxYAxisValue = 0; // use to determine the highest yAxis value
         series.forEach((s) => {
             maxYAxisValue = s.data!.reduce(
-                (p: number, c: number) => (c > p ? c : p),
+                (p: number, c: any) => (c > p ? c : p),
                 maxYAxisValue,
             ) as number;
         });
@@ -254,7 +254,7 @@ class AreaChart extends Marko.Component<Input> {
     getTooltipConfig() {
         const component = this; // component reference used in formatter functions that don't have the same scope
         return {
-            formatter: function () {
+            formatter: function (this: any) {
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
                 // s is used to compile html string of formatted tooltip data
 
@@ -288,7 +288,7 @@ class AreaChart extends Marko.Component<Input> {
                     });
                 }
                 return s;
-            },
+            } as any,
             useHTML: true, // allows defining html to format tooltip content
             backgroundColor: tooltipBackgroundColor, // sets tooltip background color
             borderWidth: 0, // hide the default border stroke
@@ -379,7 +379,7 @@ class AreaChart extends Marko.Component<Input> {
         });
         this.chartRef.redraw(); // trigger redraw after all points have been updated
     }
-    handleMouseOver(e) {
+    handleMouseOver(e: any) {
         // this function is debounced to improve performance
         this.chartRef.series.forEach((s) => {
             s.data.forEach((d) => {

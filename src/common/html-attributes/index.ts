@@ -1,5 +1,5 @@
 const skipAttributes = /^htmlAttributes|renderBody|a11y.*$/;
-const EMPTY_ARR = [];
+const EMPTY_ARR: any[] = [];
 
 /**
  * Convert camelCase to kebab-case
@@ -18,9 +18,9 @@ function processHtmlAttributes(
         htmlAttributes?: Record<string, any>;
         [key: string]: any;
     },
-    ignore: string[] = EMPTY_ARR
+    ignore: string[] = EMPTY_ARR,
 ) {
-    const attributes = {};
+    const attributes: Record<string, string> = {};
     const htmlAttributes = input.htmlAttributes;
 
     let obj = htmlAttributes || {};

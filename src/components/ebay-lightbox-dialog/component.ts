@@ -1,6 +1,5 @@
 import type DialogBase from "../components/ebay-dialog-base/component";
 import type { Input as DialogBaseInput } from "../components/ebay-dialog-base/component";
-import { def } from "../ebay-flag/icons/ebay-flag-ac/def";
 
 export const validSizes = ["wide", "narrow"] as const;
 

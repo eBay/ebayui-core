@@ -1,13 +1,11 @@
 import Expander from "makeup-expander";
-import { AttrClass, AttrStyle } from "marko/tags-html";
 import * as eventUtils from "../../common/event-utils";
-import menuUtils from "../../common/menu-utils";
 import setupMenu, {
     MenuUtils,
     type BaseMenuInput,
     type MenuState,
 } from "../../common/menu-utils";
-import { FilterMenuEvent } from "../ebay-filter-menu/component";
+import type { FilterMenuEvent } from "../ebay-filter-menu/component";
 
 export interface FilterMenuButtonEvent {
     el?: Element;
@@ -44,16 +42,16 @@ interface FilterMenuButtonInput
 export interface Input extends WithNormalizedProps<FilterMenuButtonInput> {}
 
 export default class extends MenuUtils<Input, MenuState> {
-    declare _expander: Expander;
+    declare _expander: any;
 
     onCreate() {
         setupMenu(this);
     }
 
-    handleMenuKeydown({ originalEvent }: FilterMenuEvent<KeyboardEvent>) {
+    handleMenuKeydown({ originalEvent }: FilterMenuEvent) {
         eventUtils.handleEscapeKeydown(
-            originalEvent,
-            () => (this._expander.expanded = false)
+            originalEvent as KeyboardEvent,
+            () => (this._expander.expanded = false),
         );
     }
 
@@ -118,7 +116,7 @@ export default class extends MenuUtils<Input, MenuState> {
     _emitComponentEvent(
         eventType: string,
         originalEvent?: Event,
-        args?: { el?: Element; index?: number; currentChecked?: boolean }
+        args?: { el?: Element; index?: number; currentChecked?: boolean },
     ) {
         const { el, index, currentChecked } = args || {};
         switch (eventType) {

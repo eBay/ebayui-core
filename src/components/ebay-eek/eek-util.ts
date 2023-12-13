@@ -17,7 +17,7 @@ export interface Input extends WithNormalizedProps<EekInput> {}
 
 export default (input: Input) => {
     const { max, min, rating } = input;
-    const validMax = validRanges[max];
+    const validMax = validRanges[max as keyof typeof validRanges];
     if (!(validMax && validMax.indexOf(min) > -1)) {
         return null;
     }

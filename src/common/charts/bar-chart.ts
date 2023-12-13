@@ -4,7 +4,7 @@ export function eBayColumns(HighCharts: any) {
         HighCharts.wrap(
             HighCharts.seriesTypes.column.prototype,
             "translate",
-            function (proceed) {
+            function (this: any, proceed: any) {
                 // set a flag that can be checked so the prototype isn't overwritten twice, which looses the original code that is called with the proceed function
                 HighCharts.seriesTypes.column.prototype.ebayColumn = true;
                 const top = this.options.top, // pull out the top value from the highcharts options object
@@ -13,7 +13,7 @@ export function eBayColumns(HighCharts: any) {
                 // this runs the original code for this translate function at this point
                 // if it is not run HighCharts.each will not exist yet
                 proceed.call(this);
-                HighCharts.each(this.points, (point) => {
+                HighCharts.each(this.points, (point: any) => {
                     // loop over each data point element
                     const shapeArgs = point.shapeArgs, // reference to the points shapeArgs object
                         x = shapeArgs.x, // references to the shapeArgs X value
@@ -35,19 +35,19 @@ export function eBayColumns(HighCharts: any) {
                     // HighCharts.relativeLength returns a length based on either the integer value, or a percentage of a base with w being the base.
                     let rTopLeft = HighCharts.relativeLength(
                             top ? cornerRadius : 0,
-                            w
+                            w,
                         ),
                         rTopRight = HighCharts.relativeLength(
                             top ? cornerRadius : 0,
-                            w
+                            w,
                         ),
                         rBottomRight = HighCharts.relativeLength(
                             bottom ? cornerRadius : 0,
-                            w
+                            w,
                         ),
                         rBottomLeft = HighCharts.relativeLength(
                             bottom ? cornerRadius : 0,
-                            w
+                            w,
                         );
 
                     // max corner radius is half the width and height of the shape
@@ -144,7 +144,7 @@ export function eBayColumns(HighCharts: any) {
                         ],
                     };
                 });
-            }
+            },
         );
     }
 }

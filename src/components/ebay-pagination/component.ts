@@ -5,8 +5,8 @@ const MAX_PAGES = 9;
 const MIN_PAGES = 5;
 
 export interface SelectEvent {
-    el: HTMLElement;
-    originalEvent: Event;
+    el?: HTMLElement;
+    originalEvent?: Event;
     value: string;
     index: number;
 }
@@ -61,14 +61,14 @@ class Pagination extends Marko.Component<Input, State> {
         originalEvent,
         el,
     }: {
-        originalEvent: Event;
-        el: HTMLElement;
+        originalEvent?: Event;
+        el?: HTMLElement;
     }) {
-        const index = parseInt(el.getAttribute("data-page-number")!, 10);
+        const index = parseInt(el?.getAttribute("data-page-number")!, 10);
         this.emit("select", {
             el,
             originalEvent,
-            value: el.innerText,
+            value: el?.innerText ?? "",
             index,
         } satisfies SelectEvent);
         // Have to set timeout becasue menu will also trigger focus back to menu container

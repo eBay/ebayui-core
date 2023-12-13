@@ -1,7 +1,9 @@
-const eventOptions = { passive: true };
+const eventOptions: EventListenerOptions & { passive: boolean } = {
+    passive: true,
+};
 
-export function onScrollDebounced(el, cb) {
-    let timeout;
+export function onScrollDebounced(el: HTMLElement, cb: () => void) {
+    let timeout: ReturnType<typeof setTimeout>;
     waitForScroll();
     return cancel;
 

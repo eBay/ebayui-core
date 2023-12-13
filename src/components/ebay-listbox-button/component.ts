@@ -32,7 +32,7 @@ interface State {
 }
 
 class ListboxButton extends Marko.Component<Input, State> {
-    declare _expander: Expander;
+    declare _expander: any;
 
     handleExpand() {
         (this.getComponent("options") as Listbox).elementScroll();

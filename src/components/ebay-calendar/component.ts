@@ -167,7 +167,8 @@ class Calendar extends Marko.Component<Input, State> {
     }
 
     onKeyDown(event: KeyboardEvent) {
-        const dayChange = DAY_UPDATE_KEYMAP[event.key];
+        const dayChange =
+            DAY_UPDATE_KEYMAP[event.key as keyof typeof DAY_UPDATE_KEYMAP];
         if (dayChange) {
             event.preventDefault();
             // find new tabindex iso, skipping up to 7 disabled cells

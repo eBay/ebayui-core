@@ -1,5 +1,5 @@
 import focusables from "makeup-focusables";
-import { AttrClass, AttrStyle } from "marko/tags-html";
+import type { AttrClass, AttrStyle } from "marko/tags-html";
 // TODO check carousel
 import { resizeUtil } from "../../common/event-utils";
 import { processHtmlAttributes } from "../../common/html-attributes";

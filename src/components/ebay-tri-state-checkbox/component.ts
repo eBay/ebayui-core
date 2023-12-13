@@ -1,4 +1,4 @@
-import { AttrTriState } from "marko/tags-html";
+import type { AttrTriState } from "marko/tags-html";
 
 export interface TriStateCheckboxEvent {
     originalEvent: Event;

@@ -1,4 +1,4 @@
-import { AttrClass } from "marko/tags-html";
+import type { AttrClass } from "marko/tags-html";
 import type { pointerStyles, typeRoles } from "./constants";
 
 interface TooltipOverlayInput {
@@ -10,15 +10,17 @@ interface TooltipOverlayInput {
     pointer?: keyof typeof pointerStyles;
     heading?: Marko.Input<"span"> & {
         as: Marko.NativeTags;
-        renderBody: Marko.Renderable;
+        renderBody: Marko.Body;
     };
     id?: string;
     type: keyof typeof typeRoles;
     content?: Marko.Input<"span">;
     "a11y-close-text"?: string;
-    footer?: Marko.Renderable & {
-        class?: AttrClass;
-    };
+    footer?: Marko.AttrTag<
+        Marko.Renderable & {
+            class?: AttrClass;
+        }
+    >;
     "on-overlay-close"?: (event: { originalEvent: Event }) => void;
 }
 

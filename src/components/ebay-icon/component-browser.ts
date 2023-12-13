@@ -7,6 +7,7 @@ interface IconInput extends Omit<Marko.Input<"svg">, `on${string}`> {
     _themes?: () => string;
     _type: string;
     _name: string;
+    _def?: () => unknown;
     "a11y-variant"?: "label";
     "a11y-text"?: string;
     class?: AttrClass;
@@ -15,7 +16,7 @@ interface IconInput extends Omit<Marko.Input<"svg">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<IconInput> {}
 
-function createSVGElementFromString(data) {
+function createSVGElementFromString(data: any) {
     // This is needed because if we add linear gradient as a string it will not be rendered.
     if (!data.name) {
         return;
@@ -27,7 +28,7 @@ function createSVGElementFromString(data) {
     for (const attr of Object.keys(data.attr)) {
         linearGradient.setAttribute(attr, data.attr[attr]);
     }
-    data.children.forEach((stop) => {
+    data.children.forEach((stop: any) => {
         const newStop = document.createElementNS(
             "http://www.w3.org/2000/svg",
             stop.name,

@@ -25,10 +25,10 @@ class FakeLink extends Marko.Component<Input> {
             }
         });
     }
-    handleFocus(originalEvent: FocusEvent) {
+    handleFocus(originalEvent: Event) {
         this.emit("focus", { originalEvent });
     }
-    handleBlur(originalEvent: FocusEvent) {
+    handleBlur(originalEvent: Event) {
         this.emit("blur", { originalEvent });
     }
 }

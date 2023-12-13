@@ -5,7 +5,7 @@ import setupMenu, {
     type BaseMenuInput,
     type MenuState,
 } from "../../common/menu-utils";
-import { MenuEvent } from "../ebay-menu/component";
+import type { MenuEvent } from "../ebay-menu/component";
 import type { Input as EbayButtonInput } from "../ebay-button/component-browser";
 
 export interface MenuButtonEvent {
@@ -53,7 +53,7 @@ export interface Input
 }
 
 export default class extends MenuUtils<Input, MenuState> {
-    declare expander: Expander;
+    declare expander: any;
 
     onCreate() {
         setupMenu(this);
@@ -97,14 +97,14 @@ export default class extends MenuUtils<Input, MenuState> {
         this.toggleItemChecked(index, itemEl, e);
     }
 
-    handleMenuKeydown({ el, originalEvent, index }: MenuEvent<KeyboardEvent>) {
+    handleMenuKeydown({ el, originalEvent, index }: MenuEvent) {
         if (originalEvent === undefined) return;
 
-        eventUtils.handleActionKeydown(originalEvent, () => {
+        eventUtils.handleActionKeydown(originalEvent as KeyboardEvent, () => {
             this.handleItemClick(index ?? 0, originalEvent, el);
         });
 
-        eventUtils.handleEscapeKeydown(originalEvent, () => {
+        eventUtils.handleEscapeKeydown(originalEvent as KeyboardEvent, () => {
             this.expander.expanded = false;
             this.focus();
         });

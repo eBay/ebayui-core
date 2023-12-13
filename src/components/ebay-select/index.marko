@@ -21,7 +21,7 @@ static function isGroup(optionOrGroup: Option | OptGroup): optionOrGroup is OptG
     return !!optionOrGroup.optgroup;
 }
 
-$ var selectedOption = input.options[state.selectedIndex];
+$ var selectedOption = [...input.options][state.selectedIndex];
 $ var list: (Option | OptGroup)[] = [];
 $ var isLarge = input.isLarge;
 $ var optgroups: Record<string, OptGroup> = {};

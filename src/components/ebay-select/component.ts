@@ -25,7 +25,7 @@ export interface State {
 }
 
 class Select extends Marko.Component<Input, State> {
-    declare _floatingLabel: FloatingLabel;
+    declare _floatingLabel: any;
 
     get selectId() {
         return this.input.id || this.getElId("select");
@@ -34,7 +34,7 @@ class Select extends Marko.Component<Input, State> {
     handleChange(event: Event | { target: { selectedIndex: number } }) {
         const { selectedIndex } = event.target as HTMLSelectElement;
         const el = this.getEls("option")[selectedIndex];
-        const option = this.input.options![selectedIndex];
+        const option = [...this.input.options][selectedIndex];
 
         this.state.selectedIndex = selectedIndex;
 

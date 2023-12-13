@@ -38,7 +38,7 @@ interface State {
 }
 
 class DateTextbox extends Marko.Component<Input, State> {
-    declare expander: Expander | null;
+    declare expander: any;
 
     onCreate() {
         this.state = {

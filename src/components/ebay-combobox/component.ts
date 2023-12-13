@@ -4,7 +4,7 @@ import Expander from "makeup-expander";
 import { scroll } from "../../common/element-scroll";
 import * as eventUtils from "../../common/event-utils";
 import safeRegex from "../../common/build-safe-regex";
-import { AttrClass } from "marko/tags-html";
+import type { AttrClass } from "marko/tags-html";
 
 interface ComboboxEvent {
     currentInputValue: State["currentValue"];
@@ -48,7 +48,7 @@ interface State {
 }
 
 export default class Combobox extends Marko.Component<Input, State> {
-    declare expander: Expander;
+    declare expander: any;
     declare buttonClicked: boolean;
     declare optionClicked: boolean;
     declare activeDescendant: ReturnType<typeof createLinear>;
@@ -57,7 +57,7 @@ export default class Combobox extends Marko.Component<Input, State> {
     declare listSelection: NonNullable<Input["listSelection"]>;
     declare expanded: boolean;
     declare expandedChange: boolean;
-    declare _floatingLabel: FloatingLabel;
+    declare _floatingLabel: any;
 
     focus() {
         (this.getEl("combobox") as HTMLElement).focus();
@@ -102,7 +102,7 @@ export default class Combobox extends Marko.Component<Input, State> {
 
     setSelectedView() {
         const current = this._getVisibleOptions().indexOf(
-            this._getSelectedOption()!
+            this._getSelectedOption()!,
         );
         this.activeDescendant.index = current;
         const selectedEl = this.getEls("options")[current] as HTMLElement;
@@ -146,7 +146,7 @@ export default class Combobox extends Marko.Component<Input, State> {
 
                 if (selectedIndex !== -1) {
                     this._setSelectedText(
-                        this._getVisibleOptions()[selectedIndex].text
+                        this._getVisibleOptions()[selectedIndex].text,
                     );
                 }
 
@@ -161,7 +161,7 @@ export default class Combobox extends Marko.Component<Input, State> {
         });
     }
 
-    handleComboboxKeyUp(originalEvent) {
+    handleComboboxKeyUp(originalEvent: KeyboardEvent) {
         eventUtils.handleTextInput(originalEvent, () => {
             this.state.currentValue = (
                 this.getEl("combobox") as HTMLInputElement
@@ -210,7 +210,7 @@ export default class Combobox extends Marko.Component<Input, State> {
         }
     }
 
-    handleSelectOption(text) {
+    handleSelectOption(text: string) {
         this._setSelectedText(text);
     }
 
@@ -287,7 +287,7 @@ export default class Combobox extends Marko.Component<Input, State> {
                         autoReset: -1,
                         axis: "y",
                         autoScroll: true,
-                    }
+                    },
                 );
             }
 
@@ -344,7 +344,7 @@ export default class Combobox extends Marko.Component<Input, State> {
 
     _getSelectedOption() {
         return this.input.options.find(
-            (option) => option.text === this.state.currentValue
+            (option) => option.text === this.state.currentValue,
         );
     }
 
@@ -355,7 +355,8 @@ export default class Combobox extends Marko.Component<Input, State> {
 
         const currentValueReg = safeRegex(this.state.currentValue?.toString());
         return this.input.options.filter(
-            (option) => currentValueReg.test(option.text || "") || option.sticky
+            (option) =>
+                currentValueReg.test(option.text || "") || option.sticky,
         );
     }
 

@@ -1,4 +1,4 @@
-const cachePromises = [];
+const cachePromises: Record<string, any> = {};
 
 function cssLoad(cssSrc: string, promiseKey: string) {
     return new Promise((resolve, reject) => {
@@ -62,7 +62,7 @@ function getPromise(
     typeList: string[],
     promiseKey: string,
     src: string,
-    key: number
+    key: number,
 ) {
     if (typeList[key]) {
         if (typeList[key] === "css") {
@@ -96,15 +96,23 @@ function loader(srcList: string[], typeList: string[], stagger?: boolean) {
             // Make sure each file loading completes, before loading the next
             cachePromises[promiseKey] = srcList.reduce(
                 (p, src, key) =>
-                    p.then(() => getPromise(typeList, promiseKey, src, key)),
-                Promise.resolve()
+                    p.then(
+                        () =>
+                            getPromise(
+                                typeList,
+                                promiseKey,
+                                src,
+                                key,
+                            ) as Promise<void>,
+                    ),
+                Promise.resolve(),
             );
         } else {
             // Each can complete in any order
             cachePromises[promiseKey] = Promise.all(
                 srcList.map((src, key) =>
-                    getPromise(typeList, promiseKey, src, key)
-                )
+                    getPromise(typeList, promiseKey, src, key),
+                ),
             );
         }
     }

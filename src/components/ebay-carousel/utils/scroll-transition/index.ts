@@ -5,19 +5,20 @@ const supportsScrollBehavior =
 /**
  * Utility to animate scroll position of an element using an `ease-out` curve over 250ms.
  * Cancels the animation if the user touches back down.
- *
- * @param {HTMLElement} el The element to scroll.
- * @param {number} to The offset to animate to.
- * @param {function} fn A function that will be called after the transition completes.
- * @return {function} A function that cancels the transition.
  */
-export function scrollTransition(el, to, fn) {
+export function scrollTransition(
+    el: HTMLElement,
+    to: number,
+    fn: () => void,
+): () => void {
     if (supportsScrollBehavior) {
         el.scrollTo({ left: to });
         return onScrollEnd(el, fn);
     }
 
-    let lastPosition, cancelInterruptTransition;
+    let lastPosition: number | undefined;
+    let cancelInterruptTransition: ReturnType<typeof scrollTransition>;
+
     let frame = requestAnimationFrame((startTime) => {
         const { scrollLeft } = el;
         const distance = to - scrollLeft;
@@ -79,9 +80,8 @@ export function scrollTransition(el, to, fn) {
  * Ease out timing function.
  * Based on https://gist.github.com/gre/1650294.
  *
- * @param {number} val - A number between 0 and 1.
- * @return {number}
+ * @param v - A number between 0 and 1.
  */
-function easeInOut(v) {
+function easeInOut(v: number) {
     return v < 0.5 ? 2 * v * v : -1 + (4 - 2 * v) * v;
 }

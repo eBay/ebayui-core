@@ -22,7 +22,7 @@ export default (
         className,
         waitFor,
     }: { el: HTMLElement; className: string; waitFor: Element[] },
-    cb: Function
+    cb: Function,
 ) => {
     let ended: boolean;
     let ran = 0;
@@ -42,7 +42,7 @@ export default (
 
         if (pending) {
             waitFor.forEach((child) =>
-                child.addEventListener(TRANSITION_END, listener)
+                child.addEventListener(TRANSITION_END, listener),
             );
         } else {
             cancel();
@@ -84,8 +84,10 @@ export default (
      * Handles a single transition end event.
      * Once all child transitions have ended the overall animation is completed.
      */
-    function listener({ target }) {
-        target.removeEventListener(TRANSITION_END, listener);
+    function listener({
+        target,
+    }: Parameters<EventListener>[0]): ReturnType<EventListener> {
+        target?.removeEventListener(TRANSITION_END, listener);
 
         if (++ran === pending) {
             ended = true;

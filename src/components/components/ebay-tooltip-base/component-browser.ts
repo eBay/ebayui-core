@@ -16,7 +16,7 @@ export interface Input extends WithNormalizedProps<TooptipBaseInput> {}
 
 class TooltipBase extends Marko.Component<Input> {
     declare action: "expand" | "collapse" | null;
-    declare _expander: Expander;
+    declare _expander: any;
     declare cancelFocus: ReturnType<typeof focusables>;
 
     handleExpand() {
@@ -119,17 +119,21 @@ class TooltipBase extends Marko.Component<Input> {
                 this.cancelFocus();
             }
 
-            this.cancelFocus = focusables(container, false, (curFocusables) => {
-                const curFocusable = curFocusables[0];
-                if (curFocusable) {
-                    host = curFocusable;
+            this.cancelFocus = focusables(
+                container,
+                false,
+                (curFocusables: any) => {
+                    const curFocusable = curFocusables[0];
+                    if (curFocusable) {
+                        host = curFocusable;
 
-                    if (!curFocusable.classList.contains(hostClass)) {
-                        curFocusable.classList.add(hostClass);
+                        if (!curFocusable.classList.contains(hostClass)) {
+                            curFocusable.classList.add(hostClass);
+                        }
                     }
-                }
-                this._setupExpander(host, hostSelector);
-            });
+                    this._setupExpander(host, hostSelector);
+                },
+            );
         } else {
             this._setupExpander(host, hostSelector);
         }

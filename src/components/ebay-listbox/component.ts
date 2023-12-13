@@ -1,5 +1,5 @@
 import { createLinear } from "makeup-active-descendant";
-import { AttrStringOrNumber } from "marko/tags-html";
+import type { AttrStringOrNumber } from "marko/tags-html";
 import { scroll } from "../../common/element-scroll";
 import * as eventUtils from "../../common/event-utils";
 

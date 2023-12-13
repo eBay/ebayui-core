@@ -12,12 +12,12 @@ interface SwitchInput extends Omit<Marko.Input<"input">, `on${string}`> {
 export interface Input extends WithNormalizedProps<SwitchInput> {}
 
 class Switch extends Marko.Component<Input> {
-    handleChange(originalEvent: Event & { target: HTMLInputElement }) {
+    handleChange(originalEvent: Event, target: HTMLInputElement) {
         if (!this.input.disabled) {
             this.emit("change", {
                 originalEvent,
-                value: originalEvent.target.value,
-                checked: originalEvent.target.checked,
+                value: target.value,
+                checked: target.checked,
             } satisfies SwitchEvent);
         }
     }

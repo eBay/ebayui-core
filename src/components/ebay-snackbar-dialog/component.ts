@@ -33,7 +33,7 @@ class SnackbarDialog extends Marko.Component<Input, State> {
         }
     }
 
-    onInput(input) {
+    onInput(input: Input) {
         this.state = { open: input.open || this.state.open || false };
     }
 

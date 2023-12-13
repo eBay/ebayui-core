@@ -1,6 +1,6 @@
 import * as keyboardTrap from "makeup-keyboard-trap";
 import * as screenReaderTrap from "makeup-screenreader-trap";
-import { AttrClass } from "marko/tags-html";
+import type { AttrClass } from "marko/tags-html";
 import * as bodyScroll from "../../../common/body-scroll";
 import * as eventUtils from "../../../common/event-utils";
 import transition from "../../../common/transition";
@@ -9,10 +9,12 @@ interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "button-position"?: "right" | "left" | "bottom" | "hidden";
     "use-hidden-property"?: boolean;
     "base-el"?: string;
-    header?: Marko.Input<`h${number}`> & {
-        as?: `h${number}`;
-        renderBody?: Marko.Body;
-    };
+    header?: Marko.AttrTag<
+        Marko.Input<`h${number}`> & {
+            as?: `h${number}`;
+            renderBody?: Marko.Body;
+        }
+    >;
     "class-prefix"?: string;
     "close-button-text"?: string;
     "close-button-class"?: AttrClass;
@@ -22,17 +24,17 @@ interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "ignore-escape"?: boolean;
     "window-type"?: string;
     "window-class"?: AttrClass;
-    top?: {
+    top?: Marko.AttrTag<{
         renderBody: Marko.Body;
-    };
+    }>;
     "main-id"?: string;
     renderBody?: Marko.Body;
-    action?: {
+    action?: Marko.AttrTag<{
+        renderBody: Marko.Body;
+    }>;
+    footer?: Marko.AttrTag<{
         renderBody?: Marko.Body;
-    };
-    footer?: {
-        renderBody?: Marko.Body;
-    };
+    }>;
     "close-focus"?: string;
     open?: boolean;
     "transition-el"?: "root" | "window";
@@ -57,19 +59,19 @@ interface State {
 }
 
 class DialogBase extends Marko.Component<Input, State> {
-    clickTarget: HTMLButtonElement | null;
-    startEl: Element | null;
-    closeEl: Element | null;
-    windowEl: Element | null;
-    rootEl: Element | null;
-    bodyEl: Element | null;
-    transitionEls: Element[];
-    isTrapped: boolean;
-    restoreTrap: boolean;
-    _prevFocusEl: Element | null;
+    clickTarget?: HTMLButtonElement | null;
+    startEl?: Element | null;
+    closeEl?: Element | null;
+    windowEl?: Element | null;
+    rootEl?: Element | null;
+    bodyEl?: Element | null;
+    transitionEls?: Element[];
+    isTrapped?: boolean;
+    restoreTrap?: boolean;
+    _prevFocusEl?: Element | null;
     cancelTransition: (() => void) | undefined;
     cancelScrollReset: NodeJS.Timeout | undefined;
-    isAnimating: boolean;
+    isAnimating?: boolean;
 
     get useHiddenProperty() {
         return this.input.useHiddenProperty || false;
@@ -121,7 +123,13 @@ class DialogBase extends Marko.Component<Input, State> {
         });
     }
 
-    handleDialogClick({ target, clientY }) {
+    handleDialogClick({
+        target,
+        clientY,
+    }: {
+        target: HTMLElement;
+        clientY: number;
+    }) {
         const { closeEl, windowEl, startEl } = this;
 
         this.startEl = null;
@@ -130,7 +138,7 @@ class DialogBase extends Marko.Component<Input, State> {
             return;
         }
 
-        if (windowEl?.contains(startEl)) {
+        if (windowEl?.contains(startEl ?? null)) {
             // Started on dialog window and user dragged out, don't close
             return;
         }
@@ -242,7 +250,7 @@ class DialogBase extends Marko.Component<Input, State> {
      * Ensures that if a component is supposed to be trapped that this is
      * trapped after rendering.
      */
-    _trap(opts) {
+    _trap(opts: { firstRender: boolean }) {
         const { isTrapped: wasTrapped, restoreTrap } = this;
         const isTrapped = (this.isTrapped = this.state.open);
         const isFirstRender = opts && opts.firstRender;
@@ -251,9 +259,9 @@ class DialogBase extends Marko.Component<Input, State> {
             (this.input.focus && document.getElementById(this.input.focus)) ||
             this.closeEl;
         const runTraps = this._getTrapCallback(
-            restoreTrap,
+            restoreTrap ?? false,
             isTrapped,
-            wasTrapped,
+            wasTrapped ?? false,
         );
 
         // Ensure focus is set and body scroll prevented on initial render.
@@ -284,7 +292,9 @@ class DialogBase extends Marko.Component<Input, State> {
                         // Skip restoring focus if the focused element was changed via the dialog-close event
                         activeElement === this.getActiveElement(this.input) &&
                         // Skip restoring focus if the previously focused element was removed from the DOM.
-                        document.documentElement.contains(this._prevFocusEl)
+                        document.documentElement.contains(
+                            this._prevFocusEl ?? null,
+                        )
                     ) {
                         (this._prevFocusEl as HTMLElement)?.focus();
                     }
@@ -310,7 +320,7 @@ class DialogBase extends Marko.Component<Input, State> {
                         {
                             el: this.rootEl as HTMLElement,
                             className: `${this.input.classPrefix}--show`,
-                            waitFor: this.transitionEls,
+                            waitFor: this.transitionEls ?? [],
                         },
                         onFinishTransition,
                     );
@@ -326,7 +336,7 @@ class DialogBase extends Marko.Component<Input, State> {
                         {
                             el: this.rootEl as HTMLElement,
                             className: `${this.input.classPrefix}--hide`,
-                            waitFor: this.transitionEls,
+                            waitFor: this.transitionEls ?? [],
                         },
                         onFinishTransition,
                     );

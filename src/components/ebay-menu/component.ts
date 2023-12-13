@@ -12,7 +12,7 @@ import setupMenu, {
 const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 
 export interface MenuEvent<T extends Event = Event> {
-    el?: Element;
+    el?: HTMLElement;
     checked?: string[];
     checkedIndex?: number[];
     originalEvent?: T;
@@ -54,7 +54,7 @@ export default class extends MenuUtils<Input, MenuState> {
     toggleItemChecked(
         index: number,
         originalEvent: Event,
-        itemEl: HTMLElement
+        itemEl: HTMLElement,
     ) {
         // This needs to be at start since toggleChecked swaps the checkedIndex
         // and then the right events will not fire correctly
@@ -80,7 +80,7 @@ export default class extends MenuUtils<Input, MenuState> {
 
         if (this.rovingTabindex) {
             this.tabindexPosition = this.rovingTabindex.items.findIndex(
-                (el) => el.tabIndex === 0
+                (el: HTMLElement) => el.tabIndex === 0,
             );
         }
     }
@@ -88,7 +88,7 @@ export default class extends MenuUtils<Input, MenuState> {
     handleItemClick(
         index: number,
         originalEvent: MouseEvent,
-        itemEl: HTMLElement
+        itemEl: HTMLElement,
     ) {
         this.toggleItemChecked(index, originalEvent, itemEl);
     }
@@ -96,7 +96,7 @@ export default class extends MenuUtils<Input, MenuState> {
     handleItemKeydown(
         index: number,
         originalEvent: KeyboardEvent,
-        itemEl: HTMLElement
+        itemEl: HTMLElement,
     ) {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.emitComponentEvent({
@@ -107,7 +107,7 @@ export default class extends MenuUtils<Input, MenuState> {
         });
 
         eventUtils.handleActionKeydown(originalEvent, () =>
-            this.toggleItemChecked(index, originalEvent, itemEl)
+            this.toggleItemChecked(index, originalEvent, itemEl),
         );
     }
 
@@ -115,7 +115,7 @@ export default class extends MenuUtils<Input, MenuState> {
         const itemIndex = this.getTypeaheadIndex(
             (this.getEl("menu") as HTMLElement).children,
             key,
-            this.input.typeaheadTimeoutLength || TYPEAHEAD_TIMEOUT_LENGTH
+            this.input.typeaheadTimeoutLength || TYPEAHEAD_TIMEOUT_LENGTH,
         );
 
         if (itemIndex !== -1) {
@@ -130,7 +130,7 @@ export default class extends MenuUtils<Input, MenuState> {
         index,
     }: {
         eventType: string;
-        el?: Element;
+        el?: HTMLElement;
         originalEvent: Event;
         index?: number;
     }) {

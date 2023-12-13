@@ -2,13 +2,13 @@
  * Checks on an interval to see if the element is scrolling.
  * When the scrolling has finished it then calls the function.
  *
- * @param {HTMLElement} el The element which scrolls.
- * @param {(offset: number)=>{}} fn The function to call after scrolling completes.
- * @return {function} A function to cancel the scroll listener.
+ * @param el The element that scrolls.
+ * @param fn The function to call after scrolling completes.
+ * @return A function to cancel the scroll listener.
  */
-export function onScrollEnd(el, fn) {
-    let timeout;
-    let frame;
+export function onScrollEnd(el: HTMLElement, fn: (offet: number) => void) {
+    let timeout: ReturnType<typeof setTimeout>;
+    let frame: ReturnType<typeof requestAnimationFrame>;
     let lastPos;
 
     (function checkMoved() {

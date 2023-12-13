@@ -1,6 +1,6 @@
 import Expander from "makeup-expander";
 import * as eventUtils from "../../common/event-utils";
-import { MenuEvent } from "../ebay-menu/component";
+import type { MenuEvent } from "../ebay-fake-menu/component";
 import type {
     Input as FakeMenuInput,
     Item as FakeMenuItem,
@@ -34,14 +34,14 @@ interface FakeMenuButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
 export interface Input extends WithNormalizedProps<FakeMenuButtonInput> {}
 
 class FakeMenuButton extends Marko.Component<Input> {
-    declare expander: Expander;
+    declare expander: any;
 
-    handleMenuKeydown({ el, originalEvent, index }) {
-        eventUtils.handleActionKeydown(originalEvent, () => {
+    handleMenuKeydown({ el, originalEvent, index }: MenuEvent) {
+        eventUtils.handleActionKeydown(originalEvent as KeyboardEvent, () => {
             this.handleMenuSelect({ index, originalEvent, el });
         });
 
-        eventUtils.handleEscapeKeydown(originalEvent, () => {
+        eventUtils.handleEscapeKeydown(originalEvent as KeyboardEvent, () => {
             this.expander.expanded = false;
             this.focus();
         });
@@ -63,7 +63,7 @@ class FakeMenuButton extends Marko.Component<Input> {
         this.emitComponentEvent({ eventType: "collapse" });
     }
 
-    handleMenuSelect({ el, originalEvent, index }) {
+    handleMenuSelect({ el, originalEvent, index }: MenuEvent) {
         this.emitComponentEvent({
             eventType: "select",
             el,

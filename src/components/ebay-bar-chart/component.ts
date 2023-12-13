@@ -84,7 +84,7 @@ class BarChart extends Marko.Component<Input> {
             .mount();
     }
 
-    handleError(err) {
+    handleError(err: Error) {
         this.emit("load-error", err);
     }
 
@@ -190,7 +190,7 @@ class BarChart extends Marko.Component<Input> {
         let maxVal = 0; // use to determine the highest yAxis value
         series.forEach((s) => {
             maxVal = s.data!.reduce(
-                (p: number, c: number) => (c > p ? c : p),
+                (p: number, c: any) => (c > p ? c : p),
                 maxVal,
             ) as number;
         });
@@ -245,7 +245,7 @@ class BarChart extends Marko.Component<Input> {
     // returns a function that can be called on each mouseover event
     tooltipFormatter() {
         const stacked = this.input.stacked;
-        return function () {
+        return function (this: any) {
             // references to the charts updates series array, only available when the returned tooltip function is called and not before
             const series = this.series.chart.series;
 
@@ -316,7 +316,7 @@ class BarChart extends Marko.Component<Input> {
     legendItemClick() {
         // returns a function so that can access input values
         const stacked = this.input.stacked;
-        return function () {
+        return function (this: any) {
             const series = this.chart.series;
             if (stacked) {
                 // setTimeout with 0 ms to push this function to the end of the execution stack to prevent issues with hover events

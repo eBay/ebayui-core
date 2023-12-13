@@ -1,6 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static function toJSON() {
+static function toJSON(this: any) {
     return {
         disabled: this.disabled
     };

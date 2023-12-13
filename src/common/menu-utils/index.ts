@@ -19,7 +19,7 @@ export interface MenuState {
 
 export class MenuUtils<
     Input extends BaseMenuInput,
-    State extends MenuState
+    State extends MenuState,
 > extends Marko.Component<Input, State> {
     declare type?: string;
     declare items: Extract<Input["items"], any[]>[number][];
@@ -56,19 +56,19 @@ export class MenuUtils<
             Any other component that doesn't have separator should pass through
         */
         this.items = ((input.items as Marko.AttrTag<MenuItem>[]) || []).filter(
-            (item) => !item.separator
+            (item) => !item.separator,
         );
         this.type = input.type;
         if (this.isRadio()) {
             return {
                 checkedIndex: (this.items || []).findIndex(
-                    (item) => item.checked || false
+                    (item) => item.checked || false,
                 ),
             };
         }
         return {
             checkedItems: (this.items || []).map(
-                (item) => item.checked || false
+                (item) => item.checked || false,
             ),
         };
     }
@@ -90,7 +90,7 @@ export class MenuUtils<
                 this.state.checkedIndex = index[0];
             } else {
                 this.state.checkedItems = this.state.checkedItems!.map(
-                    (item, i) => index.indexOf(i) !== -1
+                    (item, i) => index.indexOf(i) !== -1,
                 );
             }
             return;
@@ -114,7 +114,7 @@ export class MenuUtils<
                 }
                 return map;
             },
-            {}
+            {} as Record<number, boolean>,
         );
     }
 }
@@ -122,6 +122,6 @@ export class MenuUtils<
 export default function setupMenu(instance: any) {
     Object.defineProperties(
         instance,
-        Object.getOwnPropertyDescriptors(MenuUtils.prototype)
+        Object.getOwnPropertyDescriptors(MenuUtils.prototype),
     );
 }

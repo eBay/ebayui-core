@@ -27,14 +27,14 @@ interface State {
 }
 
 class Tourtip extends Marko.Component<Input, State> {
-    handleCollapse({ originalEvent }) {
+    handleCollapse({ originalEvent }: { originalEvent: Event }) {
         if (this.state.expanded) {
             this.state.expanded = false;
             this.emit("collapse", { originalEvent });
         }
     }
 
-    handleExpand({ originalEvent }) {
+    handleExpand({ originalEvent }: { originalEvent: Event }) {
         if (!this.state.expanded) {
             this.state.expanded = true;
             this.emit("expand", { originalEvent });

@@ -1,4 +1,4 @@
-static function toJSON() {
+static function toJSON(this: any) {
     // Only serialize the following to the browser if we are a top level component.
     return {
         type: this.type,

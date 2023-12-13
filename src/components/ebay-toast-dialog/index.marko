@@ -6,7 +6,7 @@ static interface ToastDialogInput extends Omit<BaseInput, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<ToastDialogInput> {}
 
-$ var header = input.header || {};
+$ var header = input.header || {} as NonNullable<typeof input.header>;
 <ebay-dialog-base
     ...input
     open=input.open

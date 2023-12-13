@@ -48,7 +48,7 @@ class Tabs extends Marko.Component<Input, State> {
         });
     }
 
-    handleHeadingClick(selectedIndex) {
+    handleHeadingClick(selectedIndex: number) {
         this._setIndex(selectedIndex);
     }
 

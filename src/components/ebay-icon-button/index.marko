@@ -2,7 +2,7 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 
 static const VALID_SIZES = ['small', 'large']
 
-static function toJSON() {
+static function toJSON(this: any) {
     return {
         disabled: this.disabled
     };

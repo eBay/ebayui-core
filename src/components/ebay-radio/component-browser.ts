@@ -1,16 +1,32 @@
-export default {
-    handleClick: forwardEvent("change"),
-    handleFocus: forwardEvent("focus"),
-    handleKeydown: forwardEvent("keydown"),
-};
-
-function forwardEvent(eventName: string) {
-    return function (originalEvent: Event, el: HTMLInputElement) {
-        if (!el.disabled) {
-            this.emit(eventName, {
-                originalEvent,
-                value: (el || this.el.querySelector("input")).value,
-            });
-        }
-    };
+export interface RadioEvent {
+    originalEvent: Event;
+    value: string;
 }
+interface RadioInput extends Omit<Marko.Input<"input">, `on${string}`> {
+    toJSON?: any;
+    "icon-style"?: "rounded" | "square";
+    "on-click"?: (e: RadioEvent, el: HTMLInputElement) => void;
+    "on-focus"?: (e: RadioEvent, el: HTMLInputElement) => void;
+    "on-keydown"?: (e: RadioEvent, el: HTMLInputElement) => void;
+}
+
+export interface Input extends WithNormalizedProps<RadioInput> {}
+
+class Radio extends Marko.Component<Input> {
+    forwardEvent(
+        eventName: string,
+        originalEvent: Event,
+        el: HTMLInputElement,
+    ) {
+        this.emit(
+            eventName,
+            {
+                originalEvent,
+                value: (el || this.el?.querySelector("input, textarea"))?.value,
+            } satisfies RadioEvent,
+            el,
+        );
+    }
+}
+
+export default Radio;
