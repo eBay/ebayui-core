@@ -25,6 +25,8 @@ $ var pointer = input.pointer || "bottom";
         key="base"
         type=classPrefix
         overlayId:scoped="overlay"
+        offset=input.offset
+        pointer=pointer
         onBase-expand(isModal ? undefined : "handleExpand")
         onBase-collapse(isModal ? undefined : "handleCollapse")>
         <span
@@ -58,11 +60,6 @@ $ var pointer = input.pointer || "bottom";
                 <ebay-tooltip-overlay
                     type="infotip"
                     id:scoped="overlay"
-                    styleLeft=input.styleLeft
-                    styleTop=input.styleTop
-                    styleRight=input.styleRight
-                    styleBottom=input.styleBottom
-                    pointer=pointer
                     heading=input.heading
                     content=input.content
                     a11y-close-text=input.a11yCloseButtonText

@@ -43,43 +43,26 @@ export default {
                 "Either modal or default. If modal will show the mobile version of infotip",
         },
         pointer: {
-            control: { type: "select" },
             options: [
-                "top-left",
-                "top",
-                "top-right",
-                "right",
-                "right-bottom",
-                "right-top",
-                "bottom-left",
-                "bottom-right",
-                "bottom",
-                "left",
-                "left-bottom",
-                "left-top",
-            ],
+                'top', 'right', 'bottom', 'left',
+                'top-start', 'right-start', 'bottom-start', 'left-start',
+                'top-end', 'right-end', 'bottom-end', 'left-end',
+           ],
+            control: { type: "select" },
             description:
-                "options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`",
+                "places infotip position",
+        },
+        offset: {
+            control: { type: "number" },
+            description:
+                "offsets infotip position",
+            table: {
+                defaultValue: { summary: "6" },
+            }
         },
         disabled: {
             control: { type: "boolean" },
             description: "adds a `disabled` attribute to the button",
-        },
-        styleTop: {
-            control: { type: "text" },
-            description: "a style property for the CSS `top` rule",
-        },
-        styleLeft: {
-            control: { type: "text" },
-            description: "a style property for the CSS `top` rule",
-        },
-        styleRight: {
-            control: { type: "text" },
-            description: "a style property for the CSS `top` rule",
-        },
-        styleBottom: {
-            control: { type: "text" },
-            description: "a style property for the CSS `top` rule",
         },
         a11yCloseButtonText: {
             control: { type: "text" },

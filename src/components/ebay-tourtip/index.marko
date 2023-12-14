@@ -20,6 +20,8 @@ $ var pointer = input.pointer || "bottom";
     <ebay-tooltip-base
         key="base"
         type="tourtip"
+        pointer=pointer
+        offset=input.offset
         overlay-id:scoped="overlay">
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
@@ -34,11 +36,6 @@ $ var pointer = input.pointer || "bottom";
             <ebay-tooltip-overlay
                 type="tourtip"
                 id:scoped="overlay"
-                pointer=pointer
-                styleLeft=input.styleLeft
-                styleTop=input.styleTop
-                styleRight=input.styleRight
-                styleBottom=input.styleBottom
                 heading=input.heading
                 content=input.content
                 a11yCloseText=input.a11yCloseText

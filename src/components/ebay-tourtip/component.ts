@@ -1,15 +1,13 @@
 import type { Input as TooltipBaseInput } from "../components/ebay-tooltip-base/component-browser";
 import type { Input as TooltipOverlayInput } from "../components/ebay-tooltip-overlay/component-browser";
+import type { Placement } from '@floating-ui/dom';
 
 interface TourtipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     open?: boolean;
     "no-hover"?: TooltipBaseInput["noHover"];
     host?: Marko.Input<"span">;
-    pointer?: TooltipOverlayInput["pointer"];
-    "style-left"?: TooltipOverlayInput["styleLeft"];
-    "style-right"?: TooltipOverlayInput["styleRight"];
-    "style-top"?: TooltipOverlayInput["styleTop"];
-    "style-bottom"?: TooltipOverlayInput["styleBottom"];
+    offset?: TooltipBaseInput['offset'];
+    pointer?: Placement;
     heading?: TooltipOverlayInput["heading"];
     content?: TooltipOverlayInput["content"];
     "a11y-close-text"?: TooltipOverlayInput["a11yCloseText"];
