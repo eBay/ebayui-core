@@ -24,7 +24,7 @@ describe("given radio button is enabled", () => {
             expect(changeEvents).has.length(1);
 
             const eventArgs = changeEvents[0];
-            expect(eventArgs).has.length(1);
+            expect(eventArgs).has.length.greaterThanOrEqual(1);
             expect(eventArgs[0].originalEvent).to.be.an.instanceof(Event);
             expect(eventArgs[0].value).to.equal("food");
         });

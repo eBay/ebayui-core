@@ -603,7 +603,7 @@ class Carousel extends Marko.Component<Input, State> {
                         this.cancelScrollTransition = scrollTransition(
                             listEl,
                             offset,
-                            this.emitUpdate,
+                            this.emitUpdate.bind(this),
                         );
                     } else if (this.isMoving) {
                         // Animate to the new scrolling position and emit update events afterward.
@@ -611,7 +611,7 @@ class Carousel extends Marko.Component<Input, State> {
                         this.cancelScrollTransition = scrollTransition(
                             listEl,
                             this.getOffset(state),
-                            this.emitUpdate,
+                            this.emitUpdate.bind(this),
                         );
                     }
                 }

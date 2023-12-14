@@ -5,7 +5,7 @@ export interface RadioEvent {
 interface RadioInput extends Omit<Marko.Input<"input">, `on${string}`> {
     toJSON?: any;
     "icon-style"?: "rounded" | "square";
-    "on-click"?: (e: RadioEvent, el: HTMLInputElement) => void;
+    "on-change"?: (e: RadioEvent, el: HTMLInputElement) => void;
     "on-focus"?: (e: RadioEvent, el: HTMLInputElement) => void;
     "on-keydown"?: (e: RadioEvent, el: HTMLInputElement) => void;
 }
@@ -22,7 +22,7 @@ class Radio extends Marko.Component<Input> {
             eventName,
             {
                 originalEvent,
-                value: (el || this.el?.querySelector("input, textarea"))?.value,
+                value: (el || this.el?.querySelector("input"))?.value,
             } satisfies RadioEvent,
             el,
         );

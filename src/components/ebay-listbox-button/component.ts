@@ -44,14 +44,14 @@ class ListboxButton extends Marko.Component<Input, State> {
         this.emit("collapse");
     }
 
-    handleListboxChange: Listbox["input"]["onChange"] = (event) => {
+    handleListboxChange(event: ChangeEvent) {
         if (this.input.collapseOnSelect) {
             this._expander.expanded = false;
         }
         const selectedIndex = event.index;
         this.state.selectedIndex = selectedIndex;
         this.emit("change", event);
-    };
+    }
 
     handleListboxEscape() {
         this._expander.expanded = false;

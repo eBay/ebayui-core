@@ -1,9 +1,9 @@
-declare module "makeup-roving-tabindex";
+declare module "makeup-active-descendant";
 declare module "makeup-expander";
 declare module "makeup-floating-label";
-declare module "makeup-prevent-scroll-keys";
-declare module "makeup-typeahead";
-declare module "makeup-active-descendant";
 declare module "makeup-focusables";
 declare module "makeup-keyboard-trap";
+declare module "makeup-prevent-scroll-keys";
+declare module "makeup-roving-tabindex";
 declare module "makeup-screenreader-trap";
+declare module "makeup-typeahead";
