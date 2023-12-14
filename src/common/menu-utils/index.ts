@@ -17,10 +17,14 @@ export interface MenuState {
     checkedItems?: boolean[];
 }
 
+const Component = (typeof Marko === "object"
+    ? Marko.Component
+    : function () {}) as any as typeof Marko.Component;
+
 export class MenuUtils<
     Input extends BaseMenuInput,
     State extends MenuState,
-> extends Marko.Component<Input, State> {
+> extends Component<Input, State> {
     declare type?: string;
     declare items: Extract<Input["items"], any[]>[number][];
 

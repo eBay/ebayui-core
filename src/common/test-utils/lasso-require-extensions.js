@@ -12,6 +12,7 @@ module.exports = function (lasso) {
             this.path = this.resolvePath(this.path);
         },
         async read() {
+            console.log("load", this.path);
             return await fs.promises.readFile(this.path, "utf-8");
         },
         getSourceFile: function () {
@@ -22,7 +23,7 @@ module.exports = function (lasso) {
     lasso.dependencies.registerRequireExtension("md", {
         read: async function (path) {
             return `module.exports = ${JSON.stringify(
-                await fs.promises.readFile(path, "utf-8")
+                await fs.promises.readFile(path, "utf-8"),
             )}`;
         },
 

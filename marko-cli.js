@@ -19,6 +19,7 @@ module.exports = ({ config }) => {
             "lasso-less",
         ],
         require: {
+            extensions: [".js", ".ts"],
             transforms: [
                 {
                     transform:
