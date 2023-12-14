@@ -383,7 +383,6 @@ class Carousel extends Marko.Component<Input, State> {
     }
 
     handleEndInteraction() {
-        this.setState("interacting", false);
         // In case the user moves the cursor out of the carousel before the transition is over.
         // We need to make sure the carousel does not rerender in the middle of the transition.
         clearTimeout(this.interactionEndTimeout);
