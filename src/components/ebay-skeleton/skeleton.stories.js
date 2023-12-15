@@ -1,5 +1,8 @@
 import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../../.storybook/utils";
 import Component from "./index.marko";
 import Readme from "./README.md";
 import avatarTemplate from "./examples/avatar.marko";
@@ -89,132 +92,34 @@ Default.parameters = {
     },
 };
 
-export const Avatar = (args) => ({
-    input: args,
-    component: avatarTemplate,
-});
-Avatar.args = {};
-Avatar.parameters = {
-    docs: {
-        source: {
-            code: avatarCode,
-        },
-    },
-};
+export const Avatar = buildExtensionTemplate(avatarTemplate, avatarCode);
 
-export const Button = (args) => ({
-    input: args,
-    component: buttonTemplate,
-});
-Button.args = {};
-Button.parameters = {
-    docs: {
-        source: {
-            code: buttonCode,
-        },
-    },
-};
+export const Button = buildExtensionTemplate(buttonTemplate, buttonCode);
 
-export const ButtonSmall = (args) => ({
-    input: args,
-    component: buttonSmallTemplate,
-});
-ButtonSmall.args = {};
-ButtonSmall.parameters = {
-    docs: {
-        source: {
-            code: buttonSmallCode,
-        },
-    },
-};
+export const ButtonSmall = buildExtensionTemplate(
+    buttonSmallTemplate,
+    buttonSmallCode,
+);
 
-export const Text = (args) => ({
-    input: args,
-    component: textTemplate,
-});
-Text.args = {};
-Text.parameters = {
-    docs: {
-        source: {
-            code: textCode,
-        },
-    },
-};
+export const Text = buildExtensionTemplate(textTemplate, textCode);
 
-export const TextMultiLine = (args) => ({
-    input: args,
-    component: textMultilineTemplate,
-});
-TextMultiLine.args = {};
-TextMultiLine.parameters = {
-    docs: {
-        source: {
-            code: textMultilineCode,
-        },
-    },
-};
+export const TextMultiLine = buildExtensionTemplate(
+    textMultilineTemplate,
+    textMultilineCode,
+);
 
-export const TextBox = (args) => ({
-    input: args,
-    component: textboxTemplate,
-});
-TextBox.args = {};
-TextBox.parameters = {
-    docs: {
-        source: {
-            code: textboxCode,
-        },
-    },
-};
+export const TextBox = buildExtensionTemplate(textboxTemplate, textboxCode);
 
-export const Image = (args) => ({
-    input: args,
-    component: imageTemplate,
-});
-Image.args = {};
-Image.parameters = {
-    docs: {
-        source: {
-            code: imageCode,
-        },
-    },
-};
+export const Image = buildExtensionTemplate(imageTemplate, imageCode);
 
-export const Tile = (args) => ({
-    input: args,
-    component: tileTemplate,
-});
-Tile.args = {};
-Tile.parameters = {
-    docs: {
-        source: {
-            code: tileCode,
-        },
-    },
-};
+export const Tile = buildExtensionTemplate(tileTemplate, tileCode);
 
-export const composite = (args) => ({
-    input: args,
-    component: compositeTemplate,
-});
-composite.args = {};
-composite.parameters = {
-    docs: {
-        source: {
-            code: compositeCode,
-        },
-    },
-};
+export const composite = buildExtensionTemplate(
+    compositeTemplate,
+    compositeCode,
+);
 
-export const withContent = (args) => ({
-    input: args,
-    component: withContentTemplate,
-});
-withContent.args = {};
-withContent.parameters = {
-    docs: {
-        source: {
-            code: withContentCode,
-        },
-    },
-};
+export const withContent = buildExtensionTemplate(
+    withContentTemplate,
+    withContentCode,
+);
