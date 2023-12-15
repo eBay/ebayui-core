@@ -1,6 +1,6 @@
 import sinon from "sinon";
 import { expect } from "chai";
-import menuUtils from "../";
+import setupMenu from "../";
 import { getNItems } from "../../test-utils/shared";
 
 describe("non radio component", () => {
@@ -14,10 +14,11 @@ describe("non radio component", () => {
     let menu;
 
     beforeEach(() => {
-        menu = Object.assign({}, menuUtils, {
+        menu = {
             input,
             setStateDirty: sinon.spy(),
-        });
+        };
+        setupMenu(menu);
         menu.state = menu.getInputState(input);
     });
 
@@ -71,10 +72,11 @@ describe("radio component", () => {
     let menu;
 
     beforeEach(() => {
-        menu = Object.assign({}, menuUtils, {
+        menu = {
             input,
             setStateDirty: sinon.spy(),
-        });
+        };
+        setupMenu(menu);
         menu.state = menu.getInputState(input);
     });
 
