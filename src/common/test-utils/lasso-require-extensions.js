@@ -12,7 +12,6 @@ module.exports = function (lasso) {
             this.path = this.resolvePath(this.path);
         },
         async read() {
-            console.log("load", this.path);
             return await fs.promises.readFile(this.path, "utf-8");
         },
         getSourceFile: function () {
