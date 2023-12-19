@@ -1,5 +1,4 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
-static const isBrowser = typeof window !== 'undefined';
 static {
     var ignoredAttributes = [
         'class',
@@ -35,6 +34,6 @@ static {
         <if(!state.showLoading)>
             <ebay-play-64-colored-icon a11y-text=input.a11yStartText || 'Click to start'/>
         </if>
-        <else><ebay-progress-spinner a11y-text=input.a11yLoadText || 'Loading'/></else>
+        <else><ebay-progress-spinner a11yText=input.a11yLoadText || 'Loading'/></else>
     </div>
 </div>

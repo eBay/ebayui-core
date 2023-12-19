@@ -43,7 +43,7 @@ $ var separatorMap = component.getSeparatorMap(input);
         id:scoped="menu">
         <for|item, index| of=(component.items)>
             $ {
-                var itemRole = isRadio
+                var itemRole: Marko.Input<"div">["role"] = isRadio
                                 ? "menuitemradio"
                                 : isCheckbox
                                 ? "menuitemcheckbox"
@@ -55,11 +55,11 @@ $ var separatorMap = component.getSeparatorMap(input);
             </if>
             <div
                 ...processHtmlAttributes(item, itemIgnoredAttributes)
-                class=[`${baseClass}__item`, item.class, item.badgeNumber && `${baseClass}__item--badged`]
+                class=[`${baseClass}__item`, item.class, item.badgeNumber !== undefined &&  `${baseClass}__item--badged`]
                 style=item.style
                 aria-checked=(!isNotCheckable && (checked ? "true" : "false"))
                 aria-disabled=(item.disabled && "true")
-                href=(item.disabled ? null : item.href)
+                // href=(item.disabled ? null : item.href)
                 role=itemRole
                 onClick(!item.disabled && "handleItemClick", index)
                 onKeydown(!item.disabled && "handleItemKeydown", index)

@@ -1,2 +1,5 @@
-import { symbol } from "./symbol.js";
+import { symbol } from "./symbol";
+
+import type { Input as IconInput } from "../../component-browser"
+export type Input = Omit<IconInput, `_${string}`>;
 <ebay-icon ...input _name="ebay-refurbished-24" _type="icon" _themes=symbol/>

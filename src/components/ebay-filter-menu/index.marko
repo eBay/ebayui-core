@@ -79,20 +79,24 @@ $ var isForm = input.variant === "form";
                 </>
             </for>
         </div>
-        <if(input.footerText || input.footer)>
+        <if(input.footerText)>
+            <button
+                type=(isForm ? "submit" : "button")
+                aria-label=input.a11yFooterText
+                class=`${baseClass}__footer`
+                onClick(!isForm && "handleFooterButtonClick")>
+                ${input.footerText}
+            </button>
+        </if>
+        <else-if(input.footer)>
             <button
                 ...processHtmlAttributes(input.footer, ignoredAttributes)
                 type=(isForm ? "submit" : "button")
-                aria-label=`${input.a11yFooterText || (input.footer && input.footer.a11yFooterText)}`
+                aria-label=input.footer.a11yFooterText
                 class=`${baseClass}__footer`
                 onClick(!isForm && "handleFooterButtonClick")>
-                <if(input.footerText)>
-                    ${input.footerText}
-                </if>
-                <else>
-                    <${input.footer.renderBody}/>
-                </else>
+                <${input.footer.renderBody}/>
             </button>
-        </if>
+        </else-if>
     </>
 </span>

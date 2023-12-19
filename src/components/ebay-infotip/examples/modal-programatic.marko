@@ -1,6 +1,8 @@
 class {
+    declare open: boolean;
+
     toggle() {
-        const infotip = this.getComponent('infotip')
+        const infotip = this.getComponent<any>('infotip')
         if (!this.open) {
             infotip.setOpen(true);
             this.open = true;

@@ -1,4 +1,3 @@
-// @ts-check
 import { toISO } from "./date-utils"
 
 $ var numMonths = input.numMonths || 1;
@@ -22,7 +21,7 @@ $ var a11ySeparator = input.a11ySeparator ?? " - ";
                     size="small"
                     disabled=(state.disableBefore && component.getFirstVisibleISO() <= state.disableBefore)
                     aria-label=getShowMonthText(component.monthTitle(component.getMonthDate(state.offset - 1)))
-                    onClick('prevMonth')>
+                    onClick('prevMonth', false)>
                     <ebay-chevron-left-24-icon/>
                 </ebay-icon-button>
                 <for|monthDate| of=monthDates>
@@ -33,7 +32,7 @@ $ var a11ySeparator = input.a11ySeparator ?? " - ";
                     size="small"
                     disabled=(state.disableAfter && component.getLastVisibleISO() >= state.disableAfter)
                     aria-label=getShowMonthText(component.monthTitle(component.getMonthDate(state.offset + numMonths)))
-                    onClick('nextMonth')>
+                    onClick('nextMonth', false)>
                     <ebay-chevron-right-24-icon/>
                 </ebay-icon-button>
             </div>

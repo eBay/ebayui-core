@@ -1,3 +1,12 @@
+export interface Input {
+    gap: string;
+    itemsPerSlide: string;
+    index: string;
+    a11yPreviousText: string;
+    a11yNextText: string;
+    items: any[];
+}
+
 <style>
     .preserve-tabindex-card {
         color: #cdf4fd;
@@ -12,9 +21,9 @@
     }
 </style>
 
-<ebay-carousel gap=input.gap items-per-slide=input.itemsPerSlide index=input.index
-    a11y-previous-text=input.a11yPreviousText
-    a11y-next-text=input.a11yNextText>
+<ebay-carousel gap=input.gap itemsPerSlide=input.itemsPerSlide index=input.index
+    a11yPreviousText=input.a11yPreviousText
+    a11yNextText=input.a11yNextText>
     <for|i| from=0 to=(input.items.length - 1)>
         <@item >
             <div class='preserve-tabindex-card'>

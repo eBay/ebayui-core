@@ -1,10 +1,16 @@
+import { MenuButtonEvent } from "../component";
 class {
+    declare state: {
+        labelText?: string | null;
+        index?: number;
+    }
+
     onCreate() {
         this.state = { labelText: 'Color', index: 0 };
     }
 
-    handleChange(e) {
-        this.state.labelText = e.el.textContent;
+    handleChange(e: MenuButtonEvent) {
+        this.state.labelText = e.el?.textContent;
         this.state.index = e.index;
     }
 }

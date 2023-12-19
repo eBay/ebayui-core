@@ -1,4 +1,6 @@
 <ebay-confirm-dialog
+    reject-text='Cancel'
+    confirm-text='Okay'
     open=state.open
     on-open("emit", "open")
     on-reject('closeDialog')
@@ -15,9 +17,6 @@
 class {
     onInput(input) {
         this.state = { open: input.open };
-    }
-    onCreate(input) {
-        this.state = { open: input.open || false };
     }
     openDialog() {
         this.state.open = true;

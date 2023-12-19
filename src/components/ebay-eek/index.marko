@@ -1,5 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
-import eekUtil from './eek-util'
+import eekUtil, { type Input as EekInput } from './eek-util'
+export type Input = EekInput;
 
 static function noop() {}
 
@@ -15,8 +16,8 @@ $ const rating = eekUtil(input);
         input.a11yText ||
         `Energy Rating: ${input.rating}. Range: ${input.max} - ${input.min}.`
     )
-    class=["eek", rating && `eek--rating-${rating}`, input.class]>
-    <div class="eek__container" aria-hidden=true>
+    class=["eek", rating ? `eek--rating-${rating}` : null, input.class]>
+    <div class="eek__container" aria-hidden="true">
         <span class="eek__rating-range">
             <span aria-hidden="true">${input.max}</span>
             <ebay-eek-range-arrow-icon/>

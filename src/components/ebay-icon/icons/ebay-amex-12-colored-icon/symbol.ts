@@ -1,0 +1,4 @@
+export function symbol() {
+    // eslint-disable-next-line max-len,quotes
+    return '<symbol viewbox="0 0 20 12" id=icon-amex-12-colored><rect width=20 height=12 rx=2 fill=#006FCF></rect><path d="M12.814 4.485h.881l-.44-1.007-.44 1.007Z" fill=#fff></path><path fill-rule=evenodd clip-rule=evenodd d="M19.474 9.757V8.668l-.892-.899.892-.892V5.791h-.877V3.63l-.835 2.16h-.779l-.835-2.155V5.79h-.876V2.712h1.387l.723 1.918.728-1.918h1.364v-.44h-1.71l-.385 1.023-.383-1.024H14.79V3.63l-.636-1.359h-1.782l-1.847 3.965h1.49v3.52h4.614l.724-.755.72.756h1.4ZM15.272 5.79h-.998l-.273-.616h-1.493l-.27.616h-.973l1.433-3.079h1.14l1.434 3.079Zm0 .447h1.165l.941.985.95-.985h1.146l-1.54 1.53 1.54 1.548H18.31l-.95-.994-.956.994h-1.132l1.53-1.54-1.53-1.538Zm0 0v.712h-1.878v.48h1.832v.694h-1.832v.48h1.878v.712h-2.764V6.238h2.764Z" fill=#fff></path></symbol>';
+}

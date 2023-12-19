@@ -42,7 +42,6 @@ $ var separatorMap = component.getSeparatorMap(input);
         tabindex="-1"
         id:scoped="menu">
         <for|item, index| of=(component.items)>
-            $ var isDisabled = !item.href || item.disabled;
             $ var defaultAriaCurrent = item.itemMatchesUrl === false ? 'true' : 'page';
             <if (separatorMap[index])>
                 <li>

@@ -1,4 +1,9 @@
 class {
+    declare state: {
+        count: number;
+        index: number;
+    }
+
     move({ visibleIndexes }) {
         if (visibleIndexes[visibleIndexes.length - 1] > this.state.count - 10) {
             this.state.count += 10;
@@ -27,7 +32,7 @@ class {
     }
 </style>
 
-<ebay-carousel index=state.index items-per-slide=1 on-move('move')>
+<ebay-carousel index=state.index itemsPerSlide=1 on-move('move')>
     <for|i| from=0 to=state.count>
         <@item key=`item-${i}` class=`demo-card`>Card ${i + 1}</@item>
     </for>

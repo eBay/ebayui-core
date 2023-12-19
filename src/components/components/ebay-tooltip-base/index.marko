@@ -1,4 +1,4 @@
-static function toJSON() {
+static function toJSON(this: any) {
     // Only serialize the following to the browser if we are a top level component.
     return {
         type: this.type,
@@ -11,8 +11,8 @@ $ input.toJSON = toJSON;
 
 <span
     key="container"
-    onExpander-expand("handleExpand")
-    onExpander-collapse("handleCollapse")
+    on-expander-expand("handleExpand")
+    on-expander-collapse("handleCollapse")
     overlay-style=input.overlayStyle>
     <${input.renderBody}/>
 </span>

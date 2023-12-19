@@ -1,9 +1,7 @@
 import { processHtmlAttributes } from "../../../common/html-attributes";
-import * as constants from "./constants";
+import { typeRoles, pointerStyles } from "./constants";
 
 static function noop() {}
-static var typeRoles = constants.typeRoles;
-static var pointerStyles = constants.pointerStyles;
 static var ignoredHeaderAttributes = ["id", "as", "class"];
 
 $ input.toJSON = noop;
@@ -39,7 +37,7 @@ $ var heading = input.heading;
                 <if(heading)>
                     <${heading.as || "span"}
                         ...processHtmlAttributes(heading, ignoredHeaderAttributes)
-                        class=[`${input.type}__heading`, input.heading.class]
+                        class=[`${input.type}__heading`, input.heading?.class]
                         id:scoped="tourtip-label">
                         <${heading.renderBody}/>
                     </>

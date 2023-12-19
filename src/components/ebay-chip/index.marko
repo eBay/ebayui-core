@@ -1,4 +1,12 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
+
+static interface ChipInput extends Omit<Marko.Input<"span">, `on${string}`> {
+    renderBody?: Marko.Body;
+    "a11y-delete-button"?: string;
+}
+
+export interface Input extends WithNormalizedProps<ChipInput> {}
+
 $ const { renderBody, a11yDeleteButton, ...htmlAttributes } = input;
 
 <span class="chip" ...processHtmlAttributes(htmlAttributes)>

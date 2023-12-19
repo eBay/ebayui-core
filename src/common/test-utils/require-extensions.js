@@ -2,6 +2,10 @@ const fs = require("fs");
 const Module = require("module");
 const originalLoad = Module._load;
 
+require("@babel/register")({
+    extensions: [".js", ".ts"],
+});
+
 Module._load = (request, parent, isMain) => {
     if (/\?raw$/.test(request)) {
         return "";

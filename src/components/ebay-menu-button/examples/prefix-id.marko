@@ -1,17 +1,22 @@
+import { MenuButtonEvent } from "../component";
 class {
+    declare state: {
+        buttonText: string;
+    }
+
     onCreate() {
         this.state = { buttonText: 'Name' };
     }
 
-    handleSelect(e) {
-        this.state.buttonText = e.el.textContent;
+    handleSelect(e: MenuButtonEvent) {
+        this.state.buttonText = e.el!.textContent!;
     }
 }
 
 <div id="custom-label">
     Sort By:
 </div>
-<ebay-menu-button prefix-id="custom-label" text=state.buttonText on-select('handleSelect')>
+<ebay-menu-button prefixId="custom-label" text=state.buttonText on-select('handleSelect')>
     <@item>Name</@item>
     <@item>Year</@item>
     <@item>Group</@item>

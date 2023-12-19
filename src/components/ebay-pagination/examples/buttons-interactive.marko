@@ -1,6 +1,10 @@
 static const SIZE = 15;
 
 class {
+    declare state: {
+        current: number;
+    };
+
     onCreate() {
         this.state = { current: 0 };
     }
@@ -22,10 +26,10 @@ class {
     on-next("handleNext")
     on-previous("handlePrev")
     on-select("handleSelect")
-    a11y-current-text=`Results Pagination - Page ${state.current}`
+    a11yCurrentText=`Results Pagination - Page ${state.current}`
     ...input
     >
-    <@item type="previous" disabled=(state.current === 0)/>
+    <@item type="previous" as any disabled=(state.current === 0)/>
     <for|i| from=0 to=SIZE>
         <@item current=(i === state.current)>${i}</@item>
     </for>

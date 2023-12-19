@@ -1,3 +1,6 @@
+import type { Input as TextboxInput } from "<ebay-textbox>";
+export type Input = TextboxInput;
+
 class {}
 
 <span class="field">
@@ -13,7 +16,7 @@ class {}
         id="textbox"
         value="test"
         on-change("emit", "change")
-        on-inputChange("emit", "inputChange")
+        on-input-change("emit", "inputChange")
         on-focus("emit", "focus")
         on-blur("emit", "blur")
         on-keypress("emit", "keypress")

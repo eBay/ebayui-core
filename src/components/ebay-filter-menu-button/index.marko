@@ -13,14 +13,13 @@ static var ignoredAttributes = [
     "items",
     "type"
 ];
-$ var footer = input.footer || {};
 
 <span
     ...processHtmlAttributes(input, ignoredAttributes)
     key="container"
     class=["filter-menu-button", input.class]
-    onExpander-expand("handleExpand")
-    onExpander-collapse("handleCollapse")>
+    on-expander-expand("handleExpand")
+    on-expander-collapse("handleCollapse")>
     <button
         key="button"
         type="button"
@@ -36,14 +35,14 @@ $ var footer = input.footer || {};
         </span>
     </button>
     <ebay-filter-menu
-        class-prefix="filter-menu-button"
+        classPrefix="filter-menu-button"
         variant=input.variant
         type=input.type
-        form-name=input.formName
-        form-action=input.formAction
-        form-method=input.formMethod
-        footer-text=input.footerText
-        a11y-footer-text=input.a11yFooterText
+        formName=input.formName
+        formAction=input.formAction
+        formMethod=input.formMethod
+        footerText=input.footerText
+        a11yFooterText=input.a11yFooterText
         on-keydown("handleMenuKeydown")
         on-change("handleMenuChange")
         on-form-submit("handleFormSubmit")
@@ -51,16 +50,15 @@ $ var footer = input.footer || {};
         <for|item, i| of=(input.items || [])>
             <@item ...item checked=component.isChecked(i)/>
         </for>
-        <if(input.footerText || input.footer)>
-            <@footer ...footer a11y-footer-text=(input.a11yFooterText || (input.footer && input.footer.a11yFooterText))>
-                <if(input.footerText)>
-                    ${input.footerText}
-                </if>
-                <else>
-                    <${input.footer.renderBody}/>
-                </else>
-
+        <if(input.footerText)>
+            <@footer ...input.footer a11yFooterText=(input.a11yFooterText)>
+                ${input.footerText}
             </@footer>
         </if>
+        <else-if(input.footer)>
+            <@footer ...input.footer a11yFooterText=(input.a11yFooterText || input.footer.a11yFooterText)>
+                <${input.footer.renderBody}/>
+            </@footer>
+        </else-if>
     </ebay-filter-menu>
 </span>

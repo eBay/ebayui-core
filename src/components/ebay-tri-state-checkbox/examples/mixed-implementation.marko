@@ -1,4 +1,12 @@
+import type { TriStateCheckboxEvent } from "../component";
 class {
+    declare state: {
+        count: number;
+        checked: boolean[];
+        cachedChecked: boolean[];
+        cacheCount: number;
+    }
+
     onCreate() {
         this.state = {
             count: 2,
@@ -8,13 +16,13 @@ class {
         };
     }
 
-    handleChange(index, { checked }) {
+    handleChange(index: number, { checked }: { checked: boolean }) {
         this.state.checked[index] = checked;
         this.state.cachedChecked = [...this.state.checked];
         this.state.count += checked ? 1 : -1;
         this.state.cacheCount = this.state.count;
     }
-    handleParentChange({ checked }) {
+    handleParentChange({ checked }: TriStateCheckboxEvent) {
         let count;
         if (checked === "true") {
             this.state.checked.fill(true);
@@ -44,7 +52,7 @@ class {
 
 <div class="field">
     <ebay-tri-state-checkbox
-        skip-mixed=component.skipMixed
+        skipMixed=component.skipMixed
         checked=component.checked
         id:scoped="checkbox-all"
         on-change("handleParentChange")/>

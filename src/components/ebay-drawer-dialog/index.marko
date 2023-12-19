@@ -7,14 +7,14 @@ $ var handleLabel = (!state.expanded ?
     open=input.open
     classPrefix="drawer-dialog"
     key="dialog"
-    on-scroll('handleScroll')
-    on-open("emit", "open")
-    on-close("emit", "close")
+    onScroll('handleScroll')
+    onOpen("emit", "open")
+    onClose("emit", "close")
     class=[
         input.class,
         "drawer-dialog--mask-fade-slow"
     ]
-    window-class=[
+    windowClass=[
             `drawer-dialog__window`,
             "drawer-dialog__window--slide",
             state.expanded && "drawer-dialog__window--expanded"
@@ -26,10 +26,10 @@ $ var handleLabel = (!state.expanded ?
                     type="button"
                     class=`drawer-dialog__handle`
                     onClick("handleExpand")
-                    onTouchStart("handleTouchStart")
-                    onTouchMove("handleTouchMove")
-                    onTouchEnd("handleTouchEnd")
-                    onTouchCancel("handleTouchEnd")
+                    onTouchstart("handleTouchStart")
+                    onTouchmove("handleTouchMove")
+                    onTouchend("handleTouchEnd")
+                    onTouchcancel("handleTouchEnd")
                 ></button>
             </@top>
         </if>

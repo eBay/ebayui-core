@@ -1,4 +1,5 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
+import type { Option } from '../ebay-listbox/component'
 
 static var ignoredAttributes = [
     "name",
@@ -19,7 +20,7 @@ static var ignoredAttributes = [
 ];
 static const DASH = '-';
 
-$ var selectedOption = input.options[state.selectedIndex];
+$ var selectedOption = (input.options as Option[])[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
 $ var labelId = input.prefixId && component.getElId("label");
 $ var unselectedText = input.unselectedText || DASH;
@@ -75,9 +76,9 @@ $ var isForm = input.variant === 'form';
         class="listbox-button__listbox"
         name=input.name
         tabindex=-1
-        list-selection=input.listSelection
-        on-change("handleListboxChange")
-        on-escape("handleListboxEscape")>
+        listSelection=input.listSelection
+        onChange("handleListboxChange")
+        onEscape("handleListboxEscape")>
         <for|option| of=(input.options || [])>
             <@option ...option selected=(selectedOption === option)/>
         </for>

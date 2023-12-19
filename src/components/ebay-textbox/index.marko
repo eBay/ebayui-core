@@ -1,6 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static function toJSON() {
+static function toJSON(this: any) {
     return {
         floatingLabel: this.floatingLabel
     };
@@ -60,14 +60,14 @@ $ var defaultTag = input.fluid ? "div" : "span";
             type=(!input.multiline && (input.type || "text"))
             value=(!input.multiline && input.value)
             aria-invalid=(input.invalid && "true")
-            onKeydown("handleKeydown")
-            onKeypress("handleKeypress")
-            onKeyup("handleKeyup")
-            onChange("handleChange")
-            onInput("handleInput")
-            onFocus("handleFocus")
-            onBlur("handleBlur")
-            onInvalid("handleInvalid")>
+            onKeydown("forwardEvent", "keydown")
+            onKeypress("forwardEvent", "keypress")
+            onKeyup("forwardEvent", "keyup")
+            onChange("forwardEvent", "change")
+            onInput("forwardEvent", "input-change")
+            onFocus("forwardEvent", "focus")
+            onBlur("forwardEvent", "blur")
+            onInvalid("forwardEvent", "invalid")>
             <if(input.multiline && input.value)>${input.value}</if>
         </>
         <if(displayIcon && input.postfixIcon)>
@@ -75,7 +75,7 @@ $ var defaultTag = input.fluid ? "div" : "span";
                 class="icon-btn icon-btn--transparent"
                 aria-label=input.buttonAriaLabel
                 type=(input.buttonAriaLabel && "button")
-                on-click("handleButtonClick")>
+                on-click("forwardEvent", "button-click")>
                 <${input.postfixIcon}/>
             </>
         </if>
