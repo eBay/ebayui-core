@@ -1,5 +1,13 @@
 import { processHtmlAttributes } from "../../../../common/html-attributes";
+import type { AttrClass } from "marko/tags-html";
 static var ignoredAttributes = ["as", "class"];
+
+static interface SkeletonImageInput extends Omit<Marko.Input<"div">, `on${string}`> {
+    as?: Marko.NativeTags;
+    class?: AttrClass;
+}
+
+export interface Input extends WithNormalizedProps<SkeletonImageInput> {}
 
 <${input.as || 'div'}
     class=["skeleton__image", input.class]

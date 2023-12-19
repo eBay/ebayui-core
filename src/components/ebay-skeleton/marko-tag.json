@@ -6,11 +6,8 @@
     },
     "@html-attributes": "expression",
     "@role": "never",
-    "@type": {
-        "enum": ["avatar", "button", "form", "text", "tile"]
-    },
     "@size": {
-        "enum": ["default", "small", "large"]
+        "enum": ["small", "large"]
     },
     "@multiline": "boolean",
     "@a11yText": "string"
