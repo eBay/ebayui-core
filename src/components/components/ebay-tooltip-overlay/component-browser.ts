@@ -1,8 +1,15 @@
 import type { AttrClass } from "marko/tags-html";
-import type { typeRoles } from "./constants";
+export const typeRoles = {
+    tourtip: "region",
+    tooltip: "tooltip",
+    infotip: "tooltip",
+} as const;
 
 interface TooltipOverlayInput {
     toJSON?: any;
+    "style-top"?: string;
+    "style-left"?: string;
+    "style-right"?: string;
     "style-bottom"?: string;
     heading?: Marko.Input<"span"> & {
         as: Marko.NativeTags;
