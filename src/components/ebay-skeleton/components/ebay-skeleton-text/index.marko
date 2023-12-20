@@ -1,0 +1,24 @@
+import { processHtmlAttributes } from "../../../../common/html-attributes";
+import type { AttrClass } from "marko/tags-html";
+static var ignoredAttributes = ["as", "class", "size", "multiline"];
+
+static interface SkeletonTextInput extends Omit<Marko.Input<"div">, `on${string}`> {
+    as?: Marko.NativeTags;
+    class?: AttrClass;
+    size?: "small" | "large";
+    multiline?: boolean;
+}
+
+export interface Input extends WithNormalizedProps<SkeletonTextInput> {}
+
+$ const { size, multiline } = input;
+
+<${input.as || "div"}
+    class=[
+        "skeleton__text",
+        multiline && "skeleton__text--multiline",
+        size && size === "large" && `skeleton__text--large`,
+        input.class,
+    ]
+    ...processHtmlAttributes(input, ignoredAttributes)
+/>
