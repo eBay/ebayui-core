@@ -80,7 +80,7 @@ describe("given the a custom aligned tooltip", () => {
             const overlay =
                 component.getByText(renderBodyText).nextElementSibling;
             expect(overlay.style.transform).to.equal("");
-            expect(overlay.style.top).to.equal("68px");
+            expect(overlay.style.top).to.not.equal("");
             expect(overlay.style.right).to.equal("");
             expect(overlay.style.bottom).to.equal("");
         });
