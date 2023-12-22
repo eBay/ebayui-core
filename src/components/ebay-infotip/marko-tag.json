@@ -24,10 +24,22 @@
             "left-top"
         ]
     },
-    "@style-top": "string",
-    "@style-left": "string",
-    "@style-right": "string",
-    "@style-bottom": "string",
+    "@placement": {
+        "enum": [
+            "top",
+            "right",
+            "bottom",
+            "left",
+            "top-start",
+            "right-start",
+            "bottom-start",
+            "left-start",
+            "top-end",
+            "right-end",
+            "bottom-end",
+            "left-end"
+        ]
+    },
     "@aria-label": "string",
     "@variant": "string",
     "@a11y-close-button-text": "string",

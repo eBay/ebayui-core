@@ -5,11 +5,9 @@ interface TourtipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     open?: boolean;
     "no-hover"?: TooltipBaseInput["noHover"];
     host?: Marko.Input<"span">;
-    pointer?: TooltipOverlayInput["pointer"];
-    "style-left"?: TooltipOverlayInput["styleLeft"];
-    "style-right"?: TooltipOverlayInput["styleRight"];
-    "style-top"?: TooltipOverlayInput["styleTop"];
-    "style-bottom"?: TooltipOverlayInput["styleBottom"];
+    offset?: TooltipBaseInput['offset'];
+    pointer?: TooltipBaseInput['pointer'];
+    placement?: TooltipBaseInput['placement'];
     heading?: TooltipOverlayInput["heading"];
     content?: TooltipOverlayInput["content"];
     "a11y-close-text"?: TooltipOverlayInput["a11yCloseText"];

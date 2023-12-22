@@ -6,13 +6,11 @@ interface TooltipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     open?: boolean;
     "no-hover"?: TooltipBaseInput["noHover"];
     host?: Marko.AttrTag<{ renderBody: Marko.Body }>;
-    pointer?: TooltipOverlayInput["pointer"];
-    "style-left"?: TooltipOverlayInput["styleLeft"];
-    "style-right"?: TooltipOverlayInput["styleRight"];
-    "style-top"?: TooltipOverlayInput["styleTop"];
-    "style-bottom"?: TooltipOverlayInput["styleBottom"];
     heading?: TooltipOverlayInput["heading"];
     content?: TooltipOverlayInput["content"];
+    pointer?: TooltipBaseInput['pointer'];
+    placement?: TooltipBaseInput['placement'];
+    offset?: TooltipBaseInput['offset'];
     "on-expand"?: () => void;
     "on-collapse"?: () => void;
 }

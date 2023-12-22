@@ -20,26 +20,20 @@ export default {
     },
 
     argTypes: {
-        pointer: {
-            control: { type: "text" },
+        placement: {
+            options: [
+                'top', 'right', 'bottom', 'left',
+                'top-start', 'right-start', 'bottom-start', 'left-start',
+                'top-end', 'right-end', 'bottom-end', 'left-end',
+           ],
+            control: { type: "select" },
             description:
-                "options are `top-left`, `top`, `top-right`, `right`, `right-bottom`, `right-top`, `bottom-left`, `bottom-right`, `bottom`, `left`, `left-bottom`, `left-top`",
+                "places tourtip position",
         },
-        styleTop: {
-            control: { type: "text" },
-            description: "a style property for the CSS `top` rule",
-        },
-        styleLeft: {
-            control: { type: "text" },
-            description: "a style property for the CSS `left` rule",
-        },
-        styleRight: {
-            control: { type: "text" },
-            description: "a style property for the CSS `right` rule",
-        },
-        styleBottom: {
-            control: { type: "text" },
-            description: "a style property for the CSS `bottom` rule",
+        offset: {
+            control: { type: "number" },
+            description:
+                "offsets tourtip position",
         },
         a11yCloseText: {
             control: { type: "text" },
