@@ -112,7 +112,7 @@ class TooltipBase extends Marko.Component<Input> {
 
     updateTip() {
             computePosition((this.hostEl as HTMLElement), (this.overlayEl as HTMLElement), {
-                placement: this.input.placement || pointerStyles[this.input.pointer ?? 'bottom'] as Placement,
+                placement: this.input.placement || pointerStyles[this.input.pointer ?? 'bottom'],
                 middleware: [
                     offset(this.input.offset || 6),
                     inline(),

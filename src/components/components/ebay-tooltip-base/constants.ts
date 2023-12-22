@@ -1,4 +1,6 @@
-export const pointerStyles:{[index: string]: string} = {
+import type { Placement } from '@floating-ui/dom';
+
+export const pointerStyles:{[index: string]: Placement} = {
     "left": "right",
     "left-top": "right-start",
     "left-bottom": "right-end",
