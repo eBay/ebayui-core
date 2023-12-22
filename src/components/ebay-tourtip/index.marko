@@ -2,10 +2,6 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 
 $ const {
     pointer = "bottom",
-    styleTop,
-    styleLeft,
-    styleRight,
-    styleBottom,
     a11yCloseText,
     host,
     open,
@@ -19,6 +15,9 @@ $ const {
     <ebay-tooltip-base
         key="base"
         type="tourtip"
+        pointer=input.pointer
+        placement=input.placement
+        offset=input.offset
         overlay-id:scoped="overlay">
         <span
             ...processHtmlAttributes(htmlInput)
@@ -33,11 +32,6 @@ $ const {
             <ebay-tooltip-overlay
                 type="tourtip"
                 id:scoped="overlay"
-                pointer=pointer
-                styleLeft=styleLeft
-                styleTop=styleTop
-                styleRight=styleRight
-                styleBottom=styleBottom
                 heading=heading
                 content=content
                 a11yCloseText=a11yCloseText

@@ -1,13 +1,10 @@
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../tooltip.stories";
-const pointerStyles = require("./location-styles.json");
 
 const { Standard, buttonHost } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
-
-export const Pointers = Object.keys(pointerStyles);
 
 describe("tooltip", () => {
     it("renders default tooltip", async () => {
@@ -18,11 +15,5 @@ describe("tooltip", () => {
     });
     it("renders tooltip with button host", async () => {
         await htmlSnap(buttonHost);
-    });
-
-    Pointers.forEach((pointer) => {
-        it(`renders tooltip pointer: ${pointer}`, async () => {
-            await htmlSnap(Standard, { pointer });
-        });
     });
 });

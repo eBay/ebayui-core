@@ -8,10 +8,8 @@ $ const {
     host,
     noHover,
     pointer = "bottom",
-    styleBottom,
-    styleLeft,
-    styleRight,
-    styleTop,
+    placement,
+    offset,
     ...htmlInput
 } = input;
 
@@ -26,6 +24,9 @@ $ const {
         type="tooltip"
         overlayId:scoped="overlay"
         noHover=noHover
+        pointer=pointer
+        placement=placement
+        offset=offset
         onBase-expand("handleExpand")
         onBase-collapse("handleCollapse")>
         <span
@@ -35,11 +36,6 @@ $ const {
             <ebay-tooltip-overlay
                 type="tooltip"
                 id:scoped="overlay"
-                pointer=pointer
-                styleLeft=styleLeft
-                styleTop=styleTop
-                styleRight=styleRight
-                styleBottom=styleBottom
                 heading=heading
                 content=content/>
         </span>

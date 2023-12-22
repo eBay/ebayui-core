@@ -1,5 +1,5 @@
 import { processHtmlAttributes } from "../../../common/html-attributes";
-import { typeRoles, pointerStyles } from "./constants";
+import { typeRoles } from "./component-browser";
 
 static function noop() {}
 
@@ -8,29 +8,11 @@ $ input.toJSON = noop;
 $ const {
     id,
     type,
-    styleTop,
-    styleLeft,
-    styleRight,
-    styleBottom,
-    pointer,
     heading,
     content,
     footer,
     a11yCloseText,
 } = input;
-
-$ var hasUserStyles = (
-    styleTop ||
-    styleLeft ||
-    styleRight ||
-    styleBottom
-);
-$ var overlayStyles = hasUserStyles ? {
-    top: styleTop,
-    left: styleLeft,
-    right: styleRight,
-    bottom: styleBottom
-} : pointerStyles[pointer || "bottom"];
 
 <span
     id=id
@@ -41,11 +23,11 @@ $ var overlayStyles = hasUserStyles ? {
         heading &&
         component.elId("tourtip-label")
     )
-    style=overlayStyles>
-    <span class=`${type}__pointer ${type}__pointer--${pointer}`/>
-    <span class=`${type}__mask`>
-        <span class=`${type}__cell`>
-            <span class=`${type}__content`>
+>
+    <span class=`${input.type}__pointer`/>
+    <span class=`${input.type}__mask`>
+        <span class=`${input.type}__cell`>
+            <span class=`${input.type}__content`>
                 <if(heading)>
                     $ const {
                         as: headingAs,
