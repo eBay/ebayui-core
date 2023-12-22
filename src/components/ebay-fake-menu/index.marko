@@ -1,72 +1,75 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static {
-    var ignoredAttributes = [
-        "class",
-        "style",
-        "classPrefix",
-        "type",
-        "reverse",
-        "fixWidth",
-        "items"
-    ];
-    var itemIgnoredAttributes = [
-        "class",
-        "style",
-        "type",
-        "value",
-        "checked",
-        "current",
-        "badgeNumber",
-        "badgeAriaLabel",
-        "disabled"
-    ];
-}
+$ const {
+    class: inputClass,
+    style,
+    classPrefix,
+    type,
+    reverse,
+    fixWidth,
+    items,
+    ...htmlInput
+} = input;
 
-$ var baseClass = input.classPrefix || "fake-menu";
+$ var baseClass = classPrefix || "fake-menu";
 $ var separatorMap = component.getSeparatorMap(input);
+
 <span
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...processHtmlAttributes(htmlInput)
     class=[
-        input.classPrefix
+        classPrefix
             ? `${baseClass}__menu`
             : "fake-menu",
-        input.reverse && `${baseClass}__menu--reverse`,
-        input.fixWidth && `${baseClass}__menu--fix-width`,
-        input.class
+        reverse && `${baseClass}__menu--reverse`,
+        fixWidth && `${baseClass}__menu--fix-width`,
+        inputClass
     ]
-    style=input.style>
+    style=style>
     <ul
         class=`fake-menu__items`
         key="menu"
         tabindex="-1"
         id:scoped="menu">
         <for|item, index| of=(component.items)>
-            $ var defaultAriaCurrent = item.itemMatchesUrl === false ? 'true' : 'page';
+            $ const {
+                class: itemClass,
+                style,
+                type,
+                value,
+                checked,
+                current,
+                badgeNumber,
+                itemMatchesUrl,
+                href,
+                renderBody,
+                disabled,
+                ...htmlItem
+            } = item;
+            $ var defaultAriaCurrent = itemMatchesUrl === false ? 'true' : 'page';
             <if (separatorMap[index])>
                 <li>
                     <hr class=`${baseClass}__separator` role="separator" />
                 </li>
             </if>
             <li>
-                $ var isButton = item.type === "button" || item.type ==="submit";
+                $ var isButton = type === "button" || type ==="submit";
                 <${isButton ? "button" : "a"}
-                    ...processHtmlAttributes(item, itemIgnoredAttributes)
-                    class=[`${baseClass}__item`, item.class]
-                    style=item.style
-                    disabled=(isButton && item.disabled)
-                    aria-disabled=(!isButton && item.disabled && 'true')
-                    aria-current=(item.current ? defaultAriaCurrent : false)
-                    href=(item.disabled ? null : item.href)
-                    type=(isButton && item.type)
-                    onKeydown(!item.disabled && "handleItemKeydown", index)
-                    onClick(!item.disabled && "handleItemClick", index)
+                    ...processHtmlAttributes(htmlItem)
+                    class=[`${baseClass}__item`, itemClass]
+                    style=style
+                    disabled=(isButton && disabled)
+                    aria-disabled=(!isButton && disabled && 'true')
+                    aria-current=(current ? defaultAriaCurrent : false)
+                    href=(disabled ? null : href)
+                    type=(isButton && type)
+                    onKeydown(!disabled && "handleItemKeydown", index)
+                    onClick(!disabled && "handleItemClick", index)
                     key="item[]">
                     <span>
-                        <${item.renderBody}/>
+                        <${renderBody}/>
                     </span>
-                    <if(item.badgeNumber)>
-                        <ebay-badge type="menu" number=item.badgeNumber/>
+                    <if(badgeNumber)>
+                        <ebay-badge type="menu" number=badgeNumber/>
                     </if>
 
                     <ebay-tick-16-icon />

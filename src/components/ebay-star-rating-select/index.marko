@@ -1,17 +1,24 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
-static var ignoredAttributes = ['class', 'value', 'a11yText', 'a11yStarText', 'disbaled'];
-$ var starText = input.a11yStarText || [];
+
+$ const {
+    class: inputClass,
+    value,
+    a11yText,
+    a11yStarText = [],
+    disabled,
+    ...htmlInput
+} = input;
 
 <div
-    role=!!input.a11yText && 'radiogroup'
-    aria-label=input.a11yText
-    class=['star-rating-select', input.class]
-    ...processHtmlAttributes(input, ignoredAttributes)
+    role=!!a11yText && 'radiogroup'
+    aria-label=a11yText
+    class=['star-rating-select', inputClass]
+    ...processHtmlAttributes(htmlInput)
 >
     <for|i| from=1 to=5>
         <span.star-rating-select__radio>
             <input
-                aria-label=starText[i - 1]
+                aria-label=a11yStarText[i - 1]
                 class=[
                     'star-rating-select__control',
                     i <= state.value && 'star-rating-select__control--filled',
@@ -19,7 +26,7 @@ $ var starText = input.a11yStarText || [];
                 type='radio'
                 name:scoped='star-rating'
                 value=i
-                disabled=input.disabled
+                disabled=disabled
                 checked=state.value === i
                 onClick('emitEvent', 'change', i)
                 onFocus('emitEvent', 'focus', i)

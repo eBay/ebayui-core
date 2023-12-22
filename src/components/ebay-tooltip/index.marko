@@ -1,19 +1,19 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 
 static const isBrowser = typeof window !== "undefined";
-static var ignoredAttributes = [
-    "pointer",
-    "styleTop",
-    "styleLeft",
-    "styleRight",
-    "styleBottom",
-    "noHover",
-    "host",
-    "content",
-    "heading"
-];
 
-$ var pointer = input.pointer || "bottom";
+$ const {
+    content,
+    heading,
+    host,
+    noHover,
+    pointer = "bottom",
+    styleBottom,
+    styleLeft,
+    styleRight,
+    styleTop,
+    ...htmlInput
+} = input;
 
 <if(isBrowser && state.open)>
     <subscribe to=document as any on-keydown("handleKeydown")/>
@@ -25,23 +25,23 @@ $ var pointer = input.pointer || "bottom";
         key="base"
         type="tooltip"
         overlayId:scoped="overlay"
-        noHover=input.noHover
+        noHover=noHover
         onBase-expand("handleExpand")
         onBase-collapse("handleCollapse")>
         <span
-            ...processHtmlAttributes(input, ignoredAttributes)
+            ...processHtmlAttributes(htmlInput)
             class:no-update="tooltip">
-            <${input.host}/>
+            <${host}/>
             <ebay-tooltip-overlay
                 type="tooltip"
                 id:scoped="overlay"
                 pointer=pointer
-                styleLeft=input.styleLeft
-                styleTop=input.styleTop
-                styleRight=input.styleRight
-                styleBottom=input.styleBottom
-                heading=input.heading
-                content=input.content/>
+                styleLeft=styleLeft
+                styleTop=styleTop
+                styleRight=styleRight
+                styleBottom=styleBottom
+                heading=heading
+                content=content/>
         </span>
     </ebay-tooltip-base>
 </span>

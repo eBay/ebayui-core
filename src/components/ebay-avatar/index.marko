@@ -13,38 +13,37 @@ static interface AvatarInput extends Omit<Marko.Input<"div">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<AvatarInput> {}
 
-static {
-    var ignoredAttributes = [
-        "a11yText",
-        "class",
-        "size",
-        "color",
-        "img",
-        "username",
-    ];
-}
-$ var color = getColorForText(input.username, input.color);
+$ const {
+    a11yText,
+    class: inputClass,
+    size,
+    color,
+    img,
+    username,
+    renderBody,
+    ...htmlInput
+} = input
 
 <div
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...processHtmlAttributes(htmlInput)
     role="img"
-    aria-label=input.a11yText
+    aria-label=a11yText
     class=[
         "avatar",
-        input.class,
-        input.size && `avatar--${input.size}`,
-        `avatar--${color}`,
+        inputClass,
+        size && `avatar--${size}`,
+        `avatar--${getColorForText(username, color)}`,
     ]
 >
-    <if(input.img)>
-        <img ...input.img>
+    <if(img)>
+        <img ...img>
     </if>
 
-    <else-if(input.renderBody)>
+    <else-if(renderBody)>
         <${input}/>
     </else-if>
-    <else-if(input.username)>
-        ${input.username.charAt(0).toUpperCase()}
+    <else-if(username)>
+        ${username.charAt(0).toUpperCase()}
     </else-if>
 
     <else>

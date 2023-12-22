@@ -6,10 +6,15 @@ static interface ToastDialogInput extends Omit<BaseInput, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<ToastDialogInput> {}
 
-$ var header = input.header || {} as NonNullable<typeof input.header>;
+$ const {
+    header = {} as NonNullable<typeof input.header>,
+    class: inputClass,
+    renderBody,
+    ...dialogBaseInput
+} = input;
+
 <ebay-dialog-base
-    ...input
-    open=input.open
+    ...dialogBaseInput
     baseEl="aside"
     transitionEl="root"
     isModal=false
@@ -17,7 +22,7 @@ $ var header = input.header || {} as NonNullable<typeof input.header>;
     onOpen("emit", "open")
     onClose("emit", "close")
     closeButtonClass = ["icon-btn--transparent"]
-    class=[input.class, "toast-dialog--transition"]>
+    class=[inputClass, "toast-dialog--transition"]>
     <@header ...header class=[header.class, "toast-dialog__title"] />
-    <${input.renderBody}/>
+    <${renderBody}/>
 </ebay-dialog-base>

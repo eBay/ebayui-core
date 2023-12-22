@@ -1,8 +1,13 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static var ignoredAttributes = ["selectedIndex", "tabs", "panels", "tabAriaCurrent"];
-
-static var itemAnchorIgnoredAttributes = ["href"];
+$ const {
+    selectedIndex = 0,
+    class: inputClass,
+    tabs,
+    tabMatchesCurrentUrl,
+    renderBody,
+    ...htmlInput
+} = input;
 
 export interface Tab extends Marko.Input<"li"> {
     href: string;
@@ -16,22 +21,25 @@ static interface FakeTabsInput extends Omit<Marko.Input<"div">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<FakeTabsInput> {}
 
-$ var tabAriaCurrent: Marko.Input<"li">['aria-current'] = input.tabMatchesCurrentUrl === false ? "true" : "page";
+$ var tabAriaCurrent: Marko.Input<"li">['aria-current'] = tabMatchesCurrentUrl === false ? "true" : "page";
 
 <div
-    ...processHtmlAttributes(input, ignoredAttributes)
-    class=["fake-tabs", input.class]>
-    $ var selectedIndex = input.selectedIndex || 0;
+    ...processHtmlAttributes(htmlInput)
+    class=["fake-tabs", inputClass]>
     <ul class="fake-tabs__items">
-        <for|tab, i| of=(input.tabs || [])>
+        <for|tab, i| of=(tabs || [])>
+            $ const {
+                href,
+                ...htmlTab
+            } = tab;
             $ var isSelected = selectedIndex === i;
             <li
-                ...processHtmlAttributes(tab, itemAnchorIgnoredAttributes)
+                ...processHtmlAttributes(htmlTab)
                 class=[
                     tab.class,
                     "fake-tabs__item"
                 ]>
-                <a aria-current=( isSelected && tabAriaCurrent) href=tab.href>
+                <a aria-current=(isSelected && tabAriaCurrent) href=href>
                     <${tab.renderBody}/>
                 </a>
             </li>
@@ -42,7 +50,7 @@ $ var tabAriaCurrent: Marko.Input<"li">['aria-current'] = input.tabMatchesCurren
             class="fake-tabs__panel">
             <div class="fake-tabs__cell">
                 <div>
-                    <${input.renderBody}/>
+                    <${renderBody}/>
                 </div>
             </div>
         </div>

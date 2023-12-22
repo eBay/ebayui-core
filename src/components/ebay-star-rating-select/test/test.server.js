@@ -12,8 +12,8 @@ use(require("chai-dom"));
 describe("star-rating-select", () => {
     it("renders defaults", async () => {
         await htmlSnap(Isolated, {
-            a11yText: null,
-            a11yStarText: null,
+            a11yText: undefined,
+            a11yStarText: undefined,
         });
     });
 

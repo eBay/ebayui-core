@@ -1,20 +1,17 @@
-import { processHtmlAttributes } from '../../common/html-attributes';
-static {
-    var ignoredAttributes = [
-        'a11yText',
-        'partiallyDisabled',
-        'fluid',
-        'fixedHeight',
-        'truncate',
-        'transparent',
-        'bodyState',
-        'variant',
-        'a11yButtonLoadingText',
-        'a11yMenuText',
-        'button',
-        'href'
-    ];
-}
+$ const {
+    a11yButtonLoadingText,
+    a11yMenuText,
+    a11yText,
+    bodyState,
+    disabled,
+    href,
+    priority,
+    renderBody,
+    size,
+    transparent,
+    variant,
+    ...menuButtonInput
+} = input;
 
 <span.split-button>
     <ebay-button
@@ -24,24 +21,28 @@ static {
         onBlur('emit', 'blur')
         split='start'
         type='button'
-        size=input.size
-        disabled=input.disabled
-        priority=input.priority
-        bodyState=input.bodyState
-        href=input.href
-        a11yText=input.a11yButtonLoadingText
+        size=size
+        disabled=disabled
+        priority=priority
+        bodyState=bodyState
+        href=href
+        a11yText=a11yButtonLoadingText
     >
-        <span.btn__cell><span.btn__text><${input.renderBody}/></span></span>
+        <span.btn__cell><span.btn__text><${renderBody}/></span></span>
     </ebay-button>
     <ebay-menu-button
         onCollapse('emit', 'collapse')
         onExpand('emit', 'expand')
         onChange('emit', 'change')
         onSelect('emit', 'select')
-        a11yText=input.a11yMenuText
-        ...processHtmlAttributes(input, ignoredAttributes)
+        a11yText=a11yMenuText
         split='end'
+        size=size
+        disabled=disabled
+        priority=priority
+        transparent=transparent
         reverse
         variant='button'
+        ...menuButtonInput
     />
 </span>

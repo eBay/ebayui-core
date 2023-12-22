@@ -8,44 +8,47 @@ static function toJSON(this: any) {
     };
 }
 
-static var ignoredAttributes = [
-    "partiallyDisabled",
-    "badgeNumber",
-    "badgeAriaLabel",
-    "toJSON",
-    "transparent",
-    "size"
-];
+$ const {
+    ariaLabel,
+    badgeAriaLabel,
+    badgeNumber,
+    href,
+    partiallyDisabled,
+    renderBody,
+    size,
+    transparent,
+    type,
+    class: inputClass,
+    ...htmlInput
+} = input;
 
-$ {
-    input.toJSON = toJSON;
-    var isBadged = Boolean(input.badgeNumber);
-    var tag = input.href ? "a" : "button";
-    var htmlAttributes = processHtmlAttributes(input, ignoredAttributes);
-}
-<${tag}
-    ...htmlAttributes
+$ input.toJSON = toJSON;
+$ const tagType = href ? "a" : "button";
+
+<${tagType}
+    ...processHtmlAttributes(htmlInput)
     onClick("handleClick")
     onKeydown("handleKeydown")
     onFocus('handleFocus')
     onBlur('handleBlur')
+    aria-label=ariaLabel
+    href=href
     class=[
-        input.class,
+        inputClass,
         'icon-btn',
-        isBadged && `icon-btn--badged`,
-        input.transparent && 'icon-btn--transparent',
-        input.size && VALID_SIZES.includes(input.size) && `icon-btn--${input.size}`
+        badgeNumber && `icon-btn--badged`,
+        transparent && 'icon-btn--transparent',
+        size && VALID_SIZES.includes(size) && `icon-btn--${size}`
     ]
     data-ebayui=true
-    type=(tag === "button" && (input.type || "button"))
-    aria-disabled=(input.partiallyDisabled && "true")>
-    $ var hasAriaLabel = Boolean(htmlAttributes["aria-label"]);
-    <${input.renderBody}/>
-    <if(isBadged)>
+    type=(tagType === "button" && (type || "button"))
+    aria-disabled=(partiallyDisabled && "true")>
+    <${renderBody}/>
+    <if(badgeNumber)>
         <ebay-badge
-            number=input.badgeNumber
+            number=badgeNumber
             type="icon"
-            aria-label=(hasAriaLabel && input.badgeAriaLabel)
-            aria-hidden=(hasAriaLabel && "true")/>
+            aria-label=(ariaLabel && badgeAriaLabel)
+            aria-hidden=(!!ariaLabel && "true")/>
     </if>
 </>

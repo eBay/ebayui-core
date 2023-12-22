@@ -1,19 +1,20 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
-static var ignoredAttributes = [
-    'data',
-    'class',
-    'series',
-    'title',
-    'description',
-    'xAxisLabelFormat',
-    'yAxisLabels',
-    'yAxisLabels',
-    'xAxisPositioner',
-    'yAxisPositioner'
-];
+
+$ const {
+    data,
+    class: inputClass,
+    series,
+    title,
+    description,
+    xAxisLabelFormat,
+    yAxisLabels,
+    xAxisPositioner,
+    yAxisPositioner,
+    ...restInput
+} = input
 
 <div
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...processHtmlAttributes(restInput)
     class=[
         input.class,
         'ebay-area-chart'

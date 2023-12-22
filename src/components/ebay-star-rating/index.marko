@@ -7,9 +7,14 @@ static interface StarRatingInput extends Omit<Marko.Input<"div">, `on${string}`>
 
 export interface Input extends WithNormalizedProps<StarRatingInput> {}
 
-static var ignoredAttributes = ["class", "value", "a11yText"];
+$ const {
+    class: inputClass,
+    value,
+    a11yText,
+    ...htmlInput
+} = input;
 
-<div role="img" aria-label=input.a11yText class=["star-rating", input.class] data-stars=input.value ...processHtmlAttributes(input, ignoredAttributes)>
+<div role="img" aria-label=a11yText class=["star-rating", inputClass] data-stars=value ...processHtmlAttributes(htmlInput)>
     <for|i| from=1 to=5>
         <ebay-star-dynamic-icon class="star-rating__icon">
         </ebay-star-dynamic-icon>

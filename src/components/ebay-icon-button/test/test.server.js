@@ -8,9 +8,7 @@ use(require("chai-dom"));
 it("renders fake version", async () => {
     const { getByLabelText } = await render(template, {
         href: "#",
-        htmlAttributes: {
-            ariaLabel: "fake button",
-        },
+        ariaLabel: "fake button",
     });
 
     const btn = getByLabelText("fake button");
@@ -31,9 +29,7 @@ it("renders partially disabled version", async () => {
 
 it("renders icon", async () => {
     const { getByLabelText } = await render(template, {
-        htmlAttributes: {
-            ariaLabel: "icon button",
-        },
+        ariaLabel: "icon button",
     });
 
     expect(getByLabelText("icon button")).has.class("icon-btn");
@@ -43,9 +39,7 @@ it("renders badged icon variant", async () => {
     const { getByLabelText } = await render(template, {
         badgeNumber: 5,
         badgeAriaLabel: "5 Items",
-        htmlAttributes: {
-            ariaLabel: "Badged button",
-        },
+        ariaLabel: "Badged button",
     });
 
     expect(getByLabelText("Badged button")).has.class("icon-btn--badged");

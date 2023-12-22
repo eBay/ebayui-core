@@ -4,12 +4,15 @@ static interface ProgressBarInput extends Omit<Marko.Input<"progress">, `on${str
 
 export interface Input extends WithNormalizedProps<ProgressBarInput> {}
 
-static var ignoredAttributes = ["class", "max", "value"];
+$ const {
+    class: inputClass,
+    max = 100,
+    value = 0,
+    ...htmlInput
+} = input;
 
-$ var value = input.value || 0;
-$ var max = input.max || 100;
 <progress
-    ...processHtmlAttributes(input, ignoredAttributes)
-    class=["progress-bar", input.class]
+    ...processHtmlAttributes(htmlInput)
+    class=["progress-bar", inputClass]
     max=max
     value=value/>

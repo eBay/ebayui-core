@@ -1,8 +1,8 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-$ const { renderBody, max, clippedText, value, ...htmlAttributes } = input;
+$ const { renderBody, max, clippedText, value, ...htmlInput } = input;
 
-<span ...processHtmlAttributes(htmlAttributes)>
+<span ...processHtmlAttributes(htmlInput)>
     <if(renderBody)>
         <${renderBody}/>
     </if>

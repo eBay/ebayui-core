@@ -9,10 +9,15 @@ static function toJSON(this: any) {
 
 $ input.toJSON = toJSON;
 
+$ const {
+    overlayStyle,
+    renderBody
+} = input;
+
 <span
     key="container"
     on-expander-expand("handleExpand")
     on-expander-collapse("handleCollapse")
-    overlay-style=input.overlayStyle>
-    <${input.renderBody}/>
+    overlay-style=overlayStyle>
+    <${renderBody}/>
 </span>

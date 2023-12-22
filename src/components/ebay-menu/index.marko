@@ -1,47 +1,48 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static {
-    var ignoredAttributes = [
-        "class",
-        "style",
-        "classPrefix",
-        "type",
-        "reverse",
-        "fixWidth",
-        "items"
-    ];
-    var itemIgnoredAttributes = [
-        "class",
-        "style",
-        "value",
-        "checked",
-        "badgeNumber",
-        "badgeAriaLabel"
-    ];
-}
+$ const {
+    class: inputClass,
+    style,
+    classPrefix,
+    type,
+    reverse,
+    fixWidth,
+    items,
+    ...htmlInput
+} = input;
 
-$ var isRadio = input.type === "radio";
-$ var isCheckbox = input.type === "checkbox";
-$ var isNotCheckable = input.type !== "checkbox" && input.type !== "radio";
-$ var baseClass = input.classPrefix || "menu";
+$ var isRadio = type === "radio";
+$ var isCheckbox = type === "checkbox";
+$ var isCheckable = type === "checkbox" || type === "radio";
+$ var baseClass = classPrefix || "menu";
 $ var separatorMap = component.getSeparatorMap(input);
 <span
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...processHtmlAttributes(htmlInput)
     class=[
-        input.classPrefix
+        classPrefix
             ? `${baseClass}__menu`
             : "menu",
-        input.reverse && `${baseClass}__menu--reverse`,
-        input.fixWidth && `${baseClass}__menu--fix-width`,
-        input.class
+        reverse && `${baseClass}__menu--reverse`,
+        fixWidth && `${baseClass}__menu--fix-width`,
+        inputClass
     ]
-    style=input.style>
+    style=style>
     <div
         role="menu"
         class=`${baseClass}__items`
         key="menu"
         id:scoped="menu">
         <for|item, index| of=(component.items)>
+            $ const {
+                class: itemClass,
+                style,
+                value,
+                checked: itemChecked,
+                badgeNumber,
+                disabled,
+                renderBody,
+                ...htmlItem
+            } = item;
             $ {
                 var itemRole: Marko.Input<"div">["role"] = isRadio
                                 ? "menuitemradio"
@@ -54,21 +55,20 @@ $ var separatorMap = component.getSeparatorMap(input);
                 <hr class=`${baseClass}__separator` role="separator" />
             </if>
             <div
-                ...processHtmlAttributes(item, itemIgnoredAttributes)
-                class=[`${baseClass}__item`, item.class, item.badgeNumber !== undefined &&  `${baseClass}__item--badged`]
-                style=item.style
-                aria-checked=(!isNotCheckable && (checked ? "true" : "false"))
-                aria-disabled=(item.disabled && "true")
-                // href=(item.disabled ? null : item.href)
+                ...processHtmlAttributes(htmlItem)
+                class=[`${baseClass}__item`, itemClass, badgeNumber !== undefined &&  `${baseClass}__item--badged`]
+                style=style
+                aria-checked=isCheckable && (checked ? "true" : "false")
+                aria-disabled=disabled && "true"
                 role=itemRole
-                onClick(!item.disabled && "handleItemClick", index)
-                onKeydown(!item.disabled && "handleItemKeydown", index)
-                onKeypress(!item.disabled && "handleItemKeypress")
+                onClick(!disabled && "handleItemClick", index)
+                onKeydown(!disabled && "handleItemKeydown", index)
+                onKeypress(!disabled && "handleItemKeypress")
                 key="item[]">
                 <span>
-                    <${item.renderBody}/>
-                    <if(item.badgeNumber)>
-                        <ebay-badge type="menu" number=item.badgeNumber/>
+                    <${renderBody}/>
+                    <if(badgeNumber)>
+                        <ebay-badge type="menu" number=badgeNumber/>
                     </if>
                 </span>
                 <ebay-tick-16-icon />

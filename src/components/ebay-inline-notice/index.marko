@@ -2,11 +2,15 @@ import type { Input as BaseInput } from "<ebay-notice-base>";
 
 export type Input = Omit<BaseInput, `on${string}` | 'prefixClass' | 'root' | 'headerRoot' | 'mainRoot' | 'noA11yLabel'>;
 
-$ var status = input.status || "attention";
+$ const {
+    status = "attention",
+    class: inputClass,
+    ...noticeBaseInput
+} = input;
 
 <ebay-notice-base
-    ...input
-    class=[`inline-notice--${status}`, input.class]
+    ...noticeBaseInput
+    class=[`inline-notice--${status}`, inputClass]
     status=status
     prefixClass="inline-notice"
     root="div"

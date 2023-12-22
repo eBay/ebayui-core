@@ -1,10 +1,18 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
-static var ignoredAttributes = ['selectedIndex', 'activation', 'tabs', 'panels'];
 static var itemAnchorIgnoredAttributes = ['href'];
 
-<div ...processHtmlAttributes(input, ignoredAttributes) class=['tabs', input.class]>
+$ const {
+    class: inputClass,
+    selectedIndex,
+    activation,
+    tabs = [],
+    panels = [],
+    ...htmlInput
+} = input;
+
+<div ...processHtmlAttributes(htmlInput) class=['tabs', inputClass]>
     <div.tabs__items role='tablist' key='tabs'>
-        <for|tab, i| of=input.tabs || []>
+        <for|tab, i| of=tabs>
             $ var isSelected = state.selectedIndex === i;
             <div
                 ...processHtmlAttributes(tab, itemAnchorIgnoredAttributes)
@@ -22,7 +30,7 @@ static var itemAnchorIgnoredAttributes = ['href'];
         </for>
     </div>
     <div.tabs__content>
-        <for|panel, i| of=input.panels || []>
+        <for|panel, i| of=panels>
             $ var isSelected = state.selectedIndex === i;
             <div
                 ...processHtmlAttributes(panel)

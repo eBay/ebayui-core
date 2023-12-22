@@ -1,13 +1,21 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
 import DotsIcon from '<ebay-overflow-horizontal-24-icon>';
 import type { Item } from './component';
+
+$ const {
+    class: inputClass,
+    items: baseItems = [],
+    a11yCurrentText = 'Results Pagination - Page 1',
+    a11yPreviousText = 'Previous page',
+    a11yNextText = 'Next page',
+} = input;
+
 static var disabledItem: Item = { disabled: true };
 static var ignoredAttributes = ['items'];
 static var ignoredItemAttributes = ['current', 'disabled'];
 static function isItemHidden(index: number, range: {start: number, end: number, dotsIndex: number, leadingDotsIndex: number}) {
     return (index < range.start || index > range.end) && (range.dotsIndex !== index && range.leadingDotsIndex - 1 !== index);
 }
-$ var baseItems = (input.items as Item[]) || [];
 $ var lastItemIndex = baseItems.length - 1;
 $ var prevItem = (baseItems[0] && baseItems[0].type === 'previous' && baseItems[0]) || disabledItem;
 $ {
@@ -26,13 +34,13 @@ $ var range = component._getVisibleRange(items);
 <nav
     ...processHtmlAttributes(input, ignoredAttributes)
     role='navigation'
-    class=['pagination', input.class]
+    class=['pagination', inputClass]
     key="root"
     aria-labelledby:scoped='heading'
 >
     <span aria-live='polite' role='status'>
         <h2.clipped id:scoped='heading'>
-            ${input.a11yCurrentText || 'Results Pagination - Page 1'}
+            ${a11yCurrentText}
         </h2>
     </span>
 
@@ -40,7 +48,7 @@ $ var range = component._getVisibleRange(items);
         ...processHtmlAttributes(prevItem, ignoredItemAttributes)
         class=['pagination__previous', prevItem.href ? 'icon-link' : 'icon-btn', prevItem.class]
         aria-disabled=prevItem.disabled && 'true'
-        aria-label=input.a11yPreviousText || 'Previous page'
+        aria-label=a11yPreviousText
         style=[prevItem.style, { minWidth: 40 }]
         onClick('handlePreviousPageClick')
     >
@@ -109,7 +117,7 @@ $ var range = component._getVisibleRange(items);
         ...processHtmlAttributes(nextItem, ignoredItemAttributes)
         class=['pagination__next', nextItem.href ? 'icon-link' : 'icon-btn', nextItem.class]
         aria-disabled=nextItem.disabled && 'true'
-        aria-label=input.a11yNextText || 'Next page'
+        aria-label=a11yNextText
         style=[nextItem.style, { minWidth: 40 }]
         onClick('handleNextPageClick')
     >

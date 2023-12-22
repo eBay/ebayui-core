@@ -1,20 +1,19 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 
-static var ignoredAttributes = [
-    "pointer",
-    "styleTop",
-    "styleLeft",
-    "styleRight",
-    "styleBottom",
-    "a11yCloseText",
-    "host",
-    "toJSON",
-    "open",
-    "heading",
-    "content"
-];
-
-$ var pointer = input.pointer || "bottom";
+$ const {
+    pointer = "bottom",
+    styleTop,
+    styleLeft,
+    styleRight,
+    styleBottom,
+    a11yCloseText,
+    host,
+    open,
+    heading,
+    content,
+    footer,
+    ...htmlInput
+} = input;
 
 <span>
     <ebay-tooltip-base
@@ -22,35 +21,35 @@ $ var pointer = input.pointer || "bottom";
         type="tourtip"
         overlay-id:scoped="overlay">
         <span
-            ...processHtmlAttributes(input, ignoredAttributes)
+            ...processHtmlAttributes(htmlInput)
             class=["tourtip", state.expanded && 'tourtip--expanded']>
-            <if(input.host)>
+            <if(host)>
                 <span
-                    class=[input.host.class, "tourtip__host"]
-                    ...processHtmlAttributes(input.host)>
-                    <${input.host.renderBody}/>
+                    class=[host.class, "tourtip__host"]
+                    ...processHtmlAttributes(host)>
+                    <${host.renderBody}/>
                 </span>
             </if>
             <ebay-tooltip-overlay
                 type="tourtip"
                 id:scoped="overlay"
                 pointer=pointer
-                styleLeft=input.styleLeft
-                styleTop=input.styleTop
-                styleRight=input.styleRight
-                styleBottom=input.styleBottom
-                heading=input.heading
-                content=input.content
-                a11yCloseText=input.a11yCloseText
+                styleLeft=styleLeft
+                styleTop=styleTop
+                styleRight=styleRight
+                styleBottom=styleBottom
+                heading=heading
+                content=content
+                a11yCloseText=a11yCloseText
                 onOverlay-close("handleCollapse")>
-                <if(input.footer)>
-                    <@footer class=[input.footer.class]>
-                        <if (input.footer.index)>
+                <if(footer)>
+                    <@footer class=[footer.class]>
+                        <if (footer.index)>
                             <span class="tourtip__index">
-                                ${input.footer.index}
+                                ${footer.index}
                             </span>
                         </if>
-                        <${input.footer}/>
+                        <${footer}/>
                     </@footer>
                 </if>
             </ebay-tooltip-overlay>

@@ -4,7 +4,17 @@ static var isBrowser = typeof window !== "undefined";
 
 static var browserLookup: Record<string, unknown> = {};
 
-static var ignoredAttributes = ["_name", "_type", "noSkinClasses", "_themes", "_def", "toJSON"];
+$ const {
+    _name,
+    _type,
+    _themes,
+    _def,
+    a11yText,
+    a11yVariant,
+    class: inputClass,
+    noSkinClasses,
+    ...htmlInput
+} = input;
 
 static function getIconClass(type: string, name: string) {
     if (type === "icon") {
@@ -13,30 +23,29 @@ static function getIconClass(type: string, name: string) {
         var dashedName = name.replace(type, `${type}-`);
         return `${type} ${dashedName}`
     }
-
 }
 
-$ var noTitle = input.a11yVariant === "label";
+$ var noTitle = a11yVariant === "label";
 $ var lookup = isBrowser ? browserLookup : out.global;
 $ {
-    var a11yAttributes = input.a11yText
+    var a11yAttributes = a11yText
         ? { role: "img" }
         : { "aria-hidden": "true" };
-    var prefixSvg = input._type === "icon" ? "icon-" : "";
+    var prefixSvg = _type === "icon" ? "icon-" : "";
 }
 <svg
     ...a11yAttributes
-    ...processHtmlAttributes(input, ignoredAttributes)
-    class=[input.class, !input.noSkinClasses && getIconClass(input._type, input._name)]
+    ...processHtmlAttributes(htmlInput)
+    class=[inputClass, !noSkinClasses && getIconClass(_type, _name)]
     key="svg"
     focusable="false"
-    aria-labelledby=(input.a11yText && !noTitle && component.elId("text"))
-    aria-label=(noTitle && input.a11yText)>
+    aria-labelledby=(a11yText && !noTitle && component.elId("text"))
+    aria-label=(noTitle && a11yText)>
     <!-- Here we check if we should render the inline svg symbol. -->
     <!-- Server side we store a flag in `out.global` to check if the symbol was rendered. -->
     <!-- Client side we check the `browserLookup` object to see if the symbol is already present in root svg. -->
-    $ var themes = input._themes;
-    $ var lookupName = "rendered_ebay_icon_" + input._name;
+    $ var themes = _themes;
+    $ var lookupName = "rendered_ebay_icon_" + _name;
     $ var renderDefs = !lookup[lookupName];
     $ lookup[lookupName] = true;
     <if(renderDefs && themes)>
@@ -46,8 +55,8 @@ $ {
             </if>
         </defs>
     </if>
-    <if(input.a11yText && !noTitle)>
-        <title id:scoped="text">${input.a11yText}</title>
+    <if(a11yText && !noTitle)>
+        <title id:scoped="text">${a11yText}</title>
     </if>
-    <use href=`#${prefixSvg}${input._name}`/>
+    <use href=`#${prefixSvg}${_name}`/>
 </svg>

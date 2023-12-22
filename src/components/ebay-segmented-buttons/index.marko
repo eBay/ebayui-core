@@ -1,12 +1,15 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
-static {
-    var ignoredAttributes = ["class", "buttons", "size"];
-    var ignoredButtonAttributes = ["class", "icon"];
-}
 
 import { validSizes } from "./component";
 
-$ var size = input.size && validSizes.includes(input.size) ? input.size : null;
+$ let {
+    size: inputSize,
+    class: inputClass,
+    buttons,
+    ...htmlInput
+} = input;
+
+$ var size = inputSize && validSizes.includes(inputSize) ? inputSize : null;
 
 <div
     class=[
@@ -14,27 +17,33 @@ $ var size = input.size && validSizes.includes(input.size) ? input.size : null;
         size && `segmented-buttons--${size}`,
         input.class,
     ]
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...processHtmlAttributes(htmlInput)
 >
     <ul>
         <for|button, index| of=input.buttons || []>
+            $ const {
+                class: buttonClass,
+                icon,
+                renderBody,
+                ...htmlButton
+            } = button;
             <li>
                 <button
-                    class=["segmented-buttons__button", button.class]
+                    class=["segmented-buttons__button", buttonClass]
                     aria-current=state.selectedIndex === index && "true"
                     on-click("onButtonClick", index)
-                    ...processHtmlAttributes(button, ignoredButtonAttributes)
+                    ...processHtmlAttributes(htmlButton)
                 >
-                    <if(button.icon)>
+                    <if(icon)>
                         <span class="segmented-buttons__button-cell">
-                            <${button.icon}/>
+                            <${icon}/>
                             <span>
                                 <${button}/>
                             </span>
                         </span>
                     </if>
                     <else>
-                        <${button.renderBody}/>
+                        <${renderBody}/>
                     </else>
                 </button>
             </li>
