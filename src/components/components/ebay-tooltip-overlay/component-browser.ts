@@ -1,4 +1,6 @@
 import type { AttrClass } from "marko/tags-html";
+import type { Input as TooltipBaseInput } from "../../components/ebay-tooltip-base/component-browser";
+
 export const typeRoles = {
     tourtip: "region",
     tooltip: "tooltip",
@@ -11,6 +13,7 @@ interface TooltipOverlayInput {
     "style-left"?: string;
     "style-right"?: string;
     "style-bottom"?: string;
+    pointer?: TooltipBaseInput["pointer"];
     heading?: Marko.Input<"span"> & {
         as: Marko.NativeTags;
         renderBody: Marko.Body;
