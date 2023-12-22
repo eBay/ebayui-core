@@ -14,13 +14,12 @@ static var ignoredAttributes = [
     "content"
 ];
 
-$ var pointer = input.pointer || "bottom";
-
 <span>
     <ebay-tooltip-base
         key="base"
         type="tourtip"
-        pointer=pointer
+        pointer=input.pointer
+        placement=input.placement
         offset=input.offset
         overlay-id:scoped="overlay">
         <span

@@ -3,17 +3,12 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 static const isBrowser = typeof window !== "undefined";
 static var ignoredAttributes = [
     "pointer",
-    "styleTop",
-    "styleLeft",
-    "styleRight",
-    "styleBottom",
     "noHover",
     "host",
     "content",
-    "heading"
+    "heading",
+    "placement"
 ];
-
-$ var pointer = input.pointer || "bottom";
 
 <if(isBrowser && state.open)>
     <subscribe to=document as any on-keydown("handleKeydown")/>
@@ -26,7 +21,8 @@ $ var pointer = input.pointer || "bottom";
         type="tooltip"
         overlayId:scoped="overlay"
         noHover=input.noHover
-        pointer=pointer
+        pointer=input.pointer
+        placement=input.placement
         offset=input.offset
         onBase-expand("handleExpand")
         onBase-collapse("handleCollapse")>

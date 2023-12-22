@@ -20,7 +20,7 @@ export default {
     },
 
     argTypes: {
-        pointer: {
+        placement: {
             options: [
                 'top', 'right', 'bottom', 'left',
                 'top-start', 'right-start', 'bottom-start', 'left-start',

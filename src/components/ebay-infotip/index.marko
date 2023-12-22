@@ -17,7 +17,6 @@ static var ignoredAttributes = [
 ];
 $ var isModal = input.variant === "modal";
 $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
-$ var pointer = input.pointer || "bottom";
 
 <span>
     <ebay-tooltip-base
@@ -26,7 +25,8 @@ $ var pointer = input.pointer || "bottom";
         type=classPrefix
         overlayId:scoped="overlay"
         offset=input.offset
-        pointer=pointer
+        pointer=input.pointer
+        placement=input.placement
         onBase-expand(isModal ? undefined : "handleExpand")
         onBase-collapse(isModal ? undefined : "handleCollapse")>
         <span

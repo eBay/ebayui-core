@@ -42,7 +42,7 @@ export default {
             description:
                 "Either modal or default. If modal will show the mobile version of infotip",
         },
-        pointer: {
+        placement: {
             options: [
                 'top', 'right', 'bottom', 'left',
                 'top-start', 'right-start', 'bottom-start', 'left-start',

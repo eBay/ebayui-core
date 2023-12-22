@@ -1,12 +1,12 @@
 import EbayTooltipBase from "../components/ebay-tooltip-base/component-browser";
-import type { Placement } from '@floating-ui/dom';
 import type { Input as TooltipBaseInput } from "../components/ebay-tooltip-base/component-browser";
 
 interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     open?: boolean;
     variant?: "modal" | "default";
-    pointer?: Placement;
     offset?: TooltipBaseInput['offset'];
+    pointer?: TooltipBaseInput['pointer'];
+    placement?: TooltipBaseInput['placement'];
     disabled?: boolean;
     "aria-label"?: string;
     icon?: Marko.AttrTag<{ renderBody: Marko.Renderable }>;

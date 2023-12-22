@@ -1,6 +1,7 @@
 import Expander from "makeup-expander";
 import focusables from "makeup-focusables";
 import { inline, autoUpdate, flip, computePosition, shift, offset, arrow, type Placement } from '@floating-ui/dom';
+import { pointerStyles } from './constants'
 
 interface TooptipBaseInput {
     open?: boolean;
@@ -11,7 +12,8 @@ interface TooptipBaseInput {
     "overlay-style"?: string;
     "overlay-id"?: string;
     "render-body"?: Marko.Renderable;
-    pointer?: Placement;
+    placement?: Placement;
+    pointer?: keyof typeof pointerStyles;
     "on-base-expand"?: (event: { originalEvent: Event }) => void;
     "on-base-collapse"?: (event: { originalEvent: Event }) => void;
 }
@@ -110,7 +112,7 @@ class TooltipBase extends Marko.Component<Input> {
 
     updateTip() {
             computePosition((this.hostEl as HTMLElement), (this.overlayEl as HTMLElement), {
-                placement: this.input.pointer,
+                placement: this.input.placement || pointerStyles[this.input.pointer ?? 'bottom'] as Placement,
                 middleware: [
                     offset(this.input.offset || 6),
                     inline(),
