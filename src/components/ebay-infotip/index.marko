@@ -17,18 +17,18 @@ static var ignoredAttributes = [
 ];
 $ var isModal = input.variant === "modal";
 $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
-$ var pointer = input.pointer || "bottom";
 
 <span>
     <ebay-tooltip-base
         open=state.open
         key="base"
         type=classPrefix
-        pointer=pointer
-        overlay-id:scoped="overlay"
-        onBase-expand(!isModal && "handleExpand")
-        onBase-collapse(!isModal && "handleCollapse")
-    >
+        overlayId:scoped="overlay"
+        offset=input.offset
+        pointer=input.pointer
+        placement=input.placement
+        onBase-expand(isModal ? undefined : "handleExpand")
+        onBase-collapse(isModal ? undefined : "handleCollapse")>
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class:no-update=[
@@ -60,11 +60,6 @@ $ var pointer = input.pointer || "bottom";
                 <ebay-tooltip-overlay
                     type="infotip"
                     id:scoped="overlay"
-                    style-left=input.styleLeft
-                    style-top=input.styleTop
-                    style-right=input.styleRight
-                    style-bottom=input.styleBottom
-                    pointer=pointer
                     heading=input.heading
                     content=input.content
                     a11y-close-text=input.a11yCloseButtonText

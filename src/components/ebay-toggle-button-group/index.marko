@@ -6,12 +6,12 @@ static var ignoredAttributes = ["class", "columns"];
     data-columns=input.columns
     ...processHtmlAttributes(input, ignoredAttributes)
 >
-    <for|{ layoutType = input.layoutType, pressed, ...buttonInput }, i| of=input.buttons>
+    <for|{ layoutType = input.layoutType, pressed, ...toggleButtonInput }, i| of=input.buttons>
         <li>
             <ebay-toggle-button
                 layoutType=layoutType
                 pressed=state.pressed[i]
-                ...buttonInput
+                ...toggleButtonInput
                 on-toggle("handleToggle", i)
             />
         </li>

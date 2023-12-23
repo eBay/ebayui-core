@@ -1,5 +1,12 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
+static interface ProgressSpinnerInput extends Omit<Marko.Input<"span">, `on${string}`> {
+    size?: "large" | "small";
+    "a11y-text"?: string;
+}
+
+export interface Input extends WithNormalizedProps<ProgressSpinnerInput> {}
+
 static var ignoredAttributes = ["class", "size"];
 
 <span

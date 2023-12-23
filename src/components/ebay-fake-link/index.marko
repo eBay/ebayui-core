@@ -1,6 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static function toJSON() {
+static function toJSON(this: any) {
     return {
         disabled: this.disabled
     };
@@ -10,7 +10,7 @@ static var ignoredAttributes = ["toJSON", "variant"];
 
 $ {
     input.toJSON = toJSON;
-    var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
+    var htmlAttributes = processHtmlAttributes(input, ignoredAttributes);
 }
 <button
     ...htmlAttributes

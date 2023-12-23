@@ -13,22 +13,15 @@ static var ignoredAttributes = [
     "heading",
     "content"
 ];
-static var ignoredFooterAttributes = [
-    "index"
-];
-
-$ var pointer = input.pointer || "bottom";
 
 <span>
     <ebay-tooltip-base
         key="base"
         type="tourtip"
-        pointer=pointer
-        overlay-id:scoped="overlay"
-        style-left=input.styleLeft
-        style-top=input.styleTop
-        style-right=input.styleRight
-        style-bottom=input.styleBottom>
+        pointer=input.pointer
+        placement=input.placement
+        offset=input.offset
+        overlay-id:scoped="overlay">
         <span
             ...processHtmlAttributes(input, ignoredAttributes)
             class=["tourtip", state.expanded && 'tourtip--expanded']>
@@ -42,14 +35,9 @@ $ var pointer = input.pointer || "bottom";
             <ebay-tooltip-overlay
                 type="tourtip"
                 id:scoped="overlay"
-                pointer=pointer
-                style-left=input.styleLeft
-                style-top=input.styleTop
-                style-right=input.styleRight
-                style-bottom=input.styleBottom
                 heading=input.heading
                 content=input.content
-                a11y-close-text=input.a11yCloseText
+                a11yCloseText=input.a11yCloseText
                 onOverlay-close("handleCollapse")>
                 <if(input.footer)>
                     <@footer class=[input.footer.class]>
@@ -60,7 +48,6 @@ $ var pointer = input.pointer || "bottom";
                         </if>
                         <${input.footer}/>
                     </@footer>
-
                 </if>
             </ebay-tooltip-overlay>
         </span>

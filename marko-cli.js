@@ -1,5 +1,7 @@
 "use strict";
 
+require.extensions[".ts"] = undefined;
+
 module.exports = ({ config }) => {
     config.mochaOptions = {
         timeout: 60000,
@@ -17,6 +19,7 @@ module.exports = ({ config }) => {
             "lasso-less",
         ],
         require: {
+            extensions: [".js", ".ts"],
             transforms: [
                 {
                     transform:
@@ -24,6 +27,9 @@ module.exports = ({ config }) => {
                 },
                 {
                     transform: "lasso-babel-transform",
+                    config: {
+                        extensions: [".js", ".ts"],
+                    },
                 },
             ],
         },

@@ -1,3 +1,13 @@
+export interface Input {
+    index?: number;
+    gap?: number | string;
+    imageTreatment?: "none" | "matte";
+    a11yPreviousText?: string;
+    a11yNextText?: string;
+    items: any[];
+    images: string[];
+}
+
 <style>
     .demo-card {
         color: #0a1c6b;
@@ -14,19 +24,19 @@
 <ebay-carousel
     index=input.index
     gap=input.gap
-    image-treatment=input.imageTreatment
-    a11y-previous-text=input.a11yPreviousText
-    a11y-next-text=input.a11yNextText>
+    imageTreatment=input.imageTreatment
+    a11yPreviousText=input.a11yPreviousText
+    a11yNextText=input.a11yNextText>
     <for|i| from=0 to=(input.items.length - 1)>
         <if(input.imageTreatment === "matte" && input.images[i])>
             <@item>
-                <img src=images[i]/>
+                <img src=input.images[i]/>
             </@item>
         </if>
         <else>
             <@item
                 style={
-                    width: 400
+                    width: '400'
                 }
                 class=`demo-card`>
                 Card ${i + 1}

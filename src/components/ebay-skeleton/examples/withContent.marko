@@ -1,0 +1,38 @@
+class {
+    onCreate() {
+        this.state = {
+            isLoading: true,
+            data: null,
+        };
+    }
+    async getData() {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => resolve("Button"), 2000);
+        });
+    }
+    async onMount() {
+        try {
+            this.state.data = await this.getData();
+        } catch (err) {
+            this.state.error = err;
+        } finally {
+            this.state.isLoading = false;
+        }
+    }
+}
+
+<style>
+    .demo-content-container {
+        width: 88px;
+    }
+</style>
+<div class="demo-content-container">
+    <if(state.isLoading)>
+        <ebay-skeleton>
+            <ebay-skeleton-button />
+        </ebay-skeleton>
+    </if>
+    <else>
+        <ebay-button> ${state.data} </ebay-button>
+    </else>
+</div>

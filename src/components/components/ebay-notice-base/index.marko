@@ -1,5 +1,6 @@
 import { processHtmlAttributes } from '../../../common/html-attributes';
 import LightBulbIcon from '<ebay-lightbulb-24-icon>';
+
 static {
     var ignoredAttributes = [
         'status',
@@ -22,6 +23,7 @@ static {
         'prominent',
     ];
 }
+
 $ var status = input.status;
 $ var prefixClass = input.prefixClass;
 
@@ -85,8 +87,8 @@ $ var prefixClass = input.prefixClass;
             <button
                 aria-label=`${input.a11yDismissText}`
                 class=['fake-link', `${prefixClass}__dismiss`]
-                onClick('handleDismissClick')
-                onKeydown('handleDismissKeydown')
+                onClick('emit', 'dismiss')
+                onKeydown('emit', 'dismiss')
             >
                 <ebay-close-16-icon.icon.icon--close-16/>
             </button>

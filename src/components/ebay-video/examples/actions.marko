@@ -1,7 +1,16 @@
+import type { Input as VideoInput } from "<ebay-video>"
+import { VolumeEvent } from "../component";
+
 class {
+    declare state: {
+        action: VideoInput["action"];
+        volume: number;
+        muted: boolean;
+    }
+
     onCreate() {
         this.state = {
-            action: "",
+            action: undefined,
             volume: 0.5,
             muted: true
         };
@@ -15,11 +24,11 @@ class {
     toggleMute() {
         this.state.muted = !this.state.muted;
     }
-    setVolume(val) {
+    setVolume(val: number) {
         this.state.volume = val;
     }
 
-    handleVolumeChange({ volume, muted }) {
+    handleVolumeChange({ volume, muted }: VolumeEvent) {
         this.state.volume = volume;
         this.state.muted = muted;
     }

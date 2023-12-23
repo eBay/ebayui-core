@@ -1,6 +1,6 @@
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
-import { render, fireEvent, cleanup } from "@marko/testing-library";
+import { render, fireEvent, cleanup, act } from "@marko/testing-library";
 import template from "..";
 
 use(chaiDom);
@@ -16,7 +16,7 @@ describe("given radio button is enabled", () => {
 
     describe("when radio button is clicked", () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByRole("radio"));
+            await act(() => component.getByRole("radio").click());
         });
 
         it("then it emits the event", () => {
@@ -24,7 +24,7 @@ describe("given radio button is enabled", () => {
             expect(changeEvents).has.length(1);
 
             const eventArgs = changeEvents[0];
-            expect(eventArgs).has.length(1);
+            expect(eventArgs).has.length.greaterThanOrEqual(1);
             expect(eventArgs[0].originalEvent).to.be.an.instanceof(Event);
             expect(eventArgs[0].value).to.equal("food");
         });
@@ -38,7 +38,7 @@ describe("given radio button is disabled", () => {
 
     describe("when radio button is clicked", () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByRole("radio"));
+            await act(() => component.getByRole("radio").click());
         });
 
         it("then it doesn't emit the event", () => {

@@ -5,16 +5,14 @@ static var ignoredAttributes = ["class", "style", "size", "toJSON", "iconStyle"]
 
 $ input.toJSON = noop;
 
-$ var isSquare = input.iconStyle === 'square';
-
 <span class=["checkbox", input.class] style=input.style>
     <input
         ...processHtmlAttributes(input, ignoredAttributes)
         class="checkbox__control"
         type="checkbox"
-        onClick("handleChange")
-        onFocus("handleFocus")
-        onKeydown("handleKeydown")/>
+        onClick("forwardEvent", "change")
+        onFocus("forwardEvent", "focus")
+        onKeydown("forwardEvent", "keydown")/>
     <span class="checkbox__icon" hidden>
         <if (input.size === 'large')>
             <ebay-checkbox-unchecked-24-icon

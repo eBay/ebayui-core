@@ -1,5 +1,9 @@
 $ var items = ["Q1", "Q2", "Q3", "Q4"];
 class {
+    declare state: {
+        selected: number;
+    };
+
     onCreate() {
         this.state = {
             selected: 0,

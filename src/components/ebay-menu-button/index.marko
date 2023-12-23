@@ -1,6 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 import IconButton from '<ebay-icon-button>'
-import Button from '<ebay-button>'
+import Button, { type Input as ButtonInput } from '<ebay-button>'
 
 static var ignoredAttributes = [
     "class",
@@ -32,10 +32,10 @@ static var ignoredAttributes = [
 $ {
     var labelId = input.prefixId && component.getElId("label");
     var isFormVariant = input.variant === "form"
-    var variant;
+    var variant: 'form' | undefined;
     var isOverflowVariant = input.variant === "overflow";
     var isButtonVariant = false;
-    var priority = null;
+    var priority: (typeof input)['priority'] | null = null;
     if (input.borderless) {
         // Force button variant for borderless
         isOverflowVariant = false;
@@ -62,15 +62,15 @@ $ {
     ...processHtmlAttributes(input, ignoredAttributes)
     class=["menu-button", input.class]
     style=input.style
-    onExpander-expand("handleExpand")
-    onExpander-collapse("handleCollapse")
+    on-expander-expand("handleExpand")
+    on-expander-collapse("handleCollapse")
     onMousedown("handleMousedown")>
     <${tagName}
         class=[
             `menu-button__button`
         ]
         size=input.size
-        priority=priority
+        priority=priority as ButtonInput["priority"]
         borderless=input.borderless
         variant=variant
         aria-expanded="false"
@@ -78,9 +78,8 @@ $ {
         transparent=(isIconVariant && input.transparent)
         aria-label=input.a11yText
         aria-labelledby=(labelId && `${input.prefixId} ${labelId}`)
-        split=(isButtonVariant && input.split)
+        split=(isButtonVariant ? input.split : undefined)
         disabled=input.disabled
-        no-toggle-icon=input.noToggleIcon
         on-escape("handleButtonEscape")
         key="button">
         <if(isOverflowVariant)>
@@ -112,10 +111,10 @@ $ {
         </else>
     </>
     <ebay-menu
-        class-prefix="menu-button"
+        classPrefix="menu-button"
         type=input.type
-        reverse=(isOverflowVariant ? !input.reverse : input.reverse)
-        fix-width=input.fixWidth
+        reverse=(isOverflowVariant !== !!input.reverse) // Boolean XOR
+        fixWidth=input.fixWidth
         tabindex=-1
         on-keydown("handleMenuKeydown")
         on-change("handleMenuChange")

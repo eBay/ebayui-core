@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import * as elementScroll from "../index.js";
+import * as elementScroll from "../index";
 
 describe("element-scroll", () => {
     const contentDiv = document.createElement("div");
@@ -26,7 +26,7 @@ describe("element-scroll", () => {
         expect(contentDiv.scrollTop).to.equal(
             fifthItemEl.offsetTop +
                 fifthItemEl.offsetHeight -
-                contentDiv.offsetHeight
+                contentDiv.offsetHeight,
         );
     });
 

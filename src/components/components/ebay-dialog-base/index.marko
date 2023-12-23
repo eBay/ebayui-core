@@ -37,12 +37,11 @@ $ var buttonPosition = input.buttonPosition || "right";
 $ var baseEl = input.baseEl || "div";
 $ var header = input.header;
 <macro name="header-content">
-    <${header.as || "h2"}
-        class=[header.class, `${input.classPrefix}__title`]
-        ...processHtmlAttributes(header, ignoredHeaderAttributes)
-        id=header.id || component.getElId("dialog-title")
-    >
-        <${header.renderBody}/>
+    <${header!.as || "h2"}
+        class=[header!.class, `${input.classPrefix}__title`]
+        ...processHtmlAttributes(header!, ignoredHeaderAttributes)
+        id=(header!.id || component.getElId("dialog-title"))>
+        <${header!.renderBody}/>
     </>
 </macro>
 <macro name="button-content">
@@ -72,8 +71,10 @@ $ var header = input.header;
 </macro>
 <${baseEl}
     ...processHtmlAttributes(input, ignoredAttributes)
-    aria-labelledby=input.ariaLabelledby ||
-    (input.header && component.getElId("dialog-title"))
+    aria-labelledby=(
+        input.ariaLabelledby ||
+        (input.header && component.getElId("dialog-title"))
+    )
     aria-modal="true"
     role=input.role || "dialog"
     class=[input.classPrefix, input.class]
@@ -83,15 +84,15 @@ $ var header = input.header;
     onMousedown("handleStartClick")
 >
     <if(state.open && isBrowser && !input.ignoreEscape)>
-        <subscribe to=document on-keydown("handleKeydown")/>
+        <subscribe to=(document as any) on-keydown("handleKeydown")/>
     </if>
     <if(!state.open && isBrowser)>
         <subscribe to=window on-click("trackLastClick")/>
     </if>
     <div
         key="window"
-        onMouseEnter("emit", "mouseEnter")
-        onMouseLeave("emit", "mouseLeave")
+        onMouseenter("emit", "mouseEnter")
+        onMouseleave("emit", "mouseLeave")
         class=[
             input.windowType
                 ? `${input.classPrefix}__${input.windowType}-window`

@@ -1,0 +1,4 @@
+export function symbol() {
+    // eslint-disable-next-line max-len,quotes
+    return '<symbol viewbox="0 0 20 12" id=icon-mastercard-12-colored><rect x=.5 y=.5 width=19 height=11 rx=1.5 fill=#fff stroke=#000 stroke-width=1></rect><path d="M15.943 8.137v.12h-.024v-.12h-.05v-.025h.128v.025h-.054Zm.25-.025v.144h-.026v-.109l-.043.094h-.029l-.042-.094v.11h-.028v-.145h.039l.045.103.045-.103h.04Z" fill=#F79E1B></path><path d="M8.121 3.042h3.758v5.831H8.121V3.042Z" fill=#FF5F00></path><path d="M8.51 5.958C8.507 4.82 9.057 3.745 10 3.043c-1.6-1.195-3.899-1.021-5.28.4a3.573 3.573 0 0 0 0 5.031c1.381 1.421 3.68 1.595 5.28.4-.942-.702-1.492-1.778-1.49-2.916Z" fill=#EB001B></path><path d="M16.316 5.958c0 1.42-.853 2.715-2.198 3.336A4.072 4.072 0 0 1 10 8.874c.942-.703 1.492-1.778 1.492-2.916S10.941 3.746 10 3.043a4.072 4.072 0 0 1 4.118-.42c1.344.62 2.197 1.915 2.197 3.335h.001Z" fill=#F79E1B></path></symbol>';
+}

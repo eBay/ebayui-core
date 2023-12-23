@@ -1,0 +1,4 @@
+export function symbol() {
+    // eslint-disable-next-line max-len,quotes
+    return '<symbol viewbox="0 0 24 24" id=icon-qr-code-24><path d="M4 1a3 3 0 0 0-3 3v2a1 1 0 0 0 2 0V4a1 1 0 0 1 1-1h2a1 1 0 0 0 0-2H4Zm16 0a3 3 0 0 1 3 3v2a1 1 0 1 1-2 0V4a1 1 0 0 0-1-1h-2a1 1 0 1 1 0-2h2ZM1 20a3 3 0 0 0 3 3h2a1 1 0 1 0 0-2H4a1 1 0 0 1-1-1v-2a1 1 0 1 0-2 0v2Zm19 3a3 3 0 0 0 3-3v-2a1 1 0 1 0-2 0v2a1 1 0 0 1-1 1h-2a1 1 0 1 0 0 2h2Z"></path><path fill-rule=evenodd d="M6.5 5A1.5 1.5 0 0 0 5 6.5v3A1.5 1.5 0 0 0 6.5 11h3A1.5 1.5 0 0 0 11 9.5v-3A1.5 1.5 0 0 0 9.5 5h-3ZM7 7v2h2V7H7Zm-2 7.5A1.5 1.5 0 0 1 6.5 13h3a1.5 1.5 0 0 1 1.5 1.5v3A1.5 1.5 0 0 1 9.5 19h-3A1.5 1.5 0 0 1 5 17.5v-3ZM7 17v-2h2v2H7Zm7.5-4a1.5 1.5 0 0 0-1.5 1.5v3a1.5 1.5 0 0 0 1.5 1.5h3a1.5 1.5 0 0 0 1.5-1.5v-3a1.5 1.5 0 0 0-1.5-1.5h-3Zm.5 2v2h2v-2h-2Zm-2-8.5A1.5 1.5 0 0 1 14.5 5h3A1.5 1.5 0 0 1 19 6.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 13 9.5v-3ZM15 9V7h2v2h-2Z" clip-rule=evenodd></path></symbol>';
+}

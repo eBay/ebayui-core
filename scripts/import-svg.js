@@ -131,7 +131,7 @@ function generateFile(type, iconMap) {
         const index = path.join(iconFolder, "index.marko");
 
         if (!fs.existsSync(iconFolder)) fs.mkdirSync(iconFolder);
-        const filePath = path.join(iconFolder, "symbol.js");
+        const filePath = path.join(iconFolder, "symbol.ts");
         const content = `export function symbol() {
     // eslint-disable-next-line max-len,quotes
     return ${JSON.stringify(themes)};
@@ -140,7 +140,7 @@ function generateFile(type, iconMap) {
         fs.writeFileSync(filePath, `${content.trim()}\n`);
 
         if (iconDef) {
-            const defPath = path.join(iconFolder, "def.js");
+            const defPath = path.join(iconFolder, "def.ts");
             const contentDef = `export function def() {
     // eslint-disable-next-line max-len,quotes
     return ${JSON.stringify(iconDef)};
@@ -162,11 +162,16 @@ function generateFile(type, iconMap) {
         // eslint-disable-next-line max-len
         fs.writeFileSync(
             index,
-            `import { symbol } from "./symbol.js";\n${
-                iconDef ? 'import { def } from "./def.js"\n' : ""
-            }<ebay-icon ...input _name="${name}" _type="${type}" _themes=symbol${
+            `import { symbol } from "./symbol";
+${iconDef ? 'import { def } from "./def"' : ""}
+import type { Input as IconInput } from "../../${
+                type === "icon" ? "" : "../ebay-icon/"
+            }component-browser"
+export type Input = Omit<IconInput, \`_\${string}\`>;
+<ebay-icon ...input _name="${name}" _type="${type}" _themes=symbol${
                 iconDef ? " _def=def" : ""
-            }/>\n`,
+            }/>
+`,
         );
     }
 }

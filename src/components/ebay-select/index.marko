@@ -1,4 +1,5 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
+import type { Option } from "./component";
 
 static var ignoredAttributes = [
     "class",
@@ -11,12 +12,21 @@ static var ignoredAttributes = [
 
 static var itemIgnoredAttributes = ["selected", "optgroup"];
 
-$ var selectedOption = input.options[state.selectedIndex];
-$ var list = [];
+static interface OptGroup {
+    optgroup: string;
+    options: Option[];
+};
+
+static function isGroup(optionOrGroup: Option | OptGroup): optionOrGroup is OptGroup {
+    return !!optionOrGroup.optgroup;
+}
+
+$ var selectedOption = [...input.options][state.selectedIndex];
+$ var list: (Option | OptGroup)[] = [];
 $ var isLarge = input.isLarge;
-$ var optgroups = {};
+$ var optgroups: Record<string, OptGroup> = {};
 $ var id = component.selectId
-$ input.options.forEach(function(option) {
+$ for (const option of input.options) {
     var optgroup = option.optgroup;
 
     if (optgroup) {
@@ -33,7 +43,7 @@ $ input.options.forEach(function(option) {
     } else {
         list.push(option);
     }
-});
+};
 <${input.floatingLabel && "span"} class=["floating-label", isLarge && "floating-label--large"]>
     <if(input.floatingLabel)>
         <label
@@ -58,7 +68,7 @@ $ input.options.forEach(function(option) {
             id=id
             onChange("handleChange")>
             <for|optionOrGroup| of=list>
-                <if(optionOrGroup.optgroup)>
+                <if(isGroup(optionOrGroup))>
                     <optgroup label=optionOrGroup.optgroup>
                         <for|option| of=optionOrGroup.options>
                             <option

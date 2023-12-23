@@ -1,0 +1,26 @@
+{
+    "include": ["src", "src/**/*.json"],
+    "exclude": [
+        "**/*.stories.ts",
+        "**/*.stories-ignore.ts",
+        "**/test/*",
+        "**/examples/*"
+    ],
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "incremental": true,
+        "lib": ["dom", "ESNext"],
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "noImplicitOverride": true,
+        "noUnusedLocals": true,
+        "outDir": "dist",
+        "resolveJsonModule": true,
+        "rootDir": "src",
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "ESNext",
+        "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
+        "verbatimModuleSyntax": true
+    }
+}

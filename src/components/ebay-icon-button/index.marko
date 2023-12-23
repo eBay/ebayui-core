@@ -2,7 +2,7 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 
 static const VALID_SIZES = ['small', 'large']
 
-static function toJSON() {
+static function toJSON(this: any) {
     return {
         disabled: this.disabled
     };
@@ -21,7 +21,7 @@ $ {
     input.toJSON = toJSON;
     var isBadged = Boolean(input.badgeNumber);
     var tag = input.href ? "a" : "button";
-    var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
+    var htmlAttributes = processHtmlAttributes(input, ignoredAttributes);
 }
 <${tag}
     ...htmlAttributes
@@ -34,7 +34,7 @@ $ {
         'icon-btn',
         isBadged && `icon-btn--badged`,
         input.transparent && 'icon-btn--transparent',
-        VALID_SIZES.includes(input.size) && `icon-btn--${input.size}`
+        input.size && VALID_SIZES.includes(input.size) && `icon-btn--${input.size}`
     ]
     data-ebayui=true
     type=(tag === "button" && (input.type || "button"))

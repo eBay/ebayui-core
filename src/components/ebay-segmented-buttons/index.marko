@@ -3,8 +3,10 @@ static {
     var ignoredAttributes = ["class", "buttons", "size"];
     var ignoredButtonAttributes = ["class", "icon"];
 }
-static var validSizes = ["large"];
-$ var size = validSizes.includes(input.size) ? input.size : null;
+
+import { validSizes } from "./component";
+
+$ var size = input.size && validSizes.includes(input.size) ? input.size : null;
 
 <div
     class=[
