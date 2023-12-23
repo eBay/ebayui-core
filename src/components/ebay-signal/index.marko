@@ -6,12 +6,11 @@ static interface SignalInput extends Omit<Marko.Input<"span">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<SignalInput> {}
 
-static var ignoredAttributes = [
-    "status",
-];
+$ const {
+    status = "neutral",
+    ...htmlAttributes
+} = input;
 
-$ var defaultStatus = "neutral";
-
-<span ...processHtmlAttributes(input, ignoredAttributes) class=`signal signal--${input.status || defaultStatus}`>
+<span ...processHtmlAttributes(htmlAttributes) class=`signal signal--${status}`>
     <${input.renderBody}/>
 </span>

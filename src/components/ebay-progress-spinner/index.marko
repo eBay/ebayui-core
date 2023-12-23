@@ -7,16 +7,20 @@ static interface ProgressSpinnerInput extends Omit<Marko.Input<"span">, `on${str
 
 export interface Input extends WithNormalizedProps<ProgressSpinnerInput> {}
 
-static var ignoredAttributes = ["class", "size"];
+$ const {
+    class: inputClass,
+    size,
+    ...htmlInput
+} = input;
 
 <span
-    ...processHtmlAttributes(input, ignoredAttributes)
-    class=["progress-spinner", input.size === "large" && "progress-spinner--large", input.class]
+    ...processHtmlAttributes(htmlInput)
+    class=["progress-spinner", size === "large" && "progress-spinner--large", inputClass]
     role="img">
-    <if(input.size === "large")>
+    <if(size === "large")>
         <ebay-spinner-30-icon/>
     </if>
-    <else-if(input.size === "small")>
+    <else-if(size === "small")>
         <ebay-spinner-20-icon/>
     </else-if>
     <else>

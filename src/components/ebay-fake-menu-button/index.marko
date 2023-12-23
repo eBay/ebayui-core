@@ -2,40 +2,39 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 import IconButton from '<ebay-icon-button>'
 import Button from '<ebay-button>'
 
-static var ignoredAttributes = [
-    "class",
-    "style",
-    "type",
-    "text",
-    "icon",
-    "a11yText",
-    "noToggleIcon",
-    "expanded",
-    "reverse",
-    "fixWidth",
-    "borderless",
-    "size",
-    "priority",
-    "iconTag",
-    "disabled",
-    "variant",
-    "items",
-    "label",
-    "textAlign",
-    "transparent"
-];
+$ const {
+    class: inputClass,
+    style,
+    type,
+    text,
+    icon,
+    a11yText,
+    noToggleIcon,
+    reverse,
+    fixWidth,
+    borderless,
+    size,
+    priority: inputPriority,
+    disabled,
+    variant: inputVariant,
+    items = [],
+    label,
+    textAlign,
+    transparent,
+    ...htmlInput
+} = input;
 
 $ {
-    var isOverflowVariant = input.variant === "overflow";
-    var isFormVariant = input.variant === "form";
+    var isOverflowVariant = inputVariant === "overflow";
+    var isFormVariant = inputVariant === "form";
     var isButtonVariant = true;
-    if (input.borderless) {
+    if (borderless) {
         isOverflowVariant = false;
     }
     var priority: string | null = null;
     var prefix = 'expand-btn'
     var variant: string | undefined;
-    var isIconVariant = input.variant === 'icon' || isOverflowVariant;
+    var isIconVariant = inputVariant === 'icon' || isOverflowVariant;
 
     var tagName: Marko.Template = Button;
     if (isFormVariant) {
@@ -45,14 +44,14 @@ $ {
         tagName = IconButton;
         isButtonVariant = false;
     } else {
-        priority = input.priority ?? null;
+        priority = inputPriority ?? null;
         prefix = 'btn';
     }
 }
 <span
-    ...processHtmlAttributes(input, ignoredAttributes)
-    class=["fake-menu-button", input.class]
-    style=input.style
+    ...processHtmlAttributes(htmlInput)
+    class=["fake-menu-button", inputClass]
+    style=style
     on-expander-expand("handleExpand")
     on-expander-collapse("handleCollapse")
     onMousedown("handleMousedown")>
@@ -60,16 +59,16 @@ $ {
         class=[
             `fake-menu-button__button`
         ]
-        size=input.size
-        borderless=input.borderless
+        size=size
+        borderless=borderless
         priority=priority
         variant=variant
-        transparent=(isIconVariant && input.transparent)
-        iconOnly=(!input.text && !input.icon && !isOverflowVariant)
+        transparent=(isIconVariant && transparent)
+        iconOnly=(!text && !icon && !isOverflowVariant)
         ariaExpanded="false"
-        ariaLabel=input.a11yText
-        disabled=input.disabled
-        noToggle-icon=input.noToggleIcon
+        ariaLabel=a11yText
+        disabled=disabled
+        noToggle-icon=noToggleIcon
         on-escape("handleButtonEscape")
         key="button">
         <if(isOverflowVariant)>
@@ -78,21 +77,21 @@ $ {
         <else>
             <span class=[
                 `${prefix}__cell`,
-                input.label && "menu-button__control--custom-label",
-                input.textAlign === "center" && "expand-btn__cell--center"
+                label && "menu-button__control--custom-label",
+                textAlign === "center" && "expand-btn__cell--center"
             ]>
-                <if(input.label)>
-                    <${input.label.renderBody}/>
+                <if(label)>
+                    <${label.renderBody}/>
                 </if>
                 <else>
-                    <if(input.icon)>
-                        <${input.icon}/>
+                    <if(icon)>
+                        <${icon}/>
                     </if>
-                    <if(input.text)>
-                        <span>${input.text}</span>
+                    <if(text)>
+                        <span>${text}</span>
                     </if>
                 </else>
-                <if(isButtonVariant && !input.noToggleIcon)>
+                <if(isButtonVariant && !noToggleIcon)>
                     <ebay-chevron-down-12-icon/>
                 </if>
             </span>
@@ -100,14 +99,14 @@ $ {
     </>
     <ebay-fake-menu
         classPrefix="fake-menu-button"
-        type=input.type
-        reverse=(isOverflowVariant ? !input.reverse : input.reverse)
-        fixWidth=input.fixWidth
+        type=type
+        reverse=(isOverflowVariant ? !reverse : reverse)
+        fixWidth=fixWidth
         tabindex=-1
         on-keydown("handleMenuKeydown")
         on-select("handleMenuSelect")
         key="content">
-        <for|item| of=(input.items || [])>
+        <for|item| of=items>
             <@item ...item/>
         </for>
     </ebay-fake-menu>

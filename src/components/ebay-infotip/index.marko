@@ -1,20 +1,19 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
-static var ignoredAttributes = [
-    "icon",
-    "disabled",
-    "pointer",
-    "styleTop",
-    "styleLeft",
-    "styleRight",
-    "styleBottom",
-    "ariaLabel",
-    "a11yCloseButtonText",
-    "host",
-    "heading",
-    "content",
-    "variant",
-    "open",
-];
+
+$ const {
+    a11yCloseButtonText,
+    ariaLabel,
+    class: inputClass,
+    content,
+    disabled,
+    heading,
+    icon,
+    open,
+    pointer = "bottom",
+    variant,
+    ...htmlInput
+} = input;
+
 $ var isModal = input.variant === "modal";
 $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
 
@@ -30,11 +29,11 @@ $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
         onBase-expand(isModal ? undefined : "handleExpand")
         onBase-collapse(isModal ? undefined : "handleCollapse")>
         <span
-            ...processHtmlAttributes(input, ignoredAttributes)
+            ...processHtmlAttributes(htmlInput)
             class:no-update=[
                 "infotip",
                 isModal === true && "dialog--mini",
-                input.class,
+                inputClass,
             ]
         >
             <button
@@ -46,11 +45,11 @@ $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
                 ]
                 type="button"
                 on-click(isModal && "handleOpenModal")
-                disabled=input.disabled
-                aria-label=input.ariaLabel
+                disabled=disabled
+                aria-label=ariaLabel
             >
-                <if(input.icon)>
-                    <${input.icon}/>
+                <if(icon)>
+                    <${icon}/>
                 </if>
                 <else>
                     <ebay-information-16-icon/>
@@ -60,9 +59,9 @@ $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
                 <ebay-tooltip-overlay
                     type="infotip"
                     id:scoped="overlay"
-                    heading=input.heading
-                    content=input.content
-                    a11y-close-text=input.a11yCloseButtonText
+                    heading=heading
+                    content=content
+                    a11y-close-text=a11yCloseButtonText
                     onOverlay-close("handleOverlayClose")
                 />
             </if>
@@ -72,14 +71,14 @@ $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
 <if(isModal === true)>
     <ebay-lightbox-dialog
         open=state.open
-        a11y-close-text=input.a11yCloseButtonText
+        a11y-close-text=a11yCloseButtonText
         on-open("handleExpand")
         on-close("handleCollapse")
-        aria-label=input.ariaLabel
+        aria-label=ariaLabel
     >
         <@header>
-            <${input.heading && input.heading.renderBody}/>
+            <${heading && heading.renderBody}/>
         </@header>
-        <${input.content}/>
+        <${content}/>
     </ebay-lightbox-dialog>
 </if>

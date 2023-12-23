@@ -1,16 +1,24 @@
-<svg.ebay-spark-line version='1.1'
-    role='graphics-document'
+$ const {
+    trend
+} = input;
+
+<svg
+    version="1.1"
+    role="graphics-document"
     viewBox=component.getViewBox()
     preserveAspectRatio="none"
-    >
-    <path class=[
-        'ebay-spark-line__path',
-        !input.trend && 'ebay-spark-line__path-neutral',
-        input.trend === 'positive' && 'ebay-spark-line__path-positive',
-        input.trend === 'negative' && 'ebay-spark-line__path-negative'
+    class="ebay-spark-line"
+>
+    <path
+        class=[
+            "ebay-spark-line__path",
+            !trend && "ebay-spark-line__path-neutral",
+            trend === "positive" && "ebay-spark-line__path-positive",
+            trend === "negative" && "ebay-spark-line__path-negative",
         ]
         d=component.getSparkLinePath()
-        role='graphics-symbol'
+        role="graphics-symbol"
         tabindex="-1"
-        vector-effect="non-scaling-stroke" />
+        vector-effect="non-scaling-stroke"
+    />
 </svg>

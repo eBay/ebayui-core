@@ -2,52 +2,66 @@ import { processHtmlAttributes } from "../../../common/html-attributes";
 import { typeRoles } from "./component-browser";
 
 static function noop() {}
-static var ignoredHeaderAttributes = ["id", "as", "class"];
 
 $ input.toJSON = noop;
-$ var heading = input.heading;
+
+$ const {
+    id,
+    type,
+    heading,
+    content,
+    footer,
+    a11yCloseText,
+} = input;
 
 <span
-    id=input.id
-    class=`${input.type}__overlay`
-    role=typeRoles[input.type]
+    id=id
+    class=`${type}__overlay`
+    role=typeRoles[type]
     aria-labelledby=(
-        input.type === "tourtip" &&
+        type === "tourtip" &&
         heading &&
         component.elId("tourtip-label")
     )
-    >
-    <span class=`${input.type}__pointer`/>
-    <span class=`${input.type}__mask`>
-        <span class=`${input.type}__cell`>
-            <span class=`${input.type}__content`>
+>
+    <span class=`${type}__pointer`/>
+    <span class=`${type}__mask`>
+        <span class=`${type}__cell`>
+            <span class=`${type}__content`>
                 <if(heading)>
-                    <${heading.as || "span"}
-                        ...processHtmlAttributes(heading, ignoredHeaderAttributes)
-                        class=[`${input.type}__heading`, input.heading?.class]
+                    $ const {
+                        as: headingAs,
+                        class: headingClass,
+                        renderBody: headingRenderBody,
+                        id,
+                        ...headingInput
+                    } = heading;
+                    <${headingAs || "span"}
+                        ...processHtmlAttributes(headingInput)
+                        class=[`${type}__heading`, headingClass]
                         id:scoped="tourtip-label">
-                        <${heading.renderBody}/>
+                        <${headingRenderBody}/>
                     </>
                 </if>
-                <if(input.content)>
-                    <${Object.keys(input.content).length > 1 && "span"}
-                        ...processHtmlAttributes(input.content)>
-                        <${input.content.renderBody}/>
+                <if(content)>
+                    <${Object.keys(content).length > 1 && "span"}
+                        ...processHtmlAttributes(content)>
+                        <${content.renderBody}/>
                     </>
                 </if>
             </span>
-            <if(input.type !== "tooltip")>
+            <if(type !== "tooltip")>
                 <button
-                    aria-label=input.a11yCloseText
-                    class=['icon-btn', 'icon-btn--transparent', `${input.type}__close`]
+                    aria-label=a11yCloseText
+                    class=['icon-btn', 'icon-btn--transparent', `${type}__close`]
                     type="button"
                     onClick("handleCloseButton")>
                     <ebay-close-16-icon/>
                 </button>
             </if>
-            <if (input.footer)>
-                <span class=[`${input.type}__footer`, input.footer.class]>
-                    <${input.footer}/>
+            <if (footer)>
+                <span class=[`${type}__footer`, footer.class]>
+                    <${footer}/>
                 </span>
             </if>
         </span>

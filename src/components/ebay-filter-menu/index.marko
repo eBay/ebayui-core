@@ -1,45 +1,51 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static var ignoredAttributes = [
-    "variant",
-    "footer",
-    "footerText",
-    "a11yFooterText",
-    "class",
-    "style",
-    "classPrefix",
-    "formName",
-    "formAction",
-    "formMethod",
-    "items",
-    "type"
-];
+$ const {
+    variant,
+    footer,
+    footerText,
+    a11yFooterText,
+    class: inputClass,
+    style,
+    classPrefix,
+    formName,
+    formAction,
+    formMethod,
+    items,
+    type,
+    ...htmlInput
+} = input;
 
-static var itemIgnoredAttributes = ["checked", "value", "disabled"];
-
-$ var isRadio = input.type === "radio";
+$ var isRadio = type === "radio";
 $ var prefixName = isRadio ? 'radio' : 'checkbox';
-$ var baseClass = input.classPrefix || "filter-menu";
-$ var isForm = input.variant === "form";
+$ var baseClass = classPrefix || "filter-menu";
+$ var isForm = variant === "form";
 <span
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...processHtmlAttributes(htmlInput)
     key="container"
-    class=[input.classPrefix ? `${baseClass}__menu` : baseClass, input.class]
-    style=input.style>
+    class=[classPrefix ? `${baseClass}__menu` : baseClass, inputClass]
+    style=style>
     <${isForm && "form"}
-        name=input.formName
-        action=input.formAction
-        method=input.formMethod
+        name=formName
+        action=formAction
+        method=formMethod
         onSubmit("handleFormSubmit")>
         <div key="menu" class=`${baseClass}__items` role=(!isForm && "menu")>
-            <for|item, i| of=(input.items || [])>
+            <for|item, i| of=(items || [])>
+                $ const {
+                    class: itemClass,
+                    disabled,
+                    renderBody,
+                    value,
+                    ...htmlItem
+                } = item;
                 $ var isChecked = component.isChecked(i);
                 <${isForm ? "label" : "div"}
-                    ...processHtmlAttributes(item, itemIgnoredAttributes)
-                    class=[`${baseClass}__item`, item.class]
+                    ...processHtmlAttributes(htmlItem)
+                    class=[`${baseClass}__item`, itemClass]
                     role=(isRadio ? "menuitemradio" : "menuitemcheckbox")
                     aria-checked=String(isChecked)
-                    aria-disabled=(item.disabled && "true")
+                    aria-disabled=(disabled && "true")
                     for=(isForm && component.elId(`${prefixName}-${i}`))
                     onClick("handleItemClick", i)
                     onKeydown("handleItemKeydown", i)>
@@ -74,28 +80,33 @@ $ var isForm = input.variant === "form";
                         </else>
                     </else>
                     <span class=`${baseClass}__text`>
-                        <${item.renderBody}/>
+                        <${renderBody}/>
                     </span>
                 </>
             </for>
         </div>
-        <if(input.footerText)>
+        <if(footerText)>
             <button
                 type=(isForm ? "submit" : "button")
-                aria-label=input.a11yFooterText
+                aria-label=a11yFooterText
                 class=`${baseClass}__footer`
                 onClick(!isForm && "handleFooterButtonClick")>
-                ${input.footerText}
+                ${footerText}
             </button>
         </if>
-        <else-if(input.footer)>
+        <else-if(footer)>
+            $ const {
+                renderBody,
+                a11yFooterText,
+                ...htmlFooter
+            } = footer;
             <button
-                ...processHtmlAttributes(input.footer, ignoredAttributes)
+                ...processHtmlAttributes(htmlFooter)
                 type=(isForm ? "submit" : "button")
-                aria-label=input.footer.a11yFooterText
+                aria-label=a11yFooterText
                 class=`${baseClass}__footer`
                 onClick(!isForm && "handleFooterButtonClick")>
-                <${input.footer.renderBody}/>
+                <${renderBody}/>
             </button>
         </else-if>
     </>

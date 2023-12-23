@@ -1,6 +1,5 @@
 import { processHtmlAttributes } from "../../../../common/html-attributes";
 import type { AttrClass } from "marko/tags-html";
-static var ignoredAttributes = ["as", "class", "size"];
 
 static interface SkeletonButtonInput extends Omit<Marko.Input<"div">, `on${string}`> {
     as?: Marko.NativeTags;
@@ -10,9 +9,16 @@ static interface SkeletonButtonInput extends Omit<Marko.Input<"div">, `on${strin
 
 export interface Input extends WithNormalizedProps<SkeletonButtonInput> {}
 
-$ let sizeClass = input.size ? `skeleton__button--${input.size}` :  "";
+$ const {
+    as: inputAs,
+    class: inputClass,
+    size,
+    ...htmlInput
+} = input;
 
-<${input.as || "div"}
-    class=["skeleton__button", sizeClass, input.class]
-    ...processHtmlAttributes(input, ignoredAttributes)
+$ let sizeClass = size ? `skeleton__button--${size}` :  "";
+
+<${inputAs || "div"}
+    class=["skeleton__button", sizeClass, inputClass]
+    ...processHtmlAttributes(htmlInput)
 />

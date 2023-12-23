@@ -1,64 +1,69 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 
-static var ignoredAttributes = [
-    "class",
-    "title",
-    "subtitle",
-    "pressed"
-];
+$ const {
+    class: inputClass,
+    icon,
+    img,
+    layoutType,
+    pressed,
+    renderBody,
+    subtitle,
+    title,
+    ...htmlInput
+} = input;
 
 <button
     type="button"
     class=[
         "toggle-button",
-        input.layoutType && `toggle-button--${input.layoutType}-layout`,
-        input.class
+        layoutType && `toggle-button--${layoutType}-layout`,
+        inputClass
     ]
     aria-pressed=state.pressed && "true"
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...processHtmlAttributes(htmlInput)
     onClick("handleClick")>
-    <if(input.icon)>
+    <if(icon)>
         <span class="toggle-button__icon">
-            <${input.icon}/>
+            <${icon}/>
         </span>
     </if>
-    <else-if(input.img)>
+    <else-if(img)>
         <span class="toggle-button__image-container">
-            <if(input.img.fillPlacement)>
+            <if(img.fillPlacement)>
                 <span
                     role="img"
-                    aria-label=input.img.alt
+                    aria-label=img.alt
                     class="toggle-button__image"
                     style={
-                        "background-image": `url(${input.img.src})`,
-                        "background-position": input.img.fillPlacement || "center",
+                        "background-image": `url(${img.src})`,
+                        "background-position": img.fillPlacement || "center",
                         "background-size": "cover",
                         "background-repeat": "no-repeat",
                     } />
             </if>
             <else>
                 <span class="toggle-button__image">
-                    <img src=input.img.src alt=input.img.alt />
+                    <img src=img.src alt=img.alt />
                 </span>
             </else>
         </span>
     </else-if>
     <span class="toggle-button__content">
         <span class="toggle-button__title">
-            <if(input.title)>
-                ${input.title}
+            <if(title)>
+                ${title}
             </if>
             <else>
-                <${input.renderBody}/>
+                <${renderBody}/>
             </else>
         </span>
-        <if(input.subtitle)>
+        <if(subtitle)>
             <span class="toggle-button__subtitle">
-                <if(typeof input.subtitle === "string")>
-                    ${input.subtitle}
+                <if(typeof subtitle === "string")>
+                    ${subtitle}
                 </if>
                 <else>
-                    <${input.subtitle}/>
+                    <${subtitle}/>
                 </else>
             </span>
         </if>

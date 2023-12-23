@@ -17,7 +17,7 @@ interface TooltipOverlayInput {
     };
     id?: string;
     type: keyof typeof typeRoles;
-    content?: Marko.Input<"span">;
+    content?: Marko.AttrTag<Marko.Input<"span">>;
     "a11y-close-text"?: string;
     footer?: Marko.AttrTag<
         Marko.Renderable & {

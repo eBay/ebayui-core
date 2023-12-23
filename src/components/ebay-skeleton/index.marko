@@ -1,5 +1,4 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
-static var ignoredAttributes = ["a11yText", "class"];
 
 static interface SkeletonInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "a11y-text"?: string;
@@ -7,11 +6,17 @@ static interface SkeletonInput extends Omit<Marko.Input<"div">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<SkeletonInput> {}
 
+$ const {
+    a11yText = "Loading...",
+    class: inputClass,
+    ...htmlInput
+} = input;
+
 <div
     role="img"
-    aria-label=input.a11yText || "Loading..."
-    class=["skeleton", input.class]
-    ...processHtmlAttributes(input, ignoredAttributes)
+    aria-label=a11yText
+    class=["skeleton", inputClass]
+    ...processHtmlAttributes(htmlInput)
 >
     <${input.renderBody}/>
 </div>

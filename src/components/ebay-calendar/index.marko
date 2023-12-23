@@ -1,26 +1,32 @@
 import { toISO } from "./date-utils"
 
-$ var numMonths = input.numMonths || 1;
+$ const {
+    numMonths = 1,
+    getA11yShowMonthText = ((month) => `Show ${month}`),
+    a11ySelectedText = "selected",
+    a11yRangeStartText = "start of range",
+    a11yInRangeText = "in range",
+    a11yRangeEndText = "end of range",
+    a11yTodayText = "today",
+    a11yDisabledText = "inactive",
+    a11ySeparator = " - ",
+    navigable,
+    selected,
+    interactive,
+    linkBuilder,
+} = input;
+
 $ var monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(state.offset + i));
 
-$ var getShowMonthText = input.getA11yShowMonthText ?? ((month) => `Show ${month}`);
-$ var a11ySelectedText = input.a11ySelectedText ?? "selected";
-$ var a11yRangeStartText = input.a11yRangeStartText ?? "start of range";
-$ var a11yInRangeText = input.a11yInRangeText ?? "in range";
-$ var a11yRangeEndText = input.a11yRangeEndText ?? "end of range";
-$ var a11yTodayText = input.a11yTodayText ?? "today";
-$ var a11yDisabledText = input.a11yDisabledText ?? "inactive";
-$ var a11ySeparator = input.a11ySeparator ?? " - ";
-
 <div.calendar>
-    <if(input.navigable)>
+    <if(navigable)>
         <div.calendar__header>
             <div.calendar__header--inner>
                 <ebay-icon-button
                     transparent
                     size="small"
                     disabled=(state.disableBefore && component.getFirstVisibleISO() <= state.disableBefore)
-                    aria-label=getShowMonthText(component.monthTitle(component.getMonthDate(state.offset - 1)))
+                    aria-label=getA11yShowMonthText(component.monthTitle(component.getMonthDate(state.offset - 1)))
                     onClick('prevMonth', false)>
                     <ebay-chevron-left-24-icon/>
                 </ebay-icon-button>
@@ -31,7 +37,7 @@ $ var a11ySeparator = input.a11ySeparator ?? " - ";
                     transparent
                     size="small"
                     disabled=(state.disableAfter && component.getLastVisibleISO() >= state.disableAfter)
-                    aria-label=getShowMonthText(component.monthTitle(component.getMonthDate(state.offset + numMonths)))
+                    aria-label=getA11yShowMonthText(component.monthTitle(component.getMonthDate(state.offset + numMonths)))
                     onClick('nextMonth', false)>
                     <ebay-chevron-right-24-icon/>
                 </ebay-icon-button>
@@ -69,9 +75,9 @@ $ var a11ySeparator = input.a11ySeparator ?? " - ";
                                 <for|day| from=startDate to=endDate>
                                     $ var dayISO = toISO(new Date(Date.UTC(year, month, day)));
                                     $ var isToday = dayISO === state.todayISO;
-                                    $ var isSelected = (Array.isArray(input.selected)
-                                            ? input.selected.some((iso) => iso === dayISO)
-                                            : input.selected && input.selected === dayISO);
+                                    $ var isSelected = (Array.isArray(selected)
+                                            ? selected.some((iso) => iso === dayISO)
+                                            : selected && selected === dayISO);
                                     $ var isRangeStart = dayISO === state.rangeStart;
                                     $ var isInRange = component.isInRange(dayISO);
                                     $ var isRangeEnd = dayISO === state.rangeEnd;
@@ -88,7 +94,7 @@ $ var a11ySeparator = input.a11ySeparator ?? " - ";
                                             "calendar__range": isInRange,
                                             "calendar__range--end": isRangeEnd,
                                         }>
-                                        <if(input.interactive)>
+                                        <if(interactive)>
                                             <button
                                                 key=dayISO
                                                 disabled=isDisabled
@@ -107,7 +113,7 @@ $ var a11ySeparator = input.a11ySeparator ?? " - ";
                                         <else>
                                             $ if (isToday) a11yTexts.push(a11yTodayText);
                                             $ if (isDisabled) a11yTexts.push(a11yDisabledText);
-                                            $ var link = !isDisabled && input.linkBuilder && input.linkBuilder(dayISO);
+                                            $ var link = !isDisabled && linkBuilder && linkBuilder(dayISO);
                                             <${link ? "a" : "span"}
                                                 class={
                                                     "calendar__cell--disabled": isDisabled,

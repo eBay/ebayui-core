@@ -14,7 +14,7 @@ interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
         as: Marko.NativeTags;
         renderBody: Marko.Renderable;
     };
-    content: Marko.Input<"span">;
+    content: Marko.AttrTag<Marko.Input<"span">>;
     "a11y-close-button-text"?: string;
     "on-expand"?: () => void;
     "on-collapse"?: () => void;

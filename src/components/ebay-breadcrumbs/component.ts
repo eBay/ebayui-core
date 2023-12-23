@@ -8,8 +8,9 @@ interface BreadcrumbsInput extends Omit<Marko.Input<"nav">, `on${string}`> {
     "a11y-heading-text"?: string;
     "a11y-menu-button-text"?: string;
     class?: AttrClass;
-    items: (Marko.Input<"a"> &
-        Marko.Input<"button"> & { [key: string]: any })[];
+    items: Marko.RepeatableAttrTag<
+        Marko.Input<"a"> | (Marko.Input<"button"> & { href: never })
+    >;
     "on-select"?: (event: { originalEvent: Event; el: HTMLElement }) => void;
 }
 
@@ -46,10 +47,11 @@ class Breadcrumbs extends Marko.Component<Input, State> {
     onInput(input: Input) {
         this.cachedWidths = [];
         const hiddenIndex: number[] = [];
-        if ((input.items || []).length > 4) {
+        const items = [...(input.items ?? [])];
+        if ((items || []).length > 4) {
             // If we have more than 4 items, we automatically add them into hiddenIndexes.
             // The first, second to last, and last indexes will be shown automatically
-            for (let i = 1; i < input.items.length - 2; i++) {
+            for (let i = 1; i < items.length - 2; i++) {
                 hiddenIndex.push(i);
             }
         }
@@ -86,7 +88,7 @@ class Breadcrumbs extends Marko.Component<Input, State> {
 
     _calculateMaxItems() {
         const { input, state } = this;
-        const items = input.items || [];
+        const items = [...(input.items ?? [])];
 
         if (!items.some((item) => !item.type)) {
             return;

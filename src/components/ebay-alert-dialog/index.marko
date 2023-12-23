@@ -12,10 +12,15 @@ export interface Input extends WithNormalizedProps<AlertDialogInput> {}
 $ var confirmId = component.getElId("alert-dialog-confirm");
 $ var mainId = component.getElId("alert-dialog-main");
 
+$ const {
+    class: inputClass,
+    confirmText,
+    ...restInput
+} = input;
+
 <ebay-dialog-base
-    ...input
+    ...restInput
     role="alertdialog"
-    open=input.open
     classPrefix="alert-dialog"
     ignoreEscape=true
     mainId=mainId
@@ -23,7 +28,7 @@ $ var mainId = component.getElId("alert-dialog-main");
     on-close("emit", "close")
     buttonPosition="hidden"
     focus=confirmId
-    class=[input.class, "alert-dialog--mask-fade"]
+    class=[inputClass, "alert-dialog--mask-fade"]
     windowClass=["alert-dialog__window alert-dialog__window--fade"]>
     <@footer>
         <ebay-button
@@ -33,7 +38,7 @@ $ var mainId = component.getElId("alert-dialog-main");
             key="confirm"
             id=confirmId
             class="alert-dialog__acknowledge">
-            ${input.confirmText}
+            ${confirmText}
         </ebay-button>
     </@footer>
 </ebay-dialog-base>
