@@ -5,7 +5,7 @@
     "scripts": {
         "installMarkoV5": "npm i marko@5 @marko/compiler@5 --force",
         "installMarkoV4": "npm remove @marko/compiler && npm i marko@4 --force",
-        "prepublishOnly": "node scripts/prepublish",
+        "prepublishOnly": "rm -rf dist && node scripts/prepublish",
         "version": "npm run build:storybook && npm run build:readme && git add -A src docs",
         "postpublish": "node scripts/postpublish",
         "start": "storybook dev -p 6006",

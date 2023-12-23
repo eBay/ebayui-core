@@ -8,8 +8,8 @@ const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, "..");
 const componentInputDir = path.join(rootDir, "src/components");
 
-// run babel
-execSync("babel --env-name prod src --out-dir dist --copy-files");
+// run typescript compiler
+execSync("mtc");
 
 // create top level browser.json files to map to nested ones
 fs.readdirSync(componentInputDir)
@@ -22,8 +22,8 @@ fs.readdirSync(componentInputDir)
                     dependencies: [`./dist/components/${component}`],
                 },
                 null,
-                4
-            )
+                4,
+            ),
         );
     });
 
@@ -31,5 +31,5 @@ fs.readdirSync(componentInputDir)
 const markoConfigPath = path.join(rootDir, "marko.json");
 fs.writeFileSync(
     markoConfigPath,
-    fs.readFileSync(markoConfigPath, "utf-8").replace(/\.\/src\//g, "./dist/")
+    fs.readFileSync(markoConfigPath, "utf-8").replace(/\.\/src\//g, "./dist/"),
 );
