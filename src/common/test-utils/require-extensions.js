@@ -17,7 +17,7 @@ Module._load = (request, parent, isMain) => {
 require.extensions[".md"] = (module, filename) =>
     module._compile(
         `module.exports = ${JSON.stringify(
-            fs.readFileSync(filename, "utf-8")
+            fs.readFileSync(filename, "utf-8"),
         )}`,
-        filename
+        filename,
     );
