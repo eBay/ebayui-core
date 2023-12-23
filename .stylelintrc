@@ -1,35 +1,68 @@
 {
-    "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
-    "customSyntax": "postcss-less",
-    "rules":
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-prettier/recommended"
+    ],
+    "rules": {
+        "comment-empty-line-before": null,
+        "no-descending-specificity": null,
+        "no-duplicate-selectors": null,
+        "rule-empty-line-before": null,
+        "color-function-notation": "legacy",
+        "property-no-vendor-prefix": null,
+        "selector-no-vendor-prefix": null,
+        "selector-class-pattern": null,
+        "alpha-value-notation": "number",
+        "value-no-vendor-prefix": null,
+        "import-notation": "string",
+        "declaration-block-no-redundant-longhand-properties": null,
+        "at-rule-empty-line-before": null,
+        "media-feature-range-notation": "prefix",
+        "value-keyword-case": [
+            "lower",
+            {
+                "camelCaseSvgKeywords": true
+            }
+        ],
+        "function-no-unknown": [
+            true,
+            {
+                "ignoreFunctions": [
+                    "fade"
+                ]
+            }
+        ]
+    },
+    "overrides": [
         {
-            "block-closing-brace-empty-line-before": "never",
-            "block-closing-brace-newline-before": "always",
-            "block-opening-brace-newline-after": "always",
-            "block-opening-brace-space-before": "always",
-            "declaration-colon-space-after": "always",
-            "declaration-block-no-duplicate-properties":
-                [
+            "files": [
+                "**/*.less"
+            ],
+            "customSyntax": "postcss-less",
+            "rules": {
+                "at-rule-no-unknown": [
                     true,
-                    "ignore": ["consecutive-duplicates-with-different-values"],
+                    {
+                        "ignoreAtRules": [
+                            "icon-mixin"
+                        ]
+                    }
                 ],
-            "declaration-block-single-line-max-declarations": 1,
-            "function-calc-no-unspaced-operator": true,
-            "selector-max-empty-lines": 0,
-            "selector-type-case": "lower",
-            "unit-case": "lower",
-            "unit-no-unknown": true,
-            "indentation": 4,
-            "max-empty-lines": 1,
-            "no-empty-source": true,
-            "no-eol-whitespace": true,
-            "no-extra-semicolons": true,
-            "number-max-precision": null,
-            "shorthand-property-no-redundant-values": null,
-            "property-no-vendor-prefix": null,
-            "selector-no-vendor-prefix": null,
-            "selector-class-pattern": null,
-            "alpha-value-notation": null,
-            "value-no-vendor-prefix": null,
-        },
+                "declaration-empty-line-before": null,
+                "function-no-unknown": [
+                    true,
+                    {
+                        "ignoreFunctions": [
+                            "fade",
+                            "shade",
+                            "tint"
+                        ]
+                    }
+                ],
+                "media-query-no-invalid": null,
+                "no-descending-specificity": true,
+                "no-duplicate-selectors": true
+            }
+        }
+    ]
 }
