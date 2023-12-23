@@ -1,2 +1,0 @@
-import{g as m}from"./_commonjsHelpers-725317a4.js";var y=function(r,e){var i=!r.n,s=!("i"in r)||r.i,n=e.b_,l=n&&n.o_._W_,_=e._X_.r_,v=_,a=e._Y_,d=a;if(a[0]!=="@"){var f=n.n_.r_;_!==f&&(v=f,d+=":"+_.id)}var o=s&&(l||v.J_[d]);i?(e.bf(a,_,s),!o&&r.renderBody&&r.renderBody(e),e.ef()):o?r.b?e._Z_.a__=!0:(e.beginElement("",null,a,_),e._Z_.aa_=!0,e.endElement()):r.renderBody&&r.renderBody(e)},c=y;const g=m(c);export{g as _};
-//# sourceMappingURL=preserve-tag-8dda6302.js.map
