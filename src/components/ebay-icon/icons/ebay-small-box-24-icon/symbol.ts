@@ -1,4 +1,4 @@
 export function symbol() {
     // eslint-disable-next-line max-len,quotes
-    return '<symbol viewbox="0 0 24 24" id=icon-small-box-24><path d="m20.796 10.395-2.991-3.988A.994.994 0 0 0 16.984 6H7a.998.998 0 0 0-.809.41l-2.983 3.98a.996.996 0 0 0-.208.62V17a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-5.99a1 1 0 0 0-.204-.615ZM19 16h-6v-4h6v4Zm-8 0H5v-4h6v4Zm2-6V8h3.5l1.5 2h-5Zm-2-2v2H6l1.5-2H11Z"></path></symbol>';
-}
+    return "<symbol viewbox=\"0 0 24 24\" id=icon-small-box-24><path fill-rule=evenodd clip-rule=evenodd d=\"M5.9 6.8A2 2 0 0 1 7.5 6h9a2 2 0 0 1 1.6.8l2.3 3.067a3 3 0 0 1 .6 1.8V15a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-3.333a3 3 0 0 1 .6-1.8L5.9 6.8ZM16.5 8H13v2h5l-1.5-2Zm2.5 4h-6v4h5a1 1 0 0 0 1-1v-3Zm-8-2V8H7.5L6 10h5Zm-6 2h6v4H6a1 1 0 0 1-1-1v-3Z\"></path></symbol>";
+};
