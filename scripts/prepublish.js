@@ -10,6 +10,7 @@ const componentInputDir = path.join(rootDir, "src/components");
 
 // run typescript compiler
 execSync("mtc");
+execSync("babel --env-name prod dist --out-dir dist --copy-files");
 
 // create top level browser.json files to map to nested ones
 fs.readdirSync(componentInputDir)

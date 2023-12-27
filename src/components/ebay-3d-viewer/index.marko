@@ -35,7 +35,7 @@ $ const {
     </div>
     <div class=['three-d-player__overlay', state.isLoaded && 'three-d-player__overlay--hidden']>
         <if(!state.showLoading)>
-            <ebay-play-64-colored-icon a11y-text=a11yStartText || 'Click to start'/>
+            <ebay-play-filled-64-colored-icon a11y-text=a11yStartText || 'Click to start'/>
         </if>
         <else><ebay-progress-spinner a11yText=a11yLoadText || 'Loading'/></else>
     </div>

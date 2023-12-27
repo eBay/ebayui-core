@@ -19,8 +19,7 @@
         "rootDir": "src",
         "skipLibCheck": true,
         "strict": true,
-        "target": "ESNext",
-        "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
-        "verbatimModuleSyntax": true
+        "target": "ES6",
+        "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
     }
 }
