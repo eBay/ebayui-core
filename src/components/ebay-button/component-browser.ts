@@ -1,6 +1,5 @@
 import * as eventUtils from "../../common/event-utils";
-
-export const validSizes = ["large", "small"] as const;
+import { validSizes } from "./constants";
 
 export interface ButtonEvent<T extends Event> {
     originalEvent: T;

@@ -142,7 +142,7 @@
     },
     "dependencies": {
         "@marko-tags/subscribe": "^0.5.1",
-        "@floating-ui/core": "^1.5.2",
+        "@floating-ui/dom": "^1.5.2",
         "makeup-active-descendant": "0.6.1",
         "makeup-expander": "~0.10.1",
         "makeup-floating-label": "~0.3.2",

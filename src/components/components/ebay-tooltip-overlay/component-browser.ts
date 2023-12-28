@@ -1,9 +1,5 @@
 import type { AttrClass } from "marko/tags-html";
-export const typeRoles = {
-    tourtip: "region",
-    tooltip: "tooltip",
-    infotip: "tooltip",
-} as const;
+import {typeRoles} from './constants'
 
 interface TooltipOverlayInput {
     toJSON?: any;

@@ -5,12 +5,12 @@ import * as https from "https"; // or 'https' for https:// URLs
 import { fileURLToPath } from "url";
 import * as fs from "fs";
 import * as path from "path";
-import rimraf from "rimraf";
+import * as rimraf from "rimraf";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, "..");
-const versionPath = "src/common/cdn/versions.json";
+const versionPath = "src/common/cdn/versions.ts";
 
 const cdnConfig = {
     shaka: {
@@ -37,9 +37,11 @@ function updateVersionFile(version) {
         {
             "//": "This is a generated file. Run generateCDN script file to update",
         },
-        version
+        version,
     );
-    const newVersion = JSON.stringify(versionObject);
+    const newVersion = `export const versions = ${JSON.stringify(
+        versionObject,
+    )};`;
     fs.writeFileSync(versionFile, newVersion);
 }
 
@@ -70,29 +72,29 @@ async function shakaGenerator({ version, cdnVersionPath }) {
     await download(getShakaCSSUrl(version), cdnVersionPath, "controls.css");
     // Remove define
     execSync(
-        `sed -i '' -e 's/typeof define=="function"/typeof define=="w"/' ${cdnVersionPath}/shaka-player.ui.js`
+        `sed -i '' -e 's/typeof define=="function"/typeof define=="w"/' ${cdnVersionPath}/shaka-player.ui.js`,
     );
 }
 
 async function threeDPlayerGenerator({ cdnVersionPath }) {
     await fs.promises.cp(
         `${rootDir}/node_modules/@google/model-viewer/dist/model-viewer.min.js`,
-        `${cdnVersionPath}/model-viewer.min.js`
+        `${cdnVersionPath}/model-viewer.min.js`,
     );
 }
 
 async function highchartsGenerator({ cdnVersionPath }) {
     await fs.promises.cp(
         `${rootDir}/node_modules/highcharts/highcharts.js`,
-        `${cdnVersionPath}/highcharts.js`
+        `${cdnVersionPath}/highcharts.js`,
     );
     await fs.promises.cp(
         `${rootDir}/node_modules/highcharts/modules/accessibility.js`,
-        `${cdnVersionPath}/accessibility.js`
+        `${cdnVersionPath}/accessibility.js`,
     );
     await fs.promises.cp(
         `${rootDir}/node_modules/highcharts/modules/pattern-fill.js`,
-        `${cdnVersionPath}/pattern-fill.js`
+        `${cdnVersionPath}/pattern-fill.js`,
     );
 }
 
