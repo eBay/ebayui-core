@@ -52,30 +52,15 @@ $ var config = data.config;
                 id:scoped='list'
             >
                 <for|item| of=data.items>
-                    <if(config.preserveItems)>
-                        <li
-                            ...item.htmlAttributes
-                            key=item.key
-                            class=item.class
-                            style=item.style
-                            aria-hidden=!item.fullyVisible && 'true'
-                            no-update-body
-                        >
-                            <${item.renderBody}/>
-                        </li>
-                    </if>
-                    <else>
-                        <!-- completely identical to above, without no-update-body -->
-                        <li
-                            ...item.htmlAttributes
-                            key=item.key
-                            class=item.class
-                            style=item.style
-                            aria-hidden=!item.fullyVisible && 'true'
-                        >
-                            <${item.renderBody}/>
-                        </li>
-                    </else>
+                    <li
+                        ...item.htmlAttributes
+                        key=item.key
+                        class=item.class
+                        style=item.style
+                        aria-hidden=!item.fullyVisible && 'true'
+                    >
+                        <${item.renderBody}/>
+                    </li>
                 </for>
             </ul>
         </div>

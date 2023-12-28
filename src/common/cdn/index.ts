@@ -1,5 +1,5 @@
 import { loader } from "../loader";
-import versions from "./versions.json";
+import { versions } from "./versions";
 const MAX_RETRIES = 3;
 
 interface CDNLoaderConfig {
