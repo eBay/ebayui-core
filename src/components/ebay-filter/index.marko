@@ -1,30 +1,35 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static var ignoredAttributes = [
-    "selected",
-    "a11ySelectedText",
-    "useAriaPressed"
-];
+$ const {
+    a11ySelectedText,
+    class: inputClass,
+    href,
+    renderBody,
+    selected,
+    useAriaPressed,
+    ...htmlInput
+} = input;
 
-$ var baseClass = input.href ? "filter-link" : "filter-button";
+$ var baseClass = href ? "filter-link" : "filter-button";
 
-<${input.href ? "a" : "button"}
-    ...processHtmlAttributes(input, ignoredAttributes)
+<${href ? "a" : "button"}
+    ...processHtmlAttributes(htmlInput)
     class=[
         baseClass,
         `${baseClass}--${state.selected ? "selected" : "unselected"}`,
-        input.class
+        inputClass
     ]
-    type=(!input.href && "button")
-    aria-pressed=(input.useAriaPressed !== false && !input.href && state.selected && "true")
+    type=(!href && "button")
+    href=href
+    aria-pressed=(useAriaPressed !== false && !href && state.selected && "true")
     onClick("handleButtonClick")>
     <span class=`${baseClass}__cell`>
         <span>
-            <${input.renderBody}/>
+            <${renderBody}/>
         </span>
-        <if(input.href && state.selected)>
+        <if(href && state.selected)>
             <span class="clipped" key="active-text" id:scoped="active-text">
-                - ${input.a11ySelectedText || "Selected"}
+                - ${a11ySelectedText || "Selected"}
             </span>
         </if>
     </span>

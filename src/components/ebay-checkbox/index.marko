@@ -1,22 +1,27 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
 static function noop() {}
-static var ignoredAttributes = ["class", "style", "size", "toJSON", "iconStyle"];
+
+$ const {
+    class: inputClass,
+    style,
+    size,
+    iconStyle,
+    ...htmlInput
+} = input;
 
 $ input.toJSON = noop;
 
-$ var isSquare = input.iconStyle === 'square';
-
-<span class=["checkbox", input.class] style=input.style>
+<span class=["checkbox", inputClass] style=style>
     <input
-        ...processHtmlAttributes(input, ignoredAttributes)
+        ...processHtmlAttributes(htmlInput)
         class="checkbox__control"
         type="checkbox"
-        onClick("handleChange")
-        onFocus("handleFocus")
-        onKeydown("handleKeydown")/>
+        onClick("forwardEvent", "change")
+        onFocus("forwardEvent", "focus")
+        onKeydown("forwardEvent", "keydown")/>
     <span class="checkbox__icon" hidden>
-        <if (input.size === 'large')>
+        <if (size === 'large')>
             <ebay-checkbox-unchecked-24-icon
                 class="checkbox__unchecked"
                 focusable="false"

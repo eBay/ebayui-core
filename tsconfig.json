@@ -1,0 +1,25 @@
+{
+    "include": ["src", "src/**/*.json"],
+    "exclude": [
+        "**/*.stories.ts",
+        "**/*.stories-ignore.ts",
+        "**/test/*",
+        "**/examples/*"
+    ],
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "incremental": true,
+        "lib": ["dom"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noImplicitOverride": true,
+        "noUnusedLocals": true,
+        "outDir": "dist",
+        "resolveJsonModule": true,
+        "rootDir": "src",
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "ES2015",
+        "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
+    }
+}

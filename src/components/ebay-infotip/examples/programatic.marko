@@ -1,6 +1,6 @@
 class {
     toggle() {
-        const infotip = this.getComponent('infotip')
+        const infotip = this.getComponent<any>('infotip')
         if (infotip.isExpanded()) {
             infotip.collapse();
         } else {
@@ -13,8 +13,8 @@ class {
 
 <ebay-infotip
     key="infotip"
-    a11y-close-text="Dismiss infotip"
-    aria-label="Important information">
+    a11yCloseButtonText="Dismiss infotip"
+    ariaLabel="Important information">
     <@heading>Important</@heading>
     <@content>
         <p>This is some important info</p>

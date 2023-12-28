@@ -1,7 +1,15 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
-$ const { renderBody, a11yDeleteButton, ...htmlAttributes } = input;
 
-<span class="chip" ...processHtmlAttributes(htmlAttributes)>
+static interface ChipInput extends Omit<Marko.Input<"span">, `on${string}`> {
+    renderBody?: Marko.Body;
+    "a11y-delete-button"?: string;
+}
+
+export interface Input extends WithNormalizedProps<ChipInput> {}
+
+$ const { renderBody, a11yDeleteButton, ...htmlInput } = input;
+
+<span class="chip" ...processHtmlAttributes(htmlInput)>
     <span class="chip__text" id:scoped="title">
         <${renderBody}/>
     </span>

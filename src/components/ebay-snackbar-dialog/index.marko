@@ -1,35 +1,35 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
-
-static var ignoredAttributes = [
-    "open",
-    "layout",
-    "action"
-];
+$ const {
+    action,
+    class: inputClass,
+    layout,
+    open,
+    renderBody,
+    ...dialogBaseInput
+} = input;
 
 <ebay-dialog-base
-    on-close("handleClose")
-    on-open("emit", "open")
+    onClose("handleClose")
+    onOpen("emit", "open")
     onMouseEnter("handleMouseEnter")
     onMouseLeave("handleMouseLeave")
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...dialogBaseInput
     open=state.open
     isModal=false
     classPrefix="snackbar-dialog"
-    class=[input.class, "snackbar-dialog--transition"]
-    windowClass=[input.layout === "column" && "snackbar-dialog__window--column"]
+    class=[inputClass, "snackbar-dialog--transition"]
+    windowClass=[layout === "column" && "snackbar-dialog__window--column"]
     buttonPosition="hidden"
     transitionEl="root">
-    <if(input.action)>
+    <if(action)>
         <@action>
             <ebay-fake-link
                 on-click("handleAction")
                 on-focus("handleFocus")
                 on-blur("handleBlur")>
-                <${input.action.renderBody}/>
-                <span class="clipped">- Access Key: ${input.action.accessKey}</span>
+                <${action.renderBody}/>
+                <span class="clipped">- Access Key: ${action.accessKey}</span>
             </ebay-fake-link>
         </@action>
     </if>
-
-    <${input.renderBody}/>
+    <${renderBody}/>
 </ebay-dialog-base>

@@ -1,38 +1,41 @@
-$ var handleLabel = (!state.expanded ?
-    (input.a11yMaximizeText || "Maximize Drawer") :
-    (input.a11yMinimizeText || "Minimize Drawer"));
+$ const {
+    class: inputClass,
+    noHandle,
+    renderBody,
+    a11yMaximizeText = "Maximize Drawer",
+    a11yMinimizeText = "Minimize Drawer",
+    ...dialogInput
+} = input;
+$ const handleLabel = !state.expanded ? a11yMaximizeText : a11yMinimizeText;
 
 <ebay-dialog-base
-    ...input
-    open=input.open
+    ...dialogInput
     classPrefix="drawer-dialog"
     key="dialog"
-    on-scroll('handleScroll')
-    on-open("emit", "open")
-    on-close("emit", "close")
-    class=[
-        input.class,
-        "drawer-dialog--mask-fade-slow"
+    onScroll("handleScroll")
+    onOpen("emit", "open")
+    onClose("emit", "close")
+    class=[inputClass, "drawer-dialog--mask-fade-slow"]
+    windowClass=[
+        `drawer-dialog__window`,
+        "drawer-dialog__window--slide",
+        state.expanded && "drawer-dialog__window--expanded",
     ]
-    window-class=[
-            `drawer-dialog__window`,
-            "drawer-dialog__window--slide",
-            state.expanded && "drawer-dialog__window--expanded"
-        ]>
-        <if (!input.noHandle)>
-            <@top>
-                <button
-                    aria-label=handleLabel
-                    type="button"
-                    class=`drawer-dialog__handle`
-                    onClick("handleExpand")
-                    onTouchStart("handleTouchStart")
-                    onTouchMove("handleTouchMove")
-                    onTouchEnd("handleTouchEnd")
-                    onTouchCancel("handleTouchEnd")
-                ></button>
-            </@top>
-        </if>
+>
+    <if(!noHandle)>
+        <@top>
+            <button
+                aria-label=handleLabel
+                type="button"
+                class=`drawer-dialog__handle`
+                onClick("handleExpand")
+                onTouchstart("handleTouchStart")
+                onTouchmove("handleTouchMove")
+                onTouchend("handleTouchEnd")
+                onTouchcancel("handleTouchEnd")
+            />
+        </@top>
+    </if>
 
-    <${input.renderBody}/>
+    <${renderBody}/>
 </ebay-dialog-base>

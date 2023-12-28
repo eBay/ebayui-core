@@ -1,19 +1,31 @@
+import type { Input as BaseInput } from "<ebay-dialog-base>";
+static interface ConfirmDialogInput extends Omit<BaseInput, `on${string}`> {
+    "reject-text"?: string;
+    "confirm-text"?: string;
+    "on-open"?: () => void;
+    "on-reject"?: () => void;
+    "on-confirm"?: () => void;
+    "confirm-cta-variant"?: typeof validConfirmCTAVariants[number];
+}
+
+export interface Input extends WithNormalizedProps<ConfirmDialogInput> {}
+
 $ var cancelId = component.getElId("confirm-dialog-cancel");
 $ var confirmId = component.getElId("confirm-dialog-confirm");
 $ var mainId = component.getElId("confirm-dialog-main");
 static  var validConfirmCTAVariants = [
     "destructive"
 ];
+
+$ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, ...dialogInput } = input;
 <ebay-dialog-base
-    ...input
-    open=input.open
-    confirm-cta-variant=input['confirm-cta-variant']
+    ...dialogInput
     on-open("emit", "open")
     on-close("emit", "reject")
     main-id=mainId
     focus=confirmId
     class-prefix="confirm-dialog"
-    class=[input.class, "confirm-dialog--mask-fade"]
+    class=[inputClass, "confirm-dialog--mask-fade"]
     window-class=["confirm-dialog__window--fade"]
     button-position="hidden">
     <@footer>
@@ -21,7 +33,7 @@ static  var validConfirmCTAVariants = [
             on-click("emit", "reject")
             id=cancelId
             class="confirm-dialog__reject">
-            ${input.rejectText}
+            ${rejectText}
         </ebay-button>
         <ebay-button
             priority="primary"
@@ -30,9 +42,9 @@ static  var validConfirmCTAVariants = [
             aria-describedby=mainId
             class=[
                 "confirm-dialog__confirm",
-                validConfirmCTAVariants.includes(input.confirmCtaVariant) && `btn--${input.confirmCtaVariant}`
+                confirmCtaVariant && validConfirmCTAVariants.includes(confirmCtaVariant) && `btn--${confirmCtaVariant}`
             ]>
-            ${input.confirmText}
+            ${confirmText}
         </ebay-button>
     </@footer>
 </ebay-dialog-base>

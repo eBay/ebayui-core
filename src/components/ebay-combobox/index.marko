@@ -1,108 +1,121 @@
-import { processHtmlAttributes } from '../../common/html-attributes';
-static {
-    var ignoredAttributes = [
-        'class',
-        'style',
-        'borderless',
-        'autocomplete',
-        'options',
-        'roledescription',
-        'floatingLabel',
-        'listSelection',
-        'expanded',
-        'fluid',
-    ];
-}
-static var ignoredButtonAttributes = ['class'];
-static var itemIgnoredAttributes = ['text'];
-$ {
-    var roledescription =
-        input.roledescription ||
-        `Use up and down arrow keys to navigate options.${
-            component.autocomplete === 'none' ? '' : ' Options change based on text input'
-        }`;
-}
-$ var hasButton = !!input.button;
-$ var defaultTag = input.fluid ? 'div' : 'span';
-$ var id = input.id || component.getElId('input');
+import { processHtmlAttributes } from "../../common/html-attributes";
+
+$ const {
+    class: inputClass,
+    id: inputId,
+    button,
+    disabled,
+    style,
+    borderless,
+    autocomplete,
+    options,
+    roledescription = `Use up and down arrow keys to navigate options.${
+        component.autocomplete === "none"
+            ? ""
+            : " Options change based on text input"
+    }`,
+    floatingLabel,
+    listSelection,
+    expanded,
+    fluid,
+    ...htmlInput
+} = input;
+
+$ const {
+    class: buttonClass,
+    renderBody: buttonRenderBody,
+    ...htmlButton
+} = button ?? {}
+
+$ var hasButton = !!button;
+$ var defaultTag = fluid ? "div" : "span";
+$ var id = inputId || component.getElId("input");
 <${defaultTag}
     class=[
-        'combobox',
-        input.floatingLabel && 'floating-label',
-        input.fluid && 'combobox--fluid',
-        input.class,
+        "combobox",
+        floatingLabel && "floating-label",
+        fluid && "combobox--fluid",
+        inputClass,
     ]
-    style=input.style
-    on-activeDescendantChange('handleActiveDescendantChange')
-    onExpander-expand('handleExpand')
-    onExpander-collapse('handleCollapse')
+    style=style
+    on-activeDescendantChange("handleActiveDescendantChange")
+    onExpander-expand("handleExpand")
+    onExpander-collapse("handleCollapse")
 >
-    <if(input.floatingLabel)>
+    <if(floatingLabel)>
         <label
             for=id
-            class=['floating-label__label', input.disabled && 'floating-label__label--disabled']
+            class=[
+                "floating-label__label",
+                disabled && "floating-label__label--disabled",
+            ]
         >
-            ${input.floatingLabel}
+            ${floatingLabel}
         </label>
     </if>
     <span class=[
-        'combobox__control',
-        hasButton && 'combobox__control--actionable',
-        input.borderless && 'combobox__control--borderless',
+        "combobox__control",
+        hasButton && "combobox__control--actionable",
+        borderless && "combobox__control--borderless",
     ]>
         <!--
         NOTE: Uses autocomplete="new-password" because of a problem with Chrome where the autfill does not
         respect the "off" key. Tested and works in all other browsers properly as well.
         -->
         <input
-            ...processHtmlAttributes(
-                Object.assign(input, {
-                    id: id,
-                }),
-                ignoredAttributes
-            )
-            key='combobox'
-            type='text'
-            role='combobox'
+            ...processHtmlAttributes(htmlInput)
+            id=id
+            key="combobox"
+            type="text"
+            role="combobox"
             value=state.currentValue
             aria-autocomplete=component.autocomplete
             aria-roledescription=roledescription
-            aria-haspopup='listbox'
-            autocomplete='off'
-            aria-expanded='false'
-            onBlur('handleComboboxBlur')
-            onClick('handleComboboxClick')
-            onFocus('handleFocus')
-            onKeydown('handleComboboxKeyDown')
-            onKeyup('handleComboboxKeyUp')
+            aria-haspopup="listbox"
+            autocomplete="off"
+            aria-expanded="false"
+            onBlur("handleComboboxBlur")
+            onClick("handleComboboxClick")
+            onFocus("handleFocus")
+            onKeydown("handleComboboxKeyDown")
+            onKeyup("handleComboboxKeyUp")
         >
-        <${hasButton ? 'button' : null}
-            ...processHtmlAttributes(input.button, ignoredButtonAttributes)
-            onClick('handleButtonClick')
-            key='actionable'
-            class=['icon-btn', 'icon-btn--transparent', hasButton && input.button.class]
+        <${hasButton ? "button" : null}
+            ...processHtmlAttributes(htmlButton)
+            onClick("handleButtonClick")
+            key="actionable"
+            class=[
+                "icon-btn",
+                "icon-btn--transparent",
+                buttonClass,
+            ]
         >
-            <if(hasButton && input.button.renderBody)>
-                <${input.button.renderBody}/>
+            <if(buttonRenderBody)>
+                <${buttonRenderBody}/>
             </if>
-            <else><ebay-chevron-down-12-icon/></else>
+            <else>
+                <ebay-chevron-down-12-icon/>
+            </else>
         </>
     </span>
     <if(component._hasVisibleOptions())>
-        <div.combobox__listbox key='listbox' role='listbox'>
+        <div key="listbox" role="listbox" class="combobox__listbox">
             <for|option| of=component._getVisibleOptions()>
-                $ var isSelected = (option.value || option.text) === state.currentValue;
+                $ const { text, value, class: optionClass, ...htmlOption } = option;
+                $ var isSelected = (
+                    (value || text) === state.currentValue
+                );
                 <div
-                    ...processHtmlAttributes(option, itemIgnoredAttributes)
-                    key='options[]'
-                    role='option'
-                    class:no-update=['combobox__option', option.class]
-                    tabindex:no-update='-1'
-                    aria-selected=isSelected && 'true'
-                    onClick('handleSelectOption', option.text)
-                    onMousedown('handleSelectOption', option.text)
+                    ...processHtmlAttributes(htmlOption)
+                    key="options[]"
+                    role="option"
+                    class:no-update=["combobox__option", optionClass]
+                    tabindex:no-update="-1"
+                    aria-selected=isSelected && "true"
+                    onClick("handleSelectOption", text)
+                    onMousedown("handleSelectOption", text)
                 >
-                    <span>${option.text}</span>
+                    <span>${text}</span>
                 </div>
             </for>
         </div>

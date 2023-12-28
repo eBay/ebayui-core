@@ -1,22 +1,33 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
+import type { Option } from "./component";
 
-static var ignoredAttributes = [
-    "class",
-    "style",
-    "borderless",
-    "options",
-    "floatingLabel",
-    "isLarge"
-];
+$ const {
+    class: inputClass,
+    style,
+    disabled,
+    borderless,
+    options,
+    floatingLabel,
+    isLarge,
+    ...htmlInput
+} = input;
 
 static var itemIgnoredAttributes = ["selected", "optgroup"];
 
-$ var selectedOption = input.options[state.selectedIndex];
-$ var list = [];
-$ var isLarge = input.isLarge;
-$ var optgroups = {};
+static interface OptGroup {
+    optgroup: string;
+    options: Option[];
+};
+
+static function isGroup(optionOrGroup: Option | OptGroup): optionOrGroup is OptGroup {
+    return !!optionOrGroup.optgroup;
+}
+
+$ var selectedOption = [...options][state.selectedIndex];
+$ var list: (Option | OptGroup)[] = [];
+$ var optgroups: Record<string, OptGroup> = {};
 $ var id = component.selectId
-$ input.options.forEach(function(option) {
+$ for (const option of options) {
     var optgroup = option.optgroup;
 
     if (optgroup) {
@@ -33,32 +44,32 @@ $ input.options.forEach(function(option) {
     } else {
         list.push(option);
     }
-});
-<${input.floatingLabel && "span"} class=["floating-label", isLarge && "floating-label--large"]>
-    <if(input.floatingLabel)>
+};
+<${floatingLabel && "span"} class=["floating-label", isLarge && "floating-label--large"]>
+    <if(floatingLabel)>
         <label
             for=id
             class=[
                 "floating-label__label",
-                input.disabled && "floating-label__label--disabled"
+                disabled && "floating-label__label--disabled"
             ]>
-            ${input.floatingLabel}
+            ${floatingLabel}
         </label>
     </if>
     <span
         class=[
             "select",
             isLarge && "select--large",
-            input.borderless && "select--borderless",
-            input.class
+            borderless && "select--borderless",
+            inputClass
         ]
-        style=input.style>
+        style=style>
         <select
-            ...processHtmlAttributes(input, ignoredAttributes)
+            ...processHtmlAttributes(htmlInput)
             id=id
             onChange("handleChange")>
             <for|optionOrGroup| of=list>
-                <if(optionOrGroup.optgroup)>
+                <if(isGroup(optionOrGroup))>
                     <optgroup label=optionOrGroup.optgroup>
                         <for|option| of=optionOrGroup.options>
                             <option

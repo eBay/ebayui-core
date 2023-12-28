@@ -1,49 +1,56 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
+import type { Option } from "./component";
 
-static var ignoredAttributes = [
-    "name",
-    "grow",
-    "borderless",
-    "disabled",
-    "fluid",
-    "invalid",
-    "buttonName",
-    "options"
-];
+$ const {
+    name,
+    class: inputClass,
+    disabled,
+    options,
+    tabindex = 0,
+    ...htmlInput
+} = input;
 
-static var itemIgnoredAttributes = ["value", "text", "selected", "disabled", "description"];
+$ var selectedOption = (options as Option[])[state.selectedIndex];
 
-$ var selectedOption = input.options[state.selectedIndex];
-$ var selectedText = selectedOption && selectedOption.text;
 <div
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...processHtmlAttributes(htmlInput)
     key="options"
     role="listbox"
-    class=["listbox__options", input.class]
-    tabindex:no-update=(input.tabindex || 0)
-    on-activeDescendantChange(component.isAutoSelection && "handleListboxChange")
+    class=["listbox__options", inputClass]
+    tabindex:no-update=tabindex
+    on-activeDescendantChange(component.isAutoSelection ? "handleListboxChange" : undefined)
     onKeydown(!component.isAutoSelection && "handleKeyDown")>
-    <for|option,index| of=(input.options || [])>
+    <for|option,index| of=(options || [])>
+        $ const {
+            value,
+            class: optionClass,
+            text,
+            selected,
+            disabled,
+            tabindex,
+            description,
+            ...htmlOption
+        } = option;
         <div
-            ...processHtmlAttributes(option, itemIgnoredAttributes)
+            ...processHtmlAttributes(htmlOption)
             key="option[]"
-            class:no-update=["listbox__option", option.class]
+            class:no-update=["listbox__option", optionClass]
             role="option"
-            tabindex=(option.disabled ? -1 : option.tabindex)
-            aria-disabled=(option.disabled && "true")
+            tabindex=(disabled ? -1 : tabindex)
+            aria-disabled=(disabled && "true")
             aria-selected=(selectedOption === option && "true")
             onClick(!component.isAutoSelection && "handleClick", index)
             onMousedown(component.isAutoSelection && "handleMouseDown")>
-            <span class="listbox__value">${option.text}</span>
-            <if (option.description)>
-                <span class="listbox__description"><${option.description}/></span>
+            <span class="listbox__value">${text}</span>
+            <if (description)>
+                <span class="listbox__description"><${description}/></span>
             </if>
             <ebay-tick-16-icon/>
         </div>
     </for>
 </div>
-<select hidden class="listbox__native" name=input.name>
-    <for|option| of=(input.options || [])>
+<select hidden class="listbox__native" name=name>
+    <for|option| of=(options || [])>
         <option
             value=option.value
             selected=(option === selectedOption)

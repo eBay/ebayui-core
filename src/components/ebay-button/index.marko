@@ -1,26 +1,32 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
+import {validSizes} from "./constants"
 
-static function toJSON() {
+static function toJSON(this: any) {
     return {
         disabled: this.disabled
     };
 }
 
-static var ignoredAttributes = [
-    "a11yText",
-    "partiallyDisabled",
-    "priority",
-    "size",
-    "split",
-    "fluid",
-    "fixedHeight",
-    "truncate",
-    "transparent",
-    "bodyState",
-    "toJSON",
-    "variant",
-    "borderless"
-];
+$ const {
+    a11yText,
+    ariaLabel,
+    bodyState,
+    borderless,
+    class: inputClass,
+    fixedHeight,
+    fluid,
+    href,
+    partiallyDisabled,
+    priority: inputPriority,
+    renderBody,
+    size: inputSize,
+    split = "none",
+    transparent,
+    truncate,
+    type = "button",
+    variant = "standard",
+    ...htmlInput
+} = input;
 
 static var validPriorities = [
     'primary',
@@ -29,73 +35,66 @@ static var validPriorities = [
     'delete'
 ];
 
-static var validSizes = [
-    'large',
-    'small'
-];
-
 $ {
     input.toJSON = toJSON;
-    var size = validSizes.includes(input.size) ? input.size : null;
+    var size = inputSize && validSizes.includes(inputSize) ? inputSize : null;
 
-    var priority = input.priority || "secondary";
-    if (input.borderless || input.variant === 'form') {
+    var priority = inputPriority || "secondary";
+    if (borderless || variant === 'form') {
         priority = 'none';
     }
-    var baseClass = input.href ? "fake-btn" : "btn";
+    var baseClass = href ? "fake-btn" : "btn";
     var sizeClass = size && baseClass + "--" + size;
     var truncateClass =
-        input.truncate &&
+        truncate &&
         (sizeClass ? sizeClass + "-truncated" : baseClass + "--truncated");
-    var transparentClass = input.transparent ? baseClass + "--transparent" : "";
+    var transparentClass = transparent ? baseClass + "--transparent" : "";
     var fixedHeightClass =
-        input.fixedHeight &&
+        fixedHeight &&
         (sizeClass ? sizeClass + "-fixed-height" : baseClass + "--fixed-height");
-    var variant = input.variant || 'standard';
-    var variantClass = variant !== 'standard' && `${baseClass}--${input.variant}`;
-    var tag = input.href ? "a" : "button";
-    var split = input.split || 'none';
-    var htmlAttributes = processHtmlAttributes(data, ignoredAttributes);
+    var variantClass = variant !== 'standard' && `${baseClass}--${variant}`;
+    var tag = href ? "a" : "button";
 }
 <${tag}
-    ...htmlAttributes
+    ...processHtmlAttributes(htmlInput)
     onClick("handleClick")
     onKeydown("handleKeydown")
     onFocus('handleFocus')
     onBlur('handleBlur')
     class=[
-        input.class,
+        inputClass,
         baseClass,
-        input.fluid && `${baseClass}--fluid`,
+        fluid && `${baseClass}--fluid`,
         truncateClass,
         fixedHeightClass,
         transparentClass,
         variantClass,
         !truncateClass && !fixedHeightClass && sizeClass,
         split !== 'none' && `${baseClass}--split-${split}`,
-        input.borderless && `${baseClass}--borderless`,
+        borderless && `${baseClass}--borderless`,
         (validPriorities.includes(priority) &&
         `${baseClass}--${priority}`)
     ]
+    href=href
     data-ebayui=true
-    type=(tag === "button" && (input.type || "button"))
-    aria-disabled=((input.partiallyDisabled) && "true")
-    aria-label=(input.bodyState === "loading" ? (input.a11yText || "Loading...") : input.ariaLabel)
+    type=(tag === "button" && (type || "button"))
+    aria-disabled=((partiallyDisabled) && "true")
+    aria-label=(bodyState === "loading" ? (a11yText || "Loading...") : ariaLabel)
     >
-    <if(input.bodyState === "loading")>
+    <if(bodyState === "loading")>
         <span class="btn__cell">
             <ebay-progress-spinner/>
         </span>
     </if>
-    <else-if(input.bodyState === "expand")>
+    <else-if(bodyState === "expand")>
         <span class="btn__cell">
             <span class="btn__text">
-                <${input.renderBody}/>
+                <${renderBody}/>
             </span>
             <ebay-chevron-down-16-icon/>
         </span>
     </else-if>
     <else>
-        <${input.renderBody}/>
+        <${renderBody}/>
     </else>
 </>

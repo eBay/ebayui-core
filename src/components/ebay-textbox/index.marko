@@ -1,82 +1,87 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static function toJSON() {
+static function toJSON(this: any) {
     return {
         floatingLabel: this.floatingLabel
     };
 }
 
-static var ignoredAttributes = [
-    "class",
-    "style",
-    "invalid",
-    "fluid",
-    "multiline",
-    "floatingLabel",
-    "prefixIcon",
-    "postfixIcon",
-    "inputSize",
-    "opaqueLabel",
-    "toJSON"
-];
+$ const {
+    buttonAriaLabel,
+    class: inputClass,
+    disabled,
+    floatingLabel,
+    fluid,
+    id = component.getElId("textbox"),
+    inputSize,
+    invalid,
+    multiline,
+    opaqueLabel,
+    postfixIcon,
+    prefixIcon,
+    style,
+    type,
+    value,
+    ...htmlInput
+} = input;
 
 $ input.toJSON = toJSON;
-$ var isPostfix = !!input.postfixIcon;
-$ var hasIcon = input.prefixIcon || isPostfix;
-$ var isLarge = input.inputSize === "large";
-$ var displayIcon = Boolean(!input.multiline && hasIcon);
-$ var id = input.id || component.getElId("textbox");
-$ var defaultTag = input.fluid ? "div" : "span";
-<${input.floatingLabel && defaultTag} class=["floating-label", isLarge && "floating-label--large", input.opaqueLabel && "floating-label--opaque"]>
-    <if(input.floatingLabel)>
+$ var isPostfix = !!postfixIcon;
+$ var hasIcon = prefixIcon || isPostfix;
+$ var isLarge = inputSize === "large";
+$ var displayIcon = Boolean(!multiline && hasIcon);
+$ var defaultTag = fluid ? "div" : "span";
+<${floatingLabel && defaultTag} class=["floating-label", isLarge && "floating-label--large", opaqueLabel && "floating-label--opaque"]>
+    <if(floatingLabel)>
         <label
             for=id
             class=[
                 "floating-label__label",
-                input.disabled && "floating-label__label--disabled"
+                disabled && "floating-label__label--disabled"
             ]>
-            ${input.floatingLabel}
+            ${floatingLabel}
         </label>
     </if>
     <${defaultTag}
-        style=input.style
+        style=style
         class=[
             "textbox",
-            input.class,
+            inputClass,
             displayIcon && isPostfix && "textbox--icon-end"
         ]>
-        <if(displayIcon && input.prefixIcon)>
-            <${input.prefixIcon}/>
+        <if(displayIcon && prefixIcon)>
+            <${prefixIcon}/>
         </if>
-        <${input.multiline ? "textarea" : "input"}
-            ...processHtmlAttributes(input, ignoredAttributes)
+        <${multiline ? "textarea" : "input"}
+            ...processHtmlAttributes(htmlInput)
             id=id
             key="input"
             class=[
                 "textbox__control",
-                input.fluid && "textbox__control--fluid",
+                fluid && "textbox__control--fluid",
                 isLarge && "textbox__control--large"
             ]
-            type=(!input.multiline && (input.type || "text"))
-            value=(!input.multiline && input.value)
-            aria-invalid=(input.invalid && "true")
-            onKeydown("handleKeydown")
-            onKeypress("handleKeypress")
-            onKeyup("handleKeyup")
-            onChange("handleChange")
-            onInput("handleInput")
-            onFocus("handleFocus")
-            onBlur("handleBlur")
-            onInvalid("handleInvalid")>
-            <if(input.multiline && input.value)>${input.value}</if>
+            type=(!multiline && (type || "text"))
+            value=(!multiline && value)
+            disabled=disabled
+            aria-invalid=(invalid && "true")
+            onKeydown("forwardEvent", "keydown")
+            onKeypress("forwardEvent", "keypress")
+            onKeyup("forwardEvent", "keyup")
+            onChange("forwardEvent", "change")
+            onInput("forwardEvent", "input-change")
+            onFocus("forwardEvent", "focus")
+            onBlur("forwardEvent", "blur")
+            onInvalid("forwardEvent", "invalid")>
+            <if(multiline && value)>${value}</if>
         </>
-        <if(displayIcon && input.postfixIcon)>
-            <${input.buttonAriaLabel && "button"}
+        <if(displayIcon && postfixIcon)>
+            <${buttonAriaLabel && "button"}
                 class="icon-btn icon-btn--transparent"
-                aria-label=input.buttonAriaLabel
-                type=(input.buttonAriaLabel && "button")
-                on-click("handleButtonClick")>
-                <${input.postfixIcon}/>
+                aria-label=buttonAriaLabel
+                type=(buttonAriaLabel && "button")
+                on-click("forwardEvent", "button-click")>
+                <${postfixIcon}/>
             </>
         </if>
     </>

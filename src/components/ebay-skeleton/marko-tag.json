@@ -1,0 +1,14 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@role": "never",
+    "@size": {
+        "enum": ["small", "large"]
+    },
+    "@multiline": "boolean",
+    "@a11yText": "string"
+}

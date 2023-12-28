@@ -1,22 +1,24 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
-static const isBrowser = typeof window !== 'undefined';
-static {
-    var ignoredAttributes = [
-        'class',
-        'src',
-        'a11yText'
-    ];
-}
+
+$ const {
+    class: inputClass,
+    src,
+    errorText,
+    a11yText,
+    a11yLoadText,
+    a11yStartText,
+    ...htmlInput
+} = input;
 
 <div
-    class=['three-d-player', input.class]>
+    class=['three-d-player', inputClass]>
     <${'model-viewer'}
         camera-controls
         touch-action="pan-y"
         key='3d-viewer'
-        alt=input.a11yText
-        src=input.src
-        ...processHtmlAttributes(input, ignoredAttributes)
+        alt=a11yText
+        src=src
+        ...processHtmlAttributes(htmlInput)
         on-error('handleError')
         on-load('emit', 'load')
         on-progress('emit', 'progress')
@@ -27,14 +29,14 @@ static {
     <div class=['three-d-player__overlay', !state.failed && 'three-d-player__overlay--hidden']>
         <ebay-attention-24-icon/>
         <div.three-d-player__overlay-text>
-            <if(input.errorText)>${input.errorText}</if>
+            <if(errorText)>${errorText}</if>
             <else>An error has occurred</else>
         </div>
     </div>
     <div class=['three-d-player__overlay', state.isLoaded && 'three-d-player__overlay--hidden']>
         <if(!state.showLoading)>
-            <ebay-play-64-colored-icon a11y-text=input.a11yStartText || 'Click to start'/>
+            <ebay-play-filled-64-colored-icon a11y-text=a11yStartText || 'Click to start'/>
         </if>
-        <else><ebay-progress-spinner a11y-text=input.a11yLoadText || 'Loading'/></else>
+        <else><ebay-progress-spinner a11yText=a11yLoadText || 'Loading'/></else>
     </div>
 </div>

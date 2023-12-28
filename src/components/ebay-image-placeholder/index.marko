@@ -1,2 +1,4 @@
-import { symbol } from "./icons/ebay-image-placeholder/symbol.js";
+import { symbol } from "./icons/ebay-image-placeholder/symbol";
+import type { Input as IconInput } from "<ebay-icon>";
+export type Input = Omit<IconInput, `_${string}`>;
 <ebay-icon ...input _name="image-placeholder" _type="image-placeholder" _themes=symbol/>

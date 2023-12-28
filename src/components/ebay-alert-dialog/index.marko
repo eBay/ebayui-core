@@ -1,18 +1,35 @@
+import type { Input as BaseInput } from "<ebay-dialog-base>";
+
+static interface AlertDialogInput extends Omit<BaseInput, `on${string}`> {
+    "confirm-text"?: string;
+    "on-open"?: () => void;
+    "on-close"?: () => void;
+    "on-confirm"?: () => void;
+}
+
+export interface Input extends WithNormalizedProps<AlertDialogInput> {}
+
 $ var confirmId = component.getElId("alert-dialog-confirm");
 $ var mainId = component.getElId("alert-dialog-main");
+
+$ const {
+    class: inputClass,
+    confirmText,
+    ...restInput
+} = input;
+
 <ebay-dialog-base
-    ...input
+    ...restInput
     role="alertdialog"
-    open=input.open
     classPrefix="alert-dialog"
-    ignore-escape=true
-    main-id=mainId
+    ignoreEscape=true
+    mainId=mainId
     on-open("emit", "open")
     on-close("emit", "close")
     buttonPosition="hidden"
     focus=confirmId
-    class=[input.class, "alert-dialog--mask-fade"]
-    window-class=["alert-dialog__window alert-dialog__window--fade"]>
+    class=[inputClass, "alert-dialog--mask-fade"]
+    windowClass=["alert-dialog__window alert-dialog__window--fade"]>
     <@footer>
         <ebay-button
             priority="primary"
@@ -21,7 +38,7 @@ $ var mainId = component.getElId("alert-dialog-main");
             key="confirm"
             id=confirmId
             class="alert-dialog__acknowledge">
-            ${input.confirmText}
+            ${confirmText}
         </ebay-button>
     </@footer>
 </ebay-dialog-base>

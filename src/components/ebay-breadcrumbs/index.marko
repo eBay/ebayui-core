@@ -1,19 +1,30 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
 import DotsIcon from '<ebay-overflow-horizontal-16-icon>';
-static var ignoredAttributes = ['a11yHeadingText', 'a11yHeadingTag', 'items', 'toJSON'];
-$ var anyHref = (input.items || []).some((element) => element.href != null);
+
+$ const {
+    a11yHeadingText,
+    a11yHeadingTag,
+    a11yMenuButtonText,
+    class: inputClass,
+    items: attrTagItems,
+    ...htmlInput
+} = input;
+
+$ const items = [...(attrTagItems ?? [])];
+
+$ var anyHref = (items || []).some((element) => element.href != null);
 <nav
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...processHtmlAttributes(htmlInput)
     key='root'
     aria-labelledby:scoped='breadcrumbs-heading'
-    class=['breadcrumbs', 'breadcrumb--overflow', input.class]
+    class=['breadcrumbs', 'breadcrumb--overflow', inputClass]
     role='navigation'
 >
-    <${input.a11yHeadingTag || 'h2'}.clipped id:scoped='breadcrumbs-heading'>
-        ${input.a11yHeadingText}
+    <${a11yHeadingTag || 'h2'}.clipped id:scoped='breadcrumbs-heading'>
+        ${a11yHeadingText}
     </>
     <ul key='items'>
-        <for|item, i| of=input.items || []>
+        <for|item, i| of=items>
             $ var isHidden = state.hiddenIndex.indexOf(i) > -1;
             <if(state.hiddenIndex.length > 0 && i === 1)>
                 <li>
@@ -22,15 +33,15 @@ $ var anyHref = (input.items || []).some((element) => element.href != null);
                         transparent
                         icon=DotsIcon
                         collapse-on-select
-                        a11y-text=input.a11yMenuButtonText
+                        a11y-text=a11yMenuButtonText
                         on-select('handleMenuBreadcrumb')
                     >
                         <for|i| of=state.hiddenIndex>
                             <@item
-                                type=(anyHref ? 'a' : 'button')
-                                ...processHtmlAttributes(input.items[i])
+                                type=(anyHref ? 'a' : 'button') as (Marko.Input<"button">["type"])
+                                ...processHtmlAttributes(items[i])
                             >
-                                <${input.items[i].renderBody}/>
+                                <${items[i].renderBody}/>
                             </@item>
                         </for>
                     </ebay-fake-menu-button>
@@ -38,7 +49,7 @@ $ var anyHref = (input.items || []).some((element) => element.href != null);
                 </li>
             </if>
             <li hidden=isHidden>
-                $ var isLast = i === input.items.length - 1;
+                $ var isLast = i === items.length - 1;
                 $ var current = !item.href && isLast;
                 <${anyHref ? 'a' : 'button'}
                     ...processHtmlAttributes(item)

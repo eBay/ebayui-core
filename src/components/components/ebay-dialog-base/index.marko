@@ -1,48 +1,44 @@
 import { processHtmlAttributes } from "../../../common/html-attributes";
 static const isBrowser = typeof window !== "undefined";
-static var ignoredAttributes = [
-    "open",
-    "type",
-    "classPrefix",
-    "focus",
-    "closeFocus",
-    "a11yCloseText",
-    "windowClass",
-    "baseEl",
-    "header",
-    "footer",
-    "transitionEl",
-    "isModal",
-    "closeButton",
-    "closeButtonClass",
-    "closeButtonText",
-    "ignoreEscape",
-    "slideFrom",
-    "windowType",
-    "mainId",
-    "ariaLabelledby",
-    "buttonPosition",
-    "useHiddenProperty",
-    "position",
-    "variant",
-    "confirmText",
-    "rejectText",
-    "noHandle",
-    "top",
-    "action",
-];
-static var ignoredHeaderAttributes = ["id", "as", "class"];
-static var ignoredPrevButtonAttributes = ["id", "class", "a11yText"];
-$ var buttonPosition = input.buttonPosition || "right";
-$ var baseEl = input.baseEl || "div";
-$ var header = input.header;
+
+$ const {
+    open,
+    classPrefix,
+    class: inputClass,
+    focus,
+    closeFocus,
+    a11yCloseText,
+    windowClass,
+    baseEl = "div",
+    header,
+    footer,
+    transitionEl,
+    isModal,
+    closeButton,
+    closeButtonClass,
+    closeButtonText,
+    ignoreEscape,
+    windowType,
+    mainId,
+    ariaLabelledby,
+    buttonPosition = "right",
+    useHiddenProperty,
+    top,
+    action,
+    prevButton,
+    role,
+    renderBody,
+    ...htmlInput
+} = input;
+
+$ const { id: headerId, as: headerAs, class: headerClass, renderBody: headerRenderBody, ...headerHtmlInput } = header || {} as NonNullable<typeof header>;
+$ const { id: prevButtonId, class: prevButtonClass, a11yText: prevButtonA11yText, renderBody: prevButtonRenderBody, ...prevButtonHtmlInput } = prevButton || {} as NonNullable<typeof prevButton>;
 <macro name="header-content">
-    <${header.as || "h2"}
-        class=[header.class, `${input.classPrefix}__title`]
-        ...processHtmlAttributes(header, ignoredHeaderAttributes)
-        id=header.id || component.getElId("dialog-title")
-    >
-        <${header.renderBody}/>
+    <${headerAs || "h2"}
+        class=[headerClass, `${classPrefix}__title`]
+        ...processHtmlAttributes(headerHtmlInput)
+        id=(headerId || component.getElId("dialog-title"))>
+        <${headerRenderBody}/>
     </>
 </macro>
 <macro name="button-content">
@@ -50,19 +46,19 @@ $ var header = input.header;
         <button
             key="close"
             class=[
-                input.closeButtonText ? "fake-link" : "icon-btn",
-                input.closeButtonClass,
-                `${input.classPrefix}__close`,
+                closeButtonText ? "fake-link" : "icon-btn",
+                closeButtonClass,
+                `${classPrefix}__close`,
             ]
             type="button"
-            aria-label=input.a11yCloseText
+            aria-label=a11yCloseText
             onClick("handleCloseButtonClick")
         >
-            <if(input.closeButtonText)>
-                ${input.closeButtonText}
+            <if(closeButtonText)>
+                ${closeButtonText}
             </if>
-            <else-if(input.closeButton)>
-                <${input.closeButton}/>
+            <else-if(closeButton)>
+                <${closeButton}/>
             </else-if>
             <else>
                 <ebay-close-16-icon/>
@@ -71,54 +67,55 @@ $ var header = input.header;
     </if>
 </macro>
 <${baseEl}
-    ...processHtmlAttributes(input, ignoredAttributes)
-    aria-labelledby=input.ariaLabelledby ||
-    (input.header && component.getElId("dialog-title"))
+    ...processHtmlAttributes(htmlInput)
+    aria-labelledby=(
+        ariaLabelledby ||
+        (header && component.getElId("dialog-title"))
+    )
     aria-modal="true"
-    role=input.role || "dialog"
-    class=[input.classPrefix, input.class]
+    role=role || "dialog"
+    class=[classPrefix, inputClass]
     hidden:no-update=!state.open
-    aria-live=!input.isModal && "polite"
+    aria-live=!isModal && "polite"
     onClick("handleDialogClick")
     onMousedown("handleStartClick")
 >
-    <if(state.open && isBrowser && !input.ignoreEscape)>
-        <subscribe to=document on-keydown("handleKeydown")/>
+    <if(state.open && isBrowser && !ignoreEscape)>
+        <subscribe to=(document as any) on-keydown("handleKeydown")/>
     </if>
     <if(!state.open && isBrowser)>
         <subscribe to=window on-click("trackLastClick")/>
     </if>
     <div
         key="window"
-        onMouseEnter("emit", "mouseEnter")
-        onMouseLeave("emit", "mouseLeave")
+        onMouseenter("emit", "mouseEnter")
+        onMouseleave("emit", "mouseLeave")
         class=[
-            input.windowType
-                ? `${input.classPrefix}__${input.windowType}-window`
-                : `${input.classPrefix}__window`,
-            input.windowClass,
+            windowType
+                ? `${classPrefix}__${windowType}-window`
+                : `${classPrefix}__window`,
+            windowClass,
         ]
     >
-        <if(input.top)>
-            <${input.top.renderBody}/>
+        <if(top)>
+            <${top.renderBody}/>
         </if>
-        <div class=`${input.classPrefix}__header`>
-            <if(input.prevButton)>
+        <div class=`${classPrefix}__header`>
+            <if(prevButton)>
                 <button
                     ...processHtmlAttributes(
-                        input.prevButton,
-                        ignoredPrevButtonAttributes
+                        prevButtonHtmlInput
                     )
                     class=[
                         "icon-btn",
                         "lightbox-dialog__prev",
-                        input.prevButton.class,
+                        prevButtonClass,
                     ]
                     type="button"
-                    aria-label=input.prevButton.a11yText
+                    aria-label=prevButtonA11yText
                     on-click("emit", "prevButtonClick")
                 >
-                    <${input.prevButton}/>
+                    <${prevButton}/>
                 </button>
             </if>
             <if(header && buttonPosition === "right")>
@@ -135,21 +132,21 @@ $ var header = input.header;
             </if>
         </div>
         <div
-            id=input.mainId
-            class=`${input.classPrefix}__main`
+            id=mainId
+            class=`${classPrefix}__main`
             key="body"
             onScroll("handleScroll")
         >
-            <${input.renderBody}/>
+            <${renderBody}/>
         </div>
-        <if(input.action)>
-            <span class=`${input.classPrefix}__actions`>
-                <${input.action && input.action.renderBody}/>
+        <if(action)>
+            <span class=`${classPrefix}__actions`>
+                <${action && action.renderBody}/>
             </span>
         </if>
-        <if(input.footer || buttonPosition === "bottom")>
-            <div class=`${input.classPrefix}__footer`>
-                <${input.footer && input.footer.renderBody}/>
+        <if(footer || buttonPosition === "bottom")>
+            <div class=`${classPrefix}__footer`>
+                <${footer && footer.renderBody}/>
                 <if(buttonPosition === "bottom")>
                     <button-content/>
                 </if>

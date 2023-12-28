@@ -1,21 +1,30 @@
-$ var isMini = input.variant === "_mini";
-$ var buttonPosition = input.buttonPosition || 'right';
-$ var validSizes = ['wide', 'narrow'];
-$ var handleLabel = (!state.expanded ?
-    (input.a11yMaximizeText || "Maximize Lightbox Dialog") :
-    (input.a11yMinimizeText || "Minimize Lightbox Dialog"));
+import { validSizes } from "./component";
+
+$ const {
+    class: inputClass,
+    variant,
+    buttonPosition = "right",
+    a11yMaximizeText = "Maximize Lightbox Dialog",
+    a11yMinimizeText = "Minimize Lightbox Dialog",
+    bannerImgSrc,
+    bannerImgPosition,
+    size,
+    ...dialogBaseInput
+} = input;
+
+$ var isMini = variant === "_mini";
+$ var handleLabel = state.expanded ? a11yMinimizeText : a11yMaximizeText;
 
 <ebay-dialog-base
-    ...input
+    ...dialogBaseInput
     key="dialog"
-    open=input.open
     class-prefix="lightbox-dialog"
     on-open("emit", "open")
     on-close("emit", "close")
     on-prevButtonClick("emit", "prevButtonClick")
     button-position=buttonPosition
-    class=[input.class, "lightbox-dialog--mask-fade", input.bannerImgSrc && "lightbox-dialog--expressive",
-        validSizes.includes(input.size) && `lightbox-dialog--${input.size}`,
+    class=[inputClass, "lightbox-dialog--mask-fade", bannerImgSrc && "lightbox-dialog--expressive",
+        size && validSizes.includes(size) && `lightbox-dialog--${size}`,
     ]
     window-class=[
         "lightbox-dialog__window--animate",
@@ -28,15 +37,15 @@ $ var handleLabel = (!state.expanded ?
                 type="button"
                 class=`lightbox-dialog__handle`
                 onClick("handleExpand")
-                onTouchStart("handleTouchStart")
-                onTouchMove("handleTouchMove")
-                onTouchEnd("handleTouchEnd")
-                onTouchCancel("handleTouchEnd")
+                onTouchstart("handleTouchStart")
+                onTouchmove("handleTouchMove")
+                onTouchend("handleTouchEnd")
+                onTouchcancel("handleTouchEnd")
             ></button>
-            <if(input.bannerImgSrc)>
+            <if(bannerImgSrc)>
                     <div class="lightbox-dialog__image" style={
-                        backgroundImage: `url(${input.bannerImgSrc})`,
-                        backgroundPosition: input.bannerImgPosition,
+                        backgroundImage: `url(${bannerImgSrc})`,
+                        backgroundPosition: bannerImgPosition,
                     } />
             </if>
         </@top>

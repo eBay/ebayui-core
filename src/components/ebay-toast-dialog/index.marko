@@ -1,17 +1,28 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
+import type { Input as BaseInput } from "<ebay-dialog-base>";
+static interface ToastDialogInput extends Omit<BaseInput, `on${string}`> {
+    "on-open"?: () => void;
+    "on-close"?: () => void;
+}
 
-$ var header = input.header || {};
+export interface Input extends WithNormalizedProps<ToastDialogInput> {}
+
+$ const {
+    header = {} as NonNullable<typeof input.header>,
+    class: inputClass,
+    renderBody,
+    ...dialogBaseInput
+} = input;
+
 <ebay-dialog-base
-    ...input
-    open=input.open
+    ...dialogBaseInput
     baseEl="aside"
     transitionEl="root"
     isModal=false
     classPrefix="toast-dialog"
-    on-open("emit", "open")
-    on-close("emit", "close")
+    onOpen("emit", "open")
+    onClose("emit", "close")
     closeButtonClass = ["icon-btn--transparent"]
-    class=[input.class, "toast-dialog--transition"]>
+    class=[inputClass, "toast-dialog--transition"]>
     <@header ...header class=[header.class, "toast-dialog__title"] />
-    <${input.renderBody}/>
+    <${renderBody}/>
 </ebay-dialog-base>

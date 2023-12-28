@@ -1,8 +1,11 @@
-$ var status = input.status || 'attention';
+$ const {
+    status = "attention",
+    ...noticeBaseInput
+} = input;
 
 <if (!state.dismissed)>
     <ebay-notice-base
-        ...input
+        ...noticeBaseInput
         class=[`page-notice--${status}`, input.class]
         status=status
         role="region"

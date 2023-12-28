@@ -1,4 +1,4 @@
-<ebay-toast-dialog a11y-close-text="Close Toast" open=state.open on-open('emit', 'open') on-close("closeToast")>
+<ebay-toast-dialog a11yCloseText="Close Toast" open=state.open on-open('emit', 'open') on-close("closeToast")>
     <@header>Heading</@header>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
     <p>
@@ -10,6 +10,10 @@
 </ebay-toast-dialog>
 <ebay-button on-click("openToast")>Open Toast</ebay-button>
 class {
+    declare state: {
+        open: boolean;
+    }
+
     onCreate() {
         this.state = { open: false };
     }

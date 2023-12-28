@@ -1,13 +1,24 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static var ignoredAttributes = ["size"];
+static interface CtaButtonInput extends Marko.Input<"a"> {
+    size?: "default" | "large";
+}
+
+export interface Input extends WithNormalizedProps<CtaButtonInput> {}
+
+$ const {
+    size,
+    class: inputClass,
+    renderBody,
+    ...htmlInput
+} = input;
 
 <a
-    ...processHtmlAttributes(input, ignoredAttributes)
-    class=["cta-btn", `cta-btn--${input.size || "default"}`, input.class]>
+    ...processHtmlAttributes(htmlInput)
+    class=["cta-btn", `cta-btn--${size || "default"}`, inputClass]>
     <span class="cta-btn__cell">
         <span>
-            <${input.renderBody}/>
+            <${renderBody}/>
         </span>
         <ebay-arrow-right-24-icon/>
     </span>

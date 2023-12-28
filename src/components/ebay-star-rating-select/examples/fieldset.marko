@@ -1,12 +1,17 @@
+export interface Input {
+    value: number;
+    a11yStarText: string;
+}
+
 class {}
 
 <fieldset>
     <legend>Rate Product</legend>
     <ebay-star-rating-select
         value=input.value
-        a11y-star-text=input.a11yStarText
+        a11yStarText=input.a11yStarText
         onChange("emit", 'change')
-        onKeyup("emit", 'keyup')
+        onKeydown("emit", 'keydown')
         onFocus("emit", 'focus')
     />
 </fieldset>

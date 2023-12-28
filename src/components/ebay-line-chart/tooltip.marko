@@ -1,6 +1,6 @@
 <b>${input.date}</b>
 <br>
-<for|pts| of=input.points>
+<for|pts| of=input.points || []>
     $ var point = pts.point;
     <if(point.tooltip)>${point.tooltip}</if>
     <else-if(input.seriesLength)>

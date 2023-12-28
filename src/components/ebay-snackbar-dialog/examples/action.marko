@@ -1,4 +1,8 @@
 class {
+    declare state: {
+        open: boolean;
+    }
+
     onCreate() {
         this.state = {open: false};
     }
@@ -21,7 +25,7 @@ class {
     Open Action Snackbar
 </ebay-button>
 <ebay-snackbar-dialog open=state.open on-close('handleClose') on-action("handleAction")>
-    <@action access-key="U">
+    <@action accessKey="U">
         Undo
     </@action>
     This is the action snackbar

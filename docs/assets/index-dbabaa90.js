@@ -1,2 +1,0 @@
-import{t as n,r as _,_ as c,g as b,p as g,h as l,a as p}from"./merge-attrs-f99eec0a.js";const o="XHGBVt0G",r=n(o),u=r;var d=["type","number"];_.r(o,()=>r);const m={};r._=c(function(e,a,i,s,k,f){var t=Math.round(e.number);t>0&&(a.be("span",b(g(e,d),{role:e.type!=="menu"&&e.type!=="icon"&&"img",class:l(["badge",e.class])}),"0",s,null,4),a.t(t>99?"99+":t,s),a.ee())},{t:o,i:!0},m);r.Component=p(m,r._);export{u as b};
-//# sourceMappingURL=index-dbabaa90.js.map

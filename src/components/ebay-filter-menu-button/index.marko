@@ -1,66 +1,67 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
-static var ignoredAttributes = [
-    "variant",
-    "text",
-    "footer",
-    "footerText",
-    "disabled",
-    "selected",
-    "formName",
-    "formAction",
-    "formMethod",
-    "items",
-    "type"
-];
-$ var footer = input.footer || {};
+$ const {
+    variant,
+    class: inputClass,
+    a11yText,
+    a11yFooterText,
+    text,
+    footer,
+    footerText,
+    disabled,
+    formName,
+    formAction,
+    formMethod,
+    items,
+    type: inputType,
+    ...htmlInput
+} = input;
 
 <span
-    ...processHtmlAttributes(input, ignoredAttributes)
+    ...processHtmlAttributes(htmlInput)
     key="container"
-    class=["filter-menu-button", input.class]
-    onExpander-expand("handleExpand")
-    onExpander-collapse("handleCollapse")>
+    class=["filter-menu-button", inputClass]
+    on-expander-expand("handleExpand")
+    on-expander-collapse("handleCollapse")>
     <button
         key="button"
         type="button"
         class="filter-menu-button__button"
-        disabled=input.disabled
+        disabled=disabled
         aria-expanded:no-update="false"
         aria-haspopup="true"
-        aria-label=input.a11yText
+        aria-label=a11yText
         aria-pressed=(component.getCheckedValues().some(Boolean) && "true")>
         <span class="filter-menu-button__button-cell">
-            <span class="filter-menu-button__button-text">${input.text}</span>
+            <span class="filter-menu-button__button-text">${text}</span>
             <ebay-chevron-down-12-icon/>
         </span>
     </button>
     <ebay-filter-menu
-        class-prefix="filter-menu-button"
-        variant=input.variant
-        type=input.type
-        form-name=input.formName
-        form-action=input.formAction
-        form-method=input.formMethod
-        footer-text=input.footerText
-        a11y-footer-text=input.a11yFooterText
+        classPrefix="filter-menu-button"
+        variant=variant
+        type=inputType
+        formName=formName
+        formAction=formAction
+        formMethod=formMethod
+        footerText=footerText
+        a11yFooterText=a11yFooterText
         on-keydown("handleMenuKeydown")
         on-change("handleMenuChange")
         on-form-submit("handleFormSubmit")
         on-footer-click("handleFooterButtonClick")>
-        <for|item, i| of=(input.items || [])>
+        <for|item, i| of=(items || [])>
             <@item ...item checked=component.isChecked(i)/>
         </for>
-        <if(input.footerText || input.footer)>
-            <@footer ...footer a11y-footer-text=(input.a11yFooterText || (input.footer && input.footer.a11yFooterText))>
-                <if(input.footerText)>
-                    ${input.footerText}
-                </if>
-                <else>
-                    <${input.footer.renderBody}/>
-                </else>
-
+        <if(footerText)>
+            <@footer ...footer a11yFooterText=(a11yFooterText)>
+                ${footerText}
             </@footer>
         </if>
+        <else><if(footer)>
+            <@footer ...footer a11yFooterText=(a11yFooterText || footer.a11yFooterText)>
+                <${footer.renderBody}/>
+            </@footer>
+        </if></else>
     </ebay-filter-menu>
 </span>

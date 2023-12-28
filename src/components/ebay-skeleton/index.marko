@@ -1,0 +1,22 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+
+static interface SkeletonInput extends Omit<Marko.Input<"div">, `on${string}`> {
+    "a11y-text"?: string;
+}
+
+export interface Input extends WithNormalizedProps<SkeletonInput> {}
+
+$ const {
+    a11yText = "Loading...",
+    class: inputClass,
+    ...htmlInput
+} = input;
+
+<div
+    role="img"
+    aria-label=a11yText
+    class=["skeleton", inputClass]
+    ...processHtmlAttributes(htmlInput)
+>
+    <${input.renderBody}/>
+</div>

@@ -1,5 +1,5 @@
 <ebay-panel-dialog
-    a11y-close-text='Close Dialog'
+    a11yCloseText='Close Dialog'
     open=state.open
     position='end'
     on-close('closeDialog')
@@ -13,6 +13,10 @@
 
 <ebay-button on-click('openDialog')>Open Dialog</ebay-button>
 class {
+    declare state: {
+        open: boolean;
+    }
+
     onCreate() {
         this.state = { open: false };
     }
