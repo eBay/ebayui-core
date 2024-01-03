@@ -229,7 +229,9 @@ export default class Combobox extends Marko.Component<Input, State> {
             viewAllOptions: (this.state && this.state.viewAllOptions) || true,
         };
         if (this.expander) {
-            this.expandedChange = input.expanded !== this.expanded;
+            this.expandedChange =
+                input.expanded !== undefined &&
+                input.expanded !== this.expanded;
             if (this.expandedChange) {
                 this.expander.expanded = input.expanded;
             }
