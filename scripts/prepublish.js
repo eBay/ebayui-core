@@ -40,3 +40,13 @@ fs.writeFileSync(
     markoConfigPath,
     fs.readFileSync(markoConfigPath, "utf-8").replace(/\.\/src\//g, "./dist/"),
 );
+
+// copy over `types.d.ts` and `makeup.d.ts` files
+fs.copyFileSync(
+    path.join(rootDir, "src/types.d.ts"),
+    path.join(rootDir, "dist/types.d.ts"),
+);
+fs.copyFileSync(
+    path.join(rootDir, "src/makeup.d.ts"),
+    path.join(rootDir, "dist/makeup.d.ts"),
+);
