@@ -55,7 +55,7 @@ export default class Combobox extends Marko.Component<Input, State> {
     declare lastValue: Input["value"];
     declare autocomplete: NonNullable<Input["autocomplete"]>;
     declare listSelection: NonNullable<Input["listSelection"]>;
-    declare expanded: boolean;
+    declare expanded?: boolean;
     declare expandedChange: boolean;
     declare _floatingLabel: any;
 
@@ -234,7 +234,7 @@ export default class Combobox extends Marko.Component<Input, State> {
                 this.expander.expanded = input.expanded;
             }
         }
-        this.expanded = !!input.expanded;
+        this.expanded = input.expanded;
     }
 
     onMount() {
