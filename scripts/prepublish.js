@@ -15,6 +15,9 @@ execSync(
     "find dist -type f -name 'component*.js' | xargs sed -i '' 's/exports.default =/module.exports =/g'",
 );
 execSync(
+    "find dist -type f -name 'component*.js' | xargs sed -i '' 's/ extends Marko.Component {/ {/g'",
+);
+execSync(
     "sed -i '' 's/no-update-body-if=!!config.preserveItems/no-update-body-if(!!config.preserveItems)/g' dist/components/ebay-carousel/index.marko",
 );
 
