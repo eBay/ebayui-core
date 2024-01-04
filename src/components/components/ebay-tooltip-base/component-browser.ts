@@ -11,7 +11,7 @@ import {
     type Placement,
 } from "@floating-ui/dom";
 import { pointerStyles } from "./constants";
-import { WithNormalizedProps } from "../../../global";
+import type { WithNormalizedProps } from "../../../global";
 
 interface TooptipBaseInput {
     open?: boolean;

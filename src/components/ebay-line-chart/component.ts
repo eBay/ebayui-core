@@ -18,7 +18,7 @@ import {
     trendNegativeColor,
 } from "../../common/charts/shared";
 import { debounce } from "../../common/event-utils";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 import tooltipTemplate from "./tooltip.marko";
 import Highcharts from "highcharts";
 

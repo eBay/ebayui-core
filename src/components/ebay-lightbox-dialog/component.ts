@@ -1,4 +1,4 @@
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 import type DialogBase from "../components/ebay-dialog-base/component";
 import type { Input as DialogBaseInput } from "../components/ebay-dialog-base/component";
 

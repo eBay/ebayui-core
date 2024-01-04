@@ -1,5 +1,5 @@
 const DEFAULT_TIMEOUT_LENGTH = 6000;
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 import type { Input as BaseInput } from "../components/ebay-dialog-base/component";
 
 interface SnackbarDialogInput extends Omit<BaseInput, `on${string}`> {

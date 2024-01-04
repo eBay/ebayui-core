@@ -1,6 +1,6 @@
 import type { AttrClass } from "marko/tags-html";
 import { typeRoles } from "./constants";
-import { WithNormalizedProps } from "../../../global";
+import type { WithNormalizedProps } from "../../../global";
 
 interface TooltipOverlayInput {
     toJSON?: any;

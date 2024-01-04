@@ -1,6 +1,6 @@
 import type { AttrClass } from "marko/tags-html";
 import { CDNLoader } from "../../common/cdn";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 
 interface ViewerInput {
     "cdn-url"?: string;

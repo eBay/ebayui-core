@@ -2,7 +2,7 @@ import { createLinear } from "makeup-active-descendant";
 import type { AttrStringOrNumber } from "marko/tags-html";
 import { scroll } from "../../common/element-scroll";
 import * as eventUtils from "../../common/event-utils";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 
 export interface ChangeEvent {
     index: number;

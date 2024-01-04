@@ -7,7 +7,7 @@ import setupMenu, {
     type MenuState,
 } from "../../common/menu-utils";
 import type { RadioEvent } from "../ebay-radio/component-browser";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 
 export interface FilterMenuEvent<T extends Event = Event> {
     el?: Element;

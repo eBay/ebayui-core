@@ -5,7 +5,7 @@ import type {
     Input as FakeMenuInput,
     Item as FakeMenuItem,
 } from "../ebay-fake-menu/component";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 
 interface FakeMenuButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
     text?: string;

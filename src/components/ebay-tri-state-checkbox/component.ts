@@ -1,5 +1,5 @@
 import type { AttrTriState } from "marko/tags-html";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 
 export interface TriStateCheckboxEvent {
     originalEvent: Event;

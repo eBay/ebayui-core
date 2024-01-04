@@ -1,5 +1,5 @@
 import { CDNLoader } from "../../common/cdn";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 import { getElements } from "./elements";
 const DEFAULT_SPINNER_TIMEOUT = 2000;
 

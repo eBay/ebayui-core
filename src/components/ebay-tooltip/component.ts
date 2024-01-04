@@ -1,5 +1,5 @@
 import * as eventUtils from "../../common/event-utils";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 import type { Input as TooltipBaseInput } from "../components/ebay-tooltip-base/component-browser";
 import type { Input as TooltipOverlayInput } from "../components/ebay-tooltip-overlay/component-browser";
 
