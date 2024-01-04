@@ -1,8 +1,7 @@
 import "./custom-styles.less";
 import "@ebay/skin/tokens";
-import "@ebay/skin/global";
+import "@ebay/skin/core";
 import "@ebay/skin/marketsans";
-import "@ebay/skin/utility";
 
 export const parameters = {
     layout: "centered",
