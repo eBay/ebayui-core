@@ -1,5 +1,7 @@
 import type EbayVideo from "./component";
 
+declare const shaka: any;
+
 /* eslint-disable no-undef,new-cap */
 // Have to contain in order to not execute until shaka is downloaded
 function getElements(self: EbayVideo) {

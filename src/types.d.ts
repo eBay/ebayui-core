@@ -10,10 +10,6 @@ declare global {
             "no-controls"?: boolean;
         }
     }
-
-    // TODO: Find or make types for the `shaka-player` package
-    const shaka: any;
-    namespace shaka {}
 }
 
 export {};

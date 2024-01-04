@@ -3,6 +3,8 @@ import { WithNormalizedProps } from "../../global";
 import { getElements } from "./elements";
 const DEFAULT_SPINNER_TIMEOUT = 2000;
 
+declare const shaka: any;
+
 const eventList = [
     "abort",
     "canplay",
