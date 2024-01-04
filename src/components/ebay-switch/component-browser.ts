@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 export interface SwitchEvent {
     originalEvent: Event;
     value: string;

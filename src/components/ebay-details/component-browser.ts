@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 export interface DetailsInput
     extends Omit<Marko.Input<"details">, `on${string}`> {
     toJSON?: any;

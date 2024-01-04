@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 export interface FilterInput
     extends Omit<Marko.Input<"button">, `on${string}`> {
     selected?: boolean;

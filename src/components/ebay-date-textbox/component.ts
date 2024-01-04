@@ -1,5 +1,6 @@
 import Expander from "makeup-expander";
 import { toISO, type DayISO, dateArgToISO } from "../ebay-calendar/date-utils";
+import { WithNormalizedProps } from "../../global";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 

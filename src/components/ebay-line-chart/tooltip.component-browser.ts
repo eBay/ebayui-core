@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 interface TooltipInput {
     date: string;
     points?: {

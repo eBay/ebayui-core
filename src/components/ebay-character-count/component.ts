@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 export interface CharacterCountEvent {
     count: number;
     inputAriaLive: Marko.AriaAttributes["aria-live"];

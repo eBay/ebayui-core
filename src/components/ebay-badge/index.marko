@@ -1,5 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 import type { AttrClass } from "marko/tags-html";
+import { WithNormalizedProps } from "../../global";
 
 static interface BadgeInput extends Marko.Input<"span"> {
     type?: "menu" | "icon";
@@ -16,7 +17,7 @@ $ const {
     ...htmlInput
 } = input;
 
-$ const roundedNumber = Math.round(+(number ?? NaN));
+$ const roundedNumber = Math.round(+(number === undefined ? NaN : number));
 
 <if(roundedNumber > 0)>
     <span

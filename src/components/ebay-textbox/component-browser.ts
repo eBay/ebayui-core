@@ -1,4 +1,5 @@
 import FloatingLabel from "makeup-floating-label";
+import { WithNormalizedProps } from "../../global";
 
 export interface TextboxEvent {
     originalEvent: Event;

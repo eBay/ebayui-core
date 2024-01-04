@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 export interface RadioEvent {
     originalEvent: Event;
     value: string;

@@ -15,6 +15,9 @@ execSync(
     "find dist -type f -name 'component*.js' | xargs sed -i '' 's/exports.default =/module.exports =/g'",
 );
 execSync(
+    "find dist -type f -name 'component*.js' | xargs sed -i '' 's/ extends Marko.Component {/ {/g'",
+);
+execSync(
     "sed -i '' 's/no-update-body-if=!!config.preserveItems/no-update-body-if(!!config.preserveItems)/g' dist/components/ebay-carousel/index.marko",
 );
 
@@ -39,14 +42,4 @@ const markoConfigPath = path.join(rootDir, "marko.json");
 fs.writeFileSync(
     markoConfigPath,
     fs.readFileSync(markoConfigPath, "utf-8").replace(/\.\/src\//g, "./dist/"),
-);
-
-// copy over `types.d.ts` and `makeup.d.ts` files
-fs.copyFileSync(
-    path.join(rootDir, "src/types.d.ts"),
-    path.join(rootDir, "dist/types.d.ts"),
-);
-fs.copyFileSync(
-    path.join(rootDir, "src/makeup.d.ts"),
-    path.join(rootDir, "dist/makeup.d.ts"),
 );

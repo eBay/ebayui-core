@@ -5,6 +5,7 @@ import { resizeUtil } from "../../common/event-utils";
 import { processHtmlAttributes } from "../../common/html-attributes";
 import { onScrollDebounced as onScroll } from "./utils/on-scroll-debounced";
 import { scrollTransition } from "./utils/scroll-transition";
+import { WithNormalizedProps } from "../../global";
 
 type Direction = typeof LEFT | typeof RIGHT;
 // Used for carousel slide direction.

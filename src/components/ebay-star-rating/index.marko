@@ -1,4 +1,5 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
+import { WithNormalizedProps } from '../../global';
 
 static interface StarRatingInput extends Omit<Marko.Input<"div">, `on${string}`> {
     value?: `${0|1|2|3|4}${"-5" | ""}` | "5";

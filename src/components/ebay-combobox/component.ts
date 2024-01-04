@@ -5,6 +5,7 @@ import { scroll } from "../../common/element-scroll";
 import * as eventUtils from "../../common/event-utils";
 import safeRegex from "../../common/build-safe-regex";
 import type { AttrClass } from "marko/tags-html";
+import { WithNormalizedProps } from "../../global";
 
 interface ComboboxEvent {
     currentInputValue: State["currentValue"];

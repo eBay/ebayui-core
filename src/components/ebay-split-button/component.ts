@@ -1,3 +1,4 @@
+import { WithNormalizedProps } from "../../global";
 import type { Input as ButtonInput } from "../ebay-button/component-browser";
 import type { Input as MenuButtonInput } from "../ebay-menu-button/component";
 

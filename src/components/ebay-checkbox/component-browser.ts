@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 export interface CheckboxEvent {
     originalEvent: Event;
     value: string;
