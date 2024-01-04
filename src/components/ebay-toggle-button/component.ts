@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 export interface ToggleButtonEvent {
     originalEvent: MouseEvent;
     pressed: boolean;

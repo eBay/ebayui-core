@@ -1,4 +1,6 @@
 import type { Input as BaseInput } from "<ebay-dialog-base>";
+import { WithNormalizedProps } from "../../global";
+
 static interface ConfirmDialogInput extends Omit<BaseInput, `on${string}`> {
     "reject-text"?: string;
     "confirm-text"?: string;

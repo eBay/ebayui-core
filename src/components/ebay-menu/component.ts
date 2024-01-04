@@ -8,6 +8,7 @@ import setupMenu, {
     type MenuState,
     MenuUtils,
 } from "../../common/menu-utils";
+import { WithNormalizedProps } from "../../global";
 
 const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 

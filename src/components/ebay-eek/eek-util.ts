@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 const validRanges = {
     "A+++": ["D", "E", "G"],
     "A++": ["E", "G"],

@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 export interface StarRatingEvent<T extends Event> {
     originalEvent: T;
     value: number;

@@ -25,7 +25,7 @@ $ const {
     class: buttonClass,
     renderBody: buttonRenderBody,
     ...htmlButton
-} = button ?? {}
+} = button || {}
 
 $ var hasButton = !!button;
 $ var defaultTag = fluid ? "div" : "span";

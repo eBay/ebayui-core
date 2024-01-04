@@ -1,3 +1,4 @@
+import { WithNormalizedProps } from "../../global";
 import type {
     ToggleButtonEvent,
     Input as ToggleButtonInput,

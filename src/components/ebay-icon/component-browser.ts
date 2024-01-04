@@ -1,4 +1,5 @@
 import type { AttrClass } from "marko/tags-html";
+import { WithNormalizedProps } from "../../global";
 
 let rootSvg: SVGSVGElement;
 let svgDefs: SVGDefsElement;

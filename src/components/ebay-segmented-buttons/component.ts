@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../global";
+
 export const validSizes = ["large"] as const;
 
 export interface SegmentedButtonsEvent {

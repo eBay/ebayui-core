@@ -1,4 +1,5 @@
 import FloatingLabel from "makeup-floating-label";
+import { WithNormalizedProps } from "../../global";
 
 export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
     optgroup?: string;

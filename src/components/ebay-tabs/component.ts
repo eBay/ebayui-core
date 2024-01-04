@@ -1,5 +1,6 @@
 import { createLinear } from "makeup-roving-tabindex";
 import * as eventUtils from "../../common/event-utils";
+import { WithNormalizedProps } from "../../global";
 
 export interface Panel extends Omit<Marko.Input<"div">, `on${string}`> {}
 

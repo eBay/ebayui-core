@@ -1,4 +1,5 @@
 import * as eventUtils from "../../common/event-utils";
+import { WithNormalizedProps } from "../../global";
 
 interface FakeLinkInput extends Omit<Marko.Input<"button">, `on${string}`> {
     toJSON?: any;

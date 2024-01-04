@@ -1,4 +1,5 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
+import { WithNormalizedProps } from '../../global';
 
 static interface SectionTitleInput extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
     "cta-text"?: string;

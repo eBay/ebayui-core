@@ -4,6 +4,7 @@ import type { AttrClass } from "marko/tags-html";
 import * as bodyScroll from "../../../common/body-scroll";
 import * as eventUtils from "../../../common/event-utils";
 import transition from "../../../common/transition";
+import { WithNormalizedProps } from "../../../global";
 
 interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "button-position"?: "right" | "left" | "bottom" | "hidden";

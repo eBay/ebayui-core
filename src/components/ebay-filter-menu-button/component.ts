@@ -6,6 +6,7 @@ import setupMenu, {
     type MenuState,
 } from "../../common/menu-utils";
 import type { FilterMenuEvent } from "../ebay-filter-menu/component";
+import { WithNormalizedProps } from "../../global";
 
 export interface FilterMenuButtonEvent {
     el?: Element;

@@ -1,4 +1,5 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
+import { WithNormalizedProps } from '../../global';
 
 export interface Step extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
     current?: boolean;

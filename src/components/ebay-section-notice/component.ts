@@ -1,4 +1,5 @@
 import type { Input as NoticeBaseInput } from "../components/ebay-notice-base/component";
+import { WithNormalizedProps } from "../../global";
 
 interface SectionNoticeInput
     extends Omit<

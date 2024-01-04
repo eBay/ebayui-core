@@ -1,7 +1,17 @@
 import Expander from "makeup-expander";
 import focusables from "makeup-focusables";
-import { inline, autoUpdate, flip, computePosition, shift, offset, arrow, type Placement } from '@floating-ui/dom';
-import { pointerStyles } from './constants'
+import {
+    inline,
+    autoUpdate,
+    flip,
+    computePosition,
+    shift,
+    offset,
+    arrow,
+    type Placement,
+} from "@floating-ui/dom";
+import { pointerStyles } from "./constants";
+import { WithNormalizedProps } from "../../../global";
 
 interface TooptipBaseInput {
     open?: boolean;
@@ -85,7 +95,7 @@ class TooltipBase extends Marko.Component<Input> {
         const expanderEl = container?.getElementsByClassName(type)[0];
 
         if (host && !isTourtip) {
-           this._expander = new Expander(expanderEl, {
+            this._expander = new Expander(expanderEl, {
                 hostSelector: hostSelector,
                 contentSelector: `.${type}__overlay`,
                 expandedClass: `${type}--expanded`,
@@ -111,43 +121,51 @@ class TooltipBase extends Marko.Component<Input> {
     }
 
     updateTip() {
-            computePosition((this.hostEl as HTMLElement), (this.overlayEl as HTMLElement), {
-                placement: this.input.placement || pointerStyles[this.input.pointer ?? 'bottom'],
+        computePosition(
+            this.hostEl as HTMLElement,
+            this.overlayEl as HTMLElement,
+            {
+                placement:
+                    this.input.placement ||
+                    pointerStyles[this.input.pointer ?? "bottom"],
                 middleware: [
                     offset(this.input.offset || 6),
                     inline(),
                     flip(),
                     shift(),
-                    arrow({ element: this.arrowEl as HTMLElement, padding: 20 }),
+                    arrow({
+                        element: this.arrowEl as HTMLElement,
+                        padding: 20,
+                    }),
                 ],
-            }).then(({ x, y, placement, middlewareData }) => {
-                Object.assign(this.overlayEl?.style || {}, {
-                    left: `${x}px`,
-                    top: `${y}px`,
-                });
-
-                // Accessing the data
-                const arrowX = middlewareData.arrow?.x;
-                const arrowY = middlewareData.arrow?.y;
-
-                const staticSide = {
-                    top: 'bottom',
-                    strategy: 'fixed',
-                    right: 'left',
-                    bottom: 'top',
-                    left: 'right',
-                }[placement.split('-')[0]];
-
-                Object.assign(this.arrowEl?.style || {}, {
-                    left: arrowX != null ? `${arrowX}px` : '',
-                    top: arrowY != null ? `${arrowY}px` : '',
-                    right: '',
-                    bottom: '',
-                    [staticSide || '']: '-4px',
-                });
+            },
+        ).then(({ x, y, placement, middlewareData }) => {
+            Object.assign(this.overlayEl?.style || {}, {
+                left: `${x}px`,
+                top: `${y}px`,
             });
-        }
 
+            // Accessing the data
+            const arrowX = middlewareData.arrow?.x;
+            const arrowY = middlewareData.arrow?.y;
+
+            const staticSide = {
+                top: "bottom",
+                strategy: "fixed",
+                right: "left",
+                bottom: "top",
+                left: "right",
+            }[placement.split("-")[0]];
+
+            Object.assign(this.arrowEl?.style || {}, {
+                left: arrowX != null ? `${arrowX}px` : "",
+                top: arrowY != null ? `${arrowY}px` : "",
+                right: "",
+                bottom: "",
+                [staticSide || ""]: "-4px",
+            });
+        });
+    }
 
     _setupBaseTooltip() {
         const { type } = this.input;
@@ -157,7 +175,6 @@ class TooltipBase extends Marko.Component<Input> {
         this.hostEl = this.el?.querySelector(hostSelector) || null;
         this.overlayEl = this.el?.querySelector(`.${type}__overlay`) || null;
         this.arrowEl = this.el?.querySelector(`.${type}__pointer`) || null;
-
 
         if (this.input.type !== "dialog--mini") {
             this._setupMakeup();

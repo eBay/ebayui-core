@@ -45,7 +45,7 @@ $ const [rangeStartPlaceholder, mainPlaceholder] = (
             selected=(
                 state.firstSelected && state.secondSelected
                     ? [state.firstSelected, state.secondSelected]
-                    : state.firstSelected ?? state.secondSelected ?? undefined
+                    : state.firstSelected || state.secondSelected || undefined
             )
             onSelect("onPopoverSelect")
         />
