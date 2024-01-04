@@ -34,10 +34,7 @@ class ToggleButtonGroup extends Marko.Component<Input, State> {
         );
     }
 
-    handleToggle = (
-        index: number,
-        { originalEvent, pressed }: ToggleButtonEvent,
-    ) => {
+    handleToggle(index: number, { originalEvent, pressed }: ToggleButtonEvent) {
         if (this.input.variant === "radio") {
             // radio buttons may not be deselected, so `pressed` is not necessary
             this.state.pressed = { [index]: true };
@@ -53,7 +50,7 @@ class ToggleButtonGroup extends Marko.Component<Input, State> {
                 .filter((i) => this.state.pressed[+i])
                 .map((i) => +i),
         } satisfies ToggleButtonGroupEvent);
-    };
+    }
 }
 
 export default ToggleButtonGroup;
