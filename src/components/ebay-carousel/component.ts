@@ -1,5 +1,5 @@
 import focusables from "makeup-focusables";
-import type { AttrClass, AttrStyle } from "marko/tags-html";
+import type { AttrClass, AttrString, AttrStyle } from "marko/tags-html";
 // TODO check carousel
 import { resizeUtil } from "../../common/event-utils";
 import { processHtmlAttributes } from "../../common/html-attributes";
@@ -34,10 +34,10 @@ interface CarouselInput {
     "no-peek"?: boolean;
     class?: AttrClass;
     style?: AttrStyle;
-    "a11y-previous-text"?: string;
-    "a11y-next-text"?: string;
-    "a11y-pause-text"?: string;
-    "a11y-play-text"?: string;
+    "a11y-previous-text"?: AttrString;
+    "a11y-next-text"?: AttrString;
+    "a11y-pause-text"?: AttrString;
+    "a11y-play-text"?: AttrString;
     "aria-roledescription"?: string;
     "on-move"?: (event: { visibleIndexes: number[] }) => void;
     "on-scroll"?: (event: { index: number }) => void;

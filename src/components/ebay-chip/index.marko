@@ -1,9 +1,10 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 static interface ChipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     renderBody?: Marko.Body;
-    "a11y-delete-button"?: string;
+    "a11y-delete-button"?: AttrString;
 }
 
 export interface Input extends WithNormalizedProps<ChipInput> {}

@@ -1,5 +1,6 @@
 import FloatingLabel from "makeup-floating-label";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 export interface TextboxEvent {
     originalEvent: Event;
@@ -13,11 +14,11 @@ interface TextboxInput extends Omit<Marko.Input<"textarea">, `on${string}`> {
     "input-size"?: "regular" | "large";
     fluid?: boolean;
     "opaque-label"?: boolean;
-    "floating-label"?: string;
+    "floating-label"?: AttrString;
     "prefix-icon"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     "postfix-icon"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     invalid?: boolean;
-    "button-aria-label"?: string;
+    "button-aria-label"?: AttrString;
     "on-floating-label-init"?: () => void;
     "on-keydown"?: (event: TextboxEvent) => void;
     "on-keypress"?: (event: TextboxEvent) => void;

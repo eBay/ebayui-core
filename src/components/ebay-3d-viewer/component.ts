@@ -1,4 +1,4 @@
-import type { AttrClass } from "marko/tags-html";
+import type { AttrClass, AttrString } from "marko/tags-html";
 import { CDNLoader } from "../../common/cdn";
 import type { WithNormalizedProps } from "../../global";
 
@@ -6,11 +6,11 @@ interface ViewerInput {
     "cdn-url"?: string;
     version?: string;
     class?: AttrClass;
-    "a11y-text"?: string;
+    "a11y-text"?: AttrString;
     src?: string;
-    "error-text"?: string;
-    "a11y-start-text"?: string;
-    "a11y-load-text"?: string;
+    "error-text"?: AttrString;
+    "a11y-start-text"?: AttrString;
+    "a11y-load-text"?: AttrString;
     // TODO: import types from @google/model-viewer instead of
     // listing manually from https://modelviewer.dev/docs
     poster?: string;

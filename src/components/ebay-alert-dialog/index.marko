@@ -1,8 +1,9 @@
 import type { Input as BaseInput } from "<ebay-dialog-base>";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 static interface AlertDialogInput extends Omit<BaseInput, `on${string}`> {
-    "confirm-text"?: string;
+    "confirm-text"?: AttrString;
     "on-open"?: () => void;
     "on-close"?: () => void;
     "on-confirm"?: () => void;

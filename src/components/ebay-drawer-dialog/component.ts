@@ -1,11 +1,12 @@
+import type { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 import DialogBase, {
     type Input as BaseInput,
 } from "../components/ebay-dialog-base/component";
 
 interface DrawerDialogInput extends BaseInput {
-    "a11y-maximize-text"?: string;
-    "a11y-minimize-text"?: string;
+    "a11y-maximize-text"?: AttrString;
+    "a11y-minimize-text"?: AttrString;
     "no-handle"?: boolean;
     expanded?: boolean;
     "on-expanded"?: () => void;

@@ -1,6 +1,7 @@
 import Expander from "makeup-expander";
 import { toISO, type DayISO, dateArgToISO } from "../ebay-calendar/date-utils";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -16,11 +17,11 @@ interface DateTextboxInput {
     "input-placeholder-text"?: string | [string, string];
     "collapse-on-select"?: boolean;
     "get-a11y-show-month-text"?: (monthName: string) => string;
-    "a11y-open-popover-text"?: string;
-    "a11y-selected-text"?: string;
-    "a11y-range-start-text"?: string;
-    "a11y-in-range-text"?: string;
-    "a11y-range-end-text"?: string;
+    "a11y-open-popover-text"?: AttrString;
+    "a11y-selected-text"?: AttrString;
+    "a11y-range-start-text"?: AttrString;
+    "a11y-in-range-text"?: AttrString;
+    "a11y-range-end-text"?: AttrString;
     "a11y-separator"?: string;
     "on-change"?: (
         event:

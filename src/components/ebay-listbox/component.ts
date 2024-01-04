@@ -1,5 +1,5 @@
 import { createLinear } from "makeup-active-descendant";
-import type { AttrStringOrNumber } from "marko/tags-html";
+import type { AttrString, AttrStringOrNumber } from "marko/tags-html";
 import { scroll } from "../../common/element-scroll";
 import * as eventUtils from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
@@ -13,8 +13,8 @@ export interface ChangeEvent {
 
 export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
     disabled?: boolean;
-    text?: string;
-    description?: string;
+    text?: AttrString;
+    description?: AttrString;
 }
 
 interface ListboxInput extends Omit<Marko.Input<"div">, `on${string}`> {

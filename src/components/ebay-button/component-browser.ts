@@ -1,3 +1,4 @@
+import type { AttrString } from "marko/tags-html";
 import * as eventUtils from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
 import { validSizes } from "./constants";
@@ -21,8 +22,7 @@ interface ButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
     "fixed-height"?: boolean;
     truncate?: boolean;
     split?: string;
-    "a11y-text"?: string;
-    "aria-label"?: string;
+    "a11y-text"?: AttrString;
     "on-click"?: (event: ButtonEvent<MouseEvent>) => void;
     "on-escape"?: (event: ButtonEvent<KeyboardEvent>) => void;
     "on-focus"?: (event: ButtonEvent<FocusEvent>) => void;

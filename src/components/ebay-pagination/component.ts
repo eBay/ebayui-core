@@ -1,6 +1,7 @@
 import * as eventUtils from "../../common/event-utils";
 import { getMaxWidth } from "../../common/dom";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 const MAX_PAGES = 9;
 const MIN_PAGES = 5;
@@ -28,9 +29,9 @@ export interface Item
 interface PaginationInput extends Omit<Marko.Input<"nav">, `on${string}`> {
     items?: Marko.AttrTag<Item>[];
     variant?: "show-range" | "show-last" | "overflow";
-    "a11y-current-text"?: string;
-    "a11y-previous-text"?: string;
-    "a11y-next-text"?: string;
+    "a11y-current-text"?: AttrString;
+    "a11y-previous-text"?: AttrString;
+    "a11y-next-text"?: AttrString;
     "on-select"?: (event: SelectEvent) => void;
     "on-next"?: (event: NavigationEvent) => void;
     "on-previous"?: (event: NavigationEvent) => void;

@@ -83,10 +83,10 @@ $ var monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(st
                                     $ var isRangeEnd = dayISO === state.rangeEnd;
                                     $ var isDisabled = component.isDisabled(dayISO);
                                     $ var a11yTexts = [""];
-                                    $ if (isSelected) a11yTexts.push(a11ySelectedText);
-                                    $ if (isRangeStart) a11yTexts.push(a11yRangeStartText);
-                                    $ if (!isRangeStart && !isRangeEnd && isInRange) a11yTexts.push(a11yInRangeText);
-                                    $ if (isRangeEnd) a11yTexts.push(a11yRangeEndText);
+                                    $ if (a11ySelectedText && isSelected) a11yTexts.push(a11ySelectedText);
+                                    $ if (a11yRangeStartText && isRangeStart) a11yTexts.push(a11yRangeStartText);
+                                    $ if (a11yInRangeText && !isRangeStart && !isRangeEnd && isInRange) a11yTexts.push(a11yInRangeText);
+                                    $ if (a11yRangeEndText && isRangeEnd) a11yTexts.push(a11yRangeEndText);
 
                                     <td class={
                                             "calendar__cell--selected": isSelected,
@@ -111,8 +111,8 @@ $ var monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(st
                                             </button>
                                         </if>
                                         <else>
-                                            $ if (isToday) a11yTexts.push(a11yTodayText);
-                                            $ if (isDisabled) a11yTexts.push(a11yDisabledText);
+                                            $ if (a11yTodayText && isToday) a11yTexts.push(a11yTodayText);
+                                            $ if (a11yDisabledText && isDisabled) a11yTexts.push(a11yDisabledText);
                                             $ var link = !isDisabled && linkBuilder && linkBuilder(dayISO);
                                             <${link ? "a" : "span"}
                                                 class={

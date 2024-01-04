@@ -1,5 +1,6 @@
 import FloatingLabel from "makeup-floating-label";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
     optgroup?: string;
@@ -8,7 +9,7 @@ export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
 
 interface SelectInput extends Omit<Marko.Input<"select">, `on${string}`> {
     options: Marko.RepeatableAttrTag<Option>;
-    "floating-label"?: string;
+    "floating-label"?: AttrString;
     "is-large"?: boolean;
     borderless?: boolean;
     "on-change"?: (event: {
