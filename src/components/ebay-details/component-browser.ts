@@ -1,4 +1,4 @@
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 
 export interface DetailsInput
     extends Omit<Marko.Input<"details">, `on${string}`> {

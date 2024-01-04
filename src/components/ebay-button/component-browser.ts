@@ -1,5 +1,5 @@
 import * as eventUtils from "../../common/event-utils";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 import { validSizes } from "./constants";
 
 export interface ButtonEvent<T extends Event> {

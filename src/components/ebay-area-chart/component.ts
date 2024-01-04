@@ -15,7 +15,7 @@ import {
 import { debounce } from "../../common/event-utils";
 import { ebayLegend } from "../../common/charts/legend";
 import Highcharts from "highcharts";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 
 interface AreaChartInput extends Omit<Marko.Input<"div">, `on${string}`> {
     title: Highcharts.TitleOptions["text"];

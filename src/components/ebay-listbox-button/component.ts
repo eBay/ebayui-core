@@ -3,7 +3,7 @@ import * as scrollKeyPreventer from "makeup-prevent-scroll-keys";
 import type { Input as ListboxInput } from "../ebay-listbox/component";
 import type Listbox from "../ebay-listbox/component";
 import type { Option, ChangeEvent } from "../ebay-listbox/component";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 
 interface ListboxButtonInput extends Omit<Marko.Input<"div">, `on${string}`> {
     options?: ListboxInput["options"];

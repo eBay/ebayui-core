@@ -1,4 +1,4 @@
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 import type { Input as NoticeBaseInput } from "../components/ebay-notice-base/component";
 
 interface PageNoticeInput

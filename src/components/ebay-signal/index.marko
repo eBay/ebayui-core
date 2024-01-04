@@ -1,5 +1,5 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
-import { WithNormalizedProps } from '../../global';
+import type { WithNormalizedProps } from '../../global';
 
 static interface SignalInput extends Omit<Marko.Input<"span">, `on${string}`> {
     status?: "trustworthy" | "recent" | "time-sensitive" | "neutral";

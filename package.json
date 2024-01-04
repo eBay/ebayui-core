@@ -33,7 +33,7 @@
         "tb": "npm run test:browser",
         "tf": "npm run test:fps",
         "tr": "npm run coverage && npm run report && open .coverage/index.html",
-        "storybook": "storybook -p 6006",
+        "storybook": "storybook dev -p 6006",
         "generateCDN": "node scripts/generate-cdn.js",
         "prepare": "husky install"
     },

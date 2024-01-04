@@ -18,7 +18,7 @@ import { eBayColumns } from "../../common/charts/bar-chart";
 import Highcharts from "highcharts";
 
 import subtemplate from "./subtemplate.marko";
-import { WithNormalizedProps } from "../../global";
+import type { WithNormalizedProps } from "../../global";
 
 interface SeriesItem
     extends Highcharts.PlotAreaOptions,
