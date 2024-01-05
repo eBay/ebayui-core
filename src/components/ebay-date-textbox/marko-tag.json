@@ -9,6 +9,7 @@
         "disableWeekdays": "array",
         "disableList": "array",
         "inputPlaceholderText": "expression",
+        "collapseOnSelect": "boolean",
         "getA11yShowMonthText": "function",
         "a11yOpenPopoverText": "string",
         "a11ySelectedText": "string",
