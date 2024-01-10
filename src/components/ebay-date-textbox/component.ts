@@ -79,6 +79,7 @@ class DateTextbox extends Marko.Component<Input, State> {
 
     calculateNumMonths() {
         this.state.numMonths =
+            typeof document !== "undefined" &&
             document.documentElement.clientWidth < MIN_WIDTH_FOR_DOUBLE_PANE
                 ? 1
                 : 2;
