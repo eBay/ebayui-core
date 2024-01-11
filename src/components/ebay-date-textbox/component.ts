@@ -49,7 +49,9 @@ class DateTextbox extends Marko.Component<Input, State> {
             popover: false,
         };
 
-        this.calculateNumMonths();
+        if (typeof document !== "undefined") {
+            this.calculateNumMonths();
+        }
     }
 
     onMount() {
@@ -79,7 +81,6 @@ class DateTextbox extends Marko.Component<Input, State> {
 
     calculateNumMonths() {
         this.state.numMonths =
-            typeof document !== "undefined" &&
             document.documentElement.clientWidth < MIN_WIDTH_FOR_DOUBLE_PANE
                 ? 1
                 : 2;
