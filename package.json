@@ -76,7 +76,7 @@
         "@marko/prettyprint": "^3.0.1",
         "@marko/test": "^10",
         "@marko/testing-library": "^6",
-        "@marko/type-check": "^1.1.0",
+        "@marko/type-check": "^1.1.3",
         "@marko/vite": "^4.1.1",
         "@storybook/addon-a11y": "^7.6.6",
         "@storybook/addon-docs": "^7.6.6",
