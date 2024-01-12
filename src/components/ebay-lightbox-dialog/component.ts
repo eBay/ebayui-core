@@ -97,4 +97,4 @@ class LightboxDialog extends Marko.Component<Input, State> {
     }
 }
 
-export = LightboxDialog;
+export default LightboxDialog;

@@ -1,5 +1,5 @@
 import * as eventUtils from "../../common/event-utils";
-import type { Input } from './index.marko'
+import type { Input } from "./index.marko";
 class Button extends Marko.Component<Input> {
     handleClick(originalEvent: MouseEvent) {
         if (!this.input.disabled) {
@@ -22,4 +22,4 @@ class Button extends Marko.Component<Input> {
     }
 }
 
-export = Button;
+export default Button;
