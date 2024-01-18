@@ -66,7 +66,7 @@ class DateTextbox extends Marko.Component<Input, State> {
     }
 
     onInput(input: Input) {
-        if (input.value) {
+        if (input.value !== undefined) {
             this.state.firstSelected = dateArgToISO(input.value);
         }
         if (input.rangeEnd) {
