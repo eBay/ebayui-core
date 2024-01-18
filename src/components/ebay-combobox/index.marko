@@ -18,6 +18,7 @@ $ const {
     listSelection,
     expanded,
     fluid,
+    chevronSize,
     ...htmlInput
 } = input;
 
@@ -71,6 +72,7 @@ $ var id = inputId || component.getElId("input");
             value=state.currentValue
             aria-autocomplete=component.autocomplete
             aria-roledescription=roledescription
+            disabled=disabled
             aria-haspopup="listbox"
             autocomplete="off"
             aria-expanded="false"
@@ -94,7 +96,12 @@ $ var id = inputId || component.getElId("input");
                 <${buttonRenderBody}/>
             </if>
             <else>
-                <ebay-chevron-down-12-icon/>
+                <if(chevronSize === "large")>
+                    <ebay-chevron-down-16-icon/>
+                </if>
+                <else>
+                    <ebay-chevron-down-12-icon/>
+                </else>
             </else>
         </>
     </span>

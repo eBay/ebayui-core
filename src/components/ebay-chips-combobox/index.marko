@@ -1,0 +1,42 @@
+$ const {
+    options,
+    selected: inputSelected,
+    class: inputClass,
+    fluid,
+    error,
+    value,
+    disabled,
+    a11yDeleteButton = "Remove",
+    ...comboboxInput
+} = input as Omit<typeof input, `on${string}`>;
+
+<span class=["chips-combobox", fluid && "chips-combobox--fluid", error && "chips-combobox--error"] aria-disabled=disabled && "true">
+    <if(state.selected && state.selected.length)>
+        <ul class="chips-combobox__items">
+            <for|option, i| of=state.selected>
+                <li>
+                    <ebay-chip a11y-delete-button=a11yDeleteButton on-delete("handleDelete", i) disabled=disabled>
+                        ${option}
+                    </ebay-chip>
+                </li>
+            </for>
+        </ul>
+    </if>
+    <ebay-combobox
+        class=["chips-combobox__combobox", inputClass]
+        onKeydown("handleKeydown")
+        onOption-click("selectChip")
+        onExpand("emit", "expand")
+        onCollapse("emit", "collapse")
+        disabled=disabled
+        chevron-size="large"
+        ...comboboxInput
+        autocomplete="list"
+    >
+        <for|option| of=options>
+            <if(!state.selected || !state.selected.some((val) => val === option))>
+                <@option text=option/>
+            </if>
+        </for>
+    </ebay-combobox>
+</span>
