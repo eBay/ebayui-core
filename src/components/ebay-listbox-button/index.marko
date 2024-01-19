@@ -18,6 +18,8 @@ $ const {
     collapseOnSelect,
     listSelection,
     variant,
+    hasError,
+    ariaDescribedby: describedby,
     ...htmlInput
 } = input;
 
@@ -30,7 +32,7 @@ $ var isForm = variant === 'form';
 <${truncate && !fluid ? "div" : "span"}
     ...processHtmlAttributes(htmlInput)
     key="container"
-    class=["listbox-button", inputClass, fluid && "listbox-button--fluid", isForm && `listbox-button--form`]
+    class=["listbox-button", inputClass, fluid && "listbox-button--fluid", isForm && `listbox-button--form`, hasError && 'listbox-button--error']
     on-expander-expand("handleExpand")
     on-expander-collapse("handleCollapse")>
     <button
@@ -48,6 +50,7 @@ $ var isForm = variant === 'form';
         disabled=disabled
         name=buttonName
         aria-haspopup="listbox"
+        aria-describedby=describedby
         aria-labelledby=(labelId && `${prefixId} ${labelId}`)
         aria-invalid=(invalid && "true")>
         <span class="btn__cell">
