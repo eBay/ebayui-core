@@ -40,7 +40,9 @@ class TooltipBase extends Marko.Component<Input> {
 
     handleExpand() {
         this.emit("base-expand");
-        this.updateTip();
+        if (this.hostEl && this.overlayEl) {
+            this.updateTip();
+        }
     }
 
     handleCollapse() {
