@@ -2,7 +2,7 @@ import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../listbox-button.stories";
 
-const { Default, withDescription } = composeStories(stories);
+const { Default, withDescription, withError } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
 
@@ -41,5 +41,9 @@ describe("listbox", () => {
 
     it("renders with description", async () => {
         await htmlSnap(withDescription);
+    });
+
+    it("renders with error", async () => {
+        await htmlSnap(withError);
     });
 });

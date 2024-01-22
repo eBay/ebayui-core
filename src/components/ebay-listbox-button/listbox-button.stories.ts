@@ -7,6 +7,10 @@ import Readme from "./README.md";
 import Component from "./index.marko";
 import WithDescriptionTemplate from "./examples/with-description.marko";
 import WithDescriptionTemplateCode from "./examples/with-description.marko?raw";
+import WithErrorTemplate from "./examples/with-error.marko";
+import WithErrorTemplateCode from "./examples/with-error.marko?raw";
+
+
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -48,6 +52,11 @@ export default {
             control: { type: "boolean" },
             description:
                 "will truncate the text of the button onto a single line, and adds an ellipsis, when the buttons text overflows",
+        },
+        hasError: {
+            type: "boolean",
+            control: { type: "boolean" },
+            description: "whether listbox is in an error state or not",
         },
         collapseOnSelect: {
             type: "boolean",
@@ -176,3 +185,9 @@ export const withDescription = buildExtensionTemplate(
     WithDescriptionTemplate,
     WithDescriptionTemplateCode
 );
+
+export const withError = buildExtensionTemplate(
+    WithErrorTemplate,
+    WithErrorTemplateCode
+);
+
