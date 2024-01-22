@@ -6,7 +6,7 @@ import setupMenu, {
     type MenuState,
 } from "../../common/menu-utils";
 import type { MenuEvent } from "../ebay-menu/component";
-import type { Input as EbayButtonInput } from "../ebay-button/component-browser";
+import type { Input as EbayButtonInput } from "../ebay-button/index.marko";
 import { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
 

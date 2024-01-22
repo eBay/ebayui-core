@@ -1,4 +1,10 @@
 {
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
     "attributes": {
         "locale": "string",
         "value": "expression",
@@ -9,6 +15,7 @@
         "disableWeekdays": "array",
         "disableList": "array",
         "inputPlaceholderText": "expression",
+        "collapseOnSelect": "boolean",
         "getA11yShowMonthText": "function",
         "a11yOpenPopoverText": "string",
         "a11ySelectedText": "string",
