@@ -66,6 +66,7 @@ $ for (const option of options) {
         style=style>
         <select
             ...processHtmlAttributes(htmlInput)
+            disabled=disabled
             id=id
             onChange("handleChange")>
             <for|optionOrGroup| of=list>
