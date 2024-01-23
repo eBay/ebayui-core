@@ -17,9 +17,6 @@ execSync(
 execSync(
     "find dist -type f -name 'component*.js' | xargs sed -i '' 's/ extends Marko.Component {/ {/g'",
 );
-execSync(
-    "sed -i '' 's/no-update-body-if=!!config.preserveItems/no-update-body-if(!!config.preserveItems)/g' dist/components/ebay-carousel/index.marko",
-);
 
 // create top level browser.json files to map to nested ones
 fs.readdirSync(componentInputDir)

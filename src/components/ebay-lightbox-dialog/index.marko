@@ -1,4 +1,27 @@
-import { validSizes } from "./component";
+static const validSizes = ["wide", "narrow"] as const;
+import type { WithNormalizedProps } from "../../global";
+import type { Input as DialogBaseInput } from "../components/ebay-dialog-base/component";
+
+export interface LightboxDialogInput extends Omit<DialogBaseInput, `on${string}`> {
+    variant?: "_mini";
+    expanded?: boolean;
+    "a11y-maximize-text"?: string;
+    "a11y-minimize-text"?: string;
+    "banner-img-src"?: string;
+    size?: (typeof validSizes)[number];
+    "banner-img-position"?: Marko.CSS.Properties["backgroundPosition"];
+    "on-expanded"?: () => void;
+    "on-collapsed"?: () => void;
+    "on-open"?: DialogBaseInput["on-open"];
+    "on-close"?: DialogBaseInput["on-close"];
+    "on-prevButtonClick"?: DialogBaseInput["on-prevButtonClick"];
+}
+
+export interface Input extends WithNormalizedProps<LightboxDialogInput> {}
+
+export interface State {
+    expanded: boolean;
+}
 
 $ const {
     class: inputClass,

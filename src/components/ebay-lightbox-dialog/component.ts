@@ -1,30 +1,5 @@
-import type { WithNormalizedProps } from "../../global";
 import type DialogBase from "../components/ebay-dialog-base/component";
-import type { Input as DialogBaseInput } from "../components/ebay-dialog-base/component";
-
-export const validSizes = ["wide", "narrow"] as const;
-
-interface LightboxDialogInput extends Omit<DialogBaseInput, `on${string}`> {
-    variant?: "_mini";
-    expanded?: boolean;
-    "a11y-maximize-text"?: string;
-    "a11y-minimize-text"?: string;
-    "banner-img-src"?: string;
-    size?: (typeof validSizes)[number];
-    "banner-img-position"?: Marko.CSS.Properties["backgroundPosition"];
-    "on-expanded"?: () => void;
-    "on-collapsed"?: () => void;
-    "on-open"?: DialogBaseInput["on-open"];
-    "on-close"?: DialogBaseInput["on-close"];
-    "on-prevButtonClick"?: DialogBaseInput["on-prevButtonClick"];
-}
-
-export interface Input extends WithNormalizedProps<LightboxDialogInput> {}
-
-interface State {
-    expanded: boolean;
-}
-
+import type { Input, State } from "./index.marko";
 class LightboxDialog extends Marko.Component<Input, State> {
     declare touches: {
         identifier: number;
