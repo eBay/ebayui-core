@@ -4,12 +4,19 @@ import Expander from "makeup-expander";
 import { scroll } from "../../common/element-scroll";
 import * as eventUtils from "../../common/event-utils";
 import safeRegex from "../../common/build-safe-regex";
-import type { AttrClass } from "marko/tags-html";
+import type { AttrClass, AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 
-interface ComboboxEvent {
+export interface ComboboxOption {
+    text: string;
+    value?: string;
+    class?: AttrClass;
+    sticky?: boolean;
+}
+
+export interface ComboboxEvent {
     currentInputValue: State["currentValue"];
-    selectedOption: ReturnType<Combobox["_getSelectedOption"]>;
+    selectedOption?: ComboboxOption;
     options: Input["options"];
 }
 
@@ -24,13 +31,9 @@ interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
         htmlAttributes?: Record<string, unknown>;
         renderBody?: Marko.Body;
     };
-    options: {
-        text: string;
-        value: string;
-        class?: AttrClass;
-        sticky?: boolean;
-    }[];
-    roledescription?: string;
+    options?: Marko.RepeatableAttrTag<ComboboxOption>;
+    roledescription?: AttrString;
+    "chevron-size"?: "large";
     "on-focus"?: (event: ComboboxEvent) => void;
     "on-button-click"?: (event: { originalEvent: MouseEvent }) => void;
     "on-expand"?: () => void;
@@ -39,6 +42,8 @@ interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     "on-change"?: (event: ComboboxEvent) => void;
     "on-floating-label-init"?: (event: ComboboxEvent) => void;
     "on-select"?: (event: ComboboxEvent) => void;
+    "on-keydown"?: (event: KeyboardEvent) => void;
+    "on-option-click"?: (text: string) => void;
 }
 
 export interface Input extends WithNormalizedProps<ComboboxInput> {}
@@ -52,7 +57,7 @@ export default class Combobox extends Marko.Component<Input, State> {
     declare expander: any;
     declare buttonClicked: boolean;
     declare optionClicked: boolean;
-    declare activeDescendant: ReturnType<typeof createLinear>;
+    declare activeDescendant: any;
     declare lastValue: Input["value"];
     declare autocomplete: NonNullable<Input["autocomplete"]>;
     declare listSelection: NonNullable<Input["listSelection"]>;
@@ -160,6 +165,8 @@ export default class Combobox extends Marko.Component<Input, State> {
         eventUtils.handleEscapeKeydown(originalEvent, () => {
             this.collapse();
         });
+
+        this.emit("keydown", originalEvent);
     }
 
     handleComboboxKeyUp(originalEvent: KeyboardEvent) {
@@ -213,6 +220,7 @@ export default class Combobox extends Marko.Component<Input, State> {
 
     handleSelectOption(text: string) {
         this._setSelectedText(text);
+        this.emit("option-click", text);
     }
 
     handleFloatingLabelInit() {
@@ -223,7 +231,6 @@ export default class Combobox extends Marko.Component<Input, State> {
         this.autocomplete = input.autocomplete === "list" ? "list" : "none";
         this.listSelection =
             input.listSelection === "manual" ? "manual" : "automatic";
-        input.options = input.options || [];
         this.lastValue = input.value;
         this.state = {
             currentValue: this.lastValue,
@@ -344,18 +351,18 @@ export default class Combobox extends Marko.Component<Input, State> {
     }
 
     _getSelectedOption() {
-        return this.input.options.find(
+        return [...(this.input.options ?? [])].find(
             (option) => option.text === this.state.currentValue,
         );
     }
 
     _getVisibleOptions() {
         if (this.autocomplete === "none" || this.state.viewAllOptions) {
-            return this.input.options;
+            return [...(this.input.options ?? [])];
         }
 
         const currentValueReg = safeRegex(this.state.currentValue?.toString());
-        return this.input.options.filter(
+        return [...(this.input.options ?? [])].filter(
             (option) =>
                 currentValueReg.test(option.text || "") || option.sticky,
         );

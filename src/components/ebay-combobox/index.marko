@@ -18,6 +18,7 @@ $ const {
     listSelection,
     expanded,
     fluid,
+    chevronSize,
     ...htmlInput
 } = input;
 
@@ -95,7 +96,12 @@ $ var id = inputId || component.getElId("input");
                 <${buttonRenderBody}/>
             </if>
             <else>
-                <ebay-chevron-down-12-icon/>
+                <if(chevronSize === "large")>
+                    <ebay-chevron-down-16-icon/>
+                </if>
+                <else>
+                    <ebay-chevron-down-12-icon/>
+                </else>
             </else>
         </>
     </span>
