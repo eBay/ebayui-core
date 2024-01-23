@@ -25,12 +25,12 @@ class Breadcrumbs extends Marko.Component<Input, State> {
     declare cachedWidths: number[];
     declare newInput: boolean;
 
-    handleClick({ originalEvent }: MenuEvent) {
+    handleClick(originalEvent: KeyboardEvent) {
         this.emit("select", { originalEvent, el: originalEvent?.target });
     }
 
-    handleMenuBreadcrumb({ originalEvent, el }: MenuEvent) {
-        this.emit("select", { originalEvent, el });
+    handleMenuBreadcrumb(originalEvent: MenuEvent) {
+        this.emit("select", { originalEvent, el: originalEvent?.el });
     }
 
     onCreate() {
