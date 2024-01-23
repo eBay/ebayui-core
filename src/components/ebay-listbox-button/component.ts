@@ -4,13 +4,14 @@ import type { Input as ListboxInput } from "../ebay-listbox/component";
 import type Listbox from "../ebay-listbox/component";
 import type { Option, ChangeEvent } from "../ebay-listbox/component";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 interface ListboxButtonInput extends Omit<Marko.Input<"div">, `on${string}`> {
     options?: ListboxInput["options"];
     name?: ListboxInput["name"];
     "list-selection"?: ListboxInput["listSelection"];
     "prefix-id"?: string;
-    "unselected-text"?: string;
+    "unselected-text"?: AttrString;
     variant?: "standard" | "form";
     truncate?: boolean;
     fluid?: boolean;
@@ -20,7 +21,7 @@ interface ListboxButtonInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "button-name"?: string;
     invalid?: boolean;
     hasError?: boolean;
-    "prefix-label"?: string;
+    "prefix-label"?: AttrString;
     "collapse-on-select"?: boolean;
     "on-expand"?: () => void;
     "on-collapse"?: () => void;

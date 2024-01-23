@@ -7,6 +7,7 @@ import setupMenu, {
 } from "../../common/menu-utils";
 import type { FilterMenuEvent } from "../ebay-filter-menu/component";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 export interface FilterMenuButtonEvent {
     el?: Element;
@@ -19,12 +20,12 @@ export interface FilterMenuButtonEvent {
 interface FilterMenuButtonInput
     extends BaseMenuInput,
         Omit<Marko.Input<"span">, `on${string}`> {
-    text?: string;
-    "footer-text"?: string;
-    "a11y-footer-text"?: string;
+    text?: AttrString;
+    "footer-text"?: AttrString;
+    "a11y-footer-text"?: AttrString;
     footer?: WithNormalizedProps<
         Omit<Marko.Input<"button">, `on${string}`> & {
-            "a11y-footer-text"?: string;
+            "a11y-footer-text"?: AttrString;
         }
     >;
     variant?: "form";
@@ -32,7 +33,7 @@ interface FilterMenuButtonInput
     "form-action"?: string;
     "form-method"?: string;
     disabled?: boolean;
-    "a11y-text"?: string;
+    "a11y-text"?: AttrString;
     "on-expand"?: () => void;
     "on-change"?: (event: FilterMenuButtonEvent) => void;
     "on-collapse"?: (event: FilterMenuButtonEvent) => void;

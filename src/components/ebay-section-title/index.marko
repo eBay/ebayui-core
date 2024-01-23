@@ -1,8 +1,9 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
 import type { WithNormalizedProps } from '../../global';
+import type { AttrString } from 'marko/tags-html';
 
 static interface SectionTitleInput extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
-    "cta-text"?: string;
+    "cta-text"?: AttrString;
     title?: Omit<Marko.Input<"h2">, `on${string}`>;
     href?: string;
     subtitle?: Omit<Marko.Input<"span">, `on${string}`>;

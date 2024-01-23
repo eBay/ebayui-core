@@ -1,3 +1,4 @@
+import type { AttrString } from "marko/tags-html";
 import { CDNLoader } from "../../common/cdn";
 import type { WithNormalizedProps } from "../../global";
 import { getElements } from "./elements";
@@ -58,16 +59,16 @@ interface VideoInput extends Omit<Marko.Input<"video">, `on${string}`> {
     "volume-slider"?: boolean;
     tracks?: any[];
     sources: Marko.AttrTag<Marko.Input<"source">>[];
-    "report-text"?: string;
+    "report-text"?: AttrString;
     "spinner-timeout"?: number;
     "cdn-url"?: string;
     "css-url"?: string;
     version?: string;
     thumbnail?: string;
     track?: Marko.AttrTag<Marko.Input<"track">>[];
-    "error-text"?: string;
-    "a11y-play-text"?: string;
-    "a11y-load-text"?: string;
+    "error-text"?: AttrString;
+    "a11y-play-text"?: AttrString;
+    "a11y-load-text"?: AttrString;
     "on-play"?: (event: PlayPauseEvent) => void;
     "on-pause"?: (event: PlayPauseEvent) => void;
     "on-volume-change"?: (event: VolumeEvent) => void;

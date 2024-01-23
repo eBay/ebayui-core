@@ -1,3 +1,4 @@
+import type { AttrString } from "marko/tags-html";
 import * as eventUtils from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
 
@@ -8,7 +9,7 @@ interface IconButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
     transparent?: boolean;
     size?: "small" | "large";
     "partially-disabled"?: boolean;
-    "badge-aria-label"?: string;
+    "badge-aria-label"?: AttrString;
     "on-click"?: (event: { originalEvent: MouseEvent }) => void;
     "on-escape"?: (event: { originalEvent: KeyboardEvent }) => void;
     "on-focus"?: (event: { originalEvent: FocusEvent }) => void;

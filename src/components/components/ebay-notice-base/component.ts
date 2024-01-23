@@ -1,3 +1,4 @@
+import type { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../../global";
 
 interface NoticeBaseInput
@@ -12,15 +13,15 @@ interface NoticeBaseInput
     "prefix-class"?: string;
     root?: Marko.Renderable;
     "no-a11y-label"?: boolean;
-    "a11y-role-description"?: string;
+    "a11y-role-description"?: AttrString;
     icon?: "none";
     "icon-class"?: string;
     "header-root"?: Marko.Renderable;
-    "a11y-text"?: string;
-    "a11y-icon-text"?: string;
+    "a11y-text"?: AttrString;
+    "a11y-icon-text"?: AttrString;
     "main-root"?: Marko.Renderable;
     footer?: Marko.Renderable;
-    "a11y-dismiss-text"?: string;
+    "a11y-dismiss-text"?: AttrString;
     title?: Marko.Input<"title"> & {
         as?: Marko.Renderable;
     };

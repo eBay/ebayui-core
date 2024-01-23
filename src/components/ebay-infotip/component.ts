@@ -1,3 +1,4 @@
+import type { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 import EbayTooltipBase from "../components/ebay-tooltip-base/component-browser";
 import type { Input as TooltipBaseInput } from "../components/ebay-tooltip-base/component-browser";
@@ -9,14 +10,13 @@ interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     pointer?: TooltipBaseInput["pointer"];
     placement?: TooltipBaseInput["placement"];
     disabled?: boolean;
-    "aria-label"?: string;
     icon?: Marko.AttrTag<{ renderBody: Marko.Renderable }>;
     heading: Marko.Input<"span"> & {
         as: Marko.NativeTags;
         renderBody: Marko.Renderable;
     };
     content: Marko.AttrTag<Marko.Input<"span">>;
-    "a11y-close-button-text"?: string;
+    "a11y-close-button-text"?: AttrString;
     "on-expand"?: () => void;
     "on-collapse"?: () => void;
 }

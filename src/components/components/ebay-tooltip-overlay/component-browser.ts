@@ -1,4 +1,4 @@
-import type { AttrClass } from "marko/tags-html";
+import type { AttrClass, AttrString } from "marko/tags-html";
 import { typeRoles } from "./constants";
 import type { WithNormalizedProps } from "../../../global";
 
@@ -15,7 +15,7 @@ interface TooltipOverlayInput {
     id?: string;
     type: keyof typeof typeRoles;
     content?: Marko.AttrTag<Marko.Input<"span">>;
-    "a11y-close-text"?: string;
+    "a11y-close-text"?: AttrString;
     footer?: Marko.AttrTag<
         Marko.Renderable & {
             class?: AttrClass;
