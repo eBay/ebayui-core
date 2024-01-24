@@ -8,9 +8,9 @@ export interface CheckboxEvent {
 interface CheckboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     toJSON?: any;
     "icon-style"?: "rounded" | "square";
-    "on-change"?: () => void;
-    "on-focus"?: () => void;
-    "on-keydown"?: () => void;
+    "on-change"?: (e: CheckboxEvent) => void;
+    "on-focus"?: (e: CheckboxEvent) => void;
+    "on-keydown"?: (e: CheckboxEvent) => void;
 }
 
 export interface Input extends WithNormalizedProps<CheckboxInput> {}

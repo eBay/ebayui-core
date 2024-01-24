@@ -20,14 +20,18 @@ interface NoticeBaseInput
     "a11y-text"?: AttrString;
     "a11y-icon-text"?: AttrString;
     "main-root"?: Marko.Renderable;
-    footer?: Marko.Renderable;
+    footer?: Marko.AttrTag<Marko.Renderable>;
     "a11y-dismiss-text"?: AttrString;
-    title?: Marko.Input<"title"> & {
-        as?: Marko.Renderable;
-    };
-    cta?: Marko.Input<"a"> & {
-        renderBody?: Marko.Renderable;
-    };
+    title?: Marko.AttrTag<
+        Marko.Input<"title"> & {
+            as?: Marko.Renderable;
+        }
+    >;
+    cta?: Marko.AttrTag<
+        Marko.Input<"a"> & {
+            renderBody?: Marko.Renderable;
+        }
+    >;
     "education-icon"?: Marko.Renderable;
     prominent?: boolean;
     "on-dismiss"?: () => void;
