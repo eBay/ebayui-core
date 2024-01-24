@@ -15,6 +15,7 @@ interface ToggleButtonGroupInput
     columns?: number;
     variant?: "checkbox" | "radio" | "radio-toggle";
     layoutType?: ToggleButtonInput["layoutType"];
+    "on-change"?: (event: ToggleButtonGroupEvent) => void;
 }
 
 export interface Input extends WithNormalizedProps<ToggleButtonGroupInput> {}
