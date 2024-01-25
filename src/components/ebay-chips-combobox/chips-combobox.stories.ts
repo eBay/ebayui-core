@@ -1,4 +1,7 @@
-import { addRenderBodies } from "../../../.storybook/utils";
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../../.storybook/utils";
 import { tagToString } from "../../../.storybook/storybook-code-source";
 import Readme from "./README.md";
 import Combobox from "./index.marko";

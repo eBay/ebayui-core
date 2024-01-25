@@ -5,23 +5,11 @@
         "type": "expression"
     },
     "@html-attributes": "expression",
-    "@borderless": "boolean",
-    "@autocomplete": "string",
     "@expanded": "boolean",
-    "@list-selection": {
-        "enum": ["automatic", "manual"]
-    },
-    "@disabled": "#html-disabled",
-    "@form": "#html-form",
-    "@name": "#html-name",
-    "@placeholder": "#html-placeholder",
-    "@required": "#html-required",
-    "@value": "#html-value",
-    "@role": "never",
-    "@aria-autocomplete": "never",
-    "@aria-haspopup": "never",
-    "@floating-label": "string",
-    "@actionable <actionable>": {
+    "@fluid": "boolean",
+    "@error": "boolean",
+    "@list-selection": "string",
+    "@option <option>": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,
@@ -29,19 +17,6 @@
         },
         "@html-attributes": "expression"
     },
-    "@options <option>[]": {
-        "attribute-groups": ["html-attributes"],
-        "@*": {
-            "targetProperty": null,
-            "type": "expression"
-        },
-        "@html-attributes": "expression",
-        "@value": "string",
-        "@text": "string",
-        "@selected": "boolean",
-        "@tabindex": "never",
-        "@role": "never",
-        "@aria-selected": "never",
-        "@sticky": "boolean"
-    }
+    "@options": "array",
+    "@selected": "array"
 }
