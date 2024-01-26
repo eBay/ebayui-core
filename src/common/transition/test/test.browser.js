@@ -1,4 +1,4 @@
-import sinon from "sinon";
+import sinon from "sinon/pkg/sinon";
 import { expect } from "chai";
 import * as testUtils from "../../test-utils/browser";
 import transition from "../";
@@ -54,7 +54,7 @@ describe("transition", () => {
                 done();
             };
             expect(transitionEl.classList.contains("show-init")).to.equal(
-                false
+                false,
             );
             expect(transitionEl.classList.contains("show")).to.equal(true);
             transitionEl.addEventListener("transitionend", handleEnd);
@@ -65,14 +65,14 @@ describe("transition", () => {
         const spy = sinon.spy();
         transition(
             { el: transitionEl, className: "show", waitFor: [transitionEl] },
-            spy
+            spy,
         );
         transitionEl.removeAttribute("hidden");
         transitionEl.addEventListener("transitionend", () =>
             setTimeout(() => {
                 expect(spy.callCount).to.equal(1);
                 done();
-            })
+            }),
         );
     });
 });

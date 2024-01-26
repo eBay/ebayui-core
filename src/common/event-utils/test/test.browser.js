@@ -1,4 +1,4 @@
-import sinon from "sinon";
+import sinon from "sinon/pkg/sinon";
 import { expect } from "chai";
 import { fireEvent } from "@marko/testing-library";
 import { waitFrames } from "../../test-utils/browser";
