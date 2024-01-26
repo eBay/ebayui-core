@@ -9,7 +9,7 @@
     "@fluid": "boolean",
     "@error": "boolean",
     "@list-selection": "string",
-    "@option <option>": {
+    "@option <option>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,
