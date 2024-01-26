@@ -1,7 +1,12 @@
-import { addRenderBodies } from "../../../.storybook/utils";
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../../.storybook/utils";
 import { tagToString } from "../../../.storybook/storybook-code-source";
 import Readme from "./README.md";
 import Combobox from "./index.marko";
+import DefaultTemplate from "./examples/default.marko";
+import DefaultCode from "./examples/default.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -54,11 +59,16 @@ export default {
                 "The role description for accessibility. Default text is set and will be in english. Pass this to override for different locales",
         },
         options: {
-            type: "array",
-            control: { type: "object" },
-            description: "array of autofill options to display",
+            name: "@option",
+            description:
+                "Repeatable attribute tag containing the autofill options",
         },
-
+        text: {
+            table: {
+                category: "@option attributes",
+            },
+            description: "The text contained in the autofill option",
+        },
         onChange: {
             action: "on-change",
             table: {
@@ -87,30 +97,4 @@ export default {
     },
 };
 
-export const Isolated = Template.bind({});
-Isolated.args = {
-    options: [
-        "football",
-        "baseball",
-        "basketball",
-        "hockey",
-        "soccer",
-        "volleyball",
-        "golf",
-        "tennis",
-    ],
-};
-Isolated.parameters = {
-    docs: {
-        source: {
-            code: tagToString("ebay-combobox", Isolated.args, {
-                options: "option",
-            }),
-        },
-    },
-    expanded: {
-        table: {
-            category: "disabled",
-        },
-    },
-};
+export const Default = buildExtensionTemplate(DefaultTemplate, DefaultCode);

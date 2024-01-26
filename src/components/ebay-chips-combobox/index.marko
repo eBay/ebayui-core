@@ -1,5 +1,5 @@
 $ const {
-    options,
+    option,
     selected: inputSelected,
     class: inputClass,
     fluid,
@@ -9,6 +9,8 @@ $ const {
     a11yDeleteButton = "Remove",
     ...comboboxInput
 } = input as Omit<typeof input, `on${string}`>;
+
+$ const options = [...option || []].map((o) => o.text)
 
 <span
     class=[
