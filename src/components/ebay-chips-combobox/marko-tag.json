@@ -17,6 +17,5 @@
         },
         "@html-attributes": "expression"
     },
-    "@options": "array",
     "@selected": "array"
 }
