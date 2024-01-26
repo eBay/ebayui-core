@@ -1,15 +1,22 @@
-import type { Input as SelectInput } from "<ebay-select>"
-export type Input = SelectInput;
+class {
+    onCreate() {
+        this.state = {
+            selected: null
+        }
+    }
 
-class {}
+    handleChange({ index }) {
+        this.state.selected = index;
+    }
+}
 
 <span class="field">
     <label class="field__label field__label--start" for="select">
         Option
     </label>
-    <ebay-select ...input name="formFieldName" id="select">
-        <@option value="1" text="Option 1"/>
-        <@option value="2" text="Option 2"/>
-        <@option value="3" text="Option 3"/>
+    <ebay-select ...input name="formFieldName" id="select" on-change("handleChange")>
+        <for|option, i| of=input.options>
+            <@option value=option.value text=option.text selected=i === state.selected/>
+        </for>
     </ebay-select>
 </span>

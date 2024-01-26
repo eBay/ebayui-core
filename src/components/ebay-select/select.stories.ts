@@ -31,11 +31,6 @@ export default {
     },
 
     argTypes: {
-        selected: {
-            control: { type: "number" },
-            description:
-                "allows you to set the selected index option to `selected`",
-        },
         floatingLabel: {
             type: "string",
             control: { type: "string" },
@@ -64,6 +59,14 @@ export default {
             control: { type: "text" },
             description:
                 "used for the `value` attribute of the native `<option>`",
+            table: {
+                category: "@option attributes",
+            },
+        },
+        selected: {
+            control: { type: "text" },
+            description:
+                "used to determine which option is selected. This should be included in one and only one option.",
             table: {
                 category: "@option attributes",
             },
@@ -130,6 +133,27 @@ ExternalLabel.parameters = {
             code: WithLabelCode,
         },
     },
+};
+
+ExternalLabel.args = {
+    options: [
+        {
+            text: "Select an option",
+            value: "",
+        },
+        {
+            text: "option 1",
+            value: "option 1",
+        },
+        {
+            text: "option 2",
+            value: "option 2",
+        },
+        {
+            text: "option 3",
+            value: "option 3",
+        },
+    ],
 };
 
 export const Disabled = (args) => ({
