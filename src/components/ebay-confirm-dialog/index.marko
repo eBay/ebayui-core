@@ -1,12 +1,15 @@
 import type { Input as BaseInput } from "<ebay-dialog-base>";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
+import type { Input as ButtonInput } from "<ebay-button>";
+import type { Input as DialogBaseInput } from "<ebay-dialog-base>";
 
 static interface ConfirmDialogInput extends Omit<BaseInput, `on${string}`> {
-    "reject-text"?: string;
-    "confirm-text"?: string;
-    "on-open"?: () => void;
-    "on-reject"?: () => void;
-    "on-confirm"?: () => void;
+    "reject-text"?: AttrString;
+    "confirm-text"?: AttrString;
+    "on-open"?: DialogBaseInput["on-open"];
+    "on-reject"?: ButtonInput["on-click"] | DialogBaseInput["on-close"];
+    "on-confirm"?: ButtonInput["on-click"];
     "confirm-cta-variant"?: typeof validConfirmCTAVariants[number];
 }
 

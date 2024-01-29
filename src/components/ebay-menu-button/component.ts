@@ -7,6 +7,8 @@ import setupMenu, {
 } from "../../common/menu-utils";
 import type { MenuEvent } from "../ebay-menu/component";
 import type { Input as EbayButtonInput } from "../ebay-button/index.marko";
+import { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 export interface MenuButtonEvent {
     el?: Element;
@@ -18,39 +20,36 @@ export interface MenuButtonEvent {
     index?: number;
 }
 
-export interface Input
+interface MenuButtonInput
     extends BaseMenuInput,
         Omit<Marko.Input<"span">, `on${string}`> {
-    collapseOnSelect?: boolean;
-    prefixId?: string;
+    "collapse-on-select"?: boolean;
+    "prefix-id"?: string;
     variant?: "overflow" | "form" | "button" | "icon";
     borderless?: boolean;
     priority?: "primary" | "secondary" | "tertiary" | "delete" | "none";
     size?: EbayButtonInput["size"];
     transparent?: boolean;
-    a11yText?: string;
+    "a11y-text"?: AttrString;
     disabled?: boolean;
     split?: string;
-    noToggleIcon?: boolean;
+    "no-toggle-icon"?: boolean;
     label?: {
         renderBody?: Marko.Body;
     };
-    prefixLabel?: string;
+    "prefix-label"?: AttrString;
     icon?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
-    text?: string;
+    text?: AttrString;
     reverse?: boolean;
-    fixWidth?: boolean;
+    "fix-width"?: boolean;
     "on-expand"?: (event: MenuButtonEvent) => void;
-    onExpand?: this["on-expand"];
     "on-collapse"?: (event: MenuButtonEvent) => void;
-    onCollapse?: this["on-collapse"];
     "on-change"?: (event: MenuButtonEvent) => void;
-    onChange?: this["on-change"];
     "on-select"?: (event: MenuButtonEvent) => void;
-    onSelect?: this["on-select"];
     "on-mousedown"?: (event: MenuButtonEvent) => void;
-    onMousedown?: this["on-mousedown"];
 }
+
+export interface Input extends WithNormalizedProps<MenuButtonInput> {}
 
 export default class extends MenuUtils<Input, MenuState> {
     declare expander: any;

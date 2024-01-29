@@ -1,4 +1,4 @@
-import sinon from "sinon";
+import sinon from "sinon/pkg/sinon";
 import { expect } from "chai";
 import { simulateScroll } from "../../../../../common/test-utils/browser";
 import { onScrollDebounced } from "..";

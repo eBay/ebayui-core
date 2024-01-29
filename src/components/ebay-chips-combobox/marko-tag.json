@@ -1,0 +1,21 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@expanded": "boolean",
+    "@fluid": "boolean",
+    "@error": "boolean",
+    "@list-selection": "string",
+    "@option <option>[]": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@selected": "array"
+}

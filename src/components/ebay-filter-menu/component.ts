@@ -8,6 +8,7 @@ import setupMenu, {
 } from "../../common/menu-utils";
 import type { RadioEvent } from "../ebay-radio/component-browser";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 export interface FilterMenuEvent<T extends Event = Event> {
     el?: Element;
@@ -26,11 +27,11 @@ interface FilterMenuInput
     "form-name"?: string;
     "form-action"?: string;
     "form-method"?: string;
-    "footer-text"?: string;
-    "a11y-footer-text"?: string;
+    "footer-text"?: AttrString;
+    "a11y-footer-text"?: AttrString;
     footer?: WithNormalizedProps<
         Omit<Marko.Input<"button">, `on${string}`> & {
-            "a11y-footer-text"?: string;
+            "a11y-footer-text"?: AttrString;
         }
     >;
     "render-body"?: Marko.Body;

@@ -1,5 +1,6 @@
 import { processHtmlAttributes } from '../../common/html-attributes';
 import type { WithNormalizedProps } from '../../global';
+import type { AttrString } from 'marko/tags-html';
 
 export interface Step extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
     current?: boolean;
@@ -14,7 +15,7 @@ static interface ProgressStepperInput extends Omit<Marko.Input<"div">, `on${stri
     step?: Marko.AttrTag<Step>[];
     "default-state"?: "complete" | "upcoming" | "attention" | "current";
     "a11y-heading-tag"?: Marko.NativeTags;
-    "a11y-heading-text"?: string;
+    "a11y-heading-text"?: AttrString;
     "auto-paragraph"?: boolean;
 }
 

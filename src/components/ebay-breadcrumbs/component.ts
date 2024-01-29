@@ -1,13 +1,13 @@
 import * as eventUtils from "../../common/event-utils";
 import { getMaxWidth } from "../../common/dom";
-import type { AttrClass } from "marko/tags-html";
+import type { AttrClass, AttrString } from "marko/tags-html";
 import type { MenuEvent } from "../ebay-menu/component";
 import type { WithNormalizedProps } from "../../global";
 
 interface BreadcrumbsInput extends Omit<Marko.Input<"nav">, `on${string}`> {
     "a11y-heading-tag"?: keyof Marko.NativeTags;
-    "a11y-heading-text"?: string;
-    "a11y-menu-button-text"?: string;
+    "a11y-heading-text"?: AttrString;
+    "a11y-menu-button-text"?: AttrString;
     class?: AttrClass;
     items: Marko.RepeatableAttrTag<
         Marko.Input<"a"> | (Marko.Input<"button"> & { href: never })

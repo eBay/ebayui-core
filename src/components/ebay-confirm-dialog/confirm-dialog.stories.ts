@@ -40,6 +40,12 @@ export default {
             control: { type: "text" },
             description: "Text for reject button",
         },
+        header: {
+            name: "@header",
+            table: {
+                category: "@attribute tags",
+            },
+        },
         confirmCtaVariant: {
             options: ["none", "destructive"],
             description: "The alternative main CTA button variant to use.",
@@ -85,8 +91,12 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    confirmText: "Okay",
+    confirmText: "Delete",
     rejectText: "Cancel",
+    header: {
+        renderBody: `Delete Address?`,
+    },
+    renderBody: `You will permanently lose this address.`,
 };
 Default.parameters = {
     docs: {

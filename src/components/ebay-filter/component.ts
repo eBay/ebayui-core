@@ -1,3 +1,4 @@
+import type { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 
 export interface FilterInput
@@ -5,7 +6,7 @@ export interface FilterInput
     selected?: boolean;
     href?: string;
     "use-aria-pressed"?: boolean;
-    "a11y-selected-text"?: string;
+    "a11y-selected-text"?: AttrString;
     "on-click"?: (event: {
         selected: boolean;
         originalEvent: MouseEvent;

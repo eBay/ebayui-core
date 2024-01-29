@@ -34,7 +34,7 @@ export default {
         },
         "confirm-text": {
             control: { type: "text" },
-            description: "Text for confirm button",
+            description: "Text for OK button",
         },
         header: {
             name: "@header",
@@ -48,9 +48,9 @@ export default {
 export const Standard = Template.bind({});
 Standard.args = {
     header: {
-        renderBody: `Heading Text`,
+        renderBody: `Alert!`,
     },
-    renderBody: `Body Content`,
+    renderBody: `You must acknowledge this alert to continue.`,
 };
 Standard.parameters = {
     docs: {

@@ -1,6 +1,6 @@
 import * as keyboardTrap from "makeup-keyboard-trap";
 import * as screenReaderTrap from "makeup-screenreader-trap";
-import type { AttrClass } from "marko/tags-html";
+import type { AttrClass, AttrString } from "marko/tags-html";
 import * as bodyScroll from "../../../common/body-scroll";
 import * as eventUtils from "../../../common/event-utils";
 import transition from "../../../common/transition";
@@ -17,9 +17,9 @@ interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
         }
     >;
     "class-prefix"?: string;
-    "close-button-text"?: string;
+    "close-button-text"?: AttrString;
     "close-button-class"?: AttrClass;
-    "a11y-close-text"?: string;
+    "a11y-close-text"?: AttrString;
     "close-button"?: Marko.Renderable;
     "is-modal"?: boolean;
     "ignore-escape"?: boolean;
@@ -42,7 +42,7 @@ interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
     focus?: string;
     prevButton?: WithNormalizedProps<
         Omit<Marko.Input<"button">, `on${string}`> & {
-            "a11y-text"?: string;
+            "a11y-text"?: AttrString;
         }
     >;
     "on-open"?: (event: Event) => void;

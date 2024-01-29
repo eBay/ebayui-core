@@ -18,6 +18,23 @@ module.exports = function (lasso) {
             return this.path;
         },
     });
+    lasso.dependencies.registerJavaScriptType("js", {
+        properties: {
+            path: "string",
+        },
+        async init() {
+            if (!this.path) {
+                throw new Error('"path" is required');
+            }
+            this.path = this.resolvePath(this.path);
+        },
+        async read() {
+            return await fs.promises.readFile(this.path, "utf-8");
+        },
+        getSourceFile: function () {
+            return this.path;
+        },
+    });
 
     lasso.dependencies.registerRequireExtension("md", {
         read: async function (path) {

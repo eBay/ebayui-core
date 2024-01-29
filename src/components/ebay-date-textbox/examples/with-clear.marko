@@ -1,0 +1,21 @@
+class {
+    onCreate() {
+        this.state = {
+            value: null,
+        };
+    }
+
+    handleChange({ selected }) {
+        this.state.value = selected;
+    }
+
+    clear() {
+        this.state.value = null;
+    }
+}
+
+<ebay-date-textbox value=state.value onChange("handleChange")/>
+
+<ebay-button onClick("clear")>
+    Clear
+</ebay-button>

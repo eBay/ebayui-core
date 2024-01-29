@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { waitFor } from "@marko/testing-library";
-import sinon from "sinon";
+import sinon from "sinon/pkg/sinon";
 import { CDNLoader } from "..";
 import * as load from "../../loader";
 
@@ -26,7 +26,7 @@ describe("CDN Loader", () => {
                 setLoading,
                 handleSuccess,
                 handleError,
-            }
+            },
         );
 
         await waitFor(() => {
@@ -57,7 +57,7 @@ describe("CDN Loader", () => {
                 setLoading,
                 handleSuccess,
                 handleError,
-            }
+            },
         );
 
         cdnLoader.mount();
@@ -69,7 +69,7 @@ describe("CDN Loader", () => {
                 expect(handleSuccess.called).to.equal(false, "success called");
                 expect(setLoading.calledWith(false)).to.equal(true);
             },
-            { timeout: 6000 }
+            { timeout: 6000 },
         );
     });
 });

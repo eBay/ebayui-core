@@ -6,12 +6,17 @@ export interface Panel extends Omit<Marko.Input<"div">, `on${string}`> {}
 
 export interface Tab extends Omit<Marko.Input<"div">, `on${string}`> {}
 
+export interface TabsEvent {
+    selectedIndex: number;
+}
+
 interface TabsInput extends Omit<Marko.Input<"div">, `on${string}`> {
     tabs: Marko.AttrTag<Tab>[];
     panels: Marko.AttrTag<Panel>[];
     activation?: "auto" | "manual";
     fake?: boolean;
     "selected-index"?: number | string;
+    "on-select"?: (event: TabsEvent) => void;
 }
 
 export interface Input extends WithNormalizedProps<TabsInput> {}
@@ -92,7 +97,7 @@ class Tabs extends Marko.Component<Input, State> {
 
         if (selectedIndex !== state.selectedIndex) {
             state.selectedIndex = selectedIndex;
-            this.emit("select", { selectedIndex });
+            this.emit("select", { selectedIndex } as TabsEvent);
         }
     }
 

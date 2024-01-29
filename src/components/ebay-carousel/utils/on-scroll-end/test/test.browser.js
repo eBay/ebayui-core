@@ -1,4 +1,4 @@
-import sinon from "sinon";
+import sinon from "sinon/pkg/sinon";
 import { expect } from "chai";
 import {
     simulateScroll,

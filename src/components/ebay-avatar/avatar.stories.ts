@@ -33,6 +33,7 @@ export default {
                 "yellow",
                 "orange",
                 "magenta",
+                "pink",
             ],
             table: {
                 defaultValue: {

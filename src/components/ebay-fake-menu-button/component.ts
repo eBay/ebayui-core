@@ -6,9 +6,10 @@ import type {
     Item as FakeMenuItem,
 } from "../ebay-fake-menu/component";
 import type { WithNormalizedProps } from "../../global";
+import type { AttrString } from "marko/tags-html";
 
 interface FakeMenuButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
-    text?: string;
+    text?: AttrString;
     size?: "none" | "large";
     "prefix-id"?: string;
     variant?: "overflow" | "form" | "button" | "icon";
@@ -16,7 +17,7 @@ interface FakeMenuButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
     borderless?: boolean;
     transparent?: boolean;
     icon?: Marko.Renderable;
-    "a11y-text"?: string;
+    "a11y-text"?: AttrString;
     disabled?: boolean;
     "no-toggle-icon"?: boolean;
     label?: { renderBody?: Marko.Body };

@@ -7,6 +7,8 @@ import Readme from "./README.md";
 import Component from "./index.marko";
 import LocalizedTemplate from "./examples/localized.marko";
 import LocalizedTemplateCode from "./examples/localized.marko?raw";
+import WithClearTemplate from "./examples/with-clear.marko";
+import WithClearTemplateCode from "./examples/with-clear.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -223,5 +225,10 @@ Default.parameters = {
 
 export const Localized = buildExtensionTemplate(
     LocalizedTemplate,
-    LocalizedTemplateCode
+    LocalizedTemplateCode,
+);
+
+export const WithClear = buildExtensionTemplate(
+    WithClearTemplate,
+    WithClearTemplateCode,
 );
