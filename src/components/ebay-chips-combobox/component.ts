@@ -2,7 +2,7 @@ import { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 import { handleEnterKeydown } from "../../common/event-utils";
 
-interface ChipsComboboxEvent {
+export interface ChipsComboboxEvent {
     selected: string[];
 }
 

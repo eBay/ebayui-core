@@ -4,7 +4,7 @@ import type {
     Input as ToggleButtonInput,
 } from "../ebay-toggle-button/component";
 
-interface ToggleButtonGroupEvent {
+export interface ToggleButtonGroupEvent {
     originalEvent: MouseEvent;
     pressed: number[];
 }
