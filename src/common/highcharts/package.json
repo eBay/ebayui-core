@@ -1,0 +1,10 @@
+{
+    "browser": "./lasso-async.js",
+    "main": "./noop.js",
+    "exports": {
+        ".": {
+            "browser": "./import.js",
+            "default": "./noop.js"
+        }
+    }
+}

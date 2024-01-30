@@ -14,8 +14,8 @@ import {
 } from "../../common/charts/shared";
 import { debounce } from "../../common/event-utils";
 import { ebayLegend } from "../../common/charts/legend";
-import Highcharts from "highcharts";
 import type { WithNormalizedProps } from "../../global";
+import { load } from "../../common/highcharts";
 
 interface AreaChartInput extends Omit<Marko.Input<"div">, `on${string}`> {
     title: Highcharts.TitleOptions["text"];
@@ -28,9 +28,6 @@ interface AreaChartInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "y-axis-labels"?: Highcharts.YAxisLabelsOptions["format"];
     "y-axis-positioner"?: Highcharts.YAxisOptions["tickPositioner"];
     description?: Highcharts.SeriesAccessibilityOptionsObject["description"];
-    "cdn-highcharts"?: string;
-    "cdn-highcharts-accessibility"?: string;
-    "cdn-highcharts-pattern-fill"?: string;
     version?: string;
     series: Highcharts.SeriesAreaOptions | Highcharts.SeriesAreaOptions[];
     "on-load-error": (err: Error) => void;
@@ -42,6 +39,7 @@ const pointSize = 1.5;
 
 class AreaChart extends Marko.Component<Input> {
     declare chartRef: Highcharts.Chart;
+    declare highcharts: typeof import("highcharts");
     declare cdnLoader: CDNLoader;
     declare mouseOut: ReturnType<typeof debounce>;
     declare mouseOver: ReturnType<typeof debounce>;
@@ -55,29 +53,16 @@ class AreaChart extends Marko.Component<Input> {
         }
     }
 
-    onCreate() {
-        this.cdnLoader = new CDNLoader(this as any, {
-            stagger: true,
-            key: "highcharts",
-            types: ["src", "src", "src"],
-            files: ["highcharts.js", "accessibility.js", "pattern-fill.js"],
-            setLoading: () => {},
-            handleError: this.handleError.bind(this),
-            handleSuccess: this.handleSuccess.bind(this),
-        });
-    }
-
     onMount() {
-        this.cdnLoader
-            .setOverrides(
-                [
-                    this.input.cdnHighcharts,
-                    this.input.cdnHighchartsAccessibility,
-                    this.input.cdnHighchartsPatternFill,
-                ] as string[],
-                this.input.version,
-            )
-            .mount();
+        load().then(
+            ({ default: highcharts }) => {
+                this.highcharts = highcharts;
+                this._setupCharts();
+            },
+            (err) => {
+                this.emit("load-error", err);
+            },
+        );
     }
 
     handleError(err: Error) {
@@ -94,7 +79,7 @@ class AreaChart extends Marko.Component<Input> {
     _initializeHighchartExtensions() {
         // add custom legend wrapper function
         // eslint-disable-next-line no-undef,new-cap
-        ebayLegend(Highcharts);
+        ebayLegend(this.highcharts);
     }
     _setupEvents() {
         // bind functions to keep scope and setup debounced versions of function calls
@@ -140,7 +125,7 @@ class AreaChart extends Marko.Component<Input> {
         };
         // initialize and keep reference to chart
         // eslint-disable-next-line no-undef,new-cap
-        this.chartRef = Highcharts.chart(this.getContainerId(), config);
+        this.chartRef = this.highcharts.chart(this.getContainerId(), config);
     }
     getTitleConfig(): Highcharts.TitleOptions {
         return {
@@ -261,7 +246,7 @@ class AreaChart extends Marko.Component<Input> {
 
                 // TODO need to change this to use a component
                 // eslint-disable-next-line no-undef,new-cap
-                let s = `<b>${Highcharts.dateFormat(
+                let s = `<b>${this.highcharts.dateFormat(
                     "%b %e, %Y",
                     this.x,
                     false,
@@ -417,7 +402,7 @@ class AreaChart extends Marko.Component<Input> {
         this.chartRef.redraw(); // trigger redraw after all points have been updated
     }
     onDestroy() {
-        this.chartRef.destroy();
+        this.chartRef?.destroy();
     }
 }
 

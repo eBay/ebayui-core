@@ -72,6 +72,7 @@ export class CDNLoader {
         this.url = `https://ir.ebaystatic.com/cr/v/c1/ebayui/${this.key}/v${
             version || versions[this.key as keyof typeof versions]
         }`;
+        console.log(this.url);
         for (let i = 0; i < this.files.length; i++) {
             if (overrides && overrides[i]) {
                 this.cdnFiles[i] = overrides[i];

@@ -15,7 +15,7 @@ import {
 
 import { ebayLegend } from "../../common/charts/legend";
 import { eBayColumns } from "../../common/charts/bar-chart";
-import Highcharts from "highcharts";
+import { load } from "../../common/highcharts";
 
 import subtemplate from "./subtemplate.marko";
 import type { WithNormalizedProps } from "../../global";
@@ -37,9 +37,6 @@ interface BarChartInput
     "y-axis-labels"?: Highcharts.YAxisLabelsOptions["format"][];
     "y-axis-positioner"?: Highcharts.YAxisOptions["tickPositioner"];
     series: SeriesItem | SeriesItem[];
-    "cdn-highcharts"?: string;
-    "cdn-highcharts-accessibility"?: string;
-    "cdn-highcharts-pattern-fill"?: string;
     version?: string;
     stacked?: boolean;
 }
@@ -48,6 +45,7 @@ export interface Input extends WithNormalizedProps<BarChartInput> {}
 
 class BarChart extends Marko.Component<Input> {
     declare chartRef: Highcharts.Chart;
+    declare highcharts: typeof import("highcharts");
     declare cdnLoader: CDNLoader;
     declare chart: Highcharts.Chart;
     declare series: Highcharts.Series;
@@ -60,29 +58,11 @@ class BarChart extends Marko.Component<Input> {
         }
     }
 
-    onCreate() {
-        this.cdnLoader = new CDNLoader(this as any, {
-            stagger: true,
-            key: "highcharts",
-            types: ["src", "src", "src"],
-            files: ["highcharts.js", "accessibility.js", "pattern-fill.js"],
-            setLoading: () => {},
-            handleError: this.handleError.bind(this),
-            handleSuccess: this.handleSuccess.bind(this),
-        });
-    }
-
     onMount() {
-        this.cdnLoader
-            .setOverrides(
-                [
-                    this.input.cdnHighcharts,
-                    this.input.cdnHighchartsAccessibility,
-                    this.input.cdnHighchartsPatternFill,
-                ] as string[],
-                this.input.version,
-            )
-            .mount();
+        load().then(({ default: highcharts }) => {
+            this.highcharts = highcharts;
+            this._setupCharts();
+        });
     }
 
     handleError(err: Error) {
@@ -101,10 +81,10 @@ class BarChart extends Marko.Component<Input> {
     _initializeHighchartsExtensions() {
         // add custom legend wrapper function
         // eslint-disable-next-line no-undef,new-cap
-        ebayLegend(Highcharts);
+        ebayLegend(this.highcharts);
         // add custom columns wrapper to enable rounded bar corners, and stacks with spaces between each stacked point
         // eslint-disable-next-line no-undef,new-cap
-        eBayColumns(Highcharts);
+        eBayColumns(this.highcharts);
     }
     _setupCharts() {
         // check if a single series was passed in for series and if so add it to a new array
@@ -149,7 +129,7 @@ class BarChart extends Marko.Component<Input> {
             },
         };
         // eslint-disable-next-line no-undef,new-cap
-        this.chartRef = Highcharts.chart(this.getContainerId(), config);
+        this.chartRef = this.highcharts.chart(this.getContainerId(), config);
         this.chartRef.redraw();
     }
 
@@ -253,7 +233,7 @@ class BarChart extends Marko.Component<Input> {
             // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
             return subtemplate.renderToString({
                 // eslint-disable-next-line no-undef,new-cap
-                date: Highcharts.dateFormat("%b %e, %Y", this.x, false),
+                date: this.highcharts.dateFormat("%b %e, %Y", this.x, false),
                 data: stacked ? series : this.point,
                 stacked,
                 x: this.x,
@@ -428,7 +408,7 @@ class BarChart extends Marko.Component<Input> {
         };
     }
     onDestroy() {
-        this.chartRef.destroy();
+        this.chartRef?.destroy();
     }
 }
 

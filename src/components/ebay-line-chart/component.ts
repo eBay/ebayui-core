@@ -1,4 +1,3 @@
-import { CDNLoader } from "../../common/cdn";
 import {
     chartFontFamily,
     backgroundColor,
@@ -20,7 +19,7 @@ import {
 import { debounce } from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
 import tooltipTemplate from "./tooltip.marko";
-import Highcharts from "highcharts";
+import { load } from "../../common/highcharts";
 
 interface SeriesLineOptions extends Highcharts.SeriesLineOptions {
     data: Highcharts.PointOptionsObject[];
@@ -35,8 +34,6 @@ interface LineChartInput
     "y-axis-labels"?: Highcharts.YAxisLabelsOptions["format"][];
     "y-axis-positioner"?: Highcharts.YAxisOptions["tickPositioner"];
     "plot-points"?: boolean;
-    "cdn-highcharts"?: string;
-    "cdn-highcharts-accessibility"?: string;
     version?: string;
     series: SeriesLineOptions | SeriesLineOptions[];
     trend?: "positive" | "negative" | "neutral";
@@ -48,22 +45,12 @@ const pointSize = 6; // controls the size of the plot point markers on lines
 
 class LineChart extends Marko.Component<Input> {
     declare axisTicksLength: number;
-    declare cdnLoader: CDNLoader;
+    declare highcharts: typeof import("highcharts");
     declare chartRef: Highcharts.Chart;
     declare tickValues: number[];
 
     onCreate() {
         this.axisTicksLength = -1;
-
-        this.cdnLoader = new CDNLoader(this as any, {
-            stagger: true,
-            key: "highcharts",
-            types: ["src", "src"],
-            files: ["highcharts.js", "accessibility.js"],
-            setLoading: () => {},
-            handleError: this.handleError.bind(this),
-            handleSuccess: this.handleSuccess.bind(this),
-        });
     }
 
     handleError(err: Error) {
@@ -74,15 +61,15 @@ class LineChart extends Marko.Component<Input> {
     }
 
     onMount() {
-        this.cdnLoader
-            .setOverrides(
-                [
-                    this.input.cdnHighcharts,
-                    this.input.cdnHighchartsAccessibility,
-                ] as string[],
-                this.input.version,
-            )
-            .mount();
+        load().then(
+            ({ default: highcharts }) => {
+                this.highcharts = highcharts;
+                this._setupChart();
+            },
+            (err) => {
+                this.emit("load-error", err);
+            },
+        );
     }
 
     onInput(input: Input) {
@@ -93,6 +80,7 @@ class LineChart extends Marko.Component<Input> {
             this._setupChart();
         }
     }
+
     getContainerId() {
         return `ebay-line-graph-${this.id}`;
     }
@@ -175,7 +163,7 @@ class LineChart extends Marko.Component<Input> {
 
         // initialize and keep reference to chart
         // eslint-disable-next-line no-undef,new-cap
-        this.chartRef = Highcharts.chart(this.getContainerId(), config);
+        this.chartRef = this.highcharts.chart(this.getContainerId(), config);
         // call update markers after the initial render to determine which markers to display if plotPoints is set to true
         this.updateMarkers();
     }
@@ -234,13 +222,8 @@ class LineChart extends Marko.Component<Input> {
     }
     getYAxisConfig(series: SeriesLineOptions[]): Highcharts.YAxisOptions {
         const component = this; // component reference used in formatter functions that don't have the same scope
-        let yLabelsItterator = 0; // used when yAxisLabels array is provided in input
-        let maxVal = 0; // use to determine the highest yAxis value
-        // configure the symbol used for each series markers
+        let yLabelsIterator = 0; // used when yAxisLabels array is provided in input
 
-        series.forEach((seriesItem) => {
-            maxVal = Math.max(...(seriesItem.data as any), maxVal);
-        });
         return {
             gridLineColor: gridColor, // sets the horizontal grid line colors
             opposite: true, // moves yAxis labels to the right side of the chart
@@ -252,11 +235,11 @@ class LineChart extends Marko.Component<Input> {
                 formatter: this.input.yAxisLabels
                     ? function () {
                           if (this.isFirst) {
-                              yLabelsItterator = -1;
+                              yLabelsIterator = -1;
                           }
-                          yLabelsItterator = yLabelsItterator + 1;
+                          yLabelsIterator = yLabelsIterator + 1;
                           return component.input.yAxisLabels![
-                              yLabelsItterator
+                              yLabelsIterator
                           ] as string;
                       }
                     : undefined,
@@ -264,7 +247,6 @@ class LineChart extends Marko.Component<Input> {
                     color: labelsColor, // setting label colors
                 },
             },
-            max: maxVal,
             title: {
                 enabled: false, // hide the axis label next to the axis
             } as Highcharts.YAxisTitleOptions,
@@ -302,7 +284,7 @@ class LineChart extends Marko.Component<Input> {
                 // refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for dateFormat variables
                 return tooltipTemplate.renderToString({
                     // eslint-disable-next-line no-undef,new-cap
-                    date: Highcharts.dateFormat(
+                    date: component.highcharts!.dateFormat(
                         "%b %e, %Y",
                         this.points![0].x as number,
                         false,
@@ -341,7 +323,9 @@ class LineChart extends Marko.Component<Input> {
                 },
             },
             series: {
-                description: this.input.description, // set the description that was passed in
+                accessibility: {
+                    description: this.input.description, // set the description that was passed in
+                },
                 lineWidth: 3, // sets the line width for series lines
                 // sets the starting point of the xAxis to the first data point
                 // if not set the auto resizing of the xAxis will often leave a gap in data on the left hand side
@@ -496,7 +480,7 @@ class LineChart extends Marko.Component<Input> {
         }
     }
     onDestroy() {
-        this.chartRef.destroy();
+        this.chartRef?.destroy();
     }
 }
 

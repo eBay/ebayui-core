@@ -2,7 +2,7 @@ import { tagToString } from "../../../.storybook/storybook-code-source";
 import { addRenderBodies } from "../../../.storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
-import * as sampleSeriesData from "./examples/data.json";
+import sampleSeriesData from "./examples/data.json";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -76,15 +76,6 @@ export default {
             type: { name: "string", require: false },
             description:
                 "A class name that will be added to the main chart container",
-        },
-        cdnHighcharts: {
-            type: { name: "string", require: false },
-            description: "CDN url override for loading highcharts",
-        },
-        cdnHighchartsAccessibility: {
-            type: { name: "string", require: false },
-            description:
-                "CDN url override for loading highcharts accessibility module",
         },
         version: {
             type: { name: "string", require: false },
