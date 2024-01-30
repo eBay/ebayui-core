@@ -6,12 +6,12 @@ $ const {
     style,
     disabled,
     borderless,
-    options,
+    options: inputOptions,
     floatingLabel,
     isLarge,
     ...htmlInput
 } = input;
-
+$ const options = [...(inputOptions || [])];
 static var itemIgnoredAttributes = ["selected", "optgroup"];
 
 static interface OptGroup {
@@ -23,7 +23,7 @@ static function isGroup(optionOrGroup: Option | OptGroup): optionOrGroup is OptG
     return !!optionOrGroup.optgroup;
 }
 
-$ var selectedOption = [...options][state.selectedIndex];
+$ var selectedOption = options[state.selectedIndex];
 $ var list: (Option | OptGroup)[] = [];
 $ var optgroups: Record<string, OptGroup> = {};
 $ var id = component.selectId
