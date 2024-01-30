@@ -11,7 +11,7 @@ export interface ToggleButtonGroupEvent {
 
 interface ToggleButtonGroupInput
     extends Omit<Marko.Input<"span">, `on${string}`> {
-    buttons: Omit<ToggleButtonInput, `on${string}`>[];
+    buttons?: Marko.RepeatableAttrTag<Omit<ToggleButtonInput, `on${string}`>>;
     columns?: number;
     variant?: "checkbox" | "radio" | "radio-toggle";
     layoutType?: ToggleButtonInput["layoutType"];
@@ -31,7 +31,7 @@ class ToggleButtonGroup extends Marko.Component<Input, State> {
 
     onInput(input: Input) {
         this.state.pressed = Object.fromEntries(
-            input.buttons.map(({ pressed }, i) => [i, !!pressed]),
+            [...(input.buttons || [])].map(({ pressed }, i) => [i, !!pressed]),
         );
     }
 

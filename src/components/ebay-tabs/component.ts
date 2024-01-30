@@ -11,8 +11,8 @@ export interface TabsEvent {
 }
 
 interface TabsInput extends Omit<Marko.Input<"div">, `on${string}`> {
-    tabs: Marko.AttrTag<Tab>[];
-    panels: Marko.AttrTag<Panel>[];
+    tabs?: Marko.RepeatableAttrTag<Tab>;
+    panels?: Marko.RepeatableAttrTag<Panel>;
     activation?: "auto" | "manual";
     fake?: boolean;
     "selected-index"?: number | string;
@@ -23,6 +23,8 @@ export interface Input extends WithNormalizedProps<TabsInput> {}
 
 export interface State {
     selectedIndex: number;
+    tabs: Tab[];
+    panels: Panel[];
 }
 
 class Tabs extends Marko.Component<Input, State> {
@@ -42,7 +44,7 @@ class Tabs extends Marko.Component<Input, State> {
             event.preventDefault();
 
             const { input, state } = this;
-            const len = input.tabs.length;
+            const len = state.tabs.length;
             const keyCode = event.charCode || event.keyCode;
             const direction = keyCode === 37 || keyCode === 38 ? -1 : 1;
             const selectedIndex = (state.selectedIndex + len + direction) % len;
@@ -59,18 +61,18 @@ class Tabs extends Marko.Component<Input, State> {
     }
 
     onCreate() {
-        this.state = { selectedIndex: 0 };
+        this.state = { selectedIndex: 0, tabs: [], panels: [] };
     }
 
     onInput(input: Input) {
         const { state } = this;
-        input.tabs = input.tabs || [];
-        input.panels = input.panels || [];
+        state.tabs = [...(input.tabs || [])];
+        state.panels = [...(input.panels || [])];
 
         if (!isNaN(input.selectedIndex as number)) {
             state.selectedIndex =
                 parseInt(input.selectedIndex as string, 10) %
-                (input.tabs.length || 1);
+                (state.tabs.length || 1);
         }
     }
 
