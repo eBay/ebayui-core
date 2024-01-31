@@ -36,7 +36,7 @@ class TooltipBase extends Marko.Component<Input> {
     declare hostEl: HTMLElement | null;
     declare overlayEl: HTMLElement | null;
     declare arrowEl: HTMLElement | null;
-    cleanup: (() => void) | undefined;
+    declare cleanup: (() => void) | undefined;
 
     handleExpand() {
         this.emit("base-expand");
