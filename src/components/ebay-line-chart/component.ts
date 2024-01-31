@@ -20,7 +20,8 @@ import {
 import { debounce } from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
 import tooltipTemplate from "./tooltip.marko";
-import Highcharts from "highcharts";
+import type HighchartsTypes from "highcharts";
+declare const Highcharts: typeof HighchartsTypes;
 
 interface SeriesLineOptions extends Highcharts.SeriesLineOptions {
     data: Highcharts.PointOptionsObject[];
@@ -238,9 +239,12 @@ class LineChart extends Marko.Component<Input> {
         let maxVal = 0; // use to determine the highest yAxis value
         // configure the symbol used for each series markers
 
-        series.forEach((seriesItem) => {
-            maxVal = Math.max(...(seriesItem.data as any), maxVal);
-        });
+        for (const seriesItem of series) {
+            for (const seriesItemData of seriesItem.data) {
+                maxVal = Math.max(seriesItemData.y!, maxVal);
+            }
+        }
+
         return {
             gridLineColor: gridColor, // sets the horizontal grid line colors
             opposite: true, // moves yAxis labels to the right side of the chart

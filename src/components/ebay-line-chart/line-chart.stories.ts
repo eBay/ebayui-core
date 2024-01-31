@@ -2,7 +2,7 @@ import { tagToString } from "../../../.storybook/storybook-code-source";
 import { addRenderBodies } from "../../../.storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
-import * as sampleSeriesData from "./examples/data.json";
+import sampleSeriesData from "./examples/data.json";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
