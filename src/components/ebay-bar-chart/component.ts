@@ -15,7 +15,8 @@ import {
 
 import { ebayLegend } from "../../common/charts/legend";
 import { eBayColumns } from "../../common/charts/bar-chart";
-import Highcharts from "highcharts";
+import type HighchartsTypes from "highcharts";
+declare const Highcharts: typeof HighchartsTypes;
 
 import subtemplate from "./subtemplate.marko";
 import type { WithNormalizedProps } from "../../global";

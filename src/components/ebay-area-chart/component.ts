@@ -14,8 +14,9 @@ import {
 } from "../../common/charts/shared";
 import { debounce } from "../../common/event-utils";
 import { ebayLegend } from "../../common/charts/legend";
-import Highcharts from "highcharts";
 import type { WithNormalizedProps } from "../../global";
+import type HighchartsTypes from "highcharts";
+declare const Highcharts: typeof HighchartsTypes;
 
 interface AreaChartInput extends Omit<Marko.Input<"div">, `on${string}`> {
     title: Highcharts.TitleOptions["text"];
