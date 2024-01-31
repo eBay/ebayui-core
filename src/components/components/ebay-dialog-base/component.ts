@@ -60,19 +60,19 @@ interface State {
 }
 
 class DialogBase extends Marko.Component<Input, State> {
-    clickTarget?: HTMLButtonElement | null;
-    startEl?: Element | null;
-    closeEl?: Element | null;
-    windowEl?: Element | null;
-    rootEl?: Element | null;
-    bodyEl?: Element | null;
-    transitionEls?: Element[];
-    isTrapped?: boolean;
-    restoreTrap?: boolean;
-    _prevFocusEl?: Element | null;
-    cancelTransition: (() => void) | undefined;
-    cancelScrollReset: NodeJS.Timeout | undefined;
-    isAnimating?: boolean;
+    declare clickTarget?: HTMLButtonElement | null;
+    declare startEl?: Element | null;
+    declare closeEl?: Element | null;
+    declare windowEl?: Element | null;
+    declare rootEl?: Element | null;
+    declare bodyEl?: Element | null;
+    declare transitionEls?: Element[];
+    declare isTrapped?: boolean;
+    declare restoreTrap?: boolean;
+    declare _prevFocusEl?: Element | null;
+    declare cancelTransition: (() => void) | undefined;
+    declare cancelScrollReset: NodeJS.Timeout | undefined;
+    declare isAnimating?: boolean;
 
     get useHiddenProperty() {
         return this.input.useHiddenProperty || false;
