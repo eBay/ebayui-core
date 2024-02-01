@@ -32,13 +32,19 @@ export default {
             description:
                 "An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened",
         },
-        confirmText: {
-            control: { type: "text" },
-            description: "Text for confirm button",
+        confirm: {
+            name: "@confirm",
+            table: {
+                category: "@attribute tags",
+            },
+            description: "Render body will be text for confirm button",
         },
-        rejectText: {
-            control: { type: "text" },
-            description: "Text for reject button",
+        reject: {
+            name: "@reject",
+            table: {
+                category: "@attribute tags",
+            },
+            description: "Render body will be text for reject button",
         },
         header: {
             name: "@header",
@@ -91,10 +97,14 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    confirmText: "Delete",
-    rejectText: "Cancel",
     header: {
         renderBody: `Delete Address?`,
+    },
+    confirm: {
+        renderBody: `Delete`,
+    },
+    reject: {
+        renderBody: `Cancel`,
     },
     renderBody: `You will permanently lose this address.`,
 };

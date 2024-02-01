@@ -20,5 +20,21 @@
             "type": "expression"
         },
         "@html-attributes": "expression"
+    },
+    "@confirm <confirm>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@reject <reject>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
     }
 }

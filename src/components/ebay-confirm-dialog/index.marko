@@ -10,6 +10,17 @@ static interface ConfirmDialogInput extends Omit<BaseInput, `on${string}`> {
     "on-open"?: DialogBaseInput["on-open"];
     "on-reject"?: ButtonInput["on-click"] | DialogBaseInput["on-close"];
     "on-confirm"?: ButtonInput["on-click"];
+    confirm?: Marko.AttrTag<
+        Marko.Input<`h${number}`> & {
+            renderBody?: Marko.Body;
+        }
+    >;
+    reject?: Marko.AttrTag<
+        Marko.Input<`h${number}`> & {
+            renderBody?: Marko.Body;
+        }
+    >;
+
     "confirm-cta-variant"?: typeof validConfirmCTAVariants[number];
 }
 
@@ -22,7 +33,8 @@ static  var validConfirmCTAVariants = [
     "destructive"
 ];
 
-$ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, ...dialogInput } = input;
+$ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, reject, confirm, ...dialogInput } = input;
+
 <ebay-dialog-base
     ...dialogInput
     on-open("emit", "open")
@@ -37,8 +49,16 @@ $ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, ...dial
         <ebay-button
             on-click("emit", "reject")
             id=cancelId
-            class="confirm-dialog__reject">
-            ${rejectText}
+            class="confirm-dialog__reject"
+            ...reject
+            >
+
+            <if(rejectText)>
+                ${rejectText}
+            </if>
+            <else>
+                <${reject}/>
+            </else>
         </ebay-button>
         <ebay-button
             priority="primary"
@@ -48,8 +68,14 @@ $ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, ...dial
             class=[
                 "confirm-dialog__confirm",
                 confirmCtaVariant && validConfirmCTAVariants.includes(confirmCtaVariant) && `btn--${confirmCtaVariant}`
-            ]>
-            ${confirmText}
+            ]
+            ...confirm>
+            <if(confirmText)>
+                ${confirmText}
+            </if>
+            <else>
+                <${confirm}/>
+            </else>
         </ebay-button>
     </@footer>
 </ebay-dialog-base>

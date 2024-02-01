@@ -32,9 +32,12 @@ export default {
             description:
                 "An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened",
         },
-        "confirm-text": {
-            control: { type: "text" },
-            description: "Text for OK button",
+        confirm: {
+            name: "@confirm",
+            table: {
+                category: "@attribute tags",
+            },
+            description: "Render body will be text for OK button",
         },
         header: {
             name: "@header",
@@ -49,6 +52,9 @@ export const Standard = Template.bind({});
 Standard.args = {
     header: {
         renderBody: `Alert!`,
+    },
+    confirm: {
+        renderBody: `OK`,
     },
     renderBody: `You must acknowledge this alert to continue.`,
 };
