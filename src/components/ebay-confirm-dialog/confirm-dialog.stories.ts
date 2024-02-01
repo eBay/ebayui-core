@@ -72,6 +72,17 @@ export default {
                 },
             },
         },
+        onClose: {
+            action: "on-close",
+            description: "Triggered when dialog is closed",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "",
+                },
+            },
+        },
+
         onConfirm: {
             action: "on-confirm",
             description: "Triggered on dialog confirm button click",
@@ -84,7 +95,7 @@ export default {
         },
         onReject: {
             action: "on-reject",
-            description: "Triggered when dialog is closed",
+            description: "Triggered when reject button is clicked",
             table: {
                 category: "Events",
                 defaultValue: {

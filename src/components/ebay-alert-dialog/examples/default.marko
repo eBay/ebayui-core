@@ -10,6 +10,8 @@ export interface Input {
 
 <ebay-alert-dialog
     open=state.open
+    on-open('emit', 'open')
+    on-close('emit', 'close')
     on-confirm('closeDialog')
 >
     <@header><${input.header.renderBody}/></@header>
@@ -34,5 +36,6 @@ class {
     }
     closeDialog() {
         this.state.open = false;
+        this.emit('confirm')
     }
 }

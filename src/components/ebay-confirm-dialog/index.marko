@@ -8,6 +8,7 @@ static interface ConfirmDialogInput extends Omit<BaseInput, `on${string}`> {
     "reject-text"?: AttrString;
     "confirm-text"?: AttrString;
     "on-open"?: DialogBaseInput["on-open"];
+    "on-close"?: DialogBaseInput["on-close"];
     "on-reject"?: ButtonInput["on-click"] | DialogBaseInput["on-close"];
     "on-confirm"?: ButtonInput["on-click"];
     confirm?: Marko.AttrTag<
@@ -38,7 +39,7 @@ $ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, reject,
 <ebay-dialog-base
     ...dialogInput
     on-open("emit", "open")
-    on-close("emit", "reject")
+    on-close("emit", "close")
     main-id=mainId
     focus=confirmId
     class-prefix="confirm-dialog"

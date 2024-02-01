@@ -15,6 +15,7 @@ export interface Input {
 <ebay-confirm-dialog
     open=state.open
     on-open("emit", "open")
+    on-close("emit", "close")
     on-reject('closeDialog')
     on-confirm('success')
     ...input
@@ -35,7 +36,6 @@ class {
     }
     openDialog() {
         this.state.open = true;
-        this.emit('open');
     }
     closeDialog(ev) {
         this.state.open = false;
