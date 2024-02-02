@@ -3,7 +3,7 @@ import * as testUtils from "../../../common/test-utils/server";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../menu-button.stories"; // import all stories from the stories file
 
-const { Default, Typeahead, Badged, Separator, IconText } =
+const { Default, Typeahead, Badged, Separator, IconText, PrefixLabel } =
     composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
 
@@ -58,6 +58,10 @@ describe("menu-button", () => {
 
     it("renders with separators", async () => {
         await htmlSnap(Separator);
+    });
+
+    it("renders with prefix label", async () => {
+        await htmlSnap(PrefixLabel);
     });
 
     ["radio", "checkbox"].forEach((type) => {
