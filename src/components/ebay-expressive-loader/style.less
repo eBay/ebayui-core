@@ -1,0 +1,216 @@
+// TODO: Remove this file after Skin ticket is resolved:
+// https://github.com/eBay/skin/issues/2162
+@import "~@ebay/skin/dist/variables/variables.less";
+
+:root {
+    --expressive-loader-message-fadein-duration: 833ms;
+    --expressive-loader-message-fadeout-duration: 400ms;
+    --expressive-loader-scroll-lines-duration: 20s;
+    --expressive-loader-scale-line-duration: 0.7s;
+    --color-expressive-loader-red: #e53238;
+    --color-expressive-loader-blue: #0064d2;
+    --color-expressive-loader-yellow: #f5af02;
+    --color-expressive-loader-green: #86b817;
+}
+
+.expressive-loader {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-300);
+    justify-content: flex-end;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 375px;
+}
+
+.expressive-loader--loaded {
+    display: none;
+}
+
+.expressive-loader__message-container {
+    color: var(--color-foreground-primary);
+    font-size: var(--font-size-large-1);
+    font-weight: var(--font-weight-regular);
+    line-height: 28px;
+    margin: 0 var(--spacing-200);
+    min-height: 3rem;
+    position: relative;
+    text-align: center;
+}
+
+.expressive-loader--medium .expressive-loader__message-container {
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-bold);
+    line-height: 24px;
+}
+
+.expressive-loader__message {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+
+    // current message
+    &[role="status"] {
+        opacity: 1;
+
+        &.expressive-loader__message--out {
+            animation: expressive-loader-message-fadeout
+                var(--expressive-loader-message-fadeout-duration)
+                cubic-bezier(0.3, 0, 0, 1) both;
+
+            @media (prefers-reduced-motion) {
+                animation: none;
+            }
+        }
+
+        &.expressive-loader__message--first {
+            @media (prefers-reduced-motion) {
+                animation: expressive-loader-message-fadein-rm
+                    var(--expressive-loader-message-fadein-duration)
+                    cubic-bezier(0.3, 0, 0, 1) both;
+            }
+        }
+    }
+
+    // next message
+    &[aria-hidden="true"] {
+        opacity: 0;
+
+        &.expressive-loader__message--in {
+            animation: expressive-loader-message-fadein
+                var(--expressive-loader-message-fadein-duration)
+                cubic-bezier(0.3, 0, 0, 1) both;
+        }
+
+        @media (prefers-reduced-motion) {
+            display: none;
+
+            &.expressive-loader__message-in {
+                animation: none;
+            }
+        }
+    }
+}
+
+.expressive-line-animation {
+    --height: 6px;
+    --line-gap: 4px;
+    --line-border-radius: 2px;
+
+    .expressive-line-animation__line {
+        border-radius: var(--line-border-radius);
+        display: inline-block;
+        height: var(--height);
+        line-height: 0px;
+
+        &--red {
+            background-color: var(--color-expressive-loader-red);
+        }
+
+        &--blue {
+            background-color: var(--color-expressive-loader-blue);
+        }
+
+        &--yellow {
+            background-color: var(--color-expressive-loader-yellow);
+        }
+
+        &--green {
+            background-color: var(--color-expressive-loader-green);
+        }
+    }
+
+    .expressive-line-animation__standard {
+        border-radius: var(--line-border-radius);
+        display: block;
+        font-size: 0;
+        height: var(--height);
+        line-height: 0;
+        margin: 0 var(--spacing-200);
+        overflow: hidden;
+        white-space: nowrap;
+
+        .expressive-line-animation__line {
+            margin-right: var(--line-gap);
+            transform-origin: 0;
+
+            &--animated {
+                animation: expressive-loader-scale-line-width
+                    var(--expressive-loader-scale-line-duration) linear;
+            }
+        }
+    }
+
+    .expressive-line-animation__reduced-motion {
+        border-radius: var(--line-border-radius);
+        display: flex;
+        gap: var(--line-gap);
+        overflow: hidden;
+    }
+
+    .expressive-line-animation__line-group {
+        animation: expressive-loader-scroll-lines
+            var(--expressive-loader-scroll-lines-duration) linear infinite;
+        display: flex;
+        flex-shrink: 0;
+        gap: var(--line-gap);
+        justify-content: space-around;
+        min-width: 100%;
+    }
+}
+
+@keyframes expressive-loader-message-fadeout {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-24px);
+    }
+}
+
+@keyframes expressive-loader-message-fadein {
+    0% {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expressive-loader-message-fadein-rm {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes expressive-loader-scale-line-width {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes expressive-loader-scroll-lines {
+    from {
+        transform: translateX(calc(-200% - var(--line-gap) - var(--line-gap)));
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}

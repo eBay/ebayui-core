@@ -1,0 +1,8 @@
+{
+    "dsName": "expressive-loader",
+    "dsVersion": "3.1.1",
+    "docs": [
+        "https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-expressive-loader/",
+        "https://ebay.github.io/ebayui-core/?path=/story/progress-ebay-expressive-loader"
+    ]
+}

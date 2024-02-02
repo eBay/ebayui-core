@@ -1,0 +1,44 @@
+<if(state.isLoading)>
+    <div class=[
+        "expressive-loader",
+        input.size === "medium" && "expressive-loader--medium",
+    ]>
+        <if(input.messages && input.messages.length > 0)>
+            $ const currentMessage = (
+                input.messages[state.currentMessageIndex]?.text
+            );
+            $ const nextMessage = input.messages[state.nextMessageIndex]?.text;
+            <div class=["expressive-loader__message-container"]>
+                <if(!state.useReducedMotion && input.messages.length > 1)>
+                    <div
+                        aria-hidden="true"
+                        class=[
+                            "expressive-loader__message",
+                            state.messageIsFadingIn &&
+                                "expressive-loader__message--in",
+                        ]
+                    >
+                        ${nextMessage}
+                    </div>
+                </if>
+                <div
+                    role="status"
+                    id:scoped="message"
+                    class=[
+                        "expressive-loader__message",
+                        state.messageIsFadingIn &&
+                            "expressive-loader__message--out",
+                        state.isFirstMessage && "message--first",
+                    ]
+                >
+                    ${currentMessage}
+                </div>
+            </div>
+        </if>
+        <ebay-expressive-line-animation
+            ariaLabel=input.ariaLabel || "Loading..."
+            ariaDescribedby:scoped="message"
+            useReducedMotion=state.useReducedMotion
+        />
+    </div>
+</if>
