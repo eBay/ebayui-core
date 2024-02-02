@@ -1,17 +1,21 @@
 export interface Input {
-    confirmText?: string;
     renderBody?: Marko.Body;
     header: {
+        renderBody?: Marko.Body;
+    }
+    confirm: {
         renderBody?: Marko.Body;
     }
 }
 
 <ebay-alert-dialog
-    confirmText=input.confirmText || 'OK'
     open=state.open
+    on-open('emit', 'open')
+    on-close('emit', 'close')
     on-confirm('closeDialog')
 >
     <@header><${input.header.renderBody}/></@header>
+    <@confirm><${input.confirm.renderBody}/></@confirm>
     <${input.renderBody}/>
     <p>
         This 'alert' text should be 1-2 lines.
@@ -32,5 +36,6 @@ class {
     }
     closeDialog() {
         this.state.open = false;
+        this.emit('confirm')
     }
 }

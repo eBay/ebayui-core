@@ -1,21 +1,28 @@
 export interface Input {
-    confirmText?: string;
     renderBody?: Marko.Body;
     header: {
         renderBody?: Marko.Body;
     }
+    reject: {
+        renderBody?: Marko.Body;
+    }
+    confirm: {
+        renderBody?: Marko.Body;
+    }
+
 }
 
 <ebay-confirm-dialog
-    reject-text='Cancel'
-    confirm-text='Delete'
     open=state.open
     on-open("emit", "open")
+    on-close("emit", "close")
     on-reject('closeDialog')
     on-confirm('success')
     ...input
 >
     <@header><${input.header.renderBody}/></@header>
+    <@confirm><${input.confirm.renderBody}/></@confirm>
+    <@reject><${input.reject.renderBody}/></@reject>
     <${input.renderBody}/>
     <p>
         This 'confirm' text should be 1-2 lines.
@@ -29,7 +36,6 @@ class {
     }
     openDialog() {
         this.state.open = true;
-        this.emit('open');
     }
     closeDialog(ev) {
         this.state.open = false;

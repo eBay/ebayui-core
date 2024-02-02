@@ -7,6 +7,12 @@ static interface AlertDialogInput extends Omit<BaseInput, `on${string}`> {
     "on-open"?: () => void;
     "on-close"?: () => void;
     "on-confirm"?: () => void;
+    confirm?: Marko.AttrTag<
+        Marko.Input<`h${number}`> & {
+            renderBody?: Marko.Body;
+        }
+    >;
+
 }
 
 export interface Input extends WithNormalizedProps<AlertDialogInput> {}
@@ -17,6 +23,7 @@ $ var mainId = component.getElId("alert-dialog-main");
 $ const {
     class: inputClass,
     confirmText,
+    confirm,
     ...restInput
 } = input;
 
@@ -39,8 +46,15 @@ $ const {
             on-click("emit", "confirm")
             key="confirm"
             id=confirmId
-            class="alert-dialog__acknowledge">
-            ${confirmText}
+            class="alert-dialog__acknowledge"
+            ...confirm
+            >
+            <if(confirmText)>
+                ${confirmText}
+            </if>
+            <else>
+                <${confirm}/>
+            </else>
         </ebay-button>
     </@footer>
 </ebay-dialog-base>
