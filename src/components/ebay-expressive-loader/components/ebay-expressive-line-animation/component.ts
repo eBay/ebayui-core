@@ -1,3 +1,5 @@
+import { WithNormalizedProps } from "../../../../global";
+
 const colors = ["green", "yellow", "blue", "red"];
 const minLineWidth = 10;
 const maxLineWidth = 40;
@@ -17,7 +19,7 @@ const staticLineSets = [
 ];
 const staticLines = [...staticLineSets, ...staticLineSets];
 
-interface Input {
+interface ExpressiveLineAnimationInput {
     ariaLabel?: string;
     ariaDescribedby?: string;
     useReducedMotion: boolean;
@@ -27,6 +29,9 @@ interface State {
     useReducedMotion: boolean;
     staticLines: { color: string; width: number }[][];
 }
+
+export interface Input
+    extends WithNormalizedProps<ExpressiveLineAnimationInput> {}
 
 class ExpressiveLineAnimation extends Marko.Component<Input, State> {
     declare currColorIndex: number;
