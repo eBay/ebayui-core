@@ -127,12 +127,16 @@ export default {
         },
         badgeNumber: {
             description: "used as the number to be placed in the badge",
+            controls: { hideNoControlsWarning: true },
             table: {
                 category: "@item attribute tags",
             },
         },
-        badgeAriaLabel: {
-            description: "passed as the `aria-label` directly to the badge",
+        'aria-label': {
+            controls: { hideNoControlsWarning: true },
+            description:
+                "Passed as the `aria-label` directly to the badge. Required only if badge number is provided",
+
             table: {
                 category: "@item attribute tags",
             },
