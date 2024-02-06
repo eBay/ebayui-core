@@ -19,7 +19,7 @@
         "rootDir": "src",
         "skipLibCheck": true,
         "strict": true,
-        "target": "ESNext",
+        "target": "ES2015",
         "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
     }
 }
