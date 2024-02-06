@@ -4,7 +4,7 @@
         "**/*.stories.ts",
         "**/*.stories-ignore.ts",
         "**/test/*",
-        "**/examples/*",
+        "**/examples/*"
     ],
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
