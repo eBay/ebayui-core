@@ -1,7 +1,6 @@
 import Expander from "makeup-expander";
 import focusables from "makeup-focusables";
 import {
-    inline,
     autoUpdate,
     flip,
     computePosition,
@@ -123,6 +122,8 @@ class TooltipBase extends Marko.Component<Input> {
     }
 
     updateTip() {
+        const isTourtip = this.input.type === "tourtip";
+
         computePosition(
             this.hostEl as HTMLElement,
             this.overlayEl as HTMLElement,
@@ -132,9 +133,8 @@ class TooltipBase extends Marko.Component<Input> {
                     pointerStyles[this.input.pointer ?? "bottom"],
                 middleware: [
                     offset(this.input.offset || 6),
-                    inline(),
                     flip(),
-                    shift(),
+                    !isTourtip && shift(),
                     arrow({
                         element: this.arrowEl as HTMLElement,
                         padding: 20,
