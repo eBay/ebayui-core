@@ -22,7 +22,7 @@ $ const {
     ...htmlInput
 } = input;
 
-$ input.toJSON = toJSON;
+$ (input as any).toJSON = toJSON;
 $ const tagType = href ? "a" : "button";
 
 <${tagType}

@@ -9,31 +9,27 @@ use(require("chai-dom"));
 
 describe("details", () => {
     it("renders basic version", async () => {
-        const input = mock.Default_Details;
+        const input = { ...mock.Default_Details };
         await htmlSnap(template, input);
     });
 
     it("renders as div version", async () => {
-        const input = Object.assign({}, mock.Default_Details, { as: "div" });
+        const input = { ...mock.Default_Details, as: "div" };
         await htmlSnap(template, input);
     });
 
     it("renders in open state", async () => {
-        const input = mock.Open_Details;
+        const input = { ...mock.Default_Details };
         await htmlSnap(template, input);
     });
 
     it("renders small version", async () => {
-        const input = Object.assign({}, mock.Default_Details, {
-            size: "small",
-        });
+        const input = { ...mock.Default_Details, size: "small" };
         await htmlSnap(template, input);
     });
 
     it("renders center version", async () => {
-        const input = Object.assign({}, mock.Default_Details, {
-            alignment: "center",
-        });
+        const input = { ...mock.Default_Details, alignment: "center" };
         await htmlSnap(template, input);
     });
 

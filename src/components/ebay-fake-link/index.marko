@@ -14,7 +14,7 @@ $ const {
     ...htmlInput
 } = input;
 
-$ input.toJSON = toJSON;
+$ (input as any).toJSON = toJSON;
 
 <button
     ...processHtmlAttributes(htmlInput)

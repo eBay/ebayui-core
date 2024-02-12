@@ -4,6 +4,8 @@ static var isBrowser = typeof window !== "undefined";
 
 static var browserLookup: Record<string, unknown> = {};
 
+static function noop() {}
+
 $ const {
     _name,
     _type,
@@ -15,6 +17,8 @@ $ const {
     noSkinClasses,
     ...htmlInput
 } = input;
+
+$ (input as any).toJSON = noop;
 
 static function getIconClass(type: string, name: string) {
     if (type === "icon") {

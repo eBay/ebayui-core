@@ -3,7 +3,6 @@ import { typeRoles } from "./constants";
 import type { WithNormalizedProps } from "../../../global";
 
 interface TooltipOverlayInput {
-    toJSON?: any;
     "style-top"?: string;
     "style-left"?: string;
     "style-right"?: string;

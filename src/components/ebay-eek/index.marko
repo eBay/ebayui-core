@@ -14,7 +14,7 @@ $ const {
     ...htmlInput
 } = input;
 
-$ input.toJSON = noop;
+$ (input as any).toJSON = noop;
 $ const eekRating = eekUtil(input);
 <div
     ...processHtmlAttributes(htmlInput)

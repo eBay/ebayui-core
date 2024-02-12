@@ -7,7 +7,7 @@ static function toJSON(this: any) {
     }
 }
 
-$ input.toJSON = toJSON;
+$ (input as any).toJSON = toJSON;
 
 $ const {
     overlayStyle,

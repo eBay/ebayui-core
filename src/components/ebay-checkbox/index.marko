@@ -10,7 +10,7 @@ $ const {
     ...htmlInput
 } = input;
 
-$ input.toJSON = noop;
+$ (input as any).toJSON = noop;
 
 <span class=["checkbox", inputClass] style=style>
     <input
