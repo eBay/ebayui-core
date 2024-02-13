@@ -6,7 +6,7 @@
         "installMarkoV5": "npm i marko@5 @marko/compiler@5 --force",
         "installMarkoV4": "npm remove @marko/compiler && npm i marko@4 --force",
         "prepublishOnly": "rm -rf dist && node scripts/prepublish",
-        "version": "npm run build:storybook && npm run build:readme && git add -A src docs",
+        "version": "npm run build:storybook && npm run build:readme && git add -A src docs && changeset version && npm i --package-lock-only",
         "postpublish": "node scripts/postpublish",
         "start": "storybook dev -p 6006",
         "start:prod": "NODE_ENV=production npm start",
@@ -23,6 +23,8 @@
         "lint:less": "stylelint \"src/**/*.{css,less}\" --config .stylelintrc",
         "lint:js": "eslint .",
         "lint:whitespace": "lintspaces *.md src/**/*.md src/**/*.marko src/**/*.less --newline --maxnewlines 1 --trailingspaces --spaces 4",
+        "release": "ENTRY=master:npm npm run set-entry && npm run build && changeset publish && ENTRY=master:dev npm run set-entry && npm ci",
+        "set-entry": "npm exec --ws -c 'dot-json package.json master $(dot-json package.json $ENTRY)'",
         "build": "rm -rf dist && mtc && npm run lint && node scripts/check-postpublish && npm test",
         "build:ci": "npm run lint && node scripts/check-postpublish && npm test && npm run build",
         "build:readme": "node scripts/add-ds-version",
@@ -35,7 +37,8 @@
         "tr": "npm run coverage && npm run report && open .coverage/index.html",
         "storybook": "storybook dev -p 6006",
         "generateCDN": "node scripts/generate-cdn.js",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "change": "changeset add"
     },
     "browserslist": [
         "extends @ebay/browserslist-config"
@@ -65,6 +68,8 @@
         "@babel/preset-env": "^7.23.9",
         "@babel/preset-react": "^7.23.3",
         "@babel/runtime-corejs3": "^7.23.9",
+        "@changesets/changelog-github": "^0.5.0",
+        "@changesets/cli": "^2.27.1",
         "@commitlint/cli": "^18",
         "@commitlint/config-conventional": "^18",
         "@ebay/browserslist-config": "^2.7.0",
@@ -100,6 +105,7 @@
         "coveralls": "^3.1.1",
         "css-loader": "^6",
         "del": "^7.1.0",
+        "dot-json": "^1.3.0",
         "dotenv-webpack": "^8",
         "eslint": "^8",
         "eslint-config-ebay": "^1.1.5",
