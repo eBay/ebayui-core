@@ -3,14 +3,24 @@
 @import "~@ebay/skin/dist/variables/variables.less";
 
 :root {
-    --expressive-loader-message-fadein-duration: 833ms;
-    --expressive-loader-message-fadeout-duration: 400ms;
+    --expressive-loader-message-animatein-duration: 833ms;
+    --expressive-loader-message-animateout-duration: 400ms;
     --expressive-loader-scroll-lines-duration: 20s;
     --expressive-loader-scale-line-duration: 0.7s;
-    --color-expressive-loader-red: #e53238;
-    --color-expressive-loader-blue: #0064d2;
-    --color-expressive-loader-yellow: #f5af02;
-    --color-expressive-loader-green: #86b817;
+    --expressive-loader-line-height: 6px;
+    --expressive-loader-line-gap: var(--spacing-50);
+    --expressive-loader-line-border-radius: 2px;
+    --expressive-loader-color-1: #e53238;
+    --expressive-loader-color-2: #0064d2;
+    --expressive-loader-color-3: #f5af02;
+    --expressive-loader-color-4: #86b817;
+
+    @media (prefers-color-scheme: dark) {
+        --expressive-loader-color-1: #f0343b;
+        --expressive-loader-color-2: #0078fc;
+        --expressive-loader-color-3: #e8a502;
+        --expressive-loader-color-4: #86b817;
+    }
 }
 
 .expressive-loader {
@@ -20,8 +30,9 @@
     gap: var(--spacing-300);
     justify-content: flex-end;
     margin: 0 auto;
-    max-width: 100%;
-    width: 375px;
+    min-width: 200px;
+    max-width: 375px;
+    width: 100%;
 }
 
 .expressive-loader--loaded {
@@ -32,7 +43,7 @@
     color: var(--color-foreground-primary);
     font-size: var(--font-size-large-1);
     font-weight: var(--font-weight-regular);
-    line-height: 28px;
+    line-height: var(--font-size-28, 28px);
     margin: 0 var(--spacing-200);
     min-height: 3rem;
     position: relative;
@@ -42,7 +53,7 @@
 .expressive-loader--medium .expressive-loader__message-container {
     font-size: var(--font-size-medium);
     font-weight: var(--font-weight-bold);
-    line-height: 24px;
+    line-height: var(--font-size-24);
 }
 
 .expressive-loader__message {
@@ -50,118 +61,104 @@
     left: 0;
     position: absolute;
     right: 0;
-
-    // current message
-    &[role="status"] {
-        opacity: 1;
-
-        &.expressive-loader__message--out {
-            animation: expressive-loader-message-fadeout
-                var(--expressive-loader-message-fadeout-duration)
-                cubic-bezier(0.3, 0, 0, 1) both;
-
-            @media (prefers-reduced-motion) {
-                animation: none;
-            }
-        }
-
-        &.expressive-loader__message--first {
-            @media (prefers-reduced-motion) {
-                animation: expressive-loader-message-fadein-rm
-                    var(--expressive-loader-message-fadein-duration)
-                    cubic-bezier(0.3, 0, 0, 1) both;
-            }
-        }
-    }
-
-    // next message
-    &[aria-hidden="true"] {
-        opacity: 0;
-
-        &.expressive-loader__message--in {
-            animation: expressive-loader-message-fadein
-                var(--expressive-loader-message-fadein-duration)
-                cubic-bezier(0.3, 0, 0, 1) both;
-        }
-
-        @media (prefers-reduced-motion) {
-            display: none;
-
-            &.expressive-loader__message-in {
-                animation: none;
-            }
-        }
-    }
 }
 
-.expressive-line-animation {
-    --height: 6px;
-    --line-gap: 4px;
-    --line-border-radius: 2px;
+// current message
+.expressive-loader__message[role="status"] {
+    opacity: 1;
+}
 
-    .expressive-line-animation__line {
-        border-radius: var(--line-border-radius);
-        display: inline-block;
-        height: var(--height);
-        line-height: 0px;
+// next message
+.expressive-loader__message[aria-hidden="true"] {
+    opacity: 0;
+}
 
-        &--red {
-            background-color: var(--color-expressive-loader-red);
-        }
+.expressive-loader__progress[role="progressbar"] {
+    border-radius: var(--expressive-loader-line-border-radius);
+    margin: 0 var(--spacing-200);
+    overflow: hidden;
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--expressive-loader-line-gap);
+}
 
-        &--blue {
-            background-color: var(--color-expressive-loader-blue);
-        }
+.expressive-loader__lines {
+    display: block;
+    font-size: 0;
+    height: var(--expressive-loader-line-height);
+    line-height: 0;
+    min-width: 100%;
+    white-space: nowrap;
+}
 
-        &--yellow {
-            background-color: var(--color-expressive-loader-yellow);
-        }
+.expressive-loader__line {
+    border-radius: var(--expressive-loader-line-border-radius);
+    display: inline-block;
+    height: var(--expressive-loader-line-height);
+    line-height: 0px;
+    transform-origin: 0;
+}
 
-        &--green {
-            background-color: var(--color-expressive-loader-green);
-        }
+.expressive-loader__line-1 {
+    background-color: var(--expressive-loader-color-1);
+}
+
+.expressive-loader__line-2 {
+    background-color: var(--expressive-loader-color-2);
+}
+
+.expressive-loader__line-3 {
+    background-color: var(--expressive-loader-color-3);
+}
+
+.expressive-loader__line-4 {
+    background-color: var(--expressive-loader-color-4);
+}
+
+@media (prefers-reduced-motion) {
+    .expressive-loader__message[aria-hidden="true"] {
+        display: none;
     }
 
-    .expressive-line-animation__standard {
-        border-radius: var(--line-border-radius);
-        display: block;
-        font-size: 0;
-        height: var(--height);
-        line-height: 0;
-        margin: 0 var(--spacing-200);
-        overflow: hidden;
-        white-space: nowrap;
-
-        .expressive-line-animation__line {
-            margin-right: var(--line-gap);
-            transform-origin: 0;
-
-            &--animated {
-                animation: expressive-loader-scale-line-width
-                    var(--expressive-loader-scale-line-duration) linear;
-            }
-        }
+    .expressive-loader:not(.expressive-loader--medium)
+        .expressive-loader__message--initial[role="status"] {
+        animation: expressive-loader-message-fadein
+            var(--expressive-loader-message-animatein-duration)
+            cubic-bezier(0.3, 0, 0, 1) both;
     }
 
-    .expressive-line-animation__reduced-motion {
-        border-radius: var(--line-border-radius);
-        display: flex;
-        gap: var(--line-gap);
-        overflow: hidden;
-    }
-
-    .expressive-line-animation__line-group {
+    .expressive-loader__lines {
         animation: expressive-loader-scroll-lines
             var(--expressive-loader-scroll-lines-duration) linear infinite;
         display: flex;
-        flex-shrink: 0;
-        gap: var(--line-gap);
-        justify-content: space-around;
-        min-width: 100%;
+        gap: var(--expressive-loader-line-gap);
     }
 }
 
-@keyframes expressive-loader-message-fadeout {
+@media (prefers-reduced-motion: no-preference) {
+    .expressive-loader__message--in {
+        animation: expressive-loader-message-animatein
+            var(--expressive-loader-message-animatein-duration)
+            cubic-bezier(0.3, 0, 0, 1) both;
+    }
+
+    .expressive-loader__message--out[role="status"] {
+        animation: expressive-loader-message-animateout
+            var(--expressive-loader-message-animateout-duration)
+            cubic-bezier(0.3, 0, 0, 1) both;
+    }
+
+    .expressive-loader__line {
+        margin-right: var(--expressive-loader-line-gap);
+    }
+
+    .expressive-loader__line--scaling {
+        animation: expressive-loader-scale-line-width
+            var(--expressive-loader-scale-line-duration) linear;
+    }
+}
+
+@keyframes expressive-loader-message-animateout {
     0% {
         opacity: 1;
         transform: translateY(0);
@@ -169,23 +166,23 @@
 
     100% {
         opacity: 0;
-        transform: translateY(-24px);
+        transform: translateY(calc(var(--font-size-24) * -1));
+    }
+}
+
+@keyframes expressive-loader-message-animatein {
+    0% {
+        opacity: 0;
+        transform: translateY(var(--font-size-24));
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 @keyframes expressive-loader-message-fadein {
-    0% {
-        opacity: 0;
-        transform: translateY(24px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes expressive-loader-message-fadein-rm {
     0% {
         opacity: 0;
     }
@@ -207,7 +204,9 @@
 
 @keyframes expressive-loader-scroll-lines {
     from {
-        transform: translateX(calc(-200% - var(--line-gap) - var(--line-gap)));
+        transform: translateX(
+            calc(-200% - 2 * var(--expressive-loader-line-gap))
+        );
     }
 
     to {

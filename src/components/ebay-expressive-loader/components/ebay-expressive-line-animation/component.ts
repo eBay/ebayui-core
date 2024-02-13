@@ -1,20 +1,20 @@
 import { WithNormalizedProps } from "../../../../global";
 
-const colors = ["green", "yellow", "blue", "red"];
+const colors = [4, 3, 2, 1];
 const minLineWidth = 10;
 const maxLineWidth = 40;
 const staticLineSets = [
     [
-        { color: "green", width: 25 },
-        { color: "yellow", width: 15 },
-        { color: "blue", width: 35 },
-        { color: "red", width: 25 },
+        { color: 4, width: 25 },
+        { color: 3, width: 15 },
+        { color: 2, width: 35 },
+        { color: 1, width: 25 },
     ],
     [
-        { color: "green", width: 10 },
-        { color: "yellow", width: 30 },
-        { color: "blue", width: 25 },
-        { color: "red", width: 35 },
+        { color: 4, width: 10 },
+        { color: 3, width: 30 },
+        { color: 2, width: 25 },
+        { color: 1, width: 35 },
     ],
 ];
 const staticLines = [...staticLineSets, ...staticLineSets];
@@ -27,7 +27,7 @@ interface ExpressiveLineAnimationInput {
 
 interface State {
     useReducedMotion: boolean;
-    staticLines: { color: string; width: number }[][];
+    staticLines: { color: number; width: number }[][];
 }
 
 export interface Input
@@ -91,11 +91,11 @@ class ExpressiveLineAnimation extends Marko.Component<Input, State> {
             Math.random() * (maxLineWidth - minLineWidth) + minLineWidth;
         const color = colors[this.currColorIndex];
         const classList = [
-            "expressive-line-animation__line",
-            `expressive-line-animation__line--${color}`,
+            "expressive-loader__line",
+            `expressive-loader__line-${color}`,
         ];
         if (!isInitial) {
-            classList.push("expressive-line-animation__line--animated");
+            classList.push("expressive-loader__line--scaling");
         }
         line.setAttribute("class", classList.join(" "));
         line.style.width = `${Math.floor(randomWidthPerc)}%`;

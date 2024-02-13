@@ -28,7 +28,7 @@ interface State {
     messageIsFadingIn: boolean;
     currentMessageIndex: number;
     nextMessageIndex: number;
-    isFirstMessage: boolean;
+    isInitialMessage: boolean;
     isLoading: boolean;
     useReducedMotion: boolean;
 }
@@ -48,7 +48,7 @@ class ExpressiveLoader extends Marko.Component<Input, State> {
             messageIsFadingIn: false,
             currentMessageIndex: -1,
             nextMessageIndex: 0,
-            isFirstMessage: true,
+            isInitialMessage: true,
             isLoading: !(input.isLoading === false),
             useReducedMotion: useReducedMotion,
         };
@@ -71,7 +71,7 @@ class ExpressiveLoader extends Marko.Component<Input, State> {
         if (this.state.isLoading && this.state.messages.length > 0) {
             this.clearTimeouts();
             setTimeout(() => {
-                this.state.isFirstMessage = false;
+                this.state.isInitialMessage = false;
             }, messageDurationStandard);
 
             if (!this.animateFirstMessage) {

@@ -2,30 +2,25 @@
     role="progressbar"
     aria-label=input.ariaLabel
     aria-describedby=input.ariaDescribedby
-    class="expressive-line-animation"
+    class="expressive-loader__progress"
 >
+
     <if(state.useReducedMotion)>
-        <div class="expressive-line-animation__reduced-motion">
-            <for|lineGroup| of=state.staticLines>
-                <div class="expressive-line-animation__line-group">
-                    <for|line| of=lineGroup>
-                        <div
-                            class=[
-                                "expressive-line-animation__line",
-                                `expressive-line-animation__line--${line.color}`,
-                            ]
-                            style=`width: ${line.width}%`
-                        />
-                    </for>
-                </div>
-            </for>
-        </div>
+        <for|lineGroup| of=state.staticLines>
+            <div class="expressive-loader__lines">
+                <for|line| of=lineGroup>
+                    <div
+                        class=[
+                            "expressive-loader__line",
+                            `expressive-loader__line-${line.color}`,
+                        ]
+                        style=`width: ${line.width}%`
+                    />
+                </for>
+            </div>
+        </for>
     </if>
     <else>
-        <div
-            class="expressive-line-animation__standard"
-            key="lines"
-            no-update-body
-        />
+        <div class="expressive-loader__lines" key="lines" no-update-body/>
     </else>
 </div>

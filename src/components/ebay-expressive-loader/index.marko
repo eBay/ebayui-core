@@ -28,7 +28,10 @@
                         "expressive-loader__message",
                         state.messageIsFadingIn &&
                             "expressive-loader__message--out",
-                        state.isFirstMessage && "message--first",
+                        input.messages.length === 1 &&
+                            "expressive-loader__message--in",
+                        state.isInitialMessage &&
+                            "expressive-loader__message--initial",
                     ]
                 >
                     ${currentMessage}
