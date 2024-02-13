@@ -5,7 +5,6 @@ on:
         types: [opened, synchronize]
     push:
         branches: [master]
-permissions: read-all
 
 concurrency:
     group: "${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.head_ref || github.ref }}"
@@ -18,7 +17,7 @@ jobs:
             - uses: actions/checkout@master
             - uses: actions/setup-node@master
               with:
-                  node-version: "16.x"
+                  node-version: "18"
             - uses: webfactory/ssh-agent@v0.5.4
               with:
                   ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -37,10 +36,6 @@ jobs:
                   path-to-lcov: .coverage/lcov.info
     release:
         runs-on: ubuntu-latest
-        permissions:
-            # Give the default GITHUB_TOKEN write permission to commit and push the
-            # added or changed files to the repository.
-            contents: write
         needs: [build]
         if: "${{ github.repository_owner == 'ebay' && github.event_name == 'push' }}"
         steps:
@@ -49,7 +44,7 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v3
               with:
-                  node-version: "16.x"
+                  node-version: "18"
                   cache: npm
             - name: Install dependencies
               run: npm ci
@@ -59,8 +54,8 @@ jobs:
               with:
                   version: npm run version
                   publish: npm run release
-                  commit: "[ci] release"
-                  title: "[ci] release"
+                  commit: "ci: release"
+                  title: "ci: release"
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
