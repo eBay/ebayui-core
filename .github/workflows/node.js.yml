@@ -13,7 +13,6 @@ concurrency:
 jobs:
     build:
         runs-on: ubuntu-latest
-
         steps:
             - uses: actions/checkout@master
             - uses: actions/setup-node@master
@@ -37,6 +36,10 @@ jobs:
                   path-to-lcov: .coverage/lcov.info
     release:
         runs-on: ubuntu-latest
+        permissions:
+            # Give the default GITHUB_TOKEN write permission to commit and push the
+            # added or changed files to the repository.
+            contents: write
         needs: [build]
         if: "${{ github.repository_owner == 'ebay' && github.event_name == 'push' }}"
         steps:
