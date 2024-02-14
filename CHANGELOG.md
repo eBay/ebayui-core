@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 13.1.5
+
+### Patch Changes
+
+-   [#2094](https://github.com/eBay/ebayui-core/pull/2094) [`182b335`](https://github.com/eBay/ebayui-core/commit/182b3353c5fa2a3574477db9c7888310a2cc025f) Thanks [@LuLaValva](https://github.com/LuLaValva)! - optimize icons with toJSON
+
 ## 13.1.4
 
 ### Patch Changes
