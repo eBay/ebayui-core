@@ -11,12 +11,21 @@ const componentInputDir = path.join(rootDir, "src/components");
 // run typescript compiler
 execSync("mtc");
 // Rename all exports.default to module.exports
-execSync(
-    "find dist -type f -name 'component*.js' | xargs sed -i '' 's/exports.default =/module.exports =/g'",
-);
-execSync(
-    "find dist -type f -name 'component*.js' | xargs sed -i '' 's/ extends Marko.Component {/ {/g'",
-);
+if (process.platform === "darwin") {
+    execSync(
+        "find dist -type f -name 'component*.js' | xargs sed -i '' 's/exports.default =/module.exports =/g'",
+    );
+    execSync(
+        "find dist -type f -name 'component*.js' | xargs sed -i '' 's/ extends Marko.Component {/ {/g'",
+    );
+} else {
+    execSync(
+        "find dist -type f -name 'component*.js' | xargs sed -i -e 's/exports.default =/module.exports =/g'",
+    );
+    execSync(
+        "find dist -type f -name 'component*.js' | xargs sed -i -e 's/ extends Marko.Component {/ {/g'",
+    );
+}
 
 // create top level browser.json files to map to nested ones
 fs.readdirSync(componentInputDir)

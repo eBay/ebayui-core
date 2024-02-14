@@ -5,7 +5,7 @@
     "scripts": {
         "installMarkoV5": "npm i marko@5 @marko/compiler@5 --force",
         "installMarkoV4": "npm remove @marko/compiler && npm i marko@4 --force",
-        "prepublishOnly": "rm -rf dist && node scripts/prepublish",
+        "prepublishOnly": "node scripts/postpublish && node scripts/prepublish",
         "version": "npm run build:storybook && npm run build:readme && git add -A src docs && changeset version && npm i --package-lock-only",
         "postpublish": "node scripts/postpublish",
         "start": "storybook dev -p 6006",
@@ -23,7 +23,7 @@
         "lint:less": "stylelint \"src/**/*.{css,less}\" --config .stylelintrc",
         "lint:js": "eslint .",
         "lint:whitespace": "lintspaces *.md src/**/*.md src/**/*.marko src/**/*.less --newline --maxnewlines 1 --trailingspaces --spaces 4",
-        "release": "npm run build && node scripts/prepublish && changeset publish",
+        "release": "node scripts/postpublish && node scripts/prepublish && changeset publish",
         "build": "rm -rf dist && mtc && npm run lint && node scripts/check-postpublish && npm test",
         "build:ci": "npm run lint && node scripts/check-postpublish && npm test && npm run build",
         "build:readme": "node scripts/add-ds-version",
