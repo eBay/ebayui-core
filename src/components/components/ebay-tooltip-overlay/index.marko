@@ -3,7 +3,7 @@ import { typeRoles } from "./constants";
 
 static function noop() {}
 
-$ input.toJSON = noop;
+$ (input as any).toJSON = noop;
 
 $ const {
     id,

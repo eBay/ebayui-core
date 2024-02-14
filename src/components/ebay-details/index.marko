@@ -10,11 +10,10 @@ $ const {
     text,
     renderBody,
     as: inputAs,
-    toJSON,
     ...htmlInput
 } = input;
 
-$ input.toJSON = noop;
+$ (input as any).toJSON = noop;
 
 <details
     ...processHtmlAttributes(htmlInput)

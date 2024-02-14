@@ -12,7 +12,6 @@ export interface ButtonEvent<T extends Event> {
 
 export interface ButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
     href?: string;
-    toJSON?: () => Object;
     size?: (typeof validSizes)[number];
     priority?: "primary" | "secondary" | "tertiary" | "none";
     variant?: "standard" | "destructive" | "form";
@@ -68,7 +67,7 @@ static var validPriorities = [
 ];
 
 $ {
-    input.toJSON = toJSON;
+    (input as any).toJSON = toJSON;
     var size = inputSize && validSizes.includes(inputSize) ? inputSize : null;
 
     var priority = inputPriority || "secondary";

@@ -6,7 +6,6 @@ export interface CheckboxEvent {
     checked: boolean;
 }
 interface CheckboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
-    toJSON?: any;
     "icon-style"?: "rounded" | "square";
     "on-change"?: (e: CheckboxEvent) => void;
     "on-focus"?: (e: CheckboxEvent) => void;

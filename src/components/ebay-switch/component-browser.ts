@@ -7,7 +7,6 @@ export interface SwitchEvent {
 }
 
 interface SwitchInput extends Omit<Marko.Input<"input">, `on${string}`> {
-    toJSON?: any;
     "on-change"?: (event: SwitchEvent) => void;
 }
 

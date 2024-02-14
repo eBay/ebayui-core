@@ -8,7 +8,6 @@ export interface TextboxEvent {
 }
 
 interface TextboxInput extends Omit<Marko.Input<"textarea">, `on${string}`> {
-    toJSON?: any;
     multiline?: boolean;
     type?: Marko.Input<"input">["type"];
     "input-size"?: "regular" | "large";

@@ -2,7 +2,6 @@ import * as eventUtils from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
 
 interface FakeLinkInput extends Omit<Marko.Input<"button">, `on${string}`> {
-    toJSON?: any;
     variant?: "inline" | "standalone";
     "on-click"?: (event: { originalEvent: MouseEvent }) => void;
     "on-escape"?: (event: { originalEvent: KeyboardEvent }) => void;

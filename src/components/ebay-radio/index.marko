@@ -9,7 +9,7 @@ $ const {
     ...htmlInput
 } = input;
 
-$ input.toJSON = noop;
+$ (input as any).toJSON = noop;
 
 <span class=["radio", inputClass] style=style>
     <input

@@ -15,7 +15,6 @@ import type { WithNormalizedProps } from "../../../global";
 
 interface TooptipBaseInput {
     open?: boolean;
-    toJSON?: () => Object;
     type: string;
     offset?: number;
     "no-hover"?: boolean;
