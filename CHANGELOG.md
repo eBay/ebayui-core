@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 13.1.4
+
+### Patch Changes
+
+-   [#2096](https://github.com/eBay/ebayui-core/pull/2096) [`8217c8c`](https://github.com/eBay/ebayui-core/commit/8217c8cbad0f0b1f0335bcdec9e607f5e37aa031) Thanks [@agliga](https://github.com/agliga)! - added auto publish to master
+
 A record of all notable changes are documented under [releases](https://github.com/eBay/ebayui-core/releases).
 
 eBayUI-Core releases follow [Semantic Versioning](http://semver.org):
