@@ -1,27 +1,8 @@
-import type { WithNormalizedProps } from "../../global";
-
-export const validSizes = ["large"] as const;
-
-export interface SegmentedButtonsEvent {
-    originalEvent: PointerEvent;
-    index: number;
-    value?: string;
-}
-
-export interface SegmentedButton
-    extends Omit<Marko.Input<"button">, `on${string}`> {
-    selected?: boolean;
-    icon?: Marko.Renderable;
-}
-
-interface SegmentedButtonsInput
-    extends Omit<Marko.Input<"div">, `on${string}`> {
-    buttons?: Marko.RepeatableAttrTag<SegmentedButton>;
-    size?: (typeof validSizes)[number];
-    "on-change"?: (event: SegmentedButtonsEvent) => void;
-}
-
-export interface Input extends WithNormalizedProps<SegmentedButtonsInput> {}
+import type {
+    Input,
+    SegmentedButton,
+    SegmentedButtonsEvent,
+} from "./index.marko";
 
 interface State {
     selectedIndex: number;
