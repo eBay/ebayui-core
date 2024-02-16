@@ -8,9 +8,9 @@ interface TooltipOverlayInput {
     "style-right"?: string;
     "style-bottom"?: string;
     heading?: Marko.Input<"span"> & {
-        as: Marko.NativeTags;
-        renderBody: Marko.Body;
-    };
+        as?: Marko.NativeTags;
+        renderBody?: Marko.Body;
+    } & Iterable<any>;
     id?: string;
     type: keyof typeof typeRoles;
     content?: Marko.AttrTag<Marko.Input<"span">>;
