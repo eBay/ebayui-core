@@ -11,10 +11,10 @@ interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     placement?: TooltipBaseInput["placement"];
     disabled?: boolean;
     icon?: Marko.AttrTag<{ renderBody: Marko.Renderable }>;
-    heading: Marko.Input<"span"> & {
-        as: Marko.NativeTags;
-        renderBody: Marko.Renderable;
-    };
+    heading?: Marko.Input<"span"> & {
+        as?: Marko.NativeTags;
+        renderBody?: Marko.Renderable;
+    } & Iterable<any>;
     content: Marko.AttrTag<Marko.Input<"span">>;
     "a11y-close-button-text"?: AttrString;
     "on-expand"?: () => void;
