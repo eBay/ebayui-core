@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 13.1.6
+
+### Patch Changes
+
+-   [#2100](https://github.com/eBay/ebayui-core/pull/2100) [`277f12b`](https://github.com/eBay/ebayui-core/commit/277f12beaec60fb4d195932de189109d97931d82) Thanks [@LuLaValva](https://github.com/LuLaValva)! - fix segmented-buttons-import error
+
 ## 13.1.5
 
 ### Patch Changes
