@@ -8,7 +8,6 @@ const validRanges = {
 };
 
 interface EekInput extends Omit<Marko.Input<"div">, `on${string}`> {
-    toJSON?: any;
     max: string;
     min: string;
     rating: string;

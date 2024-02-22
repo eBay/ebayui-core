@@ -3,7 +3,6 @@ import * as eventUtils from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
 
 interface IconButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
-    toJSON?: any;
     "badge-number"?: number | string;
     href?: string;
     transparent?: boolean;

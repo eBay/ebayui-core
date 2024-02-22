@@ -1,0 +1,16 @@
+{
+    "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
+    "changelog": [
+        "@changesets/changelog-github",
+        {
+            "repo": "ebay/ebayui-core"
+        }
+    ],
+    "commit": false,
+    "access": "public",
+    "fixed": [],
+    "linked": [],
+    "baseBranch": "master",
+    "updateInternalDependencies": "patch",
+    "ignore": []
+}

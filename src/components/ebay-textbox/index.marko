@@ -25,7 +25,7 @@ $ const {
     ...htmlInput
 } = input;
 
-$ input.toJSON = toJSON;
+$ (input as any).toJSON = toJSON;
 $ var isPostfix = !!postfixIcon;
 $ var hasIcon = prefixIcon || isPostfix;
 $ var isLarge = inputSize === "large";
