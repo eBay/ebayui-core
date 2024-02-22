@@ -37,7 +37,9 @@
         "storybook": "storybook dev -p 6006",
         "generateCDN": "node scripts/generate-cdn.js",
         "prepare": "husky install",
-        "change": "changeset add"
+        "change": "changeset add",
+        "prerelease:start": "changeset pre enter next",
+        "prerelease:end": "changeset pre exit"
     },
     "browserslist": [
         "extends @ebay/browserslist-config"

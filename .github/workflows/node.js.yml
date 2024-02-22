@@ -4,11 +4,25 @@ on:
     pull_request:
         types: [opened, synchronize]
     push:
-        branches: [master]
+        branches: ["master", "[1-9][0-9].*"]
 
 concurrency:
     group: "${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.head_ref || github.ref }}"
     cancel-in-progress: true
+
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  discussions: write
+  issues: write
+  packages: write
+  id-token: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
 
 jobs:
     build:
