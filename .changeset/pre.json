@@ -1,0 +1,8 @@
+{
+    "mode": "pre",
+    "tag": "next",
+    "initialVersions": {
+        "@ebay/ebayui-core": "13.1.6"
+    },
+    "changesets": []
+}
