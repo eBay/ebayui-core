@@ -33,6 +33,7 @@ $ const {
     bannerImgSrc,
     bannerImgPosition,
     size,
+    renderBody,
     ...dialogBaseInput
 } = input;
 
@@ -73,4 +74,5 @@ $ var handleLabel = state.expanded ? a11yMinimizeText : a11yMaximizeText;
                     } />
             </if>
         </@top>
+        <${renderBody}/>
 </ebay-dialog-base>

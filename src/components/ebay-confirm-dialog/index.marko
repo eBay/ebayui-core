@@ -34,7 +34,10 @@ static  var validConfirmCTAVariants = [
     "destructive"
 ];
 
-$ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, reject, confirm, ...dialogInput } = input;
+$ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, reject, confirm, renderBody, ...dialogInput } = input;
+
+$ const { renderBody: confirmRenderBody, ...confirmRestOfInput } = confirm || {} as NonNullable<typeof confirm>;
+$ const { renderBody: rejectRenderBody, ...rejectRestOfInput } = reject || {} as NonNullable<typeof reject>;
 
 <ebay-dialog-base
     ...dialogInput
@@ -51,14 +54,14 @@ $ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, reject,
             on-click("emit", "reject")
             id=cancelId
             class="confirm-dialog__reject"
-            ...reject
+            ...rejectRestOfInput
             >
 
             <if(rejectText)>
                 ${rejectText}
             </if>
             <else>
-                <${reject}/>
+                <${rejectRenderBody}/>
             </else>
         </ebay-button>
         <ebay-button
@@ -70,13 +73,14 @@ $ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, reject,
                 "confirm-dialog__confirm",
                 confirmCtaVariant && validConfirmCTAVariants.includes(confirmCtaVariant) && `btn--${confirmCtaVariant}`
             ]
-            ...confirm>
+            ...confirmRestOfInput>
             <if(confirmText)>
                 ${confirmText}
             </if>
             <else>
-                <${confirm}/>
+                <${confirmRenderBody}/>
             </else>
         </ebay-button>
     </@footer>
+    <${renderBody}/>
 </ebay-dialog-base>

@@ -12,17 +12,24 @@ export interface Input {
 
 }
 
+$ const {
+    header,
+    confirm,
+    reject,
+    ...dialogBaseInput
+} = input;
+
 <ebay-confirm-dialog
     open=state.open
     on-open("emit", "open")
     on-close("emit", "close")
     on-reject('closeDialog')
     on-confirm('success')
-    ...input
+    ...dialogBaseInput
 >
-    <@header><${input.header.renderBody}/></@header>
-    <@confirm><${input.confirm.renderBody}/></@confirm>
-    <@reject><${input.reject.renderBody}/></@reject>
+    <@header ...header><${header.renderBody}/></@header>
+    <@confirm ...confirm><${confirm.renderBody}/></@confirm>
+    <@reject ...reject><${reject.renderBody}/></@reject>
     <${input.renderBody}/>
     <p>
         This 'confirm' text should be 1-2 lines.

@@ -24,8 +24,11 @@ $ const {
     class: inputClass,
     confirmText,
     confirm,
+    renderBody,
     ...restInput
 } = input;
+
+$ const { renderBody: confirmRenderBody, ...confirmRestOfInput } = confirm || {} as NonNullable<typeof confirm>;
 
 <ebay-dialog-base
     ...restInput
@@ -47,14 +50,15 @@ $ const {
             key="confirm"
             id=confirmId
             class="alert-dialog__acknowledge"
-            ...confirm
+            ...confirmRestOfInput
             >
             <if(confirmText)>
                 ${confirmText}
             </if>
             <else>
-                <${confirm}/>
+                <${confirmRenderBody}/>
             </else>
         </ebay-button>
     </@footer>
+    <${renderBody}/>
 </ebay-dialog-base>
