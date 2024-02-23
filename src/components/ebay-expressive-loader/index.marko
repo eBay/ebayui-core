@@ -38,10 +38,18 @@
                 </div>
             </div>
         </if>
-        <ebay-expressive-line-animation
-            ariaLabel=input.ariaLabel || "Loading..."
-            ariaDescribedby:scoped="message"
-            useReducedMotion=state.useReducedMotion
-        />
+        <div
+            role="progressbar"
+            aria-label=input.ariaLabel || "Loading..."
+            aria-describedby:scoped="message"
+            class="expressive-loader__progress"
+            no-update-body
+        >
+            <div class="expressive-loader__lines">
+                <for|_i| from=1 to=12>
+                    <div class="expressive-loader__line"/>
+                </for>
+            </div>
+        </div>
     </div>
 </if>

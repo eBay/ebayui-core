@@ -2,18 +2,39 @@
 // https://github.com/eBay/skin/issues/2162
 @import "~@ebay/skin/dist/variables/variables.less";
 
+@expressive-loader-line-count: 12;
+
 :root {
-    --expressive-loader-message-animatein-duration: 833ms;
-    --expressive-loader-message-animateout-duration: 400ms;
-    --expressive-loader-scroll-lines-duration: 20s;
-    --expressive-loader-scale-line-duration: 0.7s;
-    --expressive-loader-line-height: 6px;
-    --expressive-loader-line-gap: var(--spacing-50);
-    --expressive-loader-line-border-radius: 2px;
     --expressive-loader-color-1: #e53238;
     --expressive-loader-color-2: #0064d2;
     --expressive-loader-color-3: #f5af02;
     --expressive-loader-color-4: #86b817;
+    --expressive-loader-line-border-radius: 2px;
+    --expressive-loader-line-gap: var(--spacing-50);
+    --expressive-loader-line-gap-total: calc(
+        3 * var(--expressive-loader-line-gap)
+    );
+    --expressive-loader-line-height: 6px;
+    --expressive-loader-line-scale-duration: 3.5s;
+    --expressive-loader-line-scroll-duration: 30s;
+    /* Each line has a final width of 10% - 40% of the lines container.
+       In each set of four lines, the widths add up to 100%.
+       These widths are defined in CSS variables so they can more 
+       easily be randomized in Javascript, if desired. */
+    --expressive-loader-line-width-a1: 25%;
+    --expressive-loader-line-width-a2: 15%;
+    --expressive-loader-line-width-a3: 40%;
+    --expressive-loader-line-width-a4: 20%;
+    --expressive-loader-line-width-b1: 17%;
+    --expressive-loader-line-width-b2: 21%;
+    --expressive-loader-line-width-b3: 30%;
+    --expressive-loader-line-width-b4: 32%;
+    --expressive-loader-line-width-c1: 39%;
+    --expressive-loader-line-width-c2: 29%;
+    --expressive-loader-line-width-c3: 20%;
+    --expressive-loader-line-width-c4: 12%;
+    --expressive-loader-message-animatein-duration: 833ms;
+    --expressive-loader-message-animateout-duration: 400ms;
 
     @media (prefers-color-scheme: dark) {
         --expressive-loader-color-1: #f0343b;
@@ -23,6 +44,23 @@
     }
 }
 
+// Utility for setting a unique animation delay based on a line's index
+.animation-delay(@i) when (@i <= @expressive-loader-line-count) {
+    &:nth-child(@{i}) {
+        animation-delay: calc(
+            -1 * (var(--expressive-loader-line-scale-duration) -
+                        (
+                            (
+                                    var(--expressive-loader-line-scale-duration) /
+                                        @expressive-loader-line-count
+                                ) * @i
+                        ))
+        );
+    }
+
+    .animation-delay(@i + 1);
+}
+
 .expressive-loader {
     align-items: stretch;
     display: flex;
@@ -30,9 +68,8 @@
     gap: var(--spacing-300);
     justify-content: flex-end;
     margin: 0 auto;
-    min-width: 200px;
-    max-width: 375px;
-    width: 100%;
+    max-width: 100%;
+    width: 375px;
 }
 
 .expressive-loader--loaded {
@@ -73,53 +110,118 @@
     opacity: 0;
 }
 
+.expressive-loader__message--in {
+    animation: expressive-loader-message-animatein
+        var(--expressive-loader-message-animatein-duration)
+        cubic-bezier(0.3, 0, 0, 1) both;
+}
+
+.expressive-loader__message--out[role="status"] {
+    animation: expressive-loader-message-animateout
+        var(--expressive-loader-message-animateout-duration)
+        cubic-bezier(0.3, 0, 0, 1) both;
+}
+
 .expressive-loader__progress[role="progressbar"] {
     border-radius: var(--expressive-loader-line-border-radius);
+
     margin: 0 var(--spacing-200);
     overflow: hidden;
-    display: flex;
-    flex-shrink: 0;
-    gap: var(--expressive-loader-line-gap);
 }
 
 .expressive-loader__lines {
-    display: block;
-    font-size: 0;
-    height: var(--expressive-loader-line-height);
-    line-height: 0;
-    min-width: 100%;
-    white-space: nowrap;
+    display: flex;
+    overflow: visible;
+    // Account for gaps between lines
+    width: calc(100% - (3 * var(--expressive-loader-line-gap)));
 }
 
 .expressive-loader__line {
+    /* Default animation behavior: Lines scroll and resize.
+       Animate line's width from 0% to its pre-defined width.
+       Simultaneously cycle the line's order in its flex container
+       to push its siblings forward and achieve an infinite loop. */
+    .animation-delay(1);
+    animation:
+        expressive-loader-line-reorder
+            var(--expressive-loader-line-scale-duration)
+            steps(@expressive-loader-line-count) infinite,
+        expressive-loader-line-scale-width
+            var(--expressive-loader-line-scale-duration) infinite;
     border-radius: var(--expressive-loader-line-border-radius);
     display: inline-block;
+    flex-shrink: 0;
     height: var(--expressive-loader-line-height);
-    line-height: 0px;
-    transform-origin: 0;
+    line-height: 0;
+    order: 1;
 }
 
-.expressive-loader__line-1 {
+// Set line widths
+.expressive-loader__line:nth-child(1) {
+    width: var(--expressive-loader-line-width-a1);
+}
+.expressive-loader__line:nth-child(2) {
+    width: var(--expressive-loader-line-width-a2);
+}
+.expressive-loader__line:nth-child(3) {
+    width: var(--expressive-loader-line-width-a3);
+}
+.expressive-loader__line:nth-child(4) {
+    width: var(--expressive-loader-line-width-a4);
+}
+.expressive-loader__line:nth-child(5) {
+    width: var(--expressive-loader-line-width-b1);
+}
+.expressive-loader__line:nth-child(6) {
+    width: var(--expressive-loader-line-width-b2);
+}
+.expressive-loader__line:nth-child(7) {
+    width: var(--expressive-loader-line-width-b3);
+}
+.expressive-loader__line:nth-child(8) {
+    width: var(--expressive-loader-line-width-b4);
+}
+.expressive-loader__line:nth-child(9) {
+    width: var(--expressive-loader-line-width-c1);
+}
+.expressive-loader__line:nth-child(10) {
+    width: var(--expressive-loader-line-width-c2);
+}
+.expressive-loader__line:nth-child(11) {
+    width: var(--expressive-loader-line-width-c3);
+}
+.expressive-loader__line:nth-child(12) {
+    width: var(--expressive-loader-line-width-c4);
+}
+
+// Set line colors
+.expressive-loader__line:nth-child(4n + 1) {
     background-color: var(--expressive-loader-color-1);
 }
-
-.expressive-loader__line-2 {
+.expressive-loader__line:nth-child(4n + 2) {
     background-color: var(--expressive-loader-color-2);
 }
-
-.expressive-loader__line-3 {
+.expressive-loader__line:nth-child(4n + 3) {
     background-color: var(--expressive-loader-color-3);
 }
-
-.expressive-loader__line-4 {
+.expressive-loader__line:nth-child(4n + 4) {
     background-color: var(--expressive-loader-color-4);
 }
 
 @media (prefers-reduced-motion) {
+    /* Message transitions are not animated. */
+
+    // Remove default message animation
+    .expressive-loader__message--in,
+    .expressive-loader__message--out[role="status"] {
+        animation: none;
+    }
+
     .expressive-loader__message[aria-hidden="true"] {
         display: none;
     }
 
+    // Fade in first message
     .expressive-loader:not(.expressive-loader--medium)
         .expressive-loader__message--initial[role="status"] {
         animation: expressive-loader-message-fadein
@@ -127,34 +229,29 @@
             cubic-bezier(0.3, 0, 0, 1) both;
     }
 
+    /* Lines scroll but do not resize.
+       Move the line container horizontally across the screen,
+       adjusting first set of lines' flex order as needed to
+       achieve an infinite scroll. */
+
+    // Scroll the entire line container
     .expressive-loader__lines {
-        animation: expressive-loader-scroll-lines
-            var(--expressive-loader-scroll-lines-duration) linear infinite;
-        display: flex;
-        gap: var(--expressive-loader-line-gap);
-    }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .expressive-loader__message--in {
-        animation: expressive-loader-message-animatein
-            var(--expressive-loader-message-animatein-duration)
-            cubic-bezier(0.3, 0, 0, 1) both;
+        animation: expressive-loader-reduced-motion-line-scroll
+            var(--expressive-loader-line-scroll-duration) linear infinite;
+        overflow: visible;
     }
 
-    .expressive-loader__message--out[role="status"] {
-        animation: expressive-loader-message-animateout
-            var(--expressive-loader-message-animateout-duration)
-            cubic-bezier(0.3, 0, 0, 1) both;
-    }
-
+    // Remove default line animation
     .expressive-loader__line {
+        animation: none;
+        animation-delay: none;
         margin-right: var(--expressive-loader-line-gap);
     }
 
-    .expressive-loader__line--scaling {
-        animation: expressive-loader-scale-line-width
-            var(--expressive-loader-scale-line-duration) linear;
+    // Adjust first set of lines' flex order
+    .expressive-loader__line:nth-child(-n + 4) {
+        animation: expressive-loader-reduced-motion-line-reorder
+            var(--expressive-loader-line-scroll-duration) steps(1) infinite;
     }
 }
 
@@ -192,24 +289,102 @@
     }
 }
 
-@keyframes expressive-loader-scale-line-width {
+@keyframes expressive-loader-line-reorder {
     0% {
-        width: 0;
+        order: 0;
     }
-
     100% {
-        transform: scaleX(1);
+        order: @expressive-loader-line-count;
     }
 }
 
-@keyframes expressive-loader-scroll-lines {
-    from {
+@keyframes expressive-loader-line-scale-width {
+    0% {
+        margin-right: 0;
+        width: 0;
+    }
+
+    12.5% {
+        margin-right: var(--expressive-loader-line-gap);
+    }
+
+    50%,
+    100% {
+        margin-right: var(--expressive-loader-line-gap);
+    }
+}
+
+/* Reduced motion scroll for the line container. This container includes
+   3 full sets of lines (A B C), and each keyframe corresponds to a full set
+   scrolling into view. To achieve an infinite scroll, this animation
+   is tightly coupled with the expressive-loader-reduced-motion-line-reorder
+   animation, which controls the flex order of the first set of lines. */
+@keyframes expressive-loader-reduced-motion-line-scroll {
+    // A B [C], with C in view
+    0% {
+        animation-timing-function: linear;
         transform: translateX(
-            calc(-200% - 2 * var(--expressive-loader-line-gap))
+            calc(-200% - 8 * var(--expressive-loader-line-gap))
         );
     }
 
-    to {
+    // A [B] C
+    33% {
+        transform: translateX(
+            calc(-100% - 4 * var(--expressive-loader-line-gap))
+        );
+    }
+
+    /* [A] B C
+       At this point, all line sets have been scrolled into view.
+       At 66%, expressive-loader-reduced-motion-line-reorder will modify the order
+       of the line sets and this animation will reset the container scroll position
+       to accomodate the new line set order. To achieve a seamless transition,
+       we briefly change this animation's timing function to steps. */
+    65.99% {
+        animation-timing-function: steps(1);
         transform: translateX(0);
+    }
+
+    // B C [A]
+    66% {
+        animation-timing-function: linear;
+        transform: translateX(
+            calc(-200% - 8 * var(--expressive-loader-line-gap))
+        );
+    }
+
+    /* B [C] A
+       At 100%, expressive-loader-reduced-motion-line-reorder will modify the order
+       of the line sets and this animation will reset the container scroll position
+       to accomodate the new line set order. To achieve a seamless transition,
+       we briefly change this animation's timing function to steps. */
+    99.99% {
+        animation-timing-function: steps(1);
+        transform: translateX(
+            calc(-100% - 4 * var(--expressive-loader-line-gap))
+        );
+    }
+
+    // A B [C]
+    100% {
+        animation-timing-function: linear;
+        transform: translateX(
+            calc(-200% - 8 * var(--expressive-loader-line-gap))
+        );
+    }
+}
+
+/* Change flex order of the first full set of lines */
+@keyframes expressive-loader-reduced-motion-line-reorder {
+    // A B C
+    0%,
+    100% {
+        order: 1;
+    }
+
+    // B C A
+    66% {
+        order: 2;
     }
 }
