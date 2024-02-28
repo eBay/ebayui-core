@@ -89,19 +89,20 @@ export default {
                 "the value to use with event responses for for the `checked` array",
         },
         "badge-number": {
-            control: { type: "text" },
+            controls: { hideNoControlsWarning: true },
             table: {
                 category: "@item attributes",
             },
             description: "used as the number to be placed in the badge",
         },
-        "badge-aria-label": {
-            control: { type: "text" },
-            table: {
-                category: "@item attributes",
-            },
+        'aria-label': {
+            controls: { hideNoControlsWarning: true },
             description:
-                "Yes (only if badge number is provided) | passed as the `aria-label` directly to the badge",
+                "Passed as the `aria-label` directly to the badge. Required only if badge number is provided",
+
+            table: {
+                category: "@item attribute tags",
+            },
         },
         onKeydown: {
             action: "on-keydown",

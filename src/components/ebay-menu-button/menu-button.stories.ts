@@ -12,6 +12,8 @@ import TypeaheadTemplate from "./examples/typeahead.marko";
 import TypeaheadTemplateCode from "./examples/typeahead.marko?raw";
 import SeparatorTemplate from "./examples/separator.marko";
 import SeparatorTemplateCode from "./examples/separator.marko?raw";
+import PrefixLabelTemplate from "./examples/prefix-label.marko";
+import PrefixLabelTemplateCode from "./examples/prefix-label.marko?raw";
 import Component from "./index.marko";
 
 const Template = (args) => ({
@@ -114,7 +116,16 @@ export default {
         prefixLabel: {
             control: { type: "text" },
             description:
-                "The label to add before each selected item on the button. Cannot be used with `prefix-id` ",
+                "The label to add before each selected item on the button. Cannot be used with `prefix-id, Only works when @label is passed`",
+        },
+        label: {
+            name: "@label",
+            description:
+                "The menu button label. Cannot be used in conjunction with text.",
+
+            table: {
+                category: "@attribute tags",
+            },
         },
         item: {
             name: "@item",
@@ -129,13 +140,17 @@ export default {
             },
         },
         badgeNumber: {
+            controls: { hideNoControlsWarning: true },
             description: "used as the number to be placed in the badge",
             table: {
                 category: "@item attribute tags",
             },
         },
-        badgeAriaLabel: {
-            description: "passed as the `aria-label` directly to the badge",
+        'aria-label': {
+            controls: { hideNoControlsWarning: true },
+            description:
+                "Passed as the `aria-label` directly to the badge. Required only if badge number is provided",
+
             table: {
                 category: "@item attribute tags",
             },
@@ -222,3 +237,8 @@ export const Badged = buildExtensionTemplate(
     BadgedTemplate,
     BadgedTemplateCode
 );
+export const PrefixLabel = buildExtensionTemplate(
+    PrefixLabelTemplate,
+    PrefixLabelTemplateCode
+);
+

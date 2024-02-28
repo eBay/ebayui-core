@@ -1,0 +1,14 @@
+{
+    "mode": "exit",
+    "tag": "next",
+    "initialVersions": {
+        "@ebay/ebayui-core": "13.1.6"
+    },
+    "changesets": [
+        "heavy-meals-kneel",
+        "large-bears-remember",
+        "large-dragons-exercise",
+        "perfect-meals-wonder",
+        "plenty-poets-jump"
+    ]
+}

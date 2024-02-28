@@ -4,6 +4,12 @@ export interface Input {
     }
 }
 
+$ const {
+    header,
+    open,
+    ...dialogBaseInput
+} = input;
+
 class {
     onInput(input: Input) {
         this.state = { open: input.open };
@@ -27,11 +33,11 @@ class {
     on-open("emit", "open")
     on-expanded("emit", "expanded")
     on-collapsed("emit", "collapsed")
-    ...input
+    ...dialogBaseInput
 >
-    <if(input.header && input.header.renderBody)>
-        <@header ...input.header>
-            <${input.header.renderBody}/>
+    <if(header && header.renderBody)>
+        <@header ...header>
+            <${header.renderBody}/>
         </@header>
     </if>
     <p>

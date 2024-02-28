@@ -8,8 +8,20 @@ static interface ConfirmDialogInput extends Omit<BaseInput, `on${string}`> {
     "reject-text"?: AttrString;
     "confirm-text"?: AttrString;
     "on-open"?: DialogBaseInput["on-open"];
+    "on-close"?: DialogBaseInput["on-close"];
     "on-reject"?: ButtonInput["on-click"] | DialogBaseInput["on-close"];
     "on-confirm"?: ButtonInput["on-click"];
+    confirm?: Marko.AttrTag<
+        Marko.Input<`h${number}`> & {
+            renderBody?: Marko.Body;
+        }
+    >;
+    reject?: Marko.AttrTag<
+        Marko.Input<`h${number}`> & {
+            renderBody?: Marko.Body;
+        }
+    >;
+
     "confirm-cta-variant"?: typeof validConfirmCTAVariants[number];
 }
 
@@ -22,11 +34,15 @@ static  var validConfirmCTAVariants = [
     "destructive"
 ];
 
-$ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, ...dialogInput } = input;
+$ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, reject, confirm, renderBody, ...dialogInput } = input;
+
+$ const { renderBody: confirmRenderBody, ...confirmRestOfInput } = confirm || {} as NonNullable<typeof confirm>;
+$ const { renderBody: rejectRenderBody, ...rejectRestOfInput } = reject || {} as NonNullable<typeof reject>;
+
 <ebay-dialog-base
     ...dialogInput
     on-open("emit", "open")
-    on-close("emit", "reject")
+    on-close("emit", "close")
     main-id=mainId
     focus=confirmId
     class-prefix="confirm-dialog"
@@ -37,8 +53,16 @@ $ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, ...dial
         <ebay-button
             on-click("emit", "reject")
             id=cancelId
-            class="confirm-dialog__reject">
-            ${rejectText}
+            class="confirm-dialog__reject"
+            ...rejectRestOfInput
+            >
+
+            <if(rejectText)>
+                ${rejectText}
+            </if>
+            <else>
+                <${rejectRenderBody}/>
+            </else>
         </ebay-button>
         <ebay-button
             priority="primary"
@@ -48,8 +72,15 @@ $ const { confirmCtaVariant, rejectText, confirmText, class: inputClass, ...dial
             class=[
                 "confirm-dialog__confirm",
                 confirmCtaVariant && validConfirmCTAVariants.includes(confirmCtaVariant) && `btn--${confirmCtaVariant}`
-            ]>
-            ${confirmText}
+            ]
+            ...confirmRestOfInput>
+            <if(confirmText)>
+                ${confirmText}
+            </if>
+            <else>
+                <${confirmRenderBody}/>
+            </else>
         </ebay-button>
     </@footer>
+    <${renderBody}/>
 </ebay-dialog-base>
