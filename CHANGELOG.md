@@ -1,5 +1,19 @@
 # eBayUI-Core Changelog
 
+## 13.2.0
+
+### Minor Changes
+
+- [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-menu-button: fixed prefix label docs
+
+- [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-tourtip: fixed shifting on page loads
+
+- [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - Added auto publish to master
+
+- [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-menu: fixed badge-aria-label docs
+
+- [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - pass through attributes to ebay-confirm-dialog
+
 ## 13.2.0-next.0
 
 ### Minor Changes
