@@ -2,21 +2,17 @@
 // https://github.com/eBay/skin/issues/2162
 @import "~@ebay/skin/dist/variables/variables.less";
 
-@expressive-loader-line-count: 12;
-
 :root {
     --expressive-loader-color-1: #e53238;
     --expressive-loader-color-2: #0064d2;
     --expressive-loader-color-3: #f5af02;
     --expressive-loader-color-4: #86b817;
     --expressive-loader-line-border-radius: 2px;
+    --expressive-loader-line-count: 12;
     --expressive-loader-line-gap: var(--spacing-50);
-    --expressive-loader-line-gap-total: calc(
-        3 * var(--expressive-loader-line-gap)
-    );
     --expressive-loader-line-height: 6px;
-    --expressive-loader-line-scale-duration: 3.5s;
-    --expressive-loader-line-scroll-duration: 30s;
+    --expressive-loader-line-scale-duration: 3s;
+    --expressive-loader-line-scroll-duration: 20s;
     /* Each line has a final width of 10% - 40% of the lines container.
        In each set of four lines, the widths add up to 100%.
        These widths are defined in CSS variables so they can more 
@@ -44,32 +40,15 @@
     }
 }
 
-// Utility for setting a unique animation delay based on a line's index
-.animation-delay(@i) when (@i <= @expressive-loader-line-count) {
-    &:nth-child(@{i}) {
-        animation-delay: calc(
-            -1 * (var(--expressive-loader-line-scale-duration) -
-                        (
-                            (
-                                    var(--expressive-loader-line-scale-duration) /
-                                        @expressive-loader-line-count
-                                ) * @i
-                        ))
-        );
-    }
-
-    .animation-delay(@i + 1);
-}
-
 .expressive-loader {
     align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-300);
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: end;
     margin: 0 auto;
-    max-width: 100%;
-    width: 375px;
+    max-width: 375px;
+    row-gap: var(--spacing-300);
+    width: 100%;
 }
 
 .expressive-loader--loaded {
@@ -80,7 +59,7 @@
     color: var(--color-foreground-primary);
     font-size: var(--font-size-large-1);
     font-weight: var(--font-weight-regular);
-    line-height: var(--font-size-28, 28px);
+    line-height: calc(var(--spacing-50) + var(--spacing-300)); // 26px
     margin: 0 var(--spacing-200);
     min-height: 3rem;
     position: relative;
@@ -90,7 +69,7 @@
 .expressive-loader--medium .expressive-loader__message-container {
     font-size: var(--font-size-medium);
     font-weight: var(--font-weight-bold);
-    line-height: var(--font-size-24);
+    line-height: var(--spacing-300);
 }
 
 .expressive-loader__message {
@@ -140,12 +119,15 @@
     /* Default animation behavior: Lines scroll and resize.
        Animate line's width from 0% to its pre-defined width.
        Simultaneously cycle the line's order in its flex container
-       to push its siblings forward and achieve an infinite loop. */
-    .animation-delay(1);
+       to push its siblings forward and achieve an infinite loop. 
+
+       Note that Safari < 14 does not support flex order animations.
+       In these browsers, the lines do not appear to infinitely
+       scroll. Instead, they scale up, reset their size, and repeat. */
     animation:
         expressive-loader-line-reorder
             var(--expressive-loader-line-scale-duration)
-            steps(@expressive-loader-line-count) infinite,
+            steps(var(--expressive-loader-line-count)) infinite,
         expressive-loader-line-scale-width
             var(--expressive-loader-line-scale-duration) infinite;
     border-radius: var(--expressive-loader-line-border-radius);
@@ -156,61 +138,165 @@
     order: 1;
 }
 
+// Set line colors
+.expressive-loader__line:nth-child(4n + 1) {
+    background-color: var(--expressive-loader-color-4);
+}
+.expressive-loader__line:nth-child(4n + 2) {
+    background-color: var(--expressive-loader-color-3);
+}
+.expressive-loader__line:nth-child(4n + 3) {
+    background-color: var(--expressive-loader-color-2);
+}
+.expressive-loader__line:nth-child(4n + 4) {
+    background-color: var(--expressive-loader-color-1);
+}
+
 // Set line widths
 .expressive-loader__line:nth-child(1) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    var(--expressive-loader-line-scale-duration) /
+                    var(--expressive-loader-line-count))
+    );
     width: var(--expressive-loader-line-width-a1);
 }
 .expressive-loader__line:nth-child(2) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 2
+                    ))
+    );
     width: var(--expressive-loader-line-width-a2);
 }
 .expressive-loader__line:nth-child(3) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 3
+                    ))
+    );
     width: var(--expressive-loader-line-width-a3);
 }
 .expressive-loader__line:nth-child(4) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 4
+                    ))
+    );
     width: var(--expressive-loader-line-width-a4);
 }
 .expressive-loader__line:nth-child(5) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 5
+                    ))
+    );
     width: var(--expressive-loader-line-width-b1);
 }
 .expressive-loader__line:nth-child(6) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 6
+                    ))
+    );
     width: var(--expressive-loader-line-width-b2);
 }
 .expressive-loader__line:nth-child(7) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 7
+                    ))
+    );
     width: var(--expressive-loader-line-width-b3);
 }
 .expressive-loader__line:nth-child(8) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 8
+                    ))
+    );
     width: var(--expressive-loader-line-width-b4);
 }
 .expressive-loader__line:nth-child(9) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 9
+                    ))
+    );
     width: var(--expressive-loader-line-width-c1);
 }
 .expressive-loader__line:nth-child(10) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 10
+                    ))
+    );
     width: var(--expressive-loader-line-width-c2);
 }
 .expressive-loader__line:nth-child(11) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 11
+                    ))
+    );
     width: var(--expressive-loader-line-width-c3);
 }
 .expressive-loader__line:nth-child(12) {
+    animation-delay: calc(
+        -1 * (var(--expressive-loader-line-scale-duration) -
+                    (
+                        (
+                                var(--expressive-loader-line-scale-duration) /
+                                    var(--expressive-loader-line-count)
+                            ) * 12
+                    ))
+    );
     width: var(--expressive-loader-line-width-c4);
 }
 
-// Set line colors
-.expressive-loader__line:nth-child(4n + 1) {
-    background-color: var(--expressive-loader-color-1);
-}
-.expressive-loader__line:nth-child(4n + 2) {
-    background-color: var(--expressive-loader-color-2);
-}
-.expressive-loader__line:nth-child(4n + 3) {
-    background-color: var(--expressive-loader-color-3);
-}
-.expressive-loader__line:nth-child(4n + 4) {
-    background-color: var(--expressive-loader-color-4);
-}
-
+/* With reduced motion, there are no animated transitions
+   between messages and the lines scroll but do not resize. */
 @media (prefers-reduced-motion) {
-    /* Message transitions are not animated. */
-
     // Remove default message animation
     .expressive-loader__message--in,
     .expressive-loader__message--out[role="status"] {
@@ -229,11 +315,6 @@
             cubic-bezier(0.3, 0, 0, 1) both;
     }
 
-    /* Lines scroll but do not resize.
-       Move the line container horizontally across the screen,
-       adjusting first set of lines' flex order as needed to
-       achieve an infinite scroll. */
-
     // Scroll the entire line container
     .expressive-loader__lines {
         animation: expressive-loader-reduced-motion-line-scroll
@@ -248,10 +329,36 @@
         margin-right: var(--expressive-loader-line-gap);
     }
 
-    // Adjust first set of lines' flex order
-    .expressive-loader__line:nth-child(-n + 4) {
-        animation: expressive-loader-reduced-motion-line-reorder
-            var(--expressive-loader-line-scroll-duration) steps(1) infinite;
+    // Reset line colors
+    .expressive-loader__line:nth-child(4n + 1) {
+        background-color: var(--expressive-loader-color-1);
+    }
+    .expressive-loader__line:nth-child(4n + 2) {
+        background-color: var(--expressive-loader-color-2);
+    }
+    .expressive-loader__line:nth-child(4n + 3) {
+        background-color: var(--expressive-loader-color-3);
+    }
+    .expressive-loader__line:nth-child(4n + 4) {
+        background-color: var(--expressive-loader-color-4);
+    }
+
+    // To achieve a seamless loop, the last set of line widths
+    // need to match the first set of line widths
+    .expressive-loader__line:nth-child(9) {
+        width: var(--expressive-loader-line-width-a1);
+    }
+
+    .expressive-loader__line:nth-child(10) {
+        width: var(--expressive-loader-line-width-a2);
+    }
+
+    .expressive-loader__line:nth-child(11) {
+        width: var(--expressive-loader-line-width-a3);
+    }
+
+    .expressive-loader__line:nth-child(12) {
+        width: var(--expressive-loader-line-width-a4);
     }
 }
 
@@ -294,7 +401,7 @@
         order: 0;
     }
     100% {
-        order: @expressive-loader-line-count;
+        order: var(--expressive-loader-line-count);
     }
 }
 
@@ -314,77 +421,14 @@
     }
 }
 
-/* Reduced motion scroll for the line container. This container includes
-   3 full sets of lines (A B C), and each keyframe corresponds to a full set
-   scrolling into view. To achieve an infinite scroll, this animation
-   is tightly coupled with the expressive-loader-reduced-motion-line-reorder
-   animation, which controls the flex order of the first set of lines. */
 @keyframes expressive-loader-reduced-motion-line-scroll {
-    // A B [C], with C in view
     0% {
-        animation-timing-function: linear;
         transform: translateX(
             calc(-200% - 8 * var(--expressive-loader-line-gap))
         );
     }
 
-    // A [B] C
-    33% {
-        transform: translateX(
-            calc(-100% - 4 * var(--expressive-loader-line-gap))
-        );
-    }
-
-    /* [A] B C
-       At this point, all line sets have been scrolled into view.
-       At 66%, expressive-loader-reduced-motion-line-reorder will modify the order
-       of the line sets and this animation will reset the container scroll position
-       to accomodate the new line set order. To achieve a seamless transition,
-       we briefly change this animation's timing function to steps. */
-    65.99% {
-        animation-timing-function: steps(1);
+    100% {
         transform: translateX(0);
-    }
-
-    // B C [A]
-    66% {
-        animation-timing-function: linear;
-        transform: translateX(
-            calc(-200% - 8 * var(--expressive-loader-line-gap))
-        );
-    }
-
-    /* B [C] A
-       At 100%, expressive-loader-reduced-motion-line-reorder will modify the order
-       of the line sets and this animation will reset the container scroll position
-       to accomodate the new line set order. To achieve a seamless transition,
-       we briefly change this animation's timing function to steps. */
-    99.99% {
-        animation-timing-function: steps(1);
-        transform: translateX(
-            calc(-100% - 4 * var(--expressive-loader-line-gap))
-        );
-    }
-
-    // A B [C]
-    100% {
-        animation-timing-function: linear;
-        transform: translateX(
-            calc(-200% - 8 * var(--expressive-loader-line-gap))
-        );
-    }
-}
-
-/* Change flex order of the first full set of lines */
-@keyframes expressive-loader-reduced-motion-line-reorder {
-    // A B C
-    0%,
-    100% {
-        order: 1;
-    }
-
-    // B C A
-    66% {
-        order: 2;
     }
 }
