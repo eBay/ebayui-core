@@ -60,6 +60,13 @@ export default {
             description:
                 "allows dev to specify whether tooltip is open or closed",
         },
+        noFlip: {
+            control: { type: "boolean" },
+            description: "disables flipping tooltip when its offscreen",
+            table: {
+                defaultValue: { summary: "false" },
+            }
+        },
         onCollapse: {
             action: "on-collapse",
             description: "Triggered on menu collapse",

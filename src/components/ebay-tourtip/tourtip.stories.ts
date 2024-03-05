@@ -69,6 +69,13 @@ export default {
                 category: "@attribute tags",
             },
         },
+        noFlip: {
+            control: { type: "boolean" },
+            description: "disables flipping tooltip when its offscreen",
+            table: {
+                defaultValue: { summary: "false" },
+            }
+        },
         open: {
             control: { type: "boolean" },
             description:

@@ -12,6 +12,7 @@ interface TourtipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     heading?: TooltipOverlayInput["heading"];
     content?: TooltipOverlayInput["content"];
     "a11y-close-text"?: TooltipOverlayInput["a11yCloseText"];
+    "no-flip"?: TooltipBaseInput["noFlip"];
     footer?: TooltipOverlayInput["footer"] & {
         index?: string;
     };

@@ -11,6 +11,7 @@ $ const {
     open,
     pointer = "bottom",
     variant,
+    noFlip,
     ...htmlInput
 } = input;
 
@@ -23,6 +24,7 @@ $ var classPrefix = !isModal ? "infotip" : "dialog--mini";
         key="base"
         type=classPrefix
         overlayId:scoped="overlay"
+        noFlip=noFlip
         offset=input.offset
         pointer=input.pointer
         placement=input.placement

@@ -60,6 +60,13 @@ export default {
                 defaultValue: { summary: "6" },
             }
         },
+        noFlip: {
+            control: { type: "boolean" },
+            description: "disables flipping tooltip when its offscreen",
+            table: {
+                defaultValue: { summary: "false" },
+            }
+        },
         disabled: {
             control: { type: "boolean" },
             description: "adds a `disabled` attribute to the button",

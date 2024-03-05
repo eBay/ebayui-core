@@ -7,6 +7,7 @@ $ const {
     heading,
     host,
     open,
+    noFlip,
     pointer = "bottom",
     ...htmlInput
 } = input;
@@ -15,6 +16,7 @@ $ const {
     <ebay-tooltip-base
         key="base"
         type="tourtip"
+        noFlip=noFlip
         pointer=input.pointer
         placement=input.placement
         offset=input.offset

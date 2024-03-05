@@ -151,7 +151,6 @@ export default {
                 category: "accessibility attributes",
             },
         },
-
         //     text(
         //     'badge-aria-label',
         //     'number of notifications',
