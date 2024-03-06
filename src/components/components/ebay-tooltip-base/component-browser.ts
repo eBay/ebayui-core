@@ -21,6 +21,7 @@ interface TooptipBaseInput {
     "overlay-id"?: string;
     "render-body"?: Marko.Renderable;
     placement?: Placement;
+    "no-flip"?: boolean;
     pointer?: keyof typeof pointerStyles;
     "on-base-expand"?: (event: { originalEvent: Event }) => void;
     "on-base-collapse"?: (event: { originalEvent: Event }) => void;
@@ -132,7 +133,7 @@ class TooltipBase extends Marko.Component<Input> {
                     pointerStyles[this.input.pointer ?? "bottom"],
                 middleware: [
                     offset(this.input.offset || 6),
-                    flip(),
+                    !this.input.noFlip && flip(),
                     !isTourtip && shift(),
                     arrow({
                         element: this.arrowEl as HTMLElement,

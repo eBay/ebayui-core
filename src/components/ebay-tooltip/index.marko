@@ -10,6 +10,7 @@ $ const {
     offset,
     placement,
     pointer = "bottom",
+    noFlip,
     ...htmlInput
 } = input;
 
@@ -23,6 +24,7 @@ $ const {
         key="base"
         type="tooltip"
         overlayId:scoped="overlay"
+        noFlip=noFlip
         noHover=noHover
         pointer=pointer
         placement=placement
