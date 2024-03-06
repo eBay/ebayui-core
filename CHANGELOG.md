@@ -1,5 +1,13 @@
 # eBayUI-Core Changelog
 
+## 13.2.1
+
+### Patch Changes
+
+- [#2110](https://github.com/eBay/ebayui-core/pull/2110) [`3f5edb2`](https://github.com/eBay/ebayui-core/commit/3f5edb2d92d12c59ce171c014c0ba20b2f798ac7) Thanks [@agliga](https://github.com/agliga)! - (ebay-tooltip-base): added option to ignore flip
+
+- [`6042554`](https://github.com/eBay/ebayui-core/commit/60425549c4a785be1192390545bcca63c9488fdc) Thanks [@agliga](https://github.com/agliga)! - fix(listbox-button): added import for button styles
+
 ## 13.2.0
 
 ### Minor Changes
