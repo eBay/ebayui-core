@@ -1,0 +1,71 @@
+.ebay-donut-chart__legend {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--spacing-100);
+}
+
+.ebay-donut-chart__legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--font-size-small);
+    transition: opacity 0.3s ease;
+
+    &.ebay-donut-chart__legend-item--inactive {
+        opacity: 0.3;
+    }
+}
+
+.ebay-donut-chart__legend-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-100);
+}
+
+.ebay-donut-chart__legend-symbol {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    border: 1px solid;
+
+    &.ebay-donut-chart__legend-symbol--primary {
+        background-color: var(--color-data-viz-chart-primary);
+        border-color: var(--color-data-viz-chart-primary);
+    }
+
+    &.ebay-donut-chart__legend-symbol--secondary {
+        background-color: var(--color-data-viz-chart-secondary);
+        border-color: var(--color-data-viz-chart-secondary);
+    }
+
+    &.ebay-donut-chart__legend-symbol--tertiary {
+        border: 1px solid var(--color-data-viz-chart-tertiary-stroke);
+        background: repeating-linear-gradient(
+            30deg,
+            var(--color-data-viz-chart-tertiary-background),
+            var(--color-data-viz-chart-tertiary-background) 2px,
+            var(--color-data-viz-chart-tertiary-stroke) 2px,
+            var(--color-data-viz-chart-tertiary-stroke) 3px,
+            var(--color-data-viz-chart-tertiary-background) 3px,
+            var(--color-data-viz-chart-tertiary-background) 4px
+        );
+    }
+
+    &.ebay-donut-chart__legend-symbol--quaternary {
+        border: 1px solid var(--color-data-viz-chart-quaternary-stroke);
+        background: repeating-linear-gradient(
+            0deg,
+            var(--color-data-viz-chart-quaternary-background),
+            var(--color-data-viz-chart-quaternary-background) 2px,
+            var(--color-data-viz-chart-quaternary-stroke) 2px,
+            var(--color-data-viz-chart-quaternary-stroke) 3px,
+            var(--color-data-viz-chart-quaternary-background) 3px,
+            var(--color-data-viz-chart-quaternary-background) 4px
+        );
+    }
+
+    &.ebay-donut-chart__legend-symbol--quinary {
+        background-color: var(--color-data-viz-chart-quinary-background);
+        border-color: var(--color-data-viz-chart-quinary-stroke);
+    }
+}

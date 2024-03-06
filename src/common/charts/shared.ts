@@ -80,4 +80,75 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
             series[i].lineColor = color;
             series[i].borderColor = color;
         }
+    },
+    setDonutColors = function (series: any) {
+        const colorsSingle = [chartPrimaryColor],
+            colorsTwo = [chartSecondaryColor, chartPrimaryColor],
+            colorsThree = [
+                chartSecondaryColor,
+                chartPrimaryColor,
+                patternTertiary,
+            ],
+            colorsMore = [
+                chartSecondaryColor,
+                patternTertiary,
+                chartPrimaryColor,
+                patternQuaternary,
+                chartQuinaryBackgroundColor,
+            ];
+
+        const { data } = series;
+        let colors;
+        switch (data.length) {
+            case 1:
+                colors = colorsSingle;
+                data[0].lineColor = data[0].borderColor = chartPrimaryColor;
+                break;
+            case 2:
+                colors = colorsTwo;
+                data[0].lineColor = data[0].borderColor = chartSecondaryColor;
+                data[1].lineColor = data[1].borderColor = chartPrimaryColor;
+                break;
+            case 3:
+                colors = colorsThree;
+                data[0].lineColor = data[0].borderColor = chartSecondaryColor;
+                data[1].lineColor = data[1].borderColor = chartPrimaryColor;
+                data[2].lineColor = data[2].borderColor =
+                    chartTertiaryStrokeColor;
+                break;
+            default:
+                colors = colorsMore;
+                data[0].lineColor = data[0].borderColor = chartSecondaryColor;
+                data[1].lineColor = data[1].borderColor =
+                    chartTertiaryStrokeColor;
+                data[2].lineColor = data[2].borderColor = chartPrimaryColor;
+                if (data.length > 3) {
+                    data[3].lineColor = data[3].borderColor =
+                        chartQuaternaryStrokeColor;
+                }
+                if (data.length > 4) {
+                    data[4].lineColor = data[4].borderColor =
+                        chartQuaternaryStrokeColor;
+                }
+        }
+        return colors;
+    },
+    setLegendColors = function (series: any[]) {
+        switch (series.length) {
+            case 1:
+                return ["primary"];
+            case 2:
+                console.log("legend colors");
+                return ["secondary", "primary"];
+            case 3:
+                return ["secondary", "primary", "tertiary"];
+            default:
+                return [
+                    "secondary",
+                    "tertiary",
+                    "primary",
+                    "quaternary",
+                    "quinary",
+                ];
+        }
     };
