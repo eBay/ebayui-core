@@ -1,14 +1,20 @@
 import type { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
+import { defNames } from "./util";
 
 let rootSvg: SVGSVGElement;
 let svgDefs: SVGDefsElement;
+
+interface IconDefs {
+    server: string;
+    browser: any;
+}
 
 interface IconInput extends Omit<Marko.Input<"svg">, `on${string}`> {
     _themes?: () => string;
     _type: string;
     _name: string;
-    _def?: () => unknown;
+    _def?: () => IconDefs;
     "a11y-variant"?: "label";
     "a11y-text"?: AttrString;
     "no-skin-classes"?: boolean;
@@ -72,10 +78,14 @@ class Icon extends Marko.Component<Input> {
                 defs.innerHTML = this.input._themes();
             }
             if (this.input && this.input._def) {
-                defItem = createSVGElementFromString(this.input._def());
+                defItem = createSVGElementFromString(this.input._def().browser);
             }
 
             const symbol = defs.querySelector("symbol");
+            if (!defItem && defs.querySelector(defNames)) {
+                defItem = defs.querySelector(defNames);
+            }
+
             defs.parentNode?.removeChild(defs);
             if (symbol) {
                 rootSvg.appendChild(symbol);
