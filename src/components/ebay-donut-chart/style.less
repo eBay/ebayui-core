@@ -1,10 +1,11 @@
+// Chart layout
 .ebay-donut-chart {
     display: grid;
 }
 
 .ebay-donut-chart--small {
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr minmax(140px, 1fr);
     column-gap: var(--spacing-400);
     row-gap: var(--spacing-200);
     grid-template-areas:
@@ -15,7 +16,7 @@
 
 .ebay-donut-chart--large {
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr minmax(210px, 1fr);
     column-gap: var(--spacing-800);
     row-gap: var(--spacing-400);
     grid-template-areas:
@@ -24,6 +25,7 @@
         "legend graph";
 }
 
+// Title
 .ebay-donut-chart__title-container {
     grid-area: title;
 
@@ -31,9 +33,12 @@
     font-weight: var(--font-weight-bold);
 }
 
+// Graph
 .ebay-donut-chart__graph-container {
     grid-area: graph;
-    aspect-ratio: 1;
+    position: relative;
+    width: 100%;
+    align-self: flex-end;
 
     .ebay-donut-chart--large & {
         min-height: 210px;
@@ -62,4 +67,14 @@
 .ebay-donut-chart__legend-container {
     grid-area: legend;
     align-self: flex-end;
+}
+
+// Tooltip
+.tooltip-pointer {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid var(--color-black);
 }

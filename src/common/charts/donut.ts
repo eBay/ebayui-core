@@ -5,12 +5,7 @@
  *
  * @param H {Highcharts}
  */
-export function ebayDonut(H: any, spacing: number = 6) {
-    // What implications does this have for multiple charts on the same page w/ different spacings?
-
-    // Save spacing value for extension.
-    H.seriesTypes.pie.prototype.ebayDonutSpacing = spacing;
-
+export function ebayDonut(H: any) {
     // Check if ebayDonut has been extended before attempting to extend again.
     if (H.seriesTypes.pie.prototype.ebayDonut) {
         return;
@@ -34,7 +29,7 @@ export function ebayDonut(H: any, spacing: number = 6) {
             const diameter = this.center[2];
 
             // Get spacing value
-            const spacing = this.ebayDonutSpacing;
+            const spacing = 5;
 
             // Calculate the spacing as an angle in radians
             // This is calculating from the edge of the circle, should it be

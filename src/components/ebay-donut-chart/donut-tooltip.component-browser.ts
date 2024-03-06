@@ -1,12 +1,12 @@
 import type { WithNormalizedProps } from "../../global";
 
-interface Donut {
+interface DonutTooltipInput {
     name: string;
     tooltip?: string;
     value: string;
 }
 
-export interface Input extends WithNormalizedProps<Donut> {}
+export interface Input extends WithNormalizedProps<DonutTooltipInput> {}
 
 class DonutTooltip extends Marko.Component<Input> {}
 

@@ -16,8 +16,7 @@ import { ebayDonut } from "../../common/charts/donut";
 
 import type { WithNormalizedProps } from "../../global";
 
-// Breakout ??
-import tooltipTemplate from "./tooltip.marko";
+import tooltipTemplate from "./donut-tooltip.marko";
 
 // Uncomment when cdn loader version is set
 //
@@ -115,7 +114,7 @@ class DonutChart extends Marko.Component<Input, State> {
     _initializeHighchartsExtensions() {
         // Adds spacing between donut slices
         // Accepts a highcharts instance and a spacing value
-        ebayDonut(Highcharts, this.input.layout === "small" ? 4 : 6);
+        ebayDonut(Highcharts);
 
         // Add pattern-fill module
         // Need to add HC version to CDN
