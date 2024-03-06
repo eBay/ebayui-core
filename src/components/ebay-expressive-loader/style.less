@@ -13,10 +13,10 @@
     --expressive-loader-line-height: 6px;
     --expressive-loader-line-scale-duration: 3s;
     --expressive-loader-line-scroll-duration: 20s;
-    /* Each line has a final width of 10% - 40% of the lines container.
-       In each set of four lines, the widths add up to 100%.
-       These widths are defined in CSS variables so they can more 
-       easily be randomized in Javascript, if desired. */
+    /*  Each line has a final width of 10% - 40% of the lines container.
+        In each set of four lines, the widths add up to 100%.
+        These widths are defined in CSS variables so they can more 
+        easily be randomized in Javascript, if desired. */
     --expressive-loader-line-width-a1: 25%;
     --expressive-loader-line-width-a2: 15%;
     --expressive-loader-line-width-a3: 40%;
@@ -116,14 +116,14 @@
 }
 
 .expressive-loader__line {
-    /* Default animation behavior: Lines scroll and resize.
-       Animate line's width from 0% to its pre-defined width.
-       Simultaneously cycle the line's order in its flex container
-       to push its siblings forward and achieve an infinite loop. 
+    /*  Default animation behavior: Lines scroll and resize.
+        Animate line's width from 0% to its pre-defined width.
+        Simultaneously cycle the line's order in its flex container
+        to push its siblings forward and achieve an infinite loop. 
 
-       Note that Safari < 14 does not support flex order animations.
-       In these browsers, the lines do not appear to infinitely
-       scroll. Instead, they scale up, reset their size, and repeat. */
+        Note that Safari < 14 does not support flex order animations.
+        In these browsers, the lines do not appear to infinitely
+        scroll. Instead, they scale up, reset their size, and repeat. */
     animation:
         expressive-loader-line-reorder
             var(--expressive-loader-line-scale-duration)
@@ -294,8 +294,8 @@
     width: var(--expressive-loader-line-width-c4);
 }
 
-/* With reduced motion, there are no animated transitions
-   between messages and the lines scroll but do not resize. */
+/*  With reduced motion, there are no animated transitions
+    between messages and the lines scroll but do not resize. */
 @media (prefers-reduced-motion) {
     // Remove default message animation
     .expressive-loader__message--in,
