@@ -1,14 +1,15 @@
 <if(state.isLoading)>
-    <div class=[
-        "expressive-loader",
-        input.size === "medium" && "expressive-loader--medium",
-    ]>
+    <div class=["expressive-loader"]>
         <if(input.messages && input.messages.length > 0)>
             $ const currentMessage = (
                 input.messages[state.currentMessageIndex]?.text
             );
             $ const nextMessage = input.messages[state.nextMessageIndex]?.text;
-            <div class=["expressive-loader__message-container"]>
+            <div class=[
+                "expressive-loader__messages",
+                input.size === "medium" &&
+                    "expressive-loader__messages--medium",
+            ]>
                 <if(!state.useReducedMotion && input.messages.length > 1)>
                     <div
                         aria-hidden="true"

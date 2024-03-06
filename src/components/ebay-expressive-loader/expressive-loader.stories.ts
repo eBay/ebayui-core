@@ -1,10 +1,12 @@
-import {
-    addRenderBodies,
-} from "../../../.storybook/utils";
+import { addRenderBodies } from "../../../.storybook/utils";
 import { tagToString } from "../../../.storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
-import { defaultAriaLabel, messageDurationReducedMotionMultiplier, messageDurationStandard } from "./component";
+import {
+    defaultAriaLabel,
+    messageDurationReducedMotionMultiplier,
+    messageDurationStandard,
+} from "./component";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -25,6 +27,7 @@ export default {
                 component: Readme,
             },
         },
+        layout: "fullscreen",
     },
     argTypes: {
         ariaLabel: {
@@ -73,7 +76,7 @@ export default {
                 },
             },
         },
-    }
+    },
 };
 
 export const Default = Template.bind({});
@@ -85,7 +88,6 @@ Default.parameters = {
         },
     },
 };
-
 
 export const WithMessages = Template.bind({});
 WithMessages.args = {
@@ -110,10 +112,10 @@ export const CustomAccessibleName = Template.bind({});
 CustomAccessibleName.args = {
     ariaLabel: "Cargando...",
     messages: [
-        { text: "Espera..."},
+        { text: "Espera..." },
         { text: "Estamos completando tu pedido." },
         { text: "Sólo un momento más." },
-    ]
+    ],
 };
 
 export const MediumSize = Template.bind({});

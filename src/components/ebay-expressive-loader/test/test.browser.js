@@ -94,7 +94,7 @@ describe("expressive-loader", () => {
             }
         });
 
-        it("the progress bar is describedby the current message", async () => {
+        it("the progress bar is described by the current message", async () => {
             const statusId = component.getByRole("status").id;
             expect(component.getByRole("progressbar")).to.have.attr(
                 "aria-describedby",

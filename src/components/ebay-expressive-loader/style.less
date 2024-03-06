@@ -55,7 +55,7 @@
     display: none;
 }
 
-.expressive-loader__message-container {
+.expressive-loader__messages {
     color: var(--color-foreground-primary);
     font-size: var(--font-size-large-1);
     font-weight: var(--font-weight-regular);
@@ -66,7 +66,7 @@
     text-align: center;
 }
 
-.expressive-loader--medium .expressive-loader__message-container {
+.expressive-loader__messages--medium {
     font-size: var(--font-size-medium);
     font-weight: var(--font-weight-bold);
     line-height: var(--spacing-300);
@@ -95,7 +95,7 @@
         cubic-bezier(0.3, 0, 0, 1) both;
 }
 
-.expressive-loader__message--out[role="status"] {
+.expressive-loader__message--out {
     animation: expressive-loader-message-animateout
         var(--expressive-loader-message-animateout-duration)
         cubic-bezier(0.3, 0, 0, 1) both;
@@ -152,7 +152,7 @@
     background-color: var(--expressive-loader-color-1);
 }
 
-// Set line widths
+// Set line widths and animation delays
 .expressive-loader__line:nth-child(1) {
     animation-delay: calc(
         -1 * (var(--expressive-loader-line-scale-duration) -
@@ -299,7 +299,7 @@
 @media (prefers-reduced-motion) {
     // Remove default message animation
     .expressive-loader__message--in,
-    .expressive-loader__message--out[role="status"] {
+    .expressive-loader__message--out {
         animation: none;
     }
 
@@ -308,7 +308,7 @@
     }
 
     // Fade in first message
-    .expressive-loader:not(.expressive-loader--medium)
+    .expressive-loader__messages:not(.expressive-loader__messages--medium)
         .expressive-loader__message--initial[role="status"] {
         animation: expressive-loader-message-fadein
             var(--expressive-loader-message-animatein-duration)
