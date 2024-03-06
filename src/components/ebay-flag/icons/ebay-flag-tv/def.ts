@@ -1,4 +1,4 @@
 export function def() {
     // eslint-disable-next-line max-len,quotes
-    return {"children":[{"name":"rect","attr":{"width":"64","height":"48","fill":"white"}}],"name":"clipPath","attr":{"id":"clip0_704_43656"}};
+    return { server:  "<clippath id=clip0_704_43656><rect width=64 height=48 fill=white></rect></clippath>", browser: {"children":[{"name":"rect","attr":{"width":"64","height":"48","fill":"white"}}],"name":"clipPath","attr":{"id":"clip0_704_43656"}} };
 };
