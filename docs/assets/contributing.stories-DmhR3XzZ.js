@@ -1,4 +1,4 @@
-import{M as a,e as i}from"./chunk-HLWAVYOI-CaBlbW6e.js";import{j as e}from"./jsx-runtime-Ci2rF61D.js";import{u as r}from"./index-Bn9_WQ3R.js";import"./iframe-Cjdt52im.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ONW-MB-r.js";import"./index-DrFu-skq.js";const l=`# Contributing
+import{M as a,e as i}from"./chunk-HLWAVYOI-CjaLtCfd.js";import{j as e}from"./jsx-runtime-BwOG904H.js";import{u as r}from"./index-CbAd4Ujy.js";import"./iframe-D0w96vgs.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ONW-MB-r.js";import"./index-DrFu-skq.js";const l=`# Contributing
 
 This page contains instructions and guidelines for anybody contributing code to the eBayUI project.
 
