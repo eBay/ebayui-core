@@ -1,58 +1,66 @@
 # eBayUI-Core Changelog
 
+## 13.2.2
+
+### Patch Changes
+
+- [#2112](https://github.com/eBay/ebayui-core/pull/2112) [`2e9da42`](https://github.com/eBay/ebayui-core/commit/2e9da42fbf82cc34d05f4418658001832b91d730) Thanks [@agliga](https://github.com/agliga)! - (ebay-icon): added gradient support for server
+
+- [`8b21b40`](https://github.com/eBay/ebayui-core/commit/8b21b4037e13c1bf655f2374e54847ef006ff850) Thanks [@agliga](https://github.com/agliga)! - chore(ebay-icon): reimported icons from skin
+
 ## 13.2.1
 
 ### Patch Changes
 
--   [#2110](https://github.com/eBay/ebayui-core/pull/2110) [`3f5edb2`](https://github.com/eBay/ebayui-core/commit/3f5edb2d92d12c59ce171c014c0ba20b2f798ac7) Thanks [@agliga](https://github.com/agliga)! - (ebay-tooltip-base): added option to ignore flip
+- [#2110](https://github.com/eBay/ebayui-core/pull/2110) [`3f5edb2`](https://github.com/eBay/ebayui-core/commit/3f5edb2d92d12c59ce171c014c0ba20b2f798ac7) Thanks [@agliga](https://github.com/agliga)! - (ebay-tooltip-base): added option to ignore flip
 
--   [`6042554`](https://github.com/eBay/ebayui-core/commit/60425549c4a785be1192390545bcca63c9488fdc) Thanks [@agliga](https://github.com/agliga)! - fix(listbox-button): added import for button styles
+- [`6042554`](https://github.com/eBay/ebayui-core/commit/60425549c4a785be1192390545bcca63c9488fdc) Thanks [@agliga](https://github.com/agliga)! - fix(listbox-button): added import for button styles
 
 ## 13.2.0
 
 ### Minor Changes
 
--   [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-menu-button: fixed prefix label docs
+- [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-menu-button: fixed prefix label docs
 
--   [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-tourtip: fixed shifting on page loads
+- [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-tourtip: fixed shifting on page loads
 
--   [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - Added auto publish to master
+- [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - Added auto publish to master
 
--   [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-menu: fixed badge-aria-label docs
+- [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-menu: fixed badge-aria-label docs
 
--   [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - pass through attributes to ebay-confirm-dialog
+- [#2105](https://github.com/eBay/ebayui-core/pull/2105) [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - pass through attributes to ebay-confirm-dialog
 
 ## 13.2.0-next.0
 
 ### Minor Changes
 
--   [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-menu-button: fixed prefix label docs
+- [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-menu-button: fixed prefix label docs
 
--   [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-tourtip: fixed shifting on page loads
+- [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-tourtip: fixed shifting on page loads
 
--   [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - Added auto publish to master
+- [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - Added auto publish to master
 
--   [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-menu: fixed badge-aria-label docs
+- [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - ebay-menu: fixed badge-aria-label docs
 
--   [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - pass through attributes to ebay-confirm-dialog
+- [`5677ad9`](https://github.com/eBay/ebayui-core/commit/5677ad93623f99cca2fcd87a450f810c3aefa840) Thanks [@agliga](https://github.com/agliga)! - pass through attributes to ebay-confirm-dialog
 
 ## 13.1.6
 
 ### Patch Changes
 
--   [#2100](https://github.com/eBay/ebayui-core/pull/2100) [`277f12b`](https://github.com/eBay/ebayui-core/commit/277f12beaec60fb4d195932de189109d97931d82) Thanks [@LuLaValva](https://github.com/LuLaValva)! - fix segmented-buttons-import error
+- [#2100](https://github.com/eBay/ebayui-core/pull/2100) [`277f12b`](https://github.com/eBay/ebayui-core/commit/277f12beaec60fb4d195932de189109d97931d82) Thanks [@LuLaValva](https://github.com/LuLaValva)! - fix segmented-buttons-import error
 
 ## 13.1.5
 
 ### Patch Changes
 
--   [#2094](https://github.com/eBay/ebayui-core/pull/2094) [`182b335`](https://github.com/eBay/ebayui-core/commit/182b3353c5fa2a3574477db9c7888310a2cc025f) Thanks [@LuLaValva](https://github.com/LuLaValva)! - optimize icons with toJSON
+- [#2094](https://github.com/eBay/ebayui-core/pull/2094) [`182b335`](https://github.com/eBay/ebayui-core/commit/182b3353c5fa2a3574477db9c7888310a2cc025f) Thanks [@LuLaValva](https://github.com/LuLaValva)! - optimize icons with toJSON
 
 ## 13.1.4
 
 ### Patch Changes
 
--   [#2096](https://github.com/eBay/ebayui-core/pull/2096) [`8217c8c`](https://github.com/eBay/ebayui-core/commit/8217c8cbad0f0b1f0335bcdec9e607f5e37aa031) Thanks [@agliga](https://github.com/agliga)! - added auto publish to master
+- [#2096](https://github.com/eBay/ebayui-core/pull/2096) [`8217c8c`](https://github.com/eBay/ebayui-core/commit/8217c8cbad0f0b1f0335bcdec9e607f5e37aa031) Thanks [@agliga](https://github.com/agliga)! - added auto publish to master
 
 A record of all notable changes are documented under [releases](https://github.com/eBay/ebayui-core/releases).
 
