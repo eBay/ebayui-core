@@ -46,7 +46,7 @@ describe("given the pagination is rendered", () => {
                         component.getByLabelText(a11yPreviousText),
                         {
                             detail: 1,
-                        }
+                        },
                     );
                 });
 
@@ -74,7 +74,7 @@ describe("given the pagination is rendered", () => {
                         component.getByLabelText(a11yNextText),
                         {
                             detail: 1,
-                        }
+                        },
                     );
                 });
 
@@ -137,7 +137,7 @@ describe("given the pagination is rendered with disabled controls", () => {
                     component.getByLabelText(a11yPreviousText),
                     {
                         detail: 1,
-                    }
+                    },
                 );
             });
 
@@ -189,11 +189,11 @@ describe("given the pagination is rendered with overflow menu", () => {
         const isLastHidden = Boolean(dotsEl[1].closest("[hidden]"));
         expect(isFirstHidden).to.equal(
             firstHidden,
-            `leading is ${firstHidden ? "visible" : "hidden"}`
+            `leading is ${firstHidden ? "visible" : "hidden"}`,
         );
         expect(isLastHidden).to.equal(
             lastHidden,
-            `end is ${lastHidden ? "visible" : "hidden"}`
+            `end is ${lastHidden ? "visible" : "hidden"}`,
         );
     }
 
@@ -451,7 +451,7 @@ describe("given the pagination is rendered at various sizes", () => {
                         await fireEvent(window, new Event("resize"));
                         // Wait one frame for the resize util to emit.
                         await new Promise((resolve) =>
-                            requestAnimationFrame(resolve)
+                            requestAnimationFrame(resolve),
                         );
                         // Wait a setTimeout for Marko to finish rendering.
                         await new Promise((resolve) => setTimeout(resolve));
@@ -460,13 +460,13 @@ describe("given the pagination is rendered at various sizes", () => {
                     it(`then it shows items ${from} through ${to}`, () => {
                         input.items.slice(1, -1).forEach((itemData, i) => {
                             const itemEl = component.getByText(
-                                itemData.renderBody.text
+                                itemData.renderBody.text,
                             );
                             expect(isHidden(itemEl)).to.equal(
                                 (i < from || i >= to) && last !== i,
                                 `item ${i} should be ${
                                     isHidden ? "visible" : "hidden"
-                                }`
+                                }`,
                             );
                         });
                     });
@@ -479,7 +479,7 @@ describe("given the pagination is rendered at various sizes", () => {
                                 !dots,
                                 `dots should be ${
                                     isHidden ? "visible" : "hidden"
-                                }`
+                                }`,
                             );
                         });
                     }

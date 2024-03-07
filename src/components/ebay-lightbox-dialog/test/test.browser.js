@@ -52,20 +52,22 @@ describe("given a closed dialog", () => {
 
     it("then it is hidden in the DOM", () => {
         expect(component.getByRole("dialog", { hidden: true })).has.attr(
-            "hidden"
+            "hidden",
         );
     });
 
     describe("then it is opened", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, addRenderBodies(Default.args), { open: true })
+                Object.assign({}, addRenderBodies(Default.args), {
+                    open: true,
+                }),
             );
         });
 
         it("then it is visible in the DOM", async () => {
             await waitFor(() =>
-                expect(component.emitted("open")).has.length(1)
+                expect(component.emitted("open")).has.length(1),
             );
         });
     });
@@ -91,7 +93,7 @@ describe("given an open dialog", () => {
     describe("when the close button is clicked", () => {
         beforeEach(async () => {
             await fireEvent.click(
-                component.getByLabelText(Default.args.a11yCloseText)
+                component.getByLabelText(Default.args.a11yCloseText),
             );
         });
 
@@ -111,14 +113,14 @@ describe("given an open dialog", () => {
         it("then it is hidden in the DOM", async () => {
             await waitFor(() =>
                 expect(
-                    component.getByRole("dialog", { hidden: true })
-                ).has.attr("hidden")
+                    component.getByRole("dialog", { hidden: true }),
+                ).has.attr("hidden"),
             );
         });
 
         it("then it restores the previous focus", async () => {
             await waitFor(() =>
-                expect(component.emitted("close")).has.length(1)
+                expect(component.emitted("close")).has.length(1),
             );
         });
     }
@@ -139,7 +141,7 @@ describe("given an open dialog with prev button", () => {
         });
         it("then it gets prev button clicked event", async () => {
             await waitFor(() =>
-                expect(component.emitted("prev-button-click")).has.length(1)
+                expect(component.emitted("prev-button-click")).has.length(1),
             );
         });
     });
@@ -152,7 +154,7 @@ describe("given an open and non expanded dialog for touch events", () => {
 
     it("then it is hidden in the DOM", () => {
         expect(
-            component.getByRole("dialog", { hidden: true })
+            component.getByRole("dialog", { hidden: true }),
         ).does.not.have.attr("hidden");
     });
 
@@ -163,16 +165,16 @@ describe("given an open and non expanded dialog for touch events", () => {
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
-                    -50
+                    -50,
                 );
             });
 
             it("then it is expanded in DOM", async () => {
                 await waitFor(() =>
-                    expect(component.emitted("expanded")).has.length(1)
+                    expect(component.emitted("expanded")).has.length(1),
                 );
             });
-        }
+        },
     );
 
     (hasTouch ? describe : describe.skip)(
@@ -182,22 +184,22 @@ describe("given an open and non expanded dialog for touch events", () => {
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
-                    -10
+                    -10,
                 );
             });
 
             it("then it did not trigger", async () => {
                 await waitFor(() =>
-                    expect(component.emitted("expanded")).has.length(0)
+                    expect(component.emitted("expanded")).has.length(0),
                 );
                 await waitFor(() =>
-                    expect(component.emitted("close")).has.length(0)
+                    expect(component.emitted("close")).has.length(0),
                 );
                 await waitFor(() =>
-                    expect(component.emitted("collapsed")).has.length(0)
+                    expect(component.emitted("collapsed")).has.length(0),
                 );
             });
-        }
+        },
     );
 
     (hasTouch ? describe : describe.skip)(
@@ -207,14 +209,14 @@ describe("given an open and non expanded dialog for touch events", () => {
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
-                    10
+                    10,
                 );
             });
 
             it("then it did not trigger threshold when dragged down", async () => {
                 await checkNoEvenets(component);
             });
-        }
+        },
     );
 
     (hasTouch ? describe : describe.skip)(
@@ -224,24 +226,24 @@ describe("given an open and non expanded dialog for touch events", () => {
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
-                    50
+                    50,
                 );
             });
 
             it("then it is closed", async () => {
                 await waitFor(() =>
-                    expect(component.emitted("close")).has.length(1)
+                    expect(component.emitted("close")).has.length(1),
                 );
             });
 
             it("then it is hidden in the DOM when dragged down", async () => {
                 await waitFor(() =>
                     expect(
-                        component.getByRole("dialog", { hidden: true })
-                    ).has.attr("hidden")
+                        component.getByRole("dialog", { hidden: true }),
+                    ).has.attr("hidden"),
                 );
             });
-        }
+        },
     );
 });
 
@@ -261,16 +263,16 @@ describe("given an open and expanded dialog for touch events", () => {
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),
-                    -50
+                    -50,
                 );
             });
 
             it("then it is expanded in DOM", async () => {
                 await waitFor(() =>
-                    expect(component.emitted("expanded")).has.length(0)
+                    expect(component.emitted("expanded")).has.length(0),
                 );
             });
-        }
+        },
     );
 
     (hasTouch ? describe : describe.skip)(
@@ -280,16 +282,16 @@ describe("given an open and expanded dialog for touch events", () => {
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),
-                    50
+                    50,
                 );
             });
 
             it("then it is closed", async () => {
                 await waitFor(() =>
-                    expect(component.emitted("collapsed")).has.length(1)
+                    expect(component.emitted("collapsed")).has.length(1),
                 );
             });
-        }
+        },
     );
 
     (hasTouch ? describe : describe.skip)(
@@ -299,14 +301,14 @@ describe("given an open and expanded dialog for touch events", () => {
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),
-                    -10
+                    -10,
                 );
             });
 
             it("then it did not trigger", async () => {
                 await checkNoEvenets(component);
             });
-        }
+        },
     );
 
     (hasTouch ? describe : describe.skip)(
@@ -316,25 +318,25 @@ describe("given an open and expanded dialog for touch events", () => {
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),
-                    10
+                    10,
                 );
             });
 
             it("then it did not trigger on drag down", async () => {
                 await checkNoEvenets(component);
             });
-        }
+        },
     );
 });
 
 async function checkNoEvenets(triggerComponent) {
     await waitFor(() =>
-        expect(triggerComponent.emitted("expanded")).has.length(0)
+        expect(triggerComponent.emitted("expanded")).has.length(0),
     );
     await waitFor(() =>
-        expect(triggerComponent.emitted("close")).has.length(0)
+        expect(triggerComponent.emitted("close")).has.length(0),
     );
     await waitFor(() =>
-        expect(triggerComponent.emitted("collapsed")).has.length(0)
+        expect(triggerComponent.emitted("collapsed")).has.length(0),
     );
 }

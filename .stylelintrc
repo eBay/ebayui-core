@@ -1,8 +1,5 @@
 {
-    "extends": [
-        "stylelint-config-standard",
-        "stylelint-prettier/recommended"
-    ],
+    "extends": ["stylelint-config-standard", "stylelint-prettier/recommended"],
     "rules": {
         "comment-empty-line-before": null,
         "no-descending-specificity": null,
@@ -27,36 +24,26 @@
         "function-no-unknown": [
             true,
             {
-                "ignoreFunctions": [
-                    "fade"
-                ]
+                "ignoreFunctions": ["fade"]
             }
         ]
     },
     "overrides": [
         {
-            "files": [
-                "**/*.less"
-            ],
+            "files": ["**/*.less"],
             "customSyntax": "postcss-less",
             "rules": {
                 "at-rule-no-unknown": [
                     true,
                     {
-                        "ignoreAtRules": [
-                            "icon-mixin"
-                        ]
+                        "ignoreAtRules": ["icon-mixin"]
                     }
                 ],
                 "declaration-empty-line-before": null,
                 "function-no-unknown": [
                     true,
                     {
-                        "ignoreFunctions": [
-                            "fade",
-                            "shade",
-                            "tint"
-                        ]
+                        "ignoreFunctions": ["fade", "shade", "tint"]
                     }
                 ],
                 "media-query-no-invalid": null,

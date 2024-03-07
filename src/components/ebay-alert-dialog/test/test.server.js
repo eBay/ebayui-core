@@ -15,10 +15,10 @@ describe("dialog", () => {
         expect(dialog).has.attr("hidden");
         expect(dialog).has.class("alert-dialog");
         expect(getByText(input.confirmText)).has.class(
-            "alert-dialog__acknowledge"
+            "alert-dialog__acknowledge",
         );
         expect(getByText(input.renderBody.text)).has.class(
-            "alert-dialog__main"
+            "alert-dialog__main",
         );
     });
 

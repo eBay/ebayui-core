@@ -16,7 +16,7 @@ describe("notice-icon", () => {
         expect(status).has.class(`${input.prefixClass}__header`);
 
         const containerUsingLabel = status.closest(
-            `[aria-labelledby="${status.id}"]`
+            `[aria-labelledby="${status.id}"]`,
         );
         expect(containerUsingLabel).has.class(input.class);
 
@@ -24,7 +24,7 @@ describe("notice-icon", () => {
         expect(content).has.class(`${input.prefixClass}__main`);
 
         expect(getByLabelText(input.a11yText)).has.class(
-            "icon--attention-filled-16"
+            "icon--attention-filled-16",
         );
     });
 
@@ -38,7 +38,7 @@ describe("notice-icon", () => {
         expect(status.parentElement).has.tagName("DIV");
 
         expect(getByLabelText(input.a11yText)).has.class(
-            "icon--information-filled-16"
+            "icon--information-filled-16",
         );
         expect(getByLabelText(input.a11yText)).has.class("notice-class");
     });
@@ -49,7 +49,7 @@ describe("notice-icon", () => {
 
         const status = getByLabelText(input.a11yText).parentElement;
         const containerUsingLabel = status.closest(
-            `[aria-labelledby="${status.id}"]`
+            `[aria-labelledby="${status.id}"]`,
         );
         expect(containerUsingLabel).has.class(input.class);
 
@@ -70,11 +70,11 @@ describe("notice-icon", () => {
         expect(status).has.class(`${input.prefixClass}__header`);
 
         const containerUsingLabel = status.closest(
-            `[aria-labelledby="${status.id}"]`
+            `[aria-labelledby="${status.id}"]`,
         );
         expect(containerUsingLabel).has.class(input.class);
         expect(containerUsingLabel).has.class(
-            `${input.prefixClass}--education`
+            `${input.prefixClass}--education`,
         );
 
         expect(getByLabelText(input.a11yText)).has.class("icon--lightbulb-24");

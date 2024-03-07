@@ -17,7 +17,7 @@ describe("carousel", () => {
             expect(getByRole("group")).to.have.attr("aria-roledescription");
 
             input.items.forEach((item) =>
-                expect(queryByText(item.renderBody.text)).not.to.equal(null)
+                expect(queryByText(item.renderBody.text)).not.to.equal(null),
             );
         });
 
@@ -29,7 +29,7 @@ describe("carousel", () => {
                 const { getByRole } = await render(template, input);
 
                 expect(getByRole("group")).to.have.class(
-                    "carousel--hidden-scrollbar"
+                    "carousel--hidden-scrollbar",
                 );
             });
         });
@@ -40,11 +40,11 @@ describe("carousel", () => {
 
             expect(getByLabelText(input.a11yPreviousText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
             expect(getByLabelText(input.a11yNextText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
         });
 
@@ -54,7 +54,7 @@ describe("carousel", () => {
                 const { queryByLabelText } = await render(template, input);
 
                 expect(queryByLabelText(input.a11yPauseText)).to.not.equal(
-                    null
+                    null,
                 );
             });
 
@@ -64,7 +64,7 @@ describe("carousel", () => {
                     mock.discrete1PerSlide3ItemsAutoPlay,
                     {
                         paused: true,
-                    }
+                    },
                 );
                 const { queryByLabelText } = await render(template, input);
 
@@ -84,14 +84,14 @@ describe("carousel", () => {
 
             // Controls should not be linked to the status text (slide x of y).
             expect(getByLabelText(input.a11yPreviousText)).not.has.attr(
-                "aria-describedby"
+                "aria-describedby",
             );
             expect(getByLabelText(input.a11yNextText)).not.has.attr(
-                "aria-describedby"
+                "aria-describedby",
             );
 
             input.items.forEach((item) =>
-                expect(queryByText(item.renderBody.text)).does.not.equal(null)
+                expect(queryByText(item.renderBody.text)).does.not.equal(null),
             );
         });
 
@@ -101,11 +101,11 @@ describe("carousel", () => {
 
             expect(getByLabelText(input.a11yPreviousText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
             expect(getByLabelText(input.a11yNextText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
         });
     });

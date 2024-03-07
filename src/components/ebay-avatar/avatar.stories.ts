@@ -88,7 +88,7 @@ export const WithImage = buildExtensionTemplate(
     {
         a11yText: "Signed in - as Doggy",
         username: "Doggy",
-    }
+    },
 );
 
 export const SignedOut = Template.bind({});

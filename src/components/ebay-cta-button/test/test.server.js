@@ -20,7 +20,7 @@ describe("cta-button", () => {
         const input = mock.Small;
         const { getByText } = await render(template, input);
         expect(getByText(input.renderBody.text).closest(".cta-btn")).has.class(
-            "cta-btn--small"
+            "cta-btn--small",
         );
     });
 
@@ -28,7 +28,7 @@ describe("cta-button", () => {
         const input = mock.Large;
         const { getByText } = await render(template, input);
         expect(getByText(input.renderBody.text).closest(".cta-btn")).has.class(
-            "cta-btn--large"
+            "cta-btn--large",
         );
     });
 

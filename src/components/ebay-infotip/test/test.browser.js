@@ -32,7 +32,7 @@ describe("given the default infotip", () => {
         describe("when the host element is clicked", () => {
             beforeEach(async () => {
                 await fireEvent.click(
-                    component.getAllByLabelText("Important information")[0]
+                    component.getAllByLabelText("Important information")[0],
                 );
             });
 
@@ -42,26 +42,26 @@ describe("given the default infotip", () => {
 
             it("then it is expanded", () => {
                 expect(
-                    component.getByLabelText("Important information")
+                    component.getByLabelText("Important information"),
                 ).has.attr("aria-expanded", "true");
             });
 
             describe("when the host element is clicked a second time to close", () => {
                 beforeEach(async () => {
                     await fireEvent.click(
-                        component.getByLabelText("Important information")
+                        component.getByLabelText("Important information"),
                     );
                 });
 
                 it("then it emits the collapse event", async () => {
                     await waitFor(() =>
-                        expect(component.emitted("collapse")).has.length(1)
+                        expect(component.emitted("collapse")).has.length(1),
                     );
                 });
 
                 it("then it is collapsed", () => {
                     expect(
-                        component.getByLabelText("Important information")
+                        component.getByLabelText("Important information"),
                     ).does.not.have.attr("aria-expanded", "true");
                 });
             });
@@ -77,20 +77,20 @@ describe("given the modal infotip", () => {
     describe("when the host element is clicked", () => {
         beforeEach(async () => {
             await fireEvent.click(
-                component.getAllByLabelText("Important information")[0]
+                component.getAllByLabelText("Important information")[0],
             );
         });
 
         it("then it emits the expand event", async () => {
             await waitFor(() =>
-                expect(component.emitted("expand")).has.length(1)
+                expect(component.emitted("expand")).has.length(1),
             );
         });
 
         it("then it is expanded", async () => {
             await waitFor(() => {
                 expect(component.getByRole("dialog")).does.not.have.attr(
-                    "hidden"
+                    "hidden",
                 );
             });
         });
@@ -109,14 +109,14 @@ describe("given the modal infotip opened", () => {
 
         it("then it emits the collapse event", async () => {
             await waitFor(() =>
-                expect(component.emitted("collapse")).has.length(1)
+                expect(component.emitted("collapse")).has.length(1),
             );
         });
 
         it("then it is collapsed", async () => {
             await waitFor(() => {
                 expect(
-                    component.getByRole("dialog", { hidden: true })
+                    component.getByRole("dialog", { hidden: true }),
                 ).has.attr("hidden");
             });
         });

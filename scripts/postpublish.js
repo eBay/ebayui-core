@@ -14,5 +14,5 @@ deleteSync([path.join(rootDir, "*.browser.json"), path.join(rootDir, "dist")]);
 const markoConfigPath = path.join(rootDir, "/marko.json");
 fs.writeFileSync(
     markoConfigPath,
-    fs.readFileSync(markoConfigPath, "utf-8").replace(/\.\/dist\//g, "./src/")
+    fs.readFileSync(markoConfigPath, "utf-8").replace(/\.\/dist\//g, "./src/"),
 );

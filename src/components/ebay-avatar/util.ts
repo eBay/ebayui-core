@@ -6,7 +6,7 @@ const backgroundColors = [
     "yellow",
     "orange",
     "magenta",
-    "pink"
+    "pink",
 ];
 
 function getColorForText(username?: string, color?: string) {

@@ -41,7 +41,7 @@ describe("typeahead functionality", () => {
             expect(
                 component
                     .getByText(secondItemText)
-                    .parentElement.getAttribute("tabindex")
+                    .parentElement.getAttribute("tabindex"),
             ).to.equal("0");
             await fireEvent.keyPress(component.getByText(secondItemText), {
                 key: "d",
@@ -50,7 +50,7 @@ describe("typeahead functionality", () => {
             expect(
                 component
                     .getByText(thirdItemText)
-                    .parentElement.getAttribute("tabindex")
+                    .parentElement.getAttribute("tabindex"),
             ).to.equal("0");
         });
     });
@@ -64,7 +64,7 @@ describe("typeahead functionality", () => {
         expect(
             component
                 .getByText(firstItemText)
-                .parentElement.getAttribute("tabindex")
+                .parentElement.getAttribute("tabindex"),
         ).to.equal("0");
     });
 
@@ -100,10 +100,10 @@ describe("typeahead functionality", () => {
                 expect(
                     component
                         .getByText(secondItemText)
-                        .parentElement.getAttribute("tabindex")
+                        .parentElement.getAttribute("tabindex"),
                 ).to.equal("0");
             },
-            { timeout: 1500 }
+            { timeout: 1500 },
         );
     });
 });

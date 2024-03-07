@@ -32,7 +32,7 @@ describe("given the listbox with 3 items", () => {
             },
             {
                 container: form,
-            }
+            },
         );
     });
 
@@ -69,7 +69,7 @@ describe("given the listbox with 3 items", () => {
                     {
                         key: "ArrowUp",
                         keyCode: 38,
-                    }
+                    },
                 );
             });
 
@@ -92,7 +92,7 @@ describe("given the listbox with manual selection", () => {
         component = await render(
             Standard,
             { options, name: "listbox-name" },
-            { container: form }
+            { container: form },
         );
     });
 
@@ -163,7 +163,7 @@ describe("given the listbox with disabled option", () => {
             },
             {
                 container: form,
-            }
+            },
         );
     });
 

@@ -154,7 +154,7 @@ describe("given the menu is in the default state", () => {
         const fourthItem = "item 4";
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, Standard.args, { items: newItems })
+                Object.assign({}, Standard.args, { items: newItems }),
             );
             await fireEvent.click(component.getByText(fourthItem));
         });
@@ -310,7 +310,7 @@ describe("given the menu is in the radio state", () => {
                 Object.assign({}, Standard.args, {
                     items: newItems,
                     type: "radio",
-                })
+                }),
             );
             await fireEvent.click(component.getByText(fourthItem));
         });

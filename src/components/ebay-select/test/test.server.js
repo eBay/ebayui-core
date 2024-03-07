@@ -54,13 +54,13 @@ describe("select", () => {
         const input = mock.floatingLabel;
         const { getByRole, getByLabelText, getByText } = await render(
             template,
-            input
+            input,
         );
         expect(getByRole("combobox")).to.equal(
-            getByLabelText(input.floatingLabel)
+            getByLabelText(input.floatingLabel),
         );
         expect(getByText(input.floatingLabel)).has.class(
-            "floating-label__label"
+            "floating-label__label",
         );
     });
 
@@ -74,7 +74,7 @@ describe("select", () => {
         const input = mock.floatingLabelDisabled;
         const { getByText } = await render(template, input);
         expect(getByText(input.floatingLabel)).has.class(
-            "floating-label__label--disabled"
+            "floating-label__label--disabled",
         );
     });
 

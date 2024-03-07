@@ -23,18 +23,25 @@ export default {
     argTypes: {
         placement: {
             options: [
-                'top', 'right', 'bottom', 'left',
-                'top-start', 'right-start', 'bottom-start', 'left-start',
-                'top-end', 'right-end', 'bottom-end', 'left-end',
-           ],
+                "top",
+                "right",
+                "bottom",
+                "left",
+                "top-start",
+                "right-start",
+                "bottom-start",
+                "left-start",
+                "top-end",
+                "right-end",
+                "bottom-end",
+                "left-end",
+            ],
             control: { type: "select" },
-            description:
-                "places tooltip position",
+            description: "places tooltip position",
         },
         offset: {
             control: { type: "number" },
-            description:
-                "offsets tooltip position",
+            description: "offsets tooltip position",
         },
         noHover: {
             control: { type: "boolean" },
@@ -65,7 +72,7 @@ export default {
             description: "disables flipping tooltip when its offscreen",
             table: {
                 defaultValue: { summary: "false" },
-            }
+            },
         },
         onCollapse: {
             action: "on-collapse",

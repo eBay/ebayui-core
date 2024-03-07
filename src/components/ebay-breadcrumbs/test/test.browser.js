@@ -20,7 +20,7 @@ describe("given a basic breadcrumb", () => {
     describe("when an <a> item is clicked", () => {
         beforeEach(async () => {
             await fireEvent.click(
-                component.getByText(firstItem.renderBody.text)
+                component.getByText(firstItem.renderBody.text),
             );
         });
 
@@ -41,7 +41,7 @@ describe("button", () => {
     describe("when a <button> is clicked", () => {
         beforeEach(async () => {
             await fireEvent.click(
-                component.getByText(lastItem.renderBody.text)
+                component.getByText(lastItem.renderBody.text),
             );
         });
 

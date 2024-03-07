@@ -15,7 +15,7 @@ export function getPaginationItems(
     href,
     selected,
     navDisabled,
-    skipPrevNext
+    skipPrevNext,
 ) {
     const items = [];
     if (!skipPrevNext) {

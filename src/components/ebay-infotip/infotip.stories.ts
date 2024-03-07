@@ -44,28 +44,35 @@ export default {
         },
         placement: {
             options: [
-                'top', 'right', 'bottom', 'left',
-                'top-start', 'right-start', 'bottom-start', 'left-start',
-                'top-end', 'right-end', 'bottom-end', 'left-end',
-           ],
+                "top",
+                "right",
+                "bottom",
+                "left",
+                "top-start",
+                "right-start",
+                "bottom-start",
+                "left-start",
+                "top-end",
+                "right-end",
+                "bottom-end",
+                "left-end",
+            ],
             control: { type: "select" },
-            description:
-                "places infotip position",
+            description: "places infotip position",
         },
         offset: {
             control: { type: "number" },
-            description:
-                "offsets infotip position",
+            description: "offsets infotip position",
             table: {
                 defaultValue: { summary: "6" },
-            }
+            },
         },
         noFlip: {
             control: { type: "boolean" },
             description: "disables flipping tooltip when its offscreen",
             table: {
                 defaultValue: { summary: "false" },
-            }
+            },
         },
         disabled: {
             control: { type: "boolean" },
@@ -114,7 +121,7 @@ export const Default = buildExtensionTemplate(
     {
         a11yCloseButtonText: "Dismiss infotip",
         ariaLabel: "Important information",
-    }
+    },
 );
 
 export const OpenOnRender = buildExtensionTemplate(
@@ -124,5 +131,5 @@ export const OpenOnRender = buildExtensionTemplate(
         a11yCloseButtonText: "Dismiss infotip",
         ariaLabel: "Important information",
         open: true,
-    }
+    },
 );

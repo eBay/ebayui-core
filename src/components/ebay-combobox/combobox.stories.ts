@@ -223,5 +223,5 @@ Isolated.parameters = {
 
 export const SearchFiltering = buildExtensionTemplate(
     SearchFilteringTemplate,
-    SearchFilteringTemplateCode
+    SearchFilteringTemplateCode,
 );

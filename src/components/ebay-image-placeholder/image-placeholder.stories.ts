@@ -28,10 +28,10 @@ export default {
 
 export const Default = buildExtensionTemplate(
     DefaultTemplate,
-    DefaultTemplateCode
+    DefaultTemplateCode,
 );
 
 export const Resized = buildExtensionTemplate(
     ResizedTemplate,
-    ResizedTemplateCode
+    ResizedTemplateCode,
 );

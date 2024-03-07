@@ -17,7 +17,7 @@ function checkIfHidden() {
 
     expect(svg.style.position).to.equal(
         "absolute",
-        "position should be absolute"
+        "position should be absolute",
     );
     expect(svg.style.height).to.equal("0px", "height should be 0px");
     expect(svg.style.width).to.equal("0px", "width should be 0px");

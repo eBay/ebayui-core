@@ -171,7 +171,7 @@ export const WithDismiss = buildExtensionTemplate(
         a11yDismissText: "Dismiss Notice",
         status: "information",
         icon: null,
-    }
+    },
 );
 
 export const WithEducationIcon = buildExtensionTemplate(
@@ -181,5 +181,5 @@ export const WithEducationIcon = buildExtensionTemplate(
         a11yText: "education",
         status: "education",
         prominent: false,
-    }
+    },
 );

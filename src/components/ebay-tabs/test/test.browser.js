@@ -23,7 +23,7 @@ function thenItHasMovedToTab(selectedIndex) {
     it(`then heading ${selectedIndex + 1} is selected`, () => {
         expect(component.getAllByRole("tab")[selectedIndex]).has.attr(
             "aria-selected",
-            "true"
+            "true",
         );
     });
 }

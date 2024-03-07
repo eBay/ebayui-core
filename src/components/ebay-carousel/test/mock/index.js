@@ -19,7 +19,7 @@ export const discrete1PerSlide1Items = Object.assign(
                 renderBody: createRenderBody("carousel item content 1"),
             },
         ],
-    }
+    },
 );
 
 export const discrete1PerSlide3Items = Object.assign(
@@ -29,7 +29,7 @@ export const discrete1PerSlide3Items = Object.assign(
         items: getNItems(3, (i) => ({
             renderBody: createRenderBody(`carousel item content ${i}`),
         })),
-    }
+    },
 );
 
 export const discrete21PerSlide3Items = Object.assign(
@@ -37,7 +37,7 @@ export const discrete21PerSlide3Items = Object.assign(
     discrete1PerSlide3Items,
     {
         itemsPerSlide: 2.1,
-    }
+    },
 );
 
 export const discrete2PerSlide6Items = Object.assign(
@@ -48,7 +48,7 @@ export const discrete2PerSlide6Items = Object.assign(
         items: getNItems(6, (i) => ({
             renderBody: createRenderBody(`carousel item content ${i}`),
         })),
-    }
+    },
 );
 
 export const discrete1PerSlide3ItemsAutoPlay = Object.assign(
@@ -57,7 +57,7 @@ export const discrete1PerSlide3ItemsAutoPlay = Object.assign(
         a11yPauseText: "pause",
         autoplay: 400,
     },
-    discrete1PerSlide3Items
+    discrete1PerSlide3Items,
 );
 
 export const continuous0Items = {

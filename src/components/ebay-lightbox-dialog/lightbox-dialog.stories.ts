@@ -181,7 +181,7 @@ Default.parameters = {
 
 export const Scrolling = buildExtensionTemplate(
     ScrollingTemplate,
-    ScrollingTemplateCode
+    ScrollingTemplateCode,
 );
 
 export const Expressive = Template.bind({});
@@ -209,10 +209,10 @@ Expressive.parameters = {
 
 export const WithPrevButton = buildExtensionTemplate(
     WithPrevButtonTemplate,
-    WithPrevButtonCode
+    WithPrevButtonCode,
 );
 
 export const WithFooter = buildExtensionTemplate(
     WithFooterTemplate,
-    WithFooterCode
+    WithFooterCode,
 );

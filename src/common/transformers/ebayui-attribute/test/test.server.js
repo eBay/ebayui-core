@@ -11,7 +11,7 @@ describe("when the ebay-button template is transformed", () => {
         const rootTag = "ebay-button";
         const templatePath = path.join(
             __dirname,
-            `../../../../components/${rootTag}/index.marko`
+            `../../../../components/${rootTag}/index.marko`,
         );
         const templateSrc = fs.readFileSync(templatePath, "utf8");
         if (testUtils.isMarko5) {
@@ -20,7 +20,7 @@ describe("when the ebay-button template is transformed", () => {
             outputTemplate = testUtils.getTransformedTemplate(
                 transformer,
                 templateSrc,
-                templatePath
+                templatePath,
             );
         }
     });

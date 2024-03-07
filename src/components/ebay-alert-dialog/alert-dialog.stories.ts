@@ -73,8 +73,8 @@ export default {
                 defaultValue: {
                     summary: "",
                 },
-            }
-        }
+            },
+        },
     },
 };
 

@@ -32,8 +32,8 @@ describe("given a closed dialog", () => {
     it("then it is hidden in the DOM", async () => {
         await waitFor(() =>
             expect(component.getByRole("dialog", { hidden: true })).has.attr(
-                "hidden"
-            )
+                "hidden",
+            ),
         );
     });
 
@@ -47,7 +47,7 @@ describe("given a closed dialog", () => {
 
     it("then it does not trap focus", () => {
         expect(
-            component.getByRole("dialog", { hidden: true }).children[0]
+            component.getByRole("dialog", { hidden: true }).children[0],
         ).does.not.have.class("keyboard-trap--active");
     });
 
@@ -63,8 +63,8 @@ describe("given a closed dialog", () => {
         it("then it is visible in the DOM", async () => {
             await waitFor(() =>
                 expect(
-                    component.getByRole("dialog", { hidden: true })
-                ).does.not.have.attr("hidden")
+                    component.getByRole("dialog", { hidden: true }),
+                ).does.not.have.attr("hidden"),
             );
         });
 
@@ -74,7 +74,7 @@ describe("given a closed dialog", () => {
 
         it("then it's siblings are hidden", async () => {
             await waitFor(() =>
-                expect(sibling).has.attr("aria-hidden", "true")
+                expect(sibling).has.attr("aria-hidden", "true"),
             );
         });
 
@@ -83,19 +83,19 @@ describe("given a closed dialog", () => {
                 await waitFor(() => {
                     expect(
                         component.getByRole("dialog", { hidden: true })
-                            .children[1]
+                            .children[1],
                     ).has.class("keyboard-trap--active");
                     component
                         .getByLabelText(input.a11yCloseText)
                         .classList.forEach((cls) =>
-                            expect(document.activeElement).has.class(cls)
+                            expect(document.activeElement).has.class(cls),
                         );
                 });
             });
 
             it("then it emits the open event", async () => {
                 await waitFor(() =>
-                    expect(component.emitted("open")).has.length(1)
+                    expect(component.emitted("open")).has.length(1),
                 );
             });
 
@@ -126,7 +126,7 @@ describe("given an open dialog", () => {
     describe("when the close button is clicked", () => {
         beforeEach(async () => {
             await fireEvent.click(
-                component.getByLabelText(input.a11yCloseText)
+                component.getByLabelText(input.a11yCloseText),
             );
         });
 
@@ -175,7 +175,7 @@ describe("given an open dialog", () => {
         beforeEach(async () => {
             // simulate clicking outside the dialog.
             await fireEvent.click(
-                component.getByRole("dialog", { hidden: true })
+                component.getByRole("dialog", { hidden: true }),
             );
         });
 
@@ -186,8 +186,8 @@ describe("given an open dialog", () => {
         it("then it is visible in the DOM", async () => {
             await waitFor(() =>
                 expect(
-                    component.getByRole("dialog", { hidden: true })
-                ).does.not.have.attr("hidden")
+                    component.getByRole("dialog", { hidden: true }),
+                ).does.not.have.attr("hidden"),
             );
         });
 
@@ -197,19 +197,19 @@ describe("given an open dialog", () => {
 
         it("then it's siblings are hidden", async () => {
             await waitFor(() =>
-                expect(sibling).has.attr("aria-hidden", "true")
+                expect(sibling).has.attr("aria-hidden", "true"),
             );
         });
 
         it("then it traps focus", async () => {
             await waitFor(() => {
                 expect(
-                    component.getByRole("dialog", { hidden: true }).children[1]
+                    component.getByRole("dialog", { hidden: true }).children[1],
                 ).has.class("keyboard-trap--active");
                 component
                     .getByLabelText(input.a11yCloseText)
                     .classList.forEach((cls) =>
-                        expect(document.activeElement).has.class(cls)
+                        expect(document.activeElement).has.class(cls),
                     );
             });
         });
@@ -219,8 +219,8 @@ describe("given an open dialog", () => {
         it("then it is hidden in the DOM", async () => {
             await waitFor(() =>
                 expect(
-                    component.getByRole("dialog", { hidden: true })
-                ).has.attr("hidden")
+                    component.getByRole("dialog", { hidden: true }),
+                ).has.attr("hidden"),
             );
         });
 
@@ -236,17 +236,17 @@ describe("given an open dialog", () => {
 
         it("then it restores the previous focus", async () => {
             expect(
-                component.getByRole("dialog", { hidden: true }).children[0]
+                component.getByRole("dialog", { hidden: true }).children[0],
             ).does.not.have.class("keyboard-trap--active");
             await waitFor(() =>
-                expect(document.activeElement).to.equal(sibling)
+                expect(document.activeElement).to.equal(sibling),
             );
         });
 
         if (wasToggled) {
             it("then it emits the close event", async () => {
                 await waitFor(() =>
-                    expect(component.emitted("close")).has.length(1)
+                    expect(component.emitted("close")).has.length(1),
                 );
             });
 
@@ -270,7 +270,7 @@ describe("given an open dialog with no trap", () => {
         sibling.focus();
         component = await render(
             template,
-            Object.assign({}, input, { isModal: false })
+            Object.assign({}, input, { isModal: false }),
         );
     });
 
@@ -280,7 +280,7 @@ describe("given an open dialog with no trap", () => {
 
     it("then it is visible in the DOM", async () => {
         await waitFor(() =>
-            expect(component.getByRole("dialog")).does.not.have.attr("hidden")
+            expect(component.getByRole("dialog")).does.not.have.attr("hidden"),
         );
     });
 
@@ -295,12 +295,12 @@ describe("given an open dialog with no trap", () => {
     it("then it does not traps focus", async () => {
         await waitFor(() => {
             expect(
-                component.getByRole("dialog", { hidden: true }).children[1]
+                component.getByRole("dialog", { hidden: true }).children[1],
             ).to.equal(undefined);
             component
                 .getByLabelText(input.a11yCloseText)
                 .classList.forEach((cls) =>
-                    expect(document.activeElement).does.not.have.class(cls)
+                    expect(document.activeElement).does.not.have.class(cls),
                 );
         });
     });
@@ -318,7 +318,7 @@ describe("given an open with no close button", () => {
             Object.assign({}, input, {
                 buttonPosition: "hidden",
                 skipEscape: true,
-            })
+            }),
         );
     });
 
@@ -363,8 +363,8 @@ describe("given an open with no close button", () => {
         it("then it is visible in the DOM", async () => {
             await waitFor(() =>
                 expect(component.getByRole("dialog")).does.not.have.attr(
-                    "hidden"
-                )
+                    "hidden",
+                ),
             );
         });
 
@@ -390,8 +390,8 @@ describe("given a closed dialog with useHiddenProperty", () => {
     it("then it is hidden in the DOM", async () => {
         await waitFor(() =>
             expect(component.getByRole("dialog", { hidden: true })).has.attr(
-                "hidden"
-            )
+                "hidden",
+            ),
         );
     });
 
@@ -405,7 +405,7 @@ describe("given a closed dialog with useHiddenProperty", () => {
 
     it("then it does not trap focus", () => {
         expect(
-            component.getByRole("dialog", { hidden: true }).children[0]
+            component.getByRole("dialog", { hidden: true }).children[0],
         ).does.not.have.class("keyboard-trap--active");
     });
 
@@ -421,8 +421,8 @@ describe("given a closed dialog with useHiddenProperty", () => {
         it("then it is visible in the DOM", async () => {
             await waitFor(() =>
                 expect(component.getByRole("dialog")).does.not.have.attr(
-                    "hidden"
-                )
+                    "hidden",
+                ),
             );
         });
 
@@ -437,13 +437,13 @@ describe("given a closed dialog with useHiddenProperty", () => {
         if (wasToggled) {
             it("then it still does not trap focus", () => {
                 expect(
-                    component.getByRole("dialog", { hidden: true }).children[0]
+                    component.getByRole("dialog", { hidden: true }).children[0],
                 ).does.not.have.class("keyboard-trap--active");
             });
 
             it("then it emits the show event", async () => {
                 await waitFor(() =>
-                    expect(component.emitted("open")).has.length(1)
+                    expect(component.emitted("open")).has.length(1),
                 );
             });
 

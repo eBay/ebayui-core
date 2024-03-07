@@ -22,18 +22,25 @@ export default {
     argTypes: {
         placement: {
             options: [
-                'top', 'right', 'bottom', 'left',
-                'top-start', 'right-start', 'bottom-start', 'left-start',
-                'top-end', 'right-end', 'bottom-end', 'left-end',
-           ],
+                "top",
+                "right",
+                "bottom",
+                "left",
+                "top-start",
+                "right-start",
+                "bottom-start",
+                "left-start",
+                "top-end",
+                "right-end",
+                "bottom-end",
+                "left-end",
+            ],
             control: { type: "select" },
-            description:
-                "places tourtip position",
+            description: "places tourtip position",
         },
         offset: {
             control: { type: "number" },
-            description:
-                "offsets tourtip position",
+            description: "offsets tourtip position",
         },
         a11yCloseText: {
             control: { type: "text" },
@@ -74,7 +81,7 @@ export default {
             description: "disables flipping tooltip when its offscreen",
             table: {
                 defaultValue: { summary: "false" },
-            }
+            },
         },
         open: {
             control: { type: "boolean" },

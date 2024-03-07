@@ -9,7 +9,7 @@ function transformMarko4(el, context) {
                 node.setTagName("@item");
                 node.setAttributeValue(
                     "separator",
-                    context.builder.literalTrue()
+                    context.builder.literalTrue(),
                 );
             }
         },
@@ -25,8 +25,8 @@ const replaceSeparatorVisitor = {
                 t.markoTag(
                     t.stringLiteral("@item"),
                     [t.markoAttribute("separator", t.booleanLiteral(true))],
-                    t.markoTagBody()
-                )
+                    t.markoTagBody(),
+                ),
             );
         }
     },
