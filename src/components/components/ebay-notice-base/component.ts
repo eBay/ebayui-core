@@ -32,7 +32,7 @@ interface NoticeBaseInput
             renderBody?: Marko.Renderable;
         }
     >;
-    "education-icon"?: Marko.Renderable;
+    "education-icon"?: Marko.AttrTag<Marko.Renderable> | Marko.Renderable;
     prominent?: boolean;
     "on-dismiss"?: () => void;
 }
