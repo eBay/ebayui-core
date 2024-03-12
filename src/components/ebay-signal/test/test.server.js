@@ -50,4 +50,12 @@ describe("signal", () => {
         expect(el).has.class("signal");
         expect(el).has.class("signal--neutral");
     });
+
+    it("renders with custom class", async () => {
+        const input = mock.basicWithClass;
+        const { getByText } = await render(template, input);
+        const el = getByText(/neutral/i);
+
+        expect(el).has.class("custom-class");
+    });
 });

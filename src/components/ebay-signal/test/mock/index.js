@@ -23,3 +23,8 @@ export const basicTimeSensitive = {
     status: "time-sensitive",
     renderBody: createRenderBody("time sensitive"),
 };
+
+export const basicWithClass = {
+    renderBody: createRenderBody("neutral"),
+    class: "custom-class",
+};
