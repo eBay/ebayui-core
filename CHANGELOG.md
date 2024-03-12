@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 13.2.3
+
+### Patch Changes
+
+- [#2122](https://github.com/eBay/ebayui-core/pull/2122) [`3937eff`](https://github.com/eBay/ebayui-core/commit/3937effb66dd35e7eaf0386280377f93f0b9a7ee) Thanks [@mkchang](https://github.com/mkchang)! - Fix signal custom class passthrough
+
 ## 13.2.2
 
 ### Patch Changes
