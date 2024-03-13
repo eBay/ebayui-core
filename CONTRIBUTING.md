@@ -121,6 +121,16 @@ Before creating your pull request you have two options regarding what to do with
 
 If a pull request is received with a bewildering commit history that is difficult to reason with (e.g. 10+ commits containing obscure commit messages, previously committed code, old branch merges, etc), it will most likely be deemed too risky and therefore closed immediately.
 
+### Changesets
+
+Each Pull Request requires at least one changeset as part of the pull requests. Changesets will allow automatic deployments of code when they are merged to `master` or one of the feature branches.
+
+The general recommendation is to have only one changeset per pull requiest. All pull requests to master need to have at least one changeset. It is recommended to have a changeset for each PR to a feature branch.
+
+In order to add a changeset run the command `npm run change`. Choose the appropriate version that this changeset will require: patch for bugfixes, minor for features, and major for breaking changes. Enter the summary of the changes. Generally we follow the same format for each of our commits, list the component change, and a brief description of the changes. These will be added in the release notes, so make sure they are descriptive enough for that.
+
+Afterwards, add and commit the file generated under the `.changeset` directory as part of your PR. Those files will be removed when the release is done as part of the automatic release process.
+
 ### Merging the Pull Request
 
 An admin will merge or squash the pull request when it receives two approvals. Please try to avoid committing any more code at this point unless it is absolutely necessary, as this may invalidate the prior approvals (depending on branch settings).
@@ -214,26 +224,21 @@ eBayUI Core is an implementation of the [eBay MIND Patterns](https://ebay.gitboo
 
 All major and minor releases should be preceded by one or more pre-releases. All pre-releases must be created from a `milestone` branch.
 
-1. Run `npm version prepatch`, `npm version preminor`, or `npm version premajor`. If you need to increment an existing prerelease use `npm version prerelease`. This command will automatically:
-    - update the version number in `package.json`
-    - commit all changes locally
-    - create a Git tag
-2. Run `git push` to push the commit to origin. (**Note**: do not push tags for prereleases.)
-3. Run `npm publish --tag beta` to publish the package to NPM.
+In order to enter prerelase mode, run `npm run prerelase:start`. This will generate a file under `.changeset` directory. Commit and push up that change to the `milestone` branch.
+This will generate a pull request targetting the `milestone` branch. Once that pull request is merged in the milestone branch a prerelease will be published.
+
+Once the prerelases are complete, run `npm run prerelase:end`. This will generate a file under the `.changeset` directory. Commit and push up that change to the `milestone` branch. Another Pull Request will be generated, this PR should be closed and not merged.
 
 ### Final Release
 
 A final release is always made from the `master` branch.
 
-1. Create a GitHub PR to merge the milestone branch into master branch.
-2. Merge the PR after approval (do not squash!)
-3. Switch to your local master branch and pull the changes from origin.
-4. Run `npm version patch`, `npm version minor`, or `npm version major`. This command will automatically:
-    - update the version number in `package.json`
-    - commit all changes locally
-    - create a Git tag
-5. Run `git push` to push the commit to origin.
-6. Push the git tag to origin, e.g. run `git push origin v1.0.0` using the new version tag you just created.
-7. Run `npm publish` to publish the package to NPM.
+1. Verify that the milestone branch has files in the `.changesets` directory and that `npm run prerelase:end` has been run and committed.
+2. Update skin on the milestone branch
+3. Create a GitHub PR to merge the milestone branch into master branch.
+4. Merge the PR after approval (do not squash!)
+5. Once merged and after the CI is run, a PR will be automatically generated. Verify that the version number in the PR is correct.
+6. Squash and merge the automatically generated PR.
+7. The package will be published to NPM.
 
 After every major and minor release, please take the opportunity to upgrade any outdated dependencies and devDependencies (_hint_: run `npm outdated` to see outdated dependencies). Except for major version upgrades, the version in `package.json` should always reflect the last known working version, not the version you are upgrading to.
