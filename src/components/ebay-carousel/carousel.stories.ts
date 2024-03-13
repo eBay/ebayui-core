@@ -1,52 +1,23 @@
 import { tagToString } from "../../../.storybook/storybook-code-source";
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../../.storybook/utils";
+
 import carousel from "./index.marko";
 import Readme from "./README.md";
-import "./examples/example-styles.less";
-import defaultTabIndex from "./examples/preserve-tabindex.marko";
-import defaultTabIndexCode from "./examples/preserve-tabindex.marko?raw";
-
-const images = [
-    "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/aztec-pyramid.jpeg",
-    "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/falls.jpeg",
-    "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/mountain.jpeg",
-    "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
-    "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/tall-cat.jpeg",
-    "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/wide-cat.jpeg",
-];
-
-function getItemWidth(itemWidth, index) {
-    if (itemWidth === "variable") {
-        const width = [100, 75, 120, 200, 130, 150, 100, 200, 60];
-        return `${width[index % width.length]}px`;
-    }
-}
-
-function getItems(numberOfItems, imageTreatment, autoplay, itemWidth) {
-    const items = [];
-    for (let i = 0; i < numberOfItems; i++) {
-        if (imageTreatment === "matte" && images[i]) {
-            items.push({
-                renderBody(out) {
-                    out.html(`<img src="${images[i]}"/>`);
-                },
-            });
-        } else {
-            const width = getItemWidth(itemWidth, i);
-            const className = autoplay ? "demo2-card" : "demo-card";
-            items.push({
-                class: className,
-                style: width && `width: ${width}`,
-                renderBody(out) {
-                    out.html(`Card ${i + 1}`);
-                },
-            });
-        }
-    }
-    return items;
-}
-
-const Template = (args) => ({ input: { ...args } });
-// const Template = args =({ input: withRenderBody(args) })
+import continiousTemplate from "./examples/continuous.marko";
+import continiousTemplateCode from "./examples/continuous.marko?raw";
+import discreteTemplate from "./examples/discrete.marko";
+import discreteTemplateCode from "./examples/discrete.marko?raw";
+import continiousImageTreatmentTemplate from "./examples/continuous-image-treatment.marko";
+import continiousImageTreatmentTemplateCode from "./examples/continuous-image-treatment.marko?raw";
+import autoplayTemplate from "./examples/autoplay.marko";
+import autoplayTemplateCode from "./examples/autoplay.marko?raw";
+import preserveTabindexTemplate from "./examples/preserve-tabindex.marko";
+import preserveTabindexTemplateCode from "./examples/preserve-tabindex.marko?raw";
+import variableSizesTemplate from "./examples/variable-sizes.marko";
+import variableSizesTemplateCode from "./examples/variable-sizes.marko?raw";
 
 export default {
     title: "navigation & disclosure/ebay-carousel",
@@ -157,8 +128,8 @@ export default {
         //     'Badge (only with variant=icon)'
         //     )
         // },
-        "onCarousel-update": {
-            action: "on-carousel-update",
+        "onMove": {
+            action: "on-move",
             description:
                 "called whenever item visibility changes, including initialization",
             table: {
@@ -233,122 +204,33 @@ export default {
     },
 };
 
-export const continuous = Template.bind({});
-continuous.args = {
-    index: 0,
-    gap: 16,
-    items: getItems(10),
-    "a11y-previous-text": "",
-    "a11y-next-text": "",
-    "aria-label": "Continuous",
-};
+export const Continuous = buildExtensionTemplate(
+    continiousTemplate,
+    continiousTemplateCode,
+);
 
-continuous.parameters = {
-    docs: {
-        source: {
-            code: tagToString("ebay-carousel", continuous.args),
-        },
-    },
-};
+export const ContinuousImageTreatment = buildExtensionTemplate(
+    continiousImageTreatmentTemplate,
+    continiousImageTreatmentTemplateCode,
+);
 
-export const continuousVariedWidth = Template.bind({});
-continuousVariedWidth.args = {
-    index: 0,
-    gap: 16,
-    items: getItems(10, "none", false, "variable"),
-    "a11y-previous-text": "",
-    "a11y-next-text": "",
-    "aria-label": "Continuous, Varied Width",
-};
+export const Discrete = buildExtensionTemplate(
+    discreteTemplate,
+    discreteTemplateCode,
+);
 
-continuousVariedWidth.parameters = {
-    docs: {
-        source: {
-            code: tagToString("ebay-carousel", continuousVariedWidth.args),
-        },
-    },
-};
+export const Autoplay = buildExtensionTemplate(
+    autoplayTemplate,
+    autoplayTemplateCode,
+);
+export const preserveTabindex = buildExtensionTemplate(
+    preserveTabindexTemplate,
+    preserveTabindexTemplateCode,
+);
 
-export const imageTreatment = Template.bind({});
-imageTreatment.args = {
-    index: 0,
-    gap: 16,
-    imageTreatment: "matte",
-    items: getItems(10, "matte"),
-    itemWidth: "fixed",
-    "a11y-previous-text": "",
-    "a11y-next-text": "",
-    "aria-label": "Image treatment",
-};
 
-imageTreatment.parameters = {
-    docs: {
-        source: {
-            code: tagToString("ebay-carousel", imageTreatment.args),
-        },
-    },
-};
+export const variableSizes = buildExtensionTemplate(
+    variableSizesTemplate,
+    variableSizesTemplateCode,
+);
 
-export const itemsPerSlide = Template.bind({});
-itemsPerSlide.args = {
-    items: getItems(5),
-    index: 0,
-    gap: null,
-    "a11y-previous-text": null,
-    "a11y-next-text": null,
-    itemsPerSlide: "2",
-    "aria-label": "Items Per Slide",
-};
-itemsPerSlide.parameters = {
-    controls: { exclude: ["autoplay"] },
-    docs: {
-        source: {
-            code: tagToString("ebay-carousel", continuous.args, {
-                items: "item",
-            }),
-        },
-    },
-};
-
-export const autoplay = Template.bind({});
-autoplay.args = {
-    index: 0,
-    gap: null,
-    items: getItems(10, "none", true),
-    "a11y-previous-text": null,
-    "a11y-next-text": null,
-    itemsPerSlide: "1",
-    autoplay: true,
-    "aria-label": "Autoplay",
-};
-
-autoplay.parameters = {
-    docs: {
-        source: {
-            code: tagToString("ebay-carousel", autoplay.args, {
-                items: "item",
-            }),
-        },
-    },
-};
-
-export const PreserveTabindex = (args) => ({
-    input: args,
-    component: defaultTabIndex,
-});
-PreserveTabindex.args = {
-    items: getItems(5),
-    index: 0,
-    gap: null,
-    "a11y-previous-text": null,
-    "a11y-next-text": null,
-    itemsPerSlide: "2",
-    "aria-label": "Items Per Slide",
-};
-PreserveTabindex.parameters = {
-    docs: {
-        source: {
-            code: defaultTabIndexCode,
-        },
-    },
-};

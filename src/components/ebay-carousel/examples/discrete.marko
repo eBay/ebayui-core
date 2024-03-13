@@ -1,14 +1,10 @@
 export interface Input {
     items: number;
-    index?: number;
-    itemsPerSlide?: number;
-    gap?: number;
-    a11yPreviousText?: string;
-    a11yNextText?: string;
-    autoplay?: boolean;
-    paused?: boolean;
-    a11yPauseText?: string;
-    a11yPlayText?: string;
+    index: number;
+    itemsPerSlide: number;
+    gap: number;
+    a11yPreviousText: string;
+    a11yNextText: string;
 }
 
 <style>
@@ -22,17 +18,15 @@ export interface Input {
         text-align: center;
     }
 </style>
+
 <ebay-carousel
     ...input
-    itemsPerSlide=(input.itemsPerSlide || 1)
-    autoplay=(input.autoplay || true)
+    itemsPerSlide=(input.itemsPerSlide || 2)
     on-move("emit", "move")
     on-next("emit", "next")
     on-previous("emit", "previous")
     on-scroll("emit", "scroll")
-    on-slide("emit", "slide")
-    on-play("emit", "play")
-    on-pause("emit", "pause")>
+    on-slide("emit", "slide")>
     <@item style={ width: 400 } class="demo2-card">Card 1</@item>
     <@item style={ width: 400 } class="demo2-card">Card 2</@item>
     <@item style={ width: 400 } class="demo2-card">Card 3</@item>
