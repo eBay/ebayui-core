@@ -125,7 +125,7 @@ If a pull request is received with a bewildering commit history that is difficul
 
 Each Pull Request requires at least one changeset as part of the pull requests. Changesets will allow automatic deployments of code when they are merged to `master` or one of the feature branches.
 
-The general recommendation is to have only one changeset per pull requiest.
+The general recommendation is to have only one changeset per pull requiest. All pull requests to master need to have at least one changeset. It is recommended to have a changeset for each PR to a feature branch.
 
 In order to add a changeset run the command `npm run change`. Choose the appropriate version that this changeset will require: patch for bugfixes, minor for features, and major for breaking changes. Enter the summary of the changes. Generally we follow the same format for each of our commits, list the component change, and a brief description of the changes. These will be added in the release notes, so make sure they are descriptive enough for that.
 
