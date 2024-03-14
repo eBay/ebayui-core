@@ -5,10 +5,13 @@ import {
 } from "../../../.storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
-import withAction from "./examples/with-action.marko";
-import withActionCode from "./examples/with-action.marko?raw";
-import withIcon from "./examples/with-icon.marko";
-import withIconCode from "./examples/with-icon.marko?raw";
+import withFooter from "./examples/with-footer.marko";
+import withFooterCode from "./examples/with-footer.marko?raw";
+import ProminentTemplate from "./examples/prominent.marko";
+import ProminentTemplateCode from "./examples/prominent.marko?raw";
+import ProminentIconTemplate from "./examples/prominent-icon.marko";
+import ProminentIconTemplateCode from "./examples/prominent-icon.marko?raw";
+
 import withDismiss from "./examples/with-dismiss.marko";
 import withDismissCode from "./examples/with-dismiss.marko?raw";
 
@@ -17,7 +20,7 @@ const Template = (args) => ({
 });
 
 export default {
-    title: "notices & tips/ebay-section-notice",
+    title: "notices & tips/ebay-education-notice",
     component: Component,
     parameters: {
         docs: {
@@ -28,27 +31,34 @@ export default {
     },
 
     argTypes: {
-        status: {
-            table: {
-                defaultValue: {
-                    summary: "attention",
-                },
-            },
-
-            description: "The icon used and status of the notice",
-            options: ["attention", "confirmation", "information"],
-            type: "select",
-        },
-        icon: {
-            table: {
-                defaultValue: {
-                    summary: "default",
-                },
-            },
-            options: ["default", "none"],
-            type: "select",
+        educationIcon: {
+            name: "@educationIcon",
             description:
-                'matches whatever is specified by the "status", or if none hides icon',
+                "For status education, an `<ebay-[name]-icon>` to show as the button's icon",
+            table: {
+                defaultValue: {
+                    summary: "ebay-lightbulb-24-icon",
+                    category: "@attribute tags",
+                },
+            },
+        },
+        variant: {
+            description:
+                "Either none or prominent. If prominent, the notice will be more prominent",
+            options: ["none", "prominent"],
+            type: "select",
+            defaultValue: {
+                summary: "none",
+            },
+        },
+        iconVariant: {
+            description:
+                "Either none or prominent. If prominent, the icon will be more prominent",
+            options: ["none", "prominent"],
+            type: "select",
+            defaultValue: {
+                summary: "none",
+            },
         },
         a11yText: {
             description: "adding description for the notice for a11y users",
@@ -70,20 +80,14 @@ export default {
             name: "@title",
             description: "The title content to be displayed.",
             table: {
+                required: true,
                 category: "@attribute tags",
             },
         },
         footer: {
             name: "@footer",
             description:
-                "The footer content to be displayed. Used to show a CTA button generally",
-            table: {
-                category: "@attribute tags",
-            },
-        },
-        cta: {
-            name: "@cta",
-            description: "This allows the addition of a main CTA link",
+                "The footer content to be displayed. Usually used for links",
             table: {
                 category: "@attribute tags",
             },
@@ -101,44 +105,33 @@ export default {
     },
 };
 
-export const Basic = Template.bind({});
-Basic.args = {
-    a11yText: "attention",
-    status: "attention",
-    a11yRoleDescription: "Notice",
-    renderBody: "<p>Section notice info. Things you need to know.</p>",
-};
-Basic.parameters = {
-    docs: {
-        source: {
-            code: tagToString("ebay-section-notice", Basic.args),
-        },
-    },
-};
-
-export const WithTitle = Template.bind({});
-WithTitle.args = {
-    a11yText: "attention",
-    status: "attention",
+export const Default = Template.bind({});
+Default.args = {
+    a11yText: "education",
     a11yRoleDescription: "Notice",
     title: {
-        renderBody: "Section notice title",
+        renderBody: "Education notice title",
     },
-    renderBody: "<p>Section notice info. Things you need to know.</p>",
+    renderBody: "<p>Education notice info. Things you need to know.</p>",
 };
-
-WithTitle.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-section-notice", WithTitle.args),
+            code: tagToString("ebay-education-notice", Default.args),
         },
     },
 };
 
-export const WithAction = buildExtensionTemplate(withAction, withActionCode, {
+export const Prominent = buildExtensionTemplate(ProminentTemplate, ProminentTemplateCode, {
     a11yText: "attention",
     status: "attention",
 });
+export const ProminentIcon = buildExtensionTemplate(ProminentIconTemplate, ProminentIconTemplateCode, {
+    a11yText: "attention",
+    status: "attention",
+});
+
+
 
 export const WithDismiss = buildExtensionTemplate(
     withDismiss,
@@ -147,7 +140,14 @@ export const WithDismiss = buildExtensionTemplate(
         a11yText: "information",
         a11yIconText: "",
         a11yDismissText: "Dismiss Notice",
-        status: "information",
-        icon: null,
     },
 );
+
+export const WithFooter = buildExtensionTemplate(
+    withFooter,
+    withFooterCode,
+    {
+        a11yText: "information",
+    },
+);
+

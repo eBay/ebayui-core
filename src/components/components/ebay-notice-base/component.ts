@@ -1,4 +1,4 @@
-import type { AttrString } from "marko/tags-html";
+import type { AttrString, AttrClass } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../../global";
 
 interface NoticeBaseInput
@@ -15,7 +15,7 @@ interface NoticeBaseInput
     "no-a11y-label"?: boolean;
     "a11y-role-description"?: AttrString;
     icon?: "none";
-    "icon-class"?: string;
+    "icon-class"?: AttrClass;
     "header-root"?: Marko.Renderable;
     "a11y-text"?: AttrString;
     "a11y-icon-text"?: AttrString;

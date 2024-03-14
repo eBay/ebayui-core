@@ -19,11 +19,12 @@ $ const {
     noA11yLabel,
     a11yDismissText,
     educationIcon,
-    prominent,
+    prominent, // deprecated, remove next major
     cta,
     ...htmlInput
 } = input;
 
+$ const isEducation = prefixClass === 'education-notice';
 <${root || 'section'}
     aria-labelledby=!noA11yLabel && component.elId('status')
     aria-roledescription=a11yRoleDescription
@@ -53,16 +54,35 @@ $ const {
                     class=iconClass
                 />
             </else-if>
-            <else-if(status === 'education' && type === 'section')>
+            // deprecated status === education. We should probably remove this whole icon on the next major version
+            <else-if(isEducation || (status === 'education' && type === 'section'))>
                 <${educationIcon || LightBulbIcon}
                     a11y-variant='label'
                     a11y-text=a11yIconText || a11yText
                     class=iconClass/>
             </else-if>
+            <if(isEducation && title)>
+                <${title.as || 'h2'}
+                    ...title
+                    class=[`${prefixClass}__title`, title.class]
+                >
+                    <${title}/>
+                </>
+                <if(a11yDismissText)>
+                        <button
+                            aria-label=`${a11yDismissText}`
+                            class=['fake-link', `${prefixClass}__dismiss`]
+                            onClick('emit', 'dismiss')
+                            onKeydown('emit', 'dismiss')
+                        >
+                            <ebay-close-16-icon.icon.icon--close-16/>
+                        </button>
+                </if>
+            </if>
         </>
     </if>
     <${mainRoot || 'div'} class=`${prefixClass}__main`>
-        <if(title)>
+        <if(!isEducation && title)>
             <${title.as || 'h2'}
                 ...title
                 class=[`${prefixClass}__title`, title.class]
@@ -76,10 +96,10 @@ $ const {
         <p class=`${prefixClass}__cta`><a ...cta><${cta}/></a></p>
     </if>
 
-    <if(footer && !a11yDismissText)>
+    <if(footer && (isEducation || !a11yDismissText))>
         <div class=`${prefixClass}__footer`><${footer}/></div>
     </if>
-    <if(!footer && a11yDismissText)>
+    <if(!isEducation && !footer && a11yDismissText)>
         <div class=`${prefixClass}__footer`>
             <button
                 aria-label=`${a11yDismissText}`
