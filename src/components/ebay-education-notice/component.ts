@@ -1,7 +1,7 @@
 import type { Input as NoticeBaseInput } from "../components/ebay-notice-base/component";
 import type { WithNormalizedProps } from "../../global";
 
-interface SectionNoticeInput
+interface EducationNoticeInput
     extends Omit<
         NoticeBaseInput,
         "role" | "prefixClass" | "mainRoot" | `on${string}`
@@ -12,13 +12,13 @@ interface SectionNoticeInput
     'icon-variant'?: 'none' | 'prominent';
 }
 
-export interface Input extends WithNormalizedProps<SectionNoticeInput> {}
+export interface Input extends WithNormalizedProps<EducationNoticeInput> {}
 
 interface State {
     dismissed: boolean;
 }
 
-class SectionNotice extends Marko.Component<Input, State> {
+class EducationNotice extends Marko.Component<Input, State> {
     onCreate() {
         this.state = { dismissed: false };
     }
@@ -33,4 +33,4 @@ class SectionNotice extends Marko.Component<Input, State> {
     }
 }
 
-export default SectionNotice;
+export default EducationNotice;

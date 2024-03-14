@@ -7,7 +7,7 @@
     </span>
 </h1>
 
-The `<ebay-education-notice>` is a tag used to create a custom-designed notice element. The notice can be single or multi-line but each line should be wrapped inside a `<p>` tag.
+The `<ebay-education-notice>` is a tag used to create an education notice element. The notice requires a `@title` element and should be wrapped inside a `<p>` tag.
 
 ## Examples and Documentation
 
