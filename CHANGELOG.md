@@ -1,5 +1,13 @@
 # eBayUI-Core Changelog
 
+## 13.2.4
+
+### Patch Changes
+
+- [#2134](https://github.com/eBay/ebayui-core/pull/2134) [`9ce7e55`](https://github.com/eBay/ebayui-core/commit/9ce7e55d9a87193171a725303f669e63f0ef7ad8) Thanks [@agliga](https://github.com/agliga)! - ebay-carousel: updated paddles to use 16px icons
+
+- [`7b35647`](https://github.com/eBay/ebayui-core/commit/7b35647c375b83f25e08e170a7b0fce760ed7893) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Fix types for ebay-tourtip
+
 ## 13.2.3
 
 ### Patch Changes

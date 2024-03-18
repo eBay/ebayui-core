@@ -128,7 +128,7 @@ export default {
         //     'Badge (only with variant=icon)'
         //     )
         // },
-        "onMove": {
+        onMove: {
             action: "on-move",
             description:
                 "called whenever item visibility changes, including initialization",
@@ -228,9 +228,7 @@ export const preserveTabindex = buildExtensionTemplate(
     preserveTabindexTemplateCode,
 );
 
-
 export const variableSizes = buildExtensionTemplate(
     variableSizesTemplate,
     variableSizesTemplateCode,
 );
-
