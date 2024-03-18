@@ -87,7 +87,7 @@ export default {
         footer: {
             name: "@footer",
             description:
-                "The footer content to be displayed. Usually used for links",
+                "The footer content to be displayed. Contains a button or link.",
             table: {
                 category: "@attribute tags",
             },
