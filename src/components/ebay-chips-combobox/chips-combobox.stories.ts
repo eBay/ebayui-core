@@ -58,6 +58,11 @@ export default {
             description:
                 "The role description for accessibility. Default text is set and will be in english. Pass this to override for different locales",
         },
+        placeholder: {
+            control: { type: "text" },
+            description:
+                "The input placeholder text. This will be the label for the input when no text is entered.",
+        },
         options: {
             name: "@option",
             description:
