@@ -5,7 +5,7 @@ import type { Input as TooltipOverlayInput } from "../components/ebay-tooltip-ov
 interface TourtipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     open?: boolean;
     "no-hover"?: TooltipBaseInput["noHover"];
-    host?: Marko.Input<"span">;
+    host?: Marko.AttrTag<Marko.Input<"span">>;
     offset?: TooltipBaseInput["offset"];
     pointer?: TooltipBaseInput["pointer"];
     placement?: TooltipBaseInput["placement"];
