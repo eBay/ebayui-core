@@ -69,14 +69,13 @@ $ const isEducation = prefixClass === 'education-notice';
                     <${title}/>
                 </>
                 <if(a11yDismissText)>
-                        <button
+                        <ebay-icon-button
                             aria-label=`${a11yDismissText}`
                             class=['fake-link', `${prefixClass}__dismiss`]
                             onClick('emit', 'dismiss')
-                            onKeydown('emit', 'dismiss')
                         >
-                            <ebay-close-16-icon.icon.icon--close-16/>
-                        </button>
+                            <ebay-close-16-icon/>
+                        </ebay-icon-button>
                 </if>
             </if>
         </>
