@@ -108,6 +108,16 @@ export default {
             description:
                 'Will collapse whole menu when an item is selected in menu. Typically used in `type="radio"`',
         },
+        partiallyDisabled: {
+            description:
+                "programmatically disabled, but remains keyboard focusable",
+            control: { type: "boolean" },
+            table: {
+                defaultValue: {
+                    summary: "false",
+                },
+            },
+        },
         prefixId: {
             control: { type: "text" },
             description:

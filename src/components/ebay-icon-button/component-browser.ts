@@ -7,7 +7,7 @@ interface IconButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
     href?: string;
     transparent?: boolean;
     size?: "small" | "large";
-    "partially-disabled"?: boolean;
+    partiallyDisabled?: boolean;
     "badge-aria-label"?: AttrString;
     "on-click"?: (event: { originalEvent: MouseEvent }) => void;
     "on-escape"?: (event: { originalEvent: KeyboardEvent }) => void;

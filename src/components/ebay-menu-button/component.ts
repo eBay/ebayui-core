@@ -27,6 +27,7 @@ interface MenuButtonInput
     "prefix-id"?: string;
     variant?: "overflow" | "form" | "button" | "icon";
     borderless?: boolean;
+    partiallyDisabled?: EbayButtonInput["partiallyDisabled"];
     priority?: "primary" | "secondary" | "tertiary" | "delete" | "none";
     size?: EbayButtonInput["size"];
     transparent?: boolean;

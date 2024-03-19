@@ -21,6 +21,7 @@
     "@fix-width": "boolean",
     "@borderless": "boolean",
     "@size": "string",
+    "@partially-disabled": "boolean",
     "@priority": "string",
     "@prefix-id": "string",
     "@prefix-label": "string",
