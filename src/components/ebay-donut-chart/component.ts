@@ -1,27 +1,25 @@
-import * as Highcharts from "highcharts";
-
-import patternFill from "highcharts/modules/pattern-fill";
-
 import { CDNLoader } from "../../common/cdn";
 import {
     chartFontFamily,
     backgroundColor,
-    tooltipBackgroundColor,
-    tooltipShadows,
     setDonutColors,
     setLegendColors,
 } from "../../common/charts/shared";
-
 import { ebayDonut } from "../../common/charts/donut";
-
 import type { WithNormalizedProps } from "../../global";
-
 import tooltipTemplate from "./donut-tooltip.marko";
+import type HighchartsTypes from "highcharts";
+declare const Highcharts: typeof HighchartsTypes;
 
-// Uncomment when cdn loader version is set
-//
-// import type HighchartsTypes from "highcharts";
-// declare const Highcharts: typeof HighchartsTypes;
+// Highcharts CDN URLs
+// These are temporary until 11.4.0 is on ebay cdn
+// TODO: Remove these and include "11.4.0" as version input instead once it's on ebay cdn
+const highcharts11_4_0 =
+    "https://cdnjs.cloudflare.com/ajax/libs/highcharts/11.4.0/highcharts.js";
+const accessibility11_4_0 =
+    "https://cdnjs.cloudflare.com/ajax/libs/highcharts/11.4.0/modules/accessibility.js";
+const patternFill11_4_0 =
+    "https://cdnjs.cloudflare.com/ajax/libs/highcharts/11.4.0/modules/pattern-fill.js";
 
 interface SeriesDonutOptions extends Highcharts.SeriesPieOptions {
     data: Highcharts.PointOptionsObject[];
@@ -38,7 +36,6 @@ interface DonutChartInput
     title?: string;
     metricValue?: string;
     metricLabel?: string;
-    layout?: "small" | "large";
     "cdn-highcharts"?: string;
     "cdn-highcharts-accessibility"?: string;
     "cdn-highcharts-pattern-fill"?: string;
@@ -89,12 +86,12 @@ class DonutChart extends Marko.Component<Input, State> {
         this.cdnLoader
             .setOverrides(
                 [
-                    this.input.cdnHighcharts,
-                    this.input.cdnHighchartsAccessibility,
-                    // Not working atm
-                    // this.input.cdnHighchartsPatternFill,
+                    this.input.cdnHighcharts ?? highcharts11_4_0,
+                    this.input.cdnHighchartsAccessibility ??
+                        accessibility11_4_0,
+                    this.input.cdnHighchartsPatternFill ?? patternFill11_4_0,
                 ] as string[],
-                this.input.version,
+                this.input.version ?? "11.4.0",
             )
             .mount();
     }
@@ -115,10 +112,6 @@ class DonutChart extends Marko.Component<Input, State> {
         // Adds spacing between donut slices
         // Accepts a highcharts instance and a spacing value
         ebayDonut(Highcharts);
-
-        // Add pattern-fill module
-        // Need to add HC version to CDN
-        patternFill(Highcharts);
     }
 
     /**
@@ -184,7 +177,7 @@ class DonutChart extends Marko.Component<Input, State> {
         return {
             pie: {
                 size: "100%",
-                thickness: this.input.layout === "small" ? 8 : 12,
+                thickness: 10, // This is an in between value of 8 and 12
                 allowPointSelect: false,
                 cursor: "pointer",
                 borderRadius: "30%",
@@ -224,14 +217,14 @@ class DonutChart extends Marko.Component<Input, State> {
                 });
             },
             useHTML: true,
-            backgroundColor: tooltipBackgroundColor,
+            backgroundColor: "transparent",
+            padding: 0,
             borderWidth: 0,
-            borderRadius: 10,
+            borderRadius: 0,
             outside: true,
             shadow: false,
             shared: true,
             style: {
-                filter: tooltipShadows,
                 fontSize: "12px",
             },
         };

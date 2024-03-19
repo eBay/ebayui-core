@@ -1,6 +1,26 @@
-<b>${input.name}</b>
-<br>
-<if(input.tooltip)>
-    ${input.tooltip}
-</if>
-<else>${input.value}</else>
+import "@ebay/skin/tooltip";
+
+<span class="donut-tooltip tooltip tooltip--expanded">
+    <div class="tooltip__overlay">
+        <span class="tooltip__pointer tooltip__pointer--bottom"/>
+        <div class="tooltip__mask">
+            <div class="tooltip__cell">
+                <div class="tooltip__content">
+                    <b>${input.name}</b>
+                    <br>
+                    <if(input.tooltip)>
+                        ${input.tooltip}
+                    </if>
+                    <else>${input.value}</else>
+                </div>
+            </div>
+        </div>
+    </div>
+</span>
+
+style.less {
+    // Set positioning to relative to allow Highcharts to handle positioning
+    .donut-tooltip .tooltip__overlay {
+        position: relative;
+    }
+}

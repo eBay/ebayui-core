@@ -1,7 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 $ const {
     title,
-    layout = "large",
     metricValue,
     metricLabel,
     class: inputClass,
@@ -9,33 +8,35 @@ $ const {
     ...htmlInput
 } = input;
 
-<div
-    ...processHtmlAttributes(htmlInput)
-    class=[inputClass, "ebay-donut-chart", `ebay-donut-chart--${layout}`]
->
-    <div class="ebay-donut-chart__title-container">
-        ${title}
-    </div>
-    <div class="ebay-donut-chart__metric-container">
-        <div class="ebay-donut-chart__metric-value">
-            ${metricValue}
-        </div>
-        <div class="ebay-donut-chart__metric-label">
-            ${metricLabel}
-        </div>
-    </div>
+<div class="ebay-donut-chart-container">
     <div
-        id=component.getContainerId()
-        class="ebay-donut-chart__graph-container"
-        no-update
-    />
-
-    <div class="ebay-donut-chart__legend-container">
-        <ebay-chart-legend
-            items=component.getLegendItems()
-            focusIndex=state.activeIndex
-            on-focus("handlePathFocus")
-            on-blur("handlePathBlur")
+        ...processHtmlAttributes(htmlInput)
+        class=[inputClass, "ebay-donut-chart"]
+    >
+        <div class="ebay-donut-chart__title-container">
+            ${title}
+        </div>
+        <div class="ebay-donut-chart__metric-container">
+            <div class="ebay-donut-chart__metric-value">
+                ${metricValue}
+            </div>
+            <div class="ebay-donut-chart__metric-label">
+                ${metricLabel}
+            </div>
+        </div>
+        <div
+            id=component.getContainerId()
+            class="ebay-donut-chart__graph-container"
+            no-update
         />
+
+        <div class="ebay-donut-chart__legend-container">
+            <ebay-chart-legend
+                items=component.getLegendItems()
+                focusIndex=state.activeIndex
+                on-focus("handlePathFocus")
+                on-blur("handlePathBlur")
+            />
+        </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 import { tagToString } from "../../../.storybook/storybook-code-source";
 import { addRenderBodies } from "../../../.storybook/utils";
-// import Readme from "./README.md";
+import Readme from "./README.md";
 import Component from "./index.marko";
 import { data } from "./examples/data.json";
 
@@ -11,21 +11,25 @@ const Template = (args) => ({
 export default {
     title: "charts/ebay-donut-chart",
     component: Component,
-    // parameters: {
-    //     docs: {
-    //         description: {
-    //             component: Readme,
-    //         },
-    //     },
-    // },
+    parameters: {
+        docs: {
+            description: {
+                component: Readme,
+            },
+        },
+    },
     argTypes: {
         title: {
             type: { name: "string", required: false },
             description: "A title displayed above the graph",
         },
-        description: {
+        metricValue: {
             type: { name: "string", required: true },
-            description: "A description of what the chart is displaying",
+            description: "A primary metric value that summarizes the chart",
+        },
+        metricLabel: {
+            type: { name: "string", required: true },
+            description: "A supporting label for the primary metric value",
         },
         class: {
             type: { name: "string", require: false },
@@ -41,6 +45,11 @@ export default {
             description:
                 "CDN url override for loading highcharts accessibility module",
         },
+        cdnHighchartsPatternFill: {
+            type: { name: "string", require: false },
+            description:
+                "CDN url override for loading highcharts pattern-fill module",
+        },
         version: {
             type: { name: "string", require: false },
             description: "Highcharts version to load from CDN",
@@ -48,30 +57,25 @@ export default {
     },
 };
 
-export const LargeLayout = Template.bind({});
-LargeLayout.args = {
+export const Standard = Template.bind({});
+Standard.args = {
     series: [
         {
             data: data.slice(0, 3),
         },
     ],
-    title: "Graph title",
+    title: "Donut chart title",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
     layout: "large",
 };
 
-export const SmallLayout = Template.bind({});
-SmallLayout.args = {
-    series: [
-        {
-            data: data.slice(0, 3),
+Standard.parameters = {
+    docs: {
+        source: {
+            code: tagToString("ebay-donut-chart", Standard.args),
         },
-    ],
-    title: "Graph title",
-    metricValue: "174 Total",
-    metricLabel: "3.78% return rate",
-    layout: "small",
+    },
 };
 
 export const TwoValues = Template.bind({});
@@ -81,10 +85,18 @@ TwoValues.args = {
             data: data.slice(0, 2),
         },
     ],
-    title: "Graph title",
+    title: "Donut chart with two values",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
     layout: "large",
+};
+
+TwoValues.parameters = {
+    docs: {
+        source: {
+            code: tagToString("ebay-donut-chart", TwoValues.args),
+        },
+    },
 };
 
 export const ThreeValues = Template.bind({});
@@ -94,10 +106,18 @@ ThreeValues.args = {
             data: data.slice(0, 3),
         },
     ],
-    title: "Graph title",
+    title: "Donut chart with three values",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
     layout: "large",
+};
+
+ThreeValues.parameters = {
+    docs: {
+        source: {
+            code: tagToString("ebay-donut-chart", ThreeValues.args),
+        },
+    },
 };
 
 export const FourValues = Template.bind({});
@@ -107,10 +127,18 @@ FourValues.args = {
             data: data.slice(0, 4),
         },
     ],
-    title: "Graph title",
+    title: "Donut chart with four values",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
     layout: "large",
+};
+
+FourValues.parameters = {
+    docs: {
+        source: {
+            code: tagToString("ebay-donut-chart", FourValues.args),
+        },
+    },
 };
 
 export const FiveValues = Template.bind({});
@@ -120,8 +148,16 @@ FiveValues.args = {
             data,
         },
     ],
-    title: "Graph title",
+    title: "Donut chart with five values",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
     layout: "large",
+};
+
+FiveValues.parameters = {
+    docs: {
+        source: {
+            code: tagToString("ebay-donut-chart", FiveValues.args),
+        },
+    },
 };
