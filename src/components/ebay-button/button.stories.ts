@@ -138,7 +138,7 @@ export default {
         },
         truncate: {
             description:
-                "used in conjunction with `fixed-height`; truncates text to single line with ellipsis when text overflows",
+                "used in conjunction with `fixedHeight`; truncates text to single line with ellipsis when text overflows",
             table: {
                 defaultValue: {
                     summary: "false",
