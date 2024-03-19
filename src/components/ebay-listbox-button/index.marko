@@ -40,8 +40,7 @@ $ var isForm = variant === 'form';
         class=[
             "listbox-button__control",
             'btn',
-            'btn--form',
-            borderless && "btn--borderless",
+            borderless ? "btn--borderless" : 'btn--form',
             truncate && "btn--truncated",
             floatingLabel && "btn--floating-label"
         ]
