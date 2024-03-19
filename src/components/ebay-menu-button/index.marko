@@ -14,6 +14,7 @@ $ const {
     fixWidth,
     borderless,
     size,
+    partiallyDisabled,
     priority: inputPriority,
     disabled,
     variant: inputVariant,
@@ -78,6 +79,7 @@ $ {
         aria-labelledby=(labelId && `${prefixId} ${labelId}`)
         split=(isButtonVariant ? split : undefined)
         disabled=disabled
+        partiallyDisabled=partiallyDisabled
         on-escape("handleButtonEscape")
         key="button">
         <if(isOverflowVariant)>

@@ -98,7 +98,7 @@ export default {
                 },
             },
         },
-        "partially-disabled": {
+        partiallyDisabled: {
             description:
                 "programmatically disabled, but remains keyboard focusable",
             control: { type: "boolean" },

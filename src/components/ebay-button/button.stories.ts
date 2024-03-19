@@ -107,7 +107,7 @@ export default {
             },
             type: { category: "Options" },
         },
-        "partially-disabled": {
+        partiallyDisabled: {
             description:
                 "programmatically disabled, but remains keyboard focusable",
             table: {
@@ -127,7 +127,7 @@ export default {
                 category: "Toggles",
             },
         },
-        "fixed-height": {
+        fixedHeight: {
             description: "fixes the height based on `size`",
             table: {
                 defaultValue: {
@@ -138,7 +138,7 @@ export default {
         },
         truncate: {
             description:
-                "used in conjunction with `fixed-height`; truncates text to single line with ellipsis when text overflows",
+                "used in conjunction with `fixedHeight`; truncates text to single line with ellipsis when text overflows",
             table: {
                 defaultValue: {
                     summary: "false",
@@ -207,9 +207,9 @@ Standard.args = {
     size: null,
     disabled: false,
     priority: null,
-    "partially-disabled": false,
+    partiallyDisabled: false,
     transparent: false,
-    "fixed-height": false,
+    fixedHeight: false,
     truncate: false,
 };
 

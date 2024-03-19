@@ -1,13 +1,14 @@
 import type { AttrString } from "marko/tags-html";
 import * as eventUtils from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
+import type { Input as ButtonInput } from "../ebay-button/index.marko";
 
 interface IconButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
     "badge-number"?: number | string;
     href?: string;
     transparent?: boolean;
     size?: "small" | "large";
-    "partially-disabled"?: boolean;
+    partiallyDisabled?: ButtonInput["partiallyDisabled"];
     "badge-aria-label"?: AttrString;
     "on-click"?: (event: { originalEvent: MouseEvent }) => void;
     "on-escape"?: (event: { originalEvent: KeyboardEvent }) => void;

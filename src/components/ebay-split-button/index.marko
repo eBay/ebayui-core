@@ -5,6 +5,7 @@ $ const {
     bodyState,
     disabled,
     href,
+    partiallyDisabled,
     priority,
     renderBody,
     size,
@@ -27,6 +28,7 @@ $ const {
         bodyState=bodyState
         href=href
         a11yText=a11yButtonLoadingText
+        partiallyDisabled=partiallyDisabled
     >
         <span.btn__cell><span.btn__text><${renderBody}/></span></span>
     </ebay-button>
@@ -43,6 +45,7 @@ $ const {
         transparent=transparent
         reverse
         variant='button'
+        partiallyDisabled=partiallyDisabled
         ...menuButtonInput
     />
 </span>
