@@ -12,9 +12,9 @@ interface Message {
     duration?: number;
 }
 
-interface ProgressBarExpressiveInput
-    extends Omit<Marko.Input<"div">, `on${string}`> {
+interface ProgressBarExpressiveInput {
     "a11y-text"?: AttrString;
+    class?: AttrClass;
     isLoading?: boolean;
     messages?: Marko.RepeatableAttrTag<Message>;
     size?: "medium" | "large";
