@@ -71,6 +71,7 @@ $ const isEducation = prefixClass === 'education-notice';
                 <if(a11yDismissText)>
                         <ebay-icon-button
                             aria-label=`${a11yDismissText}`
+                            size="small"
                             class=['fake-link', `${prefixClass}__dismiss`]
                             onClick('emit', 'dismiss')
                         >
