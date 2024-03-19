@@ -2,4 +2,4 @@
 "@ebay/ebayui-core": minor
 ---
 
-docs(button): fix storybook issues
+fix(button): add partially disabled support to button variants
