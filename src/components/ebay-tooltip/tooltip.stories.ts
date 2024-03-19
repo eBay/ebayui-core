@@ -74,6 +74,20 @@ export default {
                 defaultValue: { summary: "false" },
             },
         },
+        noShift: {
+            control: { type: "boolean" },
+            description: "disables shifting tooltip when its offscreen",
+            table: {
+                defaultValue: { summary: "false" },
+            },
+        },
+        notInline: {
+            control: { type: "boolean" },
+            description: "disables moving tooltip to be inline with content when it is rendered",
+            table: {
+                defaultValue: { summary: "false" },
+            },
+        },
         onCollapse: {
             action: "on-collapse",
             description: "Triggered on menu collapse",

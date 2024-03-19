@@ -16,6 +16,8 @@ interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
         renderBody?: Marko.Renderable;
     } & Iterable<any>;
     "no-flip"?: TooltipBaseInput["no-flip"];
+    "not-inline"?: TooltipBaseInput["not-inline"];
+    "no-shift"?: TooltipBaseInput["no-shift"];
     content: Marko.AttrTag<Marko.Input<"span">>;
     "a11y-close-button-text"?: AttrString;
     "on-expand"?: () => void;

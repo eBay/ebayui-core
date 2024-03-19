@@ -12,6 +12,8 @@ interface TooltipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     pointer?: TooltipBaseInput["pointer"];
     placement?: TooltipBaseInput["placement"];
     offset?: TooltipBaseInput["offset"];
+    "not-inline"?: TooltipBaseInput["not-inline"];
+    "no-shift"?: TooltipBaseInput["no-shift"];
     "no-flip"?: TooltipBaseInput["no-flip"];
     "on-expand"?: () => void;
     "on-collapse"?: () => void;

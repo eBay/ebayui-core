@@ -69,7 +69,21 @@ export default {
         },
         noFlip: {
             control: { type: "boolean" },
-            description: "disables flipping tooltip when its offscreen",
+            description: "disables flipping infotip when its offscreen",
+            table: {
+                defaultValue: { summary: "false" },
+            },
+        },
+        noShift: {
+            control: { type: "boolean" },
+            description: "disables shifting infotip when its offscreen",
+            table: {
+                defaultValue: { summary: "false" },
+            },
+        },
+        notInline: {
+            control: { type: "boolean" },
+            description: "disables moving infotip to be inline with content when it is rendered",
             table: {
                 defaultValue: { summary: "false" },
             },
