@@ -1,4 +1,4 @@
-import { AttrClass, AttrString } from "marko/tags-html";
+import { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 
 export const messageDurationStandard = 1500;
@@ -80,7 +80,7 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
             }, messageDurationStandard);
 
             if (!this.fadeInFirstMessage) {
-                // Display first message immediately
+                // Automatically show first message (no delay or animation)
                 this.showMessage();
             } else if (this.state.useReducedMotion) {
                 // In reduced motion mode, fade in first message immediately
