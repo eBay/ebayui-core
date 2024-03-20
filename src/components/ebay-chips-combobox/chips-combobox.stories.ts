@@ -7,6 +7,10 @@ import Readme from "./README.md";
 import Combobox from "./index.marko";
 import DefaultTemplate from "./examples/default.marko";
 import DefaultCode from "./examples/default.marko?raw";
+import SelectedTemplate from "./examples/selected.marko";
+import SelectedCode from "./examples/selected.marko?raw";
+
+
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -63,6 +67,18 @@ export default {
             description:
                 "The input placeholder text. This will be the label for the input when no text is entered.",
         },
+        selected: {
+            control: { type: "array" },
+            table: {
+                defaultValue: {
+                    summary: "[]",
+                },
+            },
+
+
+            description:
+                "A list of selected options. Each item is the string that will be displayed in the selected list of chips. If it matches an item in the dropdown, it won't be shown in dropdown",
+        },
         options: {
             name: "@option",
             description:
@@ -102,4 +118,6 @@ export default {
     },
 };
 
-export const Default = buildExtensionTemplate(DefaultTemplate, DefaultCode);
+export const Default = buildExtensionTemplate(DefaultTemplate, DefaultCode, {placeholder: 'Add item'});
+
+export const Selected = buildExtensionTemplate(SelectedTemplate, SelectedCode, {placeholder: 'Add item', selected:["Option 1", "Option 3", "Custom Option"]});
