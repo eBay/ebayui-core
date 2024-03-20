@@ -16,6 +16,5 @@
     "@size": {
         "enum": ["large", "medium"]
     },
-    "@isLoading": "boolean",
     "@a11yText": "string"
 }

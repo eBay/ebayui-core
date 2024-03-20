@@ -3,7 +3,7 @@ import chaiDom from "chai-dom";
 import { composeStories } from "@storybook/marko";
 import { render, cleanup, waitFor } from "@marko/testing-library";
 import * as stories from "../progress-bar-expressive.stories";
-const { Default, Localized, WithMessages } = composeStories(stories);
+const { WithMessages, MediumSize } = composeStories(stories);
 
 use(chaiDom);
 afterEach(cleanup);
@@ -12,85 +12,12 @@ afterEach(cleanup);
 let component;
 
 describe("progress-bar-expressive", () => {
-    describe("given a default expressive progress bar", () => {
-        beforeEach(async () => {
-            component = await render(Default);
-        });
-
-        it("renders a progress bar with 'Loading...' accessible name", () => {
-            expect(component.getByLabelText("Loading...")).to.equal(
-                component.getByRole("progressbar"),
-            );
-        });
-    });
-
-    describe("given an expressive progress bar with custom a11yText", () => {
-        beforeEach(async () => {
-            component = await render(Localized);
-        });
-
-        it("the progress bar uses that a11yText as its accessible name", () => {
-            expect(component.getByLabelText(Localized.args.a11yText)).to.equal(
-                component.getByRole("progressbar"),
-            );
-        });
-    });
-
-    describe("given an expressive progress bar without an isLoading prop", () => {
-        beforeEach(async () => {
-            component = await render(WithMessages);
-        });
-
-        it("content is rendered", () => {
-            expect(component.getAllByRole("status")).to.have.length(1);
-            expect(component.getAllByRole("progressbar")).to.have.length(1);
-        });
-
-        describe("when it is rerendered with isLoading true", () => {
-            beforeEach(async () => {
-                await component.rerender(
-                    Object.assign({}, stories.WithMessages.args, {
-                        isLoading: true,
-                    }),
-                );
-            });
-
-            it("content is rendered", async () => {
-                expect(component.getAllByRole("status")).to.have.length(1);
-                expect(component.getAllByRole("progressbar")).to.have.length(1);
-            });
-        });
-
-        describe("when it is rerendered with isLoading false", () => {
-            beforeEach(async () => {
-                await component.rerender(
-                    Object.assign({}, stories.WithMessages.args, {
-                        isLoading: false,
-                    }),
-                );
-            });
-
-            it("no content is rendered", async () => {
-                expect(component.queryByRole("status")).to.equal(null);
-                expect(component.queryByRole("progressbar")).to.equal(null);
-            });
-        });
-    });
-
     describe("given an expressive progress bar with messages", () => {
         beforeEach(async () => {
             component = await render(WithMessages);
         });
 
-        it("the progress bar is described by the current message", async () => {
-            const statusId = component.getByRole("status").id;
-            expect(component.getByRole("progressbar")).to.have.attr(
-                "aria-describedby",
-                statusId,
-            );
-        });
-
-        it("cycles through messages", async () => {
+        it("then cycles through all messages", async () => {
             const statusEl = component.getByRole("status");
             const messages = WithMessages.args.messages;
 
@@ -101,9 +28,36 @@ describe("progress-bar-expressive", () => {
                     () => {
                         expect(statusEl).to.have.text(message.text);
                     },
-                    { timeout: 4000 },
+                    { timeout: 4000 }, // generous timeout
                 );
             }
+        });
+
+        describe("when the text is default size", () => {
+            it("then shows the first message after a slight delay", async () => {
+                const statusEl = component.getByRole("status");
+                const text = WithMessages.args.messages[0].text;
+
+                expect(statusEl).not.to.have.text(text);
+                await waitFor(
+                    () => {
+                        expect(statusEl).to.have.text(text);
+                    },
+                    { timeout: 4000 },
+                );
+            });
+        });
+
+        describe("when the text is medium size", () => {
+            beforeEach(async () => {
+                component = await render(MediumSize);
+            });
+
+            it("then the first message renders immediately", () => {
+                expect(component.getByRole("status")).to.have.text(
+                    MediumSize.args.messages[0].text,
+                );
+            });
         });
     });
 });

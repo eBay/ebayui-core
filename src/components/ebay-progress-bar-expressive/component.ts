@@ -12,10 +12,9 @@ interface Message {
     duration?: number;
 }
 
-interface ProgressBarExpressiveInput {
+interface ProgressBarExpressiveInput
+    extends Omit<Marko.Input<"div">, `on${string}`> {
     "a11y-text"?: AttrString;
-    class?: AttrClass;
-    isLoading?: boolean;
     messages?: Marko.RepeatableAttrTag<Message>;
     size?: "medium" | "large";
 }
@@ -29,7 +28,6 @@ interface State {
     currentMessageIndex: number;
     nextMessageIndex: number;
     isInitialMessage: boolean;
-    isLoading: boolean;
     useReducedMotion: boolean;
 }
 
@@ -50,7 +48,6 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
             currentMessageIndex: -1,
             nextMessageIndex: 0,
             isInitialMessage: true,
-            isLoading: !(input.isLoading === false),
             useReducedMotion: useReducedMotion,
         };
 
@@ -61,10 +58,6 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
         this.state.messages = (input.messages as Message[]) || [];
         if (this.state.nextMessageIndex >= this.state.messages.length) {
             this.state.nextMessageIndex = 0;
-        }
-
-        if (input.isLoading !== this.state.isLoading) {
-            this.state.isLoading = !(input.isLoading === false);
         }
 
         this.initializeMessageRotation();
@@ -80,7 +73,7 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
     }
 
     initializeMessageRotation() {
-        if (this.state.isLoading && this.state.messages.length > 0) {
+        if (this.state.messages.length > 0) {
             this.clearTimeouts();
             setTimeout(() => {
                 this.state.isInitialMessage = false;
@@ -152,8 +145,8 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
                     this.getMessageDuration(this.state.messages[currentIndex]),
             );
         } else {
-            this.state.messageIsFadingIn = false;
             this.state.currentMessageIndex = 0;
+            this.state.messageIsFadingIn = false;
         }
     }
 }

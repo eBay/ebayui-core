@@ -87,6 +87,13 @@ Default.parameters = {
         },
     },
 };
+Default.parameters = {
+    docs: {
+        source: {
+            code: tagToString("ebay-progress-bar-expressive", Default.args),
+        },
+    },
+};
 
 export const WithSingleMessage = Template.bind({});
 WithSingleMessage.args = {
@@ -97,6 +104,16 @@ export const WithMessages = Template.bind({});
 WithMessages.args = {
     messages: exampleMessages,
 };
+WithMessages.parameters = {
+    docs: {
+        source: {
+            code: tagToString(
+                "ebay-progress-bar-expressive",
+                WithMessages.args,
+            ),
+        },
+    },
+};
 
 export const WithLongMessage = Template.bind({});
 WithLongMessage.args = {
@@ -106,6 +123,16 @@ WithLongMessage.args = {
         { text: "That's okay!" },
     ],
 };
+WithLongMessage.parameters = {
+    docs: {
+        source: {
+            code: tagToString(
+                "ebay-progress-bar-expressive",
+                WithLongMessage.args,
+            ),
+        },
+    },
+};
 
 export const WithCustomTiming = Template.bind({});
 WithCustomTiming.args = {
@@ -114,6 +141,16 @@ WithCustomTiming.args = {
         { text: "Display for 3 seconds", duration: 3000 },
         { text: "Display for 4 seconds", duration: 4000 },
     ],
+};
+WithCustomTiming.parameters = {
+    docs: {
+        source: {
+            code: tagToString(
+                "ebay-progress-bar-expressive",
+                WithCustomTiming.args,
+            ),
+        },
+    },
 };
 
 export const Localized = Template.bind({});
@@ -125,9 +162,23 @@ Localized.args = {
         { text: "Sólo un momento más" },
     ],
 };
+Localized.parameters = {
+    docs: {
+        source: {
+            code: tagToString("ebay-progress-bar-expressive", Localized.args),
+        },
+    },
+};
 
 export const MediumSize = Template.bind({});
 MediumSize.args = {
     size: "medium",
     messages: exampleMessages,
+};
+MediumSize.parameters = {
+    docs: {
+        source: {
+            code: tagToString("ebay-progress-bar-expressive", MediumSize.args),
+        },
+    },
 };
