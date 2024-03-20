@@ -83,7 +83,8 @@ export default {
         },
         notInline: {
             control: { type: "boolean" },
-            description: "disables moving infotip to be inline with content when it is rendered",
+            description:
+                "disables moving infotip to be inline with content when it is rendered",
             table: {
                 defaultValue: { summary: "false" },
             },

@@ -1,8 +1,16 @@
 {
-    "mode": "pre",
-    "tag": "next",
-    "initialVersions": {
-        "@ebay/ebayui-core": "13.2.4"
-    },
-    "changesets": []
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "13.2.4"
+  },
+  "changesets": [
+    "brave-plants-cross",
+    "chilled-hounds-peel",
+    "popular-trees-juggle",
+    "pretty-ears-run",
+    "quiet-drinks-worry",
+    "sour-months-search",
+    "tasty-guests-allow"
+  ]
 }

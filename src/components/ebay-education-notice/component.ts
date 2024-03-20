@@ -8,8 +8,8 @@ interface EducationNoticeInput
     > {
     dismissed?: boolean;
     "on-dismiss"?: () => void;
-    variant?: 'none' | 'prominent';
-    'icon-variant'?: 'none' | 'prominent';
+    variant?: "none" | "prominent";
+    "icon-variant"?: "none" | "prominent";
 }
 
 export interface Input extends WithNormalizedProps<EducationNoticeInput> {}

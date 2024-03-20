@@ -1,5 +1,25 @@
 # eBayUI-Core Changelog
 
+## 13.3.0-next.0
+
+### Minor Changes
+
+- [#2125](https://github.com/eBay/ebayui-core/pull/2125) [`6fac247`](https://github.com/eBay/ebayui-core/commit/6fac24752763c72f0584beb625402784adcddd44) Thanks [@agliga](https://github.com/agliga)! - education-notice: new component
+
+- [#2139](https://github.com/eBay/ebayui-core/pull/2139) [`c1f16c2`](https://github.com/eBay/ebayui-core/commit/c1f16c2462fe0e25e140d48c47319168a88cd087) Thanks [@saiponnada](https://github.com/saiponnada)! - fix(button): add partially disabled support to button variants
+
+- [#2128](https://github.com/eBay/ebayui-core/pull/2128) [`a782388`](https://github.com/eBay/ebayui-core/commit/a78238835031034f815d15d9107ed9310fd881ca) Thanks [@agliga](https://github.com/agliga)! - tooltip-base: added options to disable floating-ui middleware
+
+### Patch Changes
+
+- [#2137](https://github.com/eBay/ebayui-core/pull/2137) [`3d7ac4b`](https://github.com/eBay/ebayui-core/commit/3d7ac4b43f8500e8d5269b396057639bafdd02e7) Thanks [@agliga](https://github.com/agliga)! - chips-combobox: changed icon to be 12px, added docs for placeholder, fixed a11y text for remove
+
+- [#2124](https://github.com/eBay/ebayui-core/pull/2124) [`3cd7333`](https://github.com/eBay/ebayui-core/commit/3cd7333944522a11b5bcc917611641f5d07127c3) Thanks [@github-actions](https://github.com/apps/github-actions)! - Fix education icon types
+
+- [#2131](https://github.com/eBay/ebayui-core/pull/2131) [`8348891`](https://github.com/eBay/ebayui-core/commit/83488912147a4c4702f322ba38041d15613527d3) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Fix types for ebay-tourtip
+
+- [#2136](https://github.com/eBay/ebayui-core/pull/2136) [`e064638`](https://github.com/eBay/ebayui-core/commit/e06463813047ce1ce8a6c5fe7596efeacac4e422) Thanks [@agliga](https://github.com/agliga)! - listbox-button: removed btn--form whenn listbox is borderless
+
 ## 13.2.4
 
 ### Patch Changes
