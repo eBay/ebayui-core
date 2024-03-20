@@ -122,16 +122,22 @@ Default.parameters = {
     },
 };
 
-export const Prominent = buildExtensionTemplate(ProminentTemplate, ProminentTemplateCode, {
-    a11yText: "attention",
-    status: "attention",
-});
-export const ProminentIcon = buildExtensionTemplate(ProminentIconTemplate, ProminentIconTemplateCode, {
-    a11yText: "attention",
-    status: "attention",
-});
-
-
+export const Prominent = buildExtensionTemplate(
+    ProminentTemplate,
+    ProminentTemplateCode,
+    {
+        a11yText: "attention",
+        status: "attention",
+    },
+);
+export const ProminentIcon = buildExtensionTemplate(
+    ProminentIconTemplate,
+    ProminentIconTemplateCode,
+    {
+        a11yText: "attention",
+        status: "attention",
+    },
+);
 
 export const WithDismiss = buildExtensionTemplate(
     withDismiss,
@@ -143,11 +149,6 @@ export const WithDismiss = buildExtensionTemplate(
     },
 );
 
-export const WithFooter = buildExtensionTemplate(
-    withFooter,
-    withFooterCode,
-    {
-        a11yText: "information",
-    },
-);
-
+export const WithFooter = buildExtensionTemplate(withFooter, withFooterCode, {
+    a11yText: "information",
+});

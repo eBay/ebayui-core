@@ -92,7 +92,8 @@ export default {
         },
         notInline: {
             control: { type: "boolean" },
-            description: "disables moving tourtip to be inline with content when it is rendered",
+            description:
+                "disables moving tourtip to be inline with content when it is rendered",
             table: {
                 defaultValue: { summary: "false" },
             },
