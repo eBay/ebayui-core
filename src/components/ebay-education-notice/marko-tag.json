@@ -9,7 +9,22 @@
         "enum": ["attention", "confirmation", "information"]
     },
     "@icon": "string",
+    "@education-icon <educationIcon>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@variant": {
+        "enum": ["none", "prominent"]
+    },
+    "@icon-variant": {
+        "enum": ["none", "prominent"]
+    },
     "@a11y-text": "string",
+    "@a11y-dismiss-text": "string",
     "@a11y-role-description": "string",
     "@title <title>": {
         "attribute-groups": ["html-attributes"],
