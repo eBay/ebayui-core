@@ -26,7 +26,7 @@ $ const options = [...option || []].map((o) => o.text)
             <for|option, i| of=state.selected>
                 <li>
                     <ebay-chip
-                        a11y-delete-button=a11yDeleteButton
+                        a11y-delete-button=`${a11yDeleteButton} ${option}`
                         on-delete("handleDelete", i)
                         disabled=disabled
                     >

@@ -44,8 +44,8 @@ export default class Combobox extends Marko.Component<Input, State> {
     handleKeydown(e: KeyboardEvent) {
         handleEnterKeydown(e, () => {
             const value = (e.target as HTMLInputElement).value;
+            e.preventDefault();
             if (value) {
-                e.preventDefault();
                 this.selectChip(value);
             }
         });
