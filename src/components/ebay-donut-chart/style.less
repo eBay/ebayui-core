@@ -1,0 +1,89 @@
+// Chart layout
+.ebay-donut-chart {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr minmax(140px, 1fr);
+    column-gap: var(--spacing-400);
+    row-gap: var(--spacing-200);
+    grid-template-areas:
+        "title graph"
+        "metric graph"
+        "legend legend";
+
+    // Container query?
+    // @media (min-width: 768px) {
+    // }
+}
+
+.ebay-donut-chart-container {
+    container-name: donut-chart-container;
+    container-type: inline-size;
+    width: 50vw;
+    max-width: 100%;
+}
+
+// Container
+@container (width > 450px) {
+    .ebay-donut-chart {
+        max-width: 550px;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 1fr minmax(210px, 1fr);
+        column-gap: var(--spacing-800);
+        row-gap: var(--spacing-400);
+        grid-template-areas:
+            "title graph"
+            "metric graph"
+            "legend graph";
+    }
+}
+
+// Title
+.ebay-donut-chart__title-container {
+    grid-area: title;
+
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-bold);
+}
+
+// Graph
+.ebay-donut-chart__graph-container {
+    grid-area: graph;
+    position: relative;
+    width: 100%;
+    align-self: flex-end;
+    min-height: 140px;
+
+    @media (min-width: 768px) {
+        min-height: 210px;
+    }
+}
+
+// Metrics
+.ebay-donut-chart__metric-container {
+    grid-area: metric;
+}
+
+.ebay-donut-chart__metric-container .ebay-donut-chart__metric-value {
+    font-size: var(--font-size-giant-1);
+    font-weight: var(--font-weight-bold);
+}
+
+.ebay-donut-chart__metric-container .ebay-donut-chart__metric-label {
+    font-size: var(--font-size-regular);
+}
+
+// Legend
+.ebay-donut-chart__legend-container {
+    grid-area: legend;
+    align-self: flex-end;
+}
+
+// Tooltip
+.tooltip-pointer {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid var(--color-black);
+}
