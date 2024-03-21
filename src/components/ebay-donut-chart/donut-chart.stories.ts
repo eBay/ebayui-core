@@ -67,7 +67,6 @@ Standard.args = {
     title: "Donut chart title",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
-    layout: "large",
 };
 
 Standard.parameters = {
@@ -88,7 +87,6 @@ TwoValues.args = {
     title: "Donut chart with two values",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
-    layout: "large",
 };
 
 TwoValues.parameters = {
@@ -109,7 +107,6 @@ ThreeValues.args = {
     title: "Donut chart with three values",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
-    layout: "large",
 };
 
 ThreeValues.parameters = {
@@ -130,7 +127,6 @@ FourValues.args = {
     title: "Donut chart with four values",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
-    layout: "large",
 };
 
 FourValues.parameters = {
@@ -151,7 +147,6 @@ FiveValues.args = {
     title: "Donut chart with five values",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
-    layout: "large",
 };
 
 FiveValues.parameters = {
