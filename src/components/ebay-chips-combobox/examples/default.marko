@@ -1,4 +1,10 @@
-<ebay-chips-combobox>
+<ebay-chips-combobox
+    placeholder="Add item"
+    ...input
+    onChange("emit", "change")
+    onCollapse("emit", "collapse")
+    onExpand("emit", "expand")
+>
     <@option text="Option 1"/>
     <@option text="Option 2"/>
     <@option text="Option 3"/>

@@ -8,6 +8,8 @@ $ const {
     host,
     open,
     noFlip,
+    notInline,
+    noShift = true,
     pointer = "bottom",
     ...htmlInput
 } = input;
@@ -17,6 +19,8 @@ $ const {
         key="base"
         type="tourtip"
         noFlip=noFlip
+        notInline=notInline
+        noShift=noShift
         pointer=input.pointer
         placement=input.placement
         offset=input.offset

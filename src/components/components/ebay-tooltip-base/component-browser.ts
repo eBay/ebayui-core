@@ -8,6 +8,7 @@ import {
     offset,
     arrow,
     type Placement,
+    inline,
 } from "@floating-ui/dom";
 import { pointerStyles } from "./constants";
 import type { WithNormalizedProps } from "../../../global";
@@ -22,6 +23,8 @@ interface TooptipBaseInput {
     "render-body"?: Marko.Renderable;
     placement?: Placement;
     "no-flip"?: boolean;
+    "not-inline"?: boolean;
+    "no-shift"?: boolean;
     pointer?: keyof typeof pointerStyles;
     "on-base-expand"?: (event: { originalEvent: Event }) => void;
     "on-base-collapse"?: (event: { originalEvent: Event }) => void;
@@ -122,8 +125,6 @@ class TooltipBase extends Marko.Component<Input> {
     }
 
     updateTip() {
-        const isTourtip = this.input.type === "tourtip";
-
         computePosition(
             this.hostEl as HTMLElement,
             this.overlayEl as HTMLElement,
@@ -133,8 +134,9 @@ class TooltipBase extends Marko.Component<Input> {
                     pointerStyles[this.input.pointer ?? "bottom"],
                 middleware: [
                     offset(this.input.offset || 6),
+                    !this.input.notInline && inline(),
                     !this.input.noFlip && flip(),
-                    !isTourtip && shift(),
+                    !this.input.noShift && shift(),
                     arrow({
                         element: this.arrowEl as HTMLElement,
                         padding: 20,

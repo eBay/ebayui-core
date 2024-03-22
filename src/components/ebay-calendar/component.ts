@@ -83,6 +83,14 @@ class Calendar extends Marko.Component<Input, State> {
         };
     }
 
+    onMount() {
+        // recalculate on the browser in case firstDayOfWeek is not supported
+        const { firstDayOfWeek } = getWeekdayInfo(
+            localeOverride(this.input.locale),
+        );
+        this.state.firstDayOfWeek = firstDayOfWeek;
+    }
+
     onInput(input: Input) {
         if (input.selected) {
             // If no selected times are visible, snap the view to the first one

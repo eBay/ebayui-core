@@ -78,7 +78,22 @@ export default {
         },
         noFlip: {
             control: { type: "boolean" },
-            description: "disables flipping tooltip when its offscreen",
+            description: "disables flipping tourtip when its offscreen",
+            table: {
+                defaultValue: { summary: "false" },
+            },
+        },
+        noShift: {
+            control: { type: "boolean" },
+            description: "disables shifting tourtip when its offscreen",
+            table: {
+                defaultValue: { summary: "true" },
+            },
+        },
+        notInline: {
+            control: { type: "boolean" },
+            description:
+                "disables moving tourtip to be inline with content when it is rendered",
             table: {
                 defaultValue: { summary: "false" },
             },
