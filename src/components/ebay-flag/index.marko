@@ -1,0 +1,749 @@
+import type { WithNormalizedProps } from "../../global";
+
+static interface FlagInput extends Omit<Marko.Input<"span">, `on${string}`> {
+    flag?: string;
+    "a11y-text"?: string;
+}
+export interface Input extends WithNormalizedProps<FlagInput> {}
+
+$ const {
+    flag,
+    ...flagInput
+} = input;
+
+<if(!flag)></if>
+<else-if(flag === "AC")>
+    <ebay-flag-ac ...flagInput/>
+</else-if>
+<else-if(flag === "AD")>
+    <ebay-flag-ad ...flagInput/>
+</else-if>
+<else-if(flag === "AE")>
+    <ebay-flag-ae ...flagInput/>
+</else-if>
+<else-if(flag === "AF")>
+    <ebay-flag-af ...flagInput/>
+</else-if>
+<else-if(flag === "AG")>
+    <ebay-flag-ag ...flagInput/>
+</else-if>
+<else-if(flag === "AI")>
+    <ebay-flag-ai ...flagInput/>
+</else-if>
+<else-if(flag === "AL")>
+    <ebay-flag-al ...flagInput/>
+</else-if>
+<else-if(flag === "AM")>
+    <ebay-flag-am ...flagInput/>
+</else-if>
+<else-if(flag === "AO")>
+    <ebay-flag-ao ...flagInput/>
+</else-if>
+<else-if(flag === "AR")>
+    <ebay-flag-ar ...flagInput/>
+</else-if>
+<else-if(flag === "AS")>
+    <ebay-flag-as ...flagInput/>
+</else-if>
+<else-if(flag === "AT")>
+    <ebay-flag-at ...flagInput/>
+</else-if>
+<else-if(flag === "AU")>
+    <ebay-flag-au ...flagInput/>
+</else-if>
+<else-if(flag === "AW")>
+    <ebay-flag-aw ...flagInput/>
+</else-if>
+<else-if(flag === "AX")>
+    <ebay-flag-ax ...flagInput/>
+</else-if>
+<else-if(flag === "AZ")>
+    <ebay-flag-az ...flagInput/>
+</else-if>
+<else-if(flag === "BA")>
+    <ebay-flag-ba ...flagInput/>
+</else-if>
+<else-if(flag === "BB")>
+    <ebay-flag-bb ...flagInput/>
+</else-if>
+<else-if(flag === "BD")>
+    <ebay-flag-bd ...flagInput/>
+</else-if>
+<else-if(flag === "BE")>
+    <ebay-flag-be ...flagInput/>
+</else-if>
+<else-if(flag === "BF")>
+    <ebay-flag-bf ...flagInput/>
+</else-if>
+<else-if(flag === "BG")>
+    <ebay-flag-bg ...flagInput/>
+</else-if>
+<else-if(flag === "BH")>
+    <ebay-flag-bh ...flagInput/>
+</else-if>
+<else-if(flag === "BI")>
+    <ebay-flag-bi ...flagInput/>
+</else-if>
+<else-if(flag === "BJ")>
+    <ebay-flag-bj ...flagInput/>
+</else-if>
+<else-if(flag === "BL")>
+    <ebay-flag-bl ...flagInput/>
+</else-if>
+<else-if(flag === "BM")>
+    <ebay-flag-bm ...flagInput/>
+</else-if>
+<else-if(flag === "BN")>
+    <ebay-flag-bn ...flagInput/>
+</else-if>
+<else-if(flag === "BO")>
+    <ebay-flag-bo ...flagInput/>
+</else-if>
+<else-if(flag === "BQ")>
+    <ebay-flag-bq ...flagInput/>
+</else-if>
+<else-if(flag === "BR")>
+    <ebay-flag-br ...flagInput/>
+</else-if>
+<else-if(flag === "BS")>
+    <ebay-flag-bs ...flagInput/>
+</else-if>
+<else-if(flag === "BT")>
+    <ebay-flag-bt ...flagInput/>
+</else-if>
+<else-if(flag === "BW")>
+    <ebay-flag-bw ...flagInput/>
+</else-if>
+<else-if(flag === "BY")>
+    <ebay-flag-by ...flagInput/>
+</else-if>
+<else-if(flag === "BZ")>
+    <ebay-flag-bz ...flagInput/>
+</else-if>
+<else-if(flag === "CA")>
+    <ebay-flag-ca ...flagInput/>
+</else-if>
+<else-if(flag === "CC")>
+    <ebay-flag-cc ...flagInput/>
+</else-if>
+<else-if(flag === "CD")>
+    <ebay-flag-cd ...flagInput/>
+</else-if>
+<else-if(flag === "CF")>
+    <ebay-flag-cf ...flagInput/>
+</else-if>
+<else-if(flag === "CG")>
+    <ebay-flag-cg ...flagInput/>
+</else-if>
+<else-if(flag === "CH")>
+    <ebay-flag-ch ...flagInput/>
+</else-if>
+<else-if(flag === "CI")>
+    <ebay-flag-ci ...flagInput/>
+</else-if>
+<else-if(flag === "CK")>
+    <ebay-flag-ck ...flagInput/>
+</else-if>
+<else-if(flag === "CL")>
+    <ebay-flag-cl ...flagInput/>
+</else-if>
+<else-if(flag === "CM")>
+    <ebay-flag-cm ...flagInput/>
+</else-if>
+<else-if(flag === "CN")>
+    <ebay-flag-cn ...flagInput/>
+</else-if>
+<else-if(flag === "CO")>
+    <ebay-flag-co ...flagInput/>
+</else-if>
+<else-if(flag === "CR")>
+    <ebay-flag-cr ...flagInput/>
+</else-if>
+<else-if(flag === "CU")>
+    <ebay-flag-cu ...flagInput/>
+</else-if>
+<else-if(flag === "CV")>
+    <ebay-flag-cv ...flagInput/>
+</else-if>
+<else-if(flag === "CW")>
+    <ebay-flag-cw ...flagInput/>
+</else-if>
+<else-if(flag === "CX")>
+    <ebay-flag-cx ...flagInput/>
+</else-if>
+<else-if(flag === "CY")>
+    <ebay-flag-cy ...flagInput/>
+</else-if>
+<else-if(flag === "CZ")>
+    <ebay-flag-cz ...flagInput/>
+</else-if>
+<else-if(flag === "DE")>
+    <ebay-flag-de ...flagInput/>
+</else-if>
+<else-if(flag === "DJ")>
+    <ebay-flag-dj ...flagInput/>
+</else-if>
+<else-if(flag === "DK")>
+    <ebay-flag-dk ...flagInput/>
+</else-if>
+<else-if(flag === "DM")>
+    <ebay-flag-dm ...flagInput/>
+</else-if>
+<else-if(flag === "DO")>
+    <ebay-flag-do ...flagInput/>
+</else-if>
+<else-if(flag === "DZ")>
+    <ebay-flag-dz ...flagInput/>
+</else-if>
+<else-if(flag === "EC")>
+    <ebay-flag-ec ...flagInput/>
+</else-if>
+<else-if(flag === "EE")>
+    <ebay-flag-ee ...flagInput/>
+</else-if>
+<else-if(flag === "EG")>
+    <ebay-flag-eg ...flagInput/>
+</else-if>
+<else-if(flag === "EH")>
+    <ebay-flag-eh ...flagInput/>
+</else-if>
+<else-if(flag === "ER")>
+    <ebay-flag-er ...flagInput/>
+</else-if>
+<else-if(flag === "ES")>
+    <ebay-flag-es ...flagInput/>
+</else-if>
+<else-if(flag === "ET")>
+    <ebay-flag-et ...flagInput/>
+</else-if>
+<else-if(flag === "FI")>
+    <ebay-flag-fi ...flagInput/>
+</else-if>
+<else-if(flag === "FJ")>
+    <ebay-flag-fj ...flagInput/>
+</else-if>
+<else-if(flag === "FK")>
+    <ebay-flag-fk ...flagInput/>
+</else-if>
+<else-if(flag === "FM")>
+    <ebay-flag-fm ...flagInput/>
+</else-if>
+<else-if(flag === "FO")>
+    <ebay-flag-fo ...flagInput/>
+</else-if>
+<else-if(flag === "FR")>
+    <ebay-flag-fr ...flagInput/>
+</else-if>
+<else-if(flag === "GA")>
+    <ebay-flag-ga ...flagInput/>
+</else-if>
+<else-if(flag === "GB")>
+    <ebay-flag-gb ...flagInput/>
+</else-if>
+<else-if(flag === "GD")>
+    <ebay-flag-gd ...flagInput/>
+</else-if>
+<else-if(flag === "GE")>
+    <ebay-flag-ge ...flagInput/>
+</else-if>
+<else-if(flag === "GF")>
+    <ebay-flag-gf ...flagInput/>
+</else-if>
+<else-if(flag === "GG")>
+    <ebay-flag-gg ...flagInput/>
+</else-if>
+<else-if(flag === "GH")>
+    <ebay-flag-gh ...flagInput/>
+</else-if>
+<else-if(flag === "GI")>
+    <ebay-flag-gi ...flagInput/>
+</else-if>
+<else-if(flag === "GL")>
+    <ebay-flag-gl ...flagInput/>
+</else-if>
+<else-if(flag === "GM")>
+    <ebay-flag-gm ...flagInput/>
+</else-if>
+<else-if(flag === "GN")>
+    <ebay-flag-gn ...flagInput/>
+</else-if>
+<else-if(flag === "GP")>
+    <ebay-flag-gp ...flagInput/>
+</else-if>
+<else-if(flag === "GQ")>
+    <ebay-flag-gq ...flagInput/>
+</else-if>
+<else-if(flag === "GR")>
+    <ebay-flag-gr ...flagInput/>
+</else-if>
+<else-if(flag === "GT")>
+    <ebay-flag-gt ...flagInput/>
+</else-if>
+<else-if(flag === "GU")>
+    <ebay-flag-gu ...flagInput/>
+</else-if>
+<else-if(flag === "GW")>
+    <ebay-flag-gw ...flagInput/>
+</else-if>
+<else-if(flag === "GY")>
+    <ebay-flag-gy ...flagInput/>
+</else-if>
+<else-if(flag === "HK")>
+    <ebay-flag-hk ...flagInput/>
+</else-if>
+<else-if(flag === "HN")>
+    <ebay-flag-hn ...flagInput/>
+</else-if>
+<else-if(flag === "HR")>
+    <ebay-flag-hr ...flagInput/>
+</else-if>
+<else-if(flag === "HT")>
+    <ebay-flag-ht ...flagInput/>
+</else-if>
+<else-if(flag === "HU")>
+    <ebay-flag-hu ...flagInput/>
+</else-if>
+<else-if(flag === "ID")>
+    <ebay-flag-id ...flagInput/>
+</else-if>
+<else-if(flag === "IE")>
+    <ebay-flag-ie ...flagInput/>
+</else-if>
+<else-if(flag === "IL")>
+    <ebay-flag-il ...flagInput/>
+</else-if>
+<else-if(flag === "IM")>
+    <ebay-flag-im ...flagInput/>
+</else-if>
+<else-if(flag === "IN")>
+    <ebay-flag-in ...flagInput/>
+</else-if>
+<else-if(flag === "IO")>
+    <ebay-flag-io ...flagInput/>
+</else-if>
+<else-if(flag === "IQ")>
+    <ebay-flag-iq ...flagInput/>
+</else-if>
+<else-if(flag === "IR")>
+    <ebay-flag-ir ...flagInput/>
+</else-if>
+<else-if(flag === "IS")>
+    <ebay-flag-is ...flagInput/>
+</else-if>
+<else-if(flag === "IT")>
+    <ebay-flag-it ...flagInput/>
+</else-if>
+<else-if(flag === "JE")>
+    <ebay-flag-je ...flagInput/>
+</else-if>
+<else-if(flag === "JM")>
+    <ebay-flag-jm ...flagInput/>
+</else-if>
+<else-if(flag === "JO")>
+    <ebay-flag-jo ...flagInput/>
+</else-if>
+<else-if(flag === "JP")>
+    <ebay-flag-jp ...flagInput/>
+</else-if>
+<else-if(flag === "KE")>
+    <ebay-flag-ke ...flagInput/>
+</else-if>
+<else-if(flag === "KG")>
+    <ebay-flag-kg ...flagInput/>
+</else-if>
+<else-if(flag === "KH")>
+    <ebay-flag-kh ...flagInput/>
+</else-if>
+<else-if(flag === "KI")>
+    <ebay-flag-ki ...flagInput/>
+</else-if>
+<else-if(flag === "KM")>
+    <ebay-flag-km ...flagInput/>
+</else-if>
+<else-if(flag === "KN")>
+    <ebay-flag-kn ...flagInput/>
+</else-if>
+<else-if(flag === "KP")>
+    <ebay-flag-kp ...flagInput/>
+</else-if>
+<else-if(flag === "KR")>
+    <ebay-flag-kr ...flagInput/>
+</else-if>
+<else-if(flag === "KW")>
+    <ebay-flag-kw ...flagInput/>
+</else-if>
+<else-if(flag === "KY")>
+    <ebay-flag-ky ...flagInput/>
+</else-if>
+<else-if(flag === "KZ")>
+    <ebay-flag-kz ...flagInput/>
+</else-if>
+<else-if(flag === "LA")>
+    <ebay-flag-la ...flagInput/>
+</else-if>
+<else-if(flag === "LB")>
+    <ebay-flag-lb ...flagInput/>
+</else-if>
+<else-if(flag === "LC")>
+    <ebay-flag-lc ...flagInput/>
+</else-if>
+<else-if(flag === "LI")>
+    <ebay-flag-li ...flagInput/>
+</else-if>
+<else-if(flag === "LK")>
+    <ebay-flag-lk ...flagInput/>
+</else-if>
+<else-if(flag === "LR")>
+    <ebay-flag-lr ...flagInput/>
+</else-if>
+<else-if(flag === "LS")>
+    <ebay-flag-ls ...flagInput/>
+</else-if>
+<else-if(flag === "LT")>
+    <ebay-flag-lt ...flagInput/>
+</else-if>
+<else-if(flag === "LU")>
+    <ebay-flag-lu ...flagInput/>
+</else-if>
+<else-if(flag === "LV")>
+    <ebay-flag-lv ...flagInput/>
+</else-if>
+<else-if(flag === "LY")>
+    <ebay-flag-ly ...flagInput/>
+</else-if>
+<else-if(flag === "MA")>
+    <ebay-flag-ma ...flagInput/>
+</else-if>
+<else-if(flag === "MC")>
+    <ebay-flag-mc ...flagInput/>
+</else-if>
+<else-if(flag === "MD")>
+    <ebay-flag-md ...flagInput/>
+</else-if>
+<else-if(flag === "ME")>
+    <ebay-flag-me ...flagInput/>
+</else-if>
+<else-if(flag === "MF")>
+    <ebay-flag-mf ...flagInput/>
+</else-if>
+<else-if(flag === "MG")>
+    <ebay-flag-mg ...flagInput/>
+</else-if>
+<else-if(flag === "MH")>
+    <ebay-flag-mh ...flagInput/>
+</else-if>
+<else-if(flag === "MK")>
+    <ebay-flag-mk ...flagInput/>
+</else-if>
+<else-if(flag === "ML")>
+    <ebay-flag-ml ...flagInput/>
+</else-if>
+<else-if(flag === "MM")>
+    <ebay-flag-mm ...flagInput/>
+</else-if>
+<else-if(flag === "MN")>
+    <ebay-flag-mn ...flagInput/>
+</else-if>
+<else-if(flag === "MO")>
+    <ebay-flag-mo ...flagInput/>
+</else-if>
+<else-if(flag === "MP")>
+    <ebay-flag-mp ...flagInput/>
+</else-if>
+<else-if(flag === "MQ")>
+    <ebay-flag-mq ...flagInput/>
+</else-if>
+<else-if(flag === "MR")>
+    <ebay-flag-mr ...flagInput/>
+</else-if>
+<else-if(flag === "MS")>
+    <ebay-flag-ms ...flagInput/>
+</else-if>
+<else-if(flag === "MT")>
+    <ebay-flag-mt ...flagInput/>
+</else-if>
+<else-if(flag === "MU")>
+    <ebay-flag-mu ...flagInput/>
+</else-if>
+<else-if(flag === "MV")>
+    <ebay-flag-mv ...flagInput/>
+</else-if>
+<else-if(flag === "MW")>
+    <ebay-flag-mw ...flagInput/>
+</else-if>
+<else-if(flag === "MX")>
+    <ebay-flag-mx ...flagInput/>
+</else-if>
+<else-if(flag === "MY")>
+    <ebay-flag-my ...flagInput/>
+</else-if>
+<else-if(flag === "MZ")>
+    <ebay-flag-mz ...flagInput/>
+</else-if>
+<else-if(flag === "NA")>
+    <ebay-flag-na ...flagInput/>
+</else-if>
+<else-if(flag === "NC")>
+    <ebay-flag-nc ...flagInput/>
+</else-if>
+<else-if(flag === "NE")>
+    <ebay-flag-ne ...flagInput/>
+</else-if>
+<else-if(flag === "NF")>
+    <ebay-flag-nf ...flagInput/>
+</else-if>
+<else-if(flag === "NG")>
+    <ebay-flag-ng ...flagInput/>
+</else-if>
+<else-if(flag === "NI")>
+    <ebay-flag-ni ...flagInput/>
+</else-if>
+<else-if(flag === "NL")>
+    <ebay-flag-nl ...flagInput/>
+</else-if>
+<else-if(flag === "NO")>
+    <ebay-flag-no ...flagInput/>
+</else-if>
+<else-if(flag === "NP")>
+    <ebay-flag-np ...flagInput/>
+</else-if>
+<else-if(flag === "NR")>
+    <ebay-flag-nr ...flagInput/>
+</else-if>
+<else-if(flag === "NU")>
+    <ebay-flag-nu ...flagInput/>
+</else-if>
+<else-if(flag === "NZ")>
+    <ebay-flag-nz ...flagInput/>
+</else-if>
+<else-if(flag === "OM")>
+    <ebay-flag-om ...flagInput/>
+</else-if>
+<else-if(flag === "PA")>
+    <ebay-flag-pa ...flagInput/>
+</else-if>
+<else-if(flag === "PE")>
+    <ebay-flag-pe ...flagInput/>
+</else-if>
+<else-if(flag === "PF")>
+    <ebay-flag-pf ...flagInput/>
+</else-if>
+<else-if(flag === "PG")>
+    <ebay-flag-pg ...flagInput/>
+</else-if>
+<else-if(flag === "PH")>
+    <ebay-flag-ph ...flagInput/>
+</else-if>
+<else-if(flag === "PK")>
+    <ebay-flag-pk ...flagInput/>
+</else-if>
+<else-if(flag === "PL")>
+    <ebay-flag-pl ...flagInput/>
+</else-if>
+<else-if(flag === "PM")>
+    <ebay-flag-pm ...flagInput/>
+</else-if>
+<else-if(flag === "PR")>
+    <ebay-flag-pr ...flagInput/>
+</else-if>
+<else-if(flag === "PS")>
+    <ebay-flag-ps ...flagInput/>
+</else-if>
+<else-if(flag === "PT")>
+    <ebay-flag-pt ...flagInput/>
+</else-if>
+<else-if(flag === "PW")>
+    <ebay-flag-pw ...flagInput/>
+</else-if>
+<else-if(flag === "PY")>
+    <ebay-flag-py ...flagInput/>
+</else-if>
+<else-if(flag === "QA")>
+    <ebay-flag-qa ...flagInput/>
+</else-if>
+<else-if(flag === "RE")>
+    <ebay-flag-re ...flagInput/>
+</else-if>
+<else-if(flag === "RO")>
+    <ebay-flag-ro ...flagInput/>
+</else-if>
+<else-if(flag === "RS")>
+    <ebay-flag-rs ...flagInput/>
+</else-if>
+<else-if(flag === "RU")>
+    <ebay-flag-ru ...flagInput/>
+</else-if>
+<else-if(flag === "RW")>
+    <ebay-flag-rw ...flagInput/>
+</else-if>
+<else-if(flag === "SA")>
+    <ebay-flag-sa ...flagInput/>
+</else-if>
+<else-if(flag === "SB")>
+    <ebay-flag-sb ...flagInput/>
+</else-if>
+<else-if(flag === "SC")>
+    <ebay-flag-sc ...flagInput/>
+</else-if>
+<else-if(flag === "SD")>
+    <ebay-flag-sd ...flagInput/>
+</else-if>
+<else-if(flag === "SE")>
+    <ebay-flag-se ...flagInput/>
+</else-if>
+<else-if(flag === "SG")>
+    <ebay-flag-sg ...flagInput/>
+</else-if>
+<else-if(flag === "SH")>
+    <ebay-flag-sh ...flagInput/>
+</else-if>
+<else-if(flag === "SI")>
+    <ebay-flag-si ...flagInput/>
+</else-if>
+<else-if(flag === "SJ")>
+    <ebay-flag-sj ...flagInput/>
+</else-if>
+<else-if(flag === "SK")>
+    <ebay-flag-sk ...flagInput/>
+</else-if>
+<else-if(flag === "SL")>
+    <ebay-flag-sl ...flagInput/>
+</else-if>
+<else-if(flag === "SM")>
+    <ebay-flag-sm ...flagInput/>
+</else-if>
+<else-if(flag === "SN")>
+    <ebay-flag-sn ...flagInput/>
+</else-if>
+<else-if(flag === "SO")>
+    <ebay-flag-so ...flagInput/>
+</else-if>
+<else-if(flag === "SR")>
+    <ebay-flag-sr ...flagInput/>
+</else-if>
+<else-if(flag === "SS")>
+    <ebay-flag-ss ...flagInput/>
+</else-if>
+<else-if(flag === "ST")>
+    <ebay-flag-st ...flagInput/>
+</else-if>
+<else-if(flag === "SV")>
+    <ebay-flag-sv ...flagInput/>
+</else-if>
+<else-if(flag === "SX")>
+    <ebay-flag-sx ...flagInput/>
+</else-if>
+<else-if(flag === "SY")>
+    <ebay-flag-sy ...flagInput/>
+</else-if>
+<else-if(flag === "SZ")>
+    <ebay-flag-sz ...flagInput/>
+</else-if>
+<else-if(flag === "TA")>
+    <ebay-flag-ta ...flagInput/>
+</else-if>
+<else-if(flag === "TC")>
+    <ebay-flag-tc ...flagInput/>
+</else-if>
+<else-if(flag === "TD")>
+    <ebay-flag-td ...flagInput/>
+</else-if>
+<else-if(flag === "TG")>
+    <ebay-flag-tg ...flagInput/>
+</else-if>
+<else-if(flag === "TH")>
+    <ebay-flag-th ...flagInput/>
+</else-if>
+<else-if(flag === "TJ")>
+    <ebay-flag-tj ...flagInput/>
+</else-if>
+<else-if(flag === "TK")>
+    <ebay-flag-tk ...flagInput/>
+</else-if>
+<else-if(flag === "TL")>
+    <ebay-flag-tl ...flagInput/>
+</else-if>
+<else-if(flag === "TM")>
+    <ebay-flag-tm ...flagInput/>
+</else-if>
+<else-if(flag === "TN")>
+    <ebay-flag-tn ...flagInput/>
+</else-if>
+<else-if(flag === "TO")>
+    <ebay-flag-to ...flagInput/>
+</else-if>
+<else-if(flag === "TR")>
+    <ebay-flag-tr ...flagInput/>
+</else-if>
+<else-if(flag === "TT")>
+    <ebay-flag-tt ...flagInput/>
+</else-if>
+<else-if(flag === "TV")>
+    <ebay-flag-tv ...flagInput/>
+</else-if>
+<else-if(flag === "TW")>
+    <ebay-flag-tw ...flagInput/>
+</else-if>
+<else-if(flag === "TZ")>
+    <ebay-flag-tz ...flagInput/>
+</else-if>
+<else-if(flag === "UA")>
+    <ebay-flag-ua ...flagInput/>
+</else-if>
+<else-if(flag === "UG")>
+    <ebay-flag-ug ...flagInput/>
+</else-if>
+<else-if(flag === "US")>
+    <ebay-flag-us ...flagInput/>
+</else-if>
+<else-if(flag === "UY")>
+    <ebay-flag-uy ...flagInput/>
+</else-if>
+<else-if(flag === "UZ")>
+    <ebay-flag-uz ...flagInput/>
+</else-if>
+<else-if(flag === "VA")>
+    <ebay-flag-va ...flagInput/>
+</else-if>
+<else-if(flag === "VC")>
+    <ebay-flag-vc ...flagInput/>
+</else-if>
+<else-if(flag === "VE")>
+    <ebay-flag-ve ...flagInput/>
+</else-if>
+<else-if(flag === "VG")>
+    <ebay-flag-vg ...flagInput/>
+</else-if>
+<else-if(flag === "VI")>
+    <ebay-flag-vi ...flagInput/>
+</else-if>
+<else-if(flag === "VN")>
+    <ebay-flag-vn ...flagInput/>
+</else-if>
+<else-if(flag === "VU")>
+    <ebay-flag-vu ...flagInput/>
+</else-if>
+<else-if(flag === "WF")>
+    <ebay-flag-wf ...flagInput/>
+</else-if>
+<else-if(flag === "WS")>
+    <ebay-flag-ws ...flagInput/>
+</else-if>
+<else-if(flag === "XK")>
+    <ebay-flag-xk ...flagInput/>
+</else-if>
+<else-if(flag === "YE")>
+    <ebay-flag-ye ...flagInput/>
+</else-if>
+<else-if(flag === "YT")>
+    <ebay-flag-yt ...flagInput/>
+</else-if>
+<else-if(flag === "ZA")>
+    <ebay-flag-za ...flagInput/>
+</else-if>
+<else-if(flag === "ZM")>
+    <ebay-flag-zm ...flagInput/>
+</else-if>
+<else-if(flag === "ZW")>
+    <ebay-flag-zw ...flagInput/>
+</else-if>

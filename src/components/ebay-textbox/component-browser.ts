@@ -15,6 +15,7 @@ interface TextboxInput extends Omit<Marko.Input<"textarea">, `on${string}`> {
     "opaque-label"?: boolean;
     "floating-label"?: AttrString;
     "prefix-icon"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
+    "prefix-text"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     "postfix-icon"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     invalid?: boolean;
     "button-aria-label"?: AttrString;

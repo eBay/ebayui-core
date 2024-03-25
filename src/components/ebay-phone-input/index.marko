@@ -1,0 +1,62 @@
+import countries, { countriesEnglish } from "../../common/countries";
+$ const {
+    class: inputClass,
+    a11yButtonLoadingText,
+    a11yMenuText,
+    a11yButtonText = "Country",
+    bodyState,
+    disabled,
+    href,
+    priority,
+    renderBody,
+    size,
+    transparent,
+    variant,
+    countryNames,
+    ...phoneInput
+} = input;
+$ const selectedCountry = countries[state.index];
+$ const currentCountryNames = countryNames || countriesEnglish;
+
+<span class=["phone-input", inputClass]>
+    <ebay-listbox-button
+        split="start"
+        onChange("handleCountryChange")
+        onExpand("emit", "expand")
+        onCollapse("emit", "collapse")
+    >
+        <for|country, index| of=countries>
+
+            $ const text = (currentCountryNames[country.countryCode] ||
+                countriesEnglish[country.countryCode] ||
+                country.countryCode);
+            <@option
+                text=text
+                value=country.callingCode
+                selected=index === state.index
+                a11y-icon-text=`${a11yButtonText}: ${text} (${country.callingCode})`
+            >
+                <@icon>
+                    <ebay-flag flag=country.countryCode />
+                </@icon>
+                <@description>( + ${country.callingCode} )</@description>
+            </@option>
+        </for>
+    </ebay-listbox-button>
+
+    <ebay-textbox
+        type="tel"
+        key="textbox"
+        value=input.value
+        onBlur("emit", "blur")
+        onFocus("emit", "focus")
+        onKeydown("forwardEvent", "keydown")
+        onKeypress("forwardEvent", "keypress")
+        onKeyup("forwardEvent", "keyup")
+        onInput-change("forwardEvent", "change")
+
+
+    >
+        <@prefixText>+ ${selectedCountry.callingCode}</@prefixText>
+    </ebay-textbox>
+</span>

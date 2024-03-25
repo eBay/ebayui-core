@@ -42,6 +42,7 @@
         },
         "@html-attributes": "expression",
         "@text": "string",
+        "@a11y-icon-text": "string",
         "@selected": "#html-selected",
         "@value": "#html-value",
         "@role": "never",

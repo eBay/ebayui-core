@@ -28,6 +28,7 @@ $ var selectedOption = (options as Option[])[state.selectedIndex];
             selected,
             disabled,
             tabindex,
+            icon,
             description,
             ...htmlOption
         } = option;
@@ -41,10 +42,24 @@ $ var selectedOption = (options as Option[])[state.selectedIndex];
             aria-selected=(selectedOption === option && "true")
             onClick(!component.isAutoSelection && "handleClick", index)
             onMousedown(component.isAutoSelection && "handleMouseDown")>
+            <if (icon)>
+                <span class="listbox__value">
+                    <${icon}/>
+                    <if(text)>
+                        <span>${text}</span>
+                    </if>
+                    <if(description)>
+                        <span><${description}/></span>
+                    </if>
+
+                </span>
+            </if>
+            <else>
             <span class="listbox__value">${text}</span>
             <if (description)>
                 <span class="listbox__description"><${description}/></span>
             </if>
+            </else>
             <ebay-tick-16-icon/>
         </div>
     </for>
