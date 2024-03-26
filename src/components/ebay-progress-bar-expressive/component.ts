@@ -2,10 +2,8 @@ import { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 
 export const messageDurationStandard = 1500;
-export const messageDurationReducedMotion = 2500;
 export const messageDurationReducedMotionMultiplier = 1.5;
 export const messageFadeInDuration = 833;
-export const messageFadeOutDuration = 400;
 
 interface Message {
     text: string;
