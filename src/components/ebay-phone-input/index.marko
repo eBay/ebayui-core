@@ -1,0 +1,75 @@
+import countries, { countriesEnglish } from "../../common/countries";
+import { processHtmlAttributes } from "../../common/html-attributes";
+$ const {
+    class: inputClass,
+    countryCode,
+    value,
+    a11yButtonText = "Country",
+    disabled,
+    renderBody,
+    countryNames,
+    floatingLabel,
+    readonly,
+    invalid,
+    ...phoneInput
+} = input;
+$ const currentCountryNames = countryNames || countriesEnglish;
+$ const selectedCountry = currentCountryNames[state.index];
+
+<span
+    class=[
+        "phone-input",
+        inputClass,
+        disabled && "phone-input--disabled",
+        readonly && "phone-input--readonly",
+        invalid && "phone-input--error",
+    ]
+    ...processHtmlAttributes(phoneInput)
+>
+    <ebay-listbox-button
+        split="start"
+        disabled=readonly || disabled
+        invalid=invalid
+        onChange("handleCountryChange")
+        onExpand("emit", "expand")
+        onCollapse("emit", "collapse")
+    >
+        <for|countryName, index| of=currentCountryNames>
+            $ const country = countries[countryName[1]] || {};
+            $ const text = countryName[0];
+            <@option
+                text=text
+                value=country.callingCode
+                selected=index === state.index
+                a11y-icon-text=`${a11yButtonText}: ${text} (${country.callingCode})`
+            >
+                <@icon>
+                    <ebay-flag flag=country.countryCode/>
+                </@icon>
+                <@description>( + ${country.callingCode} )</@description>
+            </@option>
+        </for>
+    </ebay-listbox-button>
+
+    <ebay-textbox
+        type="tel"
+        floatingLabelStatic
+        key="textbox"
+        value=value
+        disabled=disabled
+        floatingLabel=floatingLabel
+        readonly=readonly
+        invalid=invalid
+        onBlur("emit", "blur")
+        onFocus("emit", "focus")
+        onKeydown("forwardEvent", "keydown")
+        onKeypress("forwardEvent", "keypress")
+        onKeyup("forwardEvent", "keyup")
+        onChange("forwardEvent", "change")
+        onInput-change("forwardEvent", "change")
+    >
+        <@prefixText>
+            + ${countries[selectedCountry[1]].callingCode}
+        </@prefixText>
+    </ebay-textbox>
+</span>

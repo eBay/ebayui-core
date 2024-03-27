@@ -14,7 +14,9 @@ interface TextboxInput extends Omit<Marko.Input<"textarea">, `on${string}`> {
     fluid?: boolean;
     "opaque-label"?: boolean;
     "floating-label"?: AttrString;
+    "floating-label-static"?: boolean;
     "prefix-icon"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
+    "prefix-text"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     "postfix-icon"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     invalid?: boolean;
     "button-aria-label"?: AttrString;
@@ -50,7 +52,7 @@ class Textbox extends Marko.Component<Input> {
     _setupMakeup() {
         // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
         // It probably makes more sense to just move this functionality into Marko though.
-        if (this.input.floatingLabel) {
+        if (this.input.floatingLabel && !this.input.floatingLabelStatic) {
             if (this._floatingLabel) {
                 this._floatingLabel.refresh();
                 this.emit("floating-label-init");

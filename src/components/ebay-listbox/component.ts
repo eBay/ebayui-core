@@ -14,7 +14,9 @@ export interface ChangeEvent {
 export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
     disabled?: boolean;
     text?: AttrString;
-    description?: AttrString;
+    description?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
+    icon?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
+    a11yIconText?: AttrString;
 }
 
 interface ListboxInput extends Omit<Marko.Input<"div">, `on${string}`> {
