@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 13.3.1
+
+### Patch Changes
+
+- [#2146](https://github.com/eBay/ebayui-core/pull/2146) [`4d93d4b`](https://github.com/eBay/ebayui-core/commit/4d93d4b034f1ea0a26f7fd51e06e999573194d08) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Notice base dismiss keydown fix
+
 ## 13.3.0
 
 ### Minor Changes
