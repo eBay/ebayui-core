@@ -47,7 +47,7 @@ interface DonutChartInput
 export interface Input extends WithNormalizedProps<DonutChartInput> {}
 
 interface State {
-    activeIndex: number;
+    activeIndex: number | null;
 }
 
 class DonutChart extends Marko.Component<Input, State> {
@@ -68,7 +68,7 @@ class DonutChart extends Marko.Component<Input, State> {
 
         // State for hover index
         this.state = {
-            activeIndex: -1,
+            activeIndex: null,
         };
     }
 
@@ -197,7 +197,7 @@ class DonutChart extends Marko.Component<Input, State> {
                             component.setActiveIndex(this.index);
                         },
                         mouseOut: function () {
-                            component.setActiveIndex(-1);
+                            component.setActiveIndex(null);
                         },
                     },
                 },
@@ -257,7 +257,7 @@ class DonutChart extends Marko.Component<Input, State> {
      *
      * @param {number} index The index of the active point
      */
-    setActiveIndex(index: number) {
+    setActiveIndex(index: number | null) {
         this.state.activeIndex = index;
     }
 
@@ -284,7 +284,7 @@ class DonutChart extends Marko.Component<Input, State> {
      */
     handlePathBlur() {
         // Reset the active index
-        this.setActiveIndex(-1);
+        this.setActiveIndex(null);
 
         // Reset the state for all points
         this.chartRef.series[0].data.forEach((point) => {

@@ -1,6 +1,6 @@
 import type { DonutLegendItem } from "../../component";
 export interface Input {
-    focusIndex: number;
+    focusIndex: number | null;
     items: DonutLegendItem[];
     "on-focus": (index: number) => void;
     "on-blur": () => void;
@@ -19,7 +19,7 @@ class {
     <for|item, index| of=input.items>
         <li class=[
             "ebay-donut-chart__legend-item",
-            input.focusIndex !== -1 &&
+            input.focusIndex !== null &&
                 input.focusIndex !== index &&
                 "ebay-donut-chart__legend-item--inactive",
         ]>
