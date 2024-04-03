@@ -1,4 +1,7 @@
-import { addRenderBodies } from "../../../.storybook/utils";
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../../.storybook/utils";
 import { tagToString } from "../../../.storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
@@ -6,15 +9,25 @@ import {
     messageDurationReducedMotionMultiplier,
     messageDurationStandard,
 } from "./component";
+import CustomTimingTemplate from "./examples/custom-timing.marko";
+import CustomTimingTemplateCode from "./examples/custom-timing.marko?raw";
+import DefaultTemplate from "./examples/default.marko";
+import DefaultTemplateCode from "./examples/default.marko?raw";
+import LocalizedTemplate from "./examples/localized.marko";
+import LocalizedTemplateCode from "./examples/localized.marko?raw";
+import MediumTextTemplate from "./examples/medium-text.marko";
+import MediumTextTemplateCode from "./examples/medium-text.marko?raw";
+import MessagesTemplate from "./examples/messages.marko";
+import MessagesTemplateCode from "./examples/messages.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
 
 const exampleMessages = [
-    { text: "Hang tight." },
-    { text: "We're finishing your order." },
-    { text: "Just a moment longer." },
+    { text: "Hang tight" },
+    { text: "We're processing your order" },
+    { text: "Just a moment longer" },
 ];
 
 export default {
@@ -64,55 +77,35 @@ export default {
                 },
             },
         },
-        isLoading: {
-            control: {
-                type: "boolean",
-            },
-            description: "Whether the component should be visible",
-            table: {
-                defaultValue: {
-                    summary: "true",
-                },
-            },
-        },
     },
 };
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-    docs: {
-        source: {
-            code: tagToString("ebay-progress-bar-expressive", Default.args),
-        },
-    },
-};
-Default.parameters = {
-    docs: {
-        source: {
-            code: tagToString("ebay-progress-bar-expressive", Default.args),
-        },
-    },
-};
+export const Default = buildExtensionTemplate(
+    DefaultTemplate,
+    DefaultTemplateCode,
+);
 
 export const WithSingleMessage = Template.bind({});
 WithSingleMessage.args = {
     messages: [{ text: "We're processing your order" }],
 };
-
-export const WithMessages = Template.bind({});
-WithMessages.args = {
-    messages: exampleMessages,
-};
-WithMessages.parameters = {
+WithSingleMessage.parameters = {
     docs: {
         source: {
             code: tagToString(
                 "ebay-progress-bar-expressive",
-                WithMessages.args,
+                WithSingleMessage.args,
             ),
         },
     },
+};
+
+export const WithMessages = buildExtensionTemplate(
+    MessagesTemplate,
+    MessagesTemplateCode,
+);
+WithMessages.args = {
+    messages: exampleMessages,
 };
 
 export const WithLongMessage = Template.bind({});
@@ -134,7 +127,10 @@ WithLongMessage.parameters = {
     },
 };
 
-export const WithCustomTiming = Template.bind({});
+export const WithCustomTiming = buildExtensionTemplate(
+    CustomTimingTemplate,
+    CustomTimingTemplateCode,
+);
 WithCustomTiming.args = {
     messages: [
         { text: "Display for 2 seconds", duration: 2000 },
@@ -142,18 +138,11 @@ WithCustomTiming.args = {
         { text: "Display for 4 seconds", duration: 4000 },
     ],
 };
-WithCustomTiming.parameters = {
-    docs: {
-        source: {
-            code: tagToString(
-                "ebay-progress-bar-expressive",
-                WithCustomTiming.args,
-            ),
-        },
-    },
-};
 
-export const Localized = Template.bind({});
+export const Localized = buildExtensionTemplate(
+    LocalizedTemplate,
+    LocalizedTemplateCode,
+);
 Localized.args = {
     a11yText: "Cargando...",
     messages: [
@@ -162,23 +151,12 @@ Localized.args = {
         { text: "Sólo un momento más" },
     ],
 };
-Localized.parameters = {
-    docs: {
-        source: {
-            code: tagToString("ebay-progress-bar-expressive", Localized.args),
-        },
-    },
-};
 
-export const MediumSize = Template.bind({});
+export const MediumSize = buildExtensionTemplate(
+    MediumTextTemplate,
+    MediumTextTemplateCode,
+);
 MediumSize.args = {
     size: "medium",
     messages: exampleMessages,
-};
-MediumSize.parameters = {
-    docs: {
-        source: {
-            code: tagToString("ebay-progress-bar-expressive", MediumSize.args),
-        },
-    },
 };

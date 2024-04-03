@@ -1,6 +1,10 @@
 import { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 
+export const useReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export const messageDurationStandard = 1500;
 export const messageDurationReducedMotionMultiplier = 1.5;
 export const messageFadeInDuration = 833;
@@ -13,7 +17,7 @@ interface Message {
 interface ProgressBarExpressiveInput
     extends Omit<Marko.Input<"div">, `on${string}`> {
     "a11y-text"?: AttrString;
-    messages?: Marko.RepeatableAttrTag<Message>;
+    messages?: Marko.AttrTag<Message>[];
     size?: "medium" | "large";
 }
 
@@ -21,12 +25,10 @@ export interface Input
     extends WithNormalizedProps<ProgressBarExpressiveInput> {}
 
 interface State {
-    messages: Message[];
+    isInitialMessage: boolean;
     messageIsFadingIn: boolean;
     currentMessageIndex: number;
     nextMessageIndex: number;
-    isInitialMessage: boolean;
-    useReducedMotion: boolean;
 }
 
 class ProgressBarExpressive extends Marko.Component<Input, State> {
@@ -34,31 +36,20 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
     declare fadeInFirstMessage: boolean;
 
     onCreate(input: Input) {
-        const messages = (input.messages as Message[]) || [];
-        const useReducedMotion =
-            typeof window !== "undefined" &&
-            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         // For medium sized text, display the first message immediately
         this.fadeInFirstMessage = input.size !== "medium";
         this.state = {
-            messages: messages,
+            isInitialMessage: true,
             messageIsFadingIn: false,
             currentMessageIndex: -1,
             nextMessageIndex: 0,
-            isInitialMessage: true,
-            useReducedMotion: useReducedMotion,
         };
 
         this.timeouts = { fadeIn: undefined, showMessage: undefined };
     }
 
     onInput(input: Input) {
-        this.state.messages = (input.messages as Message[]) || [];
-        if (this.state.nextMessageIndex >= this.state.messages.length) {
-            this.state.nextMessageIndex = 0;
-        }
-
-        this.initializeMessageRotation();
+        this.initializeMessageRotation(input.messages);
     }
 
     onDestroy() {
@@ -70,8 +61,15 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
         clearTimeout(this.timeouts.showMessage);
     }
 
-    initializeMessageRotation() {
-        if (this.state.messages.length > 0) {
+    initializeMessageRotation(messages?: Marko.AttrTag<Message>[]) {
+        const messageCount = messages?.length || 0;
+
+        if (messageCount > 0) {
+            // Ensure next message index is in new message array bounds
+            if (this.state.nextMessageIndex >= messageCount) {
+                this.state.nextMessageIndex = 0;
+            }
+
             this.clearTimeouts();
             setTimeout(() => {
                 this.state.isInitialMessage = false;
@@ -79,15 +77,15 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
 
             if (!this.fadeInFirstMessage) {
                 // Automatically show first message (no delay or animation)
-                this.showMessage();
-            } else if (this.state.useReducedMotion) {
+                this.showMessage(messages);
+            } else if (useReducedMotion) {
                 // In reduced motion mode, fade in first message immediately
-                this.showMessage(messageFadeInDuration);
+                this.showMessage(messages, messageFadeInDuration);
             } else {
                 // Fade in first message after a short delay
                 setTimeout(
                     this.fadeInMessage.bind(this),
-                    this.state.messages.length === 1
+                    messageCount === 1
                         ? messageDurationStandard / 2
                         : messageDurationStandard,
                 );
@@ -103,9 +101,7 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
     getMessageDuration(message?: Message) {
         return (
             (message?.duration || messageDurationStandard) *
-            (this.state.useReducedMotion
-                ? messageDurationReducedMotionMultiplier
-                : 1)
+            (useReducedMotion ? messageDurationReducedMotionMultiplier : 1)
         );
     }
 
@@ -123,28 +119,31 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
     /**
      * Display a message and queue the next one
      */
-    showMessage(extraDelay = 0) {
-        if (this.state.messages.length > 1) {
-            const currentIndex = this.state.nextMessageIndex;
-            const nextIndex =
-                currentIndex === this.state.messages.length - 1
-                    ? 0
-                    : currentIndex + 1;
+    showMessage(messages = this.input.messages, extraDelay = 0) {
+        if (messages) {
+            const messageCount = messages.length;
+            if (messageCount > 1) {
+                const currentIndex = this.state.nextMessageIndex;
+                const nextIndex =
+                    currentIndex === messageCount - 1 ? 0 : currentIndex + 1;
 
-            // Show current message
-            this.state.currentMessageIndex = currentIndex;
-            this.state.messageIsFadingIn = false;
+                // Show current message
+                this.state.currentMessageIndex = currentIndex;
+                this.state.messageIsFadingIn = false;
 
-            // Queue next message
-            this.state.nextMessageIndex = nextIndex;
-            this.timeouts.fadeIn = setTimeout(
-                this.fadeInMessage.bind(this),
-                extraDelay +
-                    this.getMessageDuration(this.state.messages[currentIndex]),
-            );
-        } else {
-            this.state.currentMessageIndex = 0;
-            this.state.messageIsFadingIn = false;
+                // Queue next message
+                this.state.nextMessageIndex = nextIndex;
+                this.timeouts.fadeIn = setTimeout(
+                    this.fadeInMessage.bind(this),
+                    extraDelay +
+                        this.getMessageDuration(
+                            messages[currentIndex] as Message,
+                        ),
+                );
+            } else {
+                this.state.currentMessageIndex = 0;
+                this.state.messageIsFadingIn = false;
+            }
         }
     }
 }

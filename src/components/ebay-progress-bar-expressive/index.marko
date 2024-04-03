@@ -1,4 +1,5 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
+import { useReducedMotion } from "./component";
 $ const {
     a11yText = "Loading...",
     class: inputClass,
@@ -11,16 +12,14 @@ $ const {
     ...processHtmlAttributes(htmlInput)
     class=["progress-bar-expressive", inputClass]
 >
-    <if(state.messages && state.messages.length > 0)>
-        $ const currentMessage = (
-            state.messages[state.currentMessageIndex]?.text
-        );
-        $ const nextMessage = state.messages[state.nextMessageIndex]?.text;
+    <if(messages && messages.length > 0)>
+        $ const currentMessage = messages[state.currentMessageIndex]?.text;
+        $ const nextMessage = messages[state.nextMessageIndex]?.text;
         <div class=[
             "progress-bar-expressive__messages",
             size === "medium" && "progress-bar-expressive__messages--medium",
         ]>
-            <if(!state.useReducedMotion && state.messages.length > 1)>
+            <if(!useReducedMotion && messages.length > 1)>
                 <div
                     aria-hidden="true"
                     class=[
@@ -39,7 +38,7 @@ $ const {
                     "progress-bar-expressive__message",
                     state.messageIsFadingIn &&
                         "progress-bar-expressive__message--out",
-                    state.messages.length === 1 &&
+                    messages.length === 1 &&
                         "progress-bar-expressive__message--in",
                     state.isInitialMessage &&
                         "progress-bar-expressive__message--initial",
