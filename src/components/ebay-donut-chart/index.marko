@@ -8,11 +8,11 @@ $ const {
     ...htmlInput
 } = input;
 
-<div class="ebay-donut-chart-container">
-    <div
-        ...processHtmlAttributes(htmlInput)
-        class=[inputClass, "ebay-donut-chart"]
-    >
+<div
+    class=[inputClass, "ebay-donut-chart-container"]
+    ...processHtmlAttributes(htmlInput)
+>
+    <div class="ebay-donut-chart">
         <div class="ebay-donut-chart__title-container">
             ${title}
         </div>
@@ -29,7 +29,6 @@ $ const {
             class="ebay-donut-chart__graph-container"
             no-update
         />
-
         <div class="ebay-donut-chart__legend-container">
             <ebay-chart-legend
                 items=component.getLegendItems()

@@ -1,19 +1,29 @@
 .ebay-donut-chart__legend {
     display: flex;
     flex-direction: column;
+    padding: 0;
     row-gap: var(--spacing-200);
 }
 
 .ebay-donut-chart__legend-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: var(--font-size-small);
+    list-style: none;
     transition: opacity 0.3s ease;
 
     &.ebay-donut-chart__legend-item--inactive {
         opacity: 0.3;
     }
+}
+
+.ebay-donut-chart__legend-button {
+    display: flex;
+    width: 100%;
+    font-size: var(--font-size-small);
+    align-items: center;
+    justify-content: space-between;
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 0;
 }
 
 .ebay-donut-chart__legend-label {

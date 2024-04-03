@@ -64,6 +64,7 @@ Standard.args = {
             data: data.slice(0, 3),
         },
     ],
+    description: "Donut chart description",
     title: "Donut chart title",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
@@ -85,6 +86,7 @@ TwoValues.args = {
         },
     ],
     title: "Donut chart with two values",
+    description: "Donut chart description",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
 };
@@ -105,6 +107,7 @@ ThreeValues.args = {
         },
     ],
     title: "Donut chart with three values",
+    description: "Donut chart description",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
 };
@@ -125,6 +128,7 @@ FourValues.args = {
         },
     ],
     title: "Donut chart with four values",
+    description: "Donut chart description",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
 };
@@ -145,6 +149,7 @@ FiveValues.args = {
         },
     ],
     title: "Donut chart with five values",
+    description: "Donut chart description",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
 };

@@ -34,6 +34,7 @@ export interface DonutLegendItem {
 interface DonutChartInput
     extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
     title?: string;
+    description?: Highcharts.PlotSeriesOptions["description"];
     metricValue?: string;
     metricLabel?: string;
     "cdn-highcharts"?: string;
@@ -176,8 +177,9 @@ class DonutChart extends Marko.Component<Input, State> {
 
         return {
             pie: {
+                description: this.input.description,
                 size: "100%",
-                thickness: 10, // This is an in between value of 8 and 12
+                thickness: 10,
                 allowPointSelect: false,
                 cursor: "pointer",
                 borderRadius: "30%",
