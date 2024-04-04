@@ -12,15 +12,15 @@ describe("progress-bar-expressive", () => {
         await htmlSnap(Default);
     });
 
+    it("renders message container", async () => {
+        await htmlSnap(WithMessages);
+    });
+
     it("renders custom accessible name", async () => {
         await htmlSnap(Localized);
     });
 
     it("renders medium text", async () => {
         await htmlSnap(MediumSize);
-    });
-
-    it("renders message container", async () => {
-        await htmlSnap(WithMessages);
     });
 });

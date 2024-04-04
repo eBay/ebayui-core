@@ -1,9 +1,11 @@
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
+import sinon from "sinon/pkg/sinon";
 import { composeStories } from "@storybook/marko";
-import { render, cleanup, waitFor } from "@marko/testing-library";
+import { render, cleanup } from "@marko/testing-library";
 import * as stories from "../progress-bar-expressive.stories";
-const { WithMessages } = composeStories(stories);
+import { messageFadeInDuration } from "../component";
+const { WithCustomTiming } = composeStories(stories);
 
 use(chaiDom);
 afterEach(cleanup);
@@ -13,24 +15,30 @@ let component;
 
 describe("progress-bar-expressive", () => {
     describe("given an expressive progress bar with messages", () => {
-        beforeEach(async () => {
-            component = await render(WithMessages);
-        });
+        describe("when messages have custom durations", () => {
+            let clock;
 
-        it("then cycles through all messages", async () => {
-            const statusEl = component.getByRole("status");
-            const messages = WithMessages.args.messages;
+            beforeEach(async () => {
+                clock = sinon.useFakeTimers();
+                component = await render(WithCustomTiming, { size: "medium" });
+            });
 
-            // go through all messages once and loop back to first one
-            for (let i = 0; i <= messages.length; i++) {
-                const message = messages[i % messages.length];
-                await waitFor(
-                    () => {
-                        expect(statusEl).to.have.text(message.text);
-                    },
-                    { timeout: 4000 }, // generous timeout
-                );
-            }
+            afterEach(async () => {
+                clock.restore();
+            });
+
+            it("then displays each message for the specified duration", async () => {
+                const statusEl = component.getByRole("status");
+                const messages = WithCustomTiming.args.messages;
+
+                // go through all messages once and loop back to first one
+                for (let i = 0; i <= messages.length; i++) {
+                    await clock.tickAsync(1);
+                    const message = messages[i % messages.length];
+                    expect(statusEl).to.have.text(message.renderBody);
+                    clock.tick(message.duration + messageFadeInDuration);
+                }
+            });
         });
     });
 });

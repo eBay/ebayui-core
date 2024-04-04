@@ -25,9 +25,9 @@ const Template = (args) => ({
 });
 
 const exampleMessages = [
-    { text: "Hang tight" },
-    { text: "We're processing your order" },
-    { text: "Just a moment longer" },
+    { renderBody: "Hang tight" },
+    { renderBody: "We're processing your order" },
+    { renderBody: "Just a moment longer" },
 ];
 
 export default {
@@ -57,7 +57,7 @@ export default {
             control: {
                 type: "array",
             },
-            description: `Short messages to display above the progress bar. Specify the text to display and, optionally, a custom duration. By default, messages display for ${messageDurationStandard}ms. When the user prefers reduced motion, the message will display for ${messageDurationReducedMotionMultiplier} times its duration.`,
+            description: `Short messages to display above the progress bar. Specify the renderBody and, optionally, a custom duration. By default, messages display for ${messageDurationStandard}ms. When the user prefers reduced motion, each message will display for ${messageDurationReducedMotionMultiplier} times its duration.`,
             table: {
                 defaultValue: {
                     summary: "[]",
@@ -87,7 +87,7 @@ export const Default = buildExtensionTemplate(
 
 export const WithSingleMessage = Template.bind({});
 WithSingleMessage.args = {
-    messages: [{ text: "We're processing your order" }],
+    messages: [{ renderBody: "We're processing your order" }],
 };
 WithSingleMessage.parameters = {
     docs: {
@@ -111,9 +111,12 @@ WithMessages.args = {
 export const WithLongMessage = Template.bind({});
 WithLongMessage.args = {
     messages: [
-        { text: "Messages should be one line..." },
-        { text: "Sometimes that's hard to guarantee, though.", duration: 2500 },
-        { text: "That's okay!" },
+        { renderBody: "Messages should be one line..." },
+        {
+            renderBody: "Sometimes that's hard to guarantee, though.",
+            duration: 2500,
+        },
+        { renderBody: "That's okay!" },
     ],
 };
 WithLongMessage.parameters = {
@@ -133,9 +136,9 @@ export const WithCustomTiming = buildExtensionTemplate(
 );
 WithCustomTiming.args = {
     messages: [
-        { text: "Display for 2 seconds", duration: 2000 },
-        { text: "Display for 3 seconds", duration: 3000 },
-        { text: "Display for 4 seconds", duration: 4000 },
+        { renderBody: "Display for 2 seconds", duration: 2000 },
+        { renderBody: "Display for 3 seconds", duration: 3000 },
+        { renderBody: "Display for 4 seconds", duration: 4000 },
     ],
 };
 
@@ -146,9 +149,9 @@ export const Localized = buildExtensionTemplate(
 Localized.args = {
     a11yText: "Cargando...",
     messages: [
-        { text: "Espera..." },
-        { text: "Estamos procesando tu pedido", duration: 2000 },
-        { text: "Sólo un momento más" },
+        { renderBody: "Espera..." },
+        { renderBody: "Estamos procesando tu pedido", duration: 2000 },
+        { renderBody: "Sólo un momento más" },
     ],
 };
 

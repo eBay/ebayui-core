@@ -10,7 +10,7 @@ export const messageDurationReducedMotionMultiplier = 1.5;
 export const messageFadeInDuration = 833;
 
 interface Message {
-    text: string;
+    renderBody: Marko.Body;
     duration?: number;
 }
 

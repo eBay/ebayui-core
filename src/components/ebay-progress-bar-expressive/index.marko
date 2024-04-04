@@ -13,8 +13,10 @@ $ const {
     class=["progress-bar-expressive", inputClass]
 >
     <if(messages && messages.length > 0)>
-        $ const currentMessage = messages[state.currentMessageIndex]?.text;
-        $ const nextMessage = messages[state.nextMessageIndex]?.text;
+        $ const currentMessage = (
+            messages[state.currentMessageIndex]?.renderBody
+        );
+        $ const nextMessage = messages[state.nextMessageIndex]?.renderBody;
         <div class=[
             "progress-bar-expressive__messages",
             size === "medium" && "progress-bar-expressive__messages--medium",
@@ -28,7 +30,7 @@ $ const {
                             "progress-bar-expressive__message--in",
                     ]
                 >
-                    ${nextMessage}
+                    <${nextMessage}/>
                 </div>
             </if>
             <div
@@ -44,7 +46,7 @@ $ const {
                         "progress-bar-expressive__message--initial",
                 ]
             >
-                ${currentMessage}
+                <${currentMessage}/>
             </div>
         </div>
     </if>
