@@ -8,10 +8,12 @@ static interface SignalInput extends Omit<Marko.Input<"span">, `on${string}`> {
 export interface Input extends WithNormalizedProps<SignalInput> {}
 
 $ const {
+    class: inputClass,
     status = "neutral",
     ...htmlAttributes
 } = input;
 
-<span ...processHtmlAttributes(htmlAttributes) class=`signal signal--${status}`>
+<span ...processHtmlAttributes(htmlAttributes)
+    class=[inputClass, "signal", `signal--${status}`]>
     <${input.renderBody}/>
 </span>

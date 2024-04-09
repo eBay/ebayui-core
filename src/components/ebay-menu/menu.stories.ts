@@ -65,7 +65,7 @@ export default {
             },
             description: "used as the number to be placed in the badge",
         },
-        'aria-label': {
+        "aria-label": {
             controls: { hideNoControlsWarning: true },
             table: {
                 category: "@item attributes",
@@ -133,17 +133,17 @@ Default.parameters = {
 
 export const Typeahead = buildExtensionTemplate(
     TypeaheadTemplate,
-    TypeaheadTemplateCode
+    TypeaheadTemplateCode,
 );
 export const Badged = buildExtensionTemplate(
     BadgedTemplate,
-    BadgedTemplateCode
+    BadgedTemplateCode,
 );
 export const Sprites = buildExtensionTemplate(
     SpritesTemplate,
-    SpritesTemplateCode
+    SpritesTemplateCode,
 );
 export const Separator = buildExtensionTemplate(
     SeparatorTemplate,
-    SeparatorTemplateCode
+    SeparatorTemplateCode,
 );

@@ -275,9 +275,9 @@ Default.parameters = {
 
 export const WithLinks = buildExtensionTemplate(
     WithLinksTemplate,
-    WithLinksTemplateCode
+    WithLinksTemplateCode,
 );
 export const WithSpecificLinks = buildExtensionTemplate(
     WithSpecificLinksTemplate,
-    WithSpecificLinksTemplateCode
+    WithSpecificLinksTemplateCode,
 );

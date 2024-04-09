@@ -13,7 +13,7 @@ describe("fake-menu", () => {
 
         input.items.forEach((item) => {
             expect(
-                getByText(item.renderBody.text).closest(".fake-menu__item")
+                getByText(item.renderBody.text).closest(".fake-menu__item"),
             ).has.attr("href", item.href);
         });
     });
@@ -23,8 +23,8 @@ describe("fake-menu", () => {
         const { getByText } = await render(template, input);
         expect(
             getByText(input.items[0].renderBody.text).closest(
-                ".fake-menu__menu--reverse"
-            )
+                ".fake-menu__menu--reverse",
+            ),
         ).does.not.equal(null);
     });
 
@@ -33,8 +33,8 @@ describe("fake-menu", () => {
         const { getByText } = await render(template, input);
         expect(
             getByText(input.items[0].renderBody.text).closest(
-                ".fake-menu__menu--fix-width"
-            )
+                ".fake-menu__menu--fix-width",
+            ),
         ).does.not.equal(null);
     });
 

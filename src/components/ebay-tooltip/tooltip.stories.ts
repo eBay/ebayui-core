@@ -23,18 +23,25 @@ export default {
     argTypes: {
         placement: {
             options: [
-                'top', 'right', 'bottom', 'left',
-                'top-start', 'right-start', 'bottom-start', 'left-start',
-                'top-end', 'right-end', 'bottom-end', 'left-end',
-           ],
+                "top",
+                "right",
+                "bottom",
+                "left",
+                "top-start",
+                "right-start",
+                "bottom-start",
+                "left-start",
+                "top-end",
+                "right-end",
+                "bottom-end",
+                "left-end",
+            ],
             control: { type: "select" },
-            description:
-                "places tooltip position",
+            description: "places tooltip position",
         },
         offset: {
             control: { type: "number" },
-            description:
-                "offsets tooltip position",
+            description: "offsets tooltip position",
         },
         noHover: {
             control: { type: "boolean" },
@@ -59,6 +66,28 @@ export default {
             control: { type: "boolean" },
             description:
                 "allows dev to specify whether tooltip is open or closed",
+        },
+        noFlip: {
+            control: { type: "boolean" },
+            description: "disables flipping tooltip when its offscreen",
+            table: {
+                defaultValue: { summary: "false" },
+            },
+        },
+        noShift: {
+            control: { type: "boolean" },
+            description: "disables shifting tooltip when its offscreen",
+            table: {
+                defaultValue: { summary: "false" },
+            },
+        },
+        notInline: {
+            control: { type: "boolean" },
+            description:
+                "disables moving tooltip to be inline with content when it is rendered",
+            table: {
+                defaultValue: { summary: "false" },
+            },
         },
         onCollapse: {
             action: "on-collapse",

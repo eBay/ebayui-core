@@ -3,7 +3,7 @@ function tagToString(
     args: any,
     plurarls: Record<string, string> = {},
     indent = "",
-    fromAttribute = false
+    fromAttribute = false,
 ) {
     const nextIndex = indent + "\t";
     const { body, attrs } = argsToString(args, plurarls, nextIndex);
@@ -17,7 +17,7 @@ function tagToString(
         (body
             ? `>\n${body.replace(
                   /^|\n/gm,
-                  `$&${nextIndex}`
+                  `$&${nextIndex}`,
               )}\n</${formattedTagName}>`
             : `/>`)
     }`;
@@ -26,7 +26,7 @@ function tagToString(
 function argsToString(
     args: any,
     plurarls: Record<string, string>,
-    indent: string
+    indent: string,
 ) {
     let attrs = "";
     let body = "";
@@ -38,7 +38,7 @@ function argsToString(
             const val = args[key];
             const dashCaseKey = key.replace(
                 /([a-z])([A-Z])/g,
-                (m, m1, m2) => `${m1}-${m2.toLowerCase()}`
+                (m, m1, m2) => `${m1}-${m2.toLowerCase()}`,
             );
             if (Array.isArray(val)) {
                 for (const item of val) {
@@ -47,14 +47,14 @@ function argsToString(
                         item,
                         plurarls,
                         indent,
-                        true
+                        true,
                     );
                 }
             } else if (val && typeof val === "object") {
                 if (key === "spread") {
                     Object.keys(val).forEach((spreadKey) => {
                         attrs += ` ${spreadKey}=${JSON.stringify(
-                            val[spreadKey]
+                            val[spreadKey],
                         )}`;
                     });
                 } else
@@ -63,7 +63,7 @@ function argsToString(
                         val,
                         plurarls,
                         indent,
-                        true
+                        true,
                     );
             } else {
                 attrs += ` ${dashCaseKey}=${JSON.stringify(val)}`;

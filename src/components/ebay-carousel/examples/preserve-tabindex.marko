@@ -21,23 +21,96 @@ export interface Input {
     }
 </style>
 
-<ebay-carousel gap=input.gap itemsPerSlide=input.itemsPerSlide index=input.index
-    a11yPreviousText=input.a11yPreviousText
-    a11yNextText=input.a11yNextText>
-    <for|i| from=0 to=(input.items.length - 1)>
-        <@item >
-            <div class='preserve-tabindex-card'>
-                <a href="https://www.ebay.com" data-carousel-tabindex="-1">
-                    Image here
-                </a>
-                <a href="https://www.ebay.com">
-                    <${input.items[i]}/>
-                </a>
-                <ebay-drawer-dialog open=true>
-                    Body
-                </ebay-drawer-dialog>
+<ebay-carousel
+    ...input
+    on-move("emit", "move")
+    on-next("emit", "next")
+    on-previous("emit", "previous")
+    on-scroll("emit", "scroll")
+    on-slide("emit", "slide")>
+    <@item>
+        <div class="preserve-tabindex-card">
+            <a href="https://www.ebay.com" data-carousel-tabindex="-1">
+                Image here
+            </a>
+            <a href="https://www.ebay.com">
+                Card 1
+            </a>
+        </div>
+    </@item>
+    <@item>
+        <div class="preserve-tabindex-card">
+            <a href="https://www.ebay.com" data-carousel-tabindex="-1">
+                Image here
+            </a>
+            <a href="https://www.ebay.com">
+                Card 2
+            </a>
+        </div>
+    </@item>
 
-            </div>
-        </@item>
-    </for>
+    <@item>
+        <div class="preserve-tabindex-card">
+            <a href="https://www.ebay.com" data-carousel-tabindex="-1">
+                Image here
+            </a>
+            <a href="https://www.ebay.com">
+                Card 3
+            </a>
+        </div>
+    </@item>
+
+    <@item>
+        <div class="preserve-tabindex-card">
+            <a href="https://www.ebay.com" data-carousel-tabindex="-1">
+                Image here
+            </a>
+            <a href="https://www.ebay.com">
+                Card 4
+            </a>
+        </div>
+    </@item>
+
+    <@item>
+        <div class="preserve-tabindex-card">
+            <a href="https://www.ebay.com" data-carousel-tabindex="-1">
+                Image here
+            </a>
+            <a href="https://www.ebay.com">
+                Card 5
+            </a>
+        </div>
+    </@item>
+
+    <@item>
+        <div class="preserve-tabindex-card">
+            <a href="https://www.ebay.com" data-carousel-tabindex="-1">
+                Image here
+            </a>
+            <a href="https://www.ebay.com">
+                Card 6
+            </a>
+        </div>
+    </@item>
+
+    <@item>
+        <div class="preserve-tabindex-card">
+            <a href="https://www.ebay.com" data-carousel-tabindex="-1">
+                Image here
+            </a>
+            <a href="https://www.ebay.com">
+                Card 7
+            </a>
+        </div>
+    </@item>
+    <@item>
+        <div class="preserve-tabindex-card">
+            <a href="https://www.ebay.com" data-carousel-tabindex="-1">
+                Image here
+            </a>
+            <a href="https://www.ebay.com">
+                Card 8
+            </a>
+        </div>
+    </@item>
 </ebay-carousel>

@@ -15,13 +15,13 @@ describe("snackbar-dialog", () => {
         expect(dialog).has.class("snackbar-dialog");
         expect(dialog).has.class("snackbar-dialog--transition");
         expect(getByText(input.renderBody.text)).has.class(
-            "snackbar-dialog__main"
+            "snackbar-dialog__main",
         );
         expect(getByText(input.header.renderBody.text).parentElement).has.class(
-            "snackbar-dialog__header"
+            "snackbar-dialog__header",
         );
         expect(getByText(input.action.renderBody.text).parentElement).has.class(
-            "snackbar-dialog__actions"
+            "snackbar-dialog__actions",
         );
         expect(getByRole("button", { hidden: "true" })).has.class("fake-link");
         expect(dialog.childNodes[0]).has.class("snackbar-dialog__window");

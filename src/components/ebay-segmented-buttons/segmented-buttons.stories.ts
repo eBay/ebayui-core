@@ -110,5 +110,5 @@ Default.parameters = {
 
 export const WithIcons = buildExtensionTemplate(
     WithIconsTemplate,
-    WithIconsTemplateCode
+    WithIconsTemplateCode,
 );

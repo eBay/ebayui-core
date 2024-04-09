@@ -12,7 +12,7 @@ const supportsNativeScrolling =
     (-webkit-scroll-snap-coordinate: 0 0) or
     (-ms-scroll-snap-coordinate: 0 0) or
     (scroll-snap-coordinate: 0 0) or
-    (scroll-snap-align: start))`
+    (scroll-snap-align: start))`,
     );
 
 before(fastAnimations.start);
@@ -36,11 +36,11 @@ describe("given a continuous carousel", () => {
         it("then prev and next controls are disabled", () => {
             expect(component.getByLabelText(input.a11yPreviousText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
             expect(component.getByLabelText(input.a11yNextText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
         });
     });
@@ -55,11 +55,11 @@ describe("given a continuous carousel", () => {
         it("then prev and next controls are disabled", () => {
             expect(component.getByLabelText(input.a11yPreviousText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
             expect(component.getByLabelText(input.a11yNextText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
         });
     });
@@ -73,22 +73,22 @@ describe("given a continuous carousel", () => {
             // the next button is no longer disabled.
             await waitFor(() =>
                 expect(
-                    component.getByLabelText(input.a11yNextText)
-                ).to.not.have.attr("aria-disabled")
+                    component.getByLabelText(input.a11yNextText),
+                ).to.not.have.attr("aria-disabled"),
             );
         });
 
         describe("when it is rerendered to show the second item", () => {
             beforeEach(async () => {
                 await component.rerender(
-                    Object.assign({}, input, { index: 1 })
+                    Object.assign({}, input, { index: 1 }),
                 );
                 await waitForCarouselUpdate();
             });
 
             it("then it moved to the second item", () => {
                 const secondItem = component.getByText(
-                    input.items[1].renderBody.text
+                    input.items[1].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
@@ -97,14 +97,14 @@ describe("given a continuous carousel", () => {
         describe("when it is rerendered with an index below zero", () => {
             beforeEach(async () => {
                 await component.rerender(
-                    Object.assign({}, input, { index: -1 })
+                    Object.assign({}, input, { index: -1 }),
                 );
                 await doesNotEventuallyScroll();
             });
 
             it("then shows the first item", () => {
                 const firstItem = component.getByText(
-                    input.items[0].renderBody.text
+                    input.items[0].renderBody.text,
                 );
                 assertAtStartOfSlide(firstItem);
             });
@@ -113,14 +113,14 @@ describe("given a continuous carousel", () => {
         describe("when it is rerendered with an index higher than the number of items", () => {
             beforeEach(async () => {
                 await component.rerender(
-                    Object.assign({}, input, { index: 6 })
+                    Object.assign({}, input, { index: 6 }),
                 );
                 await doesNotEventuallyScroll();
             });
 
             it("then shows the first item", () => {
                 const firstItem = component.getByText(
-                    input.items[0].renderBody.text
+                    input.items[0].renderBody.text,
                 );
                 assertAtStartOfSlide(firstItem);
             });
@@ -129,7 +129,7 @@ describe("given a continuous carousel", () => {
         describe("when the previous button is clicked while disabled", () => {
             beforeEach(async () => {
                 await fireEvent.click(
-                    component.getByLabelText(input.a11yPreviousText)
+                    component.getByLabelText(input.a11yPreviousText),
                 );
             });
 
@@ -169,7 +169,7 @@ describe("given a continuous carousel", () => {
         describe("when the next button is clicked while disabled", () => {
             beforeEach(async () => {
                 await fireEvent.click(
-                    component.getByLabelText(input.a11yNextText)
+                    component.getByLabelText(input.a11yNextText),
                 );
             });
 
@@ -187,7 +187,7 @@ describe("given a continuous carousel", () => {
                     .find((el) => el.hasAttribute("aria-hidden"));
 
                 fireEvent.click(
-                    component.getByLabelText(input.a11yPreviousText)
+                    component.getByLabelText(input.a11yPreviousText),
                 );
                 await waitForCarouselUpdate();
             });
@@ -212,8 +212,8 @@ describe("given a continuous carousel", () => {
             // the next button is no longer disabled.
             await waitFor(() =>
                 expect(
-                    component.getByLabelText(input.a11yNextText)
-                ).to.not.have.attr("aria-disabled")
+                    component.getByLabelText(input.a11yNextText),
+                ).to.not.have.attr("aria-disabled"),
             );
         });
 
@@ -233,7 +233,7 @@ describe("given a continuous carousel", () => {
 
             it("then the last item is visible", () => {
                 const lastItem = component.getByText(
-                    input.items[input.items.length - 1].renderBody.text
+                    input.items[input.items.length - 1].renderBody.text,
                 );
                 assertAtEndOfSlide(lastItem);
             });
@@ -248,7 +248,7 @@ describe("given a continuous carousel", () => {
                 fireEvent.click(component.getByLabelText(input.a11yNextText));
                 await waitForCarouselUpdate();
                 fireEvent.click(
-                    component.getByLabelText(input.a11yPreviousText)
+                    component.getByLabelText(input.a11yPreviousText),
                 );
                 await waitForCarouselUpdate();
             });
@@ -263,7 +263,7 @@ describe("given a continuous carousel", () => {
 
             it("then the last item is not visible", () => {
                 const lastItem = component.getByText(
-                    input.items[input.items.length - 1].renderBody.text
+                    input.items[input.items.length - 1].renderBody.text,
                 );
                 assertIsNotVisible(lastItem);
             });
@@ -282,11 +282,11 @@ describe("given a discrete carousel", () => {
         it("then prev and next controls are disabled", () => {
             expect(component.getByLabelText(input.a11yPreviousText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
             expect(component.getByLabelText(input.a11yNextText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
         });
     });
@@ -301,11 +301,11 @@ describe("given a discrete carousel", () => {
         it("then prev and next controls are disabled", () => {
             expect(component.getByLabelText(input.a11yPreviousText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
             expect(component.getByLabelText(input.a11yNextText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
         });
     });
@@ -319,29 +319,29 @@ describe("given a discrete carousel", () => {
             // the next button is no longer disabled.
             await waitFor(() =>
                 expect(
-                    component.getByLabelText(input.a11yNextText)
-                ).to.not.have.attr("aria-disabled")
+                    component.getByLabelText(input.a11yNextText),
+                ).to.not.have.attr("aria-disabled"),
             );
         });
 
         it("then prev control is disabled", () => {
             expect(component.getByLabelText(input.a11yPreviousText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
         });
 
         describe("when it is rerendered to show the second item", () => {
             beforeEach(async () => {
                 await component.rerender(
-                    Object.assign({}, input, { index: 1 })
+                    Object.assign({}, input, { index: 1 }),
                 );
                 await waitForCarouselUpdate();
             });
 
             it("then it moved to the second item", () => {
                 const secondItem = component.getByText(
-                    input.items[1].renderBody.text
+                    input.items[1].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
@@ -350,14 +350,14 @@ describe("given a discrete carousel", () => {
         describe("when it is rerendered with an index below zero", () => {
             beforeEach(async () => {
                 await component.rerender(
-                    Object.assign({}, input, { index: -1 })
+                    Object.assign({}, input, { index: -1 }),
                 );
                 await doesNotEventuallyScroll();
             });
 
             it("then shows the first item", () => {
                 const firstItem = component.getByText(
-                    input.items[0].renderBody.text
+                    input.items[0].renderBody.text,
                 );
                 assertAtStartOfSlide(firstItem);
             });
@@ -366,14 +366,14 @@ describe("given a discrete carousel", () => {
         describe("when it is rerendered with an index higher than the number of items", () => {
             beforeEach(async () => {
                 await component.rerender(
-                    Object.assign({}, input, { index: 6 })
+                    Object.assign({}, input, { index: 6 }),
                 );
                 await doesNotEventuallyScroll();
             });
 
             it("then shows the first item", () => {
                 const firstItem = component.getByText(
-                    input.items[0].renderBody.text
+                    input.items[0].renderBody.text,
                 );
                 assertAtStartOfSlide(firstItem);
             });
@@ -382,7 +382,7 @@ describe("given a discrete carousel", () => {
         describe("when the previous button is clicked while disabled", () => {
             beforeEach(async () => {
                 await fireEvent.click(
-                    component.getByLabelText(input.a11yPreviousText)
+                    component.getByLabelText(input.a11yPreviousText),
                 );
             });
 
@@ -404,7 +404,7 @@ describe("given a discrete carousel", () => {
             it("then it emitted the slide event", () => {
                 expect(component.emitted("slide")).has.nested.property(
                     "[0][0].slide",
-                    2
+                    2,
                 );
             });
 
@@ -418,7 +418,7 @@ describe("given a discrete carousel", () => {
                 // eslint-disable-next-line mocha/no-sibling-hooks
                 beforeEach(async () => {
                     const thirdItem = component.getByText(
-                        input.items[1].renderBody.text
+                        input.items[1].renderBody.text,
                     );
                     const list = thirdItem.parentElement;
                     list.scrollLeft = thirdItem.offsetLeft;
@@ -431,23 +431,23 @@ describe("given a discrete carousel", () => {
                 });
 
                 thenItMovedToTheSecondSlide();
-            }
+            },
         );
 
         function thenItMovedToTheSecondSlide() {
             it("then it moved to the second item", () => {
                 const secondItem = component.getByText(
-                    input.items[1].renderBody.text
+                    input.items[1].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
 
             it("then prev and next controls are enabled", () => {
                 expect(
-                    component.getByLabelText(input.a11yPreviousText)
+                    component.getByLabelText(input.a11yPreviousText),
                 ).to.not.have.attr("aria-disabled");
                 expect(
-                    component.getByLabelText(input.a11yNextText)
+                    component.getByLabelText(input.a11yNextText),
                 ).to.not.have.attr("aria-disabled");
             });
         }
@@ -466,14 +466,14 @@ describe("given a discrete carousel", () => {
         it("then next control is disabled", () => {
             expect(component.getByLabelText(input.a11yNextText)).has.attr(
                 "aria-disabled",
-                "true"
+                "true",
             );
         });
 
         describe("when previous button is clicked", () => {
             beforeEach(async () => {
                 fireEvent.click(
-                    component.getByLabelText(input.a11yPreviousText)
+                    component.getByLabelText(input.a11yPreviousText),
                 );
                 await waitForCarouselUpdate();
             });
@@ -485,23 +485,23 @@ describe("given a discrete carousel", () => {
             it("then it emitted the slide event", () => {
                 expect(component.emitted("slide")).has.nested.property(
                     "[0][0].slide",
-                    2
+                    2,
                 );
             });
 
             it("then it moved to the second item", () => {
                 const secondItem = component.getByText(
-                    input.items[1].renderBody.text
+                    input.items[1].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
 
             it("then prev and next controls are enabled", () => {
                 expect(
-                    component.getByLabelText(input.a11yPreviousText)
+                    component.getByLabelText(input.a11yPreviousText),
                 ).to.not.have.attr("aria-disabled");
                 expect(
-                    component.getByLabelText(input.a11yNextText)
+                    component.getByLabelText(input.a11yNextText),
                 ).to.not.have.attr("aria-disabled");
             });
         });
@@ -516,8 +516,8 @@ describe("given a discrete carousel", () => {
             // the next button is no longer disabled.
             await waitFor(() =>
                 expect(
-                    component.getByLabelText(input.a11yNextText)
-                ).to.not.have.attr("aria-disabled")
+                    component.getByLabelText(input.a11yNextText),
+                ).to.not.have.attr("aria-disabled"),
             );
         });
 
@@ -541,7 +541,7 @@ describe("given a discrete carousel", () => {
 
             it("then it moved to the third item", () => {
                 const secondItem = component.getByText(
-                    input.items[2].renderBody.text
+                    input.items[2].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
@@ -557,14 +557,14 @@ describe("given a discrete carousel", () => {
             // the next button is no longer disabled.
             await waitFor(() =>
                 expect(
-                    component.getByLabelText(input.a11yNextText)
-                ).to.not.have.attr("aria-disabled")
+                    component.getByLabelText(input.a11yNextText),
+                ).to.not.have.attr("aria-disabled"),
             );
         });
 
         it("then it shows part of the next slide", () => {
             const thirdItem = component.getByText(
-                input.items[2].renderBody.text
+                input.items[2].renderBody.text,
             );
             const list = thirdItem.parentElement;
             const { right: slideRight } = list.getBoundingClientRect();
@@ -590,7 +590,7 @@ describe("given a discrete carousel", () => {
 
             it("then it moved to the third item", () => {
                 const secondItem = component.getByText(
-                    input.items[2].renderBody.text
+                    input.items[2].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
@@ -606,8 +606,8 @@ describe("given a discrete carousel", () => {
             // the next button is no longer disabled.
             await waitFor(() =>
                 expect(
-                    component.getByLabelText(input.a11yNextText)
-                ).to.not.have.attr("aria-disabled")
+                    component.getByLabelText(input.a11yNextText),
+                ).to.not.have.attr("aria-disabled"),
             );
         });
 
@@ -624,7 +624,7 @@ describe("given a discrete carousel", () => {
 
             it("then it moved to the third item", () => {
                 const thirdItem = component.getByText(
-                    input.items[2].renderBody.text
+                    input.items[2].renderBody.text,
                 );
                 assertAtStartOfSlide(thirdItem);
             });
@@ -644,7 +644,7 @@ describe("given a discrete carousel", () => {
             describe("when next is clicked at the end", () => {
                 beforeEach(async () => {
                     fireEvent.click(
-                        component.getByLabelText(input.a11yNextText)
+                        component.getByLabelText(input.a11yNextText),
                     );
                     await waitForCarouselUpdate();
                 });
@@ -664,7 +664,7 @@ describe("given a discrete carousel", () => {
         describe("when it is paused", () => {
             beforeEach(async () => {
                 await component.rerender(
-                    Object.assign({}, input, { paused: true })
+                    Object.assign({}, input, { paused: true }),
                 );
                 await new Promise((resolve) => setTimeout(resolve, 600));
             });
@@ -700,7 +700,7 @@ describe("given a discrete carousel", () => {
         function thenItIsOnTheFirstSlide() {
             it("then it is displaying the first item", () => {
                 const firstItem = component.getByText(
-                    input.items[0].renderBody.text
+                    input.items[0].renderBody.text,
                 );
                 assertAtStartOfSlide(firstItem);
             });
@@ -742,7 +742,7 @@ function assertIsNotVisible(item) {
     }
 
     throw new Error(
-        `Expected item ${getChildIndex(item)} to not be displayed.`
+        `Expected item ${getChildIndex(item)} to not be displayed.`,
     );
 }
 
@@ -765,8 +765,8 @@ function assertAtStartOfSlide(item) {
 
     throw new Error(
         `Expected item ${getChildIndex(
-            item
-        )} to be at the beginning of the carousel.`
+            item,
+        )} to be at the beginning of the carousel.`,
     );
 }
 
@@ -788,7 +788,7 @@ function assertAtEndOfSlide(item) {
     }
 
     throw new Error(
-        `Expected item ${getChildIndex(item)} to be at the end of the carousel.`
+        `Expected item ${getChildIndex(item)} to be at the end of the carousel.`,
     );
 }
 

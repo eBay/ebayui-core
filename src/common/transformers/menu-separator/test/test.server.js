@@ -15,13 +15,13 @@ describe("when the ebay-menu-separator tag is transformed", () => {
             code = testUtils.runTransformer(
                 transformer,
                 "<ebay-menu><@separator/></ebay-menu>",
-                templatePath
+                templatePath,
             ).code;
         } else {
             outputTemplate = testUtils.getTransformedTemplate(
                 transformer,
                 "@separator",
-                templatePath
+                templatePath,
             );
         }
     });

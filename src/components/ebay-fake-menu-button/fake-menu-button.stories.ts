@@ -132,7 +132,7 @@ export default {
                 category: "@item attribute tags",
             },
         },
-        'aria-label': {
+        "aria-label": {
             controls: { hideNoControlsWarning: true },
             description:
                 "Passed as the `aria-label` directly to the badge. Required only if badge number is provided",
@@ -227,9 +227,9 @@ Standard.parameters = {
 export const IconText = buildExtensionTemplate(IconTemplate, IconTemplateCode);
 export const CustomLabelText = buildExtensionTemplate(
     CustomLabelTemplate,
-    CustomLabelTemplateCode
+    CustomLabelTemplateCode,
 );
 export const Separator = buildExtensionTemplate(
     SeparatorTemplate,
-    SeparatorTemplateCode
+    SeparatorTemplateCode,
 );

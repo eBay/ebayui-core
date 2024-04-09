@@ -48,7 +48,7 @@ describe("filter", () => {
         const input = mock.fakeDisabled;
         const { getByText } = await render(template, input);
         expect(getByText(input.renderBody.text).closest("a")).has.attr(
-            "disabled"
+            "disabled",
         );
     });
 
@@ -56,7 +56,7 @@ describe("filter", () => {
         const input = mock.fakeSelected;
         const { getByText } = await render(template, input);
         expect(getByText(input.renderBody.text).closest("a")).contains(
-            getByText(input.a11ySelectedText, { exact: false })
+            getByText(input.a11ySelectedText, { exact: false }),
         );
     });
 

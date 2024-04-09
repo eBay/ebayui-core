@@ -22,7 +22,7 @@ describe("given a closed dialog", () => {
 
     it("then it is hidden in the DOM", () => {
         expect(component.getByRole("alertdialog", { hidden: true })).has.attr(
-            "hidden"
+            "hidden",
         );
     });
 
@@ -33,7 +33,7 @@ describe("given a closed dialog", () => {
 
         it("then it is visible in the DOM", async () => {
             await waitFor(() =>
-                expect(component.emitted("open")).has.length(1)
+                expect(component.emitted("open")).has.length(1),
             );
         });
     });
@@ -66,8 +66,8 @@ describe("given an open dialog", () => {
         it("then it is still open in the DOM", async () => {
             await waitFor(() =>
                 expect(component.getByRole("alertdialog")).does.not.have.attr(
-                    "hidden"
-                )
+                    "hidden",
+                ),
             );
         });
     });

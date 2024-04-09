@@ -47,7 +47,7 @@ export const Custom_Label = Object.assign({}, basic2Items, {
     label: {
         renderBody: createRenderBody(
             '<span class="custom_label">custom label text</span>',
-            "custom label text"
+            "custom label text",
         ),
     },
 });

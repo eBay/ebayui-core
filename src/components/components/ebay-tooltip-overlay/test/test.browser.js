@@ -25,7 +25,7 @@ describe("given tooltip button is enabled", () => {
     describe("when the close button is clicked", () => {
         beforeEach(async () => {
             await fireEvent.click(
-                component.getByLabelText(input.a11yCloseText)
+                component.getByLabelText(input.a11yCloseText),
             );
         });
 

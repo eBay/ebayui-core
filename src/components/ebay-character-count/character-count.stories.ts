@@ -79,5 +79,5 @@ export const InField = buildExtensionTemplate(InFieldTemplate, InFieldCode);
 
 export const CustomText = buildExtensionTemplate(
     CustomTextTemplate,
-    CustomTextCode
+    CustomTextCode,
 );

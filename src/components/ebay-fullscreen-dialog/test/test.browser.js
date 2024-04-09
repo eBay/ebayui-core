@@ -22,7 +22,7 @@ describe("given a closed dialog", () => {
 
     it("then it is hidden in the DOM", () => {
         expect(component.getByRole("dialog", { hidden: true })).has.attr(
-            "hidden"
+            "hidden",
         );
     });
 
@@ -33,7 +33,7 @@ describe("given a closed dialog", () => {
 
         it("then it is visible in the DOM", async () => {
             await waitFor(() =>
-                expect(component.emitted("open")).has.length(1)
+                expect(component.emitted("open")).has.length(1),
             );
         });
     });
@@ -60,7 +60,7 @@ describe("given an open dialog", () => {
     describe("when the close button is clicked", () => {
         beforeEach(async () => {
             await fireEvent.click(
-                component.getByLabelText(input.a11yCloseText)
+                component.getByLabelText(input.a11yCloseText),
             );
         });
 
@@ -80,14 +80,14 @@ describe("given an open dialog", () => {
         it("then it is hidden in the DOM", async () => {
             await waitFor(() =>
                 expect(
-                    component.getByRole("dialog", { hidden: true })
-                ).has.attr("hidden")
+                    component.getByRole("dialog", { hidden: true }),
+                ).has.attr("hidden"),
             );
         });
 
         it("then it restores the previous focus", async () => {
             await waitFor(() =>
-                expect(component.emitted("close")).has.length(1)
+                expect(component.emitted("close")).has.length(1),
             );
         });
     }

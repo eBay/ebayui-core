@@ -3,3 +3,4 @@ static/
 dist/
 docs/
 _cdn/
+__snapshots__/

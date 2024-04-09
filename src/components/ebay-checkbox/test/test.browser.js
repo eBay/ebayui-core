@@ -33,7 +33,7 @@ describe("given checkbox button is enabled", () => {
         it("then it is checked", () => {
             expect(component.getByRole("checkbox")).has.property(
                 "checked",
-                true
+                true,
             );
         });
     });
@@ -56,7 +56,7 @@ describe("given checkbox button is disabled", () => {
         it("then it remains unchecked", () => {
             expect(component.getByRole("checkbox")).has.property(
                 "checked",
-                false
+                false,
             );
         });
     });

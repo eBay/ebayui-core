@@ -21,16 +21,15 @@ const rawMarkdown = {
 export default {
     stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
     framework: "@storybook/marko-vite",
-    addons: [
-        {
-            name: "@storybook/addon-docs",
-            options: {
-                transcludeMarkdown: true,
+    addons: ["@storybook/addon-essentials", "@storybook/addon-a11y"],
+    parameters: {
+        docs: {
+            description: {
+                component: "Another description, overriding the comments",
             },
         },
-        "@storybook/addon-essentials",
-        "@storybook/addon-a11y",
-    ],
+    },
+    staticDirs: ["./static"],
     docs: {
         autodocs: true,
         defaultName: "Documentation",

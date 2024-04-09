@@ -42,7 +42,7 @@ describe("given an input textbox", () => {
                 const events = component.emitted(
                     eventName === "input"
                         ? "input-change"
-                        : eventName.toLowerCase()
+                        : eventName.toLowerCase(),
                 );
                 expect(events).has.length(1);
 
@@ -63,13 +63,13 @@ describe("given an input textbox with floating label and no value", () => {
 
     it("then component is wrapped into floating label element", () => {
         expect(component.container.firstElementChild).has.class(
-            "floating-label"
+            "floating-label",
         );
     });
 
     it("then is showing the label inline", async () => {
         expect(component.getByText(floatingLabel)).has.class(
-            "floating-label__label--inline"
+            "floating-label__label--inline",
         );
     });
 
@@ -80,7 +80,7 @@ describe("given an input textbox with floating label and no value", () => {
 
         it("then it is not showing the label inline", () => {
             expect(component.getByText(floatingLabel)).does.not.have.class(
-                "floating-label__label--inline"
+                "floating-label__label--inline",
             );
         });
 
@@ -91,7 +91,7 @@ describe("given an input textbox with floating label and no value", () => {
 
             it("then is showing the label inline", () => {
                 expect(component.getByText(floatingLabel)).has.class(
-                    "floating-label__label--inline"
+                    "floating-label__label--inline",
                 );
             });
         });

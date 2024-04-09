@@ -13,14 +13,14 @@ async function walkDirs() {
         .then(async (items) => {
             const versionsRaw = await fs.promises.readFile(
                 path.resolve(__dirname, versionsPath),
-                "utf-8"
+                "utf-8",
             );
             const versions = JSON.parse(versionsRaw);
             // eslint-disable-next-line compat/compat
             items.forEach(async (item) => {
                 const itemPath = path.resolve(
                     __dirname,
-                    path.join(parentDir, item)
+                    path.join(parentDir, item),
                 );
                 const stats = await fs.promises.stat(itemPath);
                 if (
@@ -34,7 +34,7 @@ async function walkDirs() {
                     if (value !== undefined) {
                         const readmePath = path.resolve(
                             __dirname,
-                            path.join(itemPath, "/README.md")
+                            path.join(itemPath, "/README.md"),
                         );
                         await addVersionAndWrite(readmePath, value);
                     } else {
@@ -78,7 +78,7 @@ async function addVersionAndWrite(myFilePath, newVersion) {
     await fs.promises.writeFile(
         path.resolve(__dirname, myFilePath),
         finalFile,
-        "utf-8"
+        "utf-8",
     );
 }
 

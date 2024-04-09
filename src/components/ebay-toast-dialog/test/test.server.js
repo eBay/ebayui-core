@@ -11,7 +11,7 @@ describe("toast-dialog", () => {
         const input = mock.Toast;
         const { getByRole, getByLabelText, getByText } = await render(
             template,
-            input
+            input,
         );
         const dialog = getByRole("dialog", { hidden: true });
 
@@ -19,19 +19,19 @@ describe("toast-dialog", () => {
         expect(dialog).has.class("toast-dialog");
         expect(dialog).has.class("toast-dialog--transition");
         expect(getByLabelText(input.a11yCloseText)).has.class(
-            "toast-dialog__close"
+            "toast-dialog__close",
         );
         expect(getByText(input.renderBody.text)).has.class(
-            "toast-dialog__main"
+            "toast-dialog__main",
         );
         expect(getByText(input.header.renderBody.text).parentElement).has.class(
-            "toast-dialog__header"
+            "toast-dialog__header",
         );
         expect(getByText(input.header.renderBody.text)).has.class(
-            "toast-dialog__title"
+            "toast-dialog__title",
         );
         expect(getByText(input.footer.renderBody.text)).has.class(
-            "toast-dialog__footer"
+            "toast-dialog__footer",
         );
     });
 

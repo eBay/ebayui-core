@@ -51,13 +51,13 @@ describe("given an input select with floating label and no value", () => {
 
     it("then component is wrapped into floating label element", () => {
         expect(component.container.firstElementChild).has.class(
-            "floating-label"
+            "floating-label",
         );
     });
 
     it("then is showing the label inline", () => {
         expect(component.getByText(input.floatingLabel)).has.class(
-            "floating-label__label--inline"
+            "floating-label__label--inline",
         );
     });
 
@@ -68,7 +68,7 @@ describe("given an input select with floating label and no value", () => {
 
         it("then it is not showing the label inline", () => {
             expect(
-                component.getByText(input.floatingLabel)
+                component.getByText(input.floatingLabel),
             ).does.not.have.class("floating-label__label--inline");
         });
 
@@ -79,7 +79,7 @@ describe("given an input select with floating label and no value", () => {
 
             it("then is showing the label inline", () => {
                 expect(component.getByText(input.floatingLabel)).has.class(
-                    "floating-label__label--inline"
+                    "floating-label__label--inline",
                 );
             });
         });
@@ -105,13 +105,13 @@ describe("given an input select with floating label and no value with all option
 
     it("then component is wrapped into floating label element", () => {
         expect(component.container.firstElementChild).has.class(
-            "floating-label"
+            "floating-label",
         );
     });
 
     it("then is showing the label not inline", () => {
         expect(component.getByText(input.floatingLabel)).does.not.have.class(
-            "floating-label__label--inline"
+            "floating-label__label--inline",
         );
     });
 });

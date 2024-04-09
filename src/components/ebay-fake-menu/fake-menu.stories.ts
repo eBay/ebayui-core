@@ -95,7 +95,7 @@ export default {
             },
             description: "used as the number to be placed in the badge",
         },
-        'aria-label': {
+        "aria-label": {
             controls: { hideNoControlsWarning: true },
             description:
                 "Passed as the `aria-label` directly to the badge. Required only if badge number is provided",
@@ -156,13 +156,13 @@ Standard.parameters = {
 
 export const ItemMatches = buildExtensionTemplate(
     ItemMatchesTemplate,
-    ItemMatchesTemplateCode
+    ItemMatchesTemplateCode,
 );
 export const Sprites = buildExtensionTemplate(
     SpritesTemplate,
-    SpritesTemplateCode
+    SpritesTemplateCode,
 );
 export const Separator = buildExtensionTemplate(
     SeparatorTemplate,
-    SeparatorTemplateCode
+    SeparatorTemplateCode,
 );

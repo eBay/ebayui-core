@@ -46,5 +46,5 @@ export default {
 
 export const Default = buildExtensionTemplate(
     DefaultTemplate,
-    DefaultTemplateCode
+    DefaultTemplateCode,
 );

@@ -56,6 +56,9 @@ $ {
         <defs key="defs">
             <if(!isBrowser)>
                 $!{themes()}
+                <if(_def)>
+                    $!{_def().server}
+                </if>
             </if>
         </defs>
     </if>

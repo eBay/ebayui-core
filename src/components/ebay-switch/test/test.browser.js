@@ -17,7 +17,7 @@ describe("given switch button is enabled", () => {
     describe("when switch button is clicked", () => {
         beforeEach(async () => {
             await fireEvent.click(
-                component.getByRole("switch", { hidden: true })
+                component.getByRole("switch", { hidden: true }),
             );
         });
 
@@ -42,7 +42,7 @@ describe("given switch button is disabled", () => {
     describe("when switch button is clicked", () => {
         beforeEach(async () => {
             await fireEvent.click(
-                component.getByRole("switch", { hidden: true })
+                component.getByRole("switch", { hidden: true }),
             );
         });
 

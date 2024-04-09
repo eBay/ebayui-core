@@ -13,11 +13,14 @@ describe("breadcrumbs", () => {
 
         expect(getByLabelText(input.a11yHeadingText)).has.attr(
             "role",
-            "navigation"
+            "navigation",
         );
 
         input.items.forEach((item) =>
-            expect(getByText(item.renderBody.text)).has.property("tagName", "A")
+            expect(getByText(item.renderBody.text)).has.property(
+                "tagName",
+                "A",
+            ),
         );
     });
 
@@ -44,7 +47,7 @@ describe("breadcrumbs", () => {
         const { getByText } = await render(template, input);
         expect(getByText(input.a11yHeadingText)).has.property(
             "tagName",
-            input.a11yHeadingTag.toUpperCase()
+            input.a11yHeadingTag.toUpperCase(),
         );
     });
 
@@ -54,8 +57,8 @@ describe("breadcrumbs", () => {
         input.items.forEach((item) =>
             expect(getByText(item.renderBody.text)).has.property(
                 "tagName",
-                "BUTTON"
-            )
+                "BUTTON",
+            ),
         );
     });
 });

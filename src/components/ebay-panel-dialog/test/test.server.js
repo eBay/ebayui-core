@@ -11,17 +11,17 @@ describe("dialog", () => {
         const input = mock.Dialog;
         const { getByRole, getByLabelText, getByText } = await render(
             template,
-            input
+            input,
         );
         const dialog = getByRole("dialog", { hidden: true });
 
         expect(dialog).has.attr("hidden");
         expect(dialog).has.class("panel-dialog");
         expect(getByLabelText(input.a11yCloseText)).has.class(
-            "panel-dialog__close"
+            "panel-dialog__close",
         );
         expect(getByText(input.renderBody.text)).has.class(
-            "panel-dialog__main"
+            "panel-dialog__main",
         );
     });
 
@@ -29,23 +29,23 @@ describe("dialog", () => {
         const input = mock.headerFooterDialog;
         const { getByRole, getByLabelText, getByText } = await render(
             template,
-            input
+            input,
         );
         const dialog = getByRole("dialog", { hidden: true });
 
         expect(dialog).has.attr("hidden");
         expect(dialog).has.class("panel-dialog");
         expect(getByLabelText(input.a11yCloseText)).has.class(
-            "panel-dialog__close"
+            "panel-dialog__close",
         );
         expect(getByText(input.renderBody.text)).has.class(
-            "panel-dialog__main"
+            "panel-dialog__main",
         );
         expect(getByText(input.header.renderBody.text).parentElement).has.class(
-            "panel-dialog__header"
+            "panel-dialog__header",
         );
         expect(getByText(input.footer.renderBody.text)).has.class(
-            "panel-dialog__footer"
+            "panel-dialog__footer",
         );
     });
 

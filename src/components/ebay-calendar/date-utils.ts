@@ -32,7 +32,8 @@ export function getWeekdayInfo(localeName: string) {
 export function dateArgToISO(arg: DateConstructor["arguments"]) {
     if (!arg) return undefined;
     if (/^\d\d\d\d-\d\d-\d\d$/g.test(arg)) return arg;
-    return toISO(new Date(arg));
+    const date = toISO(new Date(arg));
+    return /^\d\d\d\d-\d\d-\d\d$/g.test(date) ? date : undefined;
 }
 
 export function toISO(date: Date): DayISO {

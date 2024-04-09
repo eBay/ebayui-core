@@ -25,7 +25,7 @@ try {
 
 function testPassThroughAttributes(
     template,
-    { input, child, getClassAndStyleEl } = {}
+    { input, child, getClassAndStyleEl } = {},
 ) {
     it(`passes through additional html attributes${
         child ? ` from child ${child.name}` : ""
@@ -69,7 +69,7 @@ function getTransformedTemplate(transformer, srcString, componentPath) {
         componentPath,
         {
             output: "html",
-        }
+        },
     );
     if (code) {
         return code;
@@ -88,7 +88,8 @@ function runTransformer(transformer, srcString, componentPath) {
         componentPath,
         {
             output: "html",
-        }
+            writeVersionComment: false,
+        },
     );
     if (code) {
         return { code };
@@ -105,7 +106,7 @@ function runMigrateTransformer(transformer, srcString, componentPath) {
         componentPath,
         {
             output: "migrate",
-        }
+        },
     );
     if (context && templateAST) {
         transformer(templateAST.body.array[0], context);
@@ -122,7 +123,7 @@ function getTransformerData(srcString, componentPath, options) {
         const { code } = compiler.compileSync(
             srcString,
             componentPath,
-            options
+            options,
         );
         return { code };
     }
@@ -130,7 +131,7 @@ function getTransformerData(srcString, componentPath, options) {
     const context = new CompileContext(
         srcString,
         componentPath,
-        Builder.DEFAULT_BUILDER
+        Builder.DEFAULT_BUILDER,
     );
     return { context, templateAST };
 }

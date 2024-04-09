@@ -25,7 +25,7 @@ describe("given the menu is in the default state", () => {
         it("then it expands", async () => {
             expect(component.getByRole("button")).to.have.attr(
                 "aria-expanded",
-                "true"
+                "true",
             );
         });
 
@@ -41,7 +41,7 @@ describe("given the menu is in the default state", () => {
             it("then it collapses", async () => {
                 expect(component.getByRole("button")).to.have.attr(
                     "aria-expanded",
-                    "false"
+                    "false",
                 );
             });
 
@@ -71,14 +71,14 @@ describe("given the menu is in the default state", () => {
     describe("when re-rendered with expanded set to false", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, input, { expanded: false })
+                Object.assign({}, input, { expanded: false }),
             );
         });
 
         it("then it remains collapsed", () => {
             expect(component.getByRole("button")).to.have.attr(
                 "aria-expanded",
-                "false"
+                "false",
             );
         });
 
@@ -91,14 +91,14 @@ describe("given the menu is in the default state", () => {
     describe.skip("when re-rendered with expanded set to true", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, input, { expanded: true })
+                Object.assign({}, input, { expanded: true }),
             );
         });
 
         it("then it expands", () => {
             expect(component.getByRole("button")).to.have.attr(
                 "aria-expanded",
-                "true"
+                "true",
             );
         });
 
@@ -122,14 +122,14 @@ describe("given the menu is in the expanded state", () => {
     describe.skip("when re-rendered with expanded set to true", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, input, { expanded: true })
+                Object.assign({}, input, { expanded: true }),
             );
         });
 
         it("then it remains expanded", () => {
             expect(component.getByRole("button")).to.have.attr(
                 "aria-expanded",
-                "true"
+                "true",
             );
         });
 
@@ -142,14 +142,14 @@ describe("given the menu is in the expanded state", () => {
     describe.skip("when re-rendered with expanded set to false", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, input, { expanded: false })
+                Object.assign({}, input, { expanded: false }),
             );
         });
 
         it("then it expands", () => {
             expect(component.getByRole("button")).to.have.attr(
                 "aria-expanded",
-                "false"
+                "false",
             );
         });
 
@@ -188,7 +188,7 @@ describe("given the menu is in the expanded state", () => {
         it("then it collapses", () => {
             expect(component.getByRole("button")).to.have.attr(
                 "aria-expanded",
-                "false"
+                "false",
             );
         });
 
@@ -208,7 +208,7 @@ describe("given the menu is in the expanded state", () => {
         it("then it collapses", () => {
             expect(component.getByRole("button")).to.have.attr(
                 "aria-expanded",
-                "false"
+                "false",
             );
         });
 

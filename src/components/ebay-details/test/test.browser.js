@@ -22,7 +22,7 @@ describe("given the details is in the default state", () => {
 
     it("should render with open false", () => {
         expect(
-            component.getByText(input.text).closest("details").open
+            component.getByText(input.text).closest("details").open,
         ).to.equal(false);
     });
 });
@@ -36,7 +36,7 @@ describe("given the details is in the open state", () => {
 
     it("should render with open false", () => {
         expect(
-            component.getByText(input.text).closest("details").open
+            component.getByText(input.text).closest("details").open,
         ).to.equal(true);
     });
 });
@@ -67,13 +67,13 @@ describe("given the details is in the default state and click is triggered", () 
 
         it("then it should have open true", () => {
             expect(
-                component.getByText(detailsText).closest("details").open
+                component.getByText(detailsText).closest("details").open,
             ).to.equal(true);
         });
         describe("click after rerender", () => {
             beforeEach(async () => {
                 await fireEvent.click(
-                    component.getByText(detailsText).parentNode
+                    component.getByText(detailsText).parentNode,
                 );
             });
 
@@ -111,13 +111,13 @@ describe("given the details is in the open state and click is triggered", () => 
 
         it("then it should have open true", () => {
             expect(
-                component.getByText(detailsText).closest("details").open
+                component.getByText(detailsText).closest("details").open,
             ).to.equal(false);
         });
         describe("click after rerender", () => {
             beforeEach(async () => {
                 await fireEvent.click(
-                    component.getByText(detailsText).parentNode
+                    component.getByText(detailsText).parentNode,
                 );
             });
             it("then it should be open", async () => {

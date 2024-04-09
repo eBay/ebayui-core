@@ -108,6 +108,16 @@ export default {
             description:
                 'Will collapse whole menu when an item is selected in menu. Typically used in `type="radio"`',
         },
+        partiallyDisabled: {
+            description:
+                "programmatically disabled, but remains keyboard focusable",
+            control: { type: "boolean" },
+            table: {
+                defaultValue: {
+                    summary: "false",
+                },
+            },
+        },
         prefixId: {
             control: { type: "text" },
             description:
@@ -146,7 +156,7 @@ export default {
                 category: "@item attribute tags",
             },
         },
-        'aria-label': {
+        "aria-label": {
             controls: { hideNoControlsWarning: true },
             description:
                 "Passed as the `aria-label` directly to the badge. Required only if badge number is provided",
@@ -227,18 +237,17 @@ Default.parameters = {
 export const IconText = buildExtensionTemplate(IconTemplate, IconTemplateCode);
 export const Separator = buildExtensionTemplate(
     SeparatorTemplate,
-    SeparatorTemplateCode
+    SeparatorTemplateCode,
 );
 export const Typeahead = buildExtensionTemplate(
     TypeaheadTemplate,
-    TypeaheadTemplateCode
+    TypeaheadTemplateCode,
 );
 export const Badged = buildExtensionTemplate(
     BadgedTemplate,
-    BadgedTemplateCode
+    BadgedTemplateCode,
 );
 export const PrefixLabel = buildExtensionTemplate(
     PrefixLabelTemplate,
-    PrefixLabelTemplateCode
+    PrefixLabelTemplateCode,
 );
-

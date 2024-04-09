@@ -13,7 +13,7 @@ describe("section-notice", () => {
         expect(status).has.class("section-notice__header");
 
         const containerUsingLabel = status.closest(
-            `[aria-labelledby="${status.id}"]`
+            `[aria-labelledby="${status.id}"]`,
         );
         expect(containerUsingLabel).has.class("section-notice");
 

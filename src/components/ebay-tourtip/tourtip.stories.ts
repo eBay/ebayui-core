@@ -22,18 +22,25 @@ export default {
     argTypes: {
         placement: {
             options: [
-                'top', 'right', 'bottom', 'left',
-                'top-start', 'right-start', 'bottom-start', 'left-start',
-                'top-end', 'right-end', 'bottom-end', 'left-end',
-           ],
+                "top",
+                "right",
+                "bottom",
+                "left",
+                "top-start",
+                "right-start",
+                "bottom-start",
+                "left-start",
+                "top-end",
+                "right-end",
+                "bottom-end",
+                "left-end",
+            ],
             control: { type: "select" },
-            description:
-                "places tourtip position",
+            description: "places tourtip position",
         },
         offset: {
             control: { type: "number" },
-            description:
-                "offsets tourtip position",
+            description: "offsets tourtip position",
         },
         a11yCloseText: {
             control: { type: "text" },
@@ -67,6 +74,28 @@ export default {
                 "The footer to be displayed under the tourtip. Takes an index value which can display the left portion of the footer.",
             table: {
                 category: "@attribute tags",
+            },
+        },
+        noFlip: {
+            control: { type: "boolean" },
+            description: "disables flipping tourtip when its offscreen",
+            table: {
+                defaultValue: { summary: "false" },
+            },
+        },
+        noShift: {
+            control: { type: "boolean" },
+            description: "disables shifting tourtip when its offscreen",
+            table: {
+                defaultValue: { summary: "true" },
+            },
+        },
+        notInline: {
+            control: { type: "boolean" },
+            description:
+                "disables moving tourtip to be inline with content when it is rendered",
+            table: {
+                defaultValue: { summary: "false" },
             },
         },
         open: {

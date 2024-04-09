@@ -11,19 +11,6 @@ export interface Input {
     a11yPlayText?: string;
 }
 
-$ const {
-    items,
-    index,
-    itemsPerSlide,
-    gap,
-    a11yPreviousText,
-    a11yNextText,
-    autoplay,
-    paused,
-    a11yPauseText,
-    a11yPlayText,
-} = input;
-
 <style>
     .demo2-card {
         color: #cdf4fd;
@@ -35,19 +22,25 @@ $ const {
         text-align: center;
     }
 </style>
-
 <ebay-carousel
-    gap=gap
-    itemsPerSlide=itemsPerSlide
-    index=index
-    paused=paused
-    autoplay=(autoplay || true)
-    a11yPreviousText=a11yPreviousText
-    a11yNextText=a11yNextText
-    a11yPlayText=a11yPlayText
-    a11yPauseText=a11yPauseText
-    >
-    <for|i| from=0 to=(items - 1)>
-        <@item class=`demo2-card`>Card ${i + 1}</@item>
-    </for>
+    ...input
+    itemsPerSlide=(input.itemsPerSlide || 1)
+    autoplay=(input.autoplay || true)
+    on-move("emit", "move")
+    on-next("emit", "next")
+    on-previous("emit", "previous")
+    on-scroll("emit", "scroll")
+    on-slide("emit", "slide")
+    on-play("emit", "play")
+    on-pause("emit", "pause")>
+    <@item style={ width: 400 } class="demo2-card">Card 1</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 2</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 3</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 4</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 5</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 6</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 7</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 8</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 9</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 10</@item>
 </ebay-carousel>

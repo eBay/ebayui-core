@@ -19,7 +19,7 @@ describe("given a default character count", () => {
     describe("when it is rerendered", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, Default.args, { value: "hello world" })
+                Object.assign({}, Default.args, { value: "hello world" }),
             );
             await new Promise((resolve) => setTimeout(resolve, 600));
         });
@@ -40,7 +40,7 @@ describe("given a default character count", () => {
                 Object.assign({}, Default.args, {
                     value: "hello world",
                     max: "5",
-                })
+                }),
             );
             await new Promise((resolve) => setTimeout(resolve, 600));
         });
@@ -58,7 +58,7 @@ describe("given a default character count", () => {
     describe("when it is rerendered with a number value", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, Default.args, { value: 12 })
+                Object.assign({}, Default.args, { value: 12 }),
             );
             await new Promise((resolve) => setTimeout(resolve, 600));
         });
@@ -76,7 +76,7 @@ describe("given a default character count", () => {
     describe("when it is rerendered with an invalid value", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, Default.args, { value: { object: "123" } })
+                Object.assign({}, Default.args, { value: { object: "123" } }),
             );
             await new Promise((resolve) => setTimeout(resolve, 600));
         });
@@ -94,13 +94,13 @@ describe("given a default character count", () => {
     describe("when it is rerendered twice", () => {
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, Default.args, { value: 3 })
+                Object.assign({}, Default.args, { value: 3 }),
             );
             await component.rerender(
-                Object.assign({}, Default.args, { value: 4 })
+                Object.assign({}, Default.args, { value: 4 }),
             );
             await component.rerender(
-                Object.assign({}, Default.args, { value: 5 })
+                Object.assign({}, Default.args, { value: 5 }),
             );
             await new Promise((resolve) => setTimeout(resolve, 600));
         });

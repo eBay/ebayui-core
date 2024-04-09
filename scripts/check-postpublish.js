@@ -10,7 +10,7 @@ const rootDir = path.join(__dirname, "..");
 async function readMarkoJSON() {
     return await fs.promises.readFile(
         path.join(rootDir, "marko.json"),
-        "utf-8"
+        "utf-8",
     );
 }
 
@@ -22,7 +22,7 @@ async function run() {
     const postContent = await readMarkoJSON();
     if (preContent !== postContent) {
         console.error(
-            'marko.json file changed, publish files are checked in. Run "npm run postpublish" to fix.'
+            'marko.json file changed, publish files are checked in. Run "npm run postpublish" to fix.',
         );
         process.exit(1);
     }

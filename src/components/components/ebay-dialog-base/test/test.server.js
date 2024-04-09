@@ -12,15 +12,15 @@ describe("dialog-base", () => {
         const input = mock.dialog;
         const { getByRole, getByLabelText, getByText } = await render(
             template,
-            input
+            input,
         );
 
         expect(getByRole("dialog", { hidden: true })).has.attr("hidden");
         expect(getByLabelText(input.a11yCloseText)).has.class(
-            "lightbox-dialog__close"
+            "lightbox-dialog__close",
         );
         expect(getByText(input.renderBody.text)).has.class(
-            "lightbox-dialog__main"
+            "lightbox-dialog__main",
         );
     });
 
@@ -28,22 +28,22 @@ describe("dialog-base", () => {
         const input = mock.headerFooterDialog;
         const { getByRole, getByLabelText, getByText } = await render(
             template,
-            input
+            input,
         );
 
         expect(getByRole("dialog", { hidden: true })).has.attr("hidden");
         expect(getByLabelText(input.a11yCloseText)).has.class(
-            "lightbox-dialog__close"
+            "lightbox-dialog__close",
         );
         expect(getByText(input.renderBody.text)).has.class(
-            "lightbox-dialog__main"
+            "lightbox-dialog__main",
         );
         expect(getByText(input.header.renderBody.text)).has.tagName("H2");
         expect(getByText(input.header.renderBody.text).parentElement).has.class(
-            "lightbox-dialog__header"
+            "lightbox-dialog__header",
         );
         expect(getByText(input.footer.renderBody.text)).has.class(
-            "lightbox-dialog__footer"
+            "lightbox-dialog__footer",
         );
     });
 
@@ -57,11 +57,11 @@ describe("dialog-base", () => {
         const input = mock.dialog;
         const { getByRole } = await render(
             template,
-            Object.assign({}, input, { isModal: false })
+            Object.assign({}, input, { isModal: false }),
         );
         expect(getByRole("dialog", { hidden: true })).has.attribute(
             "aria-live",
-            "polite"
+            "polite",
         );
     });
 

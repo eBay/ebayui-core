@@ -14,7 +14,7 @@ describe("page-notice", () => {
         expect(status).has.class("page-notice__header");
 
         const containerUsingLabel = status.closest(
-            `[aria-labelledby="${status.id}"]`
+            `[aria-labelledby="${status.id}"]`,
         );
         expect(containerUsingLabel).has.class("page-notice--attention");
 
@@ -35,7 +35,7 @@ describe("page-notice", () => {
         const { getByLabelText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
         const containerUsingLabel = status.closest(
-            `[aria-labelledby="${status.id}"]`
+            `[aria-labelledby="${status.id}"]`,
         );
         expect(containerUsingLabel).has.class(`page-notice--${input.status}`);
     });
@@ -66,7 +66,7 @@ describe("page-notice", () => {
         const status = getByLabelText(input.a11yText).parentElement;
 
         const containerUsingLabel = status.closest(
-            `[aria-labelledBy="${status.id}"]`
+            `[aria-labelledBy="${status.id}"]`,
         );
         expect(containerUsingLabel).has.class("page-notice--celebration");
 

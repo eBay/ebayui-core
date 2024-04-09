@@ -37,6 +37,9 @@
             "left-end"
         ]
     },
+    "@no-shift": "boolean",
+    "@not-inline": "boolean",
+    "@no-flip": "boolean",
     "@no-hover": "boolean",
     "@heading <heading>": {
         "attribute-groups": ["html-attributes"],

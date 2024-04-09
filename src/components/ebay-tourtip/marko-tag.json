@@ -37,6 +37,9 @@
             "left-end"
         ]
     },
+    "@no-shift": "boolean",
+    "@not-inline": "boolean",
+    "@no-flip": "boolean",
     "@a11y-close-text": "string",
     "@host <host>": {
         "attribute-groups": ["html-attributes"],

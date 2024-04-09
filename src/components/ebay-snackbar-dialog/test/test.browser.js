@@ -41,7 +41,7 @@ describe("given an open snackbar", () => {
     describe("focus and mouseenter prevent closing it until all events", () => {
         it("is not closed", async () => {
             await fireEvent.mouseEnter(
-                component.getByText(/action/i).parentElement
+                component.getByText(/action/i).parentElement,
             );
             await fireEvent.focus(component.getByText(/action/i).parentElement);
             await fireEvent.blur(component.getByText(/action/i).parentElement);
@@ -61,7 +61,7 @@ describe("given a closed snackbar", () => {
 
     it("then it is hidden in the DOM", () => {
         expect(component.getByRole("dialog", { hidden: true })).to.have.attr(
-            "hidden"
+            "hidden",
         );
     });
 });

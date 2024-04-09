@@ -11,18 +11,18 @@ concurrency:
     cancel-in-progress: true
 
 permissions:
-  actions: write
-  checks: write
-  contents: write
-  deployments: write
-  discussions: write
-  issues: write
-  packages: write
-  id-token: write
-  pull-requests: write
-  repository-projects: write
-  security-events: write
-  statuses: write
+    actions: write
+    checks: write
+    contents: write
+    deployments: write
+    discussions: write
+    issues: write
+    packages: write
+    id-token: write
+    pull-requests: write
+    repository-projects: write
+    security-events: write
+    statuses: write
 
 jobs:
     build:
@@ -68,7 +68,13 @@ jobs:
                   node-version: "18"
                   cache: npm
             - name: Install dependencies
-              run: npm ci
+              run: npm i
+            - name: Enter prerelease mode
+              if: ${{ github.ref != 'refs/heads/master' }}
+              run: npm run prerelease:start
+            - name: Exit prerelease mode
+              if: ${{ github.ref == 'refs/heads/master' }}
+              run: npm run prerelease:end
             - name: Release
               id: changesets
               uses: changesets/action@v1

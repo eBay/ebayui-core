@@ -23,7 +23,7 @@ function transform(el, context) {
             if (child.type === "HtmlElement" && child.hasAttribute("w-bind")) {
                 child.setAttributeValue(
                     "data-ebayui",
-                    context.builder.literal(true)
+                    context.builder.literal(true),
                 );
             }
         });

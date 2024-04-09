@@ -6,6 +6,7 @@ interface SplitButtonInput extends Omit<MenuButtonInput, `on${string}`> {
     size?: ButtonInput["size"];
     disabled?: ButtonInput["disabled"];
     priority?: ButtonInput["priority"];
+    partiallyDisabled?: ButtonInput["partiallyDisabled"];
     "body-state"?: ButtonInput["bodyState"];
     href?: ButtonInput["href"];
     "a11y-button-loading-text"?: ButtonInput["a11yText"];

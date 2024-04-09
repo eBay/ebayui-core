@@ -26,7 +26,7 @@ describe("inline-notice", () => {
         const { getByLabelText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
         expect(status.parentElement).has.class(
-            `inline-notice--${input.status}`
+            `inline-notice--${input.status}`,
         );
     });
 

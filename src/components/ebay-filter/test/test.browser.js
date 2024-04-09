@@ -18,7 +18,7 @@ describe("given filter is enabled", () => {
 
     it("then it is not selected", () => {
         expect(component.getByRole("button")).does.not.have.attr(
-            "aria-pressed"
+            "aria-pressed",
         );
     });
 
@@ -38,7 +38,7 @@ describe("given filter is enabled", () => {
         it("then it is selected", () => {
             expect(component.getByRole("button")).has.attr(
                 "aria-pressed",
-                "true"
+                "true",
             );
         });
 
@@ -49,7 +49,7 @@ describe("given filter is enabled", () => {
 
             it("then it is not selected", () => {
                 expect(component.getByRole("button")).does.not.have.attr(
-                    "aria-pressed"
+                    "aria-pressed",
                 );
             });
         });

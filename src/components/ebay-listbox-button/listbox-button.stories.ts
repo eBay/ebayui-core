@@ -10,8 +10,6 @@ import WithDescriptionTemplateCode from "./examples/with-description.marko?raw";
 import WithErrorTemplate from "./examples/with-error.marko";
 import WithErrorTemplateCode from "./examples/with-error.marko?raw";
 
-
-
 const Template = (args) => ({
     input: addRenderBodies(args),
 });
@@ -183,11 +181,10 @@ Default.parameters = {
 
 export const withDescription = buildExtensionTemplate(
     WithDescriptionTemplate,
-    WithDescriptionTemplateCode
+    WithDescriptionTemplateCode,
 );
 
 export const withError = buildExtensionTemplate(
     WithErrorTemplate,
-    WithErrorTemplateCode
+    WithErrorTemplateCode,
 );
-

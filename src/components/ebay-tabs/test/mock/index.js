@@ -18,7 +18,7 @@ export const basic3Headings_3Panels_1Index = Object.assign(
     basic3Headings_3Panels_No_Index,
     {
         selectedIndex: 1,
-    }
+    },
 );
 
 export const basic3Headings_3Panels_2Index = Object.assign(
@@ -26,7 +26,7 @@ export const basic3Headings_3Panels_2Index = Object.assign(
     basic3Headings_3Panels_No_Index,
     {
         selectedIndex: 2,
-    }
+    },
 );
 
 export const basic3Headings_3Panels_ActivationManual = Object.assign(
@@ -34,7 +34,7 @@ export const basic3Headings_3Panels_ActivationManual = Object.assign(
     basic3Headings_3Panels_No_Index,
     {
         activation: "manual",
-    }
+    },
 );
 
 export const fake3HeadingsNoIndex = {

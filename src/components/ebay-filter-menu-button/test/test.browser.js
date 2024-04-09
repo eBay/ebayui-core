@@ -57,7 +57,7 @@ describe("given the filter menu is in the default state", () => {
             await component.rerender(
                 Object.assign({}, addRenderBodies(Default.args), {
                     expanded: false,
-                })
+                }),
             );
         });
 
@@ -76,7 +76,7 @@ describe("given the filter menu is in the default state", () => {
             await component.rerender(
                 Object.assign({}, addRenderBodies(Default.args), {
                     expanded: true,
-                })
+                }),
             );
         });
 
@@ -114,7 +114,7 @@ describe("given the menu is in the expanded state", () => {
             await component.rerender(
                 Object.assign({}, addRenderBodies(Default.args), {
                     expanded: true,
-                })
+                }),
             );
         });
 
@@ -133,7 +133,7 @@ describe("given the menu is in the expanded state", () => {
             await component.rerender(
                 Object.assign({}, addRenderBodies(Default.args), {
                     expanded: false,
-                })
+                }),
             );
         });
 
@@ -270,7 +270,7 @@ describe("given the menu is in the expanded state", () => {
 
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, Default.args, { items: newItems })
+                Object.assign({}, Default.args, { items: newItems }),
             );
             await fireEvent.click(component.getByText(fourthItem));
         });

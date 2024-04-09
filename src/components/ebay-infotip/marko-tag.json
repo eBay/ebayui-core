@@ -42,6 +42,9 @@
     },
     "@aria-label": "string",
     "@variant": "string",
+    "@no-shift": "boolean",
+    "@not-inline": "boolean",
+    "@no-flip": "boolean",
     "@a11y-close-button-text": "string",
     "@icon <icon>": {
         "attribute-groups": ["html-attributes"],

@@ -1,0 +1,23 @@
+$ const {
+    a11yRoleDescription = "Notice",
+    status,
+    class: inputClass,
+    variant,
+    iconVariant,
+    ...noticeBaseInput
+} = input;
+
+<if(!state.dismissed)>
+
+    <ebay-notice-base
+        ...noticeBaseInput
+        role='region'
+        prefix-class='education-notice'
+        type='section'
+        main-root='div'
+        iconClass=[iconVariant === 'prominent' && 'icon--prominent']
+        a11yRoleDescription=a11yRoleDescription
+        class=[variant === 'prominent' && 'education-notice--prominent', inputClass]
+        on-dismiss('onDismiss')
+    />
+</if>
