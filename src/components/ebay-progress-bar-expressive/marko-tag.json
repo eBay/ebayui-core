@@ -10,7 +10,6 @@
             "targetProperty": null,
             "type": "expression"
         },
-        "@text": "string",
         "@duration": "number"
     },
     "@size": {
