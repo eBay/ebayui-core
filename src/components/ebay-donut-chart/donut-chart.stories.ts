@@ -17,6 +17,7 @@ export default {
                 component: Readme,
             },
         },
+        layout: "fullscreen"
     },
     argTypes: {
         title: {

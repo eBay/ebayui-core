@@ -218,6 +218,7 @@ class DonutChart extends Marko.Component<Input, State> {
                     value: `${this.point.y}`,
                 });
             },
+            hideDelay: 250,
             useHTML: true,
             backgroundColor: "transparent",
             padding: 0,
