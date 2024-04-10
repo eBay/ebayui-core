@@ -15,9 +15,9 @@ class {
     }
 }
 
-<dl class="ebay-donut-chart__legend">
+<ul class="ebay-donut-chart__legend">
     <for|item, index| of=input.items>
-        <div class=[
+        <li tabindex=0 class=[
             "ebay-donut-chart__legend-item",
             input.focusIndex !== null &&
                 input.focusIndex !== index &&
@@ -31,17 +31,17 @@ class {
                 on-focus("handleFocus", index)
                 on-blur("handleBlur")
             >
-                <dt class="ebay-donut-chart__legend-label">
+                <div role="term" class="ebay-donut-chart__legend-label">
                     <div class=[
                         "ebay-donut-chart__legend-symbol",
                         `ebay-donut-chart__legend-symbol--${item.symbolClass}`,
                     ]/>
                     ${item.name}
-                </dt>
-                <dd class="ebay-donut-chart__legend-value">
+                </div>
+                <div role="definition" class="ebay-donut-chart__legend-value">
                     ${item.value}
-                </dd>
+                </div>
             </button>
-        </div>
+        </li>
     </for>
-</dl>
+</ul>
