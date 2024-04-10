@@ -10,27 +10,27 @@ $ const {
 } = input;
 
 <div
-    class=[inputClass, "ebay-donut-chart-container"]
+    class=[inputClass, "donut-chart-container"]
     ...processHtmlAttributes(htmlInput)
 >
-    <div class="ebay-donut-chart">
-        <div class="ebay-donut-chart__title-container">
+    <div class="donut-chart">
+        <div class="donut-chart__title-container">
             ${title}
         </div>
-        <div class="ebay-donut-chart__metric-container">
-            <div class="ebay-donut-chart__metric-value">
+        <div class="donut-chart__metric-container">
+            <div class="donut-chart__metric-value">
                 ${metricValue}
             </div>
-            <div class="ebay-donut-chart__metric-label">
+            <div class="donut-chart__metric-label">
                 ${metricLabel}
             </div>
         </div>
         <div
             id=component.getContainerId()
-            class="ebay-donut-chart__graph-container"
+            class="donut-chart__graph-container"
             no-update
         />
-        <div class="ebay-donut-chart__legend-container">
+        <div class="donut-chart__legend-container">
             <ebay-chart-legend
                 items=component.getLegendItems()
                 focusIndex=state.activeIndex

@@ -1,5 +1,5 @@
 // Chart layout
-.ebay-donut-chart {
+.donut-chart {
     width: 100%;
     max-width: 600px;
     display: grid;
@@ -13,21 +13,22 @@
         "legend legend";
 }
 
-.ebay-donut-chart-container {
+// Container
+.donut-chart-container {
     container-name: donut-chart-container;
     container-type: inline-size;
     width: 100%;
 }
 
 // Title
-.ebay-donut-chart__title-container {
+.donut-chart__title-container {
     grid-area: title;
     font-size: var(--font-size-medium);
     font-weight: var(--font-weight-bold);
 }
 
 // Graph
-.ebay-donut-chart__graph-container {
+.donut-chart__graph-container {
     grid-area: graph;
     position: relative;
     align-self: flex-end;
@@ -36,28 +37,28 @@
 }
 
 // Metrics
-.ebay-donut-chart__metric-container {
+.donut-chart__metric-container {
     grid-area: metric;
 }
 
-.ebay-donut-chart__metric-container .ebay-donut-chart__metric-value {
+.donut-chart__metric-container .donut-chart__metric-value {
     font-size: var(--font-size-giant-1);
     font-weight: var(--font-weight-bold);
 }
 
-.ebay-donut-chart__metric-container .ebay-donut-chart__metric-label {
+.donut-chart__metric-container .donut-chart__metric-label {
     font-size: var(--font-size-regular);
 }
 
-// Legend
-.ebay-donut-chart__legend-container {
+// Legend container
+.donut-chart__legend-container {
     grid-area: legend;
     align-self: flex-end;
 }
 
 // Container
 @container (width > 450px) {
-    .ebay-donut-chart {
+    .donut-chart {
         width: 100%;
         grid-template-rows: auto 1fr auto;
         grid-template-columns: 1fr minmax(210px, 1fr);
@@ -69,11 +70,11 @@
             "legend graph";
     }
 
-    .ebay-donut-chart__graph-container {
+    .donut-chart__graph-container {
         min-height: 210px;
     }
 
-    .ebay-donut-chart__legend-container {
+    .donut-chart__legend-container {
         margin-top: var(--spacing-100);
     }
 }

@@ -8,27 +8,12 @@ import {
 import { ebayDonut } from "../../common/charts/donut";
 import type { WithNormalizedProps } from "../../global";
 import tooltipTemplate from "./donut-tooltip.marko";
+import type { LegendItem } from "../ebay-chart-legend/component";
 import type HighchartsTypes from "highcharts";
 declare const Highcharts: typeof HighchartsTypes;
 
-// Highcharts CDN URLs
-// These are temporary until 11.4.0 is on ebay cdn
-// TODO: Remove these and include "11.4.0" as version input instead once it's on ebay cdn
-const highcharts11_4_0 =
-    "https://cdnjs.cloudflare.com/ajax/libs/highcharts/11.4.0/highcharts.js";
-const accessibility11_4_0 =
-    "https://cdnjs.cloudflare.com/ajax/libs/highcharts/11.4.0/modules/accessibility.js";
-const patternFill11_4_0 =
-    "https://cdnjs.cloudflare.com/ajax/libs/highcharts/11.4.0/modules/pattern-fill.js";
-
 interface SeriesDonutOptions extends Highcharts.SeriesPieOptions {
     data: Highcharts.PointOptionsObject[];
-}
-
-export interface DonutLegendItem {
-    name: string;
-    value: number | string | undefined;
-    symbolClass?: string;
 }
 
 interface DonutChartInput
@@ -87,10 +72,9 @@ class DonutChart extends Marko.Component<Input, State> {
         this.cdnLoader
             .setOverrides(
                 [
-                    this.input.cdnHighcharts ?? highcharts11_4_0,
-                    this.input.cdnHighchartsAccessibility ??
-                        accessibility11_4_0,
-                    this.input.cdnHighchartsPatternFill ?? patternFill11_4_0,
+                    this.input.cdnHighcharts,
+                    this.input.cdnHighchartsAccessibility,
+                    this.input.cdnHighchartsPatternFill,
                 ] as string[],
                 this.input.version ?? "11.4.0",
             )
@@ -236,9 +220,9 @@ class DonutChart extends Marko.Component<Input, State> {
     /**
      * Returns the legend items for the chart.
      *
-     * @returns {DonutLegendItem[]}
+     * @returns {LegendItem[]}
      */
-    getLegendItems(): DonutLegendItem[] {
+    getLegendItems(): LegendItem[] {
         const { series } = this.input;
 
         // Adds classes to the legend items
@@ -249,7 +233,7 @@ class DonutChart extends Marko.Component<Input, State> {
                 name: point.name,
                 value: point.y,
                 symbolClass: colors[index],
-            } as DonutLegendItem;
+            } as LegendItem;
         });
     }
 

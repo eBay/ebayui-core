@@ -1,20 +1,20 @@
-.ebay-donut-chart__legend {
+.chart-legend {
     display: flex;
     flex-direction: column;
     padding: 0;
     row-gap: var(--spacing-200);
 }
 
-.ebay-donut-chart__legend-item {
+.chart-legend__item {
     list-style: none;
     transition: opacity 0.3s ease;
 
-    &.ebay-donut-chart__legend-item--inactive {
+    &.chart-legend__item--inactive {
         opacity: 0.3;
     }
 }
 
-.ebay-donut-chart__legend-button {
+.chart-legend__button {
     display: flex;
     width: 100%;
     font-size: var(--font-size-small);
@@ -26,12 +26,12 @@
     padding: 0;
 }
 
-.ebay-donut-chart__legend-label {
+.chart-legend__label {
     display: flex;
     align-items: center;
 }
 
-.ebay-donut-chart__legend-symbol {
+.chart-legend__symbol {
     margin-right: var(--spacing-100);
     width: 10px;
     height: 10px;
@@ -39,17 +39,17 @@
     border: 1px solid;
     box-sizing: border-box;
 
-    &.ebay-donut-chart__legend-symbol--primary {
+    &.chart-legend__symbol--primary {
         background-color: var(--color-data-viz-chart-primary);
         border-color: var(--color-data-viz-chart-primary);
     }
 
-    &.ebay-donut-chart__legend-symbol--secondary {
+    &.chart-legend__symbol--secondary {
         background-color: var(--color-data-viz-chart-secondary);
         border-color: var(--color-data-viz-chart-secondary);
     }
 
-    &.ebay-donut-chart__legend-symbol--tertiary {
+    &.chart-legend__symbol--tertiary {
         border: 1px solid var(--color-data-viz-chart-tertiary-stroke);
         background: repeating-linear-gradient(
             30deg,
@@ -62,7 +62,7 @@
         );
     }
 
-    &.ebay-donut-chart__legend-symbol--quaternary {
+    &.chart-legend__symbol--quaternary {
         border: 1px solid var(--color-data-viz-chart-quaternary-stroke);
         background: repeating-linear-gradient(
             0deg,
@@ -75,7 +75,7 @@
         );
     }
 
-    &.ebay-donut-chart__legend-symbol--quinary {
+    &.chart-legend__symbol--quinary {
         background-color: var(--color-data-viz-chart-quinary-background);
         border-color: var(--color-data-viz-chart-quinary-stroke);
     }
