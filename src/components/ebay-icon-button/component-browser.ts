@@ -7,6 +7,7 @@ interface IconButtonInput extends Omit<Marko.Input<"button">, `on${string}`> {
     "badge-number"?: number | string;
     href?: string;
     transparent?: boolean;
+    priority?: "primary" | "secondary" | "tertiary" | "none";
     size?: "small" | "large";
     partiallyDisabled?: ButtonInput["partiallyDisabled"];
     "badge-aria-label"?: AttrString;
