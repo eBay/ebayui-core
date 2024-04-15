@@ -46,6 +46,13 @@ export default {
                 },
             },
         },
+        floatingLabel: {
+            type: "text|array",
+            control: { type: "object" },
+            description:
+                'If set then shows this text as the floating label. If separate floating labels are required for a range display, use an array of two strings (i. e. `["Start", "End"]`)..',
+        },
+
         rangeEnd: {
             type: "date",
             control: { type: "date" },
