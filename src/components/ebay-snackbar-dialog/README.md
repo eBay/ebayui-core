@@ -3,7 +3,7 @@
         ebay-snackbar-dialog
     </span>
     <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
-        DS v1.0.0
+        DS v2.0.0
     </span>
 </h1>
 
