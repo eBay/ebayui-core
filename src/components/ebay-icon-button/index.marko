@@ -1,6 +1,11 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 
 static const VALID_SIZES = ['small', 'large']
+static var validPriorities = [
+    'primary',
+    'secondary',
+    'tertiary'
+];
 
 static function toJSON(this: any) {
     return {
@@ -13,6 +18,7 @@ $ const {
     badgeAriaLabel,
     badgeNumber,
     href,
+    priority = "none",
     partiallyDisabled,
     renderBody,
     size,
@@ -38,6 +44,8 @@ $ const tagType = href ? "a" : "button";
         'icon-btn',
         badgeNumber && `icon-btn--badged`,
         transparent && 'icon-btn--transparent',
+        (validPriorities.includes(priority) &&
+        `icon-btn--${priority}`),
         size && VALID_SIZES.includes(size) && `icon-btn--${size}`
     ]
     data-ebayui=true
