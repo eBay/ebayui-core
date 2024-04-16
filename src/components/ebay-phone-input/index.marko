@@ -11,7 +11,7 @@ $ const {
     floatingLabel,
     readonly,
     invalid,
-    ...phoneInput
+    ...htmlInput
 } = input;
 $ const currentCountryNames = countryNames || countriesEnglish;
 $ const selectedCountry = currentCountryNames[state.index];
@@ -24,7 +24,7 @@ $ const selectedCountry = currentCountryNames[state.index];
         readonly && "phone-input--readonly",
         invalid && "phone-input--error",
     ]
-    ...processHtmlAttributes(phoneInput)
+    ...processHtmlAttributes(htmlInput)
 >
     <ebay-listbox-button
         split="start"
@@ -41,7 +41,7 @@ $ const selectedCountry = currentCountryNames[state.index];
                 text=text
                 value=country.callingCode
                 selected=index === state.index
-                a11y-icon-text=`${a11yButtonText}: ${text} (${country.callingCode})`
+                a11y-icon-text=`${a11yButtonText}: ${text} (+${country.callingCode})`
             >
                 <@icon>
                     <ebay-flag flag=country.countryCode/>

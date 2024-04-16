@@ -26,13 +26,11 @@ describe("ebay-phone-input", () => {
         });
 
         it("then it emits the event with correct data", async () => {
-            await waitFor(() => {
-                const [[data]] = component.emitted("change");
+            const [[data]] = component.emitted("change");
 
-                expect(data.value).to.equal("(415) 345-6789");
-                expect(data.callingCode).to.equal("1");
-                expect(data.countryCode).to.equal("US");
-            });
+            expect(data.value).to.equal("(415) 345-6789");
+            expect(data.callingCode).to.equal("1");
+            expect(data.countryCode).to.equal("US");
         });
     });
 

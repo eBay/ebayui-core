@@ -57,7 +57,7 @@ class PhoneInput extends Marko.Component<Input, State> {
         };
     }
 
-    get selectedCountry(): CountryInterface {
+    getSelectedCountry(): CountryInterface {
         const countryNames = this.input.countryNames || countriesEnglish;
         const currentCountryName = countryNames[this.state.index];
         return countries[currentCountryName[1]];
@@ -79,15 +79,15 @@ class PhoneInput extends Marko.Component<Input, State> {
     }
     handleCountryChange(e: any) {
         this.state.index = e.index;
+
         // Trigger change event after state is updated so that the right mask value will be emitted
-        setTimeout(() => {
+        this.once("update", () => {
             this.forwardEvent("change", { originalEvent: e });
-        }, 0);
+        });
     }
 
     forwardEvent(eventName: string, event: PhoneInputEvent) {
-        const selectedCountry = this.selectedCountry;
-
+        const selectedCountry = this.getSelectedCountry();
         setTimeout(() => {
             this.emit(eventName, {
                 originalEvent: event.originalEvent,
@@ -100,7 +100,7 @@ class PhoneInput extends Marko.Component<Input, State> {
     }
 
     _initializeMask() {
-        const country = this.selectedCountry;
+        const country = this.getSelectedCountry();
         this.mask = mask(
             this.getComponent<Textbox>("textbox").getEl<HTMLInputElement>(
                 "input",
@@ -119,7 +119,7 @@ class PhoneInput extends Marko.Component<Input, State> {
                 this.getComponent<Textbox>("textbox").getEl<HTMLInputElement>(
                     "input",
                 ).value,
-                this.selectedCountry.mask,
+                this.getSelectedCountry().mask,
             );
         }
     }

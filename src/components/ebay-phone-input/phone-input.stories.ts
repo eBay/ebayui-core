@@ -169,11 +169,11 @@ export default {
 export const Default = buildExtensionTemplate(
     DefaultTemplate,
     DefaultTemplateCode,
-    { countryCode: "us", floatingLabel: "", value: "" },
+    { countryCode: "us", floatingLabel: "Phone Number", value: "" },
 );
 
 export const Localization = buildExtensionTemplate(
     LocalizationTemplate,
     LocalizationTemplateCode,
-    { countryCode: "us", floatingLabel: "", value: "" },
+    { countryCode: "us", floatingLabel: "Phone Number", value: "" },
 );
