@@ -14,6 +14,7 @@
         "disableAfter": "expression",
         "disableWeekdays": "array",
         "disableList": "array",
+        "floatingLabel": "expression",
         "inputPlaceholderText": "expression",
         "collapseOnSelect": "boolean",
         "getA11yShowMonthText": "function",

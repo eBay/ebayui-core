@@ -23,6 +23,7 @@ interface DateTextboxInput {
     "a11y-in-range-text"?: AttrString;
     "a11y-range-end-text"?: AttrString;
     "a11y-separator"?: string;
+    "floating-label"?: string | [string, string];
     "on-change"?: (
         event:
             | { selected: DayISO | null }
