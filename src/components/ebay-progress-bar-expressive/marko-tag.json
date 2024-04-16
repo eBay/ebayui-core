@@ -1,0 +1,19 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@messages <message>[]": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@duration": "number"
+    },
+    "@size": {
+        "enum": ["large", "medium"]
+    },
+    "@a11yText": "string"
+}
