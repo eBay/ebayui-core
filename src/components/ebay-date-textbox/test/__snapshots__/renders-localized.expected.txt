@@ -10,6 +10,7 @@
         [33mid[39m=[32m"s0-0-1-textbox"[39m
         [33mplaceholder[39m=[32m"YYYY-MM-DD"[39m
         [33mtype[39m=[32m"text"[39m
+        [33mvalue[39m=[32m"2024-01-27"[39m
       [36m/>[39m
     [36m</span>[39m
     [36m<span[39m
@@ -63,7 +64,7 @@
             [33mclass[39m=[32m"calendar__header--inner"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-label[39m=[32m"Gaan na Maart 2024"[39m
+              [33maria-label[39m=[32m"Gaan na Desember 2023"[39m
               [33mclass[39m=[32m"icon-btn icon-btn--transparent icon-btn--small"[39m
               [33mdata-ebayui[39m=[32m""[39m
               [33mdisabled[39m=[32m""[39m
@@ -90,10 +91,10 @@
               [36m</svg>[39m
             [36m</button>[39m
             [36m<h3>[39m
-              [0mApril 2024[0m
+              [0mJanuarie 2024[0m
             [36m</h3>[39m
             [36m<button[39m
-              [33maria-label[39m=[32m"Gaan na Mei 2024"[39m
+              [33maria-label[39m=[32m"Gaan na Februarie 2024"[39m
               [33mclass[39m=[32m"icon-btn icon-btn--transparent icon-btn--small"[39m
               [33mdata-ebayui[39m=[32m""[39m
               [33mtype[39m=[32m"button"[39m
@@ -128,7 +129,7 @@
           [36m>[39m
             [36m<table>[39m
               [36m<caption>[39m
-                [0mApril 2024[0m
+                [0mJanuarie 2024[0m
               [36m</caption>[39m
               [36m<thead>[39m
                 [36m<tr>[39m
@@ -162,7 +163,6 @@
                   [36m/>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m1[0m
@@ -170,7 +170,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m2[0m
@@ -178,7 +177,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m3[0m
@@ -186,7 +184,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m4[0m
@@ -194,7 +191,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m5[0m
@@ -202,7 +198,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m6[0m
@@ -212,7 +207,6 @@
                 [36m<tr>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m7[0m
@@ -220,7 +214,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m8[0m
@@ -228,7 +221,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m9[0m
@@ -236,7 +228,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m10[0m
@@ -244,7 +235,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m11[0m
@@ -252,7 +242,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m12[0m
@@ -260,7 +249,6 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m13[0m
@@ -270,7 +258,6 @@
                 [36m<tr>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33mdisabled[39m=[32m""[39m
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m14[0m
@@ -278,7 +265,7 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33maria-current[39m=[32m"date"[39m
+                      [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -362,9 +349,12 @@
                       [0m26[0m
                     [36m</button>[39m
                   [36m</td>[39m
-                  [36m<td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"calendar__cell--selected"[39m
+                  [36m>[39m
                     [36m<button[39m
-                      [33mtabindex[39m=[32m"-1"[39m
+                      [33maria-label[39m=[32m"27 - Geselekteerde"[39m
+                      [33maria-pressed[39m=[32m"true"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -390,6 +380,13 @@
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m30[0m
+                    [36m</button>[39m
+                  [36m</td>[39m
+                  [36m<td>[39m
+                    [36m<button[39m
+                      [33mtabindex[39m=[32m"-1"[39m
+                    [36m>[39m
+                      [0m31[0m
                     [36m</button>[39m
                   [36m</td>[39m
                 [36m</tr>[39m

@@ -10,6 +10,7 @@
         [33mid[39m=[32m"s0-0-2-textbox"[39m
         [33mplaceholder[39m=[32m"YYYY-MM-DD"[39m
         [33mtype[39m=[32m"text"[39m
+        [33mvalue[39m=[32m"2024-01-27"[39m
       [36m/>[39m
       [36m<button[39m
         [33maria-label[39m=[32m"open calendar"[39m
@@ -53,7 +54,7 @@
             [33mclass[39m=[32m"calendar__header--inner"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-label[39m=[32m"Show March 2024"[39m
+              [33maria-label[39m=[32m"Show December 2023"[39m
               [33mclass[39m=[32m"icon-btn icon-btn--transparent icon-btn--small"[39m
               [33mdata-ebayui[39m=[32m""[39m
               [33mtype[39m=[32m"button"[39m
@@ -79,10 +80,10 @@
               [36m</svg>[39m
             [36m</button>[39m
             [36m<h3>[39m
-              [0mApril 2024[0m
+              [0mJanuary 2024[0m
             [36m</h3>[39m
             [36m<button[39m
-              [33maria-label[39m=[32m"Show May 2024"[39m
+              [33maria-label[39m=[32m"Show February 2024"[39m
               [33mclass[39m=[32m"icon-btn icon-btn--transparent icon-btn--small"[39m
               [33mdata-ebayui[39m=[32m""[39m
               [33mtype[39m=[32m"button"[39m
@@ -117,7 +118,7 @@
           [36m>[39m
             [36m<table>[39m
               [36m<caption>[39m
-                [0mApril 2024[0m
+                [0mJanuary 2024[0m
               [36m</caption>[39m
               [36m<thead>[39m
                 [36m<tr>[39m
@@ -253,7 +254,7 @@
                   [36m</td>[39m
                   [36m<td>[39m
                     [36m<button[39m
-                      [33maria-current[39m=[32m"date"[39m
+                      [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -337,9 +338,12 @@
                       [0m26[0m
                     [36m</button>[39m
                   [36m</td>[39m
-                  [36m<td>[39m
+                  [36m<td[39m
+                    [33mclass[39m=[32m"calendar__cell--selected"[39m
+                  [36m>[39m
                     [36m<button[39m
-                      [33mtabindex[39m=[32m"-1"[39m
+                      [33maria-label[39m=[32m"27 - selected"[39m
+                      [33maria-pressed[39m=[32m"true"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -365,6 +369,13 @@
                       [33mtabindex[39m=[32m"-1"[39m
                     [36m>[39m
                       [0m30[0m
+                    [36m</button>[39m
+                  [36m</td>[39m
+                  [36m<td>[39m
+                    [36m<button[39m
+                      [33mtabindex[39m=[32m"-1"[39m
+                    [36m>[39m
+                      [0m31[0m
                     [36m</button>[39m
                   [36m</td>[39m
                 [36m</tr>[39m
