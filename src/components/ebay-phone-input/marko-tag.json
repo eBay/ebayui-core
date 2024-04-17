@@ -6,7 +6,7 @@
     },
     "@html-attributes": "expression",
     "@disabled": "#html-disabled",
-    "@a11y-button-text": "string",
+    "@a11y-icon-prefix-text": "string",
     "@country-names": "array",
     "@floating-label": "string",
     "@country-code": "string",

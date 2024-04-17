@@ -1,5 +1,5 @@
 import type { WithNormalizedProps } from "../../global";
-import type { Input as MenuButtonInput } from "../ebay-menu-button/component";
+import type { Input as ListboxButton } from "../ebay-listbox-button/component";
 import type { default as Textbox } from "../ebay-textbox/component-browser";
 import mask, { stripNonDigits } from "../../common/mask";
 
@@ -22,12 +22,11 @@ export interface PhoneInputEvent {
     countryCode?: string;
 }
 
-interface PhoneInputInput extends Omit<MenuButtonInput, `on${string}`> {
+interface PhoneInputInput extends Omit<ListboxButton, `on${string}`> {
     disabled?: boolean;
     "country-names"?: CountriesLanguageInterface;
-    "a11y-button-text"?: AttrString;
-    "a11y-menu-text"?: MenuButtonInput["a11yText"];
-    "floating-label"?: string;
+    "a11y-icon-prefix-text"?: AttrString;
+    "floating-label"?: AttrString;
     readonly?: boolean;
     invalid?: boolean;
     "country-code"?: string;

@@ -4,7 +4,7 @@ $ const {
     class: inputClass,
     countryCode,
     value,
-    a11yButtonText = "Country",
+    a11yIconPrefixText = "Country",
     disabled,
     renderBody,
     countryNames,
@@ -30,6 +30,7 @@ $ const selectedCountry = currentCountryNames[state.index];
         split="start"
         disabled=readonly || disabled
         invalid=invalid
+        a11y-icon-prefix-text=a11yIconPrefixText
         onChange("handleCountryChange")
         onExpand("emit", "expand")
         onCollapse("emit", "collapse")
@@ -41,7 +42,6 @@ $ const selectedCountry = currentCountryNames[state.index];
                 text=text
                 value=country.callingCode
                 selected=index === state.index
-                a11y-icon-text=`${a11yButtonText}: ${text} (+${country.callingCode})`
             >
                 <@icon>
                     <ebay-flag flag=country.countryCode/>

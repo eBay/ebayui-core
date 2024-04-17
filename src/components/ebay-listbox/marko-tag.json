@@ -10,6 +10,7 @@
     "@fluid": "boolean",
     "@invalid": "boolean",
     "@name": "#html-name",
+    "@typeahead-timeout-length": "number",
     "@list-selection": {
         "enum": ["manual", "auto"]
     },

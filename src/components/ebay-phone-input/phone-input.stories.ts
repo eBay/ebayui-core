@@ -78,6 +78,16 @@ export default {
                 },
             },
         },
+        a11yPrefixIconText: {
+            description: "The label for the listbox button with text that prefixes the selected icon value.",
+            control: { type: "boolean" },
+            table: {
+                category: "Accessibility",
+                defaultValue: {
+                    summary: "Country",
+                },
+            },
+        },
         onKeypress: {
             action: "on-keyup",
             description: "Triggered on keyup",

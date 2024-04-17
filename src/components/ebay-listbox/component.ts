@@ -1,8 +1,10 @@
 import { createLinear } from "makeup-active-descendant";
 import type { AttrString, AttrStringOrNumber } from "marko/tags-html";
+import typeahead from "makeup-typeahead";
 import { scroll } from "../../common/element-scroll";
 import * as eventUtils from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
+const TYPEAHEAD_TIMEOUT_LENGTH = 1300;
 
 export interface ChangeEvent {
     index: number;
@@ -16,11 +18,11 @@ export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
     text?: AttrString;
     description?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
     icon?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
-    a11yIconText?: AttrString;
 }
 
 interface ListboxInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "list-selection"?: "auto" | "manual";
+    "typeahead-timeout-length"?: number;
     options?: Marko.RepeatableAttrTag<Option>;
     name?: string;
     disabled?: boolean;
@@ -37,6 +39,8 @@ interface State {
 class Listbox extends Marko.Component<Input, State> {
     declare wasClicked: boolean;
     declare _activeDescendant: ReturnType<typeof createLinear>;
+    declare getTypeaheadIndex: ReturnType<typeof typeahead>["getIndex"];
+    declare destroyTypeahead: ReturnType<typeof typeahead>["destroy"];
 
     get isAutoSelection() {
         return this.input.listSelection === "auto";
@@ -80,6 +84,20 @@ class Listbox extends Marko.Component<Input, State> {
         eventUtils.handleActionKeydown(originalEvent, () =>
             this.handleChange(this._activeDescendant.index, false),
         );
+
+        const itemIndex = this.getTypeaheadIndex(
+            (this.getEl("options") as HTMLElement).children,
+            originalEvent.key,
+            this.input.typeaheadTimeoutLength || TYPEAHEAD_TIMEOUT_LENGTH,
+        );
+
+        if (itemIndex !== -1) {
+            this._activeDescendant.index = itemIndex;
+            const container = this.getEl<HTMLElement>("options");
+            container.scrollTop =
+                this.getEls<HTMLElement[]>("option")[itemIndex].offsetTop -
+                container.offsetHeight / 2;
+        }
     }
 
     handleListboxChange(event: CustomEvent) {
@@ -146,6 +164,10 @@ class Listbox extends Marko.Component<Input, State> {
                     autoScroll: !this.isAutoSelection,
                 },
             );
+            const { getIndex: getTypeaheadIndex, destroy: destroyTypeahead } =
+                typeahead();
+            this.getTypeaheadIndex = getTypeaheadIndex;
+            this.destroyTypeahead = destroyTypeahead;
         }
     }
 

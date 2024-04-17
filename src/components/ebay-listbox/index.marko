@@ -7,6 +7,7 @@ $ const {
     disabled,
     options,
     tabindex = 0,
+    typeaheadTimeoutLength,
     ...htmlInput
 } = input;
 
@@ -29,7 +30,6 @@ $ var selectedOption = (options as Option[])[state.selectedIndex];
             disabled,
             tabindex,
             icon,
-            a11yIconText,
             description,
             ...htmlOption
         } = option;
