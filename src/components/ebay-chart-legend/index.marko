@@ -1,30 +1,27 @@
-<ul class="chart-legend">
-    <for|item, index| of=input.items>
-        <li class=[
-            "chart-legend__item",
-            input.focusIndex !== null &&
-                input.focusIndex !== index &&
-                "chart-legend__item--inactive",
-        ]>
-            <button
-                class="chart-legend__button"
+<div class="chart-legend">
+    <dl class="chart-legend__list">
+        <for|item, index| of=input.items>
+            <div
+                class=[
+                    "chart-legend__item",
+                    `chart-legend__item--${item.symbolClass}`,
+                    input.focusIndex !== null &&
+                        input.focusIndex !== index &&
+                        "chart-legend__item--inactive",
+                ]
                 on-mouseover("handleFocus", index)
                 on-mouseout("handleBlur")
                 on-click("handleFocus", index)
                 on-focus("handleFocus", index)
                 on-blur("handleBlur")
             >
-                <div role="term" class="chart-legend__label">
-                    <div class=[
-                        "chart-legend__symbol",
-                        `chart-legend__symbol--${item.symbolClass}`,
-                    ]/>
+                <dt class="chart-legend__label">
                     ${item.name}
-                </div>
-                <div role="definition" class="chart-legend__value">
+                </dt>
+                <dd class="chart-legend__value">
                     ${item.value}
-                </div>
-            </button>
-        </li>
-    </for>
-</ul>
+                </dd>
+            </div>
+        </for>
+    </dl>
+</div>

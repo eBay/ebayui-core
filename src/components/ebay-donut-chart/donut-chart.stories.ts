@@ -55,6 +55,14 @@ export default {
             type: { name: "string", require: false },
             description: "Highcharts version to load from CDN",
         },
+        series: {
+            type: { name: "array", require: true },
+            description: "Highcharts series data for the chart. Only one series is supported for donut chart.",
+        },
+        description: {
+            type: { name: "string", require: false },
+            description: "Highcharts description, not visible on the chart",
+        },   
     },
 };
 
@@ -86,6 +94,7 @@ TwoValues.args = {
             data: data.slice(0, 2),
         },
     ],
+    data,
     title: "Donut chart with two values",
     description: "Donut chart description",
     metricValue: "174 Total",
