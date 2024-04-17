@@ -7,7 +7,9 @@ export interface CountryInterface {
     mask: string;
 }
 
-export type CountriesLanguageInterface = [string, string][];
+export interface CountriesLanguageInterface {
+    [index: string]: string;
+}
 
 export interface CountriesInterface {
     [index: string]: CountryInterface;

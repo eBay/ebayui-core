@@ -14,7 +14,7 @@ $ const {
     ...htmlInput
 } = input;
 $ const currentCountryNames = countryNames || countriesEnglish;
-$ const selectedCountry = currentCountryNames[state.index];
+$ const selectedCountry = Object.keys(currentCountryNames)[state.index];
 
 <span
     class=[
@@ -35,9 +35,9 @@ $ const selectedCountry = currentCountryNames[state.index];
         onExpand("emit", "expand")
         onCollapse("emit", "collapse")
     >
-        <for|countryName, index| of=currentCountryNames>
-            $ const country = countries[countryName[1]] || {};
-            $ const text = countryName[0];
+        <for|countryCode, index| of=Object.keys(currentCountryNames)>
+            $ const country = countries[countryCode] || {};
+            $ const text = currentCountryNames[countryCode];
             <@option
                 text=text
                 value=country.callingCode
@@ -69,7 +69,7 @@ $ const selectedCountry = currentCountryNames[state.index];
         onInput-change("forwardEvent", "change")
     >
         <@prefixText>
-            + ${countries[selectedCountry[1]].callingCode}
+            + ${countries[selectedCountry].callingCode}
         </@prefixText>
     </ebay-textbox>
 </span>

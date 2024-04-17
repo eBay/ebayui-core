@@ -58,8 +58,8 @@ class PhoneInput extends Marko.Component<Input, State> {
 
     getSelectedCountry(): CountryInterface {
         const countryNames = this.input.countryNames || countriesEnglish;
-        const currentCountryName = countryNames[this.state.index];
-        return countries[currentCountryName[1]];
+        const currentCountryName = Object.keys(countryNames)[this.state.index];
+        return countries[currentCountryName];
     }
 
     onInput(input: Input) {
@@ -67,8 +67,8 @@ class PhoneInput extends Marko.Component<Input, State> {
             input.countryNames || countriesEnglish;
         const { countryCode } = input;
         if (countryCode) {
-            let index = countryNames.findIndex(
-                (country) => country[1] === countryCode.toUpperCase(),
+            let index = Object.keys(countryNames).findIndex(
+                (country) => country === countryCode.toUpperCase(),
             );
             if (index === -1) {
                 index = 0;

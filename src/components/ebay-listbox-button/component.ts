@@ -104,6 +104,7 @@ class ListboxButton extends Marko.Component<Input, State> {
             const container = this.getEl("container");
 
             this._expander = new Expander(container, {
+                alwaysDoFocusManagement: true,
                 autoCollapse: true,
                 expandOnClick: true,
                 simulateSpacebarClick: true,
