@@ -10,14 +10,14 @@ $ const {
 } = input;
 
 <div
-    class=[inputClass, "donut-chart-container"]
+    class=[inputClass, "donut-chart"]
     ...processHtmlAttributes(htmlInput)
 >
-    <div class="donut-chart">
-        <div class="donut-chart__title-container">
+    <div class="donut-chart__grid">
+        <div class="donut-chart__title">
             ${title}
         </div>
-        <div class="donut-chart__metric-container">
+        <div class="donut-chart__metric">
             <div class="donut-chart__metric-value">
                 ${metricValue}
             </div>
@@ -27,10 +27,10 @@ $ const {
         </div>
         <div
             id=component.getContainerId()
-            class="donut-chart__graph-container"
+            class="donut-chart__graph"
             no-update
         />
-        <div class="donut-chart__legend-container">
+        <div class="donut-chart__legend">
             <ebay-chart-legend
                 items=component.getLegendItems()
                 focusIndex=state.activeIndex
