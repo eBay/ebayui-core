@@ -5,5 +5,10 @@
         "type": "expression"
     },
     "@html-attributes": "expression",
-    "@title": "string"
+    "@title": "string",
+    "@metricValue": "string",
+    "@metricLabel": "string",
+    "@class": "string",
+    "@series": "string",
+    "@description": "string"
 }

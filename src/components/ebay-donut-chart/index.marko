@@ -5,7 +5,6 @@ $ const {
     metricLabel,
     class: inputClass,
     series,
-    description,
     ...htmlInput
 } = input;
 
@@ -31,12 +30,7 @@ $ const {
             no-update
         />
         <div class="donut-chart__legend">
-            <ebay-chart-legend
-                items=component.getLegendItems()
-                focusIndex=state.activeIndex
-                on-focus("handlePathFocus")
-                on-blur("handlePathBlur")
-            />
+            <ebay-chart-legend items=component.getLegendItems() />
         </div>
     </div>
 </div>

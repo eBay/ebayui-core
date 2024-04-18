@@ -17,7 +17,7 @@ export default {
                 component: Readme,
             },
         },
-        layout: "fullscreen"
+        layout: "fullscreen",
     },
     argTypes: {
         title: {
@@ -57,12 +57,13 @@ export default {
         },
         series: {
             type: { name: "array", require: true },
-            description: "Highcharts series data for the chart. Only one series is supported for donut chart.",
+            description:
+                "Highcharts series data for the chart. Only one series is supported for donut chart.",
         },
-        description: {
+        highchartsDescription: {
             type: { name: "string", require: false },
             description: "Highcharts description, not visible on the chart",
-        },   
+        },
     },
 };
 
@@ -73,10 +74,10 @@ Standard.args = {
             data: data.slice(0, 3),
         },
     ],
-    description: "Donut chart description",
     title: "Donut chart title",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
+    highchartsDescription: "Donut chart description",
 };
 
 Standard.parameters = {
@@ -96,9 +97,9 @@ TwoValues.args = {
     ],
     data,
     title: "Donut chart with two values",
-    description: "Donut chart description",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
+    highchartsDescription: "Donut chart description",
 };
 
 TwoValues.parameters = {
@@ -117,9 +118,9 @@ ThreeValues.args = {
         },
     ],
     title: "Donut chart with three values",
-    description: "Donut chart description",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
+    highchartsDescription: "Donut chart description",
 };
 
 ThreeValues.parameters = {
@@ -138,9 +139,9 @@ FourValues.args = {
         },
     ],
     title: "Donut chart with four values",
-    description: "Donut chart description",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
+    highchartsDescription: "Donut chart description",
 };
 
 FourValues.parameters = {
@@ -159,9 +160,9 @@ FiveValues.args = {
         },
     ],
     title: "Donut chart with five values",
-    description: "Donut chart description",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",
+    highchartsDescription: "Donut chart description",
 };
 
 FiveValues.parameters = {

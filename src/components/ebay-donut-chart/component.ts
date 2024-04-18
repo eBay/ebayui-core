@@ -19,7 +19,6 @@ interface SeriesDonutOptions extends Highcharts.SeriesPieOptions {
 interface DonutChartInput
     extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
     title?: string;
-    description?: Highcharts.PlotSeriesOptions["description"];
     metricValue?: string;
     metricLabel?: string;
     "cdn-highcharts"?: string;
@@ -27,6 +26,7 @@ interface DonutChartInput
     "cdn-highcharts-pattern-fill"?: string;
     version?: string;
     series: SeriesDonutOptions[];
+    highchartsDescription?: Highcharts.PlotSeriesOptions["description"];
 }
 
 export interface Input extends WithNormalizedProps<DonutChartInput> {}
@@ -161,7 +161,7 @@ class DonutChart extends Marko.Component<Input, State> {
 
         return {
             pie: {
-                description: this.input.description,
+                description: this.input.highchartsDescription,
                 size: "100%",
                 thickness: 10,
                 allowPointSelect: false,
