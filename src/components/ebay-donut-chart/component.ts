@@ -31,11 +31,7 @@ interface DonutChartInput
 
 export interface Input extends WithNormalizedProps<DonutChartInput> {}
 
-interface State {
-    activeIndex: number | null;
-}
-
-class DonutChart extends Marko.Component<Input, State> {
+class DonutChart extends Marko.Component<Input> {
     declare cdnLoader: CDNLoader;
     declare chartRef: Highcharts.Chart;
 
@@ -50,11 +46,6 @@ class DonutChart extends Marko.Component<Input, State> {
             handleError: this.handleError.bind(this),
             handleSuccess: this.handleSuccess.bind(this),
         });
-
-        // State for hover index
-        this.state = {
-            activeIndex: null,
-        };
     }
 
     // Handle CDN Loader errors
@@ -127,7 +118,7 @@ class DonutChart extends Marko.Component<Input, State> {
             series,
             tooltip,
             credits: {
-                enabled: false, // Sorry highcharts
+                enabled: false,
             },
         };
 
@@ -152,13 +143,11 @@ class DonutChart extends Marko.Component<Input, State> {
     }
 
     /**
-     * Configures the pie plot options: thickness, hover state.
+     * Configures the pie plot options: thickness.
      *
      * @returns {Highcharts.PlotOptions}
      */
     getPlotOptions(): Highcharts.PlotOptions {
-        const component = this;
-
         return {
             pie: {
                 description: this.input.highchartsDescription,
@@ -173,16 +162,6 @@ class DonutChart extends Marko.Component<Input, State> {
                 states: {
                     hover: {
                         halo: { size: 0 },
-                    },
-                },
-                point: {
-                    events: {
-                        mouseOver: function () {
-                            component.setActiveIndex(this.index);
-                        },
-                        mouseOut: function () {
-                            component.setActiveIndex(null);
-                        },
                     },
                 },
             },
@@ -234,46 +213,6 @@ class DonutChart extends Marko.Component<Input, State> {
                 value: point.y,
                 symbolClass: colors[index],
             } as LegendItem;
-        });
-    }
-
-    /**
-     * Set the active index for the hover state.
-     *
-     * @param {number} index The index of the active point
-     */
-    setActiveIndex(index: number | null) {
-        this.state.activeIndex = index;
-    }
-
-    /**
-     * Handle focus on a donut slice path.
-     *
-     * @param {Highcharts.Point} point The point that was clicked
-     */
-    handlePathFocus(index: number) {
-        // Set the active index
-        this.setActiveIndex(index);
-
-        // Set state for all points to inactive
-        this.chartRef.series[0].data.forEach((point) => {
-            point.setState("inactive");
-        });
-
-        // Set state for the focused point to hover
-        this.chartRef.series[0].data[index].setState("hover");
-    }
-
-    /**
-     * Handle blur on a donut slice path.
-     */
-    handlePathBlur() {
-        // Reset the active index
-        this.setActiveIndex(null);
-
-        // Reset the state for all points
-        this.chartRef.series[0].data.forEach((point) => {
-            point.setState();
         });
     }
 }
