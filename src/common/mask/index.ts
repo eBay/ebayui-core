@@ -1,4 +1,4 @@
-export default function (input:HTMLInputElement, initialMask:string) {
+export default function (input: HTMLInputElement, initialMask: string) {
     let mask = initialMask;
     const onBeforeInput = () => {
         const { start, end } = getDigitRelativeSelection(input);
@@ -12,7 +12,7 @@ export default function (input:HTMLInputElement, initialMask:string) {
     input.addEventListener("input", onInput);
 
     return {
-        update(newValue:string, newMask:string) {
+        update(newValue: string, newMask: string) {
             mask = newMask;
             updateInputValue(input, mask, newValue);
         },
@@ -21,12 +21,16 @@ export default function (input:HTMLInputElement, initialMask:string) {
             input.removeEventListener("input", onInput);
         },
         get value() {
-            return input.value
-        }
+            return input.value;
+        },
     };
 }
 
-function updateInputValue(input:HTMLInputElement, mask:string, newValue:string) {
+function updateInputValue(
+    input: HTMLInputElement,
+    mask: string,
+    newValue: string,
+) {
     const { start, end } = getDigitRelativeSelection(input);
     const maskedValue = applyMask(newValue, mask);
     const maskLength = maskedValue.length;
@@ -48,7 +52,7 @@ function updateInputValue(input:HTMLInputElement, mask:string, newValue:string) 
     input.setSelectionRange(maskedStart ?? maskLength, maskedEnd ?? maskLength);
 }
 
-function getDigitRelativeSelection(target:HTMLInputElement) {
+function getDigitRelativeSelection(target: HTMLInputElement) {
     const rawSelectionStart = target.selectionStart || 0;
     const rawSelectionEnd = target.selectionEnd || 0;
     const value = target.value;
@@ -68,11 +72,11 @@ function getDigitRelativeSelection(target:HTMLInputElement) {
     };
 }
 
-export function stripNonDigits(value:string) {
+export function stripNonDigits(value: string) {
     return value.replace(/\D+/g, "");
 }
 
-function applyMask(value:string, mask:string) {
+function applyMask(value: string, mask: string) {
     const digits = stripNonDigits(value);
     let maskedValue = "";
     let currentDigit = 0;

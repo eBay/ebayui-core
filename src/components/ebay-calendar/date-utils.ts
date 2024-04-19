@@ -51,6 +51,7 @@ export function offsetISO(iso: DayISO, days: number) {
 }
 
 export function localeOverride(locale?: string) {
-    const defaultLanguage = (typeof navigator !== "undefined") ? navigator.language : 'en-US';
+    const defaultLanguage =
+        typeof navigator !== "undefined" ? navigator.language : "en-US";
     return locale || defaultLanguage;
 }

@@ -18,6 +18,8 @@ import {
 } from "libphonenumber-js/max";
 import examples from "libphonenumber-js/mobile/examples";
 import markoTagJson from "../src/components/ebay-icon/marko-tag.json" assert { type: "json" };
+// const tempIgnore = ["RS", "PE", "SV", "BO", "DO", "EA"];
+const tempIgnore = [];
 
 const require = createRequire(import.meta.url);
 
@@ -242,7 +244,7 @@ $ const {
         const countryMap = twoDititCountries.find(
             (country) => country === name.slice(5).toUpperCase(),
         );
-        if (countryMap) {
+        if (countryMap && tempIgnore.indexOf(countryMap) === -1) {
             text.push(`<else-if(flag === "${countryMap}")>
     <ebay-${name} />
 </else-if>

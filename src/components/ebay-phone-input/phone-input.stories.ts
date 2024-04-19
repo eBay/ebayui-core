@@ -59,7 +59,8 @@ export default {
             },
         },
         invalid: {
-            description: "When there is an error present, sets the input to invalid",
+            description:
+                "When there is an error present, sets the input to invalid",
             control: { type: "boolean" },
             table: {
                 category: "Toggles",
@@ -69,7 +70,8 @@ export default {
             },
         },
         readonly: {
-            description: "Disables the dropdown and adds readonly to the textbox",
+            description:
+                "Disables the dropdown and adds readonly to the textbox",
             control: { type: "boolean" },
             table: {
                 category: "Toggles",
@@ -79,7 +81,8 @@ export default {
             },
         },
         a11yPrefixIconText: {
-            description: "The label for the listbox button with text that prefixes the selected icon value.",
+            description:
+                "The label for the listbox button with text that prefixes the selected icon value.",
             control: { type: "boolean" },
             table: {
                 category: "Accessibility",

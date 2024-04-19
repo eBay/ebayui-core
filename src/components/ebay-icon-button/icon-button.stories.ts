@@ -44,7 +44,8 @@ export default {
         },
         priority: {
             options: ["primary", "secondary", "tertiary", "none"],
-            description: "Priority of the button. Toggle the color and border of the button",
+            description:
+                "Priority of the button. Toggle the color and border of the button",
             table: {
                 defaultValue: {
                     summary: "none",

@@ -12,6 +12,7 @@
       [33maria-describedby[39m=[32m"s0-text"[39m
       [33maria-label[39m=[32m"Delete"[39m
       [33mclass[39m=[32m"chip__button"[39m
+      [33mdata-marko[39m=[32m"{\"onclick\":\"emit s0 false 0\"}"[39m
       [33mtype[39m=[32m"button"[39m
     [36m>[39m
       [36m<svg[39m
