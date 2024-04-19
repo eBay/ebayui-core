@@ -76,6 +76,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-page-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-page-notice)
 -   [`ebay-pagination`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-pagination)
 -   [`ebay-panel-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-panel-dialog)
+-   [`ebay-phone-input`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-phone-input)
 -   [`ebay-progress-bar`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-bar)
 -   [`ebay-progress-bar-expressive`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-bar-expressive)
 -   [`ebay-progress-spinner`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-spinner)

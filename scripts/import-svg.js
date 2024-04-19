@@ -11,7 +11,14 @@ import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import cheerio from "cheerio";
 import { minify } from "html-minifier";
+import {
+    getExampleNumber,
+    getCountries,
+    getCountryCallingCode,
+} from "libphonenumber-js/max";
+import examples from "libphonenumber-js/mobile/examples";
 import markoTagJson from "../src/components/ebay-icon/marko-tag.json" assert { type: "json" };
+
 const require = createRequire(import.meta.url);
 
 const skinDir = path.dirname(require.resolve("@ebay/skin/package.json"));
@@ -23,6 +30,7 @@ const defsNames = new Set();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const outputBaseDir = path.join(__dirname, "../src/components");
+const outputCommonDir = path.join(__dirname, "../src/common");
 const examplesMap = {};
 
 const htmlMinifierOptions = {
@@ -208,6 +216,62 @@ function generateIcon(componentName) {
     for (const [name] of icons) {
         examplesMap[componentName].push(name);
     }
+    if (componentName === "flag") {
+        generateFlagComponent(icons);
+    }
+}
+
+function generateFlagComponent(iconMap) {
+    const text = [
+        `import type { WithNormalizedProps } from "../../global";
+
+static interface FlagInput extends Omit<Marko.Input<"span">, \`on\${string}\`> {
+    flag?: string;
+}
+export interface Input extends WithNormalizedProps<FlagInput> {}
+
+$ const {
+    flag
+} = input;
+
+<if(!flag)></if>\n`,
+    ];
+    const twoDititCountries = getCountries();
+    const countries = {};
+    for (const [name] of iconMap) {
+        const countryMap = twoDititCountries.find(
+            (country) => country === name.slice(5).toUpperCase(),
+        );
+        if (countryMap) {
+            text.push(`<else-if(flag === "${countryMap}")>
+    <ebay-${name} />
+</else-if>
+`);
+
+            const country = {
+                countryCode: countryMap,
+                callingCode: getCountryCallingCode(countryMap),
+            };
+            const exampleNumber = getExampleNumber(countryMap, examples);
+            if (exampleNumber) {
+                const mask = exampleNumber.formatNational().replace(/\d/g, "0");
+                if (mask) {
+                    country.mask = mask;
+                }
+            }
+            countries[countryMap] = country;
+        }
+    }
+
+    fs.writeFileSync(
+        path.join(outputBaseDir, "ebay-flag", "index.marko"),
+        text.join(""),
+    );
+
+    fs.writeFileSync(
+        path.join(outputCommonDir, "countries", "countries.ts"),
+        `export default ${JSON.stringify(countries)};`,
+    );
 }
 
 setupDir("icon");

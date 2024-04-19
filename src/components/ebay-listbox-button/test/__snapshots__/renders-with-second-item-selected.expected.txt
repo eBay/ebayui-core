@@ -14,7 +14,7 @@
         [36m<span[39m
           [33mclass[39m=[32m"btn__label"[39m
         [36m>[39m
-          [0mSelected: [0m
+          [0mSelected:[0m
         [36m</span>[39m
         [36m<span[39m
           [33mclass[39m=[32m"btn__text"[39m
