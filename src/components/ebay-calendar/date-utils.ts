@@ -1,3 +1,6 @@
+import type { Locale } from "date-fns";
+import locales from "./locales";
+
 export type DayISO = `${number}-${number}-${number}`;
 
 export function findFirstDayOfWeek(localeName: string): number {
@@ -13,8 +16,9 @@ export function findFirstDayOfWeek(localeName: string): number {
     return 0;
 }
 
-export function getWeekdayInfo(localeName: string) {
-    const firstDayOfWeek = findFirstDayOfWeek(localeName);
+export function getWeekdayInfo(localeName?: string) {
+    const locale = getDateFnsLocale(localeName) as Locale;
+    const firstDayOfWeek = locale.options?.weekStartsOn || 0;
 
     const weekdayLabelFormatter = new Intl.DateTimeFormat(localeName, {
         weekday: "short",
@@ -50,8 +54,12 @@ export function offsetISO(iso: DayISO, days: number) {
     return toISO(date);
 }
 
-export function localeOverride(locale?: string) {
+export function getDateFnsLocale(locale?: string): Locale {
     const defaultLanguage =
         typeof navigator !== "undefined" ? navigator.language : "en-US";
-    return locale || defaultLanguage;
+    locale ??= defaultLanguage;
+    locale = locale.toLowerCase().replace(/\W/g, "");
+    return locale in locales
+        ? locales[locale as keyof typeof locales]
+        : locales["enus"];
 }

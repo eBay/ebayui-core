@@ -226,8 +226,8 @@ export default {
             type: "text|array",
             control: { type: "object" },
             description:
-                'Text for the input placeholder. Should indicate that users need to enter dates in ISO format. If separate placeholders are required for a range display, use an array of two strings (i. e. `["Start (YYYY-MM-DD)", "End (YYYY-MM-DD)"]`).',
-            table: { defaultValue: { summary: '"YYYY-MM-DD"' } },
+                'Text for the input placeholder. Should indicate that users need to enter dates in ISO format. If separate placeholders are required for a range display, use an array of two strings (i. e. `["Start (MM/DD/YYYY)", "End (MM/DD/YYYY)"]`).',
+            table: { defaultValue: { summary: '"MM/DD/YYYY"' } },
         },
         onChange: {
             action: "on-change",

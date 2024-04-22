@@ -4,7 +4,7 @@ import {
     dateArgToISO,
     fromISO,
     getWeekdayInfo,
-    localeOverride,
+    getDateFnsLocale,
     offsetISO,
     toISO,
     type DayISO,
@@ -63,9 +63,7 @@ interface State {
 
 class Calendar extends Marko.Component<Input, State> {
     onCreate(input: Input) {
-        const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(
-            localeOverride(input.locale),
-        );
+        const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(input.locale);
         const todayISO = toISO(new Date());
         this.state = {
             focusISO: null,
@@ -86,9 +84,7 @@ class Calendar extends Marko.Component<Input, State> {
 
     onMount() {
         // recalculate on the browser in case firstDayOfWeek is not supported
-        const { firstDayOfWeek } = getWeekdayInfo(
-            localeOverride(this.input.locale),
-        );
+        const { firstDayOfWeek } = getWeekdayInfo(this.input.locale);
         this.state.firstDayOfWeek = firstDayOfWeek;
     }
 
@@ -289,7 +285,7 @@ class Calendar extends Marko.Component<Input, State> {
 
     monthTitle(date: Date) {
         const formatter = new Intl.DateTimeFormat(
-            localeOverride(this.input.locale),
+            getDateFnsLocale(this.input.locale).code,
             {
                 month: "long",
                 year: "numeric",
