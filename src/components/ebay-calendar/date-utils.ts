@@ -1,5 +1,5 @@
 import type { Locale } from "date-fns";
-import locales from "./locales";
+import * as locales from "./locales";
 
 export type DayISO = `${number}-${number}-${number}`;
 
