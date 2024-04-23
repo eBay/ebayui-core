@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "13.3.1"
+  },
+  "changesets": [
+    "blue-files-decide",
+    "breezy-trees-cough",
+    "long-candles-lie",
+    "nice-islands-visit",
+    "twenty-bears-march"
+  ]
+}
