@@ -224,20 +224,6 @@ function generateIcon(componentName) {
 }
 
 function generateFlagComponent(iconMap) {
-    const text = [
-        `import type { WithNormalizedProps } from "../../global";
-
-static interface FlagInput extends Omit<Marko.Input<"span">, \`on\${string}\`> {
-    flag?: string;
-}
-export interface Input extends WithNormalizedProps<FlagInput> {}
-
-$ const {
-    flag
-} = input;
-
-<if(!flag)></if>\n`,
-    ];
     const twoDititCountries = getCountries();
     const countries = {};
     for (const [name] of iconMap) {
@@ -245,11 +231,6 @@ $ const {
             (country) => country === name.slice(5).toUpperCase(),
         );
         if (countryMap && tempIgnore.indexOf(countryMap) === -1) {
-            text.push(`<else-if(flag === "${countryMap}")>
-    <ebay-${name} />
-</else-if>
-`);
-
             const country = {
                 countryCode: countryMap,
                 callingCode: getCountryCallingCode(countryMap),
@@ -264,12 +245,6 @@ $ const {
             countries[countryMap] = country;
         }
     }
-
-    fs.writeFileSync(
-        path.join(outputBaseDir, "ebay-flag", "index.marko"),
-        text.join(""),
-    );
-
     fs.writeFileSync(
         path.join(outputCommonDir, "countries", "countries.ts"),
         `export default ${JSON.stringify(countries)};`,
