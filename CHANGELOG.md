@@ -1,5 +1,21 @@
 # eBayUI-Core Changelog
 
+## 13.4.0
+
+### Minor Changes
+
+- [#2162](https://github.com/eBay/ebayui-core/pull/2162) [`275bdac`](https://github.com/eBay/ebayui-core/commit/275bdac4688733764c62ec98150119c7614bb9ef) Thanks [@agliga](https://github.com/agliga)! - phone-input: new component
+
+- [#2157](https://github.com/eBay/ebayui-core/pull/2157) [`4f8e826`](https://github.com/eBay/ebayui-core/commit/4f8e826d9378eba7f39aed2de7785085e4ce99c7) Thanks [@agliga](https://github.com/agliga)! - ebay-date-textbox: added floating label support
+
+- [#2156](https://github.com/eBay/ebayui-core/pull/2156) [`3322847`](https://github.com/eBay/ebayui-core/commit/332284786f11d42dafc7cf023087bd34894f191c) Thanks [@agliga](https://github.com/agliga)! - icon-button: added priority attribute
+
+- [#2141](https://github.com/eBay/ebayui-core/pull/2141) [`7c26a76`](https://github.com/eBay/ebayui-core/commit/7c26a7647fdde40774f05f061daf84d202b5b621) Thanks [@cordeliadillon](https://github.com/cordeliadillon)! - progress-bar-expressive: new module
+
+### Patch Changes
+
+- [#2154](https://github.com/eBay/ebayui-core/pull/2154) [`3c1cb8e`](https://github.com/eBay/ebayui-core/commit/3c1cb8eb62f0eb47265fafe3e47502ade04b26bf) Thanks [@agliga](https://github.com/agliga)! - docs(snackbar): updated docs to support @action
+
 ## 13.4.0-next.0
 
 ### Minor Changes
