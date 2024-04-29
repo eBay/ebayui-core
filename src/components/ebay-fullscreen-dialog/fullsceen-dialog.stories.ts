@@ -88,11 +88,12 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     header: {
         renderBody: `Heading Text`,
     },
+    a11yCloseText: "Close Button",
     renderBody: `Body Content`,
     footer: {
         renderBody: `Footer Text`,
@@ -100,7 +101,7 @@ Standard.args = {
     slideFrom: null,
 };
 
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
             code,

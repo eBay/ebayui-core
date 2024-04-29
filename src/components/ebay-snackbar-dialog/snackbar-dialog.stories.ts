@@ -1,6 +1,14 @@
 import Readme from "./README.md";
-import Component from "./examples/default.marko";
-import code from "./examples/default.marko?raw";
+import component from "./index.marko";
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../../.storybook/utils";
+
+import defaultTemplate from "./examples/default.marko";
+import defaultTemplateCode from "./examples/default.marko?raw";
+import withActionTemplate from "./examples/action.marko";
+import withActionTemplateCode from "./examples/action.marko?raw";
 
 const Template = (args) => ({
     input: {
@@ -15,7 +23,7 @@ const Template = (args) => ({
 
 export default {
     title: "dialogs/ebay-snackbar-dialog",
-    component: Component,
+    component,
     parameters: {
         docs: {
             description: {
@@ -37,9 +45,12 @@ export default {
             control: { type: "radio" },
             options: ["row", "column"],
         },
-        snacktext: {
-            control: { type: "text" },
-            description: "for demo only",
+        action: {
+            name: "@action",
+            description: "If present, shows an action button on snackbar",
+            table: {
+                category: "@attribute tags",
+            },
         },
         onOpen: {
             action: "on-open",
@@ -74,14 +85,12 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
-    snacktext: "This is the snackbar",
-};
-Standard.parameters = {
-    docs: {
-        source: {
-            code,
-        },
-    },
-};
+export const Default = buildExtensionTemplate(
+    defaultTemplate,
+    defaultTemplateCode,
+);
+
+export const WithAction = buildExtensionTemplate(
+    withActionTemplate,
+    withActionTemplateCode,
+);

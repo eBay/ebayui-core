@@ -2,12 +2,19 @@ $ const {
     a11yOpenPopoverText = "open calendar",
     range,
     inputPlaceholderText = "YYYY-MM-DD",
+    floatingLabel,
     ...calendarInput
 } = input;
 $ const [rangeStartPlaceholder, mainPlaceholder] = (
     Array.isArray(inputPlaceholderText)
         ? inputPlaceholderText
         : [inputPlaceholderText, inputPlaceholderText]
+);
+
+$ const [rangeStartFloatingLabel, mainFloatingLabel] = (
+    Array.isArray(floatingLabel)
+        ? floatingLabel
+        : [floatingLabel, floatingLabel]
 );
 
 <span
@@ -18,12 +25,14 @@ $ const [rangeStartPlaceholder, mainPlaceholder] = (
     <if(range)>
         <ebay-textbox
             placeholder=rangeStartPlaceholder
+            floating-label=rangeStartFloatingLabel
             value=state.firstSelected
             on-blur("handleInputChange", 0)
         />
     </if>
     <ebay-textbox
         class="ebay-date-textbox--main"
+        floating-label=mainFloatingLabel
         placeholder=mainPlaceholder
         buttonAriaLabel=a11yOpenPopoverText
         value=(range ? state.secondSelected : state.firstSelected)

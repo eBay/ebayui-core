@@ -42,6 +42,17 @@ export default {
                 },
             },
         },
+        priority: {
+            options: ["primary", "secondary", "tertiary", "none"],
+            description:
+                "Priority of the button. Toggle the color and border of the button",
+            table: {
+                defaultValue: {
+                    summary: "none",
+                },
+            },
+            type: { category: "Options" },
+        },
         partiallyDisabled: {
             description:
                 "programmatically disabled, but remains keyboard focusable",
@@ -128,15 +139,15 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     href: "",
     disabled: false,
     partiallyDisabled: false,
     badgeNumber: 0,
     "aria-label": "menu",
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
             code,

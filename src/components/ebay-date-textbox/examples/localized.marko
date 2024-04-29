@@ -2,9 +2,11 @@
     disableBefore=new Date()
     range
     locale="af"
-    getA11yShowMonthText=(monthName) => `Gaan na ${monthName}`
+    getA11yShowMonthText=((monthName) => `Gaan na ${monthName}`)
     a11ySelectedText="Geselekteerde"
     a11yRangeStartText="Reeks begin"
     a11yInRangeText="Binne bereik"
     a11yRangeEndText="Reeks einde"
-    on-change("emit", "change")/>
+    on-change("emit", "change")
+    ...input
+/>

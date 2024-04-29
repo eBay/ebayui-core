@@ -76,7 +76,9 @@ export default {
 };
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+    a11yCloseText: "Close Panel",
+};
 Default.parameters = {
     docs: {
         source: {

@@ -1,0 +1,10 @@
+import type { WithNormalizedProps } from "../../global";
+static {
+    interface FlagInput extends Omit<Marko.Input<"span">, `on${string}`> {
+        flag?: string;
+    }
+}
+export interface Input extends WithNormalizedProps<FlagInput> {}
+$ const { flag } = input;
+
+<span class=["fflag", `fflag--${flag?.toLowerCase()}`]/>

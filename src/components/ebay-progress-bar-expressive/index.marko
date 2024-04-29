@@ -1,0 +1,66 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+import { useReducedMotion } from "./component";
+$ const {
+    a11yText = "Loading...",
+    class: inputClass,
+    messages,
+    size,
+    ...htmlInput
+} = input;
+
+<div
+    ...processHtmlAttributes(htmlInput)
+    class=["progress-bar-expressive", inputClass]
+>
+    <if(messages && messages.length > 0)>
+        $ const currentMessage = (
+            messages[state.currentMessageIndex]?.renderBody
+        );
+        $ const nextMessage = messages[state.nextMessageIndex]?.renderBody;
+        <div class=[
+            "progress-bar-expressive__messages",
+            size === "medium" && "progress-bar-expressive__messages--medium",
+        ]>
+            <if(!useReducedMotion && messages.length > 1)>
+                <div
+                    aria-hidden="true"
+                    class=[
+                        "progress-bar-expressive__message",
+                        state.messageIsFadingIn &&
+                            "progress-bar-expressive__message--in",
+                    ]
+                >
+                    <${nextMessage}/>
+                </div>
+            </if>
+            <div
+                role="status"
+                id:scoped="message"
+                class=[
+                    "progress-bar-expressive__message",
+                    state.messageIsFadingIn &&
+                        "progress-bar-expressive__message--out",
+                    messages.length === 1 &&
+                        "progress-bar-expressive__message--in",
+                    state.isInitialMessage &&
+                        "progress-bar-expressive__message--initial",
+                ]
+            >
+                <${currentMessage}/>
+            </div>
+        </div>
+    </if>
+    <div
+        role="progressbar"
+        aria-label=a11yText
+        aria-describedby:scoped="message"
+        no-update-body
+        class="progress-bar-expressive__progress"
+    >
+        <div class="progress-bar-expressive__lines">
+            <for|_i| from=1 to=12>
+                <div class="progress-bar-expressive__line"/>
+            </for>
+        </div>
+    </div>
+</div>

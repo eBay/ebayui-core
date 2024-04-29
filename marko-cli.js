@@ -38,6 +38,14 @@ module.exports = ({ config }) => {
     config.wdioOptions = {
         idleTimeout: 60000,
         timeout: 60000,
+        services: [
+            [
+                "browserstack",
+                {
+                    browserstackLocal: true,
+                },
+            ],
+        ],
         capabilities: [
             {
                 browser: "Chrome",

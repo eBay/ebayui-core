@@ -88,6 +88,7 @@ function runTransformer(transformer, srcString, componentPath) {
         componentPath,
         {
             output: "html",
+            writeVersionComment: false,
         },
     );
     if (code) {

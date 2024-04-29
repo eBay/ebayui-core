@@ -78,8 +78,8 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     header: {
         renderBody: `Alert!`,
     },
@@ -88,7 +88,7 @@ Standard.args = {
     },
     renderBody: `You must acknowledge this alert to continue.`,
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
             code,
