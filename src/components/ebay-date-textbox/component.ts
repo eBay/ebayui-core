@@ -99,7 +99,6 @@ class DateTextbox extends Marko.Component<Input, State> {
         const valueDate = parse(value, "P", new Date(), {
             locale: getDateFnsLocale(this.input.locale),
         });
-        console.log(valueDate);
         const iso = isNaN(valueDate.getTime()) ? null : dateArgToISO(valueDate);
         if (index === 0) {
             this.state.firstSelected = iso;
