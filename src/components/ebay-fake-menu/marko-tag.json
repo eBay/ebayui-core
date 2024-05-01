@@ -32,5 +32,6 @@
         "@class": "string",
         "@style": "string",
         "@separator": "boolean"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-fake-menu)"
 }

@@ -19,5 +19,6 @@
     "@name": "#html-name",
     "@readonly": "#html-readonly",
     "@value": "#html-value",
-    "@type": "never"
+    "@type": "never",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-tri-state-checkbox)"
 }

@@ -13,5 +13,6 @@
     },
     "@text": "string",
     "@as": "string",
-    "@open": "boolean"
+    "@open": "boolean",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-details)"
 }

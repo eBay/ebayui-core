@@ -13,5 +13,6 @@
     "@html-attributes": "expression",
     "@top": "string",
     "@bottom": "string",
-    "@range": "string"
+    "@range": "string",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-eek)"
 }

@@ -10,5 +10,6 @@
     },
     "@icon": "string",
     "@a11y-text": "string",
-    "@aria-labelledby": "never"
+    "@aria-labelledby": "never",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/notices-tips-ebay-inline-notice)"
 }

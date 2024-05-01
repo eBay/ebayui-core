@@ -48,5 +48,6 @@
         "@role": "never",
         "@tabindex": "never",
         "@aria-selected": "never"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-listbox-button)"
 }

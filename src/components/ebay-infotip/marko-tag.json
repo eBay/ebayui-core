@@ -69,5 +69,6 @@
             "type": "expression"
         },
         "@html-attributes": "expression"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-infotip)"
 }
