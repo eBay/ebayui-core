@@ -15,5 +15,6 @@
     "@size": {
         "enum": ["large", "medium"]
     },
-    "@a11yText": "string"
+    "@a11yText": "string",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/progress-ebay-progress-bar-expressive)"
 }

@@ -13,5 +13,6 @@
     "@ping": "#html-ping",
     "@referrerpolicy": "#html-referrerpolicy",
     "@rel": "#html-rel",
-    "@target": "#html-target"
+    "@target": "#html-target",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-cta-button)"
 }

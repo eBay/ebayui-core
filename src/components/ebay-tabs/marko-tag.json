@@ -28,5 +28,6 @@
         "@aria-labelledby": "never",
         "@role": "never",
         "@hidden": "never"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-tabs)"
 }

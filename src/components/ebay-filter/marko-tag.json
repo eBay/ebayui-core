@@ -19,5 +19,6 @@
     "@rel": "#html-rel",
     "@target": "#html-target",
     "@aria-pressed": "never",
-    "@useAriaPressed": "boolean"
+    "@useAriaPressed": "boolean",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-filter)"
 }

@@ -38,5 +38,6 @@
         "@role": "never",
         "@tabindex": "never",
         "@aria-selected": "never"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-listbox)"
 }

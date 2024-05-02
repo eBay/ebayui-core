@@ -27,5 +27,6 @@
         "@label": "#html-label",
         "@selected": "#html-selected",
         "@value": "#html-value"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-select)"
 }

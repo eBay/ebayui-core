@@ -10,5 +10,6 @@
         "enum": ["small", "large"]
     },
     "@multiline": "boolean",
-    "@a11yText": "string"
+    "@a11yText": "string",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-skeleton--documentation)"
 }

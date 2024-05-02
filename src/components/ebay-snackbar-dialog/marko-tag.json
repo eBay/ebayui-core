@@ -16,5 +16,6 @@
         "attribute-groups": ["html-attributes"],
         "@action-text": "string",
         "@access-key": "string"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/dialogs-ebay-snackbar-dialog)"
 }

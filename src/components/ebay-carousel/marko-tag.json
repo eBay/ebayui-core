@@ -35,5 +35,6 @@
         "@class": "string",
         "@style": "string",
         "@key": "string"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-carousel)"
 }
