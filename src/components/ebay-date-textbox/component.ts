@@ -2,6 +2,7 @@ import Expander from "makeup-expander";
 import { type DayISO, dateArgToISO } from "../ebay-calendar/date-utils";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
+import { TextboxEvent } from "../ebay-textbox/component-browser";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -88,13 +89,23 @@ class DateTextbox extends Marko.Component<Input, State> {
                 : 2;
     }
 
-    handleInputChange(index: number, { value }: { value: string }) {
+    handleInputChange(index: number, { value }: TextboxEvent) {
         const valueDate = new Date(value);
         const iso = isNaN(valueDate.getTime()) ? null : dateArgToISO(valueDate);
         if (index === 0) {
-            this.state.firstSelected = iso;
+            if (this.state.secondSelected && iso > this.state.secondSelected) {
+                this.state.firstSelected = this.state.secondSelected;
+                this.state.secondSelected = iso;
+            } else {
+                this.state.firstSelected = iso;
+            }
         } else {
-            this.state.secondSelected = iso;
+            if (this.state.firstSelected && iso < this.state.firstSelected) {
+                this.state.secondSelected = this.state.firstSelected;
+                this.state.firstSelected = iso;
+            } else {
+                this.state.secondSelected = iso;
+            }
         }
         this.emitSelectedChange();
     }
