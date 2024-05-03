@@ -1,11 +1,12 @@
 import { format, parseISO } from "date-fns";
-import { getDateFnsLocale } from "../ebay-calendar/date-utils";
+import { getDateFnsLocale, type DayISO } from "../ebay-calendar/date-utils";
 $ const {
     a11yOpenPopoverText = "open calendar",
     range,
     inputPlaceholderText = "MM/DD/YYYY",
     floatingLabel,
     disabled,
+    localizeFormat,
     ...calendarInput
 } = input;
 $ const [rangeStartPlaceholder, mainPlaceholder] = (
@@ -20,32 +21,35 @@ $ const [rangeStartFloatingLabel, mainFloatingLabel] = (
         : [floatingLabel, floatingLabel]
 );
 
+$ const locale = getDateFnsLocale(input.locale);
+$ const formatValue = (date: DayISO | null) => {
+    if (localizeFormat) {
+        return date ? format(parseISO(date), "P", { locale }) : "";
+    } else {
+        return date || "";
+    }
+}
+
 <span
     on-expander-expand("openPopover")
     on-expander-collapse("closePopover")
     class="date-textbox"
 >
-    $ const locale = getDateFnsLocale(input.locale);
     <if(range)>
         <ebay-textbox
             placeholder=rangeStartPlaceholder
             floating-label=rangeStartFloatingLabel
             disabled=disabled
-            value=(
-                state.firstSelected
-                    ? format(parseISO(state.firstSelected), "P", { locale })
-                    : ""
-            )
+            value=formatValue(state.firstSelected)
             on-blur("handleInputChange", 0)
         />
     </if>
-    $ const textboxValue = range ? state.secondSelected : state.firstSelected;
     <ebay-textbox
         class="ebay-date-textbox--main"
         floating-label=mainFloatingLabel
         placeholder=mainPlaceholder
         buttonAriaLabel=a11yOpenPopoverText
-        value=(textboxValue ? format(parseISO(textboxValue), "P", { locale }) : "")
+        value=formatValue(range ? state.secondSelected : state.firstSelected)
         disabled=disabled
         on-blur("handleInputChange", range ? 1 : 0)
     >

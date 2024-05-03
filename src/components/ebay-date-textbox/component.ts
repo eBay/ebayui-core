@@ -31,6 +31,8 @@ interface DateTextboxInput {
     "a11y-range-end-text"?: AttrString;
     "a11y-separator"?: string;
     "floating-label"?: string | [string, string];
+    /** @deprecated will be default in next major */
+    localizeFormat?: boolean;
     "on-change"?: (
         event:
             | { selected: DayISO | null }
@@ -96,9 +98,11 @@ class DateTextbox extends Marko.Component<Input, State> {
     }
 
     handleInputChange(index: number, { value }: { value: string }) {
-        const valueDate = parse(value, "P", new Date(), {
-            locale: getDateFnsLocale(this.input.locale),
-        });
+        const valueDate = this.input.localizeFormat
+            ? parse(value, "P", new Date(), {
+                  locale: getDateFnsLocale(this.input.locale),
+              })
+            : new Date(value);
         const iso = isNaN(valueDate.getTime()) ? null : dateArgToISO(valueDate);
         if (index === 0) {
             this.state.firstSelected = iso;

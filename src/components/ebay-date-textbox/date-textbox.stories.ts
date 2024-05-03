@@ -229,6 +229,17 @@ export default {
                 'Text for the input placeholder. Should indicate that users need to enter dates in ISO format. If separate placeholders are required for a range display, use an array of two strings (i. e. `["Start (MM/DD/YYYY)", "End (MM/DD/YYYY)"]`).',
             table: { defaultValue: { summary: '"MM/DD/YYYY"' } },
         },
+        localizeFormat: {
+            type: "boolean",
+            control: { type: "boolean" },
+            description:
+                "_**Deprecated— will be default after next major release**_ Localize the date format",
+            table: {
+                defaultValue: {
+                    summary: "false",
+                },
+            },
+        },
         onChange: {
             action: "on-change",
             description: "Triggered when the selection changes",
