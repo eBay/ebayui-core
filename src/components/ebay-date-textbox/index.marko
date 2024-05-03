@@ -3,6 +3,7 @@ $ const {
     range,
     inputPlaceholderText = "YYYY-MM-DD",
     floatingLabel,
+    disabled,
     ...calendarInput
 } = input;
 $ const [rangeStartPlaceholder, mainPlaceholder] = (
@@ -27,6 +28,7 @@ $ const [rangeStartFloatingLabel, mainFloatingLabel] = (
             placeholder=rangeStartPlaceholder
             floating-label=rangeStartFloatingLabel
             value=state.firstSelected
+            disabled=disabled
             on-blur("handleInputChange", 0)
         />
     </if>
@@ -36,6 +38,7 @@ $ const [rangeStartFloatingLabel, mainFloatingLabel] = (
         placeholder=mainPlaceholder
         buttonAriaLabel=a11yOpenPopoverText
         value=(range ? state.secondSelected : state.firstSelected)
+        disabled=disabled
         on-blur("handleInputChange", range ? 1 : 0)
     >
         <@postfix-icon>

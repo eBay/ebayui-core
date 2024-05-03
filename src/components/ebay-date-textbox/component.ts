@@ -10,6 +10,7 @@ interface DateTextboxInput {
     rangeEnd?: Date | number | string;
     locale?: string;
     range?: boolean;
+    disabled?: boolean;
     "disable-before"?: Date | number | string;
     "disable-after"?: Date | number | string;
     "disable-weekdays"?: number[];
@@ -100,7 +101,7 @@ class DateTextbox extends Marko.Component<Input, State> {
     }
 
     openPopover() {
-        this.state.popover = true;
+        this.state.popover = !this.input.disabled && true;
     }
 
     closePopover() {
