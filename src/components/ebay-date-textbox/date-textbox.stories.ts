@@ -66,7 +66,8 @@ export default {
         locale: {
             type: "text",
             control: { type: "text" },
-            description: "Locale of the date picker",
+            description:
+                "Locale used for formatting dates and determining first day of the week. Defaults to `navigator.language`.",
             table: {
                 defaultValue: {
                     summary: "navigator.language",
