@@ -101,7 +101,7 @@ class DateTextbox extends Marko.Component<Input, State> {
     }
 
     openPopover() {
-        this.state.popover = !this.input.disabled && true;
+        this.state.popover = true;
     }
 
     closePopover() {
