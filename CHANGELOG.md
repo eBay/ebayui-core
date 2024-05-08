@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 13.4.1
+
+### Patch Changes
+
+- [#2169](https://github.com/eBay/ebayui-core/pull/2169) [`c49973f`](https://github.com/eBay/ebayui-core/commit/c49973f3e502baa9cc281d4eb0da9831aff0072a) Thanks [@agliga](https://github.com/agliga)! - icon: removed flags from depdendencies
+
 ## 13.4.0
 
 ### Minor Changes
