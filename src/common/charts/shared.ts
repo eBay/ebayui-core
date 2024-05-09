@@ -83,16 +83,16 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
     },
     setDonutColors = function (series: any) {
         const colorsSingle = [chartPrimaryColor],
-            colorsTwo = [chartSecondaryColor, chartPrimaryColor],
+            colorsTwo = [chartPrimaryColor, chartSecondaryColor],
             colorsThree = [
-                chartSecondaryColor,
                 chartPrimaryColor,
+                chartSecondaryColor,
                 patternTertiary,
             ],
             colorsMore = [
+                chartPrimaryColor,
                 chartSecondaryColor,
                 patternTertiary,
-                chartPrimaryColor,
                 patternQuaternary,
                 chartQuinaryBackgroundColor,
             ];
@@ -106,29 +106,29 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
                 break;
             case 2:
                 colors = colorsTwo;
-                data[0].lineColor = data[0].borderColor = chartSecondaryColor;
-                data[1].lineColor = data[1].borderColor = chartPrimaryColor;
+                data[0].lineColor = data[0].borderColor = chartPrimaryColor;
+                data[1].lineColor = data[1].borderColor =
+                chartSecondaryColor;
                 break;
             case 3:
                 colors = colorsThree;
-                data[0].lineColor = data[0].borderColor = chartSecondaryColor;
-                data[1].lineColor = data[1].borderColor = chartPrimaryColor;
-                data[2].lineColor = data[2].borderColor =
-                    chartTertiaryStrokeColor;
+                data[0].lineColor = data[0].borderColor = chartPrimaryColor;
+                data[1].lineColor = data[1].borderColor = chartSecondaryColor
+                    ;
+                data[2].lineColor = data[2].borderColor = chartTertiaryStrokeColor;
                 break;
             default:
                 colors = colorsMore;
-                data[0].lineColor = data[0].borderColor = chartSecondaryColor;
-                data[1].lineColor = data[1].borderColor =
-                    chartTertiaryStrokeColor;
-                data[2].lineColor = data[2].borderColor = chartPrimaryColor;
+                data[0].lineColor = data[0].borderColor = chartPrimaryColor;
+                data[1].lineColor = data[1].borderColor = chartSecondaryColor;
+                data[2].lineColor = data[2].borderColor = chartTertiaryStrokeColor;
                 if (data.length > 3) {
                     data[3].lineColor = data[3].borderColor =
                         chartQuaternaryStrokeColor;
                 }
                 if (data.length > 4) {
                     data[4].lineColor = data[4].borderColor =
-                        chartQuaternaryStrokeColor;
+                        chartQuinaryStrokeColor;
                 }
         }
         return colors;
