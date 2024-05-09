@@ -172,3 +172,14 @@ FiveValues.parameters = {
         },
     },
 };
+
+export const NoMetrics = Template.bind({});
+NoMetrics.args = {
+    series: [
+        {
+            data: data.slice(0, 4),
+        },
+    ],
+    title: "Donut chart title, no metrics",
+    highchartsDescription: "Donut chart description",
+};

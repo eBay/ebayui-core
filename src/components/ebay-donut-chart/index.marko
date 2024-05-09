@@ -8,29 +8,34 @@ $ const {
     ...htmlInput
 } = input;
 
-<div
-    class=[inputClass, "donut-chart"]
-    ...processHtmlAttributes(htmlInput)
->
+<div class=[inputClass, "donut-chart"] ...processHtmlAttributes(htmlInput)>
     <div class="donut-chart__grid">
-        <div class="donut-chart__title">
-            ${title}
-        </div>
-        <div class="donut-chart__metric">
-            <div class="donut-chart__metric-value">
-                ${metricValue}
+        <if(title)>
+            <div class="donut-chart__title">
+                ${title}
             </div>
-            <div class="donut-chart__metric-label">
-                ${metricLabel}
+        </if>
+        <if(metricLabel || metricValue)>
+            <div class="donut-chart__metric">
+                <if(metricValue)>
+                    <div class="donut-chart__metric-value">
+                        ${metricValue}
+                    </div>
+                </if>
+                <if(metricLabel)>
+                    <div class="donut-chart__metric-label">
+                        ${metricLabel}
+                    </div>
+                </if>
             </div>
-        </div>
+        </if>
         <div
             id=component.getContainerId()
             class="donut-chart__graph"
             no-update
         />
         <div class="donut-chart__legend">
-            <ebay-chart-legend items=component.getLegendItems() />
+            <ebay-chart-legend items=component.getLegendItems()/>
         </div>
     </div>
 </div>
