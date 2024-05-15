@@ -153,7 +153,7 @@
         "@marko-tags/subscribe": "^0.5.1",
         "makeup-active-descendant": "0.6.1",
         "makeup-expander": "~0.10.1",
-        "makeup-floating-label": "~0.3.2",
+        "makeup-floating-label": "~0.3.3",
         "makeup-focusables": "~0.3.1",
         "makeup-key-emitter": "~0.3.1",
         "makeup-keyboard-trap": "~0.4.1",
