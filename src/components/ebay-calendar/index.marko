@@ -75,6 +75,7 @@ $ var monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(st
                                 <for|day| from=startDate to=endDate>
                                     $ var dayISO = toISO(new Date(Date.UTC(year, month, day)));
                                     $ var isToday = dayISO === state.todayISO;
+                                    $ console.log(isToday, dayISO, state.todayISO);
                                     $ var isSelected = (Array.isArray(selected)
                                             ? selected.some((iso) => iso === dayISO)
                                             : selected && selected === dayISO);

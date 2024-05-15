@@ -46,6 +46,16 @@ export default {
                 },
             },
         },
+        todayISO: {
+            type: "date",
+            control: { type: "date" },
+            description: "The current date in ISO format",
+            table: {
+                defaultValue: {
+                    summary: "Today's date",
+                },
+            },
+        },
         floatingLabel: {
             type: "text|array",
             control: { type: "object" },
