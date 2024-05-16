@@ -82,56 +82,22 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
         }
     },
     setDonutColors = function (series: any) {
-        const colorsSingle = [chartPrimaryColor],
-            colorsTwo = [chartPrimaryColor, chartSecondaryColor],
-            colorsThree = [
-                chartPrimaryColor,
-                chartSecondaryColor,
-                patternTertiary,
-            ],
-            colorsMore = [
-                chartPrimaryColor,
-                chartSecondaryColor,
-                patternTertiary,
-                patternQuaternary,
-                chartQuinaryBackgroundColor,
-            ];
+        const colors = [
+            { lineColor: chartPrimaryColor, borderColor: chartPrimaryColor },
+            { lineColor: chartSecondaryColor, borderColor: chartSecondaryColor },
+            { lineColor: patternTertiary, borderColor: chartTertiaryStrokeColor },
+            { lineColor: patternQuaternary, borderColor: chartQuaternaryStrokeColor },
+            { lineColor: chartQuinaryBackgroundColor, borderColor: chartQuinaryStrokeColor },
+        ]
 
         const { data } = series;
-        let colors;
-        switch (data.length) {
-            case 1:
-                colors = colorsSingle;
-                data[0].lineColor = data[0].borderColor = chartPrimaryColor;
-                break;
-            case 2:
-                colors = colorsTwo;
-                data[0].lineColor = data[0].borderColor = chartPrimaryColor;
-                data[1].lineColor = data[1].borderColor =
-                chartSecondaryColor;
-                break;
-            case 3:
-                colors = colorsThree;
-                data[0].lineColor = data[0].borderColor = chartPrimaryColor;
-                data[1].lineColor = data[1].borderColor = chartSecondaryColor
-                    ;
-                data[2].lineColor = data[2].borderColor = chartTertiaryStrokeColor;
-                break;
-            default:
-                colors = colorsMore;
-                data[0].lineColor = data[0].borderColor = chartPrimaryColor;
-                data[1].lineColor = data[1].borderColor = chartSecondaryColor;
-                data[2].lineColor = data[2].borderColor = chartTertiaryStrokeColor;
-                if (data.length > 3) {
-                    data[3].lineColor = data[3].borderColor =
-                        chartQuaternaryStrokeColor;
-                }
-                if (data.length > 4) {
-                    data[4].lineColor = data[4].borderColor =
-                        chartQuinaryStrokeColor;
-                }
-        }
-        return colors;
+
+        data.forEach((item: any, index: number) => {
+            item.lineColor = colors[index].lineColor;
+            item.borderColor = colors[index].borderColor;
+        })
+
+        return colors.map((color: any) => color.lineColor);
     },
     setLegendColors = function (series: any[]) {
         switch (series.length) {

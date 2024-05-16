@@ -203,15 +203,10 @@ class DonutChart extends Marko.Component<Input> {
      */
     getLegendItems(): LegendItem[] {
         const { series } = this.input;
-
-        // Adds classes to the legend items
-        const colors = setLegendColors(series[0].data);
-
-        return series[0].data.map((point, index) => {
+        return series[0].data.map((point) => {
             return {
                 name: point.name,
                 value: point.y,
-                symbolClass: colors[index],
             } as LegendItem;
         });
     }
