@@ -3,7 +3,6 @@ import {
     chartFontFamily,
     backgroundColor,
     setDonutColors,
-    setLegendColors,
 } from "../../common/charts/shared";
 import { ebayDonut } from "../../common/charts/donut";
 import type { WithNormalizedProps } from "../../global";

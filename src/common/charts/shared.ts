@@ -98,23 +98,4 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
         })
 
         return colors.map((color: any) => color.lineColor);
-    },
-    setLegendColors = function (series: any[]) {
-        switch (series.length) {
-            case 1:
-                return ["primary"];
-            case 2:
-                console.log("legend colors");
-                return ["secondary", "primary"];
-            case 3:
-                return ["secondary", "primary", "tertiary"];
-            default:
-                return [
-                    "secondary",
-                    "tertiary",
-                    "primary",
-                    "quaternary",
-                    "quinary",
-                ];
-        }
     };
