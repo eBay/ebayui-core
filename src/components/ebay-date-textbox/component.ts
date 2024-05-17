@@ -10,6 +10,7 @@ interface DateTextboxInput {
     rangeEnd?: Date | number | string;
     locale?: string;
     range?: boolean;
+    "todayISO"?: Date | number | string;
     disabled?: boolean;
     "disable-before"?: Date | number | string;
     "disable-after"?: Date | number | string;

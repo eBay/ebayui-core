@@ -24,6 +24,7 @@ interface CalendarInput {
     locale?: string;
     range?: boolean;
     selected?: DayISO | [DayISO, DayISO];
+    todayISO?: Date | number | string;
     "disable-before"?: Date | number | string;
     "disable-after"?: Date | number | string;
     "disable-weekdays"?: number[];
@@ -45,7 +46,7 @@ interface CalendarInput {
 export interface Input extends WithNormalizedProps<CalendarInput> {}
 
 interface State {
-    todayISO: DayISO;
+    todayISO?: DayISO;
     tabindexISO: DayISO;
     offset: number;
     firstDayOfWeek: number;
@@ -92,6 +93,13 @@ class Calendar extends Marko.Component<Input, State> {
     }
 
     onInput(input: Input) {
+        if (input.todayISO) {
+            const newTodayISO = toISO(new Date(input.todayISO));
+            this.state.todayISO = newTodayISO
+            this.state.baseISO = newTodayISO;
+            this.state.tabindexISO = newTodayISO;
+
+        }
         if (input.selected) {
             // If no selected times are visible, snap the view to the first one
             const selectedISOs = Array.isArray(input.selected)

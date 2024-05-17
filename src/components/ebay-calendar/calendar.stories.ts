@@ -89,6 +89,16 @@ export default {
                 },
             },
         },
+        todayISO: {
+            type: "date",
+            control: { type: "date" },
+            description: "The starting current date.",
+            table: {
+                defaultValue: {
+                    summary: "Today's date",
+                },
+            },
+        },
         disableBefore: {
             type: "date",
             control: { type: "date" },
