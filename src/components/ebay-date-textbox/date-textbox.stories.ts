@@ -83,6 +83,17 @@ export default {
                 },
             },
         },
+        disabled: {
+            type: "boolean",
+            control: { type: "boolean" },
+            description:
+                "If true, the textbox is disabled and popover cannot be opened.",
+            table: {
+                defaultValue: {
+                    summary: "false",
+                },
+            },
+        },
         disableBefore: {
             type: "date",
             control: { type: "date" },
