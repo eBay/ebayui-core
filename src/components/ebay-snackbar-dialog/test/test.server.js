@@ -1,35 +1,26 @@
-import { expect, use } from "chai";
-import { render } from "@marko/testing-library";
-import template from "..";
-import * as mock from "./mock";
-
-use(require("chai-dom"));
+import { composeStories } from "@storybook/marko";
+import { testPassThroughAttributes } from "../../../common/test-utils/server";
+import { snapshotHTML } from "../../../common/test-utils/snapshots";
+import * as stories from "../snackbar-dialog.stories"; // import all stories from the stories file
+const { Default, WithAction } = composeStories(stories);
+const htmlSnap = snapshotHTML(__dirname);
 
 describe("snackbar-dialog", () => {
     it("renders basic version", async () => {
-        const input = mock.Snackbar;
-        const { getByRole, getByText } = await render(template, input);
-        const dialog = getByRole("dialog", { hidden: true });
+        await htmlSnap(Default);
+    });
 
-        expect(dialog).has.attr("hidden");
-        expect(dialog).has.class("snackbar-dialog");
-        expect(dialog).has.class("snackbar-dialog--transition");
-        expect(getByText(input.renderBody.text)).has.class(
-            "snackbar-dialog__main",
-        );
-        expect(getByText(input.header.renderBody.text).parentElement).has.class(
-            "snackbar-dialog__header",
-        );
-        expect(getByText(input.action.renderBody.text).parentElement).has.class(
-            "snackbar-dialog__actions",
-        );
-        expect(getByRole("button", { hidden: "true" })).has.class("fake-link");
-        expect(dialog.childNodes[0]).has.class("snackbar-dialog__window");
+    it("renders without handle ", async () => {
+        await htmlSnap(Default, { layout: "column" });
     });
 
     it("renders in open state", async () => {
-        const input = mock.Snackbar_Open;
-        const { getByRole } = await render(template, input);
-        expect(getByRole("dialog")).does.not.have.attr("hidden");
+        await htmlSnap(Default, { open: true });
     });
+
+    it("renders with action version", async () => {
+        await htmlSnap(WithAction);
+    });
+
+    testPassThroughAttributes(Default);
 });

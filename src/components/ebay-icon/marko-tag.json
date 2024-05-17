@@ -13,5 +13,6 @@
     "@_themes": "expression",
     "@_def": "expression",
     "@role": "never",
-    "@aria-labelledby": "never"
+    "@aria-labelledby": "never",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-icon)"
 }

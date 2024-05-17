@@ -37,5 +37,6 @@
         "@rel": "#html-rel",
         "@target": "#html-target",
         "@aria-current": "never"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-breadcrumbs)"
 }

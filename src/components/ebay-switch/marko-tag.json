@@ -13,5 +13,6 @@
     "@readonly": "#html-readonly",
     "@value": "#html-value",
     "@type": "never",
-    "@role": "never"
+    "@role": "never",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-switch)"
 }

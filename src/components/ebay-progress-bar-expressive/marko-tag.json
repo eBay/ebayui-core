@@ -1,0 +1,20 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@messages <message>[]": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@duration": "number"
+    },
+    "@size": {
+        "enum": ["large", "medium"]
+    },
+    "@a11yText": "string",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/progress-ebay-progress-bar-expressive)"
+}

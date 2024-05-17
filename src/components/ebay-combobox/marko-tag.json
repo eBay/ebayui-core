@@ -43,5 +43,6 @@
         "@role": "never",
         "@aria-selected": "never",
         "@sticky": "boolean"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-combobox)"
 }

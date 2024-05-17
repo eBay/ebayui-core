@@ -14,6 +14,7 @@
         "disableAfter": "expression",
         "disableWeekdays": "array",
         "disableList": "array",
+        "floatingLabel": "expression",
         "inputPlaceholderText": "expression",
         "collapseOnSelect": "boolean",
         "getA11yShowMonthText": "function",
@@ -23,5 +24,6 @@
         "a11yInRangeText": "string",
         "a11yRangeEndText": "string",
         "a11ySeparator": "string"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/dialogs-ebay-date-textbox)"
 }

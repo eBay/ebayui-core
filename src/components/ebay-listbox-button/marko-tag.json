@@ -42,10 +42,12 @@
         },
         "@html-attributes": "expression",
         "@text": "string",
+        "@a11y-icon-text": "string",
         "@selected": "#html-selected",
         "@value": "#html-value",
         "@role": "never",
         "@tabindex": "never",
         "@aria-selected": "never"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-listbox-button)"
 }

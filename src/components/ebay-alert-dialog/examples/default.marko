@@ -13,6 +13,7 @@ export interface Input {
     on-open('emit', 'open')
     on-close('emit', 'close')
     on-confirm('closeDialog')
+    ...input
 >
     <@header><${input.header.renderBody}/></@header>
     <@confirm><${input.confirm.renderBody}/></@confirm>

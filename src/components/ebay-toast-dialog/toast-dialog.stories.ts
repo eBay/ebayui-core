@@ -69,9 +69,9 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {};
-Standard.parameters = {
+export const Default = Template.bind({});
+Default.args = {};
+Default.parameters = {
     docs: {
         source: {
             code,

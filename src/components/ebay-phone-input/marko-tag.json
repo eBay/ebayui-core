@@ -1,0 +1,16 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "type": "expression",
+        "targetProperty": null
+    },
+    "@html-attributes": "expression",
+    "@disabled": "#html-disabled",
+    "@a11y-icon-prefix-text": "string",
+    "@country-names": "array",
+    "@floating-label": "string",
+    "@country-code": "string",
+    "@value": "string",
+    "@aria-disabled": "never",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-phone-input-button)"
+}

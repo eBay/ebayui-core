@@ -8,5 +8,6 @@
         "type": "expression"
     },
     "@html-attributes": "expression",
-    "@role": "never"
+    "@role": "never",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/progress-ebay-progress-spinner)"
 }

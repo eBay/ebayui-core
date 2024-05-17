@@ -45,5 +45,6 @@
     "@required": "#html-required",
     "@size": "#html-size",
     "@value": "#html-value",
-    "@aria-invalid": "never"
+    "@aria-invalid": "never",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-textbox)"
 }

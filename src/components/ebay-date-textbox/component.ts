@@ -10,6 +10,7 @@ interface DateTextboxInput {
     rangeEnd?: Date | number | string;
     locale?: string;
     range?: boolean;
+    disabled?: boolean;
     "disable-before"?: Date | number | string;
     "disable-after"?: Date | number | string;
     "disable-weekdays"?: number[];
@@ -23,6 +24,7 @@ interface DateTextboxInput {
     "a11y-in-range-text"?: AttrString;
     "a11y-range-end-text"?: AttrString;
     "a11y-separator"?: string;
+    "floating-label"?: string | [string, string];
     "on-change"?: (
         event:
             | { selected: DayISO | null }

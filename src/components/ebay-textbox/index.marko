@@ -11,6 +11,7 @@ $ const {
     class: inputClass,
     disabled,
     floatingLabel,
+    floatingLabelStatic,
     fluid,
     id = component.getElId("textbox"),
     inputSize,
@@ -22,6 +23,7 @@ $ const {
     style,
     type,
     value,
+    prefixText,
     ...htmlInput
 } = input;
 
@@ -30,6 +32,7 @@ $ var isPostfix = !!postfixIcon;
 $ var hasIcon = prefixIcon || isPostfix;
 $ var isLarge = inputSize === "large";
 $ var displayIcon = Boolean(!multiline && hasIcon);
+$ var prefixId = prefixText && component.getElId("prefix");
 $ var defaultTag = fluid ? "div" : "span";
 <${floatingLabel && defaultTag} class=["floating-label", isLarge && "floating-label--large", opaqueLabel && "floating-label--opaque"]>
     <if(floatingLabel)>
@@ -52,7 +55,13 @@ $ var defaultTag = fluid ? "div" : "span";
         <if(displayIcon && prefixIcon)>
             <${prefixIcon}/>
         </if>
+        <if(prefixText)>
+            <span id=prefixId ...prefixText>
+                <${prefixText} />
+            </span>
+        </if>
         <${multiline ? "textarea" : "input"}
+            aria-describedby=prefixId
             ...processHtmlAttributes(htmlInput)
             id=id
             key="input"
@@ -80,6 +89,7 @@ $ var defaultTag = fluid ? "div" : "span";
                 class="icon-btn icon-btn--transparent"
                 aria-label=buttonAriaLabel
                 type=(buttonAriaLabel && "button")
+                disabled=disabled
                 on-click("forwardEvent", "button-click")>
                 <${postfixIcon}/>
             </>

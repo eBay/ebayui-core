@@ -10,6 +10,7 @@
     "@fluid": "boolean",
     "@invalid": "boolean",
     "@name": "#html-name",
+    "@typeahead-timeout-length": "number",
     "@list-selection": {
         "enum": ["manual", "auto"]
     },
@@ -31,10 +32,12 @@
         },
         "@html-attributes": "expression",
         "@text": "string",
+        "@a11y-icon-text": "string",
         "@selected": "#html-selected",
         "@value": "#html-value",
         "@role": "never",
         "@tabindex": "never",
         "@aria-selected": "never"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-listbox)"
 }

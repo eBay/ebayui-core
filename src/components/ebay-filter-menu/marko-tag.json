@@ -26,5 +26,6 @@
         "@role": "never",
         "@aria-checked": "never",
         "@for": "never"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-filter-menu)"
 }

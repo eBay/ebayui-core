@@ -1,7 +1,7 @@
 import { expect, use } from "chai";
 import { render } from "@marko/testing-library";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
-import template from "..";
+import template from "../index.marko";
 import * as mock from "./mock";
 
 use(require("chai-dom"));

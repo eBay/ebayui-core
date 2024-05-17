@@ -24,5 +24,6 @@
         "@current": "boolean",
         "@a11y-text": "string",
         "@number": "number"
-    }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/progress-ebay-progress-stepper)"
 }

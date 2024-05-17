@@ -1,6 +1,5 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
-import type { Option } from '../ebay-listbox/component'
-
+import { processHtmlAttributes } from "../../common/html-attributes";
+import type { Option } from "../ebay-listbox/component";
 $ const {
     name,
     class: inputClass,
@@ -13,62 +12,90 @@ $ const {
     truncate,
     prefixLabel,
     prefixId,
-    unselectedText = '-',
+    unselectedText = "-",
     floatingLabel,
     collapseOnSelect,
     listSelection,
     variant,
     hasError,
+    split = "none",
+    a11yIconPrefixText,
     ariaDescribedby: describedby,
     ...htmlInput
 } = input;
-
 $ var selectedOption = (options as Option[])[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
+$ var selectedIcon = selectedOption && selectedOption.icon;
+$ var a11ySelectedIconText = selectedIcon && selectedOption && selectedOption.text;
 $ var labelId = prefixId && component.getElId("label");
 $ var displayText = selectedText || unselectedText;
-$ var isForm = variant === 'form';
+$ var isForm = variant === "form";
+
+<macro|{ alwaysDisplay }: { alwaysDisplay: boolean }| name="render-text">
+    <if(selectedIcon)>
+        <span id=labelId class="btn__text">
+            <${selectedIcon}/>
+        </span>
+    </if>
+    <else-if(selectedText || alwaysDisplay)>
+        <span id=labelId class="btn__text">
+            ${displayText}
+        </span>
+    </else-if>
+</macro>
 
 <${truncate && !fluid ? "div" : "span"}
     ...processHtmlAttributes(htmlInput)
     key="container"
-    class=["listbox-button", inputClass, fluid && "listbox-button--fluid", isForm && `listbox-button--form`, hasError && 'listbox-button--error']
+    class=[
+        "listbox-button",
+        inputClass,
+        fluid && "listbox-button--fluid",
+        isForm && `listbox-button--form`,
+        hasError && "listbox-button--error",
+    ]
     on-expander-expand("handleExpand")
-    on-expander-collapse("handleCollapse")>
+    on-expander-collapse("handleCollapse")
+>
     <button
         key="button"
         class=[
             "listbox-button__control",
-            'btn',
-            borderless ? "btn--borderless" : 'btn--form',
+            "btn",
+            split !== "none" && `btn--split-${split}`,
+            borderless ? "btn--borderless" : "btn--form",
             truncate && "btn--truncated",
-            floatingLabel && "btn--floating-label"
+            floatingLabel && "btn--floating-label",
         ]
+        aria-label=a11ySelectedIconText && `${a11yIconPrefixText}: ${a11ySelectedIconText}`
         value=selectedText
         type="button"
         disabled=disabled
         name=buttonName
         aria-haspopup="listbox"
         aria-describedby=describedby
-        aria-labelledby=(labelId && `${prefixId} ${labelId}`)
-        aria-invalid=(invalid && "true")>
+        aria-labelledby=labelId && `${prefixId} ${labelId}`
+        aria-invalid=invalid && "true"
+    >
         <span class="btn__cell">
-            <if (floatingLabel)>
+            <if(floatingLabel)>
                 <span class=[
                     "btn__floating-label",
                     "btn__floating-label--animate",
                     !selectedText && "btn__floating-label--inline",
-                    ]>${floatingLabel}</span>
-                <if(selectedText)>
-                    <span class="btn__text">${displayText}</span>
-                </if>
+                ]>
+                    ${floatingLabel}
+                </span>
+                <render-text/>
             </if>
-            <else-if (prefixLabel)>
-                <span class="btn__label">${prefixLabel} </span>
-                <span class="btn__text">${displayText}</span>
+            <else-if(prefixLabel)>
+                <span class="btn__label">
+                    ${prefixLabel}
+                </span>
+                <render-text always-display/>
             </else-if>
             <else>
-                <span id=labelId class="btn__text">${displayText}</span>
+                <render-text always-display/>
             </else>
             <ebay-chevron-down-16-icon/>
         </span>
@@ -80,9 +107,10 @@ $ var isForm = variant === 'form';
         tabindex=-1
         listSelection=listSelection
         onChange("handleListboxChange")
-        onEscape("handleListboxEscape")>
-        <for|option| of=(options || [])>
-            <@option ...option selected=(selectedOption === option)/>
+        onEscape("handleListboxEscape")
+    >
+        <for|option| of=options || []>
+            <@option ...option selected=selectedOption === option/>
         </for>
     </ebay-listbox>
 </>
