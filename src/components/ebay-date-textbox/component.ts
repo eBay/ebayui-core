@@ -1,12 +1,8 @@
 import Expander from "makeup-expander";
-import {
-    type DayISO,
-    dateArgToISO,
-    getDateFnsLocale,
-} from "../ebay-calendar/date-utils";
+import { type DayISO, dateArgToISO } from "../../common/dates/date-utils";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
-import { parse } from "date-fns";
+import { parse } from "../../common/dates";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -98,12 +94,14 @@ class DateTextbox extends Marko.Component<Input, State> {
     }
 
     handleInputChange(index: number, { value }: { value: string }) {
-        const valueDate = this.input.localizeFormat
-            ? parse(value, "P", new Date(), {
-                  locale: getDateFnsLocale(this.input.locale),
-              })
-            : new Date(value);
-        const iso = isNaN(valueDate.getTime()) ? null : dateArgToISO(valueDate);
+        let iso: DayISO | null;
+        /* next major, localizeFormat will _always_ be true */
+        if (this.input.localizeFormat) {
+            iso = parse(value, this.input.locale);
+        } else {
+            const date = new Date(value);
+            iso = isNaN(date.getTime()) ? null : dateArgToISO(date);
+        }
         if (index === 0) {
             this.state.firstSelected = iso;
         } else {

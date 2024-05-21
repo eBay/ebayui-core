@@ -1,5 +1,4 @@
-import type { Locale } from "date-fns";
-import * as locales from "./locales";
+import { getLocale } from ".";
 
 export type DayISO = `${number}-${number}-${number}`;
 
@@ -17,8 +16,8 @@ export function findFirstDayOfWeek(localeName: string): number {
 }
 
 export function getWeekdayInfo(localeName?: string) {
-    const locale = getDateFnsLocale(localeName) as Locale;
-    const firstDayOfWeek = locale.options?.weekStartsOn || 0;
+    const locale = getLocale(localeName);
+    const firstDayOfWeek = locale.weekStart;
 
     const weekdayLabelFormatter = new Intl.DateTimeFormat(localeName, {
         weekday: "short",
@@ -52,14 +51,4 @@ export function offsetISO(iso: DayISO, days: number) {
     const date = fromISO(iso);
     date.setUTCDate(date.getUTCDate() + days);
     return toISO(date);
-}
-
-export function getDateFnsLocale(locale?: string): Locale {
-    const defaultLanguage =
-        typeof navigator !== "undefined" ? navigator.language : "en-US";
-    locale ??= defaultLanguage;
-    locale = locale.toLowerCase().replace(/\W/g, "");
-    return locale in locales
-        ? locales[locale as keyof typeof locales]
-        : locales["enus"];
 }

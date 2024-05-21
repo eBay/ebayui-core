@@ -4,11 +4,10 @@ import {
     dateArgToISO,
     fromISO,
     getWeekdayInfo,
-    getDateFnsLocale,
     offsetISO,
     toISO,
     type DayISO,
-} from "./date-utils";
+} from "../../common/dates/date-utils";
 
 const DAY_UPDATE_KEYMAP = {
     ArrowRight: 1,
@@ -285,7 +284,7 @@ class Calendar extends Marko.Component<Input, State> {
 
     monthTitle(date: Date) {
         const formatter = new Intl.DateTimeFormat(
-            getDateFnsLocale(this.input.locale).code,
+            this.input.locale ?? navigator.language,
             {
                 month: "long",
                 year: "numeric",

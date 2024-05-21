@@ -1,5 +1,5 @@
-import { format, parseISO } from "date-fns";
-import { getDateFnsLocale, type DayISO } from "../ebay-calendar/date-utils";
+import { format } from "../../common/dates";
+import { type DayISO } from "../../common/dates/date-utils";
 $ const {
     a11yOpenPopoverText = "open calendar",
     range,
@@ -21,10 +21,9 @@ $ const [rangeStartFloatingLabel, mainFloatingLabel] = (
         : [floatingLabel, floatingLabel]
 );
 
-$ const locale = getDateFnsLocale(input.locale);
 $ const formatValue = (date: DayISO | null) => {
     if (localizeFormat) {
-        return date ? format(parseISO(date), "P", { locale }) : "";
+        return date ? format(date, input.locale) : "";
     } else {
         return date || "";
     }
