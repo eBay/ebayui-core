@@ -1,4 +1,4 @@
-import { DayISO } from "./date-utils";
+import type { DayISO } from "./date-utils";
 import locales from "./locales";
 export { locales };
 
