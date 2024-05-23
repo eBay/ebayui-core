@@ -62,7 +62,10 @@ interface State {
 }
 
 class Calendar extends Marko.Component<Input, State> {
+    declare locale?: string;
+
     onCreate(input: Input) {
+        this.locale = input.locale;
         const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(input.locale);
         const todayISO = toISO(new Date());
         this.state = {
@@ -82,19 +85,20 @@ class Calendar extends Marko.Component<Input, State> {
         };
     }
 
-    onMount() {
-        // recalculate on the browser in case firstDayOfWeek is not supported
-        const { firstDayOfWeek } = getWeekdayInfo(this.input.locale);
-        this.state.firstDayOfWeek = firstDayOfWeek;
-    }
-
     onInput(input: Input) {
+        if (input.locale !== this.locale) {
+            this.locale = input.locale;
+            const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(
+                input.locale,
+            );
+            this.state.firstDayOfWeek = firstDayOfWeek;
+            this.state.weekdayLabels = weekdayLabels;
+        }
         if (input.todayISO) {
             const newTodayISO = toISO(new Date(input.todayISO));
-            this.state.todayISO = newTodayISO
+            this.state.todayISO = newTodayISO;
             this.state.baseISO = newTodayISO;
             this.state.tabindexISO = newTodayISO;
-
         }
         if (input.selected) {
             // If no selected times are visible, snap the view to the first one

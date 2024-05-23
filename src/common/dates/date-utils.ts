@@ -1,4 +1,4 @@
-import { getLocale } from ".";
+import { getLocale, localeDefault } from ".";
 
 export type DayISO = `${number}-${number}-${number}`;
 
@@ -16,6 +16,7 @@ export function findFirstDayOfWeek(localeName: string): number {
 }
 
 export function getWeekdayInfo(localeName?: string) {
+    localeName = localeDefault(localeName);
     const locale = getLocale(localeName);
     const firstDayOfWeek = locale.weekStart;
 
