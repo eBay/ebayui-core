@@ -8,6 +8,7 @@ import {
     toISO,
     type DayISO,
 } from "../../common/dates/date-utils";
+import { localeDefault } from "../../common/dates";
 
 const DAY_UPDATE_KEYMAP = {
     ArrowRight: 1,
@@ -284,7 +285,7 @@ class Calendar extends Marko.Component<Input, State> {
 
     monthTitle(date: Date) {
         const formatter = new Intl.DateTimeFormat(
-            this.input.locale ?? navigator.language,
+            localeDefault(this.input.locale),
             {
                 month: "long",
                 year: "numeric",

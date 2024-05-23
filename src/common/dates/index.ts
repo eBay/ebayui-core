@@ -2,11 +2,16 @@ import { DayISO } from "./date-utils";
 import locales from "./locales";
 export { locales };
 
+export function localeDefault(locale?: string) {
+    if (locale) return locale;
+    if (typeof navigator !== "undefined") return navigator.language;
+    return "en-US";
+}
+
 export function getLocale(locale?: string) {
     return (
-        locales[
-            (locale ?? navigator.language).replace(/\W/g, "").toLowerCase()
-        ] ?? locales["enus"]
+        locales[localeDefault(locale).replace(/\W/g, "").toLowerCase()] ??
+        locales["enus"]
     );
 }
 
