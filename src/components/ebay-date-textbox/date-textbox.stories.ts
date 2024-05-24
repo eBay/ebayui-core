@@ -242,6 +242,14 @@ export default {
                 },
             },
         },
+        textbox: {
+            name: "@textbox",
+            description:
+                "Proxy for textbox attributes— includes all attributes for `<ebay-textbox>`",
+            table: {
+                category: "@attribute tags",
+            },
+        },
         onChange: {
             action: "on-change",
             description: "Triggered when the selection changes",
@@ -250,6 +258,14 @@ export default {
                 defaultValue: {
                     summary: "{ selected } | { rangeStart, rangeEnd }",
                 },
+            },
+        },
+        "onInvalid-date": {
+            action: "on-invalid-date",
+            description:
+                "Triggered when the user manually types an invalid date",
+            table: {
+                category: "Events",
             },
         },
     },
