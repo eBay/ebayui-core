@@ -107,6 +107,12 @@ class DateTextbox extends Marko.Component<Input, State> {
             const date = new Date(value);
             iso = isNaN(date.getTime()) ? null : dateArgToISO(date);
         }
+
+        if (iso === null) {
+            this.emit("invalid-date");
+            return;
+        }
+
         if (index === 0) {
             this.state.firstSelected = iso;
         } else {
