@@ -9,6 +9,8 @@ import LocalizedTemplate from "./examples/localized.marko";
 import LocalizedTemplateCode from "./examples/localized.marko?raw";
 import WithClearTemplate from "./examples/with-clear.marko";
 import WithClearTemplateCode from "./examples/with-clear.marko?raw";
+import InField from "./examples/in-field.marko";
+import InFieldCode from "./examples/in-field.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -271,3 +273,5 @@ export const WithClear = buildExtensionTemplate(
     WithClearTemplate,
     WithClearTemplateCode,
 );
+
+export const InFieldExample = buildExtensionTemplate(InField, InFieldCode);

@@ -6,6 +6,7 @@ $ const {
     inputPlaceholderText = "YYYY-MM-DD",
     floatingLabel,
     disabled,
+    textbox,
     localizeFormat,
     ...calendarInput
 } = input;
@@ -13,6 +14,12 @@ $ const [rangeStartPlaceholder, mainPlaceholder] = (
     Array.isArray(inputPlaceholderText)
         ? inputPlaceholderText
         : [inputPlaceholderText, inputPlaceholderText]
+);
+
+$ const [rangeStartTextboxInput, mainTextboxInput] = (
+    Array.isArray(textbox)
+        ? textbox
+        : [textbox, textbox]
 );
 
 $ const [rangeStartFloatingLabel, mainFloatingLabel] = (
@@ -41,6 +48,7 @@ $ const formatValue = (date: DayISO | null) => {
             disabled=disabled
             value=formatValue(state.firstSelected)
             on-blur("handleInputChange", 0)
+            ...rangeStartTextboxInput
         />
     </if>
     <ebay-textbox
@@ -51,6 +59,7 @@ $ const formatValue = (date: DayISO | null) => {
         value=formatValue(range ? state.secondSelected : state.firstSelected)
         disabled=disabled
         on-blur("handleInputChange", range ? 1 : 0)
+        ...mainTextboxInput
     >
         <@postfix-icon>
             <ebay-calendar-24-icon/>
