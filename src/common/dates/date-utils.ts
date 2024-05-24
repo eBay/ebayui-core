@@ -1,3 +1,5 @@
+import { getLocale, localeDefault } from ".";
+
 export type DayISO = `${number}-${number}-${number}`;
 
 export function findFirstDayOfWeek(localeName: string): number {
@@ -13,8 +15,10 @@ export function findFirstDayOfWeek(localeName: string): number {
     return 0;
 }
 
-export function getWeekdayInfo(localeName: string) {
-    const firstDayOfWeek = findFirstDayOfWeek(localeName);
+export function getWeekdayInfo(localeName?: string) {
+    localeName = localeDefault(localeName);
+    const locale = getLocale(localeName);
+    const firstDayOfWeek = locale.weekStart;
 
     const weekdayLabelFormatter = new Intl.DateTimeFormat(localeName, {
         weekday: "short",
@@ -48,10 +52,4 @@ export function offsetISO(iso: DayISO, days: number) {
     const date = fromISO(iso);
     date.setUTCDate(date.getUTCDate() + days);
     return toISO(date);
-}
-
-export function localeOverride(locale?: string) {
-    const defaultLanguage =
-        typeof navigator !== "undefined" ? navigator.language : "en-US";
-    return locale || defaultLanguage;
 }

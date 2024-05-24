@@ -85,7 +85,7 @@ export default {
             description: "Locale of the date picker",
             table: {
                 defaultValue: {
-                    summary: "navigator.language",
+                    summary: "navigator.language || 'en-US'",
                 },
             },
         },

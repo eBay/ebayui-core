@@ -1,0 +1,38 @@
+class {
+    onCreate() {
+        this.state = {
+            invalid: false,
+        };
+    }
+
+    onError() {
+        this.state.invalid = true;
+    }
+
+    onChange() {
+        this.state.invalid = false;
+    }
+}
+
+<div class="field">
+    <label for:scoped="textbox">
+        Enter Date
+    </label>
+    <div>
+        <ebay-date-textbox onInvalid-date("onError") on-change("onChange")>
+            <@textbox
+                id:scoped="textbox"
+                invalid=state.invalid
+                aria-labelledby:scoped="error-label"
+            />
+        </ebay-date-textbox>
+    </div>
+    <if(state.invalid)>
+        <div
+            class="field__description field__description--attention"
+            id:scoped="error-label"
+        >
+            Use <strong>YYYY-MM-DD</strong> format
+        </div>
+    </if>
+</div>

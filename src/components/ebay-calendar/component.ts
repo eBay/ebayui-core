@@ -4,11 +4,11 @@ import {
     dateArgToISO,
     fromISO,
     getWeekdayInfo,
-    localeOverride,
     offsetISO,
     toISO,
     type DayISO,
-} from "./date-utils";
+} from "../../common/dates/date-utils";
+import { localeDefault } from "../../common/dates";
 
 const DAY_UPDATE_KEYMAP = {
     ArrowRight: 1,
@@ -62,10 +62,11 @@ interface State {
 }
 
 class Calendar extends Marko.Component<Input, State> {
+    declare locale?: string;
+
     onCreate(input: Input) {
-        const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(
-            localeOverride(input.locale),
-        );
+        this.locale = input.locale;
+        const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(input.locale);
         const todayISO = toISO(new Date());
         this.state = {
             focusISO: null,
@@ -84,21 +85,20 @@ class Calendar extends Marko.Component<Input, State> {
         };
     }
 
-    onMount() {
-        // recalculate on the browser in case firstDayOfWeek is not supported
-        const { firstDayOfWeek } = getWeekdayInfo(
-            localeOverride(this.input.locale),
-        );
-        this.state.firstDayOfWeek = firstDayOfWeek;
-    }
-
     onInput(input: Input) {
+        if (input.locale !== this.locale) {
+            this.locale = input.locale;
+            const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(
+                input.locale,
+            );
+            this.state.firstDayOfWeek = firstDayOfWeek;
+            this.state.weekdayLabels = weekdayLabels;
+        }
         if (input.todayISO) {
             const newTodayISO = toISO(new Date(input.todayISO));
-            this.state.todayISO = newTodayISO
+            this.state.todayISO = newTodayISO;
             this.state.baseISO = newTodayISO;
             this.state.tabindexISO = newTodayISO;
-
         }
         if (input.selected) {
             // If no selected times are visible, snap the view to the first one
@@ -289,7 +289,7 @@ class Calendar extends Marko.Component<Input, State> {
 
     monthTitle(date: Date) {
         const formatter = new Intl.DateTimeFormat(
-            localeOverride(this.input.locale),
+            localeDefault(this.input.locale),
             {
                 month: "long",
                 year: "numeric",
