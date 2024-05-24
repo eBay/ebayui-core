@@ -122,7 +122,7 @@ class DialogBase extends Marko.Component<Input, State> {
     handleKeydown(event: KeyboardEvent) {
         eventUtils.handleEscapeKeydown(event, () => {
             this.state.open = false;
-            this.emit("escape")
+            this.emit("escape");
         });
     }
 
