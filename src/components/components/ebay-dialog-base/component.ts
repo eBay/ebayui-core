@@ -40,10 +40,11 @@ interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
     open?: boolean;
     "transition-el"?: "root" | "window";
     focus?: string;
-    prevButton?: WithNormalizedProps<
-        Omit<Marko.Input<"button">, `on${string}`> & {
-            "a11y-text"?: AttrString;
-        }
+    "prev-button"?: Marko.AttrTag<
+        Omit<Marko.Input<"button">, `on${string}`> &
+            WithNormalizedProps<{
+                "a11y-text"?: AttrString;
+            }>
     >;
     "on-open"?: (event: Event) => void;
     "on-close"?: (event: Event) => void;
@@ -122,7 +123,7 @@ class DialogBase extends Marko.Component<Input, State> {
     handleKeydown(event: KeyboardEvent) {
         eventUtils.handleEscapeKeydown(event, () => {
             this.state.open = false;
-            this.emit("escape")
+            this.emit("escape");
         });
     }
 
