@@ -1,5 +1,19 @@
 # eBayUI-Core Changelog
 
+## 13.5.0-next.0
+
+### Minor Changes
+
+- [#2160](https://github.com/eBay/ebayui-core/pull/2160) [`5c71772`](https://github.com/eBay/ebayui-core/commit/5c717724d00608146bc82fbe2680244843b30c12) Thanks [@LuLaValva](https://github.com/LuLaValva)! - feat: add localized formatting using date-fns
+
+- [#2172](https://github.com/eBay/ebayui-core/pull/2172) [`88e0f01`](https://github.com/eBay/ebayui-core/commit/88e0f01c7c18a3ac82bc756241a656c89e7134c0) Thanks [@github-actions](https://github.com/apps/github-actions)! - calendar: added default date override
+
+- [#2171](https://github.com/eBay/ebayui-core/pull/2171) [`6b5d179`](https://github.com/eBay/ebayui-core/commit/6b5d179b88ffbb8f83ea3c6f7054ee0a9f315f2a) Thanks [@agliga](https://github.com/agliga)! - confirm-dialog: added reject on escape keypress
+
+- [#2172](https://github.com/eBay/ebayui-core/pull/2172) [`88e0f01`](https://github.com/eBay/ebayui-core/commit/88e0f01c7c18a3ac82bc756241a656c89e7134c0) Thanks [@github-actions](https://github.com/apps/github-actions)! - date-textbox: added disabled state
+
+- [#2172](https://github.com/eBay/ebayui-core/pull/2172) [`88e0f01`](https://github.com/eBay/ebayui-core/commit/88e0f01c7c18a3ac82bc756241a656c89e7134c0) Thanks [@github-actions](https://github.com/apps/github-actions)! - chore: updated makeup-floating-label to fix placeholder shifting on select
+
 ## 13.4.0
 
 ### Minor Changes
