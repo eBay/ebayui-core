@@ -1,14 +1,14 @@
 {
-  "mode": "pre",
-  "tag": "next",
-  "initialVersions": {
-    "@ebay/ebayui-core": "13.4.0"
-  },
-  "changesets": [
-    "dirty-badgers-attend",
-    "khaki-poems-drum",
-    "shy-penguins-smoke",
-    "swift-avocados-wave",
-    "tender-hotels-allow"
-  ]
+    "mode": "pre",
+    "tag": "next",
+    "initialVersions": {
+        "@ebay/ebayui-core": "13.4.1"
+    },
+    "changesets": [
+        "dirty-badgers-attend",
+        "khaki-poems-drum",
+        "shy-penguins-smoke",
+        "swift-avocados-wave",
+        "tender-hotels-allow"
+    ]
 }
