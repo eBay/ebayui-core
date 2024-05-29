@@ -1,5 +1,5 @@
 {
-    "mode": "pre",
+    "mode": "exit",
     "tag": "next",
     "initialVersions": {
         "@ebay/ebayui-core": "13.4.1"
