@@ -1,7 +1,0 @@
-<<<<<<< HEAD:docs/assets/navigation-and-disclosure-CYBBWzZy.js
-import{j as n}from"./jsx-runtime-ZKukr5WF.js";import{u as i}from"./index-CO9ZrDhX.js";import{M as r}from"./chunk-HLWAVYOI-BbWRNn5u.js";import"./iframe-B0m48I3j.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function e(o){const t={h1:"h1",p:"p",...i(),...o.components};return n.jsxs(n.Fragment,{children:[n.jsx(r,{title:"navigation & disclosure/Overview"}),`
-=======
-import{j as n}from"./jsx-runtime-B3mFYjpe.js";import{u as i}from"./index-G6DQ8woD.js";import{M as r}from"./chunk-HLWAVYOI-CzPrEdco.js";import"./iframe-BLdHuy2d.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function e(o){const t={h1:"h1",p:"p",...i(),...o.components};return n.jsxs(n.Fragment,{children:[n.jsx(r,{title:"navigation & disclosure/Overview"}),`
->>>>>>> 0dd633d3f26a93f2dac2c5dddbe8a62ca57c0af5:docs/assets/navigation-and-disclosure-BOX9KdwC.js
-`,n.jsx(t.h1,{id:"navigation-and-disclosure-components",children:"Navigation and Disclosure Components"}),`
-`,n.jsx(t.p,{children:"Navigation components bring the user to a new page, and disclosure components show information to the user that was originally hidden."})]})}function x(o={}){const{wrapper:t}={...i(),...o.components};return t?n.jsx(t,{...o,children:n.jsx(e,{...o})}):e(o)}export{x as default};

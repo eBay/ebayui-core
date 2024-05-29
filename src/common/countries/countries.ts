@@ -228,7 +228,7 @@ export default {
     UG: { countryCode: "UG", callingCode: "256", mask: "0000 000000" },
     US: { countryCode: "US", callingCode: "1", mask: "(000) 000-0000" },
     UY: { countryCode: "UY", callingCode: "598", mask: "000 000 000" },
-    UZ: { countryCode: "UZ", callingCode: "998", mask: "0 00 000 00 00" },
+    UZ: { countryCode: "UZ", callingCode: "998", mask: "00 000 00 00" },
     VA: { countryCode: "VA", callingCode: "39", mask: "000 000 0000" },
     VC: { countryCode: "VC", callingCode: "1", mask: "(000) 000-0000" },
     VE: { countryCode: "VE", callingCode: "58", mask: "0000-0000000" },

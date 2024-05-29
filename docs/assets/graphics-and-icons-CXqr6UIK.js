@@ -1,7 +1,0 @@
-<<<<<<< HEAD:docs/assets/graphics-and-icons-CXqr6UIK.js
-import{j as t}from"./jsx-runtime-ZKukr5WF.js";import{u as r}from"./index-CO9ZrDhX.js";import{M as i}from"./chunk-HLWAVYOI-BbWRNn5u.js";import"./iframe-B0m48I3j.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function o(n){const e={h1:"h1",p:"p",...r(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(i,{title:"graphics & icons/Overview"}),`
-=======
-import{j as t}from"./jsx-runtime-B3mFYjpe.js";import{u as r}from"./index-G6DQ8woD.js";import{M as i}from"./chunk-HLWAVYOI-CzPrEdco.js";import"./iframe-BLdHuy2d.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function o(n){const e={h1:"h1",p:"p",...r(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(i,{title:"graphics & icons/Overview"}),`
->>>>>>> 0dd633d3f26a93f2dac2c5dddbe8a62ca57c0af5:docs/assets/graphics-and-icons-CwoQq7Ru.js
-`,t.jsx(e.h1,{id:"graphical-components",children:"Graphical Components"}),`
-`,t.jsx(e.p,{children:"These components are used to communicate with the user in a visual manner."})]})}function d(n={}){const{wrapper:e}={...r(),...n.components};return e?t.jsx(e,{...n,children:t.jsx(o,{...n})}):o(n)}export{d as default};

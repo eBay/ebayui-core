@@ -1,7 +1,0 @@
-<<<<<<< HEAD:docs/assets/notices-and-tips-CKJBRgKb.js
-import{j as t}from"./jsx-runtime-ZKukr5WF.js";import{u as i}from"./index-CO9ZrDhX.js";import{M as r}from"./chunk-HLWAVYOI-BbWRNn5u.js";import"./iframe-B0m48I3j.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function e(n){const o={h1:"h1",p:"p",...i(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(r,{title:"notices & tips/Overview"}),`
-=======
-import{j as t}from"./jsx-runtime-B3mFYjpe.js";import{u as i}from"./index-G6DQ8woD.js";import{M as r}from"./chunk-HLWAVYOI-CzPrEdco.js";import"./iframe-BLdHuy2d.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function e(n){const o={h1:"h1",p:"p",...i(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(r,{title:"notices & tips/Overview"}),`
->>>>>>> 0dd633d3f26a93f2dac2c5dddbe8a62ca57c0af5:docs/assets/notices-and-tips-BRSqFwVe.js
-`,t.jsx(o.h1,{id:"notice-and-tip-components",children:"Notice and Tip Components"}),`
-`,t.jsx(o.p,{children:"These components are used to draw attention to certain pieces of information, or provide the user with clarification."})]})}function f(n={}){const{wrapper:o}={...i(),...n.components};return o?t.jsx(o,{...n,children:t.jsx(e,{...n})}):e(n)}export{f as default};

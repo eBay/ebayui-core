@@ -1,7 +1,0 @@
-<<<<<<< HEAD:docs/assets/progress-BB-DqmVU.js
-import{j as o}from"./jsx-runtime-ZKukr5WF.js";import{u as r}from"./index-CO9ZrDhX.js";import{M as s}from"./chunk-HLWAVYOI-BbWRNn5u.js";import"./iframe-B0m48I3j.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function e(t){const n={h1:"h1",p:"p",...r(),...t.components};return o.jsxs(o.Fragment,{children:[o.jsx(s,{title:"progress/Overview"}),`
-=======
-import{j as o}from"./jsx-runtime-B3mFYjpe.js";import{u as r}from"./index-G6DQ8woD.js";import{M as s}from"./chunk-HLWAVYOI-CzPrEdco.js";import"./iframe-BLdHuy2d.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function e(t){const n={h1:"h1",p:"p",...r(),...t.components};return o.jsxs(o.Fragment,{children:[o.jsx(s,{title:"progress/Overview"}),`
->>>>>>> 0dd633d3f26a93f2dac2c5dddbe8a62ca57c0af5:docs/assets/progress-Bye6fCAG.js
-`,o.jsx(n.h1,{id:"progress-components",children:"Progress Components"}),`
-`,o.jsx(n.p,{children:"Progress components indicate a portion of the page that is loading, or display information about a process such as a shipment."})]})}function f(t={}){const{wrapper:n}={...r(),...t.components};return n?o.jsx(n,{...t,children:o.jsx(e,{...t})}):e(t)}export{f as default};

@@ -1,7 +1,0 @@
-<<<<<<< HEAD:docs/assets/dialogs-DkiY_oLU.js
-import{j as t}from"./jsx-runtime-ZKukr5WF.js";import{u as r}from"./index-CO9ZrDhX.js";import{M as i}from"./chunk-HLWAVYOI-BbWRNn5u.js";import"./iframe-B0m48I3j.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function e(o){const n={h1:"h1",p:"p",...r(),...o.components};return t.jsxs(t.Fragment,{children:[t.jsx(i,{title:"dialogs/Overview"}),`
-=======
-import{j as t}from"./jsx-runtime-B3mFYjpe.js";import{u as r}from"./index-G6DQ8woD.js";import{M as i}from"./chunk-HLWAVYOI-CzPrEdco.js";import"./iframe-BLdHuy2d.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function e(o){const n={h1:"h1",p:"p",...r(),...o.components};return t.jsxs(t.Fragment,{children:[t.jsx(i,{title:"dialogs/Overview"}),`
->>>>>>> 0dd633d3f26a93f2dac2c5dddbe8a62ca57c0af5:docs/assets/dialogs-Dn0PSWN8.js
-`,t.jsx(n.h1,{id:"dialog-components",children:"Dialog Components"}),`
-`,t.jsx(n.p,{children:"Dialogs are components that demand attention from the user by obscuring their view until they are closed or an action is performed."})]})}function x(o={}){const{wrapper:n}={...r(),...o.components};return n?t.jsx(n,{...o,children:t.jsx(e,{...o})}):e(o)}export{x as default};
