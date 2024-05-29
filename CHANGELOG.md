@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 13.5.1
+
+### Patch Changes
+
+- [`81f420b`](https://github.com/eBay/ebayui-core/commit/81f420bcc9618651725ff3786779e808803e19a1) Thanks [@agliga](https://github.com/agliga)! - listbox-button: added reset for active descendant when there is a state change
+
 ## 13.5.0
 
 ### Minor Changes
