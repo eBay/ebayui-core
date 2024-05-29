@@ -10,6 +10,7 @@
     },
     "@icon": "string",
     "@a11y-icon-text": "string",
+    "@a11y-dismiss-text": "string",
     "@title <title>": {
         "attribute-groups": ["html-attributes"],
         "@*": {
