@@ -173,6 +173,7 @@ class Listbox extends Marko.Component<Input, State> {
 
     _cleanupMakeup() {
         if (this._activeDescendant) {
+            this._activeDescendant.reset();
             this._activeDescendant.destroy();
             this._activeDescendant = undefined;
         }
