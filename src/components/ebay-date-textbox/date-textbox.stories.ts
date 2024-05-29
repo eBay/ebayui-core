@@ -9,6 +9,8 @@ import LocalizedTemplate from "./examples/localized.marko";
 import LocalizedTemplateCode from "./examples/localized.marko?raw";
 import WithClearTemplate from "./examples/with-clear.marko";
 import WithClearTemplateCode from "./examples/with-clear.marko?raw";
+import InField from "./examples/in-field.marko";
+import InFieldCode from "./examples/in-field.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -46,6 +48,16 @@ export default {
                 },
             },
         },
+        todayISO: {
+            type: "date",
+            control: { type: "date" },
+            description: "The current date in ISO format",
+            table: {
+                defaultValue: {
+                    summary: "Today's date",
+                },
+            },
+        },
         floatingLabel: {
             type: "text|array",
             control: { type: "object" },
@@ -69,7 +81,18 @@ export default {
             description: "Locale of the date picker",
             table: {
                 defaultValue: {
-                    summary: "navigator.language",
+                    summary: "navigator.language || 'en-US'",
+                },
+            },
+        },
+        disabled: {
+            type: "boolean",
+            control: { type: "boolean" },
+            description:
+                "If true, the textbox is disabled and popover cannot be opened.",
+            table: {
+                defaultValue: {
+                    summary: "false",
                 },
             },
         },
@@ -205,8 +228,27 @@ export default {
             type: "text|array",
             control: { type: "object" },
             description:
-                'Text for the input placeholder. Should indicate that users need to enter dates in ISO format. If separate placeholders are required for a range display, use an array of two strings (i. e. `["Start (YYYY-MM-DD)", "End (YYYY-MM-DD)"]`).',
-            table: { defaultValue: { summary: '"YYYY-MM-DD"' } },
+                'Text for the input placeholder. Should indicate that users need to enter dates in ISO format. If separate placeholders are required for a range display, use an array of two strings (i. e. `["Start (MM/DD/YYYY)", "End (MM/DD/YYYY)"]`).',
+            table: { defaultValue: { summary: '"MM/DD/YYYY"' } },
+        },
+        localizeFormat: {
+            type: "boolean",
+            control: { type: "boolean" },
+            description:
+                "_**Deprecated— will be default after next major release**_ Localize the date format",
+            table: {
+                defaultValue: {
+                    summary: "false",
+                },
+            },
+        },
+        textbox: {
+            name: "@textbox",
+            description:
+                "Proxy for textbox attributes— includes all attributes for `<ebay-textbox>`",
+            table: {
+                category: "@attribute tags",
+            },
         },
         onChange: {
             action: "on-change",
@@ -216,6 +258,14 @@ export default {
                 defaultValue: {
                     summary: "{ selected } | { rangeStart, rangeEnd }",
                 },
+            },
+        },
+        "onInvalid-date": {
+            action: "on-invalid-date",
+            description:
+                "Triggered when the user manually types an invalid date",
+            table: {
+                category: "Events",
             },
         },
     },
@@ -239,3 +289,5 @@ export const WithClear = buildExtensionTemplate(
     WithClearTemplate,
     WithClearTemplateCode,
 );
+
+export const InFieldExample = buildExtensionTemplate(InField, InFieldCode);

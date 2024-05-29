@@ -1,8 +1,13 @@
+import { format } from "../../common/dates";
+import { type DayISO } from "../../common/dates/date-utils";
 $ const {
     a11yOpenPopoverText = "open calendar",
     range,
     inputPlaceholderText = "YYYY-MM-DD",
     floatingLabel,
+    disabled,
+    textbox,
+    localizeFormat,
     ...calendarInput
 } = input;
 $ const [rangeStartPlaceholder, mainPlaceholder] = (
@@ -11,11 +16,25 @@ $ const [rangeStartPlaceholder, mainPlaceholder] = (
         : [inputPlaceholderText, inputPlaceholderText]
 );
 
+$ const [rangeStartTextboxInput, mainTextboxInput] = (
+    Array.isArray(textbox)
+        ? textbox
+        : [textbox, textbox]
+);
+
 $ const [rangeStartFloatingLabel, mainFloatingLabel] = (
     Array.isArray(floatingLabel)
         ? floatingLabel
         : [floatingLabel, floatingLabel]
 );
+
+$ const formatValue = (date: DayISO | null) => {
+    if (localizeFormat) {
+        return date ? format(date, input.locale) : "";
+    } else {
+        return date || "";
+    }
+}
 
 <span
     on-expander-expand("openPopover")
@@ -26,8 +45,10 @@ $ const [rangeStartFloatingLabel, mainFloatingLabel] = (
         <ebay-textbox
             placeholder=rangeStartPlaceholder
             floating-label=rangeStartFloatingLabel
-            value=state.firstSelected
+            disabled=disabled
+            value=formatValue(state.firstSelected)
             on-blur("handleInputChange", 0)
+            ...rangeStartTextboxInput
         />
     </if>
     <ebay-textbox
@@ -35,8 +56,10 @@ $ const [rangeStartFloatingLabel, mainFloatingLabel] = (
         floating-label=mainFloatingLabel
         placeholder=mainPlaceholder
         buttonAriaLabel=a11yOpenPopoverText
-        value=(range ? state.secondSelected : state.firstSelected)
+        value=formatValue(range ? state.secondSelected : state.firstSelected)
+        disabled=disabled
         on-blur("handleInputChange", range ? 1 : 0)
+        ...mainTextboxInput
     >
         <@postfix-icon>
             <ebay-calendar-24-icon/>

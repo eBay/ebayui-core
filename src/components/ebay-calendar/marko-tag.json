@@ -6,6 +6,7 @@
         "locale": "string",
         "range": "boolean",
         "selected": "string",
+        "todayISO": "expression",
         "disableBefore": "expression",
         "disableAfter": "expression",
         "disableWeekdays": "array",

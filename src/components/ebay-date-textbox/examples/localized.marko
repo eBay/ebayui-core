@@ -7,6 +7,10 @@
     a11yRangeStartText="Reeks begin"
     a11yInRangeText="Binne bereik"
     a11yRangeEndText="Reeks einde"
+    localizeFormat
     on-change("emit", "change")
     ...input
-/>
+>
+    <@textbox placeholder="JJJJ/MM/DD" floating-label="Begin" />
+    <@textbox placeholder="JJJJ/MM/DD" floating-label="Einde" />
+</ebay-date-textbox>

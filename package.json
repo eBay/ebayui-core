@@ -1,6 +1,6 @@
 {
     "name": "@ebay/ebayui-core",
-    "version": "13.4.1",
+    "version": "13.5.0-next.0",
     "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
     "scripts": {
         "installMarkoV5": "npm i marko@5 @marko/compiler@5 --force",
@@ -75,7 +75,7 @@
         "@commitlint/cli": "^19",
         "@commitlint/config-conventional": "^19",
         "@ebay/browserslist-config": "^2.8.0",
-        "@ebay/skin": "~17.4.0",
+        "@ebay/skin": "~17.5.0-0",
         "@google/model-viewer": "3.5.0",
         "@lasso/marko-taglib": "^2.0.6",
         "@marko/compiler": "^5.36.1",
@@ -102,7 +102,7 @@
         "chai": "4.3.10",
         "chai-dom": "^1.12.0",
         "cheerio": "^1.0.0-rc.12",
-        "chromedriver": "^123",
+        "chromedriver": "^125",
         "coveralls": "^3.1.1",
         "css-loader": "^7",
         "del": "^7.1.0",
@@ -145,7 +145,7 @@
         "wdio-chromedriver-service": "^8"
     },
     "peerDependencies": {
-        "@ebay/skin": "~17.4.0",
+        "@ebay/skin": "~17.5.0-0",
         "marko": ">= ^4.27.0 || >= ^5.31.12"
     },
     "dependencies": {
@@ -153,7 +153,7 @@
         "@marko-tags/subscribe": "^0.5.1",
         "makeup-active-descendant": "0.6.1",
         "makeup-expander": "~0.10.1",
-        "makeup-floating-label": "~0.3.2",
+        "makeup-floating-label": "~0.3.3",
         "makeup-focusables": "~0.3.1",
         "makeup-key-emitter": "~0.3.1",
         "makeup-keyboard-trap": "~0.4.1",

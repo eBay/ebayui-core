@@ -43,6 +43,7 @@ $ const { renderBody: rejectRenderBody, ...rejectRestOfInput } = reject || {} as
     ...dialogInput
     on-open("emit", "open")
     on-close("emit", "close")
+    on-escape("emit", "reject")
     main-id=mainId
     focus=confirmId
     class-prefix="confirm-dialog"

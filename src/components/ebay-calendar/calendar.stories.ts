@@ -85,7 +85,17 @@ export default {
             description: "Locale of the date picker",
             table: {
                 defaultValue: {
-                    summary: "navigator.language",
+                    summary: "navigator.language || 'en-US'",
+                },
+            },
+        },
+        todayISO: {
+            type: "date",
+            control: { type: "date" },
+            description: "The starting current date.",
+            table: {
+                defaultValue: {
+                    summary: "Today's date",
                 },
             },
         },

@@ -1,7 +1,9 @@
 import Expander from "makeup-expander";
-import { type DayISO, dateArgToISO } from "../ebay-calendar/date-utils";
+import { type DayISO, dateArgToISO } from "../../common/dates/date-utils";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
+import type { Input as TextboxInput } from "../ebay-textbox/component-browser";
+import { parse } from "../../common/dates";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -10,10 +12,14 @@ interface DateTextboxInput {
     rangeEnd?: Date | number | string;
     locale?: string;
     range?: boolean;
+    textbox?: Marko.RepeatableAttrTag<TextboxInput>;
+    todayISO?: Date | number | string;
+    disabled?: boolean;
     "disable-before"?: Date | number | string;
     "disable-after"?: Date | number | string;
     "disable-weekdays"?: number[];
     "disable-list"?: (Date | number | string)[];
+    /** @deprecated use `@textbox-input` instead */
     "input-placeholder-text"?: string | [string, string];
     "collapse-on-select"?: boolean;
     "get-a11y-show-month-text"?: (monthName: string) => string;
@@ -23,12 +29,16 @@ interface DateTextboxInput {
     "a11y-in-range-text"?: AttrString;
     "a11y-range-end-text"?: AttrString;
     "a11y-separator"?: string;
+    /** @deprecated use `@textbox-input` instead */
     "floating-label"?: string | [string, string];
+    /** @deprecated will be default in next major */
+    localizeFormat?: boolean;
     "on-change"?: (
         event:
             | { selected: DayISO | null }
             | { rangeStart: DayISO | null; rangeEnd: DayISO | null },
     ) => void;
+    "on-invalid-date"?: () => void;
 }
 
 export interface Input extends WithNormalizedProps<DateTextboxInput> {}
@@ -89,8 +99,20 @@ class DateTextbox extends Marko.Component<Input, State> {
     }
 
     handleInputChange(index: number, { value }: { value: string }) {
-        const valueDate = new Date(value);
-        const iso = isNaN(valueDate.getTime()) ? null : dateArgToISO(valueDate);
+        let iso: DayISO | null;
+        /* next major, localizeFormat will _always_ be true */
+        if (this.input.localizeFormat) {
+            iso = parse(value, this.input.locale);
+        } else {
+            const date = new Date(value);
+            iso = isNaN(date.getTime()) ? null : dateArgToISO(date);
+        }
+
+        if (iso === null) {
+            this.emit("invalid-date");
+            return;
+        }
+
         if (index === 0) {
             this.state.firstSelected = iso;
         } else {
