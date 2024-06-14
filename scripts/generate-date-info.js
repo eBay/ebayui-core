@@ -143,8 +143,9 @@ output.uz._.s = [".", "."];
 output.hy._.s = [".", "."];
 output.bg._.s = [".", "."];
 output.ar._.s = ["/", "/"];
-output.ar._.m = "ش";
-output.ar._.y = "س";
+delete output.ar._.d;
+delete output.ar._.m;
+delete output.ar._.y;
 output.yo._.d = "ọ";
 
 fs.writeFileSync(
