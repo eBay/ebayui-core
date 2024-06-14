@@ -1,6 +1,6 @@
 {
     "name": "@ebay/ebayui-core",
-    "version": "13.5.1",
+    "version": "13.5.2",
     "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
     "scripts": {
         "installMarkoV5": "npm i marko@5 @marko/compiler@5 --force",
