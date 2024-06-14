@@ -1,4 +1,7 @@
 import fs from "fs";
+import weekData from "cldr-core/supplemental/weekData.json" with { type: "json" };
+import availableLocales from "cldr-core/availableLocales.json" with { type: "json" };
+import defaultContent from "cldr-core/defaultContent.json" with { type: "json" };
 
 const output = {
     _: {
@@ -11,9 +14,7 @@ const output = {
     },
 };
 
-const firstDays = JSON.parse(
-    fs.readFileSync("node_modules/cldr-core/supplemental/weekData.json"),
-).supplemental.weekData.firstDay;
+const firstDays = weekData.supplemental.weekData.firstDay;
 const dayNums = {
     sun: 0,
     mon: 1,
@@ -24,13 +25,9 @@ const dayNums = {
     sat: 6,
 };
 
-const modernLocales = JSON.parse(
-    fs.readFileSync("node_modules/cldr-core/availableLocales.json"),
-).availableLocales.modern;
+const modernLocales = availableLocales.availableLocales.modern;
 const defaultCountries = Object.fromEntries(
-    JSON.parse(
-        fs.readFileSync("node_modules/cldr-core/defaultContent.json"),
-    ).defaultContent.map((locale) => {
+    defaultContent.defaultContent.map((locale) => {
         const index = locale.lastIndexOf("-");
         return [locale.slice(0, index), locale.slice(index + 1)];
     }),
