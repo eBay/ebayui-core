@@ -143,6 +143,9 @@ output.uz._.s = [".", "."];
 output.hy._.s = [".", "."];
 output.bg._.s = [".", "."];
 output.ar._.s = ["/", "/"];
+output.ar._.m = "ش";
+output.ar._.y = "س";
+output.yo._.d = "ọ";
 
 fs.writeFileSync(
     "src/common/dates/locale-info.ts",
