@@ -18,7 +18,7 @@ export function findFirstDayOfWeek(localeName: string): number {
 export function getWeekdayInfo(localeName?: string) {
     localeName = localeDefault(localeName);
     const locale = getLocale(localeName);
-    const firstDayOfWeek = locale.weekStart;
+    const firstDayOfWeek = locale.w;
 
     const weekdayLabelFormatter = new Intl.DateTimeFormat(localeName, {
         weekday: "short",
