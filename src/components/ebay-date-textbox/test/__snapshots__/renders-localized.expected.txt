@@ -19,7 +19,7 @@
           [33mid[39m=[32m"s0-0-1-textbox"[39m
           [33mplaceholder[39m=[32m"JJJJ/MM/DD"[39m
           [33mtype[39m=[32m"text"[39m
-          [33mvalue[39m=[32m"2024/01/27"[39m
+          [33mvalue[39m=[32m"27/01/2024"[39m
         [36m/>[39m
       [36m</span>[39m
     [36m</span>[39m
