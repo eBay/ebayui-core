@@ -13,8 +13,7 @@ $ const {
     invalid,
     ...htmlInput
 } = input;
-$ const selectedCountry = Object.keys(countries)[state.index];
-$ const regionNames = new Intl.DisplayNames([locale], { type: "region" });
+$ const [selectedCountry] = state.countryNames[state.index];
 
 <span
     class=[
@@ -35,9 +34,8 @@ $ const regionNames = new Intl.DisplayNames([locale], { type: "region" });
         onExpand("emit", "expand")
         onCollapse("emit", "collapse")
     >
-        <for|countryCode, index| of=Object.keys(countries)>
+        <for|[countryCode, text], index| of=state.countryNames>
             $ const country = countries[countryCode] || {};
-            $ const text = regionNames.of(countryCode);
             <@option
                 text=text
                 value=country.callingCode

@@ -5,6 +5,7 @@ import mask, { stripNonDigits } from "../../common/mask";
 
 import countries, { type CountryInterface } from "../../common/countries";
 import { AttrString } from "marko/tags-html";
+import { localeDefault } from "../../common/dates";
 
 export interface PhoneInputEvent {
     originalEvent?: Event;
@@ -37,27 +38,41 @@ export interface Input extends WithNormalizedProps<PhoneInputInput> {}
 
 export interface State {
     index: number;
+    countryNames: [string, string][];
 }
 
 class PhoneInput extends Marko.Component<Input, State> {
-    mask: any;
+    declare mask: any;
+    declare locale: string;
 
     onCreate() {
         this.state = {
             index: 0,
+            countryNames: [],
         };
     }
 
     getSelectedCountry(): CountryInterface {
-        const currentCountryName = Object.keys(countries)[this.state.index];
+        const [currentCountryName] = this.state.countryNames[this.state.index];
         return countries[currentCountryName];
     }
 
     onInput(input: Input) {
         const { countryCode } = input;
+        let locale = localeDefault(input.locale);
+        if (locale !== this.locale) {
+            this.locale = locale;
+            const getName = new Intl.DisplayNames([locale], { type: "region" });
+            this.state.countryNames = Object.keys(countries)
+                .map(
+                    (code) =>
+                        [code, getName.of(code) ?? ""] as [string, string],
+                )
+                .sort(([, a], [, b]) => a.localeCompare(b));
+        }
         if (countryCode) {
-            let index = Object.keys(countries).findIndex(
-                (country) => country === countryCode.toUpperCase(),
+            let index = this.state.countryNames.findIndex(
+                ([code]) => code === countryCode.toUpperCase(),
             );
             if (index === -1) {
                 index = 0;
@@ -65,6 +80,7 @@ class PhoneInput extends Marko.Component<Input, State> {
             this.state.index = index;
         }
     }
+
     handleCountryChange(e: any) {
         this.state.index = e.index;
 
