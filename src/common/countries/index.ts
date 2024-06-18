@@ -1,5 +1,4 @@
 import countries from "./countries";
-import countriesEnglishJSON from "./english";
 
 export interface CountryInterface {
     countryCode: string;
@@ -16,6 +15,3 @@ export interface CountriesInterface {
 }
 
 export default countries as CountriesInterface;
-
-export const countriesEnglish: CountriesLanguageInterface =
-    countriesEnglishJSON as CountriesLanguageInterface;

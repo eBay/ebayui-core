@@ -3,16 +3,8 @@ import type { Input as ListboxButton } from "../ebay-listbox-button/component";
 import type { default as Textbox } from "../ebay-textbox/component-browser";
 import mask, { stripNonDigits } from "../../common/mask";
 
-import countries, {
-    type CountriesLanguageInterface,
-    type CountryInterface,
-    countriesEnglish,
-} from "../../common/countries";
+import countries, { type CountryInterface } from "../../common/countries";
 import { AttrString } from "marko/tags-html";
-
-export interface CountryNames {
-    [index: string]: string;
-}
 
 export interface PhoneInputEvent {
     originalEvent?: Event;
@@ -24,13 +16,13 @@ export interface PhoneInputEvent {
 
 interface PhoneInputInput extends Omit<ListboxButton, `on${string}`> {
     disabled?: boolean;
-    "country-names"?: CountriesLanguageInterface;
     "a11y-icon-prefix-text"?: AttrString;
     "floating-label"?: AttrString;
     readonly?: boolean;
     invalid?: boolean;
     "country-code"?: string;
     value?: string;
+    locale?: string;
     "on-keyup"?: (event: PhoneInputEvent) => void;
     "on-keypress"?: (event: PhoneInputEvent) => void;
     "on-keydown"?: (event: PhoneInputEvent) => void;
@@ -57,17 +49,14 @@ class PhoneInput extends Marko.Component<Input, State> {
     }
 
     getSelectedCountry(): CountryInterface {
-        const countryNames = this.input.countryNames || countriesEnglish;
-        const currentCountryName = Object.keys(countryNames)[this.state.index];
+        const currentCountryName = Object.keys(countries)[this.state.index];
         return countries[currentCountryName];
     }
 
     onInput(input: Input) {
-        const countryNames: CountriesLanguageInterface =
-            input.countryNames || countriesEnglish;
         const { countryCode } = input;
         if (countryCode) {
-            let index = Object.keys(countryNames).findIndex(
+            let index = Object.keys(countries).findIndex(
                 (country) => country === countryCode.toUpperCase(),
             );
             if (index === -1) {

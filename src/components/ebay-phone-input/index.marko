@@ -1,4 +1,4 @@
-import countries, { countriesEnglish } from "../../common/countries";
+import countries from "../../common/countries";
 import { processHtmlAttributes } from "../../common/html-attributes";
 $ const {
     class: inputClass,
@@ -7,14 +7,14 @@ $ const {
     a11yIconPrefixText = "Country",
     disabled,
     renderBody,
-    countryNames,
+    locale = typeof navigator === "undefined" ? "en-US" : navigator.language,
     floatingLabel,
     readonly,
     invalid,
     ...htmlInput
 } = input;
-$ const currentCountryNames = countryNames || countriesEnglish;
-$ const selectedCountry = Object.keys(currentCountryNames)[state.index];
+$ const selectedCountry = Object.keys(countries)[state.index];
+$ const regionNames = new Intl.DisplayNames([locale], { type: "region" });
 
 <span
     class=[
@@ -35,9 +35,9 @@ $ const selectedCountry = Object.keys(currentCountryNames)[state.index];
         onExpand("emit", "expand")
         onCollapse("emit", "collapse")
     >
-        <for|countryCode, index| of=Object.keys(currentCountryNames)>
+        <for|countryCode, index| of=Object.keys(countries)>
             $ const country = countries[countryCode] || {};
-            $ const text = currentCountryNames[countryCode];
+            $ const text = regionNames.of(countryCode);
             <@option
                 text=text
                 value=country.callingCode

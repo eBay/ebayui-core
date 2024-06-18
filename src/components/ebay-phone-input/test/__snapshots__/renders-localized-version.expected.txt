@@ -1,16 +1,17 @@
 [36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"phone-input"[39m
+    [33mcountry-names[39m=[32m"{\"AF\":\"Afghanistan\",\"ZA\":\"Afrique du Sud\",\"AL\":\"Albanie\",\"DZ\":\"Algérie\",\"DE\":\"Allemagne\",\"AD\":\"Andorre\",\"AO\":\"Angola\",\"AI\":\"Anguilla\",\"AG\":\"Antigua-et-Barbuda\",\"SA\":\"Arabie saoudite\",\"AR\":\"Argentine\",\"AM\":\"Arménie\",\"AW\":\"Aruba\",\"AU\":\"Australie\",\"AT\":\"Autriche\",\"AZ\":\"Azerbaïdjan\",\"BS\":\"Bahamas\",\"BH\":\"Bahreïn\",\"BD\":\"Bangladesh\",\"BB\":\"Barbade\",\"BE\":\"Belgique\",\"BZ\":\"Belize\",\"BJ\":\"Bénin\",\"BM\":\"Bermudes\",\"BT\":\"Bhoutan\",\"BY\":\"Biélorussie\",\"BO\":\"Bolivie\",\"BA\":\"Bosnie-Herzégovine\",\"BW\":\"Botswana\",\"BR\":\"Brésil\",\"BN\":\"Brunei\",\"BG\":\"Bulgarie\",\"BF\":\"Burkina Faso\",\"BI\":\"Burundi\",\"KH\":\"Cambodge\",\"CM\":\"Cameroun\",\"CA\":\"Canada\",\"CV\":\"Cap-Vert\",\"CL\":\"Chili\",\"CN\":\"Chine\",\"CY\":\"Chypre\",\"CO\":\"Colombie\",\"KM\":\"Comores\",\"KP\":\"Corée du Nord\",\"KR\":\"Corée du Sud\",\"CR\":\"Costa Rica\",\"CI\":\"Côte d'Ivoire\",\"HR\":\"Croatie\",\"CU\":\"Cuba\",\"CW\":\"Curaçao\",\"DK\":\"Danemark\",\"DJ\":\"Djibouti\",\"DM\":\"Dominique\",\"EG\":\"Égypte\",\"AE\":\"Émirats arabes unis\",\"EC\":\"Équateur\",\"ER\":\"Érythrée\",\"ES\":\"Espagne\",\"EE\":\"Estonie\",\"SZ\":\"Eswatini\",\"US\":\"États-Unis\",\"ET\":\"Éthiopie\",\"FJ\":\"Fidji\",\"FI\":\"Finlande\",\"FR\":\"France\",\"GA\":\"Gabon\",\"GM\":\"Gambie\",\"GE\":\"Géorgie\",\"GH\":\"Ghana\",\"GI\":\"Gibraltar\",\"GR\":\"Grèce\",\"GD\":\"Grenade\",\"GL\":\"Groenland\",\"GP\":\"Guadeloupe\",\"GU\":\"Guam\",\"GT\":\"Guatemala\",\"GG\":\"Guernesey\",\"GN\":\"Guinée\",\"GQ\":\"Guinée équatoriale\",\"GW\":\"Guinée-Bissau\",\"GY\":\"Guyana\",\"GF\":\"Guyane française\",\"HT\":\"Haïti\",\"HN\":\"Honduras\",\"HK\":\"Hong Kong\",\"HU\":\"Hongrie\",\"CX\":\"Île Christmas\",\"AC\":\"Île de l'Ascension\",\"IM\":\"Île de Man\",\"NF\":\"Île Norfolk\",\"AX\":\"Îles Åland\",\"KY\":\"Îles Caïmans\",\"CC\":\"Îles Cocos\",\"CK\":\"Îles Cook\",\"FO\":\"Îles Féroé\",\"FK\":\"Îles Malouines\",\"MP\":\"Îles Mariannes du Nord\",\"MH\":\"Îles Marshall\",\"SB\":\"Îles Salomon\",\"TC\":\"Îles Turques-et-Caïques\",\"VG\":\"Îles Vierges britanniques\",\"VI\":\"Îles Vierges des États-Unis\",\"IN\":\"Inde\",\"ID\":\"Indonésie\",\"IQ\":\"Irak\",\"IR\":\"Iran\",\"IE\":\"Irlande\",\"IS\":\"Islande\",\"IL\":\"Israël\",\"IT\":\"Italie\",\"JM\":\"Jamaïque\",\"JP\":\"Japon\",\"JE\":\"Jersey\",\"JO\":\"Jordanie\",\"KZ\":\"Kazakhstan\",\"KE\":\"Kenya\",\"KG\":\"Kirghizistan\",\"KI\":\"Kiribati\",\"XK\":\"Kosovo\",\"KW\":\"Koweït\",\"LA\":\"Laos\",\"LS\":\"Lesotho\",\"LV\":\"Lettonie\",\"LB\":\"Liban\",\"LR\":\"Libéria\",\"LY\":\"Libye\",\"LI\":\"Liechtenstein\",\"LT\":\"Lituanie\",\"LU\":\"Luxembourg\",\"MO\":\"Macao\",\"MK\":\"Macédoine\",\"MG\":\"Madagascar\",\"MY\":\"Malaisie\",\"MW\":\"Malawi\",\"MV\":\"Maldives\",\"ML\":\"Mali\",\"MT\":\"Malte\",\"MA\":\"Maroc\",\"MQ\":\"Martinique\",\"MU\":\"Maurice\",\"MR\":\"Mauritanie\",\"YT\":\"Mayotte\",\"MX\":\"Mexique\",\"FM\":\"Micronésie\",\"MD\":\"Moldavie\",\"MC\":\"Monaco\",\"MN\":\"Mongolie\",\"ME\":\"Monténégro\",\"MS\":\"Montserrat\",\"MZ\":\"Mozambique\",\"MM\":\"Myanmar\",\"NA\":\"Namibie\",\"NR\":\"Nauru\",\"NP\":\"Népal\",\"NI\":\"Nicaragua\",\"NE\":\"Niger\",\"NG\":\"Nigeria\",\"NU\":\"Niue\",\"NO\":\"Norvège\",\"NC\":\"Nouvelle-Calédonie\",\"NZ\":\"Nouvelle-Zélande\",\"OM\":\"Oman\",\"UG\":\"Ouganda\",\"UZ\":\"Ouzbékistan\",\"PK\":\"Pakistan\",\"PW\":\"Palaos\",\"PS\":\"Palestine\",\"PA\":\"Panama\",\"PG\":\"Papouasie-Nouvelle-Guinée\",\"PY\":\"Paraguay\",\"NL\":\"Pays-Bas\",\"BQ\":\"Pays-Bas caribéens\",\"PE\":\"Pérou\",\"PH\":\"Philippines\",\"PL\":\"Pologne\",\"PF\":\"Polynésie française\",\"PR\":\"Porto Rico\",\"PT\":\"Portugal\",\"QA\":\"Qatar\",\"CF\":\"République centrafricaine\",\"CD\":\"République démocratique du Congo\",\"DO\":\"République dominicaine\",\"CG\":\"République du Congo\",\"CZ\":\"République tchèque\",\"RE\":\"Réunion\",\"RO\":\"Roumanie\",\"GB\":\"Royaume-Uni\",\"RU\":\"Russie\",\"RW\":\"Rwanda\",\"EH\":\"Sahara occidental\",\"BL\":\"Saint-Barthélemy\",\"KN\":\"Saint-Christophe-et-Niévès\",\"SM\":\"Saint-Marin\",\"MF\":\"Saint-Martin\",\"PM\":\"Saint-Pierre-et-Miquelon\",\"VC\":\"Saint-Vincent-et-les Grenadines\",\"SH\":\"Sainte-Hélène\",\"LC\":\"Sainte-Lucie\",\"SV\":\"Salvador\",\"WS\":\"Samoa\",\"AS\":\"Samoa américaines\",\"ST\":\"Sao Tomé-et-Principe\",\"SN\":\"Sénégal\",\"RS\":\"Serbie\",\"SC\":\"Seychelles\",\"SL\":\"Sierra Leone\",\"SG\":\"Singapour\",\"SX\":\"Sint Maarten\",\"SK\":\"Slovaquie\",\"SI\":\"Slovénie\",\"SO\":\"Somalie\",\"SD\":\"Soudan\",\"SS\":\"Soudan du Sud\",\"LK\":\"Sri Lanka\",\"SE\":\"Suède\",\"CH\":\"Suisse\",\"SR\":\"Suriname\",\"SJ\":\"Svalbard et Jan Mayen\",\"SY\":\"Syrie\",\"TJ\":\"Tadjikistan\",\"TW\":\"Taïwan\",\"TZ\":\"Tanzanie\",\"TD\":\"Tchad\",\"IO\":\"Territoire britannique de l'océan Indien\",\"TH\":\"Thaïlande\",\"TL\":\"Timor oriental\",\"TG\":\"Togo\",\"TK\":\"Tokelau\",\"TO\":\"Tonga\",\"TT\":\"Trinité-et-Tobago\",\"TA\":\"Tristan da Cunha\",\"TN\":\"Tunisie\",\"TM\":\"Turkménistan\",\"TR\":\"Turquie\",\"TV\":\"Tuvalu\",\"UA\":\"Ukraine\",\"UY\":\"Uruguay\",\"VU\":\"Vanuatu\",\"VA\":\"Vatican\",\"VE\":\"Venezuela\",\"VN\":\"Vietnam\",\"WF\":\"Wallis-et-Futuna\",\"YE\":\"Yémen\",\"ZM\":\"Zambie\",\"ZW\":\"Zimbabwe\"}"[39m
   [36m>[39m
     [36m<span[39m
       [33mclass[39m=[32m"listbox-button"[39m
     [36m>[39m
       [36m<button[39m
         [33maria-haspopup[39m=[32m"listbox"[39m
-        [33maria-label[39m=[32m"Country: États-Unis"[39m
+        [33maria-label[39m=[32m"Country: United States"[39m
         [33mclass[39m=[32m"listbox-button__control btn btn--split-start btn--form"[39m
         [33mtype[39m=[32m"button"[39m
-        [33mvalue[39m=[32m"États-Unis"[39m
+        [33mvalue[39m=[32m"United States"[39m
       [36m>[39m
         [36m<span[39m
           [33mclass[39m=[32m"btn__cell"[39m
@@ -39,153 +40,4 @@
             [36m</defs>[39m
             [36m<use[39m
               [33mhref[39m=[32m"#icon-chevron-down-16"[39m
-            [36m/>[39m
-          [36m</svg>[39m
-        [36m</span>[39m
-      [36m</button>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
-        [33mrole[39m=[32m"listbox"[39m
-        [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<div[39m
-          [33mclass[39m=[32m"listbox__option"[39m
-          [33mrole[39m=[32m"option"[39m
-        [36m>[39m
-          [36m<span[39m
-            [33mclass[39m=[32m"listbox__value"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"fflag fflag--af"[39m
-            [36m/>[39m
-            [36m<span>[39m
-              [0mAfghanistan[0m
-            [36m</span>[39m
-            [36m<span>[39m
-              [0m( + 93 )[0m
-            [36m</span>[39m
-          [36m</span>[39m
-          [36m<svg[39m
-            [33maria-hidden[39m=[32m"true"[39m
-            [33mclass[39m=[32m"icon icon--tick-16"[39m
-            [33mfocusable[39m=[32m"false"[39m
-          [36m>[39m
-            [36m<defs>[39m
-              [36m<symbol[39m
-                [33mid[39m=[32m"icon-tick-16"[39m
-                [33mviewBox[39m=[32m"0 0 16 16"[39m
-              [36m>[39m
-                [36m<path[39m
-                  [33mclip-rule[39m=[32m"evenodd"[39m
-                  [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                  [33mfill-rule[39m=[32m"evenodd"[39m
-                [36m/>[39m
-              [36m</symbol>[39m
-            [36m</defs>[39m
-            [36m<use[39m
-              [33mhref[39m=[32m"#icon-tick-16"[39m
-            [36m/>[39m
-          [36m</svg>[39m
-        [36m</div>[39m
-        [36m<div[39m
-          [33mclass[39m=[32m"listbox__option"[39m
-          [33mrole[39m=[32m"option"[39m
-        [36m>[39m
-          [36m<span[39m
-            [33mclass[39m=[32m"listbox__value"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"fflag fflag--za"[39m
-            [36m/>[39m
-            [36m<span>[39m
-              [0mAfrique du Sud[0m
-            [36m</span>[39m
-            [36m<span>[39m
-              [0m( + 27 )[0m
-            [36m</span>[39m
-          [36m</span>[39m
-          [36m<svg[39m
-            [33maria-hidden[39m=[32m"true"[39m
-            [33mclass[39m=[32m"icon icon--tick-16"[39m
-            [33mfocusable[39m=[32m"false"[39m
-          [36m>[39m
-            [36m<use[39m
-              [33mhref[39m=[32m"#icon-tick-16"[39m
-            [36m/>[39m
-          [36m</svg>[39m
-        [36m</div>[39m
-        [36m<div[39m
-          [33mclass[39m=[32m"listbox__option"[39m
-          [33mrole[39m=[32m"option"[39m
-        [36m>[39m
-          [36m<span[39m
-            [33mclass[39m=[32m"listbox__value"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"fflag fflag--al"[39m
-            [36m/>[39m
-            [36m<span>[39m
-              [0mAlbanie[0m
-            [36m</span>[39m
-            [36m<span>[39m
-              [0m( + 355 )[0m
-            [36m</span>[39m
-          [36m</span>[39m
-          [36m<svg[39m
-            [33maria-hidden[39m=[32m"true"[39m
-            [33mclass[39m=[32m"icon icon--tick-16"[39m
-            [33mfocusable[39m=[32m"false"[39m
-          [36m>[39m
-            [36m<use[39m
-              [33mhref[39m=[32m"#icon-tick-16"[39m
-            [36m/>[39m
-          [36m</svg>[39m
-        [36m</div>[39m
-        [36m<div[39m
-          [33mclass[39m=[32m"listbox__option"[39m
-          [33mrole[39m=[32m"option"[39m
-        [36m>[39m
-          [36m<span[39m
-            [33mclass[39m=[32m"listbox__value"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"fflag fflag--dz"[39m
-            [36m/>[39m
-            [36m<span>[39m
-              [0mAlgérie[0m
-            [36m</span>[39m
-            [36m<span>[39m
-              [0m( + 213 )[0m
-            [36m</span>[39m
-          [36m</span>[39m
-          [36m<svg[39m
-            [33maria-hidden[39m=[32m"true"[39m
-            [33mclass[39m=[32m"icon icon--tick-16"[39m
-            [33mfocusable[39m=[32m"false"[39m
-          [36m>[39m
-            [36m<use[39m
-              [33mhref[39m=[32m"#icon-tick-16"[39m
-            [36m/>[39m
-          [36m</svg>[39m
-        [36m</div>[39m
-        [36m<div[39m
-          [33mclass[39m=[32m"listbox__option"[39m
-          [33mrole[39m=[32m"option"[39m
-        [36m>[39m
-          [36m<span[39m
-            [33mclass[39m=[32m"listbox__value"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"fflag fflag--de"[39m
-            [36m/>[39m
-            [36m<span>[39m
-              [0mAllemagne[0m
-            [36m</span>[39m
-            [36m<span>[39m
-              [0m( + 49 )[0m
-            [36m</span>[39m
-          [36m</span>[39m
-          [36m<svg[39m
-            [33maria-hidden[39m=[32m"true"[39m
-            [33mclass[39m=[32m"icon icon--tick-16"[39m
-            [33mfocusable[39m=[32m"false"[...
+            [36m/>[3...
