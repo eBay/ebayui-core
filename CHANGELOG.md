@@ -1,5 +1,13 @@
 # eBayUI-Core Changelog
 
+## 13.5.2
+
+### Patch Changes
+
+- [#2187](https://github.com/eBay/ebayui-core/pull/2187) [`b294759`](https://github.com/eBay/ebayui-core/commit/b294759fe896cce730d97c2467da2d085efe88e2) Thanks [@LuLaValva](https://github.com/LuLaValva)! - revert original export for date-utils
+
+- [#2192](https://github.com/eBay/ebayui-core/pull/2192) [`569abba`](https://github.com/eBay/ebayui-core/commit/569abba8f2dfc8dc847a34cd7e852bd49ffe2b91) Thanks [@LuLaValva](https://github.com/LuLaValva)! - add info for invalid-date event
+
 ## 13.5.1
 
 ### Patch Changes

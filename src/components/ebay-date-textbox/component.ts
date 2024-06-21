@@ -10,6 +10,11 @@ import { getLocale, parse } from "../../common/dates";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
+export interface InvalidDateEvent {
+    value: string;
+    index: number;
+}
+
 interface DateTextboxInput {
     value?: Date | number | string;
     rangeEnd?: Date | number | string;
@@ -37,7 +42,7 @@ interface DateTextboxInput {
             | { selected: DayISO | null }
             | { rangeStart: DayISO | null; rangeEnd: DayISO | null },
     ) => void;
-    "on-invalid-date"?: () => void;
+    "on-invalid-date"?: (event: InvalidDateEvent) => void;
 }
 
 export interface Input extends WithNormalizedProps<DateTextboxInput> {}
@@ -101,7 +106,7 @@ class DateTextbox extends Marko.Component<Input, State> {
         let iso = parse(value, this.input.locale);
 
         if (iso === null) {
-            this.emit("invalid-date");
+            this.emit("invalid-date", { value, index });
             return;
         }
 
