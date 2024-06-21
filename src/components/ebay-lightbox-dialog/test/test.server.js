@@ -42,5 +42,9 @@ describe("dialog", () => {
         await htmlSnap(Default, { size: "narrow" });
     });
 
+    it("renders size=large", async () => {
+        await htmlSnap(Default, { size: "large" });
+    });
+
     testPassThroughAttributes(Default);
 });
