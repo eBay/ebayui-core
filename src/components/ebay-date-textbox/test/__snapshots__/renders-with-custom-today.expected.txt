@@ -19,7 +19,7 @@
       [36m>[39m
         [36m<svg[39m
           [33maria-hidden[39m=[32m"true"[39m
-          [33mclass[39m=[32m"icon icon--calendar-24"[39m
+          [33mclass[39m=[32m"icon icon--24"[39m
           [33mfocusable[39m=[32m"false"[39m
         [36m>[39m
           [36m<defs>[39m
@@ -61,7 +61,7 @@
             [36m>[39m
               [36m<svg[39m
                 [33maria-hidden[39m=[32m"true"[39m
-                [33mclass[39m=[32m"icon icon--chevron-left-24"[39m
+                [33mclass[39m=[32m"icon icon--24"[39m
                 [33mfocusable[39m=[32m"false"[39m
               [36m>[39m
                 [36m<defs>[39m
@@ -90,7 +90,7 @@
             [36m>[39m
               [36m<svg[39m
                 [33maria-hidden[39m=[32m"true"[39m
-                [33mclass[39m=[32m"icon icon--chevron-right-24"[39m
+                [33mclass[39m=[32m"icon icon--24"[39m
                 [33mfocusable[39m=[32m"false"[39m
               [36m>[39m
                 [36m<defs>[39m
