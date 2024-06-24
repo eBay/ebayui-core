@@ -2,25 +2,24 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 
 $ const {
     class: inputClass,
-    columns,
     layoutType: baseLayoutType,
     buttons = [],
     ...htmlInput
 } = input;
 
-<ul
+<div
     class=["toggle-button-group", inputClass]
-    data-columns=columns
-    ...processHtmlAttributes(htmlInput)
->
-    <for|{ layoutType = baseLayoutType, pressed, ...toggleButtonInput }, i| of=buttons>
-        <li>
-            <ebay-toggle-button
-                layoutType=layoutType
-                pressed=state.pressed[i]
-                ...toggleButtonInput
-                on-toggle("handleToggle", i)
-            />
-        </li>
-    </for>
-</ul>
+    ...processHtmlAttributes(htmlInput)>
+    <ul>
+        <for|{ layoutType = baseLayoutType, pressed, ...toggleButtonInput }, i| of=buttons>
+            <li>
+                <ebay-toggle-button
+                    layoutType=layoutType
+                    pressed=state.pressed[i]
+                    ...toggleButtonInput
+                    on-toggle("handleToggle", i)
+                />
+            </li>
+        </for>
+    </ul>
+</div>

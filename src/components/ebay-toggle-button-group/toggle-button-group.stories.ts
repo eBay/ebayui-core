@@ -31,11 +31,6 @@ export default {
             description:
                 'Selection type for the buttons in the group. May be `"checkbox"` (default), `"radio"`, or `"radio-toggle"` (same as radio but with the option to deselect)',
         },
-        columns: {
-            type: "number",
-            control: { type: "number" },
-            description: "Preferred minimum number of columns",
-        },
         layoutType: {
             type: "string",
             control: { type: "select" },
@@ -66,7 +61,6 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    columns: 3,
     buttons: [
         { renderBody: "Button 1" },
         { renderBody: "Button 2" },

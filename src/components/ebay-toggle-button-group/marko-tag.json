@@ -5,7 +5,6 @@
         "type": "expression"
     },
     "@html-attributes": "expression",
-    "@columns": "number",
     "@radio": "boolean",
     "@layout-type": "string",
     "@buttons <button>[]": {

@@ -4,7 +4,7 @@ $ const titles = ["Option 1", "Option 2", "Option 3"];
     <ebay-button onClick("clearSelection")>
         Clear Selection
     </ebay-button>
-    <ebay-toggle-button-group columns=3 on-change("handleChange") ...input>
+    <ebay-toggle-button-group on-change("handleChange") ...input>
         <for|title, i| of=titles>
             <@button pressed=state.pressed.includes(i)>
                 ${title}
