@@ -25,6 +25,7 @@ $ const {
     value,
     prefixText,
     postfixText,
+    readonly,
     ...htmlInput
 } = input;
 
@@ -50,7 +51,17 @@ $ var defaultTag = fluid ? "div" : "span";
     </if>
     <${defaultTag}
         style=style
-        class=["textbox", inputClass, isLarge && "textbox--large", fluid && "textbox--fluid"]>
+        class=[
+            "textbox",
+            /** start remove after `:has` support */
+            disabled && "textbox--disabled",
+            invalid && "textbox--invalid",
+            readonly && "textbox--readonly",
+            /** end remove after `:has` support */
+            isLarge && "textbox--large",
+            fluid && "textbox--fluid",
+            inputClass,
+        ]>
         <if(displayIcon && prefixIcon)>
             <${prefixIcon}/>
         </if>
@@ -60,7 +71,7 @@ $ var defaultTag = fluid ? "div" : "span";
             </span>
         </if>
         <${multiline ? "textarea" : "input"}
-            aria-describedby=[prefixId, postfixId].filter(Boolean).join(" ")
+            aria-describedby=[prefixId, postfixId].filter(Boolean).join(" ") || undefined
             ...processHtmlAttributes(htmlInput)
             id=id
             key="input"
@@ -69,13 +80,14 @@ $ var defaultTag = fluid ? "div" : "span";
             value=(!multiline && value)
             disabled=disabled
             aria-invalid=(invalid && "true")
+            readonly=readonly
             onKeydown("forwardEvent", "keydown")
             onKeypress("forwardEvent", "keypress")
             onKeyup("forwardEvent", "keyup")
             onChange("forwardEvent", "change")
             onInput("forwardEvent", "input-change")
-            onFocus("forwardEvent", "focus")
-            onBlur("forwardEvent", "blur")
+            onFocus("onFocus")
+            onBlur("onBlur")
             onInvalid("forwardEvent", "invalid")>
             <if(multiline && value)>${value}</if>
         </>

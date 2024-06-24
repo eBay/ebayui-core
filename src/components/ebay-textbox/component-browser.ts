@@ -50,6 +50,18 @@ class Textbox extends Marko.Component<Input> {
         (this.getEl("input") as HTMLInputElement).focus();
     }
 
+    /** Can be removed after `:has` is fully supported */
+    onFocus(e: FocusEvent, el: HTMLInputElement) {
+        this.forwardEvent("focus", e, el);
+        el.parentElement?.classList.add("textbox--focus");
+    }
+
+    /** Can be removed after `:has` is fully supported */
+    onBlur(e: FocusEvent, el: HTMLInputElement) {
+        this.forwardEvent("blur", e, el);
+        el.parentElement?.classList.remove("textbox--focus");
+    }
+
     _setupMakeup() {
         // TODO: makeup-floating-label should be updated so that we can remove the event listeners.
         // It probably makes more sense to just move this functionality into Marko though.
