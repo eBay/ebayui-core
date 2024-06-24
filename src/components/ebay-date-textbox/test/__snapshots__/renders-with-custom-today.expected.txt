@@ -8,7 +8,7 @@
       [36m<input[39m
         [33mclass[39m=[32m"textbox__control"[39m
         [33mid[39m=[32m"s0-2-textbox"[39m
-        [33mplaceholder[39m=[32m"YYYY-MM-DD"[39m
+        [33mplaceholder[39m=[32m"MM/DD/YYYY"[39m
         [33mtype[39m=[32m"text"[39m
         [33mvalue[39m=[32m""[39m
       [36m/>[39m
