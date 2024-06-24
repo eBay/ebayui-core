@@ -4,7 +4,7 @@
   [36m>[39m
     [36m<svg[39m
       [33maria-hidden[39m=[32m"true"[39m
-      [33mclass[39m=[32m"icon icon--mail-24"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
       [33mdata-marko-key[39m=[32m"@svg s0-0-3-1-0"[39m
       [33mfocusable[39m=[32m"false"[39m
     [36m>[39m

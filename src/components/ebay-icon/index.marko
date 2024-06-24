@@ -1,13 +1,10 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
-
+import { processHtmlAttributes } from "../../common/html-attributes";
 static var isBrowser = typeof window !== "undefined";
-
 static var browserLookup: Record<string, unknown> = {};
-
 static function noop() {}
-
 $ const {
     _name,
+    _size,
     _type,
     _themes,
     _def,
@@ -17,34 +14,30 @@ $ const {
     noSkinClasses,
     ...htmlInput
 } = input;
-
 $ (input as any).toJSON = noop;
-
-static function getIconClass(type: string, name: string) {
-    if (type === "icon") {
+static function getIconClass(type: string, name: string, size?: string) {
+    if (size) {
+        return `icon icon--${size}`;
+    } else if (type === "icon") {
         return `icon icon--${name}`;
     } else {
         var dashedName = name.replace(type, `${type}-`);
-        return `${type} ${dashedName}`
+        return `${type} ${dashedName}`;
     }
 }
-
 $ var noTitle = a11yVariant === "label";
 $ var lookup = isBrowser ? browserLookup : out.global;
-$ {
-    var a11yAttributes = a11yText
-        ? { role: "img" }
-        : { "aria-hidden": "true" };
-    var prefixSvg = _type === "icon" ? "icon-" : "";
-}
+$ var a11yAttributes = a11yText ? { role: "img" } : { "aria-hidden": "true" };
+$ var prefixSvg = _type === "icon" ? "icon-" : "";
 <svg
     ...a11yAttributes
     ...processHtmlAttributes(htmlInput)
-    class=[inputClass, !noSkinClasses && getIconClass(_type, _name)]
+    class=[inputClass, !noSkinClasses && getIconClass(_type, _name, _size)]
     key="svg"
     focusable="false"
-    aria-labelledby=(a11yText && !noTitle && component.elId("text"))
-    aria-label=(noTitle && a11yText)>
+    aria-labelledby=a11yText && !noTitle && component.elId("text")
+    aria-label=noTitle && a11yText
+>
     <!-- Here we check if we should render the inline svg symbol. -->
     <!-- Server side we store a flag in `out.global` to check if the symbol was rendered. -->
     <!-- Client side we check the `browserLookup` object to see if the symbol is already present in root svg. -->
@@ -63,7 +56,9 @@ $ {
         </defs>
     </if>
     <if(a11yText && !noTitle)>
-        <title id:scoped="text">${a11yText}</title>
+        <title id:scoped="text">
+            ${a11yText}
+        </title>
     </if>
     <use href=`#${prefixSvg}${_name}`/>
 </svg>

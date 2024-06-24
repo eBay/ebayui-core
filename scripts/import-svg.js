@@ -34,6 +34,25 @@ const __dirname = path.dirname(__filename);
 const outputBaseDir = path.join(__dirname, "../src/components");
 const outputCommonDir = path.join(__dirname, "../src/common");
 const examplesMap = {};
+const iconSizes = [
+    "12",
+    "16",
+    "18",
+    "20",
+    "24",
+    "30",
+    "32",
+    "64",
+    "12-colored",
+    "16-colored",
+    "18-colored",
+    "20-colored",
+    "24-colored",
+    "30-colored",
+    "32-colored",
+    "64-colored",
+];
+const sizeMatcher = new RegExp(`-(${iconSizes.join("|")})$`);
 
 const htmlMinifierOptions = {
     keepClosingSlash: true,
@@ -177,6 +196,8 @@ function generateFile(type, iconMap) {
             continue;
         }
 
+        const size = name.match(sizeMatcher)?.[1] || "";
+
         // eslint-disable-next-line max-len
         fs.writeFileSync(
             index,
@@ -186,7 +207,7 @@ import type { Input as IconInput } from "../../${
                 type === "icon" ? "" : "../ebay-icon/"
             }component-browser"
 export type Input = Omit<IconInput, \`_\${string}\`>;
-<ebay-icon ...input _name="${name}" _type="${type}" _themes=symbol${
+<ebay-icon ...input _name="${name}" _size="${size}" _type="${type}" _themes=symbol${
                 iconDef ? " _def=def" : ""
             }/>
 `,
