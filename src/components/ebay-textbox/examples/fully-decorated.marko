@@ -1,5 +1,5 @@
 <ebay-textbox
-    placeholder="name"
+    placeholder="0.00"
     on-change("emit", "change")
     on-input-change("emit", "inputChange")
     on-focus("emit", "focus")
@@ -10,9 +10,13 @@
     on-invalid("emit", "invalid")
     on-floating-label-init("emit", "floating-label-init")
     on-button-click("emit", "button-click")
-    ...input
 >
+    <@prefix-icon>
+        <ebay-mail-24-icon/>
+    </@prefix-icon>
+    <@prefix-text>$</@prefix-text>
+    <@postfix-text>/mo</@postfix-text>
     <@postfix-icon>
-        <ebay-profile-24-icon/>
+        <ebay-close-24-icon/>
     </@postfix-icon>
 </ebay-textbox>

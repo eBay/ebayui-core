@@ -8,6 +8,7 @@ import FloatingLabelAutocompleteTemplate from "./examples/floating-label-autocom
 import WithBothIcons from "./examples/both-icons.marko";
 import WithPostfixIcon from "./examples/postfix-icon.marko";
 import WithPrefixIcon from "./examples/prefix-icon.marko";
+import FullyDecoratedTemplate from "./examples/fully-decorated.marko";
 import WithLabelCode from "./examples/external-label.marko?raw";
 import DisabledCode from "./examples/external-label-disabled.marko?raw";
 import FloatingLabelCode from "./examples/floating-label.marko?raw";
@@ -15,6 +16,7 @@ import FloatingLabelAutocompleteCode from "./examples/floating-label-autocomplet
 import WithBothIconsCode from "./examples/both-icons.marko?raw";
 import WithPostfixIconCode from "./examples/postfix-icon.marko?raw";
 import WithPrefixIconCode from "./examples/prefix-icon.marko?raw";
+import FullyDecoratedCode from "./examples/fully-decorated.marko?raw";
 
 const Template = (args) => ({
     input: {
@@ -101,6 +103,22 @@ export default {
         postfixIcon: {
             name: "@postfix-icon",
             description: "An `<ebay-{name}-icon>` to show as the postfix icon.",
+            table: {
+                category: "@attribute tags",
+            },
+        },
+        prefixText: {
+            name: "@prefix-text",
+            description:
+                "Text to show before the input. Can be used alongside prefix-icon.",
+            table: {
+                category: "@attribute tags",
+            },
+        },
+        postfixText: {
+            name: "@postfix-text",
+            description:
+                "Text to show after the input. Can be used alongside postfix-icon.",
             table: {
                 category: "@attribute tags",
             },
@@ -307,6 +325,19 @@ BothIcons.parameters = {
     docs: {
         source: {
             code: WithBothIconsCode,
+        },
+    },
+};
+
+export const FullyDecorated = (args) => ({
+    input: args,
+    component: FullyDecoratedTemplate,
+});
+FullyDecorated.args = {};
+FullyDecorated.parameters = {
+    docs: {
+        source: {
+            code: FullyDecoratedCode,
         },
     },
 };

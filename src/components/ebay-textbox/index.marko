@@ -24,6 +24,7 @@ $ const {
     type,
     value,
     prefixText,
+    postfixText,
     ...htmlInput
 } = input;
 
@@ -33,7 +34,9 @@ $ var hasIcon = prefixIcon || isPostfix;
 $ var isLarge = inputSize === "large";
 $ var displayIcon = Boolean(!multiline && hasIcon);
 $ var prefixId = prefixText && component.getElId("prefix");
+$ var postfixId = postfixText && component.getElId("postfix");
 $ var defaultTag = fluid ? "div" : "span";
+
 <${floatingLabel && defaultTag} class=["floating-label", isLarge && "floating-label--large", opaqueLabel && "floating-label--opaque"]>
     <if(floatingLabel)>
         <label
@@ -47,11 +50,7 @@ $ var defaultTag = fluid ? "div" : "span";
     </if>
     <${defaultTag}
         style=style
-        class=[
-            "textbox",
-            inputClass,
-            displayIcon && isPostfix && "textbox--icon-end"
-        ]>
+        class=["textbox", inputClass, isLarge && "textbox--large", fluid && "textbox--fluid"]>
         <if(displayIcon && prefixIcon)>
             <${prefixIcon}/>
         </if>
@@ -61,15 +60,11 @@ $ var defaultTag = fluid ? "div" : "span";
             </span>
         </if>
         <${multiline ? "textarea" : "input"}
-            aria-describedby=prefixId
+            aria-describedby=[prefixId, postfixId].filter(Boolean).join(" ")
             ...processHtmlAttributes(htmlInput)
             id=id
             key="input"
-            class=[
-                "textbox__control",
-                fluid && "textbox__control--fluid",
-                isLarge && "textbox__control--large"
-            ]
+            class="textbox__control"
             type=(!multiline && (type || "text"))
             value=(!multiline && value)
             disabled=disabled
@@ -84,6 +79,11 @@ $ var defaultTag = fluid ? "div" : "span";
             onInvalid("forwardEvent", "invalid")>
             <if(multiline && value)>${value}</if>
         </>
+        <if(postfixText)>
+            <span id=postfixId ...postfixText>
+                <${postfixText} />
+            </span>
+        </if>
         <if(displayIcon && postfixIcon)>
             <${buttonAriaLabel && "button"}
                 class="icon-btn icon-btn--transparent"
