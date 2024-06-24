@@ -34,10 +34,14 @@ export default {
                 "The two letter country code. Used to populate the country dropdown",
             control: { type: "text" },
         },
-        countryNames: {
-            description:
-                "List of tuples that have localized text for each country. The first tuple is the is the localized countries name, and the second tuple is the country's two letter code.",
-            control: { type: "array" },
+        locale: {
+            description: "Locale used to display country names.",
+            table: {
+                defaultValue: {
+                    summary: "navigator.language",
+                },
+            },
+            control: { type: "text" },
         },
         floatingLabel: {
             description: "If set then shows this text as the floating label.",
