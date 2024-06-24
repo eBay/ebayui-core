@@ -3,7 +3,6 @@ import type { WithNormalizedProps } from "../../global";
 export interface LegendItem {
     name: string;
     value: number | string | undefined;
-    symbolClass?: string;
 }
 
 export interface ChartLegendInput {

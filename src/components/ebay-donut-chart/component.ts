@@ -85,7 +85,6 @@ class DonutChart extends Marko.Component<Input> {
      */
     _initializeHighchartsExtensions() {
         // Adds spacing between donut slices
-        // Accepts a highcharts instance and a spacing value
         ebayDonut(Highcharts);
     }
 
@@ -95,12 +94,12 @@ class DonutChart extends Marko.Component<Input> {
     _setupChart() {
         const { series } = this.input;
 
-        // Check series length
+        // Check series length, DS only supports one series
         if (series.length > 1) {
             console.warn("Donut chart only supports one series");
         }
 
-        // Set the colors for the series data
+        // Set the path colors and border colors for the series data
         const colors = setDonutColors(series[0]);
 
         const chart = this.getChartConfig();
