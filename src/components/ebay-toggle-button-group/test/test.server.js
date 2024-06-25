@@ -3,8 +3,14 @@ import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../toggle-button-group.stories";
 
-const { Default, WithIcons, WithDefaultSelected, Controlled, externalLabel } =
-    composeStories(stories);
+const {
+    Default,
+    WithIcons,
+    WithDefaultSelected,
+    Controlled,
+    externalLabel,
+    Columns,
+} = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
 
@@ -32,6 +38,6 @@ describe("ebay-toggle-button-group", () => {
     });
 
     it("renders custom column sizes", async () => {
-        await htmlSnap(Default, { columnXS: 4, columnSM: 5, columnMD: 8 });
+        await htmlSnap(Columns);
     });
 });

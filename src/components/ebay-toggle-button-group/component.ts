@@ -18,6 +18,7 @@ interface ToggleButtonGroupInput
     columnsXS?: number;
     columnsSM?: number;
     columnsMD?: number;
+    columnsXL?: number;
     layoutType?: ToggleButtonInput["layoutType"];
     "on-change"?: (event: ToggleButtonGroupEvent) => void;
 }

@@ -10,6 +10,8 @@ import controlledTemplate from "./examples/controlled.marko";
 import controlledCode from "./examples/controlled.marko?raw";
 import externalLabelTemplate from "./examples/externalLabel.marko";
 import externalLabelCode from "./examples/externalLabel.marko?raw";
+import columnsTemplate from "./examples/columns.marko";
+import columnsCode from "./examples/columns.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -47,6 +49,11 @@ export default {
             type: "number",
             control: { type: "number" },
             description: "Preferred minimum number of columns on medium screens",
+        },
+        columnsXL: {
+            type: "number",
+            control: { type: "number" },
+            description: "Preferred minimum number of columns on extra large screens",
         },
         a11yText: {
             type: "string",
@@ -86,9 +93,6 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    columnsXS: 2,
-    columnsSM: 3,
-    columnsMD: 6,
     a11yText: "Toggle Button Group",
     buttons: [
         { renderBody: "Button 1" },
@@ -126,4 +130,9 @@ export const externalLabel = buildExtensionTemplate(
 export const Controlled = buildExtensionTemplate(
     controlledTemplate,
     controlledCode
+);
+
+export const Columns = buildExtensionTemplate(
+    columnsTemplate,
+    columnsCode
 );
