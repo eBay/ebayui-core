@@ -12,6 +12,7 @@ $ const {
     truncate,
     prefixLabel,
     prefixId,
+    postfixLabel,
     unselectedText = "-",
     floatingLabel,
     collapseOnSelect,
@@ -26,7 +27,9 @@ $ const {
 $ var selectedOption = (options as Option[])[state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
 $ var selectedIcon = selectedOption && selectedOption.icon;
-$ var a11ySelectedIconText = selectedIcon && selectedOption && selectedOption.text;
+$ var a11ySelectedIconText = (
+    selectedIcon && selectedOption && selectedOption.text
+);
 $ var labelId = prefixId && component.getElId("label");
 $ var displayText = selectedText || unselectedText;
 $ var isForm = variant === "form";
@@ -40,6 +43,11 @@ $ var isForm = variant === "form";
     <else-if(selectedText || alwaysDisplay)>
         <span id=labelId class="btn__text">
             ${displayText}
+            <if(postfixLabel)>
+                <span class="btn__postfix-label">
+                    ${` ${postfixLabel}`}
+                </span>
+            </if>
         </span>
     </else-if>
 </macro>
@@ -67,7 +75,8 @@ $ var isForm = variant === "form";
             truncate && "btn--truncated",
             floatingLabel && "btn--floating-label",
         ]
-        aria-label=a11ySelectedIconText && `${a11yIconPrefixText}: ${a11ySelectedIconText}`
+        aria-label=a11ySelectedIconText &&
+        `${a11yIconPrefixText}: ${a11ySelectedIconText}`
         value=selectedText
         type="button"
         disabled=disabled
