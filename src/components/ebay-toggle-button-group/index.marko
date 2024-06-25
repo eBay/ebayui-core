@@ -3,14 +3,25 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 $ const {
     class: inputClass,
     layoutType: baseLayoutType,
+    columnsXS,
+    columnsSM,
+    columnsMD,
+    a11yText,
+    a11yLabelId,
     buttons = [],
     ...htmlInput
 } = input;
 
 <div
     class=["toggle-button-group", inputClass]
+    data-columns-xs=columnsXS
+    data-columns-sm=columnsSM
+    data-columns-md=columnsMD
     ...processHtmlAttributes(htmlInput)>
-    <ul>
+    <ul
+        aria-label=a11yText
+        aria-labelledby=a11yLabelId
+    >
         <for|{ layoutType = baseLayoutType, pressed, ...toggleButtonInput }, i| of=buttons>
             <li>
                 <ebay-toggle-button

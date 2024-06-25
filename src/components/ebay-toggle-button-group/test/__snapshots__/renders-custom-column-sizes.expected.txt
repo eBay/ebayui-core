@@ -1,11 +1,16 @@
 [36m<DocumentFragment>[39m
   [36m<div[39m
     [33mclass[39m=[32m"toggle-button-group"[39m
+    [33mcolumn-md[39m=[32m"8"[39m
+    [33mcolumn-sm[39m=[32m"5"[39m
+    [33mcolumn-xs[39m=[32m"4"[39m
     [33mdata-columns-md[39m=[32m"6"[39m
     [33mdata-columns-sm[39m=[32m"3"[39m
     [33mdata-columns-xs[39m=[32m"2"[39m
   [36m>[39m
-    [36m<ul>[39m
+    [36m<ul[39m
+      [33maria-label[39m=[32m"Toggle Button Group"[39m
+    [36m>[39m
       [36m<li>[39m
         [36m<button[39m
           [33mclass[39m=[32m"toggle-button"[39m
@@ -17,12 +22,7 @@
             [36m<span[39m
               [33mclass[39m=[32m"toggle-button__title"[39m
             [36m>[39m
-              [0mFirst Item[0m
-            [36m</span>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"toggle-button__subtitle"[39m
-            [36m>[39m
-              [0mEmpty on load[0m
+              [0mButton 1[0m
             [36m</span>[39m
           [36m</span>[39m
         [36m</button>[39m
@@ -38,34 +38,7 @@
             [36m<span[39m
               [33mclass[39m=[32m"toggle-button__title"[39m
             [36m>[39m
-              [0mSecond Item[0m
-            [36m</span>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"toggle-button__subtitle"[39m
-            [36m>[39m
-              [0mEmpty on load[0m
-            [36m</span>[39m
-          [36m</span>[39m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<button[39m
-          [33maria-pressed[39m=[32m"true"[39m
-          [33mclass[39m=[32m"toggle-button"[39m
-          [33mtype[39m=[32m"button"[39m
-        [36m>[39m
-          [36m<span[39m
-            [33mclass[39m=[32m"toggle-button__content"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"toggle-button__title"[39m
-            [36m>[39m
-              [0mThird Item[0m
-            [36m</span>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"toggle-button__subtitle"[39m
-            [36m>[39m
-              [0mPressed on load[0m
+              [0mButton 2[0m
             [36m</span>[39m
           [36m</span>[39m
         [36m</button>[39m
@@ -81,34 +54,7 @@
             [36m<span[39m
               [33mclass[39m=[32m"toggle-button__title"[39m
             [36m>[39m
-              [0mFourth Item[0m
-            [36m</span>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"toggle-button__subtitle"[39m
-            [36m>[39m
-              [0mEmpty on load[0m
-            [36m</span>[39m
-          [36m</span>[39m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<button[39m
-          [33maria-pressed[39m=[32m"true"[39m
-          [33mclass[39m=[32m"toggle-button"[39m
-          [33mtype[39m=[32m"button"[39m
-        [36m>[39m
-          [36m<span[39m
-            [33mclass[39m=[32m"toggle-button__content"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"toggle-button__title"[39m
-            [36m>[39m
-              [0mFifth Item[0m
-            [36m</span>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"toggle-button__subtitle"[39m
-            [36m>[39m
-              [0mPressed on load[0m
+              [0mButton 3[0m
             [36m</span>[39m
           [36m</span>[39m
         [36m</button>[39m
@@ -124,12 +70,39 @@
             [36m<span[39m
               [33mclass[39m=[32m"toggle-button__title"[39m
             [36m>[39m
-              [0mSixth Item[0m
+              [0mButton 4[0m
             [36m</span>[39m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"toggle-button"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"toggle-button__content"[39m
+          [36m>[39m
             [36m<span[39m
-              [33mclass[39m=[32m"toggle-button__subtitle"[39m
+              [33mclass[39m=[32m"toggle-button__title"[39m
             [36m>[39m
-              [0mEmpty on load[0m
+              [0mButton 5[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"toggle-button"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"toggle-button__content"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"toggle-button__title"[39m
+            [36m>[39m
+              [0mButton 6[0m
             [36m</span>[39m
           [36m</span>[39m
         [36m</button>[39m

@@ -13,6 +13,11 @@ interface ToggleButtonGroupInput
     extends Omit<Marko.Input<"span">, `on${string}`> {
     buttons?: Marko.RepeatableAttrTag<Omit<ToggleButtonInput, `on${string}`>>;
     variant?: "checkbox" | "radio" | "radio-toggle";
+    "a11y-text"?: string;
+    "a11y-label-id"?: string;
+    columnsXS?: number;
+    columnsSM?: number;
+    columnsMD?: number;
     layoutType?: ToggleButtonInput["layoutType"];
     "on-change"?: (event: ToggleButtonGroupEvent) => void;
 }

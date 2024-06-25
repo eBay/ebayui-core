@@ -1,8 +1,13 @@
 [36m<DocumentFragment>[39m
   [36m<div[39m
     [33mclass[39m=[32m"toggle-button-group"[39m
+    [33mdata-columns-md[39m=[32m"6"[39m
+    [33mdata-columns-sm[39m=[32m"3"[39m
+    [33mdata-columns-xs[39m=[32m"2"[39m
   [36m>[39m
-    [36m<ul>[39m
+    [36m<ul[39m
+      [33maria-label[39m=[32m"Toggle Button Group"[39m
+    [36m>[39m
       [36m<li>[39m
         [36m<button[39m
           [33mclass[39m=[32m"toggle-button"[39m
