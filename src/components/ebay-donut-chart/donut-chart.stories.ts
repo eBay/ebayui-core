@@ -95,7 +95,6 @@ TwoValues.args = {
             data: data.slice(0, 2),
         },
     ],
-    data,
     title: "Donut chart with two values",
     metricValue: "174 Total",
     metricLabel: "3.78% return rate",

@@ -1,24 +1,41 @@
-// import { expect, use } from "chai";
-// import chaiDom from "chai-dom";
-// import { composeStories } from "@storybook/marko";
-// import { render, cleanup, waitFor } from "@marko/testing-library";
-// import * as stories from "../donut-chart.stories";
-// const { Standard } = composeStories(stories);
+import { expect, use } from "chai";
+import chaiDom from "chai-dom";
+import { render, cleanup, waitFor } from "@marko/testing-library";
+import { composeStories } from "@storybook/marko";
+import * as stories from "../donut-chart.stories";
 
-// use(chaiDom);
-// afterEach(cleanup);
+const { Standard, FiveValues } = composeStories(stories);
+use(chaiDom);
+afterEach(cleanup);
 
-// /** @type import("@marko/testing-library").RenderResult */
-// let component;
+describe("given a donut chart", () => {
+    let component;
 
-// describe("donut-chart", () => {
-//     describe("given a donut chart with three values", () => {
-//         beforeEach(async () => {
-//             component = await render(Standard);
-//         });
+    beforeEach(async () => {
+        component = await render(Standard);
+    });
 
-//         it("then it renders the donut chart", () => {
+    it("that it renders with three paths", async () => {
+        await waitFor(() =>
+            expect(
+                component.container.querySelectorAll(".highcharts-point"),
+            ).to.have.length(3),
+        );
+    });
+});
 
-//         });
-//     });
-// });
+describe("given a donut chart with five values", () => {
+    let component;
+
+    beforeEach(async () => {
+        component = await render(FiveValues);
+    });
+
+    it("that it renders with five paths", async () => {
+        await waitFor(() =>
+            expect(
+                component.container.querySelectorAll(".highcharts-point"),
+            ).to.have.length(5),
+        );
+    });
+});
