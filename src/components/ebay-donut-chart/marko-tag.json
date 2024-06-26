@@ -1,0 +1,14 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@title": "string",
+    "@metricValue": "string",
+    "@metricLabel": "string",
+    "@class": "string",
+    "@series": "string",
+    "@description": "string"
+}
