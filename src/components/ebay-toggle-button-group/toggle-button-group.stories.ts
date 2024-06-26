@@ -1,5 +1,5 @@
 import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { addRenderBodies, buildExtensionTemplate } from "../../../.storybook/utils";
 import Readme from "./README.md";
 import component from "./index.marko";
 import withIconsTemplate from "./examples/icons.marko";
@@ -8,6 +8,10 @@ import withDefaultTemplate from "./examples/withDefault.marko";
 import withDefaultCode from "./examples/withDefault.marko?raw";
 import controlledTemplate from "./examples/controlled.marko";
 import controlledCode from "./examples/controlled.marko?raw";
+import externalLabelTemplate from "./examples/externalLabel.marko";
+import externalLabelCode from "./examples/externalLabel.marko?raw";
+import columnsTemplate from "./examples/columns.marko";
+import columnsCode from "./examples/columns.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -31,10 +35,33 @@ export default {
             description:
                 'Selection type for the buttons in the group. May be `"checkbox"` (default), `"radio"`, or `"radio-toggle"` (same as radio but with the option to deselect)',
         },
-        columns: {
+        columnsXS: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns",
+            description: "Preferred minimum number of columns on extra small screens",
+        },
+        columnsSM: {
+            type: "number",
+            control: { type: "number" },
+            description: "Preferred minimum number of columns on small screens",
+        },
+        columnsMD: {
+            type: "number",
+            control: { type: "number" },
+            description: "Preferred minimum number of columns on medium screens",
+        },
+        columnsXL: {
+            type: "number",
+            control: { type: "number" },
+            description: "Preferred minimum number of columns on extra large screens",
+        },
+        a11yText: {
+            type: "string",
+            description: "Accessibility text for the group. Cannot be used together with `a11yLabelId`",
+        },
+        a11yLabelId: {
+            type: "string",
+            description: "Id of the element that labels the group. Required for a11y compliance. Cannot be used together with `a11yText`",
         },
         layoutType: {
             type: "string",
@@ -66,7 +93,7 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    columns: 3,
+    a11yText: "Toggle Button Group",
     buttons: [
         { renderBody: "Button 1" },
         { renderBody: "Button 2" },
@@ -85,41 +112,27 @@ Default.parameters = {
     },
 };
 
-export const WithIcons = (args) => ({
-    input: args,
-    component: withIconsTemplate,
-});
-WithIcons.args = {};
-WithIcons.parameters = {
-    docs: {
-        source: {
-            code: withIconsCode,
-        },
-    },
-};
+export const WithIcons = buildExtensionTemplate(
+    withIconsTemplate,
+    withIconsCode
+);
 
-export const WithDefaultSelected = (args) => ({
-    input: args,
-    component: withDefaultTemplate,
-});
-WithDefaultSelected.args = {};
-WithDefaultSelected.parameters = {
-    docs: {
-        source: {
-            code: withDefaultCode,
-        },
-    },
-};
+export const WithDefaultSelected = buildExtensionTemplate(
+    withDefaultTemplate,
+    withDefaultCode
+);
 
-export const Controlled = (args) => ({
-    input: args,
-    component: controlledTemplate,
-});
-Controlled.args = {};
-Controlled.parameters = {
-    docs: {
-        source: {
-            code: controlledCode,
-        },
-    },
-};
+export const externalLabel = buildExtensionTemplate(
+    externalLabelTemplate,
+    externalLabelCode
+);
+
+export const Controlled = buildExtensionTemplate(
+    controlledTemplate,
+    controlledCode
+);
+
+export const Columns = buildExtensionTemplate(
+    columnsTemplate,
+    columnsCode
+);
