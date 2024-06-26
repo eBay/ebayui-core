@@ -1,5 +1,8 @@
 import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies, buildExtensionTemplate } from "../../../.storybook/utils";
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../../.storybook/utils";
 import Readme from "./README.md";
 import component from "./index.marko";
 import withIconsTemplate from "./examples/icons.marko";
@@ -38,7 +41,8 @@ export default {
         columnsXS: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns on extra small screens",
+            description:
+                "Preferred minimum number of columns on extra small screens",
         },
         columnsSM: {
             type: "number",
@@ -48,20 +52,24 @@ export default {
         columnsMD: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns on medium screens",
+            description:
+                "Preferred minimum number of columns on medium screens",
         },
         columnsXL: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns on extra large screens",
+            description:
+                "Preferred minimum number of columns on extra large screens",
         },
         a11yText: {
             type: "string",
-            description: "Accessibility text for the group. Cannot be used together with `a11yLabelId`",
+            description:
+                "Accessibility text for the group. Cannot be used together with `a11yLabelId`",
         },
         a11yLabelId: {
             type: "string",
-            description: "Id of the element that labels the group. Required for a11y compliance. Cannot be used together with `a11yText`",
+            description:
+                "Id of the element that labels the group. Required for a11y compliance. Cannot be used together with `a11yText`",
         },
         layoutType: {
             type: "string",
@@ -114,25 +122,22 @@ Default.parameters = {
 
 export const WithIcons = buildExtensionTemplate(
     withIconsTemplate,
-    withIconsCode
+    withIconsCode,
 );
 
 export const WithDefaultSelected = buildExtensionTemplate(
     withDefaultTemplate,
-    withDefaultCode
+    withDefaultCode,
 );
 
 export const externalLabel = buildExtensionTemplate(
     externalLabelTemplate,
-    externalLabelCode
+    externalLabelCode,
 );
 
 export const Controlled = buildExtensionTemplate(
     controlledTemplate,
-    controlledCode
+    controlledCode,
 );
 
-export const Columns = buildExtensionTemplate(
-    columnsTemplate,
-    columnsCode
-);
+export const Columns = buildExtensionTemplate(columnsTemplate, columnsCode);
