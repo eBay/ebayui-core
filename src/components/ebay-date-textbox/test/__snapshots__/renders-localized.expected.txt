@@ -33,7 +33,7 @@
         [0mEinde[0m
       [36m</label>[39m
       [36m<span[39m
-        [33mclass[39m=[32m"textbox ebay-date-textbox--main textbox--icon-end"[39m
+        [33mclass[39m=[32m"textbox ebay-date-textbox--main"[39m
       [36m>[39m
         [36m<input[39m
           [33mclass[39m=[32m"textbox__control"[39m
