@@ -42,24 +42,22 @@ export default {
             type: "number",
             control: { type: "number" },
             description:
-                "Preferred minimum number of columns on extra small screens",
+                "Preferred minimum number of columns within extra small containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
         },
         columnsSM: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns on small screens",
+            description: "Preferred minimum number of columns within small containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
         },
         columnsMD: {
             type: "number",
             control: { type: "number" },
-            description:
-                "Preferred minimum number of columns on medium screens",
+            description: "Preferred minimum number of columns within medium containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
         },
         columnsXL: {
             type: "number",
             control: { type: "number" },
-            description:
-                "Preferred minimum number of columns on extra large screens",
+            description: "Preferred minimum number of columns within extra large containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
         },
         a11yText: {
             type: "string",
@@ -140,4 +138,13 @@ export const Controlled = buildExtensionTemplate(
     controlledCode,
 );
 
-export const Columns = buildExtensionTemplate(columnsTemplate, columnsCode);
+export const PerferedColumns = buildExtensionTemplate(
+    columnsTemplate,
+    columnsCode,
+    {
+        columnsSM: 3,
+        columnsXS: 2,
+        columnsMD: 6,
+        columnsXL: 8,
+    },
+);

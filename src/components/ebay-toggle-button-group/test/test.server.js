@@ -9,7 +9,7 @@ const {
     WithDefaultSelected,
     Controlled,
     externalLabel,
-    Columns,
+    PerferedColumns,
 } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
@@ -38,6 +38,6 @@ describe("ebay-toggle-button-group", () => {
     });
 
     it("renders custom column sizes", async () => {
-        await htmlSnap(Columns);
+        await htmlSnap(PerferedColumns);
     });
 });
