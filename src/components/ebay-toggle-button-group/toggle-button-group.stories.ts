@@ -47,17 +47,20 @@ export default {
         columnsSM: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns within small containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
+            description:
+                "Preferred minimum number of columns within small containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
         },
         columnsMD: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns within medium containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
+            description:
+                "Preferred minimum number of columns within medium containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
         },
         columnsXL: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns within extra large containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
+            description:
+                "Preferred minimum number of columns within extra large containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
         },
         a11yText: {
             type: "string",
