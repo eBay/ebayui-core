@@ -20,7 +20,7 @@
       [36m</span>[39m
       [36m<svg[39m
         [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--tick-16"[39m
+        [33mclass[39m=[32m"icon icon--16"[39m
         [33mfocusable[39m=[32m"false"[39m
       [36m>[39m
         [36m<defs>[39m
@@ -56,7 +56,7 @@
       [36m</span>[39m
       [36m<svg[39m
         [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--tick-16"[39m
+        [33mclass[39m=[32m"icon icon--16"[39m
         [33mfocusable[39m=[32m"false"[39m
       [36m>[39m
         [36m<use[39m
@@ -80,7 +80,7 @@
       [36m</span>[39m
       [36m<svg[39m
         [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--tick-16"[39m
+        [33mclass[39m=[32m"icon icon--16"[39m
         [33mfocusable[39m=[32m"false"[39m
       [36m>[39m
         [36m<use[39m

@@ -22,7 +22,7 @@
         [36m>[39m
           [36m<svg[39m
             [33maria-labelledby[39m=[32m"s0-6[0]-0-text"[39m
-            [33mclass[39m=[32m"icon icon--stepper-confirmation-24"[39m
+            [33mclass[39m=[32m"icon icon--24"[39m
             [33mdata-marko-key[39m=[32m"@svg s0-6[0]-0"[39m
             [33mfocusable[39m=[32m"false"[39m
             [33mheight[39m=[32m"24"[39m
@@ -76,7 +76,7 @@
         [36m>[39m
           [36m<svg[39m
             [33maria-labelledby[39m=[32m"s0-6[1]-0-text"[39m
-            [33mclass[39m=[32m"icon icon--stepper-confirmation-24"[39m
+            [33mclass[39m=[32m"icon icon--24"[39m
             [33mdata-marko-key[39m=[32m"@svg s0-6[1]-0"[39m
             [33mfocusable[39m=[32m"false"[39m
             [33mheight[39m=[32m"24"[39m
@@ -117,7 +117,7 @@
         [36m>[39m
           [36m<svg[39m
             [33maria-labelledby[39m=[32m"s0-6[2]-0-text"[39m
-            [33mclass[39m=[32m"icon icon--stepper-confirmation-24"[39m
+            [33mclass[39m=[32m"icon icon--24"[39m
             [33mdata-marko-key[39m=[32m"@svg s0-6[2]-0"[39m
             [33mfocusable[39m=[32m"false"[39m
             [33mheight[39m=[32m"24"[39m
@@ -158,7 +158,7 @@
         [36m>[39m
           [36m<svg[39m
             [33maria-labelledby[39m=[32m"s0-6[3]-0-text"[39m
-            [33mclass[39m=[32m"icon icon--stepper-confirmation-24"[39m
+            [33mclass[39m=[32m"icon icon--24"[39m
             [33mdata-marko-key[39m=[32m"@svg s0-6[3]-0"[39m
             [33mfocusable[39m=[32m"false"[39m
             [33mheight[39m=[32m"24"[39m

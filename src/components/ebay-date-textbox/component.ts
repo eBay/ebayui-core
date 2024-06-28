@@ -2,8 +2,11 @@ import Expander from "makeup-expander";
 import { type DayISO, dateArgToISO } from "../../common/dates/date-utils";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
-import type { Input as TextboxInput } from "../ebay-textbox/component-browser";
-import { parse } from "../../common/dates";
+import type {
+    TextboxEvent,
+    Input as TextboxInput,
+} from "../ebay-textbox/component-browser";
+import { getLocale, parse } from "../../common/dates";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
 
@@ -34,10 +37,6 @@ interface DateTextboxInput {
     "a11y-in-range-text"?: AttrString;
     "a11y-range-end-text"?: AttrString;
     "a11y-separator"?: string;
-    /** @deprecated use `@textbox-input` instead */
-    "floating-label"?: string | [string, string];
-    /** @deprecated will be default in next major */
-    localizeFormat?: boolean;
     "on-change"?: (
         event:
             | { selected: DayISO | null }
@@ -104,14 +103,7 @@ class DateTextbox extends Marko.Component<Input, State> {
     }
 
     handleInputChange(index: number, { value }: { value: string }) {
-        let iso: DayISO | null;
-        /* next major, localizeFormat will _always_ be true */
-        if (this.input.localizeFormat) {
-            iso = parse(value, this.input.locale);
-        } else {
-            const date = new Date(value);
-            iso = isNaN(date.getTime()) ? null : dateArgToISO(date);
-        }
+        let iso = parse(value, this.input.locale);
 
         if (iso === null) {
             this.emit("invalid-date", { value, index });
@@ -162,6 +154,33 @@ class DateTextbox extends Marko.Component<Input, State> {
         }
 
         this.emitSelectedChange();
+    }
+
+    /**
+     * If the cursor is at the end of the input and it makes sense to add a d/m/y separator, add it.
+     */
+    onInputKeyup({ originalEvent: event }: TextboxEvent) {
+        // abort if key wasn't a number
+        if (!/^\d$/.test((event as KeyboardEvent).key)) {
+            return;
+        }
+
+        const input = event.target as HTMLInputElement;
+        const { value } = input;
+
+        if (input.selectionStart === value.length) {
+            const { o: order, s: sep } = getLocale(this.input.locale);
+            let i = 0;
+            let start = 0;
+            for (let currStart; ~(currStart = value.indexOf(sep[i], start)); ) {
+                start = currStart + sep[i].length;
+                i++;
+            }
+            console.log(i, start);
+            if (value.length - start === (order[i] === "y" ? 4 : 2)) {
+                input.value += sep[i] ?? "";
+            }
+        }
     }
 
     emitSelectedChange() {

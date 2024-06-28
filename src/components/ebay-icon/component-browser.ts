@@ -14,6 +14,7 @@ interface IconInput extends Omit<Marko.Input<"svg">, `on${string}`> {
     _themes?: () => string;
     _type: string;
     _name: string;
+    _size?: string;
     _def?: () => IconDefs;
     "a11y-variant"?: "label";
     "a11y-text"?: AttrString;

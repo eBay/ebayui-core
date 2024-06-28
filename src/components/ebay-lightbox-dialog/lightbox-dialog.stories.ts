@@ -79,7 +79,7 @@ export default {
             description: "Image source for the expressive variant",
         },
         size: {
-            options: ["regular", "wide", "narrow"],
+            options: ["regular", "wide", "narrow", "large"],
             description: "The size of the dialog",
             table: {
                 defaultValue: {

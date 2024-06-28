@@ -37,21 +37,21 @@ $ const isEducation = prefixClass === 'education-notice';
                 <ebay-confirmation-filled-16-icon
                     a11y-text=a11yIconText || a11yText
                     a11y-variant='label'
-                    class=iconClass
+                    class=[iconClass, `icon--confirmation-filled`]
                 />
             </if>
             <else-if(status === 'attention')>
                 <ebay-attention-filled-16-icon
                     a11y-variant='label'
                     a11y-text=a11yIconText || a11yText
-                    class=iconClass
+                    class=[iconClass, `icon--attention-filled`]
                 />
             </else-if>
             <else-if(status === 'information')>
                 <ebay-information-filled-16-icon
                     a11y-variant='label'
                     a11y-text=a11yIconText || a11yText
-                    class=iconClass
+                    class=[iconClass, `icon--information-filled`]
                 />
             </else-if>
             // deprecated status === education. We should probably remove this whole icon on the next major version

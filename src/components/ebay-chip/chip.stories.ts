@@ -23,7 +23,7 @@ export default {
             control: { type: "text" },
             description: "Text to be displayed in the chip",
         },
-        a11yDeleteButton: {
+        a11yDeleteButtonText: {
             control: { type: "text" },
             description:
                 "A11y text for the delete button, also determines if delete button is shown",
@@ -56,7 +56,7 @@ Default.parameters = {
 export const WithDelete = Template.bind({});
 WithDelete.args = {
     renderBody: "chip text",
-    a11yDeleteButton: "Delete",
+    a11yDeleteButtonText: "Delete",
 };
 WithDelete.parameters = {
     docs: {

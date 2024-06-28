@@ -5,8 +5,13 @@
         "type": "expression"
     },
     "@html-attributes": "expression",
-    "@columns": "number",
     "@radio": "boolean",
+    "@columnsMD": "number",
+    "@columnsSM": "number",
+    "@columnsXS": "number",
+    "@columnsXL": "number",
+    "@a11y-text": "string",
+    "@a11y-label-id": "string",
     "@layout-type": "string",
     "@buttons <button>[]": {
         "@*": {

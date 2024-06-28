@@ -3,12 +3,12 @@
     [33mclass[39m=[32m"date-textbox"[39m
   [36m>[39m
     [36m<span[39m
-      [33mclass[39m=[32m"textbox ebay-date-textbox--main textbox--icon-end"[39m
+      [33mclass[39m=[32m"textbox ebay-date-textbox--main"[39m
     [36m>[39m
       [36m<input[39m
         [33mclass[39m=[32m"textbox__control"[39m
         [33mid[39m=[32m"s0-2-textbox"[39m
-        [33mplaceholder[39m=[32m"YYYY-MM-DD"[39m
+        [33mplaceholder[39m=[32m"MM/DD/YYYY"[39m
         [33mtype[39m=[32m"text"[39m
         [33mvalue[39m=[32m""[39m
       [36m/>[39m
@@ -19,7 +19,7 @@
       [36m>[39m
         [36m<svg[39m
           [33maria-hidden[39m=[32m"true"[39m
-          [33mclass[39m=[32m"icon icon--calendar-24"[39m
+          [33mclass[39m=[32m"icon icon--24"[39m
           [33mfocusable[39m=[32m"false"[39m
         [36m>[39m
           [36m<defs>[39m
@@ -61,7 +61,7 @@
             [36m>[39m
               [36m<svg[39m
                 [33maria-hidden[39m=[32m"true"[39m
-                [33mclass[39m=[32m"icon icon--chevron-left-24"[39m
+                [33mclass[39m=[32m"icon icon--24"[39m
                 [33mfocusable[39m=[32m"false"[39m
               [36m>[39m
                 [36m<defs>[39m
@@ -90,7 +90,7 @@
             [36m>[39m
               [36m<svg[39m
                 [33maria-hidden[39m=[32m"true"[39m
-                [33mclass[39m=[32m"icon icon--chevron-right-24"[39m
+                [33mclass[39m=[32m"icon icon--24"[39m
                 [33mfocusable[39m=[32m"false"[39m
               [36m>[39m
                 [36m<defs>[39m

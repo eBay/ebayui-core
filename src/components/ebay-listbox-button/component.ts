@@ -25,6 +25,7 @@ interface ListboxButtonInput extends Omit<Marko.Input<"div">, `on${string}`> {
     hasError?: boolean;
     "a11y-icon-prefix-text"?: AttrString;
     "prefix-label"?: AttrString;
+    "postfix-label"?: AttrString;
     "collapse-on-select"?: boolean;
     "on-expand"?: () => void;
     "on-collapse"?: () => void;

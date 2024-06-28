@@ -14,7 +14,7 @@ interface ChipsComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     option?: Marko.RepeatableAttrTag<{ text: string }>;
     selected?: string[];
     roledescription?: AttrString;
-    "a11y-delete-button"?: AttrString;
+    "a11y-delete-button-text"?: AttrString;
     "on-expand"?: () => void;
     "on-collapse"?: () => void;
     "on-change"?: (event: ChipsComboboxEvent) => void;

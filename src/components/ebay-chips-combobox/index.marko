@@ -6,7 +6,7 @@ $ const {
     error,
     value,
     disabled,
-    a11yDeleteButton = "Remove",
+    a11yDeleteButtonText = "Remove",
     ...comboboxInput
 } = input as Omit<typeof input, `on${string}`>;
 
@@ -26,7 +26,7 @@ $ const options = [...option || []].map((o) => o.text)
             <for|option, i| of=state.selected>
                 <li>
                     <ebay-chip
-                        a11y-delete-button=`${a11yDeleteButton} ${option}`
+                        a11y-delete-button-text=`${a11yDeleteButtonText} ${option}`
                         on-delete("handleDelete", i)
                         disabled=disabled
                     >

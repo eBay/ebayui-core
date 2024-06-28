@@ -16,6 +16,7 @@
     "@prefix-label": "string",
     "@floating-label": "string",
     "@unselected-text": "string",
+    "@postfix-label": "string",
     "@aria-describedby": "string",
     "@list-selection": {
         "enum": ["manual", "auto"]
