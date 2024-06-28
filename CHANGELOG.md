@@ -1,5 +1,27 @@
 # eBayUI-Core Changelog
 
+## 14.0.0
+
+### Major Changes
+
+- [#2191](https://github.com/eBay/ebayui-core/pull/2191) [`1290638`](https://github.com/eBay/ebayui-core/commit/129063895b51d733417923db313975895e4ace60) Thanks [@LuLaValva](https://github.com/LuLaValva)! - feat(date-textbox): localize date placeholders
+
+- [#2196](https://github.com/eBay/ebayui-core/pull/2196) [`80f76ae`](https://github.com/eBay/ebayui-core/commit/80f76aeffe2a07e96b2c2c8b5eeedf43f80735ff) Thanks [@agliga](https://github.com/agliga)! - ebay-chips: changed a11yDeleteButton to a11yDeleteButtonText
+
+- [#2196](https://github.com/eBay/ebayui-core/pull/2196) [`e149501`](https://github.com/eBay/ebayui-core/commit/e149501f91213435644e3445d490d06ccb187ef0) Thanks [@agliga](https://github.com/agliga)! - ebay-icon: synced with class changes
+
+- [#2199](https://github.com/eBay/ebayui-core/pull/2199) [`80f7185`](https://github.com/eBay/ebayui-core/commit/80f71850ce3a0ea1f5e7d730e834e9ea2c8c2e39) Thanks [@agliga](https://github.com/agliga)! - feat(toggle-button-group): removed columns and changed ul layout
+
+- [#2193](https://github.com/eBay/ebayui-core/pull/2193) [`dac2644`](https://github.com/eBay/ebayui-core/commit/dac2644e6d5c8aa03816038fb735d220d38488f7) Thanks [@LuLaValva](https://github.com/LuLaValva)! - refactor(phone-input): use Intl for country names instead of hardcoding
+
+- [#2196](https://github.com/eBay/ebayui-core/pull/2196) [`9812150`](https://github.com/eBay/ebayui-core/commit/981215044603915b94ea8791bbd94d201c910b29) Thanks [@agliga](https://github.com/agliga)! - lightbox-dialog: added large/fullscreen size
+
+### Minor Changes
+
+- [#2200](https://github.com/eBay/ebayui-core/pull/2200) [`2cbba20`](https://github.com/eBay/ebayui-core/commit/2cbba205f7cee8432a8e6ca804d9464f662bdb6a) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Add prefix and postfix to textbox
+
+- [#2202](https://github.com/eBay/ebayui-core/pull/2202) [`d535781`](https://github.com/eBay/ebayui-core/commit/d535781ac847d4909f65feeef17c7a5cc8083a01) Thanks [@agliga](https://github.com/agliga)! - feat(listbox-button): added postfix-label
+
 ## 14.0.0-next.0
 
 ### Major Changes
