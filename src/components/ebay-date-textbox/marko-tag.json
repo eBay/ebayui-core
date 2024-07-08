@@ -10,6 +10,7 @@
         "value": "expression",
         "rangeEnd": "expression",
         "range": "boolean",
+        "todayISO": "expression",
         "disableBefore": "expression",
         "disableAfter": "expression",
         "disableWeekdays": "array",

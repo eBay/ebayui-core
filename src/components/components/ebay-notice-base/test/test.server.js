@@ -23,9 +23,7 @@ describe("notice-icon", () => {
         const content = getByText(input.renderBody.text);
         expect(content).has.class(`${input.prefixClass}__main`);
 
-        expect(getByLabelText(input.a11yText)).has.class(
-            "icon--attention-filled-16",
-        );
+        expect(getByLabelText(input.a11yText)).has.class("icon--16");
     });
 
     it("renders inline version", async () => {
@@ -37,9 +35,7 @@ describe("notice-icon", () => {
         expect(status.parentElement).has.class(input.class);
         expect(status.parentElement).has.tagName("DIV");
 
-        expect(getByLabelText(input.a11yText)).has.class(
-            "icon--information-filled-16",
-        );
+        expect(getByLabelText(input.a11yText)).has.class("icon--16");
         expect(getByLabelText(input.a11yText)).has.class("notice-class");
     });
 
@@ -77,7 +73,7 @@ describe("notice-icon", () => {
             `${input.prefixClass}--education`,
         );
 
-        expect(getByLabelText(input.a11yText)).has.class("icon--lightbulb-24");
+        expect(getByLabelText(input.a11yText)).has.class("icon--24");
     });
 
     testPassThroughAttributes(template, {

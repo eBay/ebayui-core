@@ -51,7 +51,7 @@ export default {
             description:
                 "default is `automatic`; available values are `automatic`, `manual`. If set to automatic will automatically fill in the input with the currently highlighted item when using the up/down keys.",
         },
-        a11yDeleteButton: {
+        a11yDeleteButtonText: {
             control: { type: "text" },
             description: "The aria-label for the delete button on each chip.",
         },

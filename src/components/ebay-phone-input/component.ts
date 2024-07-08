@@ -3,16 +3,9 @@ import type { Input as ListboxButton } from "../ebay-listbox-button/component";
 import type { default as Textbox } from "../ebay-textbox/component-browser";
 import mask, { stripNonDigits } from "../../common/mask";
 
-import countries, {
-    type CountriesLanguageInterface,
-    type CountryInterface,
-    countriesEnglish,
-} from "../../common/countries";
+import countries, { type CountryInterface } from "../../common/countries";
 import { AttrString } from "marko/tags-html";
-
-export interface CountryNames {
-    [index: string]: string;
-}
+import { localeDefault } from "../../common/dates";
 
 export interface PhoneInputEvent {
     originalEvent?: Event;
@@ -24,13 +17,13 @@ export interface PhoneInputEvent {
 
 interface PhoneInputInput extends Omit<ListboxButton, `on${string}`> {
     disabled?: boolean;
-    "country-names"?: CountriesLanguageInterface;
     "a11y-icon-prefix-text"?: AttrString;
     "floating-label"?: AttrString;
     readonly?: boolean;
     invalid?: boolean;
     "country-code"?: string;
     value?: string;
+    locale?: string;
     "on-keyup"?: (event: PhoneInputEvent) => void;
     "on-keypress"?: (event: PhoneInputEvent) => void;
     "on-keydown"?: (event: PhoneInputEvent) => void;
@@ -45,30 +38,41 @@ export interface Input extends WithNormalizedProps<PhoneInputInput> {}
 
 export interface State {
     index: number;
+    countryNames: [string, string][];
 }
 
 class PhoneInput extends Marko.Component<Input, State> {
-    mask: any;
+    declare mask: any;
+    declare locale: string;
 
     onCreate() {
         this.state = {
             index: 0,
+            countryNames: [],
         };
     }
 
     getSelectedCountry(): CountryInterface {
-        const countryNames = this.input.countryNames || countriesEnglish;
-        const currentCountryName = Object.keys(countryNames)[this.state.index];
+        const [currentCountryName] = this.state.countryNames[this.state.index];
         return countries[currentCountryName];
     }
 
     onInput(input: Input) {
-        const countryNames: CountriesLanguageInterface =
-            input.countryNames || countriesEnglish;
         const { countryCode } = input;
+        let locale = localeDefault(input.locale);
+        if (locale !== this.locale) {
+            this.locale = locale;
+            const getName = new Intl.DisplayNames([locale], { type: "region" });
+            this.state.countryNames = Object.keys(countries)
+                .map(
+                    (code) =>
+                        [code, getName.of(code) ?? ""] as [string, string],
+                )
+                .sort(([, a], [, b]) => a.localeCompare(b));
+        }
         if (countryCode) {
-            let index = Object.keys(countryNames).findIndex(
-                (country) => country === countryCode.toUpperCase(),
+            let index = this.state.countryNames.findIndex(
+                ([code]) => code === countryCode.toUpperCase(),
             );
             if (index === -1) {
                 index = 0;
@@ -76,6 +80,7 @@ class PhoneInput extends Marko.Component<Input, State> {
             this.state.index = index;
         }
     }
+
     handleCountryChange(e: any) {
         this.state.index = e.index;
 

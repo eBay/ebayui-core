@@ -14,6 +14,8 @@
 </ebay-fullscreen-dialog>
 ```
 
+** Deprecated ** (Use lightbox-dialog instead)
+
 ## Examples and Documentation
 
 -   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/dialogs-ebay-fullscreen-dialog)

@@ -1,0 +1,22 @@
+<ebay-textbox
+    placeholder="0.00"
+    on-change("emit", "change")
+    on-input-change("emit", "inputChange")
+    on-focus("emit", "focus")
+    on-blur("emit", "blur")
+    on-keypress("emit", "keypress")
+    on-keyup("emit", "keyup")
+    on-keydown("emit", "keydown")
+    on-invalid("emit", "invalid")
+    on-floating-label-init("emit", "floating-label-init")
+    on-button-click("emit", "button-click")
+>
+    <@prefix-icon>
+        <ebay-mail-24-icon/>
+    </@prefix-icon>
+    <@prefix-text>$</@prefix-text>
+    <@postfix-text>/mo</@postfix-text>
+    <@postfix-icon>
+        <ebay-close-24-icon/>
+    </@postfix-icon>
+</ebay-textbox>

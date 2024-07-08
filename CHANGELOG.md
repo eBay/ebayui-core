@@ -1,5 +1,79 @@
 # eBayUI-Core Changelog
 
+## 14.0.0-next.0
+
+### Major Changes
+
+- [#2191](https://github.com/eBay/ebayui-core/pull/2191) [`1290638`](https://github.com/eBay/ebayui-core/commit/129063895b51d733417923db313975895e4ace60) Thanks [@LuLaValva](https://github.com/LuLaValva)! - feat(date-textbox): localize date placeholders
+
+- [#2196](https://github.com/eBay/ebayui-core/pull/2196) [`80f76ae`](https://github.com/eBay/ebayui-core/commit/80f76aeffe2a07e96b2c2c8b5eeedf43f80735ff) Thanks [@agliga](https://github.com/agliga)! - ebay-chips: changed a11yDeleteButton to a11yDeleteButtonText
+
+- [#2196](https://github.com/eBay/ebayui-core/pull/2196) [`e149501`](https://github.com/eBay/ebayui-core/commit/e149501f91213435644e3445d490d06ccb187ef0) Thanks [@agliga](https://github.com/agliga)! - ebay-icon: synced with class changes
+
+- [#2199](https://github.com/eBay/ebayui-core/pull/2199) [`80f7185`](https://github.com/eBay/ebayui-core/commit/80f71850ce3a0ea1f5e7d730e834e9ea2c8c2e39) Thanks [@agliga](https://github.com/agliga)! - feat(toggle-button-group): removed columns and changed ul layout
+
+- [#2193](https://github.com/eBay/ebayui-core/pull/2193) [`dac2644`](https://github.com/eBay/ebayui-core/commit/dac2644e6d5c8aa03816038fb735d220d38488f7) Thanks [@LuLaValva](https://github.com/LuLaValva)! - refactor(phone-input): use Intl for country names instead of hardcoding
+
+- [#2196](https://github.com/eBay/ebayui-core/pull/2196) [`9812150`](https://github.com/eBay/ebayui-core/commit/981215044603915b94ea8791bbd94d201c910b29) Thanks [@agliga](https://github.com/agliga)! - lightbox-dialog: added large/fullscreen size
+
+### Minor Changes
+
+- [#2200](https://github.com/eBay/ebayui-core/pull/2200) [`2cbba20`](https://github.com/eBay/ebayui-core/commit/2cbba205f7cee8432a8e6ca804d9464f662bdb6a) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Add prefix and postfix to textbox
+
+- [#2202](https://github.com/eBay/ebayui-core/pull/2202) [`d535781`](https://github.com/eBay/ebayui-core/commit/d535781ac847d4909f65feeef17c7a5cc8083a01) Thanks [@agliga](https://github.com/agliga)! - feat(listbox-button): added postfix-label
+
+## 13.5.2
+
+### Patch Changes
+
+- [#2187](https://github.com/eBay/ebayui-core/pull/2187) [`b294759`](https://github.com/eBay/ebayui-core/commit/b294759fe896cce730d97c2467da2d085efe88e2) Thanks [@LuLaValva](https://github.com/LuLaValva)! - revert original export for date-utils
+
+- [#2192](https://github.com/eBay/ebayui-core/pull/2192) [`569abba`](https://github.com/eBay/ebayui-core/commit/569abba8f2dfc8dc847a34cd7e852bd49ffe2b91) Thanks [@LuLaValva](https://github.com/LuLaValva)! - add info for invalid-date event
+
+## 13.5.1
+
+### Patch Changes
+
+- [`81f420b`](https://github.com/eBay/ebayui-core/commit/81f420bcc9618651725ff3786779e808803e19a1) Thanks [@agliga](https://github.com/agliga)! - listbox-button: added reset for active descendant when there is a state change
+
+## 13.5.0
+
+### Minor Changes
+
+- [#2160](https://github.com/eBay/ebayui-core/pull/2160) [`5c71772`](https://github.com/eBay/ebayui-core/commit/5c717724d00608146bc82fbe2680244843b30c12) Thanks [@LuLaValva](https://github.com/LuLaValva)! - feat: add localized formatting using date-fns
+
+- [#2178](https://github.com/eBay/ebayui-core/pull/2178) [`88e0f01`](https://github.com/eBay/ebayui-core/commit/88e0f01c7c18a3ac82bc756241a656c89e7134c0) Thanks [@agliga](https://github.com/agliga)! - calendar: added default date override
+
+- [#2171](https://github.com/eBay/ebayui-core/pull/2171) [`6b5d179`](https://github.com/eBay/ebayui-core/commit/6b5d179b88ffbb8f83ea3c6f7054ee0a9f315f2a) Thanks [@agliga](https://github.com/agliga)! - confirm-dialog: added reject on escape keypress
+
+- [#2178](https://github.com/eBay/ebayui-core/pull/2178) [`88e0f01`](https://github.com/eBay/ebayui-core/commit/88e0f01c7c18a3ac82bc756241a656c89e7134c0) Thanks [@agliga](https://github.com/agliga)! - date-textbox: added disabled state
+
+- [#2178](https://github.com/eBay/ebayui-core/pull/2178) [`88e0f01`](https://github.com/eBay/ebayui-core/commit/88e0f01c7c18a3ac82bc756241a656c89e7134c0) Thanks [@agliga](https://github.com/agliga)! - chore: updated makeup-floating-label to fix placeholder shifting on select
+
+### Patch Changes
+
+- [#2180](https://github.com/eBay/ebayui-core/pull/2180) [`ad640bc`](https://github.com/eBay/ebayui-core/commit/ad640bc9ceb383781c937a3a52c875010f3853df) Thanks [@LuLaValva](https://github.com/LuLaValva)! - fix(page-notice): update marko-tag.json
+
+## 13.5.0-next.0
+
+### Minor Changes
+
+- [#2160](https://github.com/eBay/ebayui-core/pull/2160) [`5c71772`](https://github.com/eBay/ebayui-core/commit/5c717724d00608146bc82fbe2680244843b30c12) Thanks [@LuLaValva](https://github.com/LuLaValva)! - feat: add localized formatting using date-fns
+
+- [#2172](https://github.com/eBay/ebayui-core/pull/2172) [`88e0f01`](https://github.com/eBay/ebayui-core/commit/88e0f01c7c18a3ac82bc756241a656c89e7134c0) Thanks [@github-actions](https://github.com/apps/github-actions)! - calendar: added default date override
+
+- [#2171](https://github.com/eBay/ebayui-core/pull/2171) [`6b5d179`](https://github.com/eBay/ebayui-core/commit/6b5d179b88ffbb8f83ea3c6f7054ee0a9f315f2a) Thanks [@agliga](https://github.com/agliga)! - confirm-dialog: added reject on escape keypress
+
+- [#2172](https://github.com/eBay/ebayui-core/pull/2172) [`88e0f01`](https://github.com/eBay/ebayui-core/commit/88e0f01c7c18a3ac82bc756241a656c89e7134c0) Thanks [@github-actions](https://github.com/apps/github-actions)! - date-textbox: added disabled state
+
+- [#2172](https://github.com/eBay/ebayui-core/pull/2172) [`88e0f01`](https://github.com/eBay/ebayui-core/commit/88e0f01c7c18a3ac82bc756241a656c89e7134c0) Thanks [@github-actions](https://github.com/apps/github-actions)! - chore: updated makeup-floating-label to fix placeholder shifting on select
+
+## 13.4.1
+
+### Patch Changes
+
+- [#2169](https://github.com/eBay/ebayui-core/pull/2169) [`c49973f`](https://github.com/eBay/ebayui-core/commit/c49973f3e502baa9cc281d4eb0da9831aff0072a) Thanks [@agliga](https://github.com/agliga)! - icon: removed flags from depdendencies
+
 ## 13.4.0
 
 ### Minor Changes

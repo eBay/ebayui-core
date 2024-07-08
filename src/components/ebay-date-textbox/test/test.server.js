@@ -65,4 +65,7 @@ describe("date-textbox", () => {
     it("renders with clear", async () => {
         await htmlSnap(WithClear, { value: "01/27/2024" });
     });
+    it("renders with custom today", async () => {
+        await htmlSnap(Default, { todayISO: "01/27/2024" });
+    });
 });

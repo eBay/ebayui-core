@@ -1,20 +1,33 @@
 import Expander from "makeup-expander";
-import { type DayISO, dateArgToISO } from "../ebay-calendar/date-utils";
+import { type DayISO, dateArgToISO } from "../../common/dates/date-utils";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
+import type {
+    TextboxEvent,
+    Input as TextboxInput,
+} from "../ebay-textbox/component-browser";
+import { getLocale, parse } from "../../common/dates";
 
 const MIN_WIDTH_FOR_DOUBLE_PANE = 600;
+
+export interface InvalidDateEvent {
+    value: string;
+    index: number;
+}
 
 interface DateTextboxInput {
     value?: Date | number | string;
     rangeEnd?: Date | number | string;
     locale?: string;
     range?: boolean;
+    textbox?: Marko.RepeatableAttrTag<TextboxInput>;
+    todayISO?: Date | number | string;
     disabled?: boolean;
     "disable-before"?: Date | number | string;
     "disable-after"?: Date | number | string;
     "disable-weekdays"?: number[];
     "disable-list"?: (Date | number | string)[];
+    /** @deprecated use `@textbox-input` instead */
     "input-placeholder-text"?: string | [string, string];
     "collapse-on-select"?: boolean;
     "get-a11y-show-month-text"?: (monthName: string) => string;
@@ -24,12 +37,12 @@ interface DateTextboxInput {
     "a11y-in-range-text"?: AttrString;
     "a11y-range-end-text"?: AttrString;
     "a11y-separator"?: string;
-    "floating-label"?: string | [string, string];
     "on-change"?: (
         event:
             | { selected: DayISO | null }
             | { rangeStart: DayISO | null; rangeEnd: DayISO | null },
     ) => void;
+    "on-invalid-date"?: (event: InvalidDateEvent) => void;
 }
 
 export interface Input extends WithNormalizedProps<DateTextboxInput> {}
@@ -90,8 +103,13 @@ class DateTextbox extends Marko.Component<Input, State> {
     }
 
     handleInputChange(index: number, { value }: { value: string }) {
-        const valueDate = new Date(value);
-        const iso = isNaN(valueDate.getTime()) ? null : dateArgToISO(valueDate);
+        let iso = parse(value, this.input.locale);
+
+        if (iso === null) {
+            this.emit("invalid-date", { value, index });
+            return;
+        }
+
         if (index === 0) {
             this.state.firstSelected = iso;
         } else {
@@ -136,6 +154,33 @@ class DateTextbox extends Marko.Component<Input, State> {
         }
 
         this.emitSelectedChange();
+    }
+
+    /**
+     * If the cursor is at the end of the input and it makes sense to add a d/m/y separator, add it.
+     */
+    onInputKeyup({ originalEvent: event }: TextboxEvent) {
+        // abort if key wasn't a number
+        if (!/^\d$/.test((event as KeyboardEvent).key)) {
+            return;
+        }
+
+        const input = event.target as HTMLInputElement;
+        const { value } = input;
+
+        if (input.selectionStart === value.length) {
+            const { o: order, s: sep } = getLocale(this.input.locale);
+            let i = 0;
+            let start = 0;
+            for (let currStart; ~(currStart = value.indexOf(sep[i], start)); ) {
+                start = currStart + sep[i].length;
+                i++;
+            }
+            console.log(i, start);
+            if (value.length - start === (order[i] === "y" ? 4 : 2)) {
+                input.value += sep[i] ?? "";
+            }
+        }
     }
 
     emitSelectedChange() {

@@ -1,4 +1,4 @@
-import countries, { countriesEnglish } from "../../common/countries";
+import countries from "../../common/countries";
 import { processHtmlAttributes } from "../../common/html-attributes";
 $ const {
     class: inputClass,
@@ -7,14 +7,13 @@ $ const {
     a11yIconPrefixText = "Country",
     disabled,
     renderBody,
-    countryNames,
+    locale,
     floatingLabel,
     readonly,
     invalid,
     ...htmlInput
 } = input;
-$ const currentCountryNames = countryNames || countriesEnglish;
-$ const selectedCountry = Object.keys(currentCountryNames)[state.index];
+$ const [selectedCountry] = state.countryNames[state.index];
 
 <span
     class=[
@@ -35,9 +34,8 @@ $ const selectedCountry = Object.keys(currentCountryNames)[state.index];
         onExpand("emit", "expand")
         onCollapse("emit", "collapse")
     >
-        <for|countryCode, index| of=Object.keys(currentCountryNames)>
+        <for|[countryCode, text], index| of=state.countryNames>
             $ const country = countries[countryCode] || {};
-            $ const text = currentCountryNames[countryCode];
             <@option
                 text=text
                 value=country.callingCode
@@ -68,8 +66,8 @@ $ const selectedCountry = Object.keys(currentCountryNames)[state.index];
         onChange("forwardEvent", "change")
         onInput-change("forwardEvent", "change")
     >
-        <@prefixText>
+        <@prefix-text>
             + ${countries[selectedCountry].callingCode}
-        </@prefixText>
+        </@prefix-text>
     </ebay-textbox>
 </span>

@@ -17,6 +17,7 @@ interface TextboxInput extends Omit<Marko.Input<"textarea">, `on${string}`> {
     "floating-label-static"?: boolean;
     "prefix-icon"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     "prefix-text"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
+    "postfix-text"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     "postfix-icon"?: Marko.AttrTag<{ renderBody: Marko.Body }>;
     invalid?: boolean;
     "button-aria-label"?: AttrString;
@@ -47,6 +48,18 @@ class Textbox extends Marko.Component<Input> {
 
     focus() {
         (this.getEl("input") as HTMLInputElement).focus();
+    }
+
+    /** Can be removed after `:has` is fully supported */
+    onFocus(e: FocusEvent, el: HTMLInputElement) {
+        this.forwardEvent("focus", e, el);
+        el.parentElement?.classList.add("textbox--focus");
+    }
+
+    /** Can be removed after `:has` is fully supported */
+    onBlur(e: FocusEvent, el: HTMLInputElement) {
+        this.forwardEvent("blur", e, el);
+        el.parentElement?.classList.remove("textbox--focus");
     }
 
     _setupMakeup() {

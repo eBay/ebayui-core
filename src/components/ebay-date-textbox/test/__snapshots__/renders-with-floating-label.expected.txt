@@ -3,52 +3,42 @@
     [33mclass[39m=[32m"date-textbox"[39m
   [36m>[39m
     [36m<span[39m
-      [33mclass[39m=[32m"floating-label"[39m
+      [33mclass[39m=[32m"textbox ebay-date-textbox--main"[39m
     [36m>[39m
-      [36m<label[39m
-        [33mclass[39m=[32m"floating-label__label"[39m
-        [33mfor[39m=[32m"s0-2-textbox"[39m
+      [36m<input[39m
+        [33mclass[39m=[32m"textbox__control"[39m
+        [33mid[39m=[32m"s0-2-textbox"[39m
+        [33mplaceholder[39m=[32m"MM/DD/YYYY"[39m
+        [33mtype[39m=[32m"text"[39m
+        [33mvalue[39m=[32m"01/27/2024"[39m
+      [36m/>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"open calendar"[39m
+        [33mclass[39m=[32m"icon-btn icon-btn--transparent"[39m
+        [33mtype[39m=[32m"button"[39m
       [36m>[39m
-        [0mFloating label[0m
-      [36m</label>[39m
-      [36m<span[39m
-        [33mclass[39m=[32m"textbox ebay-date-textbox--main textbox--icon-end"[39m
-      [36m>[39m
-        [36m<input[39m
-          [33mclass[39m=[32m"textbox__control"[39m
-          [33mid[39m=[32m"s0-2-textbox"[39m
-          [33mplaceholder[39m=[32m"YYYY-MM-DD"[39m
-          [33mtype[39m=[32m"text"[39m
-          [33mvalue[39m=[32m"2024-01-27"[39m
-        [36m/>[39m
-        [36m<button[39m
-          [33maria-label[39m=[32m"open calendar"[39m
-          [33mclass[39m=[32m"icon-btn icon-btn--transparent"[39m
-          [33mtype[39m=[32m"button"[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--24"[39m
+          [33mfocusable[39m=[32m"false"[39m
         [36m>[39m
-          [36m<svg[39m
-            [33maria-hidden[39m=[32m"true"[39m
-            [33mclass[39m=[32m"icon icon--calendar-24"[39m
-            [33mfocusable[39m=[32m"false"[39m
-          [36m>[39m
-            [36m<defs>[39m
-              [36m<symbol[39m
-                [33mid[39m=[32m"icon-calendar-24"[39m
-                [33mviewBox[39m=[32m"0 0 24 24"[39m
-              [36m>[39m
-                [36m<path[39m
-                  [33mclip-rule[39m=[32m"evenodd"[39m
-                  [33md[39m=[32m"M18 1a1 1 0 0 1 1 1v1h1a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h1V2a1 1 0 0 1 2 0v1h10V2a1 1 0 0 1 1-1ZM6 5H4a1 1 0 0 0-1 1v1h18V6a1 1 0 0 0-1-1H6ZM3 9v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9H3Zm12 3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2Zm-4-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2Zm-6 1a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2Z"[39m
-                  [33mfill-rule[39m=[32m"evenodd"[39m
-                [36m/>[39m
-              [36m</symbol>[39m
-            [36m</defs>[39m
-            [36m<use[39m
-              [33mhref[39m=[32m"#icon-calendar-24"[39m
-            [36m/>[39m
-          [36m</svg>[39m
-        [36m</button>[39m
-      [36m</span>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-calendar-24"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M18 1a1 1 0 0 1 1 1v1h1a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H4a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h1V2a1 1 0 0 1 2 0v1h10V2a1 1 0 0 1 1-1ZM6 5H4a1 1 0 0 0-1 1v1h18V6a1 1 0 0 0-1-1H6ZM3 9v11a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9H3Zm12 3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2Zm-4-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2Zm-6 1a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-calendar-24"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</button>[39m
     [36m</span>[39m
     [36m<div[39m
       [33mclass[39m=[32m"date-textbox__popover"[39m
@@ -71,7 +61,7 @@
             [36m>[39m
               [36m<svg[39m
                 [33maria-hidden[39m=[32m"true"[39m
-                [33mclass[39m=[32m"icon icon--chevron-left-24"[39m
+                [33mclass[39m=[32m"icon icon--24"[39m
                 [33mfocusable[39m=[32m"false"[39m
               [36m>[39m
                 [36m<defs>[39m
@@ -100,7 +90,7 @@
             [36m>[39m
               [36m<svg[39m
                 [33maria-hidden[39m=[32m"true"[39m
-                [33mclass[39m=[32m"icon icon--chevron-right-24"[39m
+                [33mclass[39m=[32m"icon icon--24"[39m
                 [33mfocusable[39m=[32m"false"[39m
               [36m>[39m
                 [36m<defs>[39m
