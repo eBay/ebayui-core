@@ -2,6 +2,10 @@ import { tagToString } from "../../../.storybook/storybook-code-source";
 import { addRenderBodies } from "../../../.storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
+
+import WithAttrTagsTemplate from "./examples/with-attr-tags.marko";
+import WithAttrTagsCode from "./examples/with-attr-tags.marko?raw";
+
 import { data } from "./examples/data.json";
 
 const Template = (args) => ({
@@ -21,15 +25,15 @@ export default {
     },
     argTypes: {
         title: {
-            type: { name: "string", required: false },
+            type: "string|@title",
             description: "A title displayed above the graph",
         },
         metricValue: {
-            type: { name: "string", required: true },
+            type: "string|@metricValue",
             description: "A primary metric value that summarizes the chart",
         },
         metricLabel: {
-            type: { name: "string", required: true },
+            type: "string|@metricLabel",
             description: "A supporting label for the primary metric value",
         },
         class: {
@@ -181,4 +185,17 @@ NoMetrics.args = {
     ],
     title: "Donut chart title, no metrics",
     highchartsDescription: "Donut chart description",
+};
+
+export const WithAttributeTags = (args) => ({
+    input: args,
+    component: WithAttrTagsTemplate,
+});
+WithAttributeTags.args = {};
+WithAttributeTags.parameters = {
+    docs: {
+        source: {
+            code: WithAttrTagsCode,
+        },
+    },
 };
