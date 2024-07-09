@@ -13,6 +13,7 @@ declare const Highcharts: typeof HighchartsTypes;
 
 interface SeriesDonutOptions extends Omit<Highcharts.SeriesPieOptions, "type"> {
     data: Highcharts.PointOptionsObject[];
+    type?: "pie" | "variablepie";
 }
 
 interface DonutChartInput
@@ -92,7 +93,11 @@ class DonutChart extends Marko.Component<Input> {
      * Set up the chart with the input data and configuration options.
      */
     _setupChart() {
-        const { series } = this.input;
+        // Set default type to "pie"
+        const series = this.input.series.map((series) => ({
+            ...series,
+            type: series.type || "pie",
+        })) as Highcharts.SeriesOptionsType[];
 
         // Check series length, DS only supports one series
         if (series.length > 1) {
