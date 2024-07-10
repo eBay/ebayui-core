@@ -147,6 +147,7 @@ delete output.ar._.d;
 delete output.ar._.m;
 delete output.ar._.y;
 output.yo._.d = "ọ";
+output.fr.ca._ = { w: 0 };
 
 fs.writeFileSync(
     "src/common/dates/locale-info.ts",
