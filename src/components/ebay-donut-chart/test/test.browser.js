@@ -37,7 +37,7 @@ describe("given a donut chart", () => {
 
         it("then it displays a tooltip", async () => {
             const tooltip = await screen.findByRole("tooltip");
-            expect(tooltip).to.exist;
+            expect(tooltip.textContent).to.equal("Portion 120");
         });
     });
 });
