@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.0.1
+
+### Patch Changes
+
+- [#2216](https://github.com/eBay/ebayui-core/pull/2216) [`ef45eef`](https://github.com/eBay/ebayui-core/commit/ef45eef00557a39ab4dceea89b1c1569a95d9fac) Thanks [@agliga](https://github.com/agliga)! - icon: fixed legacy program badge, added color to filled icons, fixed fit icons
+
 ## 14.0.0
 
 ### Major Changes
