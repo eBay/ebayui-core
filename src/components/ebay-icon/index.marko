@@ -16,13 +16,24 @@ $ const {
 } = input;
 $ (input as any).toJSON = noop;
 static function getIconClass(type: string, name: string, size?: string) {
+    var colorMap:{[index: string]: string} =  {
+        "confirmation-filled-16": "confirmation-filled",
+        "confirmation-filled-24": "confirmation-filled",
+        "incormation-filled-16": "incormation-filled",
+        "incormation-filled-24": "incormation-filled",
+        "attention-filled-16": "attention-filled",
+        "attention-filled-24": "attention-filled",
+    };
+
+    var extraClass = !!colorMap[name] ? ` icon--${colorMap[name]}` : "";
+
     if (size) {
-        return `icon icon--${size}`;
+        return `icon icon--${size}${extraClass}`;
     } else if (type === "icon") {
-        return `icon icon--${name}`;
+        return `icon icon--${name}${extraClass}`;
     } else {
         var dashedName = name.replace(type, `${type}-`);
-        return `${type} ${dashedName}`;
+        return `${type} ${dashedName}${extraClass}`;
     }
 }
 $ var noTitle = a11yVariant === "label";
