@@ -1,3 +1,0 @@
-import{j as n,M as i}from"./chunk-HLWAVYOI-uH84A_5y.js";import{u as r}from"./index-C0ZlcG9W.js";import"./iframe-C-4hqhip.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-ChWP2N81.js";import"./index-DrFu-skq.js";function o(t){const e={h1:"h1",p:"p",...r(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(i,{title:"graphics & icons/Overview"}),`
-`,n.jsx(e.h1,{id:"graphical-components",children:"Graphical Components"}),`
-`,n.jsx(e.p,{children:"These components are used to communicate with the user in a visual manner."})]})}function l(t={}){const{wrapper:e}={...r(),...t.components};return e?n.jsx(e,{...t,children:n.jsx(o,{...t})}):o(t)}export{l as default};
