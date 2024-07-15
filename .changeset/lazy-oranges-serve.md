@@ -1,5 +1,5 @@
 ---
-"@ebay/ebayui-core": minor
+"@ebay/ebayui-core": patch
 ---
 
 icon-button: added aria-label support in storybook
