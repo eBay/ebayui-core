@@ -1,5 +1,13 @@
 # eBayUI-Core Changelog
 
+## 14.0.2
+
+### Patch Changes
+
+- [`44e2331`](https://github.com/eBay/ebayui-core/commit/44e2331c10c3155c0d1588822072ec28807db221) Thanks [@agliga](https://github.com/agliga)! - ebay-icon: fixed information icon color typo
+
+- [#2213](https://github.com/eBay/ebayui-core/pull/2213) [`9bdbe20`](https://github.com/eBay/ebayui-core/commit/9bdbe20314d96a67ba7f70af7c3a9e0eca33e1bb) Thanks [@agliga](https://github.com/agliga)! - icon-button: added aria-label support in storybook
+
 ## 14.0.1
 
 ### Patch Changes
