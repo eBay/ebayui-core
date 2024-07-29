@@ -1,0 +1,54 @@
+export interface Input {
+    items: number;
+    index: number;
+    itemsPerSlide: number;
+    gap: number;
+    a11yPreviousText: string;
+    a11yNextText: string;
+}
+
+export interface State {
+    index?: number;
+}
+
+class {
+    onCreate() {
+        this.state = {
+            index: 0
+        }
+    }
+    onMove({visibleIndexes}) {
+        this.state.index = visibleIndexes[0];
+    }
+}
+
+<style>
+    .demo2-card {
+        color: #cdf4fd;
+        background: #a1208b;
+        font-size: 36px;
+        font-weight: bold;
+        height: 330px;
+        line-height: 330px;
+        text-align: center;
+    }
+</style>
+
+<ebay-carousel
+    ...input
+    index=state.index
+    itemsPerSlide=(input.itemsPerSlide || 2)
+    on-next("emit", "next")
+    on-previous("emit", "previous")
+    on-move("onMove")>
+    <@item style={ width: 400 } class="demo2-card">Card 1</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 2</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 3</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 4</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 5</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 6</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 7</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 8</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 9</@item>
+    <@item style={ width: 400 } class="demo2-card">Card 10</@item>
+</ebay-carousel>

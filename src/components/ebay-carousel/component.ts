@@ -61,8 +61,8 @@ interface State {
         scrollTransitioning?: boolean;
     };
     items: (Item & {
-        left: number;
-        right: number;
+        left?: number;
+        right?: number;
     })[];
     index: number;
     slideWidth: number;
@@ -129,7 +129,7 @@ class Carousel extends Marko.Component<Input, State> {
 
             while (high - low > 1) {
                 const mid = Math.floor((low + high) / 2);
-                if (scrollLeft > items[mid * itemsPerSlide].left) {
+                if (scrollLeft > items[mid * itemsPerSlide].left!) {
                     low = mid;
                 } else {
                     high = mid;
@@ -137,10 +137,10 @@ class Carousel extends Marko.Component<Input, State> {
             }
 
             const deltaLow = Math.abs(
-                scrollLeft - items[low * itemsPerSlide].left,
+                scrollLeft - items[low * itemsPerSlide].left!,
             );
             const deltaHigh = Math.abs(
-                scrollLeft - items[high * itemsPerSlide].left,
+                scrollLeft - items[high * itemsPerSlide].left!,
             );
             closest = this.normalizeIndex(
                 state,
@@ -161,14 +161,14 @@ class Carousel extends Marko.Component<Input, State> {
         if (!items.length) {
             return 0;
         }
-        return Math.min(items[index].left, this.getMaxOffset(state)) || 0;
+        return Math.min(items[index].left!, this.getMaxOffset(state)) || 0;
     }
 
     getMaxOffset({ items, slideWidth }: State) {
         if (!items.length) {
             return 0;
         }
-        return Math.max(items[items.length - 1].right - slideWidth, 0) || 0;
+        return Math.max(items[items.length - 1].right! - slideWidth, 0) || 0;
     }
 
     getSlide({ index, itemsPerSlide }: State, i: number = index) {
@@ -218,10 +218,10 @@ class Carousel extends Marko.Component<Input, State> {
 
             if (delta === LEFT && !itemsPerSlide) {
                 // If going left without items per slide, go as far left as possible while keeping this item fully in view.
-                const targetOffset = item.right - slideWidth;
+                const targetOffset = item.right! - slideWidth;
                 do {
                     item = items[--i];
-                } while (item && item.left >= targetOffset);
+                } while (item && item.left! >= targetOffset);
                 i += 1;
             }
         }
@@ -284,7 +284,7 @@ class Carousel extends Marko.Component<Input, State> {
             item.fullyVisible =
                 item.left === undefined ||
                 (item.left - offset >= -0.01 &&
-                    item.right - offset <= slideWidth + 0.01);
+                    item.right! - offset <= slideWidth + 0.01);
         });
 
         const data = Object.assign({}, state, {
@@ -494,8 +494,6 @@ class Carousel extends Marko.Component<Input, State> {
                 key: item.key || i.toString(),
                 style: item.style,
                 renderBody: item.renderBody,
-                left: 0,
-                right: 0,
             };
         });
 
