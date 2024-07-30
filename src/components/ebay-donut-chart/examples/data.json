@@ -1,0 +1,9 @@
+{
+    "data": [
+        { "name": "Portion 1", "y": 20 },
+        { "name": "Portion 2", "y": 40 },
+        { "name": "Portion 3", "y": 50 },
+        { "name": "Portion 4", "y": 30 },
+        { "name": "Portion 5", "y": 10 }
+    ]
+}

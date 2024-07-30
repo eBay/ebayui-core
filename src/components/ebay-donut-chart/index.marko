@@ -1,0 +1,57 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+$ const {
+    title,
+    metricValue,
+    metricLabel,
+    class: inputClass,
+    series,
+    highchartsDescription,
+    ...htmlInput
+} = input;
+
+<div class=[inputClass, "donut-chart"] ...processHtmlAttributes(htmlInput)>
+    <div class="donut-chart__grid">
+        <if(title)>
+            <div class="donut-chart__title">
+                <if(typeof title === "string")>
+                    ${title}
+                </if>
+                <else>
+                    <${title}/>
+                </else>
+            </div>
+        </if>
+        <if(metricLabel || metricValue)>
+            <div class="donut-chart__metric">
+                <if(metricValue)>
+                    <div class="donut-chart__metric-value">
+                        <if(typeof metricValue === "string")>
+                            ${metricValue}
+                        </if>
+                        <else>
+                            <${metricValue}/>
+                        </else>
+                    </div>
+                </if>
+                <if(metricLabel)>
+                    <div class="donut-chart__metric-label">
+                        <if(typeof metricLabel === "string")>
+                            ${metricLabel}
+                        </if>
+                        <else>
+                            <${metricLabel}/>
+                        </else>
+                    </div>
+                </if>
+            </div>
+        </if>
+        <div
+            id=component.getContainerId()
+            class="donut-chart__graph"
+            no-update
+        />
+        <div class="donut-chart__legend">
+            <ebay-chart-legend items=component.getLegendItems()/>
+        </div>
+    </div>
+</div>
