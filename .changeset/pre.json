@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.0.2"
+  },
+  "changesets": [
+    "curly-lions-agree",
+    "great-snakes-wait",
+    "healthy-waves-collect",
+    "shaggy-impalas-dance"
+  ]
+}

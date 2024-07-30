@@ -1,5 +1,19 @@
 # eBayUI-Core Changelog
 
+## 14.1.0-next.0
+
+### Minor Changes
+
+- [#2214](https://github.com/eBay/ebayui-core/pull/2214) [`658fda8`](https://github.com/eBay/ebayui-core/commit/658fda81bb81c45de842892e57ab23359a319f59) Thanks [@github-actions](https://github.com/apps/github-actions)! - ebay-details: updated chevron to be 16 from 12
+
+### Patch Changes
+
+- [#2211](https://github.com/eBay/ebayui-core/pull/2211) [`371d277`](https://github.com/eBay/ebayui-core/commit/371d2778358820b384a7f2c065e8ddf4da9a4fe1) Thanks [@agliga](https://github.com/agliga)! - fix(carousel): removed flickering from controlled
+
+- [#2214](https://github.com/eBay/ebayui-core/pull/2214) [`abe01b8`](https://github.com/eBay/ebayui-core/commit/abe01b80d48c9fb7c6716f6ad4585f3fecd11c69) Thanks [@github-actions](https://github.com/apps/github-actions)! - Override fr-CA date formatting
+
+- [#2219](https://github.com/eBay/ebayui-core/pull/2219) [`3c84bb4`](https://github.com/eBay/ebayui-core/commit/3c84bb418998b8c991796aba91cf3bda7917d08a) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Edit lightbox dialog documentation
+
 ## 14.0.2
 
 ### Patch Changes
