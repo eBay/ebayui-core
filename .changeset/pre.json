@@ -1,0 +1,10 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.1.0"
+  },
+  "changesets": [
+    "tame-beans-move"
+  ]
+}
