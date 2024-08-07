@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.2.0-next.0
+
+### Minor Changes
+
+- [#2228](https://github.com/eBay/ebayui-core/pull/2228) [`b1f4dc1`](https://github.com/eBay/ebayui-core/commit/b1f4dc101360979f59017509632ba6bfbd9ec3a1) Thanks [@ArtBlue](https://github.com/ArtBlue)! - feat(toggle-button-group): added min columns option
+
 ## 14.1.0
 
 ### Minor Changes
