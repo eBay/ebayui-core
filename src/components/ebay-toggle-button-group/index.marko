@@ -3,6 +3,7 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 $ const {
     class: inputClass,
     layoutType: baseLayoutType,
+    columnsMin,
     columnsXS,
     columnsSM,
     columnsMD,
@@ -15,6 +16,7 @@ $ const {
 
 <div
     class=["toggle-button-group", inputClass]
+    data-columns-min=columnsMin
     data-columns-xs=columnsXS
     data-columns-sm=columnsSM
     data-columns-md=columnsMD
