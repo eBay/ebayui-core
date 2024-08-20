@@ -1,12 +1,6 @@
 import { expect, use } from "chai";
 import chaiDom from "chai-dom";
-import {
-    render,
-    cleanup,
-    waitFor,
-    fireEvent,
-    screen,
-} from "@marko/testing-library";
+import { render, cleanup, fireEvent, screen } from "@marko/testing-library";
 import { composeStories } from "@storybook/marko";
 import * as stories from "../donut-chart.stories";
 
@@ -20,13 +14,12 @@ let component;
 
 describe("given a donut chart", () => {
     beforeEach(async () => {
-        component = await render(Standard, {});
+        await render(Standard, {});
     });
 
     it("that it renders with three paths", async () => {
-        await waitFor(() => {
-            expect(component.getAllByRole("img")).to.have.length(3);
-        });
+        const paths = await screen.findAllByRole("img");
+        expect(paths).to.have.length(3);
     });
 
     describe("when it is hovered", () => {
@@ -44,12 +37,11 @@ describe("given a donut chart", () => {
 
 describe("given a donut chart with five values", () => {
     beforeEach(async () => {
-        component = await render(FiveValues, {});
+        await render(FiveValues, {});
     });
 
     it("that it renders with five paths", async () => {
-        await waitFor(() => {
-            expect(component.getAllByRole("img")).to.have.length(5);
-        });
+        const paths = await screen.findAllByRole("img");
+        expect(paths).to.have.length(5);
     });
 });
