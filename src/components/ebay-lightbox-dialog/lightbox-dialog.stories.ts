@@ -33,6 +33,11 @@ export default {
             control: { type: "boolean" },
             description: "Whether dialog is open.",
         },
+        expanded: {
+            type: "boolean",
+            control: { type: "boolean" },
+            description: "Whether dialog is expanded.",
+        },
         focus: {
             control: { type: "text" },
             description:

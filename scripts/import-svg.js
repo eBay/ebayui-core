@@ -50,9 +50,18 @@ const iconSizes = [
     "24-colored",
     "30-colored",
     "32-colored",
+    "48-colored",
     "64-colored",
 ];
-const sizeMatcher = new RegExp(`-(${iconSizes.join("|")})$`);
+
+const skipExamples = [
+    "star-dynamic",
+    "eek-arrow",
+    "eek-range-arrow",
+    "avatar-signed-out",
+];
+
+const sizeMatcher = new RegExp(`-(${iconSizes.join("|")})(?:-fit)?$`);
 
 const htmlMinifierOptions = {
     keepClosingSlash: true,
@@ -220,6 +229,9 @@ function generateExamples(type, iconMap) {
     const file = fs.readFileSync(exampleFile, "utf-8");
     const exampleHTML = [];
     for (const name of iconMap) {
+        if (skipExamples.indexOf(name) > -1) {
+            continue;
+        }
         const postfixName = type === "icon" ? "-icon" : "";
         const iconName = `ebay-${name}${postfixName}`;
         exampleHTML.push(`    div

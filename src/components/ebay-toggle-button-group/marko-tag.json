@@ -6,6 +6,7 @@
     },
     "@html-attributes": "expression",
     "@radio": "boolean",
+    "@columnsMin": "number",
     "@columnsMD": "number",
     "@columnsSM": "number",
     "@columnsXS": "number",

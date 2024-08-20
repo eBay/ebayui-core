@@ -1,5 +1,6 @@
 [36m<DocumentFragment>[39m
   [36m<button[39m
+    [33maria-label[39m=[32m"menu"[39m
     [33mclass[39m=[32m"icon-btn icon-btn--small"[39m
     [33mdata-ebayui[39m=[32m""[39m
     [33mhref[39m=[32m""[39m

@@ -38,6 +38,12 @@ export default {
             description:
                 'Selection type for the buttons in the group. May be `"checkbox"` (default), `"radio"`, or `"radio-toggle"` (same as radio but with the option to deselect)',
         },
+        columnsMin: {
+            type: "number",
+            control: { type: "number" },
+            description:
+                "Preferred minimum number of columns for smallest container/screen (1-3). If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
+        },
         columnsXS: {
             type: "number",
             control: { type: "number" },
@@ -47,17 +53,20 @@ export default {
         columnsSM: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns within small containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
+            description:
+                "Preferred minimum number of columns within small containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
         },
         columnsMD: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns within medium containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
+            description:
+                "Preferred minimum number of columns within medium containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
         },
         columnsXL: {
             type: "number",
             control: { type: "number" },
-            description: "Preferred minimum number of columns within extra large containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
+            description:
+                "Preferred minimum number of columns within extra large containers. If this is not set will do an automatic layout. It is recommended to not set this unless needed.",
         },
         a11yText: {
             type: "string",
@@ -142,6 +151,7 @@ export const PerferedColumns = buildExtensionTemplate(
     columnsTemplate,
     columnsCode,
     {
+        columnsMin: 1,
         columnsSM: 3,
         columnsXS: 2,
         columnsMD: 6,
