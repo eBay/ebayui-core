@@ -35,7 +35,7 @@ export function ebayDonut(H: any) {
             // This is calculating from the edge of the circle, should it be
             const angle = 2 * Math.asin(spacing / diameter);
 
-            H.each(this.points, (point: any) => {
+            this.points.forEach((point: any) => {
                 // Adjust the start and end angles of the slice
                 point.shapeArgs.start += angle / 2;
                 point.shapeArgs.end -= angle / 2;
