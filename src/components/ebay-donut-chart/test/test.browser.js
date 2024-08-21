@@ -9,9 +9,6 @@ const { Standard, FiveValues } = composeStories(stories);
 use(chaiDom);
 afterEach(cleanup);
 
-/** @type import("@marko/testing-library").RenderResult */
-let component;
-
 describe("given a donut chart", () => {
     beforeEach(async () => {
         await render(Standard, {});
