@@ -1,6 +1,8 @@
 ---
 name: "\U0001F680Feature Request"
-about: Suggest an idea for this project
+description: Request a new feature for ebayui
+title: "<existing/proposed component name>: <issue title>"
+labels: ["type: feature", "needs triage"]
 ---
 
 <!-- Delete any sections below that are not relevant. -->
