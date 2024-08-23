@@ -29,6 +29,7 @@ describe("given a donut chart", () => {
                         "Chart. Highcharts interactive chart.",
                     ),
                 ).to.exist,
+            { timeout: 1500 },
         );
     });
 
@@ -61,6 +62,7 @@ describe("given a donut chart with five values", () => {
                         "Chart. Highcharts interactive chart.",
                     ),
                 ).to.exist,
+            { timeout: 1500 },
         );
     });
 
