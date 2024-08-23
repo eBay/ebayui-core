@@ -18,9 +18,9 @@ interface SeriesDonutOptions extends Omit<Highcharts.SeriesPieOptions, "type"> {
 
 interface DonutChartInput
     extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
-    title?: string | Marko.Renderable;
-    metricValue?: string | Marko.AttrTag<Marko.Renderable>;
-    metricLabel?: string | Marko.AttrTag<Marko.Renderable>;
+    title?: Marko.AttrTag<Marko.Renderable>;
+    metricValue?: Marko.AttrTag<Marko.Renderable>;
+    metricLabel?: Marko.AttrTag<Marko.Renderable>;
     "cdn-highcharts"?: string;
     "cdn-highcharts-accessibility"?: string;
     "cdn-highcharts-pattern-fill"?: string;
