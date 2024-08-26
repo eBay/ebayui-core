@@ -80,4 +80,22 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
             series[i].lineColor = color;
             series[i].borderColor = color;
         }
+    },
+    setDonutColors = function (series: any) {
+        const colors = [
+            { lineColor: chartPrimaryColor, borderColor: chartPrimaryColor },
+            { lineColor: chartSecondaryColor, borderColor: chartSecondaryColor },
+            { lineColor: patternTertiary, borderColor: chartTertiaryStrokeColor },
+            { lineColor: patternQuaternary, borderColor: chartQuaternaryStrokeColor },
+            { lineColor: chartQuinaryBackgroundColor, borderColor: chartQuinaryStrokeColor },
+        ]
+
+        const { data } = series;
+
+        data.forEach((item: any, index: number) => {
+            item.lineColor = colors[index].lineColor;
+            item.borderColor = colors[index].borderColor;
+        })
+
+        return colors.map((color: any) => color.lineColor);
     };

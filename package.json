@@ -114,7 +114,7 @@
         "eslint-plugin-compat": "^4",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-mocha": "^10.5.0",
-        "highcharts": "^10.3.3",
+        "highcharts": "^11.3.0",
         "html-minifier": "^4.0.0",
         "husky": "^9.1.4",
         "is-travis": "^3.0.0",

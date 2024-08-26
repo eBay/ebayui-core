@@ -1,0 +1,16 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@items <item>[]": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@name": "string",
+        "@value": "string"
+    }
+}
