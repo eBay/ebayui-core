@@ -1,9 +1,0 @@
-[36m<DocumentFragment>[39m
-  [36m<div[39m
-    [33maria-label[39m=[32m"Signed in - as Elizabeth"[39m
-    [33mclass[39m=[32m"avatar avatar--128 avatar--magenta"[39m
-    [33mrole[39m=[32m"img"[39m
-  [36m>[39m
-    [0mE[0m
-  [36m</div>[39m
-[36m</DocumentFragment>[39m

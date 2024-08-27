@@ -1,0 +1,161 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`section-notice > renders with light 1`] = `
+<section
+  aria-labelledby="s0-0-status"
+  aria-roledescription="Notice"
+  class="section-notice"
+  role="region"
+>
+  <div
+    class="section-notice__header"
+    id="s0-0-status"
+  />
+  <span
+    class="section-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </span>
+  <div
+    class="section-notice__footer"
+  >
+    <!--F#18-->
+    Footer
+    <!--F/-->
+  </div>
+</section>
+`;
+
+exports[`section-notice > renders with light 2`] = `
+<div
+  class="section-notice__footer"
+>
+  <!--F#18-->
+  Footer
+  <!--F/-->
+</div>
+`;
+
+exports[`section-notice > renders with status 1`] = `
+<div
+  class="section-notice__header"
+  id="s0-0-status"
+>
+  <svg
+    aria-label="Heading Text"
+    class="icon--information-filled icon icon--16 icon--information-filled"
+    focusable="false"
+    role="img"
+  >
+    <defs>
+      <symbol
+        id="icon-information-filled-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm1 11a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v3ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-information-filled-16"
+    />
+  </svg>
+</div>
+`;
+
+exports[`section-notice > renders with status 2`] = `
+<section
+  aria-labelledby="s0-0-status"
+  aria-roledescription="Notice"
+  class="section-notice"
+  role="region"
+>
+  <div
+    class="section-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--information-filled icon icon--16 icon--information-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-information-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm1 11a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v3ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-information-filled-16"
+      />
+    </svg>
+  </div>
+  <span
+    class="section-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </span>
+</section>
+`;
+
+exports[`section-notice > renders with status 3`] = `
+<span
+  class="section-notice__main"
+>
+  <!--F#13-->
+  Content
+  <!--F/-->
+</span>
+`;
+
+exports[`section-notice > renders with status 4`] = `
+<section
+  aria-labelledby="s0-0-status"
+  aria-roledescription="Notice"
+  class="section-notice"
+  role="region"
+>
+  <div
+    class="section-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--information-filled icon icon--16 icon--information-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-information-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm1 11a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v3ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-information-filled-16"
+      />
+    </svg>
+  </div>
+  <span
+    class="section-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </span>
+</section>
+`;

@@ -129,10 +129,12 @@ export class CDNLoader {
     _loadCDN() {
         loader(this.cdnFiles ?? [], this.types, this.stagger)
             .then(() => {
+                console.log('succ');
                 this.setLoading(false);
                 this.handleSuccess();
             })
             .catch((err: Error) => {
+                console.log(err);
                 this._catchError(err);
             });
     }

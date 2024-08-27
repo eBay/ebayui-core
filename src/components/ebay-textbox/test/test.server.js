@@ -1,4 +1,4 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../textbox.stories";
@@ -15,8 +15,6 @@ const {
 } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 describe("ebay-textbox", () => {
     it("renders default input textbox", async () => {

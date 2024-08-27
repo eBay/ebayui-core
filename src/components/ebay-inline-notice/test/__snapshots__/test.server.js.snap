@@ -1,0 +1,205 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`inline-notice > passes through additional html attributes 1`] = `
+<div
+  class="inline-notice inline-notice--attention class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+>
+  <span
+    class="inline-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--attention-filled icon icon--16 icon--attention-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-attention-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm0 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 1 1-2 0V5a1 1 0 0 1 2 0v3Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-attention-filled-16"
+      />
+    </svg>
+  </span>
+  <span
+    class="inline-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </span>
+</div>
+`;
+
+exports[`inline-notice > passes through additional html attributes 2`] = `
+<div
+  class="inline-notice inline-notice--attention class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+>
+  <span
+    class="inline-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--attention-filled icon icon--16 icon--attention-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-attention-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm0 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 1 1-2 0V5a1 1 0 0 1 2 0v3Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-attention-filled-16"
+      />
+    </svg>
+  </span>
+  <span
+    class="inline-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </span>
+</div>
+`;
+
+exports[`inline-notice > renders with custom status type 1`] = `
+<div
+  class="inline-notice inline-notice--confirmation"
+>
+  <span
+    class="inline-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--confirmation-filled icon icon--16 icon--confirmation-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-confirmation-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm11.207-.793a1 1 0 0 0-1.414-1.414L7 8.586l-.793-.793a1 1 0 0 0-1.414 1.414l1.5 1.5a1 1 0 0 0 1.414 0l3.5-3.5Z"
+            fill-rule="evenodd"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-confirmation-filled-16"
+      />
+    </svg>
+  </span>
+  <span
+    class="inline-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </span>
+</div>
+`;
+
+exports[`inline-notice > renders with defaults 1`] = `
+<span
+  class="inline-notice__header"
+  id="s0-0-status"
+>
+  <svg
+    aria-label="Heading Text"
+    class="icon--attention-filled icon icon--16 icon--attention-filled"
+    focusable="false"
+    role="img"
+  >
+    <defs>
+      <symbol
+        id="icon-attention-filled-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm0 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 1 1-2 0V5a1 1 0 0 1 2 0v3Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-attention-filled-16"
+    />
+  </svg>
+</span>
+`;
+
+exports[`inline-notice > renders with defaults 2`] = `
+<div
+  class="inline-notice inline-notice--attention"
+>
+  <span
+    class="inline-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--attention-filled icon icon--16 icon--attention-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-attention-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm0 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 1 1-2 0V5a1 1 0 0 1 2 0v3Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-attention-filled-16"
+      />
+    </svg>
+  </span>
+  <span
+    class="inline-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </span>
+</div>
+`;
+
+exports[`inline-notice > renders with defaults 3`] = `
+<span
+  class="inline-notice__main"
+>
+  <!--F#13-->
+  Content
+  <!--F/-->
+</span>
+`;

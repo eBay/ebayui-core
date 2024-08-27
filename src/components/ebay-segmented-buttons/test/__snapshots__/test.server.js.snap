@@ -1,0 +1,174 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ebay-segmented-buttons > renders defaults 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"segmented-buttons"[39m
+  [36m>[39m
+    [36m<ul>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"true"[39m
+          [33mclass[39m=[32m"segmented-buttons__button"[39m
+          [33mvalue[39m=[32m"quarter1"[39m
+        [36m>[39m
+          [0mQ1[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"segmented-buttons__button"[39m
+          [33mvalue[39m=[32m"quarter2"[39m
+        [36m>[39m
+          [0mQ2[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"segmented-buttons__button"[39m
+          [33mvalue[39m=[32m"quarter3"[39m
+        [36m>[39m
+          [0mQ3[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"segmented-buttons__button"[39m
+          [33mvalue[39m=[32m"quarter4"[39m
+        [36m>[39m
+          [0mQ4[0m
+        [36m</button>[39m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-segmented-buttons > renders large 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"segmented-buttons segmented-buttons--large"[39m
+  [36m>[39m
+    [36m<ul>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"true"[39m
+          [33mclass[39m=[32m"segmented-buttons__button"[39m
+          [33mvalue[39m=[32m"quarter1"[39m
+        [36m>[39m
+          [0mQ1[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"segmented-buttons__button"[39m
+          [33mvalue[39m=[32m"quarter2"[39m
+        [36m>[39m
+          [0mQ2[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"segmented-buttons__button"[39m
+          [33mvalue[39m=[32m"quarter3"[39m
+        [36m>[39m
+          [0mQ3[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"segmented-buttons__button"[39m
+          [33mvalue[39m=[32m"quarter4"[39m
+        [36m>[39m
+          [0mQ4[0m
+        [36m</button>[39m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-segmented-buttons > renders with menu items 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"segmented-buttons"[39m
+  [36m>[39m
+    [36m<ul>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"true"[39m
+          [33mclass[39m=[32m"segmented-buttons__button"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"segmented-buttons__button-cell"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--24"[39m
+              [33mdata-marko-key[39m=[32m"@svg s0-0-5[0]-1-0"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<defs[39m
+                [33mdata-marko-key[39m=[32m"@defs s0-0-5[0]-1-0"[39m
+              [36m>[39m
+                [36m<symbol[39m
+                  [33mid[39m=[32m"icon-full-view-24"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M22 3H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h20a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1Zm-1 12H3V5h18v10ZM2 19h20a1 1 0 0 1 0 2H2a1 1 0 0 1 0-2Z"[39m
+                  [36m/>[39m
+                [36m</symbol>[39m
+              [36m</defs>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-full-view-24"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [36m<span>[39m
+              [0mDesktop[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"segmented-buttons__button"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"segmented-buttons__button-cell"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--24"[39m
+              [33mdata-marko-key[39m=[32m"@svg s0-0-5[1]-2-0"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<defs[39m
+                [33mdata-marko-key[39m=[32m"@defs s0-0-5[1]-2-0"[39m
+              [36m>[39m
+                [36m<symbol[39m
+                  [33mid[39m=[32m"icon-mobile-24"[39m
+                  [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M11 18h2a1 1 0 1 1 0 2h-2a1 1 0 1 1 0-2Z"[39m
+                  [36m/>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"M16 1H8a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3ZM8 3h8a1 1 0 0 1 1 1H7a1 1 0 0 1 1-1ZM7 6h10v9H7V6Zm0 11h10v3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-3Z"[39m
+                  [36m/>[39m
+                [36m</symbol>[39m
+              [36m</defs>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-mobile-24"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [36m<span>[39m
+              [0mMobile[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;

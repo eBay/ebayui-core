@@ -1,0 +1,61 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ebay-chip > renders interactive close button when label is provided 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"chip"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"chip__text"[39m
+      [33mid[39m=[32m"s0-text"[39m
+    [36m>[39m
+      [0mchip text[0m
+    [36m</span>[39m
+    [36m<button[39m
+      [33maria-describedby[39m=[32m"s0-text"[39m
+      [33maria-label[39m=[32m"Delete"[39m
+      [33mclass[39m=[32m"chip__button"[39m
+      [33mdata-marko[39m=[32m"{\\"onclick\\":\\"emit s0 false 0\\"}"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"icon icon--12"[39m
+        [33mdata-marko-key[39m=[32m"@svg s0-4-0"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs[39m
+          [33mdata-marko-key[39m=[32m"@defs s0-4-0"[39m
+        [36m>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-close-12"[39m
+            [33mviewBox[39m=[32m"0 0 13 12"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M2.78033 1.21967C2.48744 0.926777 2.01256 0.926777 1.71967 1.21967C1.42678 1.51256 1.42678 1.98744 1.71967 2.28033L5.43934 6L1.71967 9.71967C1.42678 10.0126 1.42678 10.4874 1.71967 10.7803C2.01256 11.0732 2.48744 11.0732 2.78033 10.7803L6.5 7.06066L10.2197 10.7803C10.5126 11.0732 10.9874 11.0732 11.2803 10.7803C11.5732 10.4874 11.5732 10.0126 11.2803 9.71967L7.56066 6L11.2803 2.28033C11.5732 1.98744 11.5732 1.51256 11.2803 1.21967C10.9874 0.926777 10.5126 0.926777 10.2197 1.21967L6.5 4.93934L2.78033 1.21967Z"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-close-12"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+    [36m</button>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-chip > renders static default 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"chip"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"chip__text"[39m
+      [33mid[39m=[32m"s0-text"[39m
+    [36m>[39m
+      [0mchip text[0m
+    [36m</span>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;

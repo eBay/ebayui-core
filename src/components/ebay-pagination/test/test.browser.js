@@ -1,5 +1,5 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
+import { page } from "@vitest/browser/context";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import { composeStories } from "@storybook/marko";
 import * as stories from "../pagination.stories";
@@ -9,7 +9,6 @@ const { Buttons, Links } = composeStories(stories);
 
 const { a11yNextText, a11yPreviousText } = Buttons.args;
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -447,6 +446,7 @@ describe("given the pagination is rendered at various sizes", () => {
             cases.forEach(({ width, expect: [from, to, last] }) => {
                 describe(`when it is ${width} wide`, () => {
                     beforeEach(async () => {
+                        page.viewport(1280, 500);
                         component.container.style.width = `${width}px`;
                         await fireEvent(window, new Event("resize"));
                         // Wait one frame for the resize util to emit.

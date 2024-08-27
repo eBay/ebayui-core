@@ -1,29 +1,26 @@
-import { expect, use } from "chai";
-import { render } from "@marko/testing-library";
-import template from "..";
-import * as mock from "./mock";
-const {
-    testPassThroughAttributes,
-} = require("../../../../common/test-utils/server");
+import { describe, it, expect } from "vitest";
 
-use(require("chai-dom"));
+import { render } from "@marko/testing-library";
+import { testPassThroughAttributes } from "../../../../common/test-utils/server";
+import template from "../index.marko";
+import * as mock from "./mock";
 
 describe("notice-icon", () => {
     it("renders basic version", async () => {
         const input = mock.defaultNotice;
         const { getByLabelText, getByText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
-        expect(status).has.class(`${input.prefixClass}__header`);
+        expect(status).toMatchSnapshot();
 
         const containerUsingLabel = status.closest(
             `[aria-labelledby="${status.id}"]`,
         );
-        expect(containerUsingLabel).has.class(input.class);
+        expect(containerUsingLabel).toMatchSnapshot();
 
         const content = getByText(input.renderBody.text);
-        expect(content).has.class(`${input.prefixClass}__main`);
+        expect(content).toMatchSnapshot();
 
-        expect(getByLabelText(input.a11yText)).has.class("icon--16");
+        expect(getByLabelText(input.a11yText)).toMatchSnapshot();
     });
 
     it("renders inline version", async () => {
@@ -31,12 +28,9 @@ describe("notice-icon", () => {
         const { getByLabelText } = await render(template, input);
 
         const status = getByLabelText(input.a11yText).parentElement;
-        expect(status.parentElement).not.to.have.property("aria-labelledby");
-        expect(status.parentElement).has.class(input.class);
-        expect(status.parentElement).has.tagName("DIV");
+        expect(status.parentElement).toMatchSnapshot();
 
-        expect(getByLabelText(input.a11yText)).has.class("icon--16");
-        expect(getByLabelText(input.a11yText)).has.class("notice-class");
+        expect(getByLabelText(input.a11yText)).toMatchSnapshot();
     });
 
     it("renders title and footer version", async () => {
@@ -47,33 +41,30 @@ describe("notice-icon", () => {
         const containerUsingLabel = status.closest(
             `[aria-labelledby="${status.id}"]`,
         );
-        expect(containerUsingLabel).has.class(input.class);
+        expect(containerUsingLabel).toMatchSnapshot();
 
         const content = getByText(input.renderBody.text);
-        expect(content).has.class(`${input.prefixClass}__main`);
+        expect(content).toMatchSnapshot();
 
         const footer = getByText(input.footer.renderBody.text);
-        expect(footer).has.class(`${input.prefixClass}__footer`);
+        expect(footer).toMatchSnapshot();
 
         const title = getByText(input.title.renderBody.text);
-        expect(title).has.class(`${input.prefixClass}__title`);
+        expect(title).toMatchSnapshot();
     });
 
     it("renders education notice", async () => {
         const input = mock.educationSectionNotice;
         const { getByLabelText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
-        expect(status).has.class(`${input.prefixClass}__header`);
+        expect(status).toMatchSnapshot();
 
         const containerUsingLabel = status.closest(
             `[aria-labelledby="${status.id}"]`,
         );
-        expect(containerUsingLabel).has.class(input.class);
-        expect(containerUsingLabel).has.class(
-            `${input.prefixClass}--education`,
-        );
+        expect(containerUsingLabel).toMatchSnapshot();
 
-        expect(getByLabelText(input.a11yText)).has.class("icon--24");
+        expect(getByLabelText(input.a11yText)).toMatchSnapshot();
     });
 
     testPassThroughAttributes(template, {

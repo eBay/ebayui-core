@@ -1,0 +1,1422 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`listbox > renders basic version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"listbox-button"[39m
+  [36m>[39m
+    [36m<button[39m
+      [33maria-haspopup[39m=[32m"listbox"[39m
+      [33mclass[39m=[32m"listbox-button__control btn btn--form"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"btn__cell"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__label"[39m
+        [36m>[39m
+          [0mSelected:[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__text"[39m
+        [36m>[39m
+          [0m-[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-chevron-down-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+      [33mrole[39m=[32m"listbox"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 1[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<select[39m
+      [33mclass[39m=[32m"listbox__native"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"1"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"3"[39m
+      [36m/>[39m
+    [36m</select>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`listbox > renders fluid layout 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"listbox-button listbox-button--fluid"[39m
+  [36m>[39m
+    [36m<button[39m
+      [33maria-haspopup[39m=[32m"listbox"[39m
+      [33mclass[39m=[32m"listbox-button__control btn btn--form"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"btn__cell"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__label"[39m
+        [36m>[39m
+          [0mSelected:[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__text"[39m
+        [36m>[39m
+          [0m-[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-chevron-down-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+      [33mrole[39m=[32m"listbox"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 1[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<select[39m
+      [33mclass[39m=[32m"listbox__native"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"1"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"3"[39m
+      [36m/>[39m
+    [36m</select>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`listbox > renders truncated layout 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"listbox-button"[39m
+  [36m>[39m
+    [36m<button[39m
+      [33maria-haspopup[39m=[32m"listbox"[39m
+      [33mclass[39m=[32m"listbox-button__control btn btn--form btn--truncated"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"btn__cell"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__label"[39m
+        [36m>[39m
+          [0mSelected:[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__text"[39m
+        [36m>[39m
+          [0m-[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-chevron-down-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+      [33mrole[39m=[32m"listbox"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 1[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<select[39m
+      [33mclass[39m=[32m"listbox__native"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"1"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"3"[39m
+      [36m/>[39m
+    [36m</select>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`listbox > renders with description 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"listbox-button"[39m
+  [36m>[39m
+    [36m<button[39m
+      [33maria-haspopup[39m=[32m"listbox"[39m
+      [33mclass[39m=[32m"listbox-button__control btn btn--form"[39m
+      [33mtype[39m=[32m"button"[39m
+      [33mvalue[39m=[32m"Option 1"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"btn__cell"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__label"[39m
+        [36m>[39m
+          [0mSelect[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__text"[39m
+        [36m>[39m
+          [0mOption 1[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-chevron-down-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+      [33mrole[39m=[32m"listbox"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-selected[39m=[32m"true"[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 1[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__description"[39m
+        [36m>[39m
+          [0mOption 1 info[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 2[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__description"[39m
+        [36m>[39m
+          [0mOption 2 info[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 3[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__description"[39m
+        [36m>[39m
+          [0mOption 3 info[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<select[39m
+      [33mclass[39m=[32m"listbox__native"[39m
+      [33mhidden[39m=[32m""[39m
+      [33mname[39m=[32m"formFieldName"[39m
+    [36m>[39m
+      [36m<option[39m
+        [33mselected[39m=[32m""[39m
+        [33mvalue[39m=[32m"1"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"3"[39m
+      [36m/>[39m
+    [36m</select>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`listbox > renders with error 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"field"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"listbox-button listbox-button--error"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-describedby[39m=[32m"s0-listbox-description"[39m
+        [33maria-haspopup[39m=[32m"listbox"[39m
+        [33mclass[39m=[32m"listbox-button__control btn btn--form"[39m
+        [33mtype[39m=[32m"button"[39m
+        [33mvalue[39m=[32m"Option 1"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__cell"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"btn__text"[39m
+          [36m>[39m
+            [0mOption 1[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-chevron-down-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+        [33mrole[39m=[32m"listbox"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33maria-selected[39m=[32m"true"[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [0mOption 1[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-tick-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33mclip-rule[39m=[32m"evenodd"[39m
+                  [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                  [33mfill-rule[39m=[32m"evenodd"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [0mOption 2[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [0mOption 3[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<select[39m
+        [33mclass[39m=[32m"listbox__native"[39m
+        [33mhidden[39m=[32m""[39m
+        [33mname[39m=[32m"formFieldName"[39m
+      [36m>[39m
+        [36m<option[39m
+          [33mselected[39m=[32m""[39m
+          [33mvalue[39m=[32m"1"[39m
+        [36m/>[39m
+        [36m<option[39m
+          [33mvalue[39m=[32m"2"[39m
+        [36m/>[39m
+        [36m<option[39m
+          [33mvalue[39m=[32m"3"[39m
+        [36m/>[39m
+      [36m</select>[39m
+    [36m</span>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"field__description field__description--attention"[39m
+      [33mid[39m=[32m"s0-listbox-description"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"icon icon--16 icon--attention-filled"[39m
+        [33mdata-marko-key[39m=[32m"@svg s0-3-0"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs[39m
+          [33mdata-marko-key[39m=[32m"@defs s0-3-0"[39m
+        [36m>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-attention-filled-16"[39m
+            [33mviewBox[39m=[32m"0 0 16 16"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm0 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 1 1-2 0V5a1 1 0 0 1 2 0v3Z"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-attention-filled-16"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<span>[39m
+        [0mThere was an error[0m
+      [36m</span>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`listbox > renders with floating label 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"listbox-button"[39m
+  [36m>[39m
+    [36m<button[39m
+      [33maria-haspopup[39m=[32m"listbox"[39m
+      [33mclass[39m=[32m"listbox-button__control btn btn--form btn--floating-label"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"btn__cell"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__floating-label btn__floating-label--animate btn__floating-label--inline"[39m
+        [36m>[39m
+          [0mfloating label[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-chevron-down-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+      [33mrole[39m=[32m"listbox"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 1[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<select[39m
+      [33mclass[39m=[32m"listbox__native"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"1"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"3"[39m
+      [36m/>[39m
+    [36m</select>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`listbox > renders with form 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"listbox-button listbox-button--form"[39m
+  [36m>[39m
+    [36m<button[39m
+      [33maria-haspopup[39m=[32m"listbox"[39m
+      [33mclass[39m=[32m"listbox-button__control btn btn--form"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"btn__cell"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__label"[39m
+        [36m>[39m
+          [0mSelected:[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__text"[39m
+        [36m>[39m
+          [0m-[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-chevron-down-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+      [33mrole[39m=[32m"listbox"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 1[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<select[39m
+      [33mclass[39m=[32m"listbox__native"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"1"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"3"[39m
+      [36m/>[39m
+    [36m</select>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`listbox > renders with prefix id 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"listbox-button"[39m
+  [36m>[39m
+    [36m<button[39m
+      [33maria-haspopup[39m=[32m"listbox"[39m
+      [33maria-labelledby[39m=[32m"prefixId s0-label"[39m
+      [33mclass[39m=[32m"listbox-button__control btn btn--form"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"btn__cell"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__label"[39m
+        [36m>[39m
+          [0mSelected:[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__text"[39m
+          [33mid[39m=[32m"s0-label"[39m
+        [36m>[39m
+          [0m-[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-chevron-down-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+      [33mrole[39m=[32m"listbox"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 1[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<select[39m
+      [33mclass[39m=[32m"listbox__native"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"1"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"3"[39m
+      [36m/>[39m
+    [36m</select>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`listbox > renders with prefix label 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"listbox-button"[39m
+  [36m>[39m
+    [36m<button[39m
+      [33maria-haspopup[39m=[32m"listbox"[39m
+      [33mclass[39m=[32m"listbox-button__control btn btn--form"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"btn__cell"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__label"[39m
+        [36m>[39m
+          [0mSelected: [0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__text"[39m
+        [36m>[39m
+          [0m-[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-chevron-down-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+      [33mrole[39m=[32m"listbox"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 1[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<select[39m
+      [33mclass[39m=[32m"listbox__native"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"1"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"3"[39m
+      [36m/>[39m
+    [36m</select>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`listbox > renders with second item selected 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"listbox-button"[39m
+    [33mselected[39m=[32m"1"[39m
+  [36m>[39m
+    [36m<button[39m
+      [33maria-haspopup[39m=[32m"listbox"[39m
+      [33mclass[39m=[32m"listbox-button__control btn btn--form"[39m
+      [33mtype[39m=[32m"button"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"btn__cell"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__label"[39m
+        [36m>[39m
+          [0mSelected:[0m
+        [36m</span>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__text"[39m
+        [36m>[39m
+          [0m-[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-chevron-down-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+    [36m</button>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+      [33mrole[39m=[32m"listbox"[39m
+      [33mtabindex[39m=[32m"-1"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 1[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__option"[39m
+        [33mrole[39m=[32m"option"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"listbox__value"[39m
+        [36m>[39m
+          [0mOption 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<select[39m
+      [33mclass[39m=[32m"listbox__native"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"1"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"2"[39m
+      [36m/>[39m
+      [36m<option[39m
+        [33mvalue[39m=[32m"3"[39m
+      [36m/>[39m
+    [36m</select>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;

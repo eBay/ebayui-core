@@ -1,4 +1,4 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
 import { composeStories } from "@storybook/marko";
 import * as testUtils from "../../../common/test-utils/server";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
@@ -7,8 +7,6 @@ import * as stories from "../menu.stories"; // import all stories from the stori
 const { Default, Typeahead, Badged, Sprites, Separator } =
     composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 describe("menu", () => {
     it("renders basic version", async () => {

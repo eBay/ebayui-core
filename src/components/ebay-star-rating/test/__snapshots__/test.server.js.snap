@@ -1,0 +1,437 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`star-rating-select > renders basic fieldset 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"icon-examples"[39m
+  [36m>[39m
+    [36m<div>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"icon"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"star-rating star-rating--0"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mid[39m=[32m"star-rating-0"[39m
+              [33mviewBox[39m=[32m"0 0 132 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M12 1.5a1 1 0 0 1 .955.702L15.075 9H22a1 1 0 0 1 .565 1.825l-5.572 3.81 2.13 6.56a1 1 0 0 1-1.54 1.117L12 18.238l-5.582 4.074a1 1 0 0 1-1.541-1.117l2.13-6.56-5.571-3.81A1 1 0 0 1 2 9h6.925l2.121-6.798a1 1 0 0 1 .955-.702Zm0 4.357L10.396 11H5.234l4.138 2.829-1.64 5.047L12 15.762l4.268 3.114-1.64-5.047L18.767 11h-5.161L12 5.857ZM39 1.5a1 1 0 0 1 .955.702L42.075 9H49a1 1 0 0 1 .565 1.825l-5.572 3.81 2.13 6.56a1 1 0 0 1-1.54 1.117L39 18.238l-5.582 4.074a1 1 0 0 1-1.541-1.117l2.13-6.56-5.571-3.81A1 1 0 0 1 29 9h6.925l2.121-6.798a1 1 0 0 1 .955-.702Zm0 4.357L37.396 11h-5.162l4.138 2.829-1.64 5.047L39 15.762l4.268 3.114-1.64-5.047L45.767 11h-5.161L39 5.857ZM66 1.5a1 1 0 0 1 .955.702L69.075 9H76a1 1 0 0 1 .565 1.825l-5.572 3.81 2.13 6.56a1 1 0 0 1-1.54 1.117L66 18.238l-5.582 4.074a1 1 0 0 1-1.541-1.117l2.13-6.56-5.571-3.81A1 1 0 0 1 56 9h6.925l2.121-6.798a1 1 0 0 1 .955-.702Zm0 4.357L64.396 11h-5.162l4.138 2.829-1.64 5.047L66 15.762l4.268 3.114-1.64-5.047L72.767 11h-5.161L66 5.857ZM93 1.5a1 1 0 0 1 .955.702L96.075 9h6.926a1 1 0 0 1 .564 1.825l-5.572 3.81 2.13 6.56a1 1 0 0 1-1.54 1.117L93 18.238l-5.582 4.074a1 1 0 0 1-1.541-1.117l2.13-6.56-5.571-3.81A1 1 0 0 1 83 9h6.925l2.121-6.798a1 1 0 0 1 .955-.702Zm0 4.357L91.396 11h-5.162l4.138 2.829-1.64 5.047L93 15.762l4.268 3.114-1.64-5.047L99.767 11h-5.161L93 5.857ZM120.001 1.5a1 1 0 0 1 .954.702L123.076 9h6.925a1 1 0 0 1 .564 1.825l-5.572 3.81 2.13 6.56a1 1 0 0 1-1.54 1.117L120 18.238l-5.582 4.074a1.001 1.001 0 0 1-1.541-1.117l2.13-6.56-5.571-3.81A1 1 0 0 1 110 9h6.925l2.121-6.798a1 1 0 0 1 .955-.702ZM120 5.857 118.396 11h-5.162l4.138 2.829-1.639 5.047L120 15.762l4.268 3.114-1.639-5.047L126.766 11h-5.161L120 5.857Z"[39m
+                [33mfill[39m=[32m"#707070"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#star-rating-0"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"text"[39m
+      [36m>[39m
+        [0mebay-star-rating-0[0m
+      [36m</span>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"icon"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"star-rating star-rating--0-5"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mid[39m=[32m"star-rating-0-5"[39m
+              [33mviewBox[39m=[32m"0 0 132 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M12 1.5a1 1 0 0 1 .955.702L15.076 9h6.925a1 1 0 0 1 .564 1.825l-5.572 3.81 2.13 6.56a1 1 0 0 1-1.54 1.117L12 18.238l-5.582 4.074a1 1 0 0 1-1.54-1.117l2.13-6.56-5.572-3.81A1 1 0 0 1 2 9h6.925l2.121-6.798a1 1 0 0 1 .955-.702Zm0 4.357L10.396 11H5.234l4.138 2.829-1.639 5.047L12 15.762l4.268 3.114-1.64-5.047L18.767 11h-5.161L12 5.857Z"[39m
+                [33mfill[39m=[32m"#707070"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M11.046 2.202A1 1 0 0 1 12 1.5v16.738l-5.582 4.074a1 1 0 0 1-1.54-1.117l2.13-6.56-5.572-3.81A1 1 0 0 1 2 9h6.925l2.121-6.798Z"[39m
+                [33mfill[39m=[32m"#191919"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M39 1.5a1 1 0 0 1 .955.702L42.075 9H49a1 1 0 0 1 .565 1.825l-5.572 3.81 2.13 6.56a1 1 0 0 1-1.54 1.117L39 18.238l-5.582 4.074a1 1 0 0 1-1.541-1.117l2.13-6.56-5.571-3.81A1 1 0 0 1 29 9h6.925l2.121-6.798a1 1 0 0 1 .955-.702Zm0 4.357L37.396 11h-5.162l4.138 2.829-1.64 5.047L39 15.762l4.268 3.114-1.64-5.047L45.767 11h-5.161L39 5.857ZM66 1.5a1 1 0 0 1 .955.702L69.075 9H76a1 1 0 0 1 .565 1.825l-5.572 3.81 2.13 6.56a1 1 0 0 1-1.54 1.117L66 18.238l-5.582 4.074a1 1 0 0 1-1.541-1.117l2.13-6.56-5.571-3.81A1 1 0 0 1 56 9h6.925l2.121-6.798a1 1 0 0 1 .955-.702Zm0 4.357L64.396 11h-5.162l4.138 2.829-1.64 5.047L66 15.762l4.268 3.114-1.64-5.047L72.767 11h-5.161L66 5.857ZM93 1.5a1 1 0 0 1 .955.702L96.075 9h6.926a1 1 0 0 1 .564 1.825l-5.572 3.81 2.13 6.56a1 1 0 0 1-1.54 1.117L93 18.238l-5.582 4.074a1 1 0 0 1-1.541-1.117l2.13-6.56-5.571-3.81A1 1 0 0 1 83 9h6.925l2.121-6.798a1 1 0 0 1 .955-.702Zm0 4.357L91.396 11h-5.162l4.138 2.829-1.64 5.047L93 15.762l4.268 3.114-1.64-5.047L99.767 11h-5.161L93 5.857ZM120.001 1.5a1 1 0 0 1 .954.702L123.076 9h6.925a1 1 0 0 1 .564 1.825l-5.572 3.81 2.13 6.56a1 1 0 0 1-1.54 1.117L120 18.238l-5.582 4.074a1.001 1.001 0 0 1-1.541-1.117l2.13-6.56-5.571-3.81A1 1 0 0 1 110 9h6.925l2.121-6.798a1 1 0 0 1 .955-.702ZM120 5.857 118.396 11h-5.162l4.138 2.829-1.639 5.047L120 15.762l4.268 3.114-1.639-5.047L126.766 11h-5.161L120 5.857Z"[39m
+                [33mfill[39m=[32m"#707070"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#star-rating-0-5"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"text"[39m
+      [36m>[39m
+        [0mebay-star-rating-0-5[0m
+      [36m</span>[39m
+    [36m</div>[39m
+    [36m<div>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"icon"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"star-rating star-rating--1"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mid[39m=[32m"star-rating-1"[39m
+              [33mviewBox[39m=[32m"0 0 132 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M12.955 2.202a1 1 0 0 0-1.909 0L8.925 9..."
+`;
+
+exports[`star-rating-select > renders defaults 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"star-rating"[39m
+    [33mdata-stars[39m=[32m"3-5"[39m
+    [33mrole[39m=[32m"img"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[1]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs[39m
+        [33mdata-marko-key[39m=[32m"@defs s0-1[1]-0"[39m
+      [36m>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-star-dynamic"[39m
+          [33mviewBox[39m=[32m"0 0 16 16"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M8.596 1.928a.625.625 0 0 0-1.19 0L6.055 6.136H1.62a.625.625 0 0 0-.346 1.146l3.56 2.364-1.366 4.035a.625.625 0 0 0 .953.71L8 11.862l3.578 2.528a.625.625 0 0 0 .953-.71l-1.366-4.036 3.55-2.364a.625.625 0 0 0-.346-1.145H9.955l-1.36-4.207Z"[39m
+            [33mfill[39m=[32m"var(--color-star-rating-full, transparent)"[39m
+            [33mstroke[39m=[32m"var(--color-star-rating-full-stroke, #707070)"[39m
+            [33mstroke-width[39m=[32m"1.25"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33mclip-path[39m=[32m"polygon(0 0, 50% 0, 50% 100%, 0 100%)"[39m
+            [33md[39m=[32m"M8.596 1.928a.625.625 0 0 0-1.19 0L6.055 6.136H1.62a.625.625 0 0 0-.346 1.146l3.56 2.364-1.366 4.035a.625.625 0 0 0 .953.71L8 11.862l3.578 2.528a.625.625 0 0 0 .953-.71l-1.366-4.036 3.55-2.364a.625.625 0 0 0-.346-1.145H9.955l-1.36-4.207Z"[39m
+            [33mfill[39m=[32m"var(--color-star-rating-half, transparent)"[39m
+            [33mstroke[39m=[32m"var(--color-star-rating-half-stroke, #707070)"[39m
+            [33mstroke-width[39m=[32m"1.25"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[2]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[3]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[4]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[5]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`star-rating-select > renders with 0 selected 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m"star rating"[39m
+    [33mclass[39m=[32m"star-rating"[39m
+    [33mdata-stars[39m=[32m"0"[39m
+    [33mrole[39m=[32m"img"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[1]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs[39m
+        [33mdata-marko-key[39m=[32m"@defs s0-1[1]-0"[39m
+      [36m>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-star-dynamic"[39m
+          [33mviewBox[39m=[32m"0 0 16 16"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M8.596 1.928a.625.625 0 0 0-1.19 0L6.055 6.136H1.62a.625.625 0 0 0-.346 1.146l3.56 2.364-1.366 4.035a.625.625 0 0 0 .953.71L8 11.862l3.578 2.528a.625.625 0 0 0 .953-.71l-1.366-4.036 3.55-2.364a.625.625 0 0 0-.346-1.145H9.955l-1.36-4.207Z"[39m
+            [33mfill[39m=[32m"var(--color-star-rating-full, transparent)"[39m
+            [33mstroke[39m=[32m"var(--color-star-rating-full-stroke, #707070)"[39m
+            [33mstroke-width[39m=[32m"1.25"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33mclip-path[39m=[32m"polygon(0 0, 50% 0, 50% 100%, 0 100%)"[39m
+            [33md[39m=[32m"M8.596 1.928a.625.625 0 0 0-1.19 0L6.055 6.136H1.62a.625.625 0 0 0-.346 1.146l3.56 2.364-1.366 4.035a.625.625 0 0 0 .953.71L8 11.862l3.578 2.528a.625.625 0 0 0 .953-.71l-1.366-4.036 3.55-2.364a.625.625 0 0 0-.346-1.145H9.955l-1.36-4.207Z"[39m
+            [33mfill[39m=[32m"var(--color-star-rating-half, transparent)"[39m
+            [33mstroke[39m=[32m"var(--color-star-rating-half-stroke, #707070)"[39m
+            [33mstroke-width[39m=[32m"1.25"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[2]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[3]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[4]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[5]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`star-rating-select > renders with 2 selected 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m"star rating"[39m
+    [33mclass[39m=[32m"star-rating"[39m
+    [33mdata-stars[39m=[32m"2"[39m
+    [33mrole[39m=[32m"img"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[1]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs[39m
+        [33mdata-marko-key[39m=[32m"@defs s0-1[1]-0"[39m
+      [36m>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-star-dynamic"[39m
+          [33mviewBox[39m=[32m"0 0 16 16"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M8.596 1.928a.625.625 0 0 0-1.19 0L6.055 6.136H1.62a.625.625 0 0 0-.346 1.146l3.56 2.364-1.366 4.035a.625.625 0 0 0 .953.71L8 11.862l3.578 2.528a.625.625 0 0 0 .953-.71l-1.366-4.036 3.55-2.364a.625.625 0 0 0-.346-1.145H9.955l-1.36-4.207Z"[39m
+            [33mfill[39m=[32m"var(--color-star-rating-full, transparent)"[39m
+            [33mstroke[39m=[32m"var(--color-star-rating-full-stroke, #707070)"[39m
+            [33mstroke-width[39m=[32m"1.25"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33mclip-path[39m=[32m"polygon(0 0, 50% 0, 50% 100%, 0 100%)"[39m
+            [33md[39m=[32m"M8.596 1.928a.625.625 0 0 0-1.19 0L6.055 6.136H1.62a.625.625 0 0 0-.346 1.146l3.56 2.364-1.366 4.035a.625.625 0 0 0 .953.71L8 11.862l3.578 2.528a.625.625 0 0 0 .953-.71l-1.366-4.036 3.55-2.364a.625.625 0 0 0-.346-1.145H9.955l-1.36-4.207Z"[39m
+            [33mfill[39m=[32m"var(--color-star-rating-half, transparent)"[39m
+            [33mstroke[39m=[32m"var(--color-star-rating-half-stroke, #707070)"[39m
+            [33mstroke-width[39m=[32m"1.25"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[2]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[3]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[4]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[5]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`star-rating-select > renders with 5 selected 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"star-rating"[39m
+    [33mdata-stars[39m=[32m"5"[39m
+    [33mrole[39m=[32m"img"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[1]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs[39m
+        [33mdata-marko-key[39m=[32m"@defs s0-1[1]-0"[39m
+      [36m>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-star-dynamic"[39m
+          [33mviewBox[39m=[32m"0 0 16 16"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M8.596 1.928a.625.625 0 0 0-1.19 0L6.055 6.136H1.62a.625.625 0 0 0-.346 1.146l3.56 2.364-1.366 4.035a.625.625 0 0 0 .953.71L8 11.862l3.578 2.528a.625.625 0 0 0 .953-.71l-1.366-4.036 3.55-2.364a.625.625 0 0 0-.346-1.145H9.955l-1.36-4.207Z"[39m
+            [33mfill[39m=[32m"var(--color-star-rating-full, transparent)"[39m
+            [33mstroke[39m=[32m"var(--color-star-rating-full-stroke, #707070)"[39m
+            [33mstroke-width[39m=[32m"1.25"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33mclip-path[39m=[32m"polygon(0 0, 50% 0, 50% 100%, 0 100%)"[39m
+            [33md[39m=[32m"M8.596 1.928a.625.625 0 0 0-1.19 0L6.055 6.136H1.62a.625.625 0 0 0-.346 1.146l3.56 2.364-1.366 4.035a.625.625 0 0 0 .953.71L8 11.862l3.578 2.528a.625.625 0 0 0 .953-.71l-1.366-4.036 3.55-2.364a.625.625 0 0 0-.346-1.145H9.955l-1.36-4.207Z"[39m
+            [33mfill[39m=[32m"var(--color-star-rating-half, transparent)"[39m
+            [33mstroke[39m=[32m"var(--color-star-rating-half-stroke, #707070)"[39m
+            [33mstroke-width[39m=[32m"1.25"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[2]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[3]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[4]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"star-rating__icon icon icon--star-dynamic"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-1[5]-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-star-dynamic"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;

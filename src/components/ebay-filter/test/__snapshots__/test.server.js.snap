@@ -1,0 +1,161 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`filter > passes through additional html attributes 1`] = `
+<button
+  class="filter-button filter-button--unselected class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="button"
+>
+  <span
+    class="filter-button__cell"
+  >
+    <span />
+  </span>
+</button>
+`;
+
+exports[`filter > passes through additional html attributes 2`] = `
+<button
+  class="filter-button filter-button--unselected class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="button"
+>
+  <span
+    class="filter-button__cell"
+  >
+    <span />
+  </span>
+</button>
+`;
+
+exports[`filter > renders defaults 1`] = `
+<button
+  class="filter-button filter-button--unselected"
+  type="button"
+>
+  <span
+    class="filter-button__cell"
+  >
+    <span>
+      <!--F#3-->
+      text
+      <!--F/-->
+    </span>
+  </span>
+</button>
+`;
+
+exports[`filter > renders fake version 1`] = `
+<a
+  class="filter-link filter-link--unselected"
+  href="#fake"
+>
+  <span
+    class="filter-link__cell"
+  >
+    <span>
+      <!--F#3-->
+      text
+      <!--F/-->
+    </span>
+  </span>
+</a>
+`;
+
+exports[`filter > renders fake version with disabled attribute 1`] = `
+<a
+  class="filter-link filter-link--unselected"
+  disabled=""
+  href="#fake"
+>
+  <span
+    class="filter-link__cell"
+  >
+    <span>
+      <!--F#3-->
+      text
+      <!--F/-->
+    </span>
+  </span>
+</a>
+`;
+
+exports[`filter > renders fake version with pressed attribute 1`] = `
+<a
+  class="filter-link filter-link--selected"
+  href="#fake"
+>
+  <span
+    class="filter-link__cell"
+  >
+    <span>
+      <!--F#3-->
+      text
+      <!--F/-->
+    </span>
+    <span
+      class="clipped"
+      id="s0-active-text"
+    >
+      - Selected Filter
+    </span>
+  </span>
+</a>
+`;
+
+exports[`filter > renders with disabled attribute 1`] = `
+<button
+  class="filter-button filter-button--unselected"
+  disabled=""
+  type="button"
+>
+  <span
+    class="filter-button__cell"
+  >
+    <span>
+      <!--F#3-->
+      text
+      <!--F/-->
+    </span>
+  </span>
+</button>
+`;
+
+exports[`filter > renders with pressed attribute 1`] = `
+<button
+  aria-pressed="true"
+  class="filter-button filter-button--selected"
+  type="button"
+>
+  <span
+    class="filter-button__cell"
+  >
+    <span>
+      <!--F#3-->
+      text
+      <!--F/-->
+    </span>
+  </span>
+</button>
+`;
+
+exports[`filter > renders without pressed attribute 1`] = `
+<button
+  class="filter-button filter-button--selected"
+  type="button"
+>
+  <span
+    class="filter-button__cell"
+  >
+    <span>
+      <!--F#3-->
+      text
+      <!--F/-->
+    </span>
+  </span>
+</button>
+`;

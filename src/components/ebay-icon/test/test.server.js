@@ -1,12 +1,11 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
+
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
-import template from "..";
+import template from "../index.marko";
 
 const iconName = "mic";
 const progrmaBadgeIcon = "program-badge-authenticity-guaranteed";
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 describe("icon", () => {
     it("renders icon inline type with title text", async () => {

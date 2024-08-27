@@ -1,5 +1,12 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import {
+    afterEach,
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+} from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, waitFor, cleanup } from "@marko/testing-library";
 import { addRenderBodies } from "../../../../.storybook/utils";
@@ -7,9 +14,8 @@ import { fastAnimations } from "../../../common/test-utils/browser";
 import * as stories from "../lightbox-dialog.stories"; // import all stories from the stories file
 const { Default, WithPrevButton } = composeStories(stories);
 
-use(chaiDom);
-before(fastAnimations.start);
-after(fastAnimations.stop);
+beforeAll(() => fastAnimations.start());
+afterAll(() => fastAnimations.stop());
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -51,7 +57,7 @@ describe("given a closed dialog", () => {
     });
 
     it("then it is hidden in the DOM", () => {
-        expect(component.getByRole("dialog", { hidden: true })).has.attr(
+        expect(component.getByRole("dialog", { hidden: true })).toHaveAttribute(
             "hidden",
         );
     });
@@ -87,7 +93,7 @@ describe("given an open dialog", () => {
     });
 
     it("then it is visible in the DOM", () => {
-        expect(component.getByRole("dialog")).does.not.have.attr("hidden");
+        expect(component.getByRole("dialog")).not.toHaveAttribute("hidden");
     });
 
     describe("when the close button is clicked", () => {
@@ -114,7 +120,7 @@ describe("given an open dialog", () => {
             await waitFor(() =>
                 expect(
                     component.getByRole("dialog", { hidden: true }),
-                ).has.attr("hidden"),
+                ).toHaveAttribute("hidden"),
             );
         });
 
@@ -132,7 +138,7 @@ describe("given an open dialog with prev button", () => {
     });
 
     it("then it is visible in the DOM", () => {
-        expect(component.getByRole("dialog")).does.not.have.attr("hidden");
+        expect(component.getByRole("dialog")).not.toHaveAttribute("hidden");
     });
 
     describe("when the prev button is clicked", () => {
@@ -155,7 +161,7 @@ describe("given an open and non expanded dialog for touch events", () => {
     it("then it is hidden in the DOM", () => {
         expect(
             component.getByRole("dialog", { hidden: true }),
-        ).does.not.have.attr("hidden");
+        ).not.toHaveAttribute("hidden");
     });
 
     (hasTouch ? describe : describe.skip)(
@@ -240,7 +246,7 @@ describe("given an open and non expanded dialog for touch events", () => {
                 await waitFor(() =>
                     expect(
                         component.getByRole("dialog", { hidden: true }),
-                    ).has.attr("hidden"),
+                    ).toHaveAttribute("hidden"),
                 );
             });
         },
@@ -253,7 +259,7 @@ describe("given an open and expanded dialog for touch events", () => {
     });
 
     it("then it is shown in the DOM", () => {
-        expect(component.getByRole("dialog")).does.not.have.attr("hidden");
+        expect(component.getByRole("dialog")).not.toHaveAttribute("hidden");
     });
 
     (hasTouch ? describe : describe.skip)(

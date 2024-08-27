@@ -1,0 +1,358 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`toast-dialog > passes through additional html attributes 1`] = `
+<aside
+  aria-labelledby="s0-0-dialog-title"
+  aria-live="polite"
+  aria-modal="true"
+  class="toast-dialog class1 toast-dialog--transition"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="dialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="toast-dialog__window"
+  >
+    <div
+      class="toast-dialog__header"
+    >
+      <!--F#13-->
+      <h2
+        class="toast-dialog__title toast-dialog__title"
+        id="s0-0-dialog-title"
+      />
+      <!--F/-->
+      <!--F#14-->
+      <button
+        class="icon-btn icon-btn--transparent toast-dialog__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="toast-dialog__main"
+    >
+      <!--F#16-->
+      <!--F/-->
+    </div>
+  </div>
+</aside>
+`;
+
+exports[`toast-dialog > passes through additional html attributes 2`] = `
+<aside
+  aria-labelledby="s0-0-dialog-title"
+  aria-live="polite"
+  aria-modal="true"
+  class="toast-dialog class1 toast-dialog--transition"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="dialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="toast-dialog__window"
+  >
+    <div
+      class="toast-dialog__header"
+    >
+      <!--F#13-->
+      <h2
+        class="toast-dialog__title toast-dialog__title"
+        id="s0-0-dialog-title"
+      />
+      <!--F/-->
+      <!--F#14-->
+      <button
+        class="icon-btn icon-btn--transparent toast-dialog__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="toast-dialog__main"
+    >
+      <!--F#16-->
+      <!--F/-->
+    </div>
+  </div>
+</aside>
+`;
+
+exports[`toast-dialog > renders basic version 1`] = `
+<aside
+  aria-labelledby="s0-0-dialog-title"
+  aria-live="polite"
+  aria-modal="true"
+  class="toast-dialog toast-dialog--transition"
+  hidden=""
+  role="dialog"
+>
+  <div
+    class="toast-dialog__window"
+  >
+    <div
+      class="toast-dialog__header"
+    >
+      <!--F#13-->
+      <h2
+        class="toast-dialog__title toast-dialog__title"
+        id="s0-0-dialog-title"
+      >
+        <!--F#2-->
+        head content
+        <!--F/-->
+      </h2>
+      <!--F/-->
+      <!--F#14-->
+      <button
+        aria-label="close"
+        class="icon-btn icon-btn--transparent toast-dialog__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="toast-dialog__main"
+    >
+      <!--F#16-->
+      body content
+      <!--F/-->
+    </div>
+    <div
+      class="toast-dialog__footer"
+    >
+      <!--F#20-->
+      foter content
+      <!--F/-->
+    </div>
+  </div>
+</aside>
+`;
+
+exports[`toast-dialog > renders basic version 2`] = `
+<button
+  aria-label="close"
+  class="icon-btn icon-btn--transparent toast-dialog__close"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-close-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-close-16"
+    />
+  </svg>
+</button>
+`;
+
+exports[`toast-dialog > renders basic version 3`] = `
+<div
+  class="toast-dialog__main"
+>
+  <!--F#16-->
+  body content
+  <!--F/-->
+</div>
+`;
+
+exports[`toast-dialog > renders basic version 4`] = `
+<div
+  class="toast-dialog__header"
+>
+  <!--F#13-->
+  <h2
+    class="toast-dialog__title toast-dialog__title"
+    id="s0-0-dialog-title"
+  >
+    <!--F#2-->
+    head content
+    <!--F/-->
+  </h2>
+  <!--F/-->
+  <!--F#14-->
+  <button
+    aria-label="close"
+    class="icon-btn icon-btn--transparent toast-dialog__close"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="icon icon--16"
+      focusable="false"
+    >
+      <defs>
+        <symbol
+          id="icon-close-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-close-16"
+      />
+    </svg>
+  </button>
+  <!--F/-->
+</div>
+`;
+
+exports[`toast-dialog > renders basic version 5`] = `
+<div
+  class="toast-dialog__footer"
+>
+  <!--F#20-->
+  foter content
+  <!--F/-->
+</div>
+`;
+
+exports[`toast-dialog > renders in open state 1`] = `
+<aside
+  aria-labelledby="s0-0-dialog-title"
+  aria-live="polite"
+  aria-modal="true"
+  class="toast-dialog toast-dialog--transition"
+  role="dialog"
+>
+  <div
+    class="toast-dialog__window"
+  >
+    <div
+      class="toast-dialog__header"
+    >
+      <!--F#13-->
+      <h2
+        class="toast-dialog__title toast-dialog__title"
+        id="s0-0-dialog-title"
+      >
+        <!--F#2-->
+        head content
+        <!--F/-->
+      </h2>
+      <!--F/-->
+      <!--F#14-->
+      <button
+        aria-label="close"
+        class="icon-btn icon-btn--transparent toast-dialog__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="toast-dialog__main"
+    >
+      <!--F#16-->
+      body content
+      <!--F/-->
+    </div>
+    <div
+      class="toast-dialog__footer"
+    >
+      <!--F#20-->
+      foter content
+      <!--F/-->
+    </div>
+  </div>
+</aside>
+`;

@@ -1,5 +1,4 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import * as stories from "../filter-menu-button.stories";
@@ -10,7 +9,6 @@ const { Default, WithFooter } = composeStories(stories);
 
 const items = [...Default.args.items];
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -30,7 +28,7 @@ describe("given the filter menu is in the default state", () => {
         });
 
         it("then it expands", async () => {
-            expect(filterButton).to.have.attr("aria-expanded", "true");
+            expect(filterButton).toHaveAttribute("aria-expanded", "true");
         });
 
         it("then it emits the marko event from expander-expand", () => {
@@ -43,7 +41,7 @@ describe("given the filter menu is in the default state", () => {
             });
 
             it("then it collapses", async () => {
-                expect(filterButton).to.have.attr("aria-expanded", "false");
+                expect(filterButton).toHaveAttribute("aria-expanded", "false");
             });
 
             it("then it emits the marko event from expander-collapse", () => {
@@ -62,7 +60,7 @@ describe("given the filter menu is in the default state", () => {
         });
 
         it("then it remains collapsed", () => {
-            expect(filterButton).to.have.attr("aria-expanded", "false");
+            expect(filterButton).toHaveAttribute("aria-expanded", "false");
         });
 
         it("then it doesn't emit the marko collapse event", () => {
@@ -81,7 +79,7 @@ describe("given the filter menu is in the default state", () => {
         });
 
         it("then it expands", () => {
-            expect(filterButton).to.have.attr("aria-expanded", "true");
+            expect(filterButton).toHaveAttribute("aria-expanded", "true");
         });
 
         it("then it emits the menu-expand event", () => {
@@ -119,7 +117,7 @@ describe("given the menu is in the expanded state", () => {
         });
 
         it("then it remains expanded", () => {
-            expect(filterButton).to.have.attr("aria-expanded", "true");
+            expect(filterButton).toHaveAttribute("aria-expanded", "true");
         });
 
         it("then it doesn't emit the marko expand event", () => {
@@ -138,7 +136,7 @@ describe("given the menu is in the expanded state", () => {
         });
 
         it("then it expands", () => {
-            expect(filterButton).to.have.attr("aria-expanded", "false");
+            expect(filterButton).toHaveAttribute("aria-expanded", "false");
         });
 
         it("then it emits the expand event", () => {
@@ -156,7 +154,9 @@ describe("given the menu is in the expanded state", () => {
             expect(selectEvents).to.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property("el").with.text(firstItemText);
+            expect(eventArg)
+                .has.property("el")
+                .toHaveTextContent(firstItemText);
             expect(eventArg).has.property("checked").to.deep.equal(["item 1"]);
             expect(eventArg).has.property("currentChecked").to.equal(true);
             expect(eventArg).has.property("index").to.equal(0);
@@ -187,8 +187,8 @@ describe("given the menu is in the expanded state", () => {
         });
 
         it("then both items are selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "true");
-            expect(secondItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
+            expect(secondItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
@@ -218,7 +218,7 @@ describe("given the menu is in the expanded state", () => {
         });
 
         it("then the item is unchecked", () => {
-            expect(firstItem).to.have.attr("aria-checked", "false");
+            expect(firstItem).toHaveAttribute("aria-checked", "false");
         });
     });
 
@@ -235,7 +235,9 @@ describe("given the menu is in the expanded state", () => {
             expect(changeEvents).to.have.length(1);
 
             const [firstEventData] = changeEvents.flat();
-            expect(firstEventData).has.property("el").with.text(firstItemText);
+            expect(firstEventData)
+                .has.property("el")
+                .toHaveTextContent(firstItemText);
             expect(firstEventData)
                 .has.property("checked")
                 .to.deep.equal(["item 1"]);
@@ -254,7 +256,7 @@ describe("given the menu is in the expanded state", () => {
         it("then it emits the footer-click event", () => {
             const changeEvents = component.emitted("footer-click");
             expect(changeEvents).to.have.length(1);
-            expect(filterButton).to.have.attr("aria-expanded", "false");
+            expect(filterButton).toHaveAttribute("aria-expanded", "false");
         });
     });
 

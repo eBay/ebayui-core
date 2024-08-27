@@ -1,10 +1,16 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
 import { render, fireEvent, waitFor, cleanup } from "@marko/testing-library";
+import {
+    afterEach,
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+} from "vitest";
 import { fastAnimations } from "../../../common/test-utils/browser";
-import template from "..";
+import template from "../index.marko";
 import * as mock from "./mock";
-use(chaiDom);
 const supportsNativeScrolling =
     CSS.supports &&
     CSS.supports(
@@ -15,8 +21,8 @@ const supportsNativeScrolling =
     (scroll-snap-align: start))`,
     );
 
-before(fastAnimations.start);
-after(fastAnimations.stop);
+beforeAll(() => fastAnimations.start());
+afterAll(() => fastAnimations.stop());
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -34,14 +40,12 @@ describe("given a continuous carousel", () => {
         });
 
         it("then prev and next controls are disabled", () => {
-            expect(component.getByLabelText(input.a11yPreviousText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
-            expect(component.getByLabelText(input.a11yNextText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
+            expect(
+                component.getByLabelText(input.a11yPreviousText),
+            ).toHaveAttribute("aria-disabled", "true");
+            expect(
+                component.getByLabelText(input.a11yNextText),
+            ).toHaveAttribute("aria-disabled", "true");
         });
     });
 
@@ -53,14 +57,12 @@ describe("given a continuous carousel", () => {
         });
 
         it("then prev and next controls are disabled", () => {
-            expect(component.getByLabelText(input.a11yPreviousText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
-            expect(component.getByLabelText(input.a11yNextText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
+            expect(
+                component.getByLabelText(input.a11yPreviousText),
+            ).toHaveAttribute("aria-disabled", "true");
+            expect(
+                component.getByLabelText(input.a11yNextText),
+            ).toHaveAttribute("aria-disabled", "true");
         });
     });
 
@@ -74,7 +76,7 @@ describe("given a continuous carousel", () => {
             await waitFor(() =>
                 expect(
                     component.getByLabelText(input.a11yNextText),
-                ).to.not.have.attr("aria-disabled"),
+                ).not.toHaveAttribute("aria-disabled"),
             );
         });
 
@@ -213,7 +215,7 @@ describe("given a continuous carousel", () => {
             await waitFor(() =>
                 expect(
                     component.getByLabelText(input.a11yNextText),
-                ).to.not.have.attr("aria-disabled"),
+                ).not.toHaveAttribute("aria-disabled"),
             );
         });
 
@@ -280,14 +282,12 @@ describe("given a discrete carousel", () => {
         });
 
         it("then prev and next controls are disabled", () => {
-            expect(component.getByLabelText(input.a11yPreviousText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
-            expect(component.getByLabelText(input.a11yNextText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
+            expect(
+                component.getByLabelText(input.a11yPreviousText),
+            ).toHaveAttribute("aria-disabled", "true");
+            expect(
+                component.getByLabelText(input.a11yNextText),
+            ).toHaveAttribute("aria-disabled", "true");
         });
     });
 
@@ -299,14 +299,12 @@ describe("given a discrete carousel", () => {
         });
 
         it("then prev and next controls are disabled", () => {
-            expect(component.getByLabelText(input.a11yPreviousText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
-            expect(component.getByLabelText(input.a11yNextText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
+            expect(
+                component.getByLabelText(input.a11yPreviousText),
+            ).toHaveAttribute("aria-disabled", "true");
+            expect(
+                component.getByLabelText(input.a11yNextText),
+            ).toHaveAttribute("aria-disabled", "true");
         });
     });
 
@@ -320,15 +318,14 @@ describe("given a discrete carousel", () => {
             await waitFor(() =>
                 expect(
                     component.getByLabelText(input.a11yNextText),
-                ).to.not.have.attr("aria-disabled"),
+                ).not.toHaveAttribute("aria-disabled"),
             );
         });
 
         it("then prev control is disabled", () => {
-            expect(component.getByLabelText(input.a11yPreviousText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
+            expect(
+                component.getByLabelText(input.a11yPreviousText),
+            ).toHaveAttribute("aria-disabled", "true");
         });
 
         describe("when it is rerendered to show the second item", () => {
@@ -445,10 +442,10 @@ describe("given a discrete carousel", () => {
             it("then prev and next controls are enabled", () => {
                 expect(
                     component.getByLabelText(input.a11yPreviousText),
-                ).to.not.have.attr("aria-disabled");
+                ).not.toHaveAttribute("aria-disabled");
                 expect(
                     component.getByLabelText(input.a11yNextText),
-                ).to.not.have.attr("aria-disabled");
+                ).not.toHaveAttribute("aria-disabled");
             });
         }
     });
@@ -464,10 +461,9 @@ describe("given a discrete carousel", () => {
         });
 
         it("then next control is disabled", () => {
-            expect(component.getByLabelText(input.a11yNextText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
+            expect(
+                component.getByLabelText(input.a11yNextText),
+            ).toHaveAttribute("aria-disabled", "true");
         });
 
         describe("when previous button is clicked", () => {
@@ -499,10 +495,10 @@ describe("given a discrete carousel", () => {
             it("then prev and next controls are enabled", () => {
                 expect(
                     component.getByLabelText(input.a11yPreviousText),
-                ).to.not.have.attr("aria-disabled");
+                ).not.toHaveAttribute("aria-disabled");
                 expect(
                     component.getByLabelText(input.a11yNextText),
-                ).to.not.have.attr("aria-disabled");
+                ).not.toHaveAttribute("aria-disabled");
             });
         });
     });
@@ -517,7 +513,7 @@ describe("given a discrete carousel", () => {
             await waitFor(() =>
                 expect(
                     component.getByLabelText(input.a11yNextText),
-                ).to.not.have.attr("aria-disabled"),
+                ).not.toHaveAttribute("aria-disabled"),
             );
         });
 
@@ -558,7 +554,7 @@ describe("given a discrete carousel", () => {
             await waitFor(() =>
                 expect(
                     component.getByLabelText(input.a11yNextText),
-                ).to.not.have.attr("aria-disabled"),
+                ).not.toHaveAttribute("aria-disabled"),
             );
         });
 
@@ -607,7 +603,7 @@ describe("given a discrete carousel", () => {
             await waitFor(() =>
                 expect(
                     component.getByLabelText(input.a11yNextText),
-                ).to.not.have.attr("aria-disabled"),
+                ).not.toHaveAttribute("aria-disabled"),
             );
         });
 

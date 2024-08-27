@@ -1,12 +1,10 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup, waitFor } from "@marko/testing-library";
 import { pressKey } from "../../../common/test-utils/browser";
 import * as stories from "../chips-combobox.stories"; // import all stories from the stories file
 const { Default, Selected } = composeStories(stories);
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -23,7 +21,7 @@ describe("ebay-chips-combobox default", () => {
         });
 
         it("then it should expand the combobox", () => {
-            expect(component.getByRole("combobox")).has.attr(
+            expect(component.getByRole("combobox")).toHaveAttribute(
                 "aria-expanded",
                 "true",
             );
@@ -109,7 +107,7 @@ describe("ebay-chips-combobox selected", () => {
         });
 
         it("then it should expand the combobox", () => {
-            expect(component.getByRole("combobox")).has.attr(
+            expect(component.getByRole("combobox")).toHaveAttribute(
                 "aria-expanded",
                 "true",
             );

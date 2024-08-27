@@ -1,5 +1,4 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import { pressKey } from "../../../common/test-utils/browser";
@@ -10,7 +9,6 @@ const { Default } = composeStories(stories);
 
 const items = [...Default.args.items];
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -34,7 +32,7 @@ describe("given the menu is in the default state", () => {
         });
 
         it("then it expands", async () => {
-            expect(component.getByRole("button")).to.have.attr(
+            expect(component.getByRole("button")).toHaveAttribute(
                 "aria-expanded",
                 "true",
             );
@@ -50,7 +48,7 @@ describe("given the menu is in the default state", () => {
             });
 
             it("then it collapses", async () => {
-                expect(component.getByRole("button")).to.have.attr(
+                expect(component.getByRole("button")).toHaveAttribute(
                     "aria-expanded",
                     "false",
                 );
@@ -86,7 +84,7 @@ describe("given the menu is in the default state", () => {
             expect(selectEvents).has.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property("el").with.text(fourthItem);
+            expect(eventArg).has.property("el").toHaveTextContent(fourthItem);
         });
     });
 
@@ -96,7 +94,7 @@ describe("given the menu is in the default state", () => {
         });
 
         it("then it remains collapsed", () => {
-            expect(component.getByRole("button")).to.have.attr(
+            expect(component.getByRole("button")).toHaveAttribute(
                 "aria-expanded",
                 "false",
             );
@@ -114,7 +112,7 @@ describe("given the menu is in the default state", () => {
         });
 
         it("then it expands", () => {
-            expect(component.getByRole("button")).to.have.attr(
+            expect(component.getByRole("button")).toHaveAttribute(
                 "aria-expanded",
                 "true",
             );
@@ -142,7 +140,7 @@ describe("given the menu is in the expanded state", () => {
         });
 
         it("then it remains expanded", () => {
-            expect(component.getByRole("button")).to.have.attr(
+            expect(component.getByRole("button")).toHaveAttribute(
                 "aria-expanded",
                 "true",
             );
@@ -160,7 +158,7 @@ describe("given the menu is in the expanded state", () => {
         });
 
         it("then it expands", () => {
-            expect(component.getByRole("button")).to.have.attr(
+            expect(component.getByRole("button")).toHaveAttribute(
                 "aria-expanded",
                 "false",
             );
@@ -182,7 +180,9 @@ describe("given the menu is in the expanded state", () => {
             expect(selectEvents).to.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property("el").with.text(firstItemText);
+            expect(eventArg)
+                .has.property("el")
+                .toHaveTextContent(firstItemText);
             expect(eventArg).has.property("checked").to.deep.equal([0]);
         });
 
@@ -200,7 +200,7 @@ describe("given the menu is in the expanded state", () => {
         });
 
         it("then it collapses", () => {
-            expect(component.getByRole("button")).to.have.attr(
+            expect(component.getByRole("button")).toHaveAttribute(
                 "aria-expanded",
                 "false",
             );
@@ -220,7 +220,7 @@ describe("given the menu is in the expanded state", () => {
         });
 
         it("then it collapses", () => {
-            expect(component.getByRole("button")).to.have.attr(
+            expect(component.getByRole("button")).toHaveAttribute(
                 "aria-expanded",
                 "false",
             );
@@ -258,7 +258,7 @@ describe("given the menu is in the expanded state with radio items", () => {
         });
 
         it("then the item is selected", () => {
-            expect(secondItem).to.have.attr("aria-checked", "true");
+            expect(secondItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
@@ -279,7 +279,7 @@ describe("given the menu is in the expanded state with radio items", () => {
         });
 
         it("then the item is selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
@@ -299,15 +299,15 @@ describe("given the menu is in the expanded state with radio items", () => {
         });
 
         it("then the second item is selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "false");
-            expect(secondItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "false");
+            expect(secondItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
     describe("when an item is clicked multiple times", () => {
         beforeEach(async () => {
             await fireEvent.click(firstItem);
-            expect(firstItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
             await fireEvent.click(firstItem);
         });
 
@@ -320,7 +320,7 @@ describe("given the menu is in the expanded state with radio items", () => {
         });
 
         it("then the item is selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
         });
     });
 });
@@ -353,8 +353,8 @@ describe("given the menu is in the expanded state with checkbox items", () => {
         });
 
         it("then both items are selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "true");
-            expect(secondItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
+            expect(secondItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
@@ -374,7 +374,7 @@ describe("given the menu is in the expanded state with checkbox items", () => {
         });
 
         it("then the item is unchecked", () => {
-            expect(firstItem).to.have.attr("aria-checked", "false");
+            expect(firstItem).toHaveAttribute("aria-checked", "false");
         });
     });
 });

@@ -1,23 +1,28 @@
-import { expect } from "chai";
+import { afterEach, describe, it, expect, vi } from "vitest";
+vi.mock("../../loader", () => ({
+    loader: vi.fn(),
+}));
+
 import { waitFor } from "@marko/testing-library";
-import sinon from "sinon/pkg/sinon";
 import { CDNLoader } from "..";
-import * as load from "../../loader";
+import { loader } from "../../loader";
 
 describe("CDN Loader", () => {
     afterEach(() => {
-        load.loader.restore();
+        vi.clearAllMocks();
     });
 
     it("Properly loads files from CDN", async () => {
-        sinon.stub(load, "loader").returns(Promise.resolve());
-        const setLoading = sinon.spy();
-        const handleSuccess = sinon.spy();
-        const handleError = sinon.spy();
+        loader.mockResolvedValue(true);
+        const setLoading = vi.fn();
+        const handleSuccess = vi.fn();
+        const handleError = vi.fn();
 
         const cdnLoader = new CDNLoader(
             {
-                subscribeTo: sinon.stub(),
+                subscribeTo: vi.fn().mockReturnValue({
+                    once: vi.fn(),
+                }),
             },
             {
                 key: "key",
@@ -29,25 +34,24 @@ describe("CDN Loader", () => {
             },
         );
 
+        cdnLoader.mount();
         await waitFor(() => {
-            cdnLoader.mount();
-            expect(load.loader.called).to.equal(true, "loader called");
-            expect(handleError.called).to.equal(false, "error called");
-            expect(handleSuccess.called).to.equal(true, "success called");
-            expect(setLoading.calledWith(false)).to.equal(true);
+            expect(handleSuccess).toBeCalled("success called");
+            expect(handleError).toBeCalledTimes(0, "error called");
+            expect(setLoading).toHaveBeenCalledWith(false);
         });
     });
 
     it("Properly fails", async () => {
-        sinon.stub(load, "loader").returns(Promise.reject());
-        const setLoading = sinon.spy();
-        const handleSuccess = sinon.spy();
-        const handleError = sinon.spy();
+        loader.mockRejectedValue(new Error());
+        const setLoading = vi.fn();
+        const handleSuccess = vi.fn();
+        const handleError = vi.fn();
 
         const cdnLoader = new CDNLoader(
             {
-                subscribeTo: sinon.stub().returns({
-                    once: sinon.spy(),
+                subscribeTo: vi.fn().mockReturnValue({
+                    once: vi.fn(),
                 }),
             },
             {
@@ -64,10 +68,9 @@ describe("CDN Loader", () => {
 
         await waitFor(
             () => {
-                expect(load.loader.called).to.equal(true, "loader called");
-                expect(handleError.called).to.equal(true, "error called");
-                expect(handleSuccess.called).to.equal(false, "success called");
-                expect(setLoading.calledWith(false)).to.equal(true);
+                expect(handleError).toBeCalled("error called");
+                expect(handleSuccess).toBeCalledTimes(0, "success called");
+                expect(setLoading).toHaveBeenCalledWith(false);
             },
             { timeout: 6000 },
         );

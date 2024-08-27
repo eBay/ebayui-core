@@ -1,12 +1,10 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import { composeStories } from "@storybook/marko";
 import * as stories from "../segmented-buttons.stories"; // import all stories from the stories file
 
 const { Default } = composeStories(stories);
 
-use(chaiDom);
 afterEach(cleanup);
 
 let component;

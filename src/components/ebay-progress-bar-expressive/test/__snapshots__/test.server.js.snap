@@ -1,0 +1,272 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`progress-bar-expressive > renders custom accessible name 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"progress-bar-expressive"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"progress-bar-expressive__messages"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"progress-bar-expressive__message"[39m
+      [36m>[39m
+        [0mEspera...[0m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"progress-bar-expressive__message progress-bar-expressive__message--initial"[39m
+        [33mid[39m=[32m"s0-0-message"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m/>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33maria-describedby[39m=[32m"s0-0-message"[39m
+      [33maria-label[39m=[32m"Cargando..."[39m
+      [33mclass[39m=[32m"progress-bar-expressive__progress"[39m
+      [33mrole[39m=[32m"progressbar"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"progress-bar-expressive__lines"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`progress-bar-expressive > renders default 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"progress-bar-expressive"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33maria-describedby[39m=[32m"s0-0-message"[39m
+      [33maria-label[39m=[32m"Loading..."[39m
+      [33mclass[39m=[32m"progress-bar-expressive__progress"[39m
+      [33mrole[39m=[32m"progressbar"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"progress-bar-expressive__lines"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`progress-bar-expressive > renders medium text 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"progress-bar-expressive"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"progress-bar-expressive__messages progress-bar-expressive__messages--medium"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"progress-bar-expressive__message"[39m
+      [36m>[39m
+        [0mWe're processing your order[0m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"progress-bar-expressive__message progress-bar-expressive__message--initial"[39m
+        [33mid[39m=[32m"s0-0-message"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m>[39m
+        [0mHang tight[0m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33maria-describedby[39m=[32m"s0-0-message"[39m
+      [33maria-label[39m=[32m"Loading..."[39m
+      [33mclass[39m=[32m"progress-bar-expressive__progress"[39m
+      [33mrole[39m=[32m"progressbar"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"progress-bar-expressive__lines"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`progress-bar-expressive > renders message container 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"progress-bar-expressive"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"progress-bar-expressive__messages"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"progress-bar-expressive__message"[39m
+      [36m>[39m
+        [0mHang tight[0m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"progress-bar-expressive__message progress-bar-expressive__message--initial"[39m
+        [33mid[39m=[32m"s0-0-message"[39m
+        [33mrole[39m=[32m"status"[39m
+      [36m/>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33maria-describedby[39m=[32m"s0-0-message"[39m
+      [33maria-label[39m=[32m"Loading..."[39m
+      [33mclass[39m=[32m"progress-bar-expressive__progress"[39m
+      [33mrole[39m=[32m"progressbar"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"progress-bar-expressive__lines"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"progress-bar-expressive__line"[39m
+        [36m/>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;

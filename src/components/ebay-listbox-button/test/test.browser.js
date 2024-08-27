@@ -1,5 +1,12 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import {
+    afterEach,
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+} from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import { pressKey } from "../../../common/test-utils/browser";
@@ -10,7 +17,6 @@ const { Default, withDescription } = composeStories(stories);
 const options = [...Default.args.options];
 options[0] = Object.assign({ selected: true }, options[0]);
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -18,8 +24,8 @@ let component;
 
 // Tests are rendered in a form so that we can check the form data value.
 const form = document.createElement("form");
-before(() => document.body.appendChild(form));
-after(() => document.body.removeChild(form));
+beforeAll(() => document.body.appendChild(form));
+afterAll(() => document.body.removeChild(form));
 
 describe("given the listbox with 3 items", () => {
     beforeEach(async () => {
@@ -37,14 +43,14 @@ describe("given the listbox with 3 items", () => {
     });
 
     it("then it should not be expanded", () => {
-        expect(component.getByRole("button")).has.attr(
+        expect(component.getByRole("button")).toHaveAttribute(
             "aria-expanded",
             "false",
         );
     });
 
     it("then it should have button with name attribute", () => {
-        expect(component.getByRole("button")).has.attr(
+        expect(component.getByRole("button")).toHaveAttribute(
             "name",
             "listbox-button-name",
         );
@@ -65,7 +71,7 @@ describe("given the listbox with 3 items", () => {
         });
 
         it("then it should not expand the listbox", () => {
-            expect(component.getByRole("button")).has.attr(
+            expect(component.getByRole("button")).toHaveAttribute(
                 "aria-expanded",
                 "false",
             );
@@ -81,7 +87,7 @@ describe("given the listbox with 3 items", () => {
             });
 
             it("then it should not expand the listbox", () => {
-                expect(component.getByRole("button")).has.attr(
+                expect(component.getByRole("button")).toHaveAttribute(
                     "aria-expanded",
                     "false",
                 );
@@ -99,7 +105,7 @@ describe("given the listbox with 3 items", () => {
         });
 
         it("then it has expanded the listbox", () => {
-            expect(component.getByRole("button")).has.attr(
+            expect(component.getByRole("button")).toHaveAttribute(
                 "aria-expanded",
                 "true",
             );
@@ -115,7 +121,7 @@ describe("given the listbox with 3 items", () => {
             });
 
             it("then it has collapsed the listbox", () => {
-                expect(component.getByRole("button")).has.attr(
+                expect(component.getByRole("button")).toHaveAttribute(
                     "aria-expanded",
                     "false",
                 );

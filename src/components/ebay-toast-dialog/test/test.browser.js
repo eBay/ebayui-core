@@ -1,15 +1,21 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
 import { render, waitFor, cleanup } from "@marko/testing-library";
+import {
+    afterEach,
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+} from "vitest";
 import { composeStories } from "@storybook/marko";
 import { addRenderBodies } from "../../../../.storybook/utils";
 import { fastAnimations } from "../../../common/test-utils/browser";
 import * as stories from "../toast-dialog.stories"; // import all stories from the stories file
 const { Default } = composeStories(stories);
 
-use(chaiDom);
-before(fastAnimations.start);
-after(fastAnimations.stop);
+beforeAll(() => fastAnimations.start());
+afterAll(() => fastAnimations.stop());
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -21,7 +27,7 @@ describe("given a closed toast", () => {
     });
 
     it("then it is hidden in the DOM", () => {
-        expect(component.getByRole("dialog", { hidden: true })).has.attr(
+        expect(component.getByRole("dialog", { hidden: true })).toHaveAttribute(
             "hidden",
         );
     });

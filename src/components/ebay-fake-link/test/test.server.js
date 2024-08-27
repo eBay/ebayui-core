@@ -1,19 +1,18 @@
-import { expect, use } from "chai";
+import { it, expect } from "vitest";
+
 import { render } from "@marko/testing-library";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
-import template from "..";
-
-use(require("chai-dom"));
+import template from "../index.marko";
 
 it("renders fake link version", async () => {
     const { getByRole } = await render(template, {});
 
-    expect(getByRole("button")).has.class("fake-link");
+    expect(getByRole("button")).toMatchSnapshot();
 });
 
 it("renders disabled version", async () => {
     const { getByRole } = await render(template, { disabled: true });
-    expect(getByRole("button")).has.attr("disabled");
+    expect(getByRole("button")).toMatchSnapshot();
 });
 
 testPassThroughAttributes(template);

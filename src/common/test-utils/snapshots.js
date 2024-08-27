@@ -1,16 +1,11 @@
 import { render, prettyDOM } from "@marko/testing-library";
-import snap from "mocha-snap";
+import { expect } from "vitest";
 
-function snapshotNode(dirname) {
-    return (container) => snap(container, { dir: dirname });
-}
-
-function snapshotHTML(dirname) {
-    const localSnap = snapshotNode(dirname);
+function snapshotHTML() {
     return async (template, input) => {
         const { container } = await render(template, input);
-        await localSnap(prettyDOM(container));
+        expect(prettyDOM(container)).toMatchSnapshot();
     };
 }
 
-export { snapshotHTML, snapshotNode };
+export { snapshotHTML };

@@ -1,0 +1,430 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`dialog > passes through additional html attributes 1`] = `
+<div
+  aria-labelledby="s0-0-0-dialog-title"
+  aria-modal="true"
+  class="confirm-dialog class1 confirm-dialog--mask-fade"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="dialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="confirm-dialog__window confirm-dialog__window--fade"
+  >
+    <div
+      class="confirm-dialog__header"
+    >
+      <!--F#14-->
+      <!--F/-->
+      <!--F#15-->
+      <h2
+        class="confirm-dialog__title"
+        id="s0-0-0-dialog-title"
+      >
+        <!--F#2-->
+        <!--F#1-->
+        Delete Address?
+        <!--F/-->
+        <!--F/-->
+      </h2>
+      <!--F/-->
+    </div>
+    <div
+      class="confirm-dialog__main"
+      id="s0-0-confirm-dialog-main"
+    >
+      <!--F#16-->
+      <!--F#5-->
+      <!--F#4-->
+      You will permanently lose this address.
+      <!--F/-->
+      <p>
+        This 'confirm' text should be 1-2 lines.
+      </p>
+      <!--F/-->
+      <!--F/-->
+    </div>
+    <div
+      class="confirm-dialog__footer"
+    >
+      <!--F#20-->
+      <button
+        class="confirm-dialog__reject btn btn--secondary"
+        data-ebayui=""
+        id="s0-0-confirm-dialog-cancel"
+        type="button"
+      >
+        <!--F#7-->
+        <!--F#2-->
+        <!--F#3-->
+        Cancel
+        <!--F/-->
+        <!--F/-->
+        <!--F/-->
+      </button>
+      <button
+        aria-describedby="s0-0-confirm-dialog-main"
+        class="confirm-dialog__confirm btn btn--primary"
+        data-ebayui=""
+        id="s0-0-confirm-dialog-confirm"
+        type="button"
+      >
+        <!--F#7-->
+        <!--F#4-->
+        <!--F#2-->
+        Delete
+        <!--F/-->
+        <!--F/-->
+        <!--F/-->
+      </button>
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog > passes through additional html attributes 2`] = `
+<div
+  aria-labelledby="s0-0-0-dialog-title"
+  aria-modal="true"
+  class="confirm-dialog class1 confirm-dialog--mask-fade"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="dialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="confirm-dialog__window confirm-dialog__window--fade"
+  >
+    <div
+      class="confirm-dialog__header"
+    >
+      <!--F#14-->
+      <!--F/-->
+      <!--F#15-->
+      <h2
+        class="confirm-dialog__title"
+        id="s0-0-0-dialog-title"
+      >
+        <!--F#2-->
+        <!--F#1-->
+        Delete Address?
+        <!--F/-->
+        <!--F/-->
+      </h2>
+      <!--F/-->
+    </div>
+    <div
+      class="confirm-dialog__main"
+      id="s0-0-confirm-dialog-main"
+    >
+      <!--F#16-->
+      <!--F#5-->
+      <!--F#4-->
+      You will permanently lose this address.
+      <!--F/-->
+      <p>
+        This 'confirm' text should be 1-2 lines.
+      </p>
+      <!--F/-->
+      <!--F/-->
+    </div>
+    <div
+      class="confirm-dialog__footer"
+    >
+      <!--F#20-->
+      <button
+        class="confirm-dialog__reject btn btn--secondary"
+        data-ebayui=""
+        id="s0-0-confirm-dialog-cancel"
+        type="button"
+      >
+        <!--F#7-->
+        <!--F#2-->
+        <!--F#3-->
+        Cancel
+        <!--F/-->
+        <!--F/-->
+        <!--F/-->
+      </button>
+      <button
+        aria-describedby="s0-0-confirm-dialog-main"
+        class="confirm-dialog__confirm btn btn--primary"
+        data-ebayui=""
+        id="s0-0-confirm-dialog-confirm"
+        type="button"
+      >
+        <!--F#7-->
+        <!--F#4-->
+        <!--F#2-->
+        Delete
+        <!--F/-->
+        <!--F/-->
+        <!--F/-->
+      </button>
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog > renders basic version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"confirm-dialog confirm-dialog--mask-fade"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"confirm-dialog__window confirm-dialog__window--fade"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"confirm-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-0-dialog-title"[39m
+        [36m>[39m
+          [0mDelete Address?[0m
+        [36m</h2>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__main"[39m
+        [33mid[39m=[32m"s0-0-confirm-dialog-main"[39m
+      [36m>[39m
+        [0mYou will permanently lose this address.[0m
+        [36m<p>[39m
+          [0mThis 'confirm' text should be 1-2 lines.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__footer"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"confirm-dialog__reject btn btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mid[39m=[32m"s0-0-confirm-dialog-cancel"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mCancel[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-describedby[39m=[32m"s0-0-confirm-dialog-main"[39m
+          [33mclass[39m=[32m"confirm-dialog__confirm btn btn--primary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mid[39m=[32m"s0-0-confirm-dialog-confirm"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mDelete[0m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Confirm Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`dialog > renders in open state 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"confirm-dialog confirm-dialog--mask-fade"[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"confirm-dialog__window confirm-dialog__window--fade"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"confirm-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-0-dialog-title"[39m
+        [36m>[39m
+          [0mDelete Address?[0m
+        [36m</h2>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__main"[39m
+        [33mid[39m=[32m"s0-0-confirm-dialog-main"[39m
+      [36m>[39m
+        [0mYou will permanently lose this address.[0m
+        [36m<p>[39m
+          [0mThis 'confirm' text should be 1-2 lines.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__footer"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"confirm-dialog__reject btn btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mid[39m=[32m"s0-0-confirm-dialog-cancel"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mCancel[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-describedby[39m=[32m"s0-0-confirm-dialog-main"[39m
+          [33mclass[39m=[32m"confirm-dialog__confirm btn btn--primary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mid[39m=[32m"s0-0-confirm-dialog-confirm"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mDelete[0m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Confirm Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`dialog > renders with custom close/open 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"confirm-dialog confirm-dialog--mask-fade"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"confirm-dialog__window confirm-dialog__window--fade"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"confirm-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-0-dialog-title"[39m
+        [36m>[39m
+          [0mDelete Address?[0m
+        [36m</h2>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__main"[39m
+        [33mid[39m=[32m"s0-0-confirm-dialog-main"[39m
+      [36m>[39m
+        [0mYou will permanently lose this address.[0m
+        [36m<p>[39m
+          [0mThis 'confirm' text should be 1-2 lines.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__footer"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"confirm-dialog__reject btn btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mid[39m=[32m"s0-0-confirm-dialog-cancel"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mCustom reject[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-describedby[39m=[32m"s0-0-confirm-dialog-main"[39m
+          [33mclass[39m=[32m"confirm-dialog__confirm btn btn--primary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mid[39m=[32m"s0-0-confirm-dialog-confirm"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mCustom confirm[0m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Confirm Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`dialog > renders with destructive CTA 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"confirm-dialog confirm-dialog--mask-fade"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"confirm-dialog__window confirm-dialog__window--fade"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"confirm-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-0-dialog-title"[39m
+        [36m>[39m
+          [0mDelete Address?[0m
+        [36m</h2>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__main"[39m
+        [33mid[39m=[32m"s0-0-confirm-dialog-main"[39m
+      [36m>[39m
+        [0mYou will permanently lose this address.[0m
+        [36m<p>[39m
+          [0mThis 'confirm' text should be 1-2 lines.[0m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"confirm-dialog__footer"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"confirm-dialog__reject btn btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mid[39m=[32m"s0-0-confirm-dialog-cancel"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mCancel[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-describedby[39m=[32m"s0-0-confirm-dialog-main"[39m
+          [33mclass[39m=[32m"confirm-dialog__confirm btn--destructive btn btn--primary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mid[39m=[32m"s0-0-confirm-dialog-confirm"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mDelete[0m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Confirm Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;

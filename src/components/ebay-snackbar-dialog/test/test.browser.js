@@ -1,18 +1,24 @@
-import { expect, use } from "chai";
 import { composeStories } from "@storybook/marko";
-import chaiDom from "chai-dom";
-import sinon from "sinon/pkg/sinon";
+import {
+    afterEach,
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+    vi,
+} from "vitest";
 import { render, fireEvent, cleanup, waitFor } from "@marko/testing-library";
 import { fastAnimations } from "../../../common/test-utils/browser";
 import * as stories from "../snackbar-dialog.stories"; // import all stories from the stories file
 const { Default, WithAction } = composeStories(stories);
 
-use(chaiDom);
-before(() => {
+beforeAll(() => {
     fastAnimations.start();
 });
 
-after(() => {
+afterAll(() => {
     fastAnimations.stop();
 });
 afterEach(() => {
@@ -21,20 +27,19 @@ afterEach(() => {
 
 /** @type import("@marko/testing-library").RenderResult */
 let component;
-let clock;
 
 describe("given an open snackbar", () => {
     beforeEach(async () => {
         component = await render(WithAction, { open: true });
-        clock = sinon.useFakeTimers();
+        vi.useFakeTimers();
     });
 
     afterEach(() => {
-        clock.restore();
+        vi.useRealTimers();
     });
 
     it("then it is not hidden in the DOM", () => {
-        expect(component.getByRole("dialog")).does.not.have.attr("hidden");
+        expect(component.getByRole("dialog")).not.toHaveAttribute("hidden");
     });
 
     describe("clicking on action icon emits action", () => {
@@ -51,7 +56,7 @@ describe("given an open snackbar", () => {
             );
             await fireEvent.focus(component.getByText(/Undo/i).parentElement);
             await fireEvent.blur(component.getByText(/Undo/i).parentElement);
-            clock.tick(7000);
+            vi.advanceTimersByTime(7000);
             await waitFor(() => {
                 expect(component.emitted("close")).has.length(0);
             });
@@ -65,7 +70,7 @@ describe("given a closed snackbar", () => {
     });
 
     it("then it is hidden in the DOM", () => {
-        expect(component.getByRole("dialog", { hidden: true })).to.have.attr(
+        expect(component.getByRole("dialog", { hidden: true })).toHaveAttribute(
             "hidden",
         );
     });

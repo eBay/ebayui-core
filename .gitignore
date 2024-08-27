@@ -3,6 +3,7 @@ node_modules
 .cache
 static
 snapshots
+coverage
 .nyc_output
 .coverage
 .karma

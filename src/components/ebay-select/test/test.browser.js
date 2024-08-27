@@ -1,10 +1,8 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
-import template from "..";
+import template from "../index.marko";
 import * as mock from "./mock";
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -50,13 +48,13 @@ describe("given an input select with floating label and no value", () => {
     });
 
     it("then component is wrapped into floating label element", () => {
-        expect(component.container.firstElementChild).has.class(
+        expect(component.container.firstElementChild).toHaveClass(
             "floating-label",
         );
     });
 
     it("then is showing the label inline", () => {
-        expect(component.getByText(input.floatingLabel)).has.class(
+        expect(component.getByText(input.floatingLabel)).toHaveClass(
             "floating-label__label--inline",
         );
     });
@@ -67,9 +65,9 @@ describe("given an input select with floating label and no value", () => {
         });
 
         it("then it is not showing the label inline", () => {
-            expect(
-                component.getByText(input.floatingLabel),
-            ).does.not.have.class("floating-label__label--inline");
+            expect(component.getByText(input.floatingLabel)).not.toHaveClass(
+                "floating-label__label--inline",
+            );
         });
 
         describe("when the input is blurred", () => {
@@ -78,7 +76,7 @@ describe("given an input select with floating label and no value", () => {
             });
 
             it("then is showing the label inline", () => {
-                expect(component.getByText(input.floatingLabel)).has.class(
+                expect(component.getByText(input.floatingLabel)).toHaveClass(
                     "floating-label__label--inline",
                 );
             });
@@ -104,13 +102,13 @@ describe("given an input select with floating label and no value with all option
     });
 
     it("then component is wrapped into floating label element", () => {
-        expect(component.container.firstElementChild).has.class(
+        expect(component.container.firstElementChild).toHaveClass(
             "floating-label",
         );
     });
 
     it("then is showing the label not inline", () => {
-        expect(component.getByText(input.floatingLabel)).does.not.have.class(
+        expect(component.getByText(input.floatingLabel)).not.toHaveClass(
             "floating-label__label--inline",
         );
     });

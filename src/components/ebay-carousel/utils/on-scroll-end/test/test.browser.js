@@ -1,5 +1,12 @@
-import sinon from "sinon/pkg/sinon";
-import { expect } from "chai";
+import {
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+    vi,
+} from "vitest";
 import {
     simulateScroll,
     waitFrames,
@@ -9,7 +16,7 @@ import { onScrollEnd } from "..";
 describe("scroll-end", () => {
     let scrollEl;
 
-    before(() => {
+    beforeAll(() => {
         scrollEl = document.createElement("div");
         scrollEl.style.overflowX = "scroll";
         scrollEl.innerHTML = `<div style="width: 200%; border: 25px dashed #000;"></div>`;
@@ -20,60 +27,70 @@ describe("scroll-end", () => {
         scrollEl.scrollLeft = 0;
     });
 
-    after(() => {
+    afterAll(() => {
         document.body.removeChild(scrollEl);
     });
 
-    it("calls a function when a scroll has ended", (done) => {
-        const scrollEndSpy = sinon.spy();
+    it("calls a function when a scroll has ended", async () => {
+        const scrollEndSpy = vi.fn();
         onScrollEnd(scrollEl, scrollEndSpy);
-        simulateScroll(scrollEl, 50, () => {
-            setTimeout(() => {
-                expect(scrollEndSpy.calledOnce).to.equal(true);
-                expect(scrollEndSpy.args[0][0]).to.equal(50);
-                done();
-            }, 250);
+        await new Promise((resolve) => {
+            simulateScroll(scrollEl, 50, () => {
+                setTimeout(() => {
+                    expect(scrollEndSpy).toBeCalled();
+                    expect(scrollEndSpy).toHaveBeenCalledWith(50);
+                    resolve();
+                }, 250);
+            });
         });
     });
 
-    it("groups scroll events with additional touches", (done) => {
-        const scrollEndSpy = sinon.spy();
+    it("groups scroll events with additional touches", async () => {
+        const scrollEndSpy = vi.fn();
         onScrollEnd(scrollEl, scrollEndSpy);
-        setTimeout(() => {
-            simulateScroll(scrollEl, 100, () => {
-                setTimeout(() => {
-                    expect(scrollEndSpy.calledOnce).to.equal(true);
-                    expect(scrollEndSpy.args[0][0]).to.equal(100);
-                    done();
-                }, 250);
-            });
-        }, 0);
+
+        await new Promise((resolve) => {
+            setTimeout(() => {
+                simulateScroll(scrollEl, 100, () => {
+                    setTimeout(() => {
+                        expect(scrollEndSpy).toBeCalled("success called");
+                        expect(scrollEndSpy).toHaveBeenCalledWith(100);
+                        resolve();
+                    }, 250);
+                });
+            }, 0);
+        });
         simulateScroll(scrollEl, 50);
     });
 
-    it("can be canceled immediately", (done) => {
-        const scrollEndSpy = sinon.spy();
+    it("can be canceled immediately", async () => {
+        const scrollEndSpy = vi.fn();
         const cancel = onScrollEnd(scrollEl, scrollEndSpy);
         simulateScroll(scrollEl, 100);
-        waitFrames(5, () => {
-            expect(scrollEndSpy.notCalled).to.equal(true);
-            done();
+        await new Promise((resolve) => {
+            waitFrames(5, () => {
+                expect(scrollEndSpy).toBeCalledTimes(0);
+                resolve();
+            });
         });
 
         cancel();
     });
 
-    it("can be canceled after scrolling starts", (done) => {
-        const scrollEndSpy = sinon.spy();
+    it("can be canceled after scrolling starts", async () => {
+        const scrollEndSpy = vi.fn();
         const cancel = onScrollEnd(scrollEl, scrollEndSpy);
         const startLeft = scrollEl.scrollLeft;
         simulateScroll(scrollEl, 100);
-        waitFrames(2, () => {
-            cancel();
-            waitFrames(3, () => {
-                expect(scrollEndSpy.notCalled).to.equal(true);
-                expect(scrollEl.scrollLeft).to.not.equal(startLeft);
-                done();
+
+        await new Promise((resolve) => {
+            waitFrames(2, () => {
+                cancel();
+                waitFrames(3, () => {
+                    expect(scrollEndSpy).toBeCalledTimes(0);
+                    expect(scrollEl.scrollLeft).to.not.equal(startLeft);
+                    resolve();
+                });
             });
         });
     });

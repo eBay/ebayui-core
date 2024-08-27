@@ -1,0 +1,254 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`passes through additional html attributes 1`] = `
+<input
+  aria-checked="false"
+  class="checkbox__control"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  type="checkbox"
+/>
+`;
+
+exports[`passes through additional html attributes 2`] = `
+<span
+  class="checkbox class1"
+  style="color:red"
+>
+  <input
+    aria-checked="false"
+    class="checkbox__control"
+    data-passed-through="true"
+    data-testid="AttributePassthrough"
+    type="checkbox"
+  />
+  <span
+    class="checkbox__icon"
+    hidden=""
+  >
+    <svg
+      aria-hidden="true"
+      class="checkbox__unchecked"
+      focusable="false"
+    >
+      <defs>
+        <symbol
+          id="icon-checkbox-unchecked-18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            d="M6.4 17h5.2c1.137 0 1.929 0 2.546-.051.605-.05.953-.142 1.216-.276a3 3 0 0 0 1.311-1.311c.134-.263.226-.611.276-1.216.05-.617.051-1.41.051-2.546V6.4c0-1.137 0-1.929-.051-2.546-.05-.605-.142-.953-.276-1.216a3 3 0 0 0-1.311-1.311c-.263-.134-.611-.226-1.216-.276C13.529 1.001 12.736 1 11.6 1H6.4c-1.137 0-1.929 0-2.546.051-.605.05-.953.142-1.216.276a3 3 0 0 0-1.311 1.311c-.134.263-.226.611-.276 1.216C1.001 4.471 1 5.264 1 6.4v5.2c0 1.137 0 1.929.051 2.546.05.605.142.953.276 1.216a3 3 0 0 0 1.311 1.311c.263.134.611.226 1.216.276.617.05 1.41.051 2.546.051ZM.436 15.816C0 14.96 0 13.84 0 11.6V6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-checkbox-unchecked-18"
+      />
+    </svg>
+  </span>
+</span>
+`;
+
+exports[`renders default tri-state-checkbox 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"checkbox"[39m
+  [36m>[39m
+    [36m<input[39m
+      [33maria-checked[39m=[32m"false"[39m
+      [33mclass[39m=[32m"checkbox__control"[39m
+      [33mtype[39m=[32m"checkbox"[39m
+    [36m/>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"checkbox__icon"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"checkbox__unchecked"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-checkbox-unchecked-18"[39m
+            [33mviewBox[39m=[32m"0 0 18 18"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M6.4 17h5.2c1.137 0 1.929 0 2.546-.051.605-.05.953-.142 1.216-.276a3 3 0 0 0 1.311-1.311c.134-.263.226-.611.276-1.216.05-.617.051-1.41.051-2.546V6.4c0-1.137 0-1.929-.051-2.546-.05-.605-.142-.953-.276-1.216a3 3 0 0 0-1.311-1.311c-.263-.134-.611-.226-1.216-.276C13.529 1.001 12.736 1 11.6 1H6.4c-1.137 0-1.929 0-2.546.051-.605.05-.953.142-1.216.276a3 3 0 0 0-1.311 1.311c-.134.263-.226.611-.276 1.216C1.001 4.471 1 5.264 1 6.4v5.2c0 1.137 0 1.929.051 2.546.05.605.142.953.276 1.216a3 3 0 0 0 1.311 1.311c.263.134.611.226 1.216.276.617.05 1.41.051 2.546.051ZM.436 15.816C0 14.96 0 13.84 0 11.6V6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748Z"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-checkbox-unchecked-18"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+    [36m</span>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`renders disabled tri-state-checkbox 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"checkbox"[39m
+  [36m>[39m
+    [36m<input[39m
+      [33maria-checked[39m=[32m"false"[39m
+      [33mclass[39m=[32m"checkbox__control"[39m
+      [33mdisabled[39m=[32m""[39m
+      [33mtype[39m=[32m"checkbox"[39m
+    [36m/>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"checkbox__icon"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"checkbox__unchecked"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-checkbox-unchecked-18"[39m
+            [33mviewBox[39m=[32m"0 0 18 18"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M6.4 17h5.2c1.137 0 1.929 0 2.546-.051.605-.05.953-.142 1.216-.276a3 3 0 0 0 1.311-1.311c.134-.263.226-.611.276-1.216.05-.617.051-1.41.051-2.546V6.4c0-1.137 0-1.929-.051-2.546-.05-.605-.142-.953-.276-1.216a3 3 0 0 0-1.311-1.311c-.263-.134-.611-.226-1.216-.276C13.529 1.001 12.736 1 11.6 1H6.4c-1.137 0-1.929 0-2.546.051-.605.05-.953.142-1.216.276a3 3 0 0 0-1.311 1.311c-.134.263-.226.611-.276 1.216C1.001 4.471 1 5.264 1 6.4v5.2c0 1.137 0 1.929.051 2.546.05.605.142.953.276 1.216a3 3 0 0 0 1.311 1.311c.263.134.611.226 1.216.276.617.05 1.41.051 2.546.051ZM.436 15.816C0 14.96 0 13.84 0 11.6V6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748Z"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-checkbox-unchecked-18"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+    [36m</span>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`renders labeled checkbox 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"field"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"checkbox field__control"[39m
+    [36m>[39m
+      [36m<input[39m
+        [33maria-checked[39m=[32m"false"[39m
+        [33mclass[39m=[32m"checkbox__control"[39m
+        [33mid[39m=[32m"checkbox"[39m
+        [33mtype[39m=[32m"checkbox"[39m
+      [36m/>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"checkbox__icon"[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"checkbox__unchecked"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-checkbox-unchecked-18"[39m
+              [33mviewBox[39m=[32m"0 0 18 18"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M6.4 17h5.2c1.137 0 1.929 0 2.546-.051.605-.05.953-.142 1.216-.276a3 3 0 0 0 1.311-1.311c.134-.263.226-.611.276-1.216.05-.617.051-1.41.051-2.546V6.4c0-1.137 0-1.929-.051-2.546-.05-.605-.142-.953-.276-1.216a3 3 0 0 0-1.311-1.311c-.263-.134-.611-.226-1.216-.276C13.529 1.001 12.736 1 11.6 1H6.4c-1.137 0-1.929 0-2.546.051-.605.05-.953.142-1.216.276a3 3 0 0 0-1.311 1.311c-.134.263-.226.611-.276 1.216C1.001 4.471 1 5.264 1 6.4v5.2c0 1.137 0 1.929.051 2.546.05.605.142.953.276 1.216a3 3 0 0 0 1.311 1.311c.263.134.611.226 1.216.276.617.05 1.41.051 2.546.051ZM.436 15.816C0 14.96 0 13.84 0 11.6V6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-checkbox-unchecked-18"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</span>[39m
+    [36m</span>[39m
+    [36m<label[39m
+      [33mclass[39m=[32m"field__label field__label--end"[39m
+      [33mfor[39m=[32m"checkbox"[39m
+    [36m>[39m
+      [0mOption[0m
+    [36m</label>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`renders mixed checkbox 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"checkbox"[39m
+  [36m>[39m
+    [36m<input[39m
+      [33maria-checked[39m=[32m"mixed"[39m
+      [33mclass[39m=[32m"checkbox__control"[39m
+      [33mtype[39m=[32m"checkbox"[39m
+    [36m/>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"checkbox__icon"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-checkbox-mixed-18"[39m
+            [33mviewBox[39m=[32m"0 0 18 18"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33mclip-rule[39m=[32m"evenodd"[39m
+              [33md[39m=[32m"M4 0a4 4 0 0 0-4 4v10a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4H4Zm1 8a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H5Z"[39m
+              [33mfill-rule[39m=[32m"evenodd"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-checkbox-mixed-18"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+    [36m</span>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`renders tri-state-checkbox with id 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"checkbox"[39m
+  [36m>[39m
+    [36m<input[39m
+      [33maria-checked[39m=[32m"false"[39m
+      [33mclass[39m=[32m"checkbox__control"[39m
+      [33mid[39m=[32m"abc123"[39m
+      [33mtype[39m=[32m"checkbox"[39m
+    [36m/>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"checkbox__icon"[39m
+      [33mhidden[39m=[32m""[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"checkbox__unchecked"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-checkbox-unchecked-18"[39m
+            [33mviewBox[39m=[32m"0 0 18 18"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M6.4 17h5.2c1.137 0 1.929 0 2.546-.051.605-.05.953-.142 1.216-.276a3 3 0 0 0 1.311-1.311c.134-.263.226-.611.276-1.216.05-.617.051-1.41.051-2.546V6.4c0-1.137 0-1.929-.051-2.546-.05-.605-.142-.953-.276-1.216a3 3 0 0 0-1.311-1.311c-.263-.134-.611-.226-1.216-.276C13.529 1.001 12.736 1 11.6 1H6.4c-1.137 0-1.929 0-2.546.051-.605.05-.953.142-1.216.276a3 3 0 0 0-1.311 1.311c-.134.263-.226.611-.276 1.216C1.001 4.471 1 5.264 1 6.4v5.2c0 1.137 0 1.929.051 2.546.05.605.142.953.276 1.216a3 3 0 0 0 1.311 1.311c.263.134.611.226 1.216.276.617.05 1.41.051 2.546.051ZM.436 15.816C0 14.96 0 13.84 0 11.6V6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748Z"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-checkbox-unchecked-18"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+    [36m</span>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;

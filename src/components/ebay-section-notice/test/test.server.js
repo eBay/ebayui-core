@@ -1,38 +1,35 @@
-import { expect, use } from "chai";
-import { render } from "@marko/testing-library";
-import template from "..";
-import * as mock from "./mock";
+import { describe, it, expect } from "vitest";
 
-use(require("chai-dom"));
+import { render } from "@marko/testing-library";
+import template from "../index.marko";
+import * as mock from "./mock";
 
 describe("section-notice", () => {
     it("renders with status", async () => {
         const input = mock.SectionInfo;
         const { getByLabelText, getByText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
-        expect(status).has.class("section-notice__header");
+        expect(status).toMatchSnapshot();
 
         const containerUsingLabel = status.closest(
             `[aria-labelledby="${status.id}"]`,
         );
-        expect(containerUsingLabel).has.class("section-notice");
+        expect(containerUsingLabel).toMatchSnapshot();
 
         const content = getByText(input.renderBody.text);
-        expect(content).has.class("section-notice__main");
-        expect(content).has.tagName("SPAN");
+        expect(content).toMatchSnapshot();
 
         const container = content.parentElement;
-        expect(container).has.class("section-notice");
+        expect(container).toMatchSnapshot();
     });
 
     it("renders with light", async () => {
         const input = mock.SectionLight;
         const { getByText } = await render(template, input);
         const container = getByText(input.renderBody.text).parentElement;
-        expect(container).has.class("section-notice");
+        expect(container).toMatchSnapshot();
 
         const footer = getByText(input.footer.renderBody.text);
-        expect(footer).has.class("section-notice__footer");
-        expect(footer).has.tagName("DIV");
+        expect(footer).toMatchSnapshot();
     });
 });

@@ -1,11 +1,10 @@
-import { expect, use } from "chai";
 import { composeStories } from "@storybook/marko";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
+import { render, fireEvent, cleanup } from "@marko/testing-library";
 import * as stories from "../star-rating-select.stories";
 
 const { Isolated } = composeStories(stories);
-const { render, fireEvent, cleanup } = require("@marko/testing-library");
 
-use(require("chai-dom"));
 afterEach(cleanup);
 
 let component;
