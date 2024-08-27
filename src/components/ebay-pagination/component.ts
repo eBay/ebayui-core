@@ -99,7 +99,7 @@ class Pagination extends Marko.Component<Input, State> {
     }
 
     onCreate() {
-        this.state = { maxItems: 0 };
+        this.state = { maxItems: MIN_PAGES };
     }
 
     onMount() {
@@ -133,17 +133,6 @@ class Pagination extends Marko.Component<Input, State> {
         const leadingDotsIndex = hasLeadingDots ? 1 : -1;
         let hideDots = false;
         let hideLeadingDots = false;
-
-        if (!maxItems) {
-            return {
-                start: 0,
-                end: lastIndex,
-                hideDots: true,
-                dotsIndex,
-                leadingDotsIndex,
-                hasOverflow,
-            };
-        }
 
         const i = items.findIndex((item) => item.current);
         const range = Math.floor(maxItems / 2);
