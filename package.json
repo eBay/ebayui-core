@@ -150,7 +150,7 @@
         "marko": ">= ^4.27.0 || >= ^5.31.12"
     },
     "dependencies": {
-        "@floating-ui/dom": "^1.6.8",
+        "@floating-ui/dom": "^1.6.10",
         "@marko-tags/subscribe": "^0.5.1",
         "makeup-active-descendant": "0.7.0",
         "makeup-expander": "~0.11.0",
