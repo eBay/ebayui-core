@@ -9,7 +9,7 @@ import * as cp from "child_process";
 import * as path from "path";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
-import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 import { minify } from "html-minifier";
 import {
     getExampleNumber,
