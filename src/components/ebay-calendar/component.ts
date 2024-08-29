@@ -6,6 +6,7 @@ import {
     getWeekdayInfo,
     offsetISO,
     toISO,
+    toLocalISO,
     type DayISO,
 } from "../../common/dates/date-utils";
 import { localeDefault } from "../../common/dates";
@@ -67,7 +68,7 @@ class Calendar extends Marko.Component<Input, State> {
     onCreate(input: Input) {
         this.locale = input.locale;
         const { firstDayOfWeek, weekdayLabels } = getWeekdayInfo(input.locale);
-        const todayISO = toISO(new Date());
+        const todayISO = toLocalISO(new Date());
         this.state = {
             focusISO: null,
             baseISO: todayISO,
