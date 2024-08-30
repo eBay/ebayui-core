@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.1.0"
+  },
+  "changesets": [
+    "beige-sloths-begin",
+    "good-dolphins-approve",
+    "tame-beans-move",
+    "two-mirrors-doubt"
+  ]
+}
