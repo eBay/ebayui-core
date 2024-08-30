@@ -8,13 +8,13 @@ export interface ToggleButtonEvent {
 interface ToggleButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
     pressed?: boolean;
     "layout-type"?: string;
-    icon?: Marko.Renderable;
+    icon?: Marko.AttrTag<Marko.Renderable>;
     img?: Marko.AttrTag<{
         src: string;
         alt: string;
         fillPlacement?: string;
     }>;
-    subtitle?: string | Marko.Renderable;
+    subtitle?: string | Marko.AttrTag<Marko.Renderable>;
     renderBody?: Marko.Body;
     "on-toggle"?: (event: ToggleButtonEvent) => void;
 }

@@ -40,8 +40,19 @@ export function dateArgToISO(arg: DateConstructor["arguments"]) {
     return /^\d\d\d\d-\d\d-\d\d$/g.test(date) ? date : undefined;
 }
 
+/**
+ * ISO 8601 date format (YYYY-MM-DD) in **UTC** timezone
+ */
 export function toISO(date: Date): DayISO {
     return date.toISOString().slice(0, 10) as DayISO;
+}
+
+/**
+ * ISO 8601 date format (YYYY-MM-DD) in **local** timezone
+ */
+export function toLocalISO(date: Date): DayISO {
+    // This works because Canada uses the YYYY-MM-DD format
+    return date.toLocaleDateString("en-CA") as DayISO;
 }
 
 export function fromISO(iso: DayISO) {

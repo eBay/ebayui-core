@@ -2,6 +2,7 @@
   [36m<div[39m
     [33mclass[39m=[32m"toggle-button-group"[39m
     [33mdata-columns-md[39m=[32m"6"[39m
+    [33mdata-columns-min[39m=[32m"1"[39m
     [33mdata-columns-sm[39m=[32m"3"[39m
     [33mdata-columns-xl[39m=[32m"8"[39m
     [33mdata-columns-xs[39m=[32m"2"[39m

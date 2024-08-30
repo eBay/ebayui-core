@@ -15,6 +15,7 @@ interface ToggleButtonGroupInput
     variant?: "checkbox" | "radio" | "radio-toggle";
     "a11y-text"?: string;
     "a11y-label-id"?: string;
+    columnsMin?: number;
     columnsXS?: number;
     columnsSM?: number;
     columnsMD?: number;
