@@ -1,1 +1,1 @@
-import "@ebay/skin/chart-legend"
+import "@ebay/skin/chart-legend";
