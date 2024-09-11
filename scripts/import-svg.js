@@ -24,7 +24,7 @@ const tempIgnore = [];
 const require = createRequire(import.meta.url);
 
 const skinDir = path.dirname(require.resolve("@ebay/skin/package.json"));
-const svgDir = path.join(skinDir, "src/svg");
+const svgDir = path.join(skinDir, "dist/svg");
 const defs = {};
 const defsMap = new Map();
 const defsNames = new Set();

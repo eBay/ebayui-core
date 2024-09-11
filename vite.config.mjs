@@ -18,18 +18,18 @@ const rawMarkdown = {
 
 export default defineConfig({
     test: {
-        pool: 'forks',
+        pool: "forks",
         globals: true,
         coverage: {
             enabled: isCI,
             provider: "istanbul",
-            reporter: ['json-summary', 'html', 'cobertura', 'lcov'],
+            reporter: ["json-summary", "html", "cobertura", "lcov"],
             include: ["src/**/*"],
             exclude: [
                 "src/**/examples",
                 "src/components/ebay-icon/icons/",
                 "src/**/*.stories.ts",
-            ]
+            ],
         },
     },
 
