@@ -1,0 +1,232 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`dialog > passes through additional html attributes 1`] = `
+<div
+  aria-modal="true"
+  class="alert-dialog class1 alert-dialog--mask-fade"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="alertdialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="alert-dialog__window alert-dialog__window alert-dialog__window--fade"
+  >
+    <div
+      class="alert-dialog__header"
+    >
+      <!--F#14-->
+      <!--F/-->
+    </div>
+    <div
+      class="alert-dialog__main"
+      id="s0-alert-dialog-main"
+    >
+      <!--F#16-->
+      <!--F/-->
+    </div>
+    <div
+      class="alert-dialog__footer"
+    >
+      <!--F#20-->
+      <!--M^s0-0-20-@confirm s0 @confirm-->
+      <button
+        aria-describedby="s0-alert-dialog-main"
+        class="alert-dialog__acknowledge btn btn--primary"
+        data-ebayui=""
+        data-marko="{"onclick":"handleClick s0-0-20-@confirm false","onkeydown":"handleKeydown s0-0-20-@confirm false","onfocus":"handleFocus s0-0-20-@confirm false","onblur":"handleBlur s0-0-20-@confirm false"}"
+        id="s0-alert-dialog-confirm"
+        type="button"
+      />
+      <!--M/-->
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog > passes through additional html attributes 2`] = `
+<div
+  aria-modal="true"
+  class="alert-dialog class1 alert-dialog--mask-fade"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="alertdialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="alert-dialog__window alert-dialog__window alert-dialog__window--fade"
+  >
+    <div
+      class="alert-dialog__header"
+    >
+      <!--F#14-->
+      <!--F/-->
+    </div>
+    <div
+      class="alert-dialog__main"
+      id="s0-alert-dialog-main"
+    >
+      <!--F#16-->
+      <!--F/-->
+    </div>
+    <div
+      class="alert-dialog__footer"
+    >
+      <!--F#20-->
+      <!--M^s0-0-20-@confirm s0 @confirm-->
+      <button
+        aria-describedby="s0-alert-dialog-main"
+        class="alert-dialog__acknowledge btn btn--primary"
+        data-ebayui=""
+        data-marko="{"onclick":"handleClick s0-0-20-@confirm false","onkeydown":"handleKeydown s0-0-20-@confirm false","onfocus":"handleFocus s0-0-20-@confirm false","onblur":"handleBlur s0-0-20-@confirm false"}"
+        id="s0-alert-dialog-confirm"
+        type="button"
+      />
+      <!--M/-->
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog > renders basic version 1`] = `
+<div
+  aria-labelledby="s0-0-dialog-title"
+  aria-modal="true"
+  class="alert-dialog alert-dialog--mask-fade"
+  hidden=""
+  role="alertdialog"
+>
+  <div
+    class="alert-dialog__window alert-dialog__window alert-dialog__window--fade"
+  >
+    <div
+      class="alert-dialog__header"
+    >
+      <!--F#14-->
+      <!--F/-->
+      <!--F#15-->
+      <h2
+        class="alert-dialog__title"
+        id="s0-0-dialog-title"
+      >
+        <!--F#2-->
+        title content
+        <!--F/-->
+      </h2>
+      <!--F/-->
+    </div>
+    <div
+      class="alert-dialog__main"
+      id="s0-alert-dialog-main"
+    >
+      <!--F#16-->
+      body content
+      <!--F/-->
+    </div>
+    <div
+      class="alert-dialog__footer"
+    >
+      <!--F#20-->
+      <!--M^s0-0-20-@confirm s0 @confirm-->
+      <button
+        aria-describedby="s0-alert-dialog-main"
+        class="alert-dialog__acknowledge btn btn--primary"
+        data-ebayui=""
+        data-marko="{"onclick":"handleClick s0-0-20-@confirm false","onkeydown":"handleKeydown s0-0-20-@confirm false","onfocus":"handleFocus s0-0-20-@confirm false","onblur":"handleBlur s0-0-20-@confirm false"}"
+        id="s0-alert-dialog-confirm"
+        type="button"
+      >
+        confirm
+      </button>
+      <!--M/-->
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog > renders basic version 2`] = `
+<button
+  aria-describedby="s0-alert-dialog-main"
+  class="alert-dialog__acknowledge btn btn--primary"
+  data-ebayui=""
+  data-marko="{"onclick":"handleClick s0-0-20-@confirm false","onkeydown":"handleKeydown s0-0-20-@confirm false","onfocus":"handleFocus s0-0-20-@confirm false","onblur":"handleBlur s0-0-20-@confirm false"}"
+  id="s0-alert-dialog-confirm"
+  type="button"
+>
+  confirm
+</button>
+`;
+
+exports[`dialog > renders basic version 3`] = `
+<div
+  class="alert-dialog__main"
+  id="s0-alert-dialog-main"
+>
+  <!--F#16-->
+  body content
+  <!--F/-->
+</div>
+`;
+
+exports[`dialog > renders in open state 1`] = `
+<div
+  aria-labelledby="s0-0-dialog-title"
+  aria-modal="true"
+  class="alert-dialog alert-dialog--mask-fade"
+  role="alertdialog"
+>
+  <div
+    class="alert-dialog__window alert-dialog__window alert-dialog__window--fade"
+  >
+    <div
+      class="alert-dialog__header"
+    >
+      <!--F#14-->
+      <!--F/-->
+      <!--F#15-->
+      <h2
+        class="alert-dialog__title"
+        id="s0-0-dialog-title"
+      >
+        <!--F#2-->
+        title content
+        <!--F/-->
+      </h2>
+      <!--F/-->
+    </div>
+    <div
+      class="alert-dialog__main"
+      id="s0-alert-dialog-main"
+    >
+      <!--F#16-->
+      body content
+      <!--F/-->
+    </div>
+    <div
+      class="alert-dialog__footer"
+    >
+      <!--F#20-->
+      <!--M^s0-0-20-@confirm s0 @confirm-->
+      <button
+        aria-describedby="s0-alert-dialog-main"
+        class="alert-dialog__acknowledge btn btn--primary"
+        data-ebayui=""
+        data-marko="{"onclick":"handleClick s0-0-20-@confirm false","onkeydown":"handleKeydown s0-0-20-@confirm false","onfocus":"handleFocus s0-0-20-@confirm false","onblur":"handleBlur s0-0-20-@confirm false"}"
+        id="s0-alert-dialog-confirm"
+        type="button"
+      >
+        confirm
+      </button>
+      <!--M/-->
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;

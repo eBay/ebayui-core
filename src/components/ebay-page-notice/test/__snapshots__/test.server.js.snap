@@ -1,0 +1,421 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`page-notice > passes through additional html attributes 1`] = `
+<section
+  aria-labelledby="s0-0-status"
+  class="page-notice page-notice--attention class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="region"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="page-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--attention-filled icon icon--16 icon--attention-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-attention-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm0 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 1 1-2 0V5a1 1 0 0 1 2 0v3Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-attention-filled-16"
+      />
+    </svg>
+  </div>
+  <div
+    class="page-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </div>
+</section>
+`;
+
+exports[`page-notice > passes through additional html attributes 2`] = `
+<section
+  aria-labelledby="s0-0-status"
+  class="page-notice page-notice--attention class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="region"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="page-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--attention-filled icon icon--16 icon--attention-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-attention-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm0 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 1 1-2 0V5a1 1 0 0 1 2 0v3Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-attention-filled-16"
+      />
+    </svg>
+  </div>
+  <div
+    class="page-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </div>
+</section>
+`;
+
+exports[`page-notice > renders with celebration 1`] = `
+<div
+  class="page-notice__main"
+>
+  <h2
+    class="page-notice__title"
+  >
+    <!--F#12-->
+    Title
+    <!--F/-->
+  </h2>
+  <!--F#13-->
+  Content
+  <!--F/-->
+</div>
+`;
+
+exports[`page-notice > renders with celebration 2`] = `
+<section
+  aria-labelledby="s0-0-status"
+  class="page-notice page-notice--celebration"
+  role="region"
+>
+  <div
+    class="page-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--confirmation-filled icon icon--16 icon--confirmation-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-confirmation-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm11.207-.793a1 1 0 0 0-1.414-1.414L7 8.586l-.793-.793a1 1 0 0 0-1.414 1.414l1.5 1.5a1 1 0 0 0 1.414 0l3.5-3.5Z"
+            fill-rule="evenodd"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-confirmation-filled-16"
+      />
+    </svg>
+  </div>
+  <div
+    class="page-notice__main"
+  >
+    <h2
+      class="page-notice__title"
+    >
+      <!--F#12-->
+      Title
+      <!--F/-->
+    </h2>
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </div>
+</section>
+`;
+
+exports[`page-notice > renders with celebration 3`] = `
+<section
+  aria-labelledby="s0-0-status"
+  class="page-notice page-notice--celebration"
+  role="region"
+>
+  <div
+    class="page-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--confirmation-filled icon icon--16 icon--confirmation-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-confirmation-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm11.207-.793a1 1 0 0 0-1.414-1.414L7 8.586l-.793-.793a1 1 0 0 0-1.414 1.414l1.5 1.5a1 1 0 0 0 1.414 0l3.5-3.5Z"
+            fill-rule="evenodd"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-confirmation-filled-16"
+      />
+    </svg>
+  </div>
+  <div
+    class="page-notice__main"
+  >
+    <h2
+      class="page-notice__title"
+    >
+      <!--F#12-->
+      Title
+      <!--F/-->
+    </h2>
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </div>
+</section>
+`;
+
+exports[`page-notice > renders with celebration 4`] = `
+<h2
+  class="page-notice__title"
+>
+  <!--F#12-->
+  Title
+  <!--F/-->
+</h2>
+`;
+
+exports[`page-notice > renders with custom heading tag 1`] = `
+<h3
+  as="h3"
+  class="page-notice__title"
+>
+  <!--F#12-->
+  Title
+  <!--F/-->
+</h3>
+`;
+
+exports[`page-notice > renders with custom status type 1`] = `
+<section
+  aria-labelledby="s0-0-status"
+  class="page-notice page-notice--confirmation"
+  role="region"
+>
+  <div
+    class="page-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--confirmation-filled icon icon--16 icon--confirmation-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-confirmation-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm11.207-.793a1 1 0 0 0-1.414-1.414L7 8.586l-.793-.793a1 1 0 0 0-1.414 1.414l1.5 1.5a1 1 0 0 0 1.414 0l3.5-3.5Z"
+            fill-rule="evenodd"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-confirmation-filled-16"
+      />
+    </svg>
+  </div>
+  <div
+    class="page-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </div>
+</section>
+`;
+
+exports[`page-notice > renders with defaults 1`] = `
+<div
+  class="page-notice__header"
+  id="s0-0-status"
+>
+  <svg
+    aria-label="Heading Text"
+    class="icon--attention-filled icon icon--16 icon--attention-filled"
+    focusable="false"
+    role="img"
+  >
+    <defs>
+      <symbol
+        id="icon-attention-filled-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm0 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 1 1-2 0V5a1 1 0 0 1 2 0v3Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-attention-filled-16"
+    />
+  </svg>
+</div>
+`;
+
+exports[`page-notice > renders with defaults 2`] = `
+<section
+  aria-labelledby="s0-0-status"
+  class="page-notice page-notice--attention"
+  role="region"
+>
+  <div
+    class="page-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--attention-filled icon icon--16 icon--attention-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-attention-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm0 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 1 1-2 0V5a1 1 0 0 1 2 0v3Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-attention-filled-16"
+      />
+    </svg>
+  </div>
+  <div
+    class="page-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </div>
+</section>
+`;
+
+exports[`page-notice > renders with defaults 3`] = `
+<div
+  class="page-notice__main"
+>
+  <!--F#13-->
+  Content
+  <!--F/-->
+</div>
+`;
+
+exports[`page-notice > renders with footer button 1`] = `
+<div
+  class="page-notice__main"
+>
+  <!--F#13-->
+  Content
+  <!--F/-->
+</div>
+`;
+
+exports[`page-notice > renders with footer button 2`] = `
+<section
+  aria-labelledby="s0-0-status"
+  class="page-notice page-notice--attention"
+  role="region"
+>
+  <div
+    class="page-notice__header"
+    id="s0-0-status"
+  >
+    <svg
+      aria-label="Heading Text"
+      class="icon--attention-filled icon icon--16 icon--attention-filled"
+      focusable="false"
+      role="img"
+    >
+      <defs>
+        <symbol
+          id="icon-attention-filled-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0Zm0 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 1 1-2 0V5a1 1 0 0 1 2 0v3Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-attention-filled-16"
+      />
+    </svg>
+  </div>
+  <div
+    class="page-notice__main"
+  >
+    <!--F#13-->
+    Content
+    <!--F/-->
+  </div>
+  <div
+    class="page-notice__footer"
+  >
+    <!--F#18-->
+    Footer
+    <!--F/-->
+  </div>
+</section>
+`;
+
+exports[`page-notice > renders with footer button 3`] = `
+<div
+  class="page-notice__footer"
+>
+  <!--F#18-->
+  Footer
+  <!--F/-->
+</div>
+`;
+
+exports[`page-notice > renders with no icon 1`] = `null`;

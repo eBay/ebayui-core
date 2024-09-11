@@ -1,0 +1,713 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`carousel > passes through additional html attributes 1`] = `
+<div
+  aria-roledescription="Carousel"
+  class="carousel class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="group"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="carousel__container carousel__container--controls-disabled"
+    id="s0-container"
+  >
+    <button
+      aria-disabled="true"
+      aria-label="Previous Slide"
+      class="carousel__control carousel__control--prev"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <defs>
+          <symbol
+            id="icon-chevron-left-16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.293 8.708a1 1 0 0 1 0-1.415l6-6a1 1 0 0 1 1.414 1.414L5.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414l-6-6Z"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-chevron-left-16"
+        />
+      </svg>
+    </button>
+    <div
+      class="carousel__viewport"
+    >
+      <ul
+        class="carousel__list"
+        id="s0-list"
+      />
+    </div>
+    <button
+      aria-disabled="true"
+      aria-label="Next Slide"
+      class="carousel__control carousel__control--next"
+      id="s0-next"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <defs>
+          <symbol
+            id="icon-chevron-right-16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m12.707 8.707-6 6a1 1 0 0 1-1.414-1.414L10.586 8 5.293 2.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414Z"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-chevron-right-16"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`carousel > passes through additional html attributes 2`] = `
+<div
+  aria-roledescription="Carousel"
+  class="carousel class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="group"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="carousel__container carousel__container--controls-disabled"
+    id="s0-container"
+  >
+    <button
+      aria-disabled="true"
+      aria-label="Previous Slide"
+      class="carousel__control carousel__control--prev"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <defs>
+          <symbol
+            id="icon-chevron-left-16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.293 8.708a1 1 0 0 1 0-1.415l6-6a1 1 0 0 1 1.414 1.414L5.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414l-6-6Z"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-chevron-left-16"
+        />
+      </svg>
+    </button>
+    <div
+      class="carousel__viewport"
+    >
+      <ul
+        class="carousel__list"
+        id="s0-list"
+      />
+    </div>
+    <button
+      aria-disabled="true"
+      aria-label="Next Slide"
+      class="carousel__control carousel__control--next"
+      id="s0-next"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <defs>
+          <symbol
+            id="icon-chevron-right-16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m12.707 8.707-6 6a1 1 0 0 1-1.414-1.414L10.586 8 5.293 2.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414Z"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-chevron-right-16"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`carousel > passes through additional html attributes from child items 1`] = `
+<li
+  class="carousel__snap-point class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+/>
+`;
+
+exports[`carousel > passes through additional html attributes from child items 2`] = `
+<li
+  class="carousel__snap-point class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+/>
+`;
+
+exports[`carousel > with discrete items per slide > renders base version 1`] = `
+<div
+  aria-roledescription="Carousel"
+  class="carousel carousel--slides carousel--peek"
+  role="group"
+>
+  <div
+    class="carousel__container"
+    id="s0-container"
+  >
+    <button
+      aria-disabled="true"
+      aria-label="prev"
+      class="carousel__control carousel__control--prev"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <defs>
+          <symbol
+            id="icon-chevron-left-16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.293 8.708a1 1 0 0 1 0-1.415l6-6a1 1 0 0 1 1.414 1.414L5.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414l-6-6Z"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-chevron-left-16"
+        />
+      </svg>
+    </button>
+    <div
+      class="carousel__viewport"
+    >
+      <ul
+        class="carousel__list"
+        id="s0-list"
+      >
+        <li
+          class="carousel__snap-point"
+          style="width:calc(90.9090909090909% - 1.4545454545454557px);margin-right:16px"
+        >
+          <!--F#4[@0]-->
+          carousel item content 0
+          <!--F/-->
+        </li>
+        <li
+          class="carousel__snap-point"
+          style="width:calc(90.9090909090909% - 1.4545454545454557px);margin-right:16px"
+        >
+          <!--F#4[@1]-->
+          carousel item content 1
+          <!--F/-->
+        </li>
+        <li
+          class="carousel__snap-point"
+          style="width:calc(90.9090909090909% - 1.4545454545454557px)"
+        >
+          <!--F#4[@2]-->
+          carousel item content 2
+          <!--F/-->
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-disabled="true"
+      aria-label="next"
+      class="carousel__control carousel__control--next"
+      id="s0-next"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <defs>
+          <symbol
+            id="icon-chevron-right-16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m12.707 8.707-6 6a1 1 0 0 1-1.414-1.414L10.586 8 5.293 2.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414Z"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-chevron-right-16"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`carousel > with discrete items per slide > renders base version 2`] = `
+<li
+  class="carousel__snap-point"
+  style="width:calc(90.9090909090909% - 1.4545454545454557px);margin-right:16px"
+>
+  <!--F#4[@0]-->
+  carousel item content 0
+  <!--F/-->
+</li>
+`;
+
+exports[`carousel > with discrete items per slide > renders base version 3`] = `
+<li
+  class="carousel__snap-point"
+  style="width:calc(90.9090909090909% - 1.4545454545454557px);margin-right:16px"
+>
+  <!--F#4[@1]-->
+  carousel item content 1
+  <!--F/-->
+</li>
+`;
+
+exports[`carousel > with discrete items per slide > renders base version 4`] = `
+<li
+  class="carousel__snap-point"
+  style="width:calc(90.9090909090909% - 1.4545454545454557px)"
+>
+  <!--F#4[@2]-->
+  carousel item content 2
+  <!--F/-->
+</li>
+`;
+
+exports[`carousel > with discrete items per slide > renders without any provided items 1`] = `
+<button
+  aria-disabled="true"
+  aria-label="prev"
+  class="carousel__control carousel__control--prev"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-chevron-left-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M3.293 8.708a1 1 0 0 1 0-1.415l6-6a1 1 0 0 1 1.414 1.414L5.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414l-6-6Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-chevron-left-16"
+    />
+  </svg>
+</button>
+`;
+
+exports[`carousel > with discrete items per slide > renders without any provided items 2`] = `
+<button
+  aria-disabled="true"
+  aria-label="next"
+  class="carousel__control carousel__control--next"
+  id="s0-next"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-chevron-right-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="m12.707 8.707-6 6a1 1 0 0 1-1.414-1.414L10.586 8 5.293 2.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-chevron-right-16"
+    />
+  </svg>
+</button>
+`;
+
+exports[`carousel > with discrete items per slide > with autoplay enabled > renders base version 1`] = `
+<button
+  aria-label="pause"
+  class="carousel__playback"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--24"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-pause-24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M9 5a2 2 0 1 0-4 0v14a2 2 0 1 0 4 0V5Zm10 0a2 2 0 1 0-4 0v14a2 2 0 1 0 4 0V5Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-pause-24"
+    />
+  </svg>
+</button>
+`;
+
+exports[`carousel > with discrete items per slide > with autoplay enabled > renders paused version 1`] = `
+<button
+  aria-label="play"
+  class="carousel__playback"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--24"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-play-24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="m6.754 2.256 14.4 8.331c1.128.653 1.128 2.173 0 2.826l-14.4 8.331C5.555 22.438 4 21.64 4 20.331V3.67c0-1.31 1.555-2.108 2.754-1.414Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-play-24"
+    />
+  </svg>
+</button>
+`;
+
+exports[`carousel > with discrete items per slide > with hidden scrollbar > renders 1`] = `
+<div
+  aria-roledescription="Carousel"
+  class="carousel carousel--hidden-scrollbar carousel--slides carousel--peek"
+  role="group"
+>
+  <div
+    class="carousel__container"
+    id="s0-container"
+  >
+    <button
+      aria-disabled="true"
+      aria-label="prev"
+      class="carousel__control carousel__control--prev"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <defs>
+          <symbol
+            id="icon-chevron-left-16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.293 8.708a1 1 0 0 1 0-1.415l6-6a1 1 0 0 1 1.414 1.414L5.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414l-6-6Z"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-chevron-left-16"
+        />
+      </svg>
+    </button>
+    <div
+      class="carousel__viewport"
+    >
+      <ul
+        class="carousel__list"
+        id="s0-list"
+      >
+        <li
+          class="carousel__snap-point"
+          style="width:calc(90.9090909090909% - 1.4545454545454557px);margin-right:16px"
+        >
+          <!--F#4[@0]-->
+          carousel item content 0
+          <!--F/-->
+        </li>
+        <li
+          class="carousel__snap-point"
+          style="width:calc(90.9090909090909% - 1.4545454545454557px);margin-right:16px"
+        >
+          <!--F#4[@1]-->
+          carousel item content 1
+          <!--F/-->
+        </li>
+        <li
+          class="carousel__snap-point"
+          style="width:calc(90.9090909090909% - 1.4545454545454557px)"
+        >
+          <!--F#4[@2]-->
+          carousel item content 2
+          <!--F/-->
+        </li>
+      </ul>
+    </div>
+    <button
+      aria-disabled="true"
+      aria-label="next"
+      class="carousel__control carousel__control--next"
+      id="s0-next"
+      type="button"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <defs>
+          <symbol
+            id="icon-chevron-right-16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m12.707 8.707-6 6a1 1 0 0 1-1.414-1.414L10.586 8 5.293 2.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414Z"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-chevron-right-16"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`carousel > without items per slide (continuous) > renders base version 1`] = `null`;
+
+exports[`carousel > without items per slide (continuous) > renders base version 2`] = `
+<button
+  aria-disabled="true"
+  aria-label="prev"
+  class="carousel__control carousel__control--prev"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-chevron-left-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M3.293 8.708a1 1 0 0 1 0-1.415l6-6a1 1 0 0 1 1.414 1.414L5.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414l-6-6Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-chevron-left-16"
+    />
+  </svg>
+</button>
+`;
+
+exports[`carousel > without items per slide (continuous) > renders base version 3`] = `
+<button
+  aria-disabled="true"
+  aria-label="next"
+  class="carousel__control carousel__control--next"
+  id="s0-next"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-chevron-right-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="m12.707 8.707-6 6a1 1 0 0 1-1.414-1.414L10.586 8 5.293 2.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-chevron-right-16"
+    />
+  </svg>
+</button>
+`;
+
+exports[`carousel > without items per slide (continuous) > renders base version 4`] = `
+<li
+  class="carousel__snap-point"
+  style="width:200px;flex-basis:undefined;margin-right:16px;"
+>
+  <!--F#4[@0]-->
+  carousel item content 0
+  <!--F/-->
+</li>
+`;
+
+exports[`carousel > without items per slide (continuous) > renders base version 5`] = `
+<li
+  class="carousel__snap-point"
+  style="width:200px;flex-basis:undefined;margin-right:16px;"
+>
+  <!--F#4[@1]-->
+  carousel item content 1
+  <!--F/-->
+</li>
+`;
+
+exports[`carousel > without items per slide (continuous) > renders base version 6`] = `
+<li
+  class="carousel__snap-point"
+  style="width:200px;flex-basis:undefined;margin-right:16px;"
+>
+  <!--F#4[@2]-->
+  carousel item content 2
+  <!--F/-->
+</li>
+`;
+
+exports[`carousel > without items per slide (continuous) > renders base version 7`] = `
+<li
+  class="carousel__snap-point"
+  style="width:200px;flex-basis:undefined;margin-right:16px;"
+>
+  <!--F#4[@3]-->
+  carousel item content 3
+  <!--F/-->
+</li>
+`;
+
+exports[`carousel > without items per slide (continuous) > renders base version 8`] = `
+<li
+  class="carousel__snap-point"
+  style="width:200px;flex-basis:undefined;margin-right:16px;"
+>
+  <!--F#4[@4]-->
+  carousel item content 4
+  <!--F/-->
+</li>
+`;
+
+exports[`carousel > without items per slide (continuous) > renders base version 9`] = `
+<li
+  class="carousel__snap-point"
+  style="width:200px;flex-basis:undefined;margin-right:false;"
+>
+  <!--F#4[@5]-->
+  carousel item content 5
+  <!--F/-->
+</li>
+`;
+
+exports[`carousel > without items per slide (continuous) > renders without any provided items 1`] = `
+<button
+  aria-disabled="true"
+  aria-label="prev"
+  class="carousel__control carousel__control--prev"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-chevron-left-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M3.293 8.708a1 1 0 0 1 0-1.415l6-6a1 1 0 0 1 1.414 1.414L5.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414l-6-6Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-chevron-left-16"
+    />
+  </svg>
+</button>
+`;
+
+exports[`carousel > without items per slide (continuous) > renders without any provided items 2`] = `
+<button
+  aria-disabled="true"
+  aria-label="next"
+  class="carousel__control carousel__control--next"
+  id="s0-next"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-chevron-right-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="m12.707 8.707-6 6a1 1 0 0 1-1.414-1.414L10.586 8 5.293 2.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-chevron-right-16"
+    />
+  </svg>
+</button>
+`;

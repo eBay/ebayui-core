@@ -1,0 +1,212 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`snackbar-dialog > passes through additional html attributes 1`] = `
+<div
+  aria-live="polite"
+  aria-modal="true"
+  class="snackbar-dialog class1 snackbar-dialog--transition"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="dialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="snackbar-dialog__window"
+  >
+    <div
+      class="snackbar-dialog__header"
+    >
+      <!--F#14-->
+      <!--F/-->
+    </div>
+    <div
+      class="snackbar-dialog__main"
+    >
+      <!--F#16-->
+      <!--F#4-->
+      This 'snackbar' text should be 1-2 lines.
+      <!--F/-->
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`snackbar-dialog > passes through additional html attributes 2`] = `
+<div
+  aria-live="polite"
+  aria-modal="true"
+  class="snackbar-dialog class1 snackbar-dialog--transition"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="dialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="snackbar-dialog__window"
+  >
+    <div
+      class="snackbar-dialog__header"
+    >
+      <!--F#14-->
+      <!--F/-->
+    </div>
+    <div
+      class="snackbar-dialog__main"
+    >
+      <!--F#16-->
+      <!--F#4-->
+      This 'snackbar' text should be 1-2 lines.
+      <!--F/-->
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`snackbar-dialog > renders basic version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Default Snackbar[0m
+  [36m</button>[39m
+  [36m<div[39m
+    [33maria-live[39m=[32m"polite"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"snackbar-dialog snackbar-dialog--transition"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"snackbar-dialog__window"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"snackbar-dialog__header"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"snackbar-dialog__main"[39m
+      [36m>[39m
+        [0mThis 'snackbar' text should be 1-2 lines.[0m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`snackbar-dialog > renders in open state 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Default Snackbar[0m
+  [36m</button>[39m
+  [36m<div[39m
+    [33maria-live[39m=[32m"polite"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"snackbar-dialog snackbar-dialog--transition"[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"snackbar-dialog__window"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"snackbar-dialog__header"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"snackbar-dialog__main"[39m
+      [36m>[39m
+        [0mThis 'snackbar' text should be 1-2 lines.[0m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`snackbar-dialog > renders with action version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Action Snackbar[0m
+  [36m</button>[39m
+  [36m<div[39m
+    [33maria-live[39m=[32m"polite"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"snackbar-dialog snackbar-dialog--transition"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"snackbar-dialog__window"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"snackbar-dialog__header"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"snackbar-dialog__main"[39m
+      [36m>[39m
+        [0mThis 'snackbar' text should be 1-2 lines.[0m
+      [36m</div>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"snackbar-dialog__actions"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"fake-link"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mUndo[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"clipped"[39m
+          [36m>[39m
+            [0m- Access Key: U[0m
+          [36m</span>[39m
+        [36m</button>[39m
+      [36m</span>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`snackbar-dialog > renders without handle  1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Default Snackbar[0m
+  [36m</button>[39m
+  [36m<div[39m
+    [33maria-live[39m=[32m"polite"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"snackbar-dialog snackbar-dialog--transition"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"snackbar-dialog__window snackbar-dialog__window--column"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"snackbar-dialog__header"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"snackbar-dialog__main"[39m
+      [36m>[39m
+        [0mThis 'snackbar' text should be 1-2 lines.[0m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;

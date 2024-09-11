@@ -1,12 +1,9 @@
-import { expect, use } from "chai";
-import { render } from "@marko/testing-library";
-import template from "..";
-import * as mock from "./mock";
-const {
-    testPassThroughAttributes,
-} = require("../../../common/test-utils/server");
+import { describe, it, expect } from "vitest";
 
-use(require("chai-dom"));
+import { render } from "@marko/testing-library";
+import { testPassThroughAttributes } from "../../../common/test-utils/server";
+import template from "../index.marko";
+import * as mock from "./mock";
 
 describe("carousel", () => {
     describe("with discrete items per slide", () => {
@@ -14,10 +11,10 @@ describe("carousel", () => {
             const input = mock.discrete1PerSlide3Items;
             const { queryByText, getByRole } = await render(template, input);
 
-            expect(getByRole("group")).to.have.attr("aria-roledescription");
+            expect(getByRole("group")).toMatchSnapshot();
 
             input.items.forEach((item) =>
-                expect(queryByText(item.renderBody.text)).not.to.equal(null),
+                expect(queryByText(item.renderBody.text)).toMatchSnapshot(),
             );
         });
 
@@ -28,9 +25,7 @@ describe("carousel", () => {
                 });
                 const { getByRole } = await render(template, input);
 
-                expect(getByRole("group")).to.have.class(
-                    "carousel--hidden-scrollbar",
-                );
+                expect(getByRole("group")).toMatchSnapshot();
             });
         });
 
@@ -38,14 +33,8 @@ describe("carousel", () => {
             const input = mock.discrete1PerSlide0Items;
             const { getByLabelText } = await render(template, input);
 
-            expect(getByLabelText(input.a11yPreviousText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
-            expect(getByLabelText(input.a11yNextText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
+            expect(getByLabelText(input.a11yPreviousText)).toMatchSnapshot();
+            expect(getByLabelText(input.a11yNextText)).toMatchSnapshot();
         });
 
         describe("with autoplay enabled", () => {
@@ -53,9 +42,7 @@ describe("carousel", () => {
                 const input = mock.discrete1PerSlide3ItemsAutoPlay;
                 const { queryByLabelText } = await render(template, input);
 
-                expect(queryByLabelText(input.a11yPauseText)).to.not.equal(
-                    null,
-                );
+                expect(queryByLabelText(input.a11yPauseText)).toMatchSnapshot();
             });
 
             it("renders paused version", async () => {
@@ -68,7 +55,7 @@ describe("carousel", () => {
                 );
                 const { queryByLabelText } = await render(template, input);
 
-                expect(queryByLabelText(input.a11yPlayText)).to.not.equal(null);
+                expect(queryByLabelText(input.a11yPlayText)).toMatchSnapshot();
             });
         });
     });
@@ -80,18 +67,14 @@ describe("carousel", () => {
                 await render(template, input);
 
             // Also it should not have the dot controls.
-            expect(queryByLabelText(/go to slide/)).equals(null);
+            expect(queryByLabelText(/go to slide/)).toMatchSnapshot();
 
             // Controls should not be linked to the status text (slide x of y).
-            expect(getByLabelText(input.a11yPreviousText)).not.has.attr(
-                "aria-describedby",
-            );
-            expect(getByLabelText(input.a11yNextText)).not.has.attr(
-                "aria-describedby",
-            );
+            expect(getByLabelText(input.a11yPreviousText)).toMatchSnapshot();
+            expect(getByLabelText(input.a11yNextText)).toMatchSnapshot();
 
             input.items.forEach((item) =>
-                expect(queryByText(item.renderBody.text)).does.not.equal(null),
+                expect(queryByText(item.renderBody.text)).toMatchSnapshot(),
             );
         });
 
@@ -99,14 +82,8 @@ describe("carousel", () => {
             const input = mock.continuous0Items;
             const { getByLabelText } = await render(template, input);
 
-            expect(getByLabelText(input.a11yPreviousText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
-            expect(getByLabelText(input.a11yNextText)).has.attr(
-                "aria-disabled",
-                "true",
-            );
+            expect(getByLabelText(input.a11yPreviousText)).toMatchSnapshot();
+            expect(getByLabelText(input.a11yNextText)).toMatchSnapshot();
         });
     });
 

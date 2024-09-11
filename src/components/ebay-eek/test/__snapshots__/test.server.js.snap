@@ -1,0 +1,1265 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`eek > passes through additional html attributes 1`] = `
+<div
+  aria-label="Energy Rating: null. Range: undefined - undefined."
+  class="eek class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="figure"
+  style="color:red"
+  type="number"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      />
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    />
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > passes through additional html attributes 2`] = `
+<div
+  aria-label="Energy Rating: null. Range: undefined - undefined."
+  class="eek class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="figure"
+  style="color:red"
+  type="number"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      />
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    />
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders default eek 1`] = `
+<span
+  aria-hidden="true"
+>
+  A+++
+</span>
+`;
+
+exports[`eek > renders default eek 2`] = `
+<span
+  aria-hidden="true"
+>
+  D
+</span>
+`;
+
+exports[`eek > renders default eek 3`] = `
+<span
+  aria-hidden="true"
+  class="eek__rating"
+>
+  B
+</span>
+`;
+
+exports[`eek > renders default eek 4`] = `
+<div
+  aria-label="Energy Rating: 5. Range: A+++ - D."
+  class="eek eek--rating-5"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A+++
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        D
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      B
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders invalid eek 1`] = `
+<span
+  aria-hidden="true"
+>
+  A
+</span>
+`;
+
+exports[`eek > renders invalid eek 2`] = `
+<span
+  aria-hidden="true"
+>
+  D
+</span>
+`;
+
+exports[`eek > renders invalid eek 3`] = `
+<span
+  aria-hidden="true"
+  class="eek__rating"
+>
+  B
+</span>
+`;
+
+exports[`eek > renders invalid eek 4`] = `
+<div
+  aria-label="Energy Rating: null. Range: A - D."
+  class="eek"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        D
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      B
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders rating 1 1`] = `
+<div
+  aria-label="Energy Rating: 1. Range: A++ - E."
+  class="eek eek--rating-1"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A++
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        E
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      A++
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders rating 2 1`] = `
+<div
+  aria-label="Energy Rating: 2. Range: A++ - E."
+  class="eek eek--rating-2"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A++
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        E
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      A+
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders rating 3 1`] = `
+<div
+  aria-label="Energy Rating: 3. Range: A++ - E."
+  class="eek eek--rating-3"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A++
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        E
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      A
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders rating 4 1`] = `
+<div
+  aria-label="Energy Rating: 4. Range: A++ - E."
+  class="eek eek--rating-4"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A++
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        E
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      B
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders rating 5 1`] = `
+<div
+  aria-label="Energy Rating: 5. Range: A++ - E."
+  class="eek eek--rating-5"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A++
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        E
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      C
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders rating 6 1`] = `
+<div
+  aria-label="Energy Rating: 6. Range: A++ - E."
+  class="eek eek--rating-6"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A++
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        E
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      D
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders rating 7 (not 8) 1`] = `
+<div
+  aria-label="Energy Rating: 7. Range: A++ - G."
+  class="eek eek--rating-7"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A++
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        G
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      F
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders rating 7 (not 8) 2`] = `
+<div
+  aria-label="Energy Rating: 7. Range: A++ - G."
+  class="eek eek--rating-7"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A++
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        G
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      G
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders rating 7 1`] = `
+<div
+  aria-label="Energy Rating: 7. Range: A++ - E."
+  class="eek eek--rating-7"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A++
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        E
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      E
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;
+
+exports[`eek > renders the correct eek if rating is outside 1`] = `
+<div
+  aria-label="Energy Rating: null. Range: A+ - D."
+  class="eek"
+  role="figure"
+>
+  <div
+    aria-hidden="true"
+    class="eek__container"
+  >
+    <span
+      class="eek__rating-range"
+    >
+      <span
+        aria-hidden="true"
+      >
+        A+
+      </span>
+      <!--M#s0-4-0-->
+      <svg
+        aria-hidden="true"
+        class="icon icon--eek-range-arrow"
+        data-marko-key="@svg s0-4-0"
+        focusable="false"
+      >
+        <defs
+          data-marko-key="@defs s0-4-0"
+        >
+          <symbol
+            id="icon-eek-range-arrow"
+            viewBox="0 0 5 6"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M2.32203 0.108736L1.0202 2.6473C0.951945 2.78038 1.04859 2.93856 1.19816 2.93856H1.95692V5.99786H3.04303V2.93856H3.80182C3.95139 2.93856 4.04804 2.78038 3.97979 2.6473L2.67796 0.108736C2.60361 -0.0362453 2.39638 -0.0362455 2.32203 0.108736Z"
+              fill="black"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-eek-range-arrow"
+        />
+      </svg>
+      <!--M/-->
+      <span
+        aria-hidden="true"
+      >
+        D
+      </span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="eek__rating"
+    >
+      A++
+    </span>
+  </div>
+  <!--M#s0-7-0-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--eek-arrow"
+    data-marko-key="@svg s0-7-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-7-0"
+    >
+      <symbol
+        id="icon-eek-arrow"
+        viewBox="0 0 11 28"
+      >
+        <path
+          d="M0 27.75H1.13239C1.76009 27.75 2.35161 27.4145 2.73099 26.8434L10.342 15.3851C10.886 14.5662 10.886 13.4338 10.342 12.6149L2.73099 1.15661C2.35161 0.585476 1.76009 0.25 1.13239 0.25H3.09944e-06"
+          stroke="black"
+          stroke-width="1"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-eek-arrow"
+    />
+  </svg>
+  <!--M/-->
+</div>
+`;

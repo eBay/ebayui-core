@@ -1,5 +1,4 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import {
     render,
     cleanup,
@@ -12,7 +11,6 @@ import * as stories from "../donut-chart.stories";
 
 const { Standard, FiveValues } = composeStories(stories);
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */

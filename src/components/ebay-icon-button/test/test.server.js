@@ -1,12 +1,11 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
+
 import { composeStories } from "@storybook/marko";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../icon-button.stories"; // import all stories from the stories file
 const { Default } = composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 const properties = {
     priority: ["primary", "secondary", "delete"],

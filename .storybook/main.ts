@@ -1,7 +1,5 @@
 import fsp from "node:fs/promises";
 
-import { mergeConfig } from "vite";
-
 // This is done because lasso does not work with readme.md?raw
 // Lasso is being used to run our browser tests with @marko/test
 // If we get rid of lasso we should remove this code and switch all readmes to use ?raw
@@ -34,7 +32,12 @@ export default {
         autodocs: true,
         defaultName: "Documentation",
     },
+    core: {
+        disableTelemetry: true,
+        disableWhatsNewNotifications: true,
+    },
     async viteFinal(config: any) {
+        const { mergeConfig } = await import("vite");
         return mergeConfig(config, {
             plugins: [rawMarkdown],
         });

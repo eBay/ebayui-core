@@ -1,0 +1,44 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`passes through additional html attributes 1`] = `
+<button
+  class="class1 fake-link"
+  data-ebayui=""
+  data-marko="{"onclick":"handleClick s0 false","onkeydown":"handleKeydown s0 false","onfocus":"handleFocus s0 false","onblur":"handleBlur s0 false"}"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="button"
+/>
+`;
+
+exports[`passes through additional html attributes 2`] = `
+<button
+  class="class1 fake-link"
+  data-ebayui=""
+  data-marko="{"onclick":"handleClick s0 false","onkeydown":"handleKeydown s0 false","onfocus":"handleFocus s0 false","onblur":"handleBlur s0 false"}"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="button"
+/>
+`;
+
+exports[`renders disabled version 1`] = `
+<button
+  class="fake-link"
+  data-ebayui=""
+  data-marko="{"onclick":"handleClick s0 false","onkeydown":"handleKeydown s0 false","onfocus":"handleFocus s0 false","onblur":"handleBlur s0 false"}"
+  disabled=""
+  type="button"
+/>
+`;
+
+exports[`renders fake link version 1`] = `
+<button
+  class="fake-link"
+  data-ebayui=""
+  data-marko="{"onclick":"handleClick s0 false","onkeydown":"handleKeydown s0 false","onfocus":"handleFocus s0 false","onblur":"handleBlur s0 false"}"
+  type="button"
+/>
+`;

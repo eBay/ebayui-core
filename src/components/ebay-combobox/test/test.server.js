@@ -1,10 +1,9 @@
+import { describe, it } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
+import { testPassThroughAttributes } from "../../../common/test-utils/server";
 import { createRenderBody } from "../../../common/test-utils/shared";
 import * as stories from "../combobox.stories";
-const {
-    testPassThroughAttributes,
-} = require("../../../common/test-utils/server");
 
 const { Isolated, FloatingLabel } = composeStories(stories);
 

@@ -1,0 +1,460 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`dialog-base > passes through additional html attributes 1`] = `
+<div
+  aria-modal="true"
+  class="class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="dialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="undefined__window"
+  >
+    <div
+      class="undefined__header"
+    >
+      <!--F#14-->
+      <button
+        class="icon-btn undefined__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="undefined__main"
+    />
+  </div>
+</div>
+`;
+
+exports[`dialog-base > passes through additional html attributes 2`] = `
+<div
+  aria-modal="true"
+  class="class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="dialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="undefined__window"
+  >
+    <div
+      class="undefined__header"
+    >
+      <!--F#14-->
+      <button
+        class="icon-btn undefined__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="undefined__main"
+    />
+  </div>
+</div>
+`;
+
+exports[`dialog-base > renders basic version 1`] = `
+<div
+  aria-modal="true"
+  class="lightbox-dialog lightbox-dialog--mask-fade"
+  hidden=""
+  role="dialog"
+>
+  <div
+    class="lightbox-dialog__window lightbox-dialog__window--fade"
+  >
+    <div
+      class="lightbox-dialog__header"
+    >
+      <!--F#14-->
+      <button
+        aria-label="close"
+        class="icon-btn lightbox-dialog__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="lightbox-dialog__main"
+    >
+      <!--F#16-->
+      body content
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog-base > renders basic version 2`] = `
+<button
+  aria-label="close"
+  class="icon-btn lightbox-dialog__close"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-close-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-close-16"
+    />
+  </svg>
+</button>
+`;
+
+exports[`dialog-base > renders basic version 3`] = `
+<div
+  class="lightbox-dialog__main"
+>
+  <!--F#16-->
+  body content
+  <!--F/-->
+</div>
+`;
+
+exports[`dialog-base > renders in open state 1`] = `
+<div
+  aria-modal="true"
+  class="lightbox-dialog lightbox-dialog--mask-fade"
+  role="dialog"
+>
+  <div
+    class="lightbox-dialog__window lightbox-dialog__window--fade"
+  >
+    <div
+      class="lightbox-dialog__header"
+    >
+      <!--F#14-->
+      <button
+        aria-label="close"
+        class="icon-btn lightbox-dialog__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="lightbox-dialog__main"
+    >
+      <!--F#16-->
+      body content
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog-base > renders non modal 1`] = `
+<div
+  aria-live="polite"
+  aria-modal="true"
+  class="lightbox-dialog lightbox-dialog--mask-fade"
+  hidden=""
+  role="dialog"
+>
+  <div
+    class="lightbox-dialog__window lightbox-dialog__window--fade"
+  >
+    <div
+      class="lightbox-dialog__header"
+    >
+      <!--F#14-->
+      <button
+        aria-label="close"
+        class="icon-btn lightbox-dialog__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="lightbox-dialog__main"
+    >
+      <!--F#16-->
+      body content
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog-base > renders with header and footer 1`] = `
+<div
+  aria-labelledby="s0-dialog-title"
+  aria-modal="true"
+  class="lightbox-dialog lightboxc-dialog--mask-fade"
+  hidden=""
+  role="dialog"
+>
+  <div
+    class="lightbox-dialog__window lightbox-dialog__window--fade"
+  >
+    <div
+      class="lightbox-dialog__header"
+    >
+      <!--F#13-->
+      <h2
+        class="lightbox-dialog__title"
+        id="s0-dialog-title"
+      >
+        <!--F#2-->
+        title content
+        <!--F/-->
+      </h2>
+      <!--F/-->
+      <!--F#14-->
+      <button
+        aria-label="close"
+        class="icon-btn lightbox-dialog__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="lightbox-dialog__main"
+    >
+      <!--F#16-->
+      body content
+      <!--F/-->
+    </div>
+    <div
+      class="lightbox-dialog__footer"
+    >
+      <!--F#20-->
+      footer content
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog-base > renders with header and footer 2`] = `
+<button
+  aria-label="close"
+  class="icon-btn lightbox-dialog__close"
+  type="button"
+>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-close-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-close-16"
+    />
+  </svg>
+</button>
+`;
+
+exports[`dialog-base > renders with header and footer 3`] = `
+<div
+  class="lightbox-dialog__main"
+>
+  <!--F#16-->
+  body content
+  <!--F/-->
+</div>
+`;
+
+exports[`dialog-base > renders with header and footer 4`] = `
+<h2
+  class="lightbox-dialog__title"
+  id="s0-dialog-title"
+>
+  <!--F#2-->
+  title content
+  <!--F/-->
+</h2>
+`;
+
+exports[`dialog-base > renders with header and footer 5`] = `
+<div
+  class="lightbox-dialog__header"
+>
+  <!--F#13-->
+  <h2
+    class="lightbox-dialog__title"
+    id="s0-dialog-title"
+  >
+    <!--F#2-->
+    title content
+    <!--F/-->
+  </h2>
+  <!--F/-->
+  <!--F#14-->
+  <button
+    aria-label="close"
+    class="icon-btn lightbox-dialog__close"
+    type="button"
+  >
+    <svg
+      aria-hidden="true"
+      class="icon icon--16"
+      focusable="false"
+    >
+      <defs>
+        <symbol
+          id="icon-close-16"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-close-16"
+      />
+    </svg>
+  </button>
+  <!--F/-->
+</div>
+`;

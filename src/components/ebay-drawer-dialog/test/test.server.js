@@ -1,3 +1,4 @@
+import { describe, it } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";

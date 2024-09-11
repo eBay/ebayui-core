@@ -1,5 +1,4 @@
-import sinon from "sinon/pkg/sinon";
-import { expect } from "chai";
+import { beforeEach, describe, it, expect, vi } from "vitest";
 import setupMenu from "../";
 import { getNItems } from "../../test-utils/shared";
 
@@ -16,7 +15,7 @@ describe("non radio component", () => {
     beforeEach(() => {
         menu = {
             input,
-            setStateDirty: sinon.spy(),
+            setStateDirty: vi.fn(),
         };
         setupMenu(menu);
         menu.state = menu.getInputState(input);
@@ -74,7 +73,7 @@ describe("radio component", () => {
     beforeEach(() => {
         menu = {
             input,
-            setStateDirty: sinon.spy(),
+            setStateDirty: vi.fn(),
         };
         setupMenu(menu);
         menu.state = menu.getInputState(input);

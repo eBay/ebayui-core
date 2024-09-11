@@ -1,25 +1,20 @@
-import { expect, use } from "chai";
+import { it, expect } from "vitest";
 import { render } from "@marko/testing-library";
-import template from "..";
-const {
-    testPassThroughAttributes,
-} = require("../../../common/test-utils/server");
-
-use(require("chai-dom"));
+import { testPassThroughAttributes } from "../../../common/test-utils/server";
+import template from "../index.marko";
 
 it("renders default radio", async () => {
     const { getByRole } = await render(template);
     const radioControl = getByRole("radio");
-    expect(radioControl).to.have.class("radio__control");
-    expect(radioControl.parentElement).to.have.class("radio");
-    expect(radioControl.nextElementSibling).to.have.class("radio__icon");
-    expect(radioControl).to.have.property("disabled", false);
+    expect(radioControl).toMatchSnapshot();
+    expect(radioControl.parentElement).toMatchSnapshot();
+    expect(radioControl.nextElementSibling).toMatchSnapshot();
 });
 
 it("renders disabled radio", async () => {
     const { getByRole } = await render(template, { disabled: true });
     const radioControl = getByRole("radio");
-    expect(radioControl).to.have.property("disabled", true);
+    expect(radioControl).toMatchSnapshot();
 });
 
 testPassThroughAttributes(template, {

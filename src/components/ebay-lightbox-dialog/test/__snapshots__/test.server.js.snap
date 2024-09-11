@@ -1,0 +1,957 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`dialog > passes through additional html attributes 1`] = `
+<div
+  aria-labelledby="s0-0-@dialog-dialog-title"
+  aria-modal="true"
+  class="lightbox-dialog class1 lightbox-dialog--mask-fade"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="dialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="lightbox-dialog__window lightbox-dialog__window--animate"
+  >
+    <!--F#9-->
+    <button
+      aria-label="Maximize Dialog"
+      class="lightbox-dialog__handle"
+      type="button"
+    />
+    <!--F/-->
+    <div
+      class="lightbox-dialog__header"
+    >
+      <!--F#13-->
+      <h2
+        class="lightbox-dialog__title"
+        id="s0-0-@dialog-dialog-title"
+      >
+        <!--F#2-->
+        <!--F#1-->
+        Heading Text
+        <!--F/-->
+        <!--F/-->
+      </h2>
+      <!--F/-->
+      <!--F#14-->
+      <button
+        aria-label="Close dialog"
+        class="icon-btn lightbox-dialog__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="lightbox-dialog__main"
+    >
+      <!--F#16-->
+      <!--F#2-->
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <p>
+        <a
+          href="http://www.ebay.com"
+        >
+          www.ebay.com
+        </a>
+      </p>
+      <!--F/-->
+      <!--F/-->
+    </div>
+    <div
+      class="lightbox-dialog__footer"
+    >
+      <!--F#20-->
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog > passes through additional html attributes 2`] = `
+<div
+  aria-labelledby="s0-0-@dialog-dialog-title"
+  aria-modal="true"
+  class="lightbox-dialog class1 lightbox-dialog--mask-fade"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  hidden=""
+  role="dialog"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="lightbox-dialog__window lightbox-dialog__window--animate"
+  >
+    <!--F#9-->
+    <button
+      aria-label="Maximize Dialog"
+      class="lightbox-dialog__handle"
+      type="button"
+    />
+    <!--F/-->
+    <div
+      class="lightbox-dialog__header"
+    >
+      <!--F#13-->
+      <h2
+        class="lightbox-dialog__title"
+        id="s0-0-@dialog-dialog-title"
+      >
+        <!--F#2-->
+        <!--F#1-->
+        Heading Text
+        <!--F/-->
+        <!--F/-->
+      </h2>
+      <!--F/-->
+      <!--F#14-->
+      <button
+        aria-label="Close dialog"
+        class="icon-btn lightbox-dialog__close"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-close-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-close-16"
+          />
+        </svg>
+      </button>
+      <!--F/-->
+    </div>
+    <div
+      class="lightbox-dialog__main"
+    >
+      <!--F#16-->
+      <!--F#2-->
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <p>
+        <a
+          href="http://www.ebay.com"
+        >
+          www.ebay.com
+        </a>
+      </p>
+      <!--F/-->
+      <!--F/-->
+    </div>
+    <div
+      class="lightbox-dialog__footer"
+    >
+      <!--F#20-->
+      <!--F/-->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`dialog > renders basic version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-@dialog-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"lightbox-dialog lightbox-dialog--mask-fade"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Maximize Dialog"[39m
+        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"lightbox-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-@dialog-dialog-title"[39m
+        [36m>[39m
+          [0mHeading Text[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close dialog"[39m
+          [33mclass[39m=[32m"icon-btn lightbox-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__main"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"http://www.ebay.com"[39m
+          [36m>[39m
+            [0mwww.ebay.com[0m
+          [36m</a>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
+      [36m/>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`dialog > renders expressive version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-@dialog-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"lightbox-dialog lightbox-dialog--mask-fade lightbox-dialog--expressive"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Maximize Dialog"[39m
+        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__image"[39m
+        [33mstyle[39m=[32m"background-image:url(http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/mountain.jpeg);background-position:top"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"lightbox-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-@dialog-dialog-title"[39m
+        [36m>[39m
+          [0mHeading Text[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close Dialog"[39m
+          [33mclass[39m=[32m"icon-btn lightbox-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__main"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"http://www.ebay.com"[39m
+          [36m>[39m
+            [0mwww.ebay.com[0m
+          [36m</a>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
+      [36m/>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`dialog > renders in open state 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-@dialog-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"lightbox-dialog lightbox-dialog--mask-fade"[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Maximize Dialog"[39m
+        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"lightbox-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-@dialog-dialog-title"[39m
+        [36m>[39m
+          [0mHeading Text[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close dialog"[39m
+          [33mclass[39m=[32m"icon-btn lightbox-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__main"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"http://www.ebay.com"[39m
+          [36m>[39m
+            [0mwww.ebay.com[0m
+          [36m</a>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
+      [36m/>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`dialog > renders scrolling dialog 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-@dialog-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"lightbox-dialog lightbox-dialog--mask-fade"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Maximize Lightbox Dialog"[39m
+        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"lightbox-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-@dialog-dialog-title"[39m
+        [36m>[39m
+          [0mHeading[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close Dialog"[39m
+          [33mclass[39m=[32m"icon-btn lightbox-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__main"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis..."
+`;
+
+exports[`dialog > renders size=large 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-@dialog-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"lightbox-dialog lightbox-dialog--mask-fade lightbox-dialog--large"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Maximize Dialog"[39m
+        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"lightbox-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-@dialog-dialog-title"[39m
+        [36m>[39m
+          [0mHeading Text[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close dialog"[39m
+          [33mclass[39m=[32m"icon-btn lightbox-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__main"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"http://www.ebay.com"[39m
+          [36m>[39m
+            [0mwww.ebay.com[0m
+          [36m</a>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
+      [36m/>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`dialog > renders size=narrow 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-@dialog-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"lightbox-dialog lightbox-dialog--mask-fade lightbox-dialog--narrow"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Maximize Dialog"[39m
+        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"lightbox-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-@dialog-dialog-title"[39m
+        [36m>[39m
+          [0mHeading Text[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close dialog"[39m
+          [33mclass[39m=[32m"icon-btn lightbox-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__main"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"http://www.ebay.com"[39m
+          [36m>[39m
+            [0mwww.ebay.com[0m
+          [36m</a>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
+      [36m/>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`dialog > renders size=wide 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-@dialog-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"lightbox-dialog lightbox-dialog--mask-fade lightbox-dialog--wide"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Maximize Dialog"[39m
+        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"lightbox-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-@dialog-dialog-title"[39m
+        [36m>[39m
+          [0mHeading Text[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close dialog"[39m
+          [33mclass[39m=[32m"icon-btn lightbox-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__main"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"http://www.ebay.com"[39m
+          [36m>[39m
+            [0mwww.ebay.com[0m
+          [36m</a>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
+      [36m/>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`dialog > renders with header and footer 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-@dialog-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"lightbox-dialog lightbox-dialog--mask-fade"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Maximize Lightbox Dialog"[39m
+        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"lightbox-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-@dialog-dialog-title"[39m
+        [36m>[39m
+          [0mHeading[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close Dialog"[39m
+          [33mclass[39m=[32m"icon-btn lightbox-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__main"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"http://www.ebay.com"[39m
+          [36m>[39m
+            [0mwww.ebay.com[0m
+          [36m</a>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn"[39m
+        [36m>[39m
+          [0mButton 1[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn"[39m
+        [36m>[39m
+          [0mButton 2[0m
+        [36m</button>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`dialog > renders with previous button 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-@dialog-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"lightbox-dialog lightbox-dialog--mask-fade"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Maximize Lightbox Dialog"[39m
+        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__header"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Go back"[39m
+          [33mclass[39m=[32m"icon-btn lightbox-dialog__prev"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-chevron-left-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3.293 8.708a1 1 0 0 1 0-1.415l6-6a1 1 0 0 1 1.414 1.414L5.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414l-6-6Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-chevron-left-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"lightbox-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-@dialog-dialog-title"[39m
+        [36m>[39m
+          [0mHeading[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close Dialog"[39m
+          [33mclass[39m=[32m"icon-btn lightbox-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"lightbox-dialog__main"[39m
+      [36m>[39m
+        [36m<p>[39m
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
+        [36m</p>[39m
+        [36m<p>[39m
+          [36m<a[39m
+            [33mhref[39m=[32m"http://www.ebay.com"[39m
+          [36m>[39m
+            [0mwww.ebay.com[0m
+          [36m</a>[39m
+        [36m</p>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;

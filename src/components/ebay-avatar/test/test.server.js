@@ -1,12 +1,11 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
+
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../avatar.stories"; // import all stories from the stories file
 const { Default, WithImage, SignedOut } = composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
 import { addRenderBodies } from "../../../../.storybook/utils";
-
-use(require("chai-dom"));
 
 describe("avatar", () => {
     it("renders defaults", async () => {

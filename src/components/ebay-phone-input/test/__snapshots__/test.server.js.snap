@@ -1,0 +1,1370 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ebay-phone-input > renders defaults 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"phone-input"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"listbox-button"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-haspopup[39m=[32m"listbox"[39m
+        [33maria-label[39m=[32m"Country: United States"[39m
+        [33mclass[39m=[32m"listbox-button__control btn btn--split-start btn--form"[39m
+        [33mtype[39m=[32m"button"[39m
+        [33mvalue[39m=[32m"United States"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__cell"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"btn__text"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--us"[39m
+            [36m/>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-chevron-down-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+        [33mrole[39m=[32m"listbox"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--af"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAfghanistan[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 93 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-tick-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33mclip-rule[39m=[32m"evenodd"[39m
+                  [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                  [33mfill-rule[39m=[32m"evenodd"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--ax"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mÅland Islands[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 358 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--al"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlbania[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 355 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--dz"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlgeria[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 213 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--as"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAmerican Samoa[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 1 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+  ..."
+`;
+
+exports[`ebay-phone-input > renders disabled 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"phone-input phone-input--disabled"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"listbox-button"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-haspopup[39m=[32m"listbox"[39m
+        [33maria-label[39m=[32m"Country: United States"[39m
+        [33mclass[39m=[32m"listbox-button__control btn btn--split-start btn--form"[39m
+        [33mdisabled[39m=[32m""[39m
+        [33mtype[39m=[32m"button"[39m
+        [33mvalue[39m=[32m"United States"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__cell"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"btn__text"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--us"[39m
+            [36m/>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-chevron-down-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+        [33mrole[39m=[32m"listbox"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--af"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAfghanistan[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 93 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-tick-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33mclip-rule[39m=[32m"evenodd"[39m
+                  [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                  [33mfill-rule[39m=[32m"evenodd"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--ax"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mÅland Islands[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 358 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--al"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlbania[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 355 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--dz"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlgeria[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 213 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--as"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAmerican Samoa[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 1 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            ..."
+`;
+
+exports[`ebay-phone-input > renders invalid 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"phone-input phone-input--error"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"listbox-button"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-haspopup[39m=[32m"listbox"[39m
+        [33maria-invalid[39m=[32m"true"[39m
+        [33maria-label[39m=[32m"Country: United States"[39m
+        [33mclass[39m=[32m"listbox-button__control btn btn--split-start btn--form"[39m
+        [33mtype[39m=[32m"button"[39m
+        [33mvalue[39m=[32m"United States"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__cell"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"btn__text"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--us"[39m
+            [36m/>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-chevron-down-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+        [33mrole[39m=[32m"listbox"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--af"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAfghanistan[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 93 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-tick-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33mclip-rule[39m=[32m"evenodd"[39m
+                  [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                  [33mfill-rule[39m=[32m"evenodd"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--ax"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mÅland Islands[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 358 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--al"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlbania[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 355 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--dz"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlgeria[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 213 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--as"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAmerican Samoa[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 1 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+       ..."
+`;
+
+exports[`ebay-phone-input > renders localized version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"phone-input"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"listbox-button"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-haspopup[39m=[32m"listbox"[39m
+        [33maria-label[39m=[32m"Country: États-Unis"[39m
+        [33mclass[39m=[32m"listbox-button__control btn btn--split-start btn--form"[39m
+        [33mtype[39m=[32m"button"[39m
+        [33mvalue[39m=[32m"États-Unis"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__cell"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"btn__text"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--us"[39m
+            [36m/>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-chevron-down-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+        [33mrole[39m=[32m"listbox"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--af"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAfghanistan[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 93 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-tick-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33mclip-rule[39m=[32m"evenodd"[39m
+                  [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                  [33mfill-rule[39m=[32m"evenodd"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--za"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAfrique du Sud[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 27 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--al"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlbanie[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 355 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--dz"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlgérie[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 213 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--de"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAllemagne[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 49 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            ..."
+`;
+
+exports[`ebay-phone-input > renders prefilled 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"phone-input"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"listbox-button"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-haspopup[39m=[32m"listbox"[39m
+        [33maria-label[39m=[32m"Country: United States"[39m
+        [33mclass[39m=[32m"listbox-button__control btn btn--split-start btn--form"[39m
+        [33mtype[39m=[32m"button"[39m
+        [33mvalue[39m=[32m"United States"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__cell"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"btn__text"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--us"[39m
+            [36m/>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-chevron-down-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+        [33mrole[39m=[32m"listbox"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--af"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAfghanistan[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 93 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-tick-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33mclip-rule[39m=[32m"evenodd"[39m
+                  [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                  [33mfill-rule[39m=[32m"evenodd"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--ax"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mÅland Islands[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 358 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--al"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlbania[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 355 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--dz"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlgeria[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 213 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--as"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAmerican Samoa[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 1 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+  ..."
+`;
+
+exports[`ebay-phone-input > renders readonly 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"phone-input phone-input--readonly"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"listbox-button"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-haspopup[39m=[32m"listbox"[39m
+        [33maria-label[39m=[32m"Country: United States"[39m
+        [33mclass[39m=[32m"listbox-button__control btn btn--split-start btn--form"[39m
+        [33mdisabled[39m=[32m""[39m
+        [33mtype[39m=[32m"button"[39m
+        [33mvalue[39m=[32m"United States"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__cell"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"btn__text"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--us"[39m
+            [36m/>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-chevron-down-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+        [33mrole[39m=[32m"listbox"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--af"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAfghanistan[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 93 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-tick-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33mclip-rule[39m=[32m"evenodd"[39m
+                  [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                  [33mfill-rule[39m=[32m"evenodd"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--ax"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mÅland Islands[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 358 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--al"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlbania[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 355 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--dz"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlgeria[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 213 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--as"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAmerican Samoa[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 1 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            ..."
+`;
+
+exports[`ebay-phone-input > renders with floating label 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"phone-input"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"listbox-button"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33maria-haspopup[39m=[32m"listbox"[39m
+        [33maria-label[39m=[32m"Country: United States"[39m
+        [33mclass[39m=[32m"listbox-button__control btn btn--split-start btn--form"[39m
+        [33mtype[39m=[32m"button"[39m
+        [33mvalue[39m=[32m"United States"[39m
+      [36m>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"btn__cell"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"btn__text"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--us"[39m
+            [36m/>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-chevron-down-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M8.707 12.707a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L8 10.586l5.293-5.293a1 1 0 1 1 1.414 1.414l-6 6Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-chevron-down-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</span>[39m
+      [36m</button>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"listbox__options listbox-button__listbox"[39m
+        [33mrole[39m=[32m"listbox"[39m
+        [33mtabindex[39m=[32m"-1"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--af"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAfghanistan[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 93 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-tick-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33mclip-rule[39m=[32m"evenodd"[39m
+                  [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                  [33mfill-rule[39m=[32m"evenodd"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--ax"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mÅland Islands[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 358 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--al"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlbania[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 355 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--dz"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAlgeria[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 213 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"listbox__option"[39m
+          [33mrole[39m=[32m"option"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"listbox__value"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"fflag fflag--as"[39m
+            [36m/>[39m
+            [36m<span>[39m
+              [0mAmerican Samoa[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0m( + 1 )[0m
+            [36m</span>[39m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+  ..."
+`;

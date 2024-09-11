@@ -1,0 +1,229 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`passes through additional html attributes 1`] = `
+<input
+  class="radio__control"
+  data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  type="radio"
+/>
+`;
+
+exports[`passes through additional html attributes 2`] = `
+<span
+  class="radio class1"
+  style="color:red"
+>
+  <input
+    class="radio__control"
+    data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+    data-passed-through="true"
+    data-testid="AttributePassthrough"
+    type="radio"
+  />
+  <span
+    class="radio__icon"
+    hidden=""
+  >
+    <!--M#s0-5-0-->
+    <svg
+      aria-hidden="true"
+      class="radio__unchecked"
+      data-marko-key="@svg s0-5-0"
+      focusable="false"
+    >
+      <defs
+        data-marko-key="@defs s0-5-0"
+      >
+        <symbol
+          id="icon-radio-unchecked-18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M9 18A9 9 0 1 1 9 0a9 9 0 0 1 0 18ZM9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1Z"
+            fill-rule="evenodd"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-radio-unchecked-18"
+      />
+    </svg>
+    <!--M/-->
+    <!--M#s0-6-0-->
+    <svg
+      aria-hidden="true"
+      class="radio__checked"
+      data-marko-key="@svg s0-6-0"
+      focusable="false"
+    >
+      <defs
+        data-marko-key="@defs s0-6-0"
+      >
+        <symbol
+          id="icon-radio-checked-18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M9 0a9 9 0 1 0 0 18A9 9 0 0 0 9 0Zm0 17A8 8 0 1 1 9 1a8 8 0 0 1 0 16Zm5-8A5 5 0 1 1 4 9a5 5 0 0 1 10 0Z"
+            fill-rule="evenodd"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-radio-checked-18"
+      />
+    </svg>
+    <!--M/-->
+  </span>
+</span>
+`;
+
+exports[`renders default radio 1`] = `
+<input
+  class="radio__control"
+  data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+  type="radio"
+/>
+`;
+
+exports[`renders default radio 2`] = `
+<span
+  class="radio"
+>
+  <input
+    class="radio__control"
+    data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+    type="radio"
+  />
+  <span
+    class="radio__icon"
+    hidden=""
+  >
+    <!--M#s0-5-0-->
+    <svg
+      aria-hidden="true"
+      class="radio__unchecked"
+      data-marko-key="@svg s0-5-0"
+      focusable="false"
+    >
+      <defs
+        data-marko-key="@defs s0-5-0"
+      >
+        <symbol
+          id="icon-radio-unchecked-18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M9 18A9 9 0 1 1 9 0a9 9 0 0 1 0 18ZM9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1Z"
+            fill-rule="evenodd"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-radio-unchecked-18"
+      />
+    </svg>
+    <!--M/-->
+    <!--M#s0-6-0-->
+    <svg
+      aria-hidden="true"
+      class="radio__checked"
+      data-marko-key="@svg s0-6-0"
+      focusable="false"
+    >
+      <defs
+        data-marko-key="@defs s0-6-0"
+      >
+        <symbol
+          id="icon-radio-checked-18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M9 0a9 9 0 1 0 0 18A9 9 0 0 0 9 0Zm0 17A8 8 0 1 1 9 1a8 8 0 0 1 0 16Zm5-8A5 5 0 1 1 4 9a5 5 0 0 1 10 0Z"
+            fill-rule="evenodd"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-radio-checked-18"
+      />
+    </svg>
+    <!--M/-->
+  </span>
+</span>
+`;
+
+exports[`renders default radio 3`] = `
+<span
+  class="radio__icon"
+  hidden=""
+>
+  <!--M#s0-5-0-->
+  <svg
+    aria-hidden="true"
+    class="radio__unchecked"
+    data-marko-key="@svg s0-5-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-5-0"
+    >
+      <symbol
+        id="icon-radio-unchecked-18"
+        viewBox="0 0 18 18"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M9 18A9 9 0 1 1 9 0a9 9 0 0 1 0 18ZM9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-radio-unchecked-18"
+    />
+  </svg>
+  <!--M/-->
+  <!--M#s0-6-0-->
+  <svg
+    aria-hidden="true"
+    class="radio__checked"
+    data-marko-key="@svg s0-6-0"
+    focusable="false"
+  >
+    <defs
+      data-marko-key="@defs s0-6-0"
+    >
+      <symbol
+        id="icon-radio-checked-18"
+        viewBox="0 0 18 18"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M9 0a9 9 0 1 0 0 18A9 9 0 0 0 9 0Zm0 17A8 8 0 1 1 9 1a8 8 0 0 1 0 16Zm5-8A5 5 0 1 1 4 9a5 5 0 0 1 10 0Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-radio-checked-18"
+    />
+  </svg>
+  <!--M/-->
+</span>
+`;
+
+exports[`renders disabled radio 1`] = `
+<input
+  class="radio__control"
+  data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+  disabled=""
+  type="radio"
+/>
+`;

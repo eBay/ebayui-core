@@ -1,12 +1,11 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
+import { page } from "@vitest/browser/context";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import { composeStories } from "@storybook/marko";
 import * as stories from "../date-textbox.stories"; // import all stories from the stories file
 
 const { Default } = composeStories(stories);
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -15,6 +14,7 @@ let component;
 describe("ebay-date-textbox", () => {
     describe("default", () => {
         beforeEach(async () => {
+            await page.viewport(1250, 500);
             component = await render(Default, { value: "01/27/2024" });
         });
 

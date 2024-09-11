@@ -1,12 +1,10 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { render, cleanup, fireEvent, waitFor } from "@marko/testing-library";
 import { composeStories } from "@storybook/marko";
 import * as stories from "../tri-state-checkbox.stories";
 
 const { Isolated } = composeStories(stories);
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -35,7 +33,7 @@ describe("given tri-state-checkbox button is enabled", () => {
 
         it("then it is mixed", async () => {
             await waitFor(() =>
-                expect(component.getByRole("checkbox")).has.attribute(
+                expect(component.getByRole("checkbox")).toHaveAttribute(
                     "aria-checked",
                     "mixed",
                 ),
@@ -74,7 +72,7 @@ describe("given tri-state-checkbox button is enabled in mixed state", () => {
 
         it("then it is mixed", async () => {
             await waitFor(() =>
-                expect(component.getByRole("checkbox")).has.attribute(
+                expect(component.getByRole("checkbox")).toHaveAttribute(
                     "aria-checked",
                     "true",
                 ),

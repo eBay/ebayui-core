@@ -1,0 +1,89 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`skeleton > renders avatar 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m"Loading..."[39m
+    [33mclass[39m=[32m"skeleton"[39m
+    [33mrole[39m=[32m"img"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"skeleton__avatar"[39m
+    [36m/>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`skeleton > renders default skeleton 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m"Loading..."[39m
+    [33mclass[39m=[32m"skeleton"[39m
+    [33mrole[39m=[32m"img"[39m
+    [33mstyle[39m=[32m"width: 220px"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"skeleton__textbox"[39m
+    [36m/>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`skeleton > renders text 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"demo-text-container"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33maria-label[39m=[32m"Loading..."[39m
+      [33mclass[39m=[32m"skeleton"[39m
+      [33mrole[39m=[32m"img"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"skeleton__text"[39m
+      [36m/>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`skeleton > renders text multiLine 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"demo-text-container"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33maria-label[39m=[32m"Loading..."[39m
+      [33mclass[39m=[32m"skeleton"[39m
+      [33mrole[39m=[32m"img"[39m
+      [33mstyle[39m=[32m"width:220px"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"skeleton__text skeleton__text--multiline skeleton__text--large"[39m
+      [36m/>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`skeleton > renders tile 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"demo-tile-container"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33maria-label[39m=[32m"Loading..."[39m
+      [33mclass[39m=[32m"skeleton"[39m
+      [33mrole[39m=[32m"img"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"skeleton__image custom-image"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"skeleton__text skeleton__text--multiline"[39m
+        [33mlarge[39m=[32m""[39m
+      [36m/>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;

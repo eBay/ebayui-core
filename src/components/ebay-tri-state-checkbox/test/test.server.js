@@ -1,4 +1,5 @@
-import { use } from "chai";
+import { it } from "vitest";
+
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../tri-state-checkbox.stories";
@@ -7,8 +8,6 @@ import { testPassThroughAttributes } from "../../../common/test-utils/server";
 const { Isolated, WithLabel } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 it("renders default tri-state-checkbox", async () => {
     await htmlSnap(Isolated);

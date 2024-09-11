@@ -1,15 +1,21 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import {
+    afterEach,
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+} from "vitest";
 import { render, fireEvent, waitFor, cleanup } from "@marko/testing-library";
 import { fastAnimations } from "../../../../common/test-utils/browser";
 import { pressKey } from "../../../../common/test-utils/browser";
-import template from "../";
+import template from "../index.marko";
 import * as mock from "./mock";
 import "@ebay/skin/lightbox-dialog";
 
-use(chaiDom);
-before(fastAnimations.start);
-after(fastAnimations.stop);
+beforeAll(() => fastAnimations.start());
+afterAll(() => fastAnimations.stop());
 afterEach(cleanup);
 // Because dialog base does not have all the data this needs to be run by each module separately
 
@@ -23,6 +29,8 @@ describe("given a closed dialog", () => {
     beforeEach(async () => {
         sibling = document.body.appendChild(document.createElement("div"));
         component = await render(template, input);
+        // VI test adds some extra things to the body which causes the test to fail
+        document.body.removeAttribute("style");
     });
 
     afterEach(() => {
@@ -31,24 +39,24 @@ describe("given a closed dialog", () => {
 
     it("then it is hidden in the DOM", async () => {
         await waitFor(() =>
-            expect(component.getByRole("dialog", { hidden: true })).has.attr(
-                "hidden",
-            ),
+            expect(
+                component.getByRole("dialog", { hidden: true }),
+            ).toHaveAttribute("hidden"),
         );
     });
 
     it("then <body> is scrollable", () => {
-        expect(document.body).does.not.have.attr("style");
+        expect(document.body).not.toHaveAttribute("style");
     });
 
     it("then it's siblings are visible", () => {
-        expect(sibling).does.not.have.attr("aria-hidden");
+        expect(sibling).not.toHaveAttribute("aria-hidden");
     });
 
     it("then it does not trap focus", () => {
         expect(
             component.getByRole("dialog", { hidden: true }).children[0],
-        ).does.not.have.class("keyboard-trap--active");
+        ).not.toHaveClass("keyboard-trap--active");
     });
 
     describe("when it is rerendered to be open", () => {
@@ -64,17 +72,20 @@ describe("given a closed dialog", () => {
             await waitFor(() =>
                 expect(
                     component.getByRole("dialog", { hidden: true }),
-                ).does.not.have.attr("hidden"),
+                ).not.toHaveAttribute("hidden"),
             );
         });
 
         it("then <body> is not scrollable", () => {
-            expect(document.body).has.attr("style").contains("overflow:hidden");
+            expect(document.body).toHaveAttribute("style");
+            expect(getComputedStyle(document.body).overflow).toContain(
+                "hidden",
+            );
         });
 
         it("then it's siblings are hidden", async () => {
             await waitFor(() =>
-                expect(sibling).has.attr("aria-hidden", "true"),
+                expect(sibling).toHaveAttribute("aria-hidden", "true"),
             );
         });
 
@@ -84,11 +95,11 @@ describe("given a closed dialog", () => {
                     expect(
                         component.getByRole("dialog", { hidden: true })
                             .children[1],
-                    ).has.class("keyboard-trap--active");
+                    ).toHaveClass("keyboard-trap--active");
                     component
                         .getByLabelText(input.a11yCloseText)
                         .classList.forEach((cls) =>
-                            expect(document.activeElement).has.class(cls),
+                            expect(document.activeElement).toHaveClass(cls),
                         );
                 });
             });
@@ -187,17 +198,20 @@ describe("given an open dialog", () => {
             await waitFor(() =>
                 expect(
                     component.getByRole("dialog", { hidden: true }),
-                ).does.not.have.attr("hidden"),
+                ).not.toHaveAttribute("hidden"),
             );
         });
 
         it("then <body> is not scrollable", () => {
-            expect(document.body).has.attr("style").contains("overflow:hidden");
+            expect(document.body).toHaveAttribute("style");
+            expect(getComputedStyle(document.body).overflow).toContain(
+                "hidden",
+            );
         });
 
         it("then it's siblings are hidden", async () => {
             await waitFor(() =>
-                expect(sibling).has.attr("aria-hidden", "true"),
+                expect(sibling).toHaveAttribute("aria-hidden", "true"),
             );
         });
 
@@ -205,11 +219,11 @@ describe("given an open dialog", () => {
             await waitFor(() => {
                 expect(
                     component.getByRole("dialog", { hidden: true }).children[1],
-                ).has.class("keyboard-trap--active");
+                ).toHaveClass("keyboard-trap--active");
                 component
                     .getByLabelText(input.a11yCloseText)
                     .classList.forEach((cls) =>
-                        expect(document.activeElement).has.class(cls),
+                        expect(document.activeElement).toHaveClass(cls),
                     );
             });
         });
@@ -220,24 +234,24 @@ describe("given an open dialog", () => {
             await waitFor(() =>
                 expect(
                     component.getByRole("dialog", { hidden: true }),
-                ).has.attr("hidden"),
+                ).toHaveAttribute("hidden"),
             );
         });
 
         it("then <body> is scrollable", async () => {
             await waitFor(() => {
-                expect(document.body).does.not.have.attr("style");
+                expect(document.body).not.toHaveAttribute("style");
             });
         });
 
         it("then it's siblings are visible", () => {
-            expect(sibling).does.not.have.attr("aria-hidden");
+            expect(sibling).not.toHaveAttribute("aria-hidden");
         });
 
         it("then it restores the previous focus", async () => {
             expect(
                 component.getByRole("dialog", { hidden: true }).children[0],
-            ).does.not.have.class("keyboard-trap--active");
+            ).not.toHaveClass("keyboard-trap--active");
             await waitFor(() =>
                 expect(document.activeElement).to.equal(sibling),
             );
@@ -280,16 +294,16 @@ describe("given an open dialog with no trap", () => {
 
     it("then it is visible in the DOM", async () => {
         await waitFor(() =>
-            expect(component.getByRole("dialog")).does.not.have.attr("hidden"),
+            expect(component.getByRole("dialog")).not.toHaveAttribute("hidden"),
         );
     });
 
     it("then <body> is scrollable", () => {
-        expect(document.body).does.not.have.attr("style");
+        expect(document.body).not.toHaveAttribute("style");
     });
 
     it("then it's siblings are not hidden", () => {
-        expect(sibling).does.not.have.attr("aria-hidden", "true");
+        expect(sibling).not.toHaveAttribute("aria-hidden", "true");
     });
 
     it("then it does not traps focus", async () => {
@@ -300,7 +314,7 @@ describe("given an open dialog with no trap", () => {
             component
                 .getByLabelText(input.a11yCloseText)
                 .classList.forEach((cls) =>
-                    expect(document.activeElement).does.not.have.class(cls),
+                    expect(document.activeElement).not.toHaveClass(cls),
                 );
         });
     });
@@ -362,14 +376,18 @@ describe("given an open with no close button", () => {
     function thenItIsOpen() {
         it("then it is visible in the DOM", async () => {
             await waitFor(() =>
-                expect(component.getByRole("dialog")).does.not.have.attr(
+                expect(component.getByRole("dialog")).not.toHaveAttribute(
                     "hidden",
                 ),
             );
         });
 
         it("then <body> is not scrollable", () => {
-            expect(document.body).has.attr("style").contains("overflow:hidden");
+            expect(document.body).toHaveAttribute("style");
+
+            expect(getComputedStyle(document.body).overflow).toContain(
+                "hidden",
+            );
         });
     }
 });
@@ -389,24 +407,24 @@ describe("given a closed dialog with useHiddenProperty", () => {
 
     it("then it is hidden in the DOM", async () => {
         await waitFor(() =>
-            expect(component.getByRole("dialog", { hidden: true })).has.attr(
-                "hidden",
-            ),
+            expect(
+                component.getByRole("dialog", { hidden: true }),
+            ).toHaveAttribute("hidden"),
         );
     });
 
     it("then <body> is scrollable", () => {
-        expect(document.body).does.not.have.attr("style");
+        expect(document.body).not.toHaveAttribute("style");
     });
 
     it("then it's siblings are visible", async () => {
-        await waitFor(() => expect(sibling).does.not.have.attr("hidden"));
+        await waitFor(() => expect(sibling).not.toHaveAttribute("hidden"));
     });
 
     it("then it does not trap focus", () => {
         expect(
             component.getByRole("dialog", { hidden: true }).children[0],
-        ).does.not.have.class("keyboard-trap--active");
+        ).not.toHaveClass("keyboard-trap--active");
     });
 
     describe("when it is rerendered to be open", () => {
@@ -420,25 +438,29 @@ describe("given a closed dialog with useHiddenProperty", () => {
     function useHiddenPropertyIsOpened(wasToggled) {
         it("then it is visible in the DOM", async () => {
             await waitFor(() =>
-                expect(component.getByRole("dialog")).does.not.have.attr(
+                expect(component.getByRole("dialog")).not.toHaveAttribute(
                     "hidden",
                 ),
             );
         });
 
         it("then <body> is not scrollable", () => {
-            expect(document.body).has.attr("style").contains("overflow:hidden");
+            expect(document.body).toHaveAttribute("style");
+
+            expect(getComputedStyle(document.body).overflow).toContain(
+                "hidden",
+            );
         });
 
         it("then it's siblings are hidden", async () => {
-            await waitFor(() => expect(sibling).has.attr("hidden"));
+            await waitFor(() => expect(sibling).toHaveAttribute("hidden"));
         });
 
         if (wasToggled) {
             it("then it still does not trap focus", () => {
                 expect(
                     component.getByRole("dialog", { hidden: true }).children[0],
-                ).does.not.have.class("keyboard-trap--active");
+                ).not.toHaveClass("keyboard-trap--active");
             });
 
             it("then it emits the show event", async () => {

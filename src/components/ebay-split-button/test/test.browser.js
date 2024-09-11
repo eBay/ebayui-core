@@ -1,5 +1,4 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import { composeStories } from "@storybook/marko";
 import * as stories from "../split-button.stories"; // import all stories from the stories file
@@ -7,7 +6,6 @@ import * as stories from "../split-button.stories"; // import all stories from t
 const { Standard } = composeStories(stories);
 
 import { pressKey } from "../../../common/test-utils/browser";
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */

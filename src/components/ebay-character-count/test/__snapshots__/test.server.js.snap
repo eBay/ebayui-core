@@ -1,0 +1,58 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`character-count > renders default 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span>[39m
+    [0m11/120[0m
+    [36m<span[39m
+      [33mclass[39m=[32m"clipped"[39m
+    [36m>[39m
+      [0mcharacters remaining[0m
+    [36m</span>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`character-count > renders in field 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"field"[39m
+  [36m>[39m
+    [36m<label[39m
+      [33mclass[39m=[32m"field__label field__label--stacked"[39m
+      [33mfor[39m=[32m"my-input"[39m
+    [36m>[39m
+      [0mField Label[0m
+    [36m</label>[39m
+    [36m<span[39m
+      [33mclass[39m=[32m"field__control"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"textbox textbox__control"[39m
+      [36m>[39m
+        [36m<input[39m
+          [33maria-describedby[39m=[32m"my-input-description my-input-charcount"[39m
+          [33mclass[39m=[32m"textbox__control"[39m
+          [33mid[39m=[32m"my-input"[39m
+          [33mtype[39m=[32m"text"[39m
+          [33mvalue[39m=[32m""[39m
+        [36m/>[39m
+      [36m</span>[39m
+    [36m</span>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"field__description field__description--group"[39m
+    [36m>[39m
+      [36m<span[39m
+        [33mid[39m=[32m"my-input-description"[39m
+      [36m>[39m
+        [0mBrief description[0m
+      [36m</span>[39m
+      [36m<span[39m
+        [33mid[39m=[32m"my-input-charcount"[39m
+      [36m>[39m
+        [0m0/120[0m
+      [36m</span>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;

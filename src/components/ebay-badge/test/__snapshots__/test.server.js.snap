@@ -1,0 +1,78 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`does not render with negative value 1`] = `null`;
+
+exports[`given number is a string > does not renders with a negative string 1`] = `null`;
+
+exports[`given number is a string > does not renders with an invalid string 1`] = `null`;
+
+exports[`given number is a string > renders number with coerced string 1`] = `
+<span
+  class="badge"
+  role="img"
+>
+  5
+</span>
+`;
+
+exports[`given number is a string > renders number with rounded-up string 1`] = `
+<span
+  class="badge"
+  role="img"
+>
+  5
+</span>
+`;
+
+exports[`passes through additional html attributes 1`] = `
+<span
+  class="badge class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="img"
+  style="color:red"
+  type="number"
+>
+  1
+</span>
+`;
+
+exports[`passes through additional html attributes 2`] = `
+<span
+  class="badge class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="img"
+  style="color:red"
+  type="number"
+>
+  1
+</span>
+`;
+
+exports[`renders defaults 1`] = `
+<span
+  class="badge"
+  role="img"
+>
+  5
+</span>
+`;
+
+exports[`renders number with rounded-up value 1`] = `
+<span
+  class="badge"
+  role="img"
+>
+  6
+</span>
+`;
+
+exports[`truncates when the value is greater than 99 1`] = `
+<span
+  class="badge"
+  role="img"
+>
+  99+
+</span>
+`;

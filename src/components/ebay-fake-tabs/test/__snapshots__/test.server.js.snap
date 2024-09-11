@@ -1,0 +1,139 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`fake tabs > passes through additional html attributes 1`] = `
+<div
+  class="fake-tabs class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+>
+  <ul
+    class="fake-tabs__items"
+  />
+  <div
+    class="fake-tabs__content"
+  >
+    <div
+      class="fake-tabs__panel"
+    >
+      <div
+        class="fake-tabs__cell"
+      >
+        <div />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`fake tabs > passes through additional html attributes 2`] = `
+<div
+  class="fake-tabs class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+>
+  <ul
+    class="fake-tabs__items"
+  />
+  <div
+    class="fake-tabs__content"
+  >
+    <div
+      class="fake-tabs__panel"
+    >
+      <div
+        class="fake-tabs__cell"
+      >
+        <div />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`fake tabs > renders fake version with 3 tabs 1`] = `
+<a
+  aria-current="page"
+  href="#tab-0"
+>
+  Heading 0
+</a>
+`;
+
+exports[`fake tabs > renders fake version with 3 tabs 2`] = `
+<a
+  href="#tab-1"
+>
+  Heading 1
+</a>
+`;
+
+exports[`fake tabs > renders fake version with 3 tabs 3`] = `
+<a
+  href="#tab-2"
+>
+  Heading 2
+</a>
+`;
+
+exports[`fake tabs > renders fake version with 3 tabs 4`] = `
+<div>
+  Panel 0
+</div>
+`;
+
+exports[`fake tabs > renders fake version with 3 tabs on the second panel 1`] = `
+<a
+  href="#tab-0"
+>
+  Heading 0
+</a>
+`;
+
+exports[`fake tabs > renders fake version with 3 tabs on the second panel 2`] = `
+<a
+  aria-current="page"
+  href="#tab-1"
+>
+  Heading 1
+</a>
+`;
+
+exports[`fake tabs > renders fake version with 3 tabs on the second panel 3`] = `
+<a
+  href="#tab-2"
+>
+  Heading 2
+</a>
+`;
+
+exports[`tabs-heading > when fake > passes through additional html attributes from child tabs 1`] = `
+<li
+  class="class1 fake-tabs__item"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+>
+  <a
+    aria-current="page"
+  />
+</li>
+`;
+
+exports[`tabs-heading > when fake > passes through additional html attributes from child tabs 2`] = `
+<li
+  class="class1 fake-tabs__item"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+>
+  <a
+    aria-current="page"
+  />
+</li>
+`;

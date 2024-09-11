@@ -1,4 +1,5 @@
-import { use } from "chai";
+import { it } from "vitest";
+
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../progress-stepper.stories";
@@ -6,8 +7,6 @@ import * as stories from "../progress-stepper.stories";
 const { InProgress, Blocked } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 it("renders in progress progress-stepper", async () => {
     await htmlSnap(InProgress);

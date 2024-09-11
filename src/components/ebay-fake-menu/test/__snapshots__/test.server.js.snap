@@ -1,0 +1,332 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`fake-menu > passes through additional html attributes 1`] = `
+<span
+  class="fake-menu class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+>
+  <ul
+    class="fake-menu__items"
+    id="s0-menu"
+    tabindex="-1"
+  />
+</span>
+`;
+
+exports[`fake-menu > passes through additional html attributes 2`] = `
+<span
+  class="fake-menu class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+>
+  <ul
+    class="fake-menu__items"
+    id="s0-menu"
+    tabindex="-1"
+  />
+</span>
+`;
+
+exports[`fake-menu > passes through additional html attributes from child items 1`] = `
+<button
+  class="fake-menu__item class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="button"
+>
+  <span />
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-tick-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-tick-16"
+    />
+  </svg>
+</button>
+`;
+
+exports[`fake-menu > passes through additional html attributes from child items 2`] = `
+<button
+  class="fake-menu__item class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="button"
+>
+  <span />
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-tick-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-tick-16"
+    />
+  </svg>
+</button>
+`;
+
+exports[`fake-menu > renders base version 1`] = `
+<a
+  class="fake-menu__item"
+  href="#0"
+>
+  <span>
+    <!--F#5[0]-->
+    Item text 0
+    <!--F/-->
+  </span>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-tick-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-tick-16"
+    />
+  </svg>
+</a>
+`;
+
+exports[`fake-menu > renders base version 2`] = `
+<a
+  class="fake-menu__item"
+  href="#1"
+>
+  <span>
+    <!--F#5[1]-->
+    Item text 1
+    <!--F/-->
+  </span>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <use
+      href="#icon-tick-16"
+    />
+  </svg>
+</a>
+`;
+
+exports[`fake-menu > renders with aria-current=true 1`] = `
+<a
+  aria-current="true"
+  class="fake-menu__item"
+>
+  <span>
+    <!--F#5[0]-->
+    Item text 0
+    <!--F/-->
+  </span>
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-tick-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-tick-16"
+    />
+  </svg>
+</a>
+`;
+
+exports[`fake-menu > renders with fix-width=true 1`] = `
+<span
+  class="fake-menu fake-menu__menu--fix-width"
+>
+  <ul
+    class="fake-menu__items"
+    id="s0-menu"
+    tabindex="-1"
+  >
+    <li>
+      <a
+        class="fake-menu__item"
+        href="#0"
+      >
+        <span>
+          <!--F#5[0]-->
+          Item text 0
+          <!--F/-->
+        </span>
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-tick-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+                fill-rule="evenodd"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-tick-16"
+          />
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a
+        class="fake-menu__item"
+        href="#1"
+      >
+        <span>
+          <!--F#5[1]-->
+          Item text 1
+          <!--F/-->
+        </span>
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <use
+            href="#icon-tick-16"
+          />
+        </svg>
+      </a>
+    </li>
+  </ul>
+</span>
+`;
+
+exports[`fake-menu > renders with reverse=true 1`] = `
+<span
+  class="fake-menu fake-menu__menu--reverse"
+>
+  <ul
+    class="fake-menu__items"
+    id="s0-menu"
+    tabindex="-1"
+  >
+    <li>
+      <a
+        class="fake-menu__item"
+        href="#0"
+      >
+        <span>
+          <!--F#5[0]-->
+          Item text 0
+          <!--F/-->
+        </span>
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <defs>
+            <symbol
+              id="icon-tick-16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+                fill-rule="evenodd"
+              />
+            </symbol>
+          </defs>
+          <use
+            href="#icon-tick-16"
+          />
+        </svg>
+      </a>
+    </li>
+    <li>
+      <a
+        class="fake-menu__item"
+        href="#1"
+      >
+        <span>
+          <!--F#5[1]-->
+          Item text 1
+          <!--F/-->
+        </span>
+        <svg
+          aria-hidden="true"
+          class="icon icon--16"
+          focusable="false"
+        >
+          <use
+            href="#icon-tick-16"
+          />
+        </svg>
+      </a>
+    </li>
+  </ul>
+</span>
+`;
+
+exports[`fake-menu > renders with separators 1`] = `null`;
+
+exports[`fake-menu > renders with separators 2`] = `
+<hr
+  class="fake-menu__separator"
+  role="separator"
+/>
+`;
