@@ -1,4 +1,3 @@
-const isCI = !!process.env.CI;
 import { defineWorkspace } from "vitest/config";
 
 export default defineWorkspace([
@@ -7,10 +6,10 @@ export default defineWorkspace([
         test: {
             name: "browser",
             browser: {
-              enabled: true,
-              name: "chromium",
-              provider: "playwright",
-            //   headless: true,
+                enabled: true,
+                name: "chromium",
+                provider: "playwright",
+                headless: true,
             },
             include: ["src/**/test.browser.{ts,js}"],
         },
@@ -22,5 +21,5 @@ export default defineWorkspace([
             environment: "node",
             include: ["src/**/test.server.{ts,js}"],
         },
-    }
+    },
 ]);

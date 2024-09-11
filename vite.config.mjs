@@ -25,7 +25,7 @@ export default defineConfig({
             provider: "istanbul",
             reporter: ['json-summary', 'html', 'cobertura', 'lcov'],
             include: ["src/**/*"],
-            exclude:[
+            exclude: [
                 "src/**/examples",
                 "src/components/ebay-icon/icons/",
                 "src/**/*.stories.ts",
