@@ -5,7 +5,7 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
     legendColor = "var(--color-data-viz-legend)",
     legendInactiveColor = "var(--color-data-viz-legend-inactive)",
     legendHoverColor = "var(--color-data-viz-legend-hover)",
-    tooltipBackgroundColor = "var(--color-neutral-0)",
+    tooltipBackgroundColor = "var(--color-background-primary)",
     tooltipShadows =
         "drop-shadow(0 2px 7px var(--color-data-viz-tooltip-shadow-primary)) drop-shadow(0 5px 7px var(--color-data-viz-tooltip-shadow-secondary))",
     lineChartPrimaryColor = "var(--color-data-viz-line-chart-primary)",
