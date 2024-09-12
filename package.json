@@ -130,7 +130,7 @@
         "vitest": "^2.0.5"
     },
     "peerDependencies": {
-        "@ebay/skin": "~18.200",
+        "@ebay/skin": "~18.2.0",
         "marko": ">= ^4.27.0 || >= ^5.31.12"
     },
     "dependencies": {
