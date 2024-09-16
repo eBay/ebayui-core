@@ -900,21 +900,21 @@ exports[`menu-button > renders with overflow variant 1`] = `
     [36m>[39m
       [36m<svg[39m
         [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--24"[39m
+        [33mclass[39m=[32m"icon icon--16"[39m
         [33mfocusable[39m=[32m"false"[39m
       [36m>[39m
         [36m<defs>[39m
           [36m<symbol[39m
-            [33mid[39m=[32m"icon-overflow-vertical-24"[39m
-            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mid[39m=[32m"icon-overflow-vertical-16"[39m
+            [33mviewBox[39m=[32m"0 0 16 16"[39m
           [36m>[39m
             [36m<path[39m
-              [33md[39m=[32m"M12 7a2 2 0 1 0 .001-3.999A2 2 0 0 0 12 7Zm0 7a2 2 0 1 0 .001-3.999A2 2 0 0 0 12 14Zm2 5a2 2 0 1 1-3.999.001A2 2 0 0 1 14 19Z"[39m
+              [33md[39m=[32m"M8 4.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm0 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"[39m
             [36m/>[39m
           [36m</symbol>[39m
         [36m</defs>[39m
         [36m<use[39m
-          [33mhref[39m=[32m"#icon-overflow-vertical-24"[39m
+          [33mhref[39m=[32m"#icon-overflow-vertical-16"[39m
         [36m/>[39m
       [36m</svg>[39m
     [36m</button>[39m
