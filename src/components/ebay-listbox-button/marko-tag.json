@@ -14,6 +14,7 @@
     "@truncate": "boolean",
     "@prefix-id": "string",
     "@prefix-label": "string",
+    "@a11y-icon-prefix-text": "string",
     "@floating-label": "string",
     "@unselected-text": "string",
     "@postfix-label": "string",

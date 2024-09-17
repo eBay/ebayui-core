@@ -29,6 +29,22 @@
         },
         "@html-attributes": "expression"
     },
+    "@prefix-text <prefix-text>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@postfix-text <postfix-text>": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
     "@input-size": "string",
     "@button-aria-label": "string",
     "@autocomplete": "#html-autocomplete",
