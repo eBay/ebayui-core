@@ -99,7 +99,7 @@ class Pagination extends Marko.Component<Input, State> {
     }
 
     onCreate() {
-        this.state = { maxItems: 0 };
+        this.state = { maxItems: MIN_PAGES };
     }
 
     onMount() {
@@ -133,17 +133,6 @@ class Pagination extends Marko.Component<Input, State> {
         const leadingDotsIndex = hasLeadingDots ? 1 : -1;
         let hideDots = false;
         let hideLeadingDots = false;
-
-        if (!maxItems) {
-            return {
-                start: 0,
-                end: lastIndex,
-                hideDots: true,
-                dotsIndex,
-                leadingDotsIndex,
-                hasOverflow,
-            };
-        }
 
         const i = items.findIndex((item) => item.current);
         const range = Math.floor(maxItems / 2);
@@ -201,17 +190,25 @@ class Pagination extends Marko.Component<Input, State> {
             return;
         }
 
-        const itemContainer = this.getEl("items") as HTMLElement;
-        const root = this.getEl("root") as HTMLElement;
-        const itemWidth =
-            this._itemWidth || // Cache the item width since it should be static.
-            (this._itemWidth = (
-                itemContainer.firstElementChild as HTMLElement
-            ).offsetWidth);
+        const root = this.getEl<HTMLElement>("root");
+        if (!this._itemWidth) {
+            // calculate the width of the first visible item
+            const { children: items } = this.getEl<HTMLElement>("items");
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i] as HTMLElement;
+                if (item.offsetWidth) {
+                    this._itemWidth = item.offsetWidth;
+                    break;
+                }
+            }
+        }
         // subtract 2 from the rounded results to take into account previous/next page buttons
         state.maxItems = Math.max(
             MIN_PAGES,
-            Math.min(MAX_PAGES, Math.floor(getMaxWidth(root) / itemWidth) - 2),
+            Math.min(
+                MAX_PAGES,
+                Math.floor(getMaxWidth(root) / this._itemWidth) - 2,
+            ),
         );
     }
 }

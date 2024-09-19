@@ -18,3 +18,4 @@ integration/template.marko
 yarn.lock
 .env
 _cdn
+__screenshots__
