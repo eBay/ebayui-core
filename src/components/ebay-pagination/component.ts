@@ -190,17 +190,25 @@ class Pagination extends Marko.Component<Input, State> {
             return;
         }
 
-        const itemContainer = this.getEl("items") as HTMLElement;
-        const root = this.getEl("root") as HTMLElement;
-        const itemWidth =
-            this._itemWidth || // Cache the item width since it should be static.
-            (this._itemWidth = (
-                itemContainer.firstElementChild as HTMLElement
-            ).offsetWidth);
+        const root = this.getEl<HTMLElement>("root");
+        if (!this._itemWidth) {
+            // calculate the width of the first visible item
+            const { children: items } = this.getEl<HTMLElement>("items");
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i] as HTMLElement;
+                if (item.offsetWidth) {
+                    this._itemWidth = item.offsetWidth;
+                    break;
+                }
+            }
+        }
         // subtract 2 from the rounded results to take into account previous/next page buttons
         state.maxItems = Math.max(
             MIN_PAGES,
-            Math.min(MAX_PAGES, Math.floor(getMaxWidth(root) / itemWidth) - 2),
+            Math.min(
+                MAX_PAGES,
+                Math.floor(getMaxWidth(root) / this._itemWidth) - 2,
+            ),
         );
     }
 }

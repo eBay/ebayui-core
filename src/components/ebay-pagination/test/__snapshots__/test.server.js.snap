@@ -84,77 +84,99 @@ exports[`pagination > Interactive > renders defaults 1`] = `
           [0m4[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m5[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m6[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m7[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m8[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m9[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m10[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m11[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m12[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m13[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m14[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
@@ -295,7 +317,9 @@ exports[`pagination > passes through additional html attributes 1`] = `
         <!--F/-->
       </a>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <a
         class="pagination__item"
         href="#"
@@ -305,7 +329,9 @@ exports[`pagination > passes through additional html attributes 1`] = `
         <!--F/-->
       </a>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <a
         class="pagination__item"
         href="#"
@@ -315,7 +341,9 @@ exports[`pagination > passes through additional html attributes 1`] = `
         <!--F/-->
       </a>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <a
         class="pagination__item"
         href="#"
@@ -325,7 +353,9 @@ exports[`pagination > passes through additional html attributes 1`] = `
         <!--F/-->
       </a>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <a
         class="pagination__item"
         href="#"
@@ -470,7 +500,9 @@ exports[`pagination > passes through additional html attributes 2`] = `
         <!--F/-->
       </a>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <a
         class="pagination__item"
         href="#"
@@ -480,7 +512,9 @@ exports[`pagination > passes through additional html attributes 2`] = `
         <!--F/-->
       </a>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <a
         class="pagination__item"
         href="#"
@@ -490,7 +524,9 @@ exports[`pagination > passes through additional html attributes 2`] = `
         <!--F/-->
       </a>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <a
         class="pagination__item"
         href="#"
@@ -500,7 +536,9 @@ exports[`pagination > passes through additional html attributes 2`] = `
         <!--F/-->
       </a>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <a
         class="pagination__item"
         href="#"
@@ -639,7 +677,9 @@ exports[`pagination > passes through additional html attributes 3`] = `
         <!--F/-->
       </button>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <button
         class="pagination__item"
       >
@@ -648,7 +688,9 @@ exports[`pagination > passes through additional html attributes 3`] = `
         <!--F/-->
       </button>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <button
         class="pagination__item"
       >
@@ -657,7 +699,9 @@ exports[`pagination > passes through additional html attributes 3`] = `
         <!--F/-->
       </button>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <button
         class="pagination__item"
       >
@@ -666,7 +710,9 @@ exports[`pagination > passes through additional html attributes 3`] = `
         <!--F/-->
       </button>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <button
         class="pagination__item"
       >
@@ -803,7 +849,9 @@ exports[`pagination > passes through additional html attributes 4`] = `
         <!--F/-->
       </button>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <button
         class="pagination__item"
       >
@@ -812,7 +860,9 @@ exports[`pagination > passes through additional html attributes 4`] = `
         <!--F/-->
       </button>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <button
         class="pagination__item"
       >
@@ -821,7 +871,9 @@ exports[`pagination > passes through additional html attributes 4`] = `
         <!--F/-->
       </button>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <button
         class="pagination__item"
       >
@@ -830,7 +882,9 @@ exports[`pagination > passes through additional html attributes 4`] = `
         <!--F/-->
       </button>
     </li>
-    <li>
+    <li
+      hidden=""
+    >
       <button
         class="pagination__item"
       >
@@ -952,70 +1006,90 @@ exports[`pagination > with buttons > renders button version 1`] = `
           [0mitem 4[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 5[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 6[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 7[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 8[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 9[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 10[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 11[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 12[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 13[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
@@ -1100,7 +1174,9 @@ exports[`pagination > with buttons > renders button version selected items 1`] =
     [36m<ol[39m
       [33mclass[39m=[32m"pagination__items"[39m
     [36m>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
@@ -1143,63 +1219,81 @@ exports[`pagination > with buttons > renders button version selected items 1`] =
           [0mitem 5[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 6[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 7[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 8[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 9[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 10[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 11[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 12[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0mitem 13[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
@@ -1308,44 +1402,52 @@ exports[`pagination > with buttons > renders buttons with last page visible 1`] 
           [0m3[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m4[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m5[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m6[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m7[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m8[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
+      [36m<li>[39m
         [36m<span[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mrole[39m=[32m"separator"[39m
@@ -1494,28 +1596,36 @@ exports[`pagination > with buttons > renders default button version 1`] = `
           [0m5[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m6[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m7[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m8[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
@@ -1611,7 +1721,9 @@ exports[`pagination > with buttons > renders default button with overflow 1`] = 
           [0m1[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<span[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mrole[39m=[32m"separator"[39m
@@ -1677,44 +1789,52 @@ exports[`pagination > with buttons > renders default button with overflow 1`] = 
           [0m3[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m4[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m5[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m6[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m7[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
           [0m8[0m
         [36m</button>[39m
       [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
+      [36m<li>[39m
         [36m<span[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mrole[39m=[32m"separator"[39m
@@ -1751,7 +1871,120 @@ exports[`pagination > with buttons > renders default button with overflow 1`] = 
                 [33mclass[39m=[32m"fake-menu__items"[39m
                 [33mid[39m=[32m"s0-6[8]-@content-menu"[39m
                 [33mtabindex[39m=[32m"-1"[39m
-              [36m/>[39m
+              [36m>[39m
+                [36m<li>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"fake-menu-button__item"[39m
+                    [33mdata-page-number[39m=[32m"3"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m4[0m
+                    [36m</span>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"icon icon--16"[39m
+                      [33mfocusable[39m=[32m"false"[39m
+                    [36m>[39m
+                      [36m<defs>[39m
+                        [36m<symbol[39m
+                          [33mid[39m=[32m"icon-tick-16"[39m
+                          [33mviewBox[39m=[32m"0 0 16 16"[39m
+                        [36m>[39m
+                          [36m<path[39m
+                            [33mclip-rule[39m=[32m"evenodd"[39m
+                            [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                            [33mfill-rule[39m=[32m"evenodd"[39m
+                          [36m/>[39m
+                        [36m</symbol>[39m
+                      [36m</defs>[39m
+                      [36m<use[39m
+                        [33mhref[39m=[32m"#icon-tick-16"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</button>[39m
+                [36m</li>[39m
+                [36m<li>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"fake-menu-button__item"[39m
+                    [33mdata-page-number[39m=[32m"4"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m5[0m
+                    [36m</span>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"icon icon--16"[39m
+                      [33mfocusable[39m=[32m"false"[39m
+                    [36m>[39m
+                      [36m<use[39m
+                        [33mhref[39m=[32m"#icon-tick-16"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</button>[39m
+                [36m</li>[39m
+                [36m<li>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"fake-menu-button__item"[39m
+                    [33mdata-page-number[39m=[32m"5"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m6[0m
+                    [36m</span>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"icon icon--16"[39m
+                      [33mfocusable[39m=[32m"false"[39m
+                    [36m>[39m
+                      [36m<use[39m
+                        [33mhref[39m=[32m"#icon-tick-16"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</button>[39m
+                [36m</li>[39m
+                [36m<li>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"fake-menu-button__item"[39m
+                    [33mdata-page-number[39m=[32m"6"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m7[0m
+                    [36m</span>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"icon icon--16"[39m
+                      [33mfocusable[39m=[32m"false"[39m
+                    [36m>[39m
+                      [36m<use[39m
+                        [33mhref[39m=[32m"#icon-tick-16"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</button>[39m
+                [36m</li>[39m
+                [36m<li>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"fake-menu-button__item"[39m
+                    [33mdata-page-number[39m=[32m"7"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m8[0m
+                    [36m</span>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"icon icon--16"[39m
+                      [33mfocusable[39m=[32m"false"[39m
+                    [36m>[39m
+                      [36m<use[39m
+                        [33mhref[39m=[32m"#icon-tick-16"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</button>[39m
+                [36m</li>[39m
+              [36m</ul>[39m
             [36m</span>[39m
           [36m</span>[39m
         [36m</span>[39m
@@ -1962,7 +2195,9 @@ exports[`pagination > with links > renders basic version 1`] = `
           [0m5[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -1970,7 +2205,9 @@ exports[`pagination > with links > renders basic version 1`] = `
           [0m6[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -1978,7 +2215,9 @@ exports[`pagination > with links > renders basic version 1`] = `
           [0m7[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -1986,7 +2225,9 @@ exports[`pagination > with links > renders basic version 1`] = `
           [0m8[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2154,7 +2395,9 @@ exports[`pagination > with links > renders with a selected item 1`] = `
     [36m<ol[39m
       [33mclass[39m=[32m"pagination__items"[39m
     [36m>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2203,7 +2446,9 @@ exports[`pagination > with links > renders with a selected item 1`] = `
           [0mitem 5[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2211,7 +2456,9 @@ exports[`pagination > with links > renders with a selected item 1`] = `
           [0mitem 6[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2219,7 +2466,9 @@ exports[`pagination > with links > renders with a selected item 1`] = `
           [0mitem 7[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2227,7 +2476,9 @@ exports[`pagination > with links > renders with a selected item 1`] = `
           [0mitem 8[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2235,7 +2486,9 @@ exports[`pagination > with links > renders with a selected item 1`] = `
           [0mitem 9[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2243,7 +2496,9 @@ exports[`pagination > with links > renders with a selected item 1`] = `
           [0mitem 10[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2251,7 +2506,9 @@ exports[`pagination > with links > renders with a selected item 1`] = `
           [0mitem 11[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2259,7 +2516,9 @@ exports[`pagination > with links > renders with a selected item 1`] = `
           [0mitem 12[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2267,7 +2526,9 @@ exports[`pagination > with links > renders with a selected item 1`] = `
           [0mitem 13[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2356,7 +2617,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
     [36m<ol[39m
       [33mclass[39m=[32m"pagination__items"[39m
     [36m>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2405,7 +2668,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [0mitem 5[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2413,7 +2678,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [0mitem 6[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2421,7 +2688,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [0mitem 7[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2429,7 +2698,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [0mitem 8[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2437,7 +2708,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [0mitem 9[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2445,7 +2718,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [0mitem 10[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2453,7 +2728,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [0mitem 11[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2461,7 +2738,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [0mitem 12[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2469,7 +2748,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [0mitem 13[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2557,7 +2838,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
     [36m<ol[39m
       [33mclass[39m=[32m"pagination__items"[39m
     [36m>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2606,7 +2889,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [0mitem 5[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2614,7 +2899,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [0mitem 6[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2622,7 +2909,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [0mitem 7[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2630,7 +2919,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [0mitem 8[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2638,7 +2929,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [0mitem 9[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2646,7 +2939,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [0mitem 10[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2654,7 +2949,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [0mitem 11[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2662,7 +2959,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [0mitem 12[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2670,7 +2969,9 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [0mitem 13[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2784,7 +3085,9 @@ exports[`pagination > with links > renders with last page visible 1`] = `
           [0m3[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2792,7 +3095,9 @@ exports[`pagination > with links > renders with last page visible 1`] = `
           [0m4[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2800,7 +3105,9 @@ exports[`pagination > with links > renders with last page visible 1`] = `
           [0m5[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2808,7 +3115,9 @@ exports[`pagination > with links > renders with last page visible 1`] = `
           [0m6[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2816,7 +3125,9 @@ exports[`pagination > with links > renders with last page visible 1`] = `
           [0m7[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -2824,9 +3135,7 @@ exports[`pagination > with links > renders with last page visible 1`] = `
           [0m8[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
+      [36m<li>[39m
         [36m<span[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mrole[39m=[32m"separator"[39m
@@ -2952,7 +3261,9 @@ exports[`pagination > with links > renders with overflow 1`] = `
           [0m1[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<span[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mrole[39m=[32m"separator"[39m
@@ -3020,7 +3331,9 @@ exports[`pagination > with links > renders with overflow 1`] = `
           [0m3[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -3028,7 +3341,9 @@ exports[`pagination > with links > renders with overflow 1`] = `
           [0m4[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -3036,7 +3351,9 @@ exports[`pagination > with links > renders with overflow 1`] = `
           [0m5[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -3044,7 +3361,9 @@ exports[`pagination > with links > renders with overflow 1`] = `
           [0m6[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -3052,7 +3371,9 @@ exports[`pagination > with links > renders with overflow 1`] = `
           [0m7[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
         [36m<a[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
@@ -3060,9 +3381,7 @@ exports[`pagination > with links > renders with overflow 1`] = `
           [0m8[0m
         [36m</a>[39m
       [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
+      [36m<li>[39m
         [36m<span[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mrole[39m=[32m"separator"[39m
@@ -3099,7 +3418,120 @@ exports[`pagination > with links > renders with overflow 1`] = `
                 [33mclass[39m=[32m"fake-menu__items"[39m
                 [33mid[39m=[32m"s0-6[8]-@content-menu"[39m
                 [33mtabindex[39m=[32m"-1"[39m
-              [36m/>[39m
+              [36m>[39m
+                [36m<li>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"fake-menu-button__item"[39m
+                    [33mdata-page-number[39m=[32m"3"[39m
+                    [33mhref[39m=[32m"#"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m4[0m
+                    [36m</span>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"icon icon--16"[39m
+                      [33mfocusable[39m=[32m"false"[39m
+                    [36m>[39m
+                      [36m<defs>[39m
+                        [36m<symbol[39m
+                          [33mid[39m=[32m"icon-tick-16"[39m
+                          [33mviewBox[39m=[32m"0 0 16 16"[39m
+                        [36m>[39m
+                          [36m<path[39m
+                            [33mclip-rule[39m=[32m"evenodd"[39m
+                            [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                            [33mfill-rule[39m=[32m"evenodd"[39m
+                          [36m/>[39m
+                        [36m</symbol>[39m
+                      [36m</defs>[39m
+                      [36m<use[39m
+                        [33mhref[39m=[32m"#icon-tick-16"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"fake-menu-button__item"[39m
+                    [33mdata-page-number[39m=[32m"4"[39m
+                    [33mhref[39m=[32m"#"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m5[0m
+                    [36m</span>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"icon icon--16"[39m
+                      [33mfocusable[39m=[32m"false"[39m
+                    [36m>[39m
+                      [36m<use[39m
+                        [33mhref[39m=[32m"#icon-tick-16"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"fake-menu-button__item"[39m
+                    [33mdata-page-number[39m=[32m"5"[39m
+                    [33mhref[39m=[32m"#"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m6[0m
+                    [36m</span>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"icon icon--16"[39m
+                      [33mfocusable[39m=[32m"false"[39m
+                    [36m>[39m
+                      [36m<use[39m
+                        [33mhref[39m=[32m"#icon-tick-16"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"fake-menu-button__item"[39m
+                    [33mdata-page-number[39m=[32m"6"[39m
+                    [33mhref[39m=[32m"#"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m7[0m
+                    [36m</span>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"icon icon--16"[39m
+                      [33mfocusable[39m=[32m"false"[39m
+                    [36m>[39m
+                      [36m<use[39m
+                        [33mhref[39m=[32m"#icon-tick-16"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</a>[39m
+                [36m</li>[39m
+                [36m<li>[39m
+                  [36m<a[39m
+                    [33mclass[39m=[32m"fake-menu-button__item"[39m
+                    [33mdata-page-number[39m=[32m"7"[39m
+                    [33mhref[39m=[32m"#"[39m
+                  [36m>[39m
+                    [36m<span>[39m
+                      [0m8[0m
+                    [36m</span>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"icon icon--16"[39m
+                      [33mfocusable[39m=[32m"false"[39m
+                    [36m>[39m
+                      [36m<use[39m
+                        [33mhref[39m=[32m"#icon-tick-16"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</a>[39m
+                [36m</li>[39m
+              [36m</ul>[39m
             [36m</span>[39m
           [36m</span>[39m
         [36m</span>[39m
