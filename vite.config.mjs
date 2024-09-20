@@ -33,5 +33,5 @@ export default defineConfig({
         },
     },
 
-    plugins: [marko(), rawMarkdown],
+    plugins: [marko({ linked: false }), rawMarkdown],
 });
