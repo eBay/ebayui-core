@@ -71,6 +71,8 @@ jobs:
                   cache: npm
             - name: Install dependencies
               run: npm i
+            - name: Install Playwright Browsers
+              run: npx playwright install --with-deps
             - name: Enter prerelease mode
               if: ${{ github.ref != 'refs/heads/master' }}
               run: npm run prerelease:start
