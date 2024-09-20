@@ -108,6 +108,7 @@ describe("typeahead functionality", () => {
 
 describe("given the menu is in the default state", () => {
     const firstItemText = Default.args.items[0].renderBody;
+    const secondItemText = Default.args.items[1].renderBody;
 
     beforeEach(async () => {
         component = await render(Default);
@@ -139,6 +140,50 @@ describe("given the menu is in the default state", () => {
 
         it("then it emits the marko keydown event", () => {
             expect(component.emitted("keydown")).to.have.property("length", 1);
+        });
+    });
+
+    describe("when the down key is pressed from an item", () => {
+        beforeEach(async () => {
+            await pressKey(component.getByText(firstItemText), {
+                key: "ArrowDown",
+                keyCode: 40,
+            });
+        });
+
+        it("then it emits the marko keydown event", () => {
+            const keydownEvents = component.emitted("keydown");
+            expect(keydownEvents).to.have.property("length", 1);
+            expect(keydownEvents[0][0].index).to.equal(1);
+        });
+    });
+
+    describe("when the up key is pressed from the first item", () => {
+        beforeEach(async () => {
+            await pressKey(component.getByText(firstItemText), {
+                key: "ArrowUp",
+                keyCode: 38,
+            });
+        });
+
+        it("then it does not emit the marko keydown event", () => {
+            const keydownEvents = component.emitted("keydown");
+            expect(keydownEvents).to.have.property("length", 0);
+        });
+    });
+
+    describe("when the up key is pressed from the second item", () => {
+        beforeEach(async () => {
+            await pressKey(component.getByText(secondItemText), {
+                key: "ArrowUp",
+                keyCode: 38,
+            });
+        });
+
+        it("then it emits the marko keydown event", () => {
+            const keydownEvents = component.emitted("keydown");
+            expect(keydownEvents).to.have.property("length", 1);
+            expect(keydownEvents[0][0].index).to.equal(0);
         });
     });
 });

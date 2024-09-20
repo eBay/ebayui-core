@@ -82,6 +82,13 @@ export default class extends MenuUtils<Input, MenuState> {
                 this._toggleItemChecked(index, ev, itemEl);
             });
         }
+        eventUtils.handleArrowsKeydown(ev, () => {
+            setTimeout(() => {
+                if (this._rovingTabIndex.index !== index) {
+                    this._emitComponentEvent("keydown", ev, { index: this._rovingTabIndex.index });
+                }
+            });
+        });
     }
 
     handleFooterButtonClick(originalEvent: Event) {

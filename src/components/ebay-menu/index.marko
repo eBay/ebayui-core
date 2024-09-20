@@ -8,6 +8,8 @@ $ const {
     reverse,
     fixWidth,
     items,
+    ariaLabel,
+    ariaLabelledby,
     ...htmlInput
 } = input;
 
@@ -31,6 +33,8 @@ $ var separatorMap = component.getSeparatorMap(input);
         role="menu"
         class=`${baseClass}__items`
         key="menu"
+        aria-label=ariaLabel
+        aria-labelledby=ariaLabelledby
         id:scoped="menu">
         <for|item, index| of=(component.items)>
             $ const {

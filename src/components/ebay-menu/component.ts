@@ -110,6 +110,18 @@ export default class extends MenuUtils<Input, MenuState> {
         eventUtils.handleActionKeydown(originalEvent, () =>
             this.toggleItemChecked(index, originalEvent, itemEl),
         );
+
+        eventUtils.handleArrowsKeydown(originalEvent, () => {
+            setTimeout(() => {
+                if (index !== this.rovingTabindex.index) {
+                    this.emitComponentEvent({
+                        eventType: "keydown",
+                        originalEvent,
+                        index: this.rovingTabindex.index,
+                    });
+                }
+            });
+        });
     }
 
     handleItemKeypress({ key }: KeyboardEvent) {

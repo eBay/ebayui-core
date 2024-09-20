@@ -13,6 +13,14 @@ describe("menu", () => {
         await htmlSnap(Default);
     });
 
+    it("renders with aria-label", async () => {
+        await htmlSnap(Default, { ariaLabel: "test" });
+    });
+
+    it("renders with aria-labelledby", async () => {
+        await htmlSnap(Default, { ariaLabelledBy: "test" });
+    });
+
     it("renders with reverse=true", async () => {
         await htmlSnap(Default, { reverse: true });
     });

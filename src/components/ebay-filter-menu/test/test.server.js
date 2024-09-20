@@ -15,6 +15,14 @@ describe("filter-menu", () => {
         await htmlSnap(Standard);
     });
 
+    it("renders with aria-label", async () => {
+        await htmlSnap(Standard, { ariaLabel: "test" });
+    });
+
+    it("renders with aria-labelledby", async () => {
+        await htmlSnap(Standard, { ariaLabelledby: "test" });
+    });
+
     it(`renders checked item`, async () => {
         items[1] = Object.assign({ checked: true }, items[1]);
         await htmlSnap(Standard);
