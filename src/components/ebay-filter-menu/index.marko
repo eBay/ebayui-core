@@ -1,5 +1,4 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
-
+import { processHtmlAttributes } from "../../common/html-attributes";
 $ const {
     variant,
     footer,
@@ -13,25 +12,34 @@ $ const {
     formMethod,
     items,
     type,
+    ariaLabel,
+    ariaLabelledby,
     ...htmlInput
 } = input;
-
 $ var isRadio = type === "radio";
-$ var prefixName = isRadio ? 'radio' : 'checkbox';
+$ var prefixName = isRadio ? "radio" : "checkbox";
 $ var baseClass = classPrefix || "filter-menu";
 $ var isForm = variant === "form";
 <span
     ...processHtmlAttributes(htmlInput)
     key="container"
     class=[classPrefix ? `${baseClass}__menu` : baseClass, inputClass]
-    style=style>
+    style=style
+>
     <${isForm && "form"}
         name=formName
         action=formAction
         method=formMethod
-        onSubmit("handleFormSubmit")>
-        <div key="menu" class=`${baseClass}__items` role=(!isForm && "menu")>
-            <for|item, i| of=(items || [])>
+        onSubmit("handleFormSubmit")
+    >
+        <div
+            key="menu"
+            class=`${baseClass}__items`
+            role=!isForm && "menu"
+            aria-label=ariaLabel
+            aria-labelledby=ariaLabelledby
+        >
+            <for|item, i| of=items || []>
                 $ const {
                     class: itemClass,
                     disabled,
@@ -45,20 +53,28 @@ $ var isForm = variant === "form";
                     class=[`${baseClass}__item`, itemClass]
                     role=(isRadio ? "menuitemradio" : "menuitemcheckbox")
                     aria-checked=String(isChecked)
-                    aria-disabled=(disabled && "true")
-                    for=(isForm && component.elId(`${prefixName}-${i}`))
+                    aria-disabled=disabled && "true"
+                    for=isForm && component.elId(`${prefixName}-${i}`)
                     onClick("handleItemClick", i)
-                    onKeydown("handleItemKeydown", i)>
+                    onKeydown("handleItemKeydown", i)
+                >
                     <if(isForm)>
-                        <if (isRadio)>
-                            <ebay-radio id:scoped=`${prefixName}-${i}` checked=isChecked on-change("handleRadioClick", i)/>
+                        <if(isRadio)>
+                            <ebay-radio
+                                id:scoped=`${prefixName}-${i}`
+                                checked=isChecked
+                                on-change("handleRadioClick", i)
+                            />
                         </if>
                         <else>
-                            <ebay-checkbox id:scoped=`${prefixName}-${i}` checked=isChecked/>
+                            <ebay-checkbox
+                                id:scoped=`${prefixName}-${i}`
+                                checked=isChecked
+                            />
                         </else>
                     </if>
                     <else>
-                        <if (isRadio)>
+                        <if(isRadio)>
                             <span class=`${baseClass}__radio`>
                                 <if(isChecked)>
                                     <ebay-radio-checked-18-icon/>
@@ -90,22 +106,20 @@ $ var isForm = variant === "form";
                 type=(isForm ? "submit" : "button")
                 aria-label=a11yFooterText
                 class=`${baseClass}__footer`
-                onClick(!isForm && "handleFooterButtonClick")>
+                onClick(!isForm && "handleFooterButtonClick")
+            >
                 ${footerText}
             </button>
         </if>
         <else-if(footer)>
-            $ const {
-                renderBody,
-                a11yFooterText,
-                ...htmlFooter
-            } = footer;
+            $ const { renderBody, a11yFooterText, ...htmlFooter } = footer;
             <button
                 ...processHtmlAttributes(htmlFooter)
                 type=(isForm ? "submit" : "button")
                 aria-label=a11yFooterText
                 class=`${baseClass}__footer`
-                onClick(!isForm && "handleFooterButtonClick")>
+                onClick(!isForm && "handleFooterButtonClick")
+            >
                 <${renderBody}/>
             </button>
         </else-if>
