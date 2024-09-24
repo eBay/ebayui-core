@@ -159,7 +159,7 @@
         "makeup-focusables": "~0.4.0",
         "makeup-key-emitter": "~0.4.0",
         "makeup-keyboard-trap": "~0.5.0",
-        "makeup-prevent-scroll-keys": "~0.3.0",
+        "makeup-prevent-scroll-keys": "~0.3.1",
         "makeup-roving-tabindex": "~0.7.0",
         "makeup-screenreader-trap": "~0.5.0",
         "makeup-typeahead": "^0.3.0"
