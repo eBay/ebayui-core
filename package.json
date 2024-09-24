@@ -157,7 +157,7 @@
         "makeup-expander": "~0.11.0",
         "makeup-floating-label": "~0.4.2",
         "makeup-focusables": "~0.4.0",
-        "makeup-key-emitter": "~0.4.0",
+        "makeup-key-emitter": "~0.4.1",
         "makeup-keyboard-trap": "~0.5.0",
         "makeup-prevent-scroll-keys": "~0.3.0",
         "makeup-roving-tabindex": "~0.7.0",
