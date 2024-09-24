@@ -8,6 +8,7 @@
     ],
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
         "incremental": true,
         "lib": ["dom", "ESNext"],
         "module": "CommonJS",
