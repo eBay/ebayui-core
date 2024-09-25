@@ -167,7 +167,6 @@ describe("given an open and non expanded dialog for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then it is expanded on touch drag up",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
@@ -186,7 +185,6 @@ describe("given an open and non expanded dialog for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then does not trigger when threshold is not met for drag up",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
@@ -211,7 +209,6 @@ describe("given an open and non expanded dialog for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then does not trigger when threshold is not met for drag down",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
@@ -228,7 +225,6 @@ describe("given an open and non expanded dialog for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then it is closed on touch drag down",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
@@ -265,7 +261,6 @@ describe("given an open and expanded dialog for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "nothing happens on touch drag up",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),
@@ -284,7 +279,6 @@ describe("given an open and expanded dialog for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then it is collapsed on touch drag down",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),
@@ -303,7 +297,6 @@ describe("given an open and expanded dialog for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then does not trigger when threshold is not met for drag up",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),
@@ -320,7 +313,6 @@ describe("given an open and expanded dialog for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then does not trigger when threshold is not met for drag down",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),

@@ -11,9 +11,9 @@ try {
     // v3 paths
     compiler = require("@marko/compiler");
     isMarko5 = true;
+    // eslint-disable-next-line no-unused-vars
 } catch (e) {
     // v4 paths
-
     const target = require("marko/env").isDebug ? "src" : "dist";
     markoCompiler = require("marko/compiler");
     CompileContext = require(`marko/${target}/compiler/CompileContext`);

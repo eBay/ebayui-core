@@ -16,7 +16,6 @@ async function walkDirs() {
                 "utf-8",
             );
             const versions = JSON.parse(versionsRaw);
-            // eslint-disable-next-line compat/compat
             items.forEach(async (item) => {
                 const itemPath = path.resolve(
                     __dirname,

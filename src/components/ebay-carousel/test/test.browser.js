@@ -412,7 +412,6 @@ describe("given a discrete carousel", () => {
         (supportsNativeScrolling ? describe : describe.skip)(
             "when it is scrolled to the second slide",
             () => {
-                // eslint-disable-next-line mocha/no-sibling-hooks
                 beforeEach(async () => {
                     const thirdItem = component.getByText(
                         input.items[1].renderBody.text,

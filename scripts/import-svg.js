@@ -1,5 +1,3 @@
-/* eslint-disable compat/compat */
-
 /**
  * Loads DS4 and DS6 icons from skin and adds them to the ebay-icon symbols.
  */
@@ -187,7 +185,7 @@ function generateFile(type, iconMap) {
         if (iconDef) {
             const defPath = path.join(iconFolder, "def.ts");
             const contentDef = `export function def() {
-    // eslint-disable-next-line max-len,quotes
+    // eslint-disable-next-line max-len,q/Users/agliga/build/ebay/ebayui-core/src/common/test-utils/server.jsuotes
     return { server:  ${JSON.stringify(iconDef.server)}, browser: ${JSON.stringify(iconDef.browser)} };
 };
 `;
@@ -207,7 +205,6 @@ function generateFile(type, iconMap) {
 
         const size = name.match(sizeMatcher)?.[1] || "";
 
-        // eslint-disable-next-line max-len
         fs.writeFileSync(
             index,
             `import { symbol } from "./symbol";
