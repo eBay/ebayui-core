@@ -19,5 +19,6 @@
     "@xAxisPositioner": "function",
     "@yAxisLabels": "array",
     "@yAxisPositioner": "function",
+    "@renderTooltipOutside": "boolean",
     "@trend": "boolean"
 }
