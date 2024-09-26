@@ -1,0 +1,22 @@
+import{t as T}from"./index-CCz6reEH.js";import{r as y,b as f,c as _,t as h}from"./registry-CtNeIPU8.js";import{i as v,a as E}from"./attr-tag-DphMQldM.js";import{_ as b}from"./const-element-D4l_3TxL.js";import{_ as $}from"./dynamic-tag-HMZVE1pc.js";import{_ as q}from"./index-CPOgdil0.js";import{_ as l}from"./render-tag-mtfFSHEK.js";import{_ as S}from"./empty-component-BCB5DEsP.js";import{_ as A}from"./index-C4tnstVV.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";/* empty css                    */import"./index-Ca3E2DLc.js";import"./index-B6qYX52F.js";/* empty css             */import"./index-BCNhIFfA.js";import"./index-CxthRfyu.js";import"./index-CbT4wDAv.js";/* empty css               */import"./index-BL5tj0GS.js";import"./index-DW9U_Ppe.js";import"./index-DN2d98YU.js";const O=`<h1 style='display: flex; justify-content: space-between; align-items: center;'>
+    <span>
+        ebay-panel-dialog
+    </span>
+    <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
+        DS v2.0.0
+    </span>
+</h1>
+
+## Examples and Documentation
+
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/dialogs-ebay-panel-dialog)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/dialogs-ebay-panel-dialog)
+-   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-panel-dialog/examples)
+`,p="xyMs$lNf",s=h(p);y.r(p,()=>S);const k={};s._=f(function(e,a,n,r,m,x){const{position:o,class:C,...D}=e;l(q,{...D,classPrefix:"panel-dialog",class:[C,"panel-dialog--mask-fade-slow"],windowClass:["panel-dialog__window--slide",e.position==="end"&&"panel-dialog__window--end"],renderBody:B=>{$(B,e.renderBody,null,null,null,null,n,"1")}},a,n,"0",[["open","emit",!1,["open"]],["close","emit",!1,["close"]]])},{t:p,s:!0},k);s.Component=_(k,s._);const d="VRnEmgud",i=h(d),V=b("p",null,1).t("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),P=b("p",null,1).e("a",{href:"http://www.ebay.com"},1).t("www.ebay.com");y.r(d,()=>i);const w={onCreate(){this.state={open:!1}},openDialog(){this.state.open=!0},closeDialog(){this.state.open=!1,this.emit("close")}};i._=f(function(e,a,n,r,m,x){l(s,v(()=>(E("header",{renderBody:o=>{o.t("Heading",r)}}),o=>{o.n(V,r),o.n(P,r)}),{a11yCloseText:"Close Dialog",open:m.open,...e,header:void 0}),a,n,"0",[["close","closeDialog",!1],["open","emit",!1,["open"]]]),l(A,{renderBody:o=>{o.t("Open Dialog",r)}},a,n,"4",[["click","openDialog",!1]])},{t:d},w);i.Component=_(w,i._);const R=e=>({input:{...e,renderBody:e.renderBody?a=>{a.html(e.renderBody)}:null}}),re={title:"dialogs/ebay-panel-dialog",component:i,parameters:{docs:{description:{component:O}}},argTypes:{open:{type:"boolean",control:{type:"boolean"},description:"Whether dialog is open.",table:{disable:!0}},position:{control:{type:"text"},description:'"end" or "start", defaults to "start", the position of the panel, either at the start (left side) of the page, or end (right side) of the page.'},focus:{control:{type:"text"},description:"An id for an element which will receive focus when the dialog opens (defaults to close button)"},closeFocus:{control:{type:"text"},description:"An id for an element which will receive focus when the dialog closes. Defaults to the last clicked element before the dialog is opened"},a11yCloseText:{control:{type:"text"},description:"A11y text for close button and mask."},onOpen:{action:"on-open",description:"Triggered on dialog opened",table:{category:"Events",defaultValue:{summary:""}}},onClose:{action:"on-close",description:"Triggered on dialog closed.",table:{category:"Events",defaultValue:{summary:""}}}}},t=R.bind({});t.args={a11yCloseText:"Close Panel"};t.parameters={docs:{source:{code:T("ebay-panel-dialog",t.args)}}};var c,u,g;t.parameters={...t.parameters,docs:{...(c=t.parameters)==null?void 0:c.docs,source:{originalSource:`args => ({
+  input: {
+    ...args,
+    renderBody: args.renderBody ? out => {
+      out.html(args.renderBody);
+    } : null
+  }
+})`,...(g=(u=t.parameters)==null?void 0:u.docs)==null?void 0:g.source}}};const ie=["Default"];export{t as Default,ie as __namedExportsOrder,re as default};

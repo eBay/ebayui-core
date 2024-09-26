@@ -1,0 +1,18 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.2.0"
+  },
+  "changesets": [
+    "clean-radios-nail",
+    "giant-comics-arrive",
+    "healthy-starfishes-joke",
+    "nasty-crabs-tan",
+    "nasty-files-taste",
+    "silly-grapes-rush",
+    "strong-zoos-judge",
+    "tasty-dancers-do",
+    "yellow-laws-watch"
+  ]
+}

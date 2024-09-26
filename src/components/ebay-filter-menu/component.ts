@@ -85,7 +85,9 @@ export default class extends MenuUtils<Input, MenuState> {
         eventUtils.handleArrowsKeydown(ev, () => {
             setTimeout(() => {
                 if (this._rovingTabIndex.index !== index) {
-                    this._emitComponentEvent("keydown", ev, { index: this._rovingTabIndex.index });
+                    this._emitComponentEvent("keydown", ev, {
+                        index: this._rovingTabIndex.index,
+                    });
                 }
             });
         });
