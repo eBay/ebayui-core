@@ -1,5 +1,12 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import {
+    afterEach,
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+} from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import { pressKey } from "../../../common/test-utils/browser";
@@ -10,7 +17,6 @@ const { Standard } = composeStories(stories);
 const options = Standard.args.options;
 options[0] = Object.assign({ selected: true }, options[0]);
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -18,8 +24,8 @@ let component;
 
 // Tests are rendered in a form so that we can check the form data value.
 const form = document.createElement("form");
-before(() => document.body.appendChild(form));
-after(() => document.body.removeChild(form));
+beforeAll(() => document.body.appendChild(form));
+afterAll(() => document.body.removeChild(form));
 
 describe("given the listbox with 3 items", () => {
     beforeEach(async () => {

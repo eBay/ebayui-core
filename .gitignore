@@ -3,6 +3,7 @@ node_modules
 .cache
 static
 snapshots
+coverage
 .nyc_output
 .coverage
 .karma
@@ -17,3 +18,4 @@ integration/template.marko
 yarn.lock
 .env
 _cdn
+__screenshots__

@@ -1,9 +1,7 @@
-import { expect } from "chai";
-import * as testUtils from "../../../test-utils/server";
-import { snapshotNode } from "../../../../common/test-utils/snapshots";
-const transformer = require("../");
+import { beforeEach, describe, it, expect } from "vitest";
 
-const snapDOM = snapshotNode(__dirname);
+import * as testUtils from "../../../test-utils/server";
+import transformer from "../";
 
 describe("when the ebay-menu-separator tag is transformed", () => {
     let outputTemplate;
@@ -28,7 +26,7 @@ describe("when the ebay-menu-separator tag is transformed", () => {
 
     it("transforms the ebay-menu-separator", async () => {
         if (code) {
-            await snapDOM(code);
+            expect(code).toMatchSnapshot();
         } else {
             expect(outputTemplate).to.deep.equal("<@item separator=true/>");
         }

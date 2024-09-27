@@ -1,15 +1,21 @@
-import { expect, use } from "chai";
 import { composeStories } from "@storybook/marko";
-import chaiDom from "chai-dom";
+import {
+    afterEach,
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+} from "vitest";
 import { render, fireEvent, waitFor, cleanup } from "@marko/testing-library";
 import { fastAnimations } from "../../../common/test-utils/browser";
 import { addRenderBodies } from "../../../../.storybook/utils";
 import * as stories from "../drawer-dialog.stories"; // import all stories from the stories file
 const { Standard } = composeStories(stories);
 
-use(chaiDom);
-before(fastAnimations.start);
-after(fastAnimations.stop);
+beforeAll(() => fastAnimations.start());
+afterAll(() => fastAnimations.stop());
 afterEach(cleanup);
 
 const hasTouch = typeof Touch !== "undefined";
@@ -51,7 +57,7 @@ describe("given a closed drawer", () => {
     });
 
     it("then it is hidden in the DOM", () => {
-        expect(component.getByRole("dialog", { hidden: true })).has.attr(
+        expect(component.getByRole("dialog", { hidden: true })).toHaveAttribute(
             "hidden",
         );
     });
@@ -111,7 +117,7 @@ describe("given an open and expanded drawer", () => {
     it("then it is not hidden in the DOM", () => {
         expect(
             component.getByRole("dialog", { hidden: true }),
-        ).does.not.have.attr("hidden");
+        ).not.toHaveAttribute("hidden");
     });
 
     describe("then it is collapsed", () => {
@@ -148,13 +154,12 @@ describe("given an open and non expanded drawer for touch events", () => {
     it("then it is hidden in the DOM", () => {
         expect(
             component.getByRole("dialog", { hidden: true }),
-        ).does.not.have.attr("hidden");
+        ).not.toHaveAttribute("hidden");
     });
 
     (hasTouch ? describe : describe.skip)(
         "then it is expanded on touch drag up",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
@@ -173,7 +178,6 @@ describe("given an open and non expanded drawer for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then does not trigger when threshold is not met for drag up",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
@@ -198,7 +202,6 @@ describe("given an open and non expanded drawer for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then does not trigger when threshold is not met for drag down",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
@@ -215,7 +218,6 @@ describe("given an open and non expanded drawer for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then it is closed on touch drag down",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMaximizeText),
@@ -233,7 +235,7 @@ describe("given an open and non expanded drawer for touch events", () => {
                 await waitFor(() =>
                     expect(
                         component.getByRole("dialog", { hidden: true }),
-                    ).has.attr("hidden"),
+                    ).toHaveAttribute("hidden"),
                 );
             });
         },
@@ -246,13 +248,12 @@ describe("given an open and expanded drawer for touch events", () => {
     });
 
     it("then it is shown in the DOM", () => {
-        expect(component.getByRole("dialog")).does.not.have.attr("hidden");
+        expect(component.getByRole("dialog")).not.toHaveAttribute("hidden");
     });
 
     (hasTouch ? describe : describe.skip)(
         "nothing happens on touch drag up",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),
@@ -271,7 +272,6 @@ describe("given an open and expanded drawer for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then it is collapsed on touch drag down",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),
@@ -290,7 +290,6 @@ describe("given an open and expanded drawer for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then does not trigger when threshold is not met for drag up",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),
@@ -307,7 +306,6 @@ describe("given an open and expanded drawer for touch events", () => {
     (hasTouch ? describe : describe.skip)(
         "then does not trigger when threshold is not met for drag down",
         () => {
-            // eslint-disable-next-line mocha/no-sibling-hooks
             beforeEach(async () => {
                 await triggerTouch(
                     component.getByLabelText(a11yMinimizeText),

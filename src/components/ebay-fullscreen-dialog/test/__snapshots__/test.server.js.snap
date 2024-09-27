@@ -1,0 +1,264 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders defaults 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"fullscreen-dialog"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"fullscreen-dialog__window fullscreen-dialog__window--slide"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"fullscreen-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-0-dialog-title"[39m
+        [36m>[39m
+          [0mHeading Text[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close Button"[39m
+          [33mclass[39m=[32m"icon-btn fullscreen-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__main"[39m
+      [36m>[39m
+        [0mBody Content[0m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__footer"[39m
+      [36m>[39m
+        [0mFooter Text[0m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`renders open 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"fullscreen-dialog"[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"fullscreen-dialog__window fullscreen-dialog__window--slide"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"fullscreen-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-0-dialog-title"[39m
+        [36m>[39m
+          [0mHeading Text[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close Button"[39m
+          [33mclass[39m=[32m"icon-btn fullscreen-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__main"[39m
+      [36m>[39m
+        [0mBody Content[0m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__footer"[39m
+      [36m>[39m
+        [0mFooter Text[0m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`renders slide end 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-dialog-title"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"fullscreen-dialog"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"fullscreen-dialog__window fullscreen-dialog__window--slide-end"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__header"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mclass[39m=[32m"fullscreen-dialog__title"[39m
+          [33mid[39m=[32m"s0-0-0-dialog-title"[39m
+        [36m>[39m
+          [0mHeading Text[0m
+        [36m</h2>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close Button"[39m
+          [33mclass[39m=[32m"icon-btn fullscreen-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__main"[39m
+      [36m>[39m
+        [0mBody Content[0m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__footer"[39m
+      [36m>[39m
+        [0mFooter Text[0m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`renders without footer and header 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"fullscreen-dialog"[39m
+    [33mhidden[39m=[32m""[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"fullscreen-dialog__window fullscreen-dialog__window--slide"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__header"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-label[39m=[32m"Close Button"[39m
+          [33mclass[39m=[32m"icon-btn fullscreen-dialog__close"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-close-16"[39m
+                [33mviewBox[39m=[32m"0 0 16 16"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-close-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"fullscreen-dialog__main"[39m
+      [36m>[39m
+        [0mBody Content[0m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+  [36m<button[39m
+    [33mclass[39m=[32m"btn btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [0mOpen Dialog[0m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;

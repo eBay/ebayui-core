@@ -1,0 +1,431 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ebay-icon-button > Renders defaults 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33maria-label[39m=[32m"menu"[39m
+    [33mclass[39m=[32m"icon-btn"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mhref[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-icon-button > passes through additional html attributes 1`] = `
+<button
+  aria-label="menu"
+  class="class1 icon-btn"
+  data-ebayui=""
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  href=""
+  style="color:red"
+  type="button"
+>
+  <!--F#1-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--24"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-menu-24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-menu-24"
+    />
+  </svg>
+  <!--F/-->
+</button>
+`;
+
+exports[`ebay-icon-button > passes through additional html attributes 2`] = `
+<button
+  aria-label="menu"
+  class="class1 icon-btn"
+  data-ebayui=""
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  href=""
+  style="color:red"
+  type="button"
+>
+  <!--F#1-->
+  <svg
+    aria-hidden="true"
+    class="icon icon--24"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-menu-24"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-menu-24"
+    />
+  </svg>
+  <!--F/-->
+</button>
+`;
+
+exports[`ebay-icon-button > renders badged icon variant 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33maria-label[39m=[32m"Badged button"[39m
+    [33mclass[39m=[32m"icon-btn icon-btn--badged"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mhref[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<span[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33maria-label[39m=[32m"5 Items"[39m
+      [33mclass[39m=[32m"badge"[39m
+    [36m>[39m
+      [0m5[0m
+    [36m</span>[39m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-icon-button > renders button with priority=delete 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33maria-label[39m=[32m"menu"[39m
+    [33mclass[39m=[32m"icon-btn"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mhref[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-icon-button > renders button with priority=primary 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33maria-label[39m=[32m"menu"[39m
+    [33mclass[39m=[32m"icon-btn icon-btn--primary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mhref[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-icon-button > renders button with priority=secondary 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33maria-label[39m=[32m"menu"[39m
+    [33mclass[39m=[32m"icon-btn icon-btn--secondary"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mhref[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-icon-button > renders button with size=large 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33maria-label[39m=[32m"menu"[39m
+    [33mclass[39m=[32m"icon-btn icon-btn--large"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mhref[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-icon-button > renders button with size=small 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33maria-label[39m=[32m"menu"[39m
+    [33mclass[39m=[32m"icon-btn icon-btn--small"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mhref[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-icon-button > renders disabled version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33maria-label[39m=[32m"menu"[39m
+    [33mclass[39m=[32m"icon-btn"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mhref[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-icon-button > renders fake version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<a[39m
+    [33maria-label[39m=[32m"fake button"[39m
+    [33mclass[39m=[32m"icon-btn"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mhref[39m=[32m"#"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</a>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-icon-button > renders icon 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33maria-label[39m=[32m"icon button"[39m
+    [33mclass[39m=[32m"icon-btn"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mhref[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-icon-button > renders partially disabled version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<button[39m
+    [33maria-disabled[39m=[32m"true"[39m
+    [33maria-label[39m=[32m"menu"[39m
+    [33mclass[39m=[32m"icon-btn"[39m
+    [33mdata-ebayui[39m=[32m""[39m
+    [33mhref[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"icon icon--24"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-menu-24"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M3 5h18a1 1 0 0 0 0-2H3a1 1 0 0 0 0 2Zm18 6H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2ZM3 19h18a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2Z"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-menu-24"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+  [36m</button>[39m
+[36m</DocumentFragment>[39m"
+`;

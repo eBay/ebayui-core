@@ -1,11 +1,11 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
+
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
-import template from "..";
+import template from "../index.marko";
 import * as mock from "./mock";
 
 const htmlSnap = snapshotHTML(__dirname);
-use(require("chai-dom"));
 
 describe("details", () => {
     it("renders basic version", async () => {

@@ -40,6 +40,7 @@ interface LineChartInput
     "cdn-highcharts-accessibility"?: string;
     version?: string;
     series: SeriesLineOptions | SeriesLineOptions[];
+    renderTooltipOutside?: boolean;
     trend?: "positive" | "negative" | "neutral";
 }
 
@@ -321,7 +322,7 @@ class LineChart extends Marko.Component<Input> {
             backgroundColor: tooltipBackgroundColor, // sets tooltip background color
             borderWidth: 0, // hide the default border stroke
             borderRadius: 10, // set the border radius of the tooltip
-            outside: true, // used to render the tooltip outside of the main SVG element
+            outside: component.input.renderTooltipOutside !== false, // used to render the tooltip outside of the main SVG element
             shadow: false, // hide the default shadow as it conflicts with designs
             crosshair: {
                 dashStyle: "Solid", // makes a yaxis cross hair appear over the hovered xAxis data points

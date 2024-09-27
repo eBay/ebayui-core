@@ -1,4 +1,4 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
 import { composeStories } from "@storybook/marko";
 import * as testUtils from "../../../common/test-utils/server";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
@@ -8,11 +8,17 @@ const { Default, Typeahead, Badged, Sprites, Separator } =
     composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
 
-use(require("chai-dom"));
-
 describe("menu", () => {
     it("renders basic version", async () => {
         await htmlSnap(Default);
+    });
+
+    it("renders with aria-label", async () => {
+        await htmlSnap(Default, { ariaLabel: "test" });
+    });
+
+    it("renders with aria-labelledby", async () => {
+        await htmlSnap(Default, { ariaLabelledBy: "test" });
     });
 
     it("renders with reverse=true", async () => {

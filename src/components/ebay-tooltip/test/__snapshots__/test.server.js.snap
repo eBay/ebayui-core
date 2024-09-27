@@ -1,0 +1,159 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`tooltip > renders default tooltip 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span>[39m
+    [36m<span>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"tooltip"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"tooltip__host"[39m
+          [33mhref[39m=[32m"https://www.ebay.com"[39m
+        [36m>[39m
+          [0mView options[0m
+        [36m</a>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"tooltip__overlay"[39m
+          [33mid[39m=[32m"s0-overlay"[39m
+          [33mrole[39m=[32m"tooltip"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"tooltip__pointer"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"tooltip__mask"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"tooltip__cell"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"tooltip__content"[39m
+              [36m>[39m
+                [36m<p>[39m
+                  [0mUse Access Key 'S' to display settings.[0m
+                [36m</p>[39m
+              [36m</span>[39m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</span>[39m
+      [36m</span>[39m
+    [36m</span>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`tooltip > renders tooltip closed 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span>[39m
+    [36m<span>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"tooltip"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"tooltip__host"[39m
+          [33mhref[39m=[32m"https://www.ebay.com"[39m
+        [36m>[39m
+          [0mView options[0m
+        [36m</a>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"tooltip__overlay"[39m
+          [33mid[39m=[32m"s0-overlay"[39m
+          [33mrole[39m=[32m"tooltip"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"tooltip__pointer"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"tooltip__mask"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"tooltip__cell"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"tooltip__content"[39m
+              [36m>[39m
+                [36m<p>[39m
+                  [0mUse Access Key 'S' to display settings.[0m
+                [36m</p>[39m
+              [36m</span>[39m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</span>[39m
+      [36m</span>[39m
+    [36m</span>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`tooltip > renders tooltip with button host 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span>[39m
+    [36m<span>[39m
+      [36m<span[39m
+        [33mclass[39m=[32m"tooltip"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maccesskey[39m=[32m"i"[39m
+          [33maria-label[39m=[32m"Developer-handled label"[39m
+          [33mclass[39m=[32m"icon-btn tooltip__host"[39m
+          [33mname[39m=[32m"icon-btn-1"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--24"[39m
+            [33mdata-marko-key[39m=[32m"@svg s0-0-@base-0-3-2-0"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<defs[39m
+              [33mdata-marko-key[39m=[32m"@defs s0-0-@base-0-3-2-0"[39m
+            [36m>[39m
+              [36m<symbol[39m
+                [33mid[39m=[32m"icon-cart-24"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33mclip-rule[39m=[32m"evenodd"[39m
+                  [33md[39m=[32m"M1 2a1 1 0 0 0 0 2h2.204l2.464 10.675A3 3 0 0 0 8.59 17h8.805a3 3 0 0 0 2.928-2.349l1.652-7.434A1.01 1.01 0 0 0 21 6H5.719l-.74-3.202A.999.999 0 0 0 4 2H1Zm6.617 12.225L6.18 8h13.573l-1.381 6.217a1 1 0 0 1-.976.783H8.59a1 1 0 0 1-.974-.775Z"[39m
+                  [33mfill-rule[39m=[32m"evenodd"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M8 23a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm12-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"[39m
+                [36m/>[39m
+              [36m</symbol>[39m
+            [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-cart-24"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</button>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"tooltip__overlay"[39m
+          [33mid[39m=[32m"s0-0-overlay"[39m
+          [33mrole[39m=[32m"tooltip"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"tooltip__pointer"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"tooltip__mask"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"tooltip__cell"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"tooltip__content"[39m
+              [36m>[39m
+                [36m<p>[39m
+                  [0mUse Access Key 'S' to display settings.[0m
+                [36m</p>[39m
+              [36m</span>[39m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</span>[39m
+      [36m</span>[39m
+    [36m</span>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;

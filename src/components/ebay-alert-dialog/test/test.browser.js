@@ -1,5 +1,12 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import {
+    afterEach,
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+} from "vitest";
 import { render, fireEvent, waitFor, cleanup } from "@marko/testing-library";
 import { composeStories } from "@storybook/marko";
 import { addRenderBodies } from "../../../../.storybook/utils";
@@ -7,9 +14,8 @@ import { fastAnimations } from "../../../common/test-utils/browser";
 import * as stories from "../alert-dialog.stories"; // import all stories from the stories file
 const { Default } = composeStories(stories);
 
-use(chaiDom);
-before(fastAnimations.start);
-after(fastAnimations.stop);
+beforeAll(() => fastAnimations.start());
+afterAll(() => fastAnimations.stop());
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -21,9 +27,9 @@ describe("given a closed dialog", () => {
     });
 
     it("then it is hidden in the DOM", () => {
-        expect(component.getByRole("alertdialog", { hidden: true })).has.attr(
-            "hidden",
-        );
+        expect(
+            component.getByRole("alertdialog", { hidden: true }),
+        ).toHaveAttribute("hidden");
     });
 
     describe("then it is opened", () => {
@@ -57,7 +63,9 @@ describe("given an open dialog", () => {
     });
 
     it("then it is visible in the DOM", () => {
-        expect(component.getByRole("alertdialog")).does.not.have.attr("hidden");
+        expect(component.getByRole("alertdialog")).not.toHaveAttribute(
+            "hidden",
+        );
     });
 
     describe("when the mask is clicked", () => {
@@ -68,7 +76,7 @@ describe("given an open dialog", () => {
 
         it("then it is still open in the DOM", async () => {
             await waitFor(() =>
-                expect(component.getByRole("alertdialog")).does.not.have.attr(
+                expect(component.getByRole("alertdialog")).not.toHaveAttribute(
                     "hidden",
                 ),
             );

@@ -1,0 +1,401 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`select > passes through additional html attributes 1`] = `
+<select
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  id="s0-select"
+  type="number"
+/>
+`;
+
+exports[`select > passes through additional html attributes 2`] = `
+<span
+  class="select class1"
+  style="color:red"
+>
+  <select
+    data-passed-through="true"
+    data-testid="AttributePassthrough"
+    id="s0-select"
+    type="number"
+  />
+  <svg
+    aria-hidden="true"
+    class="icon icon--12"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-chevron-down-12"
+        viewBox="0 0 12 12"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-chevron-down-12"
+    />
+  </svg>
+</span>
+`;
+
+exports[`select > renders a disabled input select with disabled floating label 1`] = `
+<label
+  class="floating-label__label floating-label__label--disabled"
+  for="s0-select"
+>
+  Email address
+</label>
+`;
+
+exports[`select > renders an input select with inline floating label 1`] = `
+<select
+  id="s0-select"
+>
+  <option
+    selected=""
+    text="option 0"
+    value=""
+  >
+    option 0
+  </option>
+  <option
+    text="option 1"
+    value="1"
+  >
+    option 1
+  </option>
+  <option
+    text="option 2"
+    value="2"
+  >
+    option 2
+  </option>
+  <option
+    text="option 3"
+    value="3"
+  >
+    option 3
+  </option>
+</select>
+`;
+
+exports[`select > renders an input select with inline floating label 2`] = `
+<label
+  class="floating-label__label"
+  for="s0-select"
+>
+  Email address
+</label>
+`;
+
+exports[`select > renders an input select with inline floating label and an id 1`] = `
+<select
+  id="select-id"
+>
+  <option
+    selected=""
+    text="option 0"
+    value=""
+  >
+    option 0
+  </option>
+  <option
+    text="option 1"
+    value="1"
+  >
+    option 1
+  </option>
+  <option
+    text="option 2"
+    value="2"
+  >
+    option 2
+  </option>
+  <option
+    text="option 3"
+    value="3"
+  >
+    option 3
+  </option>
+</select>
+`;
+
+exports[`select > renders basic version 1`] = `
+<span
+  class="select"
+>
+  <select
+    id="s0-select"
+  >
+    <option
+      selected=""
+      text="option 0"
+      value="0"
+    >
+      option 0
+    </option>
+    <option
+      text="option 1"
+      value="1"
+    >
+      option 1
+    </option>
+    <option
+      text="option 2"
+      value="2"
+    >
+      option 2
+    </option>
+  </select>
+  <svg
+    aria-hidden="true"
+    class="icon icon--12"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-chevron-down-12"
+        viewBox="0 0 12 12"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-chevron-down-12"
+    />
+  </svg>
+</span>
+`;
+
+exports[`select > renders basic version 2`] = `
+<span
+  class="select"
+>
+  <select
+    id="s0-select"
+  >
+    <option
+      selected=""
+      text="option 0"
+      value="0"
+    >
+      option 0
+    </option>
+    <option
+      text="option 1"
+      value="1"
+    >
+      option 1
+    </option>
+    <option
+      text="option 2"
+      value="2"
+    >
+      option 2
+    </option>
+  </select>
+  <svg
+    aria-hidden="true"
+    class="icon icon--12"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-chevron-down-12"
+        viewBox="0 0 12 12"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-chevron-down-12"
+    />
+  </svg>
+</span>
+`;
+
+exports[`select > renders basic version 3`] = `
+[
+  <option
+    selected=""
+    text="option 0"
+    value="0"
+  >
+    option 0
+  </option>,
+  <option
+    text="option 1"
+    value="1"
+  >
+    option 1
+  </option>,
+  <option
+    text="option 2"
+    value="2"
+  >
+    option 2
+  </option>,
+]
+`;
+
+exports[`select > renders basic version 4`] = `
+<option
+  selected=""
+  text="option 0"
+  value="0"
+>
+  option 0
+</option>
+`;
+
+exports[`select > renders basic version 5`] = `
+<option
+  selected=""
+  text="option 0"
+  value="0"
+>
+  option 0
+</option>
+`;
+
+exports[`select > renders basic version 6`] = `
+<option
+  selected=""
+  text="option 0"
+  value="0"
+>
+  option 0
+</option>
+`;
+
+exports[`select > renders basic version 7`] = `
+<option
+  text="option 1"
+  value="1"
+>
+  option 1
+</option>
+`;
+
+exports[`select > renders basic version 8`] = `
+<option
+  text="option 1"
+  value="1"
+>
+  option 1
+</option>
+`;
+
+exports[`select > renders basic version 9`] = `
+<option
+  text="option 1"
+  value="1"
+>
+  option 1
+</option>
+`;
+
+exports[`select > renders basic version 10`] = `
+<option
+  text="option 2"
+  value="2"
+>
+  option 2
+</option>
+`;
+
+exports[`select > renders basic version 11`] = `
+<option
+  text="option 2"
+  value="2"
+>
+  option 2
+</option>
+`;
+
+exports[`select > renders basic version 12`] = `
+<option
+  text="option 2"
+  value="2"
+>
+  option 2
+</option>
+`;
+
+exports[`select > renders empty 1`] = `
+[
+  <select
+    id="s0-select"
+  />,
+]
+`;
+
+exports[`select > renders empty 2`] = `[]`;
+
+exports[`select > renders with borderless=true 1`] = `
+<select
+  id="s0-select"
+>
+  <option
+    selected=""
+    text="option 0"
+    value="0"
+  >
+    option 0
+  </option>
+  <option
+    text="option 1"
+    value="1"
+  >
+    option 1
+  </option>
+  <option
+    text="option 2"
+    value="2"
+  >
+    option 2
+  </option>
+</select>
+`;
+
+exports[`select > renders with second item selected 1`] = `
+<option
+  text="option 0"
+  value="0"
+>
+  option 0
+</option>
+`;
+
+exports[`select > renders with second item selected 2`] = `
+<option
+  selected=""
+  text="option 1"
+  value="1"
+>
+  option 1
+</option>
+`;
+
+exports[`select > renders with second item selected 3`] = `
+<option
+  text="option 2"
+  value="2"
+>
+  option 2
+</option>
+`;

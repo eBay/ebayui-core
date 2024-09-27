@@ -83,6 +83,18 @@ export default {
                 },
             },
         },
+        onKeydown: {
+            action: "on-keydown",
+            description: "Triggered on keydown",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary:
+                        "{ el, checked, itemChecked, index, originalEvent }",
+                },
+            },
+        },
+
         footerClick: {
             action: "on-footer-click",
             description: "Triggered on footer clicked",

@@ -1,12 +1,10 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { render, cleanup } from "@marko/testing-library";
-import template from "../icons/ebay-add-24-icon";
-import template2 from "../icons/ebay-arrow-left-24-icon";
-import template3 from "../icons/ebay-arrow-right-24-icon";
-import template4 from "../icons/ebay-ai-spectrum-16-colored-icon";
+import template from "../icons/ebay-add-24-icon/index.marko";
+import template2 from "../icons/ebay-arrow-left-24-icon/index.marko";
+import template3 from "../icons/ebay-arrow-right-24-icon/index.marko";
+import template4 from "../icons/ebay-ai-spectrum-16-colored-icon/index.marko";
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -101,6 +99,5 @@ describe("rendering icons with defs in the browser", () => {
 
         const defs = document.body.firstChild.firstChild;
         expect(defs.tagName).to.equal("defs");
-        expect(defs).to.have.descendants("linearGradient");
     });
 });

@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { afterEach, afterAll, beforeAll, describe, it, expect } from "vitest";
 import * as bodyScroll from "../index";
 const { body } = document;
 
@@ -6,13 +6,14 @@ describe("body-scroll", () => {
     const contentDiv = document.createElement("div");
     contentDiv.innerHTML += "<br/>".repeat(1000);
 
-    before(() => {
+    beforeAll(() => {
         window.scrollTo(0, 0);
         // Ensure the document can scroll.
         document.body.appendChild(contentDiv);
+        document.body.removeAttribute("style");
     });
 
-    after(() => {
+    afterAll(() => {
         document.body.removeChild(contentDiv);
     });
 

@@ -1,4 +1,4 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../star-rating-select.stories";
@@ -6,8 +6,6 @@ import * as stories from "../star-rating-select.stories";
 const { Isolated, Fieldset } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 describe("star-rating-select", () => {
     it("renders defaults", async () => {

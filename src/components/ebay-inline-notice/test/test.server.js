@@ -1,33 +1,27 @@
-import { expect, use } from "chai";
+import { describe, it, expect } from "vitest";
+
 import { render } from "@marko/testing-library";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
-import template from "..";
+import template from "../index.marko";
 import * as mock from "./mock";
-
-use(require("chai-dom"));
 
 describe("inline-notice", () => {
     it("renders with defaults", async () => {
         const input = mock.Inline;
         const { getByLabelText, getByText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
-        expect(status).has.class("inline-notice__header");
-        expect(status).has.property("tagName", "SPAN");
-        expect(status.parentElement).has.class("inline-notice--attention");
-        expect(status.parentElement).not.to.have.attribute("aria-labelledby");
+        expect(status).toMatchSnapshot();
+        expect(status.parentElement).toMatchSnapshot();
 
         const content = getByText(input.renderBody.text);
-        expect(content).has.property("tagName", "SPAN");
-        expect(content).has.class("inline-notice__main");
+        expect(content).toMatchSnapshot();
     });
 
     it("renders with custom status type", async () => {
         const input = mock.inlineCustomStatus;
         const { getByLabelText } = await render(template, input);
         const status = getByLabelText(input.a11yText).parentElement;
-        expect(status.parentElement).has.class(
-            `inline-notice--${input.status}`,
-        );
+        expect(status.parentElement).toMatchSnapshot();
     });
 
     testPassThroughAttributes(template, {

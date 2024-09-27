@@ -1,10 +1,9 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as testUtils from "../../../common/test-utils/server";
-import template from "..";
+import template from "../index.marko";
 import * as mock from "./mock";
 
-use(require("chai-dom"));
 const htmlSnap = snapshotHTML(__dirname);
 
 describe("menu-button", () => {

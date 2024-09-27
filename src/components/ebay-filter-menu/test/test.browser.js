@@ -1,5 +1,4 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import * as stories from "../filter-menu.stories";
@@ -10,7 +9,6 @@ const { Standard } = composeStories(stories);
 
 const items = [...Standard.args.items];
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -18,6 +16,7 @@ let component;
 
 describe("given the menu is in the default state", () => {
     const firstItemText = items[0].renderBody;
+    const secondItemText = items[1].renderBody;
     let footerButton, firstItem, secondItem;
 
     beforeEach(async () => {
@@ -37,7 +36,9 @@ describe("given the menu is in the default state", () => {
             expect(selectEvents).to.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property("el").with.text(firstItemText);
+            expect(eventArg)
+                .has.property("el")
+                .toHaveTextContent(firstItemText);
             expect(eventArg).has.property("checked").to.deep.equal(["item 1"]);
         });
     });
@@ -58,8 +59,8 @@ describe("given the menu is in the default state", () => {
         });
 
         it("then both items are selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "true");
-            expect(secondItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
+            expect(secondItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
@@ -89,7 +90,7 @@ describe("given the menu is in the default state", () => {
         });
 
         it("then the item is unchecked", () => {
-            expect(firstItem).to.have.attr("aria-checked", "false");
+            expect(firstItem).toHaveAttribute("aria-checked", "false");
         });
     });
 
@@ -106,7 +107,9 @@ describe("given the menu is in the default state", () => {
             expect(changeEvents).to.have.length(1);
 
             const [firstEventData] = changeEvents.flat();
-            expect(firstEventData).has.property("el").with.text(firstItemText);
+            expect(firstEventData)
+                .has.property("el")
+                .toHaveTextContent(firstItemText);
             expect(firstEventData)
                 .has.property("checked")
                 .to.deep.equal(["item 1"]);
@@ -139,7 +142,7 @@ describe("given the menu is in the default state", () => {
             footerButton = component.getAllByRole("button")[0];
         });
         it("then footer has attribute disabled", () => {
-            expect(footerButton).has.attribute("disabled");
+            expect(footerButton).toHaveAttribute("disabled");
         });
     });
 
@@ -169,6 +172,50 @@ describe("given the menu is in the default state", () => {
             expect(eventArg).has.property("index").to.equal(3);
         });
     });
+
+    describe("when the down key is pressed from an item", () => {
+        beforeEach(async () => {
+            await pressKey(component.getByText(firstItemText), {
+                key: "ArrowDown",
+                keyCode: 40,
+            });
+        });
+
+        it("then it emits the marko keydown event", () => {
+            const keydownEvents = component.emitted("keydown");
+            expect(keydownEvents).to.have.property("length", 1);
+            expect(keydownEvents[0][0].index).to.equal(1);
+        });
+    });
+
+    describe("when the up key is pressed from the first item", () => {
+        beforeEach(async () => {
+            await pressKey(component.getByText(firstItemText), {
+                key: "ArrowUp",
+                keyCode: 38,
+            });
+        });
+
+        it("then it does not emit the marko keydown event", () => {
+            const keydownEvents = component.emitted("keydown");
+            expect(keydownEvents).to.have.property("length", 0);
+        });
+    });
+
+    describe("when the up key is pressed from the second item", () => {
+        beforeEach(async () => {
+            await pressKey(component.getByText(secondItemText), {
+                key: "ArrowUp",
+                keyCode: 38,
+            });
+        });
+
+        it("then it emits the marko keydown event", () => {
+            const keydownEvents = component.emitted("keydown");
+            expect(keydownEvents).to.have.property("length", 1);
+            expect(keydownEvents[0][0].index).to.equal(0);
+        });
+    });
 });
 
 describe("given the menu is in the radio state", () => {
@@ -192,7 +239,9 @@ describe("given the menu is in the radio state", () => {
             expect(selectEvents).to.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property("el").with.text(firstItemText);
+            expect(eventArg)
+                .has.property("el")
+                .toHaveTextContent(firstItemText);
             expect(eventArg).has.property("checked").to.deep.equal(["item 1"]);
             expect(eventArg).has.property("currentChecked").to.equal(true);
             expect(eventArg).has.property("index").to.equal(0);
@@ -223,8 +272,8 @@ describe("given the menu is in the radio state", () => {
         });
 
         it("then only last item is selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "false");
-            expect(secondItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "false");
+            expect(secondItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
@@ -256,7 +305,7 @@ describe("given the menu is in the radio state", () => {
         });
 
         it("then the item is still checked", () => {
-            expect(firstItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
@@ -273,7 +322,9 @@ describe("given the menu is in the radio state", () => {
             expect(changeEvents).to.have.length(1);
 
             const [firstEventData] = changeEvents.flat();
-            expect(firstEventData).has.property("el").with.text(firstItemText);
+            expect(firstEventData)
+                .has.property("el")
+                .toHaveTextContent(firstItemText);
             expect(firstEventData)
                 .has.property("checked")
                 .to.deep.equal(["item 1"]);

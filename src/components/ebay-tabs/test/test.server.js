@@ -1,14 +1,10 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
+
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
-
-import template from "..";
+import { testPassThroughAttributes } from "../../../common/test-utils/server";
+import template from "../index.marko";
 import * as mock from "./mock";
-const {
-    testPassThroughAttributes,
-} = require("../../../common/test-utils/server");
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 describe("tabs", () => {
     it("renders basic version with 3 tabs and 3 panels", async () => {

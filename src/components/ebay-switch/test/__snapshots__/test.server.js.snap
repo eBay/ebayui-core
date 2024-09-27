@@ -1,0 +1,72 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`passes through additional html attributes 1`] = `
+<input
+  class="switch__control"
+  data-marko="{"onchange":"handleChange s0 false"}"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="switch"
+  type="checkbox"
+/>
+`;
+
+exports[`passes through additional html attributes 2`] = `
+<span
+  class="switch class1"
+  style="color:red"
+>
+  <input
+    class="switch__control"
+    data-marko="{"onchange":"handleChange s0 false"}"
+    data-passed-through="true"
+    data-testid="AttributePassthrough"
+    role="switch"
+    type="checkbox"
+  />
+  <span
+    class="switch__button"
+  />
+</span>
+`;
+
+exports[`renders default switch 1`] = `
+<span
+  class="switch"
+>
+  <input
+    class="switch__control"
+    data-marko="{"onchange":"handleChange s0 false"}"
+    role="switch"
+    type="checkbox"
+  />
+  <span
+    class="switch__button"
+  />
+</span>
+`;
+
+exports[`renders default switch 2`] = `
+<span
+  class="switch__button"
+/>
+`;
+
+exports[`renders default switch 3`] = `
+<input
+  class="switch__control"
+  data-marko="{"onchange":"handleChange s0 false"}"
+  role="switch"
+  type="checkbox"
+/>
+`;
+
+exports[`renders disabled switch 1`] = `
+<input
+  class="switch__control"
+  data-marko="{"onchange":"handleChange s0 false"}"
+  disabled=""
+  role="switch"
+  type="checkbox"
+/>
+`;

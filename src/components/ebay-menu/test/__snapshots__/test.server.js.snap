@@ -1,0 +1,1437 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`menu > passes through additional html attributes 1`] = `
+<span
+  class="menu class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="menu__items"
+    id="s0-menu"
+    role="menu"
+  >
+    <div
+      class="menu__item"
+      role="menuitem"
+    >
+      <span>
+        <!--F#3[0]-->
+        item 1 that has very long text
+        <!--F/-->
+      </span>
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <defs>
+          <symbol
+            id="icon-tick-16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-tick-16"
+        />
+      </svg>
+    </div>
+    <div
+      class="menu__item"
+      role="menuitem"
+    >
+      <span>
+        <!--F#3[1]-->
+        item 2
+        <!--F/-->
+      </span>
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <use
+          href="#icon-tick-16"
+        />
+      </svg>
+    </div>
+    <div
+      class="menu__item"
+      role="menuitem"
+    >
+      <span>
+        <!--F#3[2]-->
+        item 3
+        <!--F/-->
+      </span>
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <use
+          href="#icon-tick-16"
+        />
+      </svg>
+    </div>
+  </div>
+</span>
+`;
+
+exports[`menu > passes through additional html attributes 2`] = `
+<span
+  class="menu class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="menu__items"
+    id="s0-menu"
+    role="menu"
+  >
+    <div
+      class="menu__item"
+      role="menuitem"
+    >
+      <span>
+        <!--F#3[0]-->
+        item 1 that has very long text
+        <!--F/-->
+      </span>
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <defs>
+          <symbol
+            id="icon-tick-16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+              fill-rule="evenodd"
+            />
+          </symbol>
+        </defs>
+        <use
+          href="#icon-tick-16"
+        />
+      </svg>
+    </div>
+    <div
+      class="menu__item"
+      role="menuitem"
+    >
+      <span>
+        <!--F#3[1]-->
+        item 2
+        <!--F/-->
+      </span>
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <use
+          href="#icon-tick-16"
+        />
+      </svg>
+    </div>
+    <div
+      class="menu__item"
+      role="menuitem"
+    >
+      <span>
+        <!--F#3[2]-->
+        item 3
+        <!--F/-->
+      </span>
+      <svg
+        aria-hidden="true"
+        class="icon icon--16"
+        focusable="false"
+      >
+        <use
+          href="#icon-tick-16"
+        />
+      </svg>
+    </div>
+  </div>
+</span>
+`;
+
+exports[`menu > passes through additional html attributes from child items 1`] = `
+<div
+  class="menu__item class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="menuitem"
+  style="color:red"
+  type="number"
+>
+  <span />
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-tick-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-tick-16"
+    />
+  </svg>
+</div>
+`;
+
+exports[`menu > passes through additional html attributes from child items 2`] = `
+<div
+  class="menu__item class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="menuitem"
+  style="color:red"
+  type="number"
+>
+  <span />
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-tick-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-tick-16"
+    />
+  </svg>
+</div>
+`;
+
+exports[`menu > renders basic version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 1 that has very long text[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with aria-label 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33maria-label[39m=[32m"test"[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 1 that has very long text[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with aria-labelledby 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33maria-labelled-by[39m=[32m"test"[39m
+    [33mclass[39m=[32m"menu"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 1 that has very long text[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with badged version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"1 item unread"[39m
+        [33mclass[39m=[32m"menu__item menu__item--badged"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 1 that has very long text[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"badge"[39m
+          [36m>[39m
+            [0m1[0m
+          [36m</span>[39m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"99 items unread"[39m
+        [33mclass[39m=[32m"menu__item menu__item--badged"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 2[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"badge"[39m
+          [36m>[39m
+            [0m99[0m
+          [36m</span>[39m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"10 item unread"[39m
+        [33mclass[39m=[32m"menu__item menu__item--badged"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 3[0m
+          [36m<span[39m
+            [33mclass[39m=[32m"badge"[39m
+          [36m>[39m
+            [0m10[0m
+          [36m</span>[39m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with fix-width=true 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu menu__menu--fix-width"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 1 that has very long text[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with reverse=true 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu menu__menu--reverse"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 1 that has very long text[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with separators 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 1 that has very long text[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 2[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<hr[39m
+        [33mclass[39m=[32m"menu__separator"[39m
+        [33mrole[39m=[32m"separator"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 3[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 4[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mitem 5[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with sprites version 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu"[39m
+    [33mtext[39m=[32m"Country"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-1-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"sprite-flag"[39m
+            [33mstyle[39m=[32m"background-position: 0 -25px"[39m
+          [36m/>[39m
+          [36m<span>[39m
+            [0mAustria[0m
+          [36m</span>[39m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"sprite-flag"[39m
+            [33mstyle[39m=[32m"background-position: 0 -100px"[39m
+          [36m/>[39m
+          [36m<span>[39m
+            [0mDenmark[0m
+          [36m</span>[39m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"sprite-flag"[39m
+            [33mstyle[39m=[32m"background-position: 0 -275px"[39m
+          [36m/>[39m
+          [36m<span>[39m
+            [0mNorway[0m
+          [36m</span>[39m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with type=checkbox and checked=false 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-checked[39m=[32m"false"[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitemcheckbox"[39m
+      [36m>[39m
+        [36m<span />[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with type=checkbox and checked=true 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-checked[39m=[32m"true"[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitemcheckbox"[39m
+      [36m>[39m
+        [36m<span />[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with type=radio and checked=false 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-checked[39m=[32m"false"[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitemradio"[39m
+      [36m>[39m
+        [36m<span />[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with type=radio and checked=true 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-checked[39m=[32m"true"[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitemradio"[39m
+      [36m>[39m
+        [36m<span />[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`menu > renders with typeahead 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<h3>[39m
+    [0mClick inside the menu, then type a name to see focus change. The search will see if any names start with the input, then if there are no matches it will search for the input string anywhere in the names.[0m
+  [36m</h3>[39m
+  [36m<h4>[39m
+    [0mWait 2 seconds for the typeahead to reset and then try typing again to reset the search.[0m
+  [36m</h4>[39m
+  [36m<span[39m
+    [33mclass[39m=[32m"menu"[39m
+    [33mtext[39m=[32m"Button"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"menu__items"[39m
+      [33mid[39m=[32m"s0-2-menu"[39m
+      [33mrole[39m=[32m"menu"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mAlbania[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-tick-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33mclip-rule[39m=[32m"evenodd"[39m
+                [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
+                [33mfill-rule[39m=[32m"evenodd"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mAlcania[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mAlcdnia[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mAusten[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mAustin[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mJack[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mJackman[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mJackson[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mJasper[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mJulia[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mJulio[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mJulius[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mLuca[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mLucais[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mLucan[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mLucian[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"menu__item"[39m
+        [33mrole[39m=[32m"menuitem"[39m
+      [36m>[39m
+        [36m<span>[39m
+          [0mLucius[0m
+        [36m</span>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-tick-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</span>[39m
+[36m</DocumentFragment>[39m"
+`;

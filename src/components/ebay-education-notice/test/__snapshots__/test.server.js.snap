@@ -1,0 +1,307 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`education-notice > renders defaults 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"s0-0-status"[39m
+    [33maria-roledescription[39m=[32m"Notice"[39m
+    [33mclass[39m=[32m"education-notice"[39m
+    [33mrole[39m=[32m"region"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__header"[39m
+      [33mid[39m=[32m"s0-0-status"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-label[39m=[32m"education"[39m
+        [33mclass[39m=[32m"icon icon--24"[39m
+        [33mfocusable[39m=[32m"false"[39m
+        [33mrole[39m=[32m"img"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-lightbulb-24"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33mclip-rule[39m=[32m"evenodd"[39m
+              [33md[39m=[32m"m8.039 18.279-.035-.105c-.226-.68-.357-1.072-.574-1.525-.232-.486-.574-1.063-1.262-2.094l-.052-.078C5.148 13.026 4 11.304 4 9a8 8 0 1 1 16 0c0 2.304-1.148 4.026-2.116 5.477l-.052.078c-.688 1.031-1.03 1.608-1.262 2.094-.217.453-.348.845-.574 1.525l-.035.105-.612 2.449A3 3 0 0 1 12.439 23h-.877a3 3 0 0 1-2.91-2.272l-.613-2.45ZM6 9a6 6 0 1 1 12 0c0 1.654-.81 2.913-1.832 4.445-.699 1.049-1.107 1.722-1.403 2.341-.197.412-.34.792-.485 1.214H13v-5.586l1.707-1.707a1 1 0 0 0-1.414-1.414L12 9.586l-1.293-1.293a1 1 0 0 0-1.414 1.414L11 11.414V17H9.72a10.93 10.93 0 0 0-.485-1.214c-.296-.619-.704-1.292-1.403-2.34C6.811 11.912 6 10.653 6 9Zm7.72 10h-3.44l.311 1.243a1 1 0 0 0 .97.757h.877a1 1 0 0 0 .97-.757L13.72 19Z"[39m
+              [33mfill-rule[39m=[32m"evenodd"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-lightbulb-24"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<h2[39m
+        [33mclass[39m=[32m"education-notice__title"[39m
+      [36m>[39m
+        [0mEducation notice title[0m
+      [36m</h2>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__main"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0mEducation notice info. Things you need to know.[0m
+      [36m</p>[39m
+    [36m</div>[39m
+  [36m</section>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`education-notice > renders prominent 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-status"[39m
+    [33maria-roledescription[39m=[32m"Notice"[39m
+    [33mclass[39m=[32m"education-notice education-notice--prominent"[39m
+    [33mrole[39m=[32m"region"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__header"[39m
+      [33mid[39m=[32m"s0-0-0-status"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-label[39m=[32m"ebay vault"[39m
+        [33mclass[39m=[32m"icon icon--24"[39m
+        [33mfocusable[39m=[32m"false"[39m
+        [33mrole[39m=[32m"img"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-the-ebay-vault-24"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33mclip-rule[39m=[32m"evenodd"[39m
+              [33md[39m=[32m"M17 11c0 1.02-.305 1.967-.828 2.757l1.535 1.536a1 1 0 0 1-1.414 1.414l-1.536-1.535A4.977 4.977 0 0 1 12 16a4.977 4.977 0 0 1-2.757-.828l-1.536 1.535a1 1 0 0 1-1.414-1.414l1.535-1.536A4.977 4.977 0 0 1 7 11c0-1.02.305-1.967.828-2.757L6.293 6.707a1 1 0 0 1 1.414-1.414l1.536 1.535A4.977 4.977 0 0 1 12 6c1.02 0 1.967.305 2.757.828l1.536-1.535a1 1 0 1 1 1.414 1.414l-1.535 1.536C16.695 9.033 17 9.98 17 11Zm-2 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"[39m
+              [33mfill-rule[39m=[32m"evenodd"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33mclip-rule[39m=[32m"evenodd"[39m
+              [33md[39m=[32m"M1 4a4 4 0 0 1 4-4h14a4 4 0 0 1 4 4v14a4.002 4.002 0 0 1-3 3.874V23a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1H8v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1.126A4.002 4.002 0 0 1 1 18V4Zm4-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"[39m
+              [33mfill-rule[39m=[32m"evenodd"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-the-ebay-vault-24"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<h2[39m
+        [33mclass[39m=[32m"education-notice__title"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [0mNotice title[0m
+        [36m</div>[39m
+      [36m</h2>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__main"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0mThe eBay vault will store items for you.[0m
+      [36m</p>[39m
+    [36m</div>[39m
+  [36m</section>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`education-notice > renders prominent icon 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-status"[39m
+    [33maria-roledescription[39m=[32m"Notice"[39m
+    [33mclass[39m=[32m"education-notice"[39m
+    [33mrole[39m=[32m"region"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__header"[39m
+      [33mid[39m=[32m"s0-0-0-status"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-label[39m=[32m"ebay vault"[39m
+        [33mclass[39m=[32m"icon--prominent icon icon--24"[39m
+        [33mfocusable[39m=[32m"false"[39m
+        [33mrole[39m=[32m"img"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-authenticity-guarantee-24"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33mclip-rule[39m=[32m"evenodd"[39m
+              [33md[39m=[32m"M2.067 6.647a3.756 3.756 0 0 1-.875 2.113A4.98 4.98 0 0 0 0 12a4.98 4.98 0 0 0 1.191 3.24 3.75 3.75 0 0 1 .876 2.113 4.98 4.98 0 0 0 1.448 3.132 4.98 4.98 0 0 0 3.133 1.449c.77.061 1.524.374 2.113.875A4.98 4.98 0 0 0 12 24a4.98 4.98 0 0 0 3.24-1.191 3.756 3.756 0 0 1 2.113-.875 4.98 4.98 0 0 0 3.133-1.449 4.98 4.98 0 0 0 1.448-3.133 3.76 3.76 0 0 1 .875-2.113A4.98 4.98 0 0 0 24 12a4.98 4.98 0 0 0-1.19-3.239 3.756 3.756 0 0 1-.876-2.113 4.98 4.98 0 0 0-1.448-3.133 4.98 4.98 0 0 0-3.133-1.449 3.756 3.756 0 0 1-2.114-.875A4.98 4.98 0 0 0 12 0a4.98 4.98 0 0 0-3.24 1.191 3.756 3.756 0 0 1-2.112.875 4.98 4.98 0 0 0-3.133 1.449 4.98 4.98 0 0 0-1.448 3.132ZM4.93 4.929a2.98 2.98 0 0 0-.87 1.878 5.756 5.756 0 0 1-1.346 3.25A2.98 2.98 0 0 0 2 12c0 .743.268 1.419.714 1.943a5.756 5.756 0 0 1 1.346 3.25 2.98 2.98 0 0 0 .87 1.878 2.98 2.98 0 0 0 1.878.869 5.76 5.76 0 0 1 3.25 1.346A2.98 2.98 0 0 0 12 22a2.98 2.98 0 0 0 1.943-.714 5.756 5.756 0 0 1 3.25-1.346 2.98 2.98 0 0 0 1.879-.869 2.98 2.98 0 0 0 .869-1.879 5.756 5.756 0 0 1 1.345-3.25A2.98 2.98 0 0 0 22 12a2.98 2.98 0 0 0-.714-1.943 5.756 5.756 0 0 1-1.346-3.25 2.98 2.98 0 0 0-.869-1.878 2.98 2.98 0 0 0-1.878-.869 5.756 5.756 0 0 1-3.25-1.346A2.98 2.98 0 0 0 12 2a2.98 2.98 0 0 0-1.943.714A5.756 5.756 0 0 1 6.808 4.06a2.98 2.98 0 0 0-1.878.869Zm11.781 5.106a1 1 0 0 0-1.414-1.414l-4.632 4.631-1.962-1.962a1 1 0 0 0-1.414 1.415l2.67 2.669a1 1 0 0 0 1.414 0l5.338-5.339Z"[39m
+              [33mfill-rule[39m=[32m"evenodd"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-authenticity-guarantee-24"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<h2[39m
+        [33mclass[39m=[32m"education-notice__title"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [0mNotice title[0m
+        [36m</div>[39m
+      [36m</h2>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__main"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0mThe eBay vault will store items for you.[0m
+      [36m</p>[39m
+    [36m</div>[39m
+  [36m</section>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`education-notice > renders with dismiss 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-status"[39m
+    [33maria-roledescription[39m=[32m"Notice"[39m
+    [33mclass[39m=[32m"education-notice"[39m
+    [33mrole[39m=[32m"region"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__header"[39m
+      [33mid[39m=[32m"s0-0-0-status"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-label[39m=[32m"information"[39m
+        [33mclass[39m=[32m"icon icon--24"[39m
+        [33mfocusable[39m=[32m"false"[39m
+        [33mrole[39m=[32m"img"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-lightbulb-24"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33mclip-rule[39m=[32m"evenodd"[39m
+              [33md[39m=[32m"m8.039 18.279-.035-.105c-.226-.68-.357-1.072-.574-1.525-.232-.486-.574-1.063-1.262-2.094l-.052-.078C5.148 13.026 4 11.304 4 9a8 8 0 1 1 16 0c0 2.304-1.148 4.026-2.116 5.477l-.052.078c-.688 1.031-1.03 1.608-1.262 2.094-.217.453-.348.845-.574 1.525l-.035.105-.612 2.449A3 3 0 0 1 12.439 23h-.877a3 3 0 0 1-2.91-2.272l-.613-2.45ZM6 9a6 6 0 1 1 12 0c0 1.654-.81 2.913-1.832 4.445-.699 1.049-1.107 1.722-1.403 2.341-.197.412-.34.792-.485 1.214H13v-5.586l1.707-1.707a1 1 0 0 0-1.414-1.414L12 9.586l-1.293-1.293a1 1 0 0 0-1.414 1.414L11 11.414V17H9.72a10.93 10.93 0 0 0-.485-1.214c-.296-.619-.704-1.292-1.403-2.34C6.811 11.912 6 10.653 6 9Zm7.72 10h-3.44l.311 1.243a1 1 0 0 0 .97.757h.877a1 1 0 0 0 .97-.757L13.72 19Z"[39m
+              [33mfill-rule[39m=[32m"evenodd"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-lightbulb-24"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<h2[39m
+        [33mclass[39m=[32m"education-notice__title"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [0mNotice title[0m
+        [36m</div>[39m
+      [36m</h2>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Dismiss Notice"[39m
+        [33mclass[39m=[32m"fake-link education-notice__dismiss icon-btn icon-btn--small"[39m
+        [33mdata-ebayui[39m=[32m""[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"icon icon--16"[39m
+          [33mfocusable[39m=[32m"false"[39m
+        [36m>[39m
+          [36m<defs>[39m
+            [36m<symbol[39m
+              [33mid[39m=[32m"icon-close-16"[39m
+              [33mviewBox[39m=[32m"0 0 16 16"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M2.293 2.293a1 1 0 0 1 1.414 0L8 6.586l4.293-4.293a1 1 0 1 1 1.414 1.414L9.414 8l4.293 4.293a1 1 0 0 1-1.414 1.414L8 9.414l-4.293 4.293a1 1 0 0 1-1.414-1.414L6.586 8 2.293 3.707a1 1 0 0 1 0-1.414Z"[39m
+              [36m/>[39m
+            [36m</symbol>[39m
+          [36m</defs>[39m
+          [36m<use[39m
+            [33mhref[39m=[32m"#icon-close-16"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</button>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__main"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0mThe eBay vault will store items for you.[0m
+      [36m</p>[39m
+    [36m</div>[39m
+  [36m</section>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`education-notice > renders with footer 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<section[39m
+    [33maria-labelledby[39m=[32m"s0-0-0-status"[39m
+    [33maria-roledescription[39m=[32m"Notice"[39m
+    [33mclass[39m=[32m"education-notice"[39m
+    [33mrole[39m=[32m"region"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__header"[39m
+      [33mid[39m=[32m"s0-0-0-status"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-label[39m=[32m"information"[39m
+        [33mclass[39m=[32m"icon icon--24"[39m
+        [33mfocusable[39m=[32m"false"[39m
+        [33mrole[39m=[32m"img"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-lightbulb-24"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33mclip-rule[39m=[32m"evenodd"[39m
+              [33md[39m=[32m"m8.039 18.279-.035-.105c-.226-.68-.357-1.072-.574-1.525-.232-.486-.574-1.063-1.262-2.094l-.052-.078C5.148 13.026 4 11.304 4 9a8 8 0 1 1 16 0c0 2.304-1.148 4.026-2.116 5.477l-.052.078c-.688 1.031-1.03 1.608-1.262 2.094-.217.453-.348.845-.574 1.525l-.035.105-.612 2.449A3 3 0 0 1 12.439 23h-.877a3 3 0 0 1-2.91-2.272l-.613-2.45ZM6 9a6 6 0 1 1 12 0c0 1.654-.81 2.913-1.832 4.445-.699 1.049-1.107 1.722-1.403 2.341-.197.412-.34.792-.485 1.214H13v-5.586l1.707-1.707a1 1 0 0 0-1.414-1.414L12 9.586l-1.293-1.293a1 1 0 0 0-1.414 1.414L11 11.414V17H9.72a10.93 10.93 0 0 0-.485-1.214c-.296-.619-.704-1.292-1.403-2.34C6.811 11.912 6 10.653 6 9Zm7.72 10h-3.44l.311 1.243a1 1 0 0 0 .97.757h.877a1 1 0 0 0 .97-.757L13.72 19Z"[39m
+              [33mfill-rule[39m=[32m"evenodd"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-lightbulb-24"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<h2[39m
+        [33mclass[39m=[32m"education-notice__title"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [0mEducaiton title[0m
+        [36m</div>[39m
+      [36m</h2>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__main"[39m
+    [36m>[39m
+      [36m<p>[39m
+        [0mPlease take another look at the following[0m
+      [36m</p>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"education-notice__footer"[39m
+    [36m>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"fake-link"[39m
+        [33mdata-ebayui[39m=[32m""[39m
+        [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-0-18-2 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-0-18-2 false\\",\\"onfocus\\":\\"handleFocus s0-0-0-18-2 false\\",\\"onblur\\":\\"handleBlur s0-0-0-18-2 false\\"}"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [0mFooter[0m
+      [36m</button>[39m
+    [36m</div>[39m
+  [36m</section>[39m
+[36m</DocumentFragment>[39m"
+`;

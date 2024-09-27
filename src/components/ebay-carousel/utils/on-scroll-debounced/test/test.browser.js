@@ -1,12 +1,20 @@
-import sinon from "sinon/pkg/sinon";
-import { expect } from "chai";
+import {
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+    vi,
+} from "vitest";
+
 import { simulateScroll } from "../../../../../common/test-utils/browser";
 import { onScrollDebounced } from "..";
 
 describe("scroll-debounced", () => {
     let scrollEl;
 
-    before(() => {
+    beforeAll(() => {
         scrollEl = document.createElement("div");
         scrollEl.style.overflowX = "scroll";
         scrollEl.innerHTML = `<div style="width: 200%; border: 25px dashed #000;"></div>`;
@@ -17,17 +25,17 @@ describe("scroll-debounced", () => {
         scrollEl.scrollLeft = 0;
     });
 
-    after(() => {
+    afterAll(() => {
         document.body.removeChild(scrollEl);
     });
 
     it("calls a handler at most every 600ms", (done) => {
-        const scrollSpy = sinon.spy();
+        const scrollSpy = vi.fn();
         onScrollDebounced(scrollEl, scrollSpy);
         simulateScroll(scrollEl, 50, () => {
             simulateScroll(scrollEl, 100, () => {
                 setTimeout(() => {
-                    expect(scrollSpy.calledOnce).to.equal(true);
+                    expect(scrollSpy).toBeCalledTimes(1);
                     done();
                 }, 400);
             });
@@ -35,11 +43,11 @@ describe("scroll-debounced", () => {
     });
 
     it("can be canceled", (done) => {
-        const scrollEndSpy = sinon.spy();
+        const scrollEndSpy = vi.fn();
         const cancel = onScrollDebounced(scrollEl, scrollEndSpy);
         simulateScroll(scrollEl, 100);
         setTimeout(() => {
-            expect(scrollEndSpy.notCalled).to.equal(true);
+            expect(scrollEndSpy).toBeCalledTimes(0);
             done();
         }, 700);
 

@@ -176,7 +176,6 @@ class DateTextbox extends Marko.Component<Input, State> {
                 start = currStart + sep[i].length;
                 i++;
             }
-            console.log(i, start);
             if (value.length - start === (order[i] === "y" ? 4 : 2)) {
                 input.value += sep[i] ?? "";
             }

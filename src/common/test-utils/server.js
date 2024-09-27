@@ -1,8 +1,5 @@
 import { render } from "@marko/testing-library";
-import chaiDom from "chai-dom";
-import { expect, use } from "chai";
-
-use(chaiDom);
+import { it, expect } from "vitest";
 
 let markoCompiler;
 let CompileContext;
@@ -14,9 +11,9 @@ try {
     // v3 paths
     compiler = require("@marko/compiler");
     isMarko5 = true;
+    // eslint-disable-next-line no-unused-vars
 } catch (e) {
     // v4 paths
-
     const target = require("marko/env").isDebug ? "src" : "dist";
     markoCompiler = require("marko/compiler");
     CompileContext = require(`marko/${target}/compiler/CompileContext`);
@@ -51,15 +48,11 @@ function testPassThroughAttributes(
 
         const component = await render(template, clonedInput);
         const passThroughEl = component.getByTestId(testId);
-        expect(passThroughEl).has.attr("data-passed-through");
-        expect(passThroughEl).has.attr("type");
-
+        expect(passThroughEl).toMatchSnapshot();
         const classAndStyleEl = getClassAndStyleEl
             ? getClassAndStyleEl(component)
             : passThroughEl;
-        expect(classAndStyleEl).has.class("class1");
-        expect(classAndStyleEl).not.has.class("class2");
-        expect(classAndStyleEl).attr("style").contains("color:red");
+        expect(classAndStyleEl).toMatchSnapshot();
     });
 }
 

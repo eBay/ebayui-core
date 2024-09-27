@@ -1,6 +1,5 @@
 import "@ebay/skin/tokens";
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup, waitFor } from "@marko/testing-library";
 import { createRenderBody } from "../../../common/test-utils/shared";
@@ -8,7 +7,6 @@ import { pressKey } from "../../../common/test-utils/browser";
 import * as stories from "../combobox.stories";
 
 const { Isolated, FloatingLabel, SearchFiltering } = composeStories(stories);
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -28,7 +26,7 @@ describe("given the combobox with 3 items", () => {
     });
 
     it("then it should not be expanded", () => {
-        expect(component.getByRole("combobox")).has.attr(
+        expect(component.getByRole("combobox")).toHaveAttribute(
             "aria-expanded",
             "false",
         );
@@ -51,7 +49,7 @@ describe("given the combobox with 3 items", () => {
             });
 
             it("then it should expand the combobox", () => {
-                expect(component.getByRole("combobox")).has.attr(
+                expect(component.getByRole("combobox")).toHaveAttribute(
                     "aria-expanded",
                     "true",
                 );
@@ -90,13 +88,11 @@ describe("given the combobox with 3 items", () => {
 
                 it("then it should highlight the first option in the combobox", () => {
                     const options = component.getAllByRole("option");
-                    expect(options)
-                        .has.property(0)
-                        .with.class("combobox__option--active");
-                    expect(options)
-                        .has.property(1)
-                        .not.with.class("combobox__option--active");
-                    expect(component.getByRole("combobox")).has.value(
+                    expect(options[0]).toHaveClass("combobox__option--active");
+                    expect(options[1]).not.toHaveClass(
+                        "combobox__option--active",
+                    );
+                    expect(component.getByRole("combobox")).toHaveValue(
                         Isolated.args.options[0].text,
                     );
                 });
@@ -130,13 +126,13 @@ describe("given the combobox with 3 items", () => {
 
                     it("then it should highlight the second option in the combobox", () => {
                         const options = component.getAllByRole("option");
-                        expect(options)
-                            .has.property(0)
-                            .not.with.class("combobox__option--active");
-                        expect(options)
-                            .has.property(1)
-                            .with.class("combobox__option--active");
-                        expect(component.getByRole("combobox")).has.value(
+                        expect(options[0]).not.toHaveClass(
+                            "combobox__option--active",
+                        );
+                        expect(options[1]).toHaveClass(
+                            "combobox__option--active",
+                        );
+                        expect(component.getByRole("combobox")).toHaveValue(
                             Isolated.args.options[1].text,
                         );
                     });
@@ -153,7 +149,7 @@ describe("given the combobox with 3 items", () => {
                 });
 
                 it("then it should update the input", () => {
-                    expect(component.getByRole("combobox")).has.value(
+                    expect(component.getByRole("combobox")).toHaveValue(
                         Isolated.args.options[1].text,
                     );
                 });
@@ -163,7 +159,7 @@ describe("given the combobox with 3 items", () => {
                         await fireEvent.click(component.getByRole("combobox"));
                     });
                     it("then it should collapse the combobox", () => {
-                        expect(component.getByRole("combobox")).has.attr(
+                        expect(component.getByRole("combobox")).toHaveAttribute(
                             "aria-expanded",
                             "true",
                         );
@@ -180,7 +176,7 @@ describe("given the combobox with 3 items", () => {
                 });
 
                 it("then it should collapse the combobox", () => {
-                    expect(component.getByRole("combobox")).has.attr(
+                    expect(component.getByRole("combobox")).toHaveAttribute(
                         "aria-expanded",
                         "false",
                     );
@@ -206,7 +202,7 @@ describe("given the combobox with 3 items and 2 selected", () => {
     });
 
     it("then it should not be expanded", () => {
-        expect(component.getByRole("combobox")).has.attr(
+        expect(component.getByRole("combobox")).toHaveAttribute(
             "aria-expanded",
             "false",
         );
@@ -228,7 +224,7 @@ describe("given the combobox with 3 items and 2 selected", () => {
             });
 
             it("then it should expand the combobox", () => {
-                expect(component.getByRole("combobox")).has.attr(
+                expect(component.getByRole("combobox")).toHaveAttribute(
                     "aria-expanded",
                     "true",
                 );
@@ -237,9 +233,7 @@ describe("given the combobox with 3 items and 2 selected", () => {
             it("then should show all items by default", () => {
                 const options = component.getAllByRole("option");
                 expect(options.length).to.equal(6);
-                expect(options)
-                    .has.property(1)
-                    .with.class("combobox__option--active");
+                expect(options[1]).toHaveClass("combobox__option--active");
             });
         });
     }
@@ -261,7 +255,7 @@ describe("given the combobox with 3 items set to manual selection", () => {
     });
 
     it("then it should not be expanded", () => {
-        expect(component.getByRole("combobox")).has.attr(
+        expect(component.getByRole("combobox")).toHaveAttribute(
             "aria-expanded",
             "false",
         );
@@ -284,7 +278,7 @@ describe("given the combobox with 3 items set to manual selection", () => {
             });
 
             it("then it should expand the combobox", () => {
-                expect(component.getByRole("combobox")).has.attr(
+                expect(component.getByRole("combobox")).toHaveAttribute(
                     "aria-expanded",
                     "true",
                 );
@@ -323,13 +317,11 @@ describe("given the combobox with 3 items set to manual selection", () => {
 
                 it("then it should highlight the first option in the combobox", () => {
                     const options = component.getAllByRole("option");
-                    expect(options)
-                        .has.property(0)
-                        .with.class("combobox__option--active");
-                    expect(options)
-                        .has.property(1)
-                        .not.with.class("combobox__option--active");
-                    expect(component.getByRole("combobox")).has.value("");
+                    expect(options[0]).toHaveClass("combobox__option--active");
+                    expect(options[1]).not.toHaveClass(
+                        "combobox__option--active",
+                    );
+                    expect(component.getByRole("combobox")).toHaveValue("");
                 });
 
                 describe("when the enter key is pressed", () => {
@@ -341,7 +333,7 @@ describe("given the combobox with 3 items set to manual selection", () => {
                     });
 
                     it("then it should correctly set value for the input", () => {
-                        expect(component.getByRole("combobox")).has.value(
+                        expect(component.getByRole("combobox")).toHaveValue(
                             Isolated.args.options[0].text,
                         );
                     });
@@ -361,13 +353,13 @@ describe("given the combobox with 3 items set to manual selection", () => {
 
                     it("then it should highlight the second option in the combobox", () => {
                         const options = component.getAllByRole("option");
-                        expect(options)
-                            .has.property(0)
-                            .not.with.class("combobox__option--active");
-                        expect(options)
-                            .has.property(1)
-                            .with.class("combobox__option--active");
-                        expect(component.getByRole("combobox")).has.value("");
+                        expect(options[0]).not.toHaveClass(
+                            "combobox__option--active",
+                        );
+                        expect(options[1]).toHaveClass(
+                            "combobox__option--active",
+                        );
+                        expect(component.getByRole("combobox")).toHaveValue("");
                     });
                 });
             });
@@ -382,7 +374,7 @@ describe("given the combobox with 3 items set to manual selection", () => {
                 });
 
                 it("then it should update the input", () => {
-                    expect(component.getByRole("combobox")).has.value(
+                    expect(component.getByRole("combobox")).toHaveValue(
                         Isolated.args.options[1].text,
                     );
                 });
@@ -392,7 +384,7 @@ describe("given the combobox with 3 items set to manual selection", () => {
                         await fireEvent.click(component.getByRole("combobox"));
                     });
                     it("then it should collapse the combobox", () => {
-                        expect(component.getByRole("combobox")).has.attr(
+                        expect(component.getByRole("combobox")).toHaveAttribute(
                             "aria-expanded",
                             "true",
                         );
@@ -409,7 +401,7 @@ describe("given the combobox with 3 items set to manual selection", () => {
                 });
 
                 it("then it should collapse the combobox", () => {
-                    expect(component.getByRole("combobox")).has.attr(
+                    expect(component.getByRole("combobox")).toHaveAttribute(
                         "aria-expanded",
                         "false",
                     );
@@ -434,7 +426,7 @@ describe("given the combobox starts with zero options", () => {
         });
 
         it("then it should not be expanded", () => {
-            expect(component.getByRole("combobox")).has.attr(
+            expect(component.getByRole("combobox")).toHaveAttribute(
                 "aria-expanded",
                 "false",
             );
@@ -474,7 +466,7 @@ describe("given the combobox starts with zero options", () => {
             });
 
             it("then it should expand the combobox", () => {
-                expect(component.getByRole("combobox")).has.attr(
+                expect(component.getByRole("combobox")).toHaveAttribute(
                     "aria-expanded",
                     "true",
                 );
@@ -513,12 +505,10 @@ describe("given the combobox starts with zero options", () => {
 
                 it("then it should highlight the first option in the combobox", () => {
                     const options = component.getAllByRole("option");
-                    expect(options)
-                        .has.property(0)
-                        .with.class("combobox__option--active");
-                    expect(options)
-                        .has.property(1)
-                        .not.with.class("combobox__option--active");
+                    expect(options[0]).toHaveClass("combobox__option--active");
+                    expect(options[1]).not.toHaveClass(
+                        "combobox__option--active",
+                    );
                 });
 
                 describe("when the enter key is pressed", () => {
@@ -550,12 +540,12 @@ describe("given the combobox starts with zero options", () => {
 
                     it("then it should highlight the second option in the combobox", () => {
                         const options = component.getAllByRole("option");
-                        expect(options)
-                            .has.property(0)
-                            .not.with.class("combobox__option--active");
-                        expect(options)
-                            .has.property(1)
-                            .with.class("combobox__option--active");
+                        expect(options[0]).not.toHaveClass(
+                            "combobox__option--active",
+                        );
+                        expect(options[1]).toHaveClass(
+                            "combobox__option--active",
+                        );
                     });
                 });
             });
@@ -570,7 +560,7 @@ describe("given the combobox starts with zero options", () => {
                 });
 
                 it("then it should update the input", () => {
-                    expect(component.getByRole("combobox")).has.value(
+                    expect(component.getByRole("combobox")).toHaveValue(
                         Isolated.args.options[1].text,
                     );
                 });
@@ -585,7 +575,7 @@ describe("given the combobox starts with zero options", () => {
                 });
 
                 it("then it should collapse the combobox", () => {
-                    expect(component.getByRole("combobox")).has.attr(
+                    expect(component.getByRole("combobox")).toHaveAttribute(
                         "aria-expanded",
                         "false",
                     );
@@ -621,7 +611,7 @@ describe("when it is rerendered with actionable", () => {
         });
 
         it("should emit event and not close", () => {
-            expect(component.getByRole("combobox")).has.attr(
+            expect(component.getByRole("combobox")).toHaveAttribute(
                 "aria-expanded",
                 "true",
             );
@@ -636,15 +626,15 @@ describe("given an input textbox with floating label and no value", () => {
     });
 
     it("then component is wrapped into floating label element", () => {
-        expect(component.container.firstElementChild).has.class(
+        expect(component.container.firstElementChild).toHaveClass(
             "floating-label",
         );
     });
 
     it("then is showing the label inline", () => {
-        expect(component.getByText(FloatingLabel.args.floatingLabel)).has.class(
-            "floating-label__label--inline",
-        );
+        expect(
+            component.getByText(FloatingLabel.args.floatingLabel),
+        ).toHaveClass("floating-label__label--inline");
     });
 
     describe("when the input is focused", () => {
@@ -655,7 +645,7 @@ describe("given an input textbox with floating label and no value", () => {
         it("then it is not showing the label inline", () => {
             expect(
                 component.getByText(FloatingLabel.args.floatingLabel),
-            ).does.not.have.class("floating-label__label--inline");
+            ).not.toHaveClass("floating-label__label--inline");
         });
 
         describe("when the input is blurred", () => {
@@ -667,7 +657,7 @@ describe("given an input textbox with floating label and no value", () => {
                 await waitFor(() =>
                     expect(
                         component.getByText(FloatingLabel.args.floatingLabel),
-                    ).has.class("floating-label__label--inline"),
+                    ).toHaveClass("floating-label__label--inline"),
                 );
             });
         });
@@ -695,7 +685,7 @@ describe("given an input with custom search filtering", () => {
         });
 
         it("then it should expand the combobox", () => {
-            expect(component.getByRole("combobox")).has.attr(
+            expect(component.getByRole("combobox")).toHaveAttribute(
                 "aria-expanded",
                 "true",
             );
@@ -710,7 +700,7 @@ describe("given an input with custom search filtering", () => {
             });
 
             it("then the combobox should stay expanded", () => {
-                expect(component.getByRole("combobox")).has.attr(
+                expect(component.getByRole("combobox")).toHaveAttribute(
                     "aria-expanded",
                     "true",
                 );

@@ -1,0 +1,170 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`passes through additional html attributes 1`] = `
+<input
+  class="checkbox__control"
+  data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  type="checkbox"
+/>
+`;
+
+exports[`passes through additional html attributes 2`] = `
+<span
+  class="checkbox class1"
+  style="color:red"
+>
+  <input
+    class="checkbox__control"
+    data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+    data-passed-through="true"
+    data-testid="AttributePassthrough"
+    type="checkbox"
+  />
+  <span
+    class="checkbox__icon"
+    hidden=""
+  >
+    <!--M#s0-5-0-->
+    <svg
+      aria-hidden="true"
+      class="checkbox__unchecked"
+      data-marko-key="@svg s0-5-0"
+      focusable="false"
+    >
+      <defs
+        data-marko-key="@defs s0-5-0"
+      >
+        <symbol
+          id="icon-checkbox-unchecked-18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            d="M6.4 17h5.2c1.137 0 1.929 0 2.546-.051.605-.05.953-.142 1.216-.276a3 3 0 0 0 1.311-1.311c.134-.263.226-.611.276-1.216.05-.617.051-1.41.051-2.546V6.4c0-1.137 0-1.929-.051-2.546-.05-.605-.142-.953-.276-1.216a3 3 0 0 0-1.311-1.311c-.263-.134-.611-.226-1.216-.276C13.529 1.001 12.736 1 11.6 1H6.4c-1.137 0-1.929 0-2.546.051-.605.05-.953.142-1.216.276a3 3 0 0 0-1.311 1.311c-.134.263-.226.611-.276 1.216C1.001 4.471 1 5.264 1 6.4v5.2c0 1.137 0 1.929.051 2.546.05.605.142.953.276 1.216a3 3 0 0 0 1.311 1.311c.263.134.611.226 1.216.276.617.05 1.41.051 2.546.051ZM.436 15.816C0 14.96 0 13.84 0 11.6V6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-checkbox-unchecked-18"
+      />
+    </svg>
+    <!--M/-->
+    <!--M#s0-6-0-->
+    <svg
+      aria-hidden="true"
+      class="checkbox__checked"
+      data-marko-key="@svg s0-6-0"
+      focusable="false"
+    >
+      <defs
+        data-marko-key="@defs s0-6-0"
+      >
+        <symbol
+          id="icon-checkbox-checked-18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            d="M0 6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C0 14.96 0 13.84 0 11.6V6.4Zm14.71-2.11a1 1 0 0 0-1.41 0L7 10.59l-2.29-2.3a1.004 1.004 0 0 0-1.42 1.42l3 3a1 1 0 0 0 1.41 0l7-7a1 1 0 0 0 .01-1.42Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-checkbox-checked-18"
+      />
+    </svg>
+    <!--M/-->
+  </span>
+</span>
+`;
+
+exports[`renders checkbox with id 1`] = `
+<input
+  class="checkbox__control"
+  data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+  id="abc123"
+  type="checkbox"
+/>
+`;
+
+exports[`renders default checkbox 1`] = `
+<input
+  class="checkbox__control"
+  data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+  type="checkbox"
+/>
+`;
+
+exports[`renders default checkbox 2`] = `
+<span
+  class="checkbox"
+>
+  <input
+    class="checkbox__control"
+    data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+    type="checkbox"
+  />
+  <span
+    class="checkbox__icon"
+    hidden=""
+  >
+    <!--M#s0-5-0-->
+    <svg
+      aria-hidden="true"
+      class="checkbox__unchecked"
+      data-marko-key="@svg s0-5-0"
+      focusable="false"
+    >
+      <defs
+        data-marko-key="@defs s0-5-0"
+      >
+        <symbol
+          id="icon-checkbox-unchecked-18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            d="M6.4 17h5.2c1.137 0 1.929 0 2.546-.051.605-.05.953-.142 1.216-.276a3 3 0 0 0 1.311-1.311c.134-.263.226-.611.276-1.216.05-.617.051-1.41.051-2.546V6.4c0-1.137 0-1.929-.051-2.546-.05-.605-.142-.953-.276-1.216a3 3 0 0 0-1.311-1.311c-.263-.134-.611-.226-1.216-.276C13.529 1.001 12.736 1 11.6 1H6.4c-1.137 0-1.929 0-2.546.051-.605.05-.953.142-1.216.276a3 3 0 0 0-1.311 1.311c-.134.263-.226.611-.276 1.216C1.001 4.471 1 5.264 1 6.4v5.2c0 1.137 0 1.929.051 2.546.05.605.142.953.276 1.216a3 3 0 0 0 1.311 1.311c.263.134.611.226 1.216.276.617.05 1.41.051 2.546.051ZM.436 15.816C0 14.96 0 13.84 0 11.6V6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-checkbox-unchecked-18"
+      />
+    </svg>
+    <!--M/-->
+    <!--M#s0-6-0-->
+    <svg
+      aria-hidden="true"
+      class="checkbox__checked"
+      data-marko-key="@svg s0-6-0"
+      focusable="false"
+    >
+      <defs
+        data-marko-key="@defs s0-6-0"
+      >
+        <symbol
+          id="icon-checkbox-checked-18"
+          viewBox="0 0 18 18"
+        >
+          <path
+            d="M0 6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C0 14.96 0 13.84 0 11.6V6.4Zm14.71-2.11a1 1 0 0 0-1.41 0L7 10.59l-2.29-2.3a1.004 1.004 0 0 0-1.42 1.42l3 3a1 1 0 0 0 1.41 0l7-7a1 1 0 0 0 .01-1.42Z"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-checkbox-checked-18"
+      />
+    </svg>
+    <!--M/-->
+  </span>
+</span>
+`;
+
+exports[`renders disabled checkbox 1`] = `
+<input
+  class="checkbox__control"
+  data-marko="{"onclick":"forwardEvent s0 false 0","onfocus":"forwardEvent s0 false 1","onkeydown":"forwardEvent s0 false 2"}"
+  disabled=""
+  type="checkbox"
+/>
+`;

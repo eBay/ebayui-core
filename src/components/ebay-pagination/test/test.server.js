@@ -1,4 +1,5 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
+
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../pagination.stories";
@@ -8,8 +9,6 @@ import { getPaginationItems } from "../../../common/test-utils/shared";
 const { Buttons, Links, Interactive } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 describe("pagination", () => {
     describe("with links", () => {

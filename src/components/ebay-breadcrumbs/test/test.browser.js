@@ -1,9 +1,7 @@
 import { render, fireEvent, cleanup } from "@marko/testing-library";
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import * as mock from "../mock";
-import template from "..";
-use(chaiDom);
+import template from "../index.marko";
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */

@@ -1,10 +1,8 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
-import template from "..";
+import template from "../index.marko";
 import * as mock from "./mock";
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -17,7 +15,7 @@ describe("given filter is enabled", () => {
     });
 
     it("then it is not selected", () => {
-        expect(component.getByRole("button")).does.not.have.attr(
+        expect(component.getByRole("button")).not.toHaveAttribute(
             "aria-pressed",
         );
     });
@@ -36,7 +34,7 @@ describe("given filter is enabled", () => {
         });
 
         it("then it is selected", () => {
-            expect(component.getByRole("button")).has.attr(
+            expect(component.getByRole("button")).toHaveAttribute(
                 "aria-pressed",
                 "true",
             );
@@ -48,7 +46,7 @@ describe("given filter is enabled", () => {
             });
 
             it("then it is not selected", () => {
-                expect(component.getByRole("button")).does.not.have.attr(
+                expect(component.getByRole("button")).not.toHaveAttribute(
                     "aria-pressed",
                 );
             });

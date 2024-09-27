@@ -1,4 +1,5 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
+
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
@@ -6,8 +7,6 @@ import * as stories from "../lightbox-dialog.stories"; // import all stories fro
 const { Default, Scrolling, Expressive, WithPrevButton, WithFooter } =
     composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 describe("dialog", () => {
     it("renders basic version", async () => {

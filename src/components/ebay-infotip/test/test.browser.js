@@ -1,15 +1,20 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import {
+    afterEach,
+    beforeEach,
+    afterAll,
+    beforeAll,
+    describe,
+    it,
+    expect,
+} from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup, waitFor } from "@marko/testing-library";
 import { fastAnimations } from "../../../common/test-utils/browser";
 import * as stories from "../infotip.stories";
 
 const { Default, OpenOnRender } = composeStories(stories);
-
-use(chaiDom);
-before(fastAnimations.start);
-after(fastAnimations.stop);
+beforeAll(() => fastAnimations.start());
+afterAll(() => fastAnimations.stop());
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -43,7 +48,7 @@ describe("given the default infotip", () => {
             it("then it is expanded", () => {
                 expect(
                     component.getByLabelText("Important information"),
-                ).has.attr("aria-expanded", "true");
+                ).toHaveAttribute("aria-expanded", "true");
             });
 
             describe("when the host element is clicked a second time to close", () => {
@@ -62,7 +67,7 @@ describe("given the default infotip", () => {
                 it("then it is collapsed", () => {
                     expect(
                         component.getByLabelText("Important information"),
-                    ).does.not.have.attr("aria-expanded", "true");
+                    ).not.toHaveAttribute("aria-expanded", "true");
                 });
             });
         });
@@ -89,7 +94,7 @@ describe("given the modal infotip", () => {
 
         it("then it is expanded", async () => {
             await waitFor(() => {
-                expect(component.getByRole("dialog")).does.not.have.attr(
+                expect(component.getByRole("dialog")).not.toHaveAttribute(
                     "hidden",
                 );
             });
@@ -117,7 +122,7 @@ describe("given the modal infotip opened", () => {
             await waitFor(() => {
                 expect(
                     component.getByRole("dialog", { hidden: true }),
-                ).has.attr("hidden");
+                ).toHaveAttribute("hidden");
             });
         });
     });

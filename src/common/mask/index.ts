@@ -1,23 +1,16 @@
 export default function (input: HTMLInputElement, initialMask: string) {
     let mask = initialMask;
-    const onBeforeInput = () => {
-        const { start, end } = getDigitRelativeSelection(input);
-        input.value = stripNonDigits(input.value);
-        input.setSelectionRange(start, end);
+    const onInput = (ev: Event) => {
+        updateInputValue(input, mask, input.value, (ev as InputEvent).inputType);
     };
-    const onInput = () => {
-        updateInputValue(input, mask, input.value);
-    };
-    input.addEventListener("beforeinput", onBeforeInput);
     input.addEventListener("input", onInput);
 
     return {
         update(newValue: string, newMask: string) {
             mask = newMask;
-            updateInputValue(input, mask, newValue);
+            updateInputValue(input, mask, newValue, "");
         },
         destroy() {
-            input.removeEventListener("beforeinput", onBeforeInput);
             input.removeEventListener("input", onInput);
         },
         get value() {
@@ -29,47 +22,24 @@ export default function (input: HTMLInputElement, initialMask: string) {
 function updateInputValue(
     input: HTMLInputElement,
     mask: string,
-    newValue: string,
+    value: string,
+    inputType: string,
 ) {
-    const { start, end } = getDigitRelativeSelection(input);
-    const maskedValue = applyMask(newValue, mask);
-    const maskLength = maskedValue.length;
-    let maskedStart, maskedEnd;
-    let digitIndex = 0;
-    for (let i = 0; i < maskedValue.length; i++) {
-        if (/\d/.test(maskedValue[i])) {
-            digitIndex++;
-            if (digitIndex > start) {
-                maskedStart = i;
-            }
-            if (digitIndex > end) {
-                maskedEnd = i;
-                break;
-            }
+    const isDelete = /delete.*Backwards/.test(inputType);
+    const initialPos = input.selectionStart || 0;
+    const newValue = applyMask(value, mask);
+    if (value !== newValue) {
+        input.value = newValue;
+        const newPosition = resolveCursorPosition(
+            newValue,
+            value,
+            initialPos,
+            isDelete,
+        );
+        if (newPosition !== undefined) {
+            input.setSelectionRange(newPosition, newPosition);
         }
     }
-    input.value = maskedValue;
-    input.setSelectionRange(maskedStart ?? maskLength, maskedEnd ?? maskLength);
-}
-
-function getDigitRelativeSelection(target: HTMLInputElement) {
-    const rawSelectionStart = target.selectionStart || 0;
-    const rawSelectionEnd = target.selectionEnd || 0;
-    const value = target.value;
-    const valueBeforeSelectionStart = value.slice(0, rawSelectionStart);
-    const digitsBeforeSelectionStart = stripNonDigits(
-        valueBeforeSelectionStart,
-    );
-    const selectionStartOffset =
-        valueBeforeSelectionStart.length - digitsBeforeSelectionStart.length;
-    const valueBeforeSelectionEnd = value.slice(0, rawSelectionEnd);
-    const digitsBeforeSelectionEnd = stripNonDigits(valueBeforeSelectionEnd);
-    const selectionEndOffset =
-        valueBeforeSelectionEnd.length - digitsBeforeSelectionEnd.length;
-    return {
-        start: rawSelectionStart - selectionStartOffset,
-        end: rawSelectionEnd - selectionEndOffset,
-    };
 }
 
 export function stripNonDigits(value: string) {
@@ -94,4 +64,36 @@ function applyMask(value: string, mask: string) {
         }
     }
     return maskedValue;
+}
+
+function resolveCursorPosition(
+    updatedValue: string,
+    initialValue: string,
+    initialPosition: number,
+    isDelete: boolean,
+) {
+    const cursorAtEnd = initialPosition === initialValue.length;
+    if (isDelete || !cursorAtEnd) {
+        const before = initialValue.slice(0, initialPosition);
+        const after = initialValue.slice(initialPosition);
+        if (updatedValue.startsWith(before)) {
+            return initialPosition;
+        } else if (updatedValue.endsWith(after)) {
+            return updatedValue.length - after.length;
+        } else {
+            const relevantChars = stripSpacesAndPunctuation(before);
+            let pos = 0;
+            let relevantIndex = 0;
+            while (relevantIndex < relevantChars.length) {
+                if (stripSpacesAndPunctuation(updatedValue[pos]))
+                    relevantIndex++;
+                pos++;
+            }
+            return pos;
+        }
+    }
+}
+
+function stripSpacesAndPunctuation(str:string) {
+    return str.replace(/[.,\\/#!$%^&*;:{}=+\-_`~()\s]/g, "");
 }

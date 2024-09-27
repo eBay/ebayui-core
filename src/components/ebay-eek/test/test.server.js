@@ -1,15 +1,13 @@
-import { expect, use } from "chai";
+import { describe, it, expect } from "vitest";
+
 import { render } from "@marko/testing-library";
 import { testPassThroughAttributes } from "../../../common/test-utils/server";
-import template from "..";
-
-use(require("chai-dom"));
+import template from "../index.marko";
 
 describe("eek", () => {
-    async function ratingCheck(max, min, rating, number) {
-        const eekClass = !!number ? `eek--rating-${number}` : "eek";
+    async function ratingCheck(max, min, rating) {
         const { getByRole } = await render(template, { max, min, rating });
-        expect(getByRole("figure")).has.class(eekClass);
+        expect(getByRole("figure")).toMatchSnapshot();
     }
 
     it("renders default eek", async () => {
@@ -18,10 +16,10 @@ describe("eek", () => {
             min: "D",
             rating: "B",
         });
-        expect(getByText("A+++")).has.property("nextElementSibling");
-        expect(getByText("D")).has.property("previousElementSibling");
-        expect(getByText("B")).has.class("eek__rating");
-        expect(getByRole("figure")).has.class("eek--rating-5");
+        expect(getByText("A+++")).toMatchSnapshot();
+        expect(getByText("D")).toMatchSnapshot();
+        expect(getByText("B")).toMatchSnapshot();
+        expect(getByRole("figure")).toMatchSnapshot();
     });
 
     it("renders invalid eek", async () => {
@@ -30,10 +28,10 @@ describe("eek", () => {
             min: "D",
             rating: "B",
         });
-        expect(getByText("A")).has.property("nextElementSibling");
-        expect(getByText("D")).has.property("previousElementSibling");
-        expect(getByText("B")).has.class("eek__rating");
-        expect(getByRole("figure")).has.class("eek");
+        expect(getByText("A")).toMatchSnapshot();
+        expect(getByText("D")).toMatchSnapshot();
+        expect(getByText("B")).toMatchSnapshot();
+        expect(getByRole("figure")).toMatchSnapshot();
     });
 
     it("renders the correct eek if rating is outside", async () => {

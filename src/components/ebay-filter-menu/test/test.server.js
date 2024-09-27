@@ -1,3 +1,4 @@
+import { describe, it } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../filter-menu.stories";
@@ -12,6 +13,14 @@ const items = [...Standard.args.items];
 describe("filter-menu", () => {
     it("renders basic version", async () => {
         await htmlSnap(Standard);
+    });
+
+    it("renders with aria-label", async () => {
+        await htmlSnap(Standard, { ariaLabel: "test" });
+    });
+
+    it("renders with aria-labelledby", async () => {
+        await htmlSnap(Standard, { ariaLabelledby: "test" });
     });
 
     it(`renders checked item`, async () => {

@@ -1,5 +1,3 @@
-/* eslint-disable compat/compat */
-
 import { execSync } from "child_process";
 import * as https from "https"; // or 'https' for https:// URLs
 import { fileURLToPath } from "url";

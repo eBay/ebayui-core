@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { it, expect } from "vitest";
 import { processHtmlAttributes } from "../";
 
 it("creates attributes object based on html-attributes", () => {

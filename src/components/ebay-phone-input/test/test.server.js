@@ -1,12 +1,11 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
+
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../phone-input.stories";
 
 const { Default, Localization } = composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 describe("ebay-phone-input", () => {
     it("renders defaults", async () => {

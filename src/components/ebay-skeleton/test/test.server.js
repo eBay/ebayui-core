@@ -1,12 +1,11 @@
-import { use } from "chai";
+import { describe, it } from "vitest";
+
 import { composeStories } from "@storybook/marko";
 import { snapshotHTML } from "../../../common/test-utils/snapshots";
 import * as stories from "../skeleton.stories";
 
 const { Default, Avatar, Tile, Text, TextMultiLine } = composeStories(stories);
 const htmlSnap = snapshotHTML(__dirname);
-
-use(require("chai-dom"));
 
 describe("skeleton", () => {
     it("renders default skeleton", async () => {

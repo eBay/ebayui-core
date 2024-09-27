@@ -90,6 +90,15 @@ export default {
             type: { name: "string", require: false },
             description: "Highcharts version to load from CDN",
         },
+        renderTooltipOutside: {
+            type: { name: "boolean", require: false },
+            description: "Defaults to `true`, if set to false the tooltip will render inside the chart container. Set to `false` when rendering in a modal.",
+            table: {
+                defaultValue: {
+                    summary: "true",
+                },
+            },
+        }
     },
 };
 

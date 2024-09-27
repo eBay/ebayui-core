@@ -1,4 +1,4 @@
-import { expect } from "chai";
+import { beforeAll, afterAll, describe, it, expect } from "vitest";
 import * as elementScroll from "../index";
 
 describe("element-scroll", () => {
@@ -12,12 +12,12 @@ describe("element-scroll", () => {
     const fifthItemEl = contentDiv.querySelectorAll(".item5")[0];
     const secondItemEl = contentDiv.querySelectorAll(".item2")[0];
 
-    before(() => {
+    beforeAll(() => {
         document.body.appendChild(contentDiv);
         contentDiv.setAttribute("style", "max-height:100px; overflow-y: auto;");
     });
 
-    after(() => {
+    afterAll(() => {
         document.body.removeChild(contentDiv);
     });
 

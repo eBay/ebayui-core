@@ -1,9 +1,8 @@
 import "@ebay/skin/tokens";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { composeStories } from "@storybook/marko";
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
-import template from "..";
+import template from "../index.marko";
 import componentB from "../component-browser";
 import * as stories from "../textbox.stories";
 
@@ -12,7 +11,6 @@ const { Isolated, FloatingLabel, BothIcons } = composeStories(stories);
 const floatingLabel = "Email address";
 
 componentB.renderer = template._; // Allow re-rendering the split component for testing.
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -62,13 +60,13 @@ describe("given an input textbox with floating label and no value", () => {
     });
 
     it("then component is wrapped into floating label element", () => {
-        expect(component.container.firstElementChild).has.class(
+        expect(component.container.firstElementChild).toHaveClass(
             "floating-label",
         );
     });
 
     it("then is showing the label inline", async () => {
-        expect(component.getByText(floatingLabel)).has.class(
+        expect(component.getByText(floatingLabel)).toHaveClass(
             "floating-label__label--inline",
         );
     });
@@ -79,7 +77,7 @@ describe("given an input textbox with floating label and no value", () => {
         });
 
         it("then it is not showing the label inline", () => {
-            expect(component.getByText(floatingLabel)).does.not.have.class(
+            expect(component.getByText(floatingLabel)).not.toHaveClass(
                 "floating-label__label--inline",
             );
         });
@@ -90,7 +88,7 @@ describe("given an input textbox with floating label and no value", () => {
             });
 
             it("then is showing the label inline", () => {
-                expect(component.getByText(floatingLabel)).has.class(
+                expect(component.getByText(floatingLabel)).toHaveClass(
                     "floating-label__label--inline",
                 );
             });

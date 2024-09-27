@@ -1,12 +1,10 @@
-import { expect, use } from "chai";
-import chaiDom from "chai-dom";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup, waitFor } from "@marko/testing-library";
 import { pressKey } from "../../../common/test-utils/browser";
 import * as stories from "../menu.stories"; // import all stories from the stories file
 const { Default, Typeahead, Separator } = composeStories(stories);
 
-use(chaiDom);
 afterEach(cleanup);
 
 /** @type import("@marko/testing-library").RenderResult */
@@ -110,6 +108,7 @@ describe("typeahead functionality", () => {
 
 describe("given the menu is in the default state", () => {
     const firstItemText = Default.args.items[0].renderBody;
+    const secondItemText = Default.args.items[1].renderBody;
 
     beforeEach(async () => {
         component = await render(Default);
@@ -125,7 +124,9 @@ describe("given the menu is in the default state", () => {
             expect(selectEvents).to.length(1);
 
             const [[eventArg]] = selectEvents;
-            expect(eventArg).has.property("el").with.text(firstItemText);
+            expect(eventArg)
+                .has.property("el")
+                .toHaveTextContent(firstItemText);
         });
     });
 
@@ -139,6 +140,50 @@ describe("given the menu is in the default state", () => {
 
         it("then it emits the marko keydown event", () => {
             expect(component.emitted("keydown")).to.have.property("length", 1);
+        });
+    });
+
+    describe("when the down key is pressed from an item", () => {
+        beforeEach(async () => {
+            await pressKey(component.getByText(firstItemText), {
+                key: "ArrowDown",
+                keyCode: 40,
+            });
+        });
+
+        it("then it emits the marko keydown event", () => {
+            const keydownEvents = component.emitted("keydown");
+            expect(keydownEvents).to.have.property("length", 1);
+            expect(keydownEvents[0][0].index).to.equal(1);
+        });
+    });
+
+    describe("when the up key is pressed from the first item", () => {
+        beforeEach(async () => {
+            await pressKey(component.getByText(firstItemText), {
+                key: "ArrowUp",
+                keyCode: 38,
+            });
+        });
+
+        it("then it does not emit the marko keydown event", () => {
+            const keydownEvents = component.emitted("keydown");
+            expect(keydownEvents).to.have.property("length", 0);
+        });
+    });
+
+    describe("when the up key is pressed from the second item", () => {
+        beforeEach(async () => {
+            await pressKey(component.getByText(secondItemText), {
+                key: "ArrowUp",
+                keyCode: 38,
+            });
+        });
+
+        it("then it emits the marko keydown event", () => {
+            const keydownEvents = component.emitted("keydown");
+            expect(keydownEvents).to.have.property("length", 1);
+            expect(keydownEvents[0][0].index).to.equal(0);
         });
     });
 });
@@ -166,7 +211,7 @@ describe("given the menu has radio items", () => {
         });
 
         it("then the item is selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
@@ -187,7 +232,7 @@ describe("given the menu has radio items", () => {
         });
 
         it("then the item is selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
@@ -208,15 +253,15 @@ describe("given the menu has radio items", () => {
         });
 
         it("then the second item is selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "false");
-            expect(secondItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "false");
+            expect(secondItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
     describe("when an item is clicked multiple times", () => {
         beforeEach(async () => {
             await fireEvent.click(firstItem);
-            expect(firstItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
             await fireEvent.click(firstItem);
         });
 
@@ -229,7 +274,7 @@ describe("given the menu has radio items", () => {
         });
 
         it("then the item is selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
         });
     });
 });
@@ -260,8 +305,8 @@ describe("given the menu has checkbox items", () => {
         });
 
         it("then both items are selected", () => {
-            expect(firstItem).to.have.attr("aria-checked", "true");
-            expect(secondItem).to.have.attr("aria-checked", "true");
+            expect(firstItem).toHaveAttribute("aria-checked", "true");
+            expect(secondItem).toHaveAttribute("aria-checked", "true");
         });
     });
 
@@ -282,7 +327,7 @@ describe("given the menu has checkbox items", () => {
         });
 
         it("then the item is unchecked", () => {
-            expect(firstItem).to.have.attr("aria-checked", "false");
+            expect(firstItem).toHaveAttribute("aria-checked", "false");
         });
     });
 });
@@ -336,7 +381,7 @@ describe("given the menu has checkbox items with separator", () => {
         });
 
         it("then the item is unchecked", () => {
-            expect(thirdItem).to.have.attr("aria-checked", "false");
+            expect(thirdItem).toHaveAttribute("aria-checked", "false");
         });
     });
 });

@@ -1,0 +1,49 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`signal > renders neutral version 1`] = `
+<span
+  class="signal signal--neutral"
+>
+  neutral
+</span>
+`;
+
+exports[`signal > renders neutral version when no type is specified 1`] = `
+<span
+  class="signal signal--neutral"
+>
+  neutral
+</span>
+`;
+
+exports[`signal > renders recent version 1`] = `
+<span
+  class="signal signal--recent"
+>
+  recent
+</span>
+`;
+
+exports[`signal > renders time sensitive version 1`] = `
+<span
+  class="signal signal--time-sensitive"
+>
+  time sensitive
+</span>
+`;
+
+exports[`signal > renders trustworthy version 1`] = `
+<span
+  class="signal signal--trustworthy"
+>
+  trustworthy
+</span>
+`;
+
+exports[`signal > renders with custom class 1`] = `
+<span
+  class="custom-class signal signal--neutral"
+>
+  neutral
+</span>
+`;
