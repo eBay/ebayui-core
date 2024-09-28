@@ -1,7 +1,12 @@
 export default function (input: HTMLInputElement, initialMask: string) {
     let mask = initialMask;
     const onInput = (ev: Event) => {
-        updateInputValue(input, mask, input.value, (ev as InputEvent).inputType);
+        updateInputValue(
+            input,
+            mask,
+            input.value,
+            (ev as InputEvent).inputType,
+        );
     };
     input.addEventListener("input", onInput);
 
@@ -94,6 +99,6 @@ function resolveCursorPosition(
     }
 }
 
-function stripSpacesAndPunctuation(str:string) {
+function stripSpacesAndPunctuation(str: string) {
     return str.replace(/[.,\\/#!$%^&*;:{}=+\-_`~()\s]/g, "");
 }

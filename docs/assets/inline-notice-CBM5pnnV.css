@@ -1,0 +1,1 @@
+.inline-notice{margin:var(--spacing-100) 0}div.inline-notice{display:flex}span.inline-notice{display:inline-flex}.inline-notice__header{display:flex;margin-inline-end:var(--spacing-100);margin-top:var(--spacing-50)}.inline-notice p{margin:3px 0}.inline-notice a,.inline-notice button.fake-link{color:var(--color-foreground-primary)}
