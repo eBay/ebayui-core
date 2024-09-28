@@ -185,7 +185,7 @@ function generateFile(type, iconMap) {
         if (iconDef) {
             const defPath = path.join(iconFolder, "def.ts");
             const contentDef = `export function def() {
-    // eslint-disable-next-line max-len,q/Users/agliga/build/ebay/ebayui-core/src/common/test-utils/server.jsuotes
+    // eslint-disable-next-line max-len,quotes
     return { server:  ${JSON.stringify(iconDef.server)}, browser: ${JSON.stringify(iconDef.browser)} };
 };
 `;
