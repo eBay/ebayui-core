@@ -31,7 +31,7 @@ jobs:
             - uses: actions/checkout@master
             - uses: actions/setup-node@master
               with:
-                  node-version: "18"
+                  node-version: "20"
             - uses: webfactory/ssh-agent@v0.5.4
               with:
                   ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -67,7 +67,7 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v3
               with:
-                  node-version: "18"
+                  node-version: "20"
                   cache: npm
             - name: Install dependencies
               run: npm i
