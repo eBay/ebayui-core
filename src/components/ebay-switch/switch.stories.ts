@@ -1,5 +1,5 @@
 import type { Story } from "@storybook/marko";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component, { type Input } from "./index.marko";
 import WithLabelTemplate from "./examples/with-label.marko";
