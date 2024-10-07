@@ -55,7 +55,7 @@ export default {
 
 export const Default = buildExtensionTemplate(defaultTemplate, defaultCode);
 export const Dense = buildExtensionTemplate(defaultTemplate, defaultCode, {
-    density: "dense",
+    density: "compact",
 });
 export const Relaxed = buildExtensionTemplate(defaultTemplate, defaultCode, {
     density: "relaxed",

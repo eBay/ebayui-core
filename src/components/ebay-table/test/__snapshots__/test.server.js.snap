@@ -372,7 +372,7 @@ exports[`ebay-table > renders default 1`] = `
 exports[`ebay-table > renders dense density 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
-    [33mclass[39m=[32m"table"[39m
+    [33mclass[39m=[32m"table table--density-compact"[39m
     [33mrole[39m=[32m"group"[39m
     [33mtabindex[39m=[32m"0"[39m
   [36m>[39m
