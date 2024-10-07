@@ -18,7 +18,6 @@ function addRenderBodies(input: any) {
         return clone;
     }
 
-    return input;
 }
 
 function buildExtensionTemplate(

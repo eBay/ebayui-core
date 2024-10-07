@@ -1,11 +1,6 @@
 {
     "include": ["src", "src/**/*.json"],
-    "exclude": [
-        "**/*.stories.ts",
-        "**/*.stories-ignore.ts",
-        "**/test/*",
-        "**/examples/*"
-    ],
+    "exclude": ["**/test/*", "**/examples/*"],
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
@@ -21,6 +16,7 @@
         "skipLibCheck": true,
         "strict": true,
         "target": "ES2015",
+        "types": ["vite/client", "mdx"],
         "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
     }
 }
