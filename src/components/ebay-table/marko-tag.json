@@ -1,0 +1,39 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "type": "expression",
+        "targetProperty": null
+    },
+    "@html-attributes": "expression",
+    "@density": {
+        "enum": ["compact", "relaxed"]
+    },
+    "@header <header>[]": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression",
+        "@column-type": {
+            "enum": ["normal", "numeric", "row-header"]
+        }
+    },
+    "@row <row>[]": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression",
+        "@cell <cell>[]": {
+            "attribute-groups": ["html-attributes"],
+            "@*": {
+                "targetProperty": null,
+                "type": "expression"
+            },
+            "@html-attributes": "expression"
+        }
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/data-display-table)"
+}
