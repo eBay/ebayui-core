@@ -1,0 +1,3 @@
+import{ag as t,ah as s}from"./chunk-NUUEMKO5-Ctp51OdF.js";import{u as r}from"./index-B62wW4Jm.js";import"./iframe-Bcqd8Jm_.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-Cef7vbu6.js";import"./index-DrFu-skq.js";function o(e){const n={h1:"h1",p:"p",...r(),...e.components};return t.jsxs(t.Fragment,{children:[t.jsx(s,{title:"form input/Overview"}),`
+`,t.jsx(n.h1,{id:"form-components",children:"Form Components"}),`
+`,t.jsx(n.p,{children:"These components are generally classified as fields that may be used as a part of a form."})]})}function h(e={}){const{wrapper:n}={...r(),...e.components};return n?t.jsx(n,{...e,children:t.jsx(o,{...e})}):o(e)}export{h as default};

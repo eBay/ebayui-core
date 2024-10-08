@@ -1,0 +1,10 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.3.0"
+  },
+  "changesets": [
+    "green-fans-occur"
+  ]
+}

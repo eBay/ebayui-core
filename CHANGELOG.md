@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.4.0-next.0
+
+### Minor Changes
+
+- [#2282](https://github.com/eBay/ebayui-core/pull/2282) [`99a0245`](https://github.com/eBay/ebayui-core/commit/99a02457d40d83eeefdd45d06dfad614a7e401b1) Thanks [@bill-min](https://github.com/bill-min)! - feat(ebay-table): ebay-table base component with density attribute
+
 ## 14.3.0
 
 ### Minor Changes
