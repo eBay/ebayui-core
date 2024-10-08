@@ -49,11 +49,14 @@ describe("given table mode selection", () => {
         });
 
         describe("when select-all is clicked afterwards", () => {
-            it("then all rows should be selected and tri-state checkbox should be all-selected state", async () => {
-                const selectAllCheckbox = component.getByRole("checkbox", {
+            let selectAllCheckbox;
+            beforeEach(async () => {
+                selectAllCheckbox = component.getByRole("checkbox", {
                     name: "Select all",
                 });
                 await fireEvent.click(selectAllCheckbox);
+            });
+            it("then all rows should be selected and tri-state checkbox should be all-selected state", async () => {
                 component
                     .getAllByRole("checkbox", {
                         name: "Select row",
@@ -65,6 +68,26 @@ describe("given table mode selection", () => {
                     "aria-checked",
                     "true",
                 );
+            });
+
+            describe("when select-all is clicked again", () => {
+                it("then all rows should be unselected and tri-state checkbox should be none-selected state", async () => {
+                    selectAllCheckbox = component.getByRole("checkbox", {
+                        name: "Select all",
+                    });
+                    await fireEvent.click(selectAllCheckbox);
+                    component
+                        .getAllByRole("checkbox", {
+                            name: "Select row",
+                        })
+                        .forEach((checkbox) => {
+                            expect(checkbox).has.property("checked", false);
+                        });
+                    expect(selectAllCheckbox).toHaveAttribute(
+                        "aria-checked",
+                        "false",
+                    );
+                });
             });
         });
     });

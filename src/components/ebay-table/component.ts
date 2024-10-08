@@ -37,7 +37,6 @@ export interface Input extends WithNormalizedProps<TableInput> {}
 
 enum RowState {
     SELECTED = "selected",
-    SELECTED_RENDERED = "selectedRendered", // select-all feature is based on rendered rows
     DISABLED = "disabled",
 }
 
@@ -58,15 +57,13 @@ export default class extends Marko.Component<Input, State> {
 
     getRowStateFromInput(input: Input) {
         const selected = { ...input.selected };
-        const selectedRendered: TableRowStateMapping = {};
         const disabled: TableRowStateMapping = {};
         this.repeatableAttrTagToArr(input.row).forEach((row, i) => {
             const name = row.name || i;
             selected[name] ??= false;
-            selectedRendered[name] = !!input.selected?.[name];
             disabled[name] = !!row.disabled;
         });
-        return { selected, selectedRendered, disabled };
+        return { selected, disabled };
     }
 
     getDisabledFromInput(input: Input): TableRowStateMapping {
@@ -103,12 +100,18 @@ export default class extends Marko.Component<Input, State> {
     }
 
     headerSelect() {
+        const selectedRenderedRowState = Object.keys(
+            this.state.disabled,
+        ).reduce((acc, name) => {
+            acc[name] = this.state.selected[name];
+            return acc;
+        }, {} as TableRowStateMapping);
         const renderedSelectionStatus = this.getSelectionStatus(
-            this.state.selectedRendered,
+            selectedRenderedRowState,
         );
         this.state.selected = {
             ...this.state.selected,
-            ...Object.keys(this.state.selectedRendered).reduce((acc, name) => {
+            ...Object.keys(selectedRenderedRowState).reduce((acc, name) => {
                 if (!this.state.disabled[name]) {
                     acc[name] = renderedSelectionStatus !== "true";
                 }
