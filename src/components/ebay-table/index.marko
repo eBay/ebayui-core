@@ -5,6 +5,9 @@ $ const {
     density,
     header: headers,
     row: rows,
+    a11ySelectAllText,
+    a11ySelectRowText,
+    mode = "none",
     ...divInput
 } = input;
 
@@ -12,6 +15,7 @@ $ const {
     ...processHtmlAttributes(divInput)
     class=[
         "table",
+        mode === "selection" && "table--mode-selection",
         density &&
             validDensity.includes(density) &&
             `table--density-${density}`,
@@ -23,6 +27,15 @@ $ const {
     <table>
         <thead>
             <tr>
+                <if(mode === "selection")>
+                    <th class="table__cell">
+                        <ebay-tri-state-checkbox
+                            aria-label=(a11ySelectAllText ?? "Select all rows")
+                            checked=component.getSelectionStatus()
+                            on-change("headerSelect")
+                        />
+                    </th>
+                </if>
                 <for|header| of=headers>
                     $ const {
                         columnType = "normal",
@@ -44,9 +57,24 @@ $ const {
             </tr>
         </thead>
         <tbody>
-            <for|row| of=rows || []>
-                $ const { cell: cells, ...trInput } = row;
+            <for|row, rowIndex| of=rows || []>
+                $ const {
+                    cell: cells,
+                    name = rowIndex,
+                    disabled,
+                    ...trInput
+                } = row;
                 <tr ...processHtmlAttributes(trInput)>
+                    <if(mode === "selection")>
+                        <td class="table__cell">
+                            <ebay-checkbox
+                                aria-label=(a11ySelectRowText ?? "Select row")
+                                disabled=disabled
+                                checked=(state.selected[name])
+                                on-change("rowSelect", name)
+                            />
+                        </td>
+                    </if>
                     <for|header, index| of=headers>
                         $ const cell = (
                             Array.isArray(cells) ? cells[index] : cells
