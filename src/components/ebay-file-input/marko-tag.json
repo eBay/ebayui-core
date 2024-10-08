@@ -1,0 +1,24 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@header <header>": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@subheader <subheader>": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
+    "@ctaText": "string",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-file-upload-input)"
+}
