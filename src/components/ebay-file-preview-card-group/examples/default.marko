@@ -1,0 +1,21 @@
+$ const files = [
+    {
+        name: "file-name.jpg",
+        type: "image/jpeg",
+        src: "https://ir.ebaystatic.com/cr/v/c01/skin/docs/tb-real-square-pic.jpg",
+    },
+    {
+        name: "file-name.jpg",
+        type: "image/jpeg",
+        src: "https://ir.ebaystatic.com/cr/v/c01/skin/docs/tb-real-square-pic.jpg",
+    },
+];
+<ebay-file-preview-card
+    a11y-cancel-upload-text="cancel upload"
+    delete-text="remove"
+    a11y-show-more-text="show more"
+>
+    <for|file| of=files>
+        <@card file=file/>
+    </for>
+</ebay-file-preview-card>

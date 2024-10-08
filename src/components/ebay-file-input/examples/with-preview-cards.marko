@@ -1,0 +1,35 @@
+import type { FileInputEvent } from "../component-browser";
+class {
+    declare state: {
+        files: File[];
+    };
+
+    onCreate() {
+        this.state = {
+            files: [],
+        };
+    }
+
+    handleInput({ files }: FileInputEvent) {
+        this.state.files = this.state.files.concat(Array.from(files));
+    }
+
+    handleDelete(index: number) {
+        this.state.files = [
+            ...this.state.files.slice(0, index),
+            ...this.state.files.slice(index + 1)
+        ];
+    }
+}
+<ebay-file-input multiple on-input("handleInput") ...input>
+    <@header class="subtitleClass" id="subtitleId">
+        <p>Multiple files</p>
+    </@header>
+    <span>Browse files</span>
+</ebay-file-input>
+
+<ebay-file-preview-card-group on-delete("handleDelete") on-cancel("handleDelete")>
+    <for|file| of=state.files>
+        <@card file=file/>
+    </for>
+</ebay-file-preview-card-group>
