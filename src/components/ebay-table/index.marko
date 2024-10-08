@@ -1,0 +1,77 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+static var validDensity = ["compact", "relaxed"];
+$ const {
+    class: divClass,
+    density,
+    header: headers,
+    row: rows,
+    ...divInput
+} = input;
+
+<div
+    ...processHtmlAttributes(divInput)
+    class=[
+        "table",
+        density &&
+            validDensity.includes(density) &&
+            `table--density-${density}`,
+        divClass,
+    ]
+    role="group"
+    tabindex="0"
+>
+    <table>
+        <thead>
+            <tr>
+                <for|header| of=headers>
+                    $ const {
+                        columnType = "normal",
+                        class: thClass,
+                        renderBody,
+                        ...thInput
+                    } = header;
+                    <th
+                        ...processHtmlAttributes(thInput)
+                        class=[
+                            "table__cell",
+                            columnType === "numeric" && "table__cell--numeric",
+                            thClass,
+                        ]
+                    >
+                        <${renderBody}/>
+                    </th>
+                </for>
+            </tr>
+        </thead>
+        <tbody>
+            <for|row| of=rows || []>
+                $ const { cell: cells, ...trInput } = row;
+                <tr ...processHtmlAttributes(trInput)>
+                    <for|header, index| of=headers>
+                        $ const cell = (
+                            Array.isArray(cells) ? cells[index] : cells
+                        );
+                        <if(cell)>
+                            $ const {
+                                class: tdClass,
+                                renderBody,
+                                ...tdInput
+                            } = cell;
+                            $ const cellBaseClass = [
+                                "table__cell",
+                                header.columnType === "numeric" &&
+                                    "table__cell--numeric",
+                            ];
+                            <${header.columnType === "row-header" ? "th" : "td"}
+                                ...processHtmlAttributes(tdInput)
+                                class=[cellBaseClass, tdClass]
+                            >
+                                <${renderBody}/>
+                            </>
+                        </if>
+                    </for>
+                </tr>
+            </for>
+        </tbody>
+    </table>
+</div>

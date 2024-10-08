@@ -1,0 +1,1108 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ebay-table > renders default 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"table"[39m
+    [33mrole[39m=[32m"group"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m>[39m
+    [36m<table>[39m
+      [36m<thead>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mSeller[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mItem[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mStatus[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mList Price[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mQuantity Available[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mOrders[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mWatchers[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mProtection[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mShipping[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mDelivery[0m
+          [36m</th>[39m
+        [36m</tr>[39m
+      [36m</thead>[39m
+      [36m<tbody>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo Switch Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--recent"[39m
+            [36m>[39m
+              [0mReady to Ship[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$287.96[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m300[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m95[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$17.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/1 - 4/5[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo SNES Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--recent"[39m
+            [36m>[39m
+              [0mReady to Ship[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$89.85[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m45[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m5[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$18.95[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/11 - 4/15[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft XBOX 360 Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--time-sensitive"[39m
+            [36m>[39m
+              [0mBackorder[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$499.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m345[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m205[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$17.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/17 - 4/25[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft XBOX One Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--neutral"[39m
+            [36m>[39m
+              [0mPreparing[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$499.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m399[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m305[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$27.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/9 - 4/11[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mSony[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mSony Playstation 5 Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--trustworthy"[39m
+            [36m>[39m
+              [0mRestocking[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$519.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m205[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m199[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$29.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/11 - 4/15[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+      [36m</tbody>[39m
+    [36m</table>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-table > renders dense density 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"table table--density-compact"[39m
+    [33mrole[39m=[32m"group"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m>[39m
+    [36m<table>[39m
+      [36m<thead>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mSeller[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mItem[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mStatus[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mList Price[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mQuantity Available[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mOrders[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mWatchers[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mProtection[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mShipping[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mDelivery[0m
+          [36m</th>[39m
+        [36m</tr>[39m
+      [36m</thead>[39m
+      [36m<tbody>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo Switch Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--recent"[39m
+            [36m>[39m
+              [0mReady to Ship[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$287.96[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m300[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m95[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$17.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/1 - 4/5[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo SNES Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--recent"[39m
+            [36m>[39m
+              [0mReady to Ship[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$89.85[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m45[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m5[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$18.95[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/11 - 4/15[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft XBOX 360 Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--time-sensitive"[39m
+            [36m>[39m
+              [0mBackorder[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$499.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m345[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m205[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$17.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/17 - 4/25[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft XBOX One Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--neutral"[39m
+            [36m>[39m
+              [0mPreparing[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$499.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m399[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m305[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$27.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/9 - 4/11[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mSony[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mSony Playstation 5 Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--trustworthy"[39m
+            [36m>[39m
+              [0mRestocking[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$519.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m205[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m199[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$29.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/11 - 4/15[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+      [36m</tbody>[39m
+    [36m</table>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-table > renders relaxed density 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"table table--density-relaxed"[39m
+    [33mrole[39m=[32m"group"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m>[39m
+    [36m<table>[39m
+      [36m<thead>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mSeller[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mItem[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mStatus[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mList Price[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mQuantity Available[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mOrders[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mWatchers[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0mProtection[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mShipping[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mDelivery[0m
+          [36m</th>[39m
+        [36m</tr>[39m
+      [36m</thead>[39m
+      [36m<tbody>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo Switch Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--recent"[39m
+            [36m>[39m
+              [0mReady to Ship[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$287.96[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m300[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m95[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$17.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/1 - 4/5[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mNintendo SNES Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--recent"[39m
+            [36m>[39m
+              [0mReady to Ship[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$89.85[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m45[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m5[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$18.95[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/11 - 4/15[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft XBOX 360 Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--time-sensitive"[39m
+            [36m>[39m
+              [0mBackorder[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$499.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m345[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m205[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$17.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/17 - 4/25[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mMicrosoft XBOX One Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--neutral"[39m
+            [36m>[39m
+              [0mPreparing[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$499.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m399[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m305[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$27.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/9 - 4/11[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mSony[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mSony Playstation 5 Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--trustworthy"[39m
+            [36m>[39m
+              [0mRestocking[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$519.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m205[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m199[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+          [36m>[39m
+            [0m$29.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table__cell"[39m
+          [36m>[39m
+            [0m4/11 - 4/15[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+      [36m</tbody>[39m
+    [36m</table>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
