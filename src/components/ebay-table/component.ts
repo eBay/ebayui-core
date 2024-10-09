@@ -91,20 +91,12 @@ export default class EbayTable extends Marko.Component<Input, State> {
     }
 
     headerSelect() {
-        const selectedRenderedRowState = Object.keys(
-            this.state.disabled,
-        ).reduce((acc, name) => {
-            acc[name] = this.state.selected[name];
-            return acc;
-        }, {} as TableRowStateMapping);
-        const renderedSelectionStatus = this.getSelectionStatus(
-            selectedRenderedRowState,
-        );
+        const selectionStatus = this.getSelectionStatus();
         this.state.selected = {
             ...this.state.selected,
-            ...Object.keys(selectedRenderedRowState).reduce((acc, name) => {
+            ...Object.keys(this.state.selected).reduce((acc, name) => {
                 if (!this.state.disabled[name]) {
-                    acc[name] = renderedSelectionStatus !== "true";
+                    acc[name] = selectionStatus !== "true";
                 }
                 return acc;
             }, {} as TableRowStateMapping),

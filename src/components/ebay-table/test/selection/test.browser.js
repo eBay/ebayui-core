@@ -3,8 +3,11 @@ import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import * as stories from "../../table.stories";
 
-const { SelectionModeBasic, SelectionModeWithDisabled } =
-    composeStories(stories);
+const {
+    SelectionModeBasic,
+    SelectionModeWithDisabled,
+    SelectionModeServerData,
+} = composeStories(stories);
 
 afterEach(cleanup);
 
@@ -392,23 +395,14 @@ describe("given table mode selection with disabled rows", () => {
     });
 });
 
-describe("given table mode selection with defined selected rows", () => {
+describe("given table mode selection with defined selected rows (server data)", () => {
     describe("when extra row is expected to be selected and rendered rows are NOT selected", () => {
         beforeEach(async () => {
-            component = await render(SelectionModeBasic, {
-                selected: {
-                    0: false,
-                    1: false,
-                    2: false,
-                    3: false,
-                    4: false,
-                    _other: true,
-                },
-            });
+            component = await render(SelectionModeServerData);
         });
         it("then tri-state checkbox in header should be mixed state", async () => {
             expect(
-                component.getByRole("checkbox", { name: "Select all" }),
+                component.getByRole("checkbox", { name: "Select all rows" }),
             ).toHaveAttribute("aria-checked", "mixed");
         });
 
@@ -416,7 +410,7 @@ describe("given table mode selection with defined selected rows", () => {
             let selectAllCheckbox;
             beforeEach(async () => {
                 selectAllCheckbox = component.getByRole("checkbox", {
-                    name: "Select all",
+                    name: "Select all rows",
                 });
                 await fireEvent.click(selectAllCheckbox);
             });
@@ -446,113 +440,93 @@ describe("given table mode selection with defined selected rows", () => {
                           "2": true,
                           "3": true,
                           "4": true,
-                          "_other": true,
+                          "_server_data": true,
                         },
                       },
                     ],
                   ]
                 `);
             });
-        });
-    });
 
-    describe("when extra row is expected to be NOT selected and rendered rows are selected", () => {
-        beforeEach(async () => {
-            component = await render(SelectionModeBasic, {
-                selected: {
-                    0: true,
-                    1: true,
-                    2: true,
-                    3: true,
-                    4: true,
-                    _other: false,
-                },
-            });
-        });
-        it("then tri-state checkbox in header should be mixed state", async () => {
-            expect(
-                component.getByRole("checkbox", { name: "Select all" }),
-            ).toHaveAttribute("aria-checked", "mixed");
-        });
-
-        describe("when select-all is clicked afterwards", () => {
-            let selectAllCheckbox;
-            beforeEach(async () => {
-                selectAllCheckbox = component.getByRole("checkbox", {
-                    name: "Select all",
-                });
-                await fireEvent.click(selectAllCheckbox);
-            });
-
-            it("then all rows should be unselected and tri-state checkbox should be none-selected state", async () => {
-                component
-                    .getAllByRole("checkbox", {
-                        name: "Select row",
-                    })
-                    .forEach((checkbox) => {
-                        expect(checkbox).has.property("checked", false);
+            describe("when tri-state checkbox is clicked again", () => {
+                beforeEach(async () => {
+                    selectAllCheckbox = component.getByRole("checkbox", {
+                        name: "Select all rows",
                     });
-                expect(selectAllCheckbox).toHaveAttribute(
-                    "aria-checked",
-                    "false",
-                );
-            });
-
-            it("then it emits the select event", async () => {
-                expect(component.emitted("select")).toMatchInlineSnapshot(`
-                  [
-                    [
-                      {
-                        "selected": {
-                          "0": false,
-                          "1": false,
-                          "2": false,
-                          "3": false,
-                          "4": false,
-                          "_other": false,
-                        },
-                      },
-                    ],
-                  ]
-                `);
-            });
-        });
-    });
-
-    describe("when extra row is expected to be NOT selected and rendered rows are NOT selected", () => {
-        beforeEach(async () => {
-            component = await render(SelectionModeBasic, {
-                selected: {
-                    0: false,
-                    1: false,
-                    2: false,
-                    3: false,
-                    4: false,
-                    _other: false,
-                },
-            });
-        });
-        describe("when select-all is clicked", () => {
-            let selectAllCheckbox;
-            beforeEach(async () => {
-                selectAllCheckbox = component.getByRole("checkbox", {
-                    name: "Select all",
+                    await fireEvent.click(selectAllCheckbox);
                 });
-                await fireEvent.click(selectAllCheckbox);
+
+                it("then all rows should be unselected and tri-state checkbox should be none-selected state", async () => {
+                    component
+                        .getAllByRole("checkbox", {
+                            name: "Select row",
+                        })
+                        .forEach((checkbox) => {
+                            expect(checkbox).has.property("checked", false);
+                        });
+                    expect(selectAllCheckbox).toHaveAttribute(
+                        "aria-checked",
+                        "false",
+                    );
+                });
+            });
+        });
+
+        describe("when extra row is expected to be NOT selected and rendered rows are selected", () => {
+            beforeEach(async () => {
+                await component.rerender({
+                    selected: {
+                        0: true,
+                        1: true,
+                        2: true,
+                        3: true,
+                        4: true,
+                        _other: false,
+                    },
+                });
+            });
+            it("then tri-state checkbox in header should be mixed state", async () => {
+                expect(
+                    component.getByRole("checkbox", {
+                        name: "Select all rows",
+                    }),
+                ).toHaveAttribute("aria-checked", "mixed");
             });
 
-            it("then all rows should be unselected and tri-state checkbox should be none-selected state", async () => {
-                component
-                    .getAllByRole("checkbox", {
-                        name: "Select row",
-                    })
-                    .forEach((checkbox) => {
-                        expect(checkbox).has.property("checked", true);
+            describe("when select-all is clicked afterwards", () => {
+                let selectAllCheckbox;
+                beforeEach(async () => {
+                    selectAllCheckbox = component.getByRole("checkbox", {
+                        name: "Select all rows",
                     });
-                expect(selectAllCheckbox).toHaveAttribute(
-                    "aria-checked",
-                    "mixed",
-                );
+                    await fireEvent.click(selectAllCheckbox);
+                });
+
+                it("then all rows should be unselected and tri-state checkbox should be none-selected state", async () => {
+                    expect(selectAllCheckbox).toHaveAttribute(
+                        "aria-checked",
+                        "true",
+                    );
+                });
+
+                it("then it emits the select event", async () => {
+                    expect(component.emitted("select")).toMatchInlineSnapshot(`
+                      [
+                        [
+                          {
+                            "selected": {
+                              "0": true,
+                              "1": true,
+                              "2": true,
+                              "3": true,
+                              "4": true,
+                              "_other": true,
+                            },
+                          },
+                        ],
+                      ]
+                    `);
+                });
             });
         });
     });
