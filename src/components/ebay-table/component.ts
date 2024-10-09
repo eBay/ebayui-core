@@ -43,7 +43,14 @@ enum RowState {
 interface State extends Record<RowState, TableRowStateMapping> {}
 
 export default class EbayTable extends Marko.Component<Input, State> {
-    onCreate(input: Input) {
+    onCreate() {
+        this.state = {
+            selected: {},
+            disabled: {},
+        };
+    }
+
+    onInput(input: Input) {
         this.state = {
             ...this.getRowStateFromInput(input),
         };

@@ -192,6 +192,26 @@ describe("given table mode selection", () => {
             });
         });
     });
+
+    describe("when rerender with different selected input", () => {
+        beforeEach(async () => {
+            await component.rerender({
+                selected: {
+                    0: true,
+                    1: false,
+                    2: false,
+                    3: false,
+                    4: true,
+                },
+                a11ySelectAllText: "Select all",
+            });
+        });
+        it("then tri-state checkbox in header should be mixed state", async () => {
+            expect(
+                component.getByRole("checkbox", { name: "Select all" }),
+            ).toHaveAttribute("aria-checked", "mixed");
+        });
+    });
 });
 describe("given table mode selection with disabled rows", () => {
     function isAllRowsSelected() {
