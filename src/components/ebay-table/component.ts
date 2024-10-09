@@ -42,38 +42,22 @@ enum RowState {
 
 interface State extends Record<RowState, TableRowStateMapping> {}
 
-export default class extends Marko.Component<Input, State> {
+export default class EbayTable extends Marko.Component<Input, State> {
     onCreate(input: Input) {
         this.state = {
             ...this.getRowStateFromInput(input),
         };
     }
 
-    repeatableAttrTagToArr<T>(
-        attr?: Marko.RepeatableAttrTag<T> | Marko.AttrTag<T>[],
-    ): T[] {
-        return Array.isArray(attr) ? attr : attr ? [attr] : [];
-    }
-
     getRowStateFromInput(input: Input) {
         const selected = { ...input.selected };
         const disabled: TableRowStateMapping = {};
-        this.repeatableAttrTagToArr(input.row).forEach((row, i) => {
+        for (const [i, row] of Object.entries(input.row || [])) {
             const name = row.name || i;
             selected[name] ??= false;
             disabled[name] = !!row.disabled;
-        });
+        }
         return { selected, disabled };
-    }
-
-    getDisabledFromInput(input: Input): TableRowStateMapping {
-        const disabled: TableRowStateMapping = {};
-        this.repeatableAttrTagToArr(input.row).forEach((row) => {
-            if (row.disabled) {
-                disabled[row.name || ""] = true;
-            }
-        });
-        return disabled;
     }
 
     getSelectionStatus(
@@ -124,8 +108,10 @@ export default class extends Marko.Component<Input, State> {
     }
 
     rowSelect(name: TableRowName, { checked }: CheckboxEvent) {
-        this.state.selected[name] = checked;
-        this.setStateDirty(RowState.SELECTED);
+        this.state.selected = {
+            ...this.state.selected,
+            [name]: checked,
+        };
         this.emit(
             "select",
             {
