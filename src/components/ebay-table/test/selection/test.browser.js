@@ -205,6 +205,17 @@ describe("given table mode selection", () => {
                 },
                 a11ySelectAllText: "Select all",
             });
+            component
+                .getAllByRole("checkbox", {
+                    name: "Select row",
+                })
+                .forEach((checkbox, i) => {
+                    if (i === 0 || i === 4) {
+                        expect(checkbox).has.property("checked", true);
+                    } else {
+                        expect(checkbox).has.property("checked", false);
+                    }
+                });
         });
         it("then tri-state checkbox in header should be mixed state", async () => {
             expect(
