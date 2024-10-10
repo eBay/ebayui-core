@@ -33,11 +33,7 @@ export interface TableInput extends Omit<Marko.Input<"div">, `on${string}`> {
 }
 export interface Input extends WithNormalizedProps<TableInput> {}
 
-interface State {
-    selected: TableRowStateMapping;
-}
-
-export default class EbayTable extends Marko.Component<Input, State> {
+export default class EbayTable extends Marko.Component<Input> {
     headerSelect() {
         const selectionState = getSelectionState(this.input);
         this.emit("select", {
