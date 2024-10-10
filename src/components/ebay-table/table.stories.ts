@@ -29,9 +29,10 @@ export default {
             description: "table mode",
             options: ["selection", "none"],
         },
-        selected: {
-            control: { type: "object" },
-            default: undefined,
+        selectionState: {
+            control: { type: "select" },
+            description: "Select all tri-state checkbox state",
+            options: ["none-selected", "indeterminate", "all-selected"],
         },
         header: {
             name: "@header",
@@ -51,6 +52,13 @@ export default {
             name: "column-type",
             control: { type: "select" },
             options: ["normal", "numeric", "row-header"],
+            table: {
+                category: "@header attribute tags",
+            },
+        },
+        selected: {
+            name: "selected",
+            control: { type: "boolean" },
             table: {
                 category: "@header attribute tags",
             },
@@ -90,26 +98,5 @@ export const SelectionModeBasic = buildExtensionTemplate(
     {
         a11ySelectAllText: "Select all",
         a11ySelectRowText: "Select row",
-    },
-);
-export const SelectionModeWithDisabled = buildExtensionTemplate(
-    selectionDisabledTemplate,
-    selectionDisabledCode,
-    {
-        selected: { row_2: true },
-    },
-);
-export const SelectionModeServerData = buildExtensionTemplate(
-    selectionTemplate,
-    selectionCode,
-    {
-        selected: {
-            0: false,
-            1: false,
-            2: false,
-            3: false,
-            4: false,
-            _server_data: true,
-        },
     },
 );

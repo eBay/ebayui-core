@@ -1,11 +1,26 @@
 import data from "./data.json";
 class {
-    emitSelect(event: any) {
+    declare state: {
+        selected: any;
+    };
+    onCreate() {
+        this.state = {
+            selected: {
+                named_row: true,
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+            },
+        };
+    }
+    handleSelect(event: any) {
+        this.state.selected = event.selected;
         this.emit("select", event);
     }
 }
 
-<ebay-table mode="selection" on-select("emitSelect") ...input>
+<ebay-table mode="selection" on-select("handleSelect") ...input>
     <@header column-type="row-header">
         Seller
     </@header>
@@ -26,8 +41,9 @@ class {
     </@header>
     <@header>Shipping</@header>
     <@header>Delivery</@header>
-    <for|r| of=data>
-        <@row>
+    <for|r, i| of=data>
+        $ const name = i || "named_row";
+        <@row name=name selected=(state.selected[name])>
             <@cell>${r.seller}</@cell>
             <@cell>${r.item.title}</@cell>
             <@cell>

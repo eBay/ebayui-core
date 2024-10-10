@@ -1,10 +1,44 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 static var validDensity = ["compact", "relaxed"];
+
+export function getSelectionState(input: Input) {
+    if (input.selectionState) {
+        return input.selectionState;
+    }
+    let selectedCount = 0;
+    let rowCount = 0;
+    if (input.row) {
+        for (const [_name, { selected }] of Object.entries([...input.row])) {
+            if (selected) {
+                selectedCount++;
+            }
+            rowCount++;
+        }
+    }
+    if (selectedCount === 0) {
+        return "none-selected";
+    }
+    if (selectedCount === rowCount) {
+        return "all-selected";
+    }
+    return "indeterminate";
+}
+
+$ function getSelectionAttrTriState(input: Input) {
+    const selectionState = getSelectionState(input);
+    return selectionState === "all-selected"
+        ? "true"
+        : selectionState === "indeterminate"
+          ? "mixed"
+          : "false";
+}
+
 $ const {
     class: divClass,
     density,
     header: headers,
     row: rows,
+    selectionState,
     a11ySelectAllText,
     a11ySelectRowText,
     mode = "none",
@@ -31,7 +65,7 @@ $ const {
                     <th class="table__cell">
                         <ebay-tri-state-checkbox
                             aria-label=(a11ySelectAllText ?? "Select all rows")
-                            checked=component.getSelectionStatus()
+                            checked=getSelectionAttrTriState(input)
                             on-change("headerSelect")
                         />
                     </th>
@@ -61,7 +95,7 @@ $ const {
                 $ const {
                     cell: cells,
                     name = rowIndex,
-                    disabled,
+                    selected,
                     ...trInput
                 } = row;
                 <tr ...processHtmlAttributes(trInput)>
@@ -69,8 +103,7 @@ $ const {
                         <td class="table__cell">
                             <ebay-checkbox
                                 aria-label=(a11ySelectRowText ?? "Select row")
-                                disabled=disabled
-                                checked=(state.selected[name])
+                                checked=selected
                                 on-change("rowSelect", name)
                             />
                         </td>
