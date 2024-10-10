@@ -1,6 +1,5 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 static var validDensity = ["compact", "relaxed"];
-
 export function getSelectionState(input: Input) {
     if (input.selectionState) {
         return input.selectionState;
@@ -23,7 +22,6 @@ export function getSelectionState(input: Input) {
     }
     return "indeterminate";
 }
-
 $ function getSelectionAttrTriState(input: Input) {
     const selectionState = getSelectionState(input);
     return selectionState === "all-selected"
@@ -32,7 +30,6 @@ $ function getSelectionAttrTriState(input: Input) {
           ? "mixed"
           : "false";
 }
-
 $ const {
     class: divClass,
     density,
