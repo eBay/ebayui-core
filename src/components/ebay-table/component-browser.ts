@@ -26,7 +26,6 @@ export interface TableInput extends Omit<Marko.Input<"div">, `on${string}`> {
     selectionState?: "none-selected" | "all-selected" | "indeterminate";
     row?: Marko.RepeatableAttrTag<TableRow> | Marko.AttrTag<TableRow>[];
     density?: "compact" | "relaxed" | "none";
-    selected?: TableRowStateMapping;
     "a11y-select-all-text"?: string;
     "a11y-select-row-text"?: string;
     "on-select"?: (event: TableSelectEvent) => void;
