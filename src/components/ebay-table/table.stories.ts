@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import { buildExtensionTemplate } from "../../../.storybook/utils";
 import table from "./index.marko";
 import Readme from "./README.md";
