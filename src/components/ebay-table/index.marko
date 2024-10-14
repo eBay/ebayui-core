@@ -1,35 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
+import { getSelectionAttrTriState } from "./util";
 static var validDensity = ["compact", "relaxed"];
-export function getSelectionState(input: Input) {
-    if (input.selectionState) {
-        return input.selectionState;
-    }
-    let selectedCount = 0;
-    let rowCount = 0;
-    if (input.row) {
-        for (const [_name, { selected }] of Object.entries([...input.row])) {
-            if (selected) {
-                selectedCount++;
-            }
-            rowCount++;
-        }
-    }
-    if (selectedCount === 0) {
-        return "none-selected";
-    }
-    if (selectedCount === rowCount) {
-        return "all-selected";
-    }
-    return "indeterminate";
-}
-$ function getSelectionAttrTriState(input: Input) {
-    const selectionState = getSelectionState(input);
-    return selectionState === "all-selected"
-        ? "true"
-        : selectionState === "indeterminate"
-            ? "mixed"
-            : "false";
-}
 $ const {
     class: divClass,
     density,

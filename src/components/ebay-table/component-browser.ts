@@ -1,6 +1,6 @@
 import { WithNormalizedProps } from "../../global";
 import { CheckboxEvent } from "../ebay-checkbox/component-browser";
-import { getSelectionState } from "./index.marko";
+import { getSelectionState } from "./util";
 
 type TableRowName = string | number;
 type TableRowStateMapping = Record<TableRowName, boolean>;
