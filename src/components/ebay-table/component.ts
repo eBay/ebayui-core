@@ -3,9 +3,8 @@ import { WithNormalizedProps } from "../../global";
 import { CheckboxEvent } from "../ebay-checkbox/component-browser";
 
 type TableColRowName = string | number;
-type TableColRowStateMapping = Record<TableColRowName, boolean>;
 export type TableSelectEvent = {
-    selected: TableColRowStateMapping;
+    selected: Record<TableColRowName, boolean>;
 };
 export interface TableHeader extends Omit<Marko.Input<"th">, `on${string}`> {
     columnType?: string; // Use ColumnType after marko fix the ts error for attr tags
@@ -33,7 +32,7 @@ export interface TableInput extends Omit<Marko.Input<"div">, `on${string}`> {
 export interface Input extends WithNormalizedProps<TableInput> {}
 
 interface State {
-    selected: TableColRowStateMapping;
+    selected: Record<TableColRowName, boolean>;
 }
 
 export default class EbayTable extends Marko.Component<Input, State> {
@@ -48,7 +47,7 @@ export default class EbayTable extends Marko.Component<Input, State> {
     }
 
     getSelectedRowStateFromInput(input: Input) {
-        const selected: TableColRowStateMapping = {};
+        const selected: Record<TableColRowName, boolean> = {};
         for (const [i, row] of Object.entries(input.row || [])) {
             const name = row.name || i;
             selected[name] = row.selected || false;
@@ -95,7 +94,7 @@ export default class EbayTable extends Marko.Component<Input, State> {
                 acc[name || i] = selectionState !== "all-selected";
                 return acc;
             },
-            {} as TableColRowStateMapping,
+            {} as Record<TableColRowName, boolean>,
         );
         this.emit("select", {
             selected: this.state.selected,
