@@ -1,5 +1,4 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
-import { getSelectionAttrTriState } from "./util";
 static var validDensity = ["compact", "relaxed"];
 $ const {
     class: divClass,
@@ -33,7 +32,7 @@ $ const {
                     <th class="table__cell">
                         <ebay-tri-state-checkbox
                             aria-label=(a11ySelectAllText ?? "Select all rows")
-                            checked=getSelectionAttrTriState(input)
+                            checked=component.getSelectionAttrTriState(input)
                             on-change("headerSelect")
                         />
                     </th>
@@ -71,7 +70,7 @@ $ const {
                         <td class="table__cell">
                             <ebay-checkbox
                                 aria-label=(a11ySelectRowText ?? "Select row")
-                                checked=selected
+                                checked=(state.selected[name])
                                 on-change("rowSelect", name)
                             />
                         </td>

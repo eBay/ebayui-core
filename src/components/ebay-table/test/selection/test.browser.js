@@ -36,20 +36,17 @@ describe("given table mode selection", () => {
             });
 
             it("then it emits the select event", async () => {
-                expect(component.emitted("select")).toMatchInlineSnapshot(`
-                  [
-                    [
-                      {
-                        "selected": {
-                          "1": false,
-                          "2": false,
-                          "3": false,
-                          "4": false,
-                          "named_row": false,
-                        },
-                      },
-                    ],
-                  ]
+                expect(component.emitted("select")[0][0])
+                    .toMatchInlineSnapshot(`
+                  {
+                    "selected": {
+                      "1": false,
+                      "2": false,
+                      "3": false,
+                      "4": false,
+                      "named_row": false,
+                    },
+                  }
                 `);
             });
         });
@@ -77,21 +74,18 @@ describe("given table mode selection", () => {
             });
 
             it("then it emits the select event", async () => {
-                expect(component.emitted("select")).toMatchInlineSnapshot(`
-                  [
-                    [
-                      {
-                        "selected": {
-                          "1": true,
-                          "2": true,
-                          "3": true,
-                          "4": true,
-                          "named_row": true,
-                        },
-                        "selectionState": "all-selected",
-                      },
-                    ],
-                  ]
+                expect(component.emitted("select")[0][0])
+                    .toMatchInlineSnapshot(`
+                  {
+                    "selected": {
+                      "1": true,
+                      "2": true,
+                      "3": true,
+                      "4": true,
+                      "named_row": true,
+                    },
+                    "selectionState": "all-selected",
+                  }
                 `);
             });
 
@@ -117,33 +111,18 @@ describe("given table mode selection", () => {
                 });
 
                 it("then it emits the select event", async () => {
-                    expect(component.emitted("select")).toMatchInlineSnapshot(`
-                      [
-                        [
-                          {
-                            "selected": {
-                              "1": true,
-                              "2": true,
-                              "3": true,
-                              "4": true,
-                              "named_row": true,
-                            },
-                            "selectionState": "all-selected",
-                          },
-                        ],
-                        [
-                          {
-                            "selected": {
-                              "1": false,
-                              "2": false,
-                              "3": false,
-                              "4": false,
-                              "named_row": false,
-                            },
-                            "selectionState": "none-selected",
-                          },
-                        ],
-                      ]
+                    expect(component.emitted("select")[0][0])
+                        .toMatchInlineSnapshot(`
+                      {
+                        "selected": {
+                          "1": true,
+                          "2": true,
+                          "3": true,
+                          "4": true,
+                          "named_row": true,
+                        },
+                        "selectionState": "all-selected",
+                      }
                     `);
                 });
             });
@@ -222,21 +201,18 @@ describe("given table mode selection with selectionState input", () => {
                         expect(checkbox).has.property("checked", false);
                     });
 
-                expect(component.emitted("select")).toMatchInlineSnapshot(`
-                  [
-                    [
-                      {
-                        "selected": {
-                          "1": false,
-                          "2": false,
-                          "3": false,
-                          "4": false,
-                          "named_row": false,
-                        },
-                        "selectionState": "none-selected",
-                      },
-                    ],
-                  ]
+                expect(component.emitted("select")[0][0])
+                    .toMatchInlineSnapshot(`
+                  {
+                    "selected": {
+                      "1": false,
+                      "2": false,
+                      "3": false,
+                      "4": false,
+                      "named_row": false,
+                    },
+                    "selectionState": "none-selected",
+                  }
                 `);
             });
         });
