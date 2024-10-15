@@ -3,8 +3,10 @@ import { WithNormalizedProps } from "../../global";
 import { CheckboxEvent } from "../ebay-checkbox/component-browser";
 
 type TableColRowName = string | number;
+type TableSelectionState = "none-selected" | "all-selected" | "indeterminate";
 export type TableSelectEvent = {
     selected: Record<TableColRowName, boolean>;
+    selectionState?: TableSelectionState;
 };
 export interface TableHeader extends Omit<Marko.Input<"th">, `on${string}`> {
     columnType?: string; // Use ColumnType after marko fix the ts error for attr tags
@@ -22,7 +24,7 @@ export interface TableRow extends Omit<Marko.Input<"tr">, `on${string}`> {
 export interface TableInput extends Omit<Marko.Input<"div">, `on${string}`> {
     header: Marko.RepeatableAttrTag<TableHeader> | Marko.AttrTag<TableHeader>[];
     mode?: "none" | "selection";
-    selectionState?: "none-selected" | "all-selected" | "indeterminate";
+    selectionState?: TableSelectionState;
     row?: Marko.RepeatableAttrTag<TableRow> | Marko.AttrTag<TableRow>[];
     density?: "compact" | "relaxed" | "none";
     "a11y-select-all-text"?: string;
@@ -57,7 +59,7 @@ export default class EbayTable extends Marko.Component<Input, State> {
         return selected;
     }
 
-    getSelectionState(input: Input) {
+    getSelectionState(input: Input): TableSelectionState {
         if (input.selectionState) {
             return input.selectionState;
         }
