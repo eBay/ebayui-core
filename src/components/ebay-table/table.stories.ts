@@ -5,6 +5,10 @@ import defaultTemplate from "./examples/default.marko";
 import defaultCode from "./examples/default.marko?raw";
 import selectionTemplate from "./examples/selection.marko";
 import selectionCode from "./examples/selection.marko?raw";
+import sortTemplate from "./examples/sort.marko";
+import sortCode from "./examples/sort.marko?raw";
+import sortWithLinkTemplate from "./examples/sort-with-link.marko";
+import sortWithLinkCode from "./examples/sort-with-link.marko?raw";
 
 export default {
     title: "data-display/table",
@@ -79,6 +83,16 @@ export default {
                 },
             },
         },
+        onSort: {
+            action: "on-sort",
+            description: "Triggered on column sort",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "{ sorted }",
+                },
+            },
+        },
     },
 };
 
@@ -97,4 +111,9 @@ export const SelectionModeBasic = buildExtensionTemplate(
         a11ySelectAllText: "Select all",
         a11ySelectRowText: "Select row",
     },
+);
+export const ColumnSorting = buildExtensionTemplate(sortTemplate, sortCode);
+export const ColumnSortingWithLink = buildExtensionTemplate(
+    sortWithLinkTemplate,
+    sortWithLinkCode,
 );
