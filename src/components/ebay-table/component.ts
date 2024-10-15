@@ -48,9 +48,11 @@ export default class EbayTable extends Marko.Component<Input, State> {
 
     getSelectedRowStateFromInput(input: Input) {
         const selected: Record<TableColRowName, boolean> = {};
-        for (const [i, row] of Object.entries(input.row || [])) {
-            const name = row.name || i;
-            selected[name] = row.selected || false;
+        if (input.row) {
+            for (const [i, row] of Object.entries([...input.row])) {
+                const name = row.name || i;
+                selected[name] = row.selected || false;
+            }
         }
         return selected;
     }
