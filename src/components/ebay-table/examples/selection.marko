@@ -22,8 +22,7 @@ import data from "./data.json";
     <@header>Shipping</@header>
     <@header>Delivery</@header>
     <for|r, i| of=data>
-        $ const name = i || "named_row";
-        <@row name=name selected=!i>
+        <@row name=`row_${i}` selected=!i>
             <@cell>${r.seller}</@cell>
             <@cell>${r.item.title}</@cell>
             <@cell>

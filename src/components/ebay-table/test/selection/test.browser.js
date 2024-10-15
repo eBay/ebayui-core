@@ -38,16 +38,16 @@ describe("given table mode selection", () => {
             it("then it emits the select event", async () => {
                 expect(component.emitted("select")[0][0])
                     .toMatchInlineSnapshot(`
-                  {
-                    "selected": {
-                      "1": false,
-                      "2": false,
-                      "3": false,
-                      "4": false,
-                      "named_row": false,
-                    },
-                  }
-                `);
+                      {
+                        "selected": {
+                          "row_0": false,
+                          "row_1": false,
+                          "row_2": false,
+                          "row_3": false,
+                          "row_4": false,
+                        },
+                      }
+                    `);
             });
         });
 
@@ -59,7 +59,7 @@ describe("given table mode selection", () => {
                 });
                 await fireEvent.click(selectAllCheckbox);
             });
-            it("then all rows should be selected and tri-state checkbox should be all-selected state", async () => {
+            it("then all rows should be selected and tri-state checkbox should be true state", async () => {
                 component
                     .getAllByRole("checkbox", {
                         name: "Select row",
@@ -76,17 +76,17 @@ describe("given table mode selection", () => {
             it("then it emits the select event", async () => {
                 expect(component.emitted("select")[0][0])
                     .toMatchInlineSnapshot(`
-                  {
-                    "selected": {
-                      "1": true,
-                      "2": true,
-                      "3": true,
-                      "4": true,
-                      "named_row": true,
-                    },
-                    "selectionState": "all-selected",
-                  }
-                `);
+                      {
+                        "allSelected": "true",
+                        "selected": {
+                          "row_0": true,
+                          "row_1": true,
+                          "row_2": true,
+                          "row_3": true,
+                          "row_4": true,
+                        },
+                      }
+                    `);
             });
 
             describe("when select-all is clicked again", () => {
@@ -113,17 +113,17 @@ describe("given table mode selection", () => {
                 it("then it emits the select event", async () => {
                     expect(component.emitted("select")[0][0])
                         .toMatchInlineSnapshot(`
-                      {
-                        "selected": {
-                          "1": true,
-                          "2": true,
-                          "3": true,
-                          "4": true,
-                          "named_row": true,
-                        },
-                        "selectionState": "all-selected",
-                      }
-                    `);
+                          {
+                            "allSelected": "true",
+                            "selected": {
+                              "row_0": true,
+                              "row_1": true,
+                              "row_2": true,
+                              "row_3": true,
+                              "row_4": true,
+                            },
+                          }
+                        `);
                 });
             });
         });
@@ -136,63 +136,63 @@ describe("given table mode selection", () => {
             });
             expect(rowCheckboxes).has.length(5);
             const selected = {
-                named_row: true,
-                1: false,
-                2: false,
-                3: false,
-                4: false,
+                row_0: true,
+                row_1: false,
+                row_2: false,
+                row_3: false,
+                row_4: false,
             };
             for (const [index, checkbox] of Object.entries(rowCheckboxes)) {
                 if (index !== "0") {
                     await fireEvent.click(checkbox);
-                    selected[index] = true;
+                    selected[`row_${index}`] = true;
                     expect(component.emitted("select")[0][0]).toMatchObject({
                         selected,
                     });
                 }
             }
         });
-        it("then tri-state checkbox in header should be all-selected state", async () => {
+        it("then tri-state checkbox in header should be true state", async () => {
             expect(
                 component.getByRole("checkbox", { name: "Select all" }),
             ).toHaveAttribute("aria-checked", "true");
         });
     });
 });
-describe("given table mode selection with selectionState input", () => {
-    describe("when input.selectionState = none-selected", () => {
+describe("given table mode selection with allSelected input", () => {
+    describe("when input.allSelected = false", () => {
         beforeEach(async () => {
             component = await render(SelectionModeBasic, {
-                selectionState: "none-selected",
+                allSelected: "false",
             });
         });
-        it("then tri-state checkbox in header should be none-selected state", async () => {
+        it("then tri-state checkbox in header should be false state", async () => {
             expect(
                 component.getByRole("checkbox", { name: "Select all" }),
             ).toHaveAttribute("aria-checked", "false");
         });
     });
 
-    describe("when input.selectionState = all-selected", () => {
+    describe("when input.allSelected = true", () => {
         beforeEach(async () => {
             component = await render(SelectionModeBasic, {
-                selectionState: "all-selected",
+                allSelected: "true",
             });
         });
-        it("then tri-state checkbox in header should be all-selected state", async () => {
+        it("then tri-state checkbox in header should be true state", async () => {
             expect(
                 component.getByRole("checkbox", { name: "Select all" }),
             ).toHaveAttribute("aria-checked", "true");
         });
 
         describe("when tri-state checkbox in header is clicked", () => {
-            it("then it should honor user input selectionState and unselect all rows", async () => {
+            it("then it should unselect all rows", async () => {
                 await fireEvent.click(
                     component.getByRole("checkbox", { name: "Select all" }),
                 );
                 expect(
                     component.getByRole("checkbox", { name: "Select all" }),
-                ).toHaveAttribute("aria-checked", "true");
+                ).toHaveAttribute("aria-checked", "false");
                 component
                     .getAllByRole("checkbox", {
                         name: "Select row",
@@ -203,17 +203,17 @@ describe("given table mode selection with selectionState input", () => {
 
                 expect(component.emitted("select")[0][0])
                     .toMatchInlineSnapshot(`
-                  {
-                    "selected": {
-                      "1": false,
-                      "2": false,
-                      "3": false,
-                      "4": false,
-                      "named_row": false,
-                    },
-                    "selectionState": "none-selected",
-                  }
-                `);
+                      {
+                        "allSelected": "false",
+                        "selected": {
+                          "row_0": false,
+                          "row_1": false,
+                          "row_2": false,
+                          "row_3": false,
+                          "row_4": false,
+                        },
+                      }
+                    `);
             });
         });
     });

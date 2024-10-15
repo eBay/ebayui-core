@@ -5,7 +5,7 @@ $ const {
     density,
     header: headers,
     row: rows,
-    selectionState,
+    allSelected,
     a11ySelectAllText,
     a11ySelectRowText,
     mode = "none",
@@ -32,7 +32,7 @@ $ const {
                     <th class="table__cell">
                         <ebay-tri-state-checkbox
                             aria-label=(a11ySelectAllText ?? "Select all rows")
-                            checked=component.getSelectionAttrTriState(input)
+                            checked=state.allSelected
                             on-change("headerSelect")
                         />
                     </th>
