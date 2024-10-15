@@ -185,6 +185,31 @@ describe("given table mode selection with allSelected input", () => {
             ).toHaveAttribute("aria-checked", "true");
         });
 
+        describe("when first row is selected", () => {
+            it("then it should NOT update header tri-state checkbox", async () => {
+                await fireEvent.click(
+                    component.getAllByRole("checkbox", {
+                        name: "Select row",
+                    })[0],
+                );
+                expect(
+                    component.getByRole("checkbox", { name: "Select all" }),
+                ).toHaveAttribute("aria-checked", "true");
+                expect(component.emitted("select")[0][0])
+                    .toMatchInlineSnapshot(`
+                  {
+                    "selected": {
+                      "row_0": false,
+                      "row_1": false,
+                      "row_2": false,
+                      "row_3": false,
+                      "row_4": false,
+                    },
+                  }
+                `);
+            });
+        });
+
         describe("when tri-state checkbox in header is clicked", () => {
             it("then it should unselect all rows", async () => {
                 await fireEvent.click(

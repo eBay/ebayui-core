@@ -22,7 +22,9 @@ import data from "./data.json";
     <@header>Shipping</@header>
     <@header>Delivery</@header>
     <for|r, i| of=data>
-        <@row name=`row_${i}` selected=!i>
+        <!-- first row selected by default -->
+        $ const selected = i === 0;
+        <@row name=`row_${i}` selected=selected>
             <@cell>${r.seller}</@cell>
             <@cell>${r.item.title}</@cell>
             <@cell>
