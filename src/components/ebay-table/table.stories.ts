@@ -9,6 +9,8 @@ import sortTemplate from "./examples/sort.marko";
 import sortCode from "./examples/sort.marko?raw";
 import sortWithLinkTemplate from "./examples/sort-with-link.marko";
 import sortWithLinkCode from "./examples/sort-with-link.marko?raw";
+import withActionsTemplate from "./examples/with-actions.marko";
+import withActionsCode from "./examples/with-actions.marko?raw";
 
 export default {
     title: "data-display/table",
@@ -116,4 +118,8 @@ export const ColumnSorting = buildExtensionTemplate(sortTemplate, sortCode);
 export const ColumnSortingWithLink = buildExtensionTemplate(
     sortWithLinkTemplate,
     sortWithLinkCode,
+);
+export const TableWithActions = buildExtensionTemplate(
+    withActionsTemplate,
+    withActionsCode,
 );

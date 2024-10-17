@@ -12,7 +12,7 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
         [36m<tr>[39m
           [36m<th[39m
             [33maria-sort[39m=[32m"ascending"[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<button[39m
               [33mtype[39m=[32m"button"[39m
@@ -41,7 +41,7 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [36m</button>[39m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<button[39m
               [33mtype[39m=[32m"button"[39m
@@ -70,7 +70,7 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [36m</button>[39m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<button[39m
               [33mtype[39m=[32m"button"[39m
@@ -89,7 +89,7 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [36m</button>[39m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [36m<button[39m
               [33mtype[39m=[32m"button"[39m
@@ -108,7 +108,7 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [36m</button>[39m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [36m<button[39m
               [33mtype[39m=[32m"button"[39m
@@ -127,7 +127,7 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [36m</button>[39m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<button[39m
               [33mtype[39m=[32m"button"[39m
@@ -146,7 +146,7 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [36m</button>[39m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [36m<button[39m
               [33mtype[39m=[32m"button"[39m
@@ -165,7 +165,7 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [36m</button>[39m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [36m<button[39m
               [33mtype[39m=[32m"button"[39m
@@ -176,358 +176,7 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
                 [33maria-hidden[39m=[32m"true"[39m
                 [33mclass[39m=[32m"icon icon--12"[39m
                 [33mfocusable[39m=[32m"false"[39m
-              [36m>[39m
-                [36m<use[39m
-                  [33mhref[39m=[32m"#icon-sort-12"[39m
-                [36m/>[39m
-              [36m</svg>[39m
-            [36m</button>[39m
-          [36m</th>[39m
-          [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<button[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mShipping[0m
-              [0m [0m
-              [36m<svg[39m
-                [33maria-hidden[39m=[32m"true"[39m
-                [33mclass[39m=[32m"icon icon--12"[39m
-                [33mfocusable[39m=[32m"false"[39m
-              [36m>[39m
-                [36m<use[39m
-                  [33mhref[39m=[32m"#icon-sort-12"[39m
-                [36m/>[39m
-              [36m</svg>[39m
-            [36m</button>[39m
-          [36m</th>[39m
-          [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<button[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mDelivery[0m
-              [0m [0m
-              [36m<svg[39m
-                [33maria-hidden[39m=[32m"true"[39m
-                [33mclass[39m=[32m"icon icon--12"[39m
-                [33mfocusable[39m=[32m"false"[39m
-              [36m>[39m
-                [36m<use[39m
-                  [33mhref[39m=[32m"#icon-sort-12"[39m
-                [36m/>[39m
-              [36m</svg>[39m
-            [36m</button>[39m
-          [36m</th>[39m
-        [36m</tr>[39m
-      [36m</thead>[39m
-      [36m<tbody>[39m
-        [36m<tr>[39m
-          [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mNintendo[0m
-          [36m</th>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mNintendo Switch Brand New Gaming System with Four Controllers[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"signal signal--recent"[39m
-            [36m>[39m
-              [0mReady to Ship[0m
-            [36m</span>[39m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m$287.96[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m300[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<a[39m
-              [33mhref[39m=[32m"https://ebay.com"[39m
-            [36m>[39m
-              [0m00-10542-89507[0m
-            [36m</a>[39m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m95[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m$17.99[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mFREE[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0m4/1 - 4/5[0m
-          [36m</td>[39m
-        [36m</tr>[39m
-        [36m<tr>[39m
-          [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mNintendo[0m
-          [36m</th>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mNintendo SNES Brand New Gaming System with Four Controllers[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"signal signal--recent"[39m
-            [36m>[39m
-              [0mReady to Ship[0m
-            [36m</span>[39m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m$89.85[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m45[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<a[39m
-              [33mhref[39m=[32m"https://ebay.com"[39m
-            [36m>[39m
-              [0m00-10542-89507[0m
-            [36m</a>[39m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m5[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m$18.95[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mFREE[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0m4/11 - 4/15[0m
-          [36m</td>[39m
-        [36m</tr>[39m
-        [36m<tr>[39m
-          [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mMicrosoft[0m
-          [36m</th>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mMicrosoft XBOX 360 Brand New Gaming System with Four Controllers[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"signal signal--time-sensitive"[39m
-            [36m>[39m
-              [0mBackorder[0m
-            [36m</span>[39m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m$499.99[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m345[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<a[39m
-              [33mhref[39m=[32m"https://ebay.com"[39m
-            [36m>[39m
-              [0m00-10542-89507[0m
-            [36m</a>[39m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m205[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m$17.99[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mFREE[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0m4/17 - 4/25[0m
-          [36m</td>[39m
-        [36m</tr>[39m
-        [36m<tr>[39m
-          [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mMicrosoft[0m
-          [36m</th>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mMicrosoft XBOX One Brand New Gaming System with Four Controllers[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"signal signal--neutral"[39m
-            [36m>[39m
-              [0mPreparing[0m
-            [36m</span>[39m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m$499.99[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m399[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<a[39m
-              [33mhref[39m=[32m"https://ebay.com"[39m
-            [36m>[39m
-              [0m00-10542-89507[0m
-            [36m</a>[39m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m305[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m$27.99[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mFREE[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0m4/9 - 4/11[0m
-          [36m</td>[39m
-        [36m</tr>[39m
-        [36m<tr>[39m
-          [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mSony[0m
-          [36m</th>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mSony Playstation 5 Brand New Gaming System with Four Controllers[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<span[39m
-              [33mclass[39m=[32m"signal signal--trustworthy"[39m
-            [36m>[39m
-              [0mRestocking[0m
-            [36m</span>[39m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m$519.99[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m205[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [36m<a[39m
-              [33mhref[39m=[32m"https://ebay.com"[39m
-            [36m>[39m
-              [0m00-10542-89507[0m
-            [36m</a>[39m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m199[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
-          [36m>[39m
-            [0m$29.99[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0mFREE[0m
-          [36m</td>[39m
-          [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
-          [36m>[39m
-            [0m4/11 - 4/15[0m
-          [36m</td>[39m
-        [36m</tr>[39m
-      [36m</tbody>[39m
-    [36m</table>[39m
-  [36m</div>[39m
-[36m</DocumentFragment>[39m"
+              [..."
 `;
 
 exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
@@ -542,7 +191,7 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
         [36m<tr>[39m
           [36m<th[39m
             [33maria-sort[39m=[32m"ascending"[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://www.ebay.com"[39m
@@ -571,47 +220,47 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</a>[39m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mItem[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mStatus[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mList Price[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mQuantity Available[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mOrders[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mWatchers[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mProtection[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mShipping[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mDelivery[0m
           [36m</th>[39m
@@ -620,17 +269,17 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
       [36m<tbody>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo Switch Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--recent"[39m
@@ -639,17 +288,17 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$287.96[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m300[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -658,39 +307,39 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m95[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$17.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/1 - 4/5[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo SNES Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--recent"[39m
@@ -699,17 +348,17 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$89.85[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m45[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -718,39 +367,39 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m5[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$18.95[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/11 - 4/15[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft XBOX 360 Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--time-sensitive"[39m
@@ -759,17 +408,17 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$499.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m345[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -778,39 +427,39 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m205[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$17.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/17 - 4/25[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft XBOX One Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--neutral"[39m
@@ -819,17 +468,17 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$499.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m399[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -838,39 +487,39 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m305[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$27.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/9 - 4/11[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mSony[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mSony Playstation 5 Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--trustworthy"[39m
@@ -879,17 +528,17 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$519.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m205[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -898,22 +547,22 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m199[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$29.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/11 - 4/15[0m
           [36m</td>[39m
@@ -935,52 +584,52 @@ exports[`ebay-table > renders Default 1`] = `
       [36m<thead>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mSeller[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mItem[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mStatus[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mList Price[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mQuantity Available[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mOrders[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mWatchers[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mProtection[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mShipping[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mDelivery[0m
           [36m</th>[39m
@@ -989,17 +638,17 @@ exports[`ebay-table > renders Default 1`] = `
       [36m<tbody>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo Switch Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--recent"[39m
@@ -1008,17 +657,17 @@ exports[`ebay-table > renders Default 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$287.96[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m300[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -1027,39 +676,39 @@ exports[`ebay-table > renders Default 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m95[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$17.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/1 - 4/5[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo SNES Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--recent"[39m
@@ -1068,17 +717,17 @@ exports[`ebay-table > renders Default 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$89.85[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m45[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -1087,39 +736,39 @@ exports[`ebay-table > renders Default 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m5[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$18.95[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/11 - 4/15[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft XBOX 360 Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--time-sensitive"[39m
@@ -1128,17 +777,17 @@ exports[`ebay-table > renders Default 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$499.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m345[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -1147,39 +796,39 @@ exports[`ebay-table > renders Default 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m205[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$17.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/17 - 4/25[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft XBOX One Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--neutral"[39m
@@ -1188,17 +837,17 @@ exports[`ebay-table > renders Default 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$499.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m399[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -1207,39 +856,39 @@ exports[`ebay-table > renders Default 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m305[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$27.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/9 - 4/11[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mSony[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mSony Playstation 5 Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--trustworthy"[39m
@@ -1248,17 +897,17 @@ exports[`ebay-table > renders Default 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$519.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m205[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -1267,22 +916,22 @@ exports[`ebay-table > renders Default 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m199[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$29.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/11 - 4/15[0m
           [36m</td>[39m
@@ -1304,7 +953,7 @@ exports[`ebay-table > renders SelectionModeBasic 1`] = `
       [36m<thead>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"checkbox"[39m
@@ -1343,52 +992,52 @@ exports[`ebay-table > renders SelectionModeBasic 1`] = `
             [36m</span>[39m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mSeller[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mItem[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mStatus[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mList Price[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mQuantity Available[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mOrders[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mWatchers[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mProtection[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mShipping[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mDelivery[0m
           [36m</th>[39m
@@ -1397,7 +1046,7 @@ exports[`ebay-table > renders SelectionModeBasic 1`] = `
       [36m<tbody>[39m
         [36m<tr>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"checkbox"[39m
@@ -1442,7 +1091,7 @@ exports[`ebay-table > renders SelectionModeBasic 1`] = `
                       [33mviewBox[39m=[32m"0 0 18 18"[39m
                     [36m>[39m
                       [36m<path[39m
-                        [33md[39m=[32m"M0 6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C0 14.96 0 13.84 0 11.6V6.4Zm14.71-2.11a1 1 0 0 0-1.41 0L7 10.59l-2.29-2.3a1.004 1.004 0 0 0-1...."
+                        [33md[39m=[32m"M0 6.4c0-2.24 0-3.36.436-4.216A4 4 0 0 1 2.184.436C3.04 0 4.16 0 6.4 0h5.2c2.24 0 3.36 0 4.216.436a4 4 0 0 1 1.748 1.748C18 3.04 18 4.16 18 6.4v5.2c0 2.24 0 3.36-.436 4.216a4 4 0 0 1-1.748 1.748C14.96 18 13.84 18 11.6 18H6.4c-2.24 0-3.36 0-4.216-.436a4 4 0 0 1-1.748-1.748C0 14.96 0 13.84 0 11.6V6.4Zm14.71-2.11a1 1 0 0 0-1.41 0L7 10.59l-2.29-2.3a1.004 1.004 0 0 0-1.42 1.42l3 3a1 1 ..."
 `;
 
 exports[`ebay-table > renders TableDensity 1`] = `
@@ -1456,52 +1105,52 @@ exports[`ebay-table > renders TableDensity 1`] = `
       [36m<thead>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mSeller[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mItem[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mStatus[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mList Price[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mQuantity Available[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mOrders[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mWatchers[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0mProtection[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mShipping[0m
           [36m</th>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mDelivery[0m
           [36m</th>[39m
@@ -1510,17 +1159,17 @@ exports[`ebay-table > renders TableDensity 1`] = `
       [36m<tbody>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo Switch Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--recent"[39m
@@ -1529,17 +1178,17 @@ exports[`ebay-table > renders TableDensity 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$287.96[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m300[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -1548,39 +1197,39 @@ exports[`ebay-table > renders TableDensity 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m95[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$17.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/1 - 4/5[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mNintendo SNES Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--recent"[39m
@@ -1589,17 +1238,17 @@ exports[`ebay-table > renders TableDensity 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$89.85[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m45[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -1608,39 +1257,39 @@ exports[`ebay-table > renders TableDensity 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m5[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$18.95[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/11 - 4/15[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft XBOX 360 Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--time-sensitive"[39m
@@ -1649,17 +1298,17 @@ exports[`ebay-table > renders TableDensity 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$499.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m345[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -1668,39 +1317,39 @@ exports[`ebay-table > renders TableDensity 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m205[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$17.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/17 - 4/25[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mMicrosoft XBOX One Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--neutral"[39m
@@ -1709,17 +1358,17 @@ exports[`ebay-table > renders TableDensity 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$499.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m399[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -1728,39 +1377,39 @@ exports[`ebay-table > renders TableDensity 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m305[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$27.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/9 - 4/11[0m
           [36m</td>[39m
         [36m</tr>[39m
         [36m<tr>[39m
           [36m<th[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mSony[0m
           [36m</th>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mSony Playstation 5 Brand New Gaming System with Four Controllers[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<span[39m
               [33mclass[39m=[32m"signal signal--trustworthy"[39m
@@ -1769,17 +1418,17 @@ exports[`ebay-table > renders TableDensity 1`] = `
             [36m</span>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$519.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m205[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
@@ -1788,22 +1437,22 @@ exports[`ebay-table > renders TableDensity 1`] = `
             [36m</a>[39m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m199[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell table__cell--numeric"[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [0m$29.99[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0mFREE[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table__cell"[39m
+            [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [0m4/11 - 4/15[0m
           [36m</td>[39m
@@ -1812,4 +1461,184 @@ exports[`ebay-table > renders TableDensity 1`] = `
     [36m</table>[39m
   [36m</div>[39m
 [36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-table > renders TableWithActions 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"table"[39m
+    [33mrole[39m=[32m"group"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m>[39m
+    [36m<table>[39m
+      [36m<thead>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mSeller[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mItem[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mCondition[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mMutiple Actions[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mActions Plus[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0mList Price[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0mQuantity Available[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mOrders[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0mWatchers[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0mProtection[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mShipping[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mDelivery[0m
+          [36m</th>[39m
+        [36m</tr>[39m
+      [36m</thead>[39m
+      [36m<tbody>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mSwitch[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"select select--borderless"[39m
+            [36m>[39m
+              [36m<select[39m
+                [33mid[39m=[32m"s0-0-18[2[0]]-1[0]-select"[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mtext[39m=[32m"New"[39m
+                [36m>[39m
+                  [0mNew[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mselected[39m=[32m""[39m
+                  [33mtext[39m=[32m"New without box"[39m
+                [36m>[39m
+                  [0mNew without box[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mtext[39m=[32m"Used"[39m
+                [36m>[39m
+                  [0mUsed[0m
+                [36m</option>[39m
+              [36m</select>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [36m>[39m
+                [36m<defs>[39m
+                  [36m<symbol[39m
+                    [33mid[39m=[32m"icon-chevron-down-12"[39m
+                    [33mviewBox[39m=[32m"0 0 12 12"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33mclip-rule[39m=[32m"evenodd"[39m
+                      [33md[39m=[32m"M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"[39m
+                      [33mfill-rule[39m=[32m"evenodd"[39m
+                    [36m/>[39m
+                  [36m</symbol>[39m
+                [36m</defs>[39m
+                [36m<use[39m
+                  [33mhref[39m=[32m"#icon-chevron-down-12"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"table-cell__layout"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33mclass[39m=[32m"cta-btn cta-btn--default"[39m
+                [33mhref[39m=[32m"https://www.ebay.com"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"cta-btn__cell"[39m
+                [36m>[39m
+                  [36m<span>[39m
+                    [0mEdit Listing[0m
+                  [36m</span>[39m
+                  [36m<svg[39m
+                    [33maria-hidden[39m=[32m"true"[39m
+                    [33mclass[39m=[32m"icon icon--24"[39m
+                    [33mdata-marko-key[39m=[32m"@svg s0-0-18[3[0]]-2[0]-4-0"[39m
+                    [33mfocusable[39m=[32m"false"[39m
+                  [36m>[39m
+                    [36m<defs[39m
+                      [33mdata-marko-key[39m=[32m"@defs s0-0-18[3[0]]-2[0]-4-0"[39m
+                    [36m>[39m
+                      [36m<symbol[39m
+                        [33mid[39m=[32m"icon-arrow-right-24"[39m
+                        [33mviewBox[39m=[32m"0 0 24 24"[39m
+                      [36m>[39m
+                        [36m<path[39m
+                          [33md[39m=[32m"m21.71 11.29-8-8a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29H3a1 1 0 0 0 0 2h15.59l-6.3 6.29a1.001 1.001 0 0 0 0 1.42 1.001 1.001 0 0 0 1.42 0l8-8a1.001 1.001 0 0 0 0-1.42Z"[39m
+                        [36m/>[39m
+                      [36m</symbol>[39m
+                    [36m</defs>[39m
+                    [36m<use[39m
+                      [33mhref[39m=[32m"#icon-arrow-right-24"[39m
+                    [36m/>[39m
+                  [36m</svg>[39m
+                [36m</span>[39m
+              [36m</a>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"icon-btn"[39m
+                [33mdata-ebayui[39m=[32m""[39m
+                [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-18[3[0]]-3[0] false\\",\\"onkeydown\\":\\"handleKeydown s0-0-18[3[0]]-3[0] false\\",\\"onfocus\\":\\"handleFocus s0-0-18[3[0]]-3[0] false\\",\\"onblur\\":\\"handleBlur s0-0-18[3[0]]-3[0] false\\"}"[39m
+         ..."
 `;

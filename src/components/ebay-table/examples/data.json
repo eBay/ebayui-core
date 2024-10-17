@@ -4,6 +4,7 @@
         "item": {
             "title": "Nintendo Switch Brand New Gaming System with Four Controllers",
             "subtitle": "SKU : A43BTR5678 • Quantity : 1",
+            "titleShort": "Switch",
             "image": {
                 "url": "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
                 "alt": "Nintendo Switch"
@@ -27,6 +28,7 @@
         "item": {
             "title": "Nintendo SNES Brand New Gaming System with Four Controllers",
             "subtitle": "SKU : A43BTR5678 • Quantity : 1",
+            "titleShort": "SNES",
             "image": {
                 "url": "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
                 "alt": "Nintendo Switch"
@@ -50,6 +52,7 @@
         "item": {
             "title": "Microsoft XBOX 360 Brand New Gaming System with Four Controllers",
             "subtitle": "SKU : A43BTR5678 • Quantity : 1",
+            "titleShort": "XBOX 360",
             "image": {
                 "url": "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
                 "alt": "Microsoft XBOX"
@@ -73,6 +76,7 @@
         "item": {
             "title": "Microsoft XBOX One Brand New Gaming System with Four Controllers",
             "subtitle": "SKU : A43BTR5678 • Quantity : 1",
+            "titleShort": "XBOX One",
             "image": {
                 "url": "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
                 "alt": "Microsoft XBOX"
@@ -96,6 +100,7 @@
         "item": {
             "title": "Sony Playstation 5 Brand New Gaming System with Four Controllers",
             "subtitle": "SKU : A43BTR5678 • Quantity : 1",
+            "titleShort": "Playstation 5",
             "image": {
                 "url": "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
                 "alt": "Sony Playstation 5"

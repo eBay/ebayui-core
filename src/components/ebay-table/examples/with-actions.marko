@@ -1,0 +1,67 @@
+import data from "./data.json";
+
+<ebay-table ...input>
+    <@header column-type="row-header">
+        Seller
+    </@header>
+    <@header>Item</@header>
+    <@header>Condition</@header>
+    <@header column-type="layout">
+        Mutiple Actions
+    </@header>
+    <@header column-type="icon-action">
+        Actions Plus
+    </@header>
+    <@header column-type="numeric">
+        List Price
+    </@header>
+    <@header column-type="numeric">
+        Quantity Available
+    </@header>
+    <@header>Orders</@header>
+    <@header column-type="numeric">
+        Watchers
+    </@header>
+    <@header column-type="numeric">
+        Protection
+    </@header>
+    <@header>Shipping</@header>
+    <@header>Delivery</@header>
+    <for|r| of=data>
+        <@row>
+            <@cell>${r.seller}</@cell>
+            <@cell>${r.item.titleShort}</@cell>
+            <@cell>
+                <ebay-select borderless>
+                    <@option text="New"/>
+                    <@option text="New without box" selected/>
+                    <@option text="Used"/>
+                </ebay-select>
+            </@cell>
+            <@cell>
+                <ebay-cta-button href="https://www.ebay.com">
+                    Edit Listing
+                </ebay-cta-button>
+                <ebay-icon-button>
+                    <ebay-overflow-vertical-16-icon/>
+                </ebay-icon-button>
+            </@cell>
+            <@cell>
+                <ebay-icon-button>
+                    <ebay-overflow-vertical-16-icon/>
+                </ebay-icon-button>
+            </@cell>
+            <@cell>${r.listPrice}</@cell>
+            <@cell>${r.quantityAvailable}</@cell>
+            <@cell>
+                <a href="https://ebay.com">
+                    ${r.orders.number}
+                </a>
+            </@cell>
+            <@cell>${r.watchers}</@cell>
+            <@cell>${r.protection}</@cell>
+            <@cell>${r.shipping}</@cell>
+            <@cell>${r.delivery}</@cell>
+        </@row>
+    </for>
+</ebay-table>
