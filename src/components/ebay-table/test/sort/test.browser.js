@@ -16,12 +16,35 @@ describe("given sortable table with Seller column is sorted in ascending order (
     });
 
     describe("when Seller column is clicked", () => {
+        let sellerColumn;
         beforeEach(async () => {
-            await fireEvent.click(
-                component.getByRole("button", { name: "Seller" }),
-            );
+            sellerColumn = component.getByRole("button", { name: "Seller" });
+            await fireEvent.click(sellerColumn);
         });
         it("then proper sort event should be emitted", async () => {
+            expect(sellerColumn).toMatchInlineSnapshot(`
+            <button
+              type="button"
+            >
+              
+              Seller
+              
+               
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon icon--12"
+                focusable="false"
+              >
+                <use
+                  href="#icon-sort-up-12"
+                />
+              </svg>
+              
+              
+            </button>
+          `);
             expect(component.emitted("sort")[0][0]).toMatchInlineSnapshot(`
               {
                 "sorted": {
@@ -42,11 +65,35 @@ describe("given sortable table with Seller column is sorted in ascending order (
 
         describe("when Seller column is clicked again", () => {
             beforeEach(async () => {
-                await fireEvent.click(
-                    component.getByRole("button", { name: "Seller" }),
-                );
+                sellerColumn = component.getByRole("button", {
+                    name: "Seller",
+                });
+                await fireEvent.click(sellerColumn);
             });
             it("then proper sort event should be emitted", async () => {
+                expect(sellerColumn).toMatchInlineSnapshot(`
+                  <button
+                    type="button"
+                  >
+                    
+                    Seller
+                    
+                     
+                    
+                    
+                    <svg
+                      aria-hidden="true"
+                      class="icon icon--12"
+                      focusable="false"
+                    >
+                      <use
+                        href="#icon-sort-12"
+                      />
+                    </svg>
+                    
+                    
+                  </button>
+                `);
                 expect(component.emitted("sort")[0][0]).toMatchInlineSnapshot(`
                   {
                     "sorted": {
