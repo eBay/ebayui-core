@@ -27,10 +27,10 @@ export default {
             description: "table mode",
             options: ["selection", "none"],
         },
-        selectionState: {
+        allSelected: {
             control: { type: "select" },
             description: "Select all tri-state checkbox state",
-            options: ["none-selected", "indeterminate", "all-selected"],
+            options: ["true", "false", "mixed"],
         },
         header: {
             name: "@header",
