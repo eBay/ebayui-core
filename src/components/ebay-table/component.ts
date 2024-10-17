@@ -3,10 +3,6 @@ import { WithNormalizedProps } from "../../global";
 import { CheckboxEvent } from "../ebay-checkbox/component-browser";
 
 type TableColRowName = string | number;
-export type TableSelectEvent = {
-    selected: Record<TableColRowName, boolean>;
-    allSelected?: AttrTriState;
-};
 export interface TableHeader extends Omit<Marko.Input<"th">, `on${string}`> {
     columnType?: string; // Use ColumnType after marko fix the ts error for attr tags
     renderBody: Marko.Body;
@@ -28,7 +24,10 @@ export interface TableInput extends Omit<Marko.Input<"div">, `on${string}`> {
     density?: "compact" | "relaxed" | "none";
     "a11y-select-all-text"?: string;
     "a11y-select-row-text"?: string;
-    "on-select"?: (event: TableSelectEvent) => void;
+    "on-select"?: (event: {
+        selected: Record<TableColRowName, boolean>;
+        allSelected?: AttrTriState;
+    }) => void;
 }
 export interface Input extends WithNormalizedProps<TableInput> {}
 
