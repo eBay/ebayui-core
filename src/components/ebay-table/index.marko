@@ -5,6 +5,10 @@ $ const {
     density,
     header: headers,
     row: rows,
+    allSelected,
+    a11ySelectAllText,
+    a11ySelectRowText,
+    mode = "none",
     ...divInput
 } = input;
 
@@ -12,6 +16,7 @@ $ const {
     ...processHtmlAttributes(divInput)
     class=[
         "table",
+        mode === "selection" && "table--mode-selection",
         density &&
             validDensity.includes(density) &&
             `table--density-${density}`,
@@ -23,6 +28,15 @@ $ const {
     <table>
         <thead>
             <tr>
+                <if(mode === "selection")>
+                    <th class="table__cell">
+                        <ebay-tri-state-checkbox
+                            aria-label=(a11ySelectAllText ?? "Select all rows")
+                            checked=state.allSelected
+                            on-change("headerSelect")
+                        />
+                    </th>
+                </if>
                 <for|header| of=headers>
                     $ const {
                         columnType = "normal",
@@ -44,9 +58,23 @@ $ const {
             </tr>
         </thead>
         <tbody>
-            <for|row| of=rows || []>
-                $ const { cell: cells, ...trInput } = row;
+            <for|row, rowIndex| of=rows || []>
+                $ const {
+                    cell: cells,
+                    name = rowIndex,
+                    selected,
+                    ...trInput
+                } = row;
                 <tr ...processHtmlAttributes(trInput)>
+                    <if(mode === "selection")>
+                        <th scope="row" class="table__cell">
+                            <ebay-checkbox
+                                aria-label=(a11ySelectRowText ?? "Select row")
+                                checked=(state.selected[name])
+                                on-change("rowSelect", name)
+                            />
+                        </th>
+                    </if>
                     <for|header, index| of=headers>
                         $ const cell = (
                             Array.isArray(cells) ? cells[index] : cells
@@ -64,6 +92,11 @@ $ const {
                             ];
                             <${header.columnType === "row-header" ? "th" : "td"}
                                 ...processHtmlAttributes(tdInput)
+                                scope=(
+                                    header.columnType === "row-header"
+                                        ? "row"
+                                        : undefined
+                                )
                                 class=[cellBaseClass, tdClass]
                             >
                                 <${renderBody}/>
