@@ -1,0 +1,425 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders interactive list 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"list"[39m
+  [36m>[39m
+    [36m<ul>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"list__body"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 1[0m
+          [36m</div>[39m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"list__body"[39m
+          [33mhref[39m=[32m"https://www.ebay.com"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 2[0m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__trailing"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--16"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<defs>[39m
+                [36m<symbol[39m
+                  [33mid[39m=[32m"icon-chevron-right-16"[39m
+                  [33mviewBox[39m=[32m"0 0 16 16"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33md[39m=[32m"m12.707 8.707-6 6a1 1 0 0 1-1.414-1.414L10.586 8 5.293 2.707a1 1 0 0 1 1.414-1.414l6 6a1 1 0 0 1 0 1.414Z"[39m
+                  [36m/>[39m
+                [36m</symbol>[39m
+              [36m</defs>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-chevron-right-16"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"list__body"[39m
+          [33mid[39m=[32m"s0-switch-item"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 3[0m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__trailing"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"switch"[39m
+            [36m>[39m
+              [36m<input[39m
+                [33maria-labelledby[39m=[32m"s0-switch-item"[39m
+                [33mclass[39m=[32m"switch__control"[39m
+                [33mrole[39m=[32m"switch"[39m
+                [33mtype[39m=[32m"checkbox"[39m
+              [36m/>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"switch__button"[39m
+              [36m/>[39m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`renders static list 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"list"[39m
+  [36m>[39m
+    [36m<ul>[39m
+      [36m<li>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"list__body"[39m
+          [33mdata-marko[39m=[32m"{}"[39m
+          [33mdata-marko-key[39m=[32m"4[0] s0-0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__leading"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--16"[39m
+              [33mdata-marko-key[39m=[32m"@svg s0-0-6[0]-1-0"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<defs[39m
+                [33mdata-marko-key[39m=[32m"@defs s0-0-6[0]-1-0"[39m
+              [36m>[39m
+                [36m<symbol[39m
+                  [33mid[39m=[32m"icon-folder-16"[39m
+                  [33mviewBox[39m=[32m"0 0 16 16"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33mclip-rule[39m=[32m"evenodd"[39m
+                    [33md[39m=[32m"M0 3.5A2.5 2.5 0 0 1 2.5 1h2.879a2.5 2.5 0 0 1 1.767.732L8.414 3H13.5A2.5 2.5 0 0 1 16 5.5v7a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5v-9Zm2 0a.5.5 0 0 1 .5-.5h2.879a.5.5 0 0 1 .353.146l1.56 1.561A1 1 0 0 0 8 5h5.5a.5.5 0 0 1 .5.5V7H2V3.5ZM14 9v3.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V9h12Z"[39m
+                    [33mfill-rule[39m=[32m"evenodd"[39m
+                  [36m/>[39m
+                [36m</symbol>[39m
+              [36m</defs>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-folder-16"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 1[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"list__body"[39m
+          [33mdata-marko[39m=[32m"{}"[39m
+          [33mdata-marko-key[39m=[32m"4[1] s0-0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__leading"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--16"[39m
+              [33mdata-marko-key[39m=[32m"@svg s0-0-6[1]-2-0"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<defs[39m
+                [33mdata-marko-key[39m=[32m"@defs s0-0-6[1]-2-0"[39m
+              [36m>[39m
+                [36m<symbol[39m
+                  [33mid[39m=[32m"icon-lamp-16"[39m
+                  [33mviewBox[39m=[32m"0 0 16 16"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33mclip-rule[39m=[32m"evenodd"[39m
+                    [33md[39m=[32m"M8.993 9H13a1 1 0 0 0 .938-1.345l-1.845-5.018A2.499 2.499 0 0 0 9.748 1H6.24a2.5 2.5 0 0 0-2.347 1.642L2.062 7.657A1 1 0 0 0 3 9h3.993v1.126A4.001 4.001 0 0 0 3.995 14a1 1 0 0 0 1 1h5.997a1 1 0 0 0 1-1 4.001 4.001 0 0 0-3-3.874V9ZM6.24 3h3.507a.5.5 0 0 1 .469.327L11.567 7H4.43l1.342-3.672A.5.5 0 0 1 6.242 3Zm3.484 10a1.998 1.998 0 0 0-3.464 0h3.464Z"[39m
+                    [33mfill-rule[39m=[32m"evenodd"[39m
+                  [36m/>[39m
+                [36m</symbol>[39m
+              [36m</defs>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-lamp-16"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 2[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"list__body"[39m
+          [33mdata-marko[39m=[32m"{}"[39m
+          [33mdata-marko-key[39m=[32m"4[2] s0-0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__leading"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--16"[39m
+              [33mdata-marko-key[39m=[32m"@svg s0-0-6[2]-3-0"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<defs[39m
+                [33mdata-marko-key[39m=[32m"@defs s0-0-6[2]-3-0"[39m
+              [36m>[39m
+                [36m<symbol[39m
+                  [33mid[39m=[32m"icon-file-16"[39m
+                  [33mviewBox[39m=[32m"0 0 16 16"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33mclip-rule[39m=[32m"evenodd"[39m
+                    [33md[39m=[32m"M14 12.5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 12.5v-9A2.5 2.5 0 0 1 4.5 1h3.936a2.5 2.5 0 0 1 1.647.619l3.063 2.68A2.5 2.5 0 0 1 14 6.181V12.5Zm-10-9a.5.5 0 0 1 .5-.5H7v2.667A2.333 2.333 0 0 0 9.333 8H12v4.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-9ZM12 6H9.333A.333.333 0 0 1 9 5.667V3.329l2.863 2.475A.5.5 0 0 1 12 6Z"[39m
+                    [33mfill-rule[39m=[32m"evenodd"[39m
+                  [36m/>[39m
+                [36m</symbol>[39m
+              [36m</defs>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-file-16"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 3[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`renders with separator element 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"list"[39m
+  [36m>[39m
+    [36m<ul>[39m
+      [36m<li>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"list__body"[39m
+          [33mdata-marko[39m=[32m"{}"[39m
+          [33mdata-marko-key[39m=[32m"4[0] s0-0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__leading"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--16"[39m
+              [33mdata-marko-key[39m=[32m"@svg s0-0-6[0]-1-0"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<defs[39m
+                [33mdata-marko-key[39m=[32m"@defs s0-0-6[0]-1-0"[39m
+              [36m>[39m
+                [36m<symbol[39m
+                  [33mid[39m=[32m"icon-folder-16"[39m
+                  [33mviewBox[39m=[32m"0 0 16 16"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33mclip-rule[39m=[32m"evenodd"[39m
+                    [33md[39m=[32m"M0 3.5A2.5 2.5 0 0 1 2.5 1h2.879a2.5 2.5 0 0 1 1.767.732L8.414 3H13.5A2.5 2.5 0 0 1 16 5.5v7a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5v-9Zm2 0a.5.5 0 0 1 .5-.5h2.879a.5.5 0 0 1 .353.146l1.56 1.561A1 1 0 0 0 8 5h5.5a.5.5 0 0 1 .5.5V7H2V3.5ZM14 9v3.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V9h12Z"[39m
+                    [33mfill-rule[39m=[32m"evenodd"[39m
+                  [36m/>[39m
+                [36m</symbol>[39m
+              [36m</defs>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-folder-16"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 1[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</li>[39m
+      [36m<hr />[39m
+      [36m<li>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"list__body"[39m
+          [33mdata-marko[39m=[32m"{}"[39m
+          [33mdata-marko-key[39m=[32m"4[2] s0-0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__leading"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--16"[39m
+              [33mdata-marko-key[39m=[32m"@svg s0-0-6[2]-2-0"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<defs[39m
+                [33mdata-marko-key[39m=[32m"@defs s0-0-6[2]-2-0"[39m
+              [36m>[39m
+                [36m<symbol[39m
+                  [33mid[39m=[32m"icon-lamp-16"[39m
+                  [33mviewBox[39m=[32m"0 0 16 16"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33mclip-rule[39m=[32m"evenodd"[39m
+                    [33md[39m=[32m"M8.993 9H13a1 1 0 0 0 .938-1.345l-1.845-5.018A2.499 2.499 0 0 0 9.748 1H6.24a2.5 2.5 0 0 0-2.347 1.642L2.062 7.657A1 1 0 0 0 3 9h3.993v1.126A4.001 4.001 0 0 0 3.995 14a1 1 0 0 0 1 1h5.997a1 1 0 0 0 1-1 4.001 4.001 0 0 0-3-3.874V9ZM6.24 3h3.507a.5.5 0 0 1 .469.327L11.567 7H4.43l1.342-3.672A.5.5 0 0 1 6.242 3Zm3.484 10a1.998 1.998 0 0 0-3.464 0h3.464Z"[39m
+                    [33mfill-rule[39m=[32m"evenodd"[39m
+                  [36m/>[39m
+                [36m</symbol>[39m
+              [36m</defs>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-lamp-16"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 2[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"list__body"[39m
+          [33mdata-marko[39m=[32m"{}"[39m
+          [33mdata-marko-key[39m=[32m"4[3] s0-0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__leading"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--16"[39m
+              [33mdata-marko-key[39m=[32m"@svg s0-0-6[3]-3-0"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<defs[39m
+                [33mdata-marko-key[39m=[32m"@defs s0-0-6[3]-3-0"[39m
+              [36m>[39m
+                [36m<symbol[39m
+                  [33mid[39m=[32m"icon-file-16"[39m
+                  [33mviewBox[39m=[32m"0 0 16 16"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33mclip-rule[39m=[32m"evenodd"[39m
+                    [33md[39m=[32m"M14 12.5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 12.5v-9A2.5 2.5 0 0 1 4.5 1h3.936a2.5 2.5 0 0 1 1.647.619l3.063 2.68A2.5 2.5 0 0 1 14 6.181V12.5Zm-10-9a.5.5 0 0 1 .5-.5H7v2.667A2.333 2.333 0 0 0 9.333 8H12v4.5a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-9ZM12 6H9.333A.333.333 0 0 1 9 5.667V3.329l2.863 2.475A.5.5 0 0 1 12 6Z"[39m
+                    [33mfill-rule[39m=[32m"evenodd"[39m
+                  [36m/>[39m
+                [36m</symbol>[39m
+              [36m</defs>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-file-16"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 3[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"list__body"[39m
+          [33mdata-marko[39m=[32m"{}"[39m
+          [33mdata-marko-key[39m=[32m"4[4] s0-0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__leading"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--16"[39m
+              [33mdata-marko-key[39m=[32m"@svg s0-0-6[4]-4-0"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-file-16"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 4[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</li>[39m
+      [36m<hr />[39m
+      [36m<li>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"list__body"[39m
+          [33mdata-marko[39m=[32m"{}"[39m
+          [33mdata-marko-key[39m=[32m"4[6] s0-0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__leading"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon icon--16"[39m
+              [33mdata-marko-key[39m=[32m"@svg s0-0-6[6]-5-0"[39m
+              [33mfocusable[39m=[32m"false"[39m
+            [36m>[39m
+              [36m<defs[39m
+                [33mdata-marko-key[39m=[32m"@defs s0-0-6[6]-5-0"[39m
+              [36m>[39m
+                [36m<symbol[39m
+                  [33mid[39m=[32m"icon-lightbulb-16"[39m
+                  [33mviewBox[39m=[32m"0 0 16 16"[39m
+                [36m>[39m
+                  [36m<path[39m
+                    [33mclip-rule[39m=[32m"evenodd"[39m
+                    [33md[39m=[32m"M4.548 12.306c-.354-1.058-.863-1.89-1.187-2.42a6.934 6.934 0 0 1-.255-.439l.003.006-.007-.01-.036-.062-.004-.007a8.482 8.482 0 0 1-.517-.987C2.279 7.781 2 6.94 2 6a6 6 0 1 1 12 0c0 .94-.278 1.781-.546 2.387a8.484 8.484 0 0 1-.383.76l-.133.227-.004.007-.036.061-.007.011.003-.006a6.78 6.78 0 0 1-.255.438c-.324.53-.832 1.361-1.186 2.418a.716.716 0 0 1-.004.013l-.658 1.975A2.5 2.5 0 0 1 8.419 16H7.58a2.5 2.5 0 0 1-2.372-1.71l-.658-1.975a.62.62 0 0 1-.003-.01ZM4 6a4 4 0 1 1 8 0c0 .989-.483 1.829-.758 2.306-.054.094-.1.175-.132.239l-.003.005-.036.058-.062.102-.07.115A20.015 20.015 0 0 0 10.271 10H9V7.478l.868-.7a1 1 0 1 0-1.256-1.556L8 5.716l-.623-.5a1 1 0 0 0-1.252 1.56L7 7.479V10H5.728a20.021 20.021 0 0 0-.666-1.175l-.07-.114a24.872 24.872 0 0 1-.098-.161l-.004-.006c-.032-.064-.078-.143-.132-.238C4.483 7.83 4 6.99 4 6Zm2.554 6h2.892l-.553 1.658A.5.5 0 0 1 8.42 14h-.84a.5.5 0 0 1-.474-.342L6.554 12Z"[39m
+                    [33mfill-rule[39m=[32m"evenodd"[39m
+                  [36m/>[39m
+                [36m</symbol>[39m
+              [36m</defs>[39m
+              [36m<use[39m
+                [33mhref[39m=[32m"#icon-lightbulb-16"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"list__body"[39m
+          [36m>[39m
+            [0mItem 5[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
