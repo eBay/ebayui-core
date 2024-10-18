@@ -1,6 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 static var validDensity = ["compact", "relaxed"];
-static var validColumnTypeTdClasses = ["numeric", "icon-action"];
+static var validColumnTypeForClassname = ["numeric", "icon-action"];
 $ const {
     class: divClass,
     density,
@@ -50,7 +50,7 @@ $ const {
                         class=[
                             "table-cell",
                             header.columnType &&
-                                validColumnTypeTdClasses.includes(
+                                validColumnTypeForClassname.includes(
                                     header.columnType,
                                 ) &&
                                 `table-cell--${header.columnType}`,
@@ -93,7 +93,7 @@ $ const {
                             $ const cellBaseClass = [
                                 "table-cell",
                                 header.columnType &&
-                                    validColumnTypeTdClasses.includes(
+                                    validColumnTypeForClassname.includes(
                                         header.columnType,
                                     ) &&
                                     `table-cell--${header.columnType}`,
