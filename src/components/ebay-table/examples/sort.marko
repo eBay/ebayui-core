@@ -1,0 +1,46 @@
+import data from "./data.json";
+
+<ebay-table on-sort("emit", "sort") ...input>
+    <@header column-type="row-header" sort="asc" as const>
+        Seller
+    </@header>
+    <@header sort>Item</@header>
+    <@header sort>Status</@header>
+    <@header column-type="numeric" sort>
+        List Price
+    </@header>
+    <@header column-type="numeric" sort>
+        Quantity Available
+    </@header>
+    <@header sort>Orders</@header>
+    <@header column-type="numeric" sort>
+        Watchers
+    </@header>
+    <@header column-type="numeric" sort>
+        Protection
+    </@header>
+    <@header sort>Shipping</@header>
+    <@header sort>Delivery</@header>
+    <for|r| of=data>
+        <@row>
+            <@cell>${r.seller}</@cell>
+            <@cell>${r.item.title}</@cell>
+            <@cell>
+                <ebay-signal status=r.statusType as any>
+                    ${r.status}
+                </ebay-signal>
+            </@cell>
+            <@cell>${r.listPrice}</@cell>
+            <@cell>${r.quantityAvailable}</@cell>
+            <@cell>
+                <a href="https://ebay.com">
+                    ${r.orders.number}
+                </a>
+            </@cell>
+            <@cell>${r.watchers}</@cell>
+            <@cell>${r.protection}</@cell>
+            <@cell>${r.shipping}</@cell>
+            <@cell>${r.delivery}</@cell>
+        </@row>
+    </for>
+</ebay-table>

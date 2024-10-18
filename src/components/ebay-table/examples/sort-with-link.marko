@@ -1,0 +1,50 @@
+import data from "./data.json";
+
+<ebay-table ...input>
+    <@header
+        column-type="row-header"
+        sort=("asc" as const)
+        href="https://www.ebay.com"
+    >
+        Seller
+    </@header>
+    <@header>Item</@header>
+    <@header>Status</@header>
+    <@header column-type="numeric">
+        List Price
+    </@header>
+    <@header column-type="numeric">
+        Quantity Available
+    </@header>
+    <@header>Orders</@header>
+    <@header column-type="numeric">
+        Watchers
+    </@header>
+    <@header column-type="numeric">
+        Protection
+    </@header>
+    <@header>Shipping</@header>
+    <@header>Delivery</@header>
+    <for|r| of=data>
+        <@row>
+            <@cell>${r.seller}</@cell>
+            <@cell>${r.item.title}</@cell>
+            <@cell>
+                <ebay-signal status=r.statusType as any>
+                    ${r.status}
+                </ebay-signal>
+            </@cell>
+            <@cell>${r.listPrice}</@cell>
+            <@cell>${r.quantityAvailable}</@cell>
+            <@cell>
+                <a href="https://ebay.com">
+                    ${r.orders.number}
+                </a>
+            </@cell>
+            <@cell>${r.watchers}</@cell>
+            <@cell>${r.protection}</@cell>
+            <@cell>${r.shipping}</@cell>
+            <@cell>${r.delivery}</@cell>
+        </@row>
+    </for>
+</ebay-table>

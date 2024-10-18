@@ -42,9 +42,13 @@ $ const {
                     $ const {
                         columnType = "normal",
                         class: thClass,
+                        name = headerIndex,
+                        sort,
                         renderBody,
+                        href,
                         ...thInput
                     } = header;
+                    $ const sortOrder = state.sorted[name];
                     <th
                         ...processHtmlAttributes(thInput)
                         class=[
@@ -56,8 +60,38 @@ $ const {
                                 `table-cell--${header.columnType}`,
                             thClass,
                         ]
+                        aria-sort=(
+                            sortOrder === "asc"
+                                ? "ascending"
+                                : sortOrder === "desc"
+                                    ? "descending"
+                                    : undefined
+                        )
                     >
-                        <${renderBody}/>
+                        $ let sortEleAttr = {};
+                        $ if (href) {
+                            sortEleAttr = { href };
+                        } else if (sortOrder) {
+                            sortEleAttr = { type: "button" };
+                        }
+                        <${href ? "a" : sortOrder ? "button" : null}
+                            ...sortEleAttr
+                            on-click(href ? undefined : "sortColumn", name)
+                        >
+                            <${renderBody}/>
+                            <if(sortOrder)>
+                                ${" "}
+                                <if(sortOrder === "asc")>
+                                    <ebay-sort-down-12-icon/>
+                                </if>
+                                <else-if(sortOrder === "desc")>
+                                    <ebay-sort-up-12-icon/>
+                                </else-if>
+                                <else>
+                                    <ebay-sort-12-icon/>
+                                </else>
+                            </if>
+                        </>
                     </th>
                 </for>
             </tr>
