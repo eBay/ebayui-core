@@ -5,6 +5,8 @@ import defaultTemplate from "./examples/default.marko";
 import defaultCode from "./examples/default.marko?raw";
 import selectionTemplate from "./examples/selection.marko";
 import selectionCode from "./examples/selection.marko?raw";
+import withActionsTemplate from "./examples/with-actions.marko";
+import withActionsCode from "./examples/with-actions.marko?raw";
 
 export default {
     title: "data-display/table",
@@ -49,7 +51,7 @@ export default {
         columnType: {
             name: "column-type",
             control: { type: "select" },
-            options: ["normal", "numeric", "row-header"],
+            options: ["normal", "numeric", "row-header", "layout", "icon-action"],
             table: {
                 category: "@header attribute tags",
             },
@@ -97,4 +99,8 @@ export const SelectionModeBasic = buildExtensionTemplate(
         a11ySelectAllText: "Select all",
         a11ySelectRowText: "Select row",
     },
+);
+export const TableWithActions = buildExtensionTemplate(
+    withActionsTemplate,
+    withActionsCode,
 );

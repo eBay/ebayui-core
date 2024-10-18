@@ -4,7 +4,7 @@ import { CheckboxEvent } from "../ebay-checkbox/component-browser";
 
 type TableColRowName = string | number;
 export interface TableHeader extends Omit<Marko.Input<"th">, `on${string}`> {
-    columnType?: string; // Use ColumnType after marko fix the ts error for attr tags
+    columnType?: "normal" | "numeric" | "row-header" | "layout" | "icon-action";
     renderBody: Marko.Body;
 }
 export interface TableCell
