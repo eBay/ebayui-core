@@ -52,19 +52,49 @@ export default {
                 category: "@attribute tags",
             },
         },
+        columnName: {
+            name: "name",
+            control: { type: "string" },
+            description: "Column name, default is index",
+            table: {
+                category: "@header attribute tags",
+            },
+        },
         columnType: {
             name: "column-type",
             control: { type: "select" },
-            options: ["normal", "numeric", "row-header", "layout", "icon-action"],
+            options: [
+                "normal",
+                "numeric",
+                "row-header",
+                "layout",
+                "icon-action",
+            ],
             table: {
                 category: "@header attribute tags",
+            },
+        },
+        href: {
+            name: "href",
+            control: { type: "string" },
+            description: "If set, column sorting will be a link to this href",
+            table: {
+                category: "@header attribute tags",
+            },
+        },
+        rowName: {
+            name: "name",
+            control: { type: "string" },
+            description: "Row name, default is index",
+            table: {
+                category: "@row attribute tags",
             },
         },
         selected: {
             name: "selected",
             control: { type: "boolean" },
             table: {
-                category: "@header attribute tags",
+                category: "@row attribute tags",
             },
         },
         cell: {
