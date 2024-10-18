@@ -1,5 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 static var validDensity = ["compact", "relaxed"];
+static var validColumnTypeForClassname = ["numeric", "icon-action"];
 $ const {
     class: divClass,
     density,
@@ -29,7 +30,7 @@ $ const {
         <thead>
             <tr>
                 <if(mode === "selection")>
-                    <th class="table__cell">
+                    <th class="table-cell">
                         <ebay-tri-state-checkbox
                             aria-label=(a11ySelectAllText ?? "Select all rows")
                             checked=state.allSelected
@@ -51,8 +52,12 @@ $ const {
                     <th
                         ...processHtmlAttributes(thInput)
                         class=[
-                            "table__cell",
-                            columnType === "numeric" && "table__cell--numeric",
+                            "table-cell",
+                            header.columnType &&
+                                validColumnTypeForClassname.includes(
+                                    header.columnType,
+                                ) &&
+                                `table-cell--${header.columnType}`,
                             thClass,
                         ]
                         aria-sort=(
@@ -120,20 +125,22 @@ $ const {
                                 ...tdInput
                             } = cell;
                             $ const cellBaseClass = [
-                                "table__cell",
-                                header.columnType === "numeric" &&
-                                    "table__cell--numeric",
+                                "table-cell",
+                                header.columnType &&
+                                    validColumnTypeForClassname.includes(
+                                        header.columnType,
+                                    ) &&
+                                    `table-cell--${header.columnType}`,
                             ];
                             <${header.columnType === "row-header" ? "th" : "td"}
                                 ...processHtmlAttributes(tdInput)
-                                scope=(
-                                    header.columnType === "row-header"
-                                        ? "row"
-                                        : undefined
-                                )
                                 class=[cellBaseClass, tdClass]
                             >
-                                <${renderBody}/>
+                                <${
+                                    header.columnType === "layout" && "div"
+                                } class="table-cell__layout">
+                                    <${renderBody}/>
+                                </>
                             </>
                         </if>
                     </for>

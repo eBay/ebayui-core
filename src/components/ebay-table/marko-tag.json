@@ -19,7 +19,7 @@
         },
         "@html-attributes": "expression",
         "@column-type": {
-            "enum": ["normal", "numeric", "row-header"]
+            "enum": ["normal", "numeric", "row-header", "layout", "icon-action"]
         }
     },
     "@row <row>[]": {

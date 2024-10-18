@@ -5,7 +5,7 @@ import { CheckboxEvent } from "../ebay-checkbox/component-browser";
 type TableColRowName = string | number;
 type TableSort = "asc" | "desc" | "none";
 export interface TableHeader extends Omit<Marko.Input<"th">, `on${string}`> {
-    columnType?: "normal" | "numeric" | "row-header";
+    columnType?: "normal" | "numeric" | "row-header" | "layout" | "icon-action";
     name?: TableColRowName;
     sort?: TableSort | boolean;
     href?: AttrString;
