@@ -67,8 +67,8 @@ export default {
                 category: "@item attributes",
             },
         },
-        "onItem-click": {
-            action: "on-item-click",
+        "onButton-click": {
+            action: "on-button-click",
             description:
                 "Triggered on item click when the item is renderd as a button",
             table: {

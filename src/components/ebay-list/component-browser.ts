@@ -7,7 +7,7 @@ export interface ListItem extends Omit<Marko.Input<"item">, `on${string}`> {
 interface ListInput extends Omit<Marko.Input<"div">, `on${string}`> {
     items?: Marko.RepeatableAttrTag<ListItem>;
     separator?: boolean;
-    "on-item-click"?: (event: {index: number}) => void;
+    "on-button-click"?: (event: {index: number}) => void;
 }
 
 export interface Input extends WithNormalizedProps<ListInput> {}
