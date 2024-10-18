@@ -1,5 +1,19 @@
 # eBayUI-Core Changelog
 
+## 14.4.0-next.0
+
+### Minor Changes
+
+- [#2292](https://github.com/eBay/ebayui-core/pull/2292) [`7e114e1`](https://github.com/eBay/ebayui-core/commit/7e114e1243c9822cd694eaf08472a4a05209950b) Thanks [@bill-min](https://github.com/bill-min)! - feat(ebay-table): support column type layout and icon-action
+
+- [#2282](https://github.com/eBay/ebayui-core/pull/2282) [`99a0245`](https://github.com/eBay/ebayui-core/commit/99a02457d40d83eeefdd45d06dfad614a7e401b1) Thanks [@bill-min](https://github.com/bill-min)! - feat(ebay-table): ebay-table base component with density attribute
+
+- [#2286](https://github.com/eBay/ebayui-core/pull/2286) [`1772523`](https://github.com/eBay/ebayui-core/commit/177252384d5faca9023973f1064fe2dc2e531b82) Thanks [@bill-min](https://github.com/bill-min)! - feat(ebay-table): adding support for selection mode
+
+### Patch Changes
+
+- [#2296](https://github.com/eBay/ebayui-core/pull/2296) [`e2d2829`](https://github.com/eBay/ebayui-core/commit/e2d28291df2bf7aeffc3cbe48ce7f2982a6e75ad) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Fix clearing behavior for calendar and date-textbox
+
 ## 14.3.0
 
 ### Minor Changes
