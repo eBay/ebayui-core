@@ -1,0 +1,35 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@separator": "boolean",
+    "@items <item>[]": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@trailing <trailing>": {
+            "attribute-groups": ["html-attributes"],
+            "@*": {
+                "targetProperty": null,
+                "type": "expression"
+            },
+            "@html-attributes": "expression"
+        },
+        "@leading <leading>": {
+            "attribute-groups": ["html-attributes"],
+            "@*": {
+                "targetProperty": null,
+                "type": "expression"
+            },
+            "@html-attributes": "expression"
+        },
+        "@html-attributes": "expression",
+        "@type": "string"
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-listbox)"
+}
