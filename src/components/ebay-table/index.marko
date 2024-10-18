@@ -49,6 +49,12 @@ $ const {
                         ...thInput
                     } = header;
                     $ const sortOrder = state.sorted[name];
+                    $ let ariaSort: Marko.AriaAttributes["aria-sort"];
+                    $ if (sortOrder === "asc") {
+                        ariaSort = "ascending";
+                    } else if (sortOrder === "desc") {
+                        ariaSort = "descending";
+                    }
                     <th
                         ...processHtmlAttributes(thInput)
                         class=[
@@ -60,13 +66,7 @@ $ const {
                                 `table-cell--${header.columnType}`,
                             thClass,
                         ]
-                        aria-sort=(
-                            sortOrder === "asc"
-                                ? "ascending"
-                                : sortOrder === "desc"
-                                  ? "descending"
-                                  : undefined
-                        )
+                        aria-sort=ariaSort
                     >
                         $ let sortEleAttr = {};
                         $ if (href) {
