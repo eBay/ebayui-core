@@ -64,15 +64,19 @@ $ const {
                             sortOrder === "asc"
                                 ? "ascending"
                                 : sortOrder === "desc"
-                                    ? "descending"
-                                    : undefined
+                                  ? "descending"
+                                  : undefined
                         )
                     >
                         $ let sortEleAttr = {};
                         $ if (href) {
                             sortEleAttr = { href };
                         } else if (sortOrder) {
-                            sortEleAttr = { type: "button" };
+                            sortEleAttr = {
+                                type: "button",
+                                "aria-pressed":
+                                    sortOrder !== "none" ? "true" : "false",
+                            };
                         }
                         <${href ? "a" : sortOrder ? "button" : null}
                             ...sortEleAttr
