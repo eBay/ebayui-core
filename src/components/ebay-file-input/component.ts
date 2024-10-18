@@ -31,7 +31,6 @@ class FileUploadInput extends Marko.Component<Input, State> {
     handleFileChange(event: Event) {
         const target = event.target as HTMLInputElement;
         this.emit("input", { files: target.files, originalEvent: event });
-        target.value = "";
     }
 
     handleDragOver() {
