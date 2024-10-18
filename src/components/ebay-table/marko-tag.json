@@ -8,6 +8,9 @@
     "@density": {
         "enum": ["compact", "relaxed"]
     },
+    "@all-selected": {
+        "enum": ["true", "false", "mixed"]
+    },
     "@header <header>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
@@ -26,6 +29,8 @@
             "type": "expression"
         },
         "@html-attributes": "expression",
+        "@name": "string",
+        "@selected": "boolean",
         "@cell <cell>[]": {
             "attribute-groups": ["html-attributes"],
             "@*": {
