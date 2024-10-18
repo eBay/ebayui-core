@@ -1,0 +1,74 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+$ const {
+    class: inputClass,
+    style,
+    items,
+    ...htmlInput
+} = input;
+
+<div style=style class=["list", inputClass] ...processHtmlAttributes(htmlInput)>
+    <ul>
+        <for|item, i| of=items>
+            $ const {
+                class: itemInputClass,
+                style: itemStyle,
+                as,
+                separator,
+                leading,
+                trailing,
+                ...itemInput
+            } = item;
+            <if(separator)>
+                <hr>
+            </if>
+            <else>
+
+                <li>
+                    <${as || "div"}
+                        class=["list__body", itemInputClass]
+                        style=itemStyle
+                        on-click(
+                            as === "button" && "emit",
+                            "button-click",
+                            { index: i },
+                        )
+                        ...processHtmlAttributes(itemInput)
+                    >
+
+                        <if(leading)>
+                            $ const {
+                                class: leadingInputClass,
+                                leadingStyle,
+                                ...leadingInput
+                            } = leading;
+                            <div
+                                class=["list__leading", leadingInputClass]
+                                style=leadingStyle
+                                ...processHtmlAttributes(leadingInput)
+                            >
+                                <${leading}/>
+                            </div>
+                        </if>
+                        <div class="list__body">
+                            <${item}/>
+                        </div>
+                        <if(trailing)>
+                            $ const {
+                                class: trailingInputClass,
+                                trailingStyle,
+                                ...trailingInput
+                            } = trailing;
+                            <div
+                                class=["list__trailing", trailingInputClass]
+                                style=trailingStyle
+                                ...processHtmlAttributes(trailingInput)
+                            >
+                                <${trailing}/>
+                            </div>
+                        </if>
+                    </>
+                </li>
+            </else>
+        </for>
+    </ul>
+</div>
