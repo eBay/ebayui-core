@@ -54,7 +54,7 @@ export default {
         },
         columnName: {
             name: "name",
-            control: { type: "string" },
+            control: { type: "text" },
             description: "Column name, default is index",
             table: {
                 category: "@header attribute tags",
@@ -63,20 +63,14 @@ export default {
         columnType: {
             name: "column-type",
             control: { type: "select" },
-            options: [
-                "normal",
-                "numeric",
-                "row-header",
-                "layout",
-                "icon-action",
-            ],
+            options: ["normal", "numeric", "row-header", "layout", "icon-action"],
             table: {
                 category: "@header attribute tags",
             },
         },
         href: {
             name: "href",
-            control: { type: "string" },
+            control: { type: "text" },
             description: "If set, column sorting will be a link to this href",
             table: {
                 category: "@header attribute tags",
@@ -84,7 +78,7 @@ export default {
         },
         rowName: {
             name: "name",
-            control: { type: "string" },
+            control: { type: "text" },
             description: "Row name, default is index",
             table: {
                 category: "@row attribute tags",
