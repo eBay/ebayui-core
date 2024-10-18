@@ -4,6 +4,10 @@ import Readme from "./README.md";
 import component from "./index.marko";
 import DefaultTemplate from "./examples/default.marko";
 import DefaultCode from "./examples/default.marko?raw";
+import WithPreviewCardsTemplate from "./examples/with-preview-cards.marko";
+import WithPreviewCardsCode from "./examples/with-preview-cards.marko?raw";
+import WithMockUploadsTemplate from "./examples/with-mock-uploads.marko";
+import WithMockUploadsCode from "./examples/with-mock-uploads.marko?raw";
 
 const Template = (args) => ({
     input: addRenderBodies(args),
@@ -67,3 +71,28 @@ Default.parameters = {
     },
 };
 
+export const WithPreviewCards = (args) => ({
+    input: args,
+    component: WithPreviewCardsTemplate,
+});
+WithPreviewCards.args = {};
+WithPreviewCards.parameters = {
+    docs: {
+        source: {
+            code: WithPreviewCardsCode,
+        },
+    },
+};
+
+export const WithMockUploads = (args) => ({
+    input: args,
+    component: WithMockUploadsTemplate,
+});
+WithMockUploads.args = {};
+WithMockUploads.parameters = {
+    docs: {
+        source: {
+            code: WithMockUploadsCode,
+        },
+    },
+};

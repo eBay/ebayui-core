@@ -1,0 +1,33 @@
+$ const { card = [], a11yCancelUploadText, deleteText, menuActions, a11yShowMoreText } = input;
+$ const cards = [...card];
+$ const notShowing = cards.length - state.showing;
+
+<div class="file-preview-card-group">
+    <ul>
+        <for|i| from=0 to=(notShowing > 0 ? state.showing : cards.length) - 1>
+            $ const cardInput = cards[i];
+            <li>
+                <ebay-file-preview-card
+                    a11y-cancel-upload-text=a11yCancelUploadText
+                    delete-text=deleteText
+                    menu-actions=menuActions
+                    ...cardInput
+                    on-cancel("emit", "cancel", i)
+                    on-delete("emit", "delete", i)
+                    on-menu-action("emit", "menu-action", i)
+                />
+            </li>
+        </for>
+        <if(notShowing > 0)>
+            <li>
+                <ebay-file-preview-card
+                    file=cards[state.showing].file
+                    show-more=notShowing
+                    a11y-show-more-text=a11yShowMoreText
+                    on-show-more("showMore")
+                    on-delete("emit", "delete", state.showing)
+                />
+            </li>
+        </if>
+    </ul>
+</div>
