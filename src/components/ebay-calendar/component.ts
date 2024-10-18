@@ -388,6 +388,9 @@ class Calendar extends Marko.Component<Input, State> {
                 // We can't display a range, so ensure that no range is highlighted
                 this.state.rangeStart = this.state.rangeEnd = null;
             }
+        } else {
+            // We can't display a range, so ensure that no range is highlighted
+            this.state.rangeStart = this.state.rangeEnd = null;
         }
     }
 
