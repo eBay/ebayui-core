@@ -1,0 +1,16 @@
+{
+    "template": "./index.marko",
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@a11y-text": "string",
+    "@a11y-variant": "string",
+    "@no-skin-classes": "boolean",
+    "@_def": "expression",
+    "@role": "never",
+    "@aria-labelledby": "never",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-icon)"
+}
