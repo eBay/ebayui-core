@@ -76,7 +76,7 @@
         "@commitlint/cli": "^19",
         "@commitlint/config-conventional": "^19",
         "@ebay/browserslist-config": "^2.10.0",
-        "@ebay/skin": "~18.3.0",
+        "@ebay/skin": "~18.3.1",
         "@google/model-viewer": "3.5.0",
         "@marko/compiler": "^5.37.14",
         "@marko/prettyprint": "^3.0.1",
