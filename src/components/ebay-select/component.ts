@@ -8,7 +8,7 @@ export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
 }
 
 interface SelectInput extends Omit<Marko.Input<"select">, `on${string}`> {
-    options?: Marko.RepeatableAttrTag<Option>;
+    options?: Marko.AttrTag<Option>;
     "floating-label"?: AttrString;
     "is-large"?: boolean;
     borderless?: boolean;
@@ -57,12 +57,15 @@ class Select extends Marko.Component<Input, State> {
     }
 
     onInput(input: Input) {
-        const { state } = this;
-        (input.options as any) = input.options || [];
-        state.selectedIndex = Math.max(
-            0,
-            (input.options as Option[]).findIndex((option) => option.selected),
-        );
+        this.state.selectedIndex = 0;
+        let i = 0;
+        for (const option of input.options || []) {
+            if (option.selected) {
+                this.state.selectedIndex = i;
+                break;
+            }
+            i++;
+        }
     }
 
     onMount() {

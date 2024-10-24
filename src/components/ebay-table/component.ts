@@ -14,13 +14,13 @@ export interface TableCell
 export interface TableRow extends Omit<Marko.Input<"tr">, `on${string}`> {
     name?: TableColRowName;
     selected?: boolean;
-    cell: Marko.RepeatableAttrTag<TableCell> | Marko.AttrTag<TableCell>[];
+    cell: Marko.AttrTag<TableCell>;
 }
 export interface TableInput extends Omit<Marko.Input<"div">, `on${string}`> {
-    header: Marko.RepeatableAttrTag<TableHeader> | Marko.AttrTag<TableHeader>[];
+    header: Marko.AttrTag<TableHeader>;
     mode?: "none" | "selection";
     allSelected?: AttrTriState;
-    row?: Marko.RepeatableAttrTag<TableRow> | Marko.AttrTag<TableRow>[];
+    row?: Marko.AttrTag<TableRow>;
     density?: "compact" | "relaxed" | "none";
     "a11y-select-all-text"?: string;
     "a11y-select-row-text"?: string;

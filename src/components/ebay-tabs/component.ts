@@ -11,8 +11,8 @@ export interface TabsEvent {
 }
 
 interface TabsInput extends Omit<Marko.Input<"div">, `on${string}`> {
-    tabs?: Marko.RepeatableAttrTag<Tab>;
-    panels?: Marko.RepeatableAttrTag<Panel>;
+    tabs?: Marko.AttrTag<Tab>;
+    panels?: Marko.AttrTag<Panel>;
     activation?: "auto" | "manual";
     fake?: boolean;
     "selected-index"?: number | string;

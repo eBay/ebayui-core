@@ -25,7 +25,7 @@ interface FakeMenuButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
     type?: FakeMenuInput["type"];
     reverse?: boolean;
     "fix-width"?: boolean;
-    items?: Marko.RepeatableAttrTag<FakeMenuItem>;
+    items?: Marko.AttrTag<FakeMenuItem>;
     "collapse-on-select"?: boolean;
     "on-expand"?: (event: MenuEvent) => void;
     "on-collapse"?: (event: MenuEvent) => void;
