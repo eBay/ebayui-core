@@ -53,11 +53,6 @@ export default {
             description:
                 "default is `automatic`; available values are `automatic`, `manual`. If set to automatic will automatically fill in the input with the currently highlighted item when using the up/down keys.",
         },
-        roledescription: {
-            control: { type: "text" },
-            description:
-                "The role description for accessibility. Default text is set and will be in english. Pass this to override for different locales",
-        },
         "floating-label": {
             control: { type: "text" },
             description:
