@@ -5,6 +5,10 @@ import defaultTemplate from "./examples/default.marko";
 import defaultCode from "./examples/default.marko?raw";
 import selectionTemplate from "./examples/selection.marko";
 import selectionCode from "./examples/selection.marko?raw";
+import sortTemplate from "./examples/sort.marko";
+import sortCode from "./examples/sort.marko?raw";
+import sortWithLinkTemplate from "./examples/sort-with-link.marko";
+import sortWithLinkCode from "./examples/sort-with-link.marko?raw";
 import withActionsTemplate from "./examples/with-actions.marko";
 import withActionsCode from "./examples/with-actions.marko?raw";
 
@@ -48,6 +52,14 @@ export default {
                 category: "@attribute tags",
             },
         },
+        columnName: {
+            name: "name",
+            control: { type: "text" },
+            description: "Column name, default is index",
+            table: {
+                category: "@header attribute tags",
+            },
+        },
         columnType: {
             name: "column-type",
             control: { type: "select" },
@@ -56,11 +68,27 @@ export default {
                 category: "@header attribute tags",
             },
         },
+        href: {
+            name: "href",
+            control: { type: "text" },
+            description: "If set, column sorting will be a link to this href",
+            table: {
+                category: "@header attribute tags",
+            },
+        },
+        rowName: {
+            name: "name",
+            control: { type: "text" },
+            description: "Row name, default is index",
+            table: {
+                category: "@row attribute tags",
+            },
+        },
         selected: {
             name: "selected",
             control: { type: "boolean" },
             table: {
-                category: "@header attribute tags",
+                category: "@row attribute tags",
             },
         },
         cell: {
@@ -78,6 +106,16 @@ export default {
                 category: "Events",
                 defaultValue: {
                     summary: "{ selected, allSelected }",
+                },
+            },
+        },
+        onSort: {
+            action: "on-sort",
+            description: "Triggered on column sort",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "{ sorted }",
                 },
             },
         },
@@ -99,6 +137,11 @@ export const SelectionModeBasic = buildExtensionTemplate(
         a11ySelectAllText: "Select all",
         a11ySelectRowText: "Select row",
     },
+);
+export const ColumnSorting = buildExtensionTemplate(sortTemplate, sortCode);
+export const ColumnSortingWithLink = buildExtensionTemplate(
+    sortWithLinkTemplate,
+    sortWithLinkCode,
 );
 export const TableWithActions = buildExtensionTemplate(
     withActionsTemplate,
