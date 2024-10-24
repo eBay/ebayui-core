@@ -1,4 +1,10 @@
-$ const { card = [], a11yCancelUploadText, deleteText, menuActions, a11yShowMoreText } = input;
+$ const {
+    card = [],
+    a11yCancelUploadText,
+    deleteText,
+    menuActions,
+    a11ySeeMoreText,
+} = input;
 $ const cards = [...card];
 $ const notShowing = cards.length - state.showing;
 
@@ -6,28 +12,26 @@ $ const notShowing = cards.length - state.showing;
     <ul>
         <for|i| from=0 to=(notShowing > 0 ? state.showing : cards.length) - 1>
             $ const cardInput = cards[i];
-            <li>
-                <ebay-file-preview-card
-                    a11y-cancel-upload-text=a11yCancelUploadText
-                    delete-text=deleteText
-                    menu-actions=menuActions
-                    ...cardInput
-                    on-cancel("emit", "cancel", i)
-                    on-delete("emit", "delete", i)
-                    on-menu-action("emit", "menu-action", i)
-                />
-            </li>
+            <ebay-file-preview-card
+                as="li"
+                a11y-cancel-upload-text=a11yCancelUploadText
+                delete-text=deleteText
+                menu-actions=menuActions
+                ...cardInput
+                on-cancel("emit", "cancel", i)
+                on-delete("emit", "delete", i)
+                on-menu-action("emit", "menu-action", i)
+            />
         </for>
         <if(notShowing > 0)>
-            <li>
-                <ebay-file-preview-card
-                    file=cards[state.showing].file
-                    show-more=notShowing
-                    a11y-show-more-text=a11yShowMoreText
-                    on-show-more("showMore")
-                    on-delete("emit", "delete", state.showing)
-                />
-            </li>
+            <ebay-file-preview-card
+                as="li"
+                file=(cards[state.showing].file)
+                see-more=notShowing
+                a11y-see-more-text=a11ySeeMoreText
+                on-see-more("seeMore")
+                on-delete("emit", "delete", state.showing)
+            />
         </if>
     </ul>
 </div>

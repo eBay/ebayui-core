@@ -9,7 +9,7 @@ interface FilePreviewCardGroupInput {
     "a11y-cancel-upload-text"?: FilePreviewCardInput["a11y-cancel-upload-text"];
     "delete-text"?: FilePreviewCardInput["delete-text"];
     "menu-actions"?: FilePreviewCardInput["menu-actions"];
-    "a11y-show-more-text"?: FilePreviewCardInput["a11y-show-more-text"];
+    "a11y-see-more-text"?: FilePreviewCardInput["a11y-see-more-text"];
     "on-menu-action"?: (index: number, event: FilePreviewCardEvent) => void;
     "on-delete"?: (index: number) => void;
     "on-cancel"?: (index: number) => void;
@@ -28,7 +28,7 @@ class FilePreviewCardGroup extends Marko.Component<Input, State> {
         this.state = { showing: SHOW_AMOUNT };
     }
 
-    showMore() {
+    seeMore() {
         this.state.showing += SHOW_AMOUNT;
     }
 }

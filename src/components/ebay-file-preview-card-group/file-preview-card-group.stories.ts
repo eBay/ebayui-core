@@ -42,10 +42,10 @@ export default {
             description: "List of menu actions, applied to all cards",
             control: { type: "object" },
         },
-        a11yShowMoreText: {
+        a11ySeeMoreText: {
             type: "string",
             control: { type: "text" },
-            description: "a11y text for show more button, applied to all cards",
+            description: "a11y text for see more button, applied to all cards",
         },
         "onMenu-action": {
             action: "on-menu-action",

@@ -58,11 +58,22 @@ export default {
                 category: "Menu Actions",
             },
         },
-        showMore: {
+        seeMore: {
             type: "number",
             control: { type: "number" },
             description:
-                'Passing a number here will convert the card to a "show more" card',
+                'Passing a number here will convert the card to a "see more" card',
+        },
+        footerTitle: {
+            type: "string",
+            control: { type: "text" },
+            description:
+                "Title to display beneath the file, usually the filename",
+        },
+        footerSubtitle: {
+            type: "string",
+            control: { type: "text" },
+            description: "Subtitle to display beneath the file title",
         },
         "onMenu-action": {
             action: "on-menu-action",
@@ -74,9 +85,9 @@ export default {
                 },
             },
         },
-        "onShow-more": {
-            action: "on-show-more",
-            description: "Triggered when the show more button is clicked",
+        "onSee-more": {
+            action: "on-see-more",
+            description: "Triggered when the see more button is clicked",
             table: {
                 category: "Events",
                 defaultValue: {
@@ -205,6 +216,9 @@ Document.args = {
         name: "file-name.csv",
         type: "text/csv",
     },
+    footerTitle: "file-name.csv",
+    footerSubtitle:
+        "English, German, Spanish, French, Polish, Dutch, Italian, Japanese, Portuguese, Arabic",
     menuActions: [
         {
             event: "edit",
@@ -224,12 +238,12 @@ Document.parameters = {
     },
 };
 
-export const ShowMore = Template.bind({});
-ShowMore.args = {
+export const SeeMore = Template.bind({});
+SeeMore.args = {
     a11yCancelUploadText: "Cancel upload",
     deleteText: "Delete",
-    a11yShowMoreText: "Show more",
-    showMore: 15,
+    a11ySeeMoreText: "See more",
+    seeMore: 15,
     file: {
         name: "file-name.jpg",
         type: "image/jpeg",
@@ -237,10 +251,10 @@ ShowMore.args = {
     },
 };
 
-ShowMore.parameters = {
+SeeMore.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-file-preview-card", ShowMore.args),
+            code: tagToString("ebay-file-preview-card", SeeMore.args),
         },
     },
 };
