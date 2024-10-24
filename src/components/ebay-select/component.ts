@@ -62,6 +62,7 @@ class Select extends Marko.Component<Input, State> {
         for (const option of input.options || []) {
             if (option.selected) {
                 this.state.selectedIndex = i;
+                break;
             }
             i++;
         }
