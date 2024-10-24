@@ -1,0 +1,107 @@
+$ const {
+    a11yCancelUploadText,
+    deleteText,
+    file: rawFile,
+    showMore,
+    status,
+    labelText,
+    menuActions,
+    a11yShowMoreText,
+    ...htmlInput
+} = input;
+$ let file = rawFile as Exclude<typeof rawFile, File>;
+$ const type = (
+    rawFile.type?.startsWith("image")
+        ? "image"
+        : rawFile.type?.startsWith("video")
+            ? "video"
+            : undefined
+);
+$ if (rawFile instanceof File) {
+    file = {
+        name: rawFile.name,
+        type,
+        src: type ? URL.createObjectURL(rawFile) : undefined,
+    };
+}
+$ file.type = type;
+
+<div class="file-preview-card" ...htmlInput>
+    <div class=[
+        "file-preview-card__body",
+        {
+            "file-preview-card__body--fade": !!showMore,
+        },
+    ]>
+        <if(status === "uploading")>
+            <ebay-progress-spinner size="large"/>
+        </if>
+        <else-if(file.type === "image")>
+            <img src=file.src alt=file.name>
+        </else-if>
+        <else-if(file.type === "video")>
+            <video src=file.src/>
+        </else-if>
+        <else>
+            <ebay-file-24-icon class="file-preview-card__general-icon"/>
+        </else>
+    </div>
+    <if(showMore)>
+        <div class="file-preview-card__body-action">
+            <ebay-icon-button onClick("emit", "show-more") aria-label=a11yShowMoreText>
+                <span>+${showMore}</span>
+            </ebay-icon-button>
+        </div>
+    </if>
+    <else>
+        <div class="file-preview-card__menu-action">
+            <if(status === "uploading")>
+                <ebay-icon-button
+                    aria-label=a11yCancelUploadText
+                    onClick("emit", "cancel")
+                >
+                    <ebay-close-16-icon/>
+                </ebay-icon-button>
+            </if>
+            <else>
+                <if(menuActions?.length)>
+                    <ebay-menu-button variant="overflow" on-select("handleMenuSelect")>
+                        <for|action| of=menuActions.concat({
+                            event: "delete",
+                            label: deleteText as string,
+                        })>
+                            <@item value=action.event>
+                                ${action.label}
+                            </@item>
+                        </for>
+                    </ebay-menu-button>
+                </if>
+                <else>
+                    <ebay-icon-button
+                        aria-label=deleteText
+                        onClick("emit", "delete")
+                    >
+                        <ebay-delete-16-icon/>
+                    </ebay-icon-button>
+                </else>
+            </else>
+        </div>
+        <if(file.type !== "image")>
+            <div class="file-preview-card__preview-action">
+                <ebay-icon-button>
+                    <if(file.type === "video")>
+                        <ebay-play-16-icon class="file-preview-card__video-icon"/>
+                        <if(labelText)>
+                            <span>${labelText}</span>
+                        </if>
+                    </if>
+                    <else>
+                        ${file.name
+                            .substring(file.name.lastIndexOf(".") + 1)
+                            .toUpperCase()}
+                    </else>
+                </ebay-icon-button>
+            </div>
+        </if>
+    </else>
+</div>
