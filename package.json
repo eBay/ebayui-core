@@ -81,7 +81,7 @@
         "@marko/compiler": "^5.37.14",
         "@marko/prettyprint": "^3.0.1",
         "@marko/testing-library": "^6",
-        "@marko/type-check": "^1.1.8",
+        "@marko/type-check": "^1.2.1",
         "@marko/vite": "^4.1.19",
         "@storybook/addon-a11y": "^8.3.3",
         "@storybook/addon-docs": "^8.3.3",
@@ -108,9 +108,9 @@
         "husky": "^9.1.6",
         "less": "^4.2.0",
         "libphonenumber-js": "^1.11.9",
-        "lintspaces-cli": "^0.8.0",
         "lint-staged": "^15.2.10",
-        "marko": "^5.35.19",
+        "lintspaces-cli": "^0.8.0",
+        "marko": "^5.35.27",
         "playwright": "^1.47.2",
         "postcss-less": "^6.0.0",
         "prettier": "^3.3.3",
@@ -124,7 +124,7 @@
     },
     "peerDependencies": {
         "@ebay/skin": "~18.3.0",
-        "marko": ">= ^4.27.0 || >= ^5.31.12"
+        "marko": "^4.27.0 || ^5.31.12"
     },
     "dependencies": {
         "@floating-ui/dom": "^1.6.11",

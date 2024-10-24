@@ -23,7 +23,7 @@ export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
 interface ListboxInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "list-selection"?: "auto" | "manual";
     "typeahead-timeout-length"?: number;
-    options?: Marko.RepeatableAttrTag<Option>;
+    options?: Marko.AttrTag<Option>;
     name?: string;
     disabled?: boolean;
     "on-change"?: (event: ChangeEvent) => void;
@@ -52,7 +52,7 @@ class Listbox extends Marko.Component<Input, State> {
 
     handleChange(index: number, wasClicked: boolean) {
         if (this.state.selectedIndex !== index) {
-            const option = (this.input.options as Option[])?.[index];
+            const option = [...(this.input.options || [])][index];
             if (option.disabled) {
                 return;
             }
@@ -122,10 +122,15 @@ class Listbox extends Marko.Component<Input, State> {
     onInput(input: Input) {
         const { state } = this;
         input.options = input.options || ([] as any);
-        state.selectedIndex = Math.max(
-            -1,
-            (input.options as Option[]).findIndex((option) => option.selected),
-        );
+        state.selectedIndex = -1;
+        let i = 0;
+        for (const option of input.options || []) {
+            if (option.selected) {
+                state.selectedIndex = i;
+                break;
+            }
+            i++;
+        }
     }
 
     onMount() {
@@ -149,7 +154,9 @@ class Listbox extends Marko.Component<Input, State> {
     _setupMakeup() {
         const { input, state } = this;
 
-        if ((input.options as Option[]).length && !input.disabled) {
+        // This `as any` is here for while `options` is coerced into an array from `marko-tag.json`.
+        // After we move to the full `iterator` we can switch to `if (input.options && !input.disabled)`
+        if ((input.options as any)?.length && !input.disabled) {
             const container = this.getEl("options");
             const optionsContainer = this.getEl("options");
             this._activeDescendant = createLinear(

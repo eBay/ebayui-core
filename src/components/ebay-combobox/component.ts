@@ -31,7 +31,7 @@ interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
         htmlAttributes?: Record<string, unknown>;
         renderBody?: Marko.Body;
     };
-    options?: Marko.RepeatableAttrTag<ComboboxOption>;
+    options?: Marko.AttrTag<ComboboxOption>;
     roledescription?: AttrString;
     "chevron-size"?: "large";
     "on-focus"?: (event: ComboboxEvent) => void;

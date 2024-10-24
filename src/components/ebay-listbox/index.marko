@@ -1,5 +1,4 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
-import type { Option } from "./component";
 
 $ const {
     name,
@@ -10,8 +9,6 @@ $ const {
     typeaheadTimeoutLength,
     ...htmlInput
 } = input;
-
-$ var selectedOption = (options as Option[])[state.selectedIndex];
 
 <div
     ...processHtmlAttributes(htmlInput)
@@ -40,7 +37,7 @@ $ var selectedOption = (options as Option[])[state.selectedIndex];
             role="option"
             tabindex=(disabled ? -1 : tabindex)
             aria-disabled=(disabled && "true")
-            aria-selected=(selectedOption === option && "true")
+            aria-selected=(index === state.selectedIndex && "true")
             onClick(!component.isAutoSelection && "handleClick", index)
             onMousedown(component.isAutoSelection && "handleMouseDown")>
             <if (icon)>
@@ -66,10 +63,10 @@ $ var selectedOption = (options as Option[])[state.selectedIndex];
     </for>
 </div>
 <select hidden class="listbox__native" name=name>
-    <for|option| of=(options || [])>
+    <for|option, i| of=(options || [])>
         <option
             value=option.value
-            selected=(option === selectedOption)
+            selected=(i === state.selectedIndex)
             class=option.class/>
     </for>
 </select>
