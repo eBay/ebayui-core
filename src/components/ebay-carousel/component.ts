@@ -23,7 +23,7 @@ interface Item {
 }
 
 interface CarouselInput {
-    items?: Marko.RepeatableAttrTag<Item>;
+    items?: Marko.AttrTag<Item>;
     gap?: number | string;
     index?: number | string;
     "items-per-slide"?: number | string;

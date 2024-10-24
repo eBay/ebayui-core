@@ -1,5 +1,5 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
-import type { Option } from "../ebay-listbox/component";
+
 $ const {
     name,
     class: inputClass,
@@ -24,7 +24,7 @@ $ const {
     ariaDescribedby: describedby,
     ...htmlInput
 } = input;
-$ var selectedOption = (options as Option[])[state.selectedIndex];
+$ var selectedOption = [...(options || [])][state.selectedIndex];
 $ var selectedText = selectedOption && selectedOption.text;
 $ var selectedIcon = selectedOption && selectedOption.icon;
 $ var a11ySelectedIconText = (

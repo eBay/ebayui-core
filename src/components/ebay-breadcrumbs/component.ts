@@ -9,7 +9,7 @@ interface BreadcrumbsInput extends Omit<Marko.Input<"nav">, `on${string}`> {
     "a11y-heading-text"?: AttrString;
     "a11y-menu-button-text"?: AttrString;
     class?: AttrClass;
-    items: Marko.RepeatableAttrTag<
+    items?: Marko.AttrTag<
         Marko.Input<"a"> | (Marko.Input<"button"> & { href: never })
     >;
     "on-select"?: (event: { originalEvent: Event; el: HTMLElement }) => void;

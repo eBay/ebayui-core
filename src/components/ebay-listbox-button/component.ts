@@ -2,7 +2,7 @@ import Expander from "makeup-expander";
 import * as scrollKeyPreventer from "makeup-prevent-scroll-keys";
 import type { Input as ListboxInput } from "../ebay-listbox/component";
 import type Listbox from "../ebay-listbox/component";
-import type { Option, ChangeEvent } from "../ebay-listbox/component";
+import type { ChangeEvent } from "../ebay-listbox/component";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
 
@@ -52,7 +52,7 @@ class ListboxButton extends Marko.Component<Input, State> {
     }
 
     handleListboxChange(event: ChangeEvent) {
-        if (this.input.collapseOnSelect) {
+        if (this.input.collapseOnSelect === false) {
             this._expander.expanded = false;
         }
         const selectedIndex = event.index;
@@ -71,13 +71,16 @@ class ListboxButton extends Marko.Component<Input, State> {
     }
 
     onInput(input: Input) {
-        const { state } = this;
         input.options = input.options || ([] as any);
-        state.selectedIndex = Math.max(
-            -1,
-            (input.options as Option[]).findIndex((option) => option.selected),
-        );
-        input.collapseOnSelect = input.collapseOnSelect !== false;
+        this.state.selectedIndex = -1;
+        let i = 0;
+        for (const option of input.options || []) {
+            if (option.selected) {
+                this.state.selectedIndex = i;
+                break;
+            }
+            i++;
+        }
     }
 
     onMount() {
@@ -101,7 +104,9 @@ class ListboxButton extends Marko.Component<Input, State> {
     _setupMakeup() {
         const { input } = this;
 
-        if ((input.options as Option[]).length && !input.disabled) {
+        // This `as any` is here for while `options` is coerced into an array from `marko-tag.json`.
+        // After we move to the full `iterator` we can switch to `if (input.options && !input.disabled)`
+        if ((input.options as any)?.length && !input.disabled) {
             const container = this.getEl("container");
 
             this._expander = new Expander(container, {

@@ -28,7 +28,7 @@ export interface Item extends MenuItem {
 interface MenuInput
     extends BaseMenuInput,
         Omit<Marko.Input<"span">, `on${string}`> {
-    items?: Marko.RepeatableAttrTag<Item>;
+    items?: Marko.AttrTag<Item>;
     "class-prefix"?: string;
     "typeahead-timeout-length"?: number;
     reverse?: boolean;
@@ -47,6 +47,7 @@ export default class extends MenuUtils<Input, MenuState> {
     declare contentEl: HTMLElement;
     declare getTypeaheadIndex: ReturnType<typeof typeahead>["getIndex"];
     declare destroyTypeahead: ReturnType<typeof typeahead>["destroy"];
+    declare items: Item[];
 
     onCreate() {
         setupMenu(this);

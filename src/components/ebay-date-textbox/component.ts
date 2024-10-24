@@ -20,7 +20,7 @@ interface DateTextboxInput {
     rangeEnd?: Date | number | string;
     locale?: string;
     range?: boolean;
-    textbox?: Marko.RepeatableAttrTag<TextboxInput>;
+    textbox?: Marko.AttrTag<TextboxInput>;
     todayISO?: Date | number | string;
     disabled?: boolean;
     "disable-before"?: Date | number | string;

@@ -11,7 +11,7 @@ interface ChipsComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     fluid?: boolean;
     error?: boolean;
     "list-selection"?: "manual" | "automatic";
-    option?: Marko.RepeatableAttrTag<{ text: string }>;
+    option?: Marko.AttrTag<{ text: string }>;
     selected?: string[];
     roledescription?: AttrString;
     "a11y-delete-button-text"?: AttrString;
