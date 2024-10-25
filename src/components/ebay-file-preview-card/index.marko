@@ -17,8 +17,8 @@ $ const type = (
     rawFile?.type?.startsWith("image")
         ? "image"
         : rawFile?.type?.startsWith("video")
-          ? "video"
-          : undefined
+            ? "video"
+            : undefined
 );
 $ if (rawFile instanceof File) {
     file = {
