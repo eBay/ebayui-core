@@ -1,23 +1,20 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
-
+import { processHtmlAttributes } from "../../common/html-attributes";
 $ const {
     data,
     class: inputClass,
     series,
     title,
     description,
-    xAxisLabelFormat,
-    yAxisLabels,
-    xAxisPositioner,
-    yAxisPositioner,
+    xLabelFormatter,
+    yLabelFormatter,
+    highchartOptions,
+    // xAxisLabelFormat,
+    // yAxisLabels,
+    // xAxisPositioner,
+    // yAxisPositioner,
     ...restInput
-} = input
+} = input;
 
-<div
-    ...processHtmlAttributes(restInput)
-    class=[
-        input.class,
-        'ebay-area-chart'
-    ]>
-    <div.ebay-area-chart__container id=component.getContainerId()/>
+<div ...processHtmlAttributes(restInput) class=[input.class, "ebay-area-chart"]>
+    <div id=component.getContainerId() class="ebay-area-chart__container"/>
 </div>

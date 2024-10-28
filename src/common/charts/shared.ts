@@ -1,7 +1,7 @@
 export const chartFontFamily = '"Market Sans", Arial, sans-serif',
     backgroundColor = "var(--color-background-primary)",
     gridColor = "var(--color-data-viz-grid)",
-    labelsColor = "var(--color-data-viz-labels)",
+    labelsColor = "var(--color-foreground-secondary)",
     legendColor = "var(--color-data-viz-legend)",
     legendInactiveColor = "var(--color-data-viz-legend-inactive)",
     legendHoverColor = "var(--color-data-viz-legend-hover)",

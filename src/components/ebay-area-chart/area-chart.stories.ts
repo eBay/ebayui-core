@@ -10,7 +10,6 @@ const Template = (args) => ({
 
 export default {
     title: "charts/ebay-area-chart",
-    excludeStories: ".*",
     component: Component,
     parameters: {
         docs: {
@@ -101,6 +100,9 @@ ThreeSeries.args = {
     description:
         "this chart displays 30 days of values for sample1, sample2 and sample3",
     series: sampleSeriesData.slice(0, 3),
+    highchartOptions: {
+        title: { text: "override!" },
+    },
 };
 ThreeSeries.parameters = {
     docs: {
