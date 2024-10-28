@@ -2,7 +2,7 @@ import { AttrString, AttrTriState } from "marko/tags-html";
 import { WithNormalizedProps } from "../../global";
 import { CheckboxEvent } from "../ebay-checkbox/component-browser";
 
-type TableSort = "asc" | "desc" | "none";
+export type TableSort = "asc" | "desc" | "none";
 export interface TableHeader extends Omit<Marko.Input<"th">, `on${string}`> {
     columnType?: "normal" | "numeric" | "row-header" | "layout" | "icon-action";
     name?: string;
