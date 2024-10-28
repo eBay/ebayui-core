@@ -30,7 +30,6 @@ export default {
             description: "Whether multiple files can be uploaded",
         },
         renderBody: {
-            control: { type: "text" },
             description: "CTA render body",
         },
         subheader: {
