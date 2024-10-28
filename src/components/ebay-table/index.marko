@@ -42,7 +42,7 @@ $ const {
                     $ const {
                         columnType = "normal",
                         class: thClass,
-                        name = headerIndex,
+                        name = `${headerIndex}`,
                         sort,
                         renderBody,
                         href,
@@ -104,7 +104,7 @@ $ const {
             <for|row, rowIndex| of=rows || []>
                 $ const {
                     cell: cells,
-                    name = rowIndex,
+                    name = `${rowIndex}`,
                     selected,
                     ...trInput
                 } = row;

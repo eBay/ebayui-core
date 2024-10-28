@@ -17,9 +17,11 @@ describe("given sortable table with Seller column is sorted in ascending order (
 
     describe("when Seller column is clicked", () => {
         let sellerColumn;
+        let emitted;
         beforeEach(async () => {
             sellerColumn = component.getByRole("button", { name: "Seller" });
             await fireEvent.click(sellerColumn);
+            emitted = component.emitted("sort");
         });
         it("then proper sort event should be emitted", async () => {
             expect(sellerColumn).toMatchInlineSnapshot(`
@@ -46,19 +48,10 @@ describe("given sortable table with Seller column is sorted in ascending order (
                 
               </button>
             `);
-            expect(component.emitted("sort")[0][0]).toMatchInlineSnapshot(`
+            expect(emitted[0][0]).toMatchInlineSnapshot(`
               {
                 "sorted": {
-                  "deliveryCol": "none",
-                  "itemCol": "none",
-                  "listPriceCol": "none",
-                  "orderCol": "none",
-                  "protectionCol": "none",
-                  "quantityCol": "none",
                   "sellerCol": "desc",
-                  "shippingCol": "none",
-                  "statusCol": "none",
-                  "watchersCol": "none",
                 },
               }
             `);
@@ -70,6 +63,7 @@ describe("given sortable table with Seller column is sorted in ascending order (
                     name: "Seller",
                 });
                 await fireEvent.click(sellerColumn);
+                emitted = component.emitted("sort");
             });
             it("then proper sort event should be emitted", async () => {
                 expect(sellerColumn).toMatchInlineSnapshot(`
@@ -96,19 +90,10 @@ describe("given sortable table with Seller column is sorted in ascending order (
                     
                   </button>
                 `);
-                expect(component.emitted("sort")[0][0]).toMatchInlineSnapshot(`
+                expect(emitted[0][0]).toMatchInlineSnapshot(`
                   {
                     "sorted": {
-                      "deliveryCol": "none",
-                      "itemCol": "none",
-                      "listPriceCol": "none",
-                      "orderCol": "none",
-                      "protectionCol": "none",
-                      "quantityCol": "none",
                       "sellerCol": "none",
-                      "shippingCol": "none",
-                      "statusCol": "none",
-                      "watchersCol": "none",
                     },
                   }
                 `);
