@@ -89,6 +89,11 @@ export default {
             description:
                 "True/False to keep or remove volume slider. Default is False",
         },
+        shakaConfig: {
+            description:
+                "The Shaka player configuration object. This allows users to control Shaka player.",
+            control: { type: "object" },
+        },
 
         source: {
             name: "@source",
@@ -229,6 +234,11 @@ Standard.args = {
             type: "dash",
         },
     ],
+    shakaConfig: {
+        streaming: {
+            lowLatencyMode: true,
+        }
+    }
 };
 Standard.parameters = {
     docs: {
@@ -253,6 +263,11 @@ ios.args = {
             type: "dash",
         },
     ],
+    shakaConfig: {
+        streaming: {
+            lowLatencyMode: true,
+        }
+    }
 };
 
 ios.parameters = {
