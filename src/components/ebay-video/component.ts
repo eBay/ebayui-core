@@ -206,6 +206,7 @@ class Video extends Marko.Component<Input, State> {
             failed: false,
             played: false,
         };
+
         this.cdnLoader = new CDNLoader(this as any, {
             key: "shaka",
             types: ["src", "css"],
