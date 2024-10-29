@@ -17,7 +17,7 @@ class {
     handleDelete(index: number) {
         this.state.files = [
             ...this.state.files.slice(0, index),
-            ...this.state.files.slice(index + 1)
+            ...this.state.files.slice(index + 1),
         ];
     }
 }
@@ -28,8 +28,15 @@ class {
     <span>Browse files</span>
 </ebay-file-input>
 
-<ebay-file-preview-card-group on-delete("handleDelete") on-cancel("handleDelete")>
+<ebay-file-preview-card-group
+    on-delete("handleDelete")
+    on-cancel("handleDelete")
+>
     <for|file| of=state.files>
-        <@card file=file/>
+        <@card
+            a11yCancelUploadText="Cancel upload"
+            deleteText="Delete"
+            file=file
+        />
     </for>
 </ebay-file-preview-card-group>

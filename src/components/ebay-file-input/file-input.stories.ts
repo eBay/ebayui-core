@@ -64,6 +64,9 @@ export const Default = (args) => ({
 Default.args = {};
 Default.parameters = {
     docs: {
+        description: {
+            story: "In this story you can trigger the native file input picker only. Uploading files will have no effect.",
+        },
         source: {
             code: DefaultCode,
         },
@@ -77,6 +80,9 @@ export const WithPreviewCards = (args) => ({
 WithPreviewCards.args = {};
 WithPreviewCards.parameters = {
     docs: {
+        description: {
+            story: " In this story you can trigger the native file input picker. Uploading files will render each ebay-file-preview-card component in preview status.",
+        },
         source: {
             code: WithPreviewCardsCode,
         },
@@ -90,6 +96,9 @@ export const WithMockUploads = (args) => ({
 WithMockUploads.args = {};
 WithMockUploads.parameters = {
     docs: {
+        description: {
+            story: "In this story you can trigger the native file input picker. Uploading files will render each ebay-file-preview-card component in uploading status.",
+        },
         source: {
             code: WithMockUploadsCode,
         },
