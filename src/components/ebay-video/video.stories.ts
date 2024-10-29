@@ -91,7 +91,7 @@ export default {
         },
         shakaConfig: {
             description:
-                "The Shaka player configuration object. This allows users to control Shaka player.",
+                "The Shaka player [configuration object](https://shaka-player-demo.appspot.com/docs/api/tutorial-config.html). This allows users to control Shaka player.",
             control: { type: "object" },
         },
 
