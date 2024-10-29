@@ -93,6 +93,7 @@ class Video extends Marko.Component<Input, State> {
     declare player: any;
     declare ui: any;
     declare cdnLoader: CDNLoader;
+    declare shakaConfig: any;
 
     isPlaylist(source: Marko.Input<"source"> & { src: string }) {
         const type = source.type && source.type.toLowerCase();
@@ -197,7 +198,7 @@ class Video extends Marko.Component<Input, State> {
         }
     }
 
-    onCreate() {
+    onCreate(input: Input) {
         this.state = {
             volumeSlider: false,
             action: "",
@@ -206,7 +207,7 @@ class Video extends Marko.Component<Input, State> {
             failed: false,
             played: false,
         };
-
+        this.shakaConfig = input.shakaConfig || {};
         this.cdnLoader = new CDNLoader(this as any, {
             key: "shaka",
             types: ["src", "css"],
@@ -314,6 +315,7 @@ class Video extends Marko.Component<Input, State> {
 
         // eslint-disable-next-line no-undef,new-cap
         this.player = new shaka.Player(this.video);
+        this.player.configure(this.shakaConfig);
         this._attach();
 
         this._loadSrc();
