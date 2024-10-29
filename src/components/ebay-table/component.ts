@@ -31,7 +31,7 @@ export interface TableInput extends Omit<Marko.Input<"div">, `on${string}`> {
         selected: Record<string, boolean>;
         allSelected?: AttrTriState;
     }) => void;
-    "on-sort"?: (event: { sorted: Record<string, boolean> }) => void;
+    "on-sort"?: (event: { sorted: Record<string, TableSort> }) => void;
 }
 export interface Input extends WithNormalizedProps<TableInput> {}
 

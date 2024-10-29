@@ -11,6 +11,8 @@ import sortTemplate from "./examples/sort.marko";
 import sortCode from "./examples/sort.marko?raw";
 import sortWithLinkTemplate from "./examples/sort-with-link.marko";
 import sortWithLinkCode from "./examples/sort-with-link.marko?raw";
+import sortClientSideTemplate from "./examples/sort-client-side.marko";
+import sortClientSideCode from "./examples/sort-client-side.marko?raw";
 
 export default {
     title: "data-display/table",
@@ -63,7 +65,13 @@ export default {
         columnType: {
             name: "column-type",
             control: { type: "select" },
-            options: ["normal", "numeric", "row-header", "layout", "icon-action"],
+            options: [
+                "normal",
+                "numeric",
+                "row-header",
+                "layout",
+                "icon-action",
+            ],
             table: {
                 category: "@header attribute tags",
             },
@@ -147,4 +155,8 @@ export const ColumnSorting = buildExtensionTemplate(sortTemplate, sortCode);
 export const ColumnSortingWithLink = buildExtensionTemplate(
     sortWithLinkTemplate,
     sortWithLinkCode,
+);
+export const ColumnSortingClientSide = buildExtensionTemplate(
+    sortClientSideTemplate,
+    sortClientSideCode,
 );

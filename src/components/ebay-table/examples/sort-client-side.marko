@@ -5,26 +5,21 @@ class {
         sorted: Record<string, TableSort>;
     };
     onCreate() {
-        this.state = { sorted: { sellerCol: "asc" } };
+        this.state = { sorted: {} };
     }
     onSort(event: { sorted: Record<string, TableSort> }, ...params: any) {
         this.state.sorted = event.sorted;
         this.emit("sort", event, ...params);
     }
 }
-
 <ebay-table on-sort("onSort") ...input>
-    <@header
-        name="sellerCol"
-        column-type="row-header"
-        sort=(state.sorted.sellerCol || "none")
-    >
+    <@header name="sellerCol" column-type="row-header">
         Seller
     </@header>
-    <@header name="itemCol" sort=(state.sorted.itemCol || "none")>
+    <@header name="itemCol">
         Item
     </@header>
-    <@header name="statusCol" sort=(state.sorted.statusCol || "none")>
+    <@header name="statusCol">
         Status
     </@header>
     <@header
@@ -41,30 +36,39 @@ class {
     >
         Quantity Available
     </@header>
-    <@header name="orderCol" sort=(state.sorted.orderCol || "none")>
+    <@header name="orderCol">
         Orders
     </@header>
-    <@header
-        name="watchersCol"
-        column-type="numeric"
-        sort=(state.sorted.watchersCol || "none")
-    >
+    <@header name="watchersCol" column-type="numeric">
         Watchers
     </@header>
-    <@header
-        name="protectionCol"
-        column-type="numeric"
-        sort=(state.sorted.protectionCol || "none")
-    >
+    <@header name="protectionCol" column-type="numeric">
         Protection
     </@header>
-    <@header name="shippingCol" sort=(state.sorted.shippingCol || "none")>
+    <@header name="shippingCol">
         Shipping
     </@header>
-    <@header name="deliveryCol" sort=(state.sorted.deliveryCol || "none")>
+    <@header name="deliveryCol">
         Delivery
     </@header>
-    <for|r| of=data>
+    <for|r| of=data.sort((a, b) => {
+        if (state.sorted.listPriceCol === "asc") {
+            return (
+                Number(a.listPrice.substring(1)) -
+                Number(b.listPrice.substring(1))
+            );
+        } else if (state.sorted.listPriceCol === "desc") {
+            return (
+                Number(b.listPrice.substring(1)) -
+                Number(a.listPrice.substring(1))
+            );
+        } else if (state.sorted.quantityCol === "asc") {
+            return Number(a.quantityAvailable) - Number(b.quantityAvailable);
+        } else if (state.sorted.quantityCol === "desc") {
+            return Number(b.quantityAvailable) - Number(a.quantityAvailable);
+        }
+        return 0;
+    })>
         <@row>
             <@cell>${r.seller}</@cell>
             <@cell>${r.item.title}</@cell>
